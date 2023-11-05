@@ -1,0 +1,59 @@
+.header-container{
+   background-color: white;
+   box-shadow: 0 5px 5px #D93939;
+   padding-left: 40px;
+    
+}
+
+.header{
+    text-align: left;
+    width: 20%;
+    height: 80px;
+    padding-top: 10px;
+   
+}
+
+  
+.img-fluid{
+    width: 60px;
+    height: 60px;
+    margin-left: 20px;
+    margin-right: 10px;
+    margin-top: -30px;
+  }
+
+
+.logotitle{
+    height: 100%;
+    width: auto;
+    display: inline-block;
+    padding-top: 5px;
+}
+
+
+.header a{
+    font-weight: bold;
+    font-size: 20px;
+    font-family: 'Times New Roman';
+    color: #000096;
+    padding-top: -5px;
+    
+  }
+
+
+.header a:hover{
+    color: #000096;
+    cursor: auto;
+}
+
+.header a:focus{
+    color: #000096;
+}
+
+.header span{
+    font-family: 'Times New Roman', Times, serif;
+    display: block;
+    font-size: 15px;
+    color: #000096;
+}
+

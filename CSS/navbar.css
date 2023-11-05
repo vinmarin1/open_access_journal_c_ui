@@ -1,0 +1,12 @@
+#navbar-container{
+    background-color: #115272;
+    margin-top: 4px;
+}
+
+#navbarSupportedContent a{
+    color: white;
+}
+
+#navbarSupportedContent{
+  padding-left: 50px;
+}
