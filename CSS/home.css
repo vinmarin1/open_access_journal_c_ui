@@ -63,3 +63,105 @@
     border: 2px white solid;
     background-color: transparent;
   }
+
+
+  .offer-left, .offer-right{
+    display: inline-block;
+    width: 40%;
+  }
+  
+  
+  
+  .offer-left{
+    margin-top: 80px;
+    margin-left: 80px;
+
+  }
+  
+  .offer-left h2{
+    font-family: 'Times New Roman', Times, serif;
+    color: #115272;
+  }
+
+
+  .offer-left p{
+    width: 60%;
+  }
+
+  .offer-left button{
+    background-color: #115272;
+    border-radius: 20px;
+    width: 50%;
+    
+  }
+
+  .offer-left button:hover{
+    background-color: #115272;
+    border-radius: 20px;
+    opacity: 0.8;
+    
+  }
+
+  .divider-line{
+    border-left: 2px solid #115272;
+    height: 410px;
+    display: inline-block;
+    position: absolute;
+    margin-top: 30px;
+  }
+
+  .offer-right{
+    float: right;
+    margin-right: 40px;
+    
+  }
+
+  .offer-right h6{
+    font-family: 'Times New Roman', Times, serif;
+    color: #115272;
+    margin-top: 50px;
+   
+  }
+
+  .offer-right p{
+    font-size: 12px;
+  }
+
+  .offer-right button{
+    border: 2px #115272 solid;
+    background-color: transparent;
+    border-radius: 20px;
+    color: #115272;
+    width: 50%;
+  }
+
+  .offer-right button:hover{
+    border: 2px #115272 solid;
+    background-color: transparent;
+    border-radius: 20px;
+    color: #115272;
+    opacity: 0.8;
+    
+  }
+
+  .articles-container{
+    padding-top: 50px;
+  }
+
+ .articles{
+
+  width: 100%;
+  height: 100%;
+  display: flex;
+  overflow-y: scroll;
+  background-color: white;
+ }
+
+ .article1{
+  width: 20%;
+  height: 80%;
+ }
+
+
+ 
+

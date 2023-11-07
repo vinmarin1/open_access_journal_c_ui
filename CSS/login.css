@@ -1,0 +1,55 @@
+.form-container{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    width: 100%;
+    height: auto;
+    padding-top: 20px;
+}
+
+
+#form{
+    width: 500px;
+    height: auto;
+    box-shadow:  0 20px 20px rgba(0, 0, 0, 0.1); 
+    padding-top: 20px;
+    padding-left: 20px;   
+    margin-bottom: 50px;
+}
+
+#form h4{
+    margin-bottom: 50px;
+}
+
+#form input[type="email"], input[type="password"]{
+    width: 95%;
+
+}
+
+#form label{
+    font-size: 12px;
+    font-weight: bold;
+}
+
+#form a{
+    float: right;
+    margin-right: 22px;
+   
+}
+
+.btns{
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+#login-button{
+    width: 95%;
+}
+
+#register-button{
+    width: 95%;
+    margin-top: 10px;
+    background-color: #D93939;
+}
+
+

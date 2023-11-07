@@ -18,10 +18,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link active" aria-current="page" href="home.php">Home</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="about.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             About
           </a>
           <ul class="dropdown-menu">
@@ -31,7 +31,7 @@
           </ul>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Publications
           </a>
           <ul class="dropdown-menu">
@@ -43,13 +43,13 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Archives</a>
+          <a class="nav-link" href="archives.php">Archives</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Editorial</a>
+          <a class="nav-link" href="editorial.php">Editorial</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Announcements</a>
+          <a class="nav-link" href="announcement.php">Announcements</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
