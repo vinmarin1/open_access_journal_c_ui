@@ -1,0 +1,117 @@
+.footer-container{
+    background-color: #115272;
+    padding-left: 40px;
+    bottom:0;
+    overflow: hidden;
+    width: 100%;
+    margin-top: 500px;
+   
+}
+
+.footer{
+    text-align: left;
+    height: 100px;
+}   
+
+
+.img-fluid{
+    width: 60px;
+    height: 60px;
+    margin-left: 20px;
+    margin-right: 10px;
+    margin-top: -30px;
+}
+
+
+.f-logotitle{
+    height: 100%;
+    width: auto;
+    display: inline-block;
+    padding-top: 80px;
+}
+
+
+.footer a{
+    font-weight: bold;
+    font-size: 20px;
+    font-family: 'Times New Roman';
+    color: silver;
+    padding-top: -5px;
+    
+}
+
+
+.footer a:hover{
+    color: silver;
+    cursor: auto;
+}
+
+.footer a:focus{
+    color: silver;
+}
+
+.footer span{
+    font-family: 'Times New Roman', Times, serif;
+    display: block;
+    font-size: 15px;
+    color: white;
+}
+
+.links{
+text-align: center;
+}
+
+.links a{
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    margin: 0 10px 40px 0;
+    
+}
+
+.links ul a{
+    margin: 0;
+}
+
+.copyright{
+    color: white;
+    font-size: 15px;
+    text-align: right;
+    margin: 0 20px 40px 0;
+    
+}
+.copyright a{
+    color: white;
+    text-decoration:underline;
+    font-size: 15px;
+    margin-right: 10px;
+}
+.copyright a:hover{
+    cursor: pointer;
+    color: white;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+}
+
+@media (max-width: 768px) {
+/* Adjust the styles for smaller screens */
+.footer {
+    text-align: center; /* Center-align the content */
+}
+
+.f-logotitle {
+    padding-top: 10px; /* Add space between the logo and text */
+}
+
+.copyright {
+    text-align: center; /* Center-align the copyright text */
+    margin-top: 10px; /* Add space between the copyright and content above it */
+}
+
+.img-fluid {
+    max-width: 80px; /* Adjust the image size */
+}
+}
