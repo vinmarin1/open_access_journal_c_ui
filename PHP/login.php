@@ -19,9 +19,9 @@
     <form method="post" id="form">
         <h4>LOGIN</h4>
         <label for="email">Email:</label>
-        <input type="email" name="email" id="email" class="form-control" required><br>
+        <input type="email" name="email" id="email" class="form-control" ><br>
         <label for="email">Password:</label>
-        <input type="password" name="password" id="password" class="form-control" required><br>
+        <input type="password" name="password" id="password" class="form-control" ><br>
         <a href="#" >Forgot Password?</a><br>
         <div class="btns">
         <input class="btn btn-primary btn-sm" type="submit" value="Login" id="login-button">
@@ -34,9 +34,9 @@
 
 
    
-      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" ></script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       <script src="../js/login.js"></script>
 </body>
 </html>

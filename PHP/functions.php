@@ -1,7 +1,8 @@
 <?php 
 
-session_start();
 require 'dbcon.php';
+session_start();
+
 
 
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
@@ -37,7 +38,7 @@ function login($data)
         $arr['email'] = $data['email'];
         $password = hash('sha256', $data['password']);
 
-        $query = "select * from users where email = :email limit 1";
+        $query = "select * from author where email = :email limit 1";
 
         $row = database_run($query, $arr);
 
@@ -77,14 +78,14 @@ function check_login($redirect = true){
 
 function check_verified() {
     $id = $_SESSION['USER']->id;
-    $query = "select * from users where id = '$id' limit 1";
+    $query = "select * from author where id = '$id' limit 1";
     $row = database_run($query);
 
     if (is_array($row)) {
         $row = $row[0];
 
         if ($row->email == $row->email_verified) {
-            header("Location: ../php/timeline.php");
+            header("Location: ../php/home.php");
             die;
         }
     }

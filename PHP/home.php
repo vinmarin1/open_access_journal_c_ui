@@ -10,8 +10,15 @@
 </head>
 <body>
 
-<?php include 'header.php' ?>
-<?php include 'navbar.php' ?>
+
+
+<div class="header-container" id="header-container">
+  <!-- header will be display here by fetching reusable files -->
+</div>
+
+<nav class="navigation-menus-container"  id="navigation-menus-container">
+  <!-- navigation menus will be display here by fetching reusable files -->
+</nav>
 
 <div class="main-content">
     <div class="content-over">
@@ -224,9 +231,12 @@
 
 
 
-<?php include 'footer.php' ?>
+<div class="footer" id="footer">
+    <!-- footer will be display here by fetching reusable files -->
+</div>
 
 
+ 
 
 
 
@@ -234,5 +244,6 @@
       <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" ></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+      <script src="../JS/reusable-header.js"></script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 .header-container{
    background-color: white;
-   box-shadow: 0 5px 5px #D93939;
+   box-shadow:  0 5px 0px #D93939;
+   margin-bottom: 3px;
    padding-left: 40px;
   
 }

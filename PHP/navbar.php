@@ -21,6 +21,16 @@
           <a class="nav-link active" aria-current="page" href="home.php">Home</a>
         </li>
         <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Log-in
+          </a>
+          <ul class="dropdown-menu">
+          <li><a class="dropdown-item" style="color: black" href="login.php" >Log-in</a></li>
+          <li><a class="dropdown-item" style="color: black" href="sign-up.php">Register</a></li>
+         
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="about.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             About
           </a>
