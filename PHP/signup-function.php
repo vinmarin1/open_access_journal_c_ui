@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         echo json_encode(array("success" => "Login successful"));
     } else {
         // Login failed, send error messages
-        echo json_encode(array("error" => implode("<br>", $errors)));
+        echo json_encode(array("error" => implode( $errors)));
     }
 }
 
@@ -57,10 +57,29 @@ function signup($data)
         $errors[] = "Password must be at least 4 characters long";
     }
 
-    $check = database_run("select * from author where email = :email limit 1", ['email' => $data['email']]);
-    if (is_array($check)) {
+    $checkEmail = database_run("select * from author where email = :email limit 1", ['email' => $data['email']]);
+    if (is_array($checkEmail)) {
         $errors[] = "The email already exists";
     }
+
+
+    $checkPnumber = database_run("select * from author where phone_number = :pnumber limit 1", ['pnumber' => $data['pnumber']]);
+    if (is_array($checkPnumber)) {
+        $errors[] = "The phone number already exist";
+    }
+
+    $checkOrcID = database_run("select * from author where orc_id = :orcid limit 1", ['orcid' => $data['orcid']]);
+    if (is_array($checkOrcID)) {
+        $errors[] = "The Orc ID already exist";
+    }
+
+    $checkOrcLink= database_run("select * from author where url_orc_id = :orcidUrl limit 1", ['orcidUrl' => $data['orcidUrl']]);
+    if (is_array($checkOrcLink)) {
+        $errors[] = "The Orc Link already exist";
+    }
+
+
+
 
     // Save the data to the database if there are no errors
     if (empty($errors)) {
