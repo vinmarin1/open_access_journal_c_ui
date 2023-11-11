@@ -9,7 +9,7 @@
 }
 
 #form{
-    width: 500px;
+    width: 80%;
     height: auto;
     box-shadow:  0 20px 20px rgba(0, 0, 0, 0.1);
     padding-left: 20px;
@@ -23,9 +23,51 @@ form label{
     display: block;
     font-weight: bold;
     font-size: 12px;
+    margin-bottom: 5px;
 }
 
-input[type="text"], input[type="email"], input[type="number"], input[type="date"], #genSelect, input[type="password"], input[type="button"]{
-    width: 450px;
+.input-field{
+    display: inline-block;
+    margin-right: 10px;
+}
+
+input[type="text"], input[type="email"], input[type="number"], input[type="date"], #genSelect, input[type="password"]{
+    display: inline-block;
+    margin-bottom: 40px;
+    width: 150px;
+}
+
+
+.register-container{
+    display: inline-block;
+}
+
+
+input[type="submit"]{
+    height: 35px;
+    width: 200px;
+    border-radius: 20px;
+    margin-left: 50px;
+    margin-bottom: 5px;
+    color: #D93939;
+    border: none;
+    border: 1px solid;
+    background-color: white;
+    float: right;
+    margin-right: 20px;
     margin-bottom: 20px;
 }
+
+input[type="submit"]:hover{
+    color: #D93939;
+    border: none;
+    border: 1px solid;
+    background-color: white;
+}
+
+
+
+
+
+
+
