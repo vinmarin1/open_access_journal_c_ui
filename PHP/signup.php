@@ -34,7 +34,7 @@
         </div>
 
         <div class="input-field ">
-            <label for="email">Email:</label>
+           <label for="email">Email:</label>
            <input type="email" class="input form-control" name="email"  id="email" >
         </div>
        

@@ -26,7 +26,7 @@
           </a>
           <ul class="dropdown-menu">
           <li><a class="dropdown-item" style="color: black" href="login.php" >Log-in</a></li>
-          <li><a class="dropdown-item" style="color: black" href="sign-up.php">Register</a></li>
+          <li><a class="dropdown-item" style="color: black" href="signup.php">Register</a></li>
          
           </ul>
         </li>

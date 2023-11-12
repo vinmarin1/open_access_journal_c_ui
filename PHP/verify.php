@@ -24,7 +24,7 @@
 			$recipient = $vars['email'];
 			send_mail($recipient,$subject,$message);
 		}else {
-			header("Location: ../php/timeline.php"); // User is already verified
+			header("Location: ../php/home.php"); // User is already verified
 			die;
 		}
 	}
@@ -47,12 +47,12 @@
 
 				if($row->expires > $time){
 
-					$id = $_SESSION['USER']->id;
-					$query = "update users set email_verified = email where id = '$id' limit 1";
+					$author_id = $_SESSION['USER']->author_id;
+					$query = "UPDATE author SET email_verified = email WHERE author_id  = '$author_id' limit 1";
 					
 					database_run($query);
 					if(check_verified())
-					header("Location: ../php/timeline.php");
+					header("Location: ../php/home.php");
 					die;
 				}else{
 					echo "Code expired";
@@ -74,85 +74,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QCU TIMES PUBLICATION | VERIFICATION CODE</title>
+	<link rel="stylesheet" href="../css/verify.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-	<style>
-		form{
-   width: 350px;
-   border: none;
-   height: auto;
-   box-shadow:  0 20px 20px rgba(0, 0, 0, 0.1);
-   margin-left: auto;
-   margin-right: auto;
-   margin-top: 80px;
-   padding-top: 5px;
-}
-
-
-
-.descript{
-	text-align: center;
-	margin-bottom: 40px;
-}
-
-.descript, input[type="text"], input[type="submit"]{
-	margin-left: auto;
-	margin-right: auto;
-	width: 90%;
-    height: 35px;
-    padding-left: 10px;
-    outline: none;
-	margin-left: 20px;
 	
-
-}
-
-.descript{
-	font-size: 20px;
-	margin-top: 40px;
-	
-}
-
-.descript span{
-	font-size: 15px;
-	
-	
-}
-input[type="text"]{
-	margin-top: 20px;
-	text-align: center;
-}
-
-
-input[type="text"]:focus{
-	outline: 1px solid;
-	
-}
-
-.validation{
-	color: red;
-	text-align: center;
-	margin-top: 10px;
-	margin-bottom: -30px;
-}
-
-
-input[type="submit"]{
-	margin-bottom: 40px;
-}
-
-	</style>
 </head>
 <body>
-<div class="header-container" id="header-container">
-        <!-- header will be display here by fetching reusable files -->
-      </div>
-      
-      <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark" id="navigation-menus-container">
-        <!-- navigation menus will be display here by fetching reusable files -->
-      </nav>
- 	<div>
-	
+
 			
 		<form method="post">
 		<p class="descript">An OTP code was sent to <span><b><?php echo $vars['email'];?></b></span></p>
@@ -162,18 +90,18 @@ input[type="submit"]{
 			<input type="text" name="code" placeholder="Enter the 5 digit code ">
  			<br>
 			 <p class="validation" id="validation">
-    <?php
-    if ($_SERVER['REQUEST_METHOD'] == "POST") {
-        if (!check_verified()) {
-            if (empty($_POST['code'])) {
-                echo "*Please enter the 5-digit code sent to your email";
-            } else {
-                echo "Code Incorrect";
-            }
-        }
-    }
-    ?>
-</p>
+			<?php
+			if ($_SERVER['REQUEST_METHOD'] == "POST") {
+				if (!check_verified()) {
+					if (empty($_POST['code'])) {
+						echo "*Please enter the 5-digit code sent to your email";
+					} else {
+						echo "Code Incorrect";
+					}
+				}
+			}
+			?>
+			</p>
 
 			<br>
 			<input class="btn btn-primary btn-sm" type="submit" value="Verify">

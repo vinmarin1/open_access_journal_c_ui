@@ -9,8 +9,8 @@
 
 
 #form{
-    width: 500px;
-    height: auto;
+    width: 400px;
+    height: 400px;
     box-shadow:  0 20px 20px rgba(0, 0, 0, 0.1); 
     padding-top: 20px;
     padding-left: 20px;   
@@ -35,7 +35,8 @@
 #form a{
     float: right;
     margin-right: 22px;
-   
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .btns{
