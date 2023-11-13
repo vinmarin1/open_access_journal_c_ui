@@ -2,8 +2,8 @@
 
 function database_run($query,$vars = array())
 {
-	$string = "mysql:host=localhost;dbname=qcu_times";
-	$con = new PDO($string,'root','');
+	$string = "mysql:host=mysql5049.site4now.net;dbname=db_aa0682_movies";
+	$con = new PDO($string,'aa0682_movies','Password1234.');
 
 	if(!$con){
 		return false;
