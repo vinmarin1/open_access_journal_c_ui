@@ -13,11 +13,11 @@
 
 
 <div class="header-container" id="header-container">
-  <!-- header will be display here by fetching reusable files -->
+ 
 </div>
 
 <nav class="navigation-menus-container"  id="navigation-menus-container">
-  <!-- navigation menus will be display here by fetching reusable files -->
+  
 </nav>
 
 <div class="main-content">

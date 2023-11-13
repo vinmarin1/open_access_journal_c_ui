@@ -86,7 +86,7 @@ function check_verified() {
         $row = $row[0];
 
         if ($row->email == $row->email_verified) {
-            header("Location: home.php");
+            header("Location: timeline.php");
             die;
         }
     }

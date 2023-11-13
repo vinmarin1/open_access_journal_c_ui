@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,6 +80,29 @@
       
        
       </form>
+      
+      <?php
+
+
+if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+    // User is logged in, display the profile menu
+    echo '
+    <div class="profile" >
+        <li class="nav-item dropdown" style="list-style-type: none;">
+            <ul class="dropdown-menu" style="width: 50px; margin-left: -60px; margin-top: 20px">
+              <li><a href="../php/home.php"  class="dropdown-item" href="#" style="color: black;">Timeline</a></li>
+              <li><a href="../php/profile.php"  class="dropdown-item" href="#"  style="color: black;">Profile</a></li>
+              <li><a class="dropdown-item" href="#"  style="color: black;">View Activity</a></li>
+              <li><a class="dropdown-item" href="../PHP/logout.php"  style="color: black;">Log-out</a></li> 
+            </ul>
+            <a id="img-profile" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <img class="img-fluid" src="../images/qcu-logo.webp" alt="" style="width: 30px; height: 30px; margin-top: -3px;">
+            </a>
+        </li>
+    </div>';
+}
+?>
+ 
     </div>
   </div>
 </nav>

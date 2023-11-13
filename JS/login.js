@@ -37,7 +37,7 @@ $(document).ready(function() {
                             },
                             success: function (verifiedResponse) {
                                 if (verifiedResponse === "true") {
-                                    window.location.href = "../php/home.php";
+                                    window.location.href = "../php/timeline.php";
                                 } else {
                                     window.location.href = "../php/verify.php";
                                 }
