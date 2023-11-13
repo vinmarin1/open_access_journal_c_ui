@@ -64,7 +64,6 @@ function signup($data)
         $arr['fname'] = $data['fname'];
         $arr['mdname'] = $data['mdname'];
         $arr['lname'] = $data['lname'];
-        $arr['public_name'] = "example";
         $arr['email'] = $data['email'];
         $arr['password'] = hash('sha256', $data['password']);
         $arr['genSelect'] = $data['genSelect'];
@@ -78,8 +77,8 @@ function signup($data)
         $arr['date_added'] = date("Y-m-d H:i:s");
         $arr['role'] = "Author";
 
-        $query = "INSERT INTO author (first_name, middle_name, last_name, public_name,email, password, gender, birth_date, phone_number, school_name, field_of_expertise, bio, orc_id, url_orc_id, date_added, role) VALUES 
-        (:fname, :mdname, :lname, :public_name,:email, :password, :genSelect, :bdate, :pnumber, :sclname, :expertise, :bio, :orcid, :orcidUrl, :date_added, :role)";
+        $query = "INSERT INTO author (first_name, middle_name, last_name,email, password, gender, birth_date, phone_number, school_name, field_of_expertise, bio, orc_id, url_orc_id, date_added, role) VALUES 
+        (:fname, :mdname, :lname, :email, :password, :genSelect, :bdate, :pnumber, :sclname, :expertise, :bio, :orcid, :orcidUrl, :date_added, :role)";
    
         database_run($query, $arr);
     }
