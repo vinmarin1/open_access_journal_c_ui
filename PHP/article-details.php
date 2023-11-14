@@ -3,64 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QCU PUBLICATION | HOME</title>
-    <link rel="stylesheet" href="../CSS/home.css">
+    <title>QCU PUBLICATION | ARTICLE DETAILS</title>
+    <link rel="stylesheet" href="../CSS/article-details.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
-
-
 <div class="header-container" id="header-container">
- 
+<!-- header will be display here by fetching reusable files -->
 </div>
 
 <nav class="navigation-menus-container"  id="navigation-menus-container">
-  
+<!-- navigation menus will be display here by fetching reusable files -->
 </nav>
 
-<div class="main-content">
+<div class="main-container">
     <div class="content-over">
-        <div class="cover-content">
-        <p>Quezon City University’s Directory of Journals</p>
-        <h2>Find or Submit Open Access Articles</h2>
+        <div class="article-title">
+            <p>THE LAMP</p>
+            <h3>A Classroom-based Action Research on Selected First Year Infor- mation Technology Students of Quezon City University for the Sec- ond Semester of Academic Year 2021-2022</h3>
+            <div class="after-title">
+                <div class="authors">
+                    <p style= "font-size: small; color: gray" >Author/s</p>
+                    <p>Donalyn Dizon, Rafael Tabu</p>
+                </div>
+                <div class="volume">
+                    <p style= "font-size: small; color: gray" >Journal Issue and Volume</p>
+                    <p>Volume 1</p>
+                </div>
+            </div>
         </div>
-        <button class="btn tbn-primary btn-md" id="btn1">Browse articles</button>
-        <button class="btn tbn-primary btn-md" id="btn2">Be a contributor</button>
-       
     </div>
-    <div class="fluid-container mb-5" ">
-      <div class="recommendation-container">
-        <div class="offer-left">
-        <h2 class="mb-3">QAJ OFFER Personalized Recommendations</h2>
-        <p class="descript">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores similique culpa, molestiae velit quis cumque saepe vel error rerum a totam deleniti, reiciendis, alias perspiciatis et. Facere recusandae fuga voluptate?</p>
-       
-        <br>
-        <button class="btn btn-primary btn-md mt-1">Try it Now</button>
-        <br>
+
+    <div class="container-fluid">
+        <div class="abstract">
+            <h4>Abstract</h4>
+            <button class="btn tbn-primary btn-md" id="btn1">Read Full Articles</button>
+            <button class="btn tbn-primary btn-md" id="btn2">Download PDF</button>
+            <p>After fighting the COVID-19 pandemic for more than two years, food production could not keep up with the rapid population expansion, which led to increased food prices and the prevalence of hunger and poverty. In this feasibility project, the company's primary objective, GAIA Inc., is to innovate a mobile application to help the environment produce fresh vegetables at home called GAIA Mobile Application. It offers a variety of information, knowledge, and step by steps procedures regarding urban farming, types of urban farming, plant calendar, soil mixtures, pest control, etc., to promote urban farming in Quezon City. The objective of the market study was to determine whether developing a revolutionary mobile application for urban farming would be beneficial and knowledgeable. The market study was conducted and involved respondents from several barangays in Quezon City. The findings showed a 97.40% acceptance rate from participants, with a total demand of 3,070,623 for 2023. As a result of the rapid growth in technology and the fact that most people like to use their mobile phones, researchers believe it would be advantageous to create a product that readily conveys the value of urban farming and the advantages it provides to people. Due to the rapid growth of technology, the researchers see it as a benefit to produce a product that can easily explain the value of urban farming and its benefits to people. Furthermore, this research aims to produce a groundbreaking mobile application that will be valuable for students, farmers, agriculture enthusiasts, and plant lovers.</p>
         </div>
         
-        <div class="divider-line"></div>
-        <div class="offer-right">
-        <h6>Article About the Future of Artificial Intlligence: Advancements and Ethical Considerations</h6>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur facilis nemo culpa quis iste itaque deserunt magnam voluptate voluptatem? Necessitatibus sint voluptatibus non? Ipsum vero omnis quas, nobis ex qui ipsa recusandae! Mollitia eaque eveniet ullam consequatur quibusdam, odit adipisci architecto accusamus a animi facere pariatur, deserunt veniam fugiat in.</p>
-        <button class="btn btn-outline-light btn-md">Continue Reading</button>
-        <h6>Article About the Future of Artificial Intlligence: Advancements and Ethical Considerations</h6>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur facilis nemo culpa quis iste itaque deserunt magnam voluptate voluptatem? Necessitatibus sint voluptatibus non? Ipsum vero omnis quas, nobis ex qui ipsa recusandae! Mollitia eaque eveniet ullam consequatur quibusdam, odit adipisci architecto accusamus a animi facere pariatur, deserunt veniam fugiat in.</p>
-        <button class="btn btn-outline-light btn-md">Continue Reading</button>
+        <div class="articles-info">
+            <div class="views-dl">
+                <div class="views">
+                    <p style="font-size:large;" >10.2K</p>
+                    <p style="font-size:small; margin-left: 5px" >VIEWS</p>
+                </div>
+                <div class="downloads">
+                    <p style="font-size:large; text-align: center;">48K</p>
+                    <p style="font-size:small; margin-left: 5px" >DOWNLOADS</p>
+                </div>
+            </div>
+
+            <hr style="height: 2px; background-color: #115272; width: 80%">
+
+            <div class="article-pub">
+                <h4>Published in the Gavel</h4>
+                <p style="margin-top: 20px; color: black">ISSN(Online)</p>
+                <p>2071-1050(Online)</p>
+                <p style="margin-top: 20px; color: black ">Date Published</p>
+                <p>2023-11-09</p>
+                <p style="margin-top: 20px; margin-bottom: 10px; color: black ">keywords</p>
+                <div class="keyword1">
+                <a href="">Technology</a>
+                <a href="" style="margin-left:10px; margin-right:10px">covid-19</a>
+                <a href="">covid-19</a>
+                </div>
+                <div class="keyword2">
+                <a href="">covid-19</a>
+                <a href="" style="margin-left:10px; margin-right:10px">covid-19</a>
+                <a href="">covid-19</a>
+                </div>
+            </div>
         </div>
-      
-      
-      </div>
-     
     </div>
-    
 </div>
 
 <div class="fluid-container">
 <div class="recommendation-article">
-<h4>Recommendation articles for you</h4>
+<h4>More Articles like this</h4>
   <div class="articles-container">
   <div class="article">
   <p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
@@ -142,11 +164,11 @@
 </div>
 </div>
 
-<hr style="height: 2px; background-color: #115272 ">
+<hr style="height: 2px; background-color: #115272">
 
-<div class="fluid-container " style="margin-top: -100px">
+<div class="fluid-container " style="margin-top: -150px">
 <div class="recommendation-article">
-<h4>Popular Articles this Month</h4>
+<h4>Recommended for you</h4>
   <div class="articles-container">
   <div class="article">
   <p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
@@ -220,73 +242,14 @@
     border-radius: 20px;
     color: #115272;
     width: 100%;">Read Article</button>
-  </div>
-
-  
-  
-  </div>
 </div>
 
-<div class="fluid-container mb-3 qoaj">
-  <div class="About-container">
-    <div class="ab-qoaj-left">
-        <h2 class="mb-3">About QOAJ</h2>
-        <p class="description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis distinctio, debitis sed dolores iste, deserunt perspiciatis ducimus odio aliquam facere illo, quasi temporibus aut sint est mollitia saepe omnis amet?</p>
-        <p class="description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis distinctio, debitis sed dolores iste, deserunt perspiciatis ducimus odio aliquam facere illo, quasi temporibus aut sint est mollitia saepe omnis amet?</p>
-        <br>
-          <button class="btn btn-primary btn-md mt-1">Read More</button>
-        <br>
-    </div>
-  
-    <div class="ab-qoaj-right">
-      <div class="text1">
-      <h4>1,243</h4>
-      <p>Articles published</p>
-      </div>
-      <div class="divider-line-2"></div>
 
-      <div class="text1">
-      <h4>89</h4>
-      <p>Total Contribution</p>
-      </div>
-      <div class="divider-line-2"></div>
-
-      <div class="text1">
-      <h4>12,093</h4>
-      <p>Page Visitors</p>
-      </div>
-      <div class="divider-line-2"></div>
-
-      <div class="text1">
-      <h4>3,668</h4>
-      <p>Articles Downloads</p>
-      </div>
-    </div>
-  </div>
-  <img src="../images/Papers.png" alt="#" class="image">
-</div>
-<div class="container-fluid">
-  <div class="ex-journal">
-    <div class="example-journal">
-    <h3>The Gavel</h3>
-    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt quidem illum repellat dolores voluptas in deserunt velit minima, dolorem laborum impedit, nostrum ab dolor possimus autem fuga tempora officia non quasi nisi voluptatem. Pariatur magni impedit, enim in fugiat quos.</p>
-    <button class="btn btn-primary btn-md mt-1">See Journal</button>
-    </div>
-
-    <div class="example-journal" id="example-mid">
-    <h3>The Star</h3>
-    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt quidem illum repellat dolores voluptas in deserunt velit minima, dolorem laborum impedit, nostrum ab dolor possimus autem fuga tempora officia non quasi nisi voluptatem. Pariatur magni impedit, enim in fugiat quos.</p>
-    <button class="btn btn-primary btn-md mt-1">See Journal</button>
-    </div>
-
-    <div class="example-journal">
-    <h3>The Lamp</h3>
-    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt quidem illum repellat dolores voluptas in deserunt velit minima, dolorem laborum impedit, nostrum ab dolor possimus autem fuga tempora officia non quasi nisi voluptatem. Pariatur magni impedit, enim in fugiat quos.</p>
-    <button class="btn btn-primary btn-md mt-1">See Journal</button>
-    </div>
-  </div>
 </div>
 </div>
+</div>
+
+
 
 
 
@@ -295,12 +258,9 @@
     <!-- footer will be display here by fetching reusable files -->
 </div>
 
-
-
-   
-      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" ></script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-      <script src="../JS/reusable-header.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <script src="../JS/reusable-header.js"></script>
 </body>
 </html>
