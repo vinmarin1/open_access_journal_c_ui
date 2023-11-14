@@ -1,0 +1,265 @@
+.content-over {
+    position: relative;
+    width: 100%;
+    height: 30vh;
+    background-image: url(../images/qcu-bg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    padding-top: 70px;
+    padding-left: 150px;
+    
+}
+
+.content-over::before {
+content: "";
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(53, 68, 74, 0.7);
+}
+
+.content-over p, .content-over h2 {
+color: white; 
+position: relative;
+z-index: 1; 
+display: block;
+
+}
+
+.content-over h2{
+font-family: 'Times New Roman', Times, serif;
+margin-top: 20px;
+}
+
+
+
+p{
+    font-family: 'Times New Roman', Times, serif;
+    white-space: pre-line;
+}
+.border-joy{
+    border: 1px #115272 solid;
+    height: 400px;
+    display: inline-block;
+    margin-top: 80px;
+    margin-left: 200px;
+}
+
+.img-announce{
+    height: 100%;
+    padding: 15px;
+}
+
+.announce_1 {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.blank-space{
+    width: 100%;
+}
+
+.announce_2 {
+    display: flex;
+    align-items: center;
+    width: 90%;
+}
+
+.announce-text{
+    margin-left: 30px;
+}
+
+.announce-text h2 {
+    font-family: 'Times New Roman', Times, serif;
+    color: #115272;
+}
+
+.border-qcu {
+    border: 1px #115272 solid;
+    height: 400px;
+}
+
+.img-announce {
+    height: 100%;
+    padding: 15px;
+}
+
+.announce-text-2 {
+    display: inline-block;
+    margin-left: 60px;
+    margin-right: 60px;
+    max-width: 60%;
+    margin-top: 50px;
+}
+
+.announce-text-2 h2 {
+    font-family: 'Times New Roman', Times, serif;
+    color: #115272;
+}
+
+
+/* Add max-width and text-align properties to .announce-text-2 */
+.announce-text-2 {
+    max-width: 40%; /* Adjust the value as needed */
+    text-align: left; /* or center or justify based on your preference */
+}
+
+.announce-text-2 p{
+    max-width: 100%;
+}
+
+.featured {
+    background-color: #B7CBD4;
+    margin-top: 100px;
+}
+.featured h2{
+    font-family: 'Times New Roman', Times, serif;
+    color: #115272;
+    margin-left: 55px;
+    padding-top: 20px;
+}
+.example-featured {
+    border-color: #115272;
+    border-radius: 5%;
+    border: 2px solid;
+    width: 100%;
+    height: 100%;
+    display: inline-block; 
+    text-align: center; 
+    margin: 20px 50px 20px 50px; 
+    box-shadow: 0 0 20px gray;
+    background-color: white;
+}
+
+.img-featured img {
+    width: 100%; /* Make the image fill the width of its container */
+    height: auto; /* Maintain aspect ratio */
+}
+
+#example-mid {
+    margin-left: -120px;
+    margin-right: -120px;
+    border-color: #115272;
+    border-radius: 2%;
+    border: 2px solid;
+    width: 100%;
+    height: 100%;
+    display: inline-block; 
+    text-align: center; 
+}
+
+.example-featured h3 {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.example-featured p {
+    text-align: center;
+    margin: 20px 20px 20px 20px;
+    text-align: justify;
+}
+
+.example-featured a{
+    text-decoration: none;
+}
+
+.ex-featured {
+    display: flex;
+    justify-content: center; /* Center horizontally within the container */
+    align-items: center; /* Center vertically within the container */
+}
+
+.img-featured {
+    width: 100%;
+    height: 300px;
+    padding: 10px 10px 10px 10px;
+}
+
+.watch-vid{
+display: block;
+width: 100%;
+height: 400px;
+margin-top: 200px;
+background-color: #115272;
+}
+
+.watch-vid h2{
+color: white;
+font-family: 'Times New Roman', Times, serif;
+margin-left: 95px;
+display: flex;
+padding-top: 30px;
+
+}
+
+.video-container {
+width: 85%;
+height: auto;
+border: none;
+margin-left: auto;
+margin-right: auto;
+overflow-x: auto;
+overflow-y: hidden;
+white-space: nowrap;
+}
+
+.video-container::-webkit-scrollbar {
+width: 0.5em;
+background-color: transparent;
+}
+
+.video-container::-webkit-scrollbar-thumb {
+background-color: transparent;
+}
+
+.video{
+margin-top: 60px;
+width: 25%;
+height: 100%;
+margin-right: 80px;
+display: inline-block;
+white-space: normal;
+}
+
+.video img{
+    width: 100%;
+    height: 100%;
+    margin-left: -1px;
+}
+
+.policy{
+    margin-left: 100px;
+    width: 80%;
+}
+
+#policy-top h2{
+    padding-top: 70px;
+}
+.policy h2{
+    font-family: 'Times New Roman', Times, serif;
+    color: #115272;
+    padding-top: 20px;
+
+}
+
+.qcu-date-container{
+    text-align: right;
+}
+
+.qcu-name{
+    font-size: small;
+    color: #115272;
+    display: inline-block;
+    margin-right: 70px;
+}
+.qcu-date{
+    font-size: small;
+    color: gray;
+    display: inline-block;
+    padding-right: 20px;
+}
+

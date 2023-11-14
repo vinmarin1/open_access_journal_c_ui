@@ -1,168 +1,275 @@
 
 .main-content{
-  width: 100%;
-  height: auto;
+    width: 100%;
+    height: auto;
+    margin-bottom: 50px;
 }
 .content-over {
-  position: relative;
-  width: 100%;
-  height: 50vh;
-  background-image: url(../images/qcu-bg.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  padding-top: 70px;
-  padding-left: 150px;
+    position: relative;
+    width: 100%;
+    height: 50vh;
+    background-image: url(../images/qcu-bg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    padding-top: 70px;
+    padding-left: 150px;
+    
+  }
   
-}
-
-.content-over::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(53, 68, 74, 0.7);
+  .content-over::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(53, 68, 74, 0.7);
+   
+  }
   
-}
+  .content-over p, .content-over h2 {
+    color: white; 
+    position: relative;
+    z-index: 1; 
+    display: block;
+    
+  }
 
-.content-over p, .content-over h2 {
-  color: white; 
-  position: relative;
-  z-index: 1; 
+  .content-over h2{
+    font-family: 'Times New Roman', Times, serif;
+    margin-top: 20px;
+  }
+
+  .content-over button{
+    color: white; 
+    position: relative;
+    z-index: 1;
+    background-color: #115272;
+    border-radius: 20px;
+    margin-top: 20px;
+  }
+
+  .content-over button:hover{
+    color: white; 
+    position: relative;
+    z-index: 1;
+    background-color: #115272;
+    border-radius: 20px;
+    margin-top: 20px;
+    opacity: 0.8;
+  }
+
+  #btn2{
+    border: 2px white solid;
+    background-color: transparent;
+  }
+
+
+  .offer-left, .offer-right{
+    display: inline-block;
+    width: 40%;
+  }
+  
+  
+  
+  .offer-left{
+    margin-top: 80px;
+    margin-left: 80px;
+
+  }
+  
+  .offer-left h2{
+    font-family: 'Times New Roman', Times, serif;
+    color: #115272;
+  }
+
+
+  .offer-left p{
+    width: 60%;
+  }
+
+  .offer-left button{
+    background-color: #115272;
+    border-radius: 20px;
+    width: 50%;
+    
+  }
+
+  .offer-left button:hover{
+    background-color: #115272;
+    border-radius: 20px;
+    opacity: 0.8;
+    
+  }
+
+  .divider-line{
+    border-left: 2px solid #115272;
+    height: 410px;
+    display: inline-block;
+    position: absolute;
+    margin-top: 30px;
+  }
+
+  .offer-right{
+    float: right;
+    margin-right: 40px;
+    
+  }
+
+  .offer-right h6{
+    font-family: 'Times New Roman', Times, serif;
+    color: #115272;
+    margin-top: 50px;
+   
+  }
+
+  .offer-right p{
+    font-size: 12px;
+  }
+
+  .offer-right button{
+    border: 2px #115272 solid;
+    background-color: transparent;
+    border-radius: 20px;
+    color: #115272;
+    width: 50%;
+  }
+
+  .offer-right button:hover{
+    border: 2px #115272 solid;
+    background-color: transparent;
+    border-radius: 20px;
+    color: #115272;
+    opacity: 0.8;
+    
+  }
+
+
+.recommendation-article{
   display: block;
-  
+  width: 100%;
+  height: 400px;
+  margin-top: 200px;
+  margin-bottom: 200px;
 }
 
-.content-over h2{
+.recommendation-article h4{
+  color: #115272;
   font-family: 'Times New Roman', Times, serif;
-  margin-top: 20px;
+  margin-left: 95px;
+  display: flex;
+ 
 }
 
-.content-over button{
-  color: white; 
-  position: relative;
-  z-index: 1;
-  background-color: #115272;
-  border-radius: 20px;
-  margin-top: 20px;
+.articles-container {
+  width: 85%;
+  height: auto;
+  border: none;
+  margin-left: auto;
+  margin-right: auto;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
 }
 
-.content-over button:hover{
-  color: white; 
-  position: relative;
-  z-index: 1;
-  background-color: #115272;
-  border-radius: 20px;
-  margin-top: 20px;
-  opacity: 0.8;
+.articles-container-monthly{
+  width: 85%;
+  height: auto;
+  border: none;
+  margin-left: auto;
+  margin-right: auto;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
 }
 
-#btn2{
-  border: 2px white solid;
+.articles-container::-webkit-scrollbar {
+  width: 0.5em;
+  background-color: transparent;
+}
+
+.articles-container::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+.articles-container-monthly::-webkit-scrollbar {
+  width: 0.5em;
+  background-color: transparent;
+}
+
+.articles-container-monthly::-webkit-scrollbar-thumb {
   background-color: transparent;
 }
 
 
-.offer-left, .offer-right{
+.article {
+  margin-top: 20px;
+  width: 25%;
+  height: 100%;
+  margin-right: 80px;
+  background-color: white;
   display: inline-block;
-  width: 40%;
-}
-
-
-
-.offer-left{
-  margin-top: 80px;
-  margin-left: 80px;
+  white-space: normal; 
+  
 
 }
 
-.offer-left h2{
+.article .h6{
   font-family: 'Times New Roman', Times, serif;
   color: #115272;
-}
-
-
-.offer-left p{
-  width: 60%;
-}
-
-.offer-left button{
-  background-color: #115272;
-  border-radius: 20px;
-  width: 50%;
+  width: auto;
   
 }
 
-.offer-left button:hover{
-  background-color: #115272;
-  border-radius: 20px;
-  opacity: 0.8;
-  
-}
-
-.divider-line{
-  border-left: 2px solid #115272;
-  height: 340px;
-  display: inline-block;
-  position: absolute;
-  margin-top: 30px;
-}
-
-.offer-right{
-  float: right;
-  margin-right: 40px;
-}
-
-.offer-right h6{
-  font-family: 'Times New Roman', Times, serif;
-  color: #115272;
-  margin-top: 50px;
-  
-}
-
-.offer-right p{
+.article-info{
+  opacity: 0.6;
   font-size: 12px;
+  width: 100%;
 }
 
-.offer-right button{
-  border: 2px #115272 solid;
-  background-color: transparent;
-  border-radius: 20px;
+.article .info, .article .views{
+  opacity: 0.7;
+  display: inline-block;
+}
+
+.views{
+  margin-left: 150px;
+}
+
+.author{
   color: #115272;
-  width: 50%;
+  font-size: 12px;
+  display: block;
 }
 
-.offer-right button:hover{
+.article-content{
+  color: black;
+  font-size: 12px;
+  height: 100px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+
+.article-content::-webkit-scrollbar {
+  width: 0.5em;
+  background-color: transparent;
+}
+
+.article-content::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+
+
+.btn-article:hover{
   border: 2px #115272 solid;
   background-color: transparent;
   border-radius: 20px;
   color: #115272;
   opacity: 0.8;
   
-}
-
-.articles-container{
-  padding-top: 50px;
-}
-
-.articles{
-
-width: 100%;
-height: 100%;
-display: flex;
-overflow-y: scroll;
-background-color: white;
-}
-
-.article1{
-width: 20%;
-height: 80%;
-}
-
-.recommendation{
-  margin-bottom: 20px;
 }
 
 .qoaj {
@@ -298,5 +405,6 @@ height: 80%;
   justify-content: center; /* Center horizontally within the container */
   align-items: center; /* Center vertically within the container */
   margin-top: 100px;
-  margin-bottom: -300px;
+  margin-bottom: 100px;
 }
+

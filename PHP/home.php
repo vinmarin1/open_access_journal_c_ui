@@ -10,8 +10,15 @@
 </head>
 <body>
 
-<?php include 'header.php' ?>
-<?php include 'navbar.php' ?>
+
+
+<div class="header-container" id="header-container">
+ 
+</div>
+
+<nav class="navigation-menus-container"  id="navigation-menus-container">
+  
+</nav>
 
 <div class="main-content">
     <div class="content-over">
@@ -23,7 +30,20 @@
         <button class="btn tbn-primary btn-md" id="btn2">Be a contributor</button>
        
     </div>
-    <div class="fluid-container mb-5">
+    
+    
+</div>
+
+
+      
+<?php
+
+session_start();
+
+if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+    // User is logged in, display the profile menu
+    echo '
+    <div class="fluid-container mb-5" ">
       <div class="recommendation-container">
         <div class="offer-left">
         <h2 class="mb-3">QAJ OFFER Personalized Recommendations</h2>
@@ -33,7 +53,7 @@
         <button class="btn btn-primary btn-md mt-1">Try it Now</button>
         <br>
         </div>
-       
+        
         <div class="divider-line"></div>
         <div class="offer-right">
         <h6>Article About the Future of Artificial Intlligence: Advancements and Ethical Considerations</h6>
@@ -43,18 +63,42 @@
         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur facilis nemo culpa quis iste itaque deserunt magnam voluptate voluptatem? Necessitatibus sint voluptatibus non? Ipsum vero omnis quas, nobis ex qui ipsa recusandae! Mollitia eaque eveniet ullam consequatur quibusdam, odit adipisci architecto accusamus a animi facere pariatur, deserunt veniam fugiat in.</p>
         <button class="btn btn-outline-light btn-md">Continue Reading</button>
         </div>
+      
+      
       </div>
      
     </div>
+   ';
+}
+?>
+ 
 
-    <!-- <div class="articles-container">
-        <div class="articles">
-            <div class="article1">
-                <h6>Blocchain Beyond Cryptoccurency: Transforming Industries with Distributed Ledger Technology</h6>
-            </div>
-        </div>
-      </div> -->
 
+
+<div class="fluid-container">
+<div class="recommendation-article">
+<h4>Recommendation articles for you</h4>
+  <div class="articles-container">
+  
+  </div>
+  
+  
+  </div>
+</div>
+</div>
+
+<hr style="height: 2px; background-color: #115272 ">
+
+<div class="fluid-container " style="margin-top: -100px">
+<div class="recommendation-article">
+<h4>Popular Articles this Month</h4>
+  <div class="articles-container-monthly">
+ 
+  </div>
+
+  
+  </div>
+</div>
 
 <div class="fluid-container mb-3 qoaj">
   <div class="About-container">
@@ -115,14 +159,24 @@
     </div>
   </div>
 </div>
+
+</div> 
+
+
+
+
+<div class="footer" id="footer">
+  
 </div>
 
 
-<?php include 'footer.php'?>
 
-
+   
       <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" ></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+      <script src="../JS/reusable-header.js"></script>
+      <script src="../JS/home-recommended-api.js"></script>
+      <script src="../JS/home-monthly-api.js"></script>
 </body>
 </html>
