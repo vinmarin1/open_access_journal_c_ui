@@ -30,6 +30,19 @@
         <button class="btn tbn-primary btn-md" id="btn2">Be a contributor</button>
        
     </div>
+    
+    
+</div>
+
+
+      
+<?php
+
+session_start();
+
+if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+    // User is logged in, display the profile menu
+    echo '
     <div class="fluid-container mb-5" ">
       <div class="recommendation-container">
         <div class="offer-left">
@@ -55,8 +68,12 @@
       </div>
      
     </div>
-    
-</div>
+   ';
+}
+?>
+ 
+
+
 
 <div class="fluid-container">
 <div class="recommendation-article">
@@ -64,66 +81,6 @@
   <div class="articles-container">
   
   </div>
-  <!-- <div class="article">
-  <p class="h6" id="title"></p>
-    <div class="article-info">
-      <p class="info" id="category"></p>
-      <span class="views" id="views"></span>
-    </div>
-    <p class="author" id="author"></p>
-    <p class="article-content" id="abstract"></p>
-    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
-    background-color: transparent;
-    border-radius: 20px;
-    color: #115272;
-    width: 100%;">Read Article</button>
-  </div>
-
-  <div class="article">
-  <p class="h6" id="title"></p>
-    <div class="article-info">
-      <p class="info" id="category"></p>
-      <span class="views" id="views"></span>
-    </div>
-    <p class="author" id="author"></p>
-    <p class="article-content" id="abstract"></p>
-    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
-    background-color: transparent;
-    border-radius: 20px;
-    color: #115272;
-    width: 100%;">Read Article</button>
-  </div>
-
-  <div class="article">
-  <p class="h6" id="title"></p>
-    <div class="article-info">
-      <p class="info" id="category"></p>
-      <span class="views" id="views"></span>
-    </div>
-    <p class="author" id="author"></p>
-    <p class="article-content" id="abstract"></p>
-    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
-    background-color: transparent;
-    border-radius: 20px;
-    color: #115272;
-    width: 100%;">Read Article</button>
-  </div>
-
-  <div class="article">
-  <p class="h6" id="title"></p>
-    <div class="article-info">
-      <p class="info" id="category"></p>
-      <span class="views" id="views"></span>
-    </div>
-    <p class="author" id="author"></p>
-    <p class="article-content" id="abstract"></p>
-    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
-    background-color: transparent;
-    border-radius: 20px;
-    color: #115272;
-    width: 100%;">Read Article</button>
-  </div> -->
-
   
   
   </div>
