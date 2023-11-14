@@ -38,7 +38,8 @@
                     QCU is mighty proud of you, Mayor Joy!</p>
             </div>
         </div>
-        <div class="announce_1">            
+        <div class="announce_2">
+            <div class="blank-space"></div>
             <div class="announce-text-2">
                     <h2>UNEP 2023 Champion of the <br> Earth for Policy Leadership</h1>
                     <br>
@@ -51,7 +52,6 @@
                 <div class="border-qcu">
                     <img src="../images/mayor-qcu.png" alt="" class="img-announce">
                 </div>
-
         </div>
     </div>
 
@@ -100,7 +100,8 @@
             </div>
         </div>
 
-        <div class="announce_1">            
+        <div class="announce_2">  
+        <div class="blank-space"></div>          
             <div class="announce-text-2">
                 <h2>UNEP 2023 Champion of the <br> Earth for Policy Leadership</h1>
                 <br>
