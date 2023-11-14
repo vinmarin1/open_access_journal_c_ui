@@ -92,6 +92,7 @@ The names and email addresses entered in this journal site will be used exclusiv
 
   </div>
  
+<p style="display: none">awdawwa</p>
   <div class="tab">
   <h5 class="title"">Submission Checklist</h5>
   <h6 style="color: #115272">Please provide the following details to help us manage your submission in our system.</h6>

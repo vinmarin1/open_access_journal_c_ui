@@ -30,6 +30,19 @@
         <button class="btn tbn-primary btn-md" id="btn2">Be a contributor</button>
        
     </div>
+    
+    
+</div>
+
+
+      
+<?php
+
+session_start();
+
+if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+    // User is logged in, display the profile menu
+    echo '
     <div class="fluid-container mb-5" ">
       <div class="recommendation-container">
         <div class="offer-left">
@@ -55,87 +68,19 @@
       </div>
      
     </div>
-    
-</div>
+   ';
+}
+?>
+ 
+
+
 
 <div class="fluid-container">
 <div class="recommendation-article">
 <h4>Recommendation articles for you</h4>
   <div class="articles-container">
-  <div class="article">
-  <p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
-    <div class="article-info">
-      <p class="info">THE LAMP</p>
-      <span class="views"></span>103 views
-    </div>
-    <p class="author">By Jane Delacruz</p>
-    <p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
-    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
-    background-color: transparent;
-    border-radius: 20px;
-    color: #115272;
-    width: 100%;">Read Article</button>
+  
   </div>
-  <div class="article">
-  <p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
-    <div class="article-info">
-      <p class="info">THE LAMP</p>
-      <span class="views"></span>103 views
-    </div>
-    <p class="author">By Jane Delacruz</p>
-    <p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
-    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
-    background-color: transparent;
-    border-radius: 20px;
-    color: #115272;
-    width: 100%;">Read Article</button>
-  </div>
-
-  <div class="article">
-  <p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
-    <div class="article-info">
-      <p class="info">THE LAMP</p>
-      <span class="views"></span>103 views
-    </div>
-    <p class="author">By Jane Delacruz</p>
-    <p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
-    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
-    background-color: transparent;
-    border-radius: 20px;
-    color: #115272;
-    width: 100%;">Read Article</button>
-  </div>
-
-  <div class="article">
-  <p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
-    <div class="article-info">
-      <p class="info">THE LAMP</p>
-      <span class="views"></span>103 views
-    </div>
-    <p class="author">By Jane Delacruz</p>
-    <p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
-    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
-    background-color: transparent;
-    border-radius: 20px;
-    color: #115272;
-    width: 100%;">Read Article</button>
-  </div>
-
-  <div class="article">
-  <p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
-    <div class="article-info">
-      <p class="info">THE LAMP</p>
-      <span class="views"></span>103 views
-    </div>
-    <p class="author">By Jane Delacruz</p>
-    <p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
-    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
-    background-color: transparent;
-    border-radius: 20px;
-    color: #115272;
-    width: 100%;">Read Article</button>
-  </div>
-
   
   
   </div>
@@ -147,82 +92,10 @@
 <div class="fluid-container " style="margin-top: -100px">
 <div class="recommendation-article">
 <h4>Popular Articles this Month</h4>
-  <div class="articles-container">
-  <div class="article">
-  <p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
-    <div class="article-info">
-      <p class="info">THE LAMP</p>
-      <span class="views"></span>103 views
-    </div>
-    <p class="author">By Jane Delacruz</p>
-    <p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
-    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
-    background-color: transparent;
-    border-radius: 20px;
-    color: #115272;
-    width: 100%;">Read Article</button>
-  </div>
-  <div class="article">
-  <p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
-    <div class="article-info">
-      <p class="info">THE LAMP</p>
-      <span class="views"></span>103 views
-    </div>
-    <p class="author">By Jane Delacruz</p>
-    <p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
-    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
-    background-color: transparent;
-    border-radius: 20px;
-    color: #115272;
-    width: 100%;">Read Article</button>
+  <div class="articles-container-monthly">
+ 
   </div>
 
-  <div class="article">
-  <p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
-    <div class="article-info">
-      <p class="info">THE LAMP</p>
-      <span class="views"></span>103 views
-    </div>
-    <p class="author">By Jane Delacruz</p>
-    <p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
-    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
-    background-color: transparent;
-    border-radius: 20px;
-    color: #115272;
-    width: 100%;">Read Article</button>
-  </div>
-
-  <div class="article">
-  <p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
-    <div class="article-info">
-      <p class="info">THE LAMP</p>
-      <span class="views"></span>103 views
-    </div>
-    <p class="author">By Jane Delacruz</p>
-    <p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
-    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
-    background-color: transparent;
-    border-radius: 20px;
-    color: #115272;
-    width: 100%;">Read Article</button>
-  </div>
-
-  <div class="article">
-  <p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
-    <div class="article-info">
-      <p class="info">THE LAMP</p>
-      <span class="views"></span>103 views
-    </div>
-    <p class="author">By Jane Delacruz</p>
-    <p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
-    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
-    background-color: transparent;
-    border-radius: 20px;
-    color: #115272;
-    width: 100%;">Read Article</button>
-  </div>
-
-  
   
   </div>
 </div>
@@ -286,13 +159,14 @@
     </div>
   </div>
 </div>
-</div>
+
+</div> 
 
 
 
 
 <div class="footer" id="footer">
-    <!-- footer will be display here by fetching reusable files -->
+  
 </div>
 
 
@@ -302,5 +176,7 @@
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
       <script src="../JS/reusable-header.js"></script>
+      <script src="../JS/home-recommended-api.js"></script>
+      <script src="../JS/home-monthly-api.js"></script>
 </body>
 </html>
