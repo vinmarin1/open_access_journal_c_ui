@@ -151,6 +151,7 @@
   width: 100%;
   height: 400px;
   margin-top: 200px;
+  margin-bottom: 200px;
 }
 
 .recommendation-article h4{
@@ -172,6 +173,17 @@
   white-space: nowrap;
 }
 
+.articles-container-monthly{
+  width: 85%;
+  height: auto;
+  border: none;
+  margin-left: auto;
+  margin-right: auto;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+
 .articles-container::-webkit-scrollbar {
   width: 0.5em;
   background-color: transparent;
@@ -180,6 +192,16 @@
 .articles-container::-webkit-scrollbar-thumb {
   background-color: transparent;
 }
+
+.articles-container-monthly::-webkit-scrollbar {
+  width: 0.5em;
+  background-color: transparent;
+}
+
+.articles-container-monthly::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
 
 .article {
   margin-top: 20px;
@@ -224,8 +246,20 @@
 .article-content{
   color: black;
   font-size: 12px;
+  height: 100px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
+
+.article-content::-webkit-scrollbar {
+  width: 0.5em;
+  background-color: transparent;
+}
+
+.article-content::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
 
 
 
