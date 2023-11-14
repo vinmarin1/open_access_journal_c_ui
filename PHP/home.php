@@ -99,6 +99,67 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
   
   </div>
 </div>
+
+<div class="fluid-container mb-3 qoaj">
+  <div class="About-container">
+    <div class="ab-qoaj-left">
+        <h2 class="mb-3">About QOAJ</h2>
+        <p class="description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis distinctio, debitis sed dolores iste, deserunt perspiciatis ducimus odio aliquam facere illo, quasi temporibus aut sint est mollitia saepe omnis amet?</p>
+        <p class="description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis distinctio, debitis sed dolores iste, deserunt perspiciatis ducimus odio aliquam facere illo, quasi temporibus aut sint est mollitia saepe omnis amet?</p>
+        <br>
+          <button class="btn btn-primary btn-md mt-1">Read More</button>
+        <br>
+    </div>
+  
+    <div class="ab-qoaj-right">
+      <div class="text1">
+      <h4>1,243</h4>
+      <p>Articles published</p>
+      </div>
+      <div class="divider-line-2"></div>
+
+      <div class="text1">
+      <h4>89</h4>
+      <p>Total Contribution</p>
+      </div>
+      <div class="divider-line-2"></div>
+
+      <div class="text1">
+      <h4>12,093</h4>
+      <p>Page Visitors</p>
+      </div>
+      <div class="divider-line-2"></div>
+
+      <div class="text1">
+      <h4>3,668</h4>
+      <p>Articles Downloads</p>
+      </div>
+    </div>
+  </div>
+  <img src="../images/Papers.png" alt="#" class="image">
+</div>
+<div class="container-fluid">
+  <div class="ex-journal">
+    <div class="example-journal">
+    <h3>The Gavel</h3>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt quidem illum repellat dolores voluptas in deserunt velit minima, dolorem laborum impedit, nostrum ab dolor possimus autem fuga tempora officia non quasi nisi voluptatem. Pariatur magni impedit, enim in fugiat quos.</p>
+    <button class="btn btn-primary btn-md mt-1">See Journal</button>
+    </div>
+
+    <div class="example-journal" id="example-mid">
+    <h3>The Star</h3>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt quidem illum repellat dolores voluptas in deserunt velit minima, dolorem laborum impedit, nostrum ab dolor possimus autem fuga tempora officia non quasi nisi voluptatem. Pariatur magni impedit, enim in fugiat quos.</p>
+    <button class="btn btn-primary btn-md mt-1">See Journal</button>
+    </div>
+
+    <div class="example-journal">
+    <h3>The Lamp</h3>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt quidem illum repellat dolores voluptas in deserunt velit minima, dolorem laborum impedit, nostrum ab dolor possimus autem fuga tempora officia non quasi nisi voluptatem. Pariatur magni impedit, enim in fugiat quos.</p>
+    <button class="btn btn-primary btn-md mt-1">See Journal</button>
+    </div>
+  </div>
+</div>
+
 </div> 
 
 
