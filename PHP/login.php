@@ -1,23 +1,3 @@
-<?php  
-
-require 'functions.php';
-
-$errors = array();
-
-if($_SERVER['REQUEST_METHOD'] == "POST")
-{
-
-	$errors = login($_POST);
-
-	if(count($errors) == 0)
-	{
-		header("Location: ../php/home.php");
-		die;
-	}
-}
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,12 +30,15 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
         <input class="btn btn-primary btn-sm" type="submit" value="Login" id="login-button">
         <input class="btn btn-primary btn-sm" type="button" value="Register" id="register-button" onclick="window.location.href= '../php/signup.php';">
     </form>
+
+
+    
 </div>
 
 
 
 	
-  
+
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
