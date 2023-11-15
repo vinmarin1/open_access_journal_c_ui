@@ -21,6 +21,12 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="home.php">Home</a>
         </li>
+        <?php
+        session_start();
+        if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+
+        } else {
+        echo '
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Log-in
@@ -28,9 +34,11 @@
           <ul class="dropdown-menu">
           <li><a class="dropdown-item" style="color: black" href="login.php" >Log-in</a></li>
           <li><a class="dropdown-item" style="color: black" href="signup.php">Register</a></li>
-         
           </ul>
         </li>
+      ';
+    }
+      ?>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="about.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             About
@@ -80,10 +88,9 @@
       
        
       </form>
-      
+
+
 <?php
-
-
 if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
     // User is logged in, display the profile menu
     echo '
@@ -102,17 +109,15 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
     </div>';
 }
 ?>
- 
+
     </div>
   </div>
 </nav>
 
     
     
-     
       <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" ></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
- 
 </body>
 </html>

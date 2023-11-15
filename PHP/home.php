@@ -28,7 +28,6 @@
         </div>
         <button class="btn tbn-primary btn-md" id="btn1">Browse articles</button>
         <button class="btn tbn-primary btn-md" id="btn2">Be a contributor</button>
-       
     </div>
     
     
