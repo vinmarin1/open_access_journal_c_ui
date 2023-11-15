@@ -1,235 +1,142 @@
 
 .main-content{
-    width: 100%;
-    height: auto;
-    margin-bottom: 50px;
+  width: 100%;
+  height: auto;
+  margin-bottom: 50px;
 }
 .content-over {
-    position: relative;
-    width: 100%;
-    height: 50vh;
-    background-image: url(../images/qcu-bg.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    padding-top: 70px;
-    padding-left: 150px;
-    
-  }
-  
-  .content-over::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(53, 68, 74, 0.7);
-   
-  }
-  
-  .content-over p, .content-over h2 {
-    color: white; 
-    position: relative;
-    z-index: 1; 
-    display: block;
-    
-  }
-
-  .content-over h2{
-    font-family: 'Times New Roman', Times, serif;
-    margin-top: 20px;
-  }
-
-  .content-over button{
-    color: white; 
-    position: relative;
-    z-index: 1;
-    background-color: #115272;
-    border-radius: 20px;
-    margin-top: 20px;
-  }
-
-  .content-over button:hover{
-    color: white; 
-    position: relative;
-    z-index: 1;
-    background-color: #115272;
-    border-radius: 20px;
-    margin-top: 20px;
-    opacity: 0.8;
-  }
-
-  #btn2{
-    border: 2px white solid;
-    background-color: transparent;
-  }
-
-
-  .offer-left, .offer-right{
-    display: inline-block;
-    width: 40%;
-  }
-  
-  
-  
-  .offer-left{
-    margin-top: 80px;
-    margin-left: 80px;
-
-  }
-  
-  .offer-left h2{
-    font-family: 'Times New Roman', Times, serif;
-    color: #115272;
-  }
-
-
-  .offer-left p{
-    width: 60%;
-  }
-
-  .offer-left button{
-    background-color: #115272;
-    border-radius: 20px;
-    width: 50%;
-    
-  }
-
-  .offer-left button:hover{
-    background-color: #115272;
-    border-radius: 20px;
-    opacity: 0.8;
-    
-  }
-
-  .divider-line{
-    border-left: 2px solid #115272;
-    height: 410px;
-    display: inline-block;
-    position: absolute;
-    margin-top: 30px;
-  }
-
-  .offer-right{
-    float: right;
-    margin-right: 40px;
-    
-  }
-
-  .offer-right h6{
-    font-family: 'Times New Roman', Times, serif;
-    color: #115272;
-    margin-top: 50px;
-   
-  }
-
-  .offer-right p{
-    font-size: 12px;
-  }
-
-  .offer-right button{
-    border: 2px #115272 solid;
-    background-color: transparent;
-    border-radius: 20px;
-    color: #115272;
-    width: 50%;
-  }
-
-  .offer-right button:hover{
-    border: 2px #115272 solid;
-    background-color: transparent;
-    border-radius: 20px;
-    color: #115272;
-    opacity: 0.8;
-    
-  }
-
-
-.recommendation-article{
-  display: block;
+  position: relative;
   width: 100%;
-  height: 400px;
-  margin-top: 200px;
+  height: 50vh;
+  background-image: url(../images/qcu-bg.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  padding-top: 70px;
+  padding-left: 150px;
+  
 }
 
-.recommendation-article h4{
-  color: #115272;
-  font-family: 'Times New Roman', Times, serif;
-  margin-left: 95px;
-  display: flex;
+.content-over::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(53, 68, 74, 0.7);
  
 }
 
-.articles-container {
-  width: 85%;
-  height: auto;
-  border: none;
-  margin-left: auto;
-  margin-right: auto;
-  overflow-x: auto;
-  overflow-y: hidden;
-  white-space: nowrap;
-}
-
-.articles-container::-webkit-scrollbar {
-  width: 0.5em;
-  background-color: transparent;
-}
-
-.articles-container::-webkit-scrollbar-thumb {
-  background-color: transparent;
-}
-
-.article {
-  margin-top: 20px;
-  width: 25%;
-  height: 100%;
-  margin-right: 80px;
-  background-color: white;
-  display: inline-block;
-  white-space: normal; 
+.content-over p, .content-over h2 {
+  color: white; 
+  position: relative;
+  z-index: 1; 
+  display: block;
   
+}
+
+.content-over h2{
+  font-family: 'Times New Roman', Times, serif;
+  margin-top: 20px;
+}
+
+.content-over button{
+  color: white; 
+  position: relative;
+  z-index: 1;
+  background-color: #115272;
+  border-radius: 20px;
+  margin-top: 20px;
+}
+
+.content-over button:hover{
+  color: white; 
+  position: relative;
+  z-index: 1;
+  background-color: #115272;
+  border-radius: 20px;
+  margin-top: 20px;
+  opacity: 0.8;
+}
+
+#btn2{
+  border: 2px white solid;
+  background-color: transparent;
+}
+
+
+.offer-left, .offer-right{
+  display: inline-block;
+  width: 40%;
+}
+
+
+
+.offer-left{
+  margin-top: 80px;
+  margin-left: 80px;
 
 }
 
-.article .h6{
+.offer-left h2{
   font-family: 'Times New Roman', Times, serif;
   color: #115272;
-  width: auto;
+}
+
+
+.offer-left p{
+  width: 60%;
+}
+
+.offer-left button{
+  background-color: #115272;
+  border-radius: 20px;
+  width: 50%;
   
 }
 
-.article-info{
-  opacity: 0.6;
-  font-size: 12px;
-  width: 100%;
+.offer-left button:hover{
+  background-color: #115272;
+  border-radius: 20px;
+  opacity: 0.8;
+  
 }
 
-.article .info, .article .views{
-  opacity: 0.7;
+.divider-line{
+  border-left: 2px solid #115272;
+  height: 410px;
   display: inline-block;
+  position: absolute;
+  margin-top: 30px;
 }
 
-.views{
-  margin-left: 150px;
+.offer-right{
+  float: right;
+  margin-right: 40px;
+  
 }
 
-.author{
+.offer-right h6{
+  font-family: 'Times New Roman', Times, serif;
   color: #115272;
-  font-size: 12px;
-  display: block;
+  margin-top: 50px;
+ 
 }
 
-.article-content{
-  color: black;
+.offer-right p{
   font-size: 12px;
 }
 
+.offer-right button{
+  border: 2px #115272 solid;
+  background-color: transparent;
+  border-radius: 20px;
+  color: #115272;
+  width: 50%;
+}
 
-
-
-.btn-article:hover{
+.offer-right button:hover{
   border: 2px #115272 solid;
   background-color: transparent;
   border-radius: 20px;
@@ -238,4 +145,266 @@
   
 }
 
+
+.recommendation-article{
+display: block;
+width: 100%;
+height: 400px;
+margin-top: 200px;
+margin-bottom: 200px;
+}
+
+.recommendation-article h4{
+color: #115272;
+font-family: 'Times New Roman', Times, serif;
+margin-left: 95px;
+display: flex;
+
+}
+
+.articles-container {
+width: 85%;
+height: auto;
+border: none;
+margin-left: auto;
+margin-right: auto;
+overflow-x: auto;
+overflow-y: hidden;
+white-space: nowrap;
+}
+
+.articles-container-monthly{
+width: 85%;
+height: auto;
+border: none;
+margin-left: auto;
+margin-right: auto;
+overflow-x: auto;
+overflow-y: hidden;
+white-space: nowrap;
+}
+
+.articles-container::-webkit-scrollbar {
+width: 0.5em;
+background-color: transparent;
+}
+
+.articles-container::-webkit-scrollbar-thumb {
+background-color: transparent;
+}
+
+.articles-container-monthly::-webkit-scrollbar {
+width: 0.5em;
+background-color: transparent;
+}
+
+.articles-container-monthly::-webkit-scrollbar-thumb {
+background-color: transparent;
+}
+
+
+.article {
+margin-top: 20px;
+width: 25%;
+height: 100%;
+margin-right: 80px;
+background-color: white;
+display: inline-block;
+white-space: normal; 
+
+
+}
+
+.article .h6{
+font-family: 'Times New Roman', Times, serif;
+color: #115272;
+width: auto;
+
+}
+
+.article-info{
+opacity: 0.6;
+font-size: 12px;
+width: 100%;
+}
+
+.article .info, .article .views{
+opacity: 0.7;
+display: inline-block;
+}
+
+.views{
+margin-left: 150px;
+}
+
+.author{
+color: #115272;
+font-size: 12px;
+display: block;
+}
+
+.article-content{
+color: black;
+font-size: 12px;
+height: 100px;
+overflow-y: auto;
+overflow-x: hidden;
+}
+
+
+.article-content::-webkit-scrollbar {
+width: 0.5em;
+background-color: transparent;
+}
+
+.article-content::-webkit-scrollbar-thumb {
+background-color: transparent;
+}
+
+
+
+.btn-article:hover{
+border: 2px #115272 solid;
+background-color: transparent;
+border-radius: 20px;
+color: #115272;
+opacity: 0.8;
+
+}
+
+.qoaj {
+background-color: #115272;
+}
+
+.About-container {
+display: flex; /* Change to flex container */
+justify-content: space-between; /* Center horizontally */
+align-items: center; /* Center vertically */
+margin-top: 80px;
+margin-left: 80px;
+margin-bottom: 30px;
+}
+
+.ab-qoaj-left {
+flex: 1; /* Take up available space */
+margin-bottom: 30px;
+}
+
+.ab-qoaj-right {
+flex: 1; /* Take up available space */
+}
+
+.ab-qoaj-left h2 {
+font-family: 'Times New Roman', Times, serif;
+color: white;
+margin-top: 20px;
+}
+
+.ab-qoaj-left p {
+width: 80%;
+color: white;
+text-align: justify;
+}
+
+.ab-qoaj-left button {
+background-color: #115272;
+border-radius: 20px;
+width: 20%;
+border-color: white;
+background-color: #115272;
+}
+
+.ab-qoaj-left button:hover {
+background-color: #146288;
+border-color: white;
+border-radius: 20px;
+opacity: 0.8;
+color: white;
+}
+
+.ab-qoaj-right p {
+color: white;
+margin-bottom: 10px;
+font-size: 12px;
+}
+
+.ab-qoaj-right h4 {
+color: white;
+}
+
+.text1 {
+display: inline-block;
+margin-right: 8%;
+margin-left: 30px;
+}
+
+.divider-line-2 {
+border-left: 2px solid white;
+height: 60px;
+display: inline-block;
+}
+.image{
+width: 100%;
+height: 600px;
+}
+
+.example-journal {
+border-color: #115272;
+border-radius: 10%;
+border: 2px solid;
+width: 100%;
+height: 100%;
+display: inline-block; 
+text-align: center; 
+margin: 0 140px 0 140px; 
+box-shadow: 0 0 20px gray; /* Add shadow to the border */
+}
+
+#example-mid{
+margin-left: -120px;
+margin-right: -120px;
+border-color: #115272;
+border-radius: 10%;
+border: 2px solid;
+width: 100%;
+height: 100%;
+display: inline-block; 
+text-align: center; 
+}
+
+
+
+.example-journal h3{
+text-align: center;
+margin-top: 50px;
+
+}
+
+.example-journal p{
+text-align: center;
+margin: 20px 20px 20px 20px;
+text-align: justify;
+}
+
+.example-journal button {
+background-color: #115272;
+border-radius: 20px;
+width: 60%;
+border-color: white;
+background-color: #115272;
+margin-bottom: 30px;
+}
+
+.example-journal button:hover{
+background-color: #115272;
+border-radius: 20px;
+opacity: 0.8;
+}
+.ex-journal {
+display: flex;
+justify-content: center; /* Center horizontally within the container */
+align-items: center; /* Center vertically within the container */
+margin-top: 100px;
+margin-bottom: 100px;
+}
 
