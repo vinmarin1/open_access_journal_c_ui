@@ -1,8 +1,29 @@
 document.addEventListener('DOMContentLoaded', fetchData);
 
+
+function navigateToArticle(articleId){
+  window.location.href = `/open_access_journal_c_ui/PHP/article-details.php?articleId=${articleId}`;
+}
+async function fetchArticleDetails() {
+  await fetch('https://web-production-89c0.up.railway.app/articles/logs/read', {
+    method: 'POST',
+    body: JSON.stringify({
+        author_id: '6',
+        article_id: parseInt(articleId)
+    }),
+    headers: {
+        'Content-Type': 'application/json'
+    }
+  })
+    .then(response => response.json())
+    .then(data => {
+      renderArticleDetails(data.selected_article);
+    })
+    .catch(error => console.error('Error fetching data:', error));
+}
 async function fetchData() {
   try {
-    const response = await fetch('https://web-production-89c0.up.railway.app//articles/recommendations', {
+    const response = await fetch('https://web-production-89c0.up.railway.app/articles/recommendations', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -21,13 +42,13 @@ async function fetchData() {
     console.log('API Response:', data);
 
     // Assuming 'data.recommendations' is an array
-    const articlesContainer = document.querySelector('.articles-container-monthly');
+    const articlesContainer = document.querySelector('#popular-articles');
     
 
     data.recommendations.forEach(item => {
       const articleDiv = document.createElement('div');
       articleDiv.classList.add('article');
-
+      articleDiv.addEventListener('click', () => navigateToArticle(item.article_id));
       articleDiv.innerHTML = `
         <p class="h6" id="title">${item.title}</p>
         <div class="article-info">
@@ -35,7 +56,7 @@ async function fetchData() {
           <span class="views" id="views">${item.total_reads} Views</span>
         </div>
         <p class="author" id="author">${item.author}</p>
-        <p class="article-content" id="abstract">${item.abstract}</p>
+        <p class="article-content" id="abstract">${item.abstract.slice(0,200)}</p>
         <button class="btn btn-primary btn-md btn-article" style="border: 2px #115272 solid; background-color: transparent; border-radius: 20px; color: #115272; width: 100%;">Read Article</button>
       `;
 
@@ -47,3 +68,4 @@ async function fetchData() {
     // You can handle errors or display a message as needed
   }
 }
+
