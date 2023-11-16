@@ -77,7 +77,7 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 <div class="fluid-container">
 <div class="recommendation-article">
 <h4>Recommendation articles for you</h4>
-  <div class="articles-container">
+  <div id="recommendations" class="articles-container">
   
   </div>
   
@@ -91,7 +91,7 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 <div class="fluid-container " style="margin-top: -100px">
 <div class="recommendation-article">
 <h4>Popular Articles this Month</h4>
-  <div class="articles-container-monthly">
+  <div id="popular-articles" class="articles-container">
  
   </div>
 
