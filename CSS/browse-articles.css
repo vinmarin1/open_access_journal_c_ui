@@ -1,0 +1,409 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.form-control{
+    z-index: 1;
+    position: relative;
+}
+
+.form-control:focus{
+    outline: none;
+}
+
+.main-container {
+    display: flex;
+    /* margin: 20px; */
+    margin-top: 20px;
+    width: 100%;
+    height: auto;
+    margin-bottom: 50px;
+}
+.info-container{
+    position: relative;
+    z-index: 1;
+}
+.content-over {
+    position: relative;
+    width: 100%;
+    height: 50vh;
+    background-image: url(../images/qcu-bg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    padding-top: 70px;
+    padding-left: 150px;
+    
+}
+
+.content-over::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(53, 68, 74, 0.7);
+
+}
+.info-container span{
+    color: white;
+    position: relative;
+    z-index: 1;
+    font-size: 10px;
+    
+}
+
+.content-over p, .content-over h2{
+    color: white; 
+    position: relative;
+    z-index: 1; 
+    display: block;
+    
+}
+
+.content-over h2{
+    font-family: 'Times New Roman', Times, serif;
+    margin-top: 20px;
+}
+
+.content-over button{
+    color: white; 
+    position: relative;
+    z-index: 1;
+    background-color: #115272;
+    border-radius: 20px;
+    margin-top: 20px;
+}
+
+.content-over button:hover{
+    color: white; 
+    position: relative;
+    z-index: 1;
+    background-color: #115272;
+    border-radius: 20px;
+    margin-top: 20px;
+    opacity: 0.8;
+}
+
+.sidebar {
+    flex-basis: auto; 
+    width: 30%;
+    padding-left: 45px;
+    padding-right: 20px;
+    /* border: red 1px solid; */
+}
+
+
+
+
+
+
+
+.articles-containers {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+    /* border: red 1px solid; */
+    width: 70%;
+    /* border: green 1px solid; */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.articles {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 4px;
+    width: 95%;
+    /* border: red 1px solid; */
+}
+
+.article-details {
+    flex: 3;
+    color: #454545;
+    /* border: green 1px solid; */
+}
+
+.article-details .keywords {
+    margin-bottom: 10px; 
+}
+
+.article-details .keyword {
+    display: inline-block; /* Align keywords inline */
+    background-color: #e1e1e1; /* Light grey background, adjust as needed */
+    padding: 5px 10px; /* Padding inside the keyword tags */
+    margin-right: 5px; /* Spacing between keywords */
+    border-radius: 4px; /* Rounded corners for the keywords */
+    font-size: 0.875em; /* Smaller font size for keywords */
+    color: #115272; /* Adjust the color as needed */
+    margin-bottom: 5px; /* Space between rows of keywords if they wrap */
+}
+
+.article-details h6 {
+    color: #115272;
+    /* Add any additional styles you want for the h6 */
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px; /* Space between tags */
+    margin-top: 10px;
+}
+
+.article-stats {
+    display: flex;
+    flex-direction: column;
+    padding-left: 10px;
+}
+
+.stats-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.view-download {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stats-value {
+    font-size: larger; /* Adjust font size as needed */
+    
+}
+
+.stats-label {
+    font-size: smaller;
+    text-transform: uppercase;
+    margin: 0;
+ /* Remove default margins to ensure proper alignment */
+}
+
+
+
+.recommendation-article{
+    display: block;
+    width: 100%;
+    height: 400px;
+    margin-top: 200px;
+
+}
+
+.recommendation-article h4{
+    color: #115272;
+    font-family: 'Times New Roman', Times, serif;
+    margin-left: 95px;
+    display: flex;
+}
+
+.articles-container {
+    width: 85%;
+    height: auto;
+    border: none;
+    margin-left: auto;
+    margin-right: auto;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+
+.articles-container::-webkit-scrollbar {
+    width: 0.5em;
+    background-color: transparent;
+}
+
+.articles-container::-webkit-scrollbar-thumb {
+    background-color: transparent;
+}
+
+.article {
+    margin-top: 20px;
+    width: 25%;
+    height: 100%;
+    margin-right: 80px;
+    background-color: white;
+    display: inline-block;
+    white-space: normal; 
+    
+
+}
+
+.article .h6{
+    font-family: 'Times New Roman', Times, serif;
+    color: #115272;
+    width: auto;
+    
+}
+
+.article-info{
+    opacity: 0.6;
+    font-size: 12px;
+    width: 100%;
+}
+
+.views{
+    margin-left: 150px;
+}
+
+.article .info, .article .views{
+    opacity: 0.7;
+    display: inline-block;
+}
+
+.views{
+    margin-left: 150px;
+}
+
+
+.author{
+    color: #115272;
+    font-size: 12px;
+    display: block;
+}
+
+.article-content{
+    color: black;
+    font-size: 12px;
+}
+
+.btn-article:hover{
+    border: 2px #115272 solid;
+    background-color: transparent;
+    border-radius: 20px;
+    color: #115272;
+    opacity: 0.8;
+    
+}
+
+@media screen and (max-width: 1024px){
+    .main-container {
+        flex-direction: column;
+        
+    }
+
+    .published-info {
+        align-self: flex-start;
+        justify-content: left;
+        width: 100%;
+         /* Space between stats and published info */
+    }
+
+    .published-info h5,
+    .published-info p {
+    margin: 0;
+    text-align: left; /* Remove default margins to ensure proper alignment */
+     /* Match the font size to your design */
+    }
+
+    .publish-label {
+        font-weight: bold; /* To match the bold style */
+        margin-bottom: 5px; /* Space between the publish label and authors */
+    }
+
+    .authors {
+        font-style: italic; /* To match the italic style of the author names */
+    }
+}
+@media screen and (max-width: 768px) {
+    .article {
+        flex-direction: column;
+    }
+
+    .sort-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; /* Aligns items to the left */
+         /* Match the font to your design */
+    }
+
+    .sort-header {
+        display: flex;
+        align-items: center; /* Centers the text and icon vertically */
+        gap: 5px; /* Adds space between the text and the icon */
+        font-size: 16px; /* Adjust the font size as necessary */
+    }
+
+    .sort-icon {
+        /* Replace with the actual icon and style accordingly */
+        font-size: 16px; /* Adjust to match the size of your icon */
+        cursor: pointer; /* Changes the cursor to indicate the icon is clickable */
+    }
+
+    .sort-container label {
+        margin-right: 10px;
+        
+    }
+
+    .sort-dropdown {
+        margin-top: 8px; /* Adds space between the header and the dropdown */
+        border: 1px solid #ccc; /* Adds a border to the dropdown */
+        border-radius: 4px; /* Optionally rounds the corners */
+        padding: 5px 8px; /* Adds padding inside the dropdown */
+        font-size: 16px; /* Ensures the text size is consistent */
+        cursor: pointer; /* Indicates the dropdown is clickable */
+        width: auto; /* Sets the width to fit the content */
+    }
+
+    .sort-container select {
+        padding: 5px; /* Make the dropdown taller and easier to click */
+        border: 1px solid #ccc; /* Match the border style of your articles */
+        border-radius: 4px; /* Optional: to match the rounded corners of your articles */
+        font-size: 1rem; /* Adjust the font size as needed */
+    }
+
+    .checkbox-container {
+        margin-top: 10px;
+    }
+
+    .checkbox-label {
+        font-family: 'Inter', sans-serif;
+        margin-bottom: 5px;
+        display: block;
+    }
+
+    .checkbox {
+        margin-bottom: 10px;
+    }
+
+    .pagination {
+        display: flex;
+        list-style: none;
+        padding: 0;
+        margin: 20px 0;
+    }
+    
+    .pagination a {
+        text-decoration: none;
+        padding: 8px 12px;
+        border: 1px solid #ccc;
+        margin: 0 5px;
+        border-radius: 4px;
+        color: #115272;
+        cursor: pointer;
+    }
+
+    .pagination a.active {
+        background-color: #115272;
+        color: #fff;
+    }
+}
+
+
