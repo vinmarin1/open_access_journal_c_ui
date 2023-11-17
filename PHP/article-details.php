@@ -25,9 +25,9 @@
 
 
 <div class="fluid-container">
-<div class="recommendation-article">
-<h4>Recommendation articles for you</h4>
-  <div id="recommendations" class="articles-container">
+<div class="recommendation-article" >
+<h4>Similar articles like this</h4>
+  <div id="similar-articles" class="articles-container">
   
   </div>
   
@@ -41,7 +41,7 @@
 <div class="fluid-container " style="margin-top: -100px">
 <div class="recommendation-article">
 <h4>Popular Articles this Month</h4>
-  <div id="popular-articles" class="articles-container">
+  <div id="recommendations" class="articles-container">
  
   </div>
 
