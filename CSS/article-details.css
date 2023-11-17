@@ -154,20 +154,21 @@ color: #115272;
 }
 
 .recommendation-article{
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
     width: 100%;
     min-height: 400px;
     background-color: #F5F7F8;
     padding-top:2em;
     padding-bottom:2em;
-    
 }
 
 .recommendation-article h4{
     color: #115272;
     font-family: 'Times New Roman', Times, serif;
-    padding: 2em 4em;
-    display: flex;
+    width:85%;
 }
 
 .articles-container {

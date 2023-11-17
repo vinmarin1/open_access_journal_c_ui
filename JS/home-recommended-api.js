@@ -47,7 +47,7 @@ async function fetchData() {
       articleDiv.addEventListener('click', () => navigateToArticle(item.article_id));
       articleDiv.innerHTML = `
       <h6>${item.title}</h6>
-      <p>${item.abstract.slice(0,200)}</p>
+      <p>${item.abstract.slice(0,120)}</p>
       <button class="btn btn-outline-light btn-md">Continue Reading</button>
       `;
 

@@ -126,7 +126,7 @@ async function renderRecommended(data) {
         <span class="views">${article.total_reads} views</span>
       </div>
       <p class="author">By ${article.author}</p>
-      <p class="article-content h-25 ">${article.abstract.slice(0, 200)}</p>
+      <p class="article-content h-25 ">${article.abstract.slice(0, 120)}</p>
       <button class="btn btn-primary btn-md btn-article" style="border: 2px #115272 solid; background-color: transparent; border-radius: 20px; color: #115272; width: 100%;">Read Article</button>
     `;
     articleElement.addEventListener('click', () => navigateToArticle(article.article_id));

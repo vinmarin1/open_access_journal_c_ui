@@ -45,7 +45,7 @@
 
 <div class="fluid-container " >
 <div class="recommendation-article">
-<h4>Popular Articles this Month</h4>
+<h4>Recommended for You</h4>
   <div id="recommendations" class="articles-container">
  
   </div>

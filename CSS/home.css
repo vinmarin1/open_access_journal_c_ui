@@ -147,7 +147,10 @@
 
 
 .recommendation-article{
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
   width: 100%;
   min-height: 400px;
   padding-top:2em;
@@ -157,7 +160,7 @@
 .recommendation-article h4{
 color: #115272;
 font-family: 'Times New Roman', Times, serif;
-padding: 2em 4em;
+width:85%;
 }
 
 .articles-container {
@@ -279,7 +282,7 @@ flex-wrap: wrap;
 justify-content: space-around; /* Center horizontally */
 align-items: center; /* Center vertically */
 min-height: 70vh;
-padding: 2em 8em;
+padding: 2em 4em;
 }
 
 .ab-qoaj-left {
