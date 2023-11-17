@@ -39,6 +39,7 @@
     <span class="step" title="Upload Files"></span>
     <span class="step" title="Confirmation"></span>
     <span class="step" title="For Editors"></span>
+    
    
   </div>
   <!-- One "tab" for each step in the form: -->
@@ -93,7 +94,7 @@ The names and email addresses entered in this journal site will be used exclusiv
   </div>
  
   <div class="tab">
-  <h5 class="title"">Submission Checklist</h5>
+  <h5 class="title">Submission Checklist</h5>
   <h6 style="color: #115272">Please provide the following details to help us manage your submission in our system.</h6>
  
   <div class="journal_type_container">
@@ -117,20 +118,79 @@ The names and email addresses entered in this journal site will be used exclusiv
    The Lamp
   </label>
 </div>
+<div class="input-group">
+  <span class="input-group-text" id="abstract">Abstract</span>
+  <textarea class="form-control" aria-label="With textarea"></textarea>
+</div>
+<div class="input-group">
+  <span class="input-group-text" id="reference">Reference</span>
+  <textarea class="form-control" aria-label="With textarea"></textarea>
+</div>
   </div>
   
   </div>
  
     
   </div>
-  <div class="tab">Birthday:
-    <input placeholder="dd" oninput="this.className = ''" name="dd"><br>
-    <input placeholder="mm" oninput="this.className = ''" name="nn"><br>
-    <input placeholder="yyyy" oninput="this.className = ''" name="yyyy">
+  <div class="tab">
+    <div class="upload-container">
+    <h5 class="title upload-title">Upload File</h5 class="title">
+    <button class="btn btn-primary btn-sm" onlick="openFile()" id="upload-btn">Upload your file</button>
+    </div>
+ 
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">File Name</th>
+      <th scope="col">Type</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      
+      <td>Mark</td>
+      <td>Otto</td>
+      <td><button class="btn btn-danger btn-sm">Delete</button></td>
+      
+    </tr>
+  </tbody>
+
+  
+</table>
   </div>
-  <div class="tab">Login Info:
-    <input placeholder="Username..." oninput="this.className = ''" name="uname"><br>
-    <input placeholder="Password..." oninput="this.className = ''" name="pword" type="password">
+  <div class="tab">
+  <div class="upload-container">
+    <h5 class="title contributors-title">Contributors</h5 class="title">
+    <button class="btn btn-primary btn-sm" onlick="openFileC()" id="contributor-btn">Add Contrinbutors</button>
+    </div>
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+    
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      
+      <td>Mark Otto</td>
+      <td><button class="btn btn-danger btn-sm">Delete</button></td>
+      
+    </tr>
+  </tbody>
+
+  
+</table>
+  </div>
+  <div class="tab">
+  <h5 class="title contributors-title">Comments for editors</h5>
+ <h6 style="color: #115272">Please provide the following details to help our editorial team manage your submission.</h6>
+ <div class="input-group">
+  <span class="input-group-text" id="comments">Comments</span>
+  <textarea class="form-control" aria-label="With textarea"></textarea>
+</div>
   </div>
   <div style="overflow:auto;">
     <div style="float:right;">
@@ -154,3 +214,5 @@ The names and email addresses entered in this journal site will be used exclusiv
 <script src="../JS/timeline.js"></script>
 </body>
 </html>
+ 
+ 
