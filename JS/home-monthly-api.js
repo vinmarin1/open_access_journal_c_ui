@@ -4,23 +4,7 @@ document.addEventListener('DOMContentLoaded', fetchData);
 function navigateToArticle(articleId){
   window.location.href = `/open_access_journal_c_ui/PHP/article-details.php?articleId=${articleId}`;
 }
-async function fetchArticleDetails() {
-  await fetch('https://web-production-89c0.up.railway.app/articles/logs/read', {
-    method: 'POST',
-    body: JSON.stringify({
-        author_id: '6',
-        article_id: parseInt(articleId)
-    }),
-    headers: {
-        'Content-Type': 'application/json'
-    }
-  })
-    .then(response => response.json())
-    .then(data => {
-      renderArticleDetails(data.selected_article);
-    })
-    .catch(error => console.error('Error fetching data:', error));
-}
+
 async function fetchData() {
   try {
     const response = await fetch('https://web-production-89c0.up.railway.app/articles/recommendations', {

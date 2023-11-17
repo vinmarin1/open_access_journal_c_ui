@@ -276,22 +276,26 @@ opacity: 0.8;
 background-color: #115272;
 }
 
-.About-container {
+.About-container, .recommendation-container {
 display: flex; /* Change to flex container */
-justify-content: space-between; /* Center horizontally */
+flex-wrap: wrap;
+justify-content: space-around; /* Center horizontally */
 align-items: center; /* Center vertically */
-margin-top: 80px;
-margin-left: 80px;
-margin-bottom: 30px;
+min-height: 70vh;
+padding: 2em 8em;
 }
 
 .ab-qoaj-left {
 flex: 1; /* Take up available space */
-margin-bottom: 30px;
+min-width:400px;
 }
 
 .ab-qoaj-right {
 flex: 1; /* Take up available space */
+display:flex;
+flex-wrap: wrap;
+justify-items: center;
+min-width:200px;
 }
 
 .ab-qoaj-left h2 {
@@ -357,7 +361,8 @@ height: 100%;
 display: inline-block; 
 text-align: center; 
 margin: 0 140px 0 140px; 
-box-shadow: 0 0 20px gray; /* Add shadow to the border */
+
+ /* Add shadow to the border */
 }
 
 #example-mid{
@@ -375,6 +380,8 @@ text-align: center;
 
 
 .example-journal h3{
+font-family: 'Times New Roman', Times, serif;
+color:#115272;
 text-align: center;
 margin-top: 50px;
 

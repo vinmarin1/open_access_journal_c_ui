@@ -47,6 +47,7 @@ function login($data)
 
             if ($password === $row->password) {
                 $_SESSION['USER'] = $row;
+                $_SESSION['id'] = $row->author_id;
                 $_SESSION['LOGGED_IN'] = true;
             } else {
                 $errors[] = "Wrong email or password";

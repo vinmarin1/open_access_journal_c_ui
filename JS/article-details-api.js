@@ -7,28 +7,13 @@ function getQueryParam(name) {
 
 const articleId = getQueryParam('articleId');
 
-function downloadFile(file){
-  window.location.href = `http://monorbeta-001-site1.btempurl.com/journaldata/file/${file}`;
-}
-
-async function handleDownloadLog(articleId) {
-  await fetch('https://web-production-89c0.up.railway.app/articles/logs/download', {
-    method: 'POST',
-    body: JSON.stringify({
-        author_id: '6', //convert-6-to-session-id
-        article_id: parseInt(articleId)
-    }),
-    headers: {
-        'Content-Type': 'application/json'
-    }})
-}
 
 async function fetchArticleDetails() {
   try {
     const response = await fetch('https://web-production-89c0.up.railway.app/articles/logs/read', {
       method: 'POST',
       body: JSON.stringify({
-        author_id: '6', //convert-6-to-session
+        author_id: sessionId? sessionId : null, //convert-6-to-session
         article_id: parseInt(articleId)
       }),
       headers: {
@@ -112,12 +97,13 @@ function renderArticleDetails(data) {
       </div>
     `;
     const downloadBtn = articleElement.querySelector(`#download-btn`);
-    
     if (downloadBtn) {
-      downloadBtn.addEventListener('click', () => downloadFile(item.file_name), handleDownloadLog(item.article_id));
+      downloadBtn.addEventListener('click', () => {
+        downloadFile(item.file_name);
+        handleDownloadLog(item.article_id);
+      });
     }
     articleContainer.appendChild(articleElement);
-
   });
 }
 
@@ -145,4 +131,20 @@ async function renderRecommended(data) {
 
     articleContainer.appendChild(articleElement);
   });
+}
+
+function downloadFile(file){
+  window.location.href = `http://monorbeta-001-site1.btempurl.com/journaldata/file/${file}`;
+}
+
+async function handleDownloadLog(articleId) {
+  await fetch('https://web-production-89c0.up.railway.app/articles/logs/download', {
+    method: 'POST',
+    body: JSON.stringify({
+        author_id: sessionId, //convert-6-to-session-id
+        article_id: parseInt(articleId)
+    }),
+    headers: {
+        'Content-Type': 'application/json'
+    }})
 }
