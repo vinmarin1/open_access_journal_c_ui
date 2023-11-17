@@ -240,94 +240,16 @@ if ($data) {
 </div>
 
 
+
+
 <div class="fluid-container">
 <div class="recommendation-article">
-<h4>Recommended for you</h4>
-  <div class="articles-container">
-  <div class="article">
-  <p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
-    <div class="article-info">
-      <p class="info">THE LAMP</p>
-      <span class="views"></span>103 views
-    </div>
-    <p class="author">By Jane Delacruz</p>
-    <p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
-    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
-    background-color: transparent;
-    border-radius: 20px;
-    color: #115272;
-    width: 100%;">Read Article</button>
-  </div>
-  <div class="article">
-  <p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
-    <div class="article-info">
-      <p class="info">THE LAMP</p>
-      <span class="views"></span>103 views
-    </div>
-    <p class="author">By Jane Delacruz</p>
-    <p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
-    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
-    background-color: transparent;
-    border-radius: 20px;
-    color: #115272;
-    width: 100%;">Read Article</button>
-  </div>
-
-  <div class="article">
-  <p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
-    <div class="article-info">
-      <p class="info">THE LAMP</p>
-      <span class="views"></span>103 views
-    </div>
-    <p class="author">By Jane Delacruz</p>
-    <p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
-    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
-    background-color: transparent;
-    border-radius: 20px;
-    color: #115272;
-    width: 100%;">Read Article</button>
-  </div>
-
-  <div class="article">
-  <p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
-    <div class="article-info">
-      <p class="info">THE LAMP</p>
-      <span class="views"></span>103 views
-    </div>
-    <p class="author">By Jane Delacruz</p>
-    <p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
-    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
-    background-color: transparent;
-    border-radius: 20px;
-    color: #115272;
-    width: 100%;">Read Article</button>
-  </div>
-
-  <div class="article">
-  <p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
-    <div class="article-info">
-      <p class="info">THE LAMP</p>
-      <span class="views"></span>103 views
-    </div>
-    <p class="author">By Jane Delacruz</p>
-    <p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
-    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
-    background-color: transparent;
-    border-radius: 20px;
-    color: #115272;
-    width: 100%;">Read Article</button>
-  </div>
-
-  
-  
+  <h4>Recommendations for you</h4>
+  <div id="popular-articles" class="articles-container">
+ 
+  </div>  
   </div>
 </div>
-    
-</div>
-
-
-
-
 
 
 
@@ -351,6 +273,6 @@ if ($data) {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 <script src="../JS/reusable-header.js"></script>
-
+<script src="../JS/home-monthly-api.js"></script>
 </body>
 </html>

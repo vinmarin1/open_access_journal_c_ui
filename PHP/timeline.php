@@ -30,7 +30,7 @@
 
 </div>
 
-<form id="multiSForm" action="/action_page.php">
+<form id="multiSForm" action="submit-journal.php">
     
   <h3>Submit your paper</h3>
   <div>
@@ -83,12 +83,15 @@ Authors are permitted and encouraged to post their work online (e.g., in institu
 <p class="h6" style="color: #115272; margin-top: 20px">
 The names and email addresses entered in this journal site will be used exclusively for the stated purposes of this journal and will not be made available for any other purpose or to any other party
 </p>
-<!-- <div class="form-check">
+<div class="form-check">
   <input class="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate">
   <label class="form-check-label" for="flexCheckIndeterminate">
-  The authors agree to the terms of this Copyright Notice, which will apply to this submission if and when it is published by this journal (comments to the editor can be added below).
+    The authors agree to the terms of this Copyright Notice, which will apply to this submission if and when it is published by this journal (comments to the editor can be added below).
   </label>
-</div> -->
+</div>
+
+
+
 
 
   </div>
@@ -101,30 +104,31 @@ The names and email addresses entered in this journal site will be used exclusiv
   <h5 class="title">Journal Type</h5>
   <div class="category">
   <div class="form-check category-type" style="margin-left: 10px">
-  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+  <input class="form-check-input radio-select" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="">
   <label class="form-check-label" for="flexRadioDefault1" style="color: #115272; font-family: Times New Roman;">
     The Gavel
   </label>
 </div>
 <div class="form-check category-type" style="margin-left: 10px">
-  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+  <input class="form-check-input radio-select" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="">
   <label class="form-check-label" for="flexRadioDefault2" style="color: #115272; font-family: Times New Roman;">
    The Star
   </label>
 </div>
 <div class="form-check category-type"  style="margin-left: 10px">
-  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-  <label class="form-check-label" for="flexRadioDefault2" style="color: #115272; font-family: Times New Roman;">
+  <input class="form-check-input radio-select" type="radio" name="flexRadioDefault" id="flexRadioDefault3" value="">
+  <label class="form-check-label" for="flexRadioDefault3" style="color: #115272; font-family: Times New Roman;">
    The Lamp
   </label>
 </div>
 <div class="input-group">
-  <span class="input-group-text" id="abstract">Abstract</span>
-  <textarea class="form-control" aria-label="With textarea"></textarea>
+  <span class="input-group-text">Abstract</span>
+  <textarea class="form-control" id="abstract" aria-label="With textarea"></textarea>
 </div>
-<div class="input-group">
-  <span class="input-group-text" id="reference">Reference</span>
-  <textarea class="form-control" aria-label="With textarea"></textarea>
+<div class="input-group mb-3">
+<span class="input-group-text" id="basic-addon2">Reference</span>
+  <input type="text"  id="Reference" class="form-control" aria-describedby="basic-addon2">
+  
 </div>
   </div>
   
@@ -135,39 +139,47 @@ The names and email addresses entered in this journal site will be used exclusiv
   <div class="tab">
     <div class="upload-container">
     <h5 class="title upload-title">Upload File</h5 class="title">
-    <button class="btn btn-primary btn-sm" onlick="openFile()" id="upload-btn">Upload your file</button>
+    <button type="button" class="btn btn-primary btn-sm" onclick="openFileModal()" id="upload-btn">Upload your file</button>
+    <input type="file" id="hiddenFileInput" style="display: none;">
     </div>
  
     <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">File Name</th>
-      <th scope="col">Type</th>
-      <th scope="col">Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      
-      <td>Mark</td>
-      <td>Otto</td>
-      <td><button class="btn btn-danger btn-sm">Delete</button></td>
-      
-    </tr>
-  </tbody>
-
-  
-</table>
+    <thead>
+      <tr>
+        <th scope="col">File Name</th>
+        <th scope="col">Type</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="fileName"></td>
+        <td class="fileType"></td>
+        <td class="action">
+          <button type="button" class="btn btn-danger btn-sm" onclick="deleteFile()">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
   </div>
   <div class="tab">
   <div class="upload-container">
-    <h5 class="title contributors-title">Contributors</h5 class="title">
-    <button class="btn btn-primary btn-sm" onlick="openFileC()" id="contributor-btn">Add Contrinbutors</button>
+
+    <button type="button" class="btn btn-primary btn-sm" id="contributor-btn">Add Contributors</button>
+    <div class="contibutors-container">
+      
+    <!-- <div class="input-group mb-3">
+      <label for="contributors"></label>
+        <span class="input-group-text" id="basic-addon1">Add Contrubutors to your project</span>
+      <input type="text" class="form-control" placeholder="Contributors Name" aria-label="Username" aria-describedby="basic-addon1">
+      <button type="button" class="btn btn-primary btn-sm" id="addContributors"><i class="fa-solid fa-plus"></i>Add</button>
+   </div> -->
+    </div>
     </div>
     <table class="table">
   <thead>
     <tr>
-      <th scope="col"></th>
+      <th class="" scope="col">Contributors </th>
     
       <th scope="col">Action</th>
     </tr>
@@ -175,10 +187,11 @@ The names and email addresses entered in this journal site will be used exclusiv
   <tbody>
     <tr>
       
-      <td>Mark Otto</td>
-      <td><button class="btn btn-danger btn-sm">Delete</button></td>
+    <td class="contributorName"></td>
+      <td><button type="button" class="btn btn-danger btn-sm" onclick="deleteC()">Delete</button></td>
       
     </tr>
+   
   </tbody>
 
   
@@ -210,6 +223,7 @@ The names and email addresses entered in this journal site will be used exclusiv
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="../JS/reusable-header.js"></script>
 <script src="../JS/timeline.js"></script>
 </body>

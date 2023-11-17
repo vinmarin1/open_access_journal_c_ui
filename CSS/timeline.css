@@ -189,3 +189,12 @@ float: right;
 margin-top: 30px;
 }
 
+
+#abstract{
+ width: 50px;
+}
+
+
+.contibutors-container{
+  display: none;
+}
