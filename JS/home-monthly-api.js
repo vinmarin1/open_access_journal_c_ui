@@ -4,23 +4,7 @@ document.addEventListener('DOMContentLoaded', fetchData);
 function navigateToArticle(articleId){
   window.location.href = `/open_access_journal_c_ui/PHP/article-details.php?articleId=${articleId}`;
 }
-async function fetchArticleDetails() {
-  await fetch('https://web-production-89c0.up.railway.app/articles/logs/read', {
-    method: 'POST',
-    body: JSON.stringify({
-        author_id: '6',
-        article_id: parseInt(articleId)
-    }),
-    headers: {
-        'Content-Type': 'application/json'
-    }
-  })
-    .then(response => response.json())
-    .then(data => {
-      renderArticleDetails(data.selected_article);
-    })
-    .catch(error => console.error('Error fetching data:', error));
-}
+
 async function fetchData() {
   try {
     const response = await fetch('https://web-production-89c0.up.railway.app/articles/recommendations', {
@@ -56,7 +40,7 @@ async function fetchData() {
           <span class="views" id="views">${item.total_reads} Views</span>
         </div>
         <p class="author" id="author">${item.author}</p>
-        <p class="article-content" id="abstract">${item.abstract.slice(0,200)}</p>
+        <p class="article-content" id="abstract">${item.abstract.slice(0,120)}</p>
         <button class="btn btn-primary btn-md btn-article" style="border: 2px #115272 solid; background-color: transparent; border-radius: 20px; color: #115272; width: 100%;">Read Article</button>
       `;
 

@@ -13,11 +13,9 @@
 
 
 <div class="header-container" id="header-container">
- 
 </div>
 
 <nav class="navigation-menus-container"  id="navigation-menus-container">
-  
 </nav>
 
 <div class="main-content">
@@ -32,17 +30,11 @@
     
     
 </div>
-
-
       
-<?php
 
-session_start();
 
-if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-    // User is logged in, display the profile menu
-    echo '
-    <div class="fluid-container mb-5" ">
+
+    <div class="fluid-container mb-5">
       <div class="recommendation-container">
         <div class="offer-left">
         <h2 class="mb-3">QAJ OFFER Personalized Recommendations</h2>
@@ -52,55 +44,52 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
         <button class="btn btn-primary btn-md mt-1">Try it Now</button>
         <br>
         </div>
-        
-        <div class="divider-line"></div>
-        <div class="offer-right">
-        <h6>Article About the Future of Artificial Intlligence: Advancements and Ethical Considerations</h6>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur facilis nemo culpa quis iste itaque deserunt magnam voluptate voluptatem? Necessitatibus sint voluptatibus non? Ipsum vero omnis quas, nobis ex qui ipsa recusandae! Mollitia eaque eveniet ullam consequatur quibusdam, odit adipisci architecto accusamus a animi facere pariatur, deserunt veniam fugiat in.</p>
-        <button class="btn btn-outline-light btn-md">Continue Reading</button>
-        <h6>Article About the Future of Artificial Intlligence: Advancements and Ethical Considerations</h6>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur facilis nemo culpa quis iste itaque deserunt magnam voluptate voluptatem? Necessitatibus sint voluptatibus non? Ipsum vero omnis quas, nobis ex qui ipsa recusandae! Mollitia eaque eveniet ullam consequatur quibusdam, odit adipisci architecto accusamus a animi facere pariatur, deserunt veniam fugiat in.</p>
-        <button class="btn btn-outline-light btn-md">Continue Reading</button>
-        </div>
-      
-      
-      </div>
-     
+        <?php
+          session_start();
+          if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+            // User is logged in, display the profile menu
+            echo '
+              <div class="divider-line"></div>
+              <div id="history" class="offer-right">
+                
+              </div> 
+              '; 
+          }else{
+            echo ' <div class="divider-line"></div>
+            <div class="offer-right">
+          
+            </div> ';
+          }
+        ?>
+      </div>  
     </div>
-   ';
-}
-?>
- 
 
-
+ <?php
+  if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+    echo '
+      <div class="fluid-container">
+      <div class="recommendation-article">
+      <h4>Recommendation articles for you</h4>
+        <div id="recommendations" class="articles-container">
+        </div>
+        </div>
+      </div>
+      </div>
+      <hr style="height: 2px; background-color: #115272 "> '; 
+  } 
+  ?>
 
 <div class="fluid-container">
 <div class="recommendation-article">
-<h4>Recommendation articles for you</h4>
-  <div id="recommendations" class="articles-container">
-  
-  </div>
-  
-  
-  </div>
-</div>
-</div>
-
-<hr style="height: 2px; background-color: #115272 ">
-
-<div class="fluid-container " style="margin-top: -100px">
-<div class="recommendation-article">
-<h4>Popular Articles this Month</h4>
+  <h4>Popular Articles this Month</h4>
   <div id="popular-articles" class="articles-container">
  
-  </div>
-
-  
+  </div>  
   </div>
 </div>
 
 <div class="fluid-container mb-3 qoaj">
-  <div class="About-container">
+  <div class="About-container ">
     <div class="ab-qoaj-left">
         <h2 class="mb-3">About QOAJ</h2>
         <p class="description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis distinctio, debitis sed dolores iste, deserunt perspiciatis ducimus odio aliquam facere illo, quasi temporibus aut sint est mollitia saepe omnis amet?</p>
@@ -141,7 +130,7 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
   <div class="ex-journal">
     <div class="example-journal">
     <h3>The Gavel</h3>
-    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt quidem illum repellat dolores voluptas in deserunt velit minima, dolorem laborum impedit, nostrum ab dolor possimus autem fuga tempora officia non quasi nisi voluptatem. Pariatur magni impedit, enim in fugiat quos.</p>
+    <p class="text-xs">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt quidem illum repellat dolores voluptas in deserunt velit minima, dolorem laborum impedit, nostrum ab dolor possimus autem fuga tempora officia non quasi nisi voluptatem. Pariatur magni impedit, enim in fugiat quos.</p>
     <button class="btn btn-primary btn-md mt-1">See Journal</button>
     </div>
 
@@ -169,8 +158,9 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 </div>
 
 
-
-   
+      <script>
+          const sessionId = "<?php echo isset($_SESSION['id']) ? $_SESSION['id'] : 0; ?>";
+       </script>  
       <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" ></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>

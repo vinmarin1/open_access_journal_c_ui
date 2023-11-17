@@ -7,28 +7,13 @@ function getQueryParam(name) {
 
 const articleId = getQueryParam('articleId');
 
-function downloadFile(file){
-  window.location.href = `http://monorbeta-001-site1.btempurl.com/journaldata/file/${file}`;
-}
-
-async function handleDownloadLog(articleId) {
-  await fetch('https://web-production-89c0.up.railway.app/articles/logs/download', {
-    method: 'POST',
-    body: JSON.stringify({
-        author_id: '6', //convert-6-to-session-id
-        article_id: parseInt(articleId)
-    }),
-    headers: {
-        'Content-Type': 'application/json'
-    }})
-}
 
 async function fetchArticleDetails() {
   try {
     const response = await fetch('https://web-production-89c0.up.railway.app/articles/logs/read', {
       method: 'POST',
       body: JSON.stringify({
-        author_id: '6', //convert-6-to-session
+        author_id: sessionId? sessionId : null,
         article_id: parseInt(articleId)
       }),
       headers: {
@@ -75,14 +60,15 @@ function renderArticleDetails(data) {
       </div>
 
       <div class="container-fluid">
-          <div class="abstract">
+      <div class="row gap-4">
+          <div class="abstract col-sm-7">
               <h4>Abstract</h4>
               <button class="btn tbn-primary btn-md" id="btn1">Read Full Articles</button>
               <button class="btn tbn-primary btn-md" id="download-btn">Download PDF</button>
               <p>${item.abstract}</p>
           </div>
           
-          <div class="articles-info">
+          <div class="col-lg-3 pt-4 pb-4">
               <div class="views-dl">
                   <div class="views">
                       <p style="font-size:large;" >10.2K</p>
@@ -109,15 +95,17 @@ function renderArticleDetails(data) {
                 
               </div>
           </div>
+          </div>
       </div>
     `;
     const downloadBtn = articleElement.querySelector(`#download-btn`);
-    
     if (downloadBtn) {
-      downloadBtn.addEventListener('click', () => downloadFile(item.file_name), handleDownloadLog(item.article_id));
+      downloadBtn.addEventListener('click', () => {
+        downloadFile(item.file_name);
+        handleDownloadLog(item.article_id);
+      });
     }
     articleContainer.appendChild(articleElement);
-
   });
 }
 
@@ -138,11 +126,27 @@ async function renderRecommended(data) {
         <span class="views">${article.total_reads} views</span>
       </div>
       <p class="author">By ${article.author}</p>
-      <p class="article-content h-25 ">${article.abstract.slice(0, 200)}</p>
+      <p class="article-content h-25 ">${article.abstract.slice(0, 120)}</p>
       <button class="btn btn-primary btn-md btn-article" style="border: 2px #115272 solid; background-color: transparent; border-radius: 20px; color: #115272; width: 100%;">Read Article</button>
     `;
     articleElement.addEventListener('click', () => navigateToArticle(article.article_id));
 
     articleContainer.appendChild(articleElement);
   });
+}
+
+function downloadFile(file){
+  window.location.href = `http://monorbeta-001-site1.btempurl.com/journaldata/file/${file}`;
+}
+
+async function handleDownloadLog(articleId) {
+  await fetch('https://web-production-89c0.up.railway.app/articles/logs/download', {
+    method: 'POST',
+    body: JSON.stringify({
+        author_id: sessionId, //convert-6-to-session-id
+        article_id: parseInt(articleId)
+    }),
+    headers: {
+        'Content-Type': 'application/json'
+    }})
 }
