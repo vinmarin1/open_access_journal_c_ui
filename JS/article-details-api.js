@@ -24,23 +24,25 @@ async function handleDownloadLog(articleId) {
 }
 
 async function fetchArticleDetails() {
-  await fetch('https://web-production-89c0.up.railway.app/articles/logs/read', {
-    method: 'POST',
-    body: JSON.stringify({
-        author_id: '6',
+  try {
+    const response = await fetch('https://web-production-89c0.up.railway.app/articles/logs/read', {
+      method: 'POST',
+      body: JSON.stringify({
+        author_id: '6', //convert-6-to-session
         article_id: parseInt(articleId)
-    }),
-    headers: {
+      }),
+      headers: {
         'Content-Type': 'application/json'
-    }
-  })
-    .then(response => response.json())
-    .then(data => {
-       renderArticleDetails(data.selected_article);
-    })
-    .catch(error => console.error('Error fetching data:', error));
+      }
+    });
+    const data = await response.json();
+    renderArticleDetails(data.selected_article);
+    renderRecommended(data.recommendations);
+    
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
 }
-
 function renderArticleDetails(data) {
   const articleContainer = document.getElementById('article_details');
   data.forEach(item => {
@@ -116,5 +118,31 @@ function renderArticleDetails(data) {
     }
     articleContainer.appendChild(articleElement);
 
+  });
+}
+
+function navigateToArticle(articleId){
+  window.location.href = `/open_access_journal_c_ui/PHP/article-details.php?articleId=${articleId}`;
+}
+async function renderRecommended(data) {
+  const articleContainer = document.getElementById('similar-articles');
+ 
+  await data.forEach(article => {
+    const articleElement = document.createElement('div');
+    articleElement.classList.add('article');
+
+    articleElement.innerHTML = `
+      <p class="h6 h-50">${article.title}</p>
+      <div class="article-info">
+        <p class="info">${article.journal}</p>
+        <span class="views">${article.total_reads} views</span>
+      </div>
+      <p class="author">By ${article.author}</p>
+      <p class="article-content h-25 ">${article.abstract.slice(0, 200)}</p>
+      <button class="btn btn-primary btn-md btn-article" style="border: 2px #115272 solid; background-color: transparent; border-radius: 20px; color: #115272; width: 100%;">Read Article</button>
+    `;
+    articleElement.addEventListener('click', () => navigateToArticle(article.article_id));
+
+    articleContainer.appendChild(articleElement);
   });
 }
