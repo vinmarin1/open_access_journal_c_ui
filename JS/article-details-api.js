@@ -13,7 +13,7 @@ async function fetchArticleDetails() {
     const response = await fetch('https://web-production-89c0.up.railway.app/articles/logs/read', {
       method: 'POST',
       body: JSON.stringify({
-        author_id: sessionId? sessionId : null, //convert-6-to-session
+        author_id: sessionId? sessionId : null,
         article_id: parseInt(articleId)
       }),
       headers: {
@@ -60,14 +60,15 @@ function renderArticleDetails(data) {
       </div>
 
       <div class="container-fluid">
-          <div class="abstract">
+      <div class="row gap-4">
+          <div class="abstract col-sm-7">
               <h4>Abstract</h4>
               <button class="btn tbn-primary btn-md" id="btn1">Read Full Articles</button>
               <button class="btn tbn-primary btn-md" id="download-btn">Download PDF</button>
               <p>${item.abstract}</p>
           </div>
           
-          <div class="articles-info">
+          <div class="col-lg-3 pt-4 pb-4">
               <div class="views-dl">
                   <div class="views">
                       <p style="font-size:large;" >10.2K</p>
@@ -93,6 +94,7 @@ function renderArticleDetails(data) {
                   </div>
                 
               </div>
+          </div>
           </div>
       </div>
     `;

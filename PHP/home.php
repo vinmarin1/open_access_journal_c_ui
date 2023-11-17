@@ -50,13 +50,8 @@
             // User is logged in, display the profile menu
             echo '
               <div class="divider-line"></div>
-              <div class="offer-right">
-              <h6>Article About the Future of Artificial Intlligence: Advancements and Ethical Considerations</h6>
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur facilis nemo culpa quis iste itaque deserunt magnam voluptate voluptatem? Necessitatibus sint voluptatibus non? Ipsum vero omnis quas, nobis ex qui ipsa recusandae! Mollitia eaque eveniet ullam consequatur quibusdam, odit adipisci architecto accusamus a animi facere pariatur, deserunt veniam fugiat in.</p>
-              <button class="btn btn-outline-light btn-md">Continue Reading</button>
-              <h6>Article About the Future of Artificial Intlligence: Advancements and Ethical Considerations</h6>
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aspernatur facilis nemo culpa quis iste itaque deserunt magnam voluptate voluptatem? Necessitatibus sint voluptatibus non? Ipsum vero omnis quas, nobis ex qui ipsa recusandae! Mollitia eaque eveniet ullam consequatur quibusdam, odit adipisci architecto accusamus a animi facere pariatur, deserunt veniam fugiat in.</p>
-              <button class="btn btn-outline-light btn-md">Continue Reading</button>
+              <div id="history" class="offer-right">
+                
               </div> 
               '; 
           }else{
@@ -84,7 +79,7 @@
   } 
   ?>
 
-<div class="fluid-container " style="margin-top: -100px">
+<div class="fluid-container">
 <div class="recommendation-article">
   <h4>Popular Articles this Month</h4>
   <div id="popular-articles" class="articles-container">

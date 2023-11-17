@@ -39,11 +39,11 @@
   
   </div>
 </div>
-</div>
 
-<hr style="height: 2px; background-color: #115272 ">
+<!-- 
+<hr style="height: 2px; background-color: #115272 "> -->
 
-<div class="fluid-container " style="margin-top: -100px">
+<div class="fluid-container " >
 <div class="recommendation-article">
 <h4>Popular Articles this Month</h4>
   <div id="recommendations" class="articles-container">

@@ -21,6 +21,7 @@ async function fetchData() {
 
     // Assuming 'data.recommendations' is an array
     const articlesContainer = document.querySelector('#recommendations');
+    const historyContainer = document.querySelector('#history');
     
 
     data.recommendations.forEach(item => {
@@ -39,6 +40,18 @@ async function fetchData() {
       `;
 
       articlesContainer.appendChild(articleDiv);
+    });
+
+    data.history.splice(0,2).forEach(item => {
+      const articleDiv = document.createElement('div');
+      articleDiv.addEventListener('click', () => navigateToArticle(item.article_id));
+      articleDiv.innerHTML = `
+      <h6>${item.title}</h6>
+      <p>${item.abstract.slice(0,200)}</p>
+      <button class="btn btn-outline-light btn-md">Continue Reading</button>
+      `;
+
+      historyContainer.appendChild(articleDiv);
     });
 
   } catch (error) {
