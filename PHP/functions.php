@@ -23,17 +23,17 @@ function login($data)
 {
     $errors = array();
 
-    // Validate email
+ 
     if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
         $errors[] = "Please enter a valid email";
     }
 
-    // Validate password length
+   
     if (strlen(trim($data['password'])) < 4) {
         $errors[] = "Password must be at least 4 characters long";
     }
 
-    // Check login
+   
     if (empty($errors)) {
         $arr['email'] = $data['email'];
         $password = hash('sha256', $data['password']);
@@ -48,6 +48,7 @@ function login($data)
             if ($password === $row->password) {
                 $_SESSION['USER'] = $row;
                 $_SESSION['id'] = $row->author_id;
+                $_SESSION['first_name'] = $row-> first_name;
                 $_SESSION['LOGGED_IN'] = true;
             } else {
                 $errors[] = "Wrong email or password";

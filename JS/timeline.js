@@ -49,18 +49,20 @@ checkbox.addEventListener('change', function(){
   }
 })
 
+
 var radioSelect = document.getElementsByClassName('radio-select');
 
 for (var i = 0; i < radioSelect.length; i++) {
   radioSelect[i].addEventListener('change', function() {
     if (this.checked) {
-      // Set the value to "1" for the selected radio button
-      this.value = "1";
+     
+      var selectedIndex = Array.from(radioSelect).indexOf(this) + 1;
+      this.value = selectedIndex.toString();
 
-      // Remove the value attribute from the other radio buttons
       for (var j = 0; j < radioSelect.length; j++) {
         if (radioSelect[j] !== this) {
-          radioSelect[j].removeAttribute('value');
+        
+          radioSelect[j].value = "0";
         }
       }
     }
@@ -115,16 +117,25 @@ function fixStepIndicator(n) {
 
 
 document.getElementById('hiddenFileInput').addEventListener('change', function () {
-  var selectedFile = this.files[0];
+  var selectedFiles = this.files;
+  var fileList = document.getElementById('fileList');
 
-  var fileNameElement = document.querySelector('.fileName');
-  if (fileNameElement) {
-    fileNameElement.textContent = selectedFile ? selectedFile.name : '';
-  }
+  for (var i = 0; i < selectedFiles.length; i++) {
+    var fileRow = fileList.insertRow(fileList.rows.length);
+    var fileNameCell = fileRow.insertCell(0);
+    fileNameCell.textContent = selectedFiles[i].name;
 
-  var fileTypeElement = document.querySelector('.fileType');
-  if (fileTypeElement) {
-    fileTypeElement.textContent = selectedFile ? selectedFile.type : '';
+    var fileTypeCell = fileRow.insertCell(1);
+    fileTypeCell.textContent = selectedFiles[i].type;
+
+    var actionCell = fileRow.insertCell(2);
+    var deleteButton = document.createElement('button');
+    deleteButton.type = 'button';
+    deleteButton.className = 'btn btn-danger btn-sm';
+    deleteButton.textContent = 'Delete';
+    deleteButton.setAttribute('data-row-index', fileRow.rowIndex);
+    deleteButton.onclick = deleteFile;
+    actionCell.appendChild(deleteButton);
   }
 });
 
@@ -132,16 +143,13 @@ function openFileModal() {
   document.getElementById('hiddenFileInput').click();
 }
 
-
 window.deleteFile = function() {
-  var fileNameElement = document.querySelector('.fileName');
-  if (fileNameElement) {
-    fileNameElement.textContent = '';
-  }
+  var rowIndex = parseInt(this.getAttribute('data-row-index'));
+  var fileList = document.getElementById('fileList');
 
-  var fileTypeElement = document.querySelector('.fileType');
-  if (fileTypeElement) {
-    fileTypeElement.textContent = '';
+  // Check if the rowIndex is within the valid range
+  if (rowIndex >= 0 && rowIndex < fileList.rows.length) {
+    fileList.deleteRow(rowIndex);
   }
 };
 
@@ -160,7 +168,6 @@ document.getElementById('contributor-btn').addEventListener('click', function ()
     showLoaderOnConfirm: true,
     preConfirm: async (contributorName) => {
       try {
-     
         return { contributorName };
       } catch (error) {
         Swal.showValidationMessage(`Request failed: ${error}`);
@@ -169,17 +176,44 @@ document.getElementById('contributor-btn').addEventListener('click', function ()
     allowOutsideClick: () => !Swal.isLoading()
   }).then((result) => {
     if (result.isConfirmed) {
-      const contributorCell = document.querySelector('.table tbody .contributorName');
-      contributorCell.textContent = result.value.contributorName;
+      const contributorsTableBody = document.getElementById('contributors-table-body');
+
+      const newRow = document.createElement('tr');
+  
+      const nameCell = document.createElement('contributor');
+      nameCell.textContent = result.value.contributorName;
+      newRow.appendChild(nameCell);
+ 
+      const deleteCell = document.createElement('contributor');
+      const deleteButton = document.createElement('button');
+      deleteButton.type = 'button';
+      deleteButton.className = 'btn btn-danger btn-sm';
+      deleteButton.textContent = 'Delete';
+      deleteButton.addEventListener('click', function() {
+    
+        contributorsTableBody.removeChild(newRow);
+      });
+      deleteCell.appendChild(deleteButton);
+      newRow.appendChild(deleteCell);
+      
+     
+      contributorsTableBody.appendChild(newRow);
     }
   });
 });
 
 
-window.deleteC = function() {
-  var fileNameElement = document.querySelector('.contributorName');
-  if (fileNameElement) {
-    fileNameElement.textContent = '';
-  }
 
-};
+
+
+
+
+
+
+
+
+// INSERTING DATA
+
+
+
+

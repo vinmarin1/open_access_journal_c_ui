@@ -1,7 +1,11 @@
+<?php
+  session_start();
+?>
 <!DOCTYPE html>
 <html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TIMELINE</title>
 <link href="../CSS/timeline.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -30,7 +34,7 @@
 
 </div>
 
-<form id="multiSForm" action="submit-journal.php">
+<form id="multiSForm" method="POST" action="../php/submit.php">
     
   <h3>Submit your paper</h3>
   <div>
@@ -84,7 +88,7 @@ Authors are permitted and encouraged to post their work online (e.g., in institu
 The names and email addresses entered in this journal site will be used exclusively for the stated purposes of this journal and will not be made available for any other purpose or to any other party
 </p>
 <div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate">
+  <input class="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate" name="privacy">
   <label class="form-check-label" for="flexCheckIndeterminate">
     The authors agree to the terms of this Copyright Notice, which will apply to this submission if and when it is published by this journal (comments to the editor can be added below).
   </label>
@@ -104,32 +108,44 @@ The names and email addresses entered in this journal site will be used exclusiv
   <h5 class="title">Journal Type</h5>
   <div class="category">
   <div class="form-check category-type" style="margin-left: 10px">
-  <input class="form-check-input radio-select" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="">
+  <input class="form-check-input radio-select" type="radio" name="category" id="flexRadioDefault1" value="">
   <label class="form-check-label" for="flexRadioDefault1" style="color: #115272; font-family: Times New Roman;">
     The Gavel
   </label>
 </div>
 <div class="form-check category-type" style="margin-left: 10px">
-  <input class="form-check-input radio-select" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="">
+  <input class="form-check-input radio-select" type="radio" name="category" id="flexRadioDefault2" value="">
   <label class="form-check-label" for="flexRadioDefault2" style="color: #115272; font-family: Times New Roman;">
    The Star
   </label>
 </div>
 <div class="form-check category-type"  style="margin-left: 10px">
-  <input class="form-check-input radio-select" type="radio" name="flexRadioDefault" id="flexRadioDefault3" value="">
+  <input class="form-check-input radio-select" type="radio" name="category" id="flexRadioDefault3" value="">
   <label class="form-check-label" for="flexRadioDefault3" style="color: #115272; font-family: Times New Roman;">
    The Lamp
   </label>
 </div>
+<div class="input-group mb-3">
+<span class="input-group-text" id="basic-addon2">Title</span>
+  <input type="text" name="title" id="title" class="form-control" aria-describedby="basic-addon2" >
+  
+</div>
 <div class="input-group">
   <span class="input-group-text">Abstract</span>
-  <textarea class="form-control" id="abstract" aria-label="With textarea"></textarea>
+  <textarea class="form-control" id="abstract" aria-label="With textarea" name="abstract"></textarea>
 </div>
 <div class="input-group mb-3">
 <span class="input-group-text" id="basic-addon2">Reference</span>
-  <input type="text"  id="Reference" class="form-control" aria-describedby="basic-addon2">
+  <input type="text" name="reference" id="reference" class="form-control" aria-describedby="basic-addon2" >
   
 </div>
+
+<div class="input-group mb-3">
+<span class="input-group-text" id="basic-addon2">Keyword</span>
+  <input type="text" name="keyword" id="keyword" class="form-control" aria-describedby="basic-addon2" >
+  
+</div>
+
   </div>
   
   </div>
@@ -143,66 +159,59 @@ The names and email addresses entered in this journal site will be used exclusiv
     <input type="file" id="hiddenFileInput" style="display: none;">
     </div>
  
-    <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">File Name</th>
-        <th scope="col">Type</th>
-        <th scope="col">Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="fileName"></td>
-        <td class="fileType"></td>
-        <td class="action">
-          <button type="button" class="btn btn-danger btn-sm" onclick="deleteFile()">Delete</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">File Name</th>
+      <th scope="col">Type</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody id="fileList">
+
+  </tbody>
+</table>
+
+
   </div>
   <div class="tab">
   <div class="upload-container">
+ <?php
+if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+  $first_name = $_SESSION['first_name'];
+  echo "<p id='contributor' style='display: none'>$first_name</p>";
 
-    <button type="button" class="btn btn-primary btn-sm" id="contributor-btn">Add Contributors</button>
-    <div class="contibutors-container">
-      
-    <!-- <div class="input-group mb-3">
-      <label for="contributors"></label>
-        <span class="input-group-text" id="basic-addon1">Add Contrubutors to your project</span>
-      <input type="text" class="form-control" placeholder="Contributors Name" aria-label="Username" aria-describedby="basic-addon1">
-      <button type="button" class="btn btn-primary btn-sm" id="addContributors"><i class="fa-solid fa-plus"></i>Add</button>
-   </div> -->
+}
+?>
+
+   <button type="button" class="btn btn-primary btn-sm" id="contributor-btn">Add Contributors</button>
+   
     </div>
-    </div>
-    <table class="table">
+   <table class="table">
   <thead>
     <tr>
-      <th class="" scope="col">Contributors </th>
-    
+      <th class="" scope="col">Contributors</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      
-    <td class="contributorName"></td>
-      <td><button type="button" class="btn btn-danger btn-sm" onclick="deleteC()">Delete</button></td>
-      
+      <td name="contributor" id="contributor"><?php echo $first_name; ?></td>
+      <td><button class="btn btn-danger btn-sm" style="display: none;"></button></td>
     </tr>
-   
   </tbody>
-
-  
+  <tbody id="contributors-table-body"></tbody>
 </table>
+
+
+
   </div>
   <div class="tab">
   <h5 class="title contributors-title">Comments for editors</h5>
  <h6 style="color: #115272">Please provide the following details to help our editorial team manage your submission.</h6>
  <div class="input-group">
-  <span class="input-group-text" id="comments">Comments</span>
-  <textarea class="form-control" aria-label="With textarea"></textarea>
+  <span class="input-group-text">Comments</span>
+  <textarea class="form-control" id="comment" name="comment" aria-label="With textarea"></textarea>
 </div>
   </div>
   <div style="overflow:auto;">
