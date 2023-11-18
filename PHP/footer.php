@@ -24,7 +24,7 @@
         </div>
         <div class="links-container">
           <div class="links">
-          <a href="#">Home</a>
+          <a href="home.php">Home</a>
           <a class="footer-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             About
           </a>
@@ -34,27 +34,12 @@
           <li><a class="dropdown-item" style="color: black" href="#">DEVELOPERS</a></li>
           </ul>
         </li>
-        <a class="footer-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <a class="footer-link" href="publication.php" role="button">
             Publications
           </a>
-          <ul class="dropdown-menu">
-          <li><a class="dropdown-item" style="color: black" href="#" >Publication1</a></li>
-          <li><a class="dropdown-item" style="color: black" href="#">Publication2</a></li>
-          <li><a class="dropdown-item" style="color: black" href="#">Publication3</a></li>
-          </ul>
         </li>
-          <a href="#">Archives</a>
           <a href="#">Editorial</a>
           <a href="#">Announcements</a>
-          <a class="footer-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Publish
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" style="color: black" href="#">Publish1</a></li>
-            <li><a class="dropdown-item" style="color: black" href="#">Publish2</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" style="color: black" href="#">Publish3</a></li>
-          </ul>
         </li>
         </div>
         </div>

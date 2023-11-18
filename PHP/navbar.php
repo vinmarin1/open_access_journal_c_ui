@@ -50,19 +50,9 @@
           </ul>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Publications
+          <a class="nav-link" role="button" href="publication.php">
+            QCU Journals
           </a>
-          <ul class="dropdown-menu">
-          <li><a class="dropdown-item" style="color: black" href="#" >Publication1</a></li>
-          <li><a class="dropdown-item" style="color: black" href="#">Publication2</a></li>
-          <li><a class="dropdown-item" style="color: black" href="#"></a></li>
-          <li><a class="dropdown-item" style="color: black" href="#">Publication3</a></li>
-          <li><a class="dropdown-item" style="color: black" href="#"></a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="archives.php">Archives</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="editorial.php">Editorial</a>
@@ -70,18 +60,6 @@
         <li class="nav-item">
           <a class="nav-link" href="announcement.php">Announcements</a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Publish
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" style="color: black" href="#">Publish1</a></li>
-            <li><a class="dropdown-item" style="color: black" href="#">Publish2</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" style="color: black" href="#">Publish3</a></li>
-          </ul>
-        </li>
-      
       </ul>
       <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
