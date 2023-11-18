@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
 
     database_run($sql, $params);
-    echo 'success';
+    Header("Location: timeline.php");
     exit();
 } else {
     echo 'Error: Invalid request method.';

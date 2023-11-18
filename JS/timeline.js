@@ -139,6 +139,8 @@ document.getElementById('hiddenFileInput').addEventListener('change', function (
   }
 });
 
+
+
 function openFileModal() {
   document.getElementById('hiddenFileInput').click();
 }
@@ -180,29 +182,25 @@ document.getElementById('contributor-btn').addEventListener('click', function ()
 
       const newRow = document.createElement('tr');
   
-      const nameCell = document.createElement('contributor');
+      const nameCell = document.createElement('td');
       nameCell.textContent = result.value.contributorName;
       newRow.appendChild(nameCell);
  
-      const deleteCell = document.createElement('contributor');
+      const deleteCell = document.createElement('td');
       const deleteButton = document.createElement('button');
       deleteButton.type = 'button';
       deleteButton.className = 'btn btn-danger btn-sm';
       deleteButton.textContent = 'Delete';
       deleteButton.addEventListener('click', function() {
-    
         contributorsTableBody.removeChild(newRow);
       });
       deleteCell.appendChild(deleteButton);
       newRow.appendChild(deleteCell);
       
-     
       contributorsTableBody.appendChild(newRow);
     }
   });
 });
-
-
 
 
 

@@ -179,7 +179,7 @@ The names and email addresses entered in this journal site will be used exclusiv
  <?php
 if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
   $first_name = $_SESSION['first_name'];
-  echo "<p id='contributor' style='display: none'>$first_name</p>";
+  echo "<p id='author' style='display: none'>$first_name</p>";
 
 }
 ?>
