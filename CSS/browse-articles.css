@@ -245,7 +245,9 @@ body {
     
 
 }
-
+.authors{
+    width:20vw;
+}
 .article .h6{
     font-family: 'Times New Roman', Times, serif;
     color: #115272;
@@ -320,6 +322,7 @@ body {
 
     .authors {
         font-style: italic; /* To match the italic style of the author names */
+       
     }
 }
 @media screen and (max-width: 768px) {

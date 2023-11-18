@@ -1,3 +1,7 @@
+<?php
+session_start();
+$author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,24 +15,7 @@
 </head>
 <body>
 
-<?php
 
-include('dbcon.php');
-// Assuming you have a database connection
-
-// Fetch the total count of articles from the database
-$query = "SELECT COUNT(*) AS total_articles FROM article";
-$vars = array(); // Assuming no variables are needed for this query
-
-$data = database_run($query, $vars);    
-
-if ($data) {
-    $totalArticles = $data[0]->total_articles;
-} else {
-    // Handle database error
-    $totalArticles = 0; 
-}   
-?>
 
 
 <div class="header-container" id="header-container">
@@ -44,10 +31,9 @@ if ($data) {
             <p>Home / Browse / Articles</p>
             <h2>Articles</h2>
         </div>
-        <form action="/search" method="GET" class="search-form">
+        <form action="" method="GET" class="search-form" id="search-form">
             <div class="search-container">
-                <input type="text" name="form-control me-2" class="form-control me-2" placeholder="Search Journals" class="search-bar" style="width: 583px; height: 30px; font-style: italic; background-color: white;" />
-                <!-- Remove the unnecessary closing button tag -->
+                <input id="search-input" type="text"  class="form-control me-2" placeholder="Search Articles..." class="search-bar" style="width: 583px; height: 30px; font-style: italic; background-color: white;" />
             </div>
             <div class="info-container">
                 <span class="info-icon" >&#9432;</span>
@@ -58,7 +44,7 @@ if ($data) {
 
 <div class="main-container">
     <div class="sidebar">
-        <h4 style="color: #115272;"><b><?php echo $totalArticles; ?> searchable articles</b></h4>
+        <h4 style="color: #115272;"><b><span id="total"></span></b></h4>
         <!-- Filters Here -->
         <hr style="border-top: 1px solid #ccc; margin: 10px 0;"> <!-- Add a horizontal line -->
         <div class="filters">
@@ -66,15 +52,15 @@ if ($data) {
             <!-- Journals, Year Published, etc. -->
             <div class="checkbox-container">
                         <h5 class="mb-2" style="color: #959595;"><b>JOURNALS</b></h5>
-                        <label class="checkbox-label"><input type="checkbox" class="checkbox" /> The Gavel</label><br>
-                        <label class="checkbox-label"><input type="checkbox" class="checkbox" /> The Lamp</label><br>
-                        <label class="checkbox-label"><input type="checkbox" class="checkbox" /> The Star</label><br>
+                        <label class="checkbox-label"><input type="checkbox" class="checkbox" /> The Gavel (20)</label><br>
+                        <label class="checkbox-label"><input type="checkbox" class="checkbox" /> The Lamp (22)</label><br>
+                        <label class="checkbox-label"><input type="checkbox" class="checkbox" /> The Star (30)</label><br>
             </div>
             <div class="checkbox-container">
                 <h5 class="mb-2" style="color: #959595;"><b>YEAR PUBLISHED</b></h5>
-                <label class="checkbox-label"><input type="checkbox" class="checkbox" /> 2022</label><br>
-                <label class="checkbox-label"><input type="checkbox" class="checkbox" /> 2023</label><br>
-                <label class="checkbox-label"><input type="checkbox" class="checkbox" /> 2024</label><br>
+                <label class="checkbox-label"><input type="checkbox" id="year1" class="checkbox" value=2022 /> 2022 (33)</label><br>
+                <label class="checkbox-label"><input type="checkbox" id="year2" class="checkbox" value=2023 /> 2023 (44)</label><br>
+                <label class="checkbox-label"><input type="checkbox" id="year3" class="checkbox" value=2024 /> 2024 (32)</label><br>
             </div>
         </div>
     </div>
@@ -83,132 +69,22 @@ if ($data) {
         <div class="sort-container">
             <div class="sort-header">
                 <span class="sort-by-text" style="color: #115272;">Sort by</span>
-                <span class="sort-icon">▼</span> <!-- Replace with an actual vector icon if available -->
+                <span class="sort-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><path fill="#e6e6e6" d="M11 7H1l5 7zm-2 7h10l-5-7z"/></svg></span> <!-- Replace with an actual vector icon if available -->
             </div>
             <select id="sortby" name="sortby" class="sort-dropdown" style="color: #115272;">
+            <option value="">Choose</option>
+            <option value="title">Title</option>
             <option value="recently_added">Recently added</option>
-            <option value="most_viewed">Most viewed</option>
-            <option value="most_downloaded">Most downloaded</option>
+            <option value="publication-date">Publication Date</option>
+            <option value="popular">Most Popular</option>
             <!-- Additional sort options here -->
             </select>
         </div>
         <hr style="border-top: 1px solid #ccc; margin: 10px 0;"> <!-- Add a horizontal line -->
-        <div class="articles">
-            <div class="article-details">
-                <h6 style="color: #115272;"><strong>Article About The Future of Artificial Intelligence: Advancements and Ethical Considerations (MARCH 2023)</strong></h6>
-                <p style="color: #454545;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-                <div class="keywords">
-                    <span class="keyword">technology</span>
-                    <span class="keyword">covid-19</span>
-                    <span class="keyword">innovation</span>
-                    <!-- Add more keywords here -->
-                </div>
-            </div>
-            <div class="article-stats">
-                <div class="stats-container">
-                    <div class="view-download">
-                        <p class="stats-value" style="color: #115272;">10.2k</p>
-                        <p class="stats-label" style="color: #959595;">VIEWS</p>
-                    </div>
-                    <div class="view-download">
-                        <p class="stats-value" style="color: #115272;">48k</p>
-                        <p class="stats-label" style="color: #959595;">DOWNLOADS</p>
-                    </div>
-                </div>
-                <hr style="border-top: 1px solid #ccc; margin: 10px 0;"> <!-- Add a horizontal line -->
-                <div class="published-info">
-                    <h6 class="publish-label" style="color: #115272;"><strong>Published in The Gavel</strong></h6>
-                    <p class="authors" style="color: #959595;">M. Baumgart, N. Drumil, M. Consani</p>
-                </div>
-            </div>
-        </div>
-        <div class="articles">
-            <div class="article-details">
-                <h6 style="color: #115272;"><strong>Article About The Future of Artificial Intelligence: Advancements and Ethical Considerations (MARCH 2023)</strong></h6>
-                <p style="color: #454545;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-                <div class="keywords">
-                    <span class="keyword">technology</span>
-                    <span class="keyword">covid-19</span>
-                    <span class="keyword">innovation</span>
-                    <!-- Add more keywords here -->
-                </div>
-            </div>
-            <div class="article-stats">
-                <div class="stats-container">
-                    <div class="view-download">
-                        <p class="stats-value" style="color: #115272;">10.2k</p>
-                        <p class="stats-label" style="color: #959595;">VIEWS</p>
-                    </div>
-                    <div class="view-download">
-                        <p class="stats-value" style="color: #115272;">48k</p>
-                        <p class="stats-label" style="color: #959595;">DOWNLOADS</p>
-                    </div>
-                </div>
-                <hr style="border-top: 1px solid #ccc; margin: 10px 0;"> <!-- Add a horizontal line -->
-                <div class="published-info">
-                    <h6 class="publish-label" style="color: #115272;"><strong>Published in The Gavel</strong></h6>
-                    <p class="authors" style="color: #959595;">M. Baumgart, N. Drumil, M. Consani</p>
-                </div>
-            </div>
-        </div>
-        <div class="articles">
-            <div class="article-details">
-                <h6 style="color: #115272;"><strong>Article About The Future of Artificial Intelligence: Advancements and Ethical Considerations (MARCH 2023)</strong></h6>
-                <p style="color: #454545;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-                <div class="keywords">
-                    <span class="keyword">technology</span>
-                    <span class="keyword">covid-19</span>
-                    <span class="keyword">innovation</span>
-                    <!-- Add more keywords here -->
-                </div>
-            </div>
-            <div class="article-stats">
-                <div class="stats-container">
-                    <div class="view-download">
-                        <p class="stats-value" style="color: #115272;">10.2k</p>
-                        <p class="stats-label" style="color: #959595;">VIEWS</p>
-                    </div>
-                    <div class="view-download">
-                        <p class="stats-value" style="color: #115272;">48k</p>
-                        <p class="stats-label" style="color: #959595;">DOWNLOADS</p>
-                    </div>
-                </div>
-                <hr style="border-top: 1px solid #ccc; margin: 10px 0;"> <!-- Add a horizontal line -->
-                <div class="published-info">
-                    <h6 class="publish-label" style="color: #115272;"><strong>Published in The Gavel</strong></h6>
-                    <p class="authors" style="color: #959595;">M. Baumgart, N. Drumil, M. Consani</p>
-                </div>
-            </div>
-        </div>
-        <div class="articles">
-            <div class="article-details">
-                <h6 style="color: #115272;"><strong>Article About The Future of Artificial Intelligence: Advancements and Ethical Considerations (MARCH 2023)</strong></h6>
-                <p style="color: #454545;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-                <div class="keywords">
-                    <span class="keyword">technology</span>
-                    <span class="keyword">covid-19</span>
-                    <span class="keyword">innovation</span>
-                    <!-- Add more keywords here -->
-                </div>
-            </div>
-            <div class="article-stats">
-                <div class="stats-container">
-                    <div class="view-download">
-                        <p class="stats-value" style="color: #115272;">10.2k</p>
-                        <p class="stats-label" style="color: #959595;">VIEWS</p>
-                    </div>
-                    <div class="view-download">
-                        <p class="stats-value" style="color: #115272;">48k</p>
-                        <p class="stats-label" style="color: #959595;">DOWNLOADS</p>
-                    </div>
-                </div>
-                <hr style="border-top: 1px solid #ccc; margin: 10px 0;"> <!-- Add a horizontal line -->
-                <div class="published-info">
-                    <h6 class="publish-label" style="color: #115272;"><strong>Published in The Gavel</strong></h6>
-                    <p class="authors" style="color: #959595;">M. Baumgart, N. Drumil, M. Consani</p>
-                </div>
-            </div>
-        </div>
+        <div id="articles">
+
+        </div>  
+    
     <!-- Repeat for more articles -->
     <!-- Pagination -->
         <!-- Bootstrap Pagination -->
@@ -241,16 +117,31 @@ if ($data) {
 
 
 
-
-<div class="fluid-container">
-<div class="recommendation-article">
-  <h4>Recommendations for you</h4>
-  <div id="popular-articles" class="articles-container">
- 
-  </div>  
-  </div>
-</div>
-
+<?php
+  if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+    echo '
+      <div class="fluid-container">
+      <div class="recommendation-article">
+      <h4>Recommendation articles for you</h4>
+        <div id="recommendations" class="articles-container">
+        </div>
+        </div>
+      </div>
+      </div>
+    '; 
+  } else{
+    echo '
+      <div class="fluid-container">
+      <div class="recommendation-article">
+      <h4>Popular Articles this Month</h4>
+        <div id="popular-articles" class="articles-container">
+        </div>
+        </div>
+      </div>
+      </div>
+    '; 
+  }
+?>
 
 
 
@@ -268,11 +159,54 @@ if ($data) {
 
 
 
-
+<script>      
+      const sessionId = "<?php echo $author_id; ?>";
+</script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 <script src="../JS/reusable-header.js"></script>
+<script src="../JS/home-recommended-api.js"></script>
 <script src="../JS/home-monthly-api.js"></script>
+<script src="../JS/browse-api.js"></script>
+<script>
+    const selectedYears = [];
+
+    // Get references to the checkboxes
+    const year1Checkbox = document.getElementById('year1');
+    const year2Checkbox = document.getElementById('year2');
+    const year3Checkbox = document.getElementById('year3');
+
+    // Function to update the selectedYears array based on checkbox state
+    const updateSelectedYears = (checkbox, year) => {
+    if (checkbox.checked) {
+        if (!selectedYears.includes(year)) {
+        selectedYears.push(year);
+        }
+    } else {
+        const index = selectedYears.indexOf(year);
+        if (index !== -1) {
+        selectedYears.splice(index, 1);
+        }
+    }
+    }
+
+
+    // Add event listeners to the checkboxes
+    year1Checkbox.addEventListener('change', () => updateSelectedYears(year1Checkbox, "2022"));
+    year2Checkbox.addEventListener('change', () => updateSelectedYears(year2Checkbox, "2023"));
+    year3Checkbox.addEventListener('change', () => updateSelectedYears(year3Checkbox, "2024"));
+    
+    document.getElementById('search-form').addEventListener('submit', function(event) {
+        event.preventDefault(); 
+        let searchInputValue = document.getElementById('search-input').value;
+        let year = document.getElementById('year1').value;
+
+        let sortby = document.getElementById('sortby').value;
+
+        fetchData(searchInputValue, selectedYears, sortby);
+        console.log(sortby);
+    });
+</script>
 </body>
 </html>
