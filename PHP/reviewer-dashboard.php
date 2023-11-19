@@ -41,20 +41,20 @@ session_start();
     </div>
     <div class="dashboard">
     <div class="left-column">
-        <div class="status-boxes">
+        <!-- <div class="status-boxes">
             <div class="status-box pending">
                 <div class="status-label">Pending</div>
-                <div class="status-value">30</div>
+                <div class="status-value">0</div>
             </div>
             <div class="status-box publish">
                 <div class="status-label">Publish</div>
-                <div class="status-value">5</div>
+                <div class="status-value">0</div>
             </div>
             <div class="status-box archive">
                 <div class="status-label">Archive</div>
-                <div class="status-value">27</div>
+                <div class="status-value">0</div>
             </div>
-        </div>
+        </div> -->
         <hr style="border-top: 2px solid #ccc; margin: 10px 0; color: #115272;">
         <div class="continue-reading">
             <h2 style="color: #115272;">Continue Reading</h2>

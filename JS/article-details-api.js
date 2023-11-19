@@ -110,7 +110,7 @@ function renderArticleDetails(data) {
 }
 
 function navigateToArticle(articleId){
-  window.location.href = `/oajneww/PHP/article-details.php?articleId=${articleId}`;
+  window.location.href = `/open_access_journal_c_ui/PHP/article-details.php?articleId=${articleId}`;
 }
 async function renderRecommended(data) {
   const articleContainer = document.getElementById('similar-articles');

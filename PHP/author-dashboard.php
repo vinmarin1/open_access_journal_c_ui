@@ -45,19 +45,19 @@ session_start();
   <div class="status-boxes">
     <div class="status-box pending">
       <div class="status-label">Pending</div>
-      <div class="status-value">30</div>
+      <div class="status-value">0</div>
     </div>
     <div class="status-box publish">
       <div class="status-label">Publish</div>
-      <div class="status-value">5</div>
+      <div class="status-value">0</div>
     </div>
     <div class="status-box declined">
       <div class="status-label">Declined</div>
-      <div class="status-value">27</div>
+      <div class="status-value">0</div>
     </div>
     <div class="status-box total-views">
       <div class="status-label">Total Views</div>
-      <div class="status-value">50</div>
+      <div class="status-value">0</div>
     </div>
   </div>
   <div class="contribution-section">
