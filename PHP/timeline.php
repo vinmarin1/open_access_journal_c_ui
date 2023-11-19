@@ -34,7 +34,7 @@
 
 </div> -->
 
-<form id="multiSForm" method="POST" action="../php/submit.php">
+<form id="multiSForm" method="POST" action="../php/submit.php" enctype="multipart/form-data">
     
   <h3>Submit your paper</h3>
   <div>
@@ -156,7 +156,7 @@ The names and email addresses entered in this journal site will be used exclusiv
   <div class="upload-container">
   <h5 class="title upload-title">Upload File</h5>
   <button type="button" class="btn btn-primary btn-sm" onclick="openFileModal()" id="upload-btn">Upload your file</button>
-  <input type="file" name="hiddenFileInput" id="hiddenFileInput" style="display: none;" multiple>
+  <input type="file" name="file_name" id="file_name" style="display: none;" multiple>
 </div>
 
 <table class="table">

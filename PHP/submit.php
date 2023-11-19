@@ -11,12 +11,10 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
     $middleName = isset($_SESSION['middle_name']) ? ' ' . ucfirst($_SESSION['middle_name']) : '';
     $lastName = isset($_SESSION['last_name']) ? ' ' . ucfirst($_SESSION['last_name']) : '';
     $contributor = $firstName . $middleName . $lastName;
-    echo "<p id='contributor' style='display: none'>$contributor
-    </p>";
+    echo "<p id='contributor' style='display: none'>$contributor</p>";
 }
 
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
-
     $privacy = $_POST['privacy'];
     $title = $_POST['title'];
     $abstract = $_POST['abstract'];
@@ -24,22 +22,19 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     $reference = $_POST['reference'];
     $category = $_POST['category']; 
     $comment = $_POST['comment'];
-
+    $file_name = $_POST['file_name'];
+  
     
- 
-
     $author_id = (isset($_SESSION['id'])) ? $_SESSION['id'] : null;
     $contributor = (isset($_SESSION['first_name'])) ? $_SESSION['first_name'] : null;
 
     if ($author_id === null && $contributor){
-        echo 'Cant find information about this user.';
+        echo 'Can\'t find information about this user.';
         exit();
     }
-    
 
     $sql = "INSERT INTO article (author, privacy, title, journal_id, author_id, abstract, keyword, `references`, comment)
     VALUES (:author, :privacy, :title, :journal_id, :author_id, :abstract, :keyword, :references, :comment)";
-
 
     $params = array(
         'author' => $contributor,
@@ -53,9 +48,13 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         'comment' => $comment
     );
 
-    
-
     database_run($sql, $params);
+
+    // Insert into files table
+    $files_sql = "INSERT INTO files (file_name) VALUES (:file_name)";
+    $files_params = array(':file_name' => $file_name);
+    database_run($files_sql, $files_params);
+
     Header("Location: timeline.php");
     exit();
 } else {

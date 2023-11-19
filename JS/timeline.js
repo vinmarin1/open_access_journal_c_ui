@@ -116,7 +116,7 @@ function fixStepIndicator(n) {
 
 
 
-document.getElementById('hiddenFileInput').addEventListener('change', function () {
+document.getElementById('file_name').addEventListener('change', function () {
   var selectedFiles = this.files;
   var fileList = document.getElementById('fileList');
 
@@ -141,7 +141,7 @@ document.getElementById('hiddenFileInput').addEventListener('change', function (
 
 
 function openFileModal() {
-  document.getElementById('hiddenFileInput').click();
+  document.getElementById('file_name').click();
 }
 
 function deleteFile(rowIndex) {
@@ -153,7 +153,7 @@ function deleteFile(rowIndex) {
   }
 }
 
-document.getElementById('hiddenFileInput').addEventListener('change', function (event) {
+document.getElementById('file_name').addEventListener('change', function (event) {
   var fileList = document.getElementById('fileList');
 
 
