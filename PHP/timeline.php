@@ -179,7 +179,13 @@ The names and email addresses entered in this journal site will be used exclusiv
  <?php
 if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
   $first_name = $_SESSION['first_name'];
-  echo "<p id='author' style='display: none'>$first_name</p>";
+    
+  $firstName = isset($_SESSION['first_name']) ? ucfirst($_SESSION['first_name']) : '';
+  $middleName = isset($_SESSION['middle_name']) ? ' ' . ucfirst($_SESSION['middle_name']) : '';
+  $lastName = isset($_SESSION['last_name']) ? ' ' . ucfirst($_SESSION['last_name']) : '';
+  $contributor = $firstName . $middleName . $lastName;
+  echo "<p id='contributor' style='display: none'>$contributor
+  </p>";
 
 }
 ?>
@@ -196,7 +202,7 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
   </thead>
   <tbody>
     <tr>
-      <td name="contributor" id="contributor"><?php echo $first_name; ?></td>
+      <td name="contributor" id="contributor"><?php echo $contributor; ?></td>
       <td><button class="btn btn-danger btn-sm" style="display: none;"></button></td>
     </tr>
   </tbody>

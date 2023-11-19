@@ -7,8 +7,12 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
     $id = $_SESSION['id'];
     echo "<p id='author_id' style='display: none'>$id</p>";
     
-    $first_name = $_SESSION['first_name'];
-    echo "<p id='contributor' style='display: none'>$first_name</p>";
+    $firstName = isset($_SESSION['first_name']) ? ucfirst($_SESSION['first_name']) : '';
+    $middleName = isset($_SESSION['middle_name']) ? ' ' . ucfirst($_SESSION['middle_name']) : '';
+    $lastName = isset($_SESSION['last_name']) ? ' ' . ucfirst($_SESSION['last_name']) : '';
+    $contributor = $firstName . $middleName . $lastName;
+    echo "<p id='contributor' style='display: none'>$contributor
+    </p>";
 }
 
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
