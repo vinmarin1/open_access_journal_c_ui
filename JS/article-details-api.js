@@ -71,11 +71,11 @@ function renderArticleDetails(data) {
           <div class="col-lg-3 pt-4 pb-4">
               <div class="views-dl">
                   <div class="views">
-                      <p style="font-size:large;" >10.2K</p>
+                      <p style="font-size:large;" >${item.total_reads}</p>
                       <p style="font-size:small; margin-left: 5px" >VIEWS</p>
                   </div>
                   <div class="downloads">
-                      <p style="font-size:large; text-align: center;">48K</p>
+                      <p style="font-size:large; text-align: center;">${item.total_downloads}</p>
                       <p style="font-size:small; margin-left: 5px" >DOWNLOADS</p>
                   </div>
               </div>

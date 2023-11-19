@@ -120,9 +120,7 @@ session_start();
                 </div>
                     <!-- Repeat the .article-preview block for other articles as needed -->
             </div>
-            <div class="articles-navigation">
-                <button class="browse-articles">Browse Articles</button>
-            </div>
+          
         </div>
     </div>
 
@@ -219,88 +217,7 @@ session_start();
 </div>
 </div>
 
-<div class="fluid-container">
-<div class="recommendation-article">
-<h4><strong>Your Published Articles</strong></h4>
-  <div class="articles-container">
-  <div class="article">
-  <p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
-    <div class="article-info">
-      <p class="info">THE LAMP</p>
-      <span class="views"></span>103 views
-    </div>
-    <p class="author">By Jane Delacruz</p>
-    <p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
-    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
-    background-color: transparent;
-    border-radius: 20px;
-    color: #115272;
-    width: 100%;">Read Article</button>
-  </div>
-  <div class="article">
-  <p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
-    <div class="article-info">
-      <p class="info">THE LAMP</p>
-      <span class="views"></span>103 views
-    </div>
-    <p class="author">By Jane Delacruz</p>
-    <p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
-    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
-    background-color: transparent;
-    border-radius: 20px;
-    color: #115272;
-    width: 100%;">Read Article</button>
-  </div>
 
-  <div class="article">
-  <p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
-    <div class="article-info">
-      <p class="info">THE LAMP</p>
-      <span class="views"></span>103 views
-    </div>
-    <p class="author">By Jane Delacruz</p>
-    <p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
-    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
-    background-color: transparent;
-    border-radius: 20px;
-    color: #115272;
-    width: 100%;">Read Article</button>
-  </div>
-
-  <div class="article">
-  <p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
-    <div class="article-info">
-      <p class="info">THE LAMP</p>
-      <span class="views"></span>103 views
-    </div>
-    <p class="author">By Jane Delacruz</p>
-    <p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
-    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
-    background-color: transparent;
-    border-radius: 20px;
-    color: #115272;
-    width: 100%;">Read Article</button>
-  </div>
-
-  <div class="article">
-  <p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
-    <div class="article-info">
-      <p class="info">THE LAMP</p>
-      <span class="views"></span>103 views
-    </div>
-    <p class="author">By Jane Delacruz</p>
-    <p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
-    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
-    background-color: transparent;
-    border-radius: 20px;
-    color: #115272;
-    width: 100%;">Read Article</button>
-  </div>
-
-  
-  
-  </div>
-</div>
 
 
 
