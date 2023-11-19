@@ -68,19 +68,20 @@
 
 <?php
 if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-    // User is logged in, display the profile menu
+  $userName = ucfirst($_SESSION['first_name']);
     echo '
-    <div class="profile" >
+    <div class="profile">
+    <a id="user-profile" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    '. $userName .'
+   </a>
         <li class="nav-item dropdown" style="list-style-type: none;">
-            <ul class="dropdown-menu" style="width: 50px; margin-left: -60px; margin-top: 20px">
-              <li><a href="../php/home.php"  class="dropdown-item" href="#" style="color: black;">Timeline</a></li>
-              <li><a href="../php/profile.php"  class="dropdown-item" href="#"  style="color: black;">Profile</a></li>
-              <li><a class="dropdown-item" href="#"  style="color: black;">View Activity</a></li>
+            <ul class="dropdown-menu" style="width: 200px; margin-left: -100px; margin-top: 20px">
+              <li><a href="author-dashboard.php" class="dropdown-item"  style="color: black;">Author Dashboard</a></li>
+              <li><a href="reviewer-dashboard.php"  class="dropdown-item" style="color: black;">Reviewer Dashboard</a></li>
+              <li><a href="author-dashboard.php"  class="dropdown-item" style="color: black;">Update Profile</a></li>
               <li><a class="dropdown-item" href="../PHP/logout.php"  style="color: black;">Log-out</a></li> 
             </ul>
-            <a id="img-profile" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <img class="img-fluid" src="../images/qcu-logo.webp" alt="" style="width: 30px; height: 30px; margin-top: -3px;">
-            </a>
+           
         </li>
     </div>';
 }

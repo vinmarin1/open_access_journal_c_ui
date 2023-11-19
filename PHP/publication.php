@@ -156,7 +156,7 @@
 
     <div class="container-fluid pub-container mb-3">
         <div class="journal-title">
-            <h3>QCU Gavel: Journal of Social Sciences</h3>
+            <h3>QCU Star: Journal of Science and Technology</h3>
             <div class="pic-border">
                 <img class="img-fluid" src="../images/Star.png" alt="">
             </div>
@@ -164,7 +164,7 @@
 
         <div class="journal-details">
             <h5>About</h5>
-            <p style="text-align: justify;">QCU Gavel: Journal of Social Sciences is a peer-reviewed journal, published twice a year in print and online. The journal aims to appeal to an interdisciplinary audience, welcoming submissions from various subjects, including accountancy, business administration, criminology, public administration, political science, social policy, social work, sociology, local governance, cultural and gender studies, and more. The journal employs a double-blind peer review procedure to present the most relevant, current, and developing work in the discipline. QCU Gavel aspires to be a vibrant forum for social science research and academic discussion.</p>
+            <p style="text-align: justify;">QCU Star: Journal of Social Sciences is a peer-reviewed journal, published twice a year in print and online. The journal aims to appeal to an interdisciplinary audience, welcoming submissions from various subjects, including accountancy, business administration, criminology, public administration, political science, social policy, social work, sociology, local governance, cultural and gender studies, and more. The journal employs a double-blind peer review procedure to present the most relevant, current, and developing work in the discipline. QCU Gavel aspires to be a vibrant forum for social science research and academic discussion.</p>
 
             <div class="other-info">
                 <div class="sub-area">
@@ -284,7 +284,7 @@
 
     <div class="container-fluid pub-container mb-3">
         <div class="journal-title">
-            <h3>QCU Gavel: Journal of Social Sciences</h3>
+            <h3>QCU Lamp: Journal of Education</h3>
             <div class="pic-border">
                 <img class="img-fluid" src="../images/Lamp.png" alt="">
             </div>
@@ -292,7 +292,9 @@
 
         <div class="journal-details">
             <h5>About</h5>
-            <p style="text-align: justify;">QCU Gavel: Journal of Social Sciences is a peer-reviewed journal, published twice a year in print and online. The journal aims to appeal to an interdisciplinary audience, welcoming submissions from various subjects, including accountancy, business administration, criminology, public administration, political science, social policy, social work, sociology, local governance, cultural and gender studies, and more. The journal employs a double-blind peer review procedure to present the most relevant, current, and developing work in the discipline. QCU Gavel aspires to be a vibrant forum for social science research and academic discussion.</p>
+            <p style="text-align: justify;">QCU Lamp: Journal of Social Sciences is a peer-reviewed journal, published twice a year in print and online. The journal aims to appeal to an interdisciplinary audience, welcoming submissions from various subjects, including accountancy, business administration, criminology, public administration, political science, social policy, social work, sociology, local governance, cultural and gender studies, and more. The journal employs a double-blind peer review procedure to present the most relevant, current, and developing work in the discipline. QCU Gavel aspires to be a vibrant forum for social science research and academic discussion.QCU Gavel: Journal of Social Sciences is a peer-reviewed journal, published twice a year in print and online. The journal aims to appeal to an interdisciplinary audience, welcoming submissions from various subjects, including accountancy, business administration, criminology, public administration, political science, social policy, social work, sociology, local governance, cultural and gender studies, and more. The journal employs a double-blind peer review procedure to present the most relevant, current, and developing work in the discipline. QCU Gavel aspires to be a vibrant forum for social science research and academic discussion.
+
+</p>
 
             <div class="other-info">
                 <div class="sub-area">

@@ -24,7 +24,7 @@
 
 <div class="form-container">
 
-<div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+<!-- <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
   <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off">
   <label class="btn btn-outline-dark" for="btnradio1">Review</label>
 
@@ -32,7 +32,7 @@
   <label class="btn btn-outline-dark" for="btnradio2">Create</label>
 
 
-</div>
+</div> -->
 
 <form id="multiSForm" method="POST" action="../php/submit.php">
     

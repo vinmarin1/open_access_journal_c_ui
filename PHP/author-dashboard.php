@@ -1,3 +1,6 @@
+<?php 
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +24,19 @@
 <div class="main-container">
     <div class="content-over">
         <div class="cover-content">
-            <h3><strong>Hello,</strong><br>Kyle Angeline David</h3>
+        <h3><strong>Hello,</strong><br>
+    <?php
+    if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
+        $firstName = isset($_SESSION['first_name']) ? ucfirst($_SESSION['first_name']) : '';
+        $middleName = isset($_SESSION['middle_name']) ? ' ' . ucfirst($_SESSION['middle_name']) : '';
+        $lastName = isset($_SESSION['last_name']) ? ' ' . ucfirst($_SESSION['last_name']) : '';
+       
+        echo $firstName . $middleName . $lastName;
+    }
+    ?>
+</h3>
+
+
         </div>
         <button class="btn tbn-primary btn-md" id="btn2" onclick="window.location.href='author-dashboard.php'">As Author</button>
         <button class="btn tbn-primary btn-md" id="btn2" onclick="window.location.href='reviewer-dashboard.php'">As Reviewer</button>
@@ -52,9 +67,9 @@
     </div>
 	<div class="vertical-line"></div>
     <div class="contribution-actions">
-    <button class="rounded-button">Browse Articles</button>
-    <button class="rounded-button">Be a Contributer</button>
-    <button class="rounded-button">For Reviewer</button>
+    <button class="rounded-button" onclick="window.location.href='browse-articles.php'">Browse Articles</button>
+    <button class="rounded-button" onclick="window.location.href='timeline.php'">Be a Contributer</button>
+    <button class="rounded-button " onclick="window.location.href='reviewer-dashboard.php'">For Reviewer</button>
     </div>
   </div>
 </div>

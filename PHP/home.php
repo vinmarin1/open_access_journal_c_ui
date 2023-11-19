@@ -1,3 +1,5 @@
+<? session_start() ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,6 +27,7 @@
         <h2>Find or Submit Open Access Articles</h2>
         </div>
         <button class="btn tbn-primary btn-md" id="btn1" onclick="window.location.href='browse-articles.php'">Browse articles</button>
+    
         <button class="btn tbn-primary btn-md" id="btn2">Be a contributor</button>
     </div>
     

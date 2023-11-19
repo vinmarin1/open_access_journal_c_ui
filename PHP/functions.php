@@ -49,6 +49,8 @@ function login($data)
                 $_SESSION['USER'] = $row;
                 $_SESSION['id'] = $row->author_id;
                 $_SESSION['first_name'] = $row-> first_name;
+                $_SESSION['middle_name'] = $row-> middle_name;
+                $_SESSION['last_name'] = $row-> last_name;
                 $_SESSION['LOGGED_IN'] = true;
             } else {
                 $errors[] = "Wrong email or password";
@@ -88,7 +90,7 @@ function check_verified() {
         $row = $row[0];
 
         if ($row->email == $row->email_verified) {
-            header("Location: timeline.php");
+            header("Location: author-dashboard.php");
             die;
         }
     }
