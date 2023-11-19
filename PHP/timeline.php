@@ -34,7 +34,7 @@
 
 </div> -->
 
-<form id="multiSForm" method="POST" action="../php/submit.php" enctype="multipart/form-data">
+<form id="multiSForm" method="POST" action="../php/submit.php" >
     
   <h3>Submit your paper</h3>
   <div>
