@@ -153,12 +153,12 @@ The names and email addresses entered in this journal site will be used exclusiv
     
   </div>
   <div class="tab">
-    <div class="upload-container">
-    <h5 class="title upload-title">Upload File</h5 class="title">
-    <button type="button" class="btn btn-primary btn-sm" onclick="openFileModal()" id="upload-btn">Upload your file</button>
-    <input type="file" id="hiddenFileInput" style="display: none;">
-    </div>
- 
+  <div class="upload-container">
+  <h5 class="title upload-title">Upload File</h5>
+  <button type="button" class="btn btn-primary btn-sm" onclick="openFileModal()" id="upload-btn">Upload your file</button>
+  <input type="file" name="hiddenFileInput" id="hiddenFileInput" style="display: none;" multiple>
+</div>
+
 <table class="table">
   <thead>
     <tr>
@@ -171,8 +171,6 @@ The names and email addresses entered in this journal site will be used exclusiv
 
   </tbody>
 </table>
-
-
   </div>
   <div class="tab">
   <div class="upload-container">

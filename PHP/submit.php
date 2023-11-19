@@ -53,6 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         'comment' => $comment
     );
 
+    
 
     database_run($sql, $params);
     Header("Location: timeline.php");

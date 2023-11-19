@@ -140,21 +140,48 @@ document.getElementById('hiddenFileInput').addEventListener('change', function (
 });
 
 
-
 function openFileModal() {
   document.getElementById('hiddenFileInput').click();
 }
 
-window.deleteFile = function() {
-  var rowIndex = parseInt(this.getAttribute('data-row-index'));
+function deleteFile(rowIndex) {
   var fileList = document.getElementById('fileList');
 
-  // Check if the rowIndex is within the valid range
+
   if (rowIndex >= 0 && rowIndex < fileList.rows.length) {
     fileList.deleteRow(rowIndex);
   }
-};
+}
 
+document.getElementById('hiddenFileInput').addEventListener('change', function (event) {
+  var fileList = document.getElementById('fileList');
+
+
+  while (fileList.firstChild) {
+    fileList.removeChild(fileList.firstChild);
+  }
+
+  for (var i = 0; i < this.files.length; i++) {
+    var file = this.files[i];
+
+    var newRow = fileList.insertRow(i);
+
+    newRow.insertCell(0).innerHTML = file.name;
+    newRow.insertCell(1).innerHTML = file.type;
+
+  
+    var deleteButton = document.createElement('button');
+    deleteButton.innerHTML = 'Delete';
+    deleteButton.className = 'btn btn-danger btn-sm';
+    deleteButton.addEventListener('click', function () {
+      // Get the row index of the clicked delete button
+      var rowIndex = this.parentElement.parentElement.rowIndex;
+      deleteFile(rowIndex - 1);e 
+    });
+
+    newRow.insertCell(2).appendChild(deleteButton);
+  }
+});
 
 
 
