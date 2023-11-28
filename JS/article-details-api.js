@@ -15,6 +15,7 @@ async function fetchArticleDetails() {
       body: JSON.stringify({
         author_id: sessionId? sessionId : null,
         article_id: parseInt(articleId)
+        
       }),
       headers: {
         'Content-Type': 'application/json'
@@ -29,6 +30,7 @@ async function fetchArticleDetails() {
   }
 }
 function renderArticleDetails(data) {
+  
   const articleContainer = document.getElementById('article_details');
   data.forEach(item => {
     const articleElement = document.createElement('div');
@@ -150,3 +152,4 @@ async function handleDownloadLog(articleId) {
         'Content-Type': 'application/json'
     }})
 }
+

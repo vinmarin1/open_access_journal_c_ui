@@ -33,27 +33,34 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         exit();
     }
 
-    $sql = "INSERT INTO article (author, privacy, title, journal_id, author_id, abstract, keyword, `references`, comment)
-    VALUES (:author, :privacy, :title, :journal_id, :author_id, :abstract, :keyword, :references, :comment)";
+   // Insert into article table
+$sql = "INSERT INTO article (author, privacy, title, journal_id, author_id, abstract, keyword, `references`, comment)
+VALUES (:author, :privacy, :title, :journal_id, :author_id, :abstract, :keyword, :references, :comment)";
 
-    $params = array(
-        'author' => $contributor,
-        ':privacy' => $privacy,
-        'title' => $title,
-        ':journal_id' => $category,
-        ':author_id' => $author_id,
-        ':abstract' => $abstract,
-        ':keyword' => $keyword,
-        ':references' => $reference,
-        'comment' => $comment
-    );
+$params = array(
+'author' => $contributor,
+':privacy' => $privacy,
+'title' => $title,
+':journal_id' => $category,
+':author_id' => $author_id,
+':abstract' => $abstract,
+':keyword' => $keyword,
+':references' => $reference,
+'comment' => $comment
+);
 
-    database_run($sql, $params);
+// Use the modified function with $isInsert set to true
+$lastInsertedArticleId = database_run($sql, $params, true);
 
-    // Insert into files table
-    $files_sql = "INSERT INTO files (file_name) VALUES (:file_name)";
-    $files_params = array(':file_name' => $file_name);
-    database_run($files_sql, $files_params);
+// Insert into example_files table with the retrieved article_id
+$files_sql = "INSERT INTO example_files (article_id, file_name) VALUES (:article_id, :file_name)";
+$files_params = array(
+':article_id' => $lastInsertedArticleId,
+':file_name' => $file_name
+);
+
+database_run($files_sql, $files_params);
+
 
     Header("Location: timeline.php");
     exit();

@@ -77,3 +77,5 @@
     <script src="../JS/article-details-api.js"></script>
 </body>
 </html>
+
+<script></script>

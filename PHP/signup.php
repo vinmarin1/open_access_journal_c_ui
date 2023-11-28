@@ -77,13 +77,13 @@
         </div>
 
         <div class="input-field">
-            <label for="orcid">ORCID ID: </label>
+            <label for="orcid">ORCID ID: <span class="fw-light">(optional)</span></label>
            <input type="text" class="input form-control" name="orcid"  id="orcid" >
         </div>
 
         <div class="input-field">
-            <label for="orcidUrl">ORCID URL: </label>
-           <input type="text" class="input form-control" name="orcidUrl"  id="orcidUrl" >
+            <label for="orcidUrl">ORCID URL: <span class="fw-light">(optional)</span></label>
+           <input type="text" class="input form-control" name="orcidUrl"  id="orcidUrl">
         </div>
        <div class="register-container"></div>
        <input type="submit" value="Register" class="btn btn-primary btn-sm">

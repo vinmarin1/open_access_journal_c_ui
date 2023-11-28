@@ -16,11 +16,11 @@ $(document).ready(function() {
         const orcid = $("#orcid").val().trim();
         const orcidUrl = $("#orcidUrl").val().trim();
 
-        if (fname === "" || mdname === "" || lname === "" || email === "" || password === "" || genSelect === "" || bdate === "" || pnumber === "" || sclname === "" || expertise === "" || bio === "" || orcid === "" || orcidUrl === "" ) {
+        if (fname === "" || mdname === "" || lname === "" || email === "" || password === "" || genSelect === "" || bdate === "" || pnumber === "" || sclname === "" || expertise === "" || bio === "") {
             Swal.fire({
                 icon: "warning",
                 title: "Ooops...",
-                text: "All fields are required",
+                text: "All feilds are required",
                 customClass: {
                     container: "custom-swal"
                 },
