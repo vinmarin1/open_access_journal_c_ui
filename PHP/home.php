@@ -48,7 +48,7 @@
         <br>
         </div>
         <?php
-          session_start();
+  
           if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
             // User is logged in, display the profile menu
             echo '

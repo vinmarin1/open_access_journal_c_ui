@@ -1,6 +1,6 @@
 
 <?php
-  session_start();
+  include 'functions.php';
   $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
 ?>
 <!DOCTYPE html>
@@ -48,6 +48,12 @@
 <h4>Recommended for You</h4>
   <div id="recommendations" class="articles-container">
  
+  <?php
+
+
+$active = check_login(false);
+echo '<script>const active = ' . ($active ? 'true' : 'false') . ';</script>';
+?>
   </div>
 
   

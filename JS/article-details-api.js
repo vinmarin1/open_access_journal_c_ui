@@ -101,6 +101,20 @@ function renderArticleDetails(data) {
       </div>
     `;
     const downloadBtn = articleElement.querySelector(`#download-btn`);
+    const viewFullArticle = articleElement.querySelector(`#btn1`);
+
+  
+    if(active){
+      downloadBtn.style.display = 'inline-block';
+
+    
+    }else{
+      downloadBtn.style.display = 'none';
+
+      viewFullArticle.addEventListener('click', () => {
+        window.location.href= '../php/login.php'
+      });
+    }
     if (downloadBtn) {
       downloadBtn.addEventListener('click', () => {
         downloadFile(item.file_name);
