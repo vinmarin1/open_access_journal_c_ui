@@ -27,9 +27,21 @@
 
 </div>
 
+<?php
 
 
-<div class="fluid-container">
+$active = check_login(false);
+echo '<script>const active = ' . ($active ? 'true' : 'false') . ';</script>';
+?>
+
+
+<!-- 
+<hr style="height: 2px; background-color: #115272 "> -->
+<?php
+if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true ){  
+  echo '
+
+  <div class="fluid-container">
 <div class="recommendation-article" >
 <h4>Similar articles like this</h4>
   <div id="similar-articles" class="articles-container">
@@ -40,25 +52,32 @@
   </div>
 </div>
 
-<!-- 
-<hr style="height: 2px; background-color: #115272 "> -->
 
-<div class="fluid-container " >
+  <div class="fluid-container " >
 <div class="recommendation-article">
 <h4>Recommended for You</h4>
   <div id="recommendations" class="articles-container">
  
-  <?php
 
-
-$active = check_login(false);
-echo '<script>const active = ' . ($active ? 'true' : 'false') . ';</script>';
-?>
   </div>
 
   
   </div>
 </div>
+  ';
+}
+
+?>
+
+<div class="fluid-container">
+<div class="recommendation-article">
+  <h4>Popular Articles this Month</h4>
+  <div id="popular-articles" class="articles-container">
+ 
+  </div>  
+  </div>
+</div>
+
 
 </div>
 </div>
@@ -79,7 +98,7 @@ echo '<script>const active = ' . ($active ? 'true' : 'false') . ';</script>';
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <script src="../JS/reusable-header.js"></script>
     <script src="../JS/home-recommended-api.js"></script>
-    <!-- <script src="../JS/home-monthly-api.js"></script> -->
+    <script src="../JS/home-monthly-api.js"></script>
     <script src="../JS/article-details-api.js"></script>
 </body>
 </html>
