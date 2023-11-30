@@ -1,0 +1,38 @@
+
+#form{
+    width: 50%;
+    height: 50vh;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#privacy-tab, #article-tab, #file-tab, #contributors-tab, #review-tab{
+    border: 1px solid;
+    font-size: 11px;
+    color: #115272;
+    margin-right: 5px;
+    width: 121px;
+    border-bottom-color: none;
+}
+
+#privacy-tab:focus, #article-tab:focus, #file-tab:focus, #contributors-tab:focus, #review-tab:focus{
+    background-color: #115272;
+    color: white;
+    border: none;
+}
+
+
+
+#myTab{
+    border-bottom: 20px #115272 solid;
+    padding-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  
+}
+
+
+
