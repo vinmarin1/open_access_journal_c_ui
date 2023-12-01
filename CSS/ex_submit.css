@@ -1,10 +1,11 @@
 
 #form{
     width: 70%;
-    height: 50vh;
+    height: auto;
     margin-top: 10px;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 10px;
 }
 
 #privacy-tab, #article-tab, #file-tab, #contributors-tab, #review-tab{
@@ -67,6 +68,60 @@
     display: inline-block;
     margin-left: 10px;
     
+}
+
+
+
+
+.details{
+    display: inline-block;
+}
+
+#title-4{
+    font-weight: bold;
+}
+
+#title-4, #sub-6, #sub-7, #sub-8{
+    margin-left: 40px;
+    color: #115272;
+    font-family: 'Times New Roman', Times, serif;
+    width: 350px;
+    margin-top: 20px;
+}
+
+#vl{
+    display: inline-block;
+    height: 200px;
+    border-left:  2px solid #115272;
+    width: auto;
+    margin-left: 20px;
+    margin-right: 40px;
+    
+}
+
+.input-details{
+    display: inline-block;
+    width: 350px;
+    top: 0;
+}
+
+#sub-9, #sub-10{
+    font-weight: bold;
+    color: #115272;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+#title{
+    margin-bottom: 20px;
+}
+
+#title, #keywords{
+    font-size: 11px;
+
+}
+
+#keywords{
+    margin-bottom: 20px;
 }
 
 

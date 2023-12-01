@@ -76,14 +76,55 @@
   <div class="form-check">
   <input type="checkbox" id="check">
   <p class="st-7">The authors agree to the terms of this Copyright Notice, which will apply to this submission if and when it is published by this journal (comments to the editor can be added below).</p>
-</div>
-  </div>
+
+
   
 
-  </div>
+</div>
+
+</div>
+  
+
+</div>
 
   <div class="tab-pane fade" id="article-tab-pane" role="tabpanel" aria-labelledby="article-tab" tabindex="0">
-  <input type="text">
+  
+  <div class="article-details">
+    <div class="details">
+      <p class="h5 pt-5" id="title-4">Submission Details</p>
+      <p class="h6" id="sub-6">Thank you for submitting to the QCU Journal. You will be asked to upload files, identify co-authors, and provide information such as the title and abstract.</p>
+      <p class="h6" id="sub-7">Please provide the following details to help us manage your submission in our system.</p>
+      <p class="h6" id="sub-8">Once you begin, you can save your submission and come back to it later. You will be able to review and correct any information before you submit</p>
+    
+    </div>
+    <div id="vl"></div>
+
+    <div class="input-details">
+
+     
+      
+      <div class="form-floating">
+        <h6 id="sub-9">Title</h6>
+
+        <textarea class="form-control"  id="title" style="height: 50px"></textarea>
+        
+        <h6 id="sub-10">Keywords</h6>
+        <textarea class="form-control"  id="keywords" style="height: 50px"></textarea>
+       
+      </div>
+
+      
+
+    </div>
+
+
+
+    
+  
+    
+  </div>
+   
+
   </div>
 
   <div class="tab-pane fade" id="file-tab-pane" role="tabpanel" aria-labelledby="file-tab" tabindex="0">
