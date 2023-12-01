@@ -41,18 +41,59 @@
 
 
 <div class="tab-content" id="myTabContent">
+
   <div class="tab-pane fade show active" id="privacy-tab-pane" role="tabpanel" aria-labelledby="privacy-tab" tabindex="0">
-    <input type="text">
+
+  <p class="h5 pt-5" id="title-1">Submission Checklist</p>
+  <p class="h6" id="sub-1">Indicate that this submission is ready to be considered by this journal by checking off the following (comments to the editor can be added below).</p>
+ 
+
+  <div class="descript-1 pt-3">
+    <p class="st-1">The submission has not been previously published, nor is it before another journal for consideration (or an explanation has been provided in Comments to the Editor).</p>
+    <p class="st-2">Note that your paper will be submitted to iThenticate.com (Plagiarism Detection Software) to check the similarity score.</p>
+    <p class="st-3">The submission file is in Microsoft Word document file format. Please do NOT submit in pdf.</p>
+    <p class="st-4">Where available, URLs for online references have been provided.</p>
+    <p class="st-5">The text is single-column; single-spaced; uses a 11-point font (except for section headings which is 12); employs italics, rather than underlining (except with URL addresses); and all illustrations, figures, and tables are placed within the text at the appropriate points, rather than at the end. The Book Antiqua font should be used for all text in the paper. Use A4 page set-up. The top and bottom margins are 1.4 inches and the right/left margins are 1.2 inches.</p>
+    <p class="st-6">The text adheres to the stylistic and bibliographic requirements outlined in the Author Guidelines, which is found in About the Journal.</p>
+
+
   </div>
+  
+  <hr id="line-1">
+
+  <p class="h5 pt-3" id="title-2">Copyright Notice</p>
+  <p class="h6 pt-3" id="sub-2">Authors who publish with this journal also agree to the following terms: </p>
+  <p class="h6 pt-3" id="sub-3">Authors are able to enter into separate, additional contractual arrangements for the non-exclusive distribution of the journal's published version of the work (e.g., post it to an institutional repository or publish it in a book), with an acknowledgement of its initial publication in this journal.</p>
+  <p class="h6 pt-3" id="sub-4">Authors are permitted and encouraged to post their work online (e.g., in institutional repositories or on their website) as this can lead to productive exchanges, as well as earlier and greater citation of published work.</p>
+
+  <hr id="line-2">
+
+  <p class="h5 pt-3" id="title-3">Journal's Privacy Statement</p>
+  <p class="h6" id="sub-5">The names and email addresses entered in this journal site will be used exclusively for the stated purposes of this journal and will not be made available for any other purpose or to any other party</p>
+
+  <div class="descript-2 pt-3">
+
+  <div class="form-check">
+  <input type="checkbox" id="check">
+  <p class="st-7">The authors agree to the terms of this Copyright Notice, which will apply to this submission if and when it is published by this journal (comments to the editor can be added below).</p>
+</div>
+  </div>
+  
+
+  </div>
+
   <div class="tab-pane fade" id="article-tab-pane" role="tabpanel" aria-labelledby="article-tab" tabindex="0">
   <input type="text">
   </div>
+
   <div class="tab-pane fade" id="file-tab-pane" role="tabpanel" aria-labelledby="file-tab" tabindex="0">
   <input type="text">
   </div>
+
   <div class="tab-pane fade" id="contributors-tab-pane" role="tabpanel" aria-labelledby="contributors-tab" tabindex="0">
   <input type="text">
   </div>
+
   <div class="tab-pane fade" id="review-tab-pane" role="tabpanel" aria-labelledby="review-tab" tabindex="0">
   <h6>Review</h6>
   </div>

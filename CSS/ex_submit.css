@@ -1,6 +1,6 @@
 
 #form{
-    width: 50%;
+    width: 70%;
     height: 50vh;
     margin-top: 10px;
     margin-left: auto;
@@ -27,12 +27,49 @@
 #myTab{
     border-bottom: 20px #115272 solid;
     padding-top: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    padding-left: 10px;
 
   
 }
+
+#title-1, #title-2, #title-3{
+    font-weight: bold;
+
+}
+
+#sub-1, #sub-2, #sub-3, #sub-4, #sub-5{
+    font-weight: normal;
+}
+
+#title-1, #title-2, #title-3,#sub-1, #sub-2, #sub-3, #sub-4, #sub-5{
+    margin-left: 40px;
+    color: #115272;
+    font-family: 'Times New Roman', Times, serif;
+    width: 800px;
+}
+
+#line-1, #line-2{
+    border: 1px #115272 solid;
+    width: 500px;
+    margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.descript-1, .descript-2{
+    padding-left: 80px;
+    
+}
+
+.descript-1 p, .descript-2 p{
+    font-size: 11px;
+    width: 750px;
+    display: inline-block;
+    margin-left: 10px;
+    
+}
+
+
 
 
 
