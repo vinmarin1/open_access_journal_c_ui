@@ -74,6 +74,14 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
   });
+
+
+  var quill = new Quill('#editor', {
+    theme: 'snow'
+  });
+  var quill = new Quill('#editor2', {
+    theme: 'snow'
+  });
   
 
 

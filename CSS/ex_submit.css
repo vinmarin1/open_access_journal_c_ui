@@ -125,6 +125,30 @@
 }
 
 
+.input-details-2{
+    max-width: 800px;
+    min-width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
+}
+
+#sub-11, #sub-12{
+    font-weight: bold;
+    color: #115272;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+/* #sub-12{
+    margin-top: 20px;
+} */
+
+#editor, #editor2{
+   height: 200px;
+}
+
+
+
 
 
 

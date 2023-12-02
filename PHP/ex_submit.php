@@ -10,6 +10,7 @@
 <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 
 <body>
 
@@ -113,10 +114,23 @@
        
       </div>
 
+  
+    
       
 
     </div>
 
+    <div class="input-details-2 mt-5">
+      <h6 id="sub-11">Abstract</h6>
+      <div id="editor">
+     
+      </div>
+      <h6 class="sub-12 mt-5" id="sub-12">Reference</h6>
+      <div id="editor2">
+     
+      </div>
+    </div>
+   
 
 
     
@@ -128,11 +142,11 @@
   </div>
 
   <div class="tab-pane fade" id="file-tab-pane" role="tabpanel" aria-labelledby="file-tab" tabindex="0">
-  <input type="text">
+  <input type="number">
   </div>
 
   <div class="tab-pane fade" id="contributors-tab-pane" role="tabpanel" aria-labelledby="contributors-tab" tabindex="0">
-  <input type="text">
+  <input type="password">
   </div>
 
   <div class="tab-pane fade" id="review-tab-pane" role="tabpanel" aria-labelledby="review-tab" tabindex="0">
@@ -148,8 +162,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 <script src="../JS/reusable-header.js"></script>
-
 <script src="../JS/ex_submit.js"></script>
 </body>
 </html>
