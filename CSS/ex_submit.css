@@ -139,13 +139,39 @@
     font-family: 'Times New Roman', Times, serif;
 }
 
-/* #sub-12{
-    margin-top: 20px;
-} */
+
 
 #editor, #editor2{
    height: 200px;
 }
+
+.table-input{
+    max-width: 800px;
+    min-width: auto;
+    padding-left: 40px;
+}
+
+
+
+#title-6{
+    font-weight: bold;
+}
+
+#title-6, #sub-13{
+   
+    color: #115272;
+    font-family: 'Times New Roman', Times, serif;
+    width: 100%;
+  
+}
+
+#btn-upload{
+    float: right;
+    background-color: #115272;
+    color: white;
+    margin-bottom: 20px;
+}
+
 
 
 

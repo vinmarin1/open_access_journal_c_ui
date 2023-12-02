@@ -27,7 +27,7 @@
     <button class="nav-link active" id="privacy-tab" data-bs-toggle="tab" data-bs-target="#privacy-tab-pane" type="button" role="tab" aria-controls="privacy-tab-pane" aria-selected="true">Privacy</button>
   </li>
   <li class="nav-item" role="presentation">
-    <button class="nav-link" id="article-tab" data-bs-toggle="tab" data-bs-target="#article-tab-pane" type="button" role="tab" aria-controls="article-tab-pane" aria-selected="false">Article Info</button>
+    <button class="nav-link" id="article-tab" data-bs-toggle="tab" data-bs-target="#article-tab-pane" type="button" role="tab" aria-controls="article-tab-pane" aria-selected="false">Article Details</button>
   </li>
   <li class="nav-item" role="presentation">
     <button class="nav-link" id="file-tab" data-bs-toggle="tab" data-bs-target="#file-tab-pane" type="button" role="tab" aria-controls="file-tab-pane" aria-selected="false">Upload File</button>
@@ -111,7 +111,7 @@
         
         <h6 id="sub-10">Keywords</h6>
         <textarea class="form-control"  id="keywords" style="height: 50px"></textarea>
-       
+       <input type="text">
       </div>
 
   
@@ -142,15 +142,41 @@
   </div>
 
   <div class="tab-pane fade" id="file-tab-pane" role="tabpanel" aria-labelledby="file-tab" tabindex="0">
-  <input type="number">
+  <div class="table-input">
+  <h5 class="title6 mt-5" id="title-6">Upload Files</h5>
+  <h6 class="sub13 mt-3" id="sub-13">Provide any files our editorial team may need to evaluate your submission. In addition to the main work, you may wish to submit data sets, conflict of interest statements, or other supplementary files if these will be helpful for our editors.</h6>
+
+  <button type="button" class="btn btn-primary btn-sm mt-5" id="btn-upload">Upload File</button>
+ 
+  <table class="table table-hover" id="table-file">
+  <thead>
+    <tr >
+ 
+      <th scope="col" style="background-color: #115272; color: white; font-weight: normal;">File Name</th>
+      <th scope="col" style="background-color: #115272; color: white; font-weight: normal;">Type</th>
+      <th scope="col" style="background-color: #115272; color: white; font-weight: normal;">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+    
+      <td>Some file name</td>
+      <td>PDF FILE</td>
+      <td><button class="btn btn-danger btn-sm">Delete</button></td>
+    </tr>
+  </tbody>
+</table>
+  </div>
+ 
+
   </div>
 
   <div class="tab-pane fade" id="contributors-tab-pane" role="tabpanel" aria-labelledby="contributors-tab" tabindex="0">
-  <input type="password">
+  <input type="email">
   </div>
 
   <div class="tab-pane fade" id="review-tab-pane" role="tabpanel" aria-labelledby="review-tab" tabindex="0">
-  <h6>Review</h6>
+  <p>asd</p>
   </div>
 </div>
 </form>
