@@ -109,7 +109,7 @@ $journal = get_journal_list();
             </li>
 
             <li class="menu-item">
-              <a href="#" class="menu-link">
+              <a href="userandroleslist.php" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-table"></i>
                 <div data-i18n="Tables">User & Roles</div>
               </a>
