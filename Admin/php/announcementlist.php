@@ -1,6 +1,6 @@
 <?php
-include 'functions.php';
-include 'dbcon.php';
+include 'announcement_function.php';
+
     $announcementlist = get_announcement_list();
 ?>
 
