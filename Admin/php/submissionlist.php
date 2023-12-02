@@ -29,6 +29,9 @@ $incomplete_articles = get_article_list($cid);
                 <a class="nav-link" id="tabIncomplete" data-status="Incomplete">Incomplete</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" id="tabProduction" data-status="Pending">Pending</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" id="tabProduction" data-status="Review">Review</a>
             </li>
             <li class="nav-item">

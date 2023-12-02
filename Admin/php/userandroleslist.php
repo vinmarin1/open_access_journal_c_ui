@@ -2,6 +2,7 @@
 include 'userandroles_function.php';
 
 $userlist = get_user_list();
+$rolelist = get_role_list();
 ?>
 
 <!DOCTYPE html>
@@ -14,18 +15,25 @@ $userlist = get_user_list();
     <div class="container-xxl flex-grow-1 container-p-y">
         <h4 class="py-3 mb-4"><span class="text-muted fw-light">Settings /</span> User & Roles</h4>
 
-        <div class="card">
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-            <h5 class="card-header mb-0">User List</h5>
+        <ul class="nav nav-tabs mb-3" id="statusTabs">
+            <li class="nav-item">
+                <a class="nav-link active" id="tabUser" onclick="toggleTab('user')">User</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="tabRoles" onclick="toggleTab('roles')">Roles</a>
+            </li>
+        </ul>
 
-            <div style="display: flex; margin-top: 15px; margin-right: 15px;">
-                <button type="button" id="tabAll" class="btn btn-primary" style="margin-right: 10px;" data-bs-toggle="modal" data-bs-target="#addModal">Add User</button>
-                <button type="button" id="tabPublished" class="btn btn-primary">Download</button>
+        <div class="card user-list" style="display: block;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                <h5 class="card-header mb-0">User List</h5>
+                <div style="display: flex; margin-top: 15px; margin-right: 15px;">
+                    <button type="button" id="tabAll" class="btn btn-primary" style="margin-right: 10px;" data-bs-toggle="modal" data-bs-target="#addModal">Add User</button>
+                    <button type="button" id="tabPublished" class="btn btn-primary">Download</button>
+                </div>
             </div>
-        </div>
-
             <div class="table-responsive text-nowrap">
-                <table class="table table-striped" id="DataTable">
+                <table class="table table-striped" id="DataTableUser">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -51,9 +59,77 @@ $userlist = get_user_list();
             </div>
         </div>
 
+        <div class="card roles-list" style="display: none;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                <h5 class="card-header mb-0">Roles List</h5>
+                <div style="display: flex; margin-top: 15px; margin-right: 15px;">
+                    <button type="button" id="tabAll" class="btn btn-primary" style="margin-right: 10px;" data-bs-toggle="modal" data-bs-target="#addModal">Add Roles</button>
+                    <button type="button" id="tabPublished" class="btn btn-primary">Download</button>
+                </div>
+            </div>
+            <div class="table-responsive text-nowrap">
+                <table class="table table-striped" id="DataTableRole">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Role</th>
+                            <th>Title</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($rolelist as $rolelistval): ?>
+                            <tr>
+                                <td width="5%"><?php echo $rolelistval->admin_role_id; ?></td>
+                                <td width="35%"><?php echo $rolelistval->role; ?></td>
+                                <td width="50%"><?php echo $rolelistval->role_name; ?></td>
+                                <td width="10%">
+                                    <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#updateModal">Update</button>
+                                    <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#archiveModal">Archive</button>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>      
+                </table>
+            </div>
+        </div>
         <!-- Include footer -->
         <?php include 'footer.php'; ?>
     </div>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        function toggleTab(tab) {
+            var otherTab = (tab === 'user') ? 'roles' : 'user';
+
+            document.querySelector('.' + tab + '-list').style.display = 'block';
+            document.querySelector('.' + otherTab + '-list').style.display = 'none';
+
+            document.getElementById('tabUser').classList.remove('active');
+            document.getElementById('tabRoles').classList.remove('active');
+
+            document.getElementById('tab' + tab.charAt(0).toUpperCase() + tab.slice(1)).classList.add('active');
+        }
+
+        $(document).ready(function() {
+            var dataTable = $('#DataTableUser').DataTable({
+                "paging": true,
+                "ordering": true,
+                "searching": true,
+            });
+        });
+
+        $(document).ready(function() {
+            var dataTable = $('#DataTableRole').DataTable({
+                "paging": true,
+                "ordering": true,
+                "searching": true,
+            });
+        });
+    </script>
 
      <!-- Add Modal -->
      <div class="modal fade" id="addModal" tabindex="-1" aria-hidden="true">
@@ -251,21 +327,5 @@ $userlist = get_user_list();
             </div>
         </div>
     </div>
-
-<!-- Include the DataTables CSS and JS files -->
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
-
-<!-- DataTables initialization script with status filter -->
-<script>
-    $(document).ready(function() {
-        var dataTable = $('#DataTable').DataTable({
-            "paging": true,
-            "ordering": true,
-            "searching": true,
-        });
-    });
-</script>
 </body>
 </html>
