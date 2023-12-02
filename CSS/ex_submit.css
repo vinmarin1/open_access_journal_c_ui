@@ -8,7 +8,7 @@
     margin-bottom: 10px;
 }
 
-#privacy-tab, #article-tab, #file-tab, #contributors-tab, #review-tab{
+#privacy-tab, #article-tab, #file-tab, #contributors-tab, #comment-tab,#review-tab{
     border: 1px solid;
     font-size: 11px;
     color: #115272;
@@ -17,7 +17,7 @@
     border-bottom-color: none;
 }
 
-#privacy-tab:focus, #article-tab:focus, #file-tab:focus, #contributors-tab:focus, #review-tab:focus{
+#privacy-tab:focus, #article-tab:focus, #file-tab:focus, #contributors-tab:focus, #comment-tab:focus,#review-tab:focus{
     background-color: #115272;
     color: white;
     border: none;
@@ -141,11 +141,11 @@
 
 
 
-#editor, #editor2{
+#editor, #editor2, #editor3{
    height: 200px;
 }
 
-.table-input{
+.table-input, .contributors-container, .comment-container{
     max-width: 800px;
     min-width: auto;
     padding-left: 40px;
@@ -153,11 +153,11 @@
 
 
 
-#title-6{
+#title-6, #title-7{
     font-weight: bold;
 }
 
-#title-6, #sub-13{
+#title-6, #title-7, #title-8, #sub-13, #sub-14 , #sub-15{
    
     color: #115272;
     font-family: 'Times New Roman', Times, serif;
@@ -165,11 +165,31 @@
   
 }
 
-#btn-upload{
+.cont{
+    margin-top: 60px;
+    display: flex;
+}
+
+#btn-upload, #btn-contributor{
     float: right;
     background-color: #115272;
     color: white;
     margin-bottom: 20px;
+}
+
+#btn-contributor{
+    width: 120px;
+    height: 35px;
+    font-size: 11px;
+}
+
+#btn-update{
+    margin-right: 10px;
+}
+
+
+#sub-15{
+    margin-bottom: 40px;
 }
 
 

@@ -36,6 +36,9 @@
     <button class="nav-link" id="contributors-tab" data-bs-toggle="tab" data-bs-target="#contributors-tab-pane" type="button" role="tab" aria-controls="contributors-tab-pane" aria-selected="false">Contributors</button>
   </li>
   <li class="nav-item" role="presentation">
+    <button class="nav-link" id="comment-tab" data-bs-toggle="tab" data-bs-target="#comment-tab-pane" type="button" role="tab" aria-controls="comment-tab-pane" aria-selected="false">Notes</button>
+  </li>
+  <li class="nav-item" role="presentation">
     <button class="nav-link" id="review-tab" data-bs-toggle="tab" data-bs-target="#review-tab-pane" type="button" role="tab" aria-controls="review-tab-pane" aria-selected="false">Review</button>
   </li>
 </ul>
@@ -111,7 +114,7 @@
         
         <h6 id="sub-10">Keywords</h6>
         <textarea class="form-control"  id="keywords" style="height: 50px"></textarea>
-       <input type="text">
+     
       </div>
 
   
@@ -142,13 +145,15 @@
   </div>
 
   <div class="tab-pane fade" id="file-tab-pane" role="tabpanel" aria-labelledby="file-tab" tabindex="0">
+
   <div class="table-input">
+
   <h5 class="title6 mt-5" id="title-6">Upload Files</h5>
   <h6 class="sub13 mt-3" id="sub-13">Provide any files our editorial team may need to evaluate your submission. In addition to the main work, you may wish to submit data sets, conflict of interest statements, or other supplementary files if these will be helpful for our editors.</h6>
 
   <button type="button" class="btn btn-primary btn-sm mt-5" id="btn-upload">Upload File</button>
  
-  <table class="table table-hover" id="table-file">
+<table class="table table-hover" id="table-file">
   <thead>
     <tr >
  
@@ -166,17 +171,60 @@
     </tr>
   </tbody>
 </table>
+
   </div>
  
 
   </div>
 
   <div class="tab-pane fade" id="contributors-tab-pane" role="tabpanel" aria-labelledby="contributors-tab" tabindex="0">
-  <input type="email">
+  
+  <div class="contributors-container">
+
+ 
+  <h5 class="title7 mt-5" id="title-7">Add Contributors</h5>
+  <h6 class="sub14 mt-3" id="sub-14">Add details for all of the contributors to this submission. Contributors added here will be sent an email confirmation of the submission, as well as a copy of all editorial decisions recorded against this submission.</h6>
+
+  <div class="cont">
+    <h5 class="title8" id="title-8">Contributors</h5>
+  <button type="button" class="btn btn-primary btn-sm" id="btn-contributor">Add Contributors</button>
+  </div>
+ 
+  <table class="table table-hover" id="table-file">
+  <thead>
+    <tr >
+ 
+      <th scope="col" style="background-color: #115272; color: white; font-weight: normal;"></th>
+      <th scope="col" style="background-color: #115272; color: white; font-weight: normal; margin-left: 80px">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+    
+      <td>Some contributors name</td>
+      <td><button class="btn btn-outline-primary btn-sm" id="btn-update">Update</button><button class="btn btn-danger btn-sm" id="btn-delete">Delete</button></td>
+    </tr>
+  </tbody>
+</table>
+
+  </div>
+
+  </div>
+
+  <div class="tab-pane fade" id="comment-tab-pane" role="tabpanel" aria-labelledby="comment-tab" tabindex="0">
+    <div class="comment-container mt-5">
+
+    <h5 class="title8" id="title-8">Author Notes</h5>
+    <h6 class="sub15" id="sub-15">Please provide the following details to help our editorial team manage your submission.</h6>
+    <div id="editor3"></div>
+
+    </div>
+
+
   </div>
 
   <div class="tab-pane fade" id="review-tab-pane" role="tabpanel" aria-labelledby="review-tab" tabindex="0">
-  <p>asd</p>
+  <p>Some preview...</p>
   </div>
 </div>
 </form>
