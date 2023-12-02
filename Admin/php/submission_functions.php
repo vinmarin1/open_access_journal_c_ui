@@ -17,7 +17,7 @@ if (!function_exists('get_journal_list')) {
 
                 return $result;
             } catch (PDOException $e) {
-                // You may want to handle the error more gracefully in a production environment
+
                 echo "Error: " . $e->getMessage();
                 return false;
             }
@@ -60,6 +60,30 @@ if (!function_exists('get_contributor_list')) {
             try {
                 $query = "SELECT * FROM contributor";
                 $stmt = $pdo->prepare($query);
+                $stmt->execute();
+
+                $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+                return $result;
+            } catch (PDOException $e) {
+                echo "Error: " . $e->getMessage();
+                return false;
+            }
+        }
+
+        return false;
+    }
+}
+
+if (!function_exists('get_journal_detail')) {
+    function get_journal_detail($cid) {
+        $pdo = connect_to_database();
+
+        if ($pdo) {
+            try {
+                $query = "SELECT * FROM journal WHERE journal_id = :cid";
+                $stmt = $pdo->prepare($query);
+                $stmt->bindParam(':cid', $cid, PDO::PARAM_INT);
                 $stmt->execute();
 
                 $result = $stmt->fetchAll(PDO::FETCH_OBJ);
