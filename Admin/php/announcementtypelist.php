@@ -1,5 +1,5 @@
 <?php
-include 'functions.php';
+include 'announcementtype_function.php';
 $announcementtypelist = get_announcementtype_list();
 ?>
 

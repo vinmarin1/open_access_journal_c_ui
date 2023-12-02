@@ -1,6 +1,6 @@
 <?php
-include 'functions.php';
-include 'dbcon.php';
+include 'issue_function.php';
+
     $issueslist = get_issues_list();
 ?>
 
