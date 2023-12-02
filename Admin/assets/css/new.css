@@ -13,7 +13,31 @@
   padding: 10px !important; /* Add padding to the table entries */
 }
 
+#DataTableUser td {
+  max-width: 200px !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  padding: 10px !important; /* Add padding to the table entries */
+}
+
+#DataTableRole td {
+  max-width: 200px !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  padding: 10px !important; /* Add padding to the table entries */
+}
+
 #DataTable_length, #DataTable_filter, #DataTable_info {
+  padding: 10px !important; /* Add padding to the Show entries section */
+}
+
+#DataTableUser_length, #DataTableUser_filter, #DataTableUser_info {
+  padding: 10px !important; /* Add padding to the Show entries section */
+}
+
+#DataTableRole_length, #DataTableRole_filter, #DataTableRole_info {
   padding: 10px !important; /* Add padding to the Show entries section */
 }
 
