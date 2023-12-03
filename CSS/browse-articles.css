@@ -75,7 +75,7 @@ body {
     z-index: 1;
     background-color: #115272;
     border-radius: 20px;
-    margin-top: 20px;
+    /* margin-top: 20px; */
 }
 
 .content-over button:hover{
@@ -84,7 +84,9 @@ body {
     z-index: 1;
     background-color: #115272;
     border-radius: 20px;
-    margin-top: 20px;
+    outline:none;
+    border:none;
+    /* margin-top: 20px; */
     opacity: 0.8;
 }
 

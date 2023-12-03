@@ -32,9 +32,17 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
             <h2>Articles</h2>
         </div>
         <form action="" method="GET" class="search-form" id="search-form">
-            <div class="search-container">
-                <input id="search-input" type="text"  class="form-control me-2" placeholder="Search Articles..." class="search-bar" style="width: 583px; height: 30px; font-style: italic; background-color: white;" />
+            <div class="search-container d-flex align-items-center">
+                <input id="result" type="text"  class="form-control me-2" placeholder="Search Articles..." class="search-bar" style="width: 583px; height: 30px; font-style: italic; background-color: white;" />
+                <div class="d-flex flex-row-reverse">
+                <button type="submit">Search</button>
+                <button onclick="startConverting();">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="white" d="M16 2a6 6 0 0 0-6 6v8a6 6 0 0 0 12 0V8a6 6 0 0 0-6-6ZM7 15a1 1 0 0 1 1 1a8 8 0 1 0 16 0a1 1 0 1 1 2 0c0 5.186-3.947 9.45-9.001 9.95L17 26v3a1 1 0 1 1-2 0v-3l.001-.05C9.947 25.45 6 21.187 6 16a1 1 0 0 1 1-1Z"/></svg>
+                </button>
+                </div>
             </div>
+            <!-- <div id="result"></div> -->
+         
             <div class="info-container">
                 <span class="info-icon" >&#9432;</span>
                 <span class="search-info" >SEARCH BY TITLE, AUTHOR, OR KEYWORD. FOR BETTER RESULTS SEPARATE IT WITH COMMAS (E.G. AI TECHNOLOGY, JUAN DELA CRUZ)</span>
@@ -170,6 +178,8 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
 <script src="../JS/home-monthly-api.js"></script>
 <script src="../JS/browse-api.js"></script>
 <script>
+    
+
     const selectedYears = [];
 
     // Get references to the checkboxes
@@ -199,14 +209,61 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
     
     document.getElementById('search-form').addEventListener('submit', function(event) {
         event.preventDefault(); 
-        let searchInputValue = document.getElementById('search-input').value;
+        let searchInputValue = document.getElementById('result').value;
         let year = document.getElementById('year1').value;
 
         let sortby = document.getElementById('sortby').value;
-
         fetchData(searchInputValue, selectedYears, sortby);
-        console.log(sortby);
+
     });
+
+    var result = document.getElementById('result');
+   
+    function startConverting() {
+        result.innerText = ''; 
+        console.log("voice")
+        if ('webkitSpeechRecognition' in window) {
+            var speechRecognizer = new webkitSpeechRecognition();
+            speechRecognizer.continuous = false;
+            speechRecognizer.interimResults = true;
+            speechRecognizer.lang = 'en-US';
+            speechRecognizer.start();
+            var recognizing = false;
+
+            speechRecognizer.onstart = function () {
+                recognizing = true;
+            };
+
+            var finalTranscripts = '';
+
+            speechRecognizer.onresult = function (event) {
+                var interimTranscripts = '';
+                for (var i = event.resultIndex; i < event.results.length; i++) {
+                    var transcript = event.results[i][0].transcript;
+                    if (event.results[i].isFinal) {
+                    finalTranscripts += transcript.replace('.', ''); // Remove periods
+                    } else {
+                    interimTranscripts += transcript;
+                    }
+                }
+                console.log(finalTranscripts);
+                result.setAttribute("value", `${finalTranscripts + interimTranscripts}`);
+                };
+                    speechRecognizer.onend = function () {
+                    recognizing = false;
+                    fetchData(finalTranscripts, selectedYears, sortby);
+                    
+            };
+
+            speechRecognizer.onerror = function (event) {
+                // Handle error if needed
+            };
+        } else {
+            result.innerHTML = 'Your browser is not supported. Please download Google Chrome or update your Google Chrome!';
+        }
+    }
+
+
 </script>
 </body>
 </html>
