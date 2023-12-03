@@ -79,6 +79,7 @@
 
 #title-4{
     font-weight: bold;
+    display: block;
 }
 
 #title-4, #sub-6, #sub-7, #sub-8{
@@ -101,11 +102,13 @@
 
 .input-details{
     display: inline-block;
-    width: 350px;
-    top: 0;
+    width: 840px;
+    padding-left: 40px;
+    margin-top: 40px;
 }
 
 #sub-9, #sub-10{
+    
     font-weight: bold;
     color: #115272;
     font-family: 'Times New Roman', Times, serif;

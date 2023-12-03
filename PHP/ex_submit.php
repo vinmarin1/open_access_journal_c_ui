@@ -5,7 +5,7 @@
 <html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TIMELINE</title>
+<title>Submit Article</title>
 <link href="../CSS/ex_submit.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -95,13 +95,12 @@
   
   <div class="article-details">
     <div class="details">
-      <p class="h5 pt-5" id="title-4">Submission Details</p>
-      <p class="h6" id="sub-6">Thank you for submitting to the QCU Journal. You will be asked to upload files, identify co-authors, and provide information such as the title and abstract.</p>
-      <p class="h6" id="sub-7">Please provide the following details to help us manage your submission in our system.</p>
-      <p class="h6" id="sub-8">Once you begin, you can save your submission and come back to it later. You will be able to review and correct any information before you submit</p>
+      <p class="h5 pt-5" id="title-4">Article Details</p>
+      <p class="h6" id="sub-6">Please provide the following details to help us manage your submission in our system.</p>
+     
     
     </div>
-    <div id="vl"></div>
+   
 
     <div class="input-details">
 
@@ -110,10 +109,11 @@
       <div class="form-floating">
         <h6 id="sub-9">Title</h6>
 
-        <textarea class="form-control"  id="title" style="height: 50px"></textarea>
+    
+        <input class="form-control" type="text"  id="title" required>
         
         <h6 id="sub-10">Keywords</h6>
-        <textarea class="form-control"  id="keywords" style="height: 50px"></textarea>
+        <input class="form-control" type="text" id="keywords">
      
       </div>
 
@@ -227,6 +227,7 @@
   <p>Some preview...</p>
   </div>
 </div>
+
 </form>
 
 
