@@ -55,10 +55,16 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="editorial.php">Editorial</a>
+          <a class="nav-link" href="editorial.php">Editorial Board</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="announcement.php">Announcements</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="announcement.php">Pricing</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="announcement.php">Guidelines</a>
         </li>
       </ul>
       <form class="d-flex" role="search">

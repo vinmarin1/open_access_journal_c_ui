@@ -25,7 +25,6 @@
   width: 100%;
   height: 100%;
   background-color: rgba(53, 68, 74, 0.7);
- 
 }
 
 .content-over p, .content-over h2 {
@@ -45,7 +44,7 @@
   color: white; 
   position: relative;
   z-index: 1;
-  background-color: #115272;
+  background-color: #e77d35;
   border-radius: 20px;
   margin-top: 20px;
 }
@@ -54,7 +53,7 @@
   color: white; 
   position: relative;
   z-index: 1;
-  background-color: #115272;
+  background-color: #E98A49;
   border-radius: 20px;
   margin-top: 20px;
   opacity: 0.8;
@@ -311,16 +310,14 @@ text-align: justify;
 }
 
 .ab-qoaj-left button {
-background-color: #115272;
+color: white;
 border-radius: 20px;
 width: 20%;
-border-color: white;
-background-color: #115272;
 }
 
 .ab-qoaj-left button:hover {
-background-color: #146288;
-border-color: white;
+background-color: #E77D35;
+border-color: black;
 border-radius: 20px;
 opacity: 0.8;
 color: white;
@@ -352,6 +349,36 @@ width: 100%;
 height: 600px;
 }
 
+.plans{
+  font-family: 'Times New Roman', Times, serif;
+  color: #115272;
+  text-align: center;
+  margin-top: 70px;
+  margin-bottom: -70px;
+}
+
+.plans-inside{
+  width: 80%;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+.plans-inside h5{
+  font-family: 'Times New Roman', Times, serif;
+  color: #115272;
+}
+
+.plans-inside p{
+  text-align: justify;
+}
+
+.btn-price{
+  margin-top: 150px;
+}
+#btn-price{
+  margin-top: 80px;
+}
+
 .example-journal {
 border-color: #115272;
 border-radius: 10%;
@@ -366,8 +393,8 @@ margin: 0 140px 0 140px;
 }
 
 #example-mid{
-margin-left: -120px;
-margin-right: -120px;
+margin-left: -90px;
+margin-right: -90px;
 border-color: #115272;
 border-radius: 10%;
 border: 2px solid;
@@ -383,7 +410,7 @@ text-align: center;
 font-family: 'Times New Roman', Times, serif;
 color:#115272;
 text-align: center;
-margin-top: 50px;
+margin-top: 40px;
 
 }
 
@@ -412,6 +439,7 @@ display: flex;
 justify-content: center; /* Center horizontally within the container */
 align-items: center; /* Center vertically within the container */
 margin-top: 100px;
-margin-bottom: 100px;
+margin-bottom: 80px;
+height: 700px;
 }
 

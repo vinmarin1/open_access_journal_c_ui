@@ -38,8 +38,10 @@
             Publications
           </a>
         </li>
-          <a href="#">Editorial</a>
+          <a href="#">Editorial Board</a>
           <a href="#">Announcements</a>
+          <a href="#">Pricing</a>
+          <a href="#">Guidelines</a>
         </li>
         </div>
         </div>
