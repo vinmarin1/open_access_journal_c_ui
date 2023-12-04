@@ -151,7 +151,8 @@
   <h5 class="title6 mt-5" id="title-6">Upload Files</h5>
   <h6 class="sub13 mt-3" id="sub-13">Provide any files our editorial team may need to evaluate your submission. In addition to the main work, you may wish to submit data sets, conflict of interest statements, or other supplementary files if these will be helpful for our editors.</h6>
 
-  <button type="button" class="btn btn-primary btn-sm mt-5" id="btn-upload">Upload File</button>
+  <button type="button" class="btn btn-primary btn-sm mt-5" onclick="openFileModal()" id="upload-btn">Upload File</button>
+  <input type="file" name="file_name" id="file_name" style="display: none;" multiple>
  
 <table class="table table-hover" id="table-file">
   <thead>
@@ -162,13 +163,8 @@
       <th scope="col" style="background-color: #115272; color: white; font-weight: normal;">Action</th>
     </tr>
   </thead>
-  <tbody>
-    <tr>
-    
-      <td>Some file name</td>
-      <td>PDF FILE</td>
-      <td><button class="btn btn-danger btn-sm">Delete</button></td>
-    </tr>
+  <tbody id="fileList">
+
   </tbody>
 </table>
 

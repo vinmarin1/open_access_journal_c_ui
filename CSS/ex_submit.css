@@ -173,7 +173,7 @@
     display: flex;
 }
 
-#btn-upload, #btn-contributor{
+#upload-btn, #btn-contributor{
     float: right;
     background-color: #115272;
     color: white;
