@@ -223,6 +223,13 @@
   <p>Some preview...</p>
   </div>
 </div>
+<div id="btn-action">
+<button type="submit" class="btn btn-success btn-sm" id="submit">Submit</button>
+<button type="button" class="btn btn-primary btn-sm" id="next">Next</button>
+<button type="button" class="btn btn-secondary btn-sm" id="prev">Prev</button>
+
+</div>
+
 
 </form>
 

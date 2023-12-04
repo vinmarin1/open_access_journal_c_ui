@@ -1,80 +1,104 @@
-// document.addEventListener('DOMContentLoaded', function () {
-//   var tabButtons = document.querySelectorAll('.nav-link');
-//   var tabContent = document.querySelectorAll('.tab-pane input');
+document.addEventListener('DOMContentLoaded', function () {
+  var tabButtons = document.querySelectorAll('.nav-link');
+  var tabContent = document.querySelectorAll('.tab-pane input');
 
-//   var selectedTabIndex = 0; 
+  var selectedTabIndex = 0;
 
-//   for (var i = 1; i < tabButtons.length; i++) {
-//     tabButtons[i].disabled = true;
-//   }
+  for (var i = 1; i < tabButtons.length; i++) {
+    tabButtons[i].disabled = true;
+  }
 
-//   function updateStyles() {
-//     tabButtons.forEach(function (btn, i) {
-//       if (i === selectedTabIndex) {
-//         btn.style.backgroundColor = "#115272";
-//         btn.style.color = "white";
-//       } else {
-//         btn.style.backgroundColor = "white";
-//         btn.style.border = "1px solid";
-//         btn.style.color = "#115272";
-//       }
-//     });
-//   }
+  // Get references to the buttons
+  var prevBtn = document.getElementById("prev");
+  var nextBtn = document.getElementById("next");
+  var submitBtn = document.getElementById("submit");
 
-//   tabContent.forEach(function (input, index) {
-//     input.addEventListener('input', function () {
-//       updateButtonStates(index);
-//       updateStyles();
-//     });
+  function updateButtonVisibility(index) {
+    // Display buttons based on the current tab index
+    if (index === 0) {
+      prevBtn.style.display = "none";
+      nextBtn.style.display = "inline-block";
+      submitBtn.style.display = "none";
+    } else if (index > 0 && index < tabButtons.length - 1) {
+      prevBtn.style.display = "inline-block";
+      nextBtn.style.display = "inline-block";
+      submitBtn.style.display = "none";
+    } else if (index === tabButtons.length - 1) {
+      prevBtn.style.display = "inline-block";
+      nextBtn.style.display = "none";
+      submitBtn.style.display = "inline-block";
+    }
+  }
 
-//     input.addEventListener('focus', function () {
-//       updateStyles();
-//     });
+  function updateStyles() {
+    tabButtons.forEach(function (btn, i) {
+      if (i === selectedTabIndex) {
+        btn.style.backgroundColor = "#115272";
+        btn.style.color = "white";
+      } else {
+        btn.style.backgroundColor = "white";
+        btn.style.border = "1px solid";
+        btn.style.color = "#115272";
+      }
+    });
+  }
 
-//     input.addEventListener('blur', function () {
-//       // Don't change styles on blur
-//     });
-//   });
+  function updateButtonStates(index) {
+    for (var i = index + 1; i < tabButtons.length; i++) {
+      tabButtons[i].disabled = tabContent[i - 1].value === '';
+    }
+  }
 
-//   tabButtons.forEach(function (button, index) {
-//     button.addEventListener('click', function () {
-//       selectedTabIndex = index;
+  tabContent.forEach(function (input, index) {
+    input.addEventListener('input', function () {
+      updateButtonStates(index);
+      updateStyles();
+    });
 
-//       tabButtons.forEach(function (btn, i) {
-//         if (i === index) {
-//           btn.style.backgroundColor = "#115272";
-//           btn.style.color = "white";
-//         } else {
-//           btn.style.backgroundColor = "white";
-//           btn.style.border = "1px solid";
-//           btn.style.color = "#115272";
-//         }
-//       });
+    input.addEventListener('focus', function () {
+      updateStyles();
+    });
 
-//       var currentInput = tabContent[index];
-//       if (currentInput.value === '') {
-//         return;
-//       }
+    input.addEventListener('blur', function () {
+      // Don't change styles on blur
+    });
+  });
 
-//       if (index < tabButtons.length - 1) {
-//         tabButtons[index + 1].disabled = false;
-//         tabButtons[index + 1].tab('show');
-//       }
-//     });
+  tabButtons.forEach(function (button, index) {
+    button.addEventListener('click', function () {
+      selectedTabIndex = index;
+      updateButtonVisibility(index);
 
-//     // Set initial styles for the first button
-//     if (index === 0) {
-//       button.style.backgroundColor = "#115272";
-//       button.style.color = "white";
-//     }
-//   });
+      tabButtons.forEach(function (btn, i) {
+        if (i === index) {
+          btn.style.backgroundColor = "#115272";
+          btn.style.color = "white";
+        } else {
+          btn.style.backgroundColor = "white";
+          btn.style.border = "1px solid";
+          btn.style.color = "#115272";
+        }
+      });
 
-//   function updateButtonStates(index) {
-//     for (var i = index + 1; i < tabButtons.length; i++) {
-//       tabButtons[i].disabled = tabContent[i - 1].value === '';
-//     }
-//   }
-// });
+      var currentInput = tabContent[index];
+      if (currentInput.value === '') {
+        return;
+      }
+
+      if (index < tabButtons.length - 1) {
+        tabButtons[index + 1].disabled = false;
+        tabButtons[index + 1].tab('show');
+      }
+    });
+
+    // Set initial styles and button visibility for the first button
+    if (index === 0) {
+      button.style.backgroundColor = "#115272";
+      button.style.color = "white";
+      updateButtonVisibility(index);
+    }
+  });
+});
 
 
   var quill = new Quill('#editor', {
