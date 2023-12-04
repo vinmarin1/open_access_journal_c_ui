@@ -156,12 +156,23 @@
 
 
 
-#title-6, #title-7{
+#title-6, #title-7, #title-9{
     font-weight: bold;
 }
 
-#title-6, #title-7, #title-8, #sub-13, #sub-14 , #sub-15{
-   
+#title-9{
+    text-align: left;
+}
+
+#swal-d{
+    height: 2px;
+    background-color: #115272;
+}
+
+
+
+#title-6, #title-7, #title-8, #title-9, #sub-13, #sub-14 , #sub-15,  #sub-16,  #sub-17,  #sub-18,  #sub-19,  #sub-20{
+    
     color: #115272;
     font-family: 'Times New Roman', Times, serif;
     width: 100%;
@@ -173,14 +184,14 @@
     display: flex;
 }
 
-#upload-btn, #btn-contributor{
+#upload-btn, #contributor-btn{
     float: right;
     background-color: #115272;
     color: white;
     margin-bottom: 20px;
 }
 
-#btn-contributor{
+#contributor-btn{
     width: 120px;
     height: 35px;
     font-size: 11px;
@@ -190,14 +201,62 @@
     margin-right: 10px;
 }
 
+#fName, #lName{
+    margin-top: 20px;
+    width: 50%;
+    display: inline-block;
+}
 
 #sub-15{
     margin-bottom: 40px;
 }
 
+#sub-16, #sub-17{
+    display: inline-block;
+    text-align: left;
+}
+
+#input1, #input2{
+    display: inline-block;
+    width: 80%;
+    height: 30px;
+    font-size: 11px;
+    margin-left: -20px;
+   
+}
+
+#input3, #input4, #input5{
+    display: inline-block;
+    height: 30px;
+    font-size: 11px;
+    width: 90%;
+    margin-left: -20px;
+    
+   
+}
+
+#sub-18, #sub-19, #sub-20{
+    text-align: left;
+    margin-top: 20px;
+}
+
+.custom-confirm-button{
+    margin-right: -200px;
+    background-color: black;
+}
 
 
-
+#confirmBtn{
+    background-color: #115272;
+    height: 35px;
+    width: 100px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 12px;
+    float: right;
+    margin-right: 50px;
+}
 
 
 

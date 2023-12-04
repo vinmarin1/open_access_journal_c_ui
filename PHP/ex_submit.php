@@ -183,7 +183,7 @@
 
   <div class="cont">
     <h5 class="title8" id="title-8">Contributors</h5>
-  <button type="button" class="btn btn-primary btn-sm" id="btn-contributor">Add Contributors</button>
+  <button type="button" class="btn btn-primary btn-sm"id="contributor-btn">Add Contributors</button>
   </div>
  
   <table class="table table-hover" id="table-file">

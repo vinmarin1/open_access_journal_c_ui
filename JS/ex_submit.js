@@ -157,3 +157,29 @@ document.getElementById('file_name').addEventListener('change', function (event)
     newRow.insertCell(2).appendChild(deleteButton);
   }
 });
+
+
+document.getElementById('contributor-btn').addEventListener('click', function (event) {
+  Swal.fire({
+    html:
+      '<h5 class="title9" id="title-9">Contributors</h5>' +
+      '<hr id="swal-d">' +
+      '<div id="fName"><label id="sub-16">First Name: </label><input id="input1" class="swal2-input"></div>'
+       +
+      '<div id= "lName"><label id="sub-17">Last Name: </label><input id="input2" class="swal2-input"></div>'
+      +
+      '<label id= "sub-18">Preffered Public Name: </label><input id="input3" class="swal2-input">'
+      +
+      '<label id= "sub-19">Email: </label><input id="input4" class="swal2-input">'
+      +
+      '<label id= "sub-20">ORCID: </label><input id="input5" class="swal2-input">',
+  
+    footer: '<button  id="confirmBtn">Add Contibutor</button>',
+    showConfirmButton: false,
+
+   
+  });
+  document.getElementById('confirmBtn').addEventListener('click', function () {
+    Swal.close();
+  })
+});
