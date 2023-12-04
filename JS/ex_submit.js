@@ -49,6 +49,23 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
+  function switchToNextTab() {
+    if (selectedTabIndex < tabButtons.length - 1) {
+      var currentInput = tabContent[selectedTabIndex];
+      if (currentInput.value === '' || tabButtons[selectedTabIndex + 1].disabled) {
+        return; // Do nothing if the input field is empty or the next button is disabled
+      }
+
+      tabButtons[selectedTabIndex + 1].click(); // Simulate a click on the next tab button
+    }
+  }
+
+  function switchToPrevTab() {
+    if (selectedTabIndex > 0) {
+      tabButtons[selectedTabIndex - 1].click(); // Simulate a click on the previous tab button
+    }
+  }
+
   tabContent.forEach(function (input, index) {
     input.addEventListener('input', function () {
       updateButtonStates(index);
@@ -68,27 +85,8 @@ document.addEventListener('DOMContentLoaded', function () {
     button.addEventListener('click', function () {
       selectedTabIndex = index;
       updateButtonVisibility(index);
-
-      tabButtons.forEach(function (btn, i) {
-        if (i === index) {
-          btn.style.backgroundColor = "#115272";
-          btn.style.color = "white";
-        } else {
-          btn.style.backgroundColor = "white";
-          btn.style.border = "1px solid";
-          btn.style.color = "#115272";
-        }
-      });
-
-      var currentInput = tabContent[index];
-      if (currentInput.value === '') {
-        return;
-      }
-
-      if (index < tabButtons.length - 1) {
-        tabButtons[index + 1].disabled = false;
-        tabButtons[index + 1].tab('show');
-      }
+      updateButtonStates(index);
+      updateStyles();
     });
 
     // Set initial styles and button visibility for the first button
@@ -98,6 +96,9 @@ document.addEventListener('DOMContentLoaded', function () {
       updateButtonVisibility(index);
     }
   });
+
+  nextBtn.addEventListener('click', switchToNextTab);
+  prevBtn.addEventListener('click', switchToPrevTab);
 });
 
 
@@ -203,7 +204,11 @@ document.getElementById('contributor-btn').addEventListener('click', function (e
 
    
   });
+
+  
+
   document.getElementById('confirmBtn').addEventListener('click', function () {
     Swal.close();
   })
+
 });
