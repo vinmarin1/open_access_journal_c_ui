@@ -52,33 +52,30 @@
 
 
     <div class="fluid-container mb-5">
-      <div class="recommendation-container">
-        <div class="offer-left">
-        <h2 class="mb-3">QAJ OFFER Personalized Recommendations</h2>
-        <p class="descript">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores similique culpa, molestiae velit quis cumque saepe vel error rerum a totam deleniti, reiciendis, alias perspiciatis et. Facere recusandae fuga voluptate?</p>
-       
-        <br>
-        <button class="btn btn-primary btn-md mt-1">Try it Now</button>
-        <br>
-        </div>
-        <?php
-  
-          if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-            // User is logged in, display the profile menu
-            echo '
-              <div class="divider-line"></div>
-              <div id="history" class="offer-right">
-                
+      <?php 
+        if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
+          echo ' <div class="recommendation-container">
+          <div class="offer-left">
+          <h2 class="mb-3">QAJ OFFER Personalized Recommendations</h2>
+          <p class="descript">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores similique culpa, molestiae velit quis cumque saepe vel error rerum a totam deleniti, reiciendis, alias perspiciatis et. Facere recusandae fuga voluptate?</p>
+         
+          <br>
+          <button class="btn btn-primary btn-md mt-1">Try it Now</button>
+          <br>
+          </div>
+         
+                <div class="divider-line"></div>
+                <div id="history" class="offer-right">
+                  
+                </div> 
+                <div class="divider-line"></div>
+              <div class="offer-right">
+            
               </div> 
-              '; 
-          }else{
-            echo ' <div class="divider-line"></div>
-            <div class="offer-right">
-          
-            </div> ';
-          }
-        ?>
-      </div>  
+        </div>  ';
+        }
+      ?>
+     
     </div>
 
  <?php
