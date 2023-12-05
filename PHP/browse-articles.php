@@ -35,9 +35,9 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
             <div class="search-container d-flex align-items-center">
                 <input id="result" type="text"  class="form-control me-2" placeholder="Search Articles..." class="search-bar" style="width: 583px; height: 30px; font-style: italic; background-color: white;" />
                 <div class="d-flex flex-row-reverse">
-                <button type="submit">Search</button>
-                <button onclick="startConverting();">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="white" d="M16 2a6 6 0 0 0-6 6v8a6 6 0 0 0 12 0V8a6 6 0 0 0-6-6ZM7 15a1 1 0 0 1 1 1a8 8 0 1 0 16 0a1 1 0 1 1 2 0c0 5.186-3.947 9.45-9.001 9.95L17 26v3a1 1 0 1 1-2 0v-3l.001-.05C9.947 25.45 6 21.187 6 16a1 1 0 0 1 1-1Z"/></svg>
+                <button class="btn tbn-primary btn-md" id="btn3" >Search</button>
+                <button class="btn tbn-primary btn-md" onclick="startConverting();">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32"><path fill="white" d="M16 2a6 6 0 0 0-6 6v8a6 6 0 0 0 12 0V8a6 6 0 0 0-6-6ZM7 15a1 1 0 0 1 1 1a8 8 0 1 0 16 0a1 1 0 1 1 2 0c0 5.186-3.947 9.45-9.001 9.95L17 26v3a1 1 0 1 1-2 0v-3l.001-.05C9.947 25.45 6 21.187 6 16a1 1 0 0 1 1-1Z"/></svg>
                 </button>
                 </div>
             </div>

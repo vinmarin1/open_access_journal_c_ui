@@ -27,7 +27,13 @@
         </div>
         
         <a href="">Forgot Password?</a>
-        <input class="btn btn-primary btn-sm" type="submit" value="Login" id="login-button">
+        <button type="submit" class="btn btn-primary btn-sm" id="login-button">
+                <span id="login-text">Login</span>
+                <div class="spinner-border spinner-border-sm" role="status" id="login-spinner" hidden>
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <span id="logging-in-text" style="display: none;">Logging in...</span>
+            </button>
         <input class="btn btn-primary btn-sm" type="button" value="Register" id="register-button" onclick="window.location.href= '../php/signup.php';">
     </form>
 
@@ -46,5 +52,11 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="../js/login.js"></script>
 
+    <script>
+            document.getElementById('login-button').addEventListener('click', function() {
+            document.getElementById('login-text').style.display = 'none';
+            document.getElementById('login-spinner').hidden = false;
+        });
+    </script>
 </body>
 </html>

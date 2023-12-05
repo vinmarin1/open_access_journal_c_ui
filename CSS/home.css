@@ -44,7 +44,7 @@
   color: white; 
   position: relative;
   z-index: 1;
-  background-color: #e77d35;
+  background-color: #E56F1F;
   border-radius: 20px;
   margin-top: 20px;
 }
@@ -53,7 +53,7 @@
   color: white; 
   position: relative;
   z-index: 1;
-  background-color: #E98A49;
+  background-color: #E56F1F;
   border-radius: 20px;
   margin-top: 20px;
   opacity: 0.8;
@@ -310,14 +310,15 @@ text-align: justify;
 }
 
 .ab-qoaj-left button {
+background-color: #E56F1F;
 color: white;
 border-radius: 20px;
 width: 20%;
 }
 
 .ab-qoaj-left button:hover {
-background-color: #E77D35;
-border-color: black;
+background-color: #E56F1F;
+border-color: white;
 border-radius: 20px;
 opacity: 0.8;
 color: white;
