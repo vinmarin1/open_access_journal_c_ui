@@ -110,7 +110,7 @@
         <h6 id="sub-9">Title</h6>
 
     
-        <input class="form-control" type="text"  id="title" required>
+        <input class="form-control" type="text"  id="title">
         
         <h6 id="sub-10">Keywords</h6>
         <input class="form-control" type="text" id="keywords">
@@ -152,7 +152,11 @@
   <h6 class="sub13 mt-3" id="sub-13">Provide any files our editorial team may need to evaluate your submission. In addition to the main work, you may wish to submit data sets, conflict of interest statements, or other supplementary files if these will be helpful for our editors.</h6>
 
   <button type="button" class="btn btn-primary btn-sm mt-5" onclick="openFileModal()" id="upload-btn">Upload File</button>
-  <input type="file" name="file_name" id="file_name" style="display: none;" multiple>
+  <input type="file" name="file_name" id="file_name" style="display: none;">
+   
+
+
+  
  
 <table class="table table-hover" id="table-file">
   <thead>
@@ -211,7 +215,7 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
     <tr>
     
       <td name="contributor" id="contributor"><?php echo $contributor; ?></td>
-      <td><button class="btn btn-outline-primary btn-sm" id="btn-update">Update</button><button class="btn btn-danger btn-sm" id="btn-delete">Delete</button></td>
+      <td></td>
     </tr>
   </tbody>
 </table>

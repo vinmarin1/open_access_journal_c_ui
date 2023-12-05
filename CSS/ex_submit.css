@@ -160,7 +160,7 @@
     font-weight: bold;
 }
 
-#title-9{
+#title-9, #title-10{
     text-align: left;
 }
 
@@ -171,7 +171,7 @@
 
 
 
-#title-6, #title-7, #title-8, #title-9, #sub-13, #sub-14 , #sub-15,  #sub-16,  #sub-17,  #sub-18,  #sub-19,  #sub-20{
+#title-6, #title-7, #title-8, #title-9, #title-10,#sub-13, #sub-14 , #sub-15,  #sub-16,  #sub-17,  #sub-18,  #sub-19,  #sub-20, #sub-21, #sub-22, #sub-23, #sub-24, #sub-25{
     
     color: #115272;
     font-family: 'Times New Roman', Times, serif;
@@ -209,12 +209,12 @@
     margin-bottom: 40px;
 }
 
-#sub-16, #sub-17{
+#sub-16, #sub-17, #sub-20, #sub-21{
     display: inline-block;
     text-align: left;
 }
 
-#input1, #input2{
+#input1, #input2, #updateInput1, #updateInput2{
     display: inline-block;
     width: 80%;
     height: 30px;
@@ -223,7 +223,7 @@
    
 }
 
-#input3, #input4, #input5{
+#input3, #input4, #input5, #updateInput3, #updateInput4, #updateInput5{
     display: inline-block;
     height: 30px;
     font-size: 11px;
@@ -233,7 +233,7 @@
    
 }
 
-#sub-18, #sub-19, #sub-20{
+#sub-18, #sub-19, #sub-20, #sub-23, #sub-24, #sub-25{
     text-align: left;
     margin-top: 20px;
 }
@@ -244,7 +244,7 @@
 }
 
 
-#confirmBtn{
+#confirmBtn, #update-cont{
     background-color: #115272;
     height: 35px;
     width: 100px;

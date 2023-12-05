@@ -1,17 +1,17 @@
 document.addEventListener('DOMContentLoaded', function () {
   var tabButtons = document.querySelectorAll('.nav-link');
   var tabContent = document.querySelectorAll('.tab-pane input');
-
   var selectedTabIndex = 0;
+  var prevBtn = document.getElementById("prev");
+  var nextBtn = document.getElementById("next");
+  var submitBtn = document.getElementById("submit");
+  var form = document.getElementById("form");
+  var inputFields = form.querySelectorAll("input");
 
   for (var i = 1; i < tabButtons.length; i++) {
     tabButtons[i].disabled = true;
   }
 
-  // Get references to the buttons
-  var prevBtn = document.getElementById("prev");
-  var nextBtn = document.getElementById("next");
-  var submitBtn = document.getElementById("submit");
 
   function updateButtonVisibility(index) {
     // Display buttons based on the current tab index
@@ -51,8 +51,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function switchToNextTab() {
     if (selectedTabIndex < tabButtons.length - 1) {
-      var currentInput = tabContent[selectedTabIndex];
-      if (currentInput.value === '' || tabButtons[selectedTabIndex + 1].disabled) {
+      inputFields = tabContent[selectedTabIndex];
+      if (inputFields.value === '' || tabButtons[selectedTabIndex + 1].disabled) {
         return; // Do nothing if the input field is empty or the next button is disabled
       }
 
@@ -95,10 +95,18 @@ document.addEventListener('DOMContentLoaded', function () {
       button.style.color = "white";
       updateButtonVisibility(index);
     }
+   
+    
   });
+
+
+
 
   nextBtn.addEventListener('click', switchToNextTab);
   prevBtn.addEventListener('click', switchToPrevTab);
+
+  
+  
 });
 
 
@@ -199,6 +207,11 @@ document.getElementById('contributor-btn').addEventListener('click', function (e
     showConfirmButton: false,
   });
 
+ 
+
+
+  
+
   document.getElementById('confirmBtn').addEventListener('click', function () {
   
     var input1Value = document.getElementById('input1').value;
@@ -214,13 +227,41 @@ document.getElementById('contributor-btn').addEventListener('click', function (e
     cellContributor.innerHTML = contributorsValue;
 
     var cellActions = newRow.insertCell(1);
-    cellActions.innerHTML = '<button id="btn-update" class="btn btn-outline-primary btn-sm btn-update" style="margin-right: 10px;">Update</button>' +
-                            '<button id="btn-delete" class="btn btn-danger btn-sm btn-delete">Delete</button>';
+    cellActions.innerHTML = '<button type="button" id="btn-update" class="btn btn-outline-primary btn-sm btn-update" style="margin-right: 10px;">Update</button>' +
+    '<button type="button" id="btn-delete" class="btn btn-danger btn-sm btn-delete">Delete</button>';
 
  
-    // var updateBtn = cellActions.querySelector('.btn-update');
+    var updateBtn = cellActions.querySelector('.btn-update');
     var deleteBtn = cellActions.querySelector('.btn-delete');
 
+    updateBtn.addEventListener('click', function (event) {
+      Swal.fire({
+        html: '<h5 class="title10" id="title-10">Update Contributor</h5>' +
+          '<hr id="swal-d">' +
+          '<div id="fName"><label id="sub-21">First Name: </label><input id="updateInput1" class="swal2-input" value="' + input1Value + '"></div>' +
+          '<div id= "lName"><label id="sub-22">Last Name: </label><input id="updateInput2" class="swal2-input" value="' + input2Value + '"></div>' +
+          '<label id= "sub-23">Preferred Public Name: </label><input id="updateInput3" class="swal2-input">' +
+          '<label id= "sub-24">Email: </label><input id="updateInput4" class="swal2-input">' +
+          '<label id= "sub-25">ORCID: </label><input id="updateInput5" class="swal2-input">',
+    
+        footer: '<button id="update-cont">Update</button>',
+        showConfirmButton: false
+      });
+    
+      document.getElementById('update-cont').addEventListener('click', function () {
+        // Get the updated values from the modal
+        var updatedInput1Value = document.getElementById('updateInput1').value;
+        var updatedInput2Value = document.getElementById('updateInput2').value;
+    
+        // Update the displayed value in the table
+        contributorsValue = updatedInput1Value + ' ' + updatedInput2Value;
+        cellContributor.innerHTML = contributorsValue;
+        
+        // Close the update modal
+        Swal.close();
+      });
+    });
+    
     deleteBtn.addEventListener('click', function () {
     
       var rowIndex = this.closest('tr').rowIndex;
@@ -233,9 +274,7 @@ document.getElementById('contributor-btn').addEventListener('click', function (e
    
     Swal.close();
   });
+
+
+  
 });
-
-
-// function (){
-
-// }

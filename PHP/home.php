@@ -32,7 +32,17 @@
         </div>
         <button class="btn  btn-md" id="btn1" onclick="window.location.href='browse-articles.php'">Browse articles</button>
     
-        <button class="btn  btn-md" id="btn2">Be a contributor</button>
+        <?php 
+  if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+    echo '<button class="btn btn-md" id="btn2" onclick="window.location.href=\'ex_submit.php\'">Be a contributor</button>';
+  } else {
+    echo '<button class="btn btn-md" id="btn2">Be a contributor</button>';
+  }
+?>
+
+
+
+       
     </div>
     
     
