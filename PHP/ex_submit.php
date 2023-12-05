@@ -177,27 +177,40 @@
   
   <div class="contributors-container">
 
+  <?php
+if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+  $first_name = $_SESSION['first_name'];
+    
+  $firstName = isset($_SESSION['first_name']) ? ucfirst($_SESSION['first_name']) : '';
+  $middleName = isset($_SESSION['middle_name']) ? ' ' . ucfirst($_SESSION['middle_name']) : '';
+  $lastName = isset($_SESSION['last_name']) ? ' ' . ucfirst($_SESSION['last_name']) : '';
+  $contributor = $firstName . $middleName . $lastName;
+  echo "<p id='contributor' style='display: none'>$contributor
+  </p>";
+
+}
+?>
  
   <h5 class="title7 mt-5" id="title-7">Add Contributors</h5>
   <h6 class="sub14 mt-3" id="sub-14">Add details for all of the contributors to this submission. Contributors added here will be sent an email confirmation of the submission, as well as a copy of all editorial decisions recorded against this submission.</h6>
 
   <div class="cont">
-    <h5 class="title8" id="title-8">Contributors</h5>
+    <!-- <h5 class="title8" id="title-8">Contributors</h5> -->
   <button type="button" class="btn btn-primary btn-sm"id="contributor-btn">Add Contributors</button>
   </div>
  
-  <table class="table table-hover" id="table-file">
+  <table class="table table-striped" id="table-contributor">
   <thead>
     <tr >
  
-      <th scope="col" style="background-color: #115272; color: white; font-weight: normal;"></th>
-      <th scope="col" style="background-color: #115272; color: white; font-weight: normal; margin-left: 80px">Action</th>
+      <th scope="col" style="background-color: #115272; color: white; font-weight: normal;">Contributors</th>
+      <th scope="col" style="background-color: #115272; color: white; font-weight: normal;">Action</th>
     </tr>
   </thead>
   <tbody>
     <tr>
     
-      <td>Some contributors name</td>
+      <td name="contributor" id="contributor"><?php echo $contributor; ?></td>
       <td><button class="btn btn-outline-primary btn-sm" id="btn-update">Update</button><button class="btn btn-danger btn-sm" id="btn-delete">Delete</button></td>
     </tr>
   </tbody>

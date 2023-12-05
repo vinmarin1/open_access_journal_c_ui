@@ -80,7 +80,7 @@ session_start();
     <div class="tab active">All Submissions</div>
     <div class="tab">Published</div>
     <div class="tab">Not Published</div>
-    <button class="btn" id="btn3">Add New</button>
+    <button class="btn" id="btn3" onclick="window.location.href='ex_submit.php'">Add New</button>
   </div>
   
   <table>

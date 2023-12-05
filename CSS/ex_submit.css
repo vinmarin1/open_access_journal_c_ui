@@ -179,12 +179,10 @@
   
 }
 
-.cont{
-    margin-top: 60px;
-    display: flex;
-}
 
-#upload-btn, #contributor-btn{
+
+#contributor-btn , #upload-btn{
+    margin-top: 40px;
     float: right;
     background-color: #115272;
     color: white;
