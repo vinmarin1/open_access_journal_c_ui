@@ -21,7 +21,7 @@
 </nav>
 
 
-<form action="" id="form">
+<form action="ex_submit_con.php" method="post" id="form">
 <ul class="nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item" role="presentation" style="margin-left: -10px;">
     <button class="nav-link active" id="privacy-tab" data-bs-toggle="tab" data-bs-target="#privacy-tab-pane" type="button" role="tab" aria-controls="privacy-tab-pane" aria-selected="true">Privacy</button>
@@ -78,7 +78,7 @@
   <div class="descript-2 pt-3">
 
   <div class="form-check">
-  <input type="checkbox" id="check">
+  <input type="checkbox" id="check" name="check" value="1">
   <p class="st-7">The authors agree to the terms of this Copyright Notice, which will apply to this submission if and when it is published by this journal (comments to the editor can be added below).</p>
 
 
@@ -110,10 +110,10 @@
         <h6 id="sub-9">Title</h6>
 
     
-        <input class="form-control" type="text"  id="title">
+        <input class="form-control" type="text"  id="title" name="title">
         
         <h6 id="sub-10">Keywords</h6>
-        <input class="form-control" type="text" id="keywords">
+        <input class="form-control" type="text" id="keywords" name="keywords">
      
       </div>
 
@@ -124,14 +124,20 @@
     </div>
 
     <div class="input-details-2 mt-5">
+
       <h6 id="sub-11">Abstract</h6>
+
       <div id="editor">
-     
+    
       </div>
+      <input class="form-control" type="text" id="abstract" name="abstract"  style="display: none;">
+
       <h6 class="sub-12 mt-5" id="sub-12">Reference</h6>
+
       <div id="editor2">
-     
+    
       </div>
+      <input class="form-control" type="text" id="reference"  name="reference" style="display: none;">
     </div>
    
 
@@ -232,6 +238,7 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
     <div id="editor3"></div>
 
     </div>
+    <input class="form-control" type="text" id="notes" name="notes" style="display: none;">
 
 
   </div>

@@ -110,17 +110,46 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-  var quill = new Quill('#editor', {
+document.getElementById('form').addEventListener('submit', function (event) {
+  const check = document.getElementById('check').value;
+  const title = document.getElementById('title').value;
+  const abstract = document.getElementById('abstract').value;
+  const keyword = document.getElementById('keyword').value;
+  const reference = document.getElementById('reference').value;
+  const notes = document.getElementById('notes').value;
+  const file_name = document.getElementById('file_name').value;
+
+  if (!check || !title || !abstract || !keyword || !reference || !notes || !file_name) {
+    event.preventDefault();
+    alert("Please fill in all the required fields.");
+  }
+});
+
+  var quill1 = new Quill('#editor', {
     theme: 'snow'
   });
-  var quill = new Quill('#editor2', {
+  var quill2 = new Quill('#editor2', {
     theme: 'snow'
   });
-  var quill = new Quill('#editor3', {
+  var quill3 = new Quill('#editor3', {
     theme: 'snow'
   });
 
+  var abstractInput = document.getElementById('abstract');
+  var referenceInput = document.getElementById('reference');
+  var notes = document.getElementById('notes');
 
+  quill1.on('text-change', function() {
+    abstractInput.value = quill1.getText();
+  });
+
+  quill2.on('text-change', function() {
+    referenceInput = document.getElementById('reference');
+  });
+
+  quill3.on('text-change', function() {
+    notes.value = quill3.getText();
+  });
   
 
 
