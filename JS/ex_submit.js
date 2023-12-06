@@ -307,3 +307,46 @@ document.getElementById('contributor-btn').addEventListener('click', function (e
 
   
 });
+
+
+var titleInput = document.getElementById("title");
+var keywordsInput = document.getElementById("keywords")
+var abstractInput = document.getElementById("abstract");
+var fileInput = document.getElementById("file_name");
+var contributorInput = document.getElementById("contributor").textContent;
+
+
+
+var input5 = document.getElementById("input5");
+var input6 = document.getElementById("input6");
+var input7 = document.getElementById("input7");
+var input8 = document.getElementById("input8");
+var input9 = document.getElementById("input9");
+var input10 = document.getElementById("input10");
+
+titleInput.addEventListener('input', function() {
+  input5.value = titleInput.value;
+});
+keywordsInput.addEventListener('input', function() {
+  input6.value = keywordsInput.value;
+});
+
+quill1.on('text-change', function() {
+  input7.value = quill1.getText();
+});
+quill2.on('text-change', function() {
+  input8.value = quill2.getText();
+});
+
+fileInput.addEventListener('change', function() {
+
+  if (fileInput.files.length > 0) {
+    
+    input9.value = fileInput.files[0].name;
+  } else {
+   
+    input9.value = "";
+  }
+});
+
+input10.value = contributorInput;

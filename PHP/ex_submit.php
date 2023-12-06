@@ -282,7 +282,7 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
     <div class="cont-container">
       <h5 class="title12" id="title-12">Contributors: </h5>
       <div class="cont-header-container">
-        <h5 class="title13" id="title-13">File Name</h5>
+        <h5 class="title13" id="title-13">Contributors Name</h5>
         <button type="button" class="btn btn-outline-light btn-sm" id="update-cont-4">Update</button>
     
       </div>
