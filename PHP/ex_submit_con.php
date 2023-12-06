@@ -34,8 +34,8 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     }
 
    // Insert into article table
-$sql = "INSERT INTO article (author, privacy, title, journal_id, author_id, abstract, keyword, `references`, comment)
-VALUES (:author, :privacy, :title, :journal_id, :author_id, :abstract, :keyword, :references, :comment)";
+$sql = "INSERT INTO article (`author`, `privacy`, `title`, `journal_id`, `author_id`, `abstract`, `keyword`, `references`, `comment`, `status`)
+VALUES (:author, :privacy, :title, :journal_id, :author_id, :abstract, :keyword, :references, :comment, :status)";
 
 $params = array(
 'author' => $contributor,
@@ -46,7 +46,8 @@ $params = array(
 ':abstract' => $abstract,
 ':keyword' => $keywords,
 ':references' => $reference,
-'comment' => $comment
+'comment' => $comment,
+'status' => "4"
 );
 
 // Use the modified function with $isInsert set to true

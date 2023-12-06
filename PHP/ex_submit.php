@@ -244,7 +244,58 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
   </div>
 
   <div class="tab-pane fade" id="review-tab-pane" role="tabpanel" aria-labelledby="review-tab" tabindex="0">
-  <p>Some preview...</p>
+
+  <h5 class="title9" id="title-9">Review and Submit</h5>
+  <h6 class="sub16" id="sub-16">Review the information you have entered before you complete your submission. You can change any of the details displayed here by clicking the edit button at the top of each section.</h6>
+  <h6 class="sub17" id="sub-17">
+  Once you complete your submission, a member of our editorial team will be assigned to review it. Please ensure the details you have entered here are as accurate as possible.</h6>
+
+  <div class="article-info-container">
+    <div class="article-header">
+      <h5 class="title10" id="title-10">Details</h5>
+      <button type="button" class="btn btn-outline-light btn-sm" id="update-cont-2">Update</button>
+    </div>
+    <div class="editable-content mt-5" id="editable-content">
+      <label id="sub-26">Title: </label><br>
+      <input type="text" class="form-control" id="input5" readonly><br>
+      <label id="sub-27">Keywords: </label><br>
+      <input type="text" class="form-control" id="input6" readonly><br>
+      <label id="sub-28">Abstract: </label><br>
+      <input type="text" class="form-control" id="input7" readonly><br>
+      <label id="sub-29">Reference: </label><br>
+      <input type="text" class="form-control" id="input8" readonly><br>
+    </div>
+
+  
+    <div class="file-container">
+      <h5 class="title11" id="title-11">Files: </h5>
+      <div class="file-header-container">
+        <h5 class="title12" id="title-12">File Name</h5>
+        <button type="button" class="btn btn-outline-light btn-sm" id="update-cont-3">Update</button>
+    
+      </div>
+      <div class="file-content-container mt-3">
+        <input type="text" class="form-control" id="input9" readonly>
+      </div>
+    </div>
+
+    <div class="cont-container">
+      <h5 class="title12" id="title-12">Contributors: </h5>
+      <div class="cont-header-container">
+        <h5 class="title13" id="title-13">File Name</h5>
+        <button type="button" class="btn btn-outline-light btn-sm" id="update-cont-4">Update</button>
+    
+      </div>
+      <div class="file-content-container mt-3">
+        <input type="text" class="form-control" id="input10" readonly>
+      </div>
+    </div>
+    
+   
+
+  </div>
+
+
   </div>
 </div>
 <div id="btn-action">
