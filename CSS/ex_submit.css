@@ -160,24 +160,30 @@
     font-weight: bold;
 }
 
-#title-9, #title-10{
+#title-9, #title-10, #title-14{
     text-align: left;
 }
 
-#swal-d{
+#title-14{
+    font-weight: bold;
+}
+
+#swal-d, #swal-d-2{
     height: 2px;
     background-color: #115272;
 }
 
 
 
-#title-6, #title-7, #title-8, #title-9, #title-10,#sub-13, #sub-14 , #sub-15,  #sub-16,  #sub-17,  #sub-18,  #sub-19,  #sub-20, #sub-21, #sub-22, #sub-23, #sub-24, #sub-25{
+#title-6, #title-7, #title-8, #title-9, #title-10,  #title-14,#sub-13, #sub-14 , #sub-15,  #sub-16,  #sub-17,  #sub-18,  #sub-19,  #sub-20, #sub-21, #sub-22, #sub-23, #sub-24, #sub-25{
     
     color: #115272;
     font-family: 'Times New Roman', Times, serif;
     width: 100%;
   
 }
+
+
 
 
 
@@ -217,7 +223,6 @@
 #title-9, #sub-16, #sub-17, #sub-20, #sub-21{
     display: inline-block;
     text-align: left;
-    margin-left: 40px;
     margin-bottom: 20px;
 }
 
@@ -230,15 +235,17 @@
    
 }
 
-#input3, #input4, #input5,  #input6, #input7,  #input8, #updateInput3, #updateInput4, #updateInput5{
+#input3, #input4, #input5, #input6, #input7,  #input8, #updateInput3, #updateInput4, #updateInput5{
     display: inline-block;
     height: 30px;
     font-size: 11px;
-    width: 90%;
+    width: 100%;
     margin-left: -20px;
     
    
 }
+
+
 
 #sub-18, #sub-19, #sub-20, #sub-23, #sub-24, #sub-25{
     text-align: left;
@@ -251,7 +258,7 @@
 }
 
 
-#confirmBtn, #update-cont{
+#confirmBtn, #update-cont, #btn-article-update{
     background-color: #115272;
     height: 35px;
     width: 100px;
@@ -260,7 +267,7 @@
     border-radius: 5px;
     font-size: 12px;
     float: right;
-    margin-right: 50px;
+    
 }
 
 
@@ -333,15 +340,32 @@
     margin-bottom: 5px;
 }
 
+#sub-30, #sub-31, #sub-32, #sub-33{
+    color: #115272;
+    text-align: left;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: normal;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    width: 100%;
+}
 
-#input5, #input6, #input7,  #input8, #input9, #input9{
+#input11, #input12 , #input13, #input14{
+    width: 98%;
+    height: 30px;
+    margin-top: 10px;
+}
+
+
+
+#input6, #input7,  #input8, #input9, #input9{
     width: 100%;
     margin-bottom: 20px;
     
 }
 
 
-#title-11, #title-12{
+#title-11{
     color:#115272;
     font-weight: bold;
     font-family: 'Times New Roman', Times, serif;
@@ -352,7 +376,7 @@
 
 
 
-#title-10,#title-13{
+#title-10,#title-13, #title-12{
    color: white;
    font-weight: bold;
 }
@@ -395,6 +419,7 @@
     margin-left: 265px;
     
   }
+
 
 
  

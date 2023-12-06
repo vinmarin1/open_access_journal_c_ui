@@ -1,113 +1,113 @@
-document.addEventListener('DOMContentLoaded', function () {
-  var tabButtons = document.querySelectorAll('.nav-link');
-  var tabContent = document.querySelectorAll('.tab-pane input');
-  var selectedTabIndex = 0;
-  var prevBtn = document.getElementById("prev");
-  var nextBtn = document.getElementById("next");
-  var submitBtn = document.getElementById("submit");
-  var form = document.getElementById("form");
-  var inputFields = form.querySelectorAll("input");
+// document.addEventListener('DOMContentLoaded', function () {
+//   var tabButtons = document.querySelectorAll('.nav-link');
+//   var tabContent = document.querySelectorAll('.tab-pane input');
+//   var selectedTabIndex = 0;
+//   var prevBtn = document.getElementById("prev");
+//   var nextBtn = document.getElementById("next");
+//   var submitBtn = document.getElementById("submit");
+//   var form = document.getElementById("form");
+//   var inputFields = form.querySelectorAll("input");
 
-  for (var i = 1; i < tabButtons.length; i++) {
-    tabButtons[i].disabled = true;
-  }
+//   for (var i = 1; i < tabButtons.length; i++) {
+//     tabButtons[i].disabled = true;
+//   }
 
 
-  function updateButtonVisibility(index) {
-    // Display buttons based on the current tab index
-    if (index === 0) {
-      prevBtn.style.display = "none";
-      nextBtn.style.display = "inline-block";
-      submitBtn.style.display = "none";
-    } else if (index > 0 && index < tabButtons.length - 1) {
-      prevBtn.style.display = "inline-block";
-      nextBtn.style.display = "inline-block";
-      submitBtn.style.display = "none";
-    } else if (index === tabButtons.length - 1) {
-      prevBtn.style.display = "inline-block";
-      nextBtn.style.display = "none";
-      submitBtn.style.display = "inline-block";
-    }
-  }
+//   function updateButtonVisibility(index) {
+//     // Display buttons based on the current tab index
+//     if (index === 0) {
+//       prevBtn.style.display = "none";
+//       nextBtn.style.display = "inline-block";
+//       submitBtn.style.display = "none";
+//     } else if (index > 0 && index < tabButtons.length - 1) {
+//       prevBtn.style.display = "inline-block";
+//       nextBtn.style.display = "inline-block";
+//       submitBtn.style.display = "none";
+//     } else if (index === tabButtons.length - 1) {
+//       prevBtn.style.display = "inline-block";
+//       nextBtn.style.display = "none";
+//       submitBtn.style.display = "inline-block";
+//     }
+//   }
 
-  function updateStyles() {
-    tabButtons.forEach(function (btn, i) {
-      if (i === selectedTabIndex) {
-        btn.style.backgroundColor = "#115272";
-        btn.style.color = "white";
-      } else {
-        btn.style.backgroundColor = "white";
-        btn.style.border = "1px solid";
-        btn.style.color = "#115272";
-      }
-    });
-  }
+//   function updateStyles() {
+//     tabButtons.forEach(function (btn, i) {
+//       if (i === selectedTabIndex) {
+//         btn.style.backgroundColor = "#115272";
+//         btn.style.color = "white";
+//       } else {
+//         btn.style.backgroundColor = "white";
+//         btn.style.border = "1px solid";
+//         btn.style.color = "#115272";
+//       }
+//     });
+//   }
 
-  function updateButtonStates(index) {
-    for (var i = index + 1; i < tabButtons.length; i++) {
-      tabButtons[i].disabled = tabContent[i - 1].value === '';
-    }
-  }
+//   function updateButtonStates(index) {
+//     for (var i = index + 1; i < tabButtons.length; i++) {
+//       tabButtons[i].disabled = tabContent[i - 1].value === '';
+//     }
+//   }
 
-  function switchToNextTab() {
-    if (selectedTabIndex < tabButtons.length - 1) {
-      inputFields = tabContent[selectedTabIndex];
-      if (inputFields.value === '' || tabButtons[selectedTabIndex + 1].disabled) {
-        return; // Do nothing if the input field is empty or the next button is disabled
-      }
+//   function switchToNextTab() {
+//     if (selectedTabIndex < tabButtons.length - 1) {
+//       inputFields = tabContent[selectedTabIndex];
+//       if (inputFields.value === '' || tabButtons[selectedTabIndex + 1].disabled) {
+//         return; // Do nothing if the input field is empty or the next button is disabled
+//       }
 
-      tabButtons[selectedTabIndex + 1].click(); // Simulate a click on the next tab button
-    }
-  }
+//       tabButtons[selectedTabIndex + 1].click(); // Simulate a click on the next tab button
+//     }
+//   }
 
-  function switchToPrevTab() {
-    if (selectedTabIndex > 0) {
-      tabButtons[selectedTabIndex - 1].click(); // Simulate a click on the previous tab button
-    }
-  }
+//   function switchToPrevTab() {
+//     if (selectedTabIndex > 0) {
+//       tabButtons[selectedTabIndex - 1].click(); // Simulate a click on the previous tab button
+//     }
+//   }
 
-  tabContent.forEach(function (input, index) {
-    input.addEventListener('input', function () {
-      updateButtonStates(index);
-      updateStyles();
-    });
+//   tabContent.forEach(function (input, index) {
+//     input.addEventListener('input', function () {
+//       updateButtonStates(index);
+//       updateStyles();
+//     });
 
-    input.addEventListener('focus', function () {
-      updateStyles();
-    });
+//     input.addEventListener('focus', function () {
+//       updateStyles();
+//     });
 
-    input.addEventListener('blur', function () {
-      // Don't change styles on blur
-    });
-  });
+//     input.addEventListener('blur', function () {
+//       // Don't change styles on blur
+//     });
+//   });
 
-  tabButtons.forEach(function (button, index) {
-    button.addEventListener('click', function () {
-      selectedTabIndex = index;
-      updateButtonVisibility(index);
-      updateButtonStates(index);
-      updateStyles();
-    });
+//   tabButtons.forEach(function (button, index) {
+//     button.addEventListener('click', function () {
+//       selectedTabIndex = index;
+//       updateButtonVisibility(index);
+//       updateButtonStates(index);
+//       updateStyles();
+//     });
 
-    // Set initial styles and button visibility for the first button
-    if (index === 0) {
-      button.style.backgroundColor = "#115272";
-      button.style.color = "white";
-      updateButtonVisibility(index);
-    }
+//     // Set initial styles and button visibility for the first button
+//     if (index === 0) {
+//       button.style.backgroundColor = "#115272";
+//       button.style.color = "white";
+//       updateButtonVisibility(index);
+//     }
    
     
-  });
+//   });
 
 
 
 
-  nextBtn.addEventListener('click', switchToNextTab);
-  prevBtn.addEventListener('click', switchToPrevTab);
+//   nextBtn.addEventListener('click', switchToNextTab);
+//   prevBtn.addEventListener('click', switchToPrevTab);
 
   
   
-});
+// });
 
 
 document.getElementById('form').addEventListener('submit', function (event) {
@@ -323,19 +323,30 @@ var input7 = document.getElementById("input7");
 var input8 = document.getElementById("input8");
 var input9 = document.getElementById("input9");
 var input10 = document.getElementById("input10");
+var input11 = document.getElementById("input11");
+var input12 = document.getElementById("input12");
+var input13 = document.getElementById("input13");
+var input14 = document.getElementById("input14");
+
+ 
 
 titleInput.addEventListener('input', function() {
   input5.value = titleInput.value;
+  input11.value = titleInput.value;
 });
+
 keywordsInput.addEventListener('input', function() {
   input6.value = keywordsInput.value;
+  input12.value = titleInput.value;
 });
 
 quill1.on('text-change', function() {
   input7.value = quill1.getText();
+  input13.value = quill1.getText();
 });
 quill2.on('text-change', function() {
   input8.value = quill2.getText();
+  input14.value = quill1.getText();
 });
 
 fileInput.addEventListener('change', function() {
@@ -352,6 +363,14 @@ fileInput.addEventListener('change', function() {
 input10.value = contributorInput;
 
 
-// function(){
 
-// }
+document.getElementById('update-cont-2').addEventListener('click', function (event) {
+
+
+
+  Swal.fire({
+    html: '<h5 class="title14" id="title-14">Update Article Details</h5>' + '<hr id="swal-d-2">' + '<label class="sub30" id="sub-30">Title: <input type="text" class="form-control" id="input11" value="'+ titleInput.value +'"></label>' +  '<label class="sub31" id="sub-30">Keywords: <input type="text" class="form-control" id="input12" value="'+ keywordsInput.value +'"></label>'  + '<label class="sub32" id="sub-30">Abstract: <input type="text" class="form-control" id="input13" id="input12" value="'+ quill1.getText() +'"></label>' +  '<label class="sub33" id="sub-30">Reference: <input type="text" class="form-control" id="input14" value="'+ quill2.getText() +'"></label>',
+    footer: '<button  id="btn-article-update">Update</button>',
+    showConfirmButton: false,
+  });
+});
