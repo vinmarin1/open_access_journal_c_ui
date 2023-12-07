@@ -327,6 +327,7 @@ var input11 = document.getElementById("input11");
 var input12 = document.getElementById("input12");
 var input13 = document.getElementById("input13");
 var input14 = document.getElementById("input14");
+var input15 = document.getElementById("input15");
 
  
 
@@ -349,11 +350,12 @@ quill2.on('text-change', function() {
   input14.value = quill2.getText();
 });
 
-fileInput.addEventListener('change', function() {
+fileInput.addEventListener('input', function() {
 
   if (fileInput.files.length > 0) {
     
     input9.value = fileInput.files[0].name;
+    
   } else {
    
     input9.value = "";
@@ -369,7 +371,7 @@ document.getElementById('update-cont-2').addEventListener('click', function (eve
 
 
   Swal.fire({
-    html: '<h5 class="title14" id="title-14">Update Article Details</h5>' + '<hr id="swal-d-2">' + '<label class="sub30" id="sub-30">Title: <input type="text" class="form-control" id="input11" value="'+ titleInput.value +'"></label>' +  '<label class="sub31" id="sub-30">Keywords: <input type="text" class="form-control" id="input12" value="'+ keywordsInput.value +'"></label>'  + '<label class="sub32" id="sub-30">Abstract: <input type="text" class="form-control" id="input13" id="input12" value="'+ quill1.getText() +'"></label>' +  '<label class="sub33" id="sub-30">Reference: <input type="text" class="form-control" id="input14" value="'+ quill2.getText() +'"></label>',
+    html: '<h5 class="title14" id="title-14">Update Article Details</h5>' + '<hr id="swal-d-2">' + '<label class="sub30" id="sub-30">Title: <input type="text" class="form-control" id="input11" value="'+ titleInput.value +'"></label>' +  '<label class="sub31" id="sub-31">Keywords: <input type="text" class="form-control" id="input12" value="'+ keywordsInput.value +'"></label>'  + '<label class="sub32" id="sub-32">Abstract: <input type="text" class="form-control" id="input13" id="input12" value="'+ quill1.getText() +'"></label>' +  '<label class="sub33" id="sub-33">Reference: <input type="text" class="form-control" id="input14" value="'+ quill2.getText() +'"></label>',
     footer: '<button  id="btn-article-update">Update</button>',
     showConfirmButton: false,
   });
@@ -415,3 +417,34 @@ document.getElementById('update-cont-2').addEventListener('click', function (eve
 
  
 });
+
+document.getElementById('update-cont-3').addEventListener('click', function (event) {
+  
+  Swal.fire({
+    html: '<h5 class="title15" id="title-15">Update File Content</h5>' +  '<hr id="swal-d-3">' 
+    + '<label id="sub-34">File Name: </label>' + 
+    '<button type="button" class="btn btn-primary btn-sm" id="newFile">Select File</button> ' 
+    + '<input type="text" class="form-control" id="input15" readonly></input>',
+    showConfirmButton: false
+    
+  })
+
+
+  document.getElementById('newFile').addEventListener('click', function() {
+    document.getElementById('file_name').click();
+  });
+
+  document.getElementById('file_name').addEventListener('change', function () {
+    var fileName = this.files[0].name;
+    document.getElementById('input15').value = fileName;
+});
+
+});
+
+ 
+
+
+
+
+
+
