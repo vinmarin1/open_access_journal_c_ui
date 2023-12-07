@@ -39,7 +39,7 @@
     <button class="nav-link" id="comment-tab" data-bs-toggle="tab" data-bs-target="#comment-tab-pane" type="button" role="tab" aria-controls="comment-tab-pane" aria-selected="false">Notes</button>
   </li>
   <li class="nav-item" role="presentation">
-    <button class="nav-link" id="review-tab" data-bs-toggle="tab" data-bs-target="#review-tab-pane" type="button" role="tab" aria-controls="review-tab-pane" aria-selected="false">Review</button>
+    <button class="nav-link" id="review-tab" data-bs-toggle="tab" data-bs-target="#review-tab-pane" type="button" role="tab" aria-controls="review-tab-pane" aria-selected="false">Preview</button>
   </li>
 </ul>
 
@@ -270,7 +270,7 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
     <div class="file-container">
       <h5 class="title11" id="title-11">Files: </h5>
       <div class="file-header-container">
-        <h5 class="title12" id="title-12">File Name</h5>
+        <h5 class="title1f" id="title1f">File Name</h5>
         <button type="button" class="btn btn-outline-light btn-sm" id="update-cont-3">Update</button>
     
       </div>

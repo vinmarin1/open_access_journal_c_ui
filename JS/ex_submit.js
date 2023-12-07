@@ -1,113 +1,113 @@
-document.addEventListener('DOMContentLoaded', function () {
-  var tabButtons = document.querySelectorAll('.nav-link');
-  var tabContent = document.querySelectorAll('.tab-pane input');
-  var selectedTabIndex = 0;
-  var prevBtn = document.getElementById("prev");
-  var nextBtn = document.getElementById("next");
-  var submitBtn = document.getElementById("submit");
-  var form = document.getElementById("form");
-  var inputFields = form.querySelectorAll("input");
+// document.addEventListener('DOMContentLoaded', function () {
+//   var tabButtons = document.querySelectorAll('.nav-link');
+//   var tabContent = document.querySelectorAll('.tab-pane input');
+//   var selectedTabIndex = 0;
+//   var prevBtn = document.getElementById("prev");
+//   var nextBtn = document.getElementById("next");
+//   var submitBtn = document.getElementById("submit");
+//   var form = document.getElementById("form");
+//   var inputFields = form.querySelectorAll("input");
 
-  for (var i = 1; i < tabButtons.length; i++) {
-    tabButtons[i].disabled = true;
-  }
+//   for (var i = 1; i < tabButtons.length; i++) {
+//     tabButtons[i].disabled = true;
+//   }
 
 
-  function updateButtonVisibility(index) {
-    // Display buttons based on the current tab index
-    if (index === 0) {
-      prevBtn.style.display = "none";
-      nextBtn.style.display = "inline-block";
-      submitBtn.style.display = "none";
-    } else if (index > 0 && index < tabButtons.length - 1) {
-      prevBtn.style.display = "inline-block";
-      nextBtn.style.display = "inline-block";
-      submitBtn.style.display = "none";
-    } else if (index === tabButtons.length - 1) {
-      prevBtn.style.display = "inline-block";
-      nextBtn.style.display = "none";
-      submitBtn.style.display = "inline-block";
-    }
-  }
+//   function updateButtonVisibility(index) {
+//     // Display buttons based on the current tab index
+//     if (index === 0) {
+//       prevBtn.style.display = "none";
+//       nextBtn.style.display = "inline-block";
+//       submitBtn.style.display = "none";
+//     } else if (index > 0 && index < tabButtons.length - 1) {
+//       prevBtn.style.display = "inline-block";
+//       nextBtn.style.display = "inline-block";
+//       submitBtn.style.display = "none";
+//     } else if (index === tabButtons.length - 1) {
+//       prevBtn.style.display = "inline-block";
+//       nextBtn.style.display = "none";
+//       submitBtn.style.display = "inline-block";
+//     }
+//   }
 
-  function updateStyles() {
-    tabButtons.forEach(function (btn, i) {
-      if (i === selectedTabIndex) {
-        btn.style.backgroundColor = "#115272";
-        btn.style.color = "white";
-      } else {
-        btn.style.backgroundColor = "white";
-        btn.style.border = "1px solid";
-        btn.style.color = "#115272";
-      }
-    });
-  }
+//   function updateStyles() {
+//     tabButtons.forEach(function (btn, i) {
+//       if (i === selectedTabIndex) {
+//         btn.style.backgroundColor = "#115272";
+//         btn.style.color = "white";
+//       } else {
+//         btn.style.backgroundColor = "white";
+//         btn.style.border = "1px solid";
+//         btn.style.color = "#115272";
+//       }
+//     });
+//   }
 
-  function updateButtonStates(index) {
-    for (var i = index + 1; i < tabButtons.length; i++) {
-      tabButtons[i].disabled = tabContent[i - 1].value === '';
-    }
-  }
+//   function updateButtonStates(index) {
+//     for (var i = index + 1; i < tabButtons.length; i++) {
+//       tabButtons[i].disabled = tabContent[i - 1].value === '';
+//     }
+//   }
 
-  function switchToNextTab() {
-    if (selectedTabIndex < tabButtons.length - 1) {
-      inputFields = tabContent[selectedTabIndex];
-      if (inputFields.value === '' || tabButtons[selectedTabIndex + 1].disabled) {
-        return; // Do nothing if the input field is empty or the next button is disabled
-      }
+//   function switchToNextTab() {
+//     if (selectedTabIndex < tabButtons.length - 1) {
+//       inputFields = tabContent[selectedTabIndex];
+//       if (inputFields.value === '' || tabButtons[selectedTabIndex + 1].disabled) {
+//         return; // Do nothing if the input field is empty or the next button is disabled
+//       }
 
-      tabButtons[selectedTabIndex + 1].click(); // Simulate a click on the next tab button
-    }
-  }
+//       tabButtons[selectedTabIndex + 1].click(); // Simulate a click on the next tab button
+//     }
+//   }
 
-  function switchToPrevTab() {
-    if (selectedTabIndex > 0) {
-      tabButtons[selectedTabIndex - 1].click(); // Simulate a click on the previous tab button
-    }
-  }
+//   function switchToPrevTab() {
+//     if (selectedTabIndex > 0) {
+//       tabButtons[selectedTabIndex - 1].click(); // Simulate a click on the previous tab button
+//     }
+//   }
 
-  tabContent.forEach(function (input, index) {
-    input.addEventListener('input', function () {
-      updateButtonStates(index);
-      updateStyles();
-    });
+//   tabContent.forEach(function (input, index) {
+//     input.addEventListener('input', function () {
+//       updateButtonStates(index);
+//       updateStyles();
+//     });
 
-    input.addEventListener('focus', function () {
-      updateStyles();
-    });
+//     input.addEventListener('focus', function () {
+//       updateStyles();
+//     });
 
-    input.addEventListener('blur', function () {
-      // Don't change styles on blur
-    });
-  });
+//     input.addEventListener('blur', function () {
+//       // Don't change styles on blur
+//     });
+//   });
 
-  tabButtons.forEach(function (button, index) {
-    button.addEventListener('click', function () {
-      selectedTabIndex = index;
-      updateButtonVisibility(index);
-      updateButtonStates(index);
-      updateStyles();
-    });
+//   tabButtons.forEach(function (button, index) {
+//     button.addEventListener('click', function () {
+//       selectedTabIndex = index;
+//       updateButtonVisibility(index);
+//       updateButtonStates(index);
+//       updateStyles();
+//     });
 
-    // Set initial styles and button visibility for the first button
-    if (index === 0) {
-      button.style.backgroundColor = "#115272";
-      button.style.color = "white";
-      updateButtonVisibility(index);
-    }
+//     // Set initial styles and button visibility for the first button
+//     if (index === 0) {
+//       button.style.backgroundColor = "#115272";
+//       button.style.color = "white";
+//       updateButtonVisibility(index);
+//     }
    
     
-  });
+//   });
 
 
 
 
-  nextBtn.addEventListener('click', switchToNextTab);
-  prevBtn.addEventListener('click', switchToPrevTab);
+//   nextBtn.addEventListener('click', switchToNextTab);
+//   prevBtn.addEventListener('click', switchToPrevTab);
 
   
   
-});
+// });
 
 
 document.getElementById('form').addEventListener('submit', function (event) {
@@ -346,7 +346,7 @@ quill1.on('text-change', function() {
 });
 quill2.on('text-change', function() {
   input8.value = quill2.getText();
-  input14.value = quill1.getText();
+  input14.value = quill2.getText();
 });
 
 fileInput.addEventListener('change', function() {
@@ -373,4 +373,45 @@ document.getElementById('update-cont-2').addEventListener('click', function (eve
     footer: '<button  id="btn-article-update">Update</button>',
     showConfirmButton: false,
   });
+
+  document.getElementById('btn-article-update').addEventListener('click', function () {
+    var newTitle = document.getElementById('input11').value;
+    var newKeywords = document.getElementById('input12').value;
+    var newAbstract = document.getElementById('input13').value;
+    var newReference = document.getElementById('input14').value;
+
+  
+    titleInput.value = newTitle;
+    keywordsInput.value = newKeywords;
+  
+    input5.value = newTitle;
+    input6.value = newKeywords;
+    input7.value = newAbstract;
+    input8.value = newReference;
+  
+    try {
+      quill1.setText(newAbstract);
+     
+    } catch (error) {
+      console.error("Unable to update Abstract Content:", error);
+      
+    }
+
+    // i add two separate try catch because its not working when putting them in one :>>>
+    
+    try {
+      quill2.setText(newReference);
+     
+    } catch (error) {
+      console.error("Unable to update Reference Content:", error);
+      
+    }
+    
+    
+  
+    Swal.close();
+  });
+  
+
+ 
 });
