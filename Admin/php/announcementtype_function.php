@@ -47,7 +47,7 @@ if (!function_exists('get_announcementtype_list')) {
      }
      
              function fetchUserData() {
-                 $authorId = $_POST['announcement_type_id'];
+                 $announcement_type_Id = $_POST['announcement_type_id'];
              
                  $result = execute_query("SELECT * FROM announcement_type WHERE announcement__type_id = ?", [$announcement_type_Id]);
              
@@ -62,7 +62,7 @@ if (!function_exists('get_announcementtype_list')) {
              
      function addRecord()
      {
-         $announcement_type_id = $_POST['announcement_type'];
+         $announcement_type = $_POST['announcement_type'];
         
      
          $query = "INSERT INTO announcement_type (announcement_type) 

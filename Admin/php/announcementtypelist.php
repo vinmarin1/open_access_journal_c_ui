@@ -30,7 +30,7 @@ $announcementtypelist = get_announcementtype_list();
             <div style="display: flex; margin-top: 15px; margin-right: 15px;">
                 
                   <!-- Button trigger modal -->
-             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Announcement Type </button>
+             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Add Announcement Type </button>
             </div>
         </div>
           
@@ -110,7 +110,7 @@ $announcementtypelist = get_announcementtype_list();
     }
     </script>
      <!-- add Modal -->
-     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+     <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -122,15 +122,15 @@ $announcementtypelist = get_announcementtype_list();
                             <div class="form-group row">
                                 <div class="col-md-8">
                                     <div class="mb-3">
-                                        <label for="announcement_type_id" class="form-label ps-2">Announcement Type </label>
-                                        <input type="text" name="announcement_type_id" class="form-control Information-input" id="announcement_type_id" placeholder="">
+                                        <label for="announcement_type" class="form-label ps-2">Announcement Type </label>
+                                        <input type="text" name="announcement_type" class="form-control Information-input" id="announcement_type" placeholder="">
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="addRecord()">Save changes</button>
+                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" onclick="addRecord()">Save changes</button>
                             </form>
                         </div>
                     </div>
