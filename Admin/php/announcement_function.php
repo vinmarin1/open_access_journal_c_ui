@@ -27,6 +27,59 @@ if (!function_exists('get_announcement_list')) {
     }
 }
 
+     // Check if the 'action' index is set
+     $action = isset($_POST['action']) ? $_POST['action'] : '';
+
+     switch ($action) {
+         case 'add':
+             addRecord();
+             break;
+         case 'archive':
+             archiveUser();
+             break;
+         case 'fetch':
+             fetchUserData();
+             break;
+         case 'update':
+             updateUserData();
+             break;
+     }
+     
+             function fetchUserData() {
+                 $authorId = $_POST['announcement_id'];
+             
+                 $result = execute_query("SELECT * FROM announcement WHERE announcement_id = ?", [$announcementId]);
+             
+                 header('Content-Type: application/json');
+             
+                 if ($result !== false) {
+                     echo json_encode(['status' => true, 'data' => $result]);
+                 } else {
+                     echo json_encode(['status' => false, 'message' => 'Failed to fetch user data']);
+                 }
+             }
+             
+     function addRecord()
+     {
+         $announcement_type_id = $_POST['announcement_type_id'];
+         $title = $_POST['title'];
+         $announcement_description = $_POST['announcement_description'];
+         $announcement = $_POST['announcement'];
+         $expired_date= $_POST['expired_date'];
+         
+        
+     
+         $query = "INSERT INTO announcement (announcement_type_id, title,announcement_description, announcement, expired_date) 
+         VALUES (?, ?, ?, ?, ?)";
+     
+         $result = execute_query($query, [$announcement_type_id, $title, $announcement_description , $announcement, $expired_date ], true);
+     
+         if ($result !== false) {
+             echo json_encode(['status' => true, 'message' => 'Record added successfully']);
+         } else {
+             echo json_encode(['status' => false, 'message' => 'Failed to add record']);
+         }
+     }
 
    
 ?>
