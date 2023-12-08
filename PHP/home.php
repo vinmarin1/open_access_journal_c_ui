@@ -30,9 +30,19 @@
         <p>Quezon City University’s Directory of Journals</p>
         <h2>Find or Submit Open Access Articles</h2>
         </div>
-        <button class="btn tbn-primary btn-md" id="btn1" onclick="window.location.href='browse-articles.php'">Browse articles</button>
+        <button class="btn  btn-md" id="btn1" onclick="window.location.href='browse-articles.php'">Browse articles</button>
     
-        <button class="btn tbn-primary btn-md" id="btn2">Be a contributor</button>
+        <?php 
+  if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+    echo '<button class="btn btn-md" id="btn2" onclick="window.location.href=\'ex_submit.php\'">Be a contributor</button>';
+  } else {
+    echo '<button class="btn btn-md" id="btn2">Be a contributor</button>';
+  }
+?>
+
+
+
+       
     </div>
     
     
@@ -42,33 +52,30 @@
 
 
     <div class="fluid-container mb-5">
-      <div class="recommendation-container">
-        <div class="offer-left">
-        <h2 class="mb-3">QAJ OFFER Personalized Recommendations</h2>
-        <p class="descript">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores similique culpa, molestiae velit quis cumque saepe vel error rerum a totam deleniti, reiciendis, alias perspiciatis et. Facere recusandae fuga voluptate?</p>
-       
-        <br>
-        <button class="btn btn-primary btn-md mt-1">Try it Now</button>
-        <br>
-        </div>
-        <?php
-  
-          if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-            // User is logged in, display the profile menu
-            echo '
-              <div class="divider-line"></div>
-              <div id="history" class="offer-right">
-                
+      <?php 
+        if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
+          echo ' <div class="recommendation-container">
+          <div class="offer-left">
+          <h2 class="mb-3">QAJ OFFER Personalized Recommendations</h2>
+          <p class="descript">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores similique culpa, molestiae velit quis cumque saepe vel error rerum a totam deleniti, reiciendis, alias perspiciatis et. Facere recusandae fuga voluptate?</p>
+         
+          <br>
+          <button class="btn btn-primary btn-md mt-1">Try it Now</button>
+          <br>
+          </div>
+         
+                <div class="divider-line"></div>
+                <div id="history" class="offer-right">
+                  
+                </div> 
+                <div class="divider-line"></div>
+              <div class="offer-right">
+            
               </div> 
-              '; 
-          }else{
-            echo ' <div class="divider-line"></div>
-            <div class="offer-right">
-          
-            </div> ';
-          }
-        ?>
-      </div>  
+        </div>  ';
+        }
+      ?>
+     
     </div>
 
  <?php
@@ -102,7 +109,7 @@
         <p class="description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis distinctio, debitis sed dolores iste, deserunt perspiciatis ducimus odio aliquam facere illo, quasi temporibus aut sint est mollitia saepe omnis amet?</p>
         <p class="description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis distinctio, debitis sed dolores iste, deserunt perspiciatis ducimus odio aliquam facere illo, quasi temporibus aut sint est mollitia saepe omnis amet?</p>
         <br>
-          <button class="btn btn-primary btn-md mt-1">Read More</button>
+          <button style="background-color: #E56F1F;" class="btn btn-md mt-1">Read More</button>
         <br>
     </div>
   
@@ -134,24 +141,90 @@
   <img src="../images/Papers.png" alt="#" class="image">
 </div>
 <div class="container-fluid">
+<h2 class="plans"><b>QOAJ PLANS</b></h2>
   <div class="ex-journal">
-    <div class="example-journal">
-    <h3>The Gavel</h3>
-    <p class="text-xs">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt quidem illum repellat dolores voluptas in deserunt velit minima, dolorem laborum impedit, nostrum ab dolor possimus autem fuga tempora officia non quasi nisi voluptatem. Pariatur magni impedit, enim in fugiat quos.</p>
-    <button class="btn btn-primary btn-md mt-1">See Journal</button>
-    </div>
 
-    <div class="example-journal" id="example-mid">
-    <h3>The Star</h3>
-    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt quidem illum repellat dolores voluptas in deserunt velit minima, dolorem laborum impedit, nostrum ab dolor possimus autem fuga tempora officia non quasi nisi voluptatem. Pariatur magni impedit, enim in fugiat quos.</p>
-    <button class="btn btn-primary btn-md mt-1">See Journal</button>
+  <div class="example-journal">
+  <div class="plans-inside">
+    <h3><b>Basic</b></h3>
+    <hr style="height: 2px; background-color: #115272; width: 100%">
+    <div style="display: flex; align-items: center; margin-bottom: 20px">
+      <i style="color: green; margin-right: 30px; margin-left: 60px" class="fa-solid fa-check"></i>
+      <p style="margin: 0;" class="text-xs">Full access to view abstracts <br>for all articles.</p>
     </div>
+    <div style="display: flex; align-items: center;">
+      <i style="color: green; margin-right: 30px; margin-left: 60px" class="fa-solid fa-check"></i>
+      <p style="margin: 0;" class="text-xs">Access to monthly popular <br>articles.</p>
+    </div>
+  </div>
+</div>
 
-    <div class="example-journal">
-    <h3>The Lamp</h3>
-    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt quidem illum repellat dolores voluptas in deserunt velit minima, dolorem laborum impedit, nostrum ab dolor possimus autem fuga tempora officia non quasi nisi voluptatem. Pariatur magni impedit, enim in fugiat quos.</p>
-    <button class="btn btn-primary btn-md mt-1">See Journal</button>
+
+<div class="example-journal" id="example-mid">
+  <div class="plans-inside">
+    <h3><b>Package</b></h3>
+    <h5><b> As low as PHP 49.00 </b></h5>
+    <hr style="height: 2px; background-color: #115272; width: 100%">
+    <div style="display: flex; align-items: center; margin-bottom: 20px">
+      <i style="color: green; margin-right: 30px; margin-left: 60px" class="fa-solid fa-check"></i>
+      <p style="margin: 0;" class="text-xs">Full access to view abstracts <br>for all articles.</p>
     </div>
+    <div style="display: flex; align-items: center; margin-bottom: 20px">
+      <i style="color: green; margin-right: 30px; margin-left: 60px; " class="fa-solid fa-check"></i>
+      <p style="margin: 0;" class="text-xs">Access to monthly popular <br>articles.</p>
+    </div>
+    <div style="display: flex; align-items: center; margin-bottom: 20px">
+      <i style="color: green; margin-right: 30px; margin-left: 60px" class="fa-solid fa-check"></i>
+      <p style="margin: 0;" class="text-xs">Personalized content <br>suggestions.</p>
+    </div>
+    <div style="display: flex; align-items: center; margin-bottom: 20px">
+      <i style="color: green; margin-right: 30px; margin-left: 60px" class="fa-solid fa-check"></i>
+      <p style="margin: 0;" class="text-xs">Limited credit points with no <br> expiration for downloading <br>pdf and ebook.</p>
+    </div>
+    <div style="display: flex; align-items: center; margin-bottom: 20px">
+      <i style="color: green; margin-right: 30px; margin-left: 60px" class="fa-solid fa-check"></i>
+      <p style="margin: 0;" class="text-xs">No advertisements.</p>
+    </div>
+  </div>
+  <div class="btn-price">
+    <button class="btn btn-primary btn-md mt-1" onclick="window.location.href='pricing.php'" >See Pricing</button>
+  </div>
+</div>
+
+<div class="example-journal">
+  <div class="plans-inside">
+    <h3><b>Pro</b></h3>
+    <h5><b> As low as PHP 199.00 </b></h5>
+    <hr style="height: 2px; background-color: #115272; width: 100%">
+    <div style="display: flex; align-items: center; margin-bottom: 20px">
+      <i style="color: green; margin-right: 30px; margin-left: 60px" class="fa-solid fa-check"></i>
+      <p style="margin: 0;" class="text-xs">Full access to view abstracts <br>for all articles.</p>
+    </div>
+    <div style="display: flex; align-items: center; margin-bottom: 20px">
+      <i style="color: green; margin-right: 30px; margin-left: 60px; " class="fa-solid fa-check"></i>
+      <p style="margin: 0;" class="text-xs">Access to monthly popular <br>articles.</p>
+    </div>
+    <div style="display: flex; align-items: center; margin-bottom: 20px">
+      <i style="color: green; margin-right: 30px; margin-left: 60px" class="fa-solid fa-check"></i>
+      <p style="margin: 0;" class="text-xs">Personalized content <br>suggestions.</p>
+    </div>
+    <div style="display: flex; align-items: center; margin-bottom: 20px">
+      <i style="color: green; margin-right: 30px; margin-left: 60px" class="fa-solid fa-check"></i>
+      <p style="margin: 0;" class="text-xs">With free 10 credit points for <br>downloading pdf and ebook <br> a day.</p>
+    </div>
+    <div style="display: flex; align-items: center; margin-bottom: 20px">
+      <i style="color: green; margin-right: 30px; margin-left: 60px" class="fa-solid fa-check"></i>
+      <p style="margin: 0;" class="text-xs">Access to submission of <br>article .</p>
+    </div>
+    <div style="display: flex; align-items: center; margin-bottom: 20px">
+      <i style="color: green; margin-right: 30px; margin-left: 60px" class="fa-solid fa-check"></i>
+      <p style="margin: 0;" class="text-xs">No advertisements.</p>
+    </div>
+  </div>
+  <div id="btn-price">
+    <button class="btn btn-primary btn-md mt-1" onclick="window.location.href='pricing.php'">See Pricing</button>
+  </div>
+</div>
   </div>
 </div>
 

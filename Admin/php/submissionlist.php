@@ -29,6 +29,9 @@ $incomplete_articles = get_article_list($cid);
                 <a class="nav-link" id="tabIncomplete" data-status="Incomplete">Incomplete</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" id="tabProduction" data-status="Pending">Pending</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" id="tabProduction" data-status="Review">Review</a>
             </li>
             <li class="nav-item">
@@ -52,7 +55,7 @@ $incomplete_articles = get_article_list($cid);
                         <?php foreach ($incomplete_articles as $incomplete_articlesval): ?>
                             <tr>
                                 <td width="5%"><?php echo $incomplete_articlesval->article_id; ?></td>
-                                <td width="50%">
+                                <td width="75%">
                                     <b>
                                         <?php
                                         $author_names = [];
@@ -91,21 +94,13 @@ $incomplete_articles = get_article_list($cid);
                                     }
                                     ?>
 
-                                <td width="10%">
+                                <td width="15%">
                                     <span class="badge bg-<?php echo $statusClass; ?> me-1">
                                         <?php echo $statusLabel; ?>
                                     </span>
                                 </td>
-                                <td width="10%">
-                                    <div class="dropdown">
-                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                            <i class="bx bx-dots-vertical-rounded"></i>
-                                        </button>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a>
-                                            <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Delete</a>
-                                        </div>
-                                    </div>
+                                <td width="5%">
+                                 <button type="button" class="btn btn-outline-dark">View</button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

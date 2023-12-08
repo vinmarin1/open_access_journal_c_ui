@@ -2,7 +2,6 @@
 
 include 'dbcon.php';
 
-// Check if the function is not already defined
 if (!function_exists('get_journal_list')) {
     function get_journal_list()
     {
@@ -11,7 +10,7 @@ if (!function_exists('get_journal_list')) {
         if ($pdo) {
             try {
                 $query = "SELECT * FROM journal";
-                $stmt = $pdo->query($query);
+                $stmt = $pdo->query($query);    
 
                 $result = $stmt->fetchAll(PDO::FETCH_OBJ);
 
