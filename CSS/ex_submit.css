@@ -42,11 +42,69 @@
     font-weight: normal;
 }
 
+.form-floating{
+    display: inline-block;
+    width: 60%;
+    max-width: 100%;
+    min-width: auto;
+}
+
+.form-floating-2{
+    display: none;
+    width: 300px;
+    max-width: 350px;
+    min-width: auto;
+    float: right;
+}
+
+
+
+#duplication-title, .checker-titles{
+    color: #115272;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+}
+
+.duplicated-article, .journal-type-container{
+    border: 1px #999999 solid;
+    width: auto;
+    height: auto;
+    border-radius: 5px;
+    padding-top: 10px;
+    padding-left: 10px;
+    
+}
+
+.suggestion-title{
+    color: #115272;
+    font-family: 'Times New Roman', Times, serif;
+    width: 95%;
+    margin-top: 20px;
+}
+
+.journal-type-container{
+    margin-top: 10px;
+}
+
+#journal-type{
+    width: 95%;
+}
+
+
+#check-duplication{
+    width: 100%;
+    background-color: #115272;
+    color: white;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+
 #title-1, #title-2, #title-3,#sub-1, #sub-2, #sub-3, #sub-4, #sub-5{
     margin-left: 40px;
     color: #115272;
     font-family: 'Times New Roman', Times, serif;
-    width: 800px;
+    width: 100%;
 }
 
 #line-1, #line-2{
@@ -453,7 +511,7 @@
 
 
 
-#prev, #next, #submit{
+#prev, #next, #submit, #check-d{
     float: right;
     margin-left: 10px;
     width: 120px;

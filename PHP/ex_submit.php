@@ -117,6 +117,25 @@
      
       </div>
 
+      <div class="form-floating-2" id="form-floating-2">
+        <h5 id="duplication-title">Checking of Details</h5>
+        <div class="duplicated-article">
+          <h6 class="checker-titles">Duplication Checker</h6>
+          <p>Cheking...</p>
+        </div>
+        <div class="journal-type-container">
+          <h6 class="checker-titles">Journal Classification</h6>
+          <select class="form-select" name="journal-type" id="journal-type">
+            <option value="">Analyzing...</option>
+            <option value="1">The Gavel</option>
+            <option value="2">The Star</option>
+            <option value="3">The Lamp</option>
+          </select>
+          <p class="suggestion-title">QOAJ can suggest journal based on your article</p>
+        </div>
+        <button type="button" class="btn btn-primary btn-sm" id="check-duplication">Check</button>
+      </div>
+
   
     
       
@@ -301,7 +320,9 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 <div id="btn-action">
 <button type="submit" class="btn btn-success btn-sm" id="submit">Submit</button>
 <button type="button" class="btn btn-primary btn-sm" id="next">Next</button>
-<button type="button" class="btn btn-secondary btn-sm" id="prev">Prev</button>
+<button type="button" class="btn btn-primary btn-sm" id="check-d">Check</button>
+
+<button type="button" class="btn btn-success btn-sm" id="prev">Prev</button>
 
 </div>
 

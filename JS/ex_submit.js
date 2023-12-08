@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var selectedTabIndex = 0;
   var prevBtn = document.getElementById("prev");
   var nextBtn = document.getElementById("next");
+  var checkDuplicateBtn = document.getElementById("check-d");
   var submitBtn = document.getElementById("submit");
   var form = document.getElementById("form");
   var inputFields = form.querySelectorAll("input");
@@ -19,14 +20,23 @@ document.addEventListener('DOMContentLoaded', function () {
       prevBtn.style.display = "none";
       nextBtn.style.display = "inline-block";
       submitBtn.style.display = "none";
-    } else if (index > 0 && index < tabButtons.length - 1) {
+      checkDuplicateBtn.style.display = "none";
+    }else if(index === 1){
       prevBtn.style.display = "inline-block";
       nextBtn.style.display = "inline-block";
       submitBtn.style.display = "none";
+      checkDuplicateBtn.style.display = "inline-block";
+    } 
+    else if (index > 0 && index < tabButtons.length - 1) {
+      prevBtn.style.display = "inline-block";
+      nextBtn.style.display = "inline-block";
+      submitBtn.style.display = "none";
+      checkDuplicateBtn.style.display = "none";
     } else if (index === tabButtons.length - 1) {
       prevBtn.style.display = "inline-block";
       nextBtn.style.display = "none";
       submitBtn.style.display = "inline-block";
+      checkDuplicateBtn.style.display = "none";
     }
   }
 
@@ -441,6 +451,16 @@ document.getElementById('update-cont-3').addEventListener('click', function (eve
 
 });
 
+document.getElementById('check-d').addEventListener('click', function (event){
+  const formFloat = document.getElementById('form-floating-2');
+
+  if(formFloat.style.display === "none" || formFloat.style.display === ""){
+    formFloat.style.display = "inline-block";
+  }else{
+    formFloat.style.display = "none";
+  }
+  
+});
  
 
 
