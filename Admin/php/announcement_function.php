@@ -47,6 +47,8 @@ if (!function_exists('get_announcement_list')) {
      
              function fetchUserData() {
                  $announcement_Id = $_POST['announcement_id'];
+
+                 
              
                  $result = execute_query("SELECT * FROM announcement WHERE announcement_id = ?", [$announcement_Id]);
              
