@@ -30,37 +30,10 @@ $announcementtypelist = get_announcementtype_list();
             <div style="display: flex; margin-top: 15px; margin-right: 15px;">
                 
                   <!-- Button trigger modal -->
-             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Announcemen Typet </button>
+             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Announcement Type </button>
             </div>
         </div>
-           <!-- Modal -->
-           <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Add Announcement Type</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form method="post" enctype="multipart/form-data">
-                            <div class="form-group row">
-                                <div class="col-md-8">
-                                    <div class="mb-3">
-                                        <label for="announcement_type_id" class="form-label ps-2">Announcement Type </label>
-                                        <input type="text" name="announcement_type_id" class="form-control Information-input" id="announcement_type_id" placeholder="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" name="add" class="btn btn-primary">Save changes</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <br><br>
+          
             <div class="table-responsive text-nowrap">
                 <table class="table table-striped" id="DataTable">
                     <thead>
@@ -107,6 +80,62 @@ $announcementtypelist = get_announcementtype_list();
                 "searching": true,
             });
         });
+        function addRecord() {
+        var formData = {
+            announcement_type: $("#announcement_type").val(),
+            action: "add"
+        };
+
+        $.ajax({
+            url: "announcementtype_function.php",
+            method: "POST",
+            data: formData,
+            success: function (data) {
+                var response = JSON.parse(data);
+
+                // Show alert
+                if (response.status) {
+                    alert("Record added successfully");
+                } else {
+                    alert("Failed to add record");
+                }
+
+                // Reload the page
+                location.reload();
+            },
+            error: function (xhr, status, error) {
+                console.error("Ajax request failed:", error);
+            }
+        });
+    }
     </script>
+     <!-- add Modal -->
+     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Add Announcement Type</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" enctype="multipart/form-data">
+                            <div class="form-group row">
+                                <div class="col-md-8">
+                                    <div class="mb-3">
+                                        <label for="announcement_type_id" class="form-label ps-2">Announcement Type </label>
+                                        <input type="text" name="announcement_type_id" class="form-control Information-input" id="announcement_type_id" placeholder="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="addRecord()">Save changes</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br><br>
 </body>
 </html>

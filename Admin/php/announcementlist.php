@@ -28,11 +28,99 @@ include 'announcement_function.php';
             <h5 class="card-header mb-0">Announcement</h5>
             <div style="display: flex; margin-top: 15px; margin-right: 15px;">
                <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Announcement </button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Add Announcement </button>
             </div>
         </div>
-           <!-- Modal -->
-           <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="table-responsive text-nowrap">
+                <table class="table table-striped" id="DataTableAnnouncement">
+                    <thead>
+                        <tr>
+                            <th>Announcement ID</th>
+                            <th>Announcement Type</th>
+                            <th>Title</th>
+                            <th>description</th>
+                            <th>Announcement</th>
+                            <th>Upload Image</th>
+                            <th>Expiry Date </th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                <tbody>
+                <?php foreach ($announcementlist as $announcementlistval): ?>
+                            <tr>
+                                <td width="5%"><?php echo   $announcementlistval->announcement_id; ?></td>
+                                <td width="50%"><?php echo  $announcementlistval->announcement_type_id; ?></td>
+                                <td width="50%"><?php echo  $announcementlistval->title; ?></td>
+                                <td width="50%"><?php echo  $announcementlistval->announcement_description; ?></td>
+                                <td width="50%"><?php echo  $announcementlistval->announcement; ?></td>
+                                <td width="50%"><?php echo  $announcementlistval->upload_image; ?></td>
+                                <td width="50%"><?php echo  $announcementlistval->expired_date; ?></td>
+                                <td width="10%">
+                                <button type="button" class="btn btn-outline-success">Update</button>
+                                    <!-- btn for delete prod modal -->
+                                    <button type="button" class="btn btn-outline-danger">Delete</button>
+                                  </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+              </table>
+            </div>
+        </div>    
+
+        <!-- Include footer -->
+        <?php include 'footer.php'; ?>
+    </div>
+
+    <!-- Include the DataTables CSS and JS files -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+
+    <!-- DataTables initialization script with status filter -->
+    <script>
+        $(document).ready(function() {
+            var dataTable = $('#DataTable').DataTable({
+                "paging": true,
+                "ordering": true,
+                "searching": true,
+            });
+        });
+        function addRecord() {
+        var formData = {
+            announcement_type_id: $("#announcement_type_id").val(),
+            title: $("#title").val(),
+            announcement_description: $("#announcement_description").val(),
+            announcement: $("#announcement").val(),
+            expired_date: $("#expired_date").val(),
+            action: "add"
+        };
+
+        $.ajax({
+            url: "announcement_function.php",
+            method: "POST",
+            data: formData,
+            success: function (data) {
+                var response = JSON.parse(data);
+
+                // Show alert
+                if (response.status) {
+                    alert("Record added successfully");
+                } else {
+                    alert("Failed to add record");
+                }
+
+                // Reload the page
+                location.reload();
+            },
+            error: function (xhr, status, error) {
+                console.error("Ajax request failed:", error);
+            }
+        });
+    }
+    </script>
+
+     <!-- addModal -->
+     <div class="modal fade" id="addModal" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -81,69 +169,13 @@ include 'announcement_function.php';
                                 </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" name="add" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="addRecord()">Save changes</button>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
             <br><br>
-
-        <div class="table-responsive text-nowrap">
-                <table class="table table-striped" id="DataTable">
-                    <thead>
-                        <tr>
-                            <th>Announcement ID</th>
-                            <th>Announcement Type</th>
-                            <th>Title</th>
-                            <th>description</th>
-                            <th>Announcement</th>
-                            <th>Upload Image</th>
-                            <th>Expiry Date </th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                <tbody>
-                <?php foreach ($announcementlist as $announcementlistval): ?>
-                            <tr>
-                                <td width="5%"><?php echo   $announcementlistval->announcement_id; ?></td>
-                                <td width="50%"><?php echo  $announcementlistval->announcement_type_id; ?></td>
-                                <td width="50%"><?php echo  $announcementlistval->title; ?></td>
-                                <td width="50%"><?php echo  $announcementlistval->description; ?></td>
-                                <td width="50%"><?php echo  $announcementlistval->announcement; ?></td>
-                                <td width="50%"><?php echo  $announcementlistval->upload_image; ?></td>
-                                <td width="50%"><?php echo  $announcementlistval->expiry_date; ?></td>
-                                <td width="10%">
-                                <button type="button" class="btn btn-outline-success">Update</button>
-                                    <!-- btn for delete prod modal -->
-                                    <button type="button" class="btn btn-outline-danger">Delete</button>
-                                  </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-              </table>
-            </div>
-        </div>    
-
-        <!-- Include footer -->
-        <?php include 'footer.php'; ?>
-    </div>
-
-    <!-- Include the DataTables CSS and JS files -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
-
-    <!-- DataTables initialization script with status filter -->
-    <script>
-        $(document).ready(function() {
-            var dataTable = $('#DataTable').DataTable({
-                "paging": true,
-                "ordering": true,
-                "searching": true,
-            });
-        });
-    </script>
 </body>
 </html>
