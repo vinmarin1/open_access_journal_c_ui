@@ -42,7 +42,7 @@ if (!function_exists('get_announcementtype_list')) {
              fetchUserData();
              break;
          case 'update':
-             updateUserData();
+             updateannouncement_typeData();
              break;
      }
      
@@ -77,7 +77,7 @@ if (!function_exists('get_announcementtype_list')) {
          }
      }
 
-     function updateUserData() {
+     function updateannouncement_typeData() {
         $announcement_type_Id = $_POST['announcement_type_id'];
         $updatedData = $_POST['updated_data'];
     
@@ -102,5 +102,14 @@ if (!function_exists('get_announcementtype_list')) {
         }
     }
     
+    function archiveUser()
+    {
+        $announcement_type_Id = $_POST['announcement_type_id'];
+
+        $query = "UPDATE announcement_type SET status = 0 WHERE announcement_type_id = ?";
+        $result = execute_query($query, [ $announcement_type_Id]);
+    
+        echo json_encode(['status' => $result !== false, 'message' => $result !== false ? 'Announcmenet Type archived successfully' : 'Failed to archive user']);
+    }
 
 ?>
