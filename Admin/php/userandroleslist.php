@@ -63,7 +63,7 @@ $rolelist = get_role_list();
             <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
                 <h5 class="card-header mb-0">Roles List</h5>
                 <div style="display: flex; margin-top: 15px; margin-right: 15px;">
-                    <button type="button" id="tabAll" class="btn btn-primary" style="margin-right: 10px;" data-bs-toggle="modal" data-bs-target="#addModal">Add Roles</button>
+                    <button type="button" id="tabAll" class="btn btn-primary" style="margin-right: 10px;" data-bs-toggle="modal" data-bs-target="#addRoleModal">Add Roles</button>
                     <button type="button" id="tabPublished" class="btn btn-primary">Download</button>
                 </div>
             </div>
@@ -84,8 +84,8 @@ $rolelist = get_role_list();
                                 <td width="35%"><?php echo $rolelistval->role; ?></td>
                                 <td width="50%"><?php echo $rolelistval->role_name; ?></td>
                                 <td width="10%">
-                                    <button type="button" class="btn btn-outline-success" onclick="openUpdateModal('<?php echo $rolelistval->admin_role_id; ?>')">Update</button>
-                                    <button type="button" class="btn btn-outline-danger" onclick="openArchiveModal('<?php echo $rolelistval->admin_role_id; ?>')">Archive</button>
+                                    <button type="button" class="btn btn-outline-success" onclick="updateModalRole('<?php echo $rolelistval->admin_role_id; ?>')">Update</button>
+                                    <button type="button" class="btn btn-outline-danger" onclick="archiveRole(<?php echo $rolelistval->admin_role_id; ?>, '<?php echo $rolelistval->role; ?>', '<?php echo $rolelistval->role_name; ?>')">Archive</button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -131,42 +131,44 @@ $rolelist = get_role_list();
         });
 
         function addRecord() {
-        var formData = {
-            first_name: $("#first_name").val(),
-            middle_name: $("#middle_name").val(),
-            last_name: $("#last_name").val(),
-            email: $("#email").val(),
-            phone_number: $("#phone_number").val(),
-            gender: $("#gender").val(),
-            dob: $("#dob").val(),
-            orcid: $("#orcid").val(),
-            orcidurl: $("#orcidurl").val(),
-            school_name: $("#school_name").val(),
-            field_expertise: $("#field_expertise").val(),
-            action: "add"
-        };
+        var form = document.getElementById('addModalForm');
 
-        $.ajax({
-            url: "userandroles_function.php",
-            method: "POST",
-            data: formData,
-            success: function (data) {
-                var response = JSON.parse(data);
+        if (form.checkValidity()) {
+            var formData = {
+                first_name: $("#first_name").val(),
+                middle_name: $("#middle_name").val(),
+                last_name: $("#last_name").val(),
+                email: $("#email").val(),
+                phone_number: $("#phone_number").val(),
+                gender: $("#gender").val(),
+                dob: $("#dob").val(),
+                orcid: $("#orcid").val(),
+                orcidurl: $("#orcidurl").val(),
+                school_name: $("#school_name").val(),
+                field_expertise: $("#field_expertise").val(),
+                action: "add"
+            };
 
-                // Show alert
-                if (response.status) {
-                    alert("Record added successfully");
-                } else {
-                    alert("Failed to add record");
+            $.ajax({
+                url: "userandroles_function.php",
+                method: "POST",
+                data: formData,
+                success: function (data) {
+                    var response = JSON.parse(data);
+                    if (response.status) {
+                        alert("Record added successfully");
+                    } else {
+                        alert("Email is already used");
+                    }
+                    location.reload();
+                },
+                error: function (xhr, status, error) {
+                    console.error("Ajax request failed:", error);
                 }
-
-                // Reload the page
-                location.reload();
-            },
-            error: function (xhr, status, error) {
-                console.error("Ajax request failed:", error);
-            }
-        });
+            });
+        } else {
+            form.reportValidity();
+        }
     }
 
     function archiveUser(authorId, firstName, lastName) {
@@ -226,15 +228,12 @@ $rolelist = get_role_list();
                     $('#xschool_name').val(userData.school_name);
                     $('#xfield_expertise').val(userData.field_of_expertise);
 
-                    // Show the modal
                     $('#updateModal').modal('show');
                 }
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.log('AJAX Error:', textStatus, errorThrown);
-                // Handle AJAX errors
                 console.log('Error fetching user data');
-                // You can perform additional actions here if needed
             }
         });
     }
@@ -270,22 +269,141 @@ $rolelist = get_role_list();
                 console.log('Update Response:', response);
 
                 if (response.status === true) {
-                    // Handle successful update
                     alert("Record updated successfully");
                     $('#updateModal').modal('hide');
                     location.reload();
                 } else {
-                    // Handle update failure
                     console.error('Error updating user data:', response.message);
                     alert("Failed to update record. Please try again.");
                 }
             },
         });
     }
+
+    function addRoleRecord() {
+        var form = document.getElementById('addModalRoleForm');
+
+        if (form.checkValidity()) {
+            var formData = {
+                role: $("#role").val(),
+                role_name: $("#role_name").val(),
+                action: "addrole"
+            };
+
+            $.ajax({
+                url: "userandroles_function.php",
+                method: "POST",
+                data: formData,
+                success: function (data) {
+                    var response = JSON.parse(data);
+                    if (response.status) {
+                        alert("Record added successfully");
+                    } else {
+                        alert("All fields required");
+                    }
+                    location.reload();
+                },
+                error: function (xhr, status, error) {
+                    console.error("Ajax request failed:", error);
+                }
+            });
+        } else {
+            form.reportValidity();
+        }
+    }
+
+    function updateModalRole(roleId) {
+        $.ajax({
+            type: 'POST',
+            url: 'userandroles_function.php',
+            data: { action: 'fetchrole', role_id: roleId },
+            dataType: 'json',
+            success: function (response) {
+                console.log('Response from server:', response);
+
+                if (response.status === true && response.data.length > 0) {
+                    const roleData = response.data[0];
+                    console.log('Role Data:', roleData);
+
+                    $('#xroleid').val(roleData.admin_role_id);
+                    $('#xrole').val(roleData.role);
+                    $('#xrole_name').val(roleData.role_name);
+                    $('#updateRoleModal').modal('show');
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log('AJAX Error:', textStatus, errorThrown);
+                console.log('Error fetching user data');
+            }
+        });
+    }
+
+    function saveChangesRole() {
+        console.log('Save button clicked');
+        
+        var roleId = $('#xroleid').val();
+        var updatedRoleData = {
+            role: $('#xrole').val(),
+            role_name: $('#xrole_name').val(),
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: 'userandroles_function.php',
+            data: {
+                action: 'updaterole',
+                role_id: roleId,
+                updated_roledata: updatedRoleData
+            },
+            dataType: 'json',
+            success: function (response) {
+                console.log('Update Response:', response);
+
+                if (response.status === true) {
+                    alert("Record updated successfully");
+                    $('#updateRoleModal').modal('hide');
+                    location.reload();
+                } else {
+                    console.error('Error updating user data:', response.message);
+                    alert("Failed to update record. Please try again.");
+                }
+            },
+        });
+    }
+
+    function archiveRole(roleId, role, role_name) {
+        $('#archiveRoleModal').modal('show');
+        $('#archiveModalTitle').text('Archive Role');
+        $('#roleInfo').html('<strong>Role:</strong> ' + role + ' <br><strong>Role_Name:</strong> ' + role_name + ' <br><strong>ID:</strong> ' + roleId);
+
+        $('#archiveRoleModalSave').off().on('click', function () {
+            $.ajax({
+                url: "userandroles_function.php",
+                method: "POST",
+                data: { action: "archiverole", role_id: roleId },
+                success: function (data) {
+                    var response = JSON.parse(data);
+                    if (response.status) {
+                        $('#archiveRoleModalMessage').text('Role archived successfully');
+                    } else {
+                        $('#archiveRoleModalMessage').text('Failed to archive role');
+                    }
+                    $('#archiveRoleModal').modal('hide');
+                    location.reload();
+                },
+                error: function (xhr, status, error) {
+                    console.error("Ajax request failed:", error);
+                    $('#archiveRoleModalMessage').text('Failed to archive role');
+                    $('#archiveRoleModal').modal('hide');
+                }
+            });
+        });
+    }
     </script>
 
      <!-- Add Modal -->
      <div class="modal fade" id="addModal" tabindex="-1" aria-hidden="true">
+     <form id="addModalForm">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -296,7 +414,7 @@ $rolelist = get_role_list();
                     <div class="row mb-2">
                         <div class="col-md-4 mb-2">
                             <label for="xfirstname" class="form-label">First Name</label>
-                            <input type="text" id="first_name" class="form-control" placeholder="First Name" />
+                            <input type="text" id="first_name" class="form-control" placeholder="First Name" required/>
                         </div>
                         <div class="col-md-4 mb-2">
                             <label for="xmiddlename" class="form-label">Middle Name</label>
@@ -304,7 +422,7 @@ $rolelist = get_role_list();
                         </div>
                         <div class="col-md-4 mb-2">
                             <label for="xlastname" class="form-label">Last Name</label>
-                            <input type="text" id="last_name" class="form-control" placeholder="Last Name" />
+                            <input type="text" id="last_name" class="form-control" placeholder="Last Name" required/>
                         </div>
                     </div>
                     <div class="row mb-2">
@@ -312,7 +430,7 @@ $rolelist = get_role_list();
                             <label class="form-label" for="xemail">Email</label>
                             <div class="input-group input-group-merge">
                                 <span class="input-group-text"><i class="bx bx-envelope"></i></span>
-                                <input type="text" id="email" class="form-control" placeholder="juan.delacruz" aria-label="juan.delacruz" aria-describedby="basic-icon-default-email2" />
+                                <input type="text" id="email" class="form-control" placeholder="juan.delacruz" aria-label="juan.delacruz" aria-describedby="basic-icon-default-email2" required/>
                                 <span id="semail" class="input-group-text">@example.com</span>
                             </div>
                         </div>
@@ -328,7 +446,7 @@ $rolelist = get_role_list();
                         <div class="col-md-6 mb-2">
                             <label for="xgender" class="form-label">Gender</label>
                             <select id="gender" class="form-select">
-                                <option>Select Gender</option>
+                                <option value="Null">Select Gender</option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
                                 <option value="Others">Others</option>
@@ -342,11 +460,11 @@ $rolelist = get_role_list();
                     <div class="row mb-3">
                         <div class="col-md-6 mb-2">
                             <label for="xorcid" class="form-label">ORCID</label>
-                            <input type="text" id="orcid" class="form-control" placeholder="ORCID" />
+                            <input type="text" id="orcid" class="form-control" placeholder="ORCID" required/>
                         </div>
                         <div class="col-md-6 mb-2">
                             <label for="xorcidurl" class="form-label">ORCID URL</label>
-                            <input type="text" id="orcidurl" class="form-control" placeholder="ORCID URL" />
+                            <input type="text" id="orcidurl" class="form-control" placeholder="ORCID URL" required/>
                         </div>
                     </div>
                     <div class="row mb-2">
@@ -374,6 +492,7 @@ $rolelist = get_role_list();
                 </div>
             </div>
         </div>
+        </form>
     </div>
 
     <!-- Update Modal -->
@@ -471,7 +590,7 @@ $rolelist = get_role_list();
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <h5 class="modal-title" id="modalToggleLabel">Are you sure you want to archive the following user?</h5>
+                        <h5 class="modal-title" id="modalToggleLabel">Are you sure you want to archive this user?</h5>
                         <p id="userInfo"></p>
                     </div>
                 </div>
@@ -483,5 +602,91 @@ $rolelist = get_role_list();
         </div>
     </div>
 
+     <!-- Add Role Modal -->
+     <div class="modal fade" id="addRoleModal" tabindex="-1" aria-hidden="true">
+     <form id="addModalRoleForm">
+        <div class="modal-dialog modal-dialog-centered modal-m" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel3">Add Role</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row mb-2">
+                        <div class="col-md-12 mb-2">
+                            <label for="xrole" class="form-label">Role</label>
+                            <input type="text" id="role" class="form-control" placeholder="Role" required/>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-12 mb-2">
+                            <label for="xrole_name" class="form-label">Role Name</label>
+                            <input type="text" id="role_name" class="form-control" placeholder="Role Name" required/>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="addRoleRecord()">Save changes</button>
+                </div>
+            </div>
+        </div>
+        </form>
+    </div>
+
+    <!-- Update Role Modal -->
+    <div class="modal fade" id="updateRoleModal" tabindex="-1" aria-hidden="true">
+    <form id="">
+        <div class="modal-dialog modal-dialog-centered modal-m" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel3">Update Role</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row mb-2">
+                        <div class="col-md-12 mb-2">
+                            <input type="hidden" id="xroleid" class="form-control"/>
+                            <label for="xrole" class="form-label">Role</label>
+                            <input type="text" id="xrole" class="form-control" placeholder="Role" required/>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-12 mb-2">
+                            <label for="xrole_name" class="form-label">Role Name</label>
+                            <input type="text" id="xrole_name" class="form-control" placeholder="Role Name" required/>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="saveChangesRole()">Save changes</button>
+                </div>
+            </div>
+        </div>
+        </form>
+    </div>
+
+    <!-- Archive Role Modal -->
+    <div class="modal fade" id="archiveRoleModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="archiveModalTitle">Archive User</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <h5 class="modal-title" id="modalToggleLabel">Are you sure you want to archive this role?</h5>
+                        <p id="roleInfo"></p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="archiveRoleModalSave">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
