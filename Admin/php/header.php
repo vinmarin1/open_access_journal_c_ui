@@ -227,7 +227,6 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     </li>
                   </ul>
                 </li>
-                <!--/ User -->
               </ul>
             </div>
           </nav>
