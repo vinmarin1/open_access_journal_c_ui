@@ -61,27 +61,31 @@ if (!function_exists('get_announcement_list')) {
                  }
              }
              
-     function addRecord()
+    function addRecord()
      {
+        if ($_SERVER['REQUEST_METHOD'] === "POST") {
          $announcement_type_id = $_POST['announcement_type_id'];
          $title = $_POST['title'];
          $announcement_description = $_POST['announcement_description'];
          $announcement = $_POST['announcement'];
+         $upload_image = $_POST['upload_image'];
          $expired_date= $_POST['expired_date'];
          
         
      
-         $query = "INSERT INTO announcement (announcement_type_id, title,announcement_description, announcement, expired_date) 
+         $query = "INSERT INTO announcement (announcement_type_id, title,announcement_description, announcement,upload_image ,expired_date) 
          VALUES (?, ?, ?, ?, ?)";
      
-         $result = execute_query($query, [$announcement_type_id, $title, $announcement_description , $announcement, $expired_date ], true);
+         $result = execute_query($query, [$announcement_type_id, $title, $announcement_description , $announcement,$upload_image, $expired_date ], true);
      
          if ($result !== false) {
-             echo json_encode(['status' => true, 'message' => 'Record added successfully']);
+             echo 'hello world';
          } else {
              echo json_encode(['status' => false, 'message' => 'Failed to add record']);
          }
      }
+    }
+
+?>
 
    
-?>
