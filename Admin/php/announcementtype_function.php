@@ -36,7 +36,7 @@ if (!function_exists('get_announcementtype_list')) {
              addRecord();
              break;
          case 'archive':
-             archiveUser();
+             archiveAnnouncementtype();
              break;
          case 'fetch':
              fetchUserData();
@@ -102,7 +102,7 @@ if (!function_exists('get_announcementtype_list')) {
         }
     }
     
-    function archiveUser()
+    function  archiveAnnouncementtype()
     {
         $announcement_type_Id = $_POST['announcement_type_id'];
 

@@ -63,7 +63,6 @@ if (!function_exists('get_announcement_list')) {
              
      function addRecord()
      {
-        if ($_SERVER['REQUEST_METHOD'] === "POST") {
          $announcement_type_id = $_POST['announcement_type_id'];
          $title = $_POST['title'];
          $announcement_description = $_POST['announcement_description'];
@@ -84,7 +83,7 @@ if (!function_exists('get_announcement_list')) {
              echo json_encode(['status' => false, 'message' => 'Failed to add record']);
          }
      }
-    }
+    
 
 ?>
 
