@@ -61,7 +61,7 @@ if (!function_exists('get_announcement_list')) {
                  }
              }
              
-    function addRecord()
+     function addRecord()
      {
         if ($_SERVER['REQUEST_METHOD'] === "POST") {
          $announcement_type_id = $_POST['announcement_type_id'];
@@ -79,7 +79,7 @@ if (!function_exists('get_announcement_list')) {
          $result = execute_query($query, [$announcement_type_id, $title, $announcement_description , $announcement,$upload_image, $expired_date ], true);
      
          if ($result !== false) {
-             echo 'hello world';
+             echo json_encode(['status' => true, 'message' => 'Record added successfully']);
          } else {
              echo json_encode(['status' => false, 'message' => 'Failed to add record']);
          }
