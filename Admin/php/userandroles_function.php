@@ -27,7 +27,7 @@ include 'dbcon.php';
 
         if ($pdo) {
             try {
-                $query = "SELECT * FROM admin_role";
+                $query = "SELECT * FROM admin_role WHERE status = 1";
                 $stmt = $pdo->query($query);
 
                 $result = $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -46,33 +46,59 @@ include 'dbcon.php';
     $action = isset($_POST['action']) ? $_POST['action'] : '';
 
     switch ($action) {
-        case 'add':
-            addRecord();
-            break;
-        case 'archive':
-            archiveUser();
-            break;
         case 'fetch':
             fetchUserData();
+            break;
+        case 'add':
+            addRecord();
             break;
         case 'update':
             updateUserData();
             break;
+        case 'archive':
+            archiveUser();
+            break;
+        case 'fetchrole':
+            fetchRoleData();
+            break;    
+        case 'addrole':
+            addRoleRecord();
+            break;
+        case 'updaterole':
+            updateRoleData();
+            break;  
+        case 'archiverole':
+            archiveRole();
+            break;  
     }
     
-            function fetchUserData() {
-                $authorId = $_POST['author_id'];
-            
-                $result = execute_query("SELECT * FROM author WHERE author_id = ?", [$authorId]);
-            
-                header('Content-Type: application/json');
-            
-                if ($result !== false) {
-                    echo json_encode(['status' => true, 'data' => $result]);
-                } else {
-                    echo json_encode(['status' => false, 'message' => 'Failed to fetch user data']);
-                }
-            }
+    function fetchUserData() {
+        $authorId = $_POST['author_id'];
+    
+        $result = execute_query("SELECT * FROM author WHERE author_id = ?", [$authorId]);
+    
+        header('Content-Type: application/json');
+    
+        if ($result !== false) {
+            echo json_encode(['status' => true, 'data' => $result]);
+        } else {
+            echo json_encode(['status' => false, 'message' => 'Failed to fetch user data']);
+        }
+    }
+
+    function fetchRoleData() {
+        $roleId = $_POST['role_id'];
+    
+        $result = execute_query("SELECT * FROM admin_role WHERE admin_role_id = ?", [$roleId]);
+    
+        header('Content-Type: application/json');
+    
+        if ($result !== false) {
+            echo json_encode(['status' => true, 'data' => $result]);
+        } else {
+            echo json_encode(['status' => false, 'message' => 'Failed to fetch user data']);
+        }
+    }
             
     function addRecord()
     {
@@ -100,16 +126,6 @@ include 'dbcon.php';
         } else {
             echo json_encode(['status' => false, 'message' => 'Failed to add record']);
         }
-    }
-    
-    function archiveUser()
-    {
-        $authorId = $_POST['author_id'];
-
-        $query = "UPDATE author SET status = 0 WHERE author_id = ?";
-        $result = execute_query($query, [$authorId]);
-    
-        echo json_encode(['status' => $result !== false, 'message' => $result !== false ? 'User archived successfully' : 'Failed to archive user']);
     }
 
     function updateUserData() {
@@ -148,6 +164,69 @@ include 'dbcon.php';
             echo json_encode(['status' => false, 'message' => 'Failed to update user data']);
         }
     }
-    
 
+    function archiveUser()
+    {
+        $authorId = $_POST['author_id'];
+
+        $query = "UPDATE author SET status = 0 WHERE author_id = ?";
+        $result = execute_query($query, [$authorId]);
+    
+        echo json_encode(['status' => $result !== false, 'message' => $result !== false ? 'User archived successfully' : 'Failed to archive user']);
+    }
+    
+    function addRoleRecord()
+    {
+        $role = $_POST['role'];
+        $role_name = $_POST['role_name'];
+        $status = 1;
+    
+        $query = "INSERT INTO admin_role (role, role_name, status) 
+        VALUES (?, ?, ?)";
+    
+        $result = execute_query($query, [$role, $role_name, $status], true);
+    
+        if ($result !== false) {
+            echo json_encode(['status' => true, 'message' => 'Record added successfully']);
+        } else {
+            echo json_encode(['status' => false, 'message' => 'Failed to add record']);
+        }
+    }
+
+    function updateRoleData() {
+        $roleId = $_POST['role_id'];
+        $updatedRoleData = $_POST['updated_roledata'];
+
+        $query = "UPDATE admin_role 
+                SET role = ?, role_name = ?
+                WHERE admin_role_id = ?";
+        
+        $pdo = connect_to_database();
+    
+        $stm = $pdo->prepare($query);
+        $check = $stm->execute([
+            $updatedRoleData['role'],
+            $updatedRoleData['role_name'],
+            $roleId
+        ]);
+    
+        header('Content-Type: application/json');
+    
+        if ($check !== false) {
+            echo json_encode(['status' => true, 'message' => 'Role data updated successfully']);
+        } else {
+            echo json_encode(['status' => false, 'message' => 'Failed to update role data']);
+        }
+    }
+
+    function archiveRole()
+    {
+        $roleId = $_POST['role_id'];
+        $query = "UPDATE admin_role SET status = 0 WHERE admin_role_id = ?";
+        $result = execute_query($query, [$roleId]);
+    
+        echo json_encode(['status' => $result !== false, 'message' => $result !== false ? 'Role archived successfully' : 'Failed to archive role']);
+    }
+
+    
 ?>
