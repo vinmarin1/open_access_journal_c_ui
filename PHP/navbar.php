@@ -93,6 +93,7 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
         </li>
     </div>';
 }
+
 ?>
 
     </div>
