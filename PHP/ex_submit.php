@@ -121,15 +121,17 @@
         <h5 id="duplication-title">Checking of Details</h5>
         <div class="duplicated-article">
           <h6 class="checker-titles">Duplication Checker</h6>
-          <p>Cheking...</p>
+      
+          <label id="label-title">Title: </label>
           <div id="similar-title"></div>
+          <label  id="label-abstract">Abstract: </label>
           <div id ="similar-abstract"></div>
         
         </div>
         <div class="journal-type-container">
           <h6 class="checker-titles">Journal Classification</h6>
           <select class="form-select" name="journal-type" id="journal-type">
-            <option value="">Analyzing...</option>
+         
             <option value="1">The Gavel</option>
             <option value="2">The Star</option>
             <option value="3">The Lamp</option>
@@ -343,6 +345,7 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 <script src="../JS/reusable-header.js"></script>
 <script src="../JS/ex_submit.js"></script>
 <script src="../JS/ex_submit_duplicate_article.js"></script>
+<script src="../JS/ex_submit_journal_type.js"></script>
 </body>
 </html>
 
