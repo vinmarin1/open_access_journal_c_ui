@@ -120,7 +120,6 @@
   font-family: 'Times New Roman', Times, serif;
   color: #115272;
   margin-top: 50px;
- 
 }
 
 .offer-right p{
@@ -272,7 +271,7 @@ opacity: 0.8;
 }
 
 .qoaj {
-background-color: #115272;
+background-color: #0858A4;
 }
 
 .About-container, .recommendation-container {
@@ -383,13 +382,13 @@ height: 600px;
 .example-journal {
 border-color: #115272;
 border-radius: 10%;
-border: 2px solid;
+border: 1px solid;
 width: 100%;
 height: 100%;
 display: inline-block; 
 text-align: center; 
 margin: 0 140px 0 140px; 
-
+box-shadow:gray 5px 10px 10px;
  /* Add shadow to the border */
 }
 
@@ -398,7 +397,7 @@ margin-left: -90px;
 margin-right: -90px;
 border-color: #115272;
 border-radius: 10%;
-border: 2px solid;
+border: 1px solid;
 width: 100%;
 height: 100%;
 display: inline-block; 

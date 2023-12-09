@@ -46,39 +46,18 @@
     </div>
     
     
+
+<div class="fluid-container">
+<div class="recommendation-article">
+  <h4>Popular Articles this Month</h4>
+  <div id="popular-articles" class="articles-container">
+ 
+  </div>  
+  </div>
 </div>
-      
+<hr style="height: 2px; background-color: #115272; width: 100%">
 
-
-
-    <div class="fluid-container mb-5">
-      <?php 
-        if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
-          echo ' <div class="recommendation-container">
-          <div class="offer-left">
-          <h2 class="mb-3">QAJ OFFER Personalized Recommendations</h2>
-          <p class="descript">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores similique culpa, molestiae velit quis cumque saepe vel error rerum a totam deleniti, reiciendis, alias perspiciatis et. Facere recusandae fuga voluptate?</p>
-         
-          <br>
-          <button class="btn btn-primary btn-md mt-1">Try it Now</button>
-          <br>
-          </div>
-         
-                <div class="divider-line"></div>
-                <div id="history" class="offer-right">
-                  
-                </div> 
-                <div class="divider-line"></div>
-              <div class="offer-right">
-            
-              </div> 
-        </div>  ';
-        }
-      ?>
-     
-    </div>
-
- <?php
+<?php
   if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
     echo '
       <div class="fluid-container">
@@ -89,18 +68,9 @@
         </div>
       </div>
       </div>
-      <hr style="height: 2px; background-color: #115272 "> '; 
+       '; 
   } 
   ?>
-
-<div class="fluid-container">
-<div class="recommendation-article">
-  <h4>Popular Articles this Month</h4>
-  <div id="popular-articles" class="articles-container">
- 
-  </div>  
-  </div>
-</div>
 
 <div class="fluid-container mb-3 qoaj">
   <div class="About-container ">
@@ -138,8 +108,34 @@
       </div>
     </div>
   </div>
-  <img src="../images/Papers.png" alt="#" class="image">
+
 </div>
+<div class="fluid-container">
+      <?php 
+        if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
+          echo ' <div class="recommendation-container">
+          <div class="offer-left">
+          <h2 class="mb-3">QAJ OFFER Personalized Recommendations</h2>
+          <p class="descript">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores similique culpa, molestiae velit quis cumque saepe vel error rerum a totam deleniti, reiciendis, alias perspiciatis et. Facere recusandae fuga voluptate?</p>
+         
+          <br>
+          <button class="btn btn-primary btn-md mt-1">Try it Now</button>
+          <br>
+          </div>
+         
+                <div class="divider-line"></div>
+                <div id="history" class="offer-right">
+                  
+                </div> 
+                <div class="divider-line"></div>
+              <div class="offer-right">
+            
+              </div> 
+        </div>  ';
+        }
+      ?>
+    </div>
+<img src="../images/Papers.png" alt="#" class="image">
 <div class="container-fluid">
 <h2 class="plans"><b>QOAJ PLANS</b></h2>
   <div class="ex-journal">
@@ -147,6 +143,7 @@
   <div class="example-journal">
   <div class="plans-inside">
     <h3><b>Basic</b></h3>
+    <br>
     <hr style="height: 2px; background-color: #115272; width: 100%">
     <div style="display: flex; align-items: center; margin-bottom: 20px">
       <i style="color: green; margin-right: 30px; margin-left: 60px" class="fa-solid fa-check"></i>
