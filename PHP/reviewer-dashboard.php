@@ -24,7 +24,7 @@ session_start();
 <div class="main-container">
     <div class="content-over">
         <div class="cover-content">
-        <h3><strong>Hello,</strong><br>
+        <h3><strong>Reviewer</strong><br>
     <?php
     if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
         $firstName = isset($_SESSION['first_name']) ? ucfirst($_SESSION['first_name']) : '';
@@ -35,186 +35,88 @@ session_start();
     }
     ?>
 </h3>
+
+
         </div>
-        <button class="btn tbn-primary btn-md" id="btn2" onclick="window.location.href='author-dashboard.php'">As Author</button>
+        <button class="btn tbn-primary btn-md" id="btn1" onclick="window.location.href='author-dashboard.php'">As Author</button>
         <button class="btn tbn-primary btn-md" id="btn2" onclick="window.location.href='reviewer-dashboard.php'">As Reviewer</button>
     </div>
-    <div class="dashboard">
-    <div class="left-column">
-        <!-- <div class="status-boxes">
-            <div class="status-box pending">
-                <div class="status-label">Pending</div>
-                <div class="status-value">0</div>
-            </div>
-            <div class="status-box publish">
-                <div class="status-label">Publish</div>
-                <div class="status-value">0</div>
-            </div>
-            <div class="status-box archive">
-                <div class="status-label">Archive</div>
-                <div class="status-value">0</div>
-            </div>
-        </div> -->
-        <hr style="border-top: 2px solid #ccc; margin: 10px 0; color: #115272;">
-        <div class="continue-reading">
-            <h2 style="color: #115272;">Continue Reading</h2>
-            <div class="articles-containers">
-                <div class="article-preview">
-                    <h3 style="color: #115272;">Blockchain Beyond Cryptocurrency: Transforming Industries with Distributed Ledger Technology</h3>
-                    <div class="journal-views">
-                    <p class="journal" style="color: #115272;">THE GAVEL</p>
-                        <p class="viewss" style="color: #115272;">103 views</p>
-                    </div>
-                    <p class="authors">By Jane Doe Cruz</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
-                    background-color: transparent;
-                    border-radius: 20px;
-                    color: #115272;
-                    width: 100%;">Read Article</button>
-                </div>
-                <div class="article-preview">
-                    <h3 style="color: #115272;">Blockchain Beyond Cryptocurrency: Transforming Industries with Distributed Ledger Technology</h3>
-                    <div class="journal-views">
-                    <p class="journal" style="color: #115272;">THE GAVEL</p>
-                        <p class="viewss" style="color: #115272;">103 views</p>
-                    </div>
-                    <p class="authors">By Jane Doe Cruz</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
-                    background-color: transparent;
-                    border-radius: 20px;
-                    color: #115272;
-                    width: 100%;">Read Article</button>
-                </div>
-                    <!-- Repeat the .article-preview block for other articles as needed -->
-            </div>
-            <div class="articles-containers">
-                <div class="article-preview">
-                    <h3 style="color: #115272;">Blockchain Beyond Cryptocurrency: Transforming Industries with Distributed Ledger Technology</h3>
-                    <div class="journal-views">
-                        <p class="journal" style="color: #115272;">THE GAVEL</p>
-                        <p class="viewss" style="color: #115272;">103 views</p>
-                    </div>
-                    <p class="authors">By Jane Doe Cruz</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
-                    background-color: transparent;
-                    border-radius: 20px;
-                    color: #115272;
-                    width: 100%;">Read Article</button>
-                </div>
-                <div class="article-preview">
-                    <h3 style="color: #115272;">Blockchain Beyond Cryptocurrency: Transforming Industries with Distributed Ledger Technology</h3>
-                    <div class="journal-views">
-                    <p class="journal" style="color: #115272;">THE GAVEL</p>
-                        <p class="viewss" style="color: #115272;">103 views</p>
-                    </div>
-                    <p class="authors">By Jane Doe Cruz</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
-                    background-color: transparent;
-                    border-radius: 20px;
-                    color: #115272;
-                    width: 100%;">Read Article</button>
-                </div>
-                    <!-- Repeat the .article-preview block for other articles as needed -->
-            </div>
-          
-        </div>
-    </div>
 
-    <div class="right-column">
-  <h2 style="color: #115272;">Reviewed Articles</h2>
-  <div class="article-list">
-    <!-- Repeat this block for each article -->
-    <div class="articles">
-      <div class="article-main">
-        <div class="article-infos">
-          <h3 style="color: #115272;">Blockchain Beyond Cryptocurrency: Transforming Industries with Distributed Ledger Technology</h3>
-          <p class="authors">M. Baumgart, N. Druml, M. Consani</p>
-        </div>
-        <div class="article-submission">
-          <span class="submitted"><strong>Submitted at The Gavel</strong></span>
-          <span class="date">October 14, 2023</span>
-        </div>
-      </div>
-      <div class="article-status">
-        <span class="status" style="color: #115272;">Status: <span style="color: red;">Pending Approval</span></span>
-      </div>
+</div> 
+<div class="main">
+    <div class="alert-message" id="alertMessage">
+        Alert: No assigned articles for review as of now. Further, please ensure you have an ORCID ID linked to get assigned.
     </div>
-    <div class="articles">
-      <div class="article-main">
-        <div class="article-infos">
-          <h3 style="color: #115272;">Blockchain Beyond Cryptocurrency: Transforming Industries with Distributed Ledger Technology</h3>
-          <p class="authors">M. Baumgart, N. Druml, M. Consani</p>
+    <div class="stats-section">
+        <div class="stat-card top-card">
+            <h2>Total Assigned</h2>
+            <p>98 <span class="increase">+11%</span></p>
         </div>
-        <div class="article-submission">
-          <span class="submitted"><strong>Submitted at The Gavel</strong></span>
-          <span class="date">October 14, 2023</span>
-        </div>
-      </div>
-      <div class="article-status">
-        <span class="status" style="color: #115272;">Status: <span style="color: red;">Pending Approval</span></span>
-      </div>
-    </div>
-    <div class="articles">
-      <div class="article-main">
-        <div class="article-infos">
-          <h3 style="color: #115272;">Blockchain Beyond Cryptocurrency: Transforming Industries with Distributed Ledger Technology</h3>
-          <p class="authors">M. Baumgart, N. Druml, M. Consani</p>
-        </div>
-        <div class="article-submission">
-          <span class="submitted"><strong>Submitted at The Gavel</strong></span>
-          <span class="date">October 14, 2023</span>
-        </div>
-      </div>
-      <div class="article-status">
-        <span class="status" style="color: #115272;">Status: <span style="color: red;">Pending Approval</span></span>
-      </div>
-    </div>
-    <div class="articles">
-      <div class="article-main">
-        <div class="article-infos">
-          <h3 style="color: #115272;">Blockchain Beyond Cryptocurrency: Transforming Industries with Distributed Ledger Technology</h3>
-          <p class="authors">M. Baumgart, N. Druml, M. Consani</p>
-        </div>
-        <div class="article-submission">
-          <span class="submitted"><strong>Submitted at The Gavel</strong></span>
-          <span class="date">October 14, 2023</span>
-        </div>
-      </div>
-      <div class="article-status">
-        <span class="status" style="color: #115272;">Status: <span style="color: red;">Pending Approval</span></span>
-      </div>
-    </div>
-    <nav aria-label="Page navigation">
-        <ul class="pagination justify-content-center">
-            <!-- Display "Previous" link if not on the first page -->
-            <li class="page-item">
-                <a class="page-link" href="javascript:void(0);" onclick="changePage('previous')" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>
+    </div> 
+    <hr class="full-width">
+    <div class="row">
+        <div class="articles-section full-width">
+            <div class="tabs">
+                <div class="tab active">All Assigned</div>
+                    <div class="tab">Pending</div>
+                        <div class="tab">Done</div>
+                            <button class="btn" id="btn3">Add New</button>
+                        </div>
 
-            <!-- Display page numbers -->
-            <li class="page-item"><a class="page-link active" href="javascript:void(0);" onclick="changePage(1)">1</a></li>
-            <li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="changePage(2)">2</a></li>
-            <li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="changePage(3)">3</a></li>
-            <li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="changePage(4)">4</a></li>
-            <li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="changePage(5)">5</a></li>
-
-            <!-- Display "Next" link if not on the last page -->
-            <li class="page-item">
-                <a class="page-link" href="javascript:void(0);" onclick="changePage('next')" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
-        </ul>
-        </nav>
-  </div>
-  
-</div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th><input type="checkbox"></th>
+                                    <th>Title</th>
+                                    <th>Date Assigned</th>
+                                    <th>Journal</th>
+                                    <th><center>Status</center></th>
+                                    <th><center>Action</center></th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="no-data-message" style="display: none;">
+                                    <td colspan="6">No records found</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>Blockchain Beyond Cryptocurrency: Transforming...</td>
+                                    <td>May 31, 2015</td>
+                                    <td>The Star</td>
+                                    <td><center><span class="status-label pending">Pending</span></center></td>
+                                    <td><center>...</center></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox"></td>
+                                    <td>Industries with Distributed Ledger Technology</td>
+                                    <td>October 24, 2018</td>
+                                    <td>The Star</td>
+                                    <td><center><span class="status-label published">Done</span></center></td>
+                                    <td><center>...</center></td>
+                                    
+                                </tr>
+                            </tbody>
+                        </table>
+                        <hr class="full-width">
+                        <div class="pagination">
+                            Showing 1 to 10 of 50 entries
+                            <div class="pagination-controls">
+                                <button>«</button>
+                                <button>‹</button>
+                                <button class="active">1</button>
+                                <button>2</button>
+                                <button>3</button>
+                                <button>4</button>
+                                <button>›</button>
+                                <button>»</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 
@@ -230,5 +132,6 @@ session_start();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <script src="../JS/reusable-header.js"></script>
+    <script src="../JS/reviewer-dashboard.js"></script>
 </body>
 </html>

@@ -5,7 +5,7 @@
 <html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TIMELINE</title>
+<title>Submit Article</title>
 <link href="../CSS/ex_submit.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -21,7 +21,7 @@
 </nav>
 
 
-<form action="" id="form">
+<form action="ex_submit_con.php" method="post" id="form">
 <ul class="nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item" role="presentation" style="margin-left: -10px;">
     <button class="nav-link active" id="privacy-tab" data-bs-toggle="tab" data-bs-target="#privacy-tab-pane" type="button" role="tab" aria-controls="privacy-tab-pane" aria-selected="true">Privacy</button>
@@ -39,7 +39,7 @@
     <button class="nav-link" id="comment-tab" data-bs-toggle="tab" data-bs-target="#comment-tab-pane" type="button" role="tab" aria-controls="comment-tab-pane" aria-selected="false">Notes</button>
   </li>
   <li class="nav-item" role="presentation">
-    <button class="nav-link" id="review-tab" data-bs-toggle="tab" data-bs-target="#review-tab-pane" type="button" role="tab" aria-controls="review-tab-pane" aria-selected="false">Review</button>
+    <button class="nav-link" id="review-tab" data-bs-toggle="tab" data-bs-target="#review-tab-pane" type="button" role="tab" aria-controls="review-tab-pane" aria-selected="false">Preview</button>
   </li>
 </ul>
 
@@ -78,7 +78,7 @@
   <div class="descript-2 pt-3">
 
   <div class="form-check">
-  <input type="checkbox" id="check">
+  <input type="checkbox" id="check" name="check" value="1">
   <p class="st-7">The authors agree to the terms of this Copyright Notice, which will apply to this submission if and when it is published by this journal (comments to the editor can be added below).</p>
 
 
@@ -95,13 +95,12 @@
   
   <div class="article-details">
     <div class="details">
-      <p class="h5 pt-5" id="title-4">Submission Details</p>
-      <p class="h6" id="sub-6">Thank you for submitting to the QCU Journal. You will be asked to upload files, identify co-authors, and provide information such as the title and abstract.</p>
-      <p class="h6" id="sub-7">Please provide the following details to help us manage your submission in our system.</p>
-      <p class="h6" id="sub-8">Once you begin, you can save your submission and come back to it later. You will be able to review and correct any information before you submit</p>
+      <p class="h5 pt-5" id="title-4">Article Details</p>
+      <p class="h6" id="sub-6">Please provide the following details to help us manage your submission in our system.</p>
+     
     
     </div>
-    <div id="vl"></div>
+   
 
     <div class="input-details">
 
@@ -110,11 +109,31 @@
       <div class="form-floating">
         <h6 id="sub-9">Title</h6>
 
-        <textarea class="form-control"  id="title" style="height: 50px"></textarea>
+    
+        <input class="form-control" type="text"  id="title" name="title">
         
         <h6 id="sub-10">Keywords</h6>
-        <textarea class="form-control"  id="keywords" style="height: 50px"></textarea>
+        <input class="form-control" type="text" id="keywords" name="keywords">
      
+      </div>
+
+      <div class="form-floating-2" id="form-floating-2">
+        <h5 id="duplication-title">Checking of Details</h5>
+        <div class="duplicated-article">
+          <h6 class="checker-titles">Duplication Checker</h6>
+          <p>Cheking...</p>
+        </div>
+        <div class="journal-type-container">
+          <h6 class="checker-titles">Journal Classification</h6>
+          <select class="form-select" name="journal-type" id="journal-type">
+            <option value="">Analyzing...</option>
+            <option value="1">The Gavel</option>
+            <option value="2">The Star</option>
+            <option value="3">The Lamp</option>
+          </select>
+          <p class="suggestion-title">QOAJ can suggest journal based on your article</p>
+        </div>
+        <button type="button" class="btn btn-primary btn-sm" id="check-duplication">Check</button>
       </div>
 
   
@@ -124,14 +143,20 @@
     </div>
 
     <div class="input-details-2 mt-5">
+
       <h6 id="sub-11">Abstract</h6>
+
       <div id="editor">
-     
+    
       </div>
+      <input class="form-control" type="text" id="abstract" name="abstract"  style="display: none;">
+
       <h6 class="sub-12 mt-5" id="sub-12">Reference</h6>
+
       <div id="editor2">
-     
+    
       </div>
+      <input class="form-control" type="text" id="reference"  name="reference" style="display: none;">
     </div>
    
 
@@ -151,7 +176,12 @@
   <h5 class="title6 mt-5" id="title-6">Upload Files</h5>
   <h6 class="sub13 mt-3" id="sub-13">Provide any files our editorial team may need to evaluate your submission. In addition to the main work, you may wish to submit data sets, conflict of interest statements, or other supplementary files if these will be helpful for our editors.</h6>
 
-  <button type="button" class="btn btn-primary btn-sm mt-5" id="btn-upload">Upload File</button>
+  <button type="button" class="btn btn-primary btn-sm mt-5" onclick="openFileModal()" id="upload-btn">Upload File</button>
+  <input type="file" name="file_name" id="file_name" style="display: none;">
+   
+
+
+  
  
 <table class="table table-hover" id="table-file">
   <thead>
@@ -162,13 +192,8 @@
       <th scope="col" style="background-color: #115272; color: white; font-weight: normal;">Action</th>
     </tr>
   </thead>
-  <tbody>
-    <tr>
-    
-      <td>Some file name</td>
-      <td>PDF FILE</td>
-      <td><button class="btn btn-danger btn-sm">Delete</button></td>
-    </tr>
+  <tbody id="fileList">
+
   </tbody>
 </table>
 
@@ -181,28 +206,41 @@
   
   <div class="contributors-container">
 
+  <?php
+if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+  $first_name = $_SESSION['first_name'];
+    
+  $firstName = isset($_SESSION['first_name']) ? ucfirst($_SESSION['first_name']) : '';
+  $middleName = isset($_SESSION['middle_name']) ? ' ' . ucfirst($_SESSION['middle_name']) : '';
+  $lastName = isset($_SESSION['last_name']) ? ' ' . ucfirst($_SESSION['last_name']) : '';
+  $contributor = $firstName . $middleName . $lastName;
+  echo "<p id='contributor' style='display: none'>$contributor
+  </p>";
+
+}
+?>
  
   <h5 class="title7 mt-5" id="title-7">Add Contributors</h5>
   <h6 class="sub14 mt-3" id="sub-14">Add details for all of the contributors to this submission. Contributors added here will be sent an email confirmation of the submission, as well as a copy of all editorial decisions recorded against this submission.</h6>
 
   <div class="cont">
-    <h5 class="title8" id="title-8">Contributors</h5>
-  <button type="button" class="btn btn-primary btn-sm" id="btn-contributor">Add Contributors</button>
+    <!-- <h5 class="title8" id="title-8">Contributors</h5> -->
+  <button type="button" class="btn btn-primary btn-sm"id="contributor-btn">Add Contributors</button>
   </div>
  
-  <table class="table table-hover" id="table-file">
+  <table class="table table-striped" id="table-contributor">
   <thead>
     <tr >
  
-      <th scope="col" style="background-color: #115272; color: white; font-weight: normal;"></th>
-      <th scope="col" style="background-color: #115272; color: white; font-weight: normal; margin-left: 80px">Action</th>
+      <th scope="col" style="background-color: #115272; color: white; font-weight: normal;">Contributors</th>
+      <th scope="col" style="background-color: #115272; color: white; font-weight: normal;">Action</th>
     </tr>
   </thead>
   <tbody>
     <tr>
     
-      <td>Some contributors name</td>
-      <td><button class="btn btn-outline-primary btn-sm" id="btn-update">Update</button><button class="btn btn-danger btn-sm" id="btn-delete">Delete</button></td>
+      <td name="contributor" id="contributor"><?php echo $contributor; ?></td>
+      <td></td>
     </tr>
   </tbody>
 </table>
@@ -219,14 +257,76 @@
     <div id="editor3"></div>
 
     </div>
+    <input class="form-control" type="text" id="notes" name="notes" style="display: none;">
 
 
   </div>
 
   <div class="tab-pane fade" id="review-tab-pane" role="tabpanel" aria-labelledby="review-tab" tabindex="0">
-  <p>Some preview...</p>
+
+  <h5 class="title9" id="title-9">Review and Submit</h5>
+  <h6 class="sub16" id="sub-16">Review the information you have entered before you complete your submission. You can change any of the details displayed here by clicking the edit button at the top of each section.</h6>
+  <h6 class="sub17" id="sub-17">
+  Once you complete your submission, a member of our editorial team will be assigned to review it. Please ensure the details you have entered here are as accurate as possible.</h6>
+
+  <div class="article-info-container">
+    <div class="article-header">
+      <h5 class="title10" id="title-10">Details</h5>
+      <button type="button" class="btn btn-outline-light btn-sm" id="update-cont-2">Update</button>
+    </div>
+    <div class="editable-content mt-5" id="editable-content">
+      <label id="sub-26">Title: </label><br>
+      <input type="text" class="form-control" id="input5" readonly><br>
+      <label id="sub-27">Keywords: </label><br>
+      <input type="text" class="form-control" id="input6" readonly><br>
+      <label id="sub-28">Abstract: </label><br>
+      <input type="text" class="form-control" id="input7" readonly><br>
+      <label id="sub-29">Reference: </label><br>
+      <input type="text" class="form-control" id="input8" readonly><br>
+    </div>
+
+  
+    <div class="file-container">
+      <h5 class="title11" id="title-11">Files: </h5>
+      <div class="file-header-container">
+        <h5 class="title1f" id="title1f">File Name</h5>
+        <button type="button" class="btn btn-outline-light btn-sm" id="update-cont-3">Update</button>
+    
+      </div>
+      <div class="file-content-container mt-3">
+        <input type="text" class="form-control" id="input9" readonly>
+      </div>
+    </div>
+
+    <div class="cont-container">
+      <h5 class="title12" id="title-12">Contributors: </h5>
+      <div class="cont-header-container">
+        <h5 class="title13" id="title-13">Contributors Name</h5>
+        <button type="button" class="btn btn-outline-light btn-sm" id="update-cont-4">Update</button>
+    
+      </div>
+      <div class="file-content-container mt-3">
+        <input type="text" class="form-control" id="input10" readonly>
+      </div>
+    </div>
+    
+   
+
+  </div>
+
+
   </div>
 </div>
+<div id="btn-action">
+<button type="submit" class="btn btn-success btn-sm" id="submit">Submit</button>
+<button type="button" class="btn btn-primary btn-sm" id="next">Next</button>
+<button type="button" class="btn btn-primary btn-sm" id="check-d">Check</button>
+
+<button type="button" class="btn btn-success btn-sm" id="prev">Prev</button>
+
+</div>
+
+
 </form>
 
 

@@ -1,4 +1,11 @@
 $(document).ready(function() {
+    // Click event for the login button
+    $('#login-button').on('click', function() {
+        $('#login-text').hide();
+        $('#login-spinner').show();
+        $('#register-button').prop('disabled', true);
+    });
+
     $("#form").on("submit", function(event) {
         event.preventDefault();
 
@@ -16,6 +23,10 @@ $(document).ready(function() {
                 width: 350,
                 height: true,
             });
+            $('#login-spinner').hide();
+            $('#logging-in-text').hide();
+            $('#login-text').show();
+            $('#register-button').prop('disabled', false);
         } else {
             $.ajax({
                 type: "POST",
@@ -27,6 +38,7 @@ $(document).ready(function() {
                 success: function(response) {
                     var data = JSON.parse(response);
                     if (data.success) {
+                        $('#logging-in-text').text('Logging in...');
                         $.ajax({
                             type: "POST",
                             url: "../php/functions.php", // Change the URL to the correct endpoint
@@ -43,9 +55,13 @@ $(document).ready(function() {
                                 }
                             },
                         });
-                        
+                        $('#logging-in-text').show();
                         
                     } else {
+                        $('#login-spinner').hide();
+                        $('#logging-in-text').hide();
+                        $('#login-text').show();
+                        $('#register-button').prop('disabled', false);
                         Swal.fire({
                             icon: "error",
                             title: "Error",
