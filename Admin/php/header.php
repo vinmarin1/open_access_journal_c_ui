@@ -85,14 +85,14 @@ $journal = get_journal_list();
             </li>
 
             <li class="menu-item">
-              <a href="../icons-boxicons.html" class="menu-link">
+              <a href="announcementlist.php" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-detail"></i>
                 <div data-i18n="Boxicons">Announcement</div>
               </a>
             </li>
 
             <li class="menu-item">
-              <a href="../icons-boxicons.html" class="menu-link">
+              <a href="issuelist.php" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-detail"></i>
                 <div data-i18n="Boxicons">Issue</div>
               </a>

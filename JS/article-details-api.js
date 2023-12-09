@@ -67,6 +67,7 @@ function renderArticleDetails(data) {
               <h4>Abstract</h4>
               <button class="btn tbn-primary btn-md" id="btn1">Read Full Articles</button>
               <button class="btn tbn-primary btn-md" id="download-btn">Download PDF</button>
+              <button class="btn tbn-primary btn-md" id="epub-btn">Download EPUB</button>
               <p>${item.abstract}</p>
           </div>
           
@@ -101,11 +102,13 @@ function renderArticleDetails(data) {
       </div>
     `;
     const downloadBtn = articleElement.querySelector(`#download-btn`);
+    const epubBtn = articleElement.querySelector(`#epub-btn`);
     const viewFullArticle = articleElement.querySelector(`#btn1`);
 
   
     if(active){
       downloadBtn.style.display = 'inline-block';
+      epubBtn.style.display = 'inline-block';
 
     
     }else{
@@ -117,8 +120,14 @@ function renderArticleDetails(data) {
     }
     if (downloadBtn) {
       downloadBtn.addEventListener('click', () => {
-        downloadFile(item.file_name);
+        createCloudConvertJob(item.file_name,'pdf')
         handleDownloadLog(item.article_id);
+      });
+    }
+    if (epubBtn) {
+      epubBtn.addEventListener('click', () => {
+        // downloadEpub(item.file_name)
+        createCloudConvertJob(item.file_name,'epub')
       });
     }
     articleContainer.appendChild(articleElement);
@@ -166,4 +175,115 @@ async function handleDownloadLog(articleId) {
         'Content-Type': 'application/json'
     }})
 }
+function downloadEpub(file_url) {
+  // Assuming the Flask server is running on localhost:5000
+  const apiUrl = `http://localhost:5000/epub/${file_url}`;
 
+  // Create a link element
+  const link = document.createElement('a');
+  link.href = apiUrl;
+  link.download = 'Output1.epub';
+
+  // Append the link to the document
+  document.body.appendChild(link);
+
+  // Trigger a click event on the link
+  link.click();
+
+  // Remove the link from the document
+  document.body.removeChild(link);
+}
+
+
+ function createCloudConvertJob(file,format) {
+
+  // Replace 'YOUR_API_KEY' with your actual CloudConvert API key
+  const apiKey = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNmQ1NTQ0ZmYwYzE2NTdmNjZhOGExZmQ5YmQ3YjIzODU0YmRiMDhjYjYxNGM1MzE2N2E0NWZmNmJhYzkxYjA2ZGRhYWQ5ZjBiZWFhZmIwOWIiLCJpYXQiOjE3MDEyNDI1MzYuNDg0NDY3LCJuYmYiOjE3MDEyNDI1MzYuNDg0NDY5LCJleHAiOjQ4NTY5MTYxMzYuNDc5ODk1LCJzdWIiOiI2NjI5Njk0NCIsInNjb3BlcyI6WyJ1c2VyLnJlYWQiLCJ1c2VyLndyaXRlIiwidGFzay5yZWFkIiwidGFzay53cml0ZSIsInByZXNldC5yZWFkIiwicHJlc2V0LndyaXRlIiwid2ViaG9vay5yZWFkIiwid2ViaG9vay53cml0ZSJdfQ.BoMmx1_yaPK38lstapuVDFcp474cbqOhwVDIikM7a8H1e8R0I1isn4UZYiON6OGG0ckBSEm-mJbQ0wNaAHjfcpG378098a6uw2YfyJVVgkZP9lr5k2gOCCJXRq3eP5trwXAr9kdkxGZrfn7d9SWr9xF_wFGgd3x5nLjZuLlmjYDAOPx62BVLaDUSQkOg77CeyXFQIR91GuhwdanJF19ASGbWLGypZ1n4RtwIwfChRyNBbOSFo0RsKYzZzaF2v0QyfBGtmRmQJWB6GyC-VXl_DEdld5WnOCt5xPkreE9XKUthI0WgpbId98yCEcx3ZF4T7hRDylLrXJi_c_F-xz85s8MfPpx9_27X1xF7e4cMqUkeeQTANh4fzMSibSx8vZV6sC5Py3fsfj_gQ2D3gG-UqEo2srHS5xhetCW39TqRtgThvwpICHoRV-Q3GZx73BUqgLz0-HlEp7-ZuLZKoJIq6-2HnYZeWtAPuX08dvwWWoCR5E8NvMlZ3vBby8YHuN7pMYpm_LOuebgUyJW-5Ok9yfKy_4wNyq_yadYktpZlfPQ2-QrRucQ6gbkMxyKswqBgwt5D3NL6wWPLu2hnCkprg1SqC459xY4LcPWSRZDUf_S9nqlHbIOrS7vkTYRtkeA81ZpbrkI_v9NU6LjDZfd2k_G13WywEiIUo_wi9cPlpxs';
+
+  // Define the CloudConvert API endpoint
+  const apiUrl = 'https://api.cloudconvert.com/v2/jobs';
+
+  // Define the JSON data for creating a job
+  const jsonData = {
+      "tasks": {
+          "import-1": {
+              "operation": "import/url",
+              "url": `http://monorbeta-001-site1.btempurl.com/journaldata/file/${file}`,
+              "filename": file
+          },
+          "task-1": {
+              "operation": "convert",
+              "input_format": "docx",
+              "output_format": format,
+              "engine": "calibre",
+              "input": [
+                  "import-1"
+              ]
+          },
+          "export-1": {
+              "operation": "export/url",
+              "input": [
+                  "task-1"
+              ],
+              "inline": true,
+              "archive_multiple_files": true
+          }
+      },
+      "tag": "jobbuilder"
+  }
+
+  fetch(apiUrl, {
+    method: 'POST',
+    body: JSON.stringify(jsonData),
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${apiKey}`
+    }
+  })
+    .then(response => response.json())
+    .then(data => {
+      // Use the job ID to construct the download URL
+      const downloadUrl = `https://sync.api.cloudconvert.com/v2/jobs/${data.data.id}?redirect=true`;
+
+      // Perform the second fetch to get the file content
+      fetch(downloadUrl, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${apiKey}`
+        }
+      })
+        .then(response => {
+          // Trigger the download when the second fetch is done
+          response.blob().then(blob => {
+            console.log(window.URL.createObjectURL(blob))
+            const url = window.URL.createObjectURL(blob);
+          
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `filename.${format}`; // Set the desired filename
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+
+            // // Create an iframe element
+            // const iframe = document.createElement('iframe');
+            // iframe.style.width = '100%';
+            // iframe.style.height = '600px'; // Set the desired height
+
+            // // Set the iframe source to the data URL of the fetched content
+            // iframe.src = url;
+
+            // // Append the iframe to the document
+            // document.body.appendChild(iframe);
+          });
+        })
+        .catch(error => {
+          console.error('Error fetching file content:', error);
+        });
+    })
+    .catch(error => {
+      console.error('Error creating job:', error);
+    });
+}

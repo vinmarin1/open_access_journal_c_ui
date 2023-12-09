@@ -1,0 +1,292 @@
+.content-over {
+  position: relative;
+  width: 100%;
+  height: 30vh;
+  background-image: url(../images/qcu-bg.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  padding-top: 35px;
+  padding-left: 150px;
+  
+}
+
+.content-over::before {
+content: "";
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(53, 68, 74, 0.7);
+}
+
+.content-over h3 {
+color: white; 
+position: relative;
+z-index: 1; 
+display: block;
+
+}
+
+.content-over h3{
+font-family: 'Times New Roman', Times, serif;
+margin-bottom: 5px;
+}
+
+.content-over button{
+  color: white; 
+  position: relative;
+  z-index: 1;
+  background-color: #115272;
+  border-radius: 20px;
+  margin-top: 20px;
+}
+
+.content-over button:hover{
+  color: white; 
+  position: relative;
+  z-index: 1;
+  background-color: #115272;
+  border-radius: 20px;
+  margin-top: 20px;
+  opacity: 0.8;
+}
+#btn1,
+#btn2 {
+  border: 2px white solid;
+  margin-right: 10px;
+  background-color: transparent;
+  width: 50%;
+  min-width: 120px;
+  max-width: 175px;
+}
+
+#btn1 {
+  background-color: #E56F1F;
+  border: 2px #E56F1F;
+}
+
+#btn2:hover {
+  background-color: #E56F1F;
+  border: 2px #E56F1F;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.main{
+  padding-top: 3%;
+  margin-left: 20px;
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  
+
+}
+.full-width {
+  width: 100%;
+}
+.graph-section, .stats-section {
+  flex: 1;
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+.graph-section {
+  width: 400px;
+  padding: 20px;
+  background-color: #fff; /* Changed to white */
+  border: 1px solid #ddd; /* Added a light grey border */
+  margin-right: 20px;
+}
+.stats-section {
+  width: 200px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* two columns of equal size */
+  gap: 20px; /* space between grid items */
+  background-color: #fff; /* Clear white background */
+  padding: 20px;
+}
+
+.stat-card {
+background: #F5F7FF; 
+border-radius: 15px; /* Rounded corners as per your image */
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+padding: 20px; /* Padding inside cards */
+position: relative; /* For absolute positioning of the increase label */
+}
+
+/* Top cards styling */
+.stat-card.top-card {
+text-align: left; /* Align text to the left */
+}
+
+.stat-card.top-card h2,
+.stat-card.top-card p {
+margin: 0;
+ 
+}
+
+.stat-card.top-card h2 {
+font-size: 18px; /* Adjust font size as needed */
+font-weight: 600; /* Semi-bold */
+color: #697077;
+
+}
+
+.stat-card.top-card p {
+font-size: 16px; /* Larger font size for the numbers */
+margin-top: 4px; /* Space between the title and the number */
+color: #0A335B;
+font-weight: bold;
+}
+
+/* Increase label styling */
+.increase {
+background-color: #45D700; /* Lighter green background for the increase label */
+color: #FFFFFF; /* Green text color for the increase label */
+padding: 5px 10px;
+border-radius: 10px; /* Rounded corners for the label */
+position: absolute; /* Absolute positioning inside the stat card */
+right: 20px; /* Align to the right */
+bottom: 20px; /* Align to the bottom */
+font-weight: bold;
+}
+/* Bottom cards styling */
+.stat-card.bottom-card {
+grid-column: span 2; /* Stretch across both columns */
+background: #F5F7FF; /* Different background color for the bottom cards */
+display: flex; /* Use flexbox to align items on the same line */
+align-items: center; /* Center items vertically */
+justify-content: space-between; /* Distribute space between items */
+}
+
+.stat-card.bottom-card .content {
+flex: 1; /* Allows the content to grow and take up available space */
+}
+
+.stat-card.bottom-card h2 {
+font-size: 18px; /* Adjust font size as needed */
+color: #697077; /* Dark green text color */
+font-weight: 600; /* Semi-bold */
+margin: 0; /* No margin for the title */
+}
+
+.stat-card.bottom-card p {
+font-size: 16px; /* Adjust font size as needed */
+color: #0A335B; /* Dark green text color */
+margin: 0; /* No margin for the paragraph */
+font-weight: bold;
+}
+
+
+.articles-section {
+  padding: 20px;
+  background-color: #fff;;
+}
+.tab {
+display: inline-block;
+padding: 10px 50px;
+
+cursor: pointer;
+color: #007bff;
+border: 1px solid #f0f0f0; /* Adds a border */
+border-radius: 15px 15px 0 0; /* Rounded corners */
+background-color: #f0f0f0; /* Background color */
+margin-right: 0; /* Removes the margin */
+}
+
+.tab.active {
+border-bottom: 3px solid #0A335B;
+border-radius: 15px 15px 0 0; /* Rounds the top corners */
+background-color: #0A335B; /* Changes background for active tab */
+color: white;
+
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+border-top: 30px solid #0A335B;
+margin-bottom: 40px;	
+  
+}
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+font-weight: bold;
+}
+td{
+ color: #0A335B;
+}
+th {
+  
+background-color: #fff;
+}
+.status-label {
+display: inline-block;
+border-radius: 12px; /* Fully rounded edges */
+padding: 5px 10px; /* Appropriate padding */
+color: white; /* White text */
+font-size: 0.8em; /* Smaller font size */
+text-transform: uppercase; /* Uppercase text */
+font-weight: bold; /* Bold font weight */
+}
+
+.pending {
+background-color: #FFC107; /* Bootstrap warning color for pending */
+border: 1px solid #FFC107; /* Same color border */
+}
+
+.published {
+background-color: #28A745; /* Bootstrap success color for published */
+border: 1px solid #28A745; /* Same color border */
+}
+
+#btn3 {
+  padding: 10px 50px;
+  border: none;
+  background-color: #0A335B;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+  float: right;
+}
+#btn3:hover {
+  background-color: #0056b3;
+}
+hr {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+.pagination {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 20px;
+}
+
+.pagination-controls button {
+border: 1px solid #ddd;
+padding: 5px 10px;
+margin: 0 3px;
+background-color: white;
+cursor: pointer;
+}
+
+.pagination-controls button.active {
+background-color: #0A335B;
+color: white;
+}
+
+.pagination-controls button:hover {
+background-color: #0A335B;
+color: white;
+}
