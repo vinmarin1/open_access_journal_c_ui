@@ -1,5 +1,6 @@
 <?php
 include 'submission_functions.php';
+$cid = 1;
 
 $contributor = get_contributor_list();
 $journals = get_journal_detail($cid);
