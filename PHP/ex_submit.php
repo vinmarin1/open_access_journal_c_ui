@@ -122,6 +122,9 @@
         <div class="duplicated-article">
           <h6 class="checker-titles">Duplication Checker</h6>
           <p>Cheking...</p>
+          <div id="similar-title"></div>
+          <div id ="similar-abstract"></div>
+        
         </div>
         <div class="journal-type-container">
           <h6 class="checker-titles">Journal Classification</h6>
@@ -322,7 +325,7 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 <button type="button" class="btn btn-primary btn-sm" id="next">Next</button>
 <button type="button" class="btn btn-primary btn-sm" id="check-d">Check</button>
 
-<button type="button" class="btn btn-success btn-sm" id="prev">Prev</button>
+<button type="button" class="btn btn-secondary btn-sm" id="prev">Prev</button>
 
 </div>
 
@@ -339,6 +342,7 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 <script src="../JS/reusable-header.js"></script>
 <script src="../JS/ex_submit.js"></script>
+<script src="../JS/ex_submit_duplicate_article.js"></script>
 </body>
 </html>
 

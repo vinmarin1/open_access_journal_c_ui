@@ -7,7 +7,7 @@ function navigateToArticle(articleId){
 
 async function fetchData(input,dates,sort) {
   try {
-    const response = await fetch(`https://web-production-89c0.up.railway.app/articles?sort=${sort}`, {
+    const response = await fetch(`https://web-production-cecc.up.railway.app/articles?sort=${sort}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

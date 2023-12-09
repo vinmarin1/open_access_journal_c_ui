@@ -10,7 +10,7 @@ const articleId = getQueryParam('articleId');
 
 async function fetchArticleDetails() {
   try {
-    const response = await fetch('https://web-production-89c0.up.railway.app/articles/logs/read', {
+    const response = await fetch('https://web-production-cecc.up.railway.app/articles/logs/read', {
       method: 'POST',
       body: JSON.stringify({
         author_id: sessionId? sessionId : null,
