@@ -1,10 +1,6 @@
 <?php
 include 'submission_functions.php';
 
-// Set the appropriate value for $cid
-$cid = isset($_GET['cid']) ? $_GET['cid'] : 1;
-
-// Assuming $cid is set appropriately before calling this function
 $contributor = get_contributor_list();
 $journals = get_journal_detail($cid);
 $incomplete_articles = get_article_list($cid);

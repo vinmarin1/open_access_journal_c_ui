@@ -1,6 +1,9 @@
 <?php
 include 'submission_functions.php';
 $journal = get_journal_list();
+
+session_start();
+$author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
 ?>
 
 <!DOCTYPE html>
@@ -184,7 +187,15 @@ $journal = get_journal_list();
                             </div>
                           </div>
                           <div class="flex-grow-1">
-                            <span class="fw-medium d-block">Juan DelaCruz</span>
+                          <?php
+                              if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
+                                  $firstName = isset($_SESSION['first_name']) ? ucfirst($_SESSION['first_name']) : '';
+                                  $middleName = isset($_SESSION['middle_name']) ? ' ' . ucfirst($_SESSION['middle_name']) : '';
+                                  $lastName = isset($_SESSION['last_name']) ? ' ' . ucfirst($_SESSION['last_name']) : '';
+
+                                  echo '<span class="fw-medium d-block">' . $firstName . $middleName . $lastName . '</span>';
+                              }
+                              ?>
                             <small class="text-muted">Admin</small>
                           </div>
                         </div>
@@ -211,12 +222,11 @@ $journal = get_journal_list();
                     <li>
                       <a class="dropdown-item" href="javascript:void(0);">
                         <i class="bx bx-power-off me-2"></i>
-                        <span class="align-middle">Log Out</span>
+                          <span class="align-middle logout-link" onclick="location.href='../../php/logout.php'">Log Out</span>
                       </a>
                     </li>
                   </ul>
                 </li>
-                <!--/ User -->
               </ul>
             </div>
           </nav>
