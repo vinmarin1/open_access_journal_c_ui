@@ -68,7 +68,7 @@
         </div>
       </div>
       </div>
-       '; 
+      '; 
   } 
   ?>
 
@@ -111,9 +111,7 @@
 
 </div>
 <div class="fluid-container">
-      <?php 
-        if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
-          echo ' <div class="recommendation-container">
+<div class="recommendation-container">
           <div class="offer-left">
           <h2 class="mb-3">QAJ OFFER Personalized Recommendations</h2>
           <p class="descript">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores similique culpa, molestiae velit quis cumque saepe vel error rerum a totam deleniti, reiciendis, alias perspiciatis et. Facere recusandae fuga voluptate?</p>
@@ -131,9 +129,8 @@
               <div class="offer-right">
             
               </div> 
-        </div>  ';
-        }
-      ?>
+        </div>
+
     </div>
 <img src="../images/Papers.png" alt="#" class="image">
 <div class="container-fluid">
@@ -160,7 +157,7 @@
 <div class="example-journal" id="example-mid">
   <div class="plans-inside">
     <h3><b>Package</b></h3>
-    <h5><b> As low as PHP 49.00 </b></h5>
+    <h5><b> PHP 1.00 / credit </b></h5>
     <hr style="height: 2px; background-color: #115272; width: 100%">
     <div style="display: flex; align-items: center; margin-bottom: 20px">
       <i style="color: green; margin-right: 30px; margin-left: 60px" class="fa-solid fa-check"></i>
@@ -174,16 +171,19 @@
       <i style="color: green; margin-right: 30px; margin-left: 60px" class="fa-solid fa-check"></i>
       <p style="margin: 0;" class="text-xs">Personalized content <br>suggestions.</p>
     </div>
-    <div style="display: flex; align-items: center; margin-bottom: 20px">
-      <i style="color: green; margin-right: 30px; margin-left: 60px" class="fa-solid fa-check"></i>
-      <p style="margin: 0;" class="text-xs">Limited credit points with no <br> expiration for downloading <br>pdf and ebook.</p>
-    </div>
+
     <div style="display: flex; align-items: center; margin-bottom: 20px">
       <i style="color: green; margin-right: 30px; margin-left: 60px" class="fa-solid fa-check"></i>
       <p style="margin: 0;" class="text-xs">No advertisements.</p>
     </div>
+
+    <div style="display: flex; align-items: center; margin-bottom: 20px">
+      <i style="color: green; margin-right: 30px; margin-left: 60px" class="fa-solid fa-check"></i>
+      <p style="margin: 0;" class="text-xs">Fixed amount of credit <br>points for downloading <br>and submitting articles<br> with no expiration.</p>
+    </div>
+
   </div>
-  <div class="btn-price">
+  <div id="btn-price">
     <button class="btn btn-primary btn-md mt-1" onclick="window.location.href='pricing.php'" >See Pricing</button>
   </div>
 </div>
@@ -191,7 +191,7 @@
 <div class="example-journal">
   <div class="plans-inside">
     <h3><b>Pro</b></h3>
-    <h5><b> As low as PHP 199.00 </b></h5>
+    <h5><b>PHP 0.50 / credit</b></h5>
     <hr style="height: 2px; background-color: #115272; width: 100%">
     <div style="display: flex; align-items: center; margin-bottom: 20px">
       <i style="color: green; margin-right: 30px; margin-left: 60px" class="fa-solid fa-check"></i>
@@ -207,18 +207,14 @@
     </div>
     <div style="display: flex; align-items: center; margin-bottom: 20px">
       <i style="color: green; margin-right: 30px; margin-left: 60px" class="fa-solid fa-check"></i>
-      <p style="margin: 0;" class="text-xs">With free 10 credit points for <br>downloading pdf and ebook <br> a day.</p>
-    </div>
-    <div style="display: flex; align-items: center; margin-bottom: 20px">
-      <i style="color: green; margin-right: 30px; margin-left: 60px" class="fa-solid fa-check"></i>
-      <p style="margin: 0;" class="text-xs">Access to submission of <br>article .</p>
-    </div>
-    <div style="display: flex; align-items: center; margin-bottom: 20px">
-      <i style="color: green; margin-right: 30px; margin-left: 60px" class="fa-solid fa-check"></i>
       <p style="margin: 0;" class="text-xs">No advertisements.</p>
     </div>
+    <div style="display: flex; align-items: center; margin-bottom: 20px">
+      <i style="color: green; margin-right: 30px; margin-left: 60px" class="fa-solid fa-check"></i>
+      <p style="margin: 0;" class="text-xs">Fixed amount of credit  points <br>each month. Credits  that are not <br>utilized do not roll over at the end <br> of the month. They are, however, <br> up to 50% less expensive than packages. </p>
+    </div>
   </div>
-  <div id="btn-price">
+  <div class="btn-price">
     <button class="btn btn-primary btn-md mt-1" onclick="window.location.href='pricing.php'">See Pricing</button>
   </div>
 </div>
@@ -231,11 +227,10 @@
 
 
 <div class="footer" id="footer">
-  
 </div>
 
 
-<script>      
+    <script>      
       const sessionId = "<?php echo $author_id; ?>";
     </script>
       <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" ></script>

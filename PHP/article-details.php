@@ -24,36 +24,40 @@
 </nav>
 
 <div class="main-container" id="article_details">
-
 </div>
 
-<?php
 
+<?php
 
 $active = check_login(false);
 echo '<script>const active = ' . ($active ? 'true' : 'false') . ';</script>';
 ?>
 
+<?php
+if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true ){  
+  echo '
+  <div class="frame-border container-fluid">
+  <iframe class="pic-frame" src="" title="Iframe Example"></iframe>
+  </div>
+  ';
+}
+?>
 
 <!-- 
 <hr style="height: 2px; background-color: #115272 "> -->
+<div class="fluid-container">
+<div class="recommendation-article">
+<h4>More like this</h4>
+  <div id="similar-articles" class="articles-container">
+  
+  </div> 
+  </div>
+</div>
 <?php
 if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true ){  
   echo '
 
-  <div class="fluid-container">
-<div class="recommendation-article" >
-<h4>Similar articles like this</h4>
-  <div id="similar-articles" class="articles-container">
-  
-  </div>
-  
-  
-  </div>
-</div>
-
-
-  <div class="fluid-container " >
+<div class="fluid-container" >
 <div class="recommendation-article">
 <h4>Recommended for You</h4>
   <div id="recommendations" class="articles-container">
@@ -66,26 +70,9 @@ if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true ){
 </div>
   ';
 }
-
 ?>
-
-<div class="fluid-container">
-<div class="recommendation-article">
-  <h4>Popular Articles this Month</h4>
-  <div id="popular-articles" class="articles-container">
- 
-  </div>  
-  </div>
-</div>
-
-
 </div>
 </div>
-
-
-
-
-
 
 <div class="footer" id="footer">
     <!-- footer will be display here by fetching reusable files -->

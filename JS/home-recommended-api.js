@@ -48,7 +48,7 @@ async function fetchData() {
       articleDiv.innerHTML = `
       <h6>${item.title}</h6>
       <p>${item.abstract.slice(0,120)}</p>
-      <button class="btn btn-outline-light btn-md">Continue Reading</button>
+      <button class="btn btn-outline-light btn-md">Try it Now</button>
       `;
 
       historyContainer.appendChild(articleDiv);
