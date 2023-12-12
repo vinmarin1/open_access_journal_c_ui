@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
   
     }else if(index === 1){
       prevBtn.style.display = "inline-block";
-      nextBtn.style.display = "inline-block";
+      nextBtn.disabled = true;
       submitBtn.style.display = "none";
  
     } 
@@ -104,7 +104,8 @@ document.addEventListener('DOMContentLoaded', function () {
       button.style.color = "white";
       updateButtonVisibility(index);
     }
-   
+
+  
     
   });
 
@@ -113,6 +114,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
   nextBtn.addEventListener('click', switchToNextTab);
   prevBtn.addEventListener('click', switchToPrevTab);
+
+  
+
 
   
   
