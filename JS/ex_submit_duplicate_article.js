@@ -9,6 +9,8 @@ document.getElementById('check-duplication').addEventListener('click', function(
     const similarTitle = document.getElementById('similar-title');
     const similarAbstract = document.getElementById('similar-abstract');
     
+
+    
     
     
 
@@ -88,8 +90,12 @@ document.getElementById('check-duplication').addEventListener('click', function(
             nextBtn.disabled= false;
 
         }
+
+      
        
     })
+
+  
 
     .catch(error => console.error('Error:', error));
 });

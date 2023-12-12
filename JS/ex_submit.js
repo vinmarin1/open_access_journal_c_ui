@@ -117,7 +117,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   
 
-
   
   
 });
@@ -385,17 +384,32 @@ input10.value = contributorInput;
 function updateButtonState() {
  
   const formFloat = document.getElementById('form-floating-2');
+  const similarTitle = document.getElementById('similar-title');
+  const similarAbstract = document.getElementById('similar-abstract');
+  
+
+  
 
   if (titleInput.value.trim() !== '' && keywordsInput.value.trim() !== ''  && abstractInput.value === "" && referenceInput.value === ""){
    
     formFloat.style.display = 'inline-block';
  
-  } else {
+  }
+  
+  else {
     
     formFloat.style.display = 'none';
 
   
   }
+
+  document.getElementById('btn-okay').addEventListener('click', function (event) {
+    formFloat.style.display = 'none';
+    similarTitle.innerHTML = '';
+    similarAbstract.innerHTML = '';
+
+  });
+
 }
 
 

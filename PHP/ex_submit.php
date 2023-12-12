@@ -139,6 +139,7 @@
           <p class="suggestion-title">QOAJ can suggest journal based on your article</p>
         </div>
         <button type="button" class="btn btn-primary btn-sm" id="check-duplication">Check</button>
+        <button type="button" class="btn btn-primary btn-sm" id="btn-okay">Okay</button>
       </div>
 
   
