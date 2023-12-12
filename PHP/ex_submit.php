@@ -133,8 +133,8 @@
           <select class="form-select" name="journal-type" id="journal-type">
          
             <option value="1">The Gavel</option>
-            <option value="2">The Star</option>
-            <option value="3">The Lamp</option>
+            <option value="2">The Lamp</option>
+            <option value="3">The Star</option>
           </select>
           <p class="suggestion-title">QOAJ can suggest journal based on your article</p>
         </div>
@@ -325,7 +325,6 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 <div id="btn-action">
 <button type="submit" class="btn btn-success btn-sm" id="submit">Submit</button>
 <button type="button" class="btn btn-primary btn-sm" id="next">Next</button>
-<button type="button" class="btn btn-primary btn-sm" id="check-d">Check</button>
 
 <button type="button" class="btn btn-secondary btn-sm" id="prev">Prev</button>
 
@@ -346,6 +345,7 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 <script src="../JS/ex_submit.js"></script>
 <script src="../JS/ex_submit_duplicate_article.js"></script>
 <script src="../JS/ex_submit_journal_type.js"></script>
+<script src="../JS/check-btn.js"></script>
 </body>
 </html>
 

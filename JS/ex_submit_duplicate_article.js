@@ -1,4 +1,4 @@
-document.getElementById('check-d').addEventListener('click', function() {
+document.getElementById('check-duplication').addEventListener('click', function() {
 
     const title = document.getElementById('title').value;
     const abstract = document.getElementById('abstract').value;

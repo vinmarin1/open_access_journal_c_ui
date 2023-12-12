@@ -1,4 +1,4 @@
-document.getElementById('check-d').addEventListener('click', async function(event) {
+document.getElementById('check-duplication').addEventListener('click', async function(event) {
    
     const abstract = document.getElementById('abstract').value;
 

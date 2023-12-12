@@ -67,7 +67,8 @@
     font-weight: bold;
 }
 
-.duplicated-article, .journal-type-container{
+
+.duplicated-article, #journal-type-container{
     border: 1px #999999 solid;
     width: auto;
     height: auto;
