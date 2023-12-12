@@ -79,6 +79,7 @@
 }
 
 .suggestion-title{
+    margin-top: 20px;
     color: #115272;
     font-family: 'Times New Roman', Times, serif;
     width: 95%;
@@ -87,6 +88,7 @@
 
 #label-title, #label-abstract{
     margin-top: 10px;
+    display: none;
 }
 
 #similar-title{
@@ -117,6 +119,7 @@
 
 #journal-type{
     width: 95%;
+    display: none;
 }
 
 

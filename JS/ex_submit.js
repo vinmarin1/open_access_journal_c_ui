@@ -320,7 +320,6 @@ document.getElementById('contributor-btn').addEventListener('click', function (e
 
 var titleInput = document.getElementById("title");
 var keywordsInput = document.getElementById("keywords")
-var abstractInput = document.getElementById("abstract");
 var fileInput = document.getElementById("file_name");
 var contributorInput = document.getElementById("contributor").textContent;
 
@@ -372,6 +371,36 @@ fileInput.addEventListener('input', function() {
 });
 
 input10.value = contributorInput;
+
+
+
+
+
+
+
+function updateButtonState() {
+ 
+  const formFloat = document.getElementById('form-floating-2');
+
+  if (titleInput.value.trim() !== '' && keywordsInput.value.trim() !== ''  && abstractInput.value === "" && referenceInput.value === ""){
+   
+    formFloat.style.display = 'inline-block';
+ 
+  } else {
+    
+    formFloat.style.display = 'none';
+
+  
+  }
+}
+
+
+
+titleInput.addEventListener('input', updateButtonState);
+keywordsInput.addEventListener('input', updateButtonState);
+
+
+
 
 
 
