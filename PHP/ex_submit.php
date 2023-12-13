@@ -21,7 +21,7 @@
 </nav>
 
 
-<form action="ex_submit_con.php" method="post" id="form">
+<form action="ex_submit_con.php" method="post" id="form"  enctype="multipart/form-data">
 <ul class="nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item" role="presentation" style="margin-left: -10px;">
     <button class="nav-link active" id="privacy-tab" data-bs-toggle="tab" data-bs-target="#privacy-tab-pane" type="button" role="tab" aria-controls="privacy-tab-pane" aria-selected="true">Privacy</button>
@@ -132,9 +132,9 @@
           <h6 class="checker-titles">Journal Classification</h6>
           <select class="form-select" name="journal-type" id="journal-type">
          
-            <option value="1">The Gavel</option>
-            <option value="2">The Lamp</option>
-            <option value="3">The Star</option>
+            <option value="1" id="gavel">The Gavel</option>
+            <option value="2" id="lamp">The Lamp</option>
+            <option value="3" id="star">The Star</option>
           </select>
           <p class="suggestion-title">QOAJ can suggest journal based on your article</p>
         </div>

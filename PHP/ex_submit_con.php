@@ -20,10 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     $abstract = $_POST['abstract'];
     $keywords = $_POST['keywords'];
     $reference = $_POST['reference'];
-    // $category = $_POST['category']; 
+    $journal_id = $_POST['journal-type'];
     $comment = $_POST['notes'];
-    $file_name = $_POST['file_name'];
-  
     
     $author_id = (isset($_SESSION['id'])) ? $_SESSION['id'] : null;
     $contributor = (isset($_SESSION['first_name'])) ? $_SESSION['first_name'] : null;
@@ -33,38 +31,55 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         exit();
     }
 
-   // Insert into article table
-$sql = "INSERT INTO article (`author`, `privacy`, `title`, `journal_id`, `author_id`, `abstract`, `keyword`, `references`, `comment`, `status`)
-VALUES (:author, :privacy, :title, :journal_id, :author_id, :abstract, :keyword, :references, :comment, :status)";
+    // Check if file upload is successful
+    if (!empty($_FILES['file_name']['name'])) {
+        // Process the file upload
+        $file_name = $_FILES['file_name']['name'];
 
-$params = array(
-'author' => $contributor,
-':privacy' => $privacy,
-'title' => $title,
-':journal_id' => $category,
-':author_id' => $author_id,
-':abstract' => $abstract,
-':keyword' => $keywords,
-':references' => $reference,
-'comment' => $comment,
-'status' => "4"
-);
+        // Insert into article table
+        $sql = "INSERT INTO article (`author`, `privacy`, `title`, `journal_id`, `author_id`, `abstract`, `keyword`, `references`, `comment`, `status`)
+        VALUES (:author, :privacy, :title, :journal_id, :author_id, :abstract, :keyword, :references, :comment, :status)";
 
-// Use the modified function with $isInsert set to true
-$lastInsertedArticleId = database_run($sql, $params, true);
+        $params = array(
+            'author' => $contributor,
+            ':privacy' => $privacy,
+            'title' => $title,
+            ':journal_id' => $journal_id,
+            ':author_id' => $author_id,
+            ':abstract' => $abstract,
+            ':keyword' => $keywords,
+            ':references' => $reference,
+            'comment' => $comment,
+            'status' => "4"
+        );
 
-// Insert into example_files table with the retrieved article_id
-$files_sql = "INSERT INTO example_files (article_id, file_name) VALUES (:article_id, :file_name)";
-$files_params = array(
-':article_id' => $lastInsertedArticleId,
-':file_name' => $file_name
-);
+        // Use the modified function with $isInsert set to true
+        $lastInsertedArticleId = database_run($sql, $params, true);
 
-database_run($files_sql, $files_params);
+        // Move the uploaded file to a specific folder
+        $uploadDirectory = "../Files/submitted-article"; // Change this to the actual path
+        $targetFilePath = $uploadDirectory . $file_name;
 
+        if (move_uploaded_file($_FILES['file_name']['tmp_name'], $targetFilePath)) {
+            // Insert into example_files table with the retrieved article_id
+            $files_sql = "INSERT INTO example_files (article_id, file_name) VALUES (:article_id, :file_name)";
+            $files_params = array(
+                ':article_id' => $lastInsertedArticleId,
+                ':file_name' => $file_name
+            );
 
-    Header("Location: ex_submit.php");
-    exit();
+            database_run($files_sql, $files_params);
+
+            Header("Location: ex_submit.php");
+            exit();
+        } else {
+            echo 'Error: Failed to move the uploaded file.';
+            exit();
+        }
+    } else {
+        echo 'Error: No file uploaded.';
+        exit();
+    }
 } else {
     echo 'Error: Invalid request method.';
     exit();
