@@ -183,7 +183,7 @@
   <h6 class="sub13 mt-3" id="sub-13">Provide any files our editorial team may need to evaluate your submission. In addition to the main work, you may wish to submit data sets, conflict of interest statements, or other supplementary files if these will be helpful for our editors.</h6>
 
   <button type="button" class="btn btn-primary btn-sm mt-5" onclick="openFileModal()" id="upload-btn">Upload File</button>
-  <input type="file" name="file_name" id="file_name" style="display: none;">
+  <input type="file" name="file_name" id="file_name" style="display: none;" accept=".docx">
    
 
 
