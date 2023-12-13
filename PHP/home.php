@@ -50,34 +50,15 @@
 <div class="fluid-container">
 <div class="recommendation-article">
   <h4>Popular Articles this Month</h4>
-  <div class="d-flex container flex-wrap gap-4">
+  <div class="d-flex container flex-wrap gap-4 justify-content-between">
     <div id="popular-articles" class="articles-container col-sm-12 col-lg-7">
     <!-- fetch popular articles using api -->
     </div>  
-    <div class="divider"></div>
+    <div class="divider "></div>
     <div class="col-sm-12 col-lg-4 d-flex flex-column gap-2" id="most-downloaded">
-      <h6 class="text-lg">Most Downloaded</h6>
-      <div class="item d-flex">
-        <span class="title w-100">ffs Between Labor Productivity And Employment Among Call Center Agents...</span>
-        <ul class="d-flex gap-2">
-          <li class="d-flex flex-column"><span class="total">220</span>downloads</li>
-          <li class="d-flex flex-column"><span class="total">220</span>views</li>
-        </ul>
-      </div>
-      <div class="item d-flex">
-        <span class="title w-100">Addressing The Trade Offs Between Labor Productivity And Employment Amo...</span>
-        <ul class="d-flex gap-2">
-          <li class="d-flex flex-column"><span class="total">220</span>downloads</li>
-          <li class="d-flex flex-column"><span class="total">220</span>views</li>
-        </ul>
-      </div>
-      <div class="item d-flex">
-        <span class="title w-100">Addressing The Trade Offs Between Labor Productivity And Employment Among...</span>
-        <ul class="d-flex gap-2">
-          <li class="d-flex flex-column"><span class="total">220</span>downloads</li>
-          <li class="d-flex flex-column"><span class="total">220</span>views</li>
-        </ul>
-      </div>
+      <h6 class="text-lg mb-2">Most Downloaded</h6>
+     
+  
     </div>
   </div>
 </div>
@@ -141,7 +122,7 @@
 <div class="fluid-container">
 <div class="recommendation-container">
           <div class="offer-left">
-          <h2 class="mb-3">QAJ OFFER Personalized Recommendations</h2>
+          <h2 class="mb-3">QAJ Offers Personalized Recommendations</h2>
           <p class="descript">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores similique culpa, molestiae velit quis cumque saepe vel error rerum a totam deleniti, reiciendis, alias perspiciatis et. Facere recusandae fuga voluptate?</p>
          
           <br>
@@ -162,7 +143,7 @@
     </div>
 <img src="../images/Papers.png" alt="#" class="image">
 <div class="container-fluid">
-<h2 class="plans"><b>QOAJ PLANS</b></h2>
+<h2 class="plans">QOAJ PLANS</h2>
   <div class="ex-journal">
 
   <div class="example-journal">
@@ -239,7 +220,7 @@
     </div>
     <div style="display: flex; align-items: center; margin-bottom: 20px">
       <i style="color: green; margin-right: 30px; margin-left: 60px" class="fa-solid fa-check"></i>
-      <p style="margin: 0;" class="text-xs">Fixed amount of credit  points <br>each month. Credits  that are not <br>utilized do not roll over at the end <br> of the month. They are, however, <br> up to 50% less expensive than packages. </p>
+      <p style="margin: 0;" class="text-xs">Fixed amount of credit  points <br>each month. Credits  that are not <br>utilized do not roll over at the end <br> of the month. They are, however, <br> up to 50% less expensive<br/> than packages. </p>
     </div>
   </div>
   <div class="btn-price">
@@ -267,5 +248,6 @@
       <script src="../JS/reusable-header.js"></script>
       <script src="../JS/home-recommended-api.js"></script>
       <script src="../JS/home-monthly-api.js"></script>
+      <script src="../JS/most-downloaded-api.js"></script>
 </body>
 </html>
