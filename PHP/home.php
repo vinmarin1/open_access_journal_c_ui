@@ -50,11 +50,38 @@
 <div class="fluid-container">
 <div class="recommendation-article">
   <h4>Popular Articles this Month</h4>
-  <div id="popular-articles" class="articles-container">
- 
-  </div>  
+  <div class="d-flex container gap-4">
+    <div id="popular-articles" class="articles-container">
+    <!-- fetch popular articles using api -->
+    </div>  
+    <div class="col-lg-4 d-flex flex-column gap-2" id="most-downloaded">
+      <h6 class="font-weight-bold text-lg">Most Downloaded</h6>
+      <div class="item d-flex">
+        <span class="title w-100">ffs Between Labor Productivity And Employment Among Call Center Agents...</span>
+        <ul class="d-flex gap-2">
+          <li class="d-flex flex-column"><span class="total">220</span>downloads</li>
+          <li class="d-flex flex-column"><span class="total">220</span>views</li>
+        </ul>
+      </div>
+      <div class="item d-flex">
+        <span class="title w-100">Addressing The Trade Offs Between Labor Productivity And Employment Amo...</span>
+        <ul class="d-flex gap-2">
+          <li class="d-flex flex-column"><span class="total">220</span>downloads</li>
+          <li class="d-flex flex-column"><span class="total">220</span>views</li>
+        </ul>
+      </div>
+      <div class="item d-flex">
+        <span class="title w-100">Addressing The Trade Offs Between Labor Productivity And Employment Among...</span>
+        <ul class="d-flex gap-2">
+          <li class="d-flex flex-column"><span class="total">220</span>downloads</li>
+          <li class="d-flex flex-column"><span class="total">220</span>views</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </div>
+</div>
+
 <hr style="height: 2px; background-color: #115272; width: 100%">
 
 <?php
