@@ -50,12 +50,13 @@
 <div class="fluid-container">
 <div class="recommendation-article">
   <h4>Popular Articles this Month</h4>
-  <div class="d-flex container gap-4">
-    <div id="popular-articles" class="articles-container">
+  <div class="d-flex container flex-wrap gap-4">
+    <div id="popular-articles" class="articles-container col-sm-12 col-lg-7">
     <!-- fetch popular articles using api -->
     </div>  
-    <div class="col-lg-4 d-flex flex-column gap-2" id="most-downloaded">
-      <h6 class="font-weight-bold text-lg">Most Downloaded</h6>
+    <div class="divider"></div>
+    <div class="col-sm-12 col-lg-4 d-flex flex-column gap-2" id="most-downloaded">
+      <h6 class="text-lg">Most Downloaded</h6>
       <div class="item d-flex">
         <span class="title w-100">ffs Between Labor Productivity And Employment Among Call Center Agents...</span>
         <ul class="d-flex gap-2">
@@ -82,7 +83,7 @@
 </div>
 </div>
 
-<hr style="height: 2px; background-color: #115272; width: 100%">
+<!-- <hr style="height: 2px; background-color: #115272; width: 100%"> -->
 
 <?php
   if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
@@ -181,7 +182,7 @@
 </div>
 
 
-<div class="example-journal" id="example-mid">
+<div class="example-journal" >
   <div class="plans-inside">
     <h3><b>Package</b></h3>
     <h5><b> PHP 1.00 / credit </b></h5>

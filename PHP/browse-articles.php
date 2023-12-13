@@ -130,8 +130,16 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
     echo '
       <div class="fluid-container">
       <div class="recommendation-article">
-      <h4>Recommendation articles for you</h4>
+      <h4>Tailored for You: Recommended Articles Based on Your Interactions</h4>
         <div id="recommendations" class="articles-container">
+        </div>
+        </div>
+      </div>
+      </div>
+      <div class="fluid-container">
+      <div class="recommendation-article">
+      <h4>Discover our Most Popular Article </h4>
+        <div id="all-popular-articles" class="articles-container">
         </div>
         </div>
       </div>
@@ -176,6 +184,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
 <script src="../JS/reusable-header.js"></script>
 <script src="../JS/home-recommended-api.js"></script>
 <script src="../JS/home-monthly-api.js"></script>
+<script src="../JS/most-popular-api.js"></script>
 <script src="../JS/browse-api.js"></script>
 <script>
     
