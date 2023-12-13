@@ -42,7 +42,6 @@ include 'dbcon.php';
         return false;
     }
 
-    // Check if the 'action' index is set
     $action = isset($_POST['action']) ? $_POST['action'] : '';
 
     switch ($action) {
