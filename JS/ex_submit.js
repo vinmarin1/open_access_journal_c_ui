@@ -137,27 +137,70 @@ document.getElementById('form').addEventListener('submit', function (event) {
   }
 });
 
-  var quill1 = new Quill('#editor', {
-    theme: 'snow'
+
+var quill1 = new Quill('#editor', {
+  theme: 'snow'
+});
+
+var quill2 = new Quill('#editor2', {
+  theme: 'snow'
+});
+
+var titleInput = document.getElementById("title");
+var keywordsInput = document.getElementById("keywords");
+var abstractInput = document.getElementById('abstract');
+var referenceInput = document.getElementById('reference');
+
+quill1.on('text-change', function() {
+  abstractInput.value = quill1.getText();
+  updateButtonState();
+});
+
+quill2.on('text-change', function() {
+  referenceInput.value = quill2.getText();
+  updateButtonState();
+});
+
+titleInput.addEventListener('input', updateButtonState);
+keywordsInput.addEventListener('input', updateButtonState);
+
+// Periodically check if abstractInput and referenceInput have values
+setInterval(function() {
+  updateButtonState();
+}, 1000); // Adjust the interval as needed
+
+function updateButtonState() {
+  const formFloat = document.getElementById('form-floating-2');
+  const similarTitle = document.getElementById('similar-title');
+  const similarAbstract = document.getElementById('similar-abstract');
+
+
+  if (
+    titleInput.value.trim() !== '' &&
+    keywordsInput.value.trim() !== '' &&
+    abstractInput.value.trim() !== '' &&
+    referenceInput.value.trim() !== ''
+  ) {
+    formFloat.style.display = 'inline-block';
+  } else {
+    formFloat.style.display = 'none';
+  }
+
+  document.getElementById('btn-okay').addEventListener('click', function (event) {
+    formFloat.style.display = 'none';
+    similarTitle.innerHTML = '';
+    similarAbstract.innerHTML = '';
+    keywordsInput.innerHTML = '';
   });
-  var quill2 = new Quill('#editor2', {
-    theme: 'snow'
-  });
+}
+
+
+
   var quill3 = new Quill('#editor3', {
     theme: 'snow'
   });
 
-  var abstractInput = document.getElementById('abstract');
-  var referenceInput = document.getElementById('reference');
-  var notes = document.getElementById('notes');
-
-  quill1.on('text-change', function() {
-    abstractInput.value = quill1.getText();
-  });
-
-  quill2.on('text-change', function() {
-    referenceInput = document.getElementById('reference');
-  });
+ 
 
   quill3.on('text-change', function() {
     notes.value = quill3.getText();
@@ -380,42 +423,6 @@ input10.value = contributorInput;
 
 
 
-
-function updateButtonState() {
- 
-  const formFloat = document.getElementById('form-floating-2');
-  const similarTitle = document.getElementById('similar-title');
-  const similarAbstract = document.getElementById('similar-abstract');
-  
-
-  
-
-  if (titleInput.value.trim() !== '' && keywordsInput.value.trim() !== ''  && abstractInput.value === "" && referenceInput.value === ""){
-   
-    formFloat.style.display = 'inline-block';
- 
-  }
-  
-  else {
-    
-    formFloat.style.display = 'none';
-
-  
-  }
-
-  document.getElementById('btn-okay').addEventListener('click', function (event) {
-    formFloat.style.display = 'none';
-    similarTitle.innerHTML = '';
-    similarAbstract.innerHTML = '';
-
-  });
-
-}
-
-
-
-titleInput.addEventListener('input', updateButtonState);
-keywordsInput.addEventListener('input', updateButtonState);
 
 
 

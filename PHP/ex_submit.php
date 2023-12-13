@@ -346,7 +346,7 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 <script src="../JS/ex_submit.js"></script>
 <script src="../JS/ex_submit_duplicate_article.js"></script>
 <script src="../JS/ex_submit_journal_type.js"></script>
-<script src="../JS/check-btn.js"></script>
+
 </body>
 </html>
 

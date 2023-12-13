@@ -54,7 +54,9 @@ document.getElementById('check-duplication').addEventListener('click', function(
             journalType.style.display = 'block';
             labelTitle.style.display = 'block';
             labelAbstract.style.display = 'block';
-
+            similarTitle.style.color = 'red';
+            similarAbstract.style.color = 'red';
+            
             nextBtn.disabled = true;
 
         }else if(data.highest_simlarity >= 0.5 && data.highest_simlarity < 1.0){
