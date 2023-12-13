@@ -10,7 +10,7 @@ if (!function_exists('get_journal_list')) {
 
         if ($pdo) {
             try {
-                $query = "SELECT * FROM journal";
+                $query = "SELECT * FROM journal WHERE status = 1";
                 $stmt = $pdo->query($query);
 
                 $result = $stmt->fetchAll(PDO::FETCH_OBJ);

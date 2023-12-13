@@ -50,7 +50,10 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
+     <!-- Quill CSS -->
+     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <!-- Quill JavaScript -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     <!-- Helpers -->
     <script src="../assets/vendor/js/helpers.js"></script>
     <script src="../assets/js/config.js"></script>
@@ -203,6 +206,12 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     </li>
                     <li>
                       <div class="dropdown-divider"></div>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#">
+                        <i class="bx bx-user me-2"></i>
+                        <span class="align-middle" onclick="location.href='../../php/author-dashboard.php'">User Dashboard</span>
+                      </a>
                     </li>
                     <li>
                       <a class="dropdown-item" href="#">
