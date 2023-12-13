@@ -13,7 +13,7 @@
   background-repeat: no-repeat;
   background-position: center center;
   padding-top: 70px;
-  padding-left: 150px;
+  padding-left: 8%;
   
 }
 
@@ -38,6 +38,7 @@
 .content-over h2{
   font-family: 'Times New Roman', Times, serif;
   margin-top: 20px;
+  font-weight: 500 !important;
 }
 
 .content-over button{
@@ -47,6 +48,7 @@
   background-color: #E56F1F;
   border-radius: 20px;
   margin-top: 20px;
+  padding: 0.5em 1em;
 }
 
 .content-over button:hover{
@@ -92,6 +94,7 @@
   background-color: #115272;
   border-radius: 20px;
   width: 50%;
+  border: none;
   
 }
 
@@ -150,12 +153,13 @@
   align-items: center;
   justify-items: center;
   width: 100%;
-  min-height: 400px;
+  min-height: 360px;
   padding-top:2em;
   padding-bottom:2em;
 }
 
 .recommendation-article h4{
+  
 color: #115272;
 font-family: 'Times New Roman', Times, serif;
 width:85%;
@@ -170,6 +174,10 @@ margin-right: auto;
 overflow-x: auto;
 overflow-y: hidden;
 white-space: nowrap;
+display:flex;
+gap:24px;
+border-radius: 8px;
+padding:2em 0;
 }
 
 .articles-container-monthly{
@@ -203,14 +211,21 @@ background-color: transparent;
 
 
 .article {
-padding: 2em 4em 2em 0;
+padding: 2em;
 width: 25%;
+min-width: 320px;
 height: 100%;
 background-color: white;
 display: inline-block;
 white-space: normal; 
+border-radius: 4px;
+border: 1px solid #F2F2F2;
+box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.025);
 
 
+}
+.article:hover{
+  background-color: rgba(239, 242, 248, 0.617);
 }
 
 .article .h6{
@@ -280,7 +295,7 @@ flex-wrap: wrap;
 justify-content: space-around; /* Center horizontally */
 align-items: center; /* Center vertically */
 min-height: 70vh;
-padding: 2em 4em;
+padding: 2em 8%;
 }
 
 .ab-qoaj-left {
@@ -336,7 +351,7 @@ color: white;
 .text1 {
 display: inline-block;
 margin-right: 8%;
-margin-left: 30px;
+/* margin-left: 30px; */
 }
 
 .divider-line-2 {
@@ -358,18 +373,19 @@ height: 600px;
 }
 
 .plans-inside{
-  width: 80%;
-  margin-left: 40px;
-  margin-right: 40px;
+  width: 100%;
+  /* margin-left: 40px;
+  margin-right: 40px; */
 }
 
 .plans-inside h5{
-  font-family: 'Times New Roman', Times, serif;
+  /* font-family: 'Times New Roman', Times, serif; */
   color: #115272;
 }
 
 .plans-inside p{
   text-align: justify;
+  width: 80%;
 }
 
 .btn-price{
@@ -380,29 +396,19 @@ height: 600px;
 }
 
 .example-journal {
-border-color: #115272;
-border-radius: 10%;
-border: 1px solid;
+border-radius: 4px;
+border: 1px solid #F2F2F2;
+box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.025);
 width: 100%;
-height: 100%;
+max-width: 24em;
+/* height: 100%; */
 display: inline-block; 
 text-align: center; 
-margin: 0 140px 0 140px; 
-box-shadow:gray 5px 10px 10px;
+/* margin: 0 140px 0 140px;  */
+/* box-shadow:gray 5px 10px 10px; */
  /* Add shadow to the border */
 }
 
-#example-mid{
-margin-left: -90px;
-margin-right: -90px;
-border-color: #115272;
-border-radius: 10%;
-border: 1px solid;
-width: 100%;
-height: 100%;
-display: inline-block; 
-text-align: center; 
-}
 
 
 
@@ -411,13 +417,18 @@ font-family: 'Times New Roman', Times, serif;
 color:#115272;
 text-align: center;
 margin-top: 40px;
+font-size: 24px;
 
+}
+.example-journal h5{
+  font-size: 16px;
 }
 
 .example-journal p{
 text-align: center;
-margin: 20px 20px 20px 20px;
+/* margin: 20px 20px 20px 20px; */
 text-align: justify;
+font-size: 16px;
 }
 
 .example-journal button {
@@ -436,10 +447,57 @@ opacity: 0.8;
 }
 .ex-journal {
 display: flex;
-justify-content: center; /* Center horizontally within the container */
-align-items: center; /* Center vertically within the container */
+flex-wrap: wrap;
+gap:2em;
+justify-content: center;
+/* justify-content: between; /* Center horizontally within the container */
+/* align-items: center; Center vertically within the container  */
 margin-top: 100px;
 margin-bottom: 80px;
-height: 700px;
+padding: 2em 8%;
+/* height: 700px; */
 }
 
+#most-downloaded{
+  /* box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.025); */
+  display:flex;
+  flex-direction: column;
+  padding:2em;
+  
+}
+#most-downloaded .item {
+  display:flex;
+}
+.divider {
+  border-left: 2px solid #cccdda7e;
+  height: auto;
+  width:20px;
+  
+}
+#most-downloaded h6{
+  font-weight: 700;
+}
+#most-downloaded span {
+  color: #115272;
+  font-family: 'Times New Roman', Times, serif;
+
+}
+#most-downloaded ul li {
+  text-align: center;
+  font-size: 12px;
+  color:rgb(149, 149, 149);
+}
+
+#most-downloaded div:hover {
+  background-color: rgba(239, 242, 248, 0.617);
+  cursor: pointer;
+}
+#most-downloaded .total {
+  font-size: 18px;
+  font-weight: 700;
+  color: #303334;
+}
+
+h4, h2 {
+  font-weight: 500 !important ;
+}
