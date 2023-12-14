@@ -118,15 +118,20 @@
       </div>
 
       <div class="form-floating-2" id="form-floating-2">
-        <h5 id="duplication-title">Checking of Details</h5>
+        <!-- <h5 id="duplication-title">Checking of Details</h5> -->
         <div class="duplicated-article">
           <h6 class="checker-titles">Duplication Checker</h6>
-      
-          <label id="label-title">Title: </label>
+          <h6></h6>
+          <!-- <label id="label-title">Article: </label> -->
+          <p id="label-title">Article:</p>
           <div id="similar-title"></div>
-          <label  id="label-abstract">Abstract: </label>
+        
           <div id ="similar-abstract"></div>
         
+          <!-- <label  id="label-result">Result: </label> -->
+          <p id="label-result">Result:</p>
+          
+          <div id="result-duplication"></div>
         </div>
         <div class="journal-type-container">
           <h6 class="checker-titles">Journal Classification</h6>

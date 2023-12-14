@@ -14,7 +14,7 @@
           <a class="navbar-brand" href="#"><img class="img-fluid"  src="../images/qcu-logo.webp" alt="">
           <div class="logotitle">
           QUEZON CITY UNIVERSITY</a>
-          <span>OPEN ACCES JOURNAL</span>
+          <span>OPEN ACCESS JOURNAL</span>
           </div>
         </div>
       </div>

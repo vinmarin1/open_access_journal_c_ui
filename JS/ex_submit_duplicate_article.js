@@ -3,11 +3,13 @@ document.getElementById('check-duplication').addEventListener('click', function(
     const title = document.getElementById('title').value;
     const abstract = document.getElementById('abstract').value;
     const labelTitle = document.getElementById('label-title');
-    const labelAbstract = document.getElementById('label-abstract');
+    const labelDuplication = document.getElementById('result-duplication');
+    const labelResult = document.getElementById('label-result');
     const journalType = document.getElementById('journal-type');
     const nextBtn = document.getElementById('next');
     const similarTitle = document.getElementById('similar-title');
     const similarAbstract = document.getElementById('similar-abstract');
+
     
 
     
@@ -41,6 +43,9 @@ document.getElementById('check-duplication').addEventListener('click', function(
       
         document.getElementById('similar-title').innerHTML = data.similar_articles[0].title;
         document.getElementById('similar-abstract').innerHTML = data.similar_articles[0].abstract;
+        document.getElementById('result-duplication').innerHTML = data.similar_articles[0].score.total * 100 + '%';
+
+      
         
         if(data.highest_simlarity >= 1.0){
 
@@ -52,10 +57,12 @@ document.getElementById('check-duplication').addEventListener('click', function(
             });
 
             journalType.style.display = 'block';
-            labelTitle.style.display = 'block';
-            labelAbstract.style.display = 'block';
-            similarTitle.style.color = 'red';
-            similarAbstract.style.color = 'red';
+            labelTitle.style.textAlign = 'left';
+            labelResult.style.textAlign = 'left';
+            labelDuplication.style.textAlign = 'left';
+            similarAbstract.style.textAlign = 'left';
+          
+          
             
             nextBtn.disabled = true;
 
@@ -69,12 +76,14 @@ document.getElementById('check-duplication').addEventListener('click', function(
             });
 
             journalType.style.display = 'block';
-            labelTitle.style.display = 'block';
-            labelAbstract.style.display = 'block';
-            similarTitle.style.color = 'orange';
-            similarAbstract.style.color = 'orange';
+            labelTitle.style.textAlign = 'left';
+            labelResult.style.textAlign = 'left';
+            labelDuplication.style.textAlign = 'left';
+            similarAbstract.style.textAlign = 'left';
+          
+            
+            nextBtn.disabled = true;
 
-            nextBtn.disabled= true;
          
         }else if(data.highest_simlarity >= 0.4){
             Swal.fire({
@@ -85,10 +94,15 @@ document.getElementById('check-duplication').addEventListener('click', function(
             });
 
             journalType.style.display = 'block';
-            labelTitle.style.display = 'block';
-            labelAbstract.style.display = 'block';
-            similarTitle.style.color = 'green';
-            similarAbstract.style.color = 'green';
+            labelTitle.style.textAlign = 'left';
+            labelResult.style.textAlign = 'left';
+            labelDuplication.style.textAlign = 'left';
+            similarAbstract.style.textAlign = 'left';
+          
+          
+            
+        
+
             nextBtn.disabled= false;
 
         }
