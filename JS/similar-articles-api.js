@@ -39,7 +39,7 @@ async function fetchData() {
         </div>
         <p class="author" id="author">${item.author}</p>
         <p class="article-content" id="abstract">${item.abstract.slice(0,200)}</p>
-        <button class="btn btn-primary btn-md btn-article" style="border: 2px #115272 solid; background-color: transparent; border-radius: 20px; color: #115272; width: 100%;">Read Article</button>
+        <button class="btn btn-primary btn-md btn-article" style="border: 2px #0858a4 solid; background-color: transparent; border-radius: 20px; color: #0858a4; width: 100%;">Read Article</button>
       `;
 
       articlesContainer.appendChild(articleDiv);

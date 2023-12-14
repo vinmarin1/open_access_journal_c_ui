@@ -42,12 +42,12 @@ document.addEventListener('DOMContentLoaded', function () {
   function updateStyles() {
     tabButtons.forEach(function (btn, i) {
       if (i === selectedTabIndex) {
-        btn.style.backgroundColor = "#115272";
+        btn.style.backgroundColor = "#0858a4";
         btn.style.color = "white";
       } else {
         btn.style.backgroundColor = "white";
         btn.style.border = "1px solid";
-        btn.style.color = "#115272";
+        btn.style.color = "#0858a4";
       }
     });
   }
@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Set initial styles and button visibility for the first button
     if (index === 0) {
-      button.style.backgroundColor = "#115272";
+      button.style.backgroundColor = "#0858a4";
       button.style.color = "white";
       updateButtonVisibility(index);
     }

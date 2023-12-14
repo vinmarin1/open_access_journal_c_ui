@@ -198,9 +198,9 @@
   <thead>
     <tr >
  
-      <th scope="col" style="background-color: #115272; color: white; font-weight: normal;">File Name</th>
-      <th scope="col" style="background-color: #115272; color: white; font-weight: normal;">Type</th>
-      <th scope="col" style="background-color: #115272; color: white; font-weight: normal;">Action</th>
+      <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">File Name</th>
+      <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">Type</th>
+      <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">Action</th>
     </tr>
   </thead>
   <tbody id="fileList">
@@ -243,8 +243,8 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
   <thead>
     <tr >
  
-      <th scope="col" style="background-color: #115272; color: white; font-weight: normal;">Contributors</th>
-      <th scope="col" style="background-color: #115272; color: white; font-weight: normal;">Action</th>
+      <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">Contributors</th>
+      <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">Action</th>
     </tr>
   </thead>
   <tbody>

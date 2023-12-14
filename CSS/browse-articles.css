@@ -28,7 +28,7 @@ body {
 .content-over {
     position: relative;
     width: 100%;
-    height: 50vh;
+    height: 20em;
     background-image: url(../images/qcu-bg.jpg);
     background-size: cover;
     background-repeat: no-repeat;
@@ -65,7 +65,7 @@ body {
 }
 
 .content-over h2{
-    font-family: 'Times New Roman', Times, serif;
+    font-family: Arial, Helvetica, sans-serif;
     margin-top: 20px;
 }
 
@@ -73,7 +73,7 @@ body {
     color: white; 
     position: relative;
     z-index: 1;
-    background-color: #115272;
+    background-color: #0858a4;
     border-radius: 20px;
     
 }
@@ -84,7 +84,7 @@ body {
     color: white; 
     position: relative;
     z-index: 1;
-    background-color: #115272;
+    background-color: #0858a4;
     border-radius: 20px;
     outline:none;
     border:none;
@@ -155,12 +155,12 @@ body {
     margin-right: 5px; /* Spacing between keywords */
     border-radius: 4px; /* Rounded corners for the keywords */
     font-size: 0.875em; /* Smaller font size for keywords */
-    color: #115272; /* Adjust the color as needed */
+    color: #0858a4; /* Adjust the color as needed */
     margin-bottom: 5px; /* Space between rows of keywords if they wrap */
 }
 
 .article-details h6 {
-    color: #115272;
+    color: #0858a4;
     /* Add any additional styles you want for the h6 */
 }
 
@@ -212,8 +212,8 @@ body {
 }
 
 .recommendation-article h4{
-    color: #115272;
-    font-family: 'Times New Roman', Times, serif;
+    color: #0858a4;
+    font-family: Arial, Helvetica, sans-serif;
     margin-left: 95px;
     display: flex;
 }
@@ -253,8 +253,8 @@ body {
     width:20vw;
 }
 .article .h6{
-    font-family: 'Times New Roman', Times, serif;
-    color: #115272;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #0858a4;
     width: auto;
     
 }
@@ -280,7 +280,7 @@ body {
 
 
 .author{
-    color: #115272;
+    color: #0858a4;
     font-size: 12px;
     display: block;
 }
@@ -291,10 +291,10 @@ body {
 }
 
 .btn-article:hover{
-    border: 2px #115272 solid;
+    border: 2px #0858a4 solid;
     background-color: transparent;
     border-radius: 20px;
-    color: #115272;
+    color: #0858a4;
     opacity: 0.8;
     
 }
@@ -403,12 +403,12 @@ body {
         border: 1px solid #ccc;
         margin: 0 5px;
         border-radius: 4px;
-        color: #115272;
+        color: #0858a4;
         cursor: pointer;
     }
 
     .pagination a.active {
-        background-color: #115272;
+        background-color: #0858a4;
         color: #fff;
     }
 }
