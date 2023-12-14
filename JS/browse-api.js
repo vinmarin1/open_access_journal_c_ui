@@ -47,7 +47,7 @@ async function fetchData(input,dates,sort) {
       
       articleDiv.innerHTML = `
         <div class="article-details">
-        <h6 style="color: #115272;"><strong>${item.title} - (${item.date})</strong></h6>
+        <h6 style="color: #0858a4;"><strong>${item.title} - (${item.date})</strong></h6>
         <p style="color: #454545;">${item.abstract.slice(0,200)} </p>
         <div class="keywords">
         ${keywordsHTML}
@@ -57,17 +57,17 @@ async function fetchData(input,dates,sort) {
     <div class="article-stats">
         <div class="stats-container">
             <div class="view-download">
-                <p class="stats-value" style="color: #115272;">${item.total_reads}</p>
+                <p class="stats-value" style="color: #0858a4;">${item.total_reads}</p>
                 <p class="stats-label" style="color: #959595;">VIEWS</p>
             </div>
             <div class="view-download">
-                <p class="stats-value" style="color: #115272;">${item.total_downloads}</p>
+                <p class="stats-value" style="color: #0858a4;">${item.total_downloads}</p>
                 <p class="stats-label" style="color: #959595;">DOWNLOADS</p>
             </div>
         </div>
         <hr style="border-top: 1px solid #ccc; margin: 10px 0;"> <!-- Add a horizontal line -->
         <div class="published-info">
-            <h6 class="publish-label" style="color: #115272;"><strong>Published in The ${item.journal}</strong></h6>
+            <h6 class="publish-label" style="color: #0858a4;"><strong>Published in The ${item.journal}</strong></h6>
             <p class="authors" style="color: #959595;">${item.author}</p>
             
         </div>

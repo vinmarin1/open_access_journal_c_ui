@@ -9,15 +9,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="header-container">
-        <div class="header">
-          <a class="navbar-brand" href="#"><img class="img-fluid"  src="../images/qcu-logo.webp" alt="">
-          <div class="logotitle">
-          QUEZON CITY UNIVERSITY</a>
+    <div class="d-flex gap-2 header">
+        <img class="img-logo" src="../images/qcu-logo.webp" alt="">
+        <div class="logotitle d-flex flex-column gap-1">
+          <a>QUEZON CITY UNIVERSITY</a>
           <span>OPEN ACCESS JOURNAL</span>
-          </div>
         </div>
-      </div>
+    </div>
 
       <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" ></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>

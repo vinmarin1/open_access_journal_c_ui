@@ -35,8 +35,8 @@ async function fetchData() {
           <span class="views" id="views">${item.total_reads} Views</span>
         </div>
         <p class="author" id="author">${item.author}</p>
-        <p class="article-content" id="abstract">${item.abstract.slice(0,200)}</p>
-        <button class="btn btn-primary btn-md btn-article" style="border: 2px #115272 solid; background-color: transparent; border-radius: 20px; color: #115272; width: 100%;">Read Article</button>
+        <p class="article-content" id="abstract">${item.abstract.slice(0,80)}...</p>
+        <button class="btn btn-primary btn-md btn-article" style="border: 2px #0858a4 solid; background-color: transparent; border-radius: 20px; color: #0858a4; width: 100%;">Read Article</button>
       `;
 
       articlesContainer.appendChild(articleDiv);
@@ -47,7 +47,7 @@ async function fetchData() {
       articleDiv.addEventListener('click', () => navigateToArticle(item.article_id));
       articleDiv.innerHTML = `
       <h6>${item.title}</h6>
-      <p>${item.abstract.slice(0,120)}</p>
+      <p>${item.abstract.slice(0,80)}</p>
       <button class="btn btn-outline-light btn-md">Try it Now</button>
       `;
 

@@ -8,6 +8,7 @@
   position: relative;
   width: 100%;
   height: 50vh;
+  max-height:20em;
   background-image: url(../images/qcu-bg.jpg);
   background-size: cover;
   background-repeat: no-repeat;
@@ -27,7 +28,7 @@
   background-color: rgba(53, 68, 74, 0.7);
 }
 
-.content-over p, .content-over h2 {
+.content-over p, .content-over h4 {
   color: white; 
   position: relative;
   z-index: 1; 
@@ -35,8 +36,8 @@
   
 }
 
-.content-over h2{
-  font-family: 'Times New Roman', Times, serif;
+.content-over h4{
+  font-family: Arial, Helvetica, sans-serif;
   margin-top: 20px;
   font-weight: 500 !important;
 }
@@ -80,9 +81,9 @@
 
 }
 
-.offer-left h2{
-  font-family: 'Times New Roman', Times, serif;
-  color: #115272;
+.offer-left h4{
+  font-family: Arial, Helvetica, sans-serif;
+  color: #0858a4;
 }
 
 
@@ -91,7 +92,7 @@
 }
 
 .offer-left button{
-  background-color: #115272;
+  background-color: #0858a4;
   border-radius: 20px;
   width: 50%;
   border: none;
@@ -99,14 +100,14 @@
 }
 
 .offer-left button:hover{
-  background-color: #115272;
+  background-color: #0858a4;
   border-radius: 20px;
   opacity: 0.8;
   
 }
 
 .divider-line{
-  border-left: 2px solid #115272;
+  border-left: 2px solid #0858a4;
   height: 410px;
   display: inline-block;
   position: absolute;
@@ -120,8 +121,8 @@
 }
 
 .offer-right h6{
-  font-family: 'Times New Roman', Times, serif;
-  color: #115272;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #0858a4;
   margin-top: 50px;
 }
 
@@ -130,18 +131,18 @@
 }
 
 .offer-right button{
-  border: 2px #115272 solid;
+  border: 2px #0858a4 solid;
   background-color: transparent;
   border-radius: 20px;
-  color: #115272;
+  color: #0858a4;
   width: 50%;
 }
 
 .offer-right button:hover{
-  border: 2px #115272 solid;
+  border: 2px #0858a4 solid;
   background-color: transparent;
   border-radius: 20px;
-  color: #115272;
+  color: #0858a4;
   opacity: 0.8;
   
 }
@@ -160,8 +161,8 @@
 
 .recommendation-article h4{
   
-color: #115272;
-font-family: 'Times New Roman', Times, serif;
+color: #0858a4;
+font-family: Arial, Helvetica, sans-serif;
 width:85%;
 }
 
@@ -229,8 +230,8 @@ box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.025);
 }
 
 .article .h6{
-font-family: 'Times New Roman', Times, serif;
-color: #115272;
+font-family: Arial, Helvetica, sans-serif;
+color: #0858a4;
 width: auto;
 
 }
@@ -251,7 +252,7 @@ margin-left: 150px;
 }
 
 .author{
-color: #115272;
+color: #0858a4;
 font-size: 12px;
 display: block;
 }
@@ -277,14 +278,16 @@ background-color: transparent;
 
 
 .btn-article:hover{
-border: 2px #115272 solid;
+border: 2px #0858a4 solid;
 background-color: transparent;
 border-radius: 20px;
-color: #115272;
+color: #0858a4;
 opacity: 0.8;
 
 }
-
+.badge {
+  background-color: #0858A4 !important;
+}
 .qoaj {
 background-color: #0858A4;
 }
@@ -295,6 +298,7 @@ flex-wrap: wrap;
 justify-content: space-around; /* Center horizontally */
 align-items: center; /* Center vertically */
 min-height: 70vh;
+max-height:30em;
 padding: 2em 8%;
 }
 
@@ -311,8 +315,8 @@ justify-items: center;
 min-width:200px;
 }
 
-.ab-qoaj-left h2 {
-font-family: 'Times New Roman', Times, serif;
+.ab-qoaj-left h4 {
+font-family: Arial, Helvetica, sans-serif;
 color: white;
 margin-top: 20px;
 }
@@ -365,8 +369,8 @@ height: 600px;
 }
 
 .plans{
-  font-family: 'Times New Roman', Times, serif;
-  color: #115272;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #0858a4;
   text-align: center;
   margin-top: 70px;
   margin-bottom: -70px;
@@ -379,8 +383,8 @@ height: 600px;
 }
 
 .plans-inside h5{
-  /* font-family: 'Times New Roman', Times, serif; */
-  color: #115272;
+  /* font-family: Arial, Helvetica, sans-serif; */
+  color: #0858a4;
 }
 
 .plans-inside p{
@@ -413,8 +417,8 @@ text-align: center;
 
 
 .example-journal h3{
-font-family: 'Times New Roman', Times, serif;
-color:#115272;
+font-family: Arial, Helvetica, sans-serif;
+color:#0858a4;
 text-align: center;
 margin-top: 40px;
 font-size: 24px;
@@ -432,16 +436,16 @@ font-size: 16px;
 }
 
 .example-journal button {
-background-color: #115272;
+background-color: #0858a4;
 border-radius: 20px;
 width: 60%;
 border-color: white;
-background-color: #115272;
+background-color: #0858a4;
 margin-bottom: 30px;
 }
 
 .example-journal button:hover{
-background-color: #115272;
+background-color: #0858a4;
 border-radius: 20px;
 opacity: 0.8;
 }
@@ -478,8 +482,8 @@ padding: 2em 8%;
   font-weight: 700;
 }
 #most-downloaded span {
-  color: #115272;
-  font-family: 'Times New Roman', Times, serif;
+  color: #0858a4;
+  font-family: Arial, Helvetica, sans-serif;
 
 }
 #most-downloaded ul li {

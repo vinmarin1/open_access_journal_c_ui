@@ -83,7 +83,7 @@ function renderArticleDetails(data) {
                   </div>
               </div>
 
-              <hr style="height: 2px; background-color: #115272; width: 80%">
+              <hr style="height: 2px; background-color: #0858a4; width: 80%">
 
               <div class="article-pub">
                   <h4>Published in the Gavel</h4>
@@ -151,8 +151,8 @@ async function renderRecommended(data) {
         <span class="views">${article.total_reads} views</span>
       </div>
       <p class="author">By ${article.author}</p>
-      <p class="article-content h-25 ">${article.abstract.slice(0, 120)}</p>
-      <button class="btn btn-primary btn-md btn-article" style="border: 2px #115272 solid; background-color: transparent; border-radius: 20px; color: #115272; width: 100%;">Read Article</button>
+      <p class="article-content h-25 ">${article.abstract.slice(0, 80)}</p>
+      <button class="btn btn-primary btn-md btn-article" style="border: 2px #0858a4 solid; background-color: transparent; border-radius: 20px; color: #0858a4; width: 100%;">Read Article</button>
     `;
     articleElement.addEventListener('click', () => navigateToArticle(article.article_id));
 

@@ -68,7 +68,7 @@
                 </div>
             </div>
 
-            <hr style="height: 2px; background-color: #115272; width: 100%">
+            <hr style="height: 2px; background-color: #0858a4; width: 100%">
 
             <div class="fluid-container">
                 <div class="recommendation-article">
@@ -82,10 +82,10 @@
                     </div>
                     <p class="author">By Jane Delacruz</p>
                     <p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
-                    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
+                    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #0858a4 solid;
                     background-color: transparent;
                     border-radius: 20px;
-                    color: #115272;
+                    color: #0858a4;
                     width: 100%;">Read Article</button>
                 </div>
                 <div class="article">
@@ -96,25 +96,10 @@
                     </div>
                     <p class="author">By Jane Delacruz</p>
                     <p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
-                    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
+                    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #0858a4 solid;
                     background-color: transparent;
                     border-radius: 20px;
-                    color: #115272;
-                    width: 100%;">Read Article</button>
-                </div>
-
-                <div class="article">
-                <p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
-                    <div class="article-info">
-                    <p class="info">THE LAMP</p>
-                    <span class="views"></span>103 views
-                    </div>
-                    <p class="author">By Jane Delacruz</p>
-                    <p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
-                    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
-                    background-color: transparent;
-                    border-radius: 20px;
-                    color: #115272;
+                    color: #0858a4;
                     width: 100%;">Read Article</button>
                 </div>
 
@@ -126,10 +111,10 @@
                     </div>
                     <p class="author">By Jane Delacruz</p>
                     <p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
-                    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
+                    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #0858a4 solid;
                     background-color: transparent;
                     border-radius: 20px;
-                    color: #115272;
+                    color: #0858a4;
                     width: 100%;">Read Article</button>
                 </div>
 
@@ -141,10 +126,25 @@
                     </div>
                     <p class="author">By Jane Delacruz</p>
                     <p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
-                    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
+                    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #0858a4 solid;
                     background-color: transparent;
                     border-radius: 20px;
-                    color: #115272;
+                    color: #0858a4;
+                    width: 100%;">Read Article</button>
+                </div>
+
+                <div class="article">
+                <p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
+                    <div class="article-info">
+                    <p class="info">THE LAMP</p>
+                    <span class="views"></span>103 views
+                    </div>
+                    <p class="author">By Jane Delacruz</p>
+                    <p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
+                    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #0858a4 solid;
+                    background-color: transparent;
+                    border-radius: 20px;
+                    color: #0858a4;
                     width: 100%;">Read Article</button>
                 </div>
                 </div>
@@ -196,7 +196,7 @@
                 </div>
             </div>
 
-            <hr style="height: 2px; background-color: #115272; width: 100%">
+            <hr style="height: 2px; background-color: #0858a4; width: 100%">
 
             <div class="fluid-container">
                 <div class="recommendation-article">
@@ -210,10 +210,10 @@
                     </div>
                     <p class="author">By Jane Delacruz</p>
                     <p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
-                    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
+                    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #0858a4 solid;
                     background-color: transparent;
                     border-radius: 20px;
-                    color: #115272;
+                    color: #0858a4;
                     width: 100%;">Read Article</button>
                 </div>
                 <div class="article">
@@ -224,25 +224,10 @@
                     </div>
                     <p class="author">By Jane Delacruz</p>
                     <p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
-                    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
+                    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #0858a4 solid;
                     background-color: transparent;
                     border-radius: 20px;
-                    color: #115272;
-                    width: 100%;">Read Article</button>
-                </div>
-
-                <div class="article">
-                <p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
-                    <div class="article-info">
-                    <p class="info">THE LAMP</p>
-                    <span class="views"></span>103 views
-                    </div>
-                    <p class="author">By Jane Delacruz</p>
-                    <p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
-                    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
-                    background-color: transparent;
-                    border-radius: 20px;
-                    color: #115272;
+                    color: #0858a4;
                     width: 100%;">Read Article</button>
                 </div>
 
@@ -254,10 +239,10 @@
                     </div>
                     <p class="author">By Jane Delacruz</p>
                     <p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
-                    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
+                    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #0858a4 solid;
                     background-color: transparent;
                     border-radius: 20px;
-                    color: #115272;
+                    color: #0858a4;
                     width: 100%;">Read Article</button>
                 </div>
 
@@ -269,10 +254,25 @@
                     </div>
                     <p class="author">By Jane Delacruz</p>
                     <p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
-                    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
+                    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #0858a4 solid;
                     background-color: transparent;
                     border-radius: 20px;
-                    color: #115272;
+                    color: #0858a4;
+                    width: 100%;">Read Article</button>
+                </div>
+
+                <div class="article">
+                <p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
+                    <div class="article-info">
+                    <p class="info">THE LAMP</p>
+                    <span class="views"></span>103 views
+                    </div>
+                    <p class="author">By Jane Delacruz</p>
+                    <p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
+                    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #0858a4 solid;
+                    background-color: transparent;
+                    border-radius: 20px;
+                    color: #0858a4;
                     width: 100%;">Read Article</button>
                 </div>
                 </div>
@@ -326,7 +326,7 @@
                 </div>
             </div>
 
-            <hr style="height: 2px; background-color: #115272; width: 100%">
+            <hr style="height: 2px; background-color: #0858a4; width: 100%">
 
             <div class="fluid-container">
                 <div class="recommendation-article">
@@ -340,10 +340,10 @@
                     </div>
                     <p class="author">By Jane Delacruz</p>
                     <p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
-                    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
+                    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #0858a4 solid;
                     background-color: transparent;
                     border-radius: 20px;
-                    color: #115272;
+                    color: #0858a4;
                     width: 100%;">Read Article</button>
                 </div>
                 <div class="article">
@@ -354,25 +354,10 @@
                     </div>
                     <p class="author">By Jane Delacruz</p>
                     <p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
-                    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
+                    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #0858a4 solid;
                     background-color: transparent;
                     border-radius: 20px;
-                    color: #115272;
-                    width: 100%;">Read Article</button>
-                </div>
-
-                <div class="article">
-                <p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
-                    <div class="article-info">
-                    <p class="info">THE LAMP</p>
-                    <span class="views"></span>103 views
-                    </div>
-                    <p class="author">By Jane Delacruz</p>
-                    <p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
-                    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
-                    background-color: transparent;
-                    border-radius: 20px;
-                    color: #115272;
+                    color: #0858a4;
                     width: 100%;">Read Article</button>
                 </div>
 
@@ -384,10 +369,10 @@
                     </div>
                     <p class="author">By Jane Delacruz</p>
                     <p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
-                    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
+                    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #0858a4 solid;
                     background-color: transparent;
                     border-radius: 20px;
-                    color: #115272;
+                    color: #0858a4;
                     width: 100%;">Read Article</button>
                 </div>
 
@@ -399,10 +384,25 @@
                     </div>
                     <p class="author">By Jane Delacruz</p>
                     <p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
-                    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
+                    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #0858a4 solid;
                     background-color: transparent;
                     border-radius: 20px;
-                    color: #115272;
+                    color: #0858a4;
+                    width: 100%;">Read Article</button>
+                </div>
+
+                <div class="article">
+                <p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
+                    <div class="article-info">
+                    <p class="info">THE LAMP</p>
+                    <span class="views"></span>103 views
+                    </div>
+                    <p class="author">By Jane Delacruz</p>
+                    <p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
+                    <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #0858a4 solid;
+                    background-color: transparent;
+                    border-radius: 20px;
+                    color: #0858a4;
                     width: 100%;">Read Article</button>
                 </div>
                 </div>
