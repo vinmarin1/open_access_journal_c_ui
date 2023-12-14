@@ -44,7 +44,7 @@ if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true ){
 ?>
 
 <!-- 
-<hr style="height: 2px; background-color: #115272 "> -->
+<hr style="height: 2px; background-color: #0858a4 "> -->
 <div class="fluid-container">
 <div class="recommendation-article">
 <h4>More like this</h4>

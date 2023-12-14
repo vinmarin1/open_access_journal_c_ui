@@ -1,12 +1,12 @@
 #navbar-container{
-    background-color: #0858A4;
-    margin-top: 4px;
+    background-color: #004e98;
+    /* margin-top: 4px; */
 
 }
 
 #navbarSupportedContent a{
     color: white;
-    margin-right: 20px;
+    /* margin-right: 20px; */
 }
 
 #navbarSupportedContent{
@@ -102,10 +102,28 @@
   border: 1px solid #0858A4;
   border-radius: 5px;
   margin-top: 10px;
-  margin-left: -5px; /* Adjust the margin-left */
+  margin-left: -5px;
   position: absolute;
   top: 100%;
   left: 50%;
   transform: translateX(-50%);
 }
+.nav-item {
+  display:flex;
+  align-items: center;
+  justify-items: center;
+  text-align: center;
+  padding: 0.5em;
+}
 
+nav .navbar-nav .nav-item:hover {
+  background-color: #ff6700;
+}
+
+.nav-link {
+  width:100%;
+  display:flex;
+}
+.profile {
+  color:white;
+}

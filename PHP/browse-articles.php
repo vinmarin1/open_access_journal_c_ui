@@ -52,11 +52,11 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
 
 <div class="main-container">
     <div class="sidebar">
-        <h4 style="color: #115272;"><b><span id="total"></span></b></h4>
+        <h4 style="color: #0858a4;"><b><span id="total"></span></b></h4>
         <!-- Filters Here -->
         <hr style="border-top: 1px solid #ccc; margin: 10px 0;"> <!-- Add a horizontal line -->
         <div class="filters">
-            <h5 style="color: #115272;">Filter search results</h5>
+            <h5 style="color: #0858a4;">Filter search results</h5>
             <!-- Journals, Year Published, etc. -->
             <div class="checkbox-container">
                         <h5 class="mb-2" style="color: #959595;"><b>JOURNALS</b></h5>
@@ -76,10 +76,10 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
         <!-- Article 1 -->
         <div class="sort-container">
             <div class="sort-header">
-                <span class="sort-by-text" style="color: #115272;">Sort by</span>
+                <span class="sort-by-text" style="color: #0858a4;">Sort by</span>
                 <span class="sort-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><path fill="#e6e6e6" d="M11 7H1l5 7zm-2 7h10l-5-7z"/></svg></span> <!-- Replace with an actual vector icon if available -->
             </div>
-            <select id="sortby" name="sortby" class="sort-dropdown" style="color: #115272;">
+            <select id="sortby" name="sortby" class="sort-dropdown" style="color: #0858a4;">
             <option value="">Choose</option>
             <option value="title">Title</option>
             <option value="recently_added">Recently added</option>

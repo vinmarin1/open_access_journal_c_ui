@@ -10,35 +10,18 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg " id="navbar-container" >
-  <div class="container-fluid">
+<nav class="navbar navbar-expand-lg p-0" id="navbar-container" >
+  <div class="container-fluid p-0">
    
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="background-color: white; margin-left: 50px">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex gap-2">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="home.php">Home</a>
         </li>
-        <?php
-        session_start();
-        if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 
-        } else {
-        echo '
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Log-in
-          </a>
-          <ul class="dropdown-menu">
-          <li><a class="dropdown-item" style="color: black" href="login.php" >Log-in</a></li>
-          <li><a class="dropdown-item" style="color: black" href="signup.php">Register</a></li>
-          </ul>
-        </li>
-      ';
-    }
-      ?>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="about.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             About
@@ -58,9 +41,6 @@
           <a class="nav-link" href="announcement.php">Announcements</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="announcement.php">Pricing</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link" href="announcement.php">Guidelines</a>
         </li>
       </ul>
@@ -68,7 +48,27 @@
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
       </form>
       
-  
+      <?php
+        session_start();
+        if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+
+        } else {
+        echo '
+        <li class="nav-item dropdown py-2 px-4">
+          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Log-in
+          </a>
+          <ul class="dropdown-menu">
+          <li><a class="dropdown-item" style="color: black" href="login.php" >Log-in</a></li>
+          <li><a class="dropdown-item" style="color: black" href="signup.php">Register</a></li>
+          </ul>
+        </li>
+      ';
+    }
+      ?>
+
+    </div>
+  </div>
 
 <?php
 if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
@@ -83,22 +83,13 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
       <div id="notification-box"></div>
     </div>
 
-    <div id="points-container">
-    <button id="points-button" onclick="togglePoints()">
-      <span id="points-icon">
-      <img src="../images/points-icon.png" alt="Coin" width="20" height="20">
-      </span>
-      <span id="points-count">0</span>
-    </button>
-    <div id="points-box"></div>
-  </div>
 
 
-    <div class="profile">
+    <div class="profile px-4">
     <a id="user-profile" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     '. $userName .'
    </a>
-        <li class="nav-item dropdown" style="list-style-type: none;">
+        <li class="dropdown" style="list-style-type: none;">
             <ul class="dropdown-menu" style="width: 200px; margin-left: -120px; margin-top: 20px">
               <li><a href="../admin/php/journalview.php" class="dropdown-item"  style="color: black;">Admin Dashboard</a></li>
               <li><a href="author-dashboard.php" class="dropdown-item"  style="color: black;">Author Dashboard</a></li>
@@ -112,8 +103,6 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 
 ?>
 
-    </div>
-  </div>
 </nav>
 
 <script>

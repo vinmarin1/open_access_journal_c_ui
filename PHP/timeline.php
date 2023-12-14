@@ -49,7 +49,7 @@
   <!-- One "tab" for each step in the form: -->
   <div class="tab" id="tab1">
     <h5 class="title">Submission Checklist</h5>
-    <h6 style="color: #115272">Indicate that this submission is ready to be considered by this journal by checking off the following (comments to the editor can be added below).</h6>
+    <h6 style="color: #0858a4">Indicate that this submission is ready to be considered by this journal by checking off the following (comments to the editor can be added below).</h6>
     <div class="guidelines">
         <p>The submission has not been previously published, nor is it before another journal for consideration (or an explanation has been provided in Comments to the Editor).
 
@@ -73,10 +73,10 @@ The text adheres to the stylistic and bibliographic requirements outlined in the
 
     </div>
     <h5 class="title" style="margin-top: 40px">Copyright Notice</h5>
-  <h6 style="color: #115272">Authors who publish with this journal also agree to the following terms: 
-  <p class="h6" style="color: #115272; margin-top: 20px">Authors are able to enter into separate, additional contractual arrangements for the non-exclusive distribution of the journal's published version of the work (e.g., post it to an institutional repository or publish it in a book), with an acknowledgement of its initial publication in this journal. 
+  <h6 style="color: #0858a4">Authors who publish with this journal also agree to the following terms: 
+  <p class="h6" style="color: #0858a4; margin-top: 20px">Authors are able to enter into separate, additional contractual arrangements for the non-exclusive distribution of the journal's published version of the work (e.g., post it to an institutional repository or publish it in a book), with an acknowledgement of its initial publication in this journal. 
 </p>
-<p class="h6" style="color: #115272; margin-top: 20px">
+<p class="h6" style="color: #0858a4; margin-top: 20px">
 Authors are permitted and encouraged to post their work online (e.g., in institutional repositories or on their website) as this can lead to productive exchanges, as well as earlier and greater citation of published work.
 </p>
 
@@ -84,7 +84,7 @@ Authors are permitted and encouraged to post their work online (e.g., in institu
 </h6>
 
 <h5 class="title" style="margin-top: 40px">Journal's Privacy Statement</h5>
-<p class="h6" style="color: #115272; margin-top: 20px">
+<p class="h6" style="color: #0858a4; margin-top: 20px">
 The names and email addresses entered in this journal site will be used exclusively for the stated purposes of this journal and will not be made available for any other purpose or to any other party
 </p>
 <div class="form-check">
@@ -102,26 +102,26 @@ The names and email addresses entered in this journal site will be used exclusiv
  
   <div class="tab">
   <h5 class="title">Submission Checklist</h5>
-  <h6 style="color: #115272">Please provide the following details to help us manage your submission in our system.</h6>
+  <h6 style="color: #0858a4">Please provide the following details to help us manage your submission in our system.</h6>
  
   <div class="journal_type_container">
   <h5 class="title">Journal Type</h5>
   <div class="category">
   <div class="form-check category-type" style="margin-left: 10px">
   <input class="form-check-input radio-select" type="radio" name="category" id="flexRadioDefault1" value="">
-  <label class="form-check-label" for="flexRadioDefault1" style="color: #115272; font-family: Times New Roman;">
+  <label class="form-check-label" for="flexRadioDefault1" style="color: #0858a4; font-family: Times New Roman;">
     The Gavel
   </label>
 </div>
 <div class="form-check category-type" style="margin-left: 10px">
   <input class="form-check-input radio-select" type="radio" name="category" id="flexRadioDefault2" value="">
-  <label class="form-check-label" for="flexRadioDefault2" style="color: #115272; font-family: Times New Roman;">
+  <label class="form-check-label" for="flexRadioDefault2" style="color: #0858a4; font-family: Times New Roman;">
    The Star
   </label>
 </div>
 <div class="form-check category-type"  style="margin-left: 10px">
   <input class="form-check-input radio-select" type="radio" name="category" id="flexRadioDefault3" value="">
-  <label class="form-check-label" for="flexRadioDefault3" style="color: #115272; font-family: Times New Roman;">
+  <label class="form-check-label" for="flexRadioDefault3" style="color: #0858a4; font-family: Times New Roman;">
    The Lamp
   </label>
 </div>
@@ -212,7 +212,7 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
   </div>
   <div class="tab">
   <h5 class="title contributors-title">Comments for editors</h5>
- <h6 style="color: #115272">Please provide the following details to help our editorial team manage your submission.</h6>
+ <h6 style="color: #0858a4">Please provide the following details to help our editorial team manage your submission.</h6>
  <div class="input-group">
   <span class="input-group-text">Comments</span>
   <textarea class="form-control" id="comment" name="comment" aria-label="With textarea"></textarea>
