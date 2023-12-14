@@ -13,7 +13,7 @@
         <img class="img-logo" src="../images/qcu-logo.webp" alt="">
         <div class="logotitle d-flex flex-column gap-1">
           <a>QUEZON CITY UNIVERSITY</a>
-          <span>OPEN ACCES JOURNAL</span>
+          <span>OPEN ACCESS JOURNAL</span>
         </div>
     </div>
 
