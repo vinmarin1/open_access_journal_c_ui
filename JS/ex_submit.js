@@ -171,8 +171,7 @@ setInterval(function() {
 
 function updateButtonState() {
   const formFloat = document.getElementById('form-floating-2');
-  const similarTitle = document.getElementById('similar-title');
-  const similarAbstract = document.getElementById('similar-abstract');
+  const formFloating = document.getElementById('form-floating');
 
 
   if (
@@ -181,16 +180,19 @@ function updateButtonState() {
     abstractInput.value.trim() !== '' &&
     referenceInput.value.trim() !== ''
   ) {
+    formFloating.style.width = '60%';
     formFloat.style.display = 'inline-block';
+    
   } else {
     formFloat.style.display = 'none';
   }
 
   document.getElementById('btn-okay').addEventListener('click', function (event) {
     formFloat.style.display = 'none';
-    similarTitle.innerHTML = '';
-    similarAbstract.innerHTML = '';
+    formFloating.style.width = '100%';
     keywordsInput.innerHTML = '';
+    quill2.setText(''); 
+   
   });
 }
 

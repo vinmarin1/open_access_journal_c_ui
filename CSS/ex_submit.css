@@ -44,7 +44,7 @@
 
 .form-floating{
     display: inline-block;
-    width: 60%;
+    width: 100%;
     max-width: 100%;
     min-width: auto;
 }
@@ -182,7 +182,14 @@
     display: block;
 }
 
-#title-4, #sub-6, #sub-7, #sub-8{
+#title-4, #sub-6{
+    color: #115272;
+    font-family: 'Times New Roman', Times, serif;
+    width: 350px;
+    margin-top: 20px;
+}
+
+ #sub-7, #sub-8{
     margin-left: 40px;
     color: #115272;
     font-family: 'Times New Roman', Times, serif;
@@ -202,8 +209,8 @@
 
 .input-details{
     display: inline-block;
-    width: 840px;
-    padding-left: 40px;
+    width: 100%;
+   
     margin-top: 40px;
 }
 
@@ -229,14 +236,13 @@
 
 
 .input-details-2{
-    max-width: 800px;
-    min-width: 200px;
-    margin-left: auto;
-    margin-right: auto;
+    max-width: 100%;
+    min-width: auto;
     height: auto;
 }
 
 #sub-11, #sub-12{
+   
     font-weight: bold;
     color: #115272;
     font-family: 'Times New Roman', Times, serif;
@@ -246,6 +252,7 @@
 
 #editor, #editor2, #editor3{
    height: 200px;
+
 }
 
 .table-input, .contributors-container, .comment-container{

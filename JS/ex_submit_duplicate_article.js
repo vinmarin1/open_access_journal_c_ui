@@ -40,72 +40,97 @@ document.getElementById('check-duplication').addEventListener('click', function(
       
     })
     .then(data => {
-      
-        document.getElementById('similar-title').innerHTML = data.similar_articles[0].title;
-        document.getElementById('similar-abstract').innerHTML = data.similar_articles[0].abstract;
-        document.getElementById('result-duplication').innerHTML = data.similar_articles[0].score.total * 100 + '%';
+        if (data.similar_articles.length > 0) {
+            document.getElementById('similar-title').innerHTML = data.similar_articles[0].title;
+            // document.getElementById('similar-abstract').innerHTML = data.similar_articles[0].abstract;
+            document.getElementById('result-duplication').innerHTML = (data.similar_articles[0].score.total * 100).toFixed(2) + '%';
+            if(data.highest_simlarity >= 1.0){
 
-      
-        
-        if(data.highest_simlarity >= 1.0){
-
-            Swal.fire({
-                title: "Duplication Alert!",
-                icon: "info",
-                text: "Revise your Title and Abstract",
-                showConfirmButton: true
-            });
-
-            journalType.style.display = 'block';
-            labelTitle.style.textAlign = 'left';
-            labelResult.style.textAlign = 'left';
-            labelDuplication.style.textAlign = 'left';
-            similarAbstract.style.textAlign = 'left';
-          
-          
+                Swal.fire({
+                    title: "Duplication Alert!",
+                    icon: "info",
+                    text: "Revise your Title and Abstract",
+                    showConfirmButton: true
+                });
+    
+                journalType.style.display = 'block';
+                labelTitle.style.textAlign = 'left';
+                labelResult.style.textAlign = 'left';
+                labelDuplication.style.textAlign = 'left';
+                similarAbstract.style.textAlign = 'left';
+              
+              
+                
+                nextBtn.disabled = true;
+    
+            }else if(data.highest_simlarity >= 0.5 && data.highest_simlarity < 1.0){
+                
+                Swal.fire({
+                    title: "Duplication Alert!",
+                    icon: "info",
+                    text: "Revise your title or Abstract",
+                    showConfirmButton: true
+                });
+    
+                journalType.style.display = 'block';
+                labelTitle.style.textAlign = 'left';
+                labelResult.style.textAlign = 'left';
+                labelDuplication.style.textAlign = 'left';
+                similarAbstract.style.textAlign = 'left';
+              
+                
+                nextBtn.disabled = true;
+    
+             
+            }else if(data.highest_simlarity <= 0.4){
+                
+                Swal.fire({
+                    title: "Good Article",
+                    icon: "info",
+                    text: "You may proceed to the next step",
+                    showConfirmButton: true
+                });
+    
+                journalType.style.display = 'block';
+                labelTitle.style.textAlign = 'left';
+                labelResult.style.textAlign = 'left';
+                labelDuplication.style.textAlign = 'left';
+                similarAbstract.style.textAlign = 'left';
+              
+                
+                nextBtn.disabled = true;
+    
+             
+            }
+        }else{
+            if(data.similar_articles.length === 0){
+                Swal.fire({
+                    title: "Unique Article",
+                    icon: "success",
+                    text: "You can now proceed to the next step",
+                    showConfirmButton: true
+                });
+    
+                journalType.style.display = 'block';
+                labelTitle.style.textAlign = 'left';
+                labelResult.style.textAlign = 'left';
+                labelDuplication.style.textAlign = 'left';
+                similarAbstract.style.textAlign = 'left';
+              
+              
+                
             
-            nextBtn.disabled = true;
-
-        }else if(data.highest_simlarity >= 0.5 && data.highest_simlarity < 1.0){
-            
-            Swal.fire({
-                title: "Duplication Alert!",
-                icon: "info",
-                text: "Revise your title or Abstract",
-                showConfirmButton: true
-            });
-
-            journalType.style.display = 'block';
-            labelTitle.style.textAlign = 'left';
-            labelResult.style.textAlign = 'left';
-            labelDuplication.style.textAlign = 'left';
-            similarAbstract.style.textAlign = 'left';
-          
-            
-            nextBtn.disabled = true;
-
-         
-        }else if(data.highest_simlarity >= 0.4){
-            Swal.fire({
-                title: "Unique Article",
-                icon: "success",
-                text: "You can now proceed to the next step",
-                showConfirmButton: true
-            });
-
-            journalType.style.display = 'block';
-            labelTitle.style.textAlign = 'left';
-            labelResult.style.textAlign = 'left';
-            labelDuplication.style.textAlign = 'left';
-            similarAbstract.style.textAlign = 'left';
-          
-          
-            
-        
-
-            nextBtn.disabled= false;
-
+    
+                nextBtn.disabled= false;
+    
+            }
         }
+      
+      
+
+      
+        
+      
 
       
        
