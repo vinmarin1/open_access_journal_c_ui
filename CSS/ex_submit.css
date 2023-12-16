@@ -106,7 +106,7 @@
     overflow-y: auto;
     font-size: 11px;
     font-weight: bold;
-    color:#115272;
+    color:#0858a4;
     margin-bottom: 20px;
 }
 #similar-abstract{
@@ -280,6 +280,11 @@
 #swal-d, #swal-d-2, #swal-d-3{
     height: 2px;
     background-color: #0858a4;
+}
+
+#article-unique{
+    color: #0858a4;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 

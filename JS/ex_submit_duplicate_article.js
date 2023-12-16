@@ -12,9 +12,9 @@ document.getElementById('check-duplication').addEventListener('click', function(
 
     
 
-    
-    
-    
+    labelTitle.style.color = '#0858a4';
+    labelResult.style.color = '#0858a4';
+    similarTitle.style.color = '#115272';
 
     fetch('https://web-production-cecc.up.railway.app/article/checker', {
         method: 'POST',
@@ -31,7 +31,7 @@ document.getElementById('check-duplication').addEventListener('click', function(
             labelTitle.style.display = 'none';
             labelAbstract.style.display = 'none';
             journalType.style.display = 'none';
-      
+           
             throw new Error('Network response was not ok');
         }
       
@@ -41,11 +41,11 @@ document.getElementById('check-duplication').addEventListener('click', function(
     })
     .then(data => {
         if (data.similar_articles.length > 0) {
-            document.getElementById('similar-title').innerHTML = data.similar_articles[0].title;
-            // document.getElementById('similar-abstract').innerHTML = data.similar_articles[0].abstract;
-            document.getElementById('result-duplication').innerHTML = (data.similar_articles[0].score.total * 100).toFixed(2) + '%';
+          
             if(data.highest_simlarity >= 1.0){
-
+                document.getElementById('similar-title').innerHTML = data.similar_articles[0].title;
+                // document.getElementById('similar-abstract').innerHTML = data.similar_articles[0].abstract;
+                document.getElementById('result-duplication').innerHTML = (data.similar_articles[0].score.total * 100).toFixed(2) + '%';
                 Swal.fire({
                     title: "Duplication Alert!",
                     icon: "info",
@@ -55,16 +55,16 @@ document.getElementById('check-duplication').addEventListener('click', function(
     
                 journalType.style.display = 'block';
                 labelTitle.style.textAlign = 'left';
-                labelResult.style.textAlign = 'left';
+                labelResult.style.textAlign = 'left';       
                 labelDuplication.style.textAlign = 'left';
-                similarAbstract.style.textAlign = 'left';
-              
-              
-                
+                similarTitle.style.textAlign = 'left';
+               
                 nextBtn.disabled = true;
     
-            }else if(data.highest_simlarity >= 0.5 && data.highest_simlarity < 1.0){
-                
+            }else if(data.highest_simlarity >= 0.4 && data.highest_simlarity < 1.0){
+                document.getElementById('similar-title').innerHTML = data.similar_articles[0].title;
+                // document.getElementById('similar-abstract').innerHTML = data.similar_articles[0].abstract;
+                document.getElementById('result-duplication').innerHTML = (data.similar_articles[0].score.total * 100).toFixed(2) + '%';
                 Swal.fire({
                     title: "Duplication Alert!",
                     icon: "info",
@@ -74,53 +74,49 @@ document.getElementById('check-duplication').addEventListener('click', function(
     
                 journalType.style.display = 'block';
                 labelTitle.style.textAlign = 'left';
-                labelResult.style.textAlign = 'left';
+                labelResult.style.textAlign = 'left';       
                 labelDuplication.style.textAlign = 'left';
-                similarAbstract.style.textAlign = 'left';
-              
+                similarTitle.style.textAlign = 'left';
                 
                 nextBtn.disabled = true;
     
              
-            }else if(data.highest_simlarity <= 0.4){
-                
+            }else if(data.highest_simlarity <= 0.31){
+                document.getElementById('similar-title').innerHTML = '';
+                // document.getElementById('similar-abstract').innerHTML = data.similar_articles[0].abstract;
+                document.getElementById('result-duplication').innerHTML = '';
                 Swal.fire({
-                    title: "Good Article",
-                    icon: "info",
-                    text: "You may proceed to the next step",
+                    html: "<h3 id='article-unique'>Good Article</h3>",
+                    icon: "success",
                     showConfirmButton: true
                 });
     
                 journalType.style.display = 'block';
                 labelTitle.style.textAlign = 'left';
-                labelResult.style.textAlign = 'left';
+                labelResult.style.textAlign = 'left';       
                 labelDuplication.style.textAlign = 'left';
-                similarAbstract.style.textAlign = 'left';
-              
-                
-                nextBtn.disabled = true;
-    
+                similarTitle.style.textAlign = 'left';
+               
+                nextBtn.disabled = false;
              
             }
         }else{
             if(data.similar_articles.length === 0){
+                document.getElementById('similar-title').innerHTML = '';
+                // document.getElementById('similar-abstract').innerHTML = data.similar_articles[0].abstract;
+                document.getElementById('result-duplication').innerHTML = '';
                 Swal.fire({
-                    title: "Unique Article",
+                    html: "<h3 id='article-unique'>Unique Article</h3>",
                     icon: "success",
-                    text: "You can now proceed to the next step",
                     showConfirmButton: true
                 });
     
                 journalType.style.display = 'block';
                 labelTitle.style.textAlign = 'left';
-                labelResult.style.textAlign = 'left';
+                labelResult.style.textAlign = 'left';       
                 labelDuplication.style.textAlign = 'left';
-                similarAbstract.style.textAlign = 'left';
-              
-              
-                
-            
-    
+                similarTitle.style.textAlign = 'left';
+               
                 nextBtn.disabled= false;
     
             }

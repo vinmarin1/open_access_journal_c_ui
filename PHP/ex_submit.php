@@ -111,9 +111,12 @@
 
     
         <input class="form-control" type="text"  id="title" name="title">
+        <p id="title-validation" style="color: red; display: none;">Title should consist of 10 words and less than 20 words*</p>
         
         <h6 id="sub-10">Keywords</h6>
         <input class="form-control" type="text" id="keywords" name="keywords">
+        <p id="keywords-validation" style="color: red; display: none;">Keywords should consist at least 1 and a maximum of 4 commas</p>
+
      
       </div>
 
@@ -125,6 +128,7 @@
           <!-- <label id="label-title">Article: </label> -->
           <p id="label-title">Article:</p>
           <div id="similar-title"></div>
+         
         
           <div id ="similar-abstract"></div>
         
@@ -161,6 +165,7 @@
     
       </div>
       <input class="form-control" type="text" id="abstract" name="abstract"  style="display: none;">
+      <p id="abstract-validation" style="color: red; display: none;">Title should be at least*</p>
 
       <h6 class="sub-12 mt-5" id="sub-12">Reference</h6>
 

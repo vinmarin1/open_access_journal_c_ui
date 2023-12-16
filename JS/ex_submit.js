@@ -7,6 +7,10 @@ document.addEventListener('DOMContentLoaded', function () {
   var submitBtn = document.getElementById("submit");
   var form = document.getElementById("form");
   var inputFields = form.querySelectorAll("input");
+  var title = document.getElementById('title');
+  var keywords = document.getElementById('keywords');
+  var abstract = document.getElementById('abstract');
+  var reference = document.getElementById('reference');
 
   for (var i = 1; i < tabButtons.length; i++) {
     tabButtons[i].disabled = true;
@@ -188,10 +192,13 @@ function updateButtonState() {
   }
 
   document.getElementById('btn-okay').addEventListener('click', function (event) {
+    const buttonOkay = document.getElementById('btn-okay');
     formFloat.style.display = 'none';
     formFloating.style.width = '100%';
     keywordsInput.innerHTML = '';
     quill2.setText(''); 
+
+   
    
   });
 }
@@ -507,10 +514,42 @@ document.getElementById('update-cont-3').addEventListener('click', function (eve
 });
 
 
-// function(){
 
-// }
+function inputValidation(inputElement, validationElement, conditionFunction) {
+  inputElement.addEventListener('blur', function () {
+      const inputValue = inputElement.value.trim();
+      const isValid = conditionFunction(inputValue);
+      if (isValid) {
+          validationElement.style.display = 'none';
+      } else {
+          validationElement.style.display = 'block';
+      }
+  });
+}
 
 
+const titleInputValidation = document.getElementById('title');
+const titleValidation = document.getElementById('title-validation');
+
+inputValidation(titleInputValidation, titleValidation, function (value) {
+  const wordCount = value.split(/\s+/).length;
+  return wordCount >= 10 && wordCount <= 20;
+});
 
 
+const keywordsInputValidation = document.getElementById('keywords');
+const keywordsValidation = document.getElementById('keywords-validation');
+
+inputValidation(keywordsInputValidation, keywordsValidation, function (value) {
+  const commaCount = (value.match(/,/g) || []).length;
+  return commaCount >= 1 && commaCount <= 4;
+});
+
+
+const abstractInputValidation = document.getElementById('abstract');
+const abstractValidation = document.getElementById('abstract-validation');
+
+inputValidation(abstractInputValidation, abstractValidation, function (value) {
+  const wordCount = value.split(/\s+/).length;
+  return wordCount < 10;
+});
