@@ -38,6 +38,7 @@ margin-bottom: 5px;
 }
 
 .content-over button{
+    font-size: 14px;
     color: white; 
     position: relative;
     z-index: 1;
@@ -56,6 +57,7 @@ margin-bottom: 5px;
     opacity: 0.8;
   }
   #btn1{
+    font-size: 14px;
     background-color: #E56F1F;
     margin-right: 10px;
     width: 50%;
@@ -82,14 +84,12 @@ margin-bottom: 5px;
     display: flex;
     justify-content: space-between;
     padding: 20px;
-	  padding-top: 3%;
+	  /* padding-top: 3%; */
   }
-  .full-width {
-    width: 100%;
-  }
+ 
   .graph-section, .stats-section {
     flex: 1;
-    padding: 20px;
+    /* padding: 20px; */
     background-color: #f9f9f9;
   }
 .graph-section {
@@ -97,7 +97,12 @@ margin-bottom: 5px;
   padding: 20px;
   background-color: #fff; /* Changed to white */
   border: 1px solid #ddd; /* Added a light grey border */
-  margin-right: 20px;
+  /* margin-right: 20px; */
+}
+
+.graph-section h3 {
+  font-size: 16px;
+  font-weight: 600;
 }
 .stats-section {
   
@@ -105,15 +110,16 @@ margin-bottom: 5px;
   grid-template-columns: repeat(2, 1fr); /* two columns of equal size */
   gap: 20px; /* space between grid items */
   background-color: #fff; /* Clear white background */
-  padding: 20px;
+  /* padding: 20px; */
 }
 
 .stat-card {
-  background: #F5F7FF; 
+  background: #f7f9ff; 
   border-radius: 15px; /* Rounded corners as per your image */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
   padding: 20px; /* Padding inside cards */
   position: relative; /* For absolute positioning of the increase label */
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+
 }
 
 /* Top cards styling */
@@ -143,6 +149,7 @@ margin-bottom: 5px;
 
 /* Increase label styling */
 .increase {
+  font-size: 12px;
   background-color: #45D700; /* Lighter green background for the increase label */
   color: #FFFFFF; /* Green text color for the increase label */
   padding: 5px 10px;
@@ -185,22 +192,25 @@ margin-bottom: 5px;
     
   }
 .tab {
+  font-family: 'Judson', serif ;
+
   display: inline-block;
-  padding: 16px 40px;
+  padding: 8px 40px;
   border-bottom: 3px solid #f8f8f8;
   cursor: pointer;
   color:  #7c7c7c ;
   border-radius: 15px 15px 0 0; /* Rounded corners */
   background-color: #f8f8f8; /* Background color */
   margin-right: 0; /* Removes the margin */
-  font-weight: 500;
-  text-transform: uppercase;
+  font-weight: 400;
+  /* text-transform: uppercase; */
+  
   font-size: 16px;
 }
 
 .tab.active {
   color: #004e98;
-  padding: 16px 48px;
+  padding: 8px 48px;
   border-bottom: 3px solid #004e98;
   
 }
@@ -208,8 +218,9 @@ margin-bottom: 5px;
     width: 100%;
     border-collapse: collapse;
     background-color: white;
+    font-size: 14px;
     /* border-top: 16px solid #f8f8f8; */
-    margin-bottom: 40px;	
+    /* margin-bottom: 40px;	 */
   }
   th, td {
     padding: 8px;
@@ -220,16 +231,24 @@ margin-bottom: 5px;
    color:  #3a3a3a ;
    font-weight: 400;
   }
+  thead tr {
+    border-bottom: 3px solid #f8f8f8 !important;
+    border-top: 3px solid #f8f8f8 !important;
+
+  }
+  tbody tr {
+    border-bottom: 2px solid #f8f8f8 !important;
+  }
   tr:hover {
     background-color: #f9f9ff;
   }
   th {
     font-weight: 600;
-	  background-color: #f8f8f8;
+	  
   }
 .status-label {
   display: inline-block;
-  border-radius: 12px; /* Fully rounded edges */
+  border-radius: 25px;
   padding: 5px 10px; /* Appropriate padding */
   color: white; /* White text */
   font-size: 0.8em; /* Smaller font size */
@@ -237,17 +256,19 @@ margin-bottom: 5px;
 }
 
 .pending {
-  background-color: #FFC107; /* Bootstrap warning color for pending */
-  border: 1px solid #FFC107; /* Same color border */
+  color:  #D26767; 
+  border: 1px solid #D26767; 
+
 }
 
 .published {
-  background-color: #28A745; /* Bootstrap success color for published */
-  border: 1px solid #28A745; /* Same color border */
+  color: #3ABC5E; 
+  border: 1px solid #3ABC5E; 
 }
 
   #btn3 {
-    padding: 10px 50px;
+    padding: 8px 40px;
+    font-size: 14px;
     border: none;
     background-color: #0056b3;
     color: #eceef1;
@@ -266,13 +287,16 @@ margin-bottom: 5px;
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
   }
   .pagination {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-}
+    font-size: 14px;
+    color:#7c7c7c;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+  }
 
 .pagination-controls button {
+  font-size: 14px;
   border: 1px solid #ddd;
   padding: 5px 10px;
   margin: 0 3px;
@@ -281,11 +305,11 @@ margin-bottom: 5px;
 }
 
 .pagination-controls button.active {
-  background-color:  #3a3a3a ;
-  color: white;
+  background-color:  #eceef1 ;
+  /* color: white; */
 }
 
 .pagination-controls button:hover {
   background-color: #eceef1;
-  color: white;
+  /* color: white; */
 }
