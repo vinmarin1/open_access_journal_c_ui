@@ -96,7 +96,7 @@
   <div class="article-details">
     <div class="details">
       <p class="h5 pt-5" id="title-4">Article Details</p>
-      <p class="h6" id="sub-6">Please provide the following details to help us manage your submission in our system.</p>
+      <p class="h6" id="sub-6" style="#0858a4">Please provide the following details to help us manage your submission in our system.</p>
      
     
     </div>

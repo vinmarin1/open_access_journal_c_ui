@@ -180,17 +180,16 @@
 }
 
 #title-4{
+    color: #0858a4;
     font-weight: bold;
     display: block;
 }
 
-#title-4, #sub-6{
-    color: #115272;
-    font-family: 'Times New Roman', Times, serif;
-    width: 350px;
-    margin-top: 20px;
+#sub-6{
+    color: #0858a4;
+    font-weight: bold;
+    display: block;
 }
-
  #sub-7, #sub-8{
     margin-left: 40px;
     color: #0858a4;
@@ -258,7 +257,7 @@
 }
 
 .table-input, .contributors-container, .comment-container{
-    max-width: 800px;
+    max-width: 100%;
     min-width: auto;
     padding-left: 40px;
 }
@@ -269,8 +268,16 @@
     font-weight: bold;
 }
 
-#title-9, #title-10, #title-14, #title-15{
+#title-9{
+    margin-top: 40px;
+}
+
+
+
+
+#title-9, #title-10, #title-14, #title-15, #sub-16, #sub-17{
     text-align: left;
+    margin-left: 40px;
     
 }
 
@@ -348,7 +355,7 @@
    
 }
 
-#input3, #input4, #input5, #input6, #input7,  #input8, #updateInput3, #updateInput4, #updateInput5{
+#input3, #input4, #input6, #input7,  #input8, #updateInput3, #updateInput4, #updateInput5{
     display: inline-block;
     height: 30px;
     font-size: 11px;
@@ -356,6 +363,14 @@
     margin-left: -20px;
     
    
+}
+
+#input5{
+    display: inline-block;
+    height: 30px;
+    font-size: 11px;
+    width: 100%;
+    margin-left: -20px;
 }
 
 
@@ -390,6 +405,7 @@
     width: 800px;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 40px;
     
    
 
