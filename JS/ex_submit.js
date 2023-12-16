@@ -424,7 +424,7 @@ var contributorInput = document.getElementById("contributor").textContent;
 
 
 
-var input5 = document.getElementById("input5");
+var input5 = document.getElementById("input5f1");
 var input6 = document.getElementById("input6");
 var input7 = document.getElementById("input7");
 var input8 = document.getElementById("input8");

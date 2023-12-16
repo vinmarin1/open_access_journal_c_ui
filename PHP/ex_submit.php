@@ -280,19 +280,19 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 
   <div class="tab-pane fade" id="review-tab-pane" role="tabpanel" aria-labelledby="review-tab" tabindex="0">
 
-  <h5 class="title9" id="title-9">Review and Submit</h5>
-  <h6 class="sub16" id="sub-16">Review the information you have entered before you complete your submission. You can change any of the details displayed here by clicking the edit button at the top of each section.</h6>
-  <h6 class="sub17" id="sub-17">
+  <h5 class="title9" id="title-9f">Review and Submit</h5>
+  <h6 class="sub16" id="sub-16f">Review the information you have entered before you complete your submission. You can change any of the details displayed here by clicking the edit button at the top of each section.</h6>
+  <h6 class="sub17" id="sub-17f">
   Once you complete your submission, a member of our editorial team will be assigned to review it. Please ensure the details you have entered here are as accurate as possible.</h6>
 
   <div class="article-info-container">
     <div class="article-header">
-      <h5 class="title10" id="title-10">Details</h5>
+      <h5 class="title10" id="title-10f">Details</h5>
       <button type="button" class="btn btn-outline-light btn-sm" id="update-cont-2">Update</button>
     </div>
     <div class="editable-content mt-5" id="editable-content">
       <label id="sub-26">Title: </label><br>
-      <input type="text" class="form-control" id="input5" readonly><br>
+      <input type="text" class="form-control" id="input5f1" readonly><br>
       <label id="sub-27">Keywords: </label><br>
       <input type="text" class="form-control" id="input6" readonly><br>
       <label id="sub-28">Abstract: </label><br>

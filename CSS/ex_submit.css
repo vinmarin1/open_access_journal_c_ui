@@ -187,7 +187,7 @@
 
 #sub-6{
     color: #0858a4;
-    font-weight: bold;
+    font-weight: normal;
     display: block;
 }
  #sub-7, #sub-8{
@@ -264,27 +264,13 @@
 
 
 
-#title-6, #title-7, #title-9{
+#title-6, #title-7{
     font-weight: bold;
 }
 
-#title-9{
-    margin-top: 40px;
-}
 
 
 
-
-#title-9, #title-10, #title-14, #title-15, #sub-16, #sub-17{
-    text-align: left;
-    margin-left: 40px;
-    
-}
-
-#title-14, #title-15{
-    font-weight: bold;
-    color: #0858a4;
-}
 
 #swal-d, #swal-d-2, #swal-d-3{
     height: 2px;
@@ -304,6 +290,18 @@
     font-family: Arial, Helvetica, sans-serif;
     width: 100%;
   
+}
+
+#title-9f{
+    margin-top: 40px;
+    margin-left: 40px;
+    color: #0858a4;
+}
+
+#title-9f, #sub-16f, #sub-17f{
+    
+    margin-left: 40px;
+    color: #0858a4;
 }
 
 
@@ -369,6 +367,14 @@
     display: inline-block;
     height: 30px;
     font-size: 11px;
+    width: 90%;
+    margin-left: -20px;
+}
+
+#input5f1{
+    display: inline-block;
+    height: 30px;
+    font-size: 11px;
     width: 100%;
     margin-left: -20px;
 }
@@ -389,7 +395,7 @@
 #confirmBtn, #update-cont, #btn-article-update{
     background-color: #0858a4;
     height: 35px;
-    width: 100px;
+    width: auto;
     color: white;
     border: none;
     border-radius: 5px;
@@ -481,7 +487,7 @@
 
 #sub-34{
     display: inline-block;
-    margin-left: -250px;
+    margin-left: -240px;
     width: auto;
 }
 
@@ -514,8 +520,13 @@
     
 }
 
+#title-10f{
+    color: white;
+    font-weight: bold;
+}
 
-#title-9, #title-11, #title-12{
+
+#title-11, #title-12{
     color:#0858a4;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
@@ -523,11 +534,13 @@
 }
 
 
-#title-10{
+#title-9, #title-10,  #title-14, #title-15{
+    text-align: left;
     color: #0858a4;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 18px;
+    
 }
 
 
@@ -562,7 +575,7 @@
     width: 100px;
     border-radius: 10px;
     display: block;
-    margin-left: 570px;
+    margin-left: 580px;
   }
 
   #update-cont-4{
