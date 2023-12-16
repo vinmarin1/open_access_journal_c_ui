@@ -79,7 +79,6 @@ session_start();
             </tr>
           </tbody>
         </table>
-        <hr class="full-width">
         <div class="pagination">
           Showing 1 to 10 of 50 entries
           <div class="pagination-controls">
@@ -94,13 +93,15 @@ session_start();
           </div>
         </div>
       </div>
+      <hr class="full-width">
+
     </div>
     
     <div class="row">
     <div class="graph-section">
       <!-- Graph placeholder -->
       <h3>Published Articles Engagement</h3>
-      <canvas id="articlesChart" width="400" height="200"></canvas>
+      <canvas id="articlesChart" width="400" height="120"></canvas>
     </div>
 <div class="stats-section">
   <!-- Top row cards -->
@@ -112,20 +113,16 @@ session_start();
     <h2>Total Downloads</h2>
     <p>98 <span class="increase">+11%</span></p>
   </div>
-  
-  <!-- Bottom row cards -->
-<div class="stat-card bottom-card">
-  <div class="content">
-    <h2>Most Popular</h2>
-    <p>Blockchain Beyond...</p>
+  <div class="stat-card top-card">
+    <h2>Total Views</h2>
+    <p>98 <span class="increase">+11%</span></p>
   </div>
-  <p>192 interactions</p>
-</div>
-<div class="stat-card bottom-card">
-  <h2>Total Published</h2>
-  <p>02</p>
-</div>
-</div>
+  <div class="stat-card top-card">
+    <h2>Total Downloads</h2>
+    <p>98 <span class="increase">+11%</span></p>
+  </div>
+      </div>
+  
   </div>
 
 </div>
