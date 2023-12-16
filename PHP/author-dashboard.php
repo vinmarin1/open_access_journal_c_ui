@@ -22,32 +22,86 @@ session_start();
 </nav>
 
 <div class="main-container">
-    <div class="content-over">
-        <div class="cover-content">
-        <h3><strong>Hello,</strong><br>
-    <?php
-    if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
-        $firstName = isset($_SESSION['first_name']) ? ucfirst($_SESSION['first_name']) : '';
-        $middleName = isset($_SESSION['middle_name']) ? ' ' . ucfirst($_SESSION['middle_name']) : '';
-        $lastName = isset($_SESSION['last_name']) ? ' ' . ucfirst($_SESSION['last_name']) : '';
-       
-        echo $firstName . $middleName . $lastName;
-    }
-    ?>
-</h3>
-
-
-        </div>
-        <button class="btn tbn-primary btn-md" id="btn1" onclick="window.location.href='author-dashboard.php'">As Author</button>
-        <button class="btn tbn-primary btn-md" id="btn2" onclick="window.location.href='reviewer-dashboard.php'">As Reviewer</button>
+  <div class="content-over">
+    <div class="cover-content">
+      <h3>Hello,
+        <?php
+        if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
+            $firstName = isset($_SESSION['first_name']) ? ucfirst($_SESSION['first_name']) : '';
+            $middleName = isset($_SESSION['middle_name']) ? ' ' . ucfirst($_SESSION['middle_name']) : '';
+            $lastName = isset($_SESSION['last_name']) ? ' ' . ucfirst($_SESSION['last_name']) : '';
+          
+            echo $firstName . $middleName . $lastName;
+        }
+        ?>
+      </h3>
     </div>
-<div class="main">
+    <div>
+      <button class="btn tbn-primary btn-md" id="btn1" onclick="window.location.href='author-dashboard.php'">As Contributor</button>
+      <button class="btn tbn-primary btn-md" id="btn2" onclick="window.location.href='user-dashboard.php'">Edit Profile</button>
+    </div>
+  </div>
+  <div class="main">
+    <div class="">
+      <div class="articles-section">
+        <div class="tabs">
+          <div class="tab active">All Submissions</div>
+          <div class="tab">All Reviews</div>
+          <button class="btn" id="btn3" onclick="window.location.href='ex_submit.php'">Submit Article</button>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th><input type="checkbox"></th>
+              <th>Title</th>
+              <th>Date</th>
+              <th>Journal</th>
+              <th><center>Status</center></th>
+              <th><center>Action</center></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input type="checkbox"></td>
+              <td>Blockchain Beyond Cryptocurrency: Transforming...</td>
+              <td>May 31, 2015</td>
+              <td>The Star</td>
+              <td><center><span class="status-label pending">Pending</span></center></td>
+              <td><center>...</center></td>
+            </tr>
+            <tr>
+              <td><input type="checkbox"></td>
+              <td>Industries with Distributed Ledger Technology</td>
+              <td>October 24, 2018</td>
+              <td>The Star</td>
+              <td><center><span class="status-label published">Published</span></center></td>
+              <td><center>...</center></td>
+            </tr>
+          </tbody>
+        </table>
+        <hr class="full-width">
+        <div class="pagination">
+          Showing 1 to 10 of 50 entries
+          <div class="pagination-controls">
+            <button>«</button>
+            <button>‹</button>
+            <button class="active">1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>4</button>
+            <button>›</button>
+            <button>»</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
     <div class="row">
-<div class="graph-section">
-  <!-- Graph placeholder -->
-  <h3>Published Articles Engagement</h3>
-  <canvas id="articlesChart" width="400" height="200"></canvas>
-</div>
+    <div class="graph-section">
+      <!-- Graph placeholder -->
+      <h3>Published Articles Engagement</h3>
+      <canvas id="articlesChart" width="400" height="200"></canvas>
+    </div>
 <div class="stats-section">
   <!-- Top row cards -->
   <div class="stat-card top-card">
@@ -73,62 +127,7 @@ session_start();
 </div>
 </div>
   </div>
-  <hr class="full-width">
-<div class="row">
-<div class="articles-section full-width">
-  <div class="tabs">
-    <div class="tab active">All Submissions</div>
-    <div class="tab">Published</div>
-    <div class="tab">Not Published</div>
-    <button class="btn" id="btn3" onclick="window.location.href='ex_submit.php'">Submit Article</button>
-  </div>
-  
-  <table>
-    <thead>
-      <tr>
-        <th><input type="checkbox"></th>
-        <th>Title</th>
-        <th>Date</th>
-        <th>Journal</th>
-        <th><center>Status</center></th>
-        <th><center>Action</center></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><input type="checkbox"></td>
-        <td>Blockchain Beyond Cryptocurrency: Transforming...</td>
-        <td>May 31, 2015</td>
-        <td>The Star</td>
-        <td><center><span class="status-label pending">Pending</span></center></td>
-        <td><center>...</center></td>
-      </tr>
-      <tr>
-        <td><input type="checkbox"></td>
-        <td>Industries with Distributed Ledger Technology</td>
-        <td>October 24, 2018</td>
-        <td>The Star</td>
-        <td><center><span class="status-label published">Published</span></center></td>
-        <td><center>...</center></td>
-      </tr>
-    </tbody>
-  </table>
-<hr class="full-width">
-<div class="pagination">
-  Showing 1 to 10 of 50 entries
-  <div class="pagination-controls">
-    <button>«</button>
-    <button>‹</button>
-    <button class="active">1</button>
-    <button>2</button>
-    <button>3</button>
-    <button>4</button>
-    <button>›</button>
-    <button>»</button>
-  </div>
-</div>
-</div>
-</div>
+
 </div>
 
 

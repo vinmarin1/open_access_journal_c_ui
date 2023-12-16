@@ -17,8 +17,6 @@
   padding: 4em 8%;
   display: inline-flex;
   flex-direction: column;
-  
-  
 }
 
 .content-over::before {
@@ -36,12 +34,9 @@
   position: relative;
   z-index: 1; 
   display: block;
-  
 }
 
 .content-over h4{
-  /* font-family: Arial, Helvetica, sans-serif; */
-  /* margin-top: 20px; */
   font-weight: 500 !important;
 }
 
