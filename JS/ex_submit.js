@@ -155,6 +155,15 @@ var keywordsInput = document.getElementById("keywords");
 var abstractInput = document.getElementById('abstract');
 var referenceInput = document.getElementById('reference');
 
+const titleInputValidation = document.getElementById('title');
+const titleValidation = document.getElementById('title-validation');
+
+const keywordsInputValidation = document.getElementById('keywords');
+const keywordsValidation = document.getElementById('keywords-validation');
+
+const abstractInputValidation = document.getElementById('abstract');
+const abstractValidation = document.getElementById('abstract-validation');
+
 quill1.on('text-change', function() {
   abstractInput.value = quill1.getText();
   updateButtonState();
@@ -165,8 +174,29 @@ quill2.on('text-change', function() {
   updateButtonState();
 });
 
-titleInput.addEventListener('input', updateButtonState);
-keywordsInput.addEventListener('input', updateButtonState);
+titleInput.addEventListener('input', function () {
+  inputValidation(titleInput, titleValidation, function (value) {
+    const wordCount = value.split(/\s+/).length;
+    return wordCount >= 10 && wordCount <= 20;
+  });
+  updateButtonState();
+});
+
+keywordsInput.addEventListener('input', function () {
+  inputValidation(keywordsInput, keywordsValidation, function (value) {
+    const commaCount = (value.match(/,/g) || []).length;
+    return commaCount >= 1 && commaCount <= 4;
+  });
+  updateButtonState();
+});
+
+abstractInput.addEventListener('input', function () {
+  inputValidation(abstractInput, abstractValidation, function (value) {
+    const wordCount = value.split(/\s+/).length;
+    return wordCount < 10;
+  });
+  updateButtonState();
+});
 
 // Periodically check if abstractInput and referenceInput have values
 setInterval(function() {
@@ -177,16 +207,21 @@ function updateButtonState() {
   const formFloat = document.getElementById('form-floating-2');
   const formFloating = document.getElementById('form-floating');
 
+  const isTitleValid = titleValidation.style.display === 'none';
+  const isKeywordsValid = keywordsValidation.style.display === 'none';
+  const isAbstractValid = abstractValidation.style.display === 'none';
 
   if (
     titleInput.value.trim() !== '' &&
     keywordsInput.value.trim() !== '' &&
     abstractInput.value.trim() !== '' &&
-    referenceInput.value.trim() !== ''
+    referenceInput.value.trim() !== '' &&
+    isTitleValid &&
+    isKeywordsValid &&
+    isAbstractValid
   ) {
     formFloating.style.width = '60%';
     formFloat.style.display = 'inline-block';
-    
   } else {
     formFloat.style.display = 'none';
   }
@@ -196,12 +231,21 @@ function updateButtonState() {
     formFloat.style.display = 'none';
     formFloating.style.width = '100%';
     keywordsInput.innerHTML = '';
-    quill2.setText(''); 
-
-   
-   
+    quill2.setText('');
   });
 }
+
+
+function inputValidation(inputElement, validationElement, conditionFunction) {
+  const inputValue = inputElement.value.trim();
+  const isValid = conditionFunction(inputValue);
+  if (isValid) {
+    validationElement.style.display = 'none';
+  } else {
+    validationElement.style.display = 'block';
+  }
+}
+
 
 
 
@@ -528,31 +572,31 @@ function inputValidation(inputElement, validationElement, conditionFunction) {
 }
 
 
-const titleInputValidation = document.getElementById('title');
-const titleValidation = document.getElementById('title-validation');
+// const titleInputValidation = document.getElementById('title');
+// const titleValidation = document.getElementById('title-validation');
 
-inputValidation(titleInputValidation, titleValidation, function (value) {
-  const wordCount = value.split(/\s+/).length;
-  return wordCount >= 10 && wordCount <= 20;
-});
-
-
-const keywordsInputValidation = document.getElementById('keywords');
-const keywordsValidation = document.getElementById('keywords-validation');
-
-inputValidation(keywordsInputValidation, keywordsValidation, function (value) {
-  const commaCount = (value.match(/,/g) || []).length;
-  return commaCount >= 1 && commaCount <= 4;
-});
+// inputValidation(titleInputValidation, titleValidation, function (value) {
+//   const wordCount = value.split(/\s+/).length;
+//   return wordCount >= 10 && wordCount <= 20;
+// });
 
 
-const abstractInputValidation = document.getElementById('abstract');
-const abstractValidation = document.getElementById('abstract-validation');
+// const keywordsInputValidation = document.getElementById('keywords');
+// const keywordsValidation = document.getElementById('keywords-validation');
 
-inputValidation(abstractInputValidation, abstractValidation, function (value) {
-  const wordCount = value.split(/\s+/).length;
-  return wordCount < 10;
-});
+// inputValidation(keywordsInputValidation, keywordsValidation, function (value) {
+//   const commaCount = (value.match(/,/g) || []).length;
+//   return commaCount >= 1 && commaCount <= 4;
+// });
+
+
+// const abstractInputValidation = document.getElementById('abstract');
+// const abstractValidation = document.getElementById('abstract-validation');
+
+// inputValidation(abstractInputValidation, abstractValidation, function (value) {
+//   const wordCount = value.split(/\s+/).length;
+//   return wordCount < 10;
+// });
 
 
 // function passValidation(){
