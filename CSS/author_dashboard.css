@@ -1,14 +1,16 @@
 .content-over {
-    position: relative;
-    width: 100%;
-    height: 20em;
-    background-image: url(../images/qcu-bg.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    padding-top: 35px;
-    padding-left: 150px;
-    
+  position: relative;
+  width: 100%;
+  max-height:20em;
+  background-image: url(../images/qcu-bg.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  padding: 2em 8%;
+  display: inline-flex;
+  flex-direction: column;
+  
+  
 }
 
 .content-over::before {
@@ -22,6 +24,7 @@ background-color: rgba(53, 68, 74, 0.7);
 }
 
 .content-over h3 {
+font-size:24px !important;
 color: white; 
 position: relative;
 z-index: 1; 
@@ -38,7 +41,7 @@ margin-bottom: 5px;
     color: white; 
     position: relative;
     z-index: 1;
-    background-color: #0858a4;
+    background-color: #eceef1;
     border-radius: 20px;
     margin-top: 20px;
   }
@@ -47,7 +50,7 @@ margin-bottom: 5px;
     color: white; 
     position: relative;
     z-index: 1;
-    background-color: #0858a4;
+    background-color: #eceef1;
     border-radius: 20px;
     margin-top: 20px;
     opacity: 0.8;
@@ -69,22 +72,12 @@ margin-bottom: 5px;
     max-width: 175px;
   }
 
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background: #f4f4f4;
+  .main {
+    padding: 2em 8%;
   }
   
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  .main{
-    margin-left: 20px;
-  }
+
+
   .row {
     display: flex;
     justify-content: space-between;
@@ -144,8 +137,8 @@ margin-bottom: 5px;
 .stat-card.top-card p {
   font-size: 16px; /* Larger font size for the numbers */
   margin-top: 4px; /* Space between the title and the number */
-  color: #0A335B;
-  font-weight: bold;
+  color: #696969;
+  font-weight: 400;
 }
 
 /* Increase label styling */
@@ -157,7 +150,7 @@ margin-bottom: 5px;
   position: absolute; /* Absolute positioning inside the stat card */
   right: 20px; /* Align to the right */
   bottom: 20px; /* Align to the bottom */
-  font-weight: bold;
+  font-weight: 600;
 }
 /* Bottom cards styling */
 .stat-card.bottom-card {
@@ -181,54 +174,58 @@ margin-bottom: 5px;
 
 .stat-card.bottom-card p {
   font-size: 16px; /* Adjust font size as needed */
-  color: #0A335B; /* Dark green text color */
+  color: #696969; /* Dark green text color */
   margin: 0; /* No margin for the paragraph */
-  font-weight: bold;
+  font-weight: 400;
 }
 
 
   .articles-section {
-    padding: 20px;
-    background-color: #fff;;
+    background-color: #fff;
+    
   }
 .tab {
   display: inline-block;
-  padding: 10px 50px;
-
+  padding: 16px 40px;
+  border-bottom: 3px solid #f8f8f8;
   cursor: pointer;
-  color: #007bff;
-  border: 1px solid #f0f0f0; /* Adds a border */
+  color:  #7c7c7c ;
   border-radius: 15px 15px 0 0; /* Rounded corners */
-  background-color: #f0f0f0; /* Background color */
+  background-color: #f8f8f8; /* Background color */
   margin-right: 0; /* Removes the margin */
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 16px;
 }
 
 .tab.active {
-  border-bottom: 3px solid #0A335B;
-  border-radius: 15px 15px 0 0; /* Rounds the top corners */
-  background-color: #0A335B; /* Changes background for active tab */
-  color: white;
+  color: #004e98;
+  padding: 16px 48px;
+  border-bottom: 3px solid #004e98;
   
 }
   table {
     width: 100%;
     border-collapse: collapse;
     background-color: white;
-	border-top: 30px solid #0A335B;
-	margin-bottom: 40px;	
+    /* border-top: 16px solid #f8f8f8; */
+    margin-bottom: 40px;	
   }
   th, td {
     padding: 8px;
     text-align: left;
-    border-bottom: 1px solid #ddd;
-	font-weight: bold;
+	 
   }
   td{
-   color: #0A335B;
+   color:  #3a3a3a ;
+   font-weight: 400;
+  }
+  tr:hover {
+    background-color: #f9f9ff;
   }
   th {
-    
-	background-color: #fff;
+    font-weight: 600;
+	  background-color: #f8f8f8;
   }
 .status-label {
   display: inline-block;
@@ -237,7 +234,6 @@ margin-bottom: 5px;
   color: white; /* White text */
   font-size: 0.8em; /* Smaller font size */
   text-transform: uppercase; /* Uppercase text */
-  font-weight: bold; /* Bold font weight */
 }
 
 .pending {
@@ -253,14 +249,16 @@ margin-bottom: 5px;
   #btn3 {
     padding: 10px 50px;
     border: none;
-    background-color: #0A335B;
-    color: white;
+    background-color: #0056b3;
+    color: #eceef1;
     border-radius: 20px;
     cursor: pointer;
     float: right;
   }
   #btn3:hover {
-    background-color: #0056b3;
+    background-color: #eceef1;
+    color:  #3a3a3a ;
+    
   }
   hr {
     border: 0;
@@ -283,11 +281,11 @@ margin-bottom: 5px;
 }
 
 .pagination-controls button.active {
-  background-color: #0A335B;
+  background-color:  #3a3a3a ;
   color: white;
 }
 
 .pagination-controls button:hover {
-  background-color: #0A335B;
+  background-color: #eceef1;
   color: white;
 }

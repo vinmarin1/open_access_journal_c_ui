@@ -8,9 +8,9 @@ window.onload = function() {
         datasets: [{
           label: 'Views',
           backgroundColor: 'rgba(10, 51, 91, 0.2)', // Updated to your color in rgba
-          borderColor: '#0A335B', // Updated to your color in hex
-          pointBackgroundColor: '#0A335B', // Point color
-          pointBorderColor: '#0A335B', // Point border color
+          borderColor: '#0056b3', // Updated to your color in hex
+          pointBackgroundColor: '#0056b3', // Point color
+          pointBorderColor: '#0056b3', // Point border color
           pointRadius: 5, // Adjust the radius as needed
           pointHoverRadius: 7, // Radius on hover
           pointStyle: 'circle', // Style of the point

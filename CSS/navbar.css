@@ -108,7 +108,7 @@
   left: 50%;
   transform: translateX(-50%);
 }
-.nav-item {
+#navbar-container .nav-item {
   display:flex;
   align-items: center;
   justify-items: center;
