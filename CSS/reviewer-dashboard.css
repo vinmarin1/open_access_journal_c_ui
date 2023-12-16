@@ -42,7 +42,7 @@ margin-bottom: 5px;
   color: white; 
   position: relative;
   z-index: 1;
-  background-color: #0858a4;
+  background-color: #eceef1;
   border-radius: 20px;
   margin-top: 20px;
 }
@@ -51,7 +51,7 @@ margin-bottom: 5px;
   color: white; 
   position: relative;
   z-index: 1;
-  background-color: #0858a4;
+  background-color: #eceef1;
   border-radius: 20px;
   margin-top: 20px;
   opacity: 0.8;
@@ -148,7 +148,7 @@ color: #697077;
 .stat-card.top-card p {
 font-size: 16px; /* Larger font size for the numbers */
 margin-top: 4px; /* Space between the title and the number */
-color: #0A335B;
+color: #eceef1;
 font-weight: bold;
 }
 
@@ -184,9 +184,9 @@ margin-right: 0; /* Removes the margin */
 }
 
 .tab.active {
-border-bottom: 3px solid #0A335B;
+border-bottom: 3px solid #eceef1;
 border-radius: 15px 15px 0 0; /* Rounds the top corners */
-background-color: #0A335B; /* Changes background for active tab */
+background-color: #eceef1; /* Changes background for active tab */
 color: white;
 
 }
@@ -194,7 +194,7 @@ table {
 width: 100%;
 border-collapse: collapse;
 background-color: white;
-border-top: 30px solid #0A335B;
+border-top: 30px solid #eceef1;
 margin-bottom: 40px;	
 }
 th, td {
@@ -204,7 +204,7 @@ border-bottom: 1px solid #ddd;
 font-weight: bold;
 }
 td{
-color: #0A335B;
+color: #eceef1;
 }
 th {
 
@@ -233,7 +233,7 @@ border: 1px solid #28A745; /* Same color border */
 #btn3 {
 padding: 10px 50px;
 border: none;
-background-color: #0A335B;
+background-color: #eceef1;
 color: white;
 border-radius: 20px;
 cursor: pointer;
@@ -263,12 +263,12 @@ cursor: pointer;
 }
 
 .pagination-controls button.active {
-background-color: #0A335B;
+background-color: #eceef1;
 color: white;
 }
 
 .pagination-controls button:hover {
-background-color: #0A335B;
+background-color: #eceef1;
 color: white;
 }
 

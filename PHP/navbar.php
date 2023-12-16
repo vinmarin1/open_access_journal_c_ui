@@ -92,8 +92,9 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
         <li class="dropdown" style="list-style-type: none;">
             <ul class="dropdown-menu" style="width: 200px; margin-left: -120px; margin-top: 20px">
               <li><a href="../admin/php/journalview.php" class="dropdown-item"  style="color: black;">Admin Dashboard</a></li>
-              <li><a href="author-dashboard.php" class="dropdown-item"  style="color: black;">Author Dashboard</a></li>
-              <li><a href="reviewer-dashboard.php"  class="dropdown-item" style="color: black;">Reviewer Dashboard</a></li>
+              <li><a href="#" class="dropdown-item"  style="color: black;">My Profile</a></li>
+              <li><a href="author-dashboard.php" class="dropdown-item"  style="color: black;">My Contributions</a></li>
+            
               <li><a href="author-dashboard.php"  class="dropdown-item" style="color: black;">Update Profile</a></li>
               <li><a class="dropdown-item" href="../PHP/logout.php"  style="color: black;">Log-out</a></li> 
             </ul>
