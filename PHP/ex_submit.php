@@ -53,12 +53,38 @@
  
 
   <div class="descript-1 pt-3">
+    <div class="form-check" id="checkList-1">
+    <input type="checkbox" id="check-1">
     <p class="st-1">The submission has not been previously published, nor is it before another journal for consideration (or an explanation has been provided in Comments to the Editor).</p>
-    <p class="st-2">Note that your paper will be submitted to iThenticate.com (Plagiarism Detection Software) to check the similarity score.</p>
+    </div>
+   <div class="form-check" id="checkList-2">
+   <input type="checkbox" id="check-2">
+   <p class="st-2">Note that your paper will be submitted to iThenticate.com (Plagiarism Detection Software) to check the similarity score.</p>
+   </div>
+    <div class="form-check" id="checkList-3">
+    <input type="checkbox" id="check-3">
     <p class="st-3">The submission file is in Microsoft Word document file format. Please do NOT submit in pdf.</p>
+    </div>
+    <div class="form-check" id="checkList-4">
+    <input type="checkbox" id="check-4">
     <p class="st-4">Where available, URLs for online references have been provided.</p>
-    <p class="st-5">The text is single-column; single-spaced; uses a 11-point font (except for section headings which is 12); employs italics, rather than underlining (except with URL addresses); and all illustrations, figures, and tables are placed within the text at the appropriate points, rather than at the end. The Book Antiqua font should be used for all text in the paper. Use A4 page set-up. The top and bottom margins are 1.4 inches and the right/left margins are 1.2 inches.</p>
+    </div>
+    <div class="form-check" id="checkList-5">
+    <input type="checkbox" id="check-5">
+    <p class="st-4">Where available, URLs for online references have been provided.</p>
+    </div>
+    <div class="form-check" id="check-6">
+    <input type="checkbox" id="check-6">
+    <p class="st-5" style="width: 90%; display: inline-block">The text is single-column; single-spaced; uses a 11-point font (except for section headings which is 12); employs italics, rather than underlining (except with URL addresses); and all illustrations, figures, and tables are placed within the text at the appropriate points, rather than at the end. The Book Antiqua font should be used for all text in the paper. Use A4 page set-up. The top and bottom margins are 1.4 inches and the right/left margins are 1.2 inches.</p>
+    </div>
+    <div class="form-check" id="check-7">
+    <input type="checkbox" id="check-7">
     <p class="st-6">The text adheres to the stylistic and bibliographic requirements outlined in the Author Guidelines, which is found in About the Journal.</p>
+
+    </div>
+  
+   
+
 
 
   </div>
@@ -113,11 +139,14 @@
         <input class="form-control" type="text"  id="title" name="title">
         <p id="title-validation" style="color: red; display: none;">Title should consist of 10 words and less than 20 words*</p>
         
-        <h6 id="sub-10">Keywords</h6>
-        <input class="form-control" type="text" id="keywords" name="keywords">
-        <p id="keywords-validation" style="color: red; display: none;">Keywords should consist at least 1 and a maximum of 4 commas</p>
+        <h6 id="sub-11">Abstract</h6>
 
-     
+        <div id="editor">
+      
+        </div>
+        <input class="form-control" type="text" id="abstract" name="abstract"  style="display: none;">
+        <p id="abstract-validation" style="color: red; display: none;">Maximum of 1000 words*</p>
+
       </div>
 
       <div class="form-floating-2" id="form-floating-2">
@@ -157,16 +186,13 @@
 
     </div>
 
-    <div class="input-details-2 mt-5">
+    <div class="input-details-2 mt-3" id="form-floating-3">
 
-      <h6 id="sub-11">Abstract</h6>
+      <h6 id="sub-10">Keywords</h6>
+        <input class="form-control" type="text" id="keywords" name="keywords">
+        <p id="keywords-validation" style="color: red; display: none;">Keywords should consist at least 1 and a maximum of 4 commas</p>
 
-      <div id="editor">
-    
-      </div>
-      <input class="form-control" type="text" id="abstract" name="abstract"  style="display: none;">
-      <p id="abstract-validation" style="color: red; display: none;">Title should be at least*</p>
-
+      
       <h6 class="sub-12 mt-5" id="sub-12">Reference</h6>
 
       <div id="editor2">

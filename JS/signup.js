@@ -1,85 +1,68 @@
-$(document).ready(function() {
-    $("#form").on("submit", function(event) {
-        event.preventDefault();
 
-        const fname = $("#fname").val().trim();
-        const mdname = $("#mdname").val().trim();
-        const lname = $("#lname").val().trim();
-        const email = $("#email").val().trim();
-        const password = $("#password").val().trim();
-        const genSelect = $("#genSelect").val().trim();
-        const bdate = $("#bdate").val().trim();
-        const pnumber = $("#pnumber").val().trim();
-        const sclname = $("#sclname").val().trim();
-        const expertise = $("#expertise").val().trim();
-        const bio = $("#bio").val().trim();
-        const orcid = $("#orcid").val().trim();
-        const orcidUrl = $("#orcidUrl").val().trim();
+document.addEventListener('DOMContentLoaded', function () {
 
-        if (fname === "" || mdname === "" || lname === "" || email === "" || password === "" || genSelect === "" || bdate === "" || pnumber === "" || sclname === "" || expertise === "" || bio === "") {
+
+    
+     const myForm = document.getElementById('form');
+     const submitButton = document.getElementById('signUpBtn');
+ 
+     myForm.addEventListener('submit', function (event) {
+       
+         const inputs = myForm.querySelectorAll('input');
+         const privacyAgrrement = document.getElementById('privacyPolicy');
+         let hasEmptyField = false;
+ 
+         inputs.forEach(function (input) {
+             if (input.value.trim() === '') {
+                 hasEmptyField = true;
+             }
+         });
+ 
+
+         privacyAgrrement.addEventListener('change', function(event) {
+
+         });
+       
+         if (hasEmptyField) {
+             event.preventDefault();
+             Swal.fire({
+                html: '<h4 style="color: 0858a4;  font-family: Arial, Helvetica, sans-serif;">All filled must be fill</h4>',
+                icon: 'warning',
+             });
+         }else if(hasEmptyField === false && !privacyAgrrement.checked){
+            event.preventDefault();
             Swal.fire({
-                icon: "warning",
-                title: "Ooops...",
-                text: "All feilds are required",
-                customClass: {
-                    container: "custom-swal"
-                },
-                width: 350,
-                height: true,
+               html: '<h4 style="color: 0858a4;  font-family: Arial, Helvetica, sans-serif;">You must agree with the privacy and policy of the website to proceed</h4>',
+               icon: 'warning',
             });
-        
-        }else {
-          
+         }
+         else{
+            Swal.fire({
+                html: '<h4 style="color: 0858a4;  font-family: Arial, Helvetica, sans-serif;">Registered Successfuly</h4>',
+                icon: 'success',
+             });
+            inputs.value = '';
 
-            $.ajax({
-                type: "POST",
-                url: "../php/signup-function.php",
-                data: {
-                    fname: fname,
-                    mdname: mdname,
-                    lname: lname,
-                    email: email,
-                    password: password,
-                    genSelect: genSelect,
-                    bdate: bdate,
-                    pnumber: pnumber,
-                    sclname: sclname,
-                    expertise: expertise,
-                    bio: bio,
-                    orcid: orcid,
-                    orcidUrl: orcidUrl
-                },
-                success: function(response) {
-                    var data = JSON.parse(response);
-                    if (data.success) {
-                   
-                    $("#form")[0].reset();
-                        Swal.fire({
-                            position: 'center',
-                            icon: 'success',
-                            title: "Registered Successfuly",
-                            customClass: {
-                                container: "custom-swal"
-                            },
-                            width: 350,
-                            height: true,
-                        });
-                    } else {
-                        
-                        Swal.fire({
-                            icon: "error",
-                            title: "Error",
-                            text: data.error,
-                            customClass: {
-                                container: "custom-swal"
-                            },
-                            width: 350,
-                            height: true,
-                        });
-                    }
-                }
+         }
+     });
+
+
+
+    const countryDropdown = document.getElementById('country');
+
+    fetch('https://restcountries.com/v3.1/all')
+        .then(response => response.json())
+        .then(data => {
+           
+            data.forEach(country => {
+                const option = document.createElement('option');
+                option.value = country.name.common;
+                option.text = country.name.common;
+                countryDropdown.appendChild(option);
             });
-            
-        }
-    });
+        })
+        .catch(error => console.error('Error fetching country data:', error));
+
+     
 });
+

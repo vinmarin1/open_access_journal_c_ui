@@ -58,7 +58,7 @@
           <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Log-in
           </a>
-          <ul class="dropdown-menu">
+          <ul class="dropdown-menu" style="margin-left: -50px; width: 100px">
           <li><a class="dropdown-item" style="color: black" href="login.php" >Log-in</a></li>
           <li><a class="dropdown-item" style="color: black" href="signup.php">Register</a></li>
           </ul>

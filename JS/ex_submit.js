@@ -66,7 +66,10 @@ document.addEventListener('DOMContentLoaded', function () {
     if (selectedTabIndex < tabButtons.length - 1) {
       inputFields = tabContent[selectedTabIndex];
       if (inputFields.value === '' || tabButtons[selectedTabIndex + 1].disabled) {
-        return; // Do nothing if the input field is empty or the next button is disabled
+        Swal.fire({
+          html: '<h4 style="color: #0858a4; font-family: font-family: Arial, Helvetica, sans-serif">Please read and check the guidelines to proceed</4>',
+          icon: 'warning',
+        })
       }
 
       tabButtons[selectedTabIndex + 1].click(); // Simulate a click on the next tab button
@@ -142,6 +145,8 @@ document.getElementById('form').addEventListener('submit', function (event) {
 });
 
 
+
+
 var quill1 = new Quill('#editor', {
   theme: 'snow'
 });
@@ -206,7 +211,8 @@ setInterval(function() {
 function updateButtonState() {
   const formFloat = document.getElementById('form-floating-2');
   const formFloating = document.getElementById('form-floating');
-
+  const formFloating3 = document.getElementById('form-floating-3');
+  const qlToolbar = document.getElementsByClassName('ql-toolbar');
   const isTitleValid = titleValidation.style.display === 'none';
   const isKeywordsValid = keywordsValidation.style.display === 'none';
   const isAbstractValid = abstractValidation.style.display === 'none';
@@ -221,6 +227,7 @@ function updateButtonState() {
     isAbstractValid
   ) {
     formFloating.style.width = '60%';
+    formFloating3.style.width = '60%';
     formFloat.style.display = 'inline-block';
   } else {
     formFloat.style.display = 'none';
@@ -230,6 +237,9 @@ function updateButtonState() {
     const buttonOkay = document.getElementById('btn-okay');
     formFloat.style.display = 'none';
     formFloating.style.width = '100%';
+    // abstractEditor.style.width = '100%';
+    // referenceEditor.style.width = '100%';
+    // qlToolbar.style.width = '100%';
     keywordsInput.innerHTML = '';
     quill2.setText('');
   });

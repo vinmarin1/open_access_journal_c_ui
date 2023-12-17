@@ -44,7 +44,7 @@
     font-weight: normal;
 }
 
-.form-floating{
+.form-floating, #form-floating-3{
     display: inline-block;
     width: 100%;
     max-width: 100%;
@@ -253,8 +253,12 @@
 
 #editor, #editor2, #editor3{
    height: 200px;
-
+   width: 100%;
+   
+ 
 }
+
+
 
 .table-input, .contributors-container, .comment-container{
     max-width: 100%;
@@ -466,7 +470,7 @@
         
 }
 
-#sub-26, #sub-27, #sub-28, #sub-29{
+#sub-26,  #sub-28, #sub-29{
     color: #0858a4;
     text-align: left;
     font-family: Arial, Helvetica, sans-serif;
@@ -475,7 +479,18 @@
     margin-left: -20px;
 }
 
-#sub-30, #sub-31, #sub-32, #sub-33, #sub-34{
+#sub-27{
+    font-weight: bold;
+    margin-left: -20px;
+    text-align: left;
+    color: #0858a4;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    width: 100%;
+
+}
+
+ #sub-30, #sub-31, #sub-32, #sub-33, #sub-34{
     text-align: left;
     color: #0858a4;
     font-family: Arial, Helvetica, sans-serif;

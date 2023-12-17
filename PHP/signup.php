@@ -16,7 +16,7 @@
 
 <div class="form-container">
 	
-    <form method="post" id="form">
+    <form method="post" id="form" action="signup-function.php">
       
 
        <p class="h4 mt-4">REGISTER</p>
@@ -62,8 +62,13 @@
         </div>
 
         <div class="input-field">
-            <label for="sclname">School Name: </label>
-           <input type="text" class="input form-control" name="sclname"  id="sclname" >
+            <label for="aflt">Afiliations: </label>
+           <input type="text" class="input form-control" name="aflt"  id="aflt" >
+        </div>
+
+        <div class="input-field">
+            <label for="position">Position: </label>
+           <input type="text" class="input form-control" name="position"  id="position" >
         </div>
 
         <div class="input-field">
@@ -81,12 +86,21 @@
            <input type="text" class="input form-control" name="orcid"  id="orcid" >
         </div>
 
+
         <div class="input-field">
-            <label for="orcidUrl">ORCID URL: <span class="fw-light">(optional)</span></label>
-           <input type="text" class="input form-control" name="orcidUrl"  id="orcidUrl">
+            <label for="country">Country: </label>
+            <select class="form-select" name="country" id="country"></select>
         </div>
-       <div class="register-container"></div>
-       <input type="submit" value="Register" class="btn btn-primary btn-sm">
+
+      
+       
+      <div class="fluid-container">
+     
+      <input type="checkbox" class="form-check" name="privacyPolicy" id="privacyPolicy" style="display: inline-block; margin-left: 10px;">
+        <p  style="display: inline-block;position: absolute; margin-left: 10px; text-decoration: underline; color: #0858a4">Privacy</p>
+      <input type="submit" value="Register" class="btn btn-primary btn-sm" id="signUpBtn">
+      </div>
+     
     </form>
 </div>
 
@@ -97,5 +111,6 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script src="../JS/signup.js"></script>
+
 </body>
 </html>

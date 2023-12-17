@@ -17,8 +17,9 @@
     /* margin-bottom: 50px; */
 }
 
-#form h4{
+#login-label{
     margin-bottom: 50px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 #form input[type="email"], input[type="password"]{
