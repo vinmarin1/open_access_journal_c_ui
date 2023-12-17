@@ -1,3 +1,21 @@
+<style>
+#sloading {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    z-index: 10000;
+    text-align: center;
+}
+
+#sloading img {
+    width: 8%;
+    height: 8%;
+}
+</style>
+<div id='sloading'><center><img src='../assets/img/loading.gif'></center></div>
 <!-- Footer -->
 <footer class="content-footer footer bg-footer-theme">
     <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">

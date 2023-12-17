@@ -40,7 +40,7 @@ $journal = get_journal_list();
     <link rel="stylesheet" href="../assets/css/demo.css" />
 
     <!-- Vendors CSS -->
-    <link rel="stylesheet" href="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+    <link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
     <link rel="stylesheet" href="../assets/vendor/libs/apex-charts/apex-charts.css" />
 
     <!-- DataTables CSS -->
@@ -236,4 +236,5 @@ $journal = get_journal_list();
                 </li>
               </ul>
             </div>
-          </nav>
+          </nav
+      

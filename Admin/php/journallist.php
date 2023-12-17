@@ -69,6 +69,7 @@ $journallist = get_journal_list();
     });
 
     function addRecord() {
+        $('#sloading').toggle();
         var form = document.getElementById('addModalForm');
 
         if (form.checkValidity()) {
@@ -87,6 +88,7 @@ $journallist = get_journal_list();
                 success: function (data) {
                     var response = JSON.parse(data);
                     if (response.status) {
+                        $('#sloading').toggle();
                         alert("Record added successfully");
                     } else {
                         alert("All fields required!");
@@ -132,6 +134,7 @@ $journallist = get_journal_list();
     }
 
     function saveChanges() {
+        $('#sloading').toggle();
         console.log('Save button clicked');
         
         var journalId = $('#xjournalid').val();
@@ -155,6 +158,7 @@ $journallist = get_journal_list();
                 console.log('Update Response:', response);
 
                 if (response.status === true) {
+                    $('#sloading').toggle();
                     alert("Record updated successfully");
                     $('#updateModal').modal('hide');
                     location.reload();
@@ -167,6 +171,7 @@ $journallist = get_journal_list();
     }
     
     function archiveJournal(journalId, journal, journal_title) {
+        $('#sloading').toggle();
         $('#archiveModal').modal('show');
         $('#archiveModalTitle').text('Archive User');
         $('#journalInfo').html('<strong>Journal:</strong> ' + journal + ' <br><strong>Journal_Title:</strong> ' + journal_title + '<br><strong>ID:</strong> ' + journalId);
@@ -180,6 +185,7 @@ $journallist = get_journal_list();
                     var response = JSON.parse(data);
 
                     if (response.status) {
+                        $('#sloading').toggle();
                         $('#archiveModalMessage').text('Journal archived successfully');
                     } else {
                         $('#archiveModalMessage').text('Failed to archive journal');
