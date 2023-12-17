@@ -16,7 +16,7 @@
 
 <div class="form-container">
 	
-    <form method="post" id="form" action="signup-function.php">
+    <form method="post" id="form">
       
 
        <p class="h4 mt-4">REGISTER</p>
@@ -62,8 +62,8 @@
         </div>
 
         <div class="input-field">
-            <label for="aflt">Afiliations: </label>
-           <input type="text" class="input form-control" name="aflt"  id="aflt" >
+            <label for="afiliations">Afiliations: </label>
+           <input type="text" class="input form-control" name="afiliations"  id="afiliations" >
         </div>
 
         <div class="input-field">
@@ -82,25 +82,20 @@
         </div>
 
         <div class="input-field">
-            <label for="orcid">ORCID ID: <span class="fw-light">(optional)</span></label>
+            <label for="orcid">ORCID ID: </label>
            <input type="text" class="input form-control" name="orcid"  id="orcid" >
         </div>
-
 
         <div class="input-field">
             <label for="country">Country: </label>
             <select class="form-select" name="country" id="country"></select>
         </div>
-
-      
-       
-      <div class="fluid-container">
+        <div class="fluid-container">
      
       <input type="checkbox" class="form-check" name="privacyPolicy" id="privacyPolicy" style="display: inline-block; margin-left: 10px;">
         <p  style="display: inline-block;position: absolute; margin-left: 10px; text-decoration: underline; color: #0858a4">Privacy</p>
       <input type="submit" value="Register" class="btn btn-primary btn-sm" id="signUpBtn">
       </div>
-     
     </form>
 </div>
 
@@ -111,6 +106,5 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script src="../JS/signup.js"></script>
-
 </body>
 </html>
