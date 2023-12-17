@@ -1,5 +1,5 @@
 <?php
-include 'userandroles_function.php';
+include 'function/userandroles_function.php';
 
 $userlist = get_user_list();
 $rolelist = get_role_list();
@@ -9,7 +9,7 @@ $rolelist = get_role_list();
 <html lang="en">
 <body>
     <!-- Include header -->
-    <?php include 'header.php'; ?>
+    <?php include 'template/header.php'; ?>
 
     <!-- Content wrapper -->
     <div class="container-xxl flex-grow-1 container-p-y">
@@ -94,7 +94,7 @@ $rolelist = get_role_list();
             </div>
         </div>
         <!-- Include footer -->
-        <?php include 'footer.php'; ?>
+        <?php include 'template/footer.php'; ?>
     </div>
 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
@@ -150,7 +150,7 @@ $rolelist = get_role_list();
             };
 
             $.ajax({
-                url: "userandroles_function.php",
+                url: "../php/function/userandroles_function.php",
                 method: "POST",
                 data: formData,
                 success: function (data) {
@@ -178,7 +178,7 @@ $rolelist = get_role_list();
 
         $('#archiveModalSave').off().on('click', function () {
             $.ajax({
-                url: "userandroles_function.php",
+                url: "../php/function/userandroles_function.php",
                 method: "POST",
                 data: { action: "archive", author_id: authorId },
                 success: function (data) {
@@ -205,7 +205,7 @@ $rolelist = get_role_list();
     function updateModal(authorId) {
         $.ajax({
             type: 'POST',
-            url: 'userandroles_function.php',
+            url: '../php/function/userandroles_function.php',
             data: { action: 'fetch', author_id: authorId },
             dataType: 'json',
             success: function (response) {
@@ -258,7 +258,7 @@ $rolelist = get_role_list();
 
         $.ajax({
             type: 'POST',
-            url: 'userandroles_function.php',
+            url: '../php/function/userandroles_function.php',
             data: {
                 action: 'update',
                 author_id: authorId,
@@ -291,7 +291,7 @@ $rolelist = get_role_list();
             };
 
             $.ajax({
-                url: "userandroles_function.php",
+                url: "../php/function/userandroles_function.php",
                 method: "POST",
                 data: formData,
                 success: function (data) {
@@ -315,7 +315,7 @@ $rolelist = get_role_list();
     function updateModalRole(roleId) {
         $.ajax({
             type: 'POST',
-            url: 'userandroles_function.php',
+            url: '../php/function/userandroles_function.php',
             data: { action: 'fetchrole', role_id: roleId },
             dataType: 'json',
             success: function (response) {
@@ -349,7 +349,7 @@ $rolelist = get_role_list();
 
         $.ajax({
             type: 'POST',
-            url: 'userandroles_function.php',
+            url: '../php/function/userandroles_function.php',
             data: {
                 action: 'updaterole',
                 role_id: roleId,
@@ -378,7 +378,7 @@ $rolelist = get_role_list();
 
         $('#archiveRoleModalSave').off().on('click', function () {
             $.ajax({
-                url: "userandroles_function.php",
+                url: "../php/function/userandroles_function.php",
                 method: "POST",
                 data: { action: "archiverole", role_id: roleId },
                 success: function (data) {

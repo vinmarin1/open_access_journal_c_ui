@@ -1,5 +1,5 @@
 <?php
-include 'issue_function.php';
+include 'function/issue_function.php';
 
     $issueslist = get_issues_list();
 ?>
@@ -8,7 +8,7 @@ include 'issue_function.php';
 <html lang="en">
 <body>
     <!-- Include header -->
-    <?php include 'header.php'; ?>
+    <?php include 'template/header.php'; ?>
 
     <!-- Content wrapper -->
     <div class="container-xxl flex-grow-1 container-p-y">
@@ -126,7 +126,7 @@ include 'issue_function.php';
         </div>    
 
         <!-- Include footer -->
-        <?php include 'footer.php'; ?>
+        <?php include 'template/footer.php'; ?>
     </div>
 
     <!-- Include the DataTables CSS and JS files -->

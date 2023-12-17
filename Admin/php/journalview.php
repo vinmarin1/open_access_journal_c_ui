@@ -1,5 +1,5 @@
 <?php
-include 'submission_functions.php';
+include 'function/submission_functions.php';
 
 $journallist = get_journal_list();
 ?>
@@ -7,7 +7,7 @@ $journallist = get_journal_list();
 <html lang="en">
 <body>
     <!-- Include header -->
-    <?php include 'header.php'; ?>
+    <?php include 'template/header.php'; ?>
 
     <!-- Content wrapper -->
     <div class="container-xxl flex-grow-1 container-p-y">
@@ -50,7 +50,7 @@ $journallist = get_journal_list();
             </div>
 
         <!-- Include footer -->
-        <?php include 'footer.php'; ?>
+        <?php include 'template/footer.php'; ?>
     </div>
 
     <!-- Initialize DataTables -->

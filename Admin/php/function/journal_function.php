@@ -1,5 +1,4 @@
 <?php
-
 include 'dbcon.php';
 
     if (!function_exists('get_journal_list')) {

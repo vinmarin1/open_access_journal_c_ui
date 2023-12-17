@@ -1,5 +1,5 @@
 <?php
-include 'journal_function.php';
+include 'function/journal_function.php';
 
 $journallist = get_journal_list();
 ?>
@@ -16,7 +16,7 @@ $journallist = get_journal_list();
 </style>
 <body>
     <!-- Include header -->
-    <?php include 'header.php'; ?>
+    <?php include 'template/header.php'; ?>
 
     <!-- Content wrapper -->
     <div class="container-xxl flex-grow-1 container-p-y">
@@ -130,7 +130,7 @@ $journallist = get_journal_list();
             </div>
 
         <!-- Include footer -->
-        <?php include 'footer.php'; ?>
+        <?php include 'template/footer.php'; ?>
     </div>
 
     <!-- Include the DataTables CSS and JS files -->

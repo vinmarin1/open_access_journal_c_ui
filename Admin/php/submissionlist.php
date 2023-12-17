@@ -1,5 +1,5 @@
 <?php
-include 'submission_functions.php';
+include 'function/submission_functions.php';
 $cid = isset($_GET['cid']) ? $_GET['cid'] : 1;
 
 $contributor = get_contributor_list();
@@ -11,7 +11,7 @@ $incomplete_articles = get_article_list($cid);
 <html lang="en">
 <body>
     <!-- Include header -->
-    <?php include 'header.php'; ?>
+    <?php include 'template/header.php'; ?>
 
     <!-- Content wrapper -->
     <div class="container-xxl flex-grow-1 container-p-y">
@@ -97,7 +97,7 @@ $incomplete_articles = get_article_list($cid);
                                     </span>
                                 </td>
                                 <td width="5%">
-                                 <button type="button" class="btn btn-outline-dark">View</button>
+                                 <a href="../php/workflow.php?aid=<?php echo $incomplete_articlesval->article_id; ?>" class="btn btn-outline-dark">View</a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -107,7 +107,7 @@ $incomplete_articles = get_article_list($cid);
         </div>
 
         <!-- Include footer -->
-        <?php include 'footer.php'; ?>
+        <?php include 'template/footer.php'; ?>
     </div>
 
     <!-- Include the DataTables CSS and JS files -->
