@@ -1,5 +1,5 @@
 <?php
-include 'journal_function.php';
+include 'function/journal_function.php';
 
 $journallist = get_journal_list();
 ?>
@@ -8,7 +8,7 @@ $journallist = get_journal_list();
 <html lang="en">
 <body>
     <!-- Include header -->
-    <?php include 'header.php'; ?>
+    <?php include 'template/header.php'; ?>
 
     <!-- Content wrapper -->
     <div class="container-xxl flex-grow-1 container-p-y">
@@ -50,7 +50,7 @@ $journallist = get_journal_list();
         </div>
 
         <!-- Include footer -->
-        <?php include 'footer.php'; ?>
+        <?php include 'template/footer.php'; ?>
     </div>
     
 <!-- Include the DataTables CSS and JS files -->
@@ -81,7 +81,7 @@ $journallist = get_journal_list();
             };
 
             $.ajax({
-                url: "journal_function.php",
+                url: "../php/function/journal_function.php",
                 method: "POST",
                 data: formData,
                 success: function (data) {
@@ -105,7 +105,7 @@ $journallist = get_journal_list();
     function updateModal(journalId) {
         $.ajax({
             type: 'POST',
-            url: 'journal_function.php',
+            url: '../php/function/journal_function.php',
             data: { action: 'fetch', journal_id: journalId },
             dataType: 'json',
             success: function (response) {
@@ -144,7 +144,7 @@ $journallist = get_journal_list();
 
         $.ajax({
             type: 'POST',
-            url: 'journal_function.php',
+            url: '../php/function/journal_function.php',
             data: {
                 action: 'update',
                 journal_id: journalId,
@@ -173,7 +173,7 @@ $journallist = get_journal_list();
 
         $('#archiveModalSave').off().on('click', function () {
             $.ajax({
-                url: "journal_function.php",
+                url: "../php/function/journal_function.php",
                 method: "POST",
                 data: { action: "archive", journal_id: journalId },
                 success: function (data) {

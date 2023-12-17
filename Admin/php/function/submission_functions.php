@@ -1,5 +1,4 @@
 <?php
-
 include 'dbcon.php';
 
 // Check if the function is not already defined
