@@ -65,7 +65,6 @@ function renderArticleDetails(data) {
       <div class="row gap-4">
           <div class="abstract col-sm-7">
               <h4>Abstract</h4>
-              <button class="btn tbn-primary btn-md" id="btn1">Read Full Articles</button>
               <button class="btn tbn-primary btn-md" id="download-btn">Download PDF</button>
               <button class="btn tbn-primary btn-md" id="epub-btn">Download EPUB</button>
               <p>${item.abstract}</p>

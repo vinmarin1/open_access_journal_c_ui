@@ -45,56 +45,132 @@ session_start();
     <div class="">
       <div class="articles-section">
         <div class="tabs">
-          <div class="tab active">All Submissions</div>
+          <ul class=""  id="myTab" role="tablist" style="margin-left:-40px; margin-bottom:0">
+            <div role="presentation" class="tab active">
+              <li class="w-100  active" id="submissions-tab" data-bs-toggle="tab" data-bs-target="#submissions-tab-pane" type="button" role="tab" aria-controls="submissions-tab-pane" aria-selected="true" style="list-style-type: none ">
+                All Submissions            
+              </li>
+            </div> 
+            <div role="presentation" class="tab">
+              <li class="w-100" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews-tab-pane" type="button" role="tab" aria-controls="reviews-tab-pane" aria-selected="false" style="list-style-type: none ">
+                All Reviews            
+              </li>
+            </div>
+          </ul>
+          <!-- <div class="tab active">All Submissions</div>
           <div class="tab">All Reviews</div>
           <button class="btn" id="btn3" onclick="window.location.href='ex_submit.php'">Submit Article</button>
+        </div> -->
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="submissions-tab-pane" role="tabpanel" aria-labelledby="submissions-tab" tabindex="0">
+          <table>
+            <thead>
+              <tr>
+                <th><input type="checkbox"></th>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Journal</th>
+                <th><center>Status</center></th>
+                <th><center>Action</center></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="checkbox"></td>
+                <td>Blockchain Beyond Cryptocurrency: Transforming...</td>
+                <td>May 31, 2015</td>
+                <td>The Star</td>
+                <td><center><span class="status-label pending">Pending</span></center></td>
+                <td><center>...</center></td>
+              </tr>
+              <tr>
+                <td><input type="checkbox"></td>
+                <td>Industries with Distributed Ledger Technology</td>
+                <td>October 24, 2018</td>
+                <td>The Star</td>
+                <td><center><span class="status-label published">Published</span></center></td>
+                <td><center>...</center></td>
+              </tr>
+              <tr>
+                <td><input type="checkbox"></td>
+                <td>Industries with Distributed Ledger Technology</td>
+                <td>October 24, 2018</td>
+                <td>The Star</td>
+                <td><center><span class="status-label published">Published</span></center></td>
+                <td><center>...</center></td>
+              </tr>
+              <tr>
+                <td><input type="checkbox"></td>
+                <td>Industries with Distributed Ledger Technology</td>
+                <td>October 24, 2018</td>
+                <td>The Star</td>
+                <td><center><span class="status-label published">Published</span></center></td>
+                <td><center>...</center></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="pagination">
+            Showing 1 to 10 of 50 entries
+            <div class="pagination-controls">
+              <button>«</button>
+              <button>‹</button>
+              <button class="active">1</button>
+              <button>2</button>
+              <button>3</button>
+              <button>4</button>
+              <button>›</button>
+              <button>»</button>
+            </div>
+          </div>
         </div>
-        <table>
-          <thead>
-            <tr>
-              <th><input type="checkbox"></th>
-              <th>Title</th>
-              <th>Date</th>
-              <th>Journal</th>
-              <th><center>Status</center></th>
-              <th><center>Action</center></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><input type="checkbox"></td>
-              <td>Blockchain Beyond Cryptocurrency: Transforming...</td>
-              <td>May 31, 2015</td>
-              <td>The Star</td>
-              <td><center><span class="status-label pending">Pending</span></center></td>
-              <td><center>...</center></td>
-            </tr>
-            <tr>
-              <td><input type="checkbox"></td>
-              <td>Industries with Distributed Ledger Technology</td>
-              <td>October 24, 2018</td>
-              <td>The Star</td>
-              <td><center><span class="status-label published">Published</span></center></td>
-              <td><center>...</center></td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="pagination">
-          Showing 1 to 10 of 50 entries
-          <div class="pagination-controls">
-            <button>«</button>
-            <button>‹</button>
-            <button class="active">1</button>
-            <button>2</button>
-            <button>3</button>
-            <button>4</button>
-            <button>›</button>
-            <button>»</button>
+        <div class="tab-pane fade " id="reviews-tab-pane" role="tabpanel" aria-labelledby="reviews-tab" tabindex="0">
+          <table>
+            <thead>
+              <tr>
+                <th><input type="checkbox"></th>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Journal</th>
+                <th><center>Status</center></th>
+                <th><center>Action</center></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input type="checkbox"></td>
+                <td>Industries with Distributed Ledger Technology</td>
+                <td>October 24, 2018</td>
+                <td>The Star</td>
+                <td><center><span class="status-label published">Published</span></center></td>
+                <td><center>...</center></td>
+              </tr>
+              <tr>
+                <td><input type="checkbox"></td>
+                <td>Industries with Distributed Ledger Technology</td>
+                <td>October 24, 2018</td>
+                <td>The Star</td>
+                <td><center><span class="status-label published">Published</span></center></td>
+                <td><center>...</center></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="pagination">
+            Showing 1 to 10 of 50 entries
+            <div class="pagination-controls">
+              <button>«</button>
+              <button>‹</button>
+              <button class="active">1</button>
+              <button>2</button>
+              <button>3</button>
+              <button>4</button>
+              <button>›</button>
+              <button>»</button>
+            </div>
           </div>
         </div>
       </div>
-      <hr class="full-width">
-
+        <hr class="full-width">
+      </div>
     </div>
     
     <div class="row">
