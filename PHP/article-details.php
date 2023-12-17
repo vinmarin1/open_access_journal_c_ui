@@ -33,15 +33,7 @@ $active = check_login(false);
 echo '<script>const active = ' . ($active ? 'true' : 'false') . ';</script>';
 ?>
 
-<?php
-if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true ){  
-  echo '
-  <div class="frame-border container-fluid">
-  <iframe class="pic-frame" src="" title="Iframe Example"></iframe>
-  </div>
-  ';
-}
-?>
+
 
 <!-- 
 <hr style="height: 2px; background-color: #0858a4 "> -->
