@@ -131,6 +131,7 @@ $rolelist = get_role_list();
         });
 
         function addRecord() {
+        $('#sloading').toggle();
         var form = document.getElementById('addModalForm');
 
         if (form.checkValidity()) {
@@ -156,6 +157,7 @@ $rolelist = get_role_list();
                 success: function (data) {
                     var response = JSON.parse(data);
                     if (response.status) {
+                        $('#sloading').toggle();
                         alert("Record added successfully");
                     } else {
                         alert("Email is already used");
@@ -172,6 +174,7 @@ $rolelist = get_role_list();
     }
 
     function archiveUser(authorId, firstName, lastName) {
+        $('#sloading').toggle();
         $('#archiveModal').modal('show');
         $('#archiveModalTitle').text('Archive User');
         $('#userInfo').html('<strong>Name:</strong> ' + lastName + ', ' + firstName + '<br><strong>ID:</strong> ' + authorId);
@@ -185,6 +188,7 @@ $rolelist = get_role_list();
                     var response = JSON.parse(data);
 
                     if (response.status) {
+                        $('#sloading').toggle();
                         $('#archiveModalMessage').text('User archived successfully');
                     } else {
                         $('#archiveModalMessage').text('Failed to archive user');
@@ -239,6 +243,7 @@ $rolelist = get_role_list();
     }
 
     function saveChanges() {
+        $('#sloading').toggle();
         console.log('Save button clicked');
         
         var authorId = $('#xauthorid').val();
@@ -269,6 +274,7 @@ $rolelist = get_role_list();
                 console.log('Update Response:', response);
 
                 if (response.status === true) {
+                    $('#sloading').toggle();
                     alert("Record updated successfully");
                     $('#updateModal').modal('hide');
                     location.reload();
@@ -281,6 +287,7 @@ $rolelist = get_role_list();
     }
 
     function addRoleRecord() {
+        $('#sloading').toggle();
         var form = document.getElementById('addModalRoleForm');
 
         if (form.checkValidity()) {
@@ -297,6 +304,7 @@ $rolelist = get_role_list();
                 success: function (data) {
                     var response = JSON.parse(data);
                     if (response.status) {
+                        $('#sloading').toggle();
                         alert("Record added successfully");
                     } else {
                         alert("All fields required");
@@ -339,6 +347,7 @@ $rolelist = get_role_list();
     }
 
     function saveChangesRole() {
+        $('#sloading').toggle();
         console.log('Save button clicked');
         
         var roleId = $('#xroleid').val();
@@ -360,6 +369,7 @@ $rolelist = get_role_list();
                 console.log('Update Response:', response);
 
                 if (response.status === true) {
+                    $('#sloading').toggle();
                     alert("Record updated successfully");
                     $('#updateRoleModal').modal('hide');
                     location.reload();
@@ -372,6 +382,7 @@ $rolelist = get_role_list();
     }
 
     function archiveRole(roleId, role, role_name) {
+        $('#sloading').toggle();
         $('#archiveRoleModal').modal('show');
         $('#archiveModalTitle').text('Archive Role');
         $('#roleInfo').html('<strong>Role:</strong> ' + role + ' <br><strong>Role_Name:</strong> ' + role_name + ' <br><strong>ID:</strong> ' + roleId);
@@ -384,6 +395,7 @@ $rolelist = get_role_list();
                 success: function (data) {
                     var response = JSON.parse(data);
                     if (response.status) {
+                        $('#sloading').toggle();
                         $('#archiveRoleModalMessage').text('Role archived successfully');
                     } else {
                         $('#archiveRoleModalMessage').text('Failed to archive role');

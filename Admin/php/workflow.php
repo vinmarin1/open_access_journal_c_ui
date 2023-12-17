@@ -117,9 +117,9 @@ table {
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3 mt-4 mt-lg-0" id="dynamic-column">
-                                                            <a href="../php/emailcontent.php?aid=<?php echo $article_data[0]->article_id; ?>&emc=1" class="btn btn-primary btn-lg btn-block mb-2" style="width: 100%;">Send for Review</a>
-                                                            <button type="button" class="btn btn-outline-primary btn-lg btn-block mb-2" id="uploadButton" style="width: 100%;">Accept and Skip Review</button>
-                                                            <a href="../php/emailcontent.php?aid=<?php echo $article_data[0]->article_id; ?>&emc=2" class="btn btn-outline-danger btn-lg btn-block" id="uploadButton" style="width: 100%;">Decline Submission</a>
+                                                            <a href="javascript:void(0);" onclick="sendForReview()" class="btn btn-primary btn-lg btn-block mb-2" style="width: 100%;">Send for Review</a>
+                                                            <button type="button" class="btn btn-outline-primary btn-lg btn-block mb-2" style="width: 100%;">Accept and Skip Review</button>
+                                                            <a href="javascript:void(0);" onclick="sendForDecline()" class="btn btn-outline-danger btn-lg btn-block" style="width: 100%;">Decline Submission</a>
                                                         </div>
 
                                                         <div class="col-md-9 mt-4" id="dynamic-column">
@@ -347,6 +347,30 @@ table {
 
         quill.clipboard.dangerouslyPasteHTML(abstractContent);
         quillTwo.clipboard.dangerouslyPasteHTML(referenceContent);
+
+        function sendForReview() {
+            $('#sloading').show();
+
+            setTimeout(function () {
+                window.location.href = "../php/emailcontent.php?aid=<?php echo $article_data[0]->article_id; ?>&emc=1";
+            }, 2000);
+
+            window.onload = function () {
+                $('#sloading').hide();
+            };
+        }
+
+        function sendForDecline() {
+            $('#sloading').show();
+
+            setTimeout(function () {
+                window.location.href = "../php/emailcontent.php?aid=<?php echo $article_data[0]->article_id; ?>&emc=2";
+            }, 2000);
+
+            window.onload = function () {
+                $('#sloading').hide();
+            };
+        }                                                   
     </script>
 </body>
 </html>

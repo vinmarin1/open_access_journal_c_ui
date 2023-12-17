@@ -34,7 +34,7 @@ $journallist = get_journal_list();
                                             <h5 class="card-title"><?php echo $journal->journal; ?></h5>
                                             <p class="card-text"><?php echo $journal->description; ?></p>
                                             <p class="card-text"><small class="text-muted">Last updated <?php echo $journal->last_updated; ?></small></p>
-                                            <a href="../php/submissionlist.php?cid=<?php echo $journal->journal_id; ?>" class="btn btn-primary">View</a>
+                                            <a href="javascript:void(0);" onclick="viewSubmissionList(<?php echo $journal->journal_id; ?>)" class="btn btn-primary">View</a>
                                         </div>
                                     </div>
                                 </div>
@@ -56,10 +56,22 @@ $journallist = get_journal_list();
     <!-- Initialize DataTables -->
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     <script>
-        jQuery(document).ready(function($) {
-            $('#DataTable').DataTable({
-            });
+    jQuery(document).ready(function($) {
+        $('#DataTable').DataTable({
         });
+    });
+
+    function viewSubmissionList(journalId) {
+        $('#sloading').show();
+
+        setTimeout(function () {
+            window.location.href = "../php/submissionlist.php?cid=" + journalId;
+        }, 2000);
+
+        window.onload = function () {
+            $('#sloading').hide();
+        };
+    }
     </script>
 </body>
 </html>

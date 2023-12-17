@@ -96,8 +96,8 @@ $incomplete_articles = get_article_list($cid);
                                         <?php echo $statusLabel; ?>
                                     </span>
                                 </td>
-                                <td width="5%">
-                                 <a href="../php/workflow.php?aid=<?php echo $incomplete_articlesval->article_id; ?>" class="btn btn-outline-dark">View</a>
+                                <td width="5%">                         
+                                 <a href="javascript:void(0);" onclick="viewWorkflow()" class="btn btn-outline-dark">View</a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -138,6 +138,19 @@ $incomplete_articles = get_article_list($cid);
                 dataTable.column(2).search(statusValue).draw();
             });
         });
+
+        
+        function viewWorkflow() {
+            $('#sloading').show();
+
+            setTimeout(function () {
+                window.location.href = "../php/workflow.php?aid=<?php echo $incomplete_articlesval->article_id; ?>";
+            }, 2000);
+
+            window.onload = function () {
+                $('#sloading').hide();
+            };
+        }     
     </script>
 </body>
 </html>
