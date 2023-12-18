@@ -1,12 +1,7 @@
-p{
-    font-family: Arial, Helvetica, sans-serif;
-}
+
 .content-over {
     position: relative;
     width: 100%;
-    min-height: 16em;
-    height:20vh;
-    max-height:20em;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -35,7 +30,6 @@ display: block;
 .content-over h3{
 font-size:1.5em;
 font-family: Arial, Helvetica, sans-serif;
-margin-top: 2em;
 width: 75%;
 }
 
@@ -61,7 +55,7 @@ width: 75%;
 
 .abstract{
     margin-left: 150px;
-    padding-top: 40px;
+    /* padding-top: 40px; */
     display: inline-block;
     width: 60%;
 }
@@ -84,7 +78,7 @@ z-index: 1;
 background-color: #0858a4;
 border-radius: 20px;
 margin-top: 20px;
-width: 240px;
+padding:0.5em 1.5em;
 }
 
 .abstract button:hover{
@@ -103,6 +97,9 @@ background-color: transparent;
 color: #0858a4;
 }
 
+.btn {
+    outline: none;
+}
 .articles-info{
     box-sizing: border-box;
     display:inline-block; 
@@ -116,14 +113,27 @@ color: #0858a4;
     color:#0858a4; 
     margin: 0;
 }
-
+.views-dl {
+    display: flex;
+    gap:2em;
+}
 .views{
-    display: inline-block;
+    display: grid;
+    place-items: center;
+    /* display: inline-block; */
 }
 
 .downloads{
-    display: inline-block;
-    padding-left: 100px;
+    /* display: inline-block;
+    padding-left: 100px; */
+    display: grid;
+    place-items: center;
+}
+.citations{
+    display: grid;
+    place-items: center;
+    /* display: inline-block;
+    padding-left: 100px; */
 }
 
 .article-pub h4{
