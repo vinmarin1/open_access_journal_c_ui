@@ -33,14 +33,16 @@ async function fetchData() {
       const articleDiv = document.createElement('div');
       articleDiv.classList.add('article');
       articleDiv.addEventListener('click', () => navigateToArticle(item.article_id));
+      let contributorsHTML = "";
+      for (const contributors of item.contributors.split(",")) {
+        contributorsHTML += `<a href="https://orcid.org/${contributors.split("-")[1]}">${contributors.split("-")[0]}</a>,`;
+      }
       articleDiv.innerHTML = `
         <p class="h6" id="title">${item.title}</p>
         <div class="article-info">
           <p class="info" id="category">${item.journal || 'No Journal'}</p>
-          <span class="views" id="views">${item.total_reads} Views</span>
         </div>
-        <p class="author" id="author">${item.author}</p>
-        <p class="article-content" id="abstract">${item.abstract.slice(0,80)}...</p>
+        <p class="article-content" id="abstract">${item.abstract.slice(0,100)}...</p>
         <button class="btn btn-primary btn-md btn-article" style="border: 2px #0858a4 solid; background-color: transparent; border-radius: 20px; color: #0858a4; width: 100%;">Read Article</button>
       `;
 

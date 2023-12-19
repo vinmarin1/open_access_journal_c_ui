@@ -29,10 +29,12 @@ async function fetchArticleDetails() {
     console.error("Error fetching data:", error);
   }
 }
+
 function renderArticleDetails(data) {
   const articleContainer = document.getElementById("article_details");
   data.forEach((item) => {
     const articleElement = document.createElement("div");
+    const citationContent = document.getElementById("citation-content");
 
     articleElement.classList.add("article-details-body");
     const keywordsArray = item.keyword.split(",");
@@ -40,6 +42,13 @@ function renderArticleDetails(data) {
     let keywordsHTML = "";
     for (const keyword of keywordsArray) {
       keywordsHTML += `<a href="">${keyword.trim()}</a>`;
+    }
+
+    let contributorsHTML = "";
+    if (item.contributors != null){
+      for (const contributors of item.contributors.split(",")) {
+        contributorsHTML += `<a href="https://orcid.org/${contributors.split("->")[1]}">${contributors.split("->")[0]}</a>, `;
+      }
     }
     articleElement.innerHTML = `
       <div class="content-over">
@@ -49,7 +58,7 @@ function renderArticleDetails(data) {
             <div class="after-title">
                 <div class="authors">
                     <p style= "font-size: small; color: gray" >Author/s</p>
-                    <p>${item.author}</p>
+                    <p>${contributorsHTML}</p>
                 </div>
                 <div class="volume">
                     <p style= "font-size: small; color: gray" >Journal Issue and Volume</p>
@@ -113,8 +122,22 @@ function renderArticleDetails(data) {
           </div>
       </div>
     `;
+    citationContent.innerHTML = `   
+      <p class="small">${item.title}</p>
+      <ul>
+        <li> 
+          <h4 class="small"><b>APA Citation</b></h4>
+          <p>
+            ${item.author}.${item.title}.${item.journal}
+          </p>
+        </li>
+      </ul>
+     
+
+    `
     const downloadBtn = articleElement.querySelector(`#download-btn`);
     const epubBtn = articleElement.querySelector(`#epub-btn`);
+    const citeBtn = articleElement.querySelector(`#cite-btn`);
     const viewFullArticle = articleElement.querySelector(`#btn1`);
 
     if (active) {
@@ -135,8 +158,12 @@ function renderArticleDetails(data) {
     }
     if (epubBtn) {
       epubBtn.addEventListener("click", () => {
-        // downloadEpub(item.file_name)
         createCloudConvertJob(item.file_name, "epub");
+      });
+    }
+    if (citeBtn) {
+      citeBtn.addEventListener("click", () => {
+        toggleCiteModal()
       });
     }
     articleContainer.appendChild(articleElement);
@@ -146,6 +173,7 @@ function renderArticleDetails(data) {
 function navigateToArticle(articleId) {
   window.location.href = `/open_access_journal_c_ui/PHP/article-details.php?articleId=${articleId}`;
 }
+
 async function renderRecommended(data) {
   const articleContainer = document.getElementById("similar-articles");
 
@@ -181,7 +209,7 @@ async function handleDownloadLog(articleId) {
     {
       method: "POST",
       body: JSON.stringify({
-        author_id: sessionId, //convert-6-to-session-id
+        author_id: sessionId, 
         article_id: parseInt(articleId),
       }),
       headers: {
@@ -190,33 +218,13 @@ async function handleDownloadLog(articleId) {
     }
   );
 }
-function downloadEpub(file_url) {
-  // Assuming the Flask server is running on localhost:5000
-  const apiUrl = `http://localhost:5000/epub/${file_url}`;
-
-  // Create a link element
-  const link = document.createElement("a");
-  link.href = apiUrl;
-  link.download = "Output1.epub";
-
-  // Append the link to the document
-  document.body.appendChild(link);
-
-  // Trigger a click event on the link
-  link.click();
-
-  // Remove the link from the document
-  document.body.removeChild(link);
-}
 
 function createCloudConvertJob(file, format) {
   const apiKey =
     "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiNmQ1NTQ0ZmYwYzE2NTdmNjZhOGExZmQ5YmQ3YjIzODU0YmRiMDhjYjYxNGM1MzE2N2E0NWZmNmJhYzkxYjA2ZGRhYWQ5ZjBiZWFhZmIwOWIiLCJpYXQiOjE3MDEyNDI1MzYuNDg0NDY3LCJuYmYiOjE3MDEyNDI1MzYuNDg0NDY5LCJleHAiOjQ4NTY5MTYxMzYuNDc5ODk1LCJzdWIiOiI2NjI5Njk0NCIsInNjb3BlcyI6WyJ1c2VyLnJlYWQiLCJ1c2VyLndyaXRlIiwidGFzay5yZWFkIiwidGFzay53cml0ZSIsInByZXNldC5yZWFkIiwicHJlc2V0LndyaXRlIiwid2ViaG9vay5yZWFkIiwid2ViaG9vay53cml0ZSJdfQ.BoMmx1_yaPK38lstapuVDFcp474cbqOhwVDIikM7a8H1e8R0I1isn4UZYiON6OGG0ckBSEm-mJbQ0wNaAHjfcpG378098a6uw2YfyJVVgkZP9lr5k2gOCCJXRq3eP5trwXAr9kdkxGZrfn7d9SWr9xF_wFGgd3x5nLjZuLlmjYDAOPx62BVLaDUSQkOg77CeyXFQIR91GuhwdanJF19ASGbWLGypZ1n4RtwIwfChRyNBbOSFo0RsKYzZzaF2v0QyfBGtmRmQJWB6GyC-VXl_DEdld5WnOCt5xPkreE9XKUthI0WgpbId98yCEcx3ZF4T7hRDylLrXJi_c_F-xz85s8MfPpx9_27X1xF7e4cMqUkeeQTANh4fzMSibSx8vZV6sC5Py3fsfj_gQ2D3gG-UqEo2srHS5xhetCW39TqRtgThvwpICHoRV-Q3GZx73BUqgLz0-HlEp7-ZuLZKoJIq6-2HnYZeWtAPuX08dvwWWoCR5E8NvMlZ3vBby8YHuN7pMYpm_LOuebgUyJW-5Ok9yfKy_4wNyq_yadYktpZlfPQ2-QrRucQ6gbkMxyKswqBgwt5D3NL6wWPLu2hnCkprg1SqC459xY4LcPWSRZDUf_S9nqlHbIOrS7vkTYRtkeA81ZpbrkI_v9NU6LjDZfd2k_G13WywEiIUo_wi9cPlpxs";
 
-  // Define the CloudConvert API endpoint
   const apiUrl = "https://api.cloudconvert.com/v2/jobs";
 
-  // Define the JSON data for creating a job
   const jsonData = {
     tasks: {
       "import-1": {
@@ -251,10 +259,8 @@ function createCloudConvertJob(file, format) {
   })
     .then((response) => response.json())
     .then((data) => {
-      // Use the job ID to construct the download URL
       const downloadUrl = `https://sync.api.cloudconvert.com/v2/jobs/${data.data.id}?redirect=true`;
 
-      // Perform the second fetch to get the file content
       fetch(downloadUrl, {
         method: "GET",
         headers: {
@@ -263,28 +269,16 @@ function createCloudConvertJob(file, format) {
         },
       })
         .then((response) => {
-          // Trigger the download when the second fetch is done
           response.blob().then((blob) => {
             console.log(window.URL.createObjectURL(blob));
             const url = window.URL.createObjectURL(blob);
 
             const link = document.createElement("a");
             link.href = url;
-            link.download = `filename.${format}`; // Set the desired filename
+            link.download = `filename.${format}`; 
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
-
-            // // Create an iframe element
-            // const iframe = document.createElement('iframe');
-            // iframe.style.width = '100%';
-            // iframe.style.height = '600px'; // Set the desired height
-
-            // // Set the iframe source to the data URL of the fetched content
-            // iframe.src = url;
-
-            // // Append the iframe to the document
-            // document.body.appendChild(iframe);
           });
         })
         .catch((error) => {
@@ -295,3 +289,22 @@ function createCloudConvertJob(file, format) {
       console.error("Error creating job:", error);
     });
 }
+
+const closeBtn = document.getElementById("closeCiteModal")
+closeBtn.addEventListener("click", () => {
+  toggleCiteModal()
+})
+function toggleCiteModal() {
+  const citationElement = document.getElementById("citation-container")
+
+  const isModalVisible = citationElement.classList.contains("d-none");
+
+  if (isModalVisible) {
+    citationElement.classList.add("d-flex");
+    citationElement.classList.remove("d-none");
+  } else {
+    citationElement.classList.remove("d-flex");
+    citationElement.classList.add("d-none");
+  }
+}
+
