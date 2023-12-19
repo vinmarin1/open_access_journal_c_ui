@@ -43,6 +43,13 @@ function renderArticleDetails(data) {
     for (const keyword of keywordsArray) {
       keywordsHTML += `<a href="">${keyword.trim()}</a>`;
     }
+
+    let contributorsHTML = "";
+    if (item.contributors != null){
+      for (const contributors of item.contributors.split(",")) {
+        contributorsHTML += `<a href="https://orcid.org/${contributors.split("-")[1]}">${contributors.split("-")[0]}</a>, `;
+      }
+    }
     articleElement.innerHTML = `
       <div class="content-over">
         <div class="article-title">
@@ -51,7 +58,7 @@ function renderArticleDetails(data) {
             <div class="after-title">
                 <div class="authors">
                     <p style= "font-size: small; color: gray" >Author/s</p>
-                    <p>${item.author}</p>
+                    <p>${contributorsHTML}</p>
                 </div>
                 <div class="volume">
                     <p style= "font-size: small; color: gray" >Journal Issue and Volume</p>
