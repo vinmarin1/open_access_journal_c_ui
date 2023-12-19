@@ -26,14 +26,25 @@
 
   <div class="main-container" id="article_details">
   </div>
+  <div id="citation-container" class="d-none">
+    <div id="citations">
+      <div class="citation-header d-flex justify-content-between">
+        <h2>Citations</h2>  
+        <button id="closeCiteModal" class="btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="m8 8.707l3.646 3.647l.708-.707L8.707 8l3.647-3.646l-.707-.708L8 7.293L4.354 3.646l-.707.708L7.293 8l-3.646 3.646l.707.708z" clip-rule="evenodd"/></svg>
+        </button>
+      </div>
+      <div class="" id="citation-content">
+
+      </div>
+    </div>
+  </div>
 
   <?php
   $active = check_login(false);
   echo '<script>const active = ' . ($active ? 'true' : 'false') . ';</script>';
   ?>
 
-  <!-- 
-<hr style="height: 2px; background-color: #0858a4 "> -->
   <div class="fluid-container">
     <div class="recommendation-article">
       <h4>More like this</h4>
