@@ -63,11 +63,9 @@ session_start();
                   All Reviews
                 </li>
               </div>
+              <button class="btn" id="btn3" onclick="window.location.href='ex_submit.php'">Submit Article</button>
             </ul>
-            <!-- <div class="tab active">All Submissions</div>
-          <div class="tab">All Reviews</div>
-          <button class="btn" id="btn3" onclick="window.location.href='ex_submit.php'">Submit Article</button>
-        </div> -->
+
             <div class="tab-content" id="myTabContent">
               <div class="tab-pane fade show active" id="submissions-tab-pane" role="tabpanel"
                 aria-labelledby="submissions-tab" tabindex="0">
