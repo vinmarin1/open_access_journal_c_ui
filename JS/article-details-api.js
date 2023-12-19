@@ -62,9 +62,9 @@ function renderArticleDetails(data) {
       <div class="container-fluid">
       <div class="row gap-4">
           <div class="abstract col-sm-7">
-              <h4>Abstract</h4>
               <button class="btn tbn-primary btn-md" id="download-btn">Download PDF</button>
               <button class="btn tbn-primary btn-md" id="epub-btn">Download EPUB</button>
+              <h4>Abstract</h4>
               <p>${item.abstract}</p>
           </div>
           
@@ -78,6 +78,10 @@ function renderArticleDetails(data) {
                       <p style="font-size:large; text-align: center;">${item.total_downloads}</p>
                       <p style="font-size:small; margin-left: 5px" >DOWNLOADS</p>
                   </div>
+                  <div class="citations">
+                      <p style="font-size:large; text-align: center;">20</p>
+                      <p style="font-size:small; margin-left: 5px" >CITATIONS</p>
+                  </div>
               </div>
 
               <hr style="height: 2px; background-color: #0858a4; width: 80%">
@@ -88,11 +92,22 @@ function renderArticleDetails(data) {
                   <p>2071-1050(Online)</p>
                   <p style="margin-top: 20px; color: black ">Date Published</p>
                   <p>${item.date}</p>
-                  <p style="margin-top: 20px; margin-bottom: 10px; color: black ">keywords</p>
+                  <p style="margin-top: 20px; margin-bottom: 10px; color: black ">Keywords</p>
                   <div class="keyword1">
                   ${keywordsHTML}
                   </div>
-                
+                  <button class="btn" id="cite-btn">
+                    <h4>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none"><path d="M24 0v24H0V0zM12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035c-.01-.004-.019-.001-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427c-.002-.01-.009-.017-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093c.012.004.023 0 .029-.008l.004-.014l-.034-.614c-.003-.012-.01-.02-.02-.022m-.715.002a.023.023 0 0 0-.027.006l-.006.014l-.034.614c0 .012.007.02.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z"/><path fill="currentColor" d="M16.5 6A3.5 3.5 0 0 1 20 9.442c.09.865.077 2.141-.508 3.614c-.598 1.506-1.764 3.148-3.892 4.744a1 1 0 1 1-1.2-1.6c1.564-1.173 2.46-2.313 2.973-3.31A3.5 3.5 0 1 1 16.5 6m-9 0A3.5 3.5 0 0 1 11 9.442c.09.865.077 2.141-.508 3.614c-.597 1.506-1.764 3.148-3.892 4.744a1 1 0 1 1-1.2-1.6c1.564-1.173 2.46-2.313 2.973-3.31A3.5 3.5 0 1 1 7.5 6"/></g></svg>
+                      Cite
+                    </h4>
+                  </button>
+                  <button class="btn" id="share-btn">
+                    <h4>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M18 22q-1.25 0-2.125-.875T15 19q0-.175.025-.363t.075-.337l-7.05-4.1q-.425.375-.95.588T6 15q-1.25 0-2.125-.875T3 12q0-1.25.875-2.125T6 9q.575 0 1.1.213t.95.587l7.05-4.1q-.05-.15-.075-.337T15 5q0-1.25.875-2.125T18 2q1.25 0 2.125.875T21 5q0 1.25-.875 2.125T18 8q-.575 0-1.1-.212t-.95-.588L8.9 11.3q.05.15.075.338T9 12q0 .175-.025.363T8.9 12.7l7.05 4.1q.425-.375.95-.587T18 16q1.25 0 2.125.875T21 19q0 1.25-.875 2.125T18 22"/></svg>
+                      Share
+                    </h4>
+                  </button>
               </div>
           </div>
           </div>
