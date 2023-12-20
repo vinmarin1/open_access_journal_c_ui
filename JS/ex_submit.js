@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
       prevBtn.style.display = "inline-block";
       nextBtn.disabled = true;
       submitBtn.style.display = "none";
+
  
     } 
     else if (index > 0 && index < tabButtons.length - 1) {
@@ -48,9 +49,10 @@ document.addEventListener('DOMContentLoaded', function () {
       if (i === selectedTabIndex) {
         btn.style.backgroundColor = "#0858a4";
         btn.style.color = "white";
+        btn.style.border = "none";
       } else {
         btn.style.backgroundColor = "white";
-        btn.style.border = "1px solid";
+        btn.style.border = "none";
         btn.style.color = "#0858a4";
       }
     });
@@ -66,6 +68,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (selectedTabIndex < tabButtons.length - 1) {
       inputFields = tabContent[selectedTabIndex];
       if (inputFields.value === '' || tabButtons[selectedTabIndex + 1].disabled) {
+     
         Swal.fire({
           html: '<h4 style="color: #0858a4; font-family: font-family: Arial, Helvetica, sans-serif">Please read and check the guidelines to proceed</4>',
           icon: 'warning',
@@ -73,12 +76,14 @@ document.addEventListener('DOMContentLoaded', function () {
       }
 
       tabButtons[selectedTabIndex + 1].click(); // Simulate a click on the next tab button
+      
     }
   }
 
   function switchToPrevTab() {
     if (selectedTabIndex > 0) {
       tabButtons[selectedTabIndex - 1].click(); // Simulate a click on the previous tab button
+      nextBtn.disabled = false;
     }
   }
 
@@ -257,23 +262,6 @@ function inputValidation(inputElement, validationElement, conditionFunction) {
 }
 
 
-function openFilename(index) {
-  var input = document.getElementById('file_name' + (index === 1 ? '' : index));
-  input.click();
-
-  input.addEventListener('change', function() {
-    var fileName = input.files[0].name;
-    var fileType = fileName.split('.').pop(); // Get the file extension
-    document.getElementById('fileName' + index).innerText = fileName;
-    document.getElementById('fileType' + index).innerText = fileType.toUpperCase();
-  });
-}
-
-function deleteFilename(index) {
-  var row = document.getElementById('fileList').rows[index - 1];
-  row.parentNode.removeChild(row);
-}
-
   var quill3 = new Quill('#editor3', {
     theme: 'snow'
   });
@@ -284,6 +272,30 @@ function deleteFilename(index) {
     notes.value = quill3.getText();
   });
   
+
+  function openFilename(index) {
+    var input = document.getElementById('file_name' + (index === 1 ? '' : index));
+    input.click();
+  
+    input.addEventListener('change', function() {
+      var fileName = input.files[0].name;
+     
+      document.getElementById('fileName' + index).innerText = fileName;
+     
+    });
+  }
+  
+  function deleteFilename(index) {
+    // Get the file input associated with the row
+    var fileInput = document.getElementById('file_name' + (index === 1 ? '' : index));
+
+    // Clear the value of the file input
+    fileInput.value = '';
+
+    // Optionally, you can clear the displayed file name in the table
+    document.getElementById('fileName' + index).innerText = '';
+    // document.getElementById('fileType' + index).innerText = '';
+}
 
 
 

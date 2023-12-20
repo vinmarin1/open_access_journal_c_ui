@@ -15,10 +15,10 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
-    $privacy = $_POST['privacy'];
+    $privacy = $_POST['check'];
     $title = $_POST['title'];
     $abstract = $_POST['abstract'];
-    $keyword = $_POST['keyword'];
+    $keyword = $_POST['keywords'];
     $reference = $_POST['reference'];
     $category = $_POST['category']; 
     $comment = $_POST['notes'];
@@ -29,6 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     $formattedDate = date('Y-m-d', $timestamp);
     $content = "-";
     $step = 4;
+ 
+
 
 // Now $formattedDate contains the date in 'YYYY-MM-DD' format
 

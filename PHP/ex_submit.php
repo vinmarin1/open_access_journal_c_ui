@@ -21,7 +21,7 @@
 </nav>
 
 
-<form action="ex_submit_con.php" method="post" id="form"  enctype="multipart/form-data">
+<form action="ex_submit_con.php" method="post" id="form" enctype="multipart/form-data">
 <ul class="nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item" role="presentation" style="margin-left: -10px;">
     <button class="nav-link active" id="privacy-tab" data-bs-toggle="tab" data-bs-target="#privacy-tab-pane" type="button" role="tab" aria-controls="privacy-tab-pane" aria-selected="true">Privacy</button>
@@ -177,7 +177,7 @@
           <p class="suggestion-title">QOAJ can suggest journal based on your article</p>
         </div>
         <button type="button" class="btn btn-primary btn-sm" id="check-duplication">Check</button>
-        <button type="button" class="btn btn-primary btn-sm" id="btn-okay">Okay</button>
+        <!-- <button type="button" class="btn btn-primary btn-sm" id="btn-okay">Okay</button> -->
       </div>
 
   
@@ -188,9 +188,9 @@
 
     <div class="input-details-2 mt-3" id="form-floating-3">
 
-      <h6 id="sub-10">Keywords</h6>
-        <input class="form-control" type="text" id="keywords" name="keywords">
-        <p id="keywords-validation" style="color: red; display: none;">Keywords should consist at least 1 and a maximum of 4 commas</p>
+    <h6 id="sub-10">Keywords</h6>
+      <input class="form-control" type="text" id="keywords" name="keywords">
+      <p id="keywords-validation" style="color: red; display: none;">Keywords should consist at least 1 and a maximum of 4 commas</p>
 
       
       <h6 class="sub-12 mt-5" id="sub-12">Reference</h6>
@@ -199,6 +199,9 @@
     
       </div>
       <input class="form-control" type="text" id="reference"  name="reference" style="display: none;">
+
+      
+
     </div>
    
 
@@ -221,8 +224,8 @@
   <!-- <button type="button" class="btn btn-primary btn-sm mt-5" onclick="openFileModal()" id="upload-btn">Upload File</button> -->
 
   <input type="file" class="form-control" name="file_name" id="file_name" accept=".docx" style="display: none">
-<input type="file" class="form-control" name="file_name2" id="file_name2" accept=".docx" style="display: none">
-<input type="file" class="form-control" name="file_name3" id="file_name3" accept=".docx" style="display: none">
+  <input type="file" class="form-control" name="file_name2" id="file_name2" accept=".docx" style="display: none">
+  <input type="file" class="form-control" name="file_name3" id="file_name3" accept=".docx" style="display: none">
 
 <table class="table table-hover" id="table-file">
   <thead>
@@ -235,7 +238,7 @@
   <tbody id="fileList">
     <tr>
       <td id="fileName1"></td>
-      <td id="fileType1"></td>
+      <td id="fileType1">File with author</td>
       <td>
         <button type="button" class="btn btn-primary btn-sm" style="margin-right: 5px" id="addFileName" onclick="openFilename(1)">Add File</button>
         <button type="button" class="btn btn-danger btn-sm" id="deleteFileName" onclick="deleteFilename(1)">Delete</button>
@@ -243,7 +246,7 @@
     </tr>
     <tr>
       <td id="fileName2"></td>
-      <td id="fileType2"></td>
+      <td id="fileType2">File with no author</td>
       <td>
         <button type="button" class="btn btn-primary btn-sm" style="margin-right: 5px" id="addFileName2" onclick="openFilename(2)">Add File</button>
         <button type="button" class="btn btn-danger btn-sm" id="deleteFileName2" onclick="deleteFilename(2)">Delete</button>
@@ -251,7 +254,7 @@
     </tr>
     <tr>
       <td id="fileName3"></td>
-      <td id="fileType3"></td>
+      <td id="fileType3">Title Page</td>
       <td>
         <button type="button" class="btn btn-primary btn-sm" style="margin-right: 5px" id="addFileName3" onclick="openFilename(3)">Add File</button>
         <button type="button" class="btn btn-danger btn-sm" id="deleteFileName3" onclick="deleteFilename(3)">Delete</button>
@@ -291,7 +294,7 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
   <button type="button" class="btn btn-primary btn-sm"id="contributor-btn">Add Contributors</button>
   </div>
  
-  <table class="table table-striped" id="table-contributor">
+  <table class="table table-striped" id="table-contributor" name="table-contributor">
   <thead>
     <tr >
  
