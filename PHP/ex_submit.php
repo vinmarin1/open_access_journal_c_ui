@@ -218,24 +218,45 @@
   <h5 class="title6 mt-5" id="title-6">Upload Files</h5>
   <h6 class="sub13 mt-3" id="sub-13">Provide any files our editorial team may need to evaluate your submission. In addition to the main work, you may wish to submit data sets, conflict of interest statements, or other supplementary files if these will be helpful for our editors.</h6>
 
-  <button type="button" class="btn btn-primary btn-sm mt-5" onclick="openFileModal()" id="upload-btn">Upload File</button>
-  <input type="file" name="file_name" id="file_name" style="display: none;" accept=".docx">
-   
+  <!-- <button type="button" class="btn btn-primary btn-sm mt-5" onclick="openFileModal()" id="upload-btn">Upload File</button> -->
 
+  <input type="file" class="form-control" name="file_name" id="file_name" accept=".docx" style="display: none">
+<input type="file" class="form-control" name="file_name2" id="file_name2" accept=".docx" style="display: none">
+<input type="file" class="form-control" name="file_name3" id="file_name3" accept=".docx" style="display: none">
 
-  
- 
 <table class="table table-hover" id="table-file">
   <thead>
-    <tr >
- 
+    <tr>
       <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">File Name</th>
       <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">Type</th>
       <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">Action</th>
     </tr>
   </thead>
   <tbody id="fileList">
-
+    <tr>
+      <td id="fileName1"></td>
+      <td id="fileType1"></td>
+      <td>
+        <button type="button" class="btn btn-primary btn-sm" style="margin-right: 5px" id="addFileName" onclick="openFilename(1)">Add File</button>
+        <button type="button" class="btn btn-danger btn-sm" id="deleteFileName" onclick="deleteFilename(1)">Delete</button>
+      </td>
+    </tr>
+    <tr>
+      <td id="fileName2"></td>
+      <td id="fileType2"></td>
+      <td>
+        <button type="button" class="btn btn-primary btn-sm" style="margin-right: 5px" id="addFileName2" onclick="openFilename(2)">Add File</button>
+        <button type="button" class="btn btn-danger btn-sm" id="deleteFileName2" onclick="deleteFilename(2)">Delete</button>
+      </td>
+    </tr>
+    <tr>
+      <td id="fileName3"></td>
+      <td id="fileType3"></td>
+      <td>
+        <button type="button" class="btn btn-primary btn-sm" style="margin-right: 5px" id="addFileName3" onclick="openFilename(3)">Add File</button>
+        <button type="button" class="btn btn-danger btn-sm" id="deleteFileName3" onclick="deleteFilename(3)">Delete</button>
+      </td>
+    </tr>
   </tbody>
 </table>
 

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Display Text Content</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.0.1/mammoth.browser.min.js"></script>
+</head>
+<body>
+  <input type="file" id="fileInput" onchange="displayFileContent()">
+  <div id="output"></div>
+  <button onclick="viewSelectedFile()">View File</button>
+
+  <script>
+    var selectedFile;
+
+    function displayFileContent() {
+      var fileInput = document.getElementById('fileInput');
+      var outputDiv = document.getElementById('output');
+
+      if (fileInput.files.length > 0) {
+        selectedFile = fileInput.files[0];
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+          var arrayBuffer = e.target.result;
+
+          // Convert array buffer to binary string
+          var binaryString = '';
+          var bytes = new Uint8Array(arrayBuffer);
+          for (var i = 0; i < bytes.byteLength; i++) {
+            binaryString += String.fromCharCode(bytes[i]);
+          }
+
+          // Use Mammoth to extract text content
+          mammoth.extractRawText({ arrayBuffer: arrayBuffer })
+            .then(function (result) {
+              // Check for the presence of the word "AUTHOR" and remove that line
+              var cleanedText = result.value.replace(/AUTHOR\s*:.*/gi, '');
+
+
+              outputDiv.textContent = cleanedText.trim();
+            })
+            .catch(function (error) {
+              console.error('Error:', error);
+              outputDiv.textContent = 'Error extracting text content.';
+            });
+        };
+
+        // Read the file as an array buffer
+        reader.readAsArrayBuffer(selectedFile);
+      } else {
+        outputDiv.textContent = 'No file selected';
+      }
+    }
+
+    function viewSelectedFile() {
+      if (selectedFile) {
+        var fileURL = URL.createObjectURL(selectedFile);
+        window.open(fileURL, '_blank');
+      } else {
+        alert('No file selected');
+      }
+    }
+  </script>
+</body>
+</html>

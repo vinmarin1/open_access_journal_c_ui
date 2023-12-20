@@ -2,8 +2,8 @@
 
 function database_run($query, $vars = array(), $isInsert = false)
 {
-    $string = "mysql:host=mysql5049.site4now.net;dbname=db_aa0682_movies";
-    $con = new PDO($string, 'aa0682_movies', 'Password1234.');
+    $string = "mysql:host=mysql5044.site4now.net;dbname=db_aa3190_qoaj";
+    $con = new PDO($string, 'aa3190_qoaj', 'Password1234.');
 
     if (!$con) {
         return false;

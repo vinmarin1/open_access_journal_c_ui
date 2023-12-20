@@ -257,7 +257,22 @@ function inputValidation(inputElement, validationElement, conditionFunction) {
 }
 
 
+function openFilename(index) {
+  var input = document.getElementById('file_name' + (index === 1 ? '' : index));
+  input.click();
 
+  input.addEventListener('change', function() {
+    var fileName = input.files[0].name;
+    var fileType = fileName.split('.').pop(); // Get the file extension
+    document.getElementById('fileName' + index).innerText = fileName;
+    document.getElementById('fileType' + index).innerText = fileType.toUpperCase();
+  });
+}
+
+function deleteFilename(index) {
+  var row = document.getElementById('fileList').rows[index - 1];
+  row.parentNode.removeChild(row);
+}
 
   var quill3 = new Quill('#editor3', {
     theme: 'snow'
@@ -271,72 +286,6 @@ function inputValidation(inputElement, validationElement, conditionFunction) {
   
 
 
-  document.getElementById('file_name').addEventListener('change', function () {
-  var selectedFiles = this.files;
-  var fileList = document.getElementById('fileList');
-
-  for (var i = 0; i < selectedFiles.length; i++) {
-    var fileRow = fileList.insertRow(fileList.rows.length);
-    var fileNameCell = fileRow.insertCell(0);
-    fileNameCell.textContent = selectedFiles[i].name;
-
-    var fileTypeCell = fileRow.insertCell(1);
-    fileTypeCell.textContent = selectedFiles[i].type;
-
-    var actionCell = fileRow.insertCell(2);
-    var deleteButton = document.createElement('button');
-    deleteButton.type = 'button';
-    deleteButton.className = 'btn btn-danger btn-sm';
-    deleteButton.textContent = 'Delete';
-    deleteButton.setAttribute('data-row-index', fileRow.rowIndex);
-    deleteButton.onclick = deleteFile;
-    actionCell.appendChild(deleteButton);
-  }
-});
-
-
-function openFileModal() {
-  document.getElementById('file_name').click();
-}
-
-function deleteFile(rowIndex) {
-  var fileList = document.getElementById('fileList');
-
-
-  if (rowIndex >= 0 && rowIndex < fileList.rows.length) {
-    fileList.deleteRow(rowIndex);
-  }
-}
-
-document.getElementById('file_name').addEventListener('change', function (event) {
-  var fileList = document.getElementById('fileList');
-
-
-  while (fileList.firstChild) {
-    fileList.removeChild(fileList.firstChild);
-  }
-
-  for (var i = 0; i < this.files.length; i++) {
-    var file = this.files[i];
-
-    var newRow = fileList.insertRow(i);
-
-    newRow.insertCell(0).innerHTML = file.name;
-    newRow.insertCell(1).innerHTML = file.type;
-
-  
-    var deleteButton = document.createElement('button');
-    deleteButton.innerHTML = 'Delete';
-    deleteButton.className = 'btn btn-danger btn-sm';
-    deleteButton.addEventListener('click', function () {
-      // Get the row index of the clicked delete button
-      var rowIndex = this.parentElement.parentElement.rowIndex;
-      deleteFile(rowIndex - 1);e 
-    });
-
-    newRow.insertCell(2).appendChild(deleteButton);
-  }
-});
 
 
 document.getElementById('contributor-btn').addEventListener('click', function (event) {
@@ -582,33 +531,3 @@ function inputValidation(inputElement, validationElement, conditionFunction) {
 }
 
 
-// const titleInputValidation = document.getElementById('title');
-// const titleValidation = document.getElementById('title-validation');
-
-// inputValidation(titleInputValidation, titleValidation, function (value) {
-//   const wordCount = value.split(/\s+/).length;
-//   return wordCount >= 10 && wordCount <= 20;
-// });
-
-
-// const keywordsInputValidation = document.getElementById('keywords');
-// const keywordsValidation = document.getElementById('keywords-validation');
-
-// inputValidation(keywordsInputValidation, keywordsValidation, function (value) {
-//   const commaCount = (value.match(/,/g) || []).length;
-//   return commaCount >= 1 && commaCount <= 4;
-// });
-
-
-// const abstractInputValidation = document.getElementById('abstract');
-// const abstractValidation = document.getElementById('abstract-validation');
-
-// inputValidation(abstractInputValidation, abstractValidation, function (value) {
-//   const wordCount = value.split(/\s+/).length;
-//   return wordCount < 10;
-// });
-
-
-// function passValidation(){
-
-// }

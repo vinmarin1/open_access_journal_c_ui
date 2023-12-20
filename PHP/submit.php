@@ -21,8 +21,17 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     $keyword = $_POST['keyword'];
     $reference = $_POST['reference'];
     $category = $_POST['category']; 
-    $comment = $_POST['comment'];
+    $comment = $_POST['notes'];
     $file_name = $_POST['file_name'];
+    $volume = "Volume 1";
+    $dateString = "March 2023";
+    $timestamp = strtotime($dateString);
+    $formattedDate = date('Y-m-d', $timestamp);
+    $content = "-";
+    $step = 4;
+
+// Now $formattedDate contains the date in 'YYYY-MM-DD' format
+
   
     
     $author_id = (isset($_SESSION['id'])) ? $_SESSION['id'] : null;
@@ -34,18 +43,23 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     }
 
    // Insert into article table
-$sql = "INSERT INTO article (author, privacy, title, journal_id, author_id, abstract, keyword, `references`, comment)
-VALUES (:author, :privacy, :title, :journal_id, :author_id, :abstract, :keyword, :references, :comment)";
-
+   $sql = "INSERT INTO article (`author`, `volume`, `privacy`, `date`, `title`, `journal_id`, `author_id`, `abstract`, `keyword`, `references`, `content`, `status`, `step`, `comment`)
+   VALUES (:author, :volume, :privacy, :date, :title, :journal_id, :author_id, :abstract, :keyword, :references, :content, :status, :step, :comment)";
+   
 $params = array(
 'author' => $contributor,
-':privacy' => $privacy,
+'volume' => $volume,
+'privacy' => $privacy,
+'date' => $formattedDate,
 'title' => $title,
-':journal_id' => $category,
-':author_id' => $author_id,
-':abstract' => $abstract,
-':keyword' => $keyword,
-':references' => $reference,
+'journal_id' => $category,
+'author_id' => $author_id,
+'abstract' => $abstract,
+'keyword' => $keyword,
+'references' => $reference,
+'content' => "-",
+'status' => 4,
+'step' => $step,
 'comment' => $comment
 );
 
