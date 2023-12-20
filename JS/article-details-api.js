@@ -45,7 +45,7 @@ function renderArticleDetails(data) {
     }
 
     let contributorsHTML = "";
-    if (item.contributors != null){
+    if (item.contributors != null) {
       for (const contributors of item.contributors.split(",")) {
         contributorsHTML += `<a href="https://orcid.org/${contributors.split("->")[1]}">${contributors.split("->")[0]}</a>, `;
       }
@@ -122,19 +122,43 @@ function renderArticleDetails(data) {
           </div>
       </div>
     `;
+    let contributors = "";
+    if (item.contributors != null) {
+      for (const contributor of item.contributors.split(",")) {
+        contributors +=  contributor.split("->")[0];
+      }
+    }
+    const citationSelect = document.querySelector("select");
+    citationSelect.addEventListener("change", function () {
+      const selectedCitation = citationSelect.value;
+     
+      citationContent.innerHTML = `   
+        <p class="small">${item.title}</p>
+        <ul>
+          <li> 
+            <h4 class="small"><b>${selectedCitation} Citation</b></h4>
+            <p>
+            ${selectedCitation === "APA"
+          ? contributors + "." + item.title + "." + item.journal
+          : item.contributors_A + "." + item.title + "." + item.journal
+        }
+            </p>
+          </li>
+        </ul>
+      `;
+    });
+    const initialSelectedCitation = citationSelect.value;
     citationContent.innerHTML = `   
       <p class="small">${item.title}</p>
       <ul>
         <li> 
-          <h4 class="small"><b>APA Citation</b></h4>
+          <h4 class="small"><b>${initialSelectedCitation} Citation</b></h4>
           <p>
-            ${item.author}.${item.title}.${item.journal}
+            ${contributors}.${item.title}.${item.journal}
           </p>
         </li>
       </ul>
-     
-
-    `
+    `;
     const downloadBtn = articleElement.querySelector(`#download-btn`);
     const epubBtn = articleElement.querySelector(`#epub-btn`);
     const citeBtn = articleElement.querySelector(`#cite-btn`);
@@ -209,7 +233,7 @@ async function handleDownloadLog(articleId) {
     {
       method: "POST",
       body: JSON.stringify({
-        author_id: sessionId, 
+        author_id: sessionId,
         article_id: parseInt(articleId),
       }),
       headers: {
@@ -275,7 +299,7 @@ function createCloudConvertJob(file, format) {
 
             const link = document.createElement("a");
             link.href = url;
-            link.download = `filename.${format}`; 
+            link.download = `filename.${format}`;
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
