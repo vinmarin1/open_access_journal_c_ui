@@ -64,7 +64,7 @@
     echo '
       <div class="fluid-container">
       <div class="recommendation-article">
-      <h4>Recommendation articles for you</h4>
+      <h4>Tailored for You: Recommended Articles Based on Your Interactions</h4>
         <div id="recommendations" class="articles-container">
         </div>
         </div>
