@@ -7,6 +7,7 @@ $emc = isset($_GET['emc']) ? $_GET['emc'] : 1;
 $article_data = get_article_data($aid);
 $article_contributor = get_article_contributor($aid);
 $email_content = get_email_content($emc);
+$article_files = get_article_files($aid);
 ?>
 
 <!DOCTYPE html>
@@ -17,6 +18,10 @@ $email_content = get_email_content($emc);
         overflow: auto;
         max-height: 400px;
         margin: 0 auto;
+    }
+    table {
+        border: 1px solid #000;
+        border-collapse: collapse;
     }
 </style>
 <body>
@@ -73,6 +78,42 @@ $email_content = get_email_content($emc);
                                             <input type="hidden" name="quillContentOne" id="quillContentOne">
                                             <div id="quill-emailcontent" style="height: 350px;"></div>
                                         </div>
+                                        <?php
+                                        if ($emc < 2):
+                                        ?>
+                                            <h5 class="card-header">Files</h5>
+                                            <p>Select files you want to add in review round.</p>
+                                            <div class="col-md-12" id="dynamic-column">
+                                                <div class="table-responsive text-nowrap">
+                                                    <table class="table table-striped" id="DataTable">
+                                                        <thead>
+                                                            <tr>
+                                                                <th colspan="3"><h6>Submission Files</h6></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <?php if (empty($article_files)): ?>
+                                                                <tr>
+                                                                    <td colspan="3" class="text-center">No Files</td>
+                                                                </tr>
+                                                            <?php else: ?>
+                                                                <?php foreach ($article_files as $article_filesval): ?>
+                                                                    <tr>
+                                                                        <td width="5%"><?php echo $article_filesval->id; ?></td>
+                                                                        <td width="85%"><?php echo $article_filesval->file_name; ?></td>
+                                                                        <td width="5%"><input class="form-check-input" type="checkbox" value="" id="defaultCheck1" /></td>
+                                                                    </tr>
+                                                                <?php endforeach; ?>
+                                                            <?php endif; ?>
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <th colspan="3" style="text-align: right;">
+                                                            </th>
+                                                        </tfoot>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </div>

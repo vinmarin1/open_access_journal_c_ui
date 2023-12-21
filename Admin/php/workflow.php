@@ -1,6 +1,5 @@
 <?php
 include 'function/workflow_function.php';
-include 'workflow_modal.php';
 $aid = isset($_GET['aid']) ? $_GET['aid'] : 1;
 
 $article_data = get_article_data($aid);
@@ -59,7 +58,6 @@ table {
                                 <button type="button" id="addspadding" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-profile" aria-controls="navs-top-profile" aria-selected="false"> Publication</button>
                             </li>
                         </ul>
-
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="navs-top-home" role="tabpanel">
                                 <div class="row">
@@ -90,7 +88,7 @@ table {
                                                                         <tr>
                                                                             <th colspan="2"><h6>Submission Files</h6></th>
                                                                             <th style="text-align: right;">
-                                                                                <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;" data-bs-toggle="modal" data-bs-target="#addModal">Upload File</button>
+                                                                                <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;" data-bs-toggle="modal" data-bs-target="#addFilesModal">Upload File</button>
                                                                             </th>
                                                                         </tr>
                                                                     </thead>
@@ -136,7 +134,7 @@ table {
                                                                         <tr>
                                                                             <th colspan="2"><h6>Pre-Review Discussions</h6></th>
                                                                             <th style="text-align: right;">
-                                                                                <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;">Add Discussion</button>
+                                                                                <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;" data-bs-toggle="modal" data-bs-target="#addDiscussionModal">Add Discussion</button>
                                                                             </th>
                                                                         </tr>
                                                                     </thead>
@@ -205,7 +203,7 @@ table {
                                                                         <tr>
                                                                             <th colspan="2"><h6>Review Files</h6></th>
                                                                             <th style="text-align: right;">
-                                                                                <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;">Upload File</button>
+                                                                                <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;" data-bs-toggle="modal" data-bs-target="#addReviewFilesModal">Select Files</button>
                                                                             </th>
                                                                         </tr>
                                                                     </thead>
@@ -315,7 +313,7 @@ table {
                                                                         <tr>
                                                                             <th colspan="2"><h6>Reviewers</h6></th>
                                                                             <th style="text-align: right;">
-                                                                                <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;">Add Reviewers</button>
+                                                                                <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;" data-bs-toggle="modal" data-bs-target="#addReviewerModal">Add Reviewers</button>
                                                                             </th>
                                                                         </tr>
                                                                     </thead>
@@ -345,9 +343,9 @@ table {
                                                                 <table class="table table-striped" id="DataTable">
                                                                     <thead>
                                                                         <tr>
-                                                                            <th colspan="2"><h6>Discussion</h6></th>
+                                                                            <th colspan="2"><h6>Review Discussion</h6></th>
                                                                             <th style="text-align: right;">
-                                                                                <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;">Add Discussion</button>
+                                                                                <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;" data-bs-toggle="modal" data-bs-target="#addReviewDiscussionModal">Add Discussion</button>
                                                                             </th>
                                                                         </tr>
                                                                     </thead>
@@ -417,9 +415,9 @@ table {
                                                     <li class="nav-item">
                                                         <button type="button" id="addpadding" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-two" aria-controls="navs-top-two" aria-selected="false">Contributors</button>
                                                     </li>
-                                                    <li class="nav-item">
+                                                    <!-- <li class="nav-item">
                                                         <button type="button" id="addpadding" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-three" aria-controls="navs-top-three" aria-selected="false">Meta Data</button>
-                                                    </li>
+                                                    </li> -->
                                                     <li class="nav-item">
                                                         <button type="button" id="addpadding" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-four" aria-controls="navs-top-four" aria-selected="false"> References</button>
                                                     </li>
@@ -447,10 +445,6 @@ table {
                                                                         <label for="defaultFormControlInput3" class="form-label">Abstract</label>
                                                                         <div id="quill-abstract" style="height: 250px;"></div>
                                                                     </div>
-                                                                    <div class="mb-3">
-                                                                        <label for="defaultFormControlInput3" class="form-label">Reference</label>
-                                                                        <div id="quill-reference" style="height: 250px;"></div>
-                                                                    </div>
                                                                     <div class="d-flex justify-content-end mt-4" style="margin-bottom: -28px;">
                                                                         <button type="submit" class="btn btn-primary">Save</button>
                                                                     </div>
@@ -467,7 +461,7 @@ table {
                                                                         <tr>
                                                                             <th colspan="2"><h6>Contributors</h6></th>
                                                                             <th style="text-align: right;">
-                                                                                <button type="button" class="btn btn-outline-dark" id="uploadButton" style="margin-left: -10px">Add</button>
+                                                                                <button type="button" class="btn btn-outline-dark" id="uploadButton" style="margin-left: -10px" data-bs-toggle="modal" data-bs-target="#addContributorsModal">Add</button>
                                                                             </th>
                                                                         </tr>
                                                                     </thead>
@@ -493,6 +487,23 @@ table {
                                                             </div>
                                                         </div>
                                                     </div>
+
+                                                    <div class="tab-pane fade show active" id="navs-top-four" role="tabpanel">
+                                                        <div class="row">
+                                                            <div class="col-md-12" id="dynamic-column">
+                                                                <div class="card-body">
+                                                                    <div class="mb-3">
+                                                                        <label for="defaultFormControlInput3" class="form-label">Reference</label>
+                                                                        <div id="quill-reference" style="height: 250px;"></div>
+                                                                    </div>
+                                                                    <div class="d-flex justify-content-end mt-4" style="margin-bottom: -28px;">
+                                                                        <button type="submit" class="btn btn-primary">Save</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -505,9 +516,28 @@ table {
             </div>
 
         <!-- Include footer -->
-        <?php include 'template/footer.php'; ?>
+        <?php include 'template/footer.php'; include 'workflow_modal.php';?>
     </div>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+
     <script>
+        $(document).ready(function() {
+            $('#addReviewerModal').on('shown.bs.modal', function () {
+                var dataTable = $('#DataTableReviewer').DataTable({
+                    "paging": false,
+                    "ordering": false,
+                    "searching": true,
+                    "columns": [
+                        null,
+                        null,
+                        null  
+                    ]
+                });
+            });
+        });
+
         var quill = new Quill('#quill-abstract', {
             theme: 'snow'
         });
@@ -549,3 +579,56 @@ table {
 
 </body>
 </html>
+<!-- Add Reviewer Modal -->
+<div class="modal fade" id="addReviewerModal" tabindex="-1" aria-hidden="true">
+    <form id="addModalForm">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel3">Add Reviewer</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row mb-2">
+                        <div class="col-md-12">
+                            <div class="table-responsive text-nowrap">
+                                <table class="table table-striped" id="DataTableReviewer">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="3">
+                                            <h5 class="card-header">Locate a Reviewer</h5>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php if (empty($userlist)): ?>
+                                            <tr>
+                                                <td colspan="3" class="text-center">No Items</td>
+                                            </tr>
+                                        <?php else: ?>
+                                            <?php foreach ($userlist as $userlistval): ?>
+                                                <tr>
+                                                    <td width="5%"><input class="form-check-input" type="checkbox" value="" id="defaultCheck1" /></td>
+                                                    <td width="5%"><?php echo $userlistval->author_id; ?></td>
+                                                    <td width="85%"><?php echo $userlistval->last_name; ?>, <?php echo $userlistval->first_name; ?></td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?>
+                                    </tbody>
+                                    <tfoot>
+                                        <th colspan="3" style="text-align: right;">
+                                        </th>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="addRecord()">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
