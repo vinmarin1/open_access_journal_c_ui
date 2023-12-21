@@ -1,6 +1,7 @@
 <?php
 include 'announcement_function.php';
-$announcementlist = get_announcement_list();
+
+ $announcementlist = get_announcement_list();
 ?>
 
 <!DOCTYPE html>
@@ -11,7 +12,7 @@ $announcementlist = get_announcement_list();
 
     <!-- Content wrapper -->
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="py-3 mb-4"><span class="text-muted fw-light"></span> Announcement </h4>
+        <h4 class="py-3 mb-4"><span class="text-muted fw-light"></span> Announcement</h4>
 
           <!-- Status tabs -->
           <ul class="nav nav-tabs mb-3" id="statusTabs">
@@ -22,20 +23,16 @@ $announcementlist = get_announcement_list();
                 <a class="nav-link" href="announcementtypelist.php"id="tabProduction" data-status="Announcement Type">Announcement Type</a>
             </li>
         </ul>
-
-
         <div class="card">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
             <h5 class="card-header mb-0">Announcement</h5>
             <div style="display: flex; margin-top: 15px; margin-right: 15px;">
-                
-                  <!-- Button trigger modal -->
-             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Add Announcement  </button>
+               <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Add Announcement </button>
             </div>
         </div>
-          
-            <div class="table-responsive text-nowrap">
-                <table class="table table-striped" id="DataTable">
+        <div class="table-responsive text-nowrap">
+                <table class="table table-striped" id="DataTableAnnouncement">
                     <thead>
                         <tr>
                             <th>Announcement ID</th>
@@ -48,20 +45,20 @@ $announcementlist = get_announcement_list();
                             <th>Action</th>
                         </tr>
                     </thead>
-                </tbody>
-           <?php foreach ($announcementlist as $announcementlistval): ?>
+                <tbody>
+                <?php foreach ($announcementlist as $announcementlistval): ?>
                             <tr>
-                                <td width="50%"><?php echo  $announcementlistval->announcement_id; ?></td>
+                                <td width="5%"><?php echo   $announcementlistval->announcement_id; ?></td>
                                 <td width="50%"><?php echo  $announcementlistval->announcement_type_id; ?></td>
                                 <td width="50%"><?php echo  $announcementlistval->title; ?></td>
                                 <td width="50%"><?php echo  $announcementlistval->announcement_description; ?></td>
                                 <td width="50%"><?php echo  $announcementlistval->announcement; ?></td>
                                 <td width="50%"><?php echo  $announcementlistval->upload_image; ?></td>
                                 <td width="50%"><?php echo  $announcementlistval->expired_date; ?></td>
-                                <td width="10%">        
-                                 <button type="button" class="btn btn-outline-success">Update</button>
+                                <td width="10%">
+                                <button type="button" class="btn btn-outline-success">Update</button>
                                     <!-- btn for delete prod modal -->
-                                 <button type="button" class="btn btn-outline-danger">Delete</button>
+                                    <button type="button" class="btn btn-outline-danger">Archive</button>
                                   </td>
                             </tr>
                         <?php endforeach; ?>

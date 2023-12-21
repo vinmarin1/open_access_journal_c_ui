@@ -50,8 +50,8 @@ $announcementtypelist = get_announcementtype_list();
                                 <td width="50%"><?php echo  $announcementtypelistval->announcement_type; ?></td>
                                 <td width="10%">
                                     
-                                <button type="button" class="btn btn-outline-success" onclick="updateModal(<?php echo $announcementtypelistval->announcement_type_id; ?>)">Update</button>
-                                <button type="button" class="btn btn-outline-danger" onclick="archiveUser(<?php echo $announcementtypelistval->announcement_type_id; ?>, '<?php echo $announcementtypelistval->announcement_type; ?>')">Archive</button>
+                                <button type="button" class="btn btn-outline-success" onclick="openUpdateModal('<?php echo $announcementtypelistval->announcement_type_id; ?>')">Update</button>
+                                <button type="button" class="btn btn-outline-danger" onclick="openArchiveModal(<?php echo $announcementtypelistval->announcement_type_id; ?>, '<?php echo $announcementtypelistval->announcement_type; ?>')">Archive</button>
                                   </td>
                             </tr>
                         <?php endforeach; ?>
@@ -107,7 +107,8 @@ $announcementtypelist = get_announcementtype_list();
             }
         });
     }
-    function updateModal(announcent_type_Id) {
+    
+    function updateModal(announcement_type_Id) {
         $.ajax({
             type: 'POST',
             url: 'announcementtype_function.php',
@@ -120,10 +121,9 @@ $announcementtypelist = get_announcementtype_list();
                     const annoucement_typeData = response.data[0];
                     console.log('announcement_type Data:', announcement_typeData);
 
-                    $('#xannoumcement_type_id').val(announcement_typeData.announcement_type_id);
-                    $('#xannoucement_type').val(announcement_typeData.announcement_type);
+                    $('#xannouncement_type_id').val(announcement_typeData.announcement_type_id);
+                    $('#xannouncement_type').val(announcement_typeData.announcement_type);
                     
-
                     // Show the modal
                     $('#updateModal').modal('show');
                 }
@@ -140,7 +140,7 @@ $announcementtypelist = get_announcementtype_list();
     function saveChanges() {
         console.log('Save button clicked');
         
-        var authorId = $('#xannouncement_type_id').val();
+        var announcement_type_Id = $('#xannouncement_type_id').val();
         var updatedData = {
             announcement_type: $('#xannouncement_type').val(),
            
@@ -161,7 +161,7 @@ $announcementtypelist = get_announcementtype_list();
                 if (response.status === true) {
                     // Handle successful update
                     alert("Record updated successfully");
-                    $('#updateModal').modal('hide');
+                    $('#updateModal').modal( 'hide');
                     location.reload();
                 } else {
                     // Handle update failure
@@ -171,6 +171,37 @@ $announcementtypelist = get_announcementtype_list();
             },
         });
     }
+
+        function archiveAnnouncement_type(announcement_type_Id,announcement_type) {
+            $('#archiveModal').modal('show');
+            $('#archiveModalTitle').text('Archive Announcementtype');
+            $('#announcementtype').html('<strong>Name:</strong> ' + announcement_type + ', <br><strong>ID:</strong> ' + announcement_type_Id);
+
+            $('#archiveModalSave').off().on('click', function () {
+                $.ajax({
+                    url: "announcmenttype_function.php",
+                    method: "POST",
+                    data: { action: "archive", announcement_type_id: announcement_type_Id },
+                    success: function (data) {
+                        var response = JSON.parse(data);
+
+                        if (response.status) {
+                            $('#archiveModalMessage').text('User archived successfully');
+                        } else {
+                            $('#archiveModalMessage').text('Failed to archive user');
+                        }
+                            $('#archiveModal').modal('hide');
+                            location.reload();
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("Ajax request failed:", error);
+                        $('#archiveModalMessage').text('Failed to archive user');
+                        $('#archiveModal').modal('hide');
+                        location.reload();
+                    }
+                });
+            });
+         }
     </script>
      <!-- add Modal -->
      <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -201,9 +232,9 @@ $announcementtypelist = get_announcementtype_list();
             </div>
             <br><br>
 
-      <!-- Update Modal -->
-             <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
+       <!-- Update Modal -->
+    <div class="modal fade" id="updateModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel3">Update Announcement Type</h5>
@@ -216,14 +247,33 @@ $announcementtypelist = get_announcementtype_list();
                             <label for="announcement_type" class="form-label">Announcement Type</label>
                             <input type="text" id="xannouncement_type" class="form-control" placeholder="announcement_type" />
                         </div>
-                    </div>
-                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary" id="updateModalSave" onclick="saveChanges()">Save changes</button>
                 </div>
             </div>
         </div>
+        <!-- !-- Archive Modal --> 
+     <div class="modal fade" id="archiveModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="archiveModalTitle">Archive Announcment Type</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <h5 class="modal-title" id="modalToggleLabel">Are you sure you want to archive the Announcement Type?</h5>
+                        <p id="announcementtype"></p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="archiveModalSave">Save changes</button>
+                </div>
+            </div>
+        </div>
     </div>
+
 </body>
 </html>
