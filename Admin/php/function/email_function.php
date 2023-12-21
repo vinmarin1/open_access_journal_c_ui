@@ -86,10 +86,10 @@ if (!function_exists('get_email_content')) {
             if ($mail->send()) {
                 echo "Email sent successfully.";
                 if ($id == 1) {
-                    // updateArticleStatus($article_id, 5);
+                    updateArticleStatus($article_id, 5);
                     echo "<script>alert('Send to review successfully.');</script>";
                 } elseif ($id == 2) {
-                    // updateArticleStatus($article_id, 8);
+                    updateArticleStatus($article_id, 8);
                     echo "<script>alert('Send to review successfully.');</script>";
                 }
             } else {
@@ -99,5 +99,28 @@ if (!function_exists('get_email_content')) {
             echo 'Mailer Error: ' . $mail->ErrorInfo;
         }
     }
+
+    function updateArticleStatus($article_id, $status) {
+    
+        $query = "UPDATE article 
+                SET status = ?
+                WHERE article_id = ?";
+    
+        $pdo = connect_to_database();
+    
+        $stm = $pdo->prepare($query);   
+        $check = $stm->execute([$status, $article_id]);
+    
+        // No need to set header here, as you are already echoing HTML
+    
+        if ($check !== false) {
+            echo "<script>alert('Journal data updated successfully');</script>";
+        } else {
+            echo "<script>alert('Failed to update journal data');</script>";
+        }
+    }
+    
+
+    
 
 ?>
