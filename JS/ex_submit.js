@@ -1,137 +1,137 @@
-// document.addEventListener('DOMContentLoaded', function () {
-//   var tabButtons = document.querySelectorAll('.nav-link');
-//   var tabContent = document.querySelectorAll('.tab-pane input');
-//   var selectedTabIndex = 0;
-//   var prevBtn = document.getElementById("prev");
-//   var nextBtn = document.getElementById("next");
-//   var submitBtn = document.getElementById("submit");
-//   var form = document.getElementById("form");
-//   var inputFields = form.querySelectorAll("input");
-//   var title = document.getElementById('title');
-//   var keywords = document.getElementById('keywords');
-//   var abstract = document.getElementById('abstract');
-//   var reference = document.getElementById('reference');
+document.addEventListener('DOMContentLoaded', function () {
+  var tabButtons = document.querySelectorAll('.nav-link');
+  var tabContent = document.querySelectorAll('.tab-pane input');
+  var selectedTabIndex = 0;
+  var prevBtn = document.getElementById("prev");
+  var nextBtn = document.getElementById("next");
+  var submitBtn = document.getElementById("submit");
+  var form = document.getElementById("form");
+  var inputFields = form.querySelectorAll("input");
+  var title = document.getElementById('title');
+  var keywords = document.getElementById('keywords');
+  var abstract = document.getElementById('abstract');
+  var reference = document.getElementById('reference');
 
-//   for (var i = 1; i < tabButtons.length; i++) {
-//     tabButtons[i].disabled = true;
-//   }
+  for (var i = 1; i < tabButtons.length; i++) {
+    tabButtons[i].disabled = true;
+  }
 
 
-//   function updateButtonVisibility(index) {
-//     // Display buttons based on the current tab index
-//     if (index === 0) {
-//       prevBtn.style.display = "none";
-//       nextBtn.style.display = "inline-block";
-//       submitBtn.style.display = "none";
+  function updateButtonVisibility(index) {
+    // Display buttons based on the current tab index
+    if (index === 0) {
+      prevBtn.style.display = "none";
+      nextBtn.style.display = "inline-block";
+      submitBtn.style.display = "none";
   
-//     }else if(index === 1){
-//       prevBtn.style.display = "inline-block";
-//       nextBtn.disabled = true;
-//       submitBtn.style.display = "none";
+    }else if(index === 1){
+      prevBtn.style.display = "inline-block";
+      nextBtn.disabled = true;
+      submitBtn.style.display = "none";
 
  
-//     } 
-//     else if (index > 0 && index < tabButtons.length - 1) {
-//       prevBtn.style.display = "inline-block";
-//       nextBtn.style.display = "inline-block";
-//       submitBtn.style.display = "none";
+    } 
+    else if (index > 0 && index < tabButtons.length - 1) {
+      prevBtn.style.display = "inline-block";
+      nextBtn.style.display = "inline-block";
+      submitBtn.style.display = "none";
   
-//     } else if (index === tabButtons.length - 1) {
-//       prevBtn.style.display = "inline-block";
-//       nextBtn.style.display = "none";
-//       submitBtn.style.display = "inline-block";
+    } else if (index === tabButtons.length - 1) {
+      prevBtn.style.display = "inline-block";
+      nextBtn.style.display = "none";
+      submitBtn.style.display = "inline-block";
   
-//     }
-//   }
+    }
+  }
 
-//   function updateStyles() {
-//     tabButtons.forEach(function (btn, i) {
-//       if (i === selectedTabIndex) {
-//         btn.style.backgroundColor = "#0858a4";
-//         btn.style.color = "white";
-//         btn.style.border = "none";
-//       } else {
-//         btn.style.backgroundColor = "white";
-//         btn.style.border = "none";
-//         btn.style.color = "#0858a4";
-//       }
-//     });
-//   }
+  function updateStyles() {
+    tabButtons.forEach(function (btn, i) {
+      if (i === selectedTabIndex) {
+        btn.style.backgroundColor = "#0858a4";
+        btn.style.color = "white";
+        btn.style.border = "none";
+      } else {
+        btn.style.backgroundColor = "white";
+        btn.style.border = "none";
+        btn.style.color = "#0858a4";
+      }
+    });
+  }
 
-//   function updateButtonStates(index) {
-//     for (var i = index + 1; i < tabButtons.length; i++) {
-//       tabButtons[i].disabled = tabContent[i - 1].value === '';
-//     }
-//   }
+  function updateButtonStates(index) {
+    for (var i = index + 1; i < tabButtons.length; i++) {
+      tabButtons[i].disabled = tabContent[i - 1].value === '';
+    }
+  }
 
-//   function switchToNextTab() {
-//     if (selectedTabIndex < tabButtons.length - 1) {
-//       inputFields = tabContent[selectedTabIndex];
-//       if (inputFields.value === '' || tabButtons[selectedTabIndex + 1].disabled) {
+  function switchToNextTab() {
+    if (selectedTabIndex < tabButtons.length - 1) {
+      inputFields = tabContent[selectedTabIndex];
+      if (inputFields.value === '' || tabButtons[selectedTabIndex + 1].disabled) {
      
-//         Swal.fire({
-//           html: '<h4 style="color: #0858a4; font-family: font-family: Arial, Helvetica, sans-serif">Please read and check the guidelines to proceed</4>',
-//           icon: 'warning',
-//         })
-//       }
+        Swal.fire({
+          html: '<h4 style="color: #0858a4; font-family: font-family: Arial, Helvetica, sans-serif">Please read and check the guidelines to proceed</4>',
+          icon: 'warning',
+        })
+      }
 
-//       tabButtons[selectedTabIndex + 1].click(); // Simulate a click on the next tab button
+      tabButtons[selectedTabIndex + 1].click(); // Simulate a click on the next tab button
       
-//     }
-//   }
+    }
+  }
 
-//   function switchToPrevTab() {
-//     if (selectedTabIndex > 0) {
-//       tabButtons[selectedTabIndex - 1].click(); // Simulate a click on the previous tab button
-//       nextBtn.disabled = false;
-//     }
-//   }
+  function switchToPrevTab() {
+    if (selectedTabIndex > 0) {
+      tabButtons[selectedTabIndex - 1].click(); // Simulate a click on the previous tab button
+      nextBtn.disabled = false;
+    }
+  }
 
-//   tabContent.forEach(function (input, index) {
-//     input.addEventListener('input', function () {
-//       updateButtonStates(index);
-//       updateStyles();
-//     });
+  tabContent.forEach(function (input, index) {
+    input.addEventListener('input', function () {
+      updateButtonStates(index);
+      updateStyles();
+    });
 
-//     input.addEventListener('focus', function () {
-//       updateStyles();
-//     });
+    input.addEventListener('focus', function () {
+      updateStyles();
+    });
 
-//     input.addEventListener('blur', function () {
-//       // Don't change styles on blur
-//     });
-//   });
+    input.addEventListener('blur', function () {
+      // Don't change styles on blur
+    });
+  });
 
-//   tabButtons.forEach(function (button, index) {
-//     button.addEventListener('click', function () {
-//       selectedTabIndex = index;
-//       updateButtonVisibility(index);
-//       updateButtonStates(index);
-//       updateStyles();
-//     });
+  tabButtons.forEach(function (button, index) {
+    button.addEventListener('click', function () {
+      selectedTabIndex = index;
+      updateButtonVisibility(index);
+      updateButtonStates(index);
+      updateStyles();
+    });
 
-//     // Set initial styles and button visibility for the first button
-//     if (index === 0) {
-//       button.style.backgroundColor = "#0858a4";
-//       button.style.color = "white";
-//       updateButtonVisibility(index);
-//     }
+    // Set initial styles and button visibility for the first button
+    if (index === 0) {
+      button.style.backgroundColor = "#0858a4";
+      button.style.color = "white";
+      updateButtonVisibility(index);
+    }
 
   
     
-//   });
+  });
 
 
 
 
-//   nextBtn.addEventListener('click', switchToNextTab);
-//   prevBtn.addEventListener('click', switchToPrevTab);
-
-  
+  nextBtn.addEventListener('click', switchToNextTab);
+  prevBtn.addEventListener('click', switchToPrevTab);
 
   
+
   
-// });
+  
+});
 
 
 document.getElementById('form').addEventListener('submit', function (event) {
@@ -315,6 +315,9 @@ document.getElementById('contributor-btn').addEventListener('click', function (e
   
     var input1Value = document.getElementById('input1').value;
     var input2Value = document.getElementById('input2').value;
+    var input3Value = document.getElementById('input3').value;
+    var input4Value = document.getElementById('input4').value;
+    var input5Value = document.getElementById('input5').value;
 
     var contributorsValue = input1Value + ' ' + input2Value;
 
@@ -333,33 +336,46 @@ document.getElementById('contributor-btn').addEventListener('click', function (e
     var updateBtn = cellActions.querySelector('.btn-update');
     var deleteBtn = cellActions.querySelector('.btn-delete');
 
+    let updatedInput1Value;
+    let updatedInput2Value;
+    let updatedInput3Value;
+    let updatedInput4Value;
+    let updatedInput5Value;
+    
     updateBtn.addEventListener('click', function (event) {
-      Swal.fire({
-        html: '<h5 class="title10" id="title-10">Update Contributor</h5>' +
-          '<hr id="swal-d">' +
-          '<div id="fName"><label id="sub-21">First Name: </label><input id="updateInput1" class="swal2-input" value="' + input1Value + '"></div>' +
-          '<div id= "lName"><label id="sub-22">Last Name: </label><input id="updateInput2" class="swal2-input" value="' + input2Value + '"></div>' +
-          '<label id= "sub-23">Preferred Public Name: </label><input id="updateInput3" class="swal2-input">' +
-          '<label id= "sub-24">Email: </label><input id="updateInput4" class="swal2-input">' +
-          '<label id= "sub-25">ORCID: </label><input id="updateInput5" class="swal2-input">',
+        Swal.fire({
+            html: '<h5 class="title10" id="title-10">Update Contributor</h5>' +
+                '<hr id="swal-d">' +
+                '<div id="fName"><label id="sub-21">First Name: </label><input id="updateInput1" class="swal2-input" value="' + (updatedInput1Value || input1Value) + '"></div>' +
+                '<div id= "lName"><label id="sub-22">Last Name: </label><input id="updateInput2" class="swal2-input" value="' + (updatedInput2Value || input2Value) + '"></div>' +
+                '<label id= "sub-23">Preferred Public Name: </label><input id="updateInput3" value="' + (updatedInput3Value || input3Value) + '" class="swal2-input">' +
+                '<label id= "sub-24">Email: </label><input id="updateInput4" value="' + (updatedInput4Value || input4Value) + '" class="swal2-input">' +
+                '<label id= "sub-25">ORCID: </label><input id="updateInput5" value="' + (updatedInput5Value || input5Value) + '" class="swal2-input">',
     
-        footer: '<button id="update-cont">Update</button>',
-        showConfirmButton: false
-      });
+            footer: '<button id="update-cont">Update</button>',
+            showConfirmButton: false
+        });
     
-      document.getElementById('update-cont').addEventListener('click', function () {
-        // Get the updated values from the modal
-        var updatedInput1Value = document.getElementById('updateInput1').value;
-        var updatedInput2Value = document.getElementById('updateInput2').value;
+        document.getElementById('update-cont').addEventListener('click', function () {
+            var updatedInput1Element = document.getElementById('updateInput1');
+            var updatedInput2Element = document.getElementById('updateInput2');
+            var updatedInput3Element = document.getElementById('updateInput3');
+            var updatedInput4Element = document.getElementById('updateInput4');
+            var updatedInput5Element = document.getElementById('updateInput5');
     
-        // Update the displayed value in the table
-        contributorsValue = updatedInput1Value + ' ' + updatedInput2Value;
-        cellContributor.innerHTML = contributorsValue;
-        
-        // Close the update modal
-        Swal.close();
-      });
+            updatedInput1Value = updatedInput1Element.value;
+            updatedInput2Value = updatedInput2Element.value;
+            updatedInput3Value = updatedInput3Element.value;
+            updatedInput4Value = updatedInput4Element.value;
+            updatedInput5Value = updatedInput5Element.value;
+    
+            contributorsValue = updatedInput1Value + ' ' + updatedInput2Value;
+            cellContributor.innerHTML = contributorsValue;
+    
+            Swal.close();
+        });
     });
+    
     
     deleteBtn.addEventListener('click', function () {
     
