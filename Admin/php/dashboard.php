@@ -1,5 +1,5 @@
 <?php
-include 'dashboard_functions.php';
+include 'function/dashboard_functions.php';
 
 
 ?>
@@ -9,7 +9,7 @@ include 'dashboard_functions.php';
 <html lang="en">
 <body>
     <!-- Include header -->
-    <?php include 'header.php'; ?>
+    <?php include 'template/header.php'; ?>
  <br> <br> 
     <div class="home-content">
             <div class="overview-boxes">
@@ -336,7 +336,7 @@ include 'dashboard_functions.php';
 
 
         <!-- Include footer -->
-        <?php include 'footer.php'; ?>
+        <?php include 'template/footer.php'; ?>
     </div>
 
     <!-- Initialize DataTables -->
