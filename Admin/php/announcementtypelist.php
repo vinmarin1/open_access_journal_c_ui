@@ -1,5 +1,5 @@
 <?php
-include 'announcementtype_function.php';
+include 'function/announcementtype_function.php';
 $announcementtypelist = get_announcementtype_list();
 ?>
 
@@ -7,7 +7,7 @@ $announcementtypelist = get_announcementtype_list();
 <html lang="en">
 <body>
     <!-- Include header -->
-    <?php include 'header.php'; ?>
+    <?php include 'template/header.php'; ?>
 
     <!-- Content wrapper -->
     <div class="container-xxl flex-grow-1 container-p-y">
@@ -62,7 +62,7 @@ $announcementtypelist = get_announcementtype_list();
 
 
         <!-- Include footer -->
-        <?php include 'footer.php'; ?>
+        <?php include 'template/footer.php'; ?>
     </div>
 
     <!-- Include the DataTables CSS and JS files -->

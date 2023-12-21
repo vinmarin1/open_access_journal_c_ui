@@ -1,5 +1,5 @@
 <?php
-include 'announcement_function.php';
+include 'function/announcement_function.php';
 
  $announcementlist = get_announcement_list();
 ?>
@@ -8,7 +8,7 @@ include 'announcement_function.php';
 <html lang="en">
 <body>
     <!-- Include header -->
-    <?php include 'header.php'; ?>
+    <?php include 'template/header.php'; ?>
 
     <!-- Content wrapper -->
     <div class="container-xxl flex-grow-1 container-p-y">
@@ -69,7 +69,7 @@ include 'announcement_function.php';
 
 
         <!-- Include footer -->
-        <?php include 'footer.php'; ?>
+        <?php include 'template/footer.php'; ?>
     </div>
 
     <!-- Include the DataTables CSS and JS files -->
