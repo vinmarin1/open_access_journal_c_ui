@@ -70,10 +70,9 @@ if (!function_exists('get_announcement_list')) {
          $upload_image = $_POST['upload_image'];
          $expired_date= $_POST['expired_date'];
          
-        
      
          $query = "INSERT INTO announcement (announcement_type_id, title,announcement_description, announcement,upload_image ,expired_date) 
-         VALUES (?, ?, ?, ?, ?)";
+         VALUES (?, ?, ?, ?, ?,?)";
      
          $result = execute_query($query, [$announcement_type_id, $title, $announcement_description , $announcement,$upload_image, $expired_date ], true);
      
