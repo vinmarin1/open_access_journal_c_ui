@@ -82,6 +82,13 @@ $journal = get_journal_list();
           <li class="menu-header small text-uppercase"><span class="menu-header-text">Main</span></li>
             <!-- Dashboards -->
             <li class="menu-item">
+              <a href="dashboard.php" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-detail"></i>
+                <div data-i18n="Boxicons">Dashboard</div>
+              </a>
+            </li>
+
+            <li class="menu-item">
               <a href="journalview.php" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-detail"></i>
                 <div data-i18n="Boxicons">Submission</div>
