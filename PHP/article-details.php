@@ -27,7 +27,7 @@
   <div class="main-container" id="article_details">
   </div>
   <div id="citation-container" class="d-none">
-    <div id="citations">
+    <div id="citations" class="d-flex flex-column justify-content-between">
       <div class="citation-header d-flex justify-content-between">
         <h2>Citations</h2>  
         <button id="closeCiteModal" class="btn">
@@ -35,16 +35,16 @@
         </button>
       </div>
       <select>
-      <option value="APA">APA citation</option>
-      <option value="MLA">MLA citation</option>
-      <option value="Chicago">Chicago citation</option>
+        <option value="APA">APA citation</option>
+        <option value="MLA">MLA citation</option>
+        <option value="Chicago">Chicago citation</option>
       </select>
       <div class="" id="citation-content">
 
       </div>
-      <div class="footer d-flex justify-content-end gap-2">
-        <button class="btn">Inline Citation</button>
-        <button class="btn">Copy Reference</button>
+      <div class="citeation-footer d-flex justify-content-end gap-2">
+        <button class=" cite-btn">Inline Citation</button>
+        <button class=" cite-btn" id="copy-btn">Copy Reference</button>
       </div>
     </div>
   </div>
@@ -90,6 +90,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="../JS/reusable-header.js"></script>
   <script src="../JS/home-recommended-api.js"></script>
   <script src="../JS/home-monthly-api.js"></script>
