@@ -508,30 +508,41 @@
     width: auto;
 }
 
-#newFile{
-    background-color: #0858a4;
-    color: white;
-    float: right;
-    width: auto;
+
+#input15{
     margin-top: 10px;
-    margin-right: 40px;
+    margin-bottom: 10px;
+    height: 30px;
+    margin-left: 153px;
 }
 
-#input11, #input12 , #input13, #input14, #input15{
+#input15f, #input15g{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 30px;
+}
+
+
+#newFile, #newFilef, #newFileg{
+    background-color: #0858a4;
+    color: white;
+    width: auto;
+    display: inline-block;
+    margin-left: 10px;
+    height: 30px;
+  
+}
+
+#input11, #input12 , #input13, #input14{
     width: 90%;
     height: 30px;
     margin-top: 10px;
     margin-left: 5px;
 }
 
-#input15{
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
 
 
-
-#input6, #input7,  #input8, #input9, #input9{
+#input6, #input7,  #input8, #input9,  #input9f,  #inputg{
     width: 100%;
     margin-bottom: 20px;
     
@@ -548,6 +559,11 @@
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 18px;
+ 
+}
+
+#title-12{
+    margin-top: 20px;
 }
 
 
@@ -558,6 +574,10 @@
     font-family: Arial, Helvetica, sans-serif;
     font-size: 18px;
     
+}
+
+#title-15{
+    display: block;
 }
 
 

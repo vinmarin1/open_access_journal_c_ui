@@ -361,6 +361,8 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
       </div>
       <div class="file-content-container mt-3">
         <input type="text" class="form-control" id="input9" readonly>
+        <input type="text" class="form-control" id="input9f" readonly>
+        <input type="text" class="form-control" id="input9g" readonly>
       </div>
     </div>
 
