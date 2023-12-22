@@ -286,3 +286,13 @@ color: #0858a4;
     padding: 2em;
     border-radius: 4px;
 }
+
+.cite-btn {
+    outline: none;
+    border: none;
+    background-color: #0858a4;
+    border-radius: 20px;
+    padding:0.5em 1.5em;
+    color: white;
+}
+
