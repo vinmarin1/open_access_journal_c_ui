@@ -1,0 +1,274 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f0f0f0;
+  }
+.files-submitted-details, .contributors, .comments, .review-rubrics {
+    background: #fff;
+    margin: 15px;
+    padding: 10px;
+    
+  }
+  .article-title {
+    background-color: #e6e6e6; /* Assuming a light grey background */
+    padding: 20px; /* Or as needed for spacing */
+    font-family: 'Arial', sans-serif;
+    font-size: 20px; /* Adjust as needed */
+    color: #285581; /* Assuming a dark grey text color */
+    line-height: 1.6; /* Adjust line height for better readability */
+  }
+  .main-title{
+    margin-left: 5%;
+    margin-right: 25%;
+  }
+  .breadcrumbs {
+    font-size: 12px; /* Smaller font size for breadcrumbs */
+    margin-bottom: 10px; /* Space between breadcrumbs and title */
+  }
+
+  .row1 {
+    display: flex;
+    margin-top: 4%;
+    font-family: 'Arial', sans-serif;
+    margin-left: 6%;
+    margin-right: 5%;
+  }
+  .abstract, .submit-details {
+    /* border: 1px solid #ddd; */
+    /* padding: 15px; */
+    background-color: #fff;
+  }
+  .abstract-title{
+    color: #285581;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: large;
+  }
+  .abstract {
+    flex: 2;
+    text-align: justify;
+    margin-right: 4%; /* Add some space between the two columns */
+  }
+
+
+  .status{
+    margin-bottom: 20px;
+  }
+  .status-label {
+    display: inline-block;
+    border-radius: 25px;
+    padding: 5px 10px;
+    /* Appropriate padding */
+    color: white;
+    /* White text */
+    font-size: 0.8em;
+    /* Smaller font size */
+    text-transform: uppercase;
+    /* Uppercase text */
+  }
+  
+  .review {
+    color: red;
+    border: 1px solid #D26767;
+  
+  }
+  .submit-details {
+    background-color: white; 
+    display: flex;
+    flex-direction: column;
+    max-width: 600px; /* Adjust the width as necessary */
+    margin: auto; /* Centering the container */
+    width: 100%;
+  }
+  .submit-section{
+    border-top: 1px solid #ddd;
+  }
+  .submit-section-title {
+    color: #285581;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .logs-date-container {
+    display: flex;
+    
+     /* Space between the title and the logs */
+  }
+  .logs{
+    
+  }
+  .logs, .dates {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    max-width: fit-content;
+  }
+  
+  .logs-title{
+    background-color: white; /* White background for date entries */
+    color: #606060;
+    padding: 10px; /* Padding within dates */
+    border-radius: 5px; /* Rounded corners for date entries */
+    text-align: left; /* Aligns the date to the right */
+    font-weight: bold;
+     /* Space between date entries */
+  }
+  .log-entry {
+    flex: 1;
+  }
+  .log-entry, .date {
+    background-color: white;
+    color: #959595;
+    padding: 10px;
+    margin-bottom: 2px;
+    border-radius: 5px;
+  }
+  .dates{
+    
+  }
+  .dates-title{
+    background-color: white; /* White background for date entries */
+    color: #606060;
+    padding: 10px; /* Padding within dates */
+    border-radius: 5px; /* Rounded corners for date entries */
+    text-align: left; /* Aligns the date to the right */
+    font-weight: bold;
+    
+  }
+  .date{
+    flex: 1;
+    background-color: white; /* White background for date entries */
+    padding: 10px; /* Padding within dates */
+    text-align: left; /* Aligns the date to the right */
+    margin-bottom: 20px; /* Space between date entries */
+    
+  }
+  
+  .view-all-logs {
+    color: #0066cc; /* Blue color for the link */
+    text-decoration: none; /* No underline by default */
+    font-weight: bold;
+    margin-top: 20px; /* Space above the link */
+    align-self: flex-start; /* Aligns the link to the left */
+  }
+  
+  .view-all-logs:hover {
+    text-decoration: underline; /* Underline on hover for better UX */
+  }
+
+
+
+
+  .row2 {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4%;
+    font-family: 'Arial', sans-serif;
+    margin-left: 4%;
+    margin-right: 3%;
+}
+
+.main2 {
+    width: 65%;
+}
+
+.main3 {
+    width: 35%;
+}
+
+.files-submitted,
+.comments-container {
+    flex: 1;
+    margin: 0 10px;
+    margin-bottom: 20px;
+}
+
+.files-submitted table,
+.comments-container table,
+.comments-container .section-body {
+    border: 1px solid #dcdcdc;
+    border-radius: 4px;
+    margin-top: -1px;
+}
+
+.files-submitted table,
+.comments-container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.files-submitted th,
+.files-submitted td,
+.comments-container th,
+.comments-container td {
+    text-align: left;
+    padding: 8px;
+}
+
+.files-submitted th,
+.comments-container th {
+    background-color: #285581;
+    color: white;
+}
+
+.files-submitted tr:last-child td,
+.comments-container tr:last-child td {
+    border-bottom: none;
+}
+.keywords {
+  margin-top: 10px;
+  padding: 8px;
+}
+
+.keyword-tag {
+  display: inline-block;
+  background-color: #e4e4e4;
+  border-radius: 14px;
+  padding: 6px 12px;
+  margin-right: 5px;
+  font-size: 14px;
+}
+.section-body {
+    padding: 8px;
+    background-color: white;
+    border-bottom: 1px solid #dcdcdc; /* Add a horizontal line at the bottom */
+
+}
+
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+ul li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+ul li span {
+    font-weight: bold;
+}
+
+#edit-submission {
+  margin-top: 40px;
+  margin-bottom: 50px;
+  font-size: 14px;
+  background-color: #285581;
+  color: white;
+  border-radius: 20px;
+  width: 100%; /* Set the width to 50% of its container */
+  max-width: 400px; /* Set a maximum width */
+  min-width: 200px; /* Set a minimum width */
+}
+
+.table-header,
+.section-header {
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #285581;
+}
+
