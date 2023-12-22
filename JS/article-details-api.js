@@ -46,7 +46,7 @@ function renderArticleDetails(data) {
 
     let contributorsHTML = "";
     if (item.contributors != null) {
-      for (const contributors of item.contributors.split(",")) {
+      for (const contributors of item.contributors.split("and")) {
         contributorsHTML += `<a href="https://orcid.org/${contributors.split("->")[1]}">${contributors.split("->")[0]}</a>, `;
       }
     }
@@ -124,7 +124,7 @@ function renderArticleDetails(data) {
     `;
     let contributors = "";
     if (item.contributors != null) {
-      for (const contributor of item.contributors.split(",")) {
+      for (const contributor of item.contributors.split("and")) {
         contributors +=  contributor.split("->")[0];
       }
     }
@@ -153,12 +153,23 @@ function renderArticleDetails(data) {
       <ul>
         <li> 
           <h4 class="small"><b>${initialSelectedCitation} Citation</b></h4>
-          <p>
+          <p class="cited" id="cited">
             ${contributors}.${item.title}.${item.journal}
           </p>
         </li>
       </ul>
     `;
+
+    const copyBtn = document.getElementById("copy-btn")
+
+    copyBtn.addEventListener("click",()=> {
+      navigator.clipboard.writeText(citationContent.querySelector("p").innerHTML);
+      Swal.fire({
+        html: '<h4 style="color: #0858a4; font-family: font-family: Arial, Helvetica, sans-serif">Please read and check the guidelines to proceed</4>',
+        icon: 'success',
+      })
+
+    })
     const downloadBtn = articleElement.querySelector(`#download-btn`);
     const epubBtn = articleElement.querySelector(`#epub-btn`);
     const citeBtn = articleElement.querySelector(`#cite-btn`);
@@ -209,7 +220,6 @@ async function renderRecommended(data) {
       <p class="h6 h-50">${article.title}</p>
       <div class="article-info">
         <p class="info">${article.journal}</p>
-        <span class="views">${article.total_reads} views</span>
       </div>
       <p class="author">By ${article.author}</p>
       <p class="article-content h-25 ">${article.abstract.slice(0, 80)}</p>
