@@ -94,10 +94,12 @@ function handleFileUpload($file_name, $contributor, $author_id, $volume, $privac
         $targetFilePath2 = $uploadDirectory . $file_name;
         if (move_uploaded_file($_FILES['file_name']['tmp_name'], $targetFilePath2)) {
           
-            $files_sql2 = "INSERT INTO example_files (article_id, file_name) VALUES (:article_id, :file_name)";
+            $files_sql2 = "INSERT INTO article_files (article_id, author_id, file_type, file_name) VALUES (:article_id, :author_id, :file_type, :file_name)";
             $files_params2 = array(
-                ':article_id' => $lastInsertedArticleId,
-                ':file_name' => $file_name
+                'article_id' => $lastInsertedArticleId,
+                'author_id' => $author_id,
+                'file_type' => 'file with author',
+                'file_name' => $file_name
             );
             
             
@@ -115,10 +117,12 @@ function handleFileUpload($file_name, $contributor, $author_id, $volume, $privac
         $targetFilePath2 = $uploadDirectory . $file_name2;
         if (move_uploaded_file($_FILES['file_name2']['tmp_name'], $targetFilePath2)) {
           
-            $files_sql2 = "INSERT INTO example_files (article_id, file_name) VALUES (:article_id, :file_name)";
+            $files_sql2 = "INSERT INTO article_files (article_id, author_id, file_type, file_name) VALUES (:article_id, :author_id, :file_type, :file_name)";
             $files_params2 = array(
-                ':article_id' => $lastInsertedArticleId,
-                ':file_name' => $file_name2
+                'article_id' => $lastInsertedArticleId,
+                'author_id' => $author_id,
+                'file_type' => 'file with no author',
+                'file_name' => $file_name2
             );
     
             database_run($files_sql2, $files_params2);
@@ -134,10 +138,12 @@ function handleFileUpload($file_name, $contributor, $author_id, $volume, $privac
         $targetFilePath3 = $uploadDirectory . $file_name3;
         if (move_uploaded_file($_FILES['file_name3']['tmp_name'], $targetFilePath3)) {
           
-            $files_sql3 = "INSERT INTO example_files (article_id, file_name) VALUES (:article_id, :file_name)";
+            $files_sql3 ="INSERT INTO article_files (article_id, author_id, file_type, file_name) VALUES (:article_id, :author_id, :file_type, :file_name)";
             $files_params3 = array(
-                ':article_id' => $lastInsertedArticleId,
-                ':file_name' => $file_name3
+                'article_id' => $lastInsertedArticleId,
+                'author_id' => $author_id,
+                'file_type' => 'title Page',
+                'file_name' => $file_name3
             );
     
             database_run($files_sql3, $files_params3);
@@ -146,5 +152,7 @@ function handleFileUpload($file_name, $contributor, $author_id, $volume, $privac
             exit();
         }
     }
+
 }
+
 ?>

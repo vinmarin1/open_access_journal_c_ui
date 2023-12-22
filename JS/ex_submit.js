@@ -604,5 +604,3 @@ function inputValidation(inputElement, validationElement, conditionFunction) {
       }
   });
 }
-
-

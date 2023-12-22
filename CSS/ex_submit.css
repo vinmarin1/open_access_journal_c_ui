@@ -290,7 +290,7 @@
 
 
 
-#title-6, #title-7, #title-8, #title-9, #title-15,#sub-13, #sub-14 , #sub-15,  #sub-16,  #sub-17,  #sub-18,  #sub-19,  #sub-20, #sub-21, #sub-22, #sub-23, #sub-24, #sub-25{
+#title-6, #title-7, #title-8, #title-9, #title-15,#sub-13, #sub-14 , #sub-15,  #sub-16,  #sub-17,  #sub-18,  #sub-19,  #sub-20, #sub-21, #sub-22, #sub-23, #sub-24, #sub-25, #selectRoleLabel{
     
     color: #0858a4;
     font-family: Arial, Helvetica, sans-serif;
@@ -369,6 +369,14 @@
    
 }
 
+#selectRole{
+    height: 30px;
+    font-size: 11px;
+    width: 90%;
+    
+    
+}
+
 #input5{
     display: inline-block;
     height: 30px;
@@ -390,6 +398,12 @@
 #sub-18, #sub-19, #sub-20, #sub-23, #sub-24, #sub-25{
     text-align: left;
     margin-top: 20px;
+}
+
+#selectRoleLabel{
+    text-align: left;
+    margin-top: 20px;
+    margin-bottom: 10px;
 }
 
 .custom-confirm-button{
@@ -463,6 +477,15 @@
 }
 
 
+.contHead{
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+  
+}
+
+#dataTables_filter{
+    margin-bottom: 20px;
+}
 
 
 #editable-content{
@@ -531,6 +554,11 @@
     margin-left: 10px;
     height: 30px;
   
+}
+
+
+#input10, #input10f, #input10g{
+    margin-bottom: 20px;
 }
 
 #input11, #input12 , #input13, #input14{
