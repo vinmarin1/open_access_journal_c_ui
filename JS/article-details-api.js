@@ -188,7 +188,7 @@ function renderArticleDetails(data) {
           window.location.href = "../PHP/login.php";
       });
       epubBtn.addEventListener("click", () => {
-        window.location.href = "../PHP/login.php";
+        window.location.href = "../php/login.php";
     });
 
     }
@@ -213,7 +213,7 @@ function renderArticleDetails(data) {
 }
 
 function navigateToArticle(articleId) {
-  window.location.href = `/open_access_journal_c_ui/PHP/article-details.php?articleId=${articleId}`;
+  window.location.href = `/PHP/article-details.php?articleId=${articleId}`;
 }
 
 async function renderRecommended(data) {
