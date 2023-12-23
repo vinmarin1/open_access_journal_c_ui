@@ -1,4 +1,5 @@
 <?php
+ob_start();
 include 'function/redirect.php';
 include 'function/submission_functions.php';
 
