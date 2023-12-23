@@ -41,7 +41,7 @@ $(document).ready(function() {
                         $('#logging-in-text').text('Logging in...');
                         $.ajax({
                             type: "POST",
-                            url: "../php/functions.php", // Change the URL to the correct endpoint
+                            url: "../PHP/functions.php", // Change the URL to the correct endpoint
                             data: {
                                 action: "check_verified",
                                 email: email, // Include the user's email
