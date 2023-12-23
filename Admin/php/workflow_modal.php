@@ -137,7 +137,7 @@ $userlist = get_user_list();
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel3">Select Files</h5>
+                    <h5 class="modal-title" id="exampleModalLabel3">Select Review Files</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -147,7 +147,7 @@ $userlist = get_user_list();
                                 <table class="table table-striped" id="DataTable">
                                     <thead>
                                         <tr>
-                                            <th colspan="3">
+                                            <th colspan="4">
                                             <h5 class="card-header">Submissiom File</h5>
                                             <p>Select files you want to add in review round.</p>
                                             </th>
@@ -156,20 +156,25 @@ $userlist = get_user_list();
                                     <tbody>
                                         <?php if (empty($article_files)): ?>
                                             <tr>
-                                                <td colspan="3" class="text-center">No Files</td>
+                                                <td colspan="4" class="text-center">No Files</td>
                                             </tr>
                                         <?php else: ?>
                                             <?php foreach ($article_files as $article_filesval): ?>
                                                 <tr>
                                                     <td width="5%"><input class="form-check-input" type="checkbox" value="" id="defaultCheck1" /></td>
                                                     <td width="5%"><?php echo $article_filesval->article_files_id; ?></td>
-                                                    <td width="85%"><?php echo $article_filesval->file_name; ?></td>
+                                                    <td width="65%">
+                                                        <a href="../../Files/submitted-article/<?php echo urlencode($article_filesval->file_name); ?>" download>
+                                                            <?php echo $article_filesval->file_name; ?>
+                                                        </a>
+                                                    </td>
+                                                    <td width="25%"><?php echo $article_filesval->file_type; ?></td>
                                                 </tr>
                                             <?php endforeach; ?>
                                         <?php endif; ?>
                                     </tbody>
                                     <tfoot>
-                                        <th colspan="3" style="text-align: right;">
+                                        <th colspan="4" style="text-align: right;">
                                         </th>
                                     </tfoot>
                                 </table>
@@ -182,27 +187,32 @@ $userlist = get_user_list();
                                 <table class="table table-striped" id="DataTable">
                                     <thead>
                                         <tr>
-                                            <th colspan="3">
-                                            <h5 class="card-header">Review File</h5>
+                                            <th colspan="4">
+                                                <h5 class="card-header">Review File</h5>
                                             </th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php if (empty($article_files)): ?>
                                             <tr>
-                                                <td colspan="3" class="text-center">No Files</td>
+                                                <td colspan="4" class="text-center">No Files</td>
                                             </tr>
                                         <?php else: ?>
                                             <?php foreach ($article_files as $article_filesval): ?>
                                                 <tr>
                                                     <td width="5%"><?php echo $article_filesval->article_files_id; ?></td>
-                                                    <td width="85%"><?php echo $article_filesval->file_name; ?></td>
+                                                    <td width="70%">
+                                                        <a href="../../Files/submitted-article/<?php echo urlencode($article_filesval->file_name); ?>" download>
+                                                            <?php echo $article_filesval->file_name; ?>
+                                                        </a>
+                                                    </td>
+                                                    <td width="25%"><?php echo $article_filesval->file_type; ?></td>
                                                 </tr>
                                             <?php endforeach; ?>
                                         <?php endif; ?>
                                     </tbody>
                                     <tfoot>
-                                        <th colspan="3" style="text-align: right;">
+                                        <th colspan="4" style="text-align: right;">
                                         </th>
                                     </tfoot>
                                 </table>
@@ -226,7 +236,7 @@ $userlist = get_user_list();
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel3">Select Files</h5>
+                    <h5 class="modal-title" id="exampleModalLabel3">Select Copyediting Files</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -236,7 +246,7 @@ $userlist = get_user_list();
                                 <table class="table table-striped" id="DataTable">
                                     <thead>
                                         <tr>
-                                            <th colspan="3">
+                                            <th colspan="4">
                                             <h5 class="card-header">Submissiom File</h5>
                                             <p>Select files you want to add in copyediting.</p>
                                             </th>
@@ -245,20 +255,25 @@ $userlist = get_user_list();
                                     <tbody>
                                         <?php if (empty($article_files)): ?>
                                             <tr>
-                                                <td colspan="3" class="text-center">No Files</td>
+                                                <td colspan="4" class="text-center">No Files</td>
                                             </tr>
                                         <?php else: ?>
                                             <?php foreach ($article_files as $article_filesval): ?>
                                                 <tr>
                                                     <td width="5%"><input class="form-check-input" type="checkbox" value="" id="defaultCheck1" /></td>
                                                     <td width="5%"><?php echo $article_filesval->article_files_id; ?></td>
-                                                    <td width="85%"><?php echo $article_filesval->file_name; ?></td>
+                                                    <td width="65%">
+                                                        <a href="../../Files/submitted-article/<?php echo urlencode($article_filesval->file_name); ?>" download>
+                                                            <?php echo $article_filesval->file_name; ?>
+                                                        </a>
+                                                    </td>
+                                                    <td width="25%"><?php echo $article_filesval->file_type; ?></td>
                                                 </tr>
                                             <?php endforeach; ?>
                                         <?php endif; ?>
                                     </tbody>
                                     <tfoot>
-                                        <th colspan="3" style="text-align: right;">
+                                        <th colspan="4" style="text-align: right;">
                                         </th>
                                     </tfoot>
                                 </table>
@@ -271,7 +286,7 @@ $userlist = get_user_list();
                                 <table class="table table-striped" id="DataTable">
                                     <thead>
                                         <tr>
-                                            <th colspan="3">
+                                            <th colspan="4">
                                             <h5 class="card-header">Review File</h5>
                                             <p>Select files you want to add in copyediting.</p>
                                             </th>
@@ -280,19 +295,25 @@ $userlist = get_user_list();
                                     <tbody>
                                         <?php if (empty($article_files)): ?>
                                             <tr>
-                                                <td colspan="3" class="text-center">No Files</td>
+                                                <td colspan="4" class="text-center">No Files</td>
                                             </tr>
                                         <?php else: ?>
                                             <?php foreach ($article_files as $article_filesval): ?>
                                                 <tr>
+                                                    <td width="5%"><input class="form-check-input" type="checkbox" value="" id="defaultCheck1" /></td>
                                                     <td width="5%"><?php echo $article_filesval->article_files_id; ?></td>
-                                                    <td width="85%"><?php echo $article_filesval->file_name; ?></td>
+                                                    <td width="65%">
+                                                        <a href="../../Files/submitted-article/<?php echo urlencode($article_filesval->file_name); ?>" download>
+                                                            <?php echo $article_filesval->file_name; ?>
+                                                        </a>
+                                                    </td>
+                                                    <td width="25%"><?php echo $article_filesval->file_type; ?></td>
                                                 </tr>
                                             <?php endforeach; ?>
                                         <?php endif; ?>
                                     </tbody>
                                     <tfoot>
-                                        <th colspan="3" style="text-align: right;">
+                                        <th colspan="4" style="text-align: right;">
                                         </th>
                                     </tfoot>
                                 </table>
@@ -305,7 +326,7 @@ $userlist = get_user_list();
                                 <table class="table table-striped" id="DataTable">
                                     <thead>
                                         <tr>
-                                            <th colspan="3">
+                                            <th colspan="4">
                                             <h5 class="card-header">Copyediting File</h5>
                                             </th>
                                         </tr>
@@ -313,19 +334,24 @@ $userlist = get_user_list();
                                     <tbody>
                                         <?php if (empty($article_files)): ?>
                                             <tr>
-                                                <td colspan="3" class="text-center">No Files</td>
+                                                <td colspan="4" class="text-center">No Files</td>
                                             </tr>
                                         <?php else: ?>
                                             <?php foreach ($article_files as $article_filesval): ?>
                                                 <tr>
                                                     <td width="5%"><?php echo $article_filesval->article_files_id; ?></td>
-                                                    <td width="85%"><?php echo $article_filesval->file_name; ?></td>
+                                                    <td width="70%">
+                                                        <a href="../../Files/submitted-article/<?php echo urlencode($article_filesval->file_name); ?>" download>
+                                                            <?php echo $article_filesval->file_name; ?>
+                                                        </a>
+                                                    </td>
+                                                    <td width="25%"><?php echo $article_filesval->file_type; ?></td>
                                                 </tr>
                                             <?php endforeach; ?>
                                         <?php endif; ?>
                                     </tbody>
                                     <tfoot>
-                                        <th colspan="3" style="text-align: right;">
+                                        <th colspan="4" style="text-align: right;">
                                         </th>
                                     </tfoot>
                                 </table>

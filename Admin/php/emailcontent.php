@@ -88,26 +88,31 @@ $article_files = get_article_files($aid);
                                                     <table class="table table-striped" id="DataTable">
                                                         <thead>
                                                             <tr>
-                                                                <th colspan="3"><h6>Submission Files</h6></th>
+                                                                <th colspan="4"><h6>Submission Files</h6></th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                             <?php if (empty($article_files)): ?>
                                                                 <tr>
-                                                                    <td colspan="3" class="text-center">No Files</td>
+                                                                    <td colspan="4" class="text-center">No Files</td>
                                                                 </tr>
                                                             <?php else: ?>
                                                                 <?php foreach ($article_files as $article_filesval): ?>
                                                                     <tr>
-                                                                        <td width="5%"><?php echo $article_filesval->id; ?></td>
-                                                                        <td width="85%"><?php echo $article_filesval->file_name; ?></td>
                                                                         <td width="5%"><input class="form-check-input" type="checkbox" value="" id="defaultCheck1" /></td>
+                                                                        <td width="5%"><?php echo $article_filesval->article_files_id; ?></td>
+                                                                        <td width="65%">
+                                                                            <a href="../../Files/submitted-article/<?php echo urlencode($article_filesval->file_name); ?>" download>
+                                                                                <?php echo $article_filesval->file_name; ?>
+                                                                            </a>
+                                                                        </td>
+                                                                        <td width="25%"><?php echo $article_filesval->file_type; ?></td>
                                                                     </tr>
                                                                 <?php endforeach; ?>
                                                             <?php endif; ?>
                                                         </tbody>
                                                         <tfoot>
-                                                            <th colspan="3" style="text-align: right;">
+                                                            <th colspan="4" style="text-align: right;">
                                                             </th>
                                                         </tfoot>
                                                     </table>
