@@ -173,17 +173,24 @@ function renderArticleDetails(data) {
     const downloadBtn = articleElement.querySelector(`#download-btn`);
     const epubBtn = articleElement.querySelector(`#epub-btn`);
     const citeBtn = articleElement.querySelector(`#cite-btn`);
-    const viewFullArticle = articleElement.querySelector(`#btn1`);
+    // const viewFullArticle = articleElement.querySelector(`#btn1`);
 
     if (active) {
       downloadBtn.style.display = "inline-block";
       epubBtn.style.display = "inline-block";
     } else {
-      downloadBtn.style.display = "none";
+      // downloadBtn.style.display = "none";
 
-      viewFullArticle.addEventListener("click", () => {
-        window.location.href = "../php/login.php";
+      // // viewFullArticle.addEventListener("click", () => {
+      // //   window.location.href = "../php/login.php";
+      // // });
+      downloadBtn.addEventListener("click", () => {
+          window.location.href = "../php/login.php";
       });
+      epubBtn.addEventListener("click", () => {
+        window.location.href = "../php/login.php";
+    });
+
     }
     if (downloadBtn) {
       downloadBtn.addEventListener("click", () => {
