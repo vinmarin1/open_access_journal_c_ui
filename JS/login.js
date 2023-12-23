@@ -30,7 +30,7 @@ $(document).ready(function() {
         } else {
             $.ajax({
                 type: "POST",
-                url: "../php/functions.php",
+                url: "../PHP/functions.php",
                 data: {
                     email: email,
                     password: password,
