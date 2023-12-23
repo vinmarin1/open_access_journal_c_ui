@@ -49,9 +49,9 @@ $(document).ready(function() {
                             },
                             success: function (verifiedResponse) {
                                 if (verifiedResponse === "true") {
-                                    window.location.href = "../php/author-dashboard.php";
+                                    window.location.href = "../PHP/author-dashboard.php";
                                 } else {
-                                    window.location.href = "../php/verify.php";
+                                    window.location.href = "../PHP/verify.php";
                                 }
                             },
                         });

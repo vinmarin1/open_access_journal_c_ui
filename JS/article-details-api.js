@@ -185,10 +185,10 @@ function renderArticleDetails(data) {
       // //   window.location.href = "../php/login.php";
       // // });
       downloadBtn.addEventListener("click", () => {
-          window.location.href = "../php/login.php";
+          window.location.href = "../PHP/login.php";
       });
       epubBtn.addEventListener("click", () => {
-        window.location.href = "../php/login.php";
+        window.location.href = "../PHP/login.php";
     });
 
     }

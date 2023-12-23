@@ -11,7 +11,7 @@
 
 
 
-<script src="../js/api-test.js">
+<script src="../JS/api-test.js">
 
 </script>
 

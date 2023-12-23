@@ -1,7 +1,7 @@
 <!-- <?php
 
-	require "../php/mail.php";
-	require "../php/functions.php";
+	require "../PHP/mail.php";
+	require "../PHP/functions.php";
 	check_login();
 
 	$errors = array();
