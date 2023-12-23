@@ -1,1 +1,3 @@
-<h1> Hello World </h1>
+<?php
+print "<script>location.href='https://openaccessjournalcui-production.up.railway.app/PHP/index.php</script>";
+?>
