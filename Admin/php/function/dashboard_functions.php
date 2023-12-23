@@ -29,3 +29,17 @@ include 'dbcon.php';
                     $totalArticles = "Error fetching data";
                 }
 ?>         
+
+<?php
+                // Fetch total logs from the database
+                $query = "SELECT COUNT(*) as totalEngagements FROM logs";
+                $result = execute_query($query);
+                
+                // Check if the query was successful
+                if ($result !== false) {
+                    // Correct the variable name here
+                    $totalEngagements = $result[0]->totalEngagements;
+                } else {
+                    $totalEngagements = "Error fetching data";
+                }
+?>         
