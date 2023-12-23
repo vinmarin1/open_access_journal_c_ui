@@ -16,7 +16,7 @@ document.getElementById('check-duplication').addEventListener('click', function(
     labelResult.style.color = '#0858a4';
     similarTitle.style.color = '#115272';
 
-    fetch('https://web-production-cecc.up.railway.app/article/checker', {
+    fetch('https://web-production-cecc.up.railway.app/api/check/duplication', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

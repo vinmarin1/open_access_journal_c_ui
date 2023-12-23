@@ -7,7 +7,7 @@ function navigateToArticle(articleId){
 
 async function fetchData(input,dates,sort) {
   try {
-    const response = await fetch(`https://web-production-cecc.up.railway.app/articles?sort=${sort}`, {
+    const response = await fetch(`https://web-production-cecc.up.railway.app/api/articles/?sort=${sort}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -47,7 +47,7 @@ async function fetchData(input,dates,sort) {
       
       articleDiv.innerHTML = `
         <div class="article-details">
-        <h6 style="color: #0858a4;"><strong>${item.title} - (${item.date})</strong></h6>
+        <h6 style="color: #0858a4;"><strong>${item.title} - (${item.publication_date})</strong></h6>
         <p style="color: #454545;">${item.abstract.slice(0,200)} </p>
         <div class="keywords">
         ${keywordsHTML}

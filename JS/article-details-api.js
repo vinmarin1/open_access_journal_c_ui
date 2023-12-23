@@ -10,7 +10,7 @@ const articleId = getQueryParam("articleId");
 async function fetchArticleDetails() {
   try {
     const response = await fetch(
-      "https://web-production-cecc.up.railway.app/articles/logs/read",
+      "https://web-production-cecc.up.railway.app/api/articles/logs/read",
       {
         method: "POST",
         body: JSON.stringify({
@@ -100,7 +100,7 @@ function renderArticleDetails(data) {
                   <p style="margin-top: 20px; color: black">ISSN(Online)</p>
                   <p>2071-1050(Online)</p>
                   <p style="margin-top: 20px; color: black ">Date Published</p>
-                  <p>${item.date}</p>
+                  <p>${item.publication_date}</p>
                   <p style="margin-top: 20px; margin-bottom: 10px; color: black ">Keywords</p>
                   <div class="keyword1">
                   ${keywordsHTML}
@@ -139,7 +139,7 @@ function renderArticleDetails(data) {
             <h4 class="small"><b>${selectedCitation} Citation</b></h4>
             <p>
             ${selectedCitation === "APA"
-          ? contributors + "." + item.title + "." + item.journal
+          ? contributors + "." + "(" + item.publication_date.split(" ")[3] + ")." + item.title + "." + item.journal +".<i>"+ item.volume.split(" ")[1]+"</i>("+1+")"
           : item.contributors_A + "." + item.title + "." + item.journal
         }
             </p>
@@ -154,7 +154,7 @@ function renderArticleDetails(data) {
         <li> 
           <h4 class="small"><b>${initialSelectedCitation} Citation</b></h4>
           <p class="cited" id="cited">
-            ${contributors}.${item.title}.${item.journal}
+            ${contributors}.(${item.publication_date.split(" ")[3]}).${item.title}.${item.journal}
           </p>
         </li>
       </ul>

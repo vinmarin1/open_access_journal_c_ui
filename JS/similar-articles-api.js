@@ -4,7 +4,7 @@ function navigateToArticle(articleId){
 }
 async function fetchData() {
   try {
-    const response = await fetch('https://web-production-cecc.up.railway.app/articles/logs/read', { //convert-6-to-session-id
+    const response = await fetch('https://web-production-cecc.up.railway.app/api/articles/logs/read', { //convert-6-to-session-id
       method: 'POST',
       body: JSON.stringify({
         author_id: '6',

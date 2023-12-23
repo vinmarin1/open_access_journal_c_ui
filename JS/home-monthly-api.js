@@ -7,7 +7,7 @@ function navigateToArticle(articleId){
 
 async function fetchData() {
   try {
-    const response = await fetch('https://web-production-cecc.up.railway.app/articles/recommendations', {
+    const response = await fetch('https://web-production-cecc.up.railway.app/api/recommendations/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -34,8 +34,10 @@ async function fetchData() {
       articleDiv.classList.add('article');
       articleDiv.addEventListener('click', () => navigateToArticle(item.article_id));
       let contributorsHTML = "";
-      for (const contributors of item.contributors.split(",")) {
-        contributorsHTML += `<a href="https://orcid.org/${contributors.split("-")[1]}">${contributors.split("-")[0]}</a>,`;
+      if (item.contributors != null) {
+        for (const contributors of item.contributors.split(",")) {
+          contributorsHTML += `<a href="https://orcid.org/${contributors.split("-")[1]}">${contributors.split("-")[0]}</a>,`;
+        }
       }
       articleDiv.innerHTML = `
         <p class="h6" id="title">${item.title}</p>
