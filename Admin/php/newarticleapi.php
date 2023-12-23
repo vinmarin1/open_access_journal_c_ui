@@ -160,7 +160,7 @@ $journallist = get_journal_list();
             const title = document.getElementById('title').value;
             const abstract = quill.root.innerHTML;
 
-            fetch('https://web-production-cecc.up.railway.app/article/checker', {
+            fetch('https://web-production-cecc.up.railway.app/check/duplication', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -195,7 +195,7 @@ $journallist = get_journal_list();
         document.getElementById('checkduplicate').addEventListener('click', async function (event) {
         const abstract = quill.root.innerHTML;
 
-        const response = await fetch('https://web-production-cecc.up.railway.app/journal', {
+        const response = await fetch('https://web-production-cecc.up.railway.app/api/check/journal', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

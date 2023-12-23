@@ -7,7 +7,7 @@ function navigateToArticle(articleId){
 
 async function fetchData() {
   try {
-    const response = await fetch('https://web-production-cecc.up.railway.app/articles/recommendations', {
+    const response = await fetch('https://web-production-cecc.up.railway.app/api/recommendations/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
