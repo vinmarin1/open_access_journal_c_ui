@@ -43,7 +43,7 @@ $(document).ready(function() {
 
             $.ajax({
                 type: "POST",
-                url: "../php/signup-function.php",
+                url: "../PHP/signup-function.php",
                 data: {
                     fname: fname,
                     mdname: mdname,

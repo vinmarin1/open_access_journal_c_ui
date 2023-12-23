@@ -38,7 +38,7 @@
                 </div>
                 <span id="logging-in-text" style="display: none;">Logging in...</span>
             </button>
-        <input class="btn btn-primary btn-sm" type="button" value="Register" id="register-button" onclick="window.location.href= '../php/signup.php';">
+        <input class="btn btn-primary btn-sm" type="button" value="Register" id="register-button" onclick="window.location.href= '../PHP/signup.php';">
     </form>
 
 
