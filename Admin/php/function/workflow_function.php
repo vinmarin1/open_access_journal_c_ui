@@ -32,7 +32,7 @@ if (!function_exists('get_article_files')) {
 
         if ($pdo) {
             try {
-                $query = "SELECT * FROM example_files WHERE article_id = :aid";
+                $query = "SELECT * FROM article_files WHERE article_id = :aid";
                 $stmt = $pdo->prepare($query);
                 $stmt->bindParam(':aid', $aid, PDO::PARAM_INT);
                 $stmt->execute();
@@ -104,7 +104,7 @@ if (!function_exists('get_article_contributor')) {
 
         if ($pdo) {
             try {
-                $query = "SELECT * FROM contributor WHERE article_id = :aid";
+                $query = "SELECT * FROM contributors WHERE article_id = :aid";
                 $stmt = $pdo->prepare($query);
                 $stmt->bindParam(':aid', $aid, PDO::PARAM_INT);
                 $stmt->execute();

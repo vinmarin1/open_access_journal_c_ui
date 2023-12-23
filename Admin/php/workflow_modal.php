@@ -1,6 +1,7 @@
 <?php
 include 'function/workflow_function.php';
 include 'function/userandroles_function.php';
+
 $aid = isset($_GET['aid']) ? $_GET['aid'] : 1;
 
 $article_files = get_article_files($aid);
@@ -52,13 +53,13 @@ $userlist = get_user_list();
     </form>
 </div>
 
-<!-- Add Discussion Modal -->
+<!-- Add Pre-Review Discussion Modal -->
 <div class="modal fade" id="addDiscussionModal" tabindex="-1" aria-hidden="true">
     <form id="addModalForm1">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel3">Add Discussion</h5>
+                    <h5 class="modal-title" id="exampleModalLabel3">Add Pre-Review Discussion</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -92,13 +93,13 @@ $userlist = get_user_list();
 
 
 <!-- REVIEW PAGE -->
-<!-- Add Discussion Modal -->
-<div class="modal fade" id="addDiscussionModal" tabindex="-1" aria-hidden="true">
+<!-- Add Review Discussion Modal -->
+<div class="modal fade" id="addReviewDiscussionModal" tabindex="-1" aria-hidden="true">
     <form id="addModalForm1">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel3">Add Submission Discussion</h5>
+                    <h5 class="modal-title" id="exampleModalLabel3">Add Review Discussion</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -147,7 +148,7 @@ $userlist = get_user_list();
                                     <thead>
                                         <tr>
                                             <th colspan="3">
-                                            <h5 class="card-header">Submissiom File</h5><br>
+                                            <h5 class="card-header">Submissiom File</h5>
                                             <p>Select files you want to add in review round.</p>
                                             </th>
                                         </tr>
@@ -161,7 +162,7 @@ $userlist = get_user_list();
                                             <?php foreach ($article_files as $article_filesval): ?>
                                                 <tr>
                                                     <td width="5%"><input class="form-check-input" type="checkbox" value="" id="defaultCheck1" /></td>
-                                                    <td width="5%"><?php echo $article_filesval->id; ?></td>
+                                                    <td width="5%"><?php echo $article_filesval->article_files_id; ?></td>
                                                     <td width="85%"><?php echo $article_filesval->file_name; ?></td>
                                                 </tr>
                                             <?php endforeach; ?>
@@ -194,7 +195,7 @@ $userlist = get_user_list();
                                         <?php else: ?>
                                             <?php foreach ($article_files as $article_filesval): ?>
                                                 <tr>
-                                                    <td width="5%"><?php echo $article_filesval->id; ?></td>
+                                                    <td width="5%"><?php echo $article_filesval->article_files_id; ?></td>
                                                     <td width="85%"><?php echo $article_filesval->file_name; ?></td>
                                                 </tr>
                                             <?php endforeach; ?>
@@ -218,13 +219,136 @@ $userlist = get_user_list();
     </form>
 </div>
 
-<!-- Add Review Discussion Modal -->
-<div class="modal fade" id="addReviewDiscussionModal" tabindex="-1" aria-hidden="true">
+<!-- COPYEDTING PAGE -->
+<!-- Add Copyediting Files Modal -->
+<div class="modal fade" id="addCopyeditingFilesModal" tabindex="-1" aria-hidden="true">
+    <form id="addModalForm">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel3">Select Files</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row mb-2">
+                        <div class="col-md-12  mb-2" id="dynamic-column">
+                            <div class="table-responsive text-nowrap">
+                                <table class="table table-striped" id="DataTable">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="3">
+                                            <h5 class="card-header">Submissiom File</h5>
+                                            <p>Select files you want to add in copyediting.</p>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php if (empty($article_files)): ?>
+                                            <tr>
+                                                <td colspan="3" class="text-center">No Files</td>
+                                            </tr>
+                                        <?php else: ?>
+                                            <?php foreach ($article_files as $article_filesval): ?>
+                                                <tr>
+                                                    <td width="5%"><input class="form-check-input" type="checkbox" value="" id="defaultCheck1" /></td>
+                                                    <td width="5%"><?php echo $article_filesval->article_files_id; ?></td>
+                                                    <td width="85%"><?php echo $article_filesval->file_name; ?></td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?>
+                                    </tbody>
+                                    <tfoot>
+                                        <th colspan="3" style="text-align: right;">
+                                        </th>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-12  mb-2" id="dynamic-column">
+                            <div class="table-responsive text-nowrap">
+                                <table class="table table-striped" id="DataTable">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="3">
+                                            <h5 class="card-header">Review File</h5>
+                                            <p>Select files you want to add in copyediting.</p>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php if (empty($article_files)): ?>
+                                            <tr>
+                                                <td colspan="3" class="text-center">No Files</td>
+                                            </tr>
+                                        <?php else: ?>
+                                            <?php foreach ($article_files as $article_filesval): ?>
+                                                <tr>
+                                                    <td width="5%"><?php echo $article_filesval->article_files_id; ?></td>
+                                                    <td width="85%"><?php echo $article_filesval->file_name; ?></td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?>
+                                    </tbody>
+                                    <tfoot>
+                                        <th colspan="3" style="text-align: right;">
+                                        </th>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-12  mb-2" id="dynamic-column">
+                            <div class="table-responsive text-nowrap">
+                                <table class="table table-striped" id="DataTable">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="3">
+                                            <h5 class="card-header">Copyediting File</h5>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php if (empty($article_files)): ?>
+                                            <tr>
+                                                <td colspan="3" class="text-center">No Files</td>
+                                            </tr>
+                                        <?php else: ?>
+                                            <?php foreach ($article_files as $article_filesval): ?>
+                                                <tr>
+                                                    <td width="5%"><?php echo $article_filesval->article_files_id; ?></td>
+                                                    <td width="85%"><?php echo $article_filesval->file_name; ?></td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?>
+                                    </tbody>
+                                    <tfoot>
+                                        <th colspan="3" style="text-align: right;">
+                                        </th>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="addRecord()">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- Add Copyediting Modal -->
+<div class="modal fade" id="addCopyeditingnModal" tabindex="-1" aria-hidden="true">
     <form id="addModalForm1">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel3">Add Review Discussions</h5>
+                    <h5 class="modal-title" id="exampleModalLabel3">Add Copyediting Discussion</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -256,9 +380,8 @@ $userlist = get_user_list();
     </form>
 </div>
 
-
 <!-- PUBLICATION PAGE -->
-<!-- Add Contributors Modal -->
+<!-- Add Contributors Moda -->
 <div class="modal fade" id="addContributorsModal" tabindex="-1" aria-hidden="true">
      <form id="addModalForm">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -328,5 +451,4 @@ $userlist = get_user_list();
         </div>
     </form>
 </div>
-
 

@@ -75,11 +75,10 @@ $incomplete_articles = get_article_list($cid);
                                     $statusInfo = [
                                         1 => ['label' => 'Published', 'class' => 'label-primary'],
                                         2 => ['label' => 'Production', 'class' => 'label-secondary'],
-                                        3 => ['label' => 'Incomplete', 'class' => 'label-danger'],
-                                        4 => ['label' => 'Pending', 'class' => 'label-warning'],
-                                        5 => ['label' => 'Review', 'class' => 'label-info'],
-                                        6 => ['label' => 'Copyediting', 'class' => 'label-success'],
-                                        7 => ['label' => 'Reject', 'class' => 'label-dark']
+                                        3 => ['label' => 'Copyediting', 'class' => 'label-danger'],
+                                        4 => ['label' => 'Review', 'class' => 'label-warning'],
+                                        5 => ['label' => 'Pending', 'class' => 'label-info'],
+                                        6 => ['label' => 'Reject', 'class' => 'label-success'],
                                     ];
 
                                     if (isset($statusInfo[$statusNumber])) {
