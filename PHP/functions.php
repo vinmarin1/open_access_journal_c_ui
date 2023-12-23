@@ -51,6 +51,7 @@ function login($data)
                 $_SESSION['first_name'] = $row-> first_name;
                 $_SESSION['middle_name'] = $row-> middle_name;
                 $_SESSION['last_name'] = $row-> last_name;
+                $_SESSION['email'] = $row-> email;
                 $_SESSION['LOGGED_IN'] = true;
             } else {
                 $errors[] = "Wrong email or password";

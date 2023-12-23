@@ -338,7 +338,7 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
   <div class="article-info-container">
     <div class="article-header">
       <h5 class="title10" id="title-10f">Details</h5>
-      <button type="button" class="btn btn-outline-light btn-sm" id="update-cont-2">Update</button>
+      <button type="button" class="btn btn-outline-light btn-sm" id="update-cont-2">View</button>
     </div>
     <div class="editable-content mt-5" id="editable-content">
       <label id="sub-26">Title: </label><br>
@@ -356,7 +356,7 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
       <h5 class="title11" id="title-11">Files: </h5>
       <div class="file-header-container">
         <h5 class="title1f" id="title1f">File Name</h5>
-        <button type="button" class="btn btn-outline-light btn-sm" id="update-cont-3">Update</button>
+        <button type="button" class="btn btn-outline-light btn-sm" id="update-cont-3">View</button>
     
       </div>
       <div class="file-content-container mt-3">
@@ -370,7 +370,7 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
       <h5 class="title12" id="title-12">Contributors: </h5>
       <div class="cont-header-container">
         <h5 class="title13" id="title-13">Contributors Name</h5>
-        <button type="button" class="btn btn-outline-light btn-sm" id="update-cont-4">Update</button>
+        <button type="button" class="btn btn-outline-light btn-sm" id="update-cont-4">View</button>
     
       </div>
       <div class="file-content-container mt-3">

@@ -1,6 +1,6 @@
 <?php
 require 'dbcon.php';
-
+require "mail.php";
 session_start();
 
 if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
@@ -28,6 +28,20 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     $formattedDate = date('Y-m-d', $timestamp);
     $content = "-";
     $step = 4;
+
+    
+
+
+    $email = $_SESSION['email'];
+    
+
+    $message = "<p>You've been included as a contributor for the Journal</p><br> <label style='display: inline-block;'>Title: </label> <p style='display: inline-block;'>$title</p> <br><label style='display: inline-block;'>Abstract: </label><p style='display: inline-block;'>$abstract</p>";
+
+
+    $subject = "Review Journal";
+    $recipient = $email;
+    send_mail($recipient,$subject,$message);
+
  
     $author_id = (isset($_SESSION['id'])) ? $_SESSION['id'] : null;
     $contributor = (isset($_SESSION['first_name'])) ? $_SESSION['first_name'] : null;

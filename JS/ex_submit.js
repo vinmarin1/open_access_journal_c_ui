@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
 
+
   function updateButtonVisibility(index) {
     // Display buttons based on the current tab index
     if (index === 0) {
@@ -300,7 +301,7 @@ document.getElementById('contributor-btn').addEventListener('click', function (e
       '<div id= "lName"><label id="sub-17">Last Name: </label><input id="input2" class="swal2-input"></div>' +
       '<label id= "sub-18">Preferred Public Name: </label><input id="input3" class="swal2-input">' +
       '<label id= "sub-19">Email: </label><input id="input4" class="swal2-input">' +
-      '<label id= "sub-20">ORCID: </label><input id="input5" class="swal2-input">',
+      '<label id= "sub-20">ORCID: </label><input id="input5" class="swal2-input">'+ '<label id="selectRoleLabel">Role: </label><select class="form-select" name="selectRole" id="selectRole"><option value="">Select Role</option><option value="Contact Principal">Contact Principal</option><option value="Co-Author">Co-Author</option></select> ',
 
     footer: '<button  id="confirmBtn">Add Contributor</button>',
     showConfirmButton: false,
@@ -329,7 +330,7 @@ document.getElementById('contributor-btn').addEventListener('click', function (e
     cellContributor.innerHTML = contributorsValue;
 
     var cellActions = newRow.insertCell(1);
-    cellActions.innerHTML = '<button type="button" id="btn-update" class="btn btn-outline-primary btn-sm btn-update" style="margin-right: 10px;">Update</button>' +
+    cellActions.innerHTML = '<button type="button" id="btn-update" class="btn btn-outline-primary btn-sm btn-update" style="margin-right: 10px;">View</button>' +
     '<button type="button" id="btn-delete" class="btn btn-danger btn-sm btn-delete">Delete</button>';
 
  
@@ -350,7 +351,7 @@ document.getElementById('contributor-btn').addEventListener('click', function (e
                 '<div id= "lName"><label id="sub-22">Last Name: </label><input id="updateInput2" class="swal2-input" value="' + (updatedInput2Value || input2Value) + '"></div>' +
                 '<label id= "sub-23">Preferred Public Name: </label><input id="updateInput3" value="' + (updatedInput3Value || input3Value) + '" class="swal2-input">' +
                 '<label id= "sub-24">Email: </label><input id="updateInput4" value="' + (updatedInput4Value || input4Value) + '" class="swal2-input">' +
-                '<label id= "sub-25">ORCID: </label><input id="updateInput5" value="' + (updatedInput5Value || input5Value) + '" class="swal2-input">',
+                '<label id= "sub-25">ORCID: </label><input id="updateInput5" value="' + (updatedInput5Value || input5Value) + '" class="swal2-input">'+ '<label id="selectRoleLabelUpdate">Role: </label><select class="form-select" name="selectRoleUpdate" id="selectRoleUpdate"><option value="">Select Role</option><option value="Contact Principal">Contact Principal</option><option value="Co-Author">Co-Author</option></select> ',
     
             footer: '<button id="update-cont">Update</button>',
             showConfirmButton: false

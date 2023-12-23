@@ -24,7 +24,7 @@
 			$recipient = $vars['email'];
 			send_mail($recipient,$subject,$message);
 		}else {
-			header("Location: ../php/home.php"); // User is already verified
+			header("Location: ../php/index.php"); // User is already verified
 			die;
 		}
 	}
@@ -52,7 +52,7 @@
 					
 					database_run($query);
 					if(check_verified())
-					header("Location: ../php/home.php");
+					header("Location: ../php/index.php");
 					die;
 				}else{
 					echo "Code expired";

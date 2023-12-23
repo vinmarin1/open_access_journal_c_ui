@@ -290,7 +290,7 @@
 
 
 
-#title-6, #title-7, #title-8, #title-9, #title-15,#sub-13, #sub-14 , #sub-15,  #sub-16,  #sub-17,  #sub-18,  #sub-19,  #sub-20, #sub-21, #sub-22, #sub-23, #sub-24, #sub-25, #selectRoleLabel{
+#title-6, #title-7, #title-8, #title-9, #title-15,#sub-13, #sub-14 , #sub-15,  #sub-16,  #sub-17,  #sub-18,  #sub-19,  #sub-20, #sub-21, #sub-22, #sub-23, #sub-24, #sub-25, #selectRoleLabel, #selectRoleLabelUpdate{
     
     color: #0858a4;
     font-family: Arial, Helvetica, sans-serif;
@@ -369,7 +369,7 @@
    
 }
 
-#selectRole{
+#selectRole, #selectRoleUpdate{
     height: 30px;
     font-size: 11px;
     width: 90%;
@@ -400,10 +400,11 @@
     margin-top: 20px;
 }
 
-#selectRoleLabel{
+#selectRoleLabel, #selectRoleLabelUpdate{
     text-align: left;
     margin-top: 20px;
     margin-bottom: 10px;
+
 }
 
 .custom-confirm-button{
