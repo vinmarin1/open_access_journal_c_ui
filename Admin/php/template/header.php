@@ -215,7 +215,7 @@ $journal = get_journal_list();
                     <li>
                       <a class="dropdown-item" href="#">
                         <i class="bx bx-user me-2"></i>
-                        <span class="align-middle" onclick="location.href='../../php/author-dashboard.php'">User Dashboard</span>
+                        <span class="align-middle" onclick="location.href='../../PHP/author-dashboard.php'">User Dashboard</span>
                       </a>
                     </li>
                     <li>
