@@ -41,8 +41,8 @@ include 'function/dashboard_functions.php';
 
                         <div class="box">
                             <div class="left-side">
-                                <div class="box-topic">Total Contributions</div>
-                                    <div class="number">12,876</div>
+                                <div class="box-topic">Total Engagements</div>
+                                    <div class="number"><?php echo $totalEngagements; ?></div>
                                         <div class="indicator">
                                             <!-- <i class='bx bx-up-arrow-alt'></i> -->
                                             <!-- <span class="text">Up from yesterday</span> -->
@@ -65,6 +65,8 @@ include 'function/dashboard_functions.php';
                                     <i class='bx bx-book cart four'></i>
                                 </div>  
                             </div>
+
+                            
 
                             
                             
@@ -119,11 +121,12 @@ include 'function/dashboard_functions.php';
 <body>
             <!-- Your existing HTML code -->
 
-                    <!-- Chart containers -->
+                 <!-- Chart containers -->
                 <div class="chart-container">
                     <select id="yearDropdown"></select>
                     <div class="chart-title">Article Engagement Based On Journal Type</div>
                     <canvas id="lineChart1"></canvas>
+                    <div id="conditionalDiv" style="display: none;">Conditional Content</div>
                 </div> 
                 <div class="chart-container">
                     <div class="chart-title">Article Engagement Based On User Demographics</div>
