@@ -1,4 +1,8 @@
+<?php 
 
+session_start();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,7 +53,7 @@
       </form>
       
       <?php
-        session_start();
+     
         if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 
         } else {
