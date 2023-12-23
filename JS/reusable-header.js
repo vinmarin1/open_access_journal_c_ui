@@ -8,9 +8,8 @@ function reusableFiles(url, targetId){
     
   }
 
-  reusableFiles('../php/header.php', 'header-container');
-  reusableFiles('../php/navbar.php', 'navigation-menus-container');
-  reusableFiles('../php/footer.php', 'footer');
-
+  reusableFiles('../PHP/header.php', 'header-container');
+  reusableFiles('../PHP/navbar.php', 'navigation-menus-container');
+  reusableFiles('../PHP/footer.php', 'footer');
   
 
