@@ -86,7 +86,7 @@ if (!function_exists('get_email_content')) {
             if ($mail->send()) {
                 echo "Email sent successfully.";
                 if ($id == 1) {
-                    updateArticleStatus($article_id, 5);
+                    updateArticleStatus($article_id, 4);
                     echo "<script>alert('Send to review successfully.');</script>";
                 } elseif ($id == 2) {
                     updateArticleStatus($article_id, 8);

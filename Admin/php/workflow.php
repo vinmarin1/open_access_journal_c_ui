@@ -91,7 +91,7 @@ table {
                                                                 <table class="table table-striped" id="DataTable">
                                                                     <thead>
                                                                         <tr>
-                                                                            <th colspan="2"><h6>Submission Files</h6></th>
+                                                                            <th colspan="3"><h6>Submission Files</h6></th>
                                                                             <th style="text-align: right;">
                                                                                 <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;" data-bs-toggle="modal" data-bs-target="#addFilesModal">Upload File</button>
                                                                             </th>
@@ -100,25 +100,25 @@ table {
                                                                     <tbody>
                                                                     <?php if (empty($article_files)): ?>
                                                                         <tr>
-                                                                            <td colspan="3" class="text-center">No Files</td>
+                                                                            <td colspan="4" class="text-center">No Files</td>
                                                                         </tr>
                                                                     <?php else: ?>
                                                                         <?php foreach ($article_files as $article_filesval): ?>
                                                                             <tr>
                                                                                 <td width="5%"><?php echo $article_filesval->article_files_id; ?></td>
-                                                                                <td width="45%">
+                                                                                <td width="65%">
                                                                                     <a href="../../Files/submitted-article/<?php echo urlencode($article_filesval->file_name); ?>" download>
                                                                                         <?php echo $article_filesval->file_name; ?>
                                                                                     </a>
                                                                                 </td>
-                                                                                <td width="45%"><?php echo $article_filesval->file_type; ?></td>
+                                                                                <td width="25%"><?php echo $article_filesval->file_type; ?></td>
                                                                                 <td width="5%"></td>
                                                                             </tr>
                                                                         <?php endforeach; ?>
                                                                         <?php endif; ?>
                                                                     </tbody>
                                                                     <tfoot>
-                                                                        <th colspan="3" style="text-align: right;">
+                                                                        <th colspan="4" style="text-align: right;">
                                                                             <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;">Download File</button>
                                                                         </th>
                                                                     </tfoot>   
@@ -126,7 +126,7 @@ table {
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3 mt-4 mt-lg-0" id="dynamic-column">
-                                                            <?php if ($article_data[0]->status >= 4): ?>
+                                                            <?php if ($article_data[0]->status <= 4): ?>
                                                                 <div class="alert alert-white" role="alert">
                                                                     <p>Submission accepted for review.</p>
                                                                 </div>
@@ -219,7 +219,7 @@ table {
                                                                 <table class="table table-striped" id="DataTable">
                                                                     <thead>
                                                                         <tr>
-                                                                            <th colspan="2"><h6>Review Files</h6></th>
+                                                                            <th colspan="3"><h6>Review Files</h6></th>
                                                                             <th style="text-align: right;">
                                                                                 <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;" data-bs-toggle="modal" data-bs-target="#addReviewFilesModal">Select Files</button>
                                                                             </th>
@@ -228,20 +228,25 @@ table {
                                                                     <tbody>
                                                                     <?php if (empty($article_files)): ?>
                                                                         <tr>
-                                                                            <td colspan="3" class="text-center">No Files</td>
+                                                                            <td colspan="4" class="text-center">No Files</td>
                                                                         </tr>
                                                                     <?php else: ?>
                                                                         <?php foreach ($article_files as $article_filesval): ?>
                                                                             <tr>
                                                                                 <td width="5%"><?php echo $article_filesval->article_files_id; ?></td>
-                                                                                <td width="85%"><?php echo $article_filesval->file_name; ?></td>
+                                                                                <td width="65%">
+                                                                                    <a href="../../Files/submitted-article/<?php echo urlencode($article_filesval->file_name); ?>" download>
+                                                                                        <?php echo $article_filesval->file_name; ?>
+                                                                                    </a>
+                                                                                </td>
+                                                                                <td width="25%"><?php echo $article_filesval->file_type; ?></td>
                                                                                 <td width="5%"></td>
                                                                             </tr>
                                                                         <?php endforeach; ?>
                                                                         <?php endif; ?>
                                                                     </tbody>
                                                                     <tfoot>
-                                                                        <th colspan="3" style="text-align: right;">
+                                                                        <th colspan="4" style="text-align: right;">
                                                                             <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;">Download File</button>
                                                                         </th>
                                                                     </tfoot>   
@@ -264,7 +269,7 @@ table {
                                                                 <table class="table table-striped" id="DataTable">
                                                                     <thead>
                                                                         <tr>
-                                                                            <th colspan="2"><h6>Revisions</h6></th>
+                                                                            <th colspan="3"><h6>Revisions</h6></th>
                                                                             <th style="text-align: right;">
                                                                                 <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;">Upload Revision</button>
                                                                             </th>
@@ -273,7 +278,7 @@ table {
                                                                     <tbody>
                                                                     <?php if (empty($article_discussion)): ?>
                                                                         <tr>
-                                                                            <td colspan="3" class="text-center">No Files</td>
+                                                                            <td colspan="4" class="text-center">No Files</td>
                                                                         </tr>
                                                                     <?php else: ?>
                                                                         <?php foreach ($article_discussion as $article_discussionval): ?>
@@ -286,7 +291,7 @@ table {
                                                                     <?php endif; ?>
                                                                     </tbody>
                                                                     <tfoot>
-                                                                        <th colspan="3" style="text-align: right;"></th>
+                                                                        <th colspan="4" style="text-align: right;"></th>
                                                                     </tfoot>   
                                                                 </table>
                                                             </div>
@@ -391,6 +396,15 @@ table {
                                                 </div>
                                                 <?php endif; ?>
 
+                                                <?php if ($article_data[0]->status >= 4): ?>
+                                                <div class="tab-pane fade" id="navs-top-copyediting" role="tabpanel">
+                                                    <div class="row">
+                                                        <div class="alert alert-white" role="alert">
+                                                            <p>Not currently accepted for copyediting.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <?php else: ?>
                                                 <div class="tab-pane fade" id="navs-top-copyediting" role="tabpanel">
                                                     <div class="row">
                                                         <div class="col-md-9" id="dynamic-column">
@@ -398,7 +412,7 @@ table {
                                                                 <table class="table table-striped" id="DataTable">
                                                                     <thead>
                                                                         <tr>
-                                                                            <th colspan="2"><h6>Draft Files</h6></th>
+                                                                            <th colspan="3"><h6>Draft Files</h6></th>
                                                                             <th style="text-align: right;">
                                                                                 <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;" data-bs-toggle="modal" data-bs-target="#addCopyeditingFilesModal">Select Files</button>
                                                                             </th>
@@ -407,20 +421,25 @@ table {
                                                                     <tbody>
                                                                     <?php if (empty($article_files)): ?>
                                                                         <tr>
-                                                                            <td colspan="3" class="text-center">No Files</td>
+                                                                            <td colspan="4" class="text-center">No Files</td>
                                                                         </tr>
                                                                     <?php else: ?>
                                                                         <?php foreach ($article_files as $article_filesval): ?>
                                                                             <tr>
                                                                                 <td width="5%"><?php echo $article_filesval->article_files_id; ?></td>
-                                                                                <td width="85%"><?php echo $article_filesval->file_name; ?></td>
+                                                                                <td width="65%">
+                                                                                    <a href="../../Files/submitted-article/<?php echo urlencode($article_filesval->file_name); ?>" download>
+                                                                                        <?php echo $article_filesval->file_name; ?>
+                                                                                    </a>
+                                                                                </td>
+                                                                                <td width="25%"><?php echo $article_filesval->file_type; ?></td>
                                                                                 <td width="5%"></td>
                                                                             </tr>
                                                                         <?php endforeach; ?>
                                                                         <?php endif; ?>
                                                                     </tbody>
                                                                     <tfoot>
-                                                                        <th colspan="3" style="text-align: right;">
+                                                                        <th colspan="4" style="text-align: right;">
                                                                             <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;">Download File</button>
                                                                         </th>
                                                                     </tfoot>   
@@ -497,6 +516,8 @@ table {
                                                         </div> 
                                                     </div>
                                                 </div>
+                                                <?php endif; ?>
+
                                                 <div class="tab-pane fade" id="navs-top-production" role="tabpanel">
                                                     <p>
                                                     Donut dragée jelly pie halvah. Danish gingerbread bonbon cookie wafer candy oat cake ice
@@ -572,7 +593,7 @@ table {
                                                                     <table class="table table-striped" id="DataTable">
                                                                         <thead>
                                                                             <tr>
-                                                                                <th colspan="2"><h6>Contributors</h6></th>
+                                                                                <th colspan="4"><h6>Contributors</h6></th>
                                                                                 <th style="text-align: right;">
                                                                                     <button type="button" class="btn btn-outline-dark" id="uploadButton" style="margin-left: -10px" data-bs-toggle="modal" data-bs-target="#addContributorsModal">Add</button>
                                                                                 </th>
@@ -581,20 +602,24 @@ table {
                                                                         <tbody>
                                                                         <?php if (empty($article_contributors)): ?>
                                                                             <tr>
-                                                                                <td colspan="3" class="text-center">No data</td>
+                                                                                <td colspan="5" class="text-center">No data</td>
                                                                             </tr>
                                                                         <?php else: ?>
                                                                             <?php foreach ($article_contributors as $article_contributorsval): ?>
                                                                                 <tr>
-                                                                                    <td width="5%"><?php echo $article_contributorsval->id; ?></td>
-                                                                                    <td width="85%"><?php echo $article_contributorsval->publicname; ?></td>
-                                                                                    <td width="5%"></td>
+                                                                                    <td width="5%"><?php echo $article_contributorsval->contributors_id; ?></td>
+                                                                                    <td width="40%"><?php echo $article_contributorsval->publicname; ?> <span class="badge rounded-pill bg-label-primary"><?php echo $article_contributorsval->contributor_type; ?></span></td>
+                                                                                    <td width="25%"><?php echo $article_contributorsval->email; ?></td>
+                                                                                    <td width="25%"><?php echo $article_contributorsval->orcid; ?></td>
+                                                                                    <td width="5%">
+                                                                                        <a href="javascript:void(0);" onclick="" class="btn btn-outline-primary">View</a>
+                                                                                    </td>
                                                                                 </tr>
                                                                             <?php endforeach; ?>    
                                                                         <?php endif; ?>
                                                                         </tbody>
                                                                         <tfoot>
-                                                                            <th colspan="3" style="text-align: right;"></th>
+                                                                            <th colspan="5" style="text-align: right;"></th>
                                                                         </tfoot> 
                                                                     </table>
                                                                 </div>
