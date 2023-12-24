@@ -1,6 +1,7 @@
 <?php
 // ob_start();
 // include 'function/redirect.php';
+session_start();
 include 'function/submission_functions.php';
 
 $journal = get_journal_list();
