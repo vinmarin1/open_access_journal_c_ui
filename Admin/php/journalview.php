@@ -1,18 +1,13 @@
 <?php
 session_start();
 if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
-    $firstName = isset($_SESSION['first_name']) ? ucfirst($_SESSION['first_name']) : '';
-    $middleName = isset($_SESSION['middle_name']) ? ' ' . ucfirst($_SESSION['middle_name']) : '';
-    $lastName = isset($_SESSION['last_name']) ? ' ' . ucfirst($_SESSION['last_name']) : '';
 
-    print_r($firstName);exit;
+} else {
+    echo '<script>window.location.href = "../../index.php";</script>';
 }
+
 include 'function/submission_functions.php';
 
-// if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === false){
-
-//     echo '<script>window.location.href = "../../index.php";</script>';
-// }
 $journallist = get_journal_list();
 ?>
 <!DOCTYPE html>
