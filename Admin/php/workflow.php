@@ -728,7 +728,7 @@ table {
                                                 <tr>
                                                     <td width="5%"><?php echo $userlistval->author_id; ?></td>
                                                     <td width="85%"><?php echo $userlistval->last_name; ?>, <?php echo $userlistval->first_name; ?></td>
-                                                    <td width="10%"> <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;" data-bs-toggle="modal" data-bs-target="#AssignReviewer">Select Reviewer</button></td>
+                                                    <td width="10%"> <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;" onclick="selectModal(<?php echo $userlistval->author_id; ?>)" data-bs-toggle="modal" data-bs-target="#AssignReviewer">Select Reviewer</button></td>
                                                 </tr>
                                             <?php endforeach; ?>
                                         <?php endif; ?>
@@ -742,10 +742,6 @@ table {
                         </div>
                     </div>
                 </div>
-                <!-- <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="addRecord()">Save changes</button>
-                </div> -->
             </div>
         </div>
     </form>
