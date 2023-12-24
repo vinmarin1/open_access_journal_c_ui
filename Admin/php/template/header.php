@@ -234,7 +234,7 @@ $journal = get_journal_list();
                     <li>
                       <a class="dropdown-item" href="javascript:void(0);">
                         <i class="bx bx-power-off me-2"></i>
-                          <span class="align-middle logout-link" onclick="location.href='../../php/logout.php'">Log Out</span>
+                          <span class="align-middle logout-link" onclick="location.href='../../PHP/logout.php'">Log Out</span>
                       </a>
                     </li>
                   </ul>
