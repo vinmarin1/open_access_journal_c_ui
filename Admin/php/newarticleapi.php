@@ -1,4 +1,5 @@
 <?php
+include 'function/redirect.php';
 include 'function/journal_function.php';
 
 $journallist = get_journal_list();

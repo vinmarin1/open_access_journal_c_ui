@@ -1,4 +1,5 @@
 <?php
+include 'function/redirect.php';
 include 'function/userandroles_function.php';
 
 $userlist = get_user_list();
