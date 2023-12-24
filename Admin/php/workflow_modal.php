@@ -407,7 +407,7 @@ $userlist = get_user_list();
 </div>
 
 <!-- PUBLICATION PAGE -->
-<!-- Add Contributors Moda -->
+<!-- Add Contributors Modal -->
 <div class="modal fade" id="addContributorsModal" tabindex="-1" aria-hidden="true">
      <form id="addModalForm">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
