@@ -253,8 +253,8 @@
                         </p>
                     </div>
                     <div class="form-check">
-                        <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
-                        <label for="vehicle1" style="color: #0858a4;" >I have read and will follow the steps and Guidelines of reviewing this assign Article.</label><br>
+                        <input type="checkbox" id="checkBox" name="checkBox" value="Check">
+                        <label for="checkBox" style="color: #0858a4;" >I have read and will follow the steps and Guidelines of reviewing this assign Article.</label><br>
                     </div>
 
                     <div class="btn-action">
