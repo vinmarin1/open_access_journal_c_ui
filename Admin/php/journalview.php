@@ -1,4 +1,5 @@
 <?php
+session_start();
 if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
     $firstName = isset($_SESSION['first_name']) ? ucfirst($_SESSION['first_name']) : '';
     $middleName = isset($_SESSION['middle_name']) ? ' ' . ucfirst($_SESSION['middle_name']) : '';
