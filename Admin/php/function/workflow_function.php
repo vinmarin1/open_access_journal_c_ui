@@ -56,7 +56,7 @@ if (!function_exists('get_article_discussion')) {
 
         if ($pdo) {
             try {
-                $query = "SELECT * FROM issue WHERE article_id = :aid";
+                $query = "SELECT * FROM issues WHERE issues_id = :aid";
                 $stmt = $pdo->prepare($query);
                 $stmt->bindParam(':aid', $aid, PDO::PARAM_INT);
                 $stmt->execute();
