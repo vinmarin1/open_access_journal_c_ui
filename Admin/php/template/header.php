@@ -1,18 +1,8 @@
 <?php
-// ob_start();
-// include 'function/redirect.php';
-session_start();
 include 'function/submission_functions.php';
 
 $journal = get_journal_list();
-
-$author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
-
-if (empty($author_id)) {
-    echo '<script>window.location.href = "../../index.php";</script>';
-}
 ?>
-
 <!DOCTYPE html>
 
 <html
