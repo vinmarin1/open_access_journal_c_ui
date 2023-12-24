@@ -660,45 +660,6 @@ table {
         <?php include 'template/footer.php'; include 'workflow_modal.php';?>
     </div>
 
-<!-- Assign Reviewer Modal -->
-<div class="modal fade" id="AssignReviewer" tabindex="-1" aria-hidden="true">
-    <form id="addModalForm1">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel3">Add this Reviewer</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row mb-2">
-                        <div class="col-md-12 mb-2">
-                            <label for="subject" class="form-label">Subject</label>
-                            <input type="text" id="subject" class="form-control" placeholder="Subject" required/>
-                        </div>
-                    </div>
-                    <div class="row mb-2">
-                        <div class="col-md-12 mb-2">
-                            <label for="message" class="form-label">Message</label>
-                            <input type="hidden" name="quillContentOne" id="quillContentOne">
-                            <div id="quill-emailcontent" style="height: 350px;"></div>
-                        </div>
-                    </div>
-                    <div class="row mb-2">
-                        <div class="col-md-12 mb-2">
-                            <label for="formFileAddDiscussion" class="form-label">Upload File</label>
-                            <input class="form-control" type="file" id="formFileAddDiscussion" accept=".pdf, .doc, .docx" />
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="addRecord()">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </form>
-</div>
-
 <!-- Add Reviewer Modal -->
 <div class="modal fade" id="addReviewerModal" tabindex="-1" aria-hidden="true">
     <form id="addModalForm">
@@ -730,7 +691,7 @@ table {
                                                 <tr>
                                                     <td width="5%"><?php echo $userlistval->author_id; ?></td>
                                                     <td width="85%"><?php echo $userlistval->last_name; ?>, <?php echo $userlistval->first_name; ?></td>
-                                                    <td width="10%"> <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;" onclick="selectModal(<?php echo $userlistval->author_id; ?>)" data-bs-toggle="modal" data-bs-target="#AssignReviewer">Select Reviewer</button></td>
+                                                    <td width="10%"><button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;" onclick="selectReviewer(<?php echo $userlistval->author_id; ?>, '<?php echo $userlistval->first_name; ?>', '<?php echo $userlistval->last_name; ?>')" data-bs-toggle="modal">Select Reviewer</button></td>
                                                 </tr>
                                             <?php endforeach; ?>
                                         <?php endif; ?>
@@ -743,6 +704,45 @@ table {
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- Assign Reviewer Modal -->
+<div class="modal fade" id="AssignReviewer" tabindex="-1" aria-hidden="true">
+    <form id="addModalForm1">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel3">Add <span id="AuthorName"></span> as Reviewer</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row mb-2">
+                        <div class="col-md-12 mb-2">    
+                            <label for="subject" class="form-label">Subject</label>
+                            <input type="text" id="subject" class="form-control" value="<?php print $reviewer_email[0]->subject ?>" placeholder="Subject" readonly/>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-12 mb-2">
+                            <label for="message" class="form-label">Message</label>
+                            <input type="hidden" name="quillContentOne" id="quillContentOne">
+                            <div id="quill-emailcontent" style="height: 350px;"></div>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-12 mb-2">
+                            <label for="formFileAddDiscussion" class="form-label">Upload File</label>
+                            <input class="form-control" type="file" id="formFileAddDiscussion" accept=".pdf, .doc, .docx" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="addRecord()">Save changes</button>
                 </div>
             </div>
         </div>
@@ -786,24 +786,44 @@ table {
                 },
                 theme: 'snow'
             });
-
+                
             var abstractContent = '<?php echo addslashes($article_data[0]->abstract); ?>';
             var referenceContent = '<?php echo addslashes($article_data[0]->references); ?>';
             var emailContent = <?php echo json_encode($reviewer_email[0]->content); ?>;
+            var title = <?php echo json_encode($article_data[0]->title); ?>;
+            var abstract = <?php echo json_encode($article_data[0]->abstract); ?>;
 
+            quillThree.clipboard.dangerouslyPasteHTML(abstractContent + '\n\n' + referenceContent);
             quill.clipboard.dangerouslyPasteHTML(abstractContent);
             quillTwo.clipboard.dangerouslyPasteHTML(referenceContent);
 
+            var decisionText = "I believe that you would serve as an excellent reviewer of the manuscript,";
+            var decisionText1 = "Title";
+            var decisionText2 = "Abstract";
+
             if (emailContent.trim() !== '') {
                 var delta = JSON.parse(emailContent);
-                quillThree.setContents(delta); 
-            } else {
 
-                quillThree.setContents([{ insert: title + '\n\n' }]);
+                var reviewDelta = { insert: ' "' + title + '", ' };
+                var titleDelta = { insert: '"' + title + '"\n' };
+                var abstractDelta = { insert: '' + abstract + '\n' };
+
+                var decisionIndex = delta.ops.findIndex(op => op.insert.includes(decisionText));
+                var decisionIndex1 = delta.ops.findIndex(op => op.insert.includes(decisionText1));
+                var decisionIndex2 = delta.ops.findIndex(op => op.insert.includes(decisionText2));
+
+                delta.ops.splice(decisionIndex + 1, 0, reviewDelta);
+                delta.ops.splice(decisionIndex1 + 2, 0, titleDelta);
+                delta.ops.splice(decisionIndex2 + 3, 0, abstractDelta);
+
+                quillThree.setContents(delta);
+            } else {
+                quillThree.setContents([{ insert: 'Test content\n\n' }]);
             }
 
             var form = document.getElementById('quillForm');
             var quillContentInputOne = document.getElementById('quillContentOne');
+
         });
 
         function sendForReview() {
@@ -828,7 +848,37 @@ table {
             window.onload = function () {
                 $('#sloading').hide();
             };
-        }                                                   
+        }                        
+        
+        function selectReviewer(authorId, firstName, lastName) {
+        $('#AssignReviewer').modal('show');
+        $('#AuthorName').html(lastName + ', ' + firstName);
+
+        $('#archiveRoleModalSave').off().on('click', function () {
+            $('#sloading').toggle();
+            $.ajax({
+                url: "../php/function/userandroles_function.php",
+                method: "POST",
+                data: { action: "archiverole", role_id: roleId },
+                success: function (data) {
+                    var response = JSON.parse(data);
+                    if (response.status) {
+                        $('#sloading').toggle();
+                        $('#archiveRoleModalMessage').text('Role archived successfully');
+                    } else {
+                        $('#archiveRoleModalMessage').text('Failed to archive role');
+                    }
+                    $('#archiveRoleModal').modal('hide');
+                    location.reload();
+                },
+                error: function (xhr, status, error) {
+                    console.error("Ajax request failed:", error);
+                    $('#archiveRoleModalMessage').text('Failed to archive role');
+                    $('#archiveRoleModal').modal('hide');
+                }
+            });
+        });
+    }
     </script>
 
 </body>
