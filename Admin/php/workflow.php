@@ -284,6 +284,7 @@ table {
                                                                     <?php else: ?>
                                                                         <?php foreach ($article_discussion as $article_discussionval): ?>
                                                                             <tr>
+                                                                                <td width="5%"></td>
                                                                                 <td width="5%"><?php echo $article_discussionval->id; ?></td>
                                                                                 <td width="85%"><?php echo $article_discussionval->file_name; ?></td>
                                                                                 <td width="5%"></td>

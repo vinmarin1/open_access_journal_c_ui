@@ -80,7 +80,7 @@ if (!function_exists('get_article_participant')) {
 
         if ($pdo) {
             try {
-                $query = "SELECT * FROM issue WHERE article_id = :aid";
+                $query = "SELECT * FROM issues WHERE article_id = :aid";
                 $stmt = $pdo->prepare($query);
                 $stmt->bindParam(':aid', $aid, PDO::PARAM_INT);
                 $stmt->execute();
