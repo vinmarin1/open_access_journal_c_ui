@@ -171,12 +171,12 @@ $journallist = get_journal_list();
     }
     
     function archiveJournal(journalId, journal, journal_title) {
-        $('#sloading').toggle();
         $('#archiveModal').modal('show');
         $('#archiveModalTitle').text('Archive User');
         $('#journalInfo').html('<strong>Journal:</strong> ' + journal + ' <br><strong>Journal_Title:</strong> ' + journal_title + '<br><strong>ID:</strong> ' + journalId);
 
         $('#archiveModalSave').off().on('click', function () {
+            $('#sloading').toggle();
             $.ajax({
                 url: "../php/function/journal_function.php",
                 method: "POST",
