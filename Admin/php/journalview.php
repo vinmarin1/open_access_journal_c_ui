@@ -1,12 +1,10 @@
 <?php
 include 'function/submission_functions.php';
 
-if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
-
-}else{
+if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === false){
+    
     echo '<script>window.location.href = "../../index.php";</script>';
 }
-
 $journallist = get_journal_list();
 ?>
 <!DOCTYPE html>
