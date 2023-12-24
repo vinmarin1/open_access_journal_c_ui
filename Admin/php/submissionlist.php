@@ -1,4 +1,5 @@
 <?php
+include 'function/redirect.php';
 include 'function/submission_functions.php';
 $cid = isset($_GET['cid']) ? $_GET['cid'] : 1;
 

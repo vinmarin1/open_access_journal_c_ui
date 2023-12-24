@@ -1,4 +1,5 @@
 <?php
+include 'function/redirect.php';
 include 'function/workflow_function.php';
 include 'function/email_function.php';
 
