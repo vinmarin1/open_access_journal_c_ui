@@ -12,6 +12,8 @@ $article_discussion = get_article_discussion($aid);
 $article_participant = get_article_participant($aid);
 $reviewer_email = get_reviewer_content($emc);
 $article_contributors = get_article_contributor($aid);
+$article_reviewer = get_article_reviewer($aid);
+$reviewer_details = get_reviewer_details();
 ?>
 
 <!DOCTYPE html>
@@ -69,21 +71,20 @@ table {
                                 <div class="row">
                                     <div class="col-xl-12" id="nopadding">
                                         <div class="nav-align-top mb-4">
-                                            <ul class="nav nav-tabs" role="tablist">
-                                                <li class="nav-item">
-                                                    <button type="button" id="addspadding" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-submission" aria-controls="navs-top-submission" aria-selected="true"> Submission</button>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <button type="button" id="addspadding" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-review" aria-controls="navs-top-review" aria-selected="false"> Review</button>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <button type="button" id="addspadding" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-copyediting" aria-controls="navs-top-copyediting" aria-selected="false"> Copyediting</button>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <button type="button" id="addspadding" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-production" aria-controls="navs-top-production" aria-selected="false"> Production</button>
-                                                </li>
-                                            </ul>
-
+                                        <ul class="nav nav-tabs" id="myTabs">
+    <li class="nav-item">
+        <button type="button" class="nav-link active" id="navs-top-submission-tab" data-bs-toggle="tab" data-bs-target="#navs-top-submission" aria-controls="navs-top-submission" aria-selected="true">Submission</button>
+    </li>
+    <li class="nav-item">
+        <button type="button" class="nav-link" id="navs-top-review-tab" data-bs-toggle="tab" data-bs-target="#navs-top-review" aria-controls="navs-top-review" aria-selected="false">Review</button>
+    </li>
+    <li class="nav-item">
+        <button type="button" class="nav-link" id="navs-top-copyediting-tab" data-bs-toggle="tab" data-bs-target="#navs-top-copyediting" aria-controls="navs-top-copyediting" aria-selected="false">Copyediting</button>
+    </li>
+    <li class="nav-item">
+        <button type="button" class="nav-link" id="navs-top-production-tab" data-bs-toggle="tab" data-bs-target="#navs-top-production" aria-controls="navs-top-production" aria-selected="false">Production</button>
+    </li>
+</ul>
                                             <div class="tab-content">
                                                 <div class="tab-pane fade show active" id="navs-top-submission" role="tabpanel">
                                                     <div class="row">
@@ -203,7 +204,7 @@ table {
                                                         </div>
                                                     </div>
                                                 </div>
-
+<!-- Review -->
                                                 <?php if ($article_data[0]->status >= 5): ?>
                                                 <div class="tab-pane fade" id="navs-top-review" role="tabpanel">
                                                     <div class="row">
@@ -335,29 +336,43 @@ table {
                                                                 <table class="table table-striped" id="DataTable">
                                                                     <thead>
                                                                         <tr>
-                                                                            <th colspan="2"><h6>Reviewers</h6></th>
+                                                                            <th colspan="4"><h6>Reviewers</h6></th>
                                                                             <th style="text-align: right;">
                                                                                 <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;" data-bs-toggle="modal" data-bs-target="#addReviewerModal">Add Reviewers</button>
                                                                             </th>
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                    <?php if (empty($article_discussion)): ?>
+                                                                    <?php if (empty($article_reviewer)): ?>
                                                                         <tr>
-                                                                            <td colspan="3" class="text-center">No Items</td>
+                                                                            <td colspan="5" class="text-center">No Items</td>
                                                                         </tr>
                                                                     <?php else: ?>
-                                                                        <?php foreach ($article_discussion as $article_discussionval): ?>
+                                                                        <?php foreach ($article_reviewer as $article_reviewerval): ?>
                                                                             <tr>
-                                                                                <td width="5%"><?php echo $article_discussionval->id; ?></td>
-                                                                                <td width="85%"><?php echo $article_discussionval->file_name; ?></td>
-                                                                                <td width="5%"></td>
+                                                                                <td width="2%"></td>
+                                                                                <td width="5%"><?php echo $article_reviewerval->reviewer_assigned_id; ?></td>
+                                                                                <td width="5%"><?php echo $article_reviewerval->author_id; ?></td>
+                                                                                <?php
+                                                                                $matchingReviewer = null;
+                                                                                foreach ($reviewer_details as $reviewer) {
+                                                                                    if ($reviewer->author_id == $article_reviewerval->author_id) {
+                                                                                        $matchingReviewer = $reviewer;
+                                                                                        break;
+                                                                                    }
+                                                                                }
+                                                                                if ($matchingReviewer) { ?>
+                                                                                    <td width="20%"><?php echo $matchingReviewer->first_name . ', ' . $matchingReviewer->last_name; ?></td>
+                                                                                <?php } else { ?>
+                                                                                    <td colspan="5">No matching reviewer found.</td>
+                                                                                <?php } ?>
+                                                                                <td width="88%"></td>
                                                                             </tr>
-                                                                        <?php endforeach; ?>    
+                                                                        <?php endforeach; ?>
                                                                     <?php endif; ?>
                                                                     </tbody>
                                                                     <tfoot>
-                                                                        <th colspan="3" style="text-align: right;"></th>
+                                                                        <th colspan="5" style="text-align: right;"></th>
                                                                     </tfoot>   
                                                                 </table>
                                                             </div>
@@ -397,7 +412,7 @@ table {
                                                     </div>
                                                 </div>
                                                 <?php endif; ?>
-
+<!-- Copyediting -->
                                                 <?php if ($article_data[0]->status >= 4): ?>
                                                 <div class="tab-pane fade" id="navs-top-copyediting" role="tabpanel">
                                                     <div class="row">
@@ -519,7 +534,7 @@ table {
                                                     </div>
                                                 </div>
                                                 <?php endif; ?>
-
+<!-- Production -->
                                                 <div class="tab-pane fade" id="navs-top-production" role="tabpanel">
                                                     <p>
                                                     Donut dragée jelly pie halvah. Danish gingerbread bonbon cookie wafer candy oat cake ice
@@ -691,7 +706,7 @@ table {
                                                 <tr>
                                                     <td width="5%"><?php echo $userlistval->author_id; ?></td>
                                                     <td width="85%"><?php echo $userlistval->last_name; ?>, <?php echo $userlistval->first_name; ?></td>
-                                                    <td width="10%"><button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;" onclick="selectReviewer(<?php echo $userlistval->author_id; ?>, '<?php echo $userlistval->first_name; ?>', '<?php echo $userlistval->last_name; ?>')" data-bs-toggle="modal">Select Reviewer</button></td>
+                                                    <td width="10%"><button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;" onclick="selectReviewer(<?php echo $userlistval->author_id; ?>, '<?php echo $userlistval->first_name; ?>', '<?php echo $userlistval->last_name; ?>', '<?php echo $userlistval->email_verified; ?>')" data-bs-toggle="modal">Select Reviewer</button></td>
                                                 </tr>
                                             <?php endforeach; ?>
                                         <?php endif; ?>
@@ -721,9 +736,12 @@ table {
                 </div>
                 <div class="modal-body">
                     <div class="row mb-2">
-                        <div class="col-md-12 mb-2">    
+                        <div class="col-md-12 mb-2">  
+                            <input type="hidden" id="articleid" value="<?php print $article_data[0]->article_id ?>" class="form-control"readonly/>  
+                            <input type="hidden" id="reviewerid" class="form-control"readonly/>
+                            <input type="hidden" id="revieweremail" class="form-control"readonly/>
                             <label for="subject" class="form-label">Subject</label>
-                            <input type="text" id="subject" class="form-control" value="<?php print $reviewer_email[0]->subject ?>" placeholder="Subject" readonly/>
+                            <input type="text" id="emailsubject" class="form-control" value="<?php print $reviewer_email[0]->subject ?>" placeholder="Subject" readonly/>
                         </div>
                     </div>
                     <div class="row mb-2">
@@ -742,7 +760,7 @@ table {
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="addRecord()">Save changes</button>
+                    <button type="button" class="btn btn-primary" onclick="" id="submitBtn">Submit</button>
                 </div>
             </div>
         </div>
@@ -754,6 +772,26 @@ table {
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
 
     <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const urlHash = window.location.hash;
+            if (urlHash) {
+                const matchingTab = document.querySelector(`.nav-link[data-bs-target="${urlHash}"]`);
+                if (matchingTab) {
+                    const tab = new bootstrap.Tab(matchingTab);
+                    tab.show();
+                }
+            }
+
+            const tabs = document.querySelectorAll('.nav-link');
+            tabs.forEach(tab => {
+                tab.addEventListener('shown.bs.tab', function () {
+                    const target = this.getAttribute('data-bs-target');
+                    history.pushState({}, '', window.location.pathname + window.location.search + target);
+                });
+            });
+        });
+
         $(document).ready(function() {
             dataTable = $('#DataTableReviewer').DataTable({
                 "paging": false,
@@ -765,6 +803,13 @@ table {
                 ]
             });
         });
+
+        function selectReviewer(authorId, firstName, lastName, email) {
+            $('#AssignReviewer').modal('show');
+            $('#AuthorName').html(lastName + ', ' + firstName);
+            $('#reviewerid').val(authorId);
+            $('#revieweremail').val(email);
+        }
 
         document.addEventListener('DOMContentLoaded', function () {
             var toolbarOptions = [
@@ -806,7 +851,7 @@ table {
 
                 var reviewDelta = { insert: ' "' + title + '", ' };
                 var titleDelta = { insert: '"' + title + '"\n' };
-                var abstractDelta = { insert: '' + abstract + '\n' };
+                var abstractDelta = { insert: '' + abstract + '\n' };   
 
                 var decisionIndex = delta.ops.findIndex(op => op.insert.includes(decisionText));
                 var decisionIndex1 = delta.ops.findIndex(op => op.insert.includes(decisionText1));
@@ -824,7 +869,49 @@ table {
             var form = document.getElementById('quillForm');
             var quillContentInputOne = document.getElementById('quillContentOne');
 
+            var submitBtn = document.getElementById('submitBtn');
+            if (submitBtn) {
+                submitBtn.addEventListener('click', function () {
+                    sendEmail(quillThree);
+                });
+            }
         });
+
+        function sendEmail(quillInstance) {
+            $('#sloading').toggle();
+            var subject = $('#emailsubject').val();
+            var articleid = $('#articleid').val();
+            var revieweremail = $('#revieweremail').val();
+            var reviewerid = $('#reviewerid').val();
+
+            var title = <?php echo json_encode($article_data[0]->title); ?>;
+
+            var deltaContent = quillInstance.getContents();
+            var jsonContent = JSON.stringify(deltaContent);
+
+            $.ajax({
+                type: 'POST',
+                url: '../php/function/email_function.php',
+                data: {
+                    subject: subject,
+                    quillContentOne: jsonContent,
+                    articleid: articleid,
+                    reviewerid: reviewerid,
+                    revieweremail: revieweremail,
+                    title: title,
+                    action: 'assign_reviewer'
+                },
+                success: function (response) {
+                    $('#sloading').toggle();
+                    console.log(response);
+                    alert('Email sent to reviewer successfully.');
+                    location.reload();
+                },
+                error: function (error) {
+                    console.error(error);
+                }
+            });
+        }
 
         function sendForReview() {
             $('#sloading').show();
@@ -848,38 +935,8 @@ table {
             window.onload = function () {
                 $('#sloading').hide();
             };
-        }                        
-        
-        function selectReviewer(authorId, firstName, lastName) {
-        $('#AssignReviewer').modal('show');
-        $('#AuthorName').html(lastName + ', ' + firstName);
-
-        $('#archiveRoleModalSave').off().on('click', function () {
-            $('#sloading').toggle();
-            $.ajax({
-                url: "../php/function/userandroles_function.php",
-                method: "POST",
-                data: { action: "archiverole", role_id: roleId },
-                success: function (data) {
-                    var response = JSON.parse(data);
-                    if (response.status) {
-                        $('#sloading').toggle();
-                        $('#archiveRoleModalMessage').text('Role archived successfully');
-                    } else {
-                        $('#archiveRoleModalMessage').text('Failed to archive role');
-                    }
-                    $('#archiveRoleModal').modal('hide');
-                    location.reload();
-                },
-                error: function (xhr, status, error) {
-                    console.error("Ajax request failed:", error);
-                    $('#archiveRoleModalMessage').text('Failed to archive role');
-                    $('#archiveRoleModal').modal('hide');
-                }
-            });
-        });
-    }
+        }                            
     </script>
 
 </body>
-</html>
+</html
