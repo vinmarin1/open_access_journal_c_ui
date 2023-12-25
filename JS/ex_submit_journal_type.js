@@ -1,5 +1,6 @@
 document.getElementById('check-duplication').addEventListener('click', async function(event) {
    
+    const title = document.getElementById('title').value;
     const abstract = document.getElementById('abstract').value;
 
   
@@ -9,7 +10,8 @@ document.getElementById('check-duplication').addEventListener('click', async fun
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            abstract: abstract,
+            title: title,
+            abstract: abstract
         }),
     });
 

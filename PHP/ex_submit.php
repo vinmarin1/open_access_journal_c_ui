@@ -150,6 +150,9 @@
       </div>
 
       <div class="form-floating-2" id="form-floating-2">
+        <div id="flagged">
+          <h6 id="flaggedT"></h6>
+        </div>
         <!-- <h5 id="duplication-title">Checking of Details</h5> -->
         <div class="duplicated-article">
           <h6 class="checker-titles">Duplication Checker</h6>
@@ -164,8 +167,10 @@
           <!-- <label  id="label-result">Result: </label> -->
           <p id="label-result">Result:</p>
           
-          <div id="result-duplication"></div>
+          <div id="result-duplication" style="color: #115272"></div>
+          <div id="result-duplication2" style="color: #115272"></div>
         </div>
+
         <div class="journal-type-container">
           <h6 class="checker-titles">Journal Classification</h6>
           <select class="form-select" name="journal-type" id="journal-type">

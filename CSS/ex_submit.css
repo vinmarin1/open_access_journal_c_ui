@@ -65,28 +65,34 @@
     margin-top: 20px;
 }
 
-#duplication-title, .checker-titles{
+#duplication-title, .checker-titles, #flaggedT{
     color: #0858a4;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
 }
 
+#flagged{
+    margin-bottom: 10px;
+    display: none;
+}
 
-.duplicated-article, .journal-type-container{
+
+.duplicated-article, .journal-type-container, #flagged{
     border: 1px #999999 solid;
     width: auto;
     height: auto;
     border-radius: 5px;
     padding-top: 10px;
     padding-left: 10px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 .suggestion-title{
     margin-top: 20px;
     color: #0858a4;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Times New Roman', Times, serif;
     width: 95%;
+    
     
    
 }
@@ -98,7 +104,7 @@
   
 }
 
-#result-duplication{
+#result-duplication, #result-duplication2{
     text-align: left;
     color:#115272;
     font-family: 'Times New Roman', Times, serif;
@@ -112,6 +118,7 @@
     font-weight: bold;
     color:#0858a4;
     margin-bottom: 20px;
+    font-family: 'Times New Roman', Times, serif;
 }
 #similar-abstract{
     height: auto;

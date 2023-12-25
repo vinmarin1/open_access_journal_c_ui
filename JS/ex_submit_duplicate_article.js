@@ -9,6 +9,10 @@ document.getElementById('check-duplication').addEventListener('click', function(
     const nextBtn = document.getElementById('next');
     const similarTitle = document.getElementById('similar-title');
     const similarAbstract = document.getElementById('similar-abstract');
+    const flagged = document.getElementById('flagged');
+    const flaggedT = document.getElementById('flaggedT');
+    const labelDuplicationAb= document.getElementById('result-duplication2');
+
 
     
 
@@ -42,10 +46,12 @@ document.getElementById('check-duplication').addEventListener('click', function(
     .then(data => {
         if (data.similar_articles.length > 0) {
           
-            if(data.highest_simlarity >= 1.0){
+            if(data.similar_articles[0].score.overview >= 1.0 || data.similar_articles[0].score.title >= 1.0){
                 document.getElementById('similar-title').innerHTML = data.similar_articles[0].title;
                 // document.getElementById('similar-abstract').innerHTML = data.similar_articles[0].abstract;
-                document.getElementById('result-duplication').innerHTML = (data.similar_articles[0].score.total * 100).toFixed(2) + '%';
+                labelDuplication.innerHTML = 'Title: ' + (data.similar_articles[0].score.title * 100).toFixed(2) + '%';
+                labelDuplicationAb.innerHTML = 'Abstract: ' + (data.similar_articles[0].score.overview * 100).toFixed(2) + '%';
+                
                 Swal.fire({
                     title: "Duplication Alert!",
                     icon: "info",
@@ -55,16 +61,22 @@ document.getElementById('check-duplication').addEventListener('click', function(
     
                 journalType.style.display = 'block';
                 labelTitle.style.textAlign = 'left';
-                labelResult.style.textAlign = 'left';       
+                labelResult.style.textAlign = 'left';
+                labelResult.style.color = '#0858a4';    
                 labelDuplication.style.textAlign = 'left';
+                labelDuplication.style.color = '##0858a4';
                 similarTitle.style.textAlign = 'left';
+                similarTitle.style.color = '#0858a4';
+                flagged.style.display = 'block';
+                flaggedT.innerHTML = 'Flagged as: Duplicate';
                
                 nextBtn.disabled = true;
     
             }else if(data.highest_simlarity >= 0.4 && data.highest_simlarity < 1.0){
                 document.getElementById('similar-title').innerHTML = data.similar_articles[0].title;
                 // document.getElementById('similar-abstract').innerHTML = data.similar_articles[0].abstract;
-                document.getElementById('result-duplication').innerHTML = (data.similar_articles[0].score.total * 100).toFixed(2) + '%';
+                labelDuplication.innerHTML = 'Title: ' + (data.similar_articles[0].score.title * 100).toFixed(2) + '%';
+                labelDuplicationAb.innerHTML = 'Abstract: ' + (data.similar_articles[0].score.overview * 100).toFixed(2) + '%';
                 Swal.fire({
                     title: "Duplication Alert!",
                     icon: "info",
@@ -74,9 +86,14 @@ document.getElementById('check-duplication').addEventListener('click', function(
     
                 journalType.style.display = 'block';
                 labelTitle.style.textAlign = 'left';
-                labelResult.style.textAlign = 'left';       
+                labelResult.style.textAlign = 'left';
+                labelResult.style.color = '#0858a4';       
                 labelDuplication.style.textAlign = 'left';
+                labelDuplication.style.color = '##0858a4';
                 similarTitle.style.textAlign = 'left';
+                similarTitle.style.color = '#0858a4';
+                flagged.style.display = 'block';
+                flaggedT.innerHTML = 'Flagged as: Duplicate';
                 
                 nextBtn.disabled = true;
     
@@ -84,7 +101,8 @@ document.getElementById('check-duplication').addEventListener('click', function(
             }else if(data.highest_simlarity <= 0.31){
                 document.getElementById('similar-title').innerHTML = '';
                 // document.getElementById('similar-abstract').innerHTML = data.similar_articles[0].abstract;
-                document.getElementById('result-duplication').innerHTML = '';
+                labelDuplication.innerHTML = 'Title: ' + (data.similar_articles[0].score.title * 100).toFixed(2) + '%';
+                labelDuplicationAb.innerHTML = 'Abstract: ' + (data.similar_articles[0].score.overview * 100).toFixed(2) + '%';
                 Swal.fire({
                     html: "<h3 id='article-unique'>Good Article</h3>",
                     icon: "success",
@@ -93,9 +111,14 @@ document.getElementById('check-duplication').addEventListener('click', function(
     
                 journalType.style.display = 'block';
                 labelTitle.style.textAlign = 'left';
-                labelResult.style.textAlign = 'left';       
+                labelResult.style.textAlign = 'left';
+                labelResult.style.color = '#0858a4';    
                 labelDuplication.style.textAlign = 'left';
+                labelDuplication.style.color = '##0858a4';
                 similarTitle.style.textAlign = 'left';
+                similarTitle.style.color = '#0858a4';
+                flagged.style.display = 'block';
+                flaggedT.innerHTML = 'Flagged as: Duplicate';
                
                 nextBtn.disabled = false;
              
@@ -104,7 +127,7 @@ document.getElementById('check-duplication').addEventListener('click', function(
             if(data.similar_articles.length === 0){
                 document.getElementById('similar-title').innerHTML = '';
                 // document.getElementById('similar-abstract').innerHTML = data.similar_articles[0].abstract;
-                document.getElementById('result-duplication').innerHTML = '';
+              
                 Swal.fire({
                     html: "<h3 id='article-unique'>Unique Article</h3>",
                     icon: "success",
@@ -113,9 +136,14 @@ document.getElementById('check-duplication').addEventListener('click', function(
     
                 journalType.style.display = 'block';
                 labelTitle.style.textAlign = 'left';
-                labelResult.style.textAlign = 'left';       
+                labelResult.style.textAlign = 'left';
+                labelResult.style.color = '#0858a4';       
                 labelDuplication.style.textAlign = 'left';
+                labelDuplication.style.color = '##0858a4';
                 similarTitle.style.textAlign = 'left';
+                similarTitle.style.color = '#0858a4';
+                flagged.style.display = 'block';
+                flaggedT.innerHTML = 'Flagged as: Unique';
                
                 nextBtn.disabled= false;
     
