@@ -538,11 +538,11 @@ table {
                                                 </div>
                                                 <?php endif; ?>
 
-<!-- Production -->                              <?php if ($article_data[0]->status >= 4): ?>
+<!-- Production -->                             <?php if ($article_data[0]->status >= 4): ?>
                                                 <div class="tab-pane fade" id="navs-top-production" role="tabpanel">
                                                     <div class="row">
                                                         <div class="alert alert-white" role="alert">
-                                                            <p>Not currently accepted for copyediting.</p>
+                                                            <p>Not currently accepted for production.</p>
                                                         </div>
                                                     </div>
                                                 </div>
