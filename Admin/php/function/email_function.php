@@ -84,13 +84,18 @@ if (!function_exists('get_email_content')) {
             if ($mail->send()) {
                 echo "Email sent successfully.";
                 if ($id == 1) {
-                    updateArticleStatus($article_id, 4);
                     updateReviewFiles(1, $articleFilesId);
+                    updateArticleStatus($article_id, 4);
                     echo "<script>alert('Send to review successfully.');</script>"; 
                 } elseif ($id == 2) {
-                    updateArticleStatus($article_id, 8);
-                    echo "<script>alert('Send to review successfully.');</script>";
-                }
+                    updateArticleStatus($article_id, 7);
+                    echo "<script>alert('Decline submission successfully.');</script>";
+                } elseif ($id == 3) {
+                    updateCopyeditingFiles(1, $articleFilesId);
+                    updateArticleStatus($article_id, 3);
+                    echo "<script>alert('Send to copyediting successfully.');</script>";
+                }  } elseif ($id == 4) {
+                    echo "<script>alert('Reuqestion for revision successfully.');</script>";
             } else {
                 echo 'Error sending email: ' . $mail->ErrorInfo;
             }
@@ -116,6 +121,7 @@ if (!function_exists('get_email_content')) {
             echo "<script>alert('Failed to update status data');</script>";
         }
     }
+
     function updateReviewFiles($status, $articleFilesIds) {
     
         if (!is_array($articleFilesIds)) {
@@ -137,6 +143,52 @@ if (!function_exists('get_email_content')) {
     
         $query = "UPDATE article_files
                   SET review = :status
+                  WHERE article_files_id IN ($placeholders)";
+    
+        $pdo = connect_to_database();
+    
+        $pdo->beginTransaction();
+    
+        $stm = $pdo->prepare($query);
+    
+        // Bind the parameters
+        foreach ($params as $paramName => &$paramValue) {
+            $stm->bindParam($paramName, $paramValue, PDO::PARAM_INT);
+        }
+    
+        $check = $stm->execute();
+    
+        if ($check !== false) {
+            echo "Review Files updated successfully";
+            $pdo->commit();
+        } else {
+            echo "Failed to update file review data";
+            print_r($stm->errorInfo());
+            $pdo->rollBack();
+        }
+    }
+
+    function updateCopyeditingFiles($status, $articleFilesIds) {
+    
+        if (!is_array($articleFilesIds)) {
+            $articleFilesIds = array($articleFilesIds);
+        }
+    
+        $decodedIds = json_decode($articleFilesIds[0], true);
+        $articleFilesIds = array_column($decodedIds, 'articleFilesId');
+    
+        // Create an array of named parameters for binding
+        $params = array(':status' => $status);
+        foreach ($articleFilesIds as $key => $articleFilesId) {
+            $paramName = ":id$key";
+            $params[$paramName] = $articleFilesId;
+            $placeholders[] = $paramName;
+        }
+    
+        $placeholders = implode(',', $placeholders);
+    
+        $query = "UPDATE article_files
+                  SET copyediting = :status
                   WHERE article_files_id IN ($placeholders)";
     
         $pdo = connect_to_database();

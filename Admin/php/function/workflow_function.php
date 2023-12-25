@@ -240,3 +240,27 @@ if (!function_exists('get_reviewer_details')) {
         return false;
     }
 }
+
+if (!function_exists('check_article_reviewer')) {
+    function check_article_reviewer($aid) {
+        $pdo = connect_to_database();
+
+        if ($pdo) {
+            try {
+                $query = "SELECT * FROM reviewer_assigned WHERE article_id = :aid";
+                $stmt = $pdo->prepare($query);
+                $stmt->bindParam(':aid', $aid, PDO::PARAM_INT);
+                $stmt->execute();
+
+                $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+                return $result;
+            } catch (PDOException $e) {
+                echo "Error: " . $e->getMessage();
+                return false;
+            }
+        }
+
+        return false;
+    }
+}

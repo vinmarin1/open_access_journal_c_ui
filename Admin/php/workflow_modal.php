@@ -487,6 +487,7 @@ $userlist = get_user_list();
 </div>
 <script>
     function updateReviewFiles() {
+    $('#sloading').toggle();
     updateReviewCheckedFiles();
     updateReviewUncheckedFiles();
 }
