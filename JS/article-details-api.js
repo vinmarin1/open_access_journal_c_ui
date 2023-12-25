@@ -241,12 +241,12 @@ async function renderRecommended(data) {
 }
 
 function downloadFile(file) {
-  window.location.href = `http://monorbeta-001-site1.btempurl.com/journaldata/file/${file}`;
+  window.location.href = `https://openaccessjournalcui-production.up.railway.app/Files/${file}`;
 }
 
 async function handleDownloadLog(articleId) {
   await fetch(
-    "https://web-production-cecc.up.railway.app/articles/logs/download",
+    "https://web-production-cecc.up.railway.app/api/articles/logs/download",
     {
       method: "POST",
       body: JSON.stringify({
@@ -270,7 +270,7 @@ function createCloudConvertJob(file, format) {
     tasks: {
       "import-1": {
         operation: "import/url",
-        url: `http://monorbeta-001-site1.btempurl.com/journaldata/file/${file}`,
+        url: `https://openaccessjournalcui-production.up.railway.app/Files/submitted-article/${file}`,
         filename: file,
       },
       "task-1": {
