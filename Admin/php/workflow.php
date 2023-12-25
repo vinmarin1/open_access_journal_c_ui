@@ -537,7 +537,16 @@ table {
                                                     </div>
                                                 </div>
                                                 <?php endif; ?>
-<!-- Production -->
+
+<!-- Production -->                              <?php if ($article_data[0]->status >= 4): ?>
+                                                <div class="tab-pane fade" id="navs-top-production" role="tabpanel">
+                                                    <div class="row">
+                                                        <div class="alert alert-white" role="alert">
+                                                            <p>Not currently accepted for copyediting.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <?php else: ?>
                                                 <div class="tab-pane fade" id="navs-top-production" role="tabpanel">
                                                     <p>
                                                     Donut dragée jelly pie halvah. Danish gingerbread bonbon cookie wafer candy oat cake ice
@@ -549,6 +558,7 @@ table {
                                                     cotton candy liquorice caramels.
                                                     </p>
                                                 </div>
+                                                <?php endif; ?>
                                             </div>
                                         </div>
                                     </div>
