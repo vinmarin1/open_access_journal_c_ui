@@ -2,90 +2,44 @@
 
 require 'dbcon.php';
 
+header('Content-Type: application/json');
+
+$response = array();
+
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
-    $data = $_POST;
+    $email = $_POST['email'];
+    $fname = $_POST['fname'];
+    $mdname = $_POST['mdname'];
+    $password = $_POST['password'];
+    $lname = $_POST['lname'];
+    $privacyPolicy = $_POST['privacyPolicy'];
 
-    $errors = signup($data);
+    $sql = "INSERT INTO author (`first_name`, `last_name`, `middle_name`, `email`, `password`, `privacyAgreement`, `status`)
+    VALUES (:first_name, :middle_name, :last_name, :email, :password, :privacyAgreement, :status)";
 
-    if (empty($errors)) {
-        // Login successful
-        echo json_encode(array("success" => "Login successful"));
-    } else {
-        // Login failed, send error messages
-        echo json_encode(array("error" => implode( $errors)));
+    $params = array(
+        'first_name' => $fname,
+        'middle_name' => $lname,
+        'last_name' => $mdname,
+        'email' => $email,
+        'password' => $password,
+        'privacyAgreement' => $privacyPolicy,
+        'status' => 1
+    );
+
+    try {
+        database_run($sql, $params, true);
+        $response['success'] = true;
+        $response['message'] = 'Registration successful!';
+    } catch (Exception $e) {
+        $response['success'] = false;
+        $response['message'] = 'Error: can\'t process your registration. Please try again later.';
     }
+
+    echo json_encode($response);
+} else {
+    $response['success'] = false;
+    $response['message'] = 'Invalid request method.';
+    echo json_encode($response);
 }
-
-
-function signup($data)
-{
-    $errors = array();
-
-    // Validate the input fields in registration
-    // if (!preg_match('/^[a-zA-Z]+$/', $data['username'])) {
-    //     $errors[] = "Please enter a Username";
-    // }
-
-    if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
-        $errors[] = "Please enter a valid email";
-    }
-
-    if (strlen(trim($data['password'])) < 4) {
-        $errors[] = "Password must be at least 4 characters long";
-    }
-
-    $checkEmail = database_run("select * from author where email = :email limit 1", ['email' => $data['email']]);
-    if (is_array($checkEmail)) {
-        $errors[] = "The email already exists";
-    }
-
-
-    $checkPnumber = database_run("select * from author where phone_number = :pnumber limit 1", ['pnumber' => $data['pnumber']]);
-    if (is_array($checkPnumber)) {
-        $errors[] = "The phone number already exist";
-    }
-
-    $checkOrcID = database_run("select * from author where orc_id = :orcid limit 1", ['orcid' => $data['orcid']]);
-    if (is_array($checkOrcID)) {
-        $errors[] = "The Orc ID already exist";
-    }
-
-    // $checkOrcLink= database_run("select * from author where url_orc_id = :orcidUrl limit 1", ['orcidUrl' => $data['orcidUrl']]);
-    // if (is_array($checkOrcLink)) {
-    //     $errors[] = "The Orc Link already exist";
-    // }
-
-
-
-
-    // Save the data to the database if there are no errors
-    if (empty($errors)) {
-      
-        $arr['fname'] = $data['fname'];
-        $arr['mdname'] = $data['mdname'];
-        $arr['lname'] = $data['lname'];
-        $arr['email'] = $data['email'];
-        $arr['password'] = hash('sha256', $data['password']);
-        $arr['genSelect'] = $data['genSelect'];
-        $arr['bdate'] = $data['bdate'];
-        $arr['pnumber'] = $data['pnumber'];
-        $arr['afiliations'] = $data['afiliations'];
-        $arr['position'] = $data['position'];
-        $arr['expertise'] = $data['expertise'];
-        $arr['bio'] = $data['bio'];
-        $arr['orcid'] = $data['orcid'];
-        $arr['date_added'] = date("Y-m-d H:i:s");
-        $arr['role'] = "Author";
-        $arr['privacyAgreement'] = 1;
-        $arr['country'] = $data['country'];
-
-        $query = "INSERT INTO author (`first_name`, `middle_name`, `last_name`, `email`, `password`, `gender`, `birth_date`, `phone_number`, `afiliations`, `position`,`field_of_expertise`, `bio`, `orc_id`,`date_added`, `role`, `country`, `privacyAgreement`) VALUES 
-        (:fname, :mdname, :lname, :email, :password, :genSelect, :bdate, :pnumber, :afiliations, :position,:expertise, :bio, :orcid, :date_added, :role, :country , :privacyAgreement)";
-   
-        database_run($query, $arr);
-    }
-    return $errors;
-}
-
-
 ?>

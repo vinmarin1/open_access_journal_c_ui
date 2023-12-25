@@ -24,7 +24,7 @@
         </div>
         <div class="links-container">
           <div class="links">
-          <a href="home.php">Home</a>
+          <a href="index.php">Home</a>
           <a class="footer-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             About
           </a>

@@ -13,7 +13,7 @@ function database_run($query, $vars = array(), $isInsert = false)
     $check = $stm->execute($vars);
 
     if ($check) {
-        // If it's an INSERT statement and $isInsert is true, return the last inserted ID
+      
         if ($isInsert) {
             return $con->lastInsertId();
         }
