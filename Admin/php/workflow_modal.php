@@ -4,7 +4,10 @@ include 'function/userandroles_function.php';
 
 $aid = isset($_GET['aid']) ? $_GET['aid'] : 1;
 
-$article_files = get_article_files($aid);
+$submission_files = get_submission_files($aid);
+$review_files = get_review_files($aid);
+$copyediting_files = get_copyediting_files($aid);
+$production_files = get_production_files($aid);
 $userlist = get_user_list();
 ?>
 <!-- SUBMISSION PAGE -->
@@ -23,8 +26,8 @@ $userlist = get_user_list();
                             <label for="xfiles" class="form-label">If you are uploading a revision of an existing file, please indicate which file.</label>
                             <select id="fileDropdown" class="form-select">
                                 <option value="Null">Select File</option>
-                                <?php foreach ($article_files as $article_filesval): ?>
-                                    <option value="<?php echo $article_filesval->file_name; ?>"><?php echo $article_filesval->file_name; ?></option>
+                                <?php foreach ($submission_files as $submission_filesval): ?>
+                                    <option value="<?php echo $submission_filesval->file_name; ?>"><?php echo $submission_filesval->file_name; ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
@@ -154,24 +157,29 @@ $userlist = get_user_list();
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php if (empty($article_files)): ?>
+                                    <?php if (empty($submission_files)): ?>
+                                        <tr>
+                                            <td colspan="4" class="text-center">No Files</td>
+                                        </tr>
+                                    <?php else: ?>
+                                        <?php foreach ($submission_files as $submission_filesval): ?>
+                                            <?php
+                                                $isReviewEqualToOne = ($submission_filesval->review == 1);
+                                            ?>
                                             <tr>
-                                                <td colspan="4" class="text-center">No Files</td>
+                                                <td width="5%">
+                                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" data-article-files-id="<?php echo $submission_filesval->article_files_id; ?>" <?php echo $isReviewEqualToOne ? 'checked' : ''; ?> />
+                                                </td>
+                                                <td width="5%"><?php echo $submission_filesval->article_files_id; ?></td>
+                                                <td width="65%">
+                                                    <a href="../../Files/submitted-article/<?php echo urlencode($submission_filesval->file_name); ?>" download>
+                                                        <?php echo $submission_filesval->file_name; ?>
+                                                    </a>
+                                                </td>
+                                                <td width="25%"><?php echo $submission_filesval->file_type; ?></td>
                                             </tr>
-                                        <?php else: ?>
-                                            <?php foreach ($article_files as $article_filesval): ?>
-                                                <tr>
-                                                    <td width="5%"><input class="form-check-input" type="checkbox" value="" id="defaultCheck1" /></td>
-                                                    <td width="5%"><?php echo $article_filesval->article_files_id; ?></td>
-                                                    <td width="65%">
-                                                        <a href="../../Files/submitted-article/<?php echo urlencode($article_filesval->file_name); ?>" download>
-                                                            <?php echo $article_filesval->file_name; ?>
-                                                        </a>
-                                                    </td>
-                                                    <td width="25%"><?php echo $article_filesval->file_type; ?></td>
-                                                </tr>
-                                            <?php endforeach; ?>
-                                        <?php endif; ?>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
                                     </tbody>
                                     <tfoot>
                                         <th colspan="4" style="text-align: right;">
@@ -193,20 +201,20 @@ $userlist = get_user_list();
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php if (empty($article_files)): ?>
+                                        <?php if (empty($review_files)): ?>
                                             <tr>
                                                 <td colspan="4" class="text-center">No Files</td>
                                             </tr>
                                         <?php else: ?>
-                                            <?php foreach ($article_files as $article_filesval): ?>
+                                            <?php foreach ($review_files as $review_filesval): ?>
                                                 <tr>
-                                                    <td width="5%"><?php echo $article_filesval->article_files_id; ?></td>
+                                                    <td width="5%"><?php echo $review_filesval->article_files_id; ?></td>
                                                     <td width="70%">
-                                                        <a href="../../Files/submitted-article/<?php echo urlencode($article_filesval->file_name); ?>" download>
-                                                            <?php echo $article_filesval->file_name; ?>
+                                                        <a href="../../Files/submitted-article/<?php echo urlencode($review_filesval->file_name); ?>" download>
+                                                            <?php echo $review_filesval->file_name; ?>
                                                         </a>
                                                     </td>
-                                                    <td width="25%"><?php echo $article_filesval->file_type; ?></td>
+                                                    <td width="25%"><?php echo $review_filesval->file_type; ?></td>
                                                 </tr>
                                             <?php endforeach; ?>
                                         <?php endif; ?>
@@ -222,7 +230,7 @@ $userlist = get_user_list();
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="addRecord()">Save changes</button>
+                    <button type="button" class="btn btn-primary" onclick="updateReviewFiles()">Save changes</button>
                 </div>
             </div>
         </div>
@@ -253,21 +261,21 @@ $userlist = get_user_list();
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php if (empty($article_files)): ?>
+                                        <?php if (empty($submission_files)): ?>
                                             <tr>
                                                 <td colspan="4" class="text-center">No Files</td>
                                             </tr>
                                         <?php else: ?>
-                                            <?php foreach ($article_files as $article_filesval): ?>
+                                            <?php foreach ($submission_files as $submission_filesval): ?>
                                                 <tr>
                                                     <td width="5%"><input class="form-check-input" type="checkbox" value="" id="defaultCheck1" /></td>
-                                                    <td width="5%"><?php echo $article_filesval->article_files_id; ?></td>
+                                                    <td width="5%"><?php echo $submission_filesval->article_files_id; ?></td>
                                                     <td width="65%">
-                                                        <a href="../../Files/submitted-article/<?php echo urlencode($article_filesval->file_name); ?>" download>
-                                                            <?php echo $article_filesval->file_name; ?>
+                                                        <a href="../../Files/submitted-article/<?php echo urlencode($submission_filesval->file_name); ?>" download>
+                                                            <?php echo $submission_filesval->file_name; ?>
                                                         </a>
                                                     </td>
-                                                    <td width="25%"><?php echo $article_filesval->file_type; ?></td>
+                                                    <td width="25%"><?php echo $submission_filesval->file_type; ?></td>
                                                 </tr>
                                             <?php endforeach; ?>
                                         <?php endif; ?>
@@ -293,21 +301,21 @@ $userlist = get_user_list();
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php if (empty($article_files)): ?>
+                                        <?php if (empty($review_files)): ?>
                                             <tr>
                                                 <td colspan="4" class="text-center">No Files</td>
                                             </tr>
                                         <?php else: ?>
-                                            <?php foreach ($article_files as $article_filesval): ?>
+                                            <?php foreach ($review_files as $review_filesval): ?>
                                                 <tr>
                                                     <td width="5%"><input class="form-check-input" type="checkbox" value="" id="defaultCheck1" /></td>
-                                                    <td width="5%"><?php echo $article_filesval->article_files_id; ?></td>
+                                                    <td width="5%"><?php echo $review_filesval->article_files_id; ?></td>
                                                     <td width="65%">
-                                                        <a href="../../Files/submitted-article/<?php echo urlencode($article_filesval->file_name); ?>" download>
-                                                            <?php echo $article_filesval->file_name; ?>
+                                                        <a href="../../Files/submitted-article/<?php echo urlencode($review_filesval->file_name); ?>" download>
+                                                            <?php echo $review_filesval->file_name; ?>
                                                         </a>
                                                     </td>
-                                                    <td width="25%"><?php echo $article_filesval->file_type; ?></td>
+                                                    <td width="25%"><?php echo $review_filesval->file_type; ?></td>
                                                 </tr>
                                             <?php endforeach; ?>
                                         <?php endif; ?>
@@ -332,20 +340,20 @@ $userlist = get_user_list();
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php if (empty($article_files)): ?>
+                                        <?php if (empty($copyediting_files)): ?>
                                             <tr>
                                                 <td colspan="4" class="text-center">No Files</td>
                                             </tr>
                                         <?php else: ?>
-                                            <?php foreach ($article_files as $article_filesval): ?>
+                                            <?php foreach ($copyediting_files as $copyediting_filesval): ?>
                                                 <tr>
-                                                    <td width="5%"><?php echo $article_filesval->article_files_id; ?></td>
+                                                    <td width="5%"><?php echo $copyediting_filesval->article_files_id; ?></td>
                                                     <td width="70%">
-                                                        <a href="../../Files/submitted-article/<?php echo urlencode($article_filesval->file_name); ?>" download>
-                                                            <?php echo $article_filesval->file_name; ?>
+                                                        <a href="../../Files/submitted-article/<?php echo urlencode($copyediting_filesval->file_name); ?>" download>
+                                                            <?php echo $copyediting_filesval->file_name; ?>
                                                         </a>
                                                     </td>
-                                                    <td width="25%"><?php echo $article_filesval->file_type; ?></td>
+                                                    <td width="25%"><?php echo $copyediting_filesval->file_type; ?></td>
                                                 </tr>
                                             <?php endforeach; ?>
                                         <?php endif; ?>
@@ -477,4 +485,76 @@ $userlist = get_user_list();
         </div>
     </form>
 </div>
+<script>
+    function updateReviewFiles() {
+    updateReviewCheckedFiles();
+    updateReviewUncheckedFiles();
+}
+
+function updateReviewCheckedFiles() {
+    var checkedCheckboxes = $('.form-check-input:checked');
+
+    var checkedData = [];
+    checkedCheckboxes.each(function () {
+        var articleFilesId = $(this).data('article-files-id');
+        checkedData.push({
+            articleFilesId: articleFilesId
+        });
+    });
+
+    var jsonCheckedData = JSON.stringify(checkedData);
+
+    console.log('Checked Data:', checkedData);
+
+    $.ajax({
+        type: 'POST',
+        url: '../php/function/wf_modal_function.php',
+        data: {
+            checkedData: jsonCheckedData,
+            action: 'updatereviewcheckedfile'
+        },
+        success: function(response) {
+            console.log('Checked checkboxes data sent successfully.');
+            console.log(response);
+            location.reload();
+        },
+        error: function(error) {
+            console.error('Error sending checked checkboxes data:', error);
+        }
+    });
+}
+
+function updateReviewUncheckedFiles() {
+    var uncheckedCheckboxes = $('.form-check-input:not(:checked)');
+
+    var uncheckedData = [];
+    uncheckedCheckboxes.each(function () {
+        var articleFilesId = $(this).data('article-files-id');
+        uncheckedData.push({
+            articleFilesId: articleFilesId
+        });
+    });
+
+    var jsonUncheckedData = JSON.stringify(uncheckedData);
+
+    console.log('Unchecked Data:', uncheckedData);
+
+    $.ajax({
+        type: 'POST',
+        url: '../php/function/wf_modal_function.php',
+        data: {
+            uncheckedData: jsonUncheckedData,
+            action: 'updatereviewuncheckedfile'
+        },
+        success: function(response) {
+            console.log('Unchecked checkboxes data sent successfully.');
+            console.log(response);
+            location.reload();
+        },
+        error: function(error) {
+            console.error('Error sending unchecked checkboxes data:', error);
+        }
+    });
+}
+</script>
 

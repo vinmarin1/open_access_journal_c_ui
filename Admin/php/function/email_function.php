@@ -47,7 +47,6 @@ if (!function_exists('get_email_content')) {
        $mail = new PHPMailer(true);
 
         try {
-            // SMTP configuration
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com';
             $mail->SMTPAuth = true;
@@ -56,27 +55,23 @@ if (!function_exists('get_email_content')) {
             $mail->SMTPSecure = 'ssl';
             $mail->Port = 465;
 
-            // Get recipient emails from the hidden field
             $recipients = explode(', ', $_POST['hiddenEmail']);
 
-            // Email content
             $mail->setFrom('qcujournal@gmail.com', 'QCU Journal');
 
-            // Add multiple recipients
             foreach ($recipients as $recipient) {
                 $mail->addAddress($recipient);
             }
 
             $mail->Subject = $_POST['subject'];
 
-            // You can use either plain text or HTML for the email body
             $mail->isHTML(true);
 
-            // Get the Quill content from the POST data
+            $body = '';
+
             $quillContent = json_decode($_POST['quillContentOne'])->ops;
 
             foreach ($quillContent as $content) {
-                // Append the Quill content to the email body
                 $body .= nl2br($content->insert);
             }
 
@@ -84,13 +79,14 @@ if (!function_exists('get_email_content')) {
 
             $id = $_POST['id'];
             $article_id = $_POST['article_id'];
+            $articleFilesId = $_POST['checkedData'];
 
-            // Send email
             if ($mail->send()) {
                 echo "Email sent successfully.";
                 if ($id == 1) {
                     updateArticleStatus($article_id, 4);
-                    echo "<script>alert('Send to review successfully.');</script>";
+                    updateReviewFiles(1, $articleFilesId);
+                    echo "<script>alert('Send to review successfully.');</script>"; 
                 } elseif ($id == 2) {
                     updateArticleStatus($article_id, 8);
                     echo "<script>alert('Send to review successfully.');</script>";
@@ -115,9 +111,54 @@ if (!function_exists('get_email_content')) {
         $check = $stm->execute([$status, $article_id]);
     
         if ($check !== false) {
-            echo "<script>alert('Journal data updated successfully');</script>";
+            echo "<script>alert('Article Status updated successfully');</script>";
         } else {
-            echo "<script>alert('Failed to update journal data');</script>";
+            echo "<script>alert('Failed to update status data');</script>";
+        }
+    }
+    function updateReviewFiles($status, $articleFilesIds) {
+    
+        if (!is_array($articleFilesIds)) {
+            $articleFilesIds = array($articleFilesIds);
+        }
+    
+        $decodedIds = json_decode($articleFilesIds[0], true);
+        $articleFilesIds = array_column($decodedIds, 'articleFilesId');
+    
+        // Create an array of named parameters for binding
+        $params = array(':status' => $status);
+        foreach ($articleFilesIds as $key => $articleFilesId) {
+            $paramName = ":id$key";
+            $params[$paramName] = $articleFilesId;
+            $placeholders[] = $paramName;
+        }
+    
+        $placeholders = implode(',', $placeholders);
+    
+        $query = "UPDATE article_files
+                  SET review = :status
+                  WHERE article_files_id IN ($placeholders)";
+    
+        $pdo = connect_to_database();
+    
+        $pdo->beginTransaction();
+    
+        $stm = $pdo->prepare($query);
+    
+        // Bind the parameters
+        foreach ($params as $paramName => &$paramValue) {
+            $stm->bindParam($paramName, $paramValue, PDO::PARAM_INT);
+        }
+    
+        $check = $stm->execute();
+    
+        if ($check !== false) {
+            echo "Review Files updated successfully";
+            $pdo->commit();
+        } else {
+            echo "Failed to update file review data";
+            print_r($stm->errorInfo());
+            $pdo->rollBack();
         }
     }
     

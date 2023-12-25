@@ -8,7 +8,7 @@ $emc = isset($_GET['emc']) ? $_GET['emc'] : 1;
 $article_data = get_article_data($aid);
 $article_contributor = get_article_contributor($aid);
 $email_content = get_email_content($emc);
-$article_files = get_article_files($aid);
+$submission_files = get_submission_files($aid);
 ?>
 
 <!DOCTYPE html>
@@ -93,24 +93,28 @@ $article_files = get_article_files($aid);
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <?php if (empty($article_files)): ?>
+                                                        <?php if (empty($submission_files)): ?>
+                                                            <tr>
+                                                                <td colspan="4" class="text-center">No Files</td>
+                                                            </tr>
+                                                        <?php else: ?>
+                                                            <?php foreach ($submission_files as $submission_filesval): ?>
+                                                                <?php
+                                                                // Check if the file_type is "file with no author"
+                                                                $isChecked = ($submission_filesval->file_type === 'file with no author') ? 'checked' : '';
+                                                                ?>
                                                                 <tr>
-                                                                    <td colspan="4" class="text-center">No Files</td>
+                                                                    <td width="5%"><input class="form-check-input" type="checkbox" value="" id="defaultCheck1" data-article-files-id="<?php echo $submission_filesval->article_files_id; ?>" <?php echo $isChecked; ?> /></td>
+                                                                    <td width="5%"><?php echo $submission_filesval->article_files_id; ?></td>
+                                                                    <td width="65%">
+                                                                        <a href="../../Files/submitted-article/<?php echo urlencode($submission_filesval->file_name); ?>" download>
+                                                                            <?php echo $submission_filesval->file_name; ?>
+                                                                        </a>
+                                                                    </td>
+                                                                    <td width="25%"><?php echo $submission_filesval->file_type; ?></td>
                                                                 </tr>
-                                                            <?php else: ?>
-                                                                <?php foreach ($article_files as $article_filesval): ?>
-                                                                    <tr>
-                                                                        <td width="5%"><input class="form-check-input" type="checkbox" value="" id="defaultCheck1" /></td>
-                                                                        <td width="5%"><?php echo $article_filesval->article_files_id; ?></td>
-                                                                        <td width="65%">
-                                                                            <a href="../../Files/submitted-article/<?php echo urlencode($article_filesval->file_name); ?>" download>
-                                                                                <?php echo $article_filesval->file_name; ?>
-                                                                            </a>
-                                                                        </td>
-                                                                        <td width="25%"><?php echo $article_filesval->file_type; ?></td>
-                                                                    </tr>
-                                                                <?php endforeach; ?>
-                                                            <?php endif; ?>
+                                                            <?php endforeach; ?>
+                                                        <?php endif; ?>
                                                         </tbody>
                                                         <tfoot>
                                                             <th colspan="4" style="text-align: right;">
@@ -156,7 +160,7 @@ $article_files = get_article_files($aid);
 
         if (emailContent.trim() !== '') {
             var delta = JSON.parse(emailContent);
-            var titleDelta = { insert: title + '\n\n' };
+            var titleDelta = { insert: ' "' + title + '"\n' };
             var decisionIndex = delta.ops.findIndex(op => op.insert.includes(decisionText));
 
             delta.ops.splice(decisionIndex + 1, 0, titleDelta);
@@ -164,7 +168,7 @@ $article_files = get_article_files($aid);
             quill.setContents(delta); 
         } else {
 
-            quill.setContents([{ insert: title + '\n\n' }]);
+            quill.setContents([{ insert: title + ' \n\n' }]);
         }
 
         var form = document.getElementById('quillForm');
@@ -184,9 +188,19 @@ $article_files = get_article_files($aid);
         var subject = $('#subject').val();
         var article_id = $('#article_id').val();
         var id = $('#id').val();
-
         var title = <?php echo json_encode($article_data[0]->title); ?>;
 
+        var checkedCheckboxes = $('.form-check-input:checked');
+
+        var checkedData = [];
+        checkedCheckboxes.each(function () {
+            var articleFilesId = $(this).data('article-files-id');
+            checkedData.push({
+                articleFilesId: articleFilesId
+            });
+        });
+
+        var jsonCheckedData = JSON.stringify(checkedData);
         var deltaContent = quillInstance.getContents();
         var jsonContent = JSON.stringify(deltaContent);
 
@@ -200,19 +214,20 @@ $article_files = get_article_files($aid);
                 article_id: article_id,
                 id: id,
                 title: title,
+                checkedData: jsonCheckedData,
                 action: 'email'
             },
             success: function (response) {
                 $('#sloading').toggle();
                 console.log(response);
                 alert('Email sent to author successfully.');
+                window.location.href = '../php/workflow.php?aid=<?php echo $article_data[0]->article_id; ?>';
             },
             error: function (error) {
                 console.error(error);
             }
         });
     }
-
     </script>
 </body>
 </html>

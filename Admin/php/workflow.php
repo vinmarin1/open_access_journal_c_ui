@@ -7,7 +7,10 @@ $aid = isset($_GET['aid']) ? $_GET['aid'] : 1;
 $emc = 3;
 
 $article_data = get_article_data($aid);
-$article_files = get_article_files($aid);
+$submission_files = get_submission_files($aid);
+$review_files = get_review_files($aid);
+$copyediting_files = get_copyediting_files($aid);
+$production_files = get_production_files($aid);
 $article_discussion = get_article_discussion($aid);
 $article_participant = get_article_participant($aid);
 $reviewer_email = get_reviewer_content($emc);
@@ -60,31 +63,31 @@ table {
                     <div class="nav-align-top mb-4">
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
-                                <button type="button" id="addspadding" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-home" aria-controls="navs-top-home" aria-selected="true"> Workflow</button>
+                                <button type="button" id="addspadding" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-workflow" aria-controls="navs-top-workflow" aria-selected="true"> Workflow</button>
                             </li>
                             <li class="nav-item">
-                                <button type="button" id="addspadding" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-profile" aria-controls="navs-top-profile" aria-selected="false"> Publication</button>
+                                <button type="button" id="addspadding" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-publication" aria-controls="navs-top-publication" aria-selected="false"> Publication</button>
                             </li>
                         </ul>
                         <div class="tab-content">
-                            <div class="tab-pane fade show active" id="navs-top-home" role="tabpanel">
+                            <div class="tab-pane fade show active" id="navs-top-workflow" role="tabpanel">
                                 <div class="row">
                                     <div class="col-xl-12" id="nopadding">
                                         <div class="nav-align-top mb-4">
                                         <ul class="nav nav-tabs" id="myTabs">
-    <li class="nav-item">
-        <button type="button" class="nav-link active" id="navs-top-submission-tab" data-bs-toggle="tab" data-bs-target="#navs-top-submission" aria-controls="navs-top-submission" aria-selected="true">Submission</button>
-    </li>
-    <li class="nav-item">
-        <button type="button" class="nav-link" id="navs-top-review-tab" data-bs-toggle="tab" data-bs-target="#navs-top-review" aria-controls="navs-top-review" aria-selected="false">Review</button>
-    </li>
-    <li class="nav-item">
-        <button type="button" class="nav-link" id="navs-top-copyediting-tab" data-bs-toggle="tab" data-bs-target="#navs-top-copyediting" aria-controls="navs-top-copyediting" aria-selected="false">Copyediting</button>
-    </li>
-    <li class="nav-item">
-        <button type="button" class="nav-link" id="navs-top-production-tab" data-bs-toggle="tab" data-bs-target="#navs-top-production" aria-controls="navs-top-production" aria-selected="false">Production</button>
-    </li>
-</ul>
+                                            <li class="nav-item">
+                                                <button type="button" class="nav-link active" id="navs-top-submission-tab" data-bs-toggle="tab" data-bs-target="#navs-top-submission" aria-controls="navs-top-submission" aria-selected="true">Submission</button>
+                                            </li>
+                                            <li class="nav-item">
+                                                <button type="button" class="nav-link" id="navs-top-review-tab" data-bs-toggle="tab" data-bs-target="#navs-top-review" aria-controls="navs-top-review" aria-selected="false">Review</button>
+                                            </li>
+                                            <li class="nav-item">
+                                                <button type="button" class="nav-link" id="navs-top-copyediting-tab" data-bs-toggle="tab" data-bs-target="#navs-top-copyediting" aria-controls="navs-top-copyediting" aria-selected="false">Copyediting</button>
+                                            </li>
+                                            <li class="nav-item">
+                                                <button type="button" class="nav-link" id="navs-top-production-tab" data-bs-toggle="tab" data-bs-target="#navs-top-production" aria-controls="navs-top-production" aria-selected="false">Production</button>
+                                            </li>
+                                        </ul>
                                             <div class="tab-content">
                                                 <div class="tab-pane fade show active" id="navs-top-submission" role="tabpanel">
                                                     <div class="row">
@@ -100,20 +103,20 @@ table {
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                    <?php if (empty($article_files)): ?>
+                                                                    <?php if (empty($submission_files)): ?>
                                                                         <tr>
                                                                             <td colspan="4" class="text-center">No Files</td>
                                                                         </tr>
                                                                     <?php else: ?>
-                                                                        <?php foreach ($article_files as $article_filesval): ?>
+                                                                        <?php foreach ($submission_files as $submission_filesval): ?>
                                                                             <tr>
-                                                                                <td width="5%"><?php echo $article_filesval->article_files_id; ?></td>
+                                                                                <td width="5%"><?php echo $submission_filesval->article_files_id; ?></td>
                                                                                 <td width="65%">
-                                                                                    <a href="../../Files/submitted-article/<?php echo urlencode($article_filesval->file_name); ?>" download>
-                                                                                        <?php echo $article_filesval->file_name; ?>
+                                                                                    <a href="../../Files/submitted-article/<?php echo urlencode($submission_filesval->file_name); ?>" download>
+                                                                                        <?php echo $submission_filesval->file_name; ?>
                                                                                     </a>
                                                                                 </td>
-                                                                                <td width="25%"><?php echo $article_filesval->file_type; ?></td>
+                                                                                <td width="25%"><?php echo $submission_filesval->file_type; ?></td>
                                                                                 <td width="5%"></td>
                                                                             </tr>
                                                                         <?php endforeach; ?>
@@ -228,20 +231,20 @@ table {
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                    <?php if (empty($article_files)): ?>
+                                                                    <?php if (empty($review_files)): ?>
                                                                         <tr>
                                                                             <td colspan="4" class="text-center">No Files</td>
                                                                         </tr>
                                                                     <?php else: ?>
-                                                                        <?php foreach ($article_files as $article_filesval): ?>
+                                                                        <?php foreach ($review_files as $review_filesval): ?>
                                                                             <tr>
-                                                                                <td width="5%"><?php echo $article_filesval->article_files_id; ?></td>
+                                                                                <td width="5%"><?php echo $review_filesval->article_files_id; ?></td>
                                                                                 <td width="65%">
-                                                                                    <a href="../../Files/submitted-article/<?php echo urlencode($article_filesval->file_name); ?>" download>
-                                                                                        <?php echo $article_filesval->file_name; ?>
+                                                                                    <a href="../../Files/submitted-article/<?php echo urlencode($review_filesval->file_name); ?>" download>
+                                                                                        <?php echo $review_filesval->file_name; ?>
                                                                                     </a>
                                                                                 </td>
-                                                                                <td width="25%"><?php echo $article_filesval->file_type; ?></td>
+                                                                                <td width="25%"><?php echo $review_filesval->file_type; ?></td>
                                                                                 <td width="5%"></td>
                                                                             </tr>
                                                                         <?php endforeach; ?>
@@ -436,20 +439,20 @@ table {
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                    <?php if (empty($article_files)): ?>
+                                                                    <?php if (empty($copyediting_files)): ?>
                                                                         <tr>
                                                                             <td colspan="4" class="text-center">No Files</td>
                                                                         </tr>
                                                                     <?php else: ?>
-                                                                        <?php foreach ($article_files as $article_filesval): ?>
+                                                                        <?php foreach ($copyediting_files as $copyediting_filesval): ?>
                                                                             <tr>
-                                                                                <td width="5%"><?php echo $article_filesval->article_files_id; ?></td>
+                                                                                <td width="5%"><?php echo $copyediting_filesval->article_files_id; ?></td>
                                                                                 <td width="65%">
-                                                                                    <a href="../../Files/submitted-article/<?php echo urlencode($article_filesval->file_name); ?>" download>
-                                                                                        <?php echo $article_filesval->file_name; ?>
+                                                                                    <a href="../../Files/submitted-article/<?php echo urlencode($copyediting_filesval->file_name); ?>" download>
+                                                                                        <?php echo $copyediting_filesval->file_name; ?>
                                                                                     </a>
                                                                                 </td>
-                                                                                <td width="25%"><?php echo $article_filesval->file_type; ?></td>
+                                                                                <td width="25%"><?php echo $copyediting_filesval->file_type; ?></td>
                                                                                 <td width="5%"></td>
                                                                             </tr>
                                                                         <?php endforeach; ?>
@@ -552,7 +555,7 @@ table {
                                 </div>
                             </div>
 
-                            <div class="tab-pane fade" id="navs-top-profile" role="tabpanel">
+                            <div class="tab-pane fade" id="navs-top-production" role="tabpanel">
                                 <div class="container" id="nopadding">
                                     <div class="row">
                                         <!-- Left-side navigation -->
