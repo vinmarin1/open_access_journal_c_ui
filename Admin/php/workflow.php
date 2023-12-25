@@ -555,7 +555,7 @@ table {
                                 </div>
                             </div>
 
-                            <div class="tab-pane fade" id="navs-top-production" role="tabpanel">
+                            <div class="tab-pane fade" id="navs-top-publication" role="tabpanel">
                                 <div class="container" id="nopadding">
                                     <div class="row">
                                         <!-- Left-side navigation -->
