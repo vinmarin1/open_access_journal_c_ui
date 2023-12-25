@@ -38,6 +38,9 @@ if (!function_exists('get_email_content')) {
         case 'email':
             sendEmail();
             break;
+        case 'assign_reviewer':
+            sendEmailAssignReviewer();
+            break;
     }
 
     function sendEmail() {
@@ -111,8 +114,6 @@ if (!function_exists('get_email_content')) {
         $stm = $pdo->prepare($query);   
         $check = $stm->execute([$status, $article_id]);
     
-        // No need to set header here, as you are already echoing HTML
-    
         if ($check !== false) {
             echo "<script>alert('Journal data updated successfully');</script>";
         } else {
@@ -139,8 +140,71 @@ if (!function_exists('get_email_content')) {
                     return false;
                 }
             }
-    
             return false;
         }
     }
+
+    function sendEmailAssignReviewer() {
+        $mail = new PHPMailer(true);
+ 
+         try {
+             // SMTP configuration
+             $mail->isSMTP();
+             $mail->Host = 'smtp.gmail.com';
+             $mail->SMTPAuth = true;
+             $mail->Username = 'qcujournal@gmail.com';
+             $mail->Password = 'txtprxrytyqmloth';
+             $mail->SMTPSecure = 'ssl';
+             $mail->Port = 465;
+
+             $mail->addAddress($_POST['revieweremail']);
+             $mail->setFrom('qcujournal@gmail.com', 'QCU Journal');
+             $mail->Subject = $_POST['subject'];
+             $mail->isHTML(true);
+             
+             $quillContent = json_decode($_POST['quillContentOne'])->ops;
+             
+             $body = '';
+             
+             foreach ($quillContent as $content) {
+                 if (isset($content->insert)) {
+                     $body .= nl2br($content->insert);
+                 }
+             }
+             
+             $mail->Body = $body;
+ 
+             $reviewerid = $_POST['reviewerid'];
+             $articleid = $_POST['articleid'];
+ 
+             if ($mail->send()) {
+                 echo "Email sent to reviewer successfully.";
+                 assignReviewer($articleid, $reviewerid);
+             } else {
+                 echo 'Error sending email: ' . $mail->ErrorInfo;
+             }
+         } catch (Exception $e) {
+             echo 'Mailer Error: ' . $mail->ErrorInfo;
+         }
+     }
+
+     function assignReviewer($articleid, $reviewerid) {
+  
+        $query = "INSERT INTO reviewer_assigned (article_id, author_id) VALUES (?, ?)";
+        
+        $result = execute_query($query, [$articleid, $reviewerid], true);
+        
+        if ($result !== false) {
+            echo json_encode(['status' => true, 'message' => 'Record added successfully']);
+        } else {
+            // $errorInfo = get_db_error_info();
+            // echo json_encode(['status' => false, 'message' => 'Failed to add record', 'error' => $errorInfo]);
+            echo json_encode(['status' => false, 'message' => 'Failed to add record', 'error']);
+        }
+    }
+    
+
+ 
+
+     
 ?>
