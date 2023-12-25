@@ -1,0 +1,287 @@
+.main-content{
+    width: 100%;
+    height: auto;
+    margin-bottom: 50px;
+}
+.content-over {
+    position: relative;
+    width: 100%;
+    /* height: 10em; */
+    max-height:20em;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    /* padding-top: 70px; */
+    padding: 4em 8%;
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.content-over::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #F9F9F9;
+}
+
+.content-over p, .content-over h3 {
+    color: #0858a4; 
+    position: relative;
+    z-index: 1; 
+    display: block;
+}
+
+.content-over h3{
+    font-weight: 500 !important;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 20px;
+}
+
+
+
+.cover-content{
+    width: 80%;
+}
+
+.abstract{
+    padding-top: 40px;
+    display: inline-block;
+    width: 60%;
+    margin-bottom: 50px;
+}
+
+.abstract p{
+    text-align: justify;
+    margin-top: 10px;
+}
+
+.abstract h4{
+    font-family: Arial, Helvetica, sans-serif;
+    color:#0858a4; 
+}
+
+
+.status p {
+    display: inline-block;
+    border: 1px solid gray; 
+    border-radius: 50px;
+    padding: 5px;
+    font-size: small;
+    margin-top: 20px;
+}
+
+
+
+.articles-info{
+    box-sizing: border-box;
+    display:inline-block; 
+    width: 20%;
+    margin-left: 80px;
+    /* position: absolute; */
+    }
+
+.articles-info p{
+    color:#0858a4; 
+    margin: 0;
+}
+
+.views{
+    display: inline-block;
+}
+
+.downloads{
+    display: inline-block;
+    padding-left: 100px;
+}
+
+.logs-date, .date{
+    display:inline-flex;
+    flex-direction: column;
+    width: 40%;
+}
+
+.logs-date h4{
+    margin-top: 30px;
+}
+
+.logs-date p{
+    color: gray;
+}
+
+.logs-date a{
+    color: #0858a4;
+    text-decoration: none;
+}
+
+.keywords .btn{
+    display:flex ;
+    flex-direction: row;
+}
+
+.keyword1 a{
+    display: inline-block;
+    border: 1px solid #0858a4;
+    color:#0858a4;
+    border-radius: 50px;
+    padding: 5px;
+    font-size: small;
+    text-decoration: none;
+    margin: 3px;
+}
+
+
+.step {
+    display: none;
+}
+
+.step.active {
+    display: block;
+}
+
+
+
+.rev-guide h4{
+    font-family: Arial, Helvetica, sans-serif;
+    color:#0858a4; 
+    font-weight: bold;
+}
+
+.rev-guide ol {
+    list-style: none;
+    counter-reset: my-counter;
+    padding-bottom: 30px;
+}
+
+.rev-guide li {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+    position: relative;
+    padding-left: 1.7em;
+}
+
+.rev-guide li::before {
+    content: counter(my-counter) ".";
+    counter-increment: my-counter;
+    position: absolute;
+    left: 0.10em;
+
+}
+
+
+
+.guidelines{
+    padding-bottom: 90px;
+}
+
+.guidelines p{
+    text-align: justify; 
+    width: 94%; 
+    margin: 0 auto; 
+}
+
+.guidelines p:not(:last-child) {
+    margin-bottom: 20px;
+}
+
+
+#checkBox {
+    transform: scale(1.3); 
+}
+
+
+.contents{
+    border: gray 1px solid;
+    margin-top: -10px;
+    margin-bottom: 20px;
+}
+
+.firstContent, .decisions{
+    margin-left: 40px;
+}   
+
+
+.decisions h5,
+.firstContent h4,
+.firstContent h5, 
+.comments h5,
+.comments h4{
+    font-family: Arial, Helvetica, sans-serif;
+    color: #0858a4; 
+}
+
+
+.decisions h5::after,
+.firstContent h4::after,
+.firstContent h5::after,
+.comments h5::after{
+    content: "*";
+    color: red; /* Style the asterisk */
+}
+
+.firstContent label, .decisions label{
+    font-size: small;
+    color: gray;
+}
+
+.comments textarea{
+    resize: none;
+}
+
+
+
+.btn{
+    margin-left: 10px;
+}
+
+.btn button , .btn-action button, .btn-final button{
+    display: block;
+    color: white; 
+    position: relative;
+    z-index: 1;
+    background-color: #0858a4;
+    border-radius: 20px;
+    margin-top: 20px;
+    width: 340px;
+}
+
+.btn-action button{
+    width: 140px;
+    margin-bottom: 20px;
+}
+
+.btn button:hover , .btn-final button:hover{
+    color: white; 
+    position: relative;
+    z-index: 1;
+    background-color: #0858a4;
+    border-radius: 20px;
+    margin-top: 20px;
+    opacity: 0.8;
+}
+
+.btn-final button:hover{
+    margin-bottom: 20px;
+}
+
+
+#btnReject , #btnCancel{
+    border-color: #0858a4;
+    color:#0858a4;
+    background-color: transparent;
+}
+
+
+.btn-action, .btn-final{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.btn-final button{
+    margin-bottom: 20px;
+    width: 200px;
+    margin-right: 10px;
+}

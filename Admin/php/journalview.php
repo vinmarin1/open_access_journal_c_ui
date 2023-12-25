@@ -1,4 +1,5 @@
 <?php
+include 'function/redirect.php';
 include 'function/submission_functions.php';
 
 $journallist = get_journal_list();
@@ -18,10 +19,8 @@ $journallist = get_journal_list();
 
             <div class="row mb-5 mt-4">
             <?php
-                $journals = get_journal_list();
-
-                if ($journals) {
-                    foreach ($journals as $journal) {
+                if ($journallist) {
+                    foreach ($journallist as $journallistval) {
                         ?>
                         <div class="col-md-6">
                             <div class="card mb-3">
@@ -31,10 +30,10 @@ $journallist = get_journal_list();
                                     </div>
                                     <div class="col-md-8">
                                         <div class="card-body">
-                                            <h5 class="card-title"><?php echo $journal->journal; ?></h5>
-                                            <p class="card-text"><?php echo $journal->description; ?></p>
-                                            <p class="card-text"><small class="text-muted">Last updated <?php echo $journal->last_updated; ?></small></p>
-                                            <a href="javascript:void(0);" onclick="viewSubmissionList(<?php echo $journal->journal_id; ?>)" class="btn btn-primary">View</a>
+                                            <h5 class="card-title"><?php echo $journallistval->journal; ?></h5>
+                                            <p class="card-text"><?php echo $journallistval->description; ?></p>
+                                            <p class="card-text"><small class="text-muted">Last updated <?php echo $journallistval->last_updated; ?></small></p>
+                                            <a href="javascript:void(0);" onclick="viewSubmissionList(<?php echo $journallistval->journal_id; ?>)" class="btn btn-primary">View</a>
                                         </div>
                                     </div>
                                 </div>

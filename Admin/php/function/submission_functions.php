@@ -57,7 +57,7 @@ if (!function_exists('get_contributor_list')) {
 
         if ($pdo) {
             try {
-                $query = "SELECT * FROM contributor";
+                $query = "SELECT * FROM contributors";
                 $stmt = $pdo->prepare($query);
                 $stmt->execute();
 

@@ -1,4 +1,5 @@
 <?php
+include 'function/redirect.php';
 include 'function/userandroles_function.php';
 
 $userlist = get_user_list();
@@ -174,12 +175,12 @@ $rolelist = get_role_list();
     }
 
     function archiveUser(authorId, firstName, lastName) {
-        $('#sloading').toggle();
         $('#archiveModal').modal('show');
         $('#archiveModalTitle').text('Archive User');
         $('#userInfo').html('<strong>Name:</strong> ' + lastName + ', ' + firstName + '<br><strong>ID:</strong> ' + authorId);
 
         $('#archiveModalSave').off().on('click', function () {
+            $('#sloading').toggle();
             $.ajax({
                 url: "../php/function/userandroles_function.php",
                 method: "POST",
@@ -382,12 +383,12 @@ $rolelist = get_role_list();
     }
 
     function archiveRole(roleId, role, role_name) {
-        $('#sloading').toggle();
         $('#archiveRoleModal').modal('show');
         $('#archiveModalTitle').text('Archive Role');
         $('#roleInfo').html('<strong>Role:</strong> ' + role + ' <br><strong>Role_Name:</strong> ' + role_name + ' <br><strong>ID:</strong> ' + roleId);
 
         $('#archiveRoleModalSave').off().on('click', function () {
+            $('#sloading').toggle();
             $.ajax({
                 url: "../php/function/userandroles_function.php",
                 method: "POST",

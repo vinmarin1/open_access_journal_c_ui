@@ -1,10 +1,8 @@
 <?php
-include 'function/redirect.php';
 include 'function/submission_functions.php';
 
 $journal = get_journal_list();
 ?>
-
 <!DOCTYPE html>
 
 <html
@@ -20,7 +18,7 @@ $journal = get_journal_list();
       name="viewport"
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Dashboard - Analytics | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
+    <title>ADMIN | QCU OPEN ACCESS JOURNAL</title>
 
     <meta name="description" content="" />
 
@@ -215,7 +213,7 @@ $journal = get_journal_list();
                     <li>
                       <a class="dropdown-item" href="#">
                         <i class="bx bx-user me-2"></i>
-                        <span class="align-middle" onclick="location.href='../../php/author-dashboard.php'">User Dashboard</span>
+                        <span class="align-middle" onclick="location.href='../../PHP/author-dashboard.php'">User Dashboard</span>
                       </a>
                     </li>
                     <li>
@@ -236,7 +234,7 @@ $journal = get_journal_list();
                     <li>
                       <a class="dropdown-item" href="javascript:void(0);">
                         <i class="bx bx-power-off me-2"></i>
-                          <span class="align-middle logout-link" onclick="location.href='../../php/logout.php'">Log Out</span>
+                          <span class="align-middle logout-link" onclick="location.href='../../PHP/logout.php'">Log Out</span>
                       </a>
                     </li>
                   </ul>
