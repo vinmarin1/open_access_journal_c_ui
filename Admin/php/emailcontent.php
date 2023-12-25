@@ -81,7 +81,7 @@ $review_files = get_review_files($aid);
                                             <div id="quill-emailcontent" style="height: 350px;"></div>
                                         </div>
                                         <?php
-                                        if ($emc == 2):
+                                        if ($emc == 1):
                                         ?>
                                             <h5 class="card-header">Files</h5>
                                             <p>Select files you want to add in review round.</p>
@@ -101,7 +101,6 @@ $review_files = get_review_files($aid);
                                                         <?php else: ?>
                                                             <?php foreach ($submission_files as $submission_filesval): ?>
                                                                 <?php
-                                                                // Check if the file_type is "file with no author"
                                                                 $isChecked = ($submission_filesval->file_type === 'file with no author') ? 'checked' : '';
                                                                 ?>
                                                                 <tr>
