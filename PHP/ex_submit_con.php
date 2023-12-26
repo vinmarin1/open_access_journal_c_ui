@@ -5,6 +5,7 @@ session_start();
 
 if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
     $id = $_SESSION['id'];
+    $orc_idAuthor = $_SESSION['orc_id'];
     echo "<p id='author_id' style='display: none'>$id</p>";
 
     $firstName = isset($_SESSION['first_name']) ? ucfirst($_SESSION['first_name']) : '';
@@ -40,6 +41,8 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
 
 
+
+
     $contributorTypes = $_POST['contributor_type'];
     $firstnames = $_POST['firstname'];
     $lastnames = $_POST['lastname'];
@@ -58,6 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         exit();
     }
 
+
     // Check if file uploads are successful
     $files = array(
         'file_name' => $_FILES['file_name']['name'],
@@ -65,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         'file_name3' => $_FILES['file_name3']['name']
     );
 
-    handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $formattedDate, $title, $category, $abstract, $keywords, $reference, $comment, $step, $contributorTypes, $firstnames, $lastnames, $publicnames, $orcids, $emails);
+    handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $formattedDate, $title, $category, $abstract, $keywords, $reference, $comment, $step, $contributorTypes, $firstnames, $lastnames, $publicnames, $orcids, $emails, $firstName, $lastName, $orc_idAuthor, $email);
 
     Header("Location: ex_submit.php");
     exit();
@@ -74,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     exit();
 }
 
-function handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $formattedDate, $title, $category, $abstract, $keywords, $reference, $comment, $step, $contributorTypes, $firstnames, $lastnames, $publicnames, $orcids, $emails)
+function handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $formattedDate, $title, $category, $abstract, $keywords, $reference, $comment, $step, $contributorTypes, $firstnames, $lastnames, $publicnames, $orcids, $emails, $firstName, $lastName, $orc_idAuthor, $email)
 {
     global $lastInsertedArticleId;
 
@@ -123,6 +127,24 @@ function handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $
             }
         }
     }
+
+
+
+    
+    $sqlAuthor = "INSERT INTO contributors (article_id, contributor_type, firstname, lastname, publicname, orcid, email) 
+    VALUES (:article_id, :contributor_type, :firstname, :lastname, :publicname, :orcid, :email)";
+
+    $paramsAuthor = array(
+    'article_id' => $lastInsertedArticleId,
+    'contributor_type' => 'Author',
+    'firstname' => $firstName,
+    'lastname' => $lastName,
+    'publicname' => 'Vinmarin',
+    'orcid' => $orc_idAuthor,
+    'email' => $email,
+    );
+
+    database_run($sqlAuthor, $paramsAuthor);
 
 
   

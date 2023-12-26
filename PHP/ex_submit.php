@@ -324,7 +324,7 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
       <td><?php echo $orc_id; ?></td>
       <td><?php echo $email; ?></td>
       <td><input type="checkbox" disabled></td>
-      <td><input type="checkbox"></td>
+      <td><input type="checkbox" value="Primary Contact"></td>
       <td style="width: 150px"></td>
     </tr>
   </tbody>
