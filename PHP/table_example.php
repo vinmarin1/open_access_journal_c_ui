@@ -3,15 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Save Data</title>
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
-    <form action="table_function.php" method="POST">
-    <input type="text" id="title" name="title">
-    <input type="email" id="email" name="email">
 
-    <button type="submit">Submit Email</button>
+    <table id="data-table" border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+         
+        </tbody>
+    </table>
+
+    <form id="data-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <button type="button" id="add-row">Add Row</button>
+        <button type="button" id="save-data">Save Data</button>
     </form>
-    
+
+    <script src="script.js"></script>
 </body>
 </html>

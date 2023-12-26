@@ -301,41 +301,55 @@ document.getElementById('contributor-btn').addEventListener('click', function (e
       '<div id= "lName"><label id="sub-17">Last Name: </label><input id="input2" class="swal2-input"></div>' +
       '<label id= "sub-18">Preferred Public Name: </label><input id="input3" class="swal2-input">' +
       '<label id= "sub-19">Email: </label><input id="input4" class="swal2-input">' +
-      '<label id= "sub-20">ORCID: </label><input id="input5" class="swal2-input">'+ '<label id="selectRoleLabel">Role: </label><select class="form-select" name="selectRole" id="selectRole"><option value="">Select Role</option><option value="Contact Principal">Contact Principal</option><option value="Co-Author">Co-Author</option></select> ',
+      '<label id= "sub-20">ORCID: </label><input id="input5" class="swal2-input">',
 
     footer: '<button  id="confirmBtn">Add Contributor</button>',
     showConfirmButton: false,
   });
 
- 
-
-
-  
-
   document.getElementById('confirmBtn').addEventListener('click', function () {
-  
     var input1Value = document.getElementById('input1').value;
     var input2Value = document.getElementById('input2').value;
     var input3Value = document.getElementById('input3').value;
     var input4Value = document.getElementById('input4').value;
     var input5Value = document.getElementById('input5').value;
 
-    var contributorsValue = input1Value + ' ' + input2Value;
 
-
+    // Add the new row to the table
     var table = document.getElementById('table-contributor').getElementsByTagName('tbody')[0];
     var newRow = table.insertRow(table.rows.length);
 
-    var cellContributor = newRow.insertCell(0);
-    cellContributor.innerHTML = contributorsValue;
+    var cellFirstName = newRow.insertCell(0);
+    cellFirstName.innerHTML = input1Value;
 
-    var cellActions = newRow.insertCell(1);
-    cellActions.innerHTML = '<button type="button" id="btn-update" class="btn btn-outline-primary btn-sm btn-update" style="margin-right: 10px;">View</button>' +
-    '<button type="button" id="btn-delete" class="btn btn-danger btn-sm btn-delete">Delete</button>';
+    var cellLastName = newRow.insertCell(1);
+    cellLastName.innerHTML = input2Value;
 
- 
+    var cellPublicName = newRow.insertCell(2);
+    cellPublicName.innerHTML = input3Value;
+
+    var cellOrcid = newRow.insertCell(3);
+    cellOrcid.innerHTML = input5Value;
+
+    var cellEmail = newRow.insertCell(4);
+    cellEmail.innerHTML = input4Value;
+
+
+    var cellCoAuthor = newRow.insertCell(5);
+    cellCoAuthor.innerHTML = '<input class="coAuthor" type="checkbox" value="Co-Author">';
+
+    var cellPrimaryContact = newRow.insertCell(6);
+    cellPrimaryContact.innerHTML = '<input class="pmContact" type="checkbox" value="Primary Contact">';
+
+    var cellActions = newRow.insertCell(7);
+    cellActions.innerHTML = '<button type="button" class="btn btn-outline-primary btn-sm btn-update" style="margin-right: 10px;">View</button>' +
+      '<button type="button" class="btn btn-danger btn-sm btn-delete">Delete</button>';
+
+    // Add event listeners for update and delete buttons
     var updateBtn = cellActions.querySelector('.btn-update');
     var deleteBtn = cellActions.querySelector('.btn-delete');
+
+ 
 
     let updatedInput1Value;
     let updatedInput2Value;
@@ -351,28 +365,39 @@ document.getElementById('contributor-btn').addEventListener('click', function (e
                 '<div id= "lName"><label id="sub-22">Last Name: </label><input id="updateInput2" class="swal2-input" value="' + (updatedInput2Value || input2Value) + '"></div>' +
                 '<label id= "sub-23">Preferred Public Name: </label><input id="updateInput3" value="' + (updatedInput3Value || input3Value) + '" class="swal2-input">' +
                 '<label id= "sub-24">Email: </label><input id="updateInput4" value="' + (updatedInput4Value || input4Value) + '" class="swal2-input">' +
-                '<label id= "sub-25">ORCID: </label><input id="updateInput5" value="' + (updatedInput5Value || input5Value) + '" class="swal2-input">'+ '<label id="selectRoleLabelUpdate">Role: </label><select class="form-select" name="selectRoleUpdate" id="selectRoleUpdate"><option value="">Select Role</option><option value="Contact Principal">Contact Principal</option><option value="Co-Author">Co-Author</option></select> ',
+                '<label id= "sub-25">ORCID: </label><input id="updateInput5" value="' + (updatedInput5Value || input5Value) + '" class="swal2-input">',
     
             footer: '<button id="update-cont">Update</button>',
             showConfirmButton: false
         });
     
+
+        var currentRow = this.closest('tr');
+
         document.getElementById('update-cont').addEventListener('click', function () {
-            var updatedInput1Element = document.getElementById('updateInput1');
-            var updatedInput2Element = document.getElementById('updateInput2');
-            var updatedInput3Element = document.getElementById('updateInput3');
-            var updatedInput4Element = document.getElementById('updateInput4');
-            var updatedInput5Element = document.getElementById('updateInput5');
-    
-            updatedInput1Value = updatedInput1Element.value;
-            updatedInput2Value = updatedInput2Element.value;
-            updatedInput3Value = updatedInput3Element.value;
-            updatedInput4Value = updatedInput4Element.value;
-            updatedInput5Value = updatedInput5Element.value;
-    
-            contributorsValue = updatedInput1Value + ' ' + updatedInput2Value;
-            cellContributor.innerHTML = contributorsValue;
-    
+
+
+          
+          currentRow.cells[0].innerHTML = document.getElementById('updateInput1').value;
+          currentRow.cells[1].innerHTML = document.getElementById('updateInput2').value;
+          currentRow.cells[2].innerHTML = document.getElementById('updateInput3').value;
+          currentRow.cells[3].innerHTML = document.getElementById('updateInput4').value;
+          currentRow.cells[4].innerHTML = document.getElementById('updateInput5').value;
+
+
+          var updatedInput1Element = document.getElementById('updateInput1');
+          var updatedInput2Element = document.getElementById('updateInput2');
+          var updatedInput3Element = document.getElementById('updateInput3');
+          var updatedInput4Element = document.getElementById('updateInput4');
+          var updatedInput5Element = document.getElementById('updateInput5');
+  
+          updatedInput1Value = updatedInput1Element.value;
+          updatedInput2Value = updatedInput2Element.value;
+          updatedInput3Value = updatedInput3Element.value;
+          updatedInput4Value = updatedInput4Element.value;
+          updatedInput5Value = updatedInput5Element.value;
+  
+
             Swal.close();
         });
     });

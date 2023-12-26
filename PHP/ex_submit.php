@@ -280,6 +280,9 @@
   <?php
 if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
   $first_name = $_SESSION['first_name'];
+  $email = $_SESSION['email'];
+  $orc_id = $_SESSION['orc_id'];
+  
     
   $firstName = isset($_SESSION['first_name']) ? ucfirst($_SESSION['first_name']) : '';
   $middleName = isset($_SESSION['middle_name']) ? ' ' . ucfirst($_SESSION['middle_name']) : '';
@@ -303,15 +306,26 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
   <thead>
     <tr >
  
-      <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">Contributors</th>
-      <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">Action</th>
+      <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">First Name</th>
+      <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">Last Name</th>
+      <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">Public Name</th>
+      <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">ORCID</th>
+      <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">EMAIL</th>
+      <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">CO-AUTHOR</th>
+      <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">PRIMARY CONTACT</th>
+      <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal; ">Action</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-    
-      <td name="contributor" id="contributor"><?php echo $contributor; ?></td>
+      <td><?php echo $first_name; ?></td>
+      <td><?php echo $lastName; ?></td>
       <td></td>
+      <td><?php echo $orc_id; ?></td>
+      <td><?php echo $email; ?></td>
+      <td><input type="checkbox" disabled></td>
+      <td><input type="checkbox"></td>
+      <td style="width: 150px"></td>
     </tr>
   </tbody>
 </table>
