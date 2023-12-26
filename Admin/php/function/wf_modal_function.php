@@ -22,7 +22,8 @@ include 'dbcon.php';
     }
 
     function updateSubmissionFiles() {
-        $uploadPath = "../../../Files/submitted-article/";
+        $documentRoot = $_SERVER['DOCUMENT_ROOT'];
+        $uploadPath = $documentRoot . "/Files/submitted-article/";        
         $submissionFileId = isset($_POST['submissionfileid']) ? $_POST['submissionfileid'] : '';
     
         if (!file_exists($uploadPath)) {
