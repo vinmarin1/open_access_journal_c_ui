@@ -70,22 +70,23 @@ $journallist = get_journal_list();
     });
 
     function addRecord() {
-        $('#sloading').toggle();
         var form = document.getElementById('addModalForm');
+        var formData = new FormData();
+        formData.append('journal', $('#journal').val());
+        formData.append('journal_title', $('#journal_title').val());
+        formData.append('editorial', $('#editorial').val());
+        formData.append('description', $('#description').val());
+        formData.append('journalimage', $('#journalimage')[0].files[0]);
+        formData.append('action', 'add');
 
         if (form.checkValidity()) {
-            var formData = {
-                journal: $("#journal").val(),
-                journal_title: $("#journal_title").val(),
-                editorial: $("#editorial").val(),
-                description: $("#description").val(),
-                action: "add"
-            };
-
+            $('#sloading').toggle();
             $.ajax({
                 url: "../php/function/journal_function.php",
                 method: "POST",
                 data: formData,
+                processData: false,
+                contentType: false,
                 success: function (data) {
                     var response = JSON.parse(data);
                     if (response.status) {
@@ -234,12 +235,18 @@ $journallist = get_journal_list();
                         </div>
                     </div>
                     <div class="row mb-2">
-                        <div class="col-md-12">
-                                <label for="xdescription" class="form-label">Description</label>
-                                <textarea class="form-control" id="description" rows="9"></textarea>
-                            </div>
-                        </div>   
+                        <div class="col-md-12" mb-2>
+                            <label for="xdescription" class="form-label">Description</label>
+                            <textarea class="form-control" id="description" rows="9"></textarea>
+                        </div>
+                    </div>   
+                    <div class="row mb-2">
+                        <div class="col-md-12 mb-2" id="xjournalimage">
+                            <label for="formFileAddFiles" class="form-label">Upload Image</label>
+                            <input class="form-control" type="file" id="journalimage" />
+                        </div>
                     </div>
+                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary" onclick="addRecord()">Save changes</button>
