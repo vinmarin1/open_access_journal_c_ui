@@ -71,12 +71,8 @@ $journallist = get_journal_list();
 
     function addRecord() {
         var form = document.getElementById('addModalForm');
-        var formData = new FormData();
-        formData.append('journal', $('#journal').val());
-        formData.append('journal_title', $('#journal_title').val());
-        formData.append('editorial', $('#editorial').val());
-        formData.append('description', $('#description').val());
-        formData.append('journalimage', $('#journalimage')[0].files[0]);
+        var formData = new FormData(form);
+
         formData.append('action', 'add');
 
         if (form.checkValidity()) {
@@ -87,13 +83,12 @@ $journallist = get_journal_list();
                 data: formData,
                 processData: false,
                 contentType: false,
-                success: function (data) {
-                    var response = JSON.parse(data);
+                success: function (response) {
                     if (response.status) {
                         $('#sloading').toggle();
                         alert("Record added successfully");
                     } else {
-                        alert("All fields required!");
+                        alert("Failed to add record: " + response.message);
                     }
                     location.reload();
                 },

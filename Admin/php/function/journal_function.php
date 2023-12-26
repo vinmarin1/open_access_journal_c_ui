@@ -66,30 +66,32 @@ include 'dbcon.php';
     
             $uploadPath = "../../../Files/journal-image/";
     
-            if (!file_exists($uploadPath)) {
-                mkdir($uploadPath, 0777, true);
+            if (!file_exists($uploadPath) && !mkdir($uploadPath, 0777, true)) {
+                throw new Exception('Failed to create upload directory.');
             }
+    
             $imageFile = $_FILES['journalimage'];
-            $imageName = basename($imageFile["name"]);
-            $journalimage = '';
     
-            if (isset($_FILES['journalimage']) && $_FILES['journalimage']['error'] === UPLOAD_ERR_OK) {
-                $imageFileType = strtolower(pathinfo($imageName, PATHINFO_EXTENSION));
-                $allowedFileTypes = array('jpg', 'jpeg', 'png', 'gif');
+            if ($imageFile['error'] === UPLOAD_ERR_OK) {
+                $imageFileType = strtolower(pathinfo($imageFile['name'], PATHINFO_EXTENSION));
+                $allowedFileTypes = ['jpg', 'jpeg', 'png', 'gif'];
     
-                if (in_array($imageFileType, $allowedFileTypes)) {
-                    $journalimage = $uploadPath . $imageName;
-                    if (!move_uploaded_file($imageFile["tmp_name"], $journalimage)) {
-                        throw new Exception('Failed to move uploaded file.');
-                    }
-                } else {
+                if (!in_array($imageFileType, $allowedFileTypes)) {
                     throw new Exception('Invalid file type.');
                 }
+    
+                $journalimage = $uploadPath . basename($imageFile['name']);
+    
+                if (!move_uploaded_file($imageFile['tmp_name'], $journalimage)) {
+                    throw new Exception('Failed to move uploaded file.');
+                }
+            } else {
+                throw new Exception('File upload error.');
             }
     
             $query = "INSERT INTO journal (journal, journal_title, editorial, description, status, image) 
-            VALUES (?, ?, ?, ?, ?, ?)";
-  
+                      VALUES (?, ?, ?, ?, ?, ?)";
+    
             $result = execute_query($query, [$journal, $journal_title, $editorial, $description, $status, $journalimage], true);
     
             if ($result !== false) {
@@ -98,7 +100,6 @@ include 'dbcon.php';
                 echo json_encode(['status' => false, 'message' => 'Failed to add record']);
             }
         } catch (Exception $e) {
-            // If an exception occurs
             echo json_encode(['status' => false, 'message' => $e->getMessage()]);
         }
     }
