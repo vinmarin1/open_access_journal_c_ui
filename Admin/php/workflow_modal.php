@@ -13,43 +13,35 @@ $userlist = get_user_list();
 <!-- SUBMISSION PAGE -->
 <!-- Add Files Modal -->
 <div class="modal fade" id="addFilesModal" tabindex="-1" aria-hidden="true">
-    <form id="addModalForm">
+    <form id="updatesubmisionfile" enctype="multipart/form-data">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel3">Upload Files</h5>
+                    <h5 class="modal-title" id="exampleModalLabel3">Update Submission Files</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="row mb-2">
                         <div class="col-md-12 mb-2">
                             <label for="xfiles" class="form-label">If you are uploading a revision of an existing file, please indicate which file.</label>
-                            <select id="fileDropdown" class="form-select">
+                            <select id="submissionfileid" class="form-select">
                                 <option value="Null">Select File</option>
                                 <?php foreach ($submission_files as $submission_filesval): ?>
-                                    <option value="<?php echo $submission_filesval->file_name; ?>"><?php echo $submission_filesval->file_name; ?></option>
+                                    <option value="<?php echo $submission_filesval->article_files_id; ?>"><?php echo $submission_filesval->file_name; ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
                     </div>
                     <div class="row mb-2">
                         <div class="col-md-12 mb-2">
-                            <label for="xcomponent" class="form-label">Article Component</label>
-                            <select id="fileDropdown1" class="form-select">
-                                <option value="Null">Select Component</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row mb-2">
-                        <div class="col-md-12 mb-2">
                             <label for="formFileAddFiles" class="form-label">Upload File</label>
-                            <input class="form-control" type="file" id="formFileAddFiles" />
+                            <input class="form-control" type="file" id="submissionfile" />
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="addRecord()">Save changes</button>
+                    <button type="button" class="btn btn-primary" onclick="updateFileSubmission()">Save changes</button>
                 </div>
             </div>
         </div>
@@ -557,5 +549,31 @@ function updateReviewUncheckedFiles() {
         }
     });
 }
+
+function updateFileSubmission() {
+    var submissionFileId = $('#submissionfileid').val();
+    var submissionFile = $('#submissionfile')[0].files[0];
+
+    var formData = new FormData();
+    formData.append('submissionfileid', submissionFileId);
+    formData.append('submissionfile', submissionFile);
+    formData.append('action', 'updatesubmissionfile');
+
+    $.ajax({
+        url: "../php/function/wf_modal_function.php",
+        type: "POST",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (response) {
+            console.log(response);
+            location.reload();
+        },
+        error: function (xhr, status, error) {
+            console.error(xhr, status, error);
+        }
+    });
+}
+
 </script>
 
