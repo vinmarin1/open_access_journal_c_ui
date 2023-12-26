@@ -31,49 +31,50 @@ include 'function/issue_function.php';
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form method="post" enctype="multipart/form-data">
+                        <form method="post" enctype="multipart/form-data" action="issuelist.php">
+
                             <div class="form-group row">
                                 <div class="col-md-8">
                                     <div class="mb-3">
-                                        <label for="announcement_type_id" class="form-label ps-2">Volume</label>
-                                        <input type="number" name="announcement_type_id" class="form-control Information-input" id="announcement_type_id" placeholder="">
+                                        <label for="volume" class="form-label ps-2">Volume</label>
+                                        <input type="number" name="volume" class="form-control Information-input" id="volume" placeholder="">
                                     </div>
                                 </div>
                                 <div class="col-md-8">
                                     <div class="mb-3">
-                                        <label for="title" class="form-label ps-2">Number</label>
-                                        <input type="text" name="title" class="form-control information-input" id="title" placeholder="">
+                                        <label for="number" class="form-label ps-2">Number</label>
+                                        <input type="number" name="number" class="form-control information-input" id="number" placeholder="">
                                     </div>
                                 </div>
 
                                 <div class="col-md-8">
                                     <div class="mb-3">
-                                        <label for="description" class="form-label ps-2">Year</label>
+                                        <label for="year" class="form-label ps-2">Year</label>
+                                        <input type="number" name="year" class="form-control information-input" id="year" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="mb-3">
+                                        <label for="title" class="form-label ps-2">Title</label>
+                                        <input type="text" name="title" class="form-control information-input" id="title" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="mb-3">
+                                        <label for="description" class="form-label ps-2">Description</label>
                                         <input type="text" name="description" class="form-control information-input" id="description" placeholder="">
-                                    </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="mb-3">
-                                        <label for="announcement" class="form-label ps-2">Title</label>
-                                        <input type="text" name="announcement" class="form-control information-input" id="announcement" placeholder="">
-                                    </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="mb-3">
-                                        <label for="announcement" class="form-label ps-2">Description</label>
-                                        <input type="text" name="announcement" class="form-control information-input" id="announcement" placeholder="">
                                     </div>
                                 </div>
                                 
                                 <div class="input-group mb-3">
-                                    <label class="input-group-text" for="upload_image">Cover Image Image</label>
-                                    <input type="file" name="upload_image" class="form-control" id="upload_image">
+                                    <label class="input-group-text" for="cover_image">Cover Image Image</label>
+                                    <input type="file" name="cover_image" class="form-control" id="cover_image">
                                 </div>
                             </div>
                             <div class="col-md-8">
                                     <div class="mb-3">
-                                        <label for="expiry_date" class="form-label ps-2">Url Path</label>
-                                        <input type="text" name="expiry_date" class="form-control information-input" id="expiry_date" placeholder="">
+                                        <label for="url_path" class="form-label ps-2">Url Path</label>
+                                        <input type="text" name="url_path" class="form-control information-input" id="url_path" placeholder="">
                                     </div>
                                 </div>
                         </div>
@@ -136,13 +137,33 @@ include 'function/issue_function.php';
 
     <!-- DataTables initialization script with status filter -->
     <script>
-        $(document).ready(function() {
-            var dataTable = $('#DataTable').DataTable({
-                "paging": true,
-                "ordering": true,
-                "searching": true,
-            });
+         $(document).ready(function() {
+        var dataTable = $('#DataTable').DataTable({
+            "paging": true,
+            "ordering": true,
+            "searching": true,
         });
+
+        function addRecord() {
+            var formData = new FormData($('form')[0]);
+
+            $.ajax({
+                url: "issue_function.php",
+                method: "POST",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    console.log("Ajax request successful:", data); // Log the response for debugging
+                    // Rest of your code...
+                },
+                error: function (xhr, status, error) {
+                    console.error("Ajax request failed:", error);
+                }
+            });
+        }
+    });
+
     </script>
 </body>
 </html>
