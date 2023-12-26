@@ -46,11 +46,11 @@
             }
             
                     function fetchUserData() {
-                        $announcement_Id = $_POST['announcement_id'];
+                        $announcement_id = $_POST['announcement_id'];
 
                         
                     
-                        $result = execute_query("SELECT * FROM announcement WHERE announcement_id = ?", [$announcement_Id]);
+                        $result = execute_query("SELECT * FROM announcement WHERE announcement_id = ?", [$announcement_id]);
                     
                         header('Content-Type: application/json');
                     
@@ -87,7 +87,7 @@
                     
                         // Debugging - log the result
                         error_log("Result: " . print_r($result, true));
-                    
+                     
                         if ($result !== false) {
                             echo json_encode(['status' => true, 'message' => 'Record added successfully']);
                         } else {
