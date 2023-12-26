@@ -10,6 +10,13 @@ $copyediting_files = get_copyediting_files($aid);
 $production_files = get_production_files($aid);
 $userlist = get_user_list();
 ?>
+
+<style>
+    #xsubmissionfile {
+        display: none;
+    }
+</style>
+
 <!-- SUBMISSION PAGE -->
 <!-- Add Files Modal -->
 <div class="modal fade" id="addFilesModal" tabindex="-1" aria-hidden="true">
@@ -24,7 +31,7 @@ $userlist = get_user_list();
                     <div class="row mb-2">
                         <div class="col-md-12 mb-2">
                             <label for="xfiles" class="form-label">If you are uploading a revision of an existing file, please indicate which file.</label>
-                            <select id="submissionfileid" class="form-select">
+                            <select id="submissionfileid" class="form-select" onchange="enableFileInput()">
                                 <option value="Null">Select File</option>
                                 <?php foreach ($submission_files as $submission_filesval): ?>
                                     <option value="<?php echo $submission_filesval->article_files_id; ?>"><?php echo $submission_filesval->file_name; ?></option>
@@ -33,8 +40,8 @@ $userlist = get_user_list();
                         </div>
                     </div>
                     <div class="row mb-2">
-                        <div class="col-md-12 mb-2">
-                            <label for="formFileAddFiles" class="form-label">Upload File</label>
+                        <div class="col-md-12 mb-2" id="xsubmissionfile">
+                            <label for="formFileAddFiles" class="form-label">Upload New File</label>
                             <input class="form-control" type="file" id="submissionfile" />
                         </div>
                     </div>
@@ -478,7 +485,18 @@ $userlist = get_user_list();
     </form>
 </div>
 <script>
-    function updateReviewFiles() {
+function enableFileInput() {
+    var selectedValue = $('#submissionfileid').val();
+    if (selectedValue !== 'Null') {
+
+        $('#xsubmissionfile').show();
+    } else {
+
+        $('#xsubmissionfile').hide();
+    }
+}
+
+ function updateReviewFiles() {
     $('#sloading').toggle();
     updateReviewCheckedFiles();
     updateReviewUncheckedFiles();
