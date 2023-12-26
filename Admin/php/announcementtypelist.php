@@ -80,108 +80,112 @@ $announcementtypelist = get_announcementtype_list();
             });
         });
         function addRecord() {
-        var formData = {
-            announcement_type: $("#announcement_type").val(),
-            action: "add"
-        };
+        var form = document.getElementById('addModalForm');
 
-        $.ajax({
-            url: "announcementtype_function.php",
-            method: "POST",
-            data: formData,
-            success: function (data) {
-                var response = JSON.parse(data);
+        if (form.checkValidity()) {
+            $('#sloading').toggle();
+            var formData = {
+                announcement_type: $("#announcement_type").val(),
+                action: "add"
+            };
 
-                // Show alert
-                if (response.status) {
-                    alert("Record added successfully");
-                } else {
-                    alert("Failed to add record");
+            $.ajax({
+                url: "../php/function/announcementtype_function.php",
+                method: "POST",
+                data: formData,
+                success: function (data) {
+                    var response = JSON.parse(data);
+                    if (response.status) {
+                        $('#sloading').toggle();
+                        alert("Record added successfully");
+                    } else {
+                        alert("error");
+                    }
+                    location.reload();
+                },
+                error: function (xhr, status, error) {
+                    console.error("Ajax request failed:", error);
                 }
-
-                // Reload the page
-                location.reload();
-            },
-            error: function (xhr, status, error) {
-                console.error("Ajax request failed:", error);
-            }
-        });
+            });
+        } else {
+            form.reportValidity();
+        }
     }
     
-    function updateModal(announcement_type_Id) {
-        $.ajax({
-            type: 'POST',
-            url: 'announcementtype_function.php',
-            data: { action: 'fetch', announcement_type_id: announcement_type_Id },
-            dataType: 'json',
-            success: function (response) {
-                console.log('Response from server:', response);
+    function updateModal(announcement_type_id) {
+    $.ajax({
+        type: 'POST',
+        url: 'announcementtype_function.php',
+        data: { action: 'fetch', announcement_type_id: announcement_type_id },
+        dataType: 'json',
+        success: function (response) {
+            console.log('Response from server:', response);
 
-                if (response.status === true && response.data.length > 0) {
-                    const annoucement_typeData = response.data[0];
-                    console.log('announcement_type Data:', announcement_typeData);
+            if (response.status === true && response.data.length > 0) {
+                const announcement_typeData = response.data[0]; // Corrected variable name
+                console.log('announcement_type Data:', announcement_typeData);
 
-                    $('#xannouncement_type_id').val(announcement_typeData.announcement_type_id);
-                    $('#xannouncement_type').val(announcement_typeData.announcement_type);
-                    
-                    // Show the modal
-                    $('#updateModal').modal('show');
-                }
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                console.log('AJAX Error:', textStatus, errorThrown);
-                // Handle AJAX errors
-                console.log('Error fetching user data');
-                // You can perform additional actions here if needed
+                $('#xannouncement_type_id').val(announcement_typeData.announcement_type_id);
+                $('#xannouncement_type').val(announcement_typeData.announcement_type);
+
+                // Show the modal
+                $('#updateModal').modal('show');
             }
-        });
-    }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log('AJAX Error:', textStatus, errorThrown);
+            // Handle AJAX errors
+            console.log('Error fetching user data');
+            // You can perform additional actions here if needed
+        }
+    });
+}
+
 
     function saveChanges() {
-        console.log('Save button clicked');
-        
-        var announcement_type_Id = $('#xannouncement_type_id').val();
-        var updatedData = {
-            announcement_type: $('#xannouncement_type').val(),
-           
-        };
+    console.log('Save button clicked');
+    
+    var announcement_type_id = $('#xannouncement_type_id').val();
+    var updatedData = {
+        announcement_type: $('#xannouncement_type').val(),
+    };
 
-        $.ajax({
-            type: 'POST',   
-            url: 'announcementtype_function.php',
-            data: {
-                action: 'update',
-                announcement_type_id: announcemment_type_Id,
-                updated_data: updatedData
-            },
-            dataType: 'json',
-            success: function (response) {
-                console.log('Update Response:', response);
+    $.ajax({
+        type: 'POST',   
+        url: 'announcementtype_function.php',
+        data: {
+            action: 'update',
+            announcement_type_id: announcement_type_id, // Fix the variable name here
+            updated_data: updatedData
+        },
+        dataType: 'json',
+        success: function (response) {
+            console.log('Update Response:', response);
 
-                if (response.status === true) {
-                    // Handle successful update
-                    alert("Record updated successfully");
-                    $('#updateModal').modal( 'hide');
-                    location.reload();
-                } else {
-                    // Handle update failure
-                    console.error('Error updating user data:', response.message);
-                    alert("Failed to update record. Please try again.");
-                }
-            },
-        });
-    }
+            if (response.status === true) {
+                // Handle successful update
+                alert("Record updated successfully");
+                $('#updateModal').modal('hide');
+                location.reload();
+            } else {
+                // Handle update failure
+                console.error('Error updating user data:', response.message);
+                alert("Failed to update record. Please try again.");
+            }
+        },
+    });
+}
 
-        function archiveAnnouncement_type(announcement_type_Id,announcement_type) {
+        function archiveAnnouncement_type(announcement_type_id,announcement_type) {
             $('#archiveModal').modal('show');
             $('#archiveModalTitle').text('Archive Announcementtype');
-            $('#announcementtype').html('<strong>Name:</strong> ' + announcement_type + ', <br><strong>ID:</strong> ' + announcement_type_Id);
+            $('#announcementtype').html('<strong>Name:</strong> ' + announcement_type + ', <br><strong>ID:</strong> ' + announcement_type_id);
 
             $('#archiveModalSave').off().on('click', function () {
                 $.ajax({
                     url: "announcmenttype_function.php",
                     method: "POST",
-                    data: { action: "archive", announcement_type_id: announcement_type_Id },
+                    data: { action: "archive", announcement_type_id: announcement_type_id },
                     success: function (data) {
                         var response = JSON.parse(data);
 
@@ -204,7 +208,8 @@ $announcementtypelist = get_announcementtype_list();
          }
     </script>
      <!-- add Modal -->
-     <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+     <div class="modal fade" id="addModal" tabindex="-1" aria-hidden="true">
+     <form id="addModalForm">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
