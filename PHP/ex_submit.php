@@ -387,14 +387,41 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 
     <div class="cont-container">
       <h5 class="title12" id="title-12">Contributors: </h5>
-      <div class="cont-header-container">
+      <!-- <div class="cont-header-container">
         <h5 class="title13" id="title-13">Contributors Name</h5>
         <button type="button" class="btn btn-outline-light btn-sm" id="update-cont-4">View</button>
     
-      </div>
-      <div class="file-content-container mt-3">
-        <input type="text" class="form-control" id="input10" readonly>
-      </div>
+      </div> -->
+      <!-- <div class="file-content-container mt-3"> -->
+        <!-- <input type="text" class="form-control" id="input10" readonly> -->
+        <table class="table table-striped" id="table-contributor-preview" name="table-contributor">
+          <thead>
+            <tr >
+        
+              <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">First Name</th>
+              <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">Last Name</th>
+              <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">Public Name</th>
+              <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">ORCID</th>
+              <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">EMAIL</th>
+              <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">CO-AUTHOR</th>
+              <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">PRIMARY CONTACT</th>
+              <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal; ">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><?php echo $first_name; ?></td>
+              <td><?php echo $lastName; ?></td>
+              <td></td>
+              <td><?php echo $orc_id; ?></td>
+              <td><?php echo $email; ?></td>
+              <td><input type="checkbox" disabled></td>
+              <td><input type="checkbox"></td>
+              <td style="width: 150px"></td>
+            </tr>
+          </tbody>
+        </table>
+      <!-- </div> -->
     </div>
     
    

@@ -315,6 +315,7 @@ document.getElementById('contributor-btn').addEventListener('click', function (e
     var input5Value = document.getElementById('input5').value;
 
 
+
     // Add the new row to the table
     var table = document.getElementById('table-contributor').getElementsByTagName('tbody')[0];
     var newRow = table.insertRow(table.rows.length);
@@ -349,14 +350,102 @@ document.getElementById('contributor-btn').addEventListener('click', function (e
     var updateBtn = cellActions.querySelector('.btn-update');
     var deleteBtn = cellActions.querySelector('.btn-delete');
 
- 
+
+    var tablePrev = document.getElementById('table-contributor-preview').getElementsByTagName('tbody')[0];
+
+    var newRowPrev = tablePrev.insertRow(tablePrev.rows.length);
+
+    var cellFirstNamePrev = newRowPrev.insertCell(0);
+    cellFirstNamePrev.innerHTML = input1Value;
+
+
+    var cellLastNamePrev = newRowPrev.insertCell(1);
+    cellLastNamePrev.innerHTML = input2Value;
+
+    var cellPublicNamePrev = newRowPrev.insertCell(2);
+    cellPublicNamePrev.innerHTML = input3Value;
+
+    var cellOrcidPrev = newRowPrev.insertCell(3);
+    cellOrcidPrev.innerHTML = input5Value;
+
+    var cellEmailPrev = newRowPrev.insertCell(4);
+    cellEmailPrev.innerHTML = input4Value;
+
+
+    var cellCoAuthorPrev = newRowPrev.insertCell(5);
+    cellCoAuthorPrev.innerHTML = '<input class="coAuthor" type="checkbox" value="Co-Author">';
+
+    var cellPrimaryContact = newRowPrev.insertCell(6);
+    cellPrimaryContact.innerHTML = '<input class="pmContact" type="checkbox" value="Primary Contact">';
+
+    var cellActionsPrev = newRowPrev.insertCell(7);
+    cellActionsPrev.innerHTML = '<button type="button" class="btn btn-outline-primary btn-sm btn-updatePrev" style="margin-right: 10px;">View</button>' +
+      '<button type="button" class="btn btn-danger btn-sm btn-deletePrev">Delete</button>';
+
+
+    var updateBtnPrev = cellActionsPrev.querySelector('.btn-updatePrev');
+    var deleteBtnPrev = cellActionsPrev.querySelector('.btn-deletePrev');
+  
 
     let updatedInput1Value;
     let updatedInput2Value;
     let updatedInput3Value;
     let updatedInput4Value;
     let updatedInput5Value;
-    
+
+    updateBtnPrev.addEventListener('click' , function(event) {
+      Swal.fire({
+        html: '<h5 class="title10" id="title-10">Update Contributor</h5>' +
+            '<hr id="swal-d">' +
+            '<div id="fName"><label id="sub-21">First Name: </label><input id="updateInput1" class="swal2-input" value="' + (updatedInput1Value || input1Value) + '"></div>' +
+            '<div id= "lName"><label id="sub-22">Last Name: </label><input id="updateInput2" class="swal2-input" value="' + (updatedInput2Value || input2Value) + '"></div>' +
+            '<label id= "sub-23">Preferred Public Name: </label><input id="updateInput3" value="' + (updatedInput3Value || input3Value) + '" class="swal2-input">' +
+            '<label id= "sub-24">Email: </label><input id="updateInput4" value="' + (updatedInput4Value || input4Value) + '" class="swal2-input">' +
+            '<label id= "sub-25">ORCID: </label><input id="updateInput5" value="' + (updatedInput5Value || input5Value) + '" class="swal2-input">',
+
+        footer: '<button id="update-cont">Update</button>',
+        showConfirmButton: false
+    });
+
+
+    var currentRow = this.closest('tr');
+
+    document.getElementById('update-cont').addEventListener('click', function () {
+
+
+      
+      currentRow.cells[0].innerHTML = document.getElementById('updateInput1').value;
+      currentRow.cells[1].innerHTML = document.getElementById('updateInput2').value;
+      currentRow.cells[2].innerHTML = document.getElementById('updateInput3').value;
+      currentRow.cells[3].innerHTML = document.getElementById('updateInput4').value;
+      currentRow.cells[4].innerHTML = document.getElementById('updateInput5').value;
+
+      currentRow.cells[0].innerHTML = document.getElementById('updateInput1').value;
+      currentRow.cells[1].innerHTML = document.getElementById('updateInput2').value;
+      currentRow.cells[2].innerHTML = document.getElementById('updateInput3').value;
+      currentRow.cells[3].innerHTML = document.getElementById('updateInput4').value;
+      currentRow.cells[4].innerHTML = document.getElementById('updateInput5').value;
+
+      var updatedInput1Element = document.getElementById('updateInput1');
+      var updatedInput2Element = document.getElementById('updateInput2');
+      var updatedInput3Element = document.getElementById('updateInput3');
+      var updatedInput4Element = document.getElementById('updateInput4');
+      var updatedInput5Element = document.getElementById('updateInput5');
+
+      updatedInput1Value = updatedInput1Element.value;
+      updatedInput2Value = updatedInput2Element.value;
+      updatedInput3Value = updatedInput3Element.value;
+      updatedInput4Value = updatedInput4Element.value;
+      updatedInput5Value = updatedInput5Element.value;
+
+
+        Swal.close();
+    });
+
+    });
+
+
+ 
     updateBtn.addEventListener('click', function (event) {
         Swal.fire({
             html: '<h5 class="title10" id="title-10">Update Contributor</h5>' +
@@ -384,6 +473,11 @@ document.getElementById('contributor-btn').addEventListener('click', function (e
           currentRow.cells[3].innerHTML = document.getElementById('updateInput4').value;
           currentRow.cells[4].innerHTML = document.getElementById('updateInput5').value;
 
+          currentRow.cells[0].innerHTML = document.getElementById('updateInput1').value;
+          currentRow.cells[1].innerHTML = document.getElementById('updateInput2').value;
+          currentRow.cells[2].innerHTML = document.getElementById('updateInput3').value;
+          currentRow.cells[3].innerHTML = document.getElementById('updateInput4').value;
+          currentRow.cells[4].innerHTML = document.getElementById('updateInput5').value;
 
           var updatedInput1Element = document.getElementById('updateInput1');
           var updatedInput2Element = document.getElementById('updateInput2');
@@ -401,6 +495,11 @@ document.getElementById('contributor-btn').addEventListener('click', function (e
             Swal.close();
         });
     });
+
+
+
+
+    
     
     
     deleteBtn.addEventListener('click', function () {
@@ -409,7 +508,17 @@ document.getElementById('contributor-btn').addEventListener('click', function (e
     
       table.deleteRow(rowIndex - 1); 
     
-      console.log(contributorsValue);
+    
+    });
+
+
+    deleteBtnPrev.addEventListener('click', function () {
+    
+      var rowIndex = this.closest('tr').rowIndex;
+    
+      tablePrev.deleteRow(rowIndex - 1); 
+    
+    
     });
 
    
