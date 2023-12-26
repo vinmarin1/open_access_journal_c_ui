@@ -4,9 +4,6 @@ include 'dbcon.php';
     $action = isset($_POST['action']) ? $_POST['action'] : '';
 
     switch ($action) {
-        case 'updatesubmissionfile':
-            updateSubmissionFiles();
-            break; 
         case 'updatereviewcheckedfile':
             updaterReviewCheckedFiles();
             break;
@@ -19,16 +16,17 @@ include 'dbcon.php';
         case 'updatecopyeditinguncheckedfile':
             updateCopyeditingUnCheckedFiles();
             break; 
+        case 'updatesubmissionfile':
+            updateSubmissionFiles();
+            break; 
     }
 
     function updateSubmissionFiles() {
-        $documentRoot = $_SERVER['DOCUMENT_ROOT'];
-        $uploadPath = $documentRoot . "/Files/submitted-article/";        
-        $submissionFileId = isset($_POST['submissionfileid']) ? $_POST['submissionfileid'] : '';
+        $ftp_server = "win8044.site4now.net";
+        $ftp_user = "monorbeta-001";
+        $ftp_password = "spF528@HkQdHi2n";
     
-        if (!file_exists($uploadPath)) {
-            mkdir($uploadPath, 0777, true);
-        }
+        $submissionFileId = isset($_POST['submissionfileid']) ? $_POST['submissionfileid'] : '';
     
         $files = $_FILES['submissionfile'];
         $success = true;
@@ -51,15 +49,45 @@ include 'dbcon.php';
             $errorMessage .= "File $fileName - Size exceeds the maximum allowed size; ";
         }
     
-        $newFilePath = $uploadPath . $fileName;
+        $localFilePath = $fileName;
     
-        if ($success && move_uploaded_file($files["tmp_name"], $newFilePath)) {
-            header('Content-Type: application/json');
-            updateSelectedSubmissionFiles($submissionFileId, $fileName);
+        if ($success && move_uploaded_file($files["tmp_name"], $localFilePath)) {
+            // FTP configuration
+            $ftp_conn = ftp_connect($ftp_server);
+    
+            if (!$ftp_conn) {
+                $errorMessage = 'Failed to connect to FTP server.';
+                echo json_encode(['success' => false, 'message' => $errorMessage, 'submissionfileid' => $submissionFileId]);
+                return;
+            }
+    
+            $login_result = ftp_login($ftp_conn, $ftp_user, $ftp_password);
+    
+            if (!$login_result) {
+                $errorMessage = 'FTP login failed. Check your credentials.';
+                echo json_encode(['success' => false, 'message' => $errorMessage, 'submissionfileid' => $submissionFileId]);
+                return;
+            }
+    
+            $remoteFilePath = "/site1/journaldata/submitted-article/" . $fileName;
+    
+            if (!ftp_put($ftp_conn, $remoteFilePath, $localFilePath, FTP_BINARY)) {
+                $ftpError = ftp_last_error($ftp_conn);
+                $errorMessage = "Failed to upload file to FTP server. FTP Error: $ftpError";
+                echo json_encode(['success' => false, 'message' => $errorMessage, 'submissionfileid' => $submissionFileId]);
+                return;
+            }
+    
+            // Close FTP connection
+            ftp_close($ftp_conn);
+    
+            // Update the database with the FTP file path
+            updateSelectedSubmissionFiles($submissionFileId, $fileName, $remoteFilePath);
+    
+            // Respond with success
             echo json_encode(['success' => true, 'submissionfileid' => $submissionFileId]);
         } else {
             $errorMessage = 'File failed to upload. ' . $errorMessage;
-            header('Content-Type: application/json');
             echo json_encode(['success' => false, 'message' => $errorMessage, 'submissionfileid' => $submissionFileId]);
         }
     }

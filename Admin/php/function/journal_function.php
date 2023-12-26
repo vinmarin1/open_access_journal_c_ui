@@ -57,41 +57,63 @@ include 'dbcon.php';
     }
 
     function addRecord() {
+        $ftp_server = "win8044.site4now.net";
+        $ftp_user = "monorbeta-001";
+        $ftp_password = "spF528@HkQdHi2n";
+        
         try {
             $journal = $_POST['journal'];
             $journal_title = $_POST['journal_title'];
             $editorial = $_POST['editorial'];
             $description = $_POST['description'];
             $status = 1;
-
-            $documentRoot = $_SERVER['DOCUMENT_ROOT'];
-            $uploadPath = $documentRoot . "/Files/journal-image/";   
     
-            if (!file_exists($uploadPath)) {
-                mkdir($uploadPath, 0777, true);
+            $ftp_conn = ftp_connect($ftp_server);
+    
+            if (!$ftp_conn) {
+                throw new Exception('Failed to connect to FTP server.');
             }
+    
+            $login_result = ftp_login($ftp_conn, $ftp_user, $ftp_password);
+    
+            if (!$login_result) {
+                throw new Exception('FTP login failed. Check your credentials.');
+            }
+    
+            ftp_pasv($ftp_conn, true);
+
+            $remoteDirectory = '/site1/journaldata/journalimage/';
+            if (!ftp_chdir($ftp_conn, $remoteDirectory)) {
+                ftp_mkdir($ftp_conn, $remoteDirectory);
+                ftp_chdir($ftp_conn, $remoteDirectory);
+            }
+  
             $imageFile = $_FILES['journalimage'];
             $imageName = basename($imageFile["name"]);
-            $journalimage = '';
+            $localFilePath = $imageFile["tmp_name"];
     
-            if (isset($_FILES['journalimage']) && $_FILES['journalimage']['error'] === UPLOAD_ERR_OK) {
-                $imageFileType = strtolower(pathinfo($imageName, PATHINFO_EXTENSION));
-                $allowedFileTypes = array('jpg', 'jpeg', 'png', 'gif');
-    
-                if (in_array($imageFileType, $allowedFileTypes)) {
-                    $journalimage = $uploadPath . $imageName;
-                    if (!move_uploaded_file($imageFile["tmp_name"], $journalimage)) {
-                        throw new Exception('Failed to move uploaded file.');
-                    }
-                } else {
-                    throw new Exception('Invalid file type.');
-                }
+            if ($imageFile['error'] !== UPLOAD_ERR_OK) {
+                throw new Exception('File upload failed. Check if the file was properly uploaded.');
             }
     
+            $imageFileType = strtolower(pathinfo($imageName, PATHINFO_EXTENSION));
+            $allowedFileTypes = array('jpg', 'jpeg', 'png', 'gif');
+    
+            if (!in_array($imageFileType, $allowedFileTypes)) {
+                throw new Exception('Invalid file type.');
+            }
+    
+            if (!ftp_put($ftp_conn, $imageName, $localFilePath, FTP_BINARY)) {
+                $ftpError = ftp_last_error($ftp_conn);
+                throw new Exception("Failed to upload file to FTP server. FTP Error: $ftpError");
+            }
+            
+            ftp_close($ftp_conn);
+    
             $query = "INSERT INTO journal (journal, journal_title, editorial, description, status, image) 
-            VALUES (?, ?, ?, ?, ?, ?)";
-  
-            $result = execute_query($query, [$journal, $journal_title, $editorial, $description, $status, $journalimage], true);
+                VALUES (?, ?, ?, ?, ?, ?)";
+    
+            $result = execute_query($query, [$journal, $journal_title, $editorial, $description, $status, $imageName], true);
     
             if ($result !== false) {
                 echo json_encode(['status' => true, 'message' => 'Record added successfully']);
@@ -99,10 +121,9 @@ include 'dbcon.php';
                 echo json_encode(['status' => false, 'message' => 'Failed to add record']);
             }
         } catch (Exception $e) {
-            // If an exception occurs
             echo json_encode(['status' => false, 'message' => $e->getMessage()]);
         }
-    }
+    }    
     
     function updateJournalData() {
         $journalId = $_POST['journal_id'];
