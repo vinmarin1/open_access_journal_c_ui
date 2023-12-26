@@ -20,7 +20,6 @@ include 'dbcon.php';
             updateSubmissionFiles();
             break; 
     }
-
     function updateSubmissionFiles() {
         $ftp_server = "win8044.site4now.net";
         $ftp_user = "monorbeta-001";
@@ -33,13 +32,13 @@ include 'dbcon.php';
         $errorMessage = '';
     
         $fileName = basename($files["name"]);
-        $imageFileType = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+        $fileType = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
     
         $allowedFileTypes = array('doc', 'docx');
     
-        if (!in_array($imageFileType, $allowedFileTypes)) {
+        if (!in_array($fileType, $allowedFileTypes)) {
             $success = false;
-            $errorMessage .= "File $fileName - Invalid file type ({$imageFileType}); ";
+            $errorMessage .= "File $fileName - Invalid file type ($fileType); ";
         }
     
         $maxFileSize = 20 * 1024 * 1024;
@@ -49,9 +48,7 @@ include 'dbcon.php';
             $errorMessage .= "File $fileName - Size exceeds the maximum allowed size; ";
         }
     
-        $localFilePath = $fileName;
-    
-        if ($success && move_uploaded_file($files["tmp_name"], $localFilePath)) {
+        if ($success) {
             // FTP configuration
             $ftp_conn = ftp_connect($ftp_server);
     
@@ -69,12 +66,16 @@ include 'dbcon.php';
                 return;
             }
     
+            ftp_pasv($ftp_conn, true);
+    
             $remoteFilePath = "/site1/journaldata/submitted-article/" . $fileName;
     
-            if (!ftp_put($ftp_conn, $remoteFilePath, $localFilePath, FTP_BINARY)) {
+            // Upload file directly to FTP server
+            if (!ftp_put($ftp_conn, $remoteFilePath, $files["tmp_name"], FTP_BINARY)) {
                 $ftpError = ftp_last_error($ftp_conn);
                 $errorMessage = "Failed to upload file to FTP server. FTP Error: $ftpError";
                 echo json_encode(['success' => false, 'message' => $errorMessage, 'submissionfileid' => $submissionFileId]);
+                ftp_close($ftp_conn);
                 return;
             }
     
