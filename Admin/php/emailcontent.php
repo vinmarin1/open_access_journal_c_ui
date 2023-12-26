@@ -104,7 +104,7 @@ $review_files = get_review_files($aid);
                                                                 $isChecked = ($submission_filesval->file_type === 'file with no author') ? 'checked' : '';
                                                                 ?>
                                                                 <tr>
-                                                                    <td width="5%"><input class="form-check-input" type="checkbox" value="" id="defaultCheck1" data-article-files-id="<?php echo $submission_filesval->article_files_id; ?>" <?php echo $isChecked; ?> /></td>
+                                                                    <td width="5%"><input class="form-check-input submission-checkbox" type="checkbox" value="" id="defaultCheck1" data-article-files-id="<?php echo $submission_filesval->article_files_id; ?>" <?php echo $isChecked; ?> /></td>
                                                                     <td width="5%"><?php echo $submission_filesval->article_files_id; ?></td>
                                                                     <td width="65%">
                                                                         <a href="../../Files/submitted-article/<?php echo urlencode($submission_filesval->file_name); ?>" download>
@@ -231,7 +231,7 @@ $review_files = get_review_files($aid);
         var id = $('#id').val();
         var title = <?php echo json_encode($article_data[0]->title); ?>;
 
-        var checkedCheckboxes = $('.form-check-input:checked');
+        var checkedCheckboxes = $('.submission-checkbox:checked');
 
         var checkedData = [];
         checkedCheckboxes.each(function () {
