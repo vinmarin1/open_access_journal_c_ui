@@ -351,6 +351,16 @@ document.getElementById('contributor-btn').addEventListener('click', function (e
     var deleteBtn = cellActions.querySelector('.btn-delete');
 
 
+    var form = document.getElementById('form'); 
+   
+    form['contributor_type[]'].value = 'Type';
+    form['firstname[]'].value = input1Value;
+    form['lastname[]'].value = input2Value;
+    form['publicname[]'].value = input3Value;
+    form['orcid[]'].value = input5Value;
+    form['email[]'].value = input4Value;
+
+
     var tablePrev = document.getElementById('table-contributor-preview').getElementsByTagName('tbody')[0];
 
     var newRowPrev = tablePrev.insertRow(tablePrev.rows.length);

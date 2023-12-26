@@ -330,6 +330,15 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
   </tbody>
 </table>
 
+  <div class="hidden-inputs" style="display: none">
+    <input type="hidden" name="contributor_type[]" value="Co-Author">
+    <input type="hidden" name="firstname[]" value="">
+    <input type="hidden" name="lastname[]" value="">
+    <input type="hidden" name="publicname[]" value="">
+    <input type="hidden" name="orcid[]" value="">
+    <input type="hidden" name="email[]" value="">
+  </div>
+  
   </div>
 
   </div>

@@ -28,6 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     $formattedDate = date('Y-m-d', $timestamp);
     $content = "-";
     $step = 4;
+    
 
     $email = $_SESSION['email'];
 
@@ -36,6 +37,18 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     $subject = "Review Journal";
     $recipient = $email;
     send_mail($recipient, $subject, $message);
+
+
+
+    $contributorTypes = $_POST['contributor_type'];
+    $firstnames = $_POST['firstname'];
+    $lastnames = $_POST['lastname'];
+    $publicnames = $_POST['publicname'];
+    $orcids = $_POST['orcid'];
+    $emails = $_POST['email'];
+
+   
+
 
     $author_id = (isset($_SESSION['id'])) ? $_SESSION['id'] : null;
     $contributor = (isset($_SESSION['first_name'])) ? $_SESSION['first_name'] : null;
@@ -52,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         'file_name3' => $_FILES['file_name3']['name']
     );
 
-    handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $formattedDate, $title, $category, $abstract, $keywords, $reference, $comment, $step);
+    handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $formattedDate, $title, $category, $abstract, $keywords, $reference, $comment, $step, $contributorTypes, $firstnames, $lastnames, $publicnames, $orcids, $emails);
 
     Header("Location: ex_submit.php");
     exit();
@@ -61,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     exit();
 }
 
-function handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $formattedDate, $title, $category, $abstract, $keywords, $reference, $comment, $step)
+function handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $formattedDate, $title, $category, $abstract, $keywords, $reference, $comment, $step, $contributorTypes, $firstnames, $lastnames, $publicnames, $orcids, $emails)
 {
     global $lastInsertedArticleId;
 
@@ -109,6 +122,34 @@ function handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $
                 exit();
             }
         }
+    }
+
+
+
+    for ($i = 0; $i < count($contributorTypes); $i++) {
+      
+        $contributorType = $contributorTypes[$i];
+        $firstname = $firstnames[$i];
+        $lastname = $lastnames[$i];
+        $publicname = $publicnames[$i];
+        $orcid = $orcids[$i];
+        $email = $emails[$i];
+
+       
+        $sqlCont = "INSERT INTO contributors (article_id, contributor_type, firstname, lastname, publicname, orcid, email) 
+                VALUES (:article_id, :contributor_type, :firstname, :lastname, :publicname, :orcid, :email)";
+        
+        $paramsCont = array(
+            'article_id' => $lastInsertedArticleId,
+            'contributor_type' => $contributorType,
+            'firstname' => $firstname,
+            'lastname' => $lastname,
+            'publicname' => $publicname,
+            'orcid' => $orcid,
+            'email' => $email,
+        );
+
+        database_run($sqlCont, $paramsCont);
     }
 }
 ?>
