@@ -26,7 +26,7 @@ $journallist = get_journal_list();
                             <div class="card mb-3">
                                 <div class="row g-0">
                                     <div class="col-md-4">
-                                        <img class="card-img card-img-left img-fluid" src="http://monorbeta-001-site1.btempurl.com/journaldata/journalimage/<?php echo $journallistval->image; ?>" alt="Card image" crossorigin="anonymous"/>
+                                        <img class="card-img card-img-left img-fluid" src="<?php echo $journallistval->image; ?>" alt="Card image" crossorigin="anonymous"/>
                                     </div>
                                     <div class="col-md-8">
                                         <div class="card-body">
