@@ -24,15 +24,14 @@ include 'function/issue_function.php';
         </div>
            <!-- Modal -->
            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Add Issues</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                        <form method="post" enctype="multipart/form-data" action="issuelist.php">
-
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Issues</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="addModalForm" method="post" enctype="multipart/form-data">
                             <div class="form-group row">
                                 <div class="col-md-8">
                                     <div class="mb-3">
@@ -65,12 +64,11 @@ include 'function/issue_function.php';
                                         <input type="text" name="description" class="form-control information-input" id="description" placeholder="">
                                     </div>
                                 </div>
-                                
-                                <div class="input-group mb-3">
-                                    <label class="input-group-text" for="cover_image">Cover Image Image</label>
-                                    <input type="file" name="cover_image" class="form-control" id="cover_image">
-                                </div>
+                                <div class="col-md-12 mb-2" id="cover_image">
+                        <label for="cover_image" class="form-label">Upload Image</label>
+                        <input class="form-control" type="file" id="cover_image" name="cover_image" />
                             </div>
+                      </div>
                             <div class="col-md-8">
                                     <div class="mb-3">
                                         <label for="url_path" class="form-label ps-2">Url Path</label>
@@ -79,8 +77,10 @@ include 'function/issue_function.php';
                                 </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" name="add" class="btn btn-primary">Save changes</button>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" onclick="addRecord()">Save changes</button>
+                </div>
                             </form>
                         </div>
                     </div>
@@ -137,32 +137,90 @@ include 'function/issue_function.php';
 
     <!-- DataTables initialization script with status filter -->
     <script>
-         $(document).ready(function() {
+         $(document).ready(function()   {
         var dataTable = $('#DataTable').DataTable({
             "paging": true,
             "ordering": true,
             "searching": true,
         });
+    });
 
         function addRecord() {
-            var formData = new FormData($('form')[0]);
+        var form = document.getElementById('addModalForm');
+        var formData = new FormData();
+        formData.append('volume', $('#volume').val());
+        formData.append('number', $('#number').val());
+        formData.append('year', $('#year').val());
+        formData.append('title', $('#title').val());
+        formData.append('description', $('#description').val());
+        formData.append('cover_image', $('#cover_image')[0].files[0]);
+        formData.append('url_path', $('#url_path').val());
+        formData.append('action', 'add');
 
+        if (form.checkValidity()) {
+            $('#sloading').toggle();
             $.ajax({
-                url: "issue_function.php",
+                url: "../php/function/issue_function.php",
                 method: "POST",
                 data: formData,
-                contentType: false,
                 processData: false,
+                contentType: false,
                 success: function (data) {
-                    console.log("Ajax request successful:", data); // Log the response for debugging
-                    // Rest of your code...
+                    var response = JSON.parse(data);
+                    if (response.status) {
+                        $('#sloading').toggle();
+                        alert("Record added successfully");
+                    } else {
+                        alert("All fields required!");
+                    }
+                    location.reload();
                 },
                 error: function (xhr, status, error) {
                     console.error("Ajax request failed:", error);
                 }
             });
+        } else {
+            form.reportValidity();
         }
-    });
+    }
+
+    function saveChanges() {
+        $('#sloading').toggle();
+        console.log('Save button clicked');
+        
+            var issues_id = $('#issues_id').val();
+            var updatedData = {
+            volume: $('#volume').val(),
+            number: $('#number').val(),
+            year: $('#year').val(),
+            title: $('#title').val(),
+            description: $('#description').val(),
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: '../php/function/issue_function.php',
+            data: {
+                action: 'update',
+                issues_id :issues_id ,
+                updated_data: updatedData
+            },
+            dataType: 'json',
+            success: function (response) {
+                console.log('Update Response:', response);
+
+                if (response.status === true) {
+                    $('#sloading').toggle();
+                    alert("Record updated successfully");
+                    $('#updateModal').modal('hide');
+                    location.reload();
+                } else {
+                    console.error('Error updating journal data:', response.message);
+                    alert("Failed to update record. Please try again.");
+                }
+            },
+        });
+    }
 
     </script>
 </body>

@@ -47,9 +47,9 @@ if (!function_exists('get_announcementtype_list')) {
      }
      
              function fetchUserData() {
-                 $announcement_type_Id = $_POST['announcement_type_id'];
+                 $announcement_type_id = $_POST['announcement_type_id'];
              
-                 $result = execute_query("SELECT * FROM announcement_type WHERE announcement__type_id = ?", [$announcement_type_Id]);
+                 $result = execute_query("SELECT * FROM announcement_type WHERE announcement__type_id = ?", [$announcement_type_id]);
              
                  header('Content-Type: application/json');
              
@@ -78,19 +78,19 @@ if (!function_exists('get_announcementtype_list')) {
      }
 
      function updateannouncement_typeData() {
-        $announcement_type_Id = $_POST['announcement_type_id'];
+        $announcement_type_id = $_POST['announcement_type_id'];
         $updatedData = $_POST['updated_data'];
     
         $query = "UPDATE announcement_type 
-                    SET announcment_type = ?
-                    WHERE announcement_type_id = ?";
+                  SET announcement_type = ? 
+                  WHERE announcement_type_id = ?";
         
         $pdo = connect_to_database();
     
         $stm = $pdo->prepare($query);
         $check = $stm->execute([
             $updatedData['announcement_type'],
-            $announcement_type_Id
+            $announcement_type_id
         ]);
     
         header('Content-Type: application/json');
@@ -102,12 +102,13 @@ if (!function_exists('get_announcementtype_list')) {
         }
     }
     
+    
     function  archiveAnnouncementtype()
     {
-        $announcement_type_Id = $_POST['announcement_type_id'];
+        $announcement_type_id = $_POST['announcement_type_id'];
 
         $query = "UPDATE announcement_type SET status = 0 WHERE announcement_type_id = ?";
-        $result = execute_query($query, [ $announcement_type_Id]);
+        $result = execute_query($query, [ $announcement_type_id]);
     
         echo json_encode(['status' => $result !== false, 'message' => $result !== false ? 'Announcmenet Type archived successfully' : 'Failed to archive user']);
     }
