@@ -113,7 +113,7 @@ table {
                                                                             <tr>
                                                                                 <td width="5%"><?php echo $submission_filesval->article_files_id; ?></td>
                                                                                 <td width="65%">
-                                                                                    <a href="../../../Files/submitted-article/<?php echo urlencode($submission_filesval->file_name); ?>" download>
+                                                                                    <a href="http://monorbeta-001-site1.btempurl.com/journaldata/submitted-article/<?php echo urlencode($submission_filesval->file_name); ?>" download>
                                                                                         <?php echo $submission_filesval->file_name; ?>
                                                                                     </a>
                                                                                 </td>
@@ -241,7 +241,7 @@ table {
                                                                             <tr>
                                                                                 <td width="5%"><?php echo $review_filesval->article_files_id; ?></td>
                                                                                 <td width="65%">
-                                                                                    <a href="../../../Files/submitted-article/<?php echo urlencode($review_filesval->file_name); ?>" download>
+                                                                                    <a href="http://monorbeta-001-site1.btempurl.com/journaldata/submitted-article/<?php echo urlencode($review_filesval->file_name); ?>" download>
                                                                                         <?php echo $review_filesval->file_name; ?>
                                                                                     </a>
                                                                                 </td>
@@ -449,7 +449,7 @@ table {
                                                                             <tr>
                                                                                 <td width="5%"><?php echo $copyediting_filesval->article_files_id; ?></td>
                                                                                 <td width="65%">
-                                                                                    <a href="../../Files/submitted-article/<?php echo urlencode($copyediting_filesval->file_name); ?>" download>
+                                                                                    <a href="http://monorbeta-001-site1.btempurl.com/journaldata/submitted-article/<?php echo urlencode($copyediting_filesval->file_name); ?>" download>
                                                                                         <?php echo $copyediting_filesval->file_name; ?>
                                                                                     </a>
                                                                                 </td>
@@ -474,7 +474,7 @@ table {
                                                                 </div>
                                                             <?php else: ?>
                                                                 <a href="javascript:void(0);" onclick="" class="btn btn-primary btn-lg btn-block mb-2" style="width: 100%;">Send to Production</a>
-                                                            <a href="javascript:void(0);" onclick="" class="btn btn-outline-danger btn-lg btn-block" style="width: 100%;">Cancel Copyediting</a>
+                                                                <a href="javascript:void(0);" onclick="" class="btn btn-outline-danger btn-lg btn-block" style="width: 100%;">Cancel Copyediting</a>
                                                             <?php endif; ?>
                                                         </div>
                                                         <div class="col-md-9 mt-4" id="dynamic-column">
