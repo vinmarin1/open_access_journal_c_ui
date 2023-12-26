@@ -56,26 +56,54 @@ include 'dbcon.php';
         }
     }
 
-    function addRecord()
-    {
-        $journal = $_POST['journal'];
-        $journal_title= $_POST['journal_title'];
-        $editorial = $_POST['editorial'];
-        $description = $_POST['description'];
-        $status = 1;
-
-        $query = "INSERT INTO journal (journal, journal_title, editorial, description, status) 
-        VALUES (?, ?, ?, ?, ?)";
+    function addRecord() {
+        try {
+            $journal = $_POST['journal'];
+            $journal_title = $_POST['journal_title'];
+            $editorial = $_POST['editorial'];
+            $description = $_POST['description'];
+            $status = 1;
     
-        $result = execute_query($query, [$journal, $journal_title, $editorial, $description, $status], true);
+            $uploadPath = "../../../Files/journal-image/";
     
-        if ($result !== false) {
-            echo json_encode(['status' => true, 'message' => 'Record added successfully']);
-        } else {
-            echo json_encode(['status' => false, 'message' => 'Failed to add record']);
+            if (!file_exists($uploadPath)) {
+                mkdir($uploadPath, 0777, true);
+            }
+            
+            $imageFile = $_FILES['journalimage'];
+            $imageName = basename($imageFile["name"]);
+            $journalimage = '';
+    
+            if (isset($_FILES['journalimage']) && $_FILES['journalimage']['error'] === UPLOAD_ERR_OK) {
+                $imageFileType = strtolower(pathinfo($imageName, PATHINFO_EXTENSION));
+                $allowedFileTypes = array('jpg', 'jpeg', 'png', 'gif');
+    
+                if (in_array($imageFileType, $allowedFileTypes)) {
+                    $journalimage = $uploadPath . $imageName;
+                    if (!move_uploaded_file($imageFile["tmp_name"], $journalimage)) {
+                        throw new Exception('Failed to move uploaded file.');
+                    }
+                } else {
+                    throw new Exception('Invalid file type.');
+                }
+            }
+    
+            $query = "INSERT INTO journal (journal, journal_title, editorial, description, status, image) 
+                      VALUES (?, ?, ?, ?, ?, ?)";
+    
+            $result = execute_query($query, [$journal, $journal_title, $editorial, $description, $status, $imageName], true);
+    
+            if ($result !== false) {
+                echo json_encode(['status' => true, 'message' => 'Record added successfully']);
+            } else {
+                echo json_encode(['status' => false, 'message' => 'Failed to add record']);
+            }
+        } catch (Exception $e) {
+            // If an exception occurs
+            echo json_encode(['status' => false, 'message' => $e->getMessage()]);
         }
     }
-
+    
     function updateJournalData() {
         $journalId = $_POST['journal_id'];
         $updatedData = $_POST['updated_data'];
