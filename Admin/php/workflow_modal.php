@@ -167,7 +167,7 @@ $userlist = get_user_list();
                                             ?>
                                             <tr>
                                                 <td width="5%">
-                                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" data-article-files-id="<?php echo $submission_filesval->article_files_id; ?>" <?php echo $isReviewEqualToOne ? 'checked' : ''; ?> />
+                                                    <input class="form-check-input review-checkbox" type="checkbox" value="" id="defaultCheck1" data-article-files-id="<?php echo $submission_filesval->article_files_id; ?>" <?php echo $isReviewEqualToOne ? 'checked' : ''; ?> />
                                                 </td>
                                                 <td width="5%"><?php echo $submission_filesval->article_files_id; ?></td>
                                                 <td width="65%">
@@ -266,8 +266,13 @@ $userlist = get_user_list();
                                             </tr>
                                         <?php else: ?>
                                             <?php foreach ($submission_files as $submission_filesval): ?>
+                                                <?php
+                                                    $isReviewEqualToOne = ($submission_filesval->copyediting == 1);
+                                                ?>
                                                 <tr>
-                                                    <td width="5%"><input class="form-check-input" type="checkbox" value="" id="defaultCheck1" /></td>
+                                                    <td width="5%">
+                                                        <input class="form-check-input copyediting-checkbox" type="checkbox" value="" id="defaultCheck1" data-article-files-id="<?php echo $submission_filesval->article_files_id; ?>" <?php echo $isReviewEqualToOne ? 'checked' : ''; ?> />
+                                                    </td>
                                                     <td width="5%"><?php echo $submission_filesval->article_files_id; ?></td>
                                                     <td width="65%">
                                                         <a href="../../Files/submitted-article/<?php echo urlencode($submission_filesval->file_name); ?>" download>
@@ -287,7 +292,7 @@ $userlist = get_user_list();
                             </div>
                         </div>
                     </div>
-                    <div class="row mb-2">
+                    <!-- <div class="row mb-2">
                         <div class="col-md-12  mb-2" id="dynamic-column">
                             <div class="table-responsive text-nowrap">
                                 <table class="table table-striped" id="DataTable">
@@ -326,7 +331,7 @@ $userlist = get_user_list();
                                 </table>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="row mb-2">
                         <div class="col-md-12  mb-2" id="dynamic-column">
                             <div class="table-responsive text-nowrap">
@@ -368,7 +373,7 @@ $userlist = get_user_list();
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="addRecord()">Save changes</button>
+                    <button type="button" class="btn btn-primary" onclick="updateCopyeditingFiles()">Save changes</button>
                 </div>
             </div>
         </div>
@@ -487,23 +492,25 @@ $userlist = get_user_list();
 <script>
 function enableFileInput() {
     var selectedValue = $('#submissionfileid').val();
+    
     if (selectedValue !== 'Null') {
-
         $('#xsubmissionfile').show();
+        $('#submissionfile').prop('required', true); 
     } else {
-
         $('#xsubmissionfile').hide();
+        $('#submissionfile').prop('required', false); 
     }
 }
 
- function updateReviewFiles() {
+
+function updateReviewFiles() {
     $('#sloading').toggle();
     updateReviewCheckedFiles();
     updateReviewUncheckedFiles();
 }
 
 function updateReviewCheckedFiles() {
-    var checkedCheckboxes = $('.form-check-input:checked');
+    var checkedCheckboxes = $('.review-checkbox:checked');
 
     var checkedData = [];
     checkedCheckboxes.each(function () {
@@ -536,7 +543,7 @@ function updateReviewCheckedFiles() {
 }
 
 function updateReviewUncheckedFiles() {
-    var uncheckedCheckboxes = $('.form-check-input:not(:checked)');
+    var uncheckedCheckboxes = $('.review-checkbox:not(:checked)');
 
     var uncheckedData = [];
     uncheckedCheckboxes.each(function () {
@@ -568,9 +575,88 @@ function updateReviewUncheckedFiles() {
     });
 }
 
+function updateCopyeditingFiles() {
+    $('#sloading').toggle();
+    updateCopyeditingCheckedFiles();
+    updateCopyeditingUncheckedFiles();
+}
+
+function updateCopyeditingCheckedFiles() {
+    var checkedCheckboxes = $('.copyediting-checkbox:checked');
+
+    var checkedData = [];
+    checkedCheckboxes.each(function () {
+        var articleFilesId = $(this).data('article-files-id');
+        checkedData.push({
+            articleFilesId: articleFilesId
+        });
+    });
+
+    var jsonCheckedData = JSON.stringify(checkedData);
+
+    console.log('Checked Data:', checkedData);
+
+    $.ajax({
+        type: 'POST',
+        url: '../php/function/wf_modal_function.php',
+        data: {
+            checkedData: jsonCheckedData,
+            action: 'updatecopyeditingcheckedfile'
+        },
+        success: function(response) {
+            console.log('Checked checkboxes data sent successfully.');
+            console.log(response);
+            location.reload();
+        },
+        error: function(error) {
+            console.error('Error sending checked checkboxes data:', error);
+        }
+    });
+}
+
+function updateCopyeditingUncheckedFiles() {
+    var uncheckedCheckboxes = $('.copyediting-checkbox:not(:checked)');
+
+    var uncheckedData = [];
+    uncheckedCheckboxes.each(function () {
+        var articleFilesId = $(this).data('article-files-id');
+        uncheckedData.push({
+            articleFilesId: articleFilesId
+        });
+    });
+
+    var jsonUncheckedData = JSON.stringify(uncheckedData);
+
+    console.log('Unchecked Data:', uncheckedData);
+
+    $.ajax({
+        type: 'POST',
+        url: '../php/function/wf_modal_function.php',
+        data: {
+            uncheckedData: jsonUncheckedData,
+            action: 'updatecopyeditinguncheckedfile'
+        },
+        success: function(response) {
+            console.log('Unchecked checkboxes data sent successfully.');
+            console.log(response);
+            location.reload();
+        },
+        error: function(error) {
+            console.error('Error sending unchecked checkboxes data:', error);
+        }
+    });
+}
+
 function updateFileSubmission() {
+    $('#sloading').toggle();
     var submissionFileId = $('#submissionfileid').val();
     var submissionFile = $('#submissionfile')[0].files[0];
+
+    if ($('#submissionfile').prop('required') && !submissionFile) {
+        $('#sloading').toggle();
+        alert('File is required. Please select a file.');
+        return; 
+    }
 
     var formData = new FormData();
     formData.append('submissionfileid', submissionFileId);
@@ -584,6 +670,7 @@ function updateFileSubmission() {
         processData: false,
         contentType: false,
         success: function (response) {
+            $('#sloading').toggle();
             console.log(response);
             location.reload();
         },
