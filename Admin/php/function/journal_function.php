@@ -69,7 +69,6 @@ include 'dbcon.php';
             if (!file_exists($uploadPath)) {
                 mkdir($uploadPath, 0777, true);
             }
-            
             $imageFile = $_FILES['journalimage'];
             $imageName = basename($imageFile["name"]);
             $journalimage = '';
@@ -89,9 +88,9 @@ include 'dbcon.php';
             }
     
             $query = "INSERT INTO journal (journal, journal_title, editorial, description, status, image) 
-                      VALUES (?, ?, ?, ?, ?, ?)";
-    
-            $result = execute_query($query, [$journal, $journal_title, $editorial, $description, $status, $imageName], true);
+            VALUES (?, ?, ?, ?, ?, ?)";
+  
+            $result = execute_query($query, [$journal, $journal_title, $editorial, $description, $status, basename($journalimage)], true);
     
             if ($result !== false) {
                 echo json_encode(['status' => true, 'message' => 'Record added successfully']);
