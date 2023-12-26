@@ -125,7 +125,7 @@ function handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $
     }
 
 
-
+  
     for ($i = 0; $i < count($contributorTypes); $i++) {
       
         $contributorType = $contributorTypes[$i];
@@ -134,6 +134,8 @@ function handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $
         $publicname = $publicnames[$i];
         $orcid = $orcids[$i];
         $email = $emails[$i];
+
+
 
        
         $sqlCont = "INSERT INTO contributors (article_id, contributor_type, firstname, lastname, publicname, orcid, email) 
@@ -150,6 +152,16 @@ function handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $
         );
 
         database_run($sqlCont, $paramsCont);
+
+
+        $emailCont = $email;
+
+        $messageCont = "<p>You've been included as a contributor for the Journal</p><br> <label style='display: inline-block;'>Title: </label> <p style='display: inline-block;'>$title</p> <br><label style='display: inline-block;'>Abstract: </label><p style='display: inline-block;'>$abstract</p>";
+    
+        $subjectCont = "Review Journal";
+        $recipientCont = $emailCont;
+        send_mail($recipientCont, $subjectCont, $messageCont);
+    
     }
 }
 ?>

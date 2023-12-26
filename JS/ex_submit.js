@@ -353,7 +353,7 @@ document.getElementById('contributor-btn').addEventListener('click', function (e
 
     var form = document.getElementById('form'); 
    
-    form['contributor_type[]'].value = 'Type';
+    form['contributor_type[]'].value = 'Primary Contact';
     form['firstname[]'].value = input1Value;
     form['lastname[]'].value = input2Value;
     form['publicname[]'].value = input3Value;
