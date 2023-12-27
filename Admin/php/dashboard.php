@@ -197,6 +197,7 @@ include 'function/dashboard_functions.php';
         // Create an array with data filled for all 12 months
         var dynamicData = fillDataForAllMonths(totalGavel);
         var dynamicData1 = fillDataForAllMonths(totalLamp);
+        var dynamicData2 = fillDataForAllMonths(totalStar);
         console.log(dynamicData)
 
         // Data for the line chart
@@ -218,7 +219,7 @@ include 'function/dashboard_functions.php';
         },
         {
             label: 'Star',
-            data: [60, 40, 70, 50, 80, 30, 40, 45, 60, 75, 80, 30],
+            data: dynamicData2,
             borderColor: 'rgba(255, 205, 86, 1)',
             borderWidth: 1,
             fill: false
@@ -289,24 +290,23 @@ include 'function/dashboard_functions.php';
         borderWidth: 1
     }]
 };
-        // Data for Doughnut Chart 1
-        var doughnutChartData1 = {
+                    // Data for Doughnut Chart 1
+                var doughnutChartData1 = {
                     labels: ['Not Published', 'Published'],
                     datasets: [{
-                        data: [50, 100],
+                        data: [doughnutChartData1[0].not_published_count, doughnutChartData1[0].published_count],
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.5)',
                             'rgba(75, 192, 192, 0.5)',
-                            
                         ],
                         borderColor: [
                             'rgba(255, 99, 132, 1)',
                             'rgba(75, 192, 192, 1)',
-                            
                         ],
                         borderWidth: 1
                     }]
                 };
+
 
                 // Data for Doughnut Chart 2
                 var doughnutChartData2 = {
