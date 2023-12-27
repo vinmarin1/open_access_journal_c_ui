@@ -164,6 +164,7 @@ include 'function/dashboard_functions.php';
 
         // Function to create a line chart
         function createLineChart(chartId, data) {
+            console.log(totalGavel,"hello")
             var ctx = document.getElementById(chartId).getContext('2d');
             var myChart = new Chart(ctx, {
                 type: 'line',
@@ -181,19 +182,36 @@ include 'function/dashboard_functions.php';
             });
         }
 
+        // Function to fill data for all 12 months
+        function fillDataForAllMonths(data) {
+            var filledData = Array(12).fill(0); // Initialize array with zeros for all 12 months
+
+            data.forEach(function (item) {
+                filledData[item.month - 1] = item.monthly_reads ; // Subtract 1 to match array index
+            });
+            
+            return filledData;
+            
+        }
+
+        // Create an array with data filled for all 12 months
+        var dynamicData = fillDataForAllMonths(totalGavel);
+        var dynamicData1 = fillDataForAllMonths(totalLamp);
+        console.log(dynamicData)
+
         // Data for the line chart
         var lineChartData1 = {
             labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'Novemeber', 'December'],
             datasets: [{
                   label: 'Gavel',
-            data: [50, 30, 60, 40, 70, 20, 30, 35, 50, 65, 70, 20],
+            data: dynamicData,
             borderColor: 'rgba(255, 99, 132, 1)',
             borderWidth: 1,
             fill: false
         },
         {
             label: 'Lamp',
-            data: [40, 20, 50, 30, 60, 10, 20, 25, 40, 55, 60, 10],
+            data: dynamicData1,
             borderColor: 'rgba(75, 192, 192, 1)',
             borderWidth: 1,
             fill: false
