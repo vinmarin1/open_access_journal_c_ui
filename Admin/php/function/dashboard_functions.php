@@ -43,3 +43,20 @@ include 'dbcon.php';
                     $totalEngagements = "Error fetching data";
                 }
 ?>         
+
+                <?php
+                // Fetch total logs from the database where issues_id = 5
+                $query = "SELECT COUNT(*) as totalOngoingarticles FROM article_final WHERE status_id = 5";
+                $result = execute_query($query);
+
+                // Check if the query was successful
+                if ($result !== false) {
+                    // Correct the variable name here
+                    $totalOngoingarticles = $result[0]->totalOngoingarticles;
+                } else {
+                    $totalOngoingarticles = "Error fetching data";
+                }
+?>
+
+
+<?php
