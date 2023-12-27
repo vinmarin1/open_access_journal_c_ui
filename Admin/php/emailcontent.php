@@ -9,6 +9,7 @@ $article_data = get_article_data($aid);
 $article_contributor = get_article_contributor($aid);
 $email_content = get_email_content($emc);
 $submission_files = get_submission_files($aid);
+$review_files = get_review_files($aid);
 ?>
 
 <!DOCTYPE html>
@@ -80,7 +81,7 @@ $submission_files = get_submission_files($aid);
                                             <div id="quill-emailcontent" style="height: 350px;"></div>
                                         </div>
                                         <?php
-                                        if ($emc < 2):
+                                        if ($emc == 1):
                                         ?>
                                             <h5 class="card-header">Files</h5>
                                             <p>Select files you want to add in review round.</p>
@@ -100,11 +101,51 @@ $submission_files = get_submission_files($aid);
                                                         <?php else: ?>
                                                             <?php foreach ($submission_files as $submission_filesval): ?>
                                                                 <?php
-                                                                // Check if the file_type is "file with no author"
                                                                 $isChecked = ($submission_filesval->file_type === 'file with no author') ? 'checked' : '';
                                                                 ?>
                                                                 <tr>
-                                                                    <td width="5%"><input class="form-check-input" type="checkbox" value="" id="defaultCheck1" data-article-files-id="<?php echo $submission_filesval->article_files_id; ?>" <?php echo $isChecked; ?> /></td>
+                                                                    <td width="5%"><input class="form-check-input submission-checkbox" type="checkbox" value="" id="defaultCheck1" data-article-files-id="<?php echo $submission_filesval->article_files_id; ?>" <?php echo $isChecked; ?> /></td>
+                                                                    <td width="5%"><?php echo $submission_filesval->article_files_id; ?></td>
+                                                                    <td width="65%">
+                                                                        <a href="../../Files/submitted-article/<?php echo urlencode($submission_filesval->file_name); ?>" download>
+                                                                            <?php echo $submission_filesval->file_name; ?>
+                                                                        </a>
+                                                                    </td>
+                                                                    <td width="25%"><?php echo $submission_filesval->file_type; ?></td>
+                                                                </tr>
+                                                            <?php endforeach; ?>
+                                                        <?php endif; ?>
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <th colspan="4" style="text-align: right;">
+                                                            </th>
+                                                        </tfoot>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        <?php endif; ?>
+                                        <?php
+                                        if ($emc == 3):
+                                        ?>
+                                            <h5 class="card-header">Files</h5>
+                                            <p>Select files you want to add in review round.</p>
+                                            <div class="col-md-12" id="dynamic-column">
+                                                <div class="table-responsive text-nowrap">
+                                                    <table class="table table-striped" id="DataTable">
+                                                        <thead>
+                                                            <tr>
+                                                                <th colspan="4"><h6>Submission Files</h6></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <?php if (empty($submission_files)): ?>
+                                                            <tr>
+                                                                <td colspan="4" class="text-center">No Files</td>
+                                                            </tr>
+                                                        <?php else: ?>
+                                                            <?php foreach ($submission_files as $submission_filesval): ?>
+                                                                <tr>
+                                                                    <td width="5%"><input class="form-check-input" type="checkbox" value="" id="defaultCheck1" data-article-files-id="<?php echo $submission_filesval->article_files_id; ?>"/></td>
                                                                     <td width="5%"><?php echo $submission_filesval->article_files_id; ?></td>
                                                                     <td width="65%">
                                                                         <a href="../../Files/submitted-article/<?php echo urlencode($submission_filesval->file_name); ?>" download>
@@ -129,7 +170,7 @@ $submission_files = get_submission_files($aid);
                             </div>
                             <div class="row">
                                 <div class="d-flex justify-content-end mt-4">
-                                    <a href="../php/workflow.php?aid=<?php echo $article_data[0]->article_id; ?>&emc=1" class="btn btn-outline-danger">Cancel</a>
+                                    <a href="../php/workflow.php?aid=<?php echo $article_data[0]->article_id; ?>" class="btn btn-outline-danger">Cancel</a>
                                     <button type="submit" class="btn btn-primary ms-2" id="submitBtn">Submit</button>
                                 </div>
                             </div>
@@ -190,7 +231,7 @@ $submission_files = get_submission_files($aid);
         var id = $('#id').val();
         var title = <?php echo json_encode($article_data[0]->title); ?>;
 
-        var checkedCheckboxes = $('.form-check-input:checked');
+        var checkedCheckboxes = $('.submission-checkbox:checked');
 
         var checkedData = [];
         checkedCheckboxes.each(function () {

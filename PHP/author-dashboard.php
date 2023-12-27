@@ -69,7 +69,7 @@ session_start();
             <div class="tab-content" id="myTabContent">
               <div class="tab-pane fade show active" id="submissions-tab-pane" role="tabpanel"
                 aria-labelledby="submissions-tab" tabindex="0">
-                <table>
+                <!-- <table>
                   <thead>
                     <tr>
                       <th><input type="checkbox"></th>
@@ -134,8 +134,99 @@ session_start();
                       </td>
                     </tr>
                   </tbody>
-                </table>
-                <div class="pagination">
+                </table> -->
+                <?php
+   
+     
+                  require 'dbcon.php';
+              
+                  global $con;
+              
+                  $journalNames = array(
+                      1 => 'The Gavel',
+                      2 => 'The Lamp',
+                      3 => 'The Star',
+                  );
+              
+                  $journalStatus = array(
+                      1 => array('text' => 'PUBLISHED', 'color' => 'green', 'borderColor' => 'darkgreen'),
+                      2 => array('text' => 'PRODUCTION', 'color' => 'blue', 'borderColor' => 'darkblue'),
+                      3 => array('text' => 'COPYEDITING', 'color' => 'orange', 'borderColor' => 'darkorange'),
+                      4 => array('text' => 'REVIEW', 'color' => 'green', 'borderColor' => 'green'),
+                      5 => array('text' => 'PENDING', 'color' => 'gray', 'borderColor' => 'darkgray'),
+                      6 => array('text' => 'REJECT', 'color' => 'red', 'borderColor' => 'darkred'),
+                  );
+              
+                  if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+                      $id = $_SESSION['id'];
+              
+                      // Assuming you want 10 items per page
+                      $itemsPerPage = 10;
+                      $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
+              
+                      $query = "SELECT * FROM article WHERE `author_id` = :author_id LIMIT " . ($currentPage - 1) * $itemsPerPage . ", $itemsPerPage";
+                      $vars = array(':author_id' => $id);
+              
+                      $result = database_run($query, $vars);
+              
+                      if ($result !== false && count($result) > 0) {
+                          echo '<table class="table table-hover">';
+                          echo '<thead>';
+                          echo '<tr>
+                                      <th><input type="checkbox"></th>
+                                      <th>Title</th>
+                                      <th>Date</th>
+                                      <th>Journal</th>
+                                      <th><center>Status</center></th>
+                                      <th><center>Action</center></th>
+                                  </tr>';
+                          echo '</thead>';
+              
+                          echo '<tbody>';
+                          foreach ($result as $row) {
+                              echo '<tr>';
+                              echo '<td><input type="checkbox"></td>';
+                              echo '<td>' . $row->title . '</td>';
+                              echo '<td>' . $row->date_added . '</td>';
+              
+                              $journalName = isset($journalNames[$row->journal_id]) ? $journalNames[$row->journal_id] : '';
+                              echo '<td>' . $journalName . '</td>';
+              
+                              $statusInfo = isset($journalStatus[$row->status]) ? $journalStatus[$row->status] : array('text' => '', 'color' => '', 'borderColor' => '');
+                              echo '<td><center><span class="badge badge-pill" style="background-color: ' . $statusInfo['color'] . '; border: 1px solid ' . $statusInfo['borderColor'] . ';">' . $statusInfo['text'] . '</span></center></td>';
+                              echo '<td><center>...</center></td>';
+                              echo '</tr>';
+                          }
+                          echo '</tbody>';
+                          echo '</table>';
+              
+                          
+                          $query = "SELECT COUNT(*) as total FROM article WHERE `author_id` = :author_id";
+                          $countResult = database_run($query, $vars);
+                          $totalCount = $countResult[0]->total;
+              
+                          $totalPages = ceil($totalCount / $itemsPerPage);
+              
+                  
+                          echo '<nav aria-label="Page navigation example" class="mt-3">';
+                          echo '<ul class="pagination justify-content-end">';
+                          for ($i = 1; $i <= $totalPages; $i++) {
+                              echo '<li class="page-item ' . ($i == $currentPage ? 'active' : '') . '"><a class="page-link" href="?page=' . $i . '">' . $i . '</a></li>';
+                          }
+                          echo '</ul>';
+                          echo '</nav>';
+
+                                  } else {
+                                      echo '0 results or error in query execution';
+                                  }
+                              }
+                ?>
+
+
+
+
+
+                <!-- <div class="pagination">
                   Showing 1 to 10 of 50 entries
                   <div class="pagination-controls">
                     <button>«</button>
@@ -147,7 +238,7 @@ session_start();
                     <button>›</button>
                     <button>»</button>
                   </div>
-                </div>
+                </div> -->
               </div>
               <div class="tab-pane fade " id="reviews-tab-pane" role="tabpanel" aria-labelledby="reviews-tab"
                 tabindex="0">

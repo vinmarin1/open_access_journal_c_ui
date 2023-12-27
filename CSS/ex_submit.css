@@ -384,6 +384,12 @@
     
 }
 
+.coAuthor, .pmContact{
+    display: inline-block;
+    margin-right: 5px;
+}
+
+
 #input5{
     display: inline-block;
     height: 30px;

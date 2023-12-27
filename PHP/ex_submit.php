@@ -280,6 +280,9 @@
   <?php
 if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
   $first_name = $_SESSION['first_name'];
+  $email = $_SESSION['email'];
+  $orc_id = $_SESSION['orc_id'];
+  
     
   $firstName = isset($_SESSION['first_name']) ? ucfirst($_SESSION['first_name']) : '';
   $middleName = isset($_SESSION['middle_name']) ? ' ' . ucfirst($_SESSION['middle_name']) : '';
@@ -303,19 +306,39 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
   <thead>
     <tr >
  
-      <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">Contributors</th>
-      <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">Action</th>
+      <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">First Name</th>
+      <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">Last Name</th>
+      <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">Public Name</th>
+      <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">ORCID</th>
+      <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">EMAIL</th>
+      <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">CO-AUTHOR</th>
+      <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">PRIMARY CONTACT</th>
+      <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal; ">Action</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-    
-      <td name="contributor" id="contributor"><?php echo $contributor; ?></td>
+      <td><?php echo $first_name; ?></td>
+      <td><?php echo $lastName; ?></td>
       <td></td>
+      <td><?php echo $orc_id; ?></td>
+      <td><?php echo $email; ?></td>
+      <td><input type="checkbox" disabled></td>
+      <td><input type="checkbox" value="Primary Contact" id="checkbox1"></td>
+      <td style="width: 150px"></td>
     </tr>
   </tbody>
 </table>
 
+  <div class="hidden-inputs" style="display: none">
+    <input type="hidden" name="contributor_type[]" value="Co-Author">
+    <input type="hidden" name="firstname[]" value="">
+    <input type="hidden" name="lastname[]" value="">
+    <input type="hidden" name="publicname[]" value="">
+    <input type="hidden" name="orcid[]" value="">
+    <input type="hidden" name="email[]" value="">
+  </div>
+  
   </div>
 
   </div>
@@ -373,14 +396,41 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 
     <div class="cont-container">
       <h5 class="title12" id="title-12">Contributors: </h5>
-      <div class="cont-header-container">
+      <!-- <div class="cont-header-container">
         <h5 class="title13" id="title-13">Contributors Name</h5>
         <button type="button" class="btn btn-outline-light btn-sm" id="update-cont-4">View</button>
     
-      </div>
-      <div class="file-content-container mt-3">
-        <input type="text" class="form-control" id="input10" readonly>
-      </div>
+      </div> -->
+      <!-- <div class="file-content-container mt-3"> -->
+        <!-- <input type="text" class="form-control" id="input10" readonly> -->
+        <table class="table table-striped" id="table-contributor-preview" name="table-contributor">
+          <thead>
+            <tr >
+        
+              <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">First Name</th>
+              <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">Last Name</th>
+              <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">Public Name</th>
+              <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">ORCID</th>
+              <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">EMAIL</th>
+              <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">CO-AUTHOR</th>
+              <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">PRIMARY CONTACT</th>
+              <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal; ">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><?php echo $first_name; ?></td>
+              <td><?php echo $lastName; ?></td>
+              <td></td>
+              <td><?php echo $orc_id; ?></td>
+              <td><?php echo $email; ?></td>
+              <td><input type="checkbox" disabled></td>
+              <td><input type="checkbox" id="checkbox2"></td>
+              <td style="width: 150px"></td>
+            </tr>
+          </tbody>
+        </table>
+      <!-- </div> -->
     </div>
     
    
@@ -413,6 +463,18 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 <script src="../JS/ex_submit.js"></script>
 <script src="../JS/ex_submit_duplicate_article.js"></script>
 <script src="../JS/ex_submit_journal_type.js"></script>
+<script>
+   var checkbox1 = document.getElementById("checkbox1");
+   var checkbox2 = document.getElementById("checkbox2");
 
+   
+    checkbox1.addEventListener("change", function () {
+        checkbox2.checked = checkbox1.checked;
+    });
+
+    checkbox2.addEventListener("change", function () {
+        checkbox1.checked = checkbox2.checked;
+    });
+</script>
 </body>
 </html>

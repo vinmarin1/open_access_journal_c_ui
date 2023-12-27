@@ -301,48 +301,203 @@ document.getElementById('contributor-btn').addEventListener('click', function (e
       '<div id= "lName"><label id="sub-17">Last Name: </label><input id="input2" class="swal2-input"></div>' +
       '<label id= "sub-18">Preferred Public Name: </label><input id="input3" class="swal2-input">' +
       '<label id= "sub-19">Email: </label><input id="input4" class="swal2-input">' +
-      '<label id= "sub-20">ORCID: </label><input id="input5" class="swal2-input">'+ '<label id="selectRoleLabel">Role: </label><select class="form-select" name="selectRole" id="selectRole"><option value="">Select Role</option><option value="Contact Principal">Contact Principal</option><option value="Co-Author">Co-Author</option></select> ',
+      '<label id= "sub-20">ORCID: </label><input id="input5" class="swal2-input">',
 
     footer: '<button  id="confirmBtn">Add Contributor</button>',
     showConfirmButton: false,
   });
 
- 
-
-
-  
-
   document.getElementById('confirmBtn').addEventListener('click', function () {
-  
     var input1Value = document.getElementById('input1').value;
     var input2Value = document.getElementById('input2').value;
     var input3Value = document.getElementById('input3').value;
     var input4Value = document.getElementById('input4').value;
     var input5Value = document.getElementById('input5').value;
 
-    var contributorsValue = input1Value + ' ' + input2Value;
 
 
+    // Add the new row to the table
     var table = document.getElementById('table-contributor').getElementsByTagName('tbody')[0];
     var newRow = table.insertRow(table.rows.length);
 
-    var cellContributor = newRow.insertCell(0);
-    cellContributor.innerHTML = contributorsValue;
+    var cellFirstName = newRow.insertCell(0);
+    cellFirstName.innerHTML = input1Value;
 
-    var cellActions = newRow.insertCell(1);
-    cellActions.innerHTML = '<button type="button" id="btn-update" class="btn btn-outline-primary btn-sm btn-update" style="margin-right: 10px;">View</button>' +
-    '<button type="button" id="btn-delete" class="btn btn-danger btn-sm btn-delete">Delete</button>';
+    var cellLastName = newRow.insertCell(1);
+    cellLastName.innerHTML = input2Value;
 
+    var cellPublicName = newRow.insertCell(2);
+    cellPublicName.innerHTML = input3Value;
+
+    var cellOrcid = newRow.insertCell(3);
+    cellOrcid.innerHTML = input5Value;
+
+    var cellEmail = newRow.insertCell(4);
+    cellEmail.innerHTML = input4Value;
+
+
+    var cellCoAuthor = newRow.insertCell(5);
+    cellCoAuthor.innerHTML = '<input class="coAuthor" type="checkbox" value="Co-Author"  id="coAuthor">';
+
+    var cellPrimaryContact = newRow.insertCell(6);
+    cellPrimaryContact.innerHTML = '<input class="pmContact" type="checkbox" value="Primary Contact" id="pContact">';
  
+    var cellActions = newRow.insertCell(7);
+    cellActions.innerHTML = '<button type="button" class="btn btn-outline-primary btn-sm btn-update" style="margin-right: 10px;">View</button>' +
+      '<button type="button" class="btn btn-danger btn-sm btn-delete">Delete</button>';
+
+    // Add event listeners for update and delete buttons
     var updateBtn = cellActions.querySelector('.btn-update');
     var deleteBtn = cellActions.querySelector('.btn-delete');
+
+
+    var form = document.getElementById('form'); 
+   
+    form['contributor_type[]'].value = 'Primary Contact';
+    form['firstname[]'].value = input1Value;
+    form['lastname[]'].value = input2Value;
+    form['publicname[]'].value = input3Value;
+    form['orcid[]'].value = input5Value;
+    form['email[]'].value = input4Value;
+
+
+    var tablePrev = document.getElementById('table-contributor-preview').getElementsByTagName('tbody')[0];
+
+    var newRowPrev = tablePrev.insertRow(tablePrev.rows.length);
+
+    var cellFirstNamePrev = newRowPrev.insertCell(0);
+    cellFirstNamePrev.innerHTML = input1Value;
+
+
+    var cellLastNamePrev = newRowPrev.insertCell(1);
+    cellLastNamePrev.innerHTML = input2Value;
+
+    var cellPublicNamePrev = newRowPrev.insertCell(2);
+    cellPublicNamePrev.innerHTML = input3Value;
+
+    var cellOrcidPrev = newRowPrev.insertCell(3);
+    cellOrcidPrev.innerHTML = input5Value;
+
+    var cellEmailPrev = newRowPrev.insertCell(4);
+    cellEmailPrev.innerHTML = input4Value;
+
+
+    var cellCoAuthorPrev = newRowPrev.insertCell(5);
+    cellCoAuthorPrev.innerHTML = '<input class="coAuthor" type="checkbox" value="Co-Author"  id="coAuthorPrev">';
+
+    var cellPrimaryContactPrev = newRowPrev.insertCell(6);
+    cellPrimaryContactPrev.innerHTML = '<input class="pmContact" type="checkbox" value="Primary Contact"  id="pContactPrev">';
+
+    var cellActionsPrev = newRowPrev.insertCell(7);
+    cellActionsPrev.innerHTML = '<button type="button" class="btn btn-outline-primary btn-sm btn-updatePrev" style="margin-right: 10px;">View</button>' +
+      '<button type="button" class="btn btn-danger btn-sm btn-deletePrev">Delete</button>';
+
+
+    var updateBtnPrev = cellActionsPrev.querySelector('.btn-updatePrev');
+    var deleteBtnPrev = cellActionsPrev.querySelector('.btn-deletePrev');
+
+
+ 
+
+
+var coAuthorCheckbox = cellCoAuthor.querySelector('.coAuthor');
+var pContactCheckbox = cellPrimaryContact.querySelector('.pmContact');
+var coAuthorPrevCheckbox = cellCoAuthorPrev.querySelector('.coAuthor');
+var pContacPrevtCheckbox = cellPrimaryContactPrev.querySelector('.pmContact');
+
+coAuthorCheckbox.addEventListener('change', function() {
+
+    var coAuthorCheckboxPrev = cellCoAuthorPrev.querySelector('.coAuthor');
+    coAuthorCheckboxPrev.checked = this.checked;
+});
+
+pContactCheckbox.addEventListener('change', function() {
+
+  var pContactCheckboxPrev = cellPrimaryContactPrev.querySelector('.pmContact');
+  pContactCheckboxPrev.checked = this.checked;
+});
+
+
+coAuthorPrevCheckbox.addEventListener('change', function() {
+
+  var coAuthorCheckboxes = cellCoAuthor.querySelector('.coAuthor');
+  coAuthorCheckboxes.checked = this.checked;
+});
+
+
+pContacPrevtCheckbox.addEventListener('change', function() {
+
+  var pContactCheckboxes = cellPrimaryContact.querySelector('.pmContact');
+  pContactCheckboxes.checked = this.checked;
+});
+
+
+
+
+
+
+
+
 
     let updatedInput1Value;
     let updatedInput2Value;
     let updatedInput3Value;
     let updatedInput4Value;
     let updatedInput5Value;
-    
+
+    updateBtnPrev.addEventListener('click' , function(event) {
+      Swal.fire({
+        html: '<h5 class="title10" id="title-10">Update Contributor</h5>' +
+            '<hr id="swal-d">' +
+            '<div id="fName"><label id="sub-21">First Name: </label><input id="updateInput1" class="swal2-input" value="' + (updatedInput1Value || input1Value) + '"></div>' +
+            '<div id= "lName"><label id="sub-22">Last Name: </label><input id="updateInput2" class="swal2-input" value="' + (updatedInput2Value || input2Value) + '"></div>' +
+            '<label id= "sub-23">Preferred Public Name: </label><input id="updateInput3" value="' + (updatedInput3Value || input3Value) + '" class="swal2-input">' +
+            '<label id= "sub-24">Email: </label><input id="updateInput4" value="' + (updatedInput4Value || input4Value) + '" class="swal2-input">' +
+            '<label id= "sub-25">ORCID: </label><input id="updateInput5" value="' + (updatedInput5Value || input5Value) + '" class="swal2-input">',
+
+        footer: '<button id="update-cont">Update</button>',
+        showConfirmButton: false
+    });
+
+
+    var currentRow = this.closest('tr');
+
+    document.getElementById('update-cont').addEventListener('click', function () {
+
+
+      
+      currentRow.cells[0].innerHTML = document.getElementById('updateInput1').value;
+      currentRow.cells[1].innerHTML = document.getElementById('updateInput2').value;
+      currentRow.cells[2].innerHTML = document.getElementById('updateInput3').value;
+      currentRow.cells[3].innerHTML = document.getElementById('updateInput4').value;
+      currentRow.cells[4].innerHTML = document.getElementById('updateInput5').value;
+
+      currentRow.cells[0].innerHTML = document.getElementById('updateInput1').value;
+      currentRow.cells[1].innerHTML = document.getElementById('updateInput2').value;
+      currentRow.cells[2].innerHTML = document.getElementById('updateInput3').value;
+      currentRow.cells[3].innerHTML = document.getElementById('updateInput4').value;
+      currentRow.cells[4].innerHTML = document.getElementById('updateInput5').value;
+
+      var updatedInput1Element = document.getElementById('updateInput1');
+      var updatedInput2Element = document.getElementById('updateInput2');
+      var updatedInput3Element = document.getElementById('updateInput3');
+      var updatedInput4Element = document.getElementById('updateInput4');
+      var updatedInput5Element = document.getElementById('updateInput5');
+
+      updatedInput1Value = updatedInput1Element.value;
+      updatedInput2Value = updatedInput2Element.value;
+      updatedInput3Value = updatedInput3Element.value;
+      updatedInput4Value = updatedInput4Element.value;
+      updatedInput5Value = updatedInput5Element.value;
+
+
+        Swal.close();
+    });
+
+    });
+
+
+ 
     updateBtn.addEventListener('click', function (event) {
         Swal.fire({
             html: '<h5 class="title10" id="title-10">Update Contributor</h5>' +
@@ -351,31 +506,52 @@ document.getElementById('contributor-btn').addEventListener('click', function (e
                 '<div id= "lName"><label id="sub-22">Last Name: </label><input id="updateInput2" class="swal2-input" value="' + (updatedInput2Value || input2Value) + '"></div>' +
                 '<label id= "sub-23">Preferred Public Name: </label><input id="updateInput3" value="' + (updatedInput3Value || input3Value) + '" class="swal2-input">' +
                 '<label id= "sub-24">Email: </label><input id="updateInput4" value="' + (updatedInput4Value || input4Value) + '" class="swal2-input">' +
-                '<label id= "sub-25">ORCID: </label><input id="updateInput5" value="' + (updatedInput5Value || input5Value) + '" class="swal2-input">'+ '<label id="selectRoleLabelUpdate">Role: </label><select class="form-select" name="selectRoleUpdate" id="selectRoleUpdate"><option value="">Select Role</option><option value="Contact Principal">Contact Principal</option><option value="Co-Author">Co-Author</option></select> ',
+                '<label id= "sub-25">ORCID: </label><input id="updateInput5" value="' + (updatedInput5Value || input5Value) + '" class="swal2-input">',
     
             footer: '<button id="update-cont">Update</button>',
             showConfirmButton: false
         });
     
+
+        var currentRow = this.closest('tr');
+
         document.getElementById('update-cont').addEventListener('click', function () {
-            var updatedInput1Element = document.getElementById('updateInput1');
-            var updatedInput2Element = document.getElementById('updateInput2');
-            var updatedInput3Element = document.getElementById('updateInput3');
-            var updatedInput4Element = document.getElementById('updateInput4');
-            var updatedInput5Element = document.getElementById('updateInput5');
-    
-            updatedInput1Value = updatedInput1Element.value;
-            updatedInput2Value = updatedInput2Element.value;
-            updatedInput3Value = updatedInput3Element.value;
-            updatedInput4Value = updatedInput4Element.value;
-            updatedInput5Value = updatedInput5Element.value;
-    
-            contributorsValue = updatedInput1Value + ' ' + updatedInput2Value;
-            cellContributor.innerHTML = contributorsValue;
-    
+
+
+          
+          currentRow.cells[0].innerHTML = document.getElementById('updateInput1').value;
+          currentRow.cells[1].innerHTML = document.getElementById('updateInput2').value;
+          currentRow.cells[2].innerHTML = document.getElementById('updateInput3').value;
+          currentRow.cells[3].innerHTML = document.getElementById('updateInput4').value;
+          currentRow.cells[4].innerHTML = document.getElementById('updateInput5').value;
+
+          currentRow.cells[0].innerHTML = document.getElementById('updateInput1').value;
+          currentRow.cells[1].innerHTML = document.getElementById('updateInput2').value;
+          currentRow.cells[2].innerHTML = document.getElementById('updateInput3').value;
+          currentRow.cells[3].innerHTML = document.getElementById('updateInput4').value;
+          currentRow.cells[4].innerHTML = document.getElementById('updateInput5').value;
+
+          var updatedInput1Element = document.getElementById('updateInput1');
+          var updatedInput2Element = document.getElementById('updateInput2');
+          var updatedInput3Element = document.getElementById('updateInput3');
+          var updatedInput4Element = document.getElementById('updateInput4');
+          var updatedInput5Element = document.getElementById('updateInput5');
+  
+          updatedInput1Value = updatedInput1Element.value;
+          updatedInput2Value = updatedInput2Element.value;
+          updatedInput3Value = updatedInput3Element.value;
+          updatedInput4Value = updatedInput4Element.value;
+          updatedInput5Value = updatedInput5Element.value;
+  
+
             Swal.close();
         });
     });
+
+
+
+
+    
     
     
     deleteBtn.addEventListener('click', function () {
@@ -383,8 +559,20 @@ document.getElementById('contributor-btn').addEventListener('click', function (e
       var rowIndex = this.closest('tr').rowIndex;
     
       table.deleteRow(rowIndex - 1); 
+      tablePrev.deleteRow(rowIndex - 1); 
     
-      console.log(contributorsValue);
+    
+    });
+
+
+    deleteBtnPrev.addEventListener('click', function () {
+    
+      var rowIndex = this.closest('tr').rowIndex;
+    
+      table.deleteRow(rowIndex - 1); 
+      tablePrev.deleteRow(rowIndex - 1); 
+    
+    
     });
 
    
@@ -605,3 +793,5 @@ function inputValidation(inputElement, validationElement, conditionFunction) {
       }
   });
 }
+
+

@@ -4,7 +4,7 @@ include 'function/workflow_function.php';
 include 'function/email_function.php';
 
 $aid = isset($_GET['aid']) ? $_GET['aid'] : 1;
-$emc = 3;
+$emc = 10;
 
 $article_data = get_article_data($aid);
 $submission_files = get_submission_files($aid);
@@ -16,6 +16,7 @@ $article_participant = get_article_participant($aid);
 $reviewer_email = get_reviewer_content($emc);
 $article_contributors = get_article_contributor($aid);
 $article_reviewer = get_article_reviewer($aid);
+$article_reviewer_check = check_article_reviewer($aid);
 $reviewer_details = get_reviewer_details();
 ?>
 
@@ -112,7 +113,7 @@ table {
                                                                             <tr>
                                                                                 <td width="5%"><?php echo $submission_filesval->article_files_id; ?></td>
                                                                                 <td width="65%">
-                                                                                    <a href="../../Files/submitted-article/<?php echo urlencode($submission_filesval->file_name); ?>" download>
+                                                                                    <a href="http://monorbeta-001-site1.btempurl.com/journaldata/submitted-article/<?php echo urlencode($submission_filesval->file_name); ?>" download>
                                                                                         <?php echo $submission_filesval->file_name; ?>
                                                                                     </a>
                                                                                 </td>
@@ -240,7 +241,7 @@ table {
                                                                             <tr>
                                                                                 <td width="5%"><?php echo $review_filesval->article_files_id; ?></td>
                                                                                 <td width="65%">
-                                                                                    <a href="../../Files/submitted-article/<?php echo urlencode($review_filesval->file_name); ?>" download>
+                                                                                    <a href="http://monorbeta-001-site1.btempurl.com/journaldata/submitted-article/<?php echo urlencode($review_filesval->file_name); ?>" download>
                                                                                         <?php echo $review_filesval->file_name; ?>
                                                                                     </a>
                                                                                 </td>
@@ -259,14 +260,14 @@ table {
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3 mt-4 mt-lg-0" id="dynamic-column">
-                                                            <?php if ($article_data[0]->status >= 6): ?>
+                                                            <?php if ($article_data[0]->status <= 3): ?>
                                                                 <div class="alert alert-white" role="alert">
-                                                                    <p>Submission accepted for review.</p>
+                                                                    <p>Submission accepted for copyediting.</p>
                                                                 </div>
                                                             <?php else: ?>
-                                                                <button type="button" class="btn btn-outline-primary btn-lg btn-block mb-2" style="width: 100%;">Request Revision</button>
-                                                                <a href="javascript:void(0);" onclick="" class="btn btn-primary btn-lg btn-block mb-2" style="width: 100%;">Accept Submission</a>
-                                                                <a href="javascript:void(0);" onclick="" class="btn btn-outline-danger btn-lg btn-block" style="width: 100%;">Decline Submission</a>
+                                                                <a href="javascript:void(0);" onclick="sendForRevision()" class="btn btn-outline-primary btn-lg btn-block mb-2" style="width: 100%;">Request Revision</a>
+                                                                <a href="javascript:void(0);" onclick="sendForCopyediting()" class="btn btn-primary btn-lg btn-block mb-2" style="width: 100%;">Accept Submission</a>
+                                                                <a href="javascript:void(0);" onclick="sendForDecline()" class="btn btn-outline-danger btn-lg btn-block" style="width: 100%;">Decline Submission</a>
                                                             <?php endif; ?>
                                                         </div>
                                                         <div class="col-md-9 mt-4" id="dynamic-column">
@@ -276,7 +277,7 @@ table {
                                                                         <tr>
                                                                             <th colspan="3"><h6>Revisions</h6></th>
                                                                             <th style="text-align: right;">
-                                                                                <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;">Upload Revision</button>
+                                                                                <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 160px;">Upload Revision</button>
                                                                             </th>
                                                                         </tr>
                                                                     </thead>
@@ -365,12 +366,12 @@ table {
                                                                                     }
                                                                                 }
                                                                                 if ($matchingReviewer) { ?>
-                                                                                    <td width="20%"><?php echo $matchingReviewer->first_name . ', ' . $matchingReviewer->last_name; ?></td>
+                                                                                    <td width="83%"><?php echo $matchingReviewer->first_name . ', ' . $matchingReviewer->last_name; ?></td> 
+                                                                                    <td width="5%" style="text-align: right;"><a href="javascript:void(0);" onclick="viewAnswer(<?php echo $article_reviewerval->reviewer_assigned_id; ?>)" class="btn btn-outline-dark" style="margin-right: 10px">View</a></td>
+                                                                            </tr>
                                                                                 <?php } else { ?>
                                                                                     <td colspan="5">No matching reviewer found.</td>
                                                                                 <?php } ?>
-                                                                                <td width="88%"></td>
-                                                                            </tr>
                                                                         <?php endforeach; ?>
                                                                     <?php endif; ?>
                                                                     </tbody>
@@ -448,7 +449,7 @@ table {
                                                                             <tr>
                                                                                 <td width="5%"><?php echo $copyediting_filesval->article_files_id; ?></td>
                                                                                 <td width="65%">
-                                                                                    <a href="../../Files/submitted-article/<?php echo urlencode($copyediting_filesval->file_name); ?>" download>
+                                                                                    <a href="http://monorbeta-001-site1.btempurl.com/journaldata/submitted-article/<?php echo urlencode($copyediting_filesval->file_name); ?>" download>
                                                                                         <?php echo $copyediting_filesval->file_name; ?>
                                                                                     </a>
                                                                                 </td>
@@ -467,8 +468,14 @@ table {
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3 mt-4 mt-lg-0" id="dynamic-column">
-                                                            <a href="javascript:void(0);" onclick="" class="btn btn-primary btn-lg btn-block mb-2" style="width: 100%;">Send to Production</a>
-                                                            <a href="javascript:void(0);" onclick="" class="btn btn-outline-danger btn-lg btn-block" style="width: 100%;">Cancel Copyediting</a>
+                                                        <?php if ($article_data[0]->status <= 2): ?>
+                                                                <div class="alert alert-white" role="alert">
+                                                                    <p>Submission accepted for production.</p>
+                                                                </div>
+                                                            <?php else: ?>
+                                                                <a href="javascript:void(0);" onclick="" class="btn btn-primary btn-lg btn-block mb-2" style="width: 100%;">Send to Production</a>
+                                                                <a href="javascript:void(0);" onclick="" class="btn btn-outline-danger btn-lg btn-block" style="width: 100%;">Cancel Copyediting</a>
+                                                            <?php endif; ?>
                                                         </div>
                                                         <div class="col-md-9 mt-4" id="dynamic-column">
                                                             <div class="table-responsive text-nowrap">
@@ -710,19 +717,31 @@ table {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php if (empty($userlist)): ?>
-                                            <tr>
-                                                <td colspan="3" class="text-center">No Items</td>
-                                            </tr>
-                                        <?php else: ?>
-                                            <?php foreach ($userlist as $userlistval): ?>
+                                    <?php if (empty($userlist)): ?>
+                                        <tr>
+                                            <td colspan="3" class="text-center">No Items</td>
+                                        </tr>
+                                    <?php else: ?>
+                                        <?php foreach ($userlist as $userlistval): ?>
+                                            <?php
+                                            $hideRow = false;
+
+                                            foreach ($article_reviewer_check as $reviewer) {
+                                                if ($reviewer->author_id == $userlistval->author_id) {
+                                                    $hideRow = true;
+                                                    break;
+                                                }
+                                            }
+                                            ?>
+                                            <?php if (!$hideRow): ?>
                                                 <tr>
                                                     <td width="5%"><?php echo $userlistval->author_id; ?></td>
-                                                    <td width="85%"><?php echo $userlistval->last_name; ?>, <?php echo $userlistval->first_name; ?></td>
-                                                    <td width="10%"><button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;" onclick="selectReviewer(<?php echo $userlistval->author_id; ?>, '<?php echo $userlistval->first_name; ?>', '<?php echo $userlistval->last_name; ?>', '<?php echo $userlistval->email_verified; ?>')" data-bs-toggle="modal">Select Reviewer</button></td>
+                                                    <td width="80%"><?php echo $userlistval->last_name; ?>, <?php echo $userlistval->first_name; ?></td>
+                                                    <td width="15%"><button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 160px;" onclick="selectReviewer(<?php echo $userlistval->author_id; ?>, '<?php echo $userlistval->first_name; ?>', '<?php echo $userlistval->last_name; ?>', '<?php echo $userlistval->email_verified; ?>')" data-bs-toggle="modal">Select Reviewer</button></td>
                                                 </tr>
-                                            <?php endforeach; ?>
-                                        <?php endif; ?>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
                                     </tbody>
                                     <tfoot>
                                         <th colspan="3" style="text-align: right;">
@@ -948,7 +967,31 @@ table {
             window.onload = function () {
                 $('#sloading').hide();
             };
-        }                            
+        }       
+        
+        function sendForCopyediting() {
+            $('#sloading').show();
+
+            setTimeout(function () {
+                window.location.href = "../php/emailcontent.php?aid=<?php echo $article_data[0]->article_id; ?>&emc=3";
+            }, 2000);
+
+            window.onload = function () {
+                $('#sloading').hide();
+            };
+        }
+
+        function sendForRevision() {
+            $('#sloading').show();
+
+            setTimeout(function () {
+                window.location.href = "../php/emailcontent.php?aid=<?php echo $article_data[0]->article_id; ?>&emc=4";
+            }, 2000);
+
+            window.onload = function () {
+                $('#sloading').hide();
+            };
+        }
     </script>
 
 </body>

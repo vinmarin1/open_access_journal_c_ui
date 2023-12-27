@@ -132,10 +132,10 @@ $rolelist = get_role_list();
         });
 
         function addRecord() {
-        $('#sloading').toggle();
         var form = document.getElementById('addModalForm');
 
         if (form.checkValidity()) {
+            $('#sloading').toggle();
             var formData = {
                 first_name: $("#first_name").val(),
                 middle_name: $("#middle_name").val(),
@@ -288,10 +288,10 @@ $rolelist = get_role_list();
     }
 
     function addRoleRecord() {
-        $('#sloading').toggle();
         var form = document.getElementById('addModalRoleForm');
 
         if (form.checkValidity()) {
+            $('#sloading').toggle();
             var formData = {
                 role: $("#role").val(),
                 role_name: $("#role_name").val(),

@@ -127,7 +127,8 @@ document.getElementById('check-duplication').addEventListener('click', function(
             if(data.similar_articles.length === 0){
                 document.getElementById('similar-title').innerHTML = '';
                 // document.getElementById('similar-abstract').innerHTML = data.similar_articles[0].abstract;
-              
+              labelDuplication.style.display = 'none';
+              labelDuplicationAb.style.display = 'none';
                 Swal.fire({
                     html: "<h3 id='article-unique'>Unique Article</h3>",
                     icon: "success",
@@ -138,8 +139,6 @@ document.getElementById('check-duplication').addEventListener('click', function(
                 labelTitle.style.textAlign = 'left';
                 labelResult.style.textAlign = 'left';
                 labelResult.style.color = '#0858a4';       
-                labelDuplication.style.textAlign = 'left';
-                labelDuplication.style.color = '##0858a4';
                 similarTitle.style.textAlign = 'left';
                 similarTitle.style.color = '#0858a4';
                 flagged.style.display = 'block';

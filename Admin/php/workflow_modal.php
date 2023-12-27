@@ -10,46 +10,45 @@ $copyediting_files = get_copyediting_files($aid);
 $production_files = get_production_files($aid);
 $userlist = get_user_list();
 ?>
+
+<style>
+    #xsubmissionfile {
+        display: none;
+    }
+</style>
+
 <!-- SUBMISSION PAGE -->
 <!-- Add Files Modal -->
 <div class="modal fade" id="addFilesModal" tabindex="-1" aria-hidden="true">
-    <form id="addModalForm">
+    <form id="updatesubmisionfile" enctype="multipart/form-data">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel3">Upload Files</h5>
+                    <h5 class="modal-title" id="exampleModalLabel3">Update Submission Files</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="row mb-2">
                         <div class="col-md-12 mb-2">
                             <label for="xfiles" class="form-label">If you are uploading a revision of an existing file, please indicate which file.</label>
-                            <select id="fileDropdown" class="form-select">
+                            <select id="submissionfileid" class="form-select" onchange="enableFileInput()">
                                 <option value="Null">Select File</option>
                                 <?php foreach ($submission_files as $submission_filesval): ?>
-                                    <option value="<?php echo $submission_filesval->file_name; ?>"><?php echo $submission_filesval->file_name; ?></option>
+                                    <option value="<?php echo $submission_filesval->article_files_id; ?>"><?php echo $submission_filesval->file_name; ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
                     </div>
                     <div class="row mb-2">
-                        <div class="col-md-12 mb-2">
-                            <label for="xcomponent" class="form-label">Article Component</label>
-                            <select id="fileDropdown1" class="form-select">
-                                <option value="Null">Select Component</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row mb-2">
-                        <div class="col-md-12 mb-2">
-                            <label for="formFileAddFiles" class="form-label">Upload File</label>
-                            <input class="form-control" type="file" id="formFileAddFiles" />
+                        <div class="col-md-12 mb-2" id="xsubmissionfile">
+                            <label for="formFileAddFiles" class="form-label">Upload New File</label>
+                            <input class="form-control" type="file" id="submissionfile" />
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="addRecord()">Save changes</button>
+                    <button type="button" class="btn btn-primary" onclick="updateFileSubmission()">Save changes</button>
                 </div>
             </div>
         </div>
@@ -168,11 +167,11 @@ $userlist = get_user_list();
                                             ?>
                                             <tr>
                                                 <td width="5%">
-                                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" data-article-files-id="<?php echo $submission_filesval->article_files_id; ?>" <?php echo $isReviewEqualToOne ? 'checked' : ''; ?> />
+                                                    <input class="form-check-input review-checkbox" type="checkbox" value="" id="defaultCheck1" data-article-files-id="<?php echo $submission_filesval->article_files_id; ?>" <?php echo $isReviewEqualToOne ? 'checked' : ''; ?> />
                                                 </td>
                                                 <td width="5%"><?php echo $submission_filesval->article_files_id; ?></td>
                                                 <td width="65%">
-                                                    <a href="../../Files/submitted-article/<?php echo urlencode($submission_filesval->file_name); ?>" download>
+                                                    <a href="http://monorbeta-001-site1.btempurl.com/journaldata/submitted-article/<?php echo urlencode($submission_filesval->file_name); ?>" download>
                                                         <?php echo $submission_filesval->file_name; ?>
                                                     </a>
                                                 </td>
@@ -210,7 +209,7 @@ $userlist = get_user_list();
                                                 <tr>
                                                     <td width="5%"><?php echo $review_filesval->article_files_id; ?></td>
                                                     <td width="70%">
-                                                        <a href="../../Files/submitted-article/<?php echo urlencode($review_filesval->file_name); ?>" download>
+                                                        <a href="http://monorbeta-001-site1.btempurl.com/journaldata/submitted-article/<?php echo urlencode($review_filesval->file_name); ?>" download>
                                                             <?php echo $review_filesval->file_name; ?>
                                                         </a>
                                                     </td>
@@ -267,11 +266,16 @@ $userlist = get_user_list();
                                             </tr>
                                         <?php else: ?>
                                             <?php foreach ($submission_files as $submission_filesval): ?>
+                                                <?php
+                                                    $isReviewEqualToOne = ($submission_filesval->copyediting == 1);
+                                                ?>
                                                 <tr>
-                                                    <td width="5%"><input class="form-check-input" type="checkbox" value="" id="defaultCheck1" /></td>
+                                                    <td width="5%">
+                                                        <input class="form-check-input copyediting-checkbox" type="checkbox" value="" id="defaultCheck1" data-article-files-id="<?php echo $submission_filesval->article_files_id; ?>" <?php echo $isReviewEqualToOne ? 'checked' : ''; ?> />
+                                                    </td>
                                                     <td width="5%"><?php echo $submission_filesval->article_files_id; ?></td>
                                                     <td width="65%">
-                                                        <a href="../../Files/submitted-article/<?php echo urlencode($submission_filesval->file_name); ?>" download>
+                                                        <a href="http://monorbeta-001-site1.btempurl.com/journaldata/submitted-article/<?php echo urlencode($submission_filesval->file_name); ?>" download>
                                                             <?php echo $submission_filesval->file_name; ?>
                                                         </a>
                                                     </td>
@@ -288,7 +292,7 @@ $userlist = get_user_list();
                             </div>
                         </div>
                     </div>
-                    <div class="row mb-2">
+                    <!-- <div class="row mb-2">
                         <div class="col-md-12  mb-2" id="dynamic-column">
                             <div class="table-responsive text-nowrap">
                                 <table class="table table-striped" id="DataTable">
@@ -311,7 +315,7 @@ $userlist = get_user_list();
                                                     <td width="5%"><input class="form-check-input" type="checkbox" value="" id="defaultCheck1" /></td>
                                                     <td width="5%"><?php echo $review_filesval->article_files_id; ?></td>
                                                     <td width="65%">
-                                                        <a href="../../Files/submitted-article/<?php echo urlencode($review_filesval->file_name); ?>" download>
+                                                        <a href="../../../Files/submitted-article/<?php echo urlencode($review_filesval->file_name); ?>" download>
                                                             <?php echo $review_filesval->file_name; ?>
                                                         </a>
                                                     </td>
@@ -327,7 +331,7 @@ $userlist = get_user_list();
                                 </table>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="row mb-2">
                         <div class="col-md-12  mb-2" id="dynamic-column">
                             <div class="table-responsive text-nowrap">
@@ -349,7 +353,7 @@ $userlist = get_user_list();
                                                 <tr>
                                                     <td width="5%"><?php echo $copyediting_filesval->article_files_id; ?></td>
                                                     <td width="70%">
-                                                        <a href="../../Files/submitted-article/<?php echo urlencode($copyediting_filesval->file_name); ?>" download>
+                                                        <a href="http://monorbeta-001-site1.btempurl.com/journaldata/submitted-article/<?php echo urlencode($copyediting_filesval->file_name); ?>" download>
                                                             <?php echo $copyediting_filesval->file_name; ?>
                                                         </a>
                                                     </td>
@@ -369,7 +373,7 @@ $userlist = get_user_list();
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="addRecord()">Save changes</button>
+                    <button type="button" class="btn btn-primary" onclick="updateCopyeditingFiles()">Save changes</button>
                 </div>
             </div>
         </div>
@@ -486,13 +490,27 @@ $userlist = get_user_list();
     </form>
 </div>
 <script>
-    function updateReviewFiles() {
+function enableFileInput() {
+    var selectedValue = $('#submissionfileid').val();
+    
+    if (selectedValue !== 'Null') {
+        $('#xsubmissionfile').show();
+        $('#submissionfile').prop('required', true); 
+    } else {
+        $('#xsubmissionfile').hide();
+        $('#submissionfile').prop('required', false); 
+    }
+}
+
+
+function updateReviewFiles() {
+    $('#sloading').toggle();
     updateReviewCheckedFiles();
     updateReviewUncheckedFiles();
 }
 
 function updateReviewCheckedFiles() {
-    var checkedCheckboxes = $('.form-check-input:checked');
+    var checkedCheckboxes = $('.review-checkbox:checked');
 
     var checkedData = [];
     checkedCheckboxes.each(function () {
@@ -525,7 +543,7 @@ function updateReviewCheckedFiles() {
 }
 
 function updateReviewUncheckedFiles() {
-    var uncheckedCheckboxes = $('.form-check-input:not(:checked)');
+    var uncheckedCheckboxes = $('.review-checkbox:not(:checked)');
 
     var uncheckedData = [];
     uncheckedCheckboxes.each(function () {
@@ -556,5 +574,111 @@ function updateReviewUncheckedFiles() {
         }
     });
 }
+
+function updateCopyeditingFiles() {
+    $('#sloading').toggle();
+    updateCopyeditingCheckedFiles();
+    updateCopyeditingUncheckedFiles();
+}
+
+function updateCopyeditingCheckedFiles() {
+    var checkedCheckboxes = $('.copyediting-checkbox:checked');
+
+    var checkedData = [];
+    checkedCheckboxes.each(function () {
+        var articleFilesId = $(this).data('article-files-id');
+        checkedData.push({
+            articleFilesId: articleFilesId
+        });
+    });
+
+    var jsonCheckedData = JSON.stringify(checkedData);
+
+    console.log('Checked Data:', checkedData);
+
+    $.ajax({
+        type: 'POST',
+        url: '../php/function/wf_modal_function.php',
+        data: {
+            checkedData: jsonCheckedData,
+            action: 'updatecopyeditingcheckedfile'
+        },
+        success: function(response) {
+            console.log('Checked checkboxes data sent successfully.');
+            console.log(response);
+            location.reload();
+        },
+        error: function(error) {
+            console.error('Error sending checked checkboxes data:', error);
+        }
+    });
+}
+
+function updateCopyeditingUncheckedFiles() {
+    var uncheckedCheckboxes = $('.copyediting-checkbox:not(:checked)');
+
+    var uncheckedData = [];
+    uncheckedCheckboxes.each(function () {
+        var articleFilesId = $(this).data('article-files-id');
+        uncheckedData.push({
+            articleFilesId: articleFilesId
+        });
+    });
+
+    var jsonUncheckedData = JSON.stringify(uncheckedData);
+
+    console.log('Unchecked Data:', uncheckedData);
+
+    $.ajax({
+        type: 'POST',
+        url: '../php/function/wf_modal_function.php',
+        data: {
+            uncheckedData: jsonUncheckedData,
+            action: 'updatecopyeditinguncheckedfile'
+        },
+        success: function(response) {
+            console.log('Unchecked checkboxes data sent successfully.');
+            console.log(response);
+            location.reload();
+        },
+        error: function(error) {
+            console.error('Error sending unchecked checkboxes data:', error);
+        }
+    });
+}
+
+function updateFileSubmission() {
+    $('#sloading').toggle();
+    var submissionFileId = $('#submissionfileid').val();
+    var submissionFile = $('#submissionfile')[0].files[0];
+
+    if ($('#submissionfile').prop('required') && !submissionFile) {
+        $('#sloading').toggle();
+        alert('File is required. Please select a file.');
+        return; 
+    }
+
+    var formData = new FormData();
+    formData.append('submissionfileid', submissionFileId);
+    formData.append('submissionfile', submissionFile);
+    formData.append('action', 'updatesubmissionfile');
+
+    $.ajax({
+        url: "../php/function/wf_modal_function.php",
+        type: "POST",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (response) {
+            $('#sloading').toggle();
+            console.log(response);
+            location.reload();
+        },
+        error: function (xhr, status, error) {
+            console.error(xhr, status, error);
+        }
+    });
+}
+
 </script>
 

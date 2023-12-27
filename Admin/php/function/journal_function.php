@@ -56,26 +56,75 @@ include 'dbcon.php';
         }
     }
 
-    function addRecord()
-    {
-        $journal = $_POST['journal'];
-        $journal_title= $_POST['journal_title'];
-        $editorial = $_POST['editorial'];
-        $description = $_POST['description'];
-        $status = 1;
+    function addRecord() {
+        $ftp_server = "win8044.site4now.net";
+        $ftp_user = "monorbeta-001";
+        $ftp_password = "spF528@HkQdHi2n";
+        
+        try {
+            $journal = $_POST['journal'];
+            $journal_title = $_POST['journal_title'];
+            $editorial = $_POST['editorial'];
+            $description = $_POST['description'];
+            $status = 1;
+    
+            $ftp_conn = ftp_connect($ftp_server);
+    
+            if (!$ftp_conn) {
+                throw new Exception('Failed to connect to FTP server.');
+            }
+    
+            $login_result = ftp_login($ftp_conn, $ftp_user, $ftp_password);
+    
+            if (!$login_result) {
+                throw new Exception('FTP login failed. Check your credentials.');
+            }
+    
+            ftp_pasv($ftp_conn, true);
 
-        $query = "INSERT INTO journal (journal, journal_title, editorial, description, status) 
-        VALUES (?, ?, ?, ?, ?)";
+            $remoteDirectory = '/site1/journaldata/journalimage/';
+            if (!ftp_chdir($ftp_conn, $remoteDirectory)) {
+                ftp_mkdir($ftp_conn, $remoteDirectory);
+                ftp_chdir($ftp_conn, $remoteDirectory);
+            }
+  
+            $imageFile = $_FILES['journalimage'];
+            $imageName = basename($imageFile["name"]);
+            $localFilePath = $imageFile["tmp_name"];
     
-        $result = execute_query($query, [$journal, $journal_title, $editorial, $description, $status], true);
+            if ($imageFile['error'] !== UPLOAD_ERR_OK) {
+                throw new Exception('File upload failed. Check if the file was properly uploaded.');
+            }
     
-        if ($result !== false) {
-            echo json_encode(['status' => true, 'message' => 'Record added successfully']);
-        } else {
-            echo json_encode(['status' => false, 'message' => 'Failed to add record']);
+            $imageFileType = strtolower(pathinfo($imageName, PATHINFO_EXTENSION));
+            $allowedFileTypes = array('jpg', 'jpeg', 'png', 'gif');
+    
+            if (!in_array($imageFileType, $allowedFileTypes)) {
+                throw new Exception('Invalid file type.');
+            }
+    
+            if (!ftp_put($ftp_conn, $imageName, $localFilePath, FTP_BINARY)) {
+                $ftpError = ftp_last_error($ftp_conn);
+                throw new Exception("Failed to upload file to FTP server. FTP Error: $ftpError");
+            }
+            
+            ftp_close($ftp_conn);
+    
+            $query = "INSERT INTO journal (journal, journal_title, editorial, description, status, image) 
+                VALUES (?, ?, ?, ?, ?, ?)";
+    
+            $result = execute_query($query, [$journal, $journal_title, $editorial, $description, $status, $imageName], true);
+    
+            if ($result !== false) {
+                echo json_encode(['status' => true, 'message' => 'Record added successfully']);
+            } else {
+                echo json_encode(['status' => false, 'message' => 'Failed to add record']);
+            }
+        } catch (Exception $e) {
+            echo json_encode(['status' => false, 'message' => $e->getMessage()]);
         }
-    }
-
+    }    
+    
     function updateJournalData() {
         $journalId = $_POST['journal_id'];
         $updatedData = $_POST['updated_data'];
