@@ -559,6 +559,7 @@ pContacPrevtCheckbox.addEventListener('change', function() {
       var rowIndex = this.closest('tr').rowIndex;
     
       table.deleteRow(rowIndex - 1); 
+      tablePrev.deleteRow(rowIndex - 1); 
     
     
     });
@@ -568,6 +569,7 @@ pContacPrevtCheckbox.addEventListener('change', function() {
     
       var rowIndex = this.closest('tr').rowIndex;
     
+      table.deleteRow(rowIndex - 1); 
       tablePrev.deleteRow(rowIndex - 1); 
     
     
