@@ -324,7 +324,7 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
       <td><?php echo $orc_id; ?></td>
       <td><?php echo $email; ?></td>
       <td><input type="checkbox" disabled></td>
-      <td><input type="checkbox" value="Primary Contact"></td>
+      <td><input type="checkbox" value="Primary Contact" id="checkbox1"></td>
       <td style="width: 150px"></td>
     </tr>
   </tbody>
@@ -425,7 +425,7 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
               <td><?php echo $orc_id; ?></td>
               <td><?php echo $email; ?></td>
               <td><input type="checkbox" disabled></td>
-              <td><input type="checkbox"></td>
+              <td><input type="checkbox" id="checkbox2"></td>
               <td style="width: 150px"></td>
             </tr>
           </tbody>
@@ -463,6 +463,18 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 <script src="../JS/ex_submit.js"></script>
 <script src="../JS/ex_submit_duplicate_article.js"></script>
 <script src="../JS/ex_submit_journal_type.js"></script>
+<script>
+   var checkbox1 = document.getElementById("checkbox1");
+   var checkbox2 = document.getElementById("checkbox2");
 
+   
+    checkbox1.addEventListener("change", function () {
+        checkbox2.checked = checkbox1.checked;
+    });
+
+    checkbox2.addEventListener("change", function () {
+        checkbox1.checked = checkbox2.checked;
+    });
+</script>
 </body>
 </html>

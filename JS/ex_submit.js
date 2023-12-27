@@ -337,11 +337,11 @@ document.getElementById('contributor-btn').addEventListener('click', function (e
 
 
     var cellCoAuthor = newRow.insertCell(5);
-    cellCoAuthor.innerHTML = '<input class="coAuthor" type="checkbox" value="Co-Author">';
+    cellCoAuthor.innerHTML = '<input class="coAuthor" type="checkbox" value="Co-Author"  id="coAuthor">';
 
     var cellPrimaryContact = newRow.insertCell(6);
-    cellPrimaryContact.innerHTML = '<input class="pmContact" type="checkbox" value="Primary Contact">';
-
+    cellPrimaryContact.innerHTML = '<input class="pmContact" type="checkbox" value="Primary Contact" id="pContact">';
+ 
     var cellActions = newRow.insertCell(7);
     cellActions.innerHTML = '<button type="button" class="btn btn-outline-primary btn-sm btn-update" style="margin-right: 10px;">View</button>' +
       '<button type="button" class="btn btn-danger btn-sm btn-delete">Delete</button>';
@@ -383,10 +383,10 @@ document.getElementById('contributor-btn').addEventListener('click', function (e
 
 
     var cellCoAuthorPrev = newRowPrev.insertCell(5);
-    cellCoAuthorPrev.innerHTML = '<input class="coAuthor" type="checkbox" value="Co-Author">';
+    cellCoAuthorPrev.innerHTML = '<input class="coAuthor" type="checkbox" value="Co-Author"  id="coAuthorPrev">';
 
-    var cellPrimaryContact = newRowPrev.insertCell(6);
-    cellPrimaryContact.innerHTML = '<input class="pmContact" type="checkbox" value="Primary Contact">';
+    var cellPrimaryContactPrev = newRowPrev.insertCell(6);
+    cellPrimaryContactPrev.innerHTML = '<input class="pmContact" type="checkbox" value="Primary Contact"  id="pContactPrev">';
 
     var cellActionsPrev = newRowPrev.insertCell(7);
     cellActionsPrev.innerHTML = '<button type="button" class="btn btn-outline-primary btn-sm btn-updatePrev" style="margin-right: 10px;">View</button>' +
@@ -395,7 +395,49 @@ document.getElementById('contributor-btn').addEventListener('click', function (e
 
     var updateBtnPrev = cellActionsPrev.querySelector('.btn-updatePrev');
     var deleteBtnPrev = cellActionsPrev.querySelector('.btn-deletePrev');
-  
+
+
+ 
+
+
+var coAuthorCheckbox = cellCoAuthor.querySelector('.coAuthor');
+var pContactCheckbox = cellPrimaryContact.querySelector('.pmContact');
+var coAuthorPrevCheckbox = cellCoAuthorPrev.querySelector('.coAuthor');
+var pContacPrevtCheckbox = cellPrimaryContactPrev.querySelector('.pmContact');
+
+coAuthorCheckbox.addEventListener('change', function() {
+
+    var coAuthorCheckboxPrev = cellCoAuthorPrev.querySelector('.coAuthor');
+    coAuthorCheckboxPrev.checked = this.checked;
+});
+
+pContactCheckbox.addEventListener('change', function() {
+
+  var pContactCheckboxPrev = cellPrimaryContactPrev.querySelector('.pmContact');
+  pContactCheckboxPrev.checked = this.checked;
+});
+
+
+coAuthorPrevCheckbox.addEventListener('change', function() {
+
+  var coAuthorCheckboxes = cellCoAuthor.querySelector('.coAuthor');
+  coAuthorCheckboxes.checked = this.checked;
+});
+
+
+pContacPrevtCheckbox.addEventListener('change', function() {
+
+  var pContactCheckboxes = cellPrimaryContact.querySelector('.pmContact');
+  pContactCheckboxes.checked = this.checked;
+});
+
+
+
+
+
+
+
+
 
     let updatedInput1Value;
     let updatedInput2Value;
@@ -749,3 +791,5 @@ function inputValidation(inputElement, validationElement, conditionFunction) {
       }
   });
 }
+
+

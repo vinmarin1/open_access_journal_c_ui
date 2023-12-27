@@ -1,37 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Save Data</title>
-    <!-- Include jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkbox Interaction</title>
 </head>
 <body>
 
-    <table id="data-table" border="1">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Email</th>
-            </tr>
-        </thead>
-        <tbody>
-         
-        </tbody>
-    </table>
+  <label>
+    <input type="checkbox" id="checkbox1"> Checkbox 1
+  </label>
 
-    <form id="data-form">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
-        
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
+  <label>
+    <input type="checkbox" id="checkbox2"> Checkbox 2
+  </label>
 
-        <button type="button" id="add-row">Add Row</button>
-        <button type="button" id="save-data">Save Data</button>
-    </form>
+  <script>
+    
+    var checkbox1 = document.getElementById('checkbox1');
+    var checkbox2 = document.getElementById('checkbox2');
 
-    <script src="script.js"></script>
+   
+    checkbox1.addEventListener('change', function() {
+     
+      checkbox2.checked = checkbox1.checked;
+    });
+
+    checkbox2.addEventListener('change', function() {
+     
+      checkbox1.checked = checkbox2.checked;
+    });
+  </script>
+
 </body>
 </html>
