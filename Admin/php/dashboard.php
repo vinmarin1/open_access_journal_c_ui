@@ -56,7 +56,7 @@ include 'function/dashboard_functions.php';
                         <div class="box">
                             <div class="left-side">
                                 <div class="box-topic">Total Ongoing Articles</div>
-                                    <div class="number">11,086</div>
+                                <div class="number"><?php echo $totalOngoingarticles; ?></div>
                                         <div class="indicator">
                                             <!-- <i class='bx bx-down-arrow-alt down'></i> -->
                                             <!-- <span class="text">Down From Today</span> -->
@@ -352,7 +352,7 @@ include 'function/dashboard_functions.php';
                 createDoughnutChart('doughnutChart1', doughnutChartData1);
                 createDoughnutChart('doughnutChart2', doughnutChartData2);
                 createDoughnutChart('doughnutChart3', doughnutChartData3);
-
+                
         </script>
 
 
