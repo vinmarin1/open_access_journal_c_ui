@@ -164,11 +164,12 @@ function renderArticleDetails(data) {
 
     copyBtn.addEventListener("click",()=> {
       navigator.clipboard.writeText(citationContent.querySelector("p").innerHTML);
+      handleDownloadLog(item.article_id,"citation");
       Swal.fire({
         html: '<h4 style="color: #0858a4; font-family: font-family: Arial, Helvetica, sans-serif">Please read and check the guidelines to proceed</4>',
         icon: 'success',
       })
-
+   
     })
     const downloadBtn = articleElement.querySelector(`#download-btn`);
     const epubBtn = articleElement.querySelector(`#epub-btn`);
@@ -195,7 +196,7 @@ function renderArticleDetails(data) {
     if (downloadBtn) {
       downloadBtn.addEventListener("click", () => {
         createCloudConvertJob(item.file_name, "pdf");
-        handleDownloadLog(item.article_id);
+        handleDownloadLog(item.article_id,"download");
       });
     }
     if (epubBtn) {
@@ -244,12 +245,13 @@ function downloadFile(file) {
   window.location.href = `https://openaccessjournalcui-production.up.railway.app/Files/${file}`;
 }
 
-async function handleDownloadLog(articleId) {
+async function handleDownloadLog(articleId,type) {
   await fetch(
-    "https://web-production-cecc.up.railway.app/api/articles/logs/download",
+    "https://web-production-cecc.up.railway.app/api/articles/logs",
     {
       method: "POST",
       body: JSON.stringify({
+        type: type,
         author_id: sessionId,
         article_id: parseInt(articleId),
       }),
