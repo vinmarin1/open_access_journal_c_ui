@@ -195,3 +195,54 @@ if ($result !== false) {
 ?>
 
 
+<?php
+// Assuming you have a database connection and a function execute_query for executing SQL queries
+
+// Fetch data from the database for each quarter and journal
+$query = "SELECT 
+            journal_id,
+            COUNT(CASE WHEN MONTH(publication_date) BETWEEN 1 AND 3 THEN 1 END) AS q1_count,
+            COUNT(CASE WHEN MONTH(publication_date) BETWEEN 4 AND 6 THEN 1 END) AS q2_count,
+            COUNT(CASE WHEN MONTH(publication_date) BETWEEN 7 AND 9 THEN 1 END) AS q3_count,
+            COUNT(CASE WHEN MONTH(publication_date) BETWEEN 10 AND 12 THEN 1 END) AS q4_count
+          FROM article_final
+          WHERE journal_id IN (1, 2, 3)
+          GROUP BY journal_id";
+
+$result = execute_query($query);
+
+if ($result !== false) {
+    // Pass the PHP array to JavaScript using json_encode
+    echo "<script>";
+    echo "var barChartData = " . json_encode($result) . ";";
+    echo "</script>";
+} else {
+    // Handle the error if the query fails
+    echo "<script>console.error('Error fetching data from the database.');</script>";
+}
+?>
+
+
+<?php
+// Assuming you have a database connection and a function execute_query for executing SQL queries
+
+// SQL query to fetch data for Doughnut Chart 2
+$query = "SELECT position, COUNT(*) AS position_count
+          FROM author
+          WHERE position IN ('QCU', 'FACULTY', 'OTHERS')
+          GROUP BY position";
+
+$result = execute_query($query);
+
+if ($result !== false) {
+    // Convert the PHP array to a JSON string
+    $jsonResult = json_encode($result);
+
+    // Pass the JSON string to JavaScript for doughnut chart
+    echo "<script>var doughnutChartData2 = $jsonResult;</script>";
+} else {
+    // Handle the error if the query fails
+    echo "<script>console.error('Error fetching data from the database.');</script>";
+}
+?>
+
