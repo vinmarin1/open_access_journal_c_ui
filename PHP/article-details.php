@@ -93,7 +93,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="../JS/reusable-header.js"></script>
   <script src="../JS/home-recommended-api.js"></script>
-  <script src="../JS/home-monthly-api.js"></script>
+  <!-- <script src="../JS/home-monthly-api.js"></script> -->
   <script src="../JS/article-details-api.js"></script>
 </body>
 

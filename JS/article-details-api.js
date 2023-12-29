@@ -46,8 +46,8 @@ function renderArticleDetails(data) {
 
     let contributorsHTML = "";
     if (item.contributors != null) {
-      for (const contributors of item.contributors.split("and")) {
-        contributorsHTML += `<a href="https://orcid.org/${contributors.split("->")[1]}">${contributors.split("->")[0]}</a>, `;
+      for (const contributors of item.contributors.split(";")) {
+        contributorsHTML += `<a href="https://orcid.org/${contributors.split(".")[1]}">${contributors.split(".")[0]}</a> | `;
       }
     }
     articleElement.innerHTML = `
@@ -124,24 +124,32 @@ function renderArticleDetails(data) {
     `;
     let contributors = "";
     if (item.contributors != null) {
-      for (const contributor of item.contributors.split("and")) {
-        contributors +=  contributor.split("->")[0];
-      }
+      const authorList = item.contributors.split(";");
+      contributors = authorList.map((contributor, index) => {
+        const [lastName, initials] = contributor.trim().split(",");
+        const formattedName = `${lastName}, ${initials.split(".")[0]}`;
+        return (index === authorList.length - 1) ? `& ${formattedName}` : formattedName;
+      }).join(', ');
     }
     const citationSelect = document.querySelector("select");
     citationSelect.addEventListener("change", function () {
       const selectedCitation = citationSelect.value;
      
       citationContent.innerHTML = `   
-        <p class="small">${item.title}</p>
         <ul>
           <li> 
             <h4 class="small"><b>${selectedCitation} Citation</b></h4>
             <p>
-            ${selectedCitation === "APA"
-          ? contributors + "." + "(" + item.publication_date.split(" ")[3] + ")." + item.title + "." + item.journal +".<i>"+ item.volume.split(" ")[1]+"</i>("+1+")"
-          : item.contributors_A + "." + item.title + "." + item.journal
-        }
+              ${
+                selectedCitation === "APA"
+                  ? `${contributors}. (${item.publication_date.split(" ")[3]}). ${item.title}. ${item.journal}, ${item.volume.split(" ")[1]}(1). https://openaccessjournalcui-production.up.railway.app/PHP/article-details.php?articleId=${item.article_id}`
+                : selectedCitation === "MLA"
+                  ? `${item.contributors_A.split(";").join(", ")}. "${item.title}." ${item.journal}, ${item.publication_date.split(" ")[3]}, ${item.volume.split(" ")[1]}(1).`
+                : selectedCitation === "Chicago"
+                  ? `${item.contributors_A.split(";").join(", ")}. "${item.title}." ${item.journal} ${item.volume.split(" ")[1]}, no. 1 (${item.publication_date.split(" ")[3]}).  https://openaccessjournalcui-production.up.railway.app/PHP/article-details.php?articleId=${item.article_id}`
+                : `${item.contributors_A.split(";").join(", ")}. ${item.title}. ${item.journal}.`
+                  + ` https://openaccessjournalcui-production.up.railway.app/PHP/article-details.php?articleId=${item.article_id}`
+          }
             </p>
           </li>
         </ul>
@@ -149,12 +157,11 @@ function renderArticleDetails(data) {
     });
     const initialSelectedCitation = citationSelect.value;
     citationContent.innerHTML = `   
-      <p class="small">${item.title}</p>
       <ul>
         <li> 
           <h4 class="small"><b>${initialSelectedCitation} Citation</b></h4>
           <p class="cited" id="cited">
-            ${contributors}.(${item.publication_date.split(" ")[3]}).${item.title}.${item.journal}
+            ${contributors}. (${item.publication_date.split(" ")[3]}). ${item.title}. ${item.journal}, ${item.volume.split(" ")[1]}(1). https://openaccessjournalcui-production.up.railway.app/PHP/article-details.php?articleId=${item.article_id}
           </p>
         </li>
       </ul>
@@ -214,7 +221,7 @@ function renderArticleDetails(data) {
 }
 
 function navigateToArticle(articleId) {
-  window.location.href = `/PHP/article-details.php?articleId=${articleId}`;
+  window.location.href = `../PHP/article-details.php?articleId=${articleId}`;
 }
 
 async function renderRecommended(data) {
