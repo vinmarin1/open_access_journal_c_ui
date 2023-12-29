@@ -1,0 +1,8 @@
+# railway.yaml
+
+services:
+  - name: web
+    env:
+      # ... your environment variables
+    buildScript: ./scripts/build.sh
+    startCommand: ./scripts/start.sh

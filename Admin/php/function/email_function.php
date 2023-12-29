@@ -95,15 +95,20 @@ if (!function_exists('get_email_content')) {
                     updateCopyeditingFiles(1, $articleFilesId1);
                     updateArticleStatus($article_id, 3);
                     echo "<script>alert('Send to copyediting successfully.');</script>";
-                }  } elseif ($id == 4) {
-                    echo "<script>alert('Reuqestion for revision successfully.');</script>";
+                } elseif ($id == 4) {
+                    echo "<script>alert('Request for revision successfully.');</script>";
+                } elseif ($id == 5) {
+                    updateArticleStatus($article_id, 2);
+                    echo "<script>alert('Send to production successfully.');</script>";
             } else {
                 echo 'Error sending email: ' . $mail->ErrorInfo;
             }
+        }
         } catch (Exception $e) {
             echo 'Mailer Error: ' . $mail->ErrorInfo;
         }
-    }
+    }   
+    
 
     function updateArticleStatus($article_id, $status) {
     

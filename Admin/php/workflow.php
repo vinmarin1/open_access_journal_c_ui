@@ -473,7 +473,7 @@ table {
                                                                     <p>Submission accepted for production.</p>
                                                                 </div>
                                                             <?php else: ?>
-                                                                <a href="javascript:void(0);" onclick="" class="btn btn-primary btn-lg btn-block mb-2" style="width: 100%;">Send to Production</a>
+                                                                <a href="javascript:void(0);" onclick="sendForProduction()" class="btn btn-primary btn-lg btn-block mb-2" style="width: 100%;">Send to Production</a>
                                                                 <a href="javascript:void(0);" onclick="" class="btn btn-outline-danger btn-lg btn-block" style="width: 100%;">Cancel Copyediting</a>
                                                             <?php endif; ?>
                                                         </div>
@@ -545,7 +545,7 @@ table {
                                                 </div>
                                                 <?php endif; ?>
 
-<!-- Production -->                             <?php if ($article_data[0]->status >= 4): ?>
+<!-- Production -->                             <?php if ($article_data[0]->status >= 3): ?>
                                                 <div class="tab-pane fade" id="navs-top-production" role="tabpanel">
                                                     <div class="row">
                                                         <div class="alert alert-white" role="alert">
@@ -555,15 +555,121 @@ table {
                                                 </div>
                                                 <?php else: ?>
                                                 <div class="tab-pane fade" id="navs-top-production" role="tabpanel">
-                                                    <p>
-                                                    Donut dragée jelly pie halvah. Danish gingerbread bonbon cookie wafer candy oat cake ice
-                                                    cream. Gummies halvah tootsie roll muffin biscuit icing dessert gingerbread. Pastry ice cream
-                                                    cheesecake fruitcake.
-                                                    </p>
-                                                    <p class="mb-0">
-                                                    Jelly-o jelly beans icing pastry cake cake lemon drops. Muffin muffin pie tiramisu halvah
-                                                    cotton candy liquorice caramels.
-                                                    </p>
+                                                    <div class="row">
+                                                        <div class="col-md-9" id="dynamic-column">
+                                                            <div class="table-responsive text-nowrap">
+                                                                <table class="table table-striped" id="DataTable">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th colspan="3"><h6>Production Ready Files</h6></th>
+                                                                            <th style="text-align: right;">
+                                                                                <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;" data-bs-toggle="modal" data-bs-target="#addCopyeditingFilesModal">Select Files</button>
+                                                                            </th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                    <?php if (empty($production_files)): ?>
+                                                                        <tr>
+                                                                            <td colspan="4" class="text-center">No Files</td>
+                                                                        </tr>
+                                                                    <?php else: ?>
+                                                                        <?php foreach ($production_files as $production_filesval): ?>
+                                                                            <tr>
+                                                                                <td width="5%"><?php echo $production_filesval->article_files_id; ?></td>
+                                                                                <td width="65%">
+                                                                                    <a href="../../Files/submitted-article/<?php echo urlencode($production_filesval->file_name); ?>" download>
+                                                                                        <?php echo $production_filesval->file_name; ?>
+                                                                                    </a>
+                                                                                </td>
+                                                                                <td width="25%"><?php echo $production_filesval->file_type; ?></td>
+                                                                                <td width="5%"></td>
+                                                                            </tr>
+                                                                        <?php endforeach; ?>
+                                                                        <?php endif; ?>
+                                                                    </tbody>
+                                                                    <tfoot>
+                                                                        <th colspan="4" style="text-align: right;">
+                                                                            <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;">Download File</button>
+                                                                        </th>
+                                                                    </tfoot>   
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3 mt-4 mt-lg-0" id="dynamic-column">
+                                                        <?php if ($article_data[0]->status <= 1): ?>
+                                                                <div class="alert alert-white" role="alert">
+                                                                    <p>Submission published.</p>
+                                                                </div>
+                                                            <?php else: ?>
+                                                                <a href="javascript:void(0);" onclick="" class="btn btn-primary btn-lg btn-block mb-2" style="width: 100%;">Send to Publication</a>
+                                                                <a href="javascript:void(0);" onclick="" class="btn btn-outline-danger btn-lg btn-block" style="width: 100%;">Cancel Production</a>
+                                                            <?php endif; ?>
+                                                        </div>
+                                                        <div class="col-md-9 mt-4" id="dynamic-column">
+                                                            <div class="table-responsive text-nowrap">
+                                                                <table class="table table-striped" id="DataTable">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th colspan="2"><h6>Production Discussions</h6></th>
+                                                                            <th style="text-align: right;">
+                                                                                <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;" data-bs-toggle="modal" data-bs-target="#addCopyeditingnModal">Add Discussion</button>
+                                                                            </th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                    <?php if (empty($article_discussion)): ?>
+                                                                        <tr>
+                                                                            <td colspan="3" class="text-center">No Items</td>
+                                                                        </tr>
+                                                                    <?php else: ?>
+                                                                        <?php foreach ($article_discussion as $article_discussionval): ?>
+                                                                            <tr>
+                                                                                <td width="5%"><?php echo $article_discussionval->id; ?></td>
+                                                                                <td width="85%"><?php echo $article_discussionval->file_name; ?></td>
+                                                                                <td width="5%"></td>
+                                                                            </tr>
+                                                                        <?php endforeach; ?>    
+                                                                    <?php endif; ?>
+                                                                    </tbody>
+                                                                    <tfoot>
+                                                                        <th colspan="3" style="text-align: right;"></th>
+                                                                    </tfoot>   
+                                                                </table>
+                                                            </div>
+                                                        </div>  
+                                                        <div class="col-md-3 mt-4" id="dynamic-column">
+                                                            <div class="table-responsive text-nowrap">
+                                                                <table class="table table-striped" id="DataTable">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th colspan="2"><h6>Participants</h6></th>
+                                                                            <th style="text-align: right;">
+                                                                                <button type="button" class="btn btn-outline-dark" id="uploadButton" style="margin-left: -10px">Add</button>
+                                                                            </th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                    <?php if (empty($article_participant)): ?>
+                                                                        <tr>
+                                                                            <td colspan="3" class="text-center">No Items</td>
+                                                                        </tr>
+                                                                    <?php else: ?>
+                                                                        <?php foreach ($article_participant as $article_participantval): ?>
+                                                                            <tr>
+                                                                                <td width="5%"><?php echo $article_participantval->id; ?></td>
+                                                                                <td width="85%"><?php echo $article_participantval->file_name; ?></td>
+                                                                                <td width="5%"></td>
+                                                                            </tr>
+                                                                        <?php endforeach; ?>    
+                                                                    <?php endif; ?>
+                                                                    </tbody>
+                                                                    <tfoot>
+                                                                        <th colspan="3" style="text-align: right;"></th>
+                                                                    </tfoot> 
+                                                                </table>
+                                                            </div>
+                                                        </div> 
+                                                    </div>
                                                 </div>
                                                 <?php endif; ?>
                                             </div>
@@ -992,6 +1098,19 @@ table {
                 $('#sloading').hide();
             };
         }
+
+        function sendForProduction() {
+            $('#sloading').show();
+
+            setTimeout(function () {
+                window.location.href = "../php/emailcontent.php?aid=<?php echo $article_data[0]->article_id; ?>&emc=5";
+            }, 2000);
+
+            window.onload = function () {
+                $('#sloading').hide();
+            };
+        }
+
     </script>
 
 </body>
