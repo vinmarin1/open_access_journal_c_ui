@@ -61,40 +61,58 @@
                         }
                     }
                     
-                    function addRecord()
-                    {
-                        $announcement_type_id = $_POST['announcement_type_id'];
-                        $title = $_POST['title'];
-                        $announcement_description = $_POST['announcement_description'];
-                        $announcement = $_POST['announcement'];
-                        $expired_date = $_POST['expired_date'];
-                    
-                        // File handling
-                        $upload_image = '';  // Default value
-                        if (isset($_FILES['upload_image']) && $_FILES['upload_image']['error'] === 0) {
-                            $uploadDir = 'admin/announcement_images/';  // Updated path to your desired upload directory
-                            $upload_image = $uploadDir . basename($_FILES['upload_image']['name']);
-                            move_uploaded_file($_FILES['upload_image']['tmp_name'], $upload_image);
-                        }
-                    
-                        $query = "INSERT INTO announcement (announcement_type_id, title, announcement_description, announcement, upload_image, expired_date) 
-                                VALUES (?, ?, ?, ?, ?, ?)";
-                    
-                        // Debugging - log SQL query and parameters
-                        error_log("SQL Query: $query, Parameters: " . print_r([$announcement_type_id, $title, $announcement_description, $announcement, $upload_image, $expired_date], true));
-                    
-                        $result = execute_query($query, [$announcement_type_id, $title, $announcement_description, $announcement, $upload_image, $expired_date]);
-                    
-                        // Debugging - log the result
-                        error_log("Result: " . print_r($result, true));
-                     
-                        if ($result !== false) {
-                            echo json_encode(['status' => true, 'message' => 'Record added successfully']);
-                        } else {
-                            echo json_encode(['status' => false, 'message' => 'Failed to add record']);
-                        }
-                    }
-                    
+     function addRecord()
+    {
+    try {
+        $announcement_type_id = $_POST['announcement_type_id'];
+        $title = $_POST['title'];
+        $description = $_POST['description'];
+        $announcement = $_POST['announcement'];
+        $expiry_date = $_POST['expiry_date'];
+
+        $uploadPath = "../../../Files/announcement-image/";
+
+        if (!file_exists($uploadPath)) {
+            mkdir($uploadPath, 0777, true);
+        }
+
+        $imageFile = $_FILES['upload_image'];
+        $imageName = basename($imageFile["name"]);
+        $upload_image = '';
+
+        if (isset($_FILES['upload_image']) && $_FILES['upload_image']['error'] === UPLOAD_ERR_OK) {
+            $imageFileType = strtolower(pathinfo($imageName, PATHINFO_EXTENSION));
+            $allowedFileTypes = array('jpg', 'jpeg', 'png', 'gif');
+
+            if (in_array($imageFileType, $allowedFileTypes)) {
+                $upload_image = $uploadPath . $imageName;
+                if (!move_uploaded_file($imageFile["tmp_name"], $upload_image)) {
+                    throw new Exception('Failed to move uploaded file.');
+                }
+            } else {
+                throw new Exception('Invalid file type.');
+            }
+        } else {
+            // Log the file upload error
+            throw new Exception('File upload error: ' . $_FILES['upload_image']['error']);
+        }
+
+        $query = "INSERT INTO announcement (announcement_type_id, title, description, announcement, upload_image, expiry_date) 
+                  VALUES (?, ?, ?, ?, ?, ?)";
+
+        $result = execute_query($query, [$announcement_type_id, $title, $description, $announcement, $upload_image, $expiry_date]);
+
+        if ($result !== false) {
+            echo json_encode(['status' => true, 'message' => 'Record added successfully']);
+        } else {
+            // Log the database error
+            throw new Exception('Failed to add record: ' . $result->errorInfo()[2]);
+        }
+    } catch (Exception $e) {
+        // If an exception occurs, log the exception message
+        echo json_encode(['status' => false, 'message' => $e->getMessage()]);
+    }
+}
                     
 
 
