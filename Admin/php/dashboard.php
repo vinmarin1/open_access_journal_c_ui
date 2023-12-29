@@ -35,7 +35,7 @@ include 'function/dashboard_functions.php';
                                             <!-- <span class="text">Up from yesterday</span> -->
                                         </div>
                                     </div>
-                                    <i class='bx bxs-cloud-download cart two'></i>
+                                    <i class='bx bx-book cart two'></i>
                                 </div>
 
 
@@ -197,6 +197,7 @@ include 'function/dashboard_functions.php';
         // Create an array with data filled for all 12 months
         var dynamicData = fillDataForAllMonths(totalGavel);
         var dynamicData1 = fillDataForAllMonths(totalLamp);
+        var dynamicData2 = fillDataForAllMonths(totalStar);
         console.log(dynamicData)
 
         // Data for the line chart
@@ -218,7 +219,7 @@ include 'function/dashboard_functions.php';
         },
         {
             label: 'Star',
-            data: [60, 40, 70, 50, 80, 30, 40, 45, 60, 75, 80, 30],
+            data: dynamicData2,
             borderColor: 'rgba(255, 205, 86, 1)',
             borderWidth: 1,
             fill: false
@@ -266,53 +267,53 @@ include 'function/dashboard_functions.php';
         }
     ]
 };
-        // Data for the bar chart
-       var barChartData = {
-    labels: ['1st', '2nd', '3rd', '4th'],
-    datasets: [{
-        label: 'Gavel',
-        data: [50, 30, 60, 40],
-        backgroundColor: 'rgba(75, 192, 192, 0.5)', // First color
-        borderColor: 'rgba(75, 192, 192, 1)',
-        borderWidth: 1
-    }, {
-        label: 'Lamp',
-        data: [70, 20, 30, 35],
-        backgroundColor: 'rgba(255, 99, 132, 0.5)', // Second color
-        borderColor: 'rgba(255, 99, 132, 1)',
-        borderWidth: 1
-    }, {
-        label: 'Star',
-        data: [50, 65, 70, 20],
-        backgroundColor: 'rgba(255, 205, 86, 0.5)', // Third color
-        borderColor: 'rgba(255, 205, 86, 1)',
-        borderWidth: 1
-    }]
-};
-        // Data for Doughnut Chart 1
-        var doughnutChartData1 = {
+                // Data for the bar chart
+            var barChartData = {
+                labels: ['1st', '2nd', '3rd', '4th'],
+                datasets: [{
+                    label: 'Gavel',
+                    data: [barChartData[0].q1_count, barChartData[0].q2_count, barChartData[0].q3_count, barChartData[0].q4_count],
+                    backgroundColor: 'rgba(75, 192, 192, 0.5)', // First color
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }, {
+                    label: 'Lamp',
+                    data: [barChartData[1].q1_count, barChartData[1].q2_count, barChartData[1].q3_count, barChartData[1].q4_count],
+                    backgroundColor: 'rgba(255, 99, 132, 0.5)', // Second color
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }, {
+                    label: 'Star',
+                    data: [barChartData[2].q1_count, barChartData[2].q2_count, barChartData[2].q3_count, barChartData[2].q4_count],
+                    backgroundColor: 'rgba(255, 205, 86, 0.5)', // Third color
+                    borderColor: 'rgba(255, 205, 86, 1)',
+                    borderWidth: 1
+                }]
+            };
+
+                    // Data for Doughnut Chart 1
+                var doughnutChartData1 = {
                     labels: ['Not Published', 'Published'],
                     datasets: [{
-                        data: [50, 100],
+                        data: [doughnutChartData1[0].not_published_count, doughnutChartData1[0].published_count],
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.5)',
                             'rgba(75, 192, 192, 0.5)',
-                            
                         ],
                         borderColor: [
                             'rgba(255, 99, 132, 1)',
                             'rgba(75, 192, 192, 1)',
-                            
                         ],
                         borderWidth: 1
                     }]
                 };
 
+
                 // Data for Doughnut Chart 2
                 var doughnutChartData2 = {
-                    labels: ['Qcu', 'Faculty', 'Others'],
+                    labels: <?php echo json_encode(array_column($result, 'position')); ?>,
                     datasets: [{
-                        data: [300, 50, 100],
+                        data: <?php echo json_encode(array_column($result, 'position_count')); ?>,
                         backgroundColor: [
                             'rgba(255, 99, 132, 0.5)',
                             'rgba(75, 192, 192, 0.5)',
@@ -326,6 +327,7 @@ include 'function/dashboard_functions.php';
                         borderWidth: 1
                     }]
                 };
+
 
                 // Data for Doughnut Chart 3
                 var doughnutChartData3 = {
@@ -368,5 +370,6 @@ include 'function/dashboard_functions.php';
             });
         });
     </script>
+    
 </body>
 </html>
