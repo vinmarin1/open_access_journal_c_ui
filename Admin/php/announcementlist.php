@@ -27,10 +27,10 @@
             <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
                 <h5 class="card-header mb-0">Announcement</h5>
                 <div style="display: flex; margin-top: 15px; margin-right: 15px;">
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Add Announcement </button>
-                </div>
+                <button type="button" id="tabAll" class="btn btn-primary" style="margin-right: 10px;" data-bs-toggle="modal" data-bs-target="#addModal">Add Announcement</button>
+                <!-- <button type="button" id="tabPublished" class="btn btn-primary">Download</button> -->
             </div>
+        </div>
             <div class="table-responsive text-nowrap">
                     <table class="table table-striped" id="DataTableAnnouncement">
                         <thead>
@@ -87,99 +87,146 @@
                 });
             });
             function addRecord() {
-                var formData = {
-                    announcement_type_id: $("#announcement_type_id").val(),
-                    title: $("#title").val(),
-                    announcement_description: $("#announcement_description").val(),
-                    announcement: $("#announcement").val(),
-                    upload_image: $("#upload_image").val(),
-                    expired_date: $("#expired_date").val(),
-                    action: "add"
-                };
+        var form = document.getElementById('addModalForm');
+        var formData = new FormData();
+        formData.append('announcement_type_id', $('#announcement_type_id').val());
+        formData.append('title', $('#title').val());
+        formData.append('description', $('#description').val());
+        formData.append('announcement', $('#announcement').val());
+        formData.append('upload_image', $('#upload_image')[0].files[0]);
+        formData.append('expiry_date', $('#expiry_date').val());
+        formData.append('action', 'add');
 
-                // Debugging - log formData to the console
-                console.log(formData);
-
-                $.ajax({
-                    url: "announcement_function.php",
-                    method: "POST",
-                    data: formData,
-                    success: function (data) {
-                        // Rest of your code...
-                    },
-                    error: function (xhr, status, error) {
-                        console.error("Ajax request failed:", error);
+        if (form.checkValidity()) {
+            $('#sloading').toggle();
+            $.ajax({
+                url: "../php/function/announcement_function.php",
+                method: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    var response = JSON.parse(data);
+                    if (response.status) {
+                        $('#sloading').toggle();
+                        alert("Record added successfully");
+                    } else {
+                        alert("All fields required!");
                     }
-                });
-            }
+                    location.reload();
+                },
+                error: function (xhr, status, error) {
+                    console.error("Ajax request failed:", error);
+                }
+            });
+        } else {
+            form.reportValidity();
+        }
+    }
+
+    function saveChanges() {
+        $('#sloading').toggle();
+        console.log('Save button clicked');
+
+            var announcement_id = $('#announcement_id').val();
+            var updatedData = {
+            announcement_type_id: $('#announcement_type_id').val(),
+            title: $('#title').val(),
+            description: $('#description').val(),
+            announcement: $('#announcement').val(),
+            expiry_date: $('#expiry_date').val(),
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: '../php/function/announcement_function.php',
+            data: {
+                action: 'update',
+                announcement_id :announcement_id ,
+                updated_data: updatedData
+            },
+            dataType: 'json',
+            success: function (response) {
+                console.log('Update Response:', response);
+
+                if (response.status === true) {
+                    $('#sloading').toggle();
+                    alert("Record updated successfully");
+                    $('#updateModal').modal('hide');
+                    location.reload();
+                } else {
+                    console.error('Error updating journal data:', response.message);
+                    alert("Failed to update record. Please try again.");
+                }
+            },
+        });
+    }
 
         </script>
         
         <!-- addModal -->
-        <div class="modal fade" id="addModal" tabindex="-1" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Add Announcement</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
+         <!-- Add Modal -->
+     <div class="modal fade" id="addModal" tabindex="-1" aria-hidden="true">
+    <form id="addModalForm">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel3">Add Announcement</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
                             <div class="modal-body">
-                            <form method="post" enctype="multipart/form-data">
                                 <div class="form-group row">
                                 <div class="col-md-8">
                                     <div class="mb-3">
                                         <label for="announcement_type_id" class="form-label ps-2">Announcement Type</label>
                                         <div class="form-check">
                                             <?php foreach ($announcementtypelist as $announcementtypelistval): ?>
-                                                <input class="form-check-input" type="radio" name="announcement_type_id" id="announcement_type_<?php echo $announcementtypelistval['announcement_type_id']; ?>" value="<?php echo $announcementType['announcement_type_id']; ?>">
-                                                <label class="form-check-label" for="announcement_type_<?php echo $announcementtypelistval['announcement_type_id']; ?>">
+                                                <input class="form-check-input" type="radio" name="announcement_type_id" id="announcement_type_id<?php echo $announcementtypelistval['announcement_type_id']; ?>" value="<?php echo $announcementType['announcement_type_id']; ?>">
+                                                <label class="form-check-label" for="announcement_type_id<?php echo $announcementtypelistval['announcement_type_id']; ?>">
                                                     <?php echo $announcementtypelistval['announcement_type']; ?>
                                                 </label><br>
                                             <?php endforeach; ?>
                                         </div>
                                     </div>
-                                </div>
-                                    <div class="col-md-8">
-                                        <div class="mb-3">
-                                            <label for="title" class="form-label ps-2">Title</label>
-                                            <input type="text" name="title" class="form-control information-input" id="title" placeholder="">
-                                        </div>
-                                    </div>  
-
-                                    <div class="col-md-8">
-                                        <div class="mb-3">
-                                            <label for="announcement_description" class="form-label ps-2">Description</label>
-                                            <input type="text" name="announcement_description" class="form-control information-input" id="announcement_description" placeholder="">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="mb-3">
-                                            <label for="announcement" class="form-label ps-2">Announcement</label>
-                                            <input type="text" name="announcement" class="form-control information-input" id="announcement" placeholder="">
-                                        </div>
-                                    </div>
-                                    
-                                <div class="input-group mb-3"> 
-                                        <label class="input-group-text" for="upload_image">Upload Image</label> 
-                                        <input type="file" name="upload_image" class="form-control" id="upload_image">
-
-                                    </div> 
-                                </div> 
-                                <div class="col-md-4">
-                                <div class="mb-3">
-                                    <label for="expired_date" class="form-label ps-2">Expired Date</label>
-                                    <input type="date" name="expired_date" class="form-control information-input" id="expired_date" placeholder="">
-                                </div>
-                            </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary" onclick="addRecord()">Save changes</button>
-                                </form>
-                            </div>
+                                    <div class="row mb-2">
+                                    <div class="row mb-2">
+                        <div class="col-md-12" mb-2>
+                            <label for="xtitle" class="form-label">Title</label>
+                            <textarea class="form-control" id="title" rows="9"></textarea>
+                        </div>
+                    </div>   
+                    <div class="row mb-2">
+                        <div class="col-md-12" mb-2>
+                            <label for="xdescription" class="form-label">Description</label>
+                            <textarea class="form-control" id="description" rows="9"></textarea>
+                        </div>
+                    </div>   
+                    <div class="row mb-2">
+                        <div class="col-md-12" mb-2>
+                            <label for="xannouncement" class="form-label">Announcement</label>
+                            <textarea class="form-control" id="announcement" rows="9"></textarea>
+                        </div>
+                    </div>  
+                    <div class="row mb-2">
+                        <div class="col-md-12 mb-2" id="xupload_image">
+                            <label for="formFileAddFiles" class="form-label">Upload Image</label>
+                            <input class="form-control" type="file" id="upload_image" />
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-12 mb-2">
+                            <label for="xexpiry_date" class="form-label">Expiry Date</label>
+                            <input type="date" id="expiry_date" class="form-control" placeholder="expiry_date" />
                         </div>
                     </div>
                 </div>
-                <br><br>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="addRecord()">Save changes</button>
+                </div>  
+            </div>
+        </div>
+        </form>
+    </div>
     </body>
     </html>

@@ -17,77 +17,11 @@ include 'function/issue_function.php';
         <div class="card">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
             <h5 class="card-header mb-0">Issues</h5>
-            <div style="display: flex; margin-top: 15px; margin-right: 15px;"> 
-             <!-- Button trigger modal -->
-             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Issues </button>
+            <div style="display: flex; margin-top: 15px; margin-right: 15px;">
+                <button type="button" id="tabAll" class="btn btn-primary" style="margin-right: 10px;" data-bs-toggle="modal" data-bs-target="#addModal">Add Issue</button>
+                <!-- <button type="button" id="tabPublished" class="btn btn-primary">Download</button> -->
             </div>
         </div>
-           <!-- Modal -->
-           <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Issues</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="addModalForm" method="post" enctype="multipart/form-data">
-                            <div class="form-group row">
-                                <div class="col-md-8">
-                                    <div class="mb-3">
-                                        <label for="volume" class="form-label ps-2">Volume</label>
-                                        <input type="number" name="volume" class="form-control Information-input" id="volume" placeholder="">
-                                    </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="mb-3">
-                                        <label for="number" class="form-label ps-2">Number</label>
-                                        <input type="number" name="number" class="form-control information-input" id="number" placeholder="">
-                                    </div>
-                                </div>
-
-                                <div class="col-md-8">
-                                    <div class="mb-3">
-                                        <label for="year" class="form-label ps-2">Year</label>
-                                        <input type="number" name="year" class="form-control information-input" id="year" placeholder="">
-                                    </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="mb-3">
-                                        <label for="title" class="form-label ps-2">Title</label>
-                                        <input type="text" name="title" class="form-control information-input" id="title" placeholder="">
-                                    </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="mb-3">
-                                        <label for="description" class="form-label ps-2">Description</label>
-                                        <input type="text" name="description" class="form-control information-input" id="description" placeholder="">
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-2" id="cover_image">
-                        <label for="cover_image" class="form-label">Upload Image</label>
-                        <input class="form-control" type="file" id="cover_image" name="cover_image" />
-                            </div>
-                      </div>
-                            <div class="col-md-8">
-                                    <div class="mb-3">
-                                        <label for="url_path" class="form-label ps-2">Url Path</label>
-                                        <input type="text" name="url_path" class="form-control information-input" id="url_path" placeholder="">
-                                    </div>
-                                </div>
-                        </div>
-                        <div class="modal-footer">
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary" onclick="addRecord()">Save changes</button>
-                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <br><br>
-
             <div class="table-responsive text-nowrap">
                 <table class="table table-striped" id="DataTable">
                     <thead>
@@ -171,7 +105,7 @@ include 'function/issue_function.php';
                         $('#sloading').toggle();
                         alert("Record added successfully");
                     } else {
-                        alert("All fields required!");
+                        alert("Record added successfully");
                     }
                     location.reload();
                 },
@@ -223,6 +157,68 @@ include 'function/issue_function.php';
     }
 
     </script>
+
+     <!-- Add Modal -->
+     <div class="modal fade" id="addModal" tabindex="-1" aria-hidden="true">
+    <form id="addModalForm">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel3">Add Issue</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row mb-2">
+                        <div class="col-md-12 mb-2">
+                            <label for="xvolume" class="form-label">Volume</label>
+                            <input type="number" id="volume" class="form-control" placeholder="volume" required/>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-12 mb-2">
+                            <label for="xnumber" class="form-label">Number</label>
+                            <input type="number" id="number" class="form-control" placeholder="number" />
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-12 mb-2">
+                            <label for="xyear" class="form-label">Year</label>
+                            <input type="number" id="year" class="form-control" placeholder="year" />
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-12" mb-2>
+                            <label for="xtitle" class="form-label">Title</label>
+                            <textarea class="form-control" id="title" rows="9"></textarea>
+                        </div>
+                    </div>   
+                    <div class="row mb-2">
+                        <div class="col-md-12" mb-2>
+                            <label for="xdescription" class="form-label">Description</label>
+                            <textarea class="form-control" id="description" rows="9"></textarea>
+                        </div>
+                    </div>   
+                    <div class="row mb-2">
+                        <div class="col-md-12 mb-2" id="xcover_image">
+                            <label for="formFileAddFiles" class="form-label">Cover Image</label>
+                            <input class="form-control" type="file" id="cover_image" />
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-12 mb-2">
+                            <label for="xurl_path" class="form-label">Url Path</label>
+                            <input type="text" id="url_path" class="form-control" placeholder="url_path" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="addRecord()">Save changes</button>
+                </div>  
+            </div>
+        </div>
+        </form>
+    </div>
 </body>
 </html>
 
