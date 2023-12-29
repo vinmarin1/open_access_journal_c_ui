@@ -4,7 +4,7 @@ document.getElementById('check-duplication').addEventListener('click', async fun
     const abstract = document.getElementById('abstract').value;
 
   
-    const response = await fetch('http://127.0.0.1:5000/api/check/journal', {
+    const response = await fetch('https://web-production-cecc.up.railway.app/api/check/journal', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

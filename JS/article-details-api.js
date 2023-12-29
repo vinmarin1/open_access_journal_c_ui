@@ -10,7 +10,7 @@ const articleId = getQueryParam("articleId");
 async function fetchArticleDetails() {
   try {
     const response = await fetch(
-      "http://127.0.0.1:5000/api/articles/logs/read",
+      "https://web-production-cecc.up.railway.app/api/articles/logs/read",
       {
         method: "POST",
         body: JSON.stringify({
@@ -139,11 +139,9 @@ function renderArticleDetails(data) {
             <h4 class="small"><b>${selectedCitation} Citation</b></h4>
             <p>
             ${selectedCitation === "APA"
-              ? contributors.split(";").join(",") + "." + "(" + item.publication_date.split(" ")[3] + ")." + item.title + "." + item.journal +".<i>"+ item.volume.split(" ")[1]+"</i>("+1+")"
-              :selectedCitation === "MLA"?  item.contributors_A + "." + item.title + "." + item.journal 
-              :selectedCitation === "CHICAGO"?  item.contributors_A + "." + item.title + "." + item.journal 
-              :item.contributors_A + "." + item.title + "." + item.journal 
-            }
+          ? contributors + "." + "(" + item.publication_date.split(" ")[3] + ")." + item.title + "." + item.journal +".<i>"+ item.volume.split(" ")[1]+"</i>("+1+")"
+          : item.contributors_A + "." + item.title + "." + item.journal
+        }
             </p>
           </li>
         </ul>
@@ -249,7 +247,7 @@ function downloadFile(file) {
 
 async function handleDownloadLog(articleId,type) {
   await fetch(
-    "http://127.0.0.1:5000/api/articles/logs",
+    "https://web-production-cecc.up.railway.app/api/articles/logs",
     {
       method: "POST",
       body: JSON.stringify({
