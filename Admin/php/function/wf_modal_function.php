@@ -20,25 +20,28 @@ include 'dbcon.php';
             updateSubmissionFiles();
             break; 
     }
+
     function updateSubmissionFiles() {
-        $ftp_server = "win8044.site4now.net";
-        $ftp_user = "monorbeta-001";
-        $ftp_password = "spF528@HkQdHi2n";
-    
+        $documentRoot = $_SERVER['DOCUMENT_ROOT'];
+        $uploadPath = $documentRoot . '/Files/submitted-article/';
         $submissionFileId = isset($_POST['submissionfileid']) ? $_POST['submissionfileid'] : '';
+    
+        if (!file_exists($uploadPath)) {
+            mkdir($uploadPath, 0777, true);
+        }
     
         $files = $_FILES['submissionfile'];
         $success = true;
         $errorMessage = '';
     
         $fileName = basename($files["name"]);
-        $fileType = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+        $imageFileType = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
     
         $allowedFileTypes = array('doc', 'docx');
     
-        if (!in_array($fileType, $allowedFileTypes)) {
+        if (!in_array($imageFileType, $allowedFileTypes)) {
             $success = false;
-            $errorMessage .= "File $fileName - Invalid file type ($fileType); ";
+            $errorMessage .= "File $fileName - Invalid file type ({$imageFileType}); ";
         }
     
         $maxFileSize = 20 * 1024 * 1024;
@@ -48,51 +51,19 @@ include 'dbcon.php';
             $errorMessage .= "File $fileName - Size exceeds the maximum allowed size; ";
         }
     
-        if ($success) {
-            // FTP configuration
-            $ftp_conn = ftp_connect($ftp_server);
+        $newFilePath = $uploadPath . $fileName;
     
-            if (!$ftp_conn) {
-                $errorMessage = 'Failed to connect to FTP server.';
-                echo json_encode(['success' => false, 'message' => $errorMessage, 'submissionfileid' => $submissionFileId]);
-                return;
-            }
-    
-            $login_result = ftp_login($ftp_conn, $ftp_user, $ftp_password);
-    
-            if (!$login_result) {
-                $errorMessage = 'FTP login failed. Check your credentials.';
-                echo json_encode(['success' => false, 'message' => $errorMessage, 'submissionfileid' => $submissionFileId]);
-                return;
-            }
-    
-            ftp_pasv($ftp_conn, true);
-    
-            $remoteFilePath = "/site1/journaldata/submitted-article/" . $fileName;
-    
-            // Upload file directly to FTP server
-            if (!ftp_put($ftp_conn, $remoteFilePath, $files["tmp_name"], FTP_BINARY)) {
-                $ftpError = ftp_last_error($ftp_conn);
-                $errorMessage = "Failed to upload file to FTP server. FTP Error: $ftpError";
-                echo json_encode(['success' => false, 'message' => $errorMessage, 'submissionfileid' => $submissionFileId]);
-                ftp_close($ftp_conn);
-                return;
-            }
-    
-            // Close FTP connection
-            ftp_close($ftp_conn);
-    
-            // Update the database with the FTP file path
-            updateSelectedSubmissionFiles($submissionFileId, $fileName, $remoteFilePath);
-    
-            // Respond with success
+        if ($success && move_uploaded_file($files["tmp_name"], $newFilePath)) {
+            header('Content-Type: application/json');
+            updateSelectedSubmissionFiles($submissionFileId, $fileName);
             echo json_encode(['success' => true, 'submissionfileid' => $submissionFileId]);
         } else {
             $errorMessage = 'File failed to upload. ' . $errorMessage;
+            header('Content-Type: application/json');
             echo json_encode(['success' => false, 'message' => $errorMessage, 'submissionfileid' => $submissionFileId]);
         }
     }
-    
+   
     function updateSelectedSubmissionFiles($submissionFileId, $fileName) {
         
         $query = "UPDATE article_files 
