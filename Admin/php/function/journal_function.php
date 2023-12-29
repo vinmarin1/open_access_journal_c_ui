@@ -52,7 +52,7 @@ include 'dbcon.php';
         if ($result !== false) {
             echo json_encode(['status' => true, 'data' => $result]);
         } else {
-            echo json_encode(['status' => false, 'message' => 'Failed to fetch user data']);
+            echo json_encode(['status' => false, 'message' => 'Failed to fetch journal data']);
         }
     }
 

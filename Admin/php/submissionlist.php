@@ -24,13 +24,16 @@ $incomplete_articles = get_article_list($cid);
                 <a class="nav-link active" id="tabAll" data-status="">All</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="tabIncomplete" data-status="Incomplete">Incomplete</a>
+                <a class="nav-link" id="tabPending" data-status="Pending">Pending</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="tabProduction" data-status="Pending">Pending</a>
+                <a class="nav-link" id="tabReview" data-status="Review">Review</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="tabProduction" data-status="Review">Review</a>
+                <a class="nav-link" id="tabCopyediting" data-status="Copyediting">Copyediting</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="tabPublication" data-status="Publication">Publication</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" id="tabPublished" data-status="Published">Published</a>
@@ -74,12 +77,12 @@ $incomplete_articles = get_article_list($cid);
                                     $statusNumber = $incomplete_articlesval->status;
 
                                     $statusInfo = [
-                                        1 => ['label' => 'Published', 'class' => 'label-primary'],
-                                        2 => ['label' => 'Production', 'class' => 'label-secondary'],
-                                        3 => ['label' => 'Copyediting', 'class' => 'label-danger'],
+                                        1 => ['label' => 'Published', 'class' => 'label-success'],
+                                        2 => ['label' => 'Production', 'class' => 'label-info'],
+                                        3 => ['label' => 'Copyediting', 'class' => 'label-primary'],
                                         4 => ['label' => 'Review', 'class' => 'label-warning'],
-                                        5 => ['label' => 'Pending', 'class' => 'label-info'],
-                                        6 => ['label' => 'Reject', 'class' => 'label-success'],
+                                        5 => ['label' => 'Pending', 'class' => 'label-secondary'],
+                                        6 => ['label' => 'Reject', 'class' => 'label-danger'],
                                     ];
 
                                     if (isset($statusInfo[$statusNumber])) {

@@ -80,6 +80,7 @@ if (!function_exists('get_email_content')) {
             $id = $_POST['id'];
             $article_id = $_POST['article_id'];
             $articleFilesId = $_POST['checkedData'];
+            $articleFilesId1 = $_POST['checkedData1'];
 
             if ($mail->send()) {
                 echo "Email sent successfully.";
@@ -91,7 +92,7 @@ if (!function_exists('get_email_content')) {
                     updateArticleStatus($article_id, 7);
                     echo "<script>alert('Decline submission successfully.');</script>";
                 } elseif ($id == 3) {
-                    updateCopyeditingFiles(1, $articleFilesId);
+                    updateCopyeditingFiles(1, $articleFilesId1);
                     updateArticleStatus($article_id, 3);
                     echo "<script>alert('Send to copyediting successfully.');</script>";
                 }  } elseif ($id == 4) {

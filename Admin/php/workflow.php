@@ -277,7 +277,7 @@ table {
                                                                         <tr>
                                                                             <th colspan="3"><h6>Revisions</h6></th>
                                                                             <th style="text-align: right;">
-                                                                                <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 160px;">Upload Revision</button>
+                                                                                <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 160px;" data-bs-toggle="modal" data-bs-target="#addRevisionModal">Upload Revision</button>
                                                                             </th>
                                                                         </tr>
                                                                     </thead>

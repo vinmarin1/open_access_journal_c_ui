@@ -122,7 +122,7 @@ $journal = get_journal_list();
             </li>
 
             <li class="menu-item">
-              <a href="#" class="menu-link">
+              <a href="questionnaire.php" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-table"></i>
                 <div data-i18n="Tables">Questionnaire</div>
               </a>

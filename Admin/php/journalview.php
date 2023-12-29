@@ -18,6 +18,23 @@ $journallist = get_journal_list();
         </div>
 
             <div class="row mb-5 mt-4">
+                <div class="col-md-6">
+                    <div class="card mb-3">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img class="card-img card-img-left img-fluid" src="../../Files/journal-image/Journal.jpg" alt="Card image"/>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">Journal</h5>
+                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                    <p class="card-text"><small class="text-muted">Last updated</small></p>
+                                    <a href="javascript:void(0);" onclick="viewAllSubmissionList()" class="btn btn-primary">View</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             <?php
                 if ($journallist) {
                     foreach ($journallist as $journallistval) {
@@ -65,6 +82,18 @@ $journallist = get_journal_list();
 
         setTimeout(function () {
             window.location.href = "../php/submissionlist.php?cid=" + journalId;
+        }, 2000);
+
+        window.onload = function () {
+            $('#sloading').hide();
+        };
+    }
+
+    function viewAllSubmissionList(journalId) {
+        $('#sloading').show();
+
+        setTimeout(function () {
+            window.location.href = "../php/allsubmissionlist.php"
         }, 2000);
 
         window.onload = function () {
