@@ -4,15 +4,11 @@ require 'mail.php';
 session_start();
 
 if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+    $firstName = $_SESSION['first_name'];
+    $lastName = $_SESSION['last_name'];
     $id = $_SESSION['id'];
     $orc_idAuthor = $_SESSION['orc_id'];
-    echo "<p id='author_id' style='display: none'>$id</p>";
-
-    $firstName = isset($_SESSION['first_name']) ? ucfirst($_SESSION['first_name']) : '';
-    $middleName = isset($_SESSION['middle_name']) ? ' ' . ucfirst($_SESSION['middle_name']) : '';
-    $lastName = isset($_SESSION['last_name']) ? ' ' . ucfirst($_SESSION['last_name']) : '';
-    $contributor = $firstName . $middleName . $lastName;
-    echo "<p id='contributor' style='display: none'>$contributor</p>";
+    
 }
 
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
@@ -29,7 +25,20 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     $formattedDate = date('Y-m-d', $timestamp);
     $content = "-";
     $step = 4;
+    $authorAdditionalRole = isset($_POST['authorPcontact']) ? ', Primary Contact' : '';
+ 
+
+
     
+    
+    $coAuthors = isset($_POST['contributor_type_coauthor']) ? $_POST['contributor_type_coauthor'] : array();
+    $primaryContacts = isset($_POST['contributor_type_primarycontact']) ? $_POST['contributor_type_primarycontact'] : array();
+    $firstNameC = $_POST['firstnameC'];
+    $lastNameC = $_POST['lastnameC'];
+    $publicNameC = $_POST['publicnameC'];
+    $orcidsC = $_POST['orcidC'];
+    $emailsC = $_POST['emailC'];
+
 
     $email = $_SESSION['email'];
 
@@ -41,16 +50,6 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
 
 
-
-
-    $contributorTypes = $_POST['contributor_type'];
-    $firstnames = $_POST['firstname'];
-    $lastnames = $_POST['lastname'];
-    $publicnames = $_POST['publicname'];
-    $orcids = $_POST['orcid'];
-    $emails = $_POST['email'];
-
-   
 
 
     $author_id = (isset($_SESSION['id'])) ? $_SESSION['id'] : null;
@@ -69,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         'file_name3' => $_FILES['file_name3']['name']
     );
 
-    handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $formattedDate, $title, $category, $abstract, $keywords, $reference, $comment, $step, $contributorTypes, $firstnames, $lastnames, $publicnames, $orcids, $emails, $firstName, $lastName, $orc_idAuthor, $email);
+    handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $formattedDate, $title, $category, $abstract, $keywords, $reference, $comment, $step, $coAuthors, $primaryContacts, $firstNameC, $lastNameC, $publicNameC, $orcidsC, $emailsC, $firstName, $lastName, $orc_idAuthor, $email, $authorAdditionalRole, $contributorAuthor);
 
     Header("Location: ex_submit.php");
     exit();
@@ -78,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     exit();
 }
 
-function handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $formattedDate, $title, $category, $abstract, $keywords, $reference, $comment, $step, $contributorTypes, $firstnames, $lastnames, $publicnames, $orcids, $emails, $firstName, $lastName, $orc_idAuthor, $email)
+function handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $formattedDate, $title, $category, $abstract, $keywords, $reference, $comment, $step, $coAuthors, $primaryContacts, $firstNameC, $lastNameC, $publicNameC, $orcidsC, $emailsC, $firstName, $lastName, $orc_idAuthor, $email, $authorAdditionalRole, $contributorAuthor)
 {
     global $lastInsertedArticleId;
 
@@ -98,7 +97,7 @@ function handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $
         'keyword' => $keywords,
         'references' => $reference,
         'content' => "-",
-        'status' => 6,
+        'status' => 5,
         'step' => $step,
         'comment' => $comment
     );
@@ -135,48 +134,52 @@ function handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $
     VALUES (:article_id, :contributor_type, :firstname, :lastname, :publicname, :orcid, :email)";
 
     $paramsAuthor = array(
-    'article_id' => $lastInsertedArticleId,
-    'contributor_type' => 'Author',
-    'firstname' => $firstName,
-    'lastname' => $lastName,
-    'publicname' => 'Vinmarin',
-    'orcid' => $orc_idAuthor,
-    'email' => $email,
+        'article_id' => $lastInsertedArticleId,
+        'contributor_type' => 'Author' . $authorAdditionalRole,
+        'firstname' => $firstName,
+        'lastname' => $lastName,
+        'publicname' => 'Vinmarin',
+        'orcid' => $orc_idAuthor,
+        'email' => $email,
     );
 
     database_run($sqlAuthor, $paramsAuthor);
 
 
-  
-    for ($i = 0; $i < count($contributorTypes); $i++) {
-      
-        $contributorType = $contributorTypes[$i];
-        $firstname = $firstnames[$i];
-        $lastname = $lastnames[$i];
-        $publicname = $publicnames[$i];
-        $orcid = $orcids[$i];
-        $email = $emails[$i];
 
-
-
+    foreach ($firstNameC as $key => $firstName) {
+        $contributorType = array();
+    
        
-        $sqlCont = "INSERT INTO contributors (article_id, contributor_type, firstname, lastname, publicname, orcid, email) 
-                VALUES (:article_id, :contributor_type, :firstname, :lastname, :publicname, :orcid, :email)";
-        
+        if (isset($coAuthors[$key]) && $coAuthors[$key] == 'Co-Author') {
+            $contributorType[] = 'Co-Author';
+        }
+    
+        // Check if Primary Contact checkbox is selected for this contributor
+        if (isset($primaryContacts[$key]) && $primaryContacts[$key] == 'Primary Contact') {
+            $contributorType[] = 'Primary Contact';
+        }
+    
+        // Combine roles into a comma-separated string
+        $contributorTypeString = implode(' , ', $contributorType);
+
+        $sqlCont = "INSERT INTO contributors (article_id, contributor_type, firstname, lastname, publicname, orcid, email) VALUES (:article_id, :contributor_type, :firstname, :lastname, :publicname, :orcid, :email)";    
         $paramsCont = array(
-            'article_id' => $lastInsertedArticleId,
-            'contributor_type' => $contributorType,
-            'firstname' => $firstname,
-            'lastname' => $lastname,
-            'publicname' => $publicname,
-            'orcid' => $orcid,
-            'email' => $email,
+            'article_id' => $lastInsertedArticleId,  // You may replace this with the appropriate article_id
+            'contributor_type' => $contributorTypeString,
+            'firstname' => $firstName,
+            'lastname' => $lastNameC[$key],
+            'publicname' => $publicNameC[$key],
+            'orcid' => $orcidsC[$key],
+            'email' => $emailsC[$key],
         );
 
         database_run($sqlCont, $paramsCont);
+    }
 
 
-        $emailCont = $email;
+
+        $emailCont = $emailsC[$key];
 
         $messageCont = "<p>You've been included as a contributor for the Journal</p><br> <label style='display: inline-block;'>Title: </label> <p style='display: inline-block;'>$title</p> <br><label style='display: inline-block;'>Abstract: </label><p style='display: inline-block;'>$abstract</p>";
     
@@ -184,6 +187,6 @@ function handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $
         $recipientCont = $emailCont;
         send_mail($recipientCont, $subjectCont, $messageCont);
     
-    }
+    
 }
 ?>

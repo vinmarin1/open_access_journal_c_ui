@@ -10,6 +10,6 @@ function reusableFiles(url, targetId){
 
   reusableFiles('../PHP/header.php', 'header-container');
   reusableFiles('../PHP/navbar.php', 'navigation-menus-container');
-  reusableFiles('../PHP/footer.php', 'footer');
+  reusableFiles('../PHP/footer.php', 'footer-container"');
   
 
