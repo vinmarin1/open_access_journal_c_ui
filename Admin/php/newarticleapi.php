@@ -161,7 +161,7 @@ $journallist = get_journal_list();
             const title = document.getElementById('title').value;
             const abstract = quill.root.innerHTML;
 
-            fetch('https://web-production-cecc.up.railway.app/check/duplication', {
+            fetch('http://127.0.0.1:5000/check/duplication', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -196,7 +196,7 @@ $journallist = get_journal_list();
         document.getElementById('checkduplicate').addEventListener('click', async function (event) {
         const abstract = quill.root.innerHTML;
 
-        const response = await fetch('https://web-production-cecc.up.railway.app/api/check/journal', {
+        const response = await fetch('http://127.0.0.1:5000/api/check/journal', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

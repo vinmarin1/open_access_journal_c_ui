@@ -4,7 +4,7 @@ function navigateToArticle(articleId){
 }
 async function fetchData() {
   try {
-    const response = await fetch(`https://web-production-cecc.up.railway.app/api/recommendations/${sessionId? sessionId : 0}`, { //convert-6-to-session-id
+    const response = await fetch(`http://127.0.0.1:5000/api/recommendations/history/${sessionId? sessionId : 0}`, { //convert-6-to-session-id
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
