@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', fetchData);
 function navigateToArticle(articleId){
-  window.location.href = `/PHP/article-details.php?articleId=${articleId}`;
+  window.location.href = `../PHP/article-details.php?articleId=${articleId}`;
 }
 async function fetchData() {
   try {
