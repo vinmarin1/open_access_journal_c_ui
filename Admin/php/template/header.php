@@ -15,7 +15,6 @@ $journal = get_journal_list();
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <title>ADMIN | QCU OPEN ACCESS JOURNAL</title>
 
     <meta name="description" content="" />
@@ -123,7 +122,7 @@ $journal = get_journal_list();
             </li>
 
             <li class="menu-item">
-              <a href="#" class="menu-link">
+              <a href="questionnaire.php" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-table"></i>
                 <div data-i18n="Tables">Questionnaire</div>
               </a>

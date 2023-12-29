@@ -133,6 +133,44 @@ $userlist = get_user_list();
     </form>
 </div>
 
+<!-- Add Revision Modal -->
+<div class="modal fade" id="addRevisionModal" tabindex="-1" aria-hidden="true">
+    <form id="addModalForm1">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel3">Add Revision</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row mb-2">
+                        <div class="col-md-12 mb-2">
+                            <label for="subject" class="form-label">Subject</label>
+                            <input type="text" id="subject" class="form-control" placeholder="Subject" required/>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-12 mb-2">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea class="form-control" id="message" rows="9"></textarea>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-12 mb-2">
+                            <label for="formFileAddDiscussion" class="form-label">Upload File</label>
+                            <input class="form-control" type="file" id="formFileAddDiscussion" accept=".pdf, .doc, .docx" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="addRecord()">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
 <!-- Add Review Files Modal -->
 <div class="modal fade" id="addReviewFilesModal" tabindex="-1" aria-hidden="true">
     <form id="addModalForm">
@@ -171,7 +209,7 @@ $userlist = get_user_list();
                                                 </td>
                                                 <td width="5%"><?php echo $submission_filesval->article_files_id; ?></td>
                                                 <td width="65%">
-                                                    <a href="http://monorbeta-001-site1.btempurl.com/journaldata/submitted-article/<?php echo urlencode($submission_filesval->file_name); ?>" download>
+                                                    <a href="../../Files/submitted-article/<?php echo urlencode($submission_filesval->file_name); ?>" download>
                                                         <?php echo $submission_filesval->file_name; ?>
                                                     </a>
                                                 </td>
@@ -209,7 +247,7 @@ $userlist = get_user_list();
                                                 <tr>
                                                     <td width="5%"><?php echo $review_filesval->article_files_id; ?></td>
                                                     <td width="70%">
-                                                        <a href="http://monorbeta-001-site1.btempurl.com/journaldata/submitted-article/<?php echo urlencode($review_filesval->file_name); ?>" download>
+                                                        <a href="../../Files/submitted-article/<?php echo urlencode($review_filesval->file_name); ?>" download>
                                                             <?php echo $review_filesval->file_name; ?>
                                                         </a>
                                                     </td>
@@ -275,7 +313,7 @@ $userlist = get_user_list();
                                                     </td>
                                                     <td width="5%"><?php echo $submission_filesval->article_files_id; ?></td>
                                                     <td width="65%">
-                                                        <a href="http://monorbeta-001-site1.btempurl.com/journaldata/submitted-article/<?php echo urlencode($submission_filesval->file_name); ?>" download>
+                                                        <a href="../../Files/submitted-article/<?php echo urlencode($submission_filesval->file_name); ?>" download>
                                                             <?php echo $submission_filesval->file_name; ?>
                                                         </a>
                                                     </td>
@@ -353,7 +391,7 @@ $userlist = get_user_list();
                                                 <tr>
                                                     <td width="5%"><?php echo $copyediting_filesval->article_files_id; ?></td>
                                                     <td width="70%">
-                                                        <a href="http://monorbeta-001-site1.btempurl.com/journaldata/submitted-article/<?php echo urlencode($copyediting_filesval->file_name); ?>" download>
+                                                        <a href="../../Files/submitted-article/<?php echo urlencode($copyediting_filesval->file_name); ?>" download>
                                                             <?php echo $copyediting_filesval->file_name; ?>
                                                         </a>
                                                     </td>

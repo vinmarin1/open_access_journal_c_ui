@@ -16,14 +16,14 @@ $journallist = get_journal_list();
         <h4 class="py-3 mb-4"><span class="text-muted fw-light">Settings /</span> Journal</h4>
 
         <div class="card">
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-            <h5 class="card-header mb-0">Journal List</h5>
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                <h5 class="card-header mb-0">Journal List</h5>
 
-            <div style="display: flex; margin-top: 15px; margin-right: 15px;">
-                <button type="button" id="tabAll" class="btn btn-primary" style="margin-right: 10px;" data-bs-toggle="modal" data-bs-target="#addModal">Add Journal</button>
-                <button type="button" id="tabPublished" class="btn btn-primary">Download</button>
+                <div style="display: flex; margin-top: 15px; margin-right: 15px;">
+                    <button type="button" id="tabAll" class="btn btn-primary" style="margin-right: 10px;" data-bs-toggle="modal" data-bs-target="#addModal">Add Journal</button>
+                    <button type="button" id="tabPublished" class="btn btn-primary">Download</button>
+                </div>
             </div>
-        </div>
 
             <div class="table-responsive text-nowrap">
                 <table class="table table-striped" id="DataTable">
@@ -197,7 +197,7 @@ $journallist = get_journal_list();
                 },
                 error: function (xhr, status, error) {
                     console.error("Ajax request failed:", error);
-                    $('#archiveModalMessage').text('Failed to archive user');
+                    $('#archiveModalMessage').text('Failed to archive journal');
                     $('#archiveModal').modal('hide');
                     location.reload();
                 }
