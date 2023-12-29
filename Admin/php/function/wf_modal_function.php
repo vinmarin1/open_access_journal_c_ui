@@ -60,10 +60,14 @@ include 'dbcon.php';
             header('Content-Type: application/json');
             updateSelectedSubmissionFiles($submissionFileId, $fileName);
             echo json_encode(['success' => true, 'submissionfileid' => $submissionFileId]);
+            error_log("File path: " . $uploadPath);
+            error_log("File permissions: " . decoct(fileperms($uploadPath)));
+
         } else {
             $errorMessage = 'File failed to upload. ' . $errorMessage;
             header('Content-Type: application/json');
             echo json_encode(['success' => false, 'message' => $errorMessage, 'submissionfileid' => $submissionFileId]);
+            
         }
     }
    
