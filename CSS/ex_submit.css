@@ -633,6 +633,27 @@
 }
 
 
+.btn-container{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    float: right;
+    
+}
+
+#addCont, #deleteCont{
+    background-color: #0858a4;
+    border: none;
+    border-color: none;
+   
+}
+
+
+
+
+.form-check-label{
+    font-size: 11px;
+}
+
 
 
 #update-cont-2{

@@ -137,6 +137,7 @@
 
     
         <input class="form-control" type="text"  id="title" name="title">
+      
         <p id="title-validation" style="color: red; display: none;">Title should consist of 10 words and less than 20 words*</p>
         
         <h6 id="sub-11">Abstract</h6>
@@ -277,67 +278,53 @@
   
   <div class="contributors-container">
 
-  <?php
-if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-  $first_name = $_SESSION['first_name'];
-  $email = $_SESSION['email'];
-  $orc_id = $_SESSION['orc_id'];
-  
-    
-  $firstName = isset($_SESSION['first_name']) ? ucfirst($_SESSION['first_name']) : '';
-  $middleName = isset($_SESSION['middle_name']) ? ' ' . ucfirst($_SESSION['middle_name']) : '';
-  $lastName = isset($_SESSION['last_name']) ? ' ' . ucfirst($_SESSION['last_name']) : '';
-  $contributor = $firstName . $middleName . $lastName;
-  echo "<p id='contributor' style='display: none'>$contributor
-  </p>";
 
-}
-?>
  
   <h5 class="title7 mt-5" id="title-7">Add Contributors</h5>
   <h6 class="sub14 mt-3" id="sub-14">Add details for all of the contributors to this submission. Contributors added here will be sent an email confirmation of the submission, as well as a copy of all editorial decisions recorded against this submission.</h6>
 
-  <div class="cont">
-    <!-- <h5 class="title8" id="title-8">Contributors</h5> -->
-  <button type="button" class="btn btn-primary btn-sm"id="contributor-btn">Add Contributors</button>
-  </div>
- 
-  <table class="table table-striped" id="table-contributor" name="table-contributor">
-  <thead>
-    <tr >
- 
-      <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">First Name</th>
-      <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">Last Name</th>
-      <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">Public Name</th>
-      <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">ORCID</th>
-      <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">EMAIL</th>
-      <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">CO-AUTHOR</th>
-      <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">PRIMARY CONTACT</th>
-      <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal; ">Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><?php echo $first_name; ?></td>
-      <td><?php echo $lastName; ?></td>
-      <td></td>
-      <td><?php echo $orc_id; ?></td>
-      <td><?php echo $email; ?></td>
-      <td><input type="checkbox" disabled></td>
-      <td><input type="checkbox" value="Primary Contact" id="checkbox1"></td>
-      <td style="width: 150px"></td>
-    </tr>
-  </tbody>
-</table>
+  <?php
+    $first_name = $_SESSION['first_name'];
+    $last_name = $_SESSION['last_name'];
+    $public_name = $_SESSION['public_name'];
+    $orc_id = $_SESSION['orc_id'];
+    $email = $_SESSION['email'];
+  ?>
+  
+  <div class="btn-container">
+      <button type="button" id="addCont" class="btn btn-success btn-sm" onclick="addRow()">Add Contributor</button>
+      <button type="button" id="deleteCont" class="btn btn-danger btn-sm" onclick="deleteData()">Delete Data</button>
+      <!-- <button type="button" class="btn btn-primary btn-sm" onclick="saveData()">Save Data</button> -->
+    </div>
 
-  <div class="hidden-inputs" style="display: none">
-    <input type="hidden" name="contributor_type[]" value="Co-Author">
-    <input type="hidden" name="firstname[]" value="">
-    <input type="hidden" name="lastname[]" value="">
-    <input type="hidden" name="publicname[]" value="">
-    <input type="hidden" name="orcid[]" value="">
-    <input type="hidden" name="email[]" value="">
-  </div>
+  <table class="table table-striped" id="contributorTable" >
+            <thead>
+                <tr>
+                    <th style=" background-color: #0858a4; color: white; font-size: 12px; font-weight: normal">First Name</th>
+                    <th style=" background-color: #0858a4; color: white; bold; font-size: 12px; font-weight: normal">Last Name</th>
+                    <th style=" background-color: #0858a4; color: white; bold; font-size: 12px; font-weight: normal">Public Name</th>
+                    <th style=" background-color: #0858a4; color: white; bold; font-size: 12px; font-weight: normal">ORCID</th>
+                    <th style=" background-color: #0858a4; color: white; bold; font-size: 12px; font-weight: normal">Email</th>
+                    <th id="cont-col" style=" background-color: #0858a4; color: white; old; font-size: 12px; font-weight: normal; width: 350px">Contributor Type</th>
+                    <th style=" background-color: #0858a4; color: white; width: 30px; bold; font-size: 12px; font-weight: normal">Action</th>
+                </tr>
+               <tr>
+                <th><input type="text" style="width: 118px" value="<?php echo $first_name ?>" disabled></th>
+                <th><input type="text" style="width: 118px" value="<?php echo $last_name ?>" disabled></th>
+                <th><input type="text" style="width: 118px"  value="<?php echo $public_name ?>" disabled></th>
+                <th><input type="text" style="width: 118px" value="<?php echo $orc_id ?>"  disabled></th>
+                <th><input type="text" style="width: 118px" value="<?php echo $email ?>"  disabled></th>
+                <th><input type="checkbox" id="authorPcontact" class="form-check-input"><label style="font-weight: normal; font-size: 11px; margin-left: 10px;">Primary Contact</label></th>
+                
+                
+               </tr>
+            </thead>
+            <tbody>
+              
+            </tbody>
+        </table>
+
+
   
   </div>
 
@@ -403,7 +390,7 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
       </div> -->
       <!-- <div class="file-content-container mt-3"> -->
         <!-- <input type="text" class="form-control" id="input10" readonly> -->
-        <table class="table table-striped" id="table-contributor-preview" name="table-contributor">
+        <!-- <table class="table table-striped" id="table-contributor-preview" name="table-contributor">
           <thead>
             <tr >
         
@@ -429,7 +416,7 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
               <td style="width: 150px"></td>
             </tr>
           </tbody>
-        </table>
+        </table> -->
       <!-- </div> -->
     </div>
     
@@ -453,7 +440,7 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 
 
 
-
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
@@ -463,18 +450,6 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 <script src="../JS/ex_submit.js"></script>
 <script src="../JS/ex_submit_duplicate_article.js"></script>
 <script src="../JS/ex_submit_journal_type.js"></script>
-<script>
-   var checkbox1 = document.getElementById("checkbox1");
-   var checkbox2 = document.getElementById("checkbox2");
 
-   
-    checkbox1.addEventListener("change", function () {
-        checkbox2.checked = checkbox1.checked;
-    });
-
-    checkbox2.addEventListener("change", function () {
-        checkbox1.checked = checkbox2.checked;
-    });
-</script>
 </body>
 </html>

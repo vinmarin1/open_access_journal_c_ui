@@ -292,296 +292,71 @@ function inputValidation(inputElement, validationElement, conditionFunction) {
 
 
 
-document.getElementById('contributor-btn').addEventListener('click', function (event) {
-  Swal.fire({
-    html:
-      '<h5 class="title9" id="title-9">Contributors</h5>' +
-      '<hr id="swal-d">' +
-      '<div id="fName"><label id="sub-16">First Name: </label><input id="input1" class="swal2-input"></div>' +
-      '<div id= "lName"><label id="sub-17">Last Name: </label><input id="input2" class="swal2-input"></div>' +
-      '<label id= "sub-18">Preferred Public Name: </label><input id="input3" class="swal2-input">' +
-      '<label id= "sub-19">Email: </label><input id="input4" class="swal2-input">' +
-      '<label id= "sub-20">ORCID: </label><input id="input5" class="swal2-input">',
+function addRow() {
+  var index = $('#contributorTable tbody tr').length; // Get the current row index
+  var newRow = '<tr>' +
+      '<td><input class="form-control"  type="text" name="firstnameC[]" style="height: 30px;" required></td>' +
+      '<td><input class="form-control"  type="text" name="lastnameC[]" style="height: 30px;" required></td>' +
+      '<td><input class="form-control"  type="text" name="publicnameC[]" style="height: 30px;"></td>' +
+      '<td><input class="form-control"  type="number" name="orcidC[]" style="height: 30px;"></td>' +
+      '<td><input class="form-control"  type="email" name="emailC[]" style="height: 30px;" required></td>' +
+      '<td class="align-middle">' +
+      '<div class="form-check cAuthor" style="display: inline-block; margin-right: 10px">' +
+      '<input class="form-check-input" type="checkbox" name="contributor_type_coauthor[' + index + ']" value="Co-Author">' +
+      '<label class="form-check-label"> Co-Author</label>' +
+      '</div>' +
+     '<div class="form-check pContact" style="display: inline-block">' +
+      '<input class="form-check-input" type="checkbox" name="contributor_type_primarycontact[' + index + ']" value="Primary Contact">' +
+      '<label class="form-check-label"> Primary Contact</label>' +
+      '</div>' +
+      '</td>'
+      +
+      '<td class="align-middle"><input class="form-check-input" type="checkbox" name="selectToDelete"></td>' +
+      '</tr>';
+  
+  $('#contributorTable tbody').append(newRow);
+}
+function saveData() {
+  var formData = new FormData($('#contributorForm')[0]);
 
-    footer: '<button  id="confirmBtn">Add Contributor</button>',
-    showConfirmButton: false,
+  // Add contributor types for each row
+  $('#contributorTable tbody tr').each(function(index, row) {
+      var coAuthorCheckbox = $(row).find('input[name="contributor_type_coauthor[]"]');
+      var primaryContactCheckbox = $(row).find('input[name="contributor_type_primarycontact[]"]');
+
+      if (coAuthorCheckbox.is(':checked')) {
+          formData.append('contributor_type_coauthor[' + index + ']', 'Co-Author');
+      }
+
+      if (primaryContactCheckbox.is(':checked')) {
+          formData.append('contributor_type_primarycontact[' + index + ']', 'Primary Contact');
+      }
   });
 
-  document.getElementById('confirmBtn').addEventListener('click', function () {
-    var input1Value = document.getElementById('input1').value;
-    var input2Value = document.getElementById('input2').value;
-    var input3Value = document.getElementById('input3').value;
-    var input4Value = document.getElementById('input4').value;
-    var input5Value = document.getElementById('input5').value;
-
-
-
-    // Add the new row to the table
-    var table = document.getElementById('table-contributor').getElementsByTagName('tbody')[0];
-    var newRow = table.insertRow(table.rows.length);
-
-    var cellFirstName = newRow.insertCell(0);
-    cellFirstName.innerHTML = input1Value;
-
-    var cellLastName = newRow.insertCell(1);
-    cellLastName.innerHTML = input2Value;
-
-    var cellPublicName = newRow.insertCell(2);
-    cellPublicName.innerHTML = input3Value;
-
-    var cellOrcid = newRow.insertCell(3);
-    cellOrcid.innerHTML = input5Value;
-
-    var cellEmail = newRow.insertCell(4);
-    cellEmail.innerHTML = input4Value;
-
-
-    var cellCoAuthor = newRow.insertCell(5);
-    cellCoAuthor.innerHTML = '<input class="coAuthor" type="checkbox" value="Co-Author"  id="coAuthor">';
-
-    var cellPrimaryContact = newRow.insertCell(6);
-    cellPrimaryContact.innerHTML = '<input class="pmContact" type="checkbox" value="Primary Contact" id="pContact">';
- 
-    var cellActions = newRow.insertCell(7);
-    cellActions.innerHTML = '<button type="button" class="btn btn-outline-primary btn-sm btn-update" style="margin-right: 10px;">View</button>' +
-      '<button type="button" class="btn btn-danger btn-sm btn-delete">Delete</button>';
-
-    // Add event listeners for update and delete buttons
-    var updateBtn = cellActions.querySelector('.btn-update');
-    var deleteBtn = cellActions.querySelector('.btn-delete');
-
-
-    var form = document.getElementById('form'); 
-   
-    form['contributor_type[]'].value = 'Primary Contact';
-    form['firstname[]'].value = input1Value;
-    form['lastname[]'].value = input2Value;
-    form['publicname[]'].value = input3Value;
-    form['orcid[]'].value = input5Value;
-    form['email[]'].value = input4Value;
-
-
-    var tablePrev = document.getElementById('table-contributor-preview').getElementsByTagName('tbody')[0];
-
-    var newRowPrev = tablePrev.insertRow(tablePrev.rows.length);
-
-    var cellFirstNamePrev = newRowPrev.insertCell(0);
-    cellFirstNamePrev.innerHTML = input1Value;
-
-
-    var cellLastNamePrev = newRowPrev.insertCell(1);
-    cellLastNamePrev.innerHTML = input2Value;
-
-    var cellPublicNamePrev = newRowPrev.insertCell(2);
-    cellPublicNamePrev.innerHTML = input3Value;
-
-    var cellOrcidPrev = newRowPrev.insertCell(3);
-    cellOrcidPrev.innerHTML = input5Value;
-
-    var cellEmailPrev = newRowPrev.insertCell(4);
-    cellEmailPrev.innerHTML = input4Value;
-
-
-    var cellCoAuthorPrev = newRowPrev.insertCell(5);
-    cellCoAuthorPrev.innerHTML = '<input class="coAuthor" type="checkbox" value="Co-Author"  id="coAuthorPrev">';
-
-    var cellPrimaryContactPrev = newRowPrev.insertCell(6);
-    cellPrimaryContactPrev.innerHTML = '<input class="pmContact" type="checkbox" value="Primary Contact"  id="pContactPrev">';
-
-    var cellActionsPrev = newRowPrev.insertCell(7);
-    cellActionsPrev.innerHTML = '<button type="button" class="btn btn-outline-primary btn-sm btn-updatePrev" style="margin-right: 10px;">View</button>' +
-      '<button type="button" class="btn btn-danger btn-sm btn-deletePrev">Delete</button>';
-
-
-    var updateBtnPrev = cellActionsPrev.querySelector('.btn-updatePrev');
-    var deleteBtnPrev = cellActionsPrev.querySelector('.btn-deletePrev');
-
-
- 
-
-
-var coAuthorCheckbox = cellCoAuthor.querySelector('.coAuthor');
-var pContactCheckbox = cellPrimaryContact.querySelector('.pmContact');
-var coAuthorPrevCheckbox = cellCoAuthorPrev.querySelector('.coAuthor');
-var pContacPrevtCheckbox = cellPrimaryContactPrev.querySelector('.pmContact');
-
-coAuthorCheckbox.addEventListener('change', function() {
-
-    var coAuthorCheckboxPrev = cellCoAuthorPrev.querySelector('.coAuthor');
-    coAuthorCheckboxPrev.checked = this.checked;
-});
-
-pContactCheckbox.addEventListener('change', function() {
-
-  var pContactCheckboxPrev = cellPrimaryContactPrev.querySelector('.pmContact');
-  pContactCheckboxPrev.checked = this.checked;
-});
-
-
-coAuthorPrevCheckbox.addEventListener('change', function() {
-
-  var coAuthorCheckboxes = cellCoAuthor.querySelector('.coAuthor');
-  coAuthorCheckboxes.checked = this.checked;
-});
-
-
-pContacPrevtCheckbox.addEventListener('change', function() {
-
-  var pContactCheckboxes = cellPrimaryContact.querySelector('.pmContact');
-  pContactCheckboxes.checked = this.checked;
-});
-
-
-
-
-
-
-
-
-
-    let updatedInput1Value;
-    let updatedInput2Value;
-    let updatedInput3Value;
-    let updatedInput4Value;
-    let updatedInput5Value;
-
-    updateBtnPrev.addEventListener('click' , function(event) {
-      Swal.fire({
-        html: '<h5 class="title10" id="title-10">Update Contributor</h5>' +
-            '<hr id="swal-d">' +
-            '<div id="fName"><label id="sub-21">First Name: </label><input id="updateInput1" class="swal2-input" value="' + (updatedInput1Value || input1Value) + '"></div>' +
-            '<div id= "lName"><label id="sub-22">Last Name: </label><input id="updateInput2" class="swal2-input" value="' + (updatedInput2Value || input2Value) + '"></div>' +
-            '<label id= "sub-23">Preferred Public Name: </label><input id="updateInput3" value="' + (updatedInput3Value || input3Value) + '" class="swal2-input">' +
-            '<label id= "sub-24">Email: </label><input id="updateInput4" value="' + (updatedInput4Value || input4Value) + '" class="swal2-input">' +
-            '<label id= "sub-25">ORCID: </label><input id="updateInput5" value="' + (updatedInput5Value || input5Value) + '" class="swal2-input">',
-
-        footer: '<button id="update-cont">Update</button>',
-        showConfirmButton: false
-    });
-
-
-    var currentRow = this.closest('tr');
-
-    document.getElementById('update-cont').addEventListener('click', function () {
-
-
-      
-      currentRow.cells[0].innerHTML = document.getElementById('updateInput1').value;
-      currentRow.cells[1].innerHTML = document.getElementById('updateInput2').value;
-      currentRow.cells[2].innerHTML = document.getElementById('updateInput3').value;
-      currentRow.cells[3].innerHTML = document.getElementById('updateInput4').value;
-      currentRow.cells[4].innerHTML = document.getElementById('updateInput5').value;
-
-      currentRow.cells[0].innerHTML = document.getElementById('updateInput1').value;
-      currentRow.cells[1].innerHTML = document.getElementById('updateInput2').value;
-      currentRow.cells[2].innerHTML = document.getElementById('updateInput3').value;
-      currentRow.cells[3].innerHTML = document.getElementById('updateInput4').value;
-      currentRow.cells[4].innerHTML = document.getElementById('updateInput5').value;
-
-      var updatedInput1Element = document.getElementById('updateInput1');
-      var updatedInput2Element = document.getElementById('updateInput2');
-      var updatedInput3Element = document.getElementById('updateInput3');
-      var updatedInput4Element = document.getElementById('updateInput4');
-      var updatedInput5Element = document.getElementById('updateInput5');
-
-      updatedInput1Value = updatedInput1Element.value;
-      updatedInput2Value = updatedInput2Element.value;
-      updatedInput3Value = updatedInput3Element.value;
-      updatedInput4Value = updatedInput4Element.value;
-      updatedInput5Value = updatedInput5Element.value;
-
-
-        Swal.close();
-    });
-
-    });
-
-
- 
-    updateBtn.addEventListener('click', function (event) {
-        Swal.fire({
-            html: '<h5 class="title10" id="title-10">Update Contributor</h5>' +
-                '<hr id="swal-d">' +
-                '<div id="fName"><label id="sub-21">First Name: </label><input id="updateInput1" class="swal2-input" value="' + (updatedInput1Value || input1Value) + '"></div>' +
-                '<div id= "lName"><label id="sub-22">Last Name: </label><input id="updateInput2" class="swal2-input" value="' + (updatedInput2Value || input2Value) + '"></div>' +
-                '<label id= "sub-23">Preferred Public Name: </label><input id="updateInput3" value="' + (updatedInput3Value || input3Value) + '" class="swal2-input">' +
-                '<label id= "sub-24">Email: </label><input id="updateInput4" value="' + (updatedInput4Value || input4Value) + '" class="swal2-input">' +
-                '<label id= "sub-25">ORCID: </label><input id="updateInput5" value="' + (updatedInput5Value || input5Value) + '" class="swal2-input">',
-    
-            footer: '<button id="update-cont">Update</button>',
-            showConfirmButton: false
-        });
-    
-
-        var currentRow = this.closest('tr');
-
-        document.getElementById('update-cont').addEventListener('click', function () {
-
-
-          
-          currentRow.cells[0].innerHTML = document.getElementById('updateInput1').value;
-          currentRow.cells[1].innerHTML = document.getElementById('updateInput2').value;
-          currentRow.cells[2].innerHTML = document.getElementById('updateInput3').value;
-          currentRow.cells[3].innerHTML = document.getElementById('updateInput4').value;
-          currentRow.cells[4].innerHTML = document.getElementById('updateInput5').value;
-
-          currentRow.cells[0].innerHTML = document.getElementById('updateInput1').value;
-          currentRow.cells[1].innerHTML = document.getElementById('updateInput2').value;
-          currentRow.cells[2].innerHTML = document.getElementById('updateInput3').value;
-          currentRow.cells[3].innerHTML = document.getElementById('updateInput4').value;
-          currentRow.cells[4].innerHTML = document.getElementById('updateInput5').value;
-
-          var updatedInput1Element = document.getElementById('updateInput1');
-          var updatedInput2Element = document.getElementById('updateInput2');
-          var updatedInput3Element = document.getElementById('updateInput3');
-          var updatedInput4Element = document.getElementById('updateInput4');
-          var updatedInput5Element = document.getElementById('updateInput5');
-  
-          updatedInput1Value = updatedInput1Element.value;
-          updatedInput2Value = updatedInput2Element.value;
-          updatedInput3Value = updatedInput3Element.value;
-          updatedInput4Value = updatedInput4Element.value;
-          updatedInput5Value = updatedInput5Element.value;
-  
-
-            Swal.close();
-        });
-    });
-
-
-
-
-    
-    
-    
-    deleteBtn.addEventListener('click', function () {
-    
-      var rowIndex = this.closest('tr').rowIndex;
-    
-      table.deleteRow(rowIndex - 1); 
-      tablePrev.deleteRow(rowIndex - 1); 
-    
-    
-    });
-
-
-    deleteBtnPrev.addEventListener('click', function () {
-    
-      var rowIndex = this.closest('tr').rowIndex;
-    
-      table.deleteRow(rowIndex - 1); 
-      tablePrev.deleteRow(rowIndex - 1); 
-    
-    
-    });
-
-   
-    Swal.close();
+  $.ajax({
+      type: 'POST',
+      url: 'save_cont.php',
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function(response) {
+          alert('Data saved successfully!');
+      },
+      error: function(error) {
+          alert('Error saving data');
+          console.log(error);
+      }
   });
+}
 
 
-  
-});
+function deleteData() {
+  // Iterate through each checkbox
+  $('input[name="selectToDelete"]:checked').each(function() {
+      // Delete the corresponding row
+      $(this).closest('tr').remove();
+  });
+}
 
 
 var titleInput = document.getElementById("title");
@@ -608,11 +383,13 @@ var input14 = document.getElementById("input14");
 var input15 = document.getElementById("input15");
 var input15f = document.getElementById("input15f");
 var input15g = document.getElementById("input15g");
-
+var prevTitle = document.getElementById("prevTitle");
 
 titleInput.addEventListener('input', function() {
   input5.value = titleInput.value;
   input11.value = titleInput.value;
+  prevTitle.value = titleInput.value;
+  
 });
 
 keywordsInput.addEventListener('input', function() {
@@ -684,102 +461,102 @@ input10.value = contributorInput;
 
 
 
-document.getElementById('update-cont-2').addEventListener('click', function (event) {
+// document.getElementById('update-cont-2').addEventListener('click', function (event) {
 
 
 
-  Swal.fire({
-    html: '<h5 class="title14" id="title-14">Update Article Details</h5>' + '<hr id="swal-d-2">' + '<label class="sub30" id="sub-30">Title: <input type="text" class="form-control" id="input11" value="'+ titleInput.value +'"></label>' +  '<label class="sub31" id="sub-31">Keywords: <input type="text" class="form-control" id="input12" value="'+ keywordsInput.value +'"></label>'  + '<label class="sub32" id="sub-32">Abstract: <input type="text" class="form-control" id="input13" id="input12" value="'+ quill1.getText() +'"></label>' +  '<label class="sub33" id="sub-33">Reference: <input type="text" class="form-control" id="input14" value="'+ quill2.getText() +'"></label>',
-    footer: '<button  id="btn-article-update">Update</button>',
-    showConfirmButton: false,
-  });
+//   Swal.fire({
+//     html: '<h5 class="title14" id="title-14">Update Article Details</h5>' + '<hr id="swal-d-2">' + '<label class="sub30" id="sub-30">Title: <input type="text" class="form-control" id="input11" value="'+ titleInput.value +'"></label>' +  '<label class="sub31" id="sub-31">Keywords: <input type="text" class="form-control" id="input12" value="'+ keywordsInput.value +'"></label>'  + '<label class="sub32" id="sub-32">Abstract: <input type="text" class="form-control" id="input13" id="input12" value="'+ quill1.getText() +'"></label>' +  '<label class="sub33" id="sub-33">Reference: <input type="text" class="form-control" id="input14" value="'+ quill2.getText() +'"></label>',
+//     footer: '<button  id="btn-article-update">Update</button>',
+//     showConfirmButton: false,
+//   });
 
-  document.getElementById('btn-article-update').addEventListener('click', function () {
-    var newTitle = document.getElementById('input11').value;
-    var newKeywords = document.getElementById('input12').value;
-    var newAbstract = document.getElementById('input13').value;
-    var newReference = document.getElementById('input14').value;
+//   document.getElementById('btn-article-update').addEventListener('click', function () {
+//     var newTitle = document.getElementById('input11').value;
+//     var newKeywords = document.getElementById('input12').value;
+//     var newAbstract = document.getElementById('input13').value;
+//     var newReference = document.getElementById('input14').value;
 
   
-    titleInput.value = newTitle;
-    keywordsInput.value = newKeywords;
+//     titleInput.value = newTitle;
+//     keywordsInput.value = newKeywords;
   
-    input5.value = newTitle;
-    input6.value = newKeywords;
-    input7.value = newAbstract;
-    input8.value = newReference;
+//     input5.value = newTitle;
+//     input6.value = newKeywords;
+//     input7.value = newAbstract;
+//     input8.value = newReference;
   
-    try {
-      quill1.setText(newAbstract);
+//     try {
+//       quill1.setText(newAbstract);
      
-    } catch (error) {
-      console.error("Unable to update Abstract Content:", error);
+//     } catch (error) {
+//       console.error("Unable to update Abstract Content:", error);
       
-    }
+//     }
 
-    // i add two separate try catch because its not working when putting them in one :>>>
+//     // i add two separate try catch because its not working when putting them in one :>>>
     
-    try {
-      quill2.setText(newReference);
+//     try {
+//       quill2.setText(newReference);
      
-    } catch (error) {
-      console.error("Unable to update Reference Content:", error);
+//     } catch (error) {
+//       console.error("Unable to update Reference Content:", error);
       
-    }
+//     }
     
     
   
-    Swal.close();
-  });
+//     Swal.close();
+//   });
   
 
  
-});
-document.getElementById('update-cont-3').addEventListener('click', function (event) {
+// });
+// document.getElementById('update-cont-3').addEventListener('click', function (event) {
   
-  Swal.fire({
-    html: '<h5 class="title15" id="title-15">Update File Content</h5>' +  '<hr id="swal-d-3">' 
-    + '<label id="sub-34">File Name: </label>'
-    + '<input type="text" class="form-control" id="input15" style="width: 70%; display:inline-block" accept=".docx" readonly></input>' + 
-    '<button type="button" class="btn btn-primary btn-sm" id="newFile">Select File</button> ' + '<input type="text" class="form-control" id="input15f" style="width: 70%; display:inline-block" accept=".docx" readonly></input>' + 
-    '<button type="button" class="btn btn-primary btn-sm" id="newFilef">Select File</button> '+ '<input type="text" class="form-control" id="input15g" accept=".docx" style="width: 70%; display:inline-block" readonly></input>' + 
-    '<button type="button" class="btn btn-primary btn-sm" id="newFileg">Select File</button> ',
-    showConfirmButton: false
+//   Swal.fire({
+//     html: '<h5 class="title15" id="title-15">Update File Content</h5>' +  '<hr id="swal-d-3">' 
+//     + '<label id="sub-34">File Name: </label>'
+//     + '<input type="text" class="form-control" id="input15" style="width: 70%; display:inline-block" accept=".docx" readonly></input>' + 
+//     '<button type="button" class="btn btn-primary btn-sm" id="newFile">Select File</button> ' + '<input type="text" class="form-control" id="input15f" style="width: 70%; display:inline-block" accept=".docx" readonly></input>' + 
+//     '<button type="button" class="btn btn-primary btn-sm" id="newFilef">Select File</button> '+ '<input type="text" class="form-control" id="input15g" accept=".docx" style="width: 70%; display:inline-block" readonly></input>' + 
+//     '<button type="button" class="btn btn-primary btn-sm" id="newFileg">Select File</button> ',
+//     showConfirmButton: false
     
-  })
+//   })
 
 
-  document.getElementById('newFile').addEventListener('click', function() {
-    document.getElementById('file_name').click();
-  });
+//   document.getElementById('newFile').addEventListener('click', function() {
+//     document.getElementById('file_name').click();
+//   });
 
-  document.getElementById('file_name').addEventListener('change', function () {
-    var fileName = this.files[0].name;
-    document.getElementById('input15').value = fileName;
-});
+//   document.getElementById('file_name').addEventListener('change', function () {
+//     var fileName = this.files[0].name;
+//     document.getElementById('input15').value = fileName;
+// });
 
-document.getElementById('newFilef').addEventListener('click', function() {
-  document.getElementById('file_name2').click();
-});
+// document.getElementById('newFilef').addEventListener('click', function() {
+//   document.getElementById('file_name2').click();
+// });
 
-document.getElementById('file_name2').addEventListener('change', function () {
-  var fileNamef = this.files[0].name;
-  document.getElementById('input15f').value = fileNamef;
-});
-
-
-document.getElementById('newFileg').addEventListener('click', function() {
-  document.getElementById('file_name3').click();
-});
-
-document.getElementById('file_name3').addEventListener('change', function () {
-  var fileNameg = this.files[0].name;
-  document.getElementById('input15g').value = fileNameg;
-});
+// document.getElementById('file_name2').addEventListener('change', function () {
+//   var fileNamef = this.files[0].name;
+//   document.getElementById('input15f').value = fileNamef;
+// });
 
 
+// document.getElementById('newFileg').addEventListener('click', function() {
+//   document.getElementById('file_name3').click();
+// });
 
-});
+// document.getElementById('file_name3').addEventListener('change', function () {
+//   var fileNameg = this.files[0].name;
+//   document.getElementById('input15g').value = fileNameg;
+// });
+
+
+
+// });
 
 
 function inputValidation(inputElement, validationElement, conditionFunction) {
