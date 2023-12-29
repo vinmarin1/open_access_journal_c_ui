@@ -330,14 +330,14 @@ $userlist = get_user_list();
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="row mb-2">
+                    <div class="row mb-2">
                         <div class="col-md-12  mb-2" id="dynamic-column">
                             <div class="table-responsive text-nowrap">
                                 <table class="table table-striped" id="DataTable">
                                     <thead>
                                         <tr>
                                             <th colspan="4">
-                                            <h5 class="card-header">Review File</h5>
+                                            <h5 class="card-header">Revision File</h5>
                                             <p>Select files you want to add in copyediting.</p>
                                             </th>
                                         </tr>
@@ -350,7 +350,7 @@ $userlist = get_user_list();
                                         <?php else: ?>
                                             <?php foreach ($review_files as $review_filesval): ?>
                                                 <tr>
-                                                    <td width="5%"><input class="form-check-input" type="checkbox" value="" id="defaultCheck1" /></td>
+                                                    <td width="5%"><input class="form-check-input copyediting1-checkbox" type="checkbox" value="" id="defaultCheck1" /></td>
                                                     <td width="5%"><?php echo $review_filesval->article_files_id; ?></td>
                                                     <td width="65%">
                                                         <a href="../../../Files/submitted-article/<?php echo urlencode($review_filesval->file_name); ?>" download>
@@ -369,7 +369,7 @@ $userlist = get_user_list();
                                 </table>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
                     <div class="row mb-2">
                         <div class="col-md-12  mb-2" id="dynamic-column">
                             <div class="table-responsive text-nowrap">
@@ -651,6 +651,39 @@ function updateCopyeditingCheckedFiles() {
         }
     });
 }
+
+// function updateCopyeditingChecked1Files() {
+//     var checkedCheckboxes1 = $('.copyediting1-checkbox:checked');
+
+//     var checkedData1 = [];
+//     checkedCheckboxes1.each(function () {
+//         var articleFilesId = $(this).data('article-files-id');
+//         checkedData1.push({
+//             articleFilesId: articleFilesId
+//         });
+//     });
+
+//     var jsonCheckedData1 = JSON.stringify(checkedData1);
+
+//     console.log('Checked Data:', checkedData1);
+
+//     $.ajax({
+//         type: 'POST',
+//         url: '../php/function/wf_modal_function.php',
+//         data: {
+//             checkedData: jsonCheckedData1,
+//             action: 'updatecopyeditingchecked1file'
+//         },
+//         success: function(response) {
+//             console.log('Checked checkboxes data sent successfully.');
+//             console.log(response);
+//             location.reload();
+//         },
+//         error: function(error) {
+//             console.error('Error sending checked checkboxes data:', error);
+//         }
+//     });
+// }
 
 function updateCopyeditingUncheckedFiles() {
     var uncheckedCheckboxes = $('.copyediting-checkbox:not(:checked)');

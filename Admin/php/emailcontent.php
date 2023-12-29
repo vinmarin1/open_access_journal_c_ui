@@ -128,7 +128,7 @@ $review_files = get_review_files($aid);
                                         if ($emc == 3):
                                         ?>
                                             <h5 class="card-header">Files</h5>
-                                            <p>Select files you want to add in review round.</p>
+                                            <p>Select files you want to add in copyediting.</p>
                                             <div class="col-md-12" id="dynamic-column">
                                                 <div class="table-responsive text-nowrap">
                                                     <table class="table table-striped" id="DataTable">
@@ -146,6 +146,42 @@ $review_files = get_review_files($aid);
                                                             <?php foreach ($submission_files as $submission_filesval): ?>
                                                                 <tr>
                                                                     <td width="5%"><input class="form-check-input review-checkbox" type="checkbox" value="" id="defaultCheck1" data-article-files-id="<?php echo $submission_filesval->article_files_id; ?>"/></td>
+                                                                    <td width="5%"><?php echo $submission_filesval->article_files_id; ?></td>
+                                                                    <td width="65%">
+                                                                        <a href="../../Files/submitted-article/<?php echo urlencode($submission_filesval->file_name); ?>" download>
+                                                                            <?php echo $submission_filesval->file_name; ?>
+                                                                        </a>
+                                                                    </td>
+                                                                    <td width="25%"><?php echo $submission_filesval->file_type; ?></td>
+                                                                </tr>
+                                                            <?php endforeach; ?>
+                                                        <?php endif; ?>
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <th colspan="4" style="text-align: right;">
+                                                            </th>
+                                                        </tfoot>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            </br>
+                                            <div class="col-md-12" id="dynamic-column">
+                                                <div class="table-responsive text-nowrap">
+                                                    <table class="table table-striped" id="DataTable">
+                                                        <thead>
+                                                            <tr>
+                                                                <th colspan="4"><h6>Revision Files</h6></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <?php if (empty($submission_files)): ?>
+                                                            <tr>
+                                                                <td colspan="4" class="text-center">No Files</td>
+                                                            </tr>
+                                                        <?php else: ?>
+                                                            <?php foreach ($submission_files as $submission_filesval): ?>
+                                                                <tr>
+                                                                    <td width="5%"><input class="form-check-input revision-checkbox" type="checkbox" value="" id="defaultCheck1" data-article-files-id="<?php echo $submission_filesval->article_files_id; ?>"/></td>
                                                                     <td width="5%"><?php echo $submission_filesval->article_files_id; ?></td>
                                                                     <td width="65%">
                                                                         <a href="../../Files/submitted-article/<?php echo urlencode($submission_filesval->file_name); ?>" download>
@@ -233,6 +269,7 @@ $review_files = get_review_files($aid);
 
         var checkedCheckboxes = $('.submission-checkbox:checked');
         var checkedCheckboxes1 = $('.review-checkbox:checked');
+        var checkedCheckboxes2 = $('.revision-checkbox:checked');
 
         var checkedData = [];
         checkedCheckboxes.each(function () {
@@ -250,8 +287,17 @@ $review_files = get_review_files($aid);
             });
         });
 
+        var checkedData2 = [];
+        checkedCheckboxes2.each(function () {
+            var articleFilesId = $(this).data('article-files-id');
+            checkedData2.push({
+                articleFilesId: articleFilesId
+            });
+        });
+
         var jsonCheckedData = JSON.stringify(checkedData);
         var jsonCheckedData1 = JSON.stringify(checkedData1);
+        var jsonCheckedData2 = JSON.stringify(checkedData2);
         var deltaContent = quillInstance.getContents();
         var jsonContent = JSON.stringify(deltaContent);
 
@@ -267,6 +313,7 @@ $review_files = get_review_files($aid);
                 title: title,
                 checkedData: jsonCheckedData,
                 checkedData1: jsonCheckedData1,
+                checkedData2: jsonCheckedData2,
                 action: 'email'
             },
             success: function (response) {
