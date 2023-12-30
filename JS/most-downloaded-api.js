@@ -13,7 +13,8 @@ async function fetchData() {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        "period": ""
+        "period": "",
+        "category": "total_downloads"
       })
     });
 

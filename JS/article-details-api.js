@@ -127,8 +127,8 @@ function renderArticleDetails(data) {
       const authorList = item.contributors.split(";");
       contributors = authorList.map((contributor, index) => {
         const [lastName, initials] = contributor.trim().split(",");
-        const formattedName = `${lastName}, ${initials.split(".")[0]}`;
-        return (index === authorList.length - 1) ? `& ${formattedName}` : formattedName;
+        const formattedName = `${lastName}, ${initials.split(".")[0]}.`;
+        return (index === authorList.length - 1) && index != 0 ? `& ${formattedName}` : formattedName;
       }).join(', ');
     }
     const citationSelect = document.querySelector("select");
@@ -202,12 +202,14 @@ function renderArticleDetails(data) {
     }
     if (downloadBtn) {
       downloadBtn.addEventListener("click", () => {
-        createCloudConvertJob(item.file_name, "pdf");
         handleDownloadLog(item.article_id,"download");
+        createCloudConvertJob(item.file_name, "pdf");
+       
       });
     }
     if (epubBtn) {
       epubBtn.addEventListener("click", () => {
+        handleDownloadLog(item.article_id,"download");
         createCloudConvertJob(item.file_name, "epub");
       });
     }
