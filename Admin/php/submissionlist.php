@@ -125,6 +125,7 @@ $incomplete_articles = get_article_list($cid);
                 "paging": true,
                 "ordering": true,
                 "searching": true,
+                "order": [[0, 'desc']]  
             });
 
             // Apply the status filter when a tab is clicked
