@@ -285,33 +285,33 @@ $userlist = get_user_list();
                 </div>
                 <div class="modal-body">
                     <div class="row mb-2">
-                        <div class="col-md-12 mb-2">
-                            <label for="subject" class="form-label">Subject</label>
-                            <input type="text" id="subject" class="form-control" placeholder="Subject" required/>
-                        </div>
-                    </div>
-                    <div class="row mb-2">
-                        <div class="col-md-12 mb-2">
-                            <label for="message" class="form-label">Message</label>
-                            <textarea class="form-control" id="message" rows="9"></textarea>
-                        </div>
-                    </div>
-                    <div class="row mb-2">
-                        <div class="col-md-12 mb-2">
-                            <label for="formFileAddDiscussion" class="form-label">Upload File</label>
-                            <input class="form-control" type="file" id="formFileAddDiscussion" accept=".pdf, .doc, .docx" />
+                        <div class="col-md-12 mb-2" id="dynamic-column">
+                            <div class="table-responsive text-nowrap">
+                                <table class="table table-striped" id="DataTableAnswer">
+                                    <thead>
+                                        <tr>
+                                            <th>Question</th>
+                                            <th>Answer</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Answer rows will be dynamically added here -->
+                                    </tbody>
+                                    <tfoot>
+                                        <th colspan="2" style="text-align: right;"></th>
+                                    </tfoot>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="addRecord()">Save changes</button>
                 </div>
             </div>
         </div>
     </form>
 </div>
-
 
 <!-- COPYEDTING PAGE -->
 <!-- Add Copyediting Files Modal -->

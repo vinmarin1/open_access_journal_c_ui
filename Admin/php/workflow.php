@@ -1,6 +1,7 @@
 <?php
 include 'function/redirect.php';
 include 'function/workflow_function.php';
+include 'function/wf_modal_function.php';
 include 'function/email_function.php';
 
 $aid = isset($_GET['aid']) ? $_GET['aid'] : 1;
@@ -367,7 +368,7 @@ table {
                                                                                 }
                                                                                 if ($matchingReviewer) { ?>
                                                                                     <td width="83%"><?php echo $matchingReviewer->first_name . ', ' . $matchingReviewer->last_name; ?></td> 
-                                                                                    <td width="5%" style="text-align: right;"><a href="javascript:void(0);" onclick="viewAnswer(<?php echo $article_reviewerval->reviewer_assigned_id; ?>)" class="btn btn-outline-dark" style="margin-right: 10px">View</a></td>
+                                                                                    <td width="5%" style="text-align: right;"><a href="javascript:void(0);" onclick="viewReviewerAnswer(<?php echo $article_reviewerval->author_id; ?>,'<?php echo $article_data[0]->article_id; ?>','<?php echo $article_data[0]->status; ?>')" class="btn btn-outline-dark" style="margin-right: 10px">View</a></td>
                                                                             </tr>
                                                                                 <?php } else { ?>
                                                                                     <td colspan="5">No matching reviewer found.</td>
@@ -1111,7 +1112,32 @@ table {
             };
         }
 
-    </script>
+        function viewReviewerAnswer(ReviewerId, ArticleId, Round) {
+            $.ajax({
+                type: 'POST',
+                url: '../php/function/wf_modal_function.php',
+                data: { action: 'fetchanswer', reviewer_id: ReviewerId, article_id: ArticleId },
+                dataType: 'json',
+                success: function (response) {
+                    if (response.status === true && response.data.length > 0) {
+                        const answerData = response.data;
+                        $('#DataTableAnswer tbody').empty();
 
+                        for (const answer of answerData) {
+                            $('#DataTableAnswer tbody').append('<tr><td>' + answer.reviewer_questionnaire + '</td><td>' + answer.answer + '</td></tr>');
+                        }
+
+                        $('#addReviewerAnswerModal').modal('show');
+                    } else {
+                        console.log('No answers found.');
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log('AJAX Error:', textStatus, errorThrown);
+                    console.log('Error fetching reviewer answer data');
+                }
+            });
+        }
+    </script>
 </body>
 </html
