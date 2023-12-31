@@ -19,6 +19,9 @@ include 'dbcon.php';
         case 'updatesubmissionfile':
             updateSubmissionFiles();
             break; 
+        case 'fetchanswer':
+            fetchReviewerAnswer();
+            break;     
         // case 'updatecopyeditingchecked1file':
         //     updateCopyeditingChecked1Files();
         //     break; 
@@ -336,5 +339,19 @@ include 'dbcon.php';
             $pdo->rollBack();
         }
     }
+
+    function fetchReviewerAnswer() {
+        $reviewer_id = $_POST['reviewer_id'];
+        $article_id = $_POST['article_id'];
     
+        $result = execute_query("SELECT * FROM reviewer_answer WHERE article_id = ? AND author_id = ?", [$article_id, $reviewer_id]);
+    
+        header('Content-Type: application/json');
+    
+        if ($result !== false) {
+            echo json_encode(['status' => true, 'data' => $result]);
+        } else {
+            echo json_encode(['status' => false, 'message' => 'Failed to fetch reviewer answer data']);
+        }
+    }
 ?>
