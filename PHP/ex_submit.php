@@ -455,30 +455,65 @@
 <script src="../JS/ex_submit_duplicate_article.js"></script>
 <script src="../JS/ex_submit_journal_type.js"></script>
 <script>
-  function addRow() {
-  var index = $('#contributorTable tbody tr').length; // Get the current row index
-  var newRow = '<tr>' +
-      '<td><input class="form-control"  type="text" name="firstnameC[]" style="height: 30px;" required></td>' +
-      '<td><input class="form-control"  type="text" name="lastnameC[]" style="height: 30px;" required></td>' +
-      '<td><input class="form-control"  type="text" name="publicnameC[]" style="height: 30px;"></td>' +
-      '<td><input class="form-control"  type="number" name="orcidC[]" style="height: 30px;"></td>' +
-      '<td><input class="form-control"  type="email" name="emailC[]" style="height: 30px;" required></td>' +
-      '<td class="align-middle">' +
-      '<div class="form-check cAuthor" style="display: inline-block; margin-right: 10px">' +
-      '<input class="form-check-input" type="checkbox" name="contributor_type_coauthor[' + index + ']" value="Co-Author">' +
-      '<label class="form-check-label"> Co-Author</label>' +
-      '</div>' +
-     '<div class="form-check pContact" style="display: inline-block">' +
-      '<input class="form-check-input" type="checkbox" name="contributor_type_primarycontact[' + index + ']" value="Primary Contact">' +
-      '<label class="form-check-label"> Primary Contact</label>' +
-      '</div>' +
-      '</td>'
-      +
-      '<td class="align-middle"><input class="form-check-input" type="checkbox" name="selectToDelete"></td>' +
-      '</tr>';
-  
-  $('#contributorTable tbody').append(newRow);
+
+
+function addRow() {
+    var index = $('#contributorTable tbody tr').length; // Get the current row index
+    var newRow = '<tr>' +
+        '<td><input class="form-control" type="text" name="firstnameC[]" style="height: 30px;" required></td>' +
+        '<td><input class="form-control" type="text" name="lastnameC[]" style="height: 30px;" required></td>' +
+        '<td><input class="form-control" type="text" name="publicnameC[]" style="height: 30px;"></td>' +
+        '<td><input class="form-control" type="number" name="orcidC[]" style="height: 30px;"></td>' +
+        '<td><input class="form-control email-input" type="email" name="emailC[]" style="height: 30px;" required></td>' +
+        '<td class="align-middle">' +
+        '<div class="form-check cAuthor" style="display: inline-block; margin-right: 10px">' +
+        '<input class="form-check-input" type="checkbox" name="contributor_type_coauthor[' + index + ']" value="Co-Author">' +
+        '<label class="form-check-label"> Co-Author</label>' +
+        '</div>' +
+        '<div class="form-check pContact" style="display: inline-block">' +
+        '<input class="form-check-input" type="checkbox" name="contributor_type_primarycontact[' + index + ']" value="Primary Contact">' +
+        '<label class="form-check-label"> Primary Contact</label>' +
+        '</div>' +
+        '</td>'
+        +
+        '<td class="align-middle"><input class="form-check-input" type="checkbox" name="selectToDelete"></td>' +
+        '</tr>';
+
+    $('#contributorTable tbody').append(newRow);
 }
+
+// Attach event listener to the email input field for fetching data on blur
+$('#contributorTable tbody').on('blur', 'input.email-input', function() {
+    var email = $(this).val();
+    var currentRow = $(this).closest('tr');
+
+    if (email !== '') {
+      
+        $.ajax({
+            type: 'POST',
+            url: 'fetch_author_data.php', 
+            data: { email: email },
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                    // Update the current row with fetched data
+                    currentRow.find('input[name="firstnameC[]"]').val(response.data.first_name);
+                    currentRow.find('input[name="lastnameC[]"]').val(response.data.last_name);
+                    currentRow.find('input[name="publicnameC[]"]').val(response.data.public_name);
+                    currentRow.find('input[name="orcidC[]"]').val(response.data.orc_id);
+                } else {
+                    // Handle the case where the email does not exist in the database
+                    console.log('Email not found in the database');
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('Error fetching data:', error);
+            }
+        });
+    }
+});
+
+
 function saveData() {
 
 
