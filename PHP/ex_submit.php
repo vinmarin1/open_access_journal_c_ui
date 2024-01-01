@@ -480,45 +480,26 @@
   $('#contributorTable tbody').append(newRow);
 }
 function saveData() {
-    // Show loading overlay
-    $('#loadingOverlay').show();
 
-    var formData = new FormData($('#form')[0]);
 
-    // Add contributor types for each row
-    $('#contributorTable tbody tr').each(function(index, row) {
-        var coAuthorCheckbox = $(row).find('input[name="contributor_type_coauthor[]"]');
-        var primaryContactCheckbox = $(row).find('input[name="contributor_type_primarycontact[]"]');
+  var formData = new FormData($('#form')[0]);
 
-        if (coAuthorCheckbox.is(':checked')) {
-            formData.append('contributor_type_coauthor[' + index + ']', 'Co-Author');
-        }
+  // Add contributor types for each row
+  $('#contributorTable tbody tr').each(function(index, row) {
+      var coAuthorCheckbox = $(row).find('input[name="contributor_type_coauthor[]"]');
+      var primaryContactCheckbox = $(row).find('input[name="contributor_type_primarycontact[]"]');
 
-        if (primaryContactCheckbox.is(':checked')) {
-            formData.append('contributor_type_primarycontact[' + index + ']', 'Primary Contact');
-        }
-    });
+      if (coAuthorCheckbox.is(':checked')) {
+          formData.append('contributor_type_coauthor[' + index + ']', 'Co-Author');
+      }
 
-    $.ajax({
-        type: 'POST',
-        url: 'ex_submit_con.php',
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function(response) {
-            // Hide loading overlay on success
-            $('#loadingOverlay').hide();
+      if (primaryContactCheckbox.is(':checked')) {
+          formData.append('contributor_type_primarycontact[' + index + ']', 'Primary Contact');
+      }
+  });
 
-            alert('Data saved successfully!');
-        },
-        error: function(error) {
-            // Hide loading overlay on error
-            $('#loadingOverlay').hide();
-
-            alert('Error saving data');
-            console.log(error);
-        }
-    });
+  $('#loadingOverlay').show();
+  
 }
 
 
