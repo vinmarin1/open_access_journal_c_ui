@@ -16,12 +16,6 @@ $production_files = get_production_files($aid);
 $userlist = get_user_list();
 ?>
 
-<style>
-    #xsubmissionfile {
-        display: none;
-    }
-</style>
-
 <!-- SUBMISSION PAGE -->
 <!-- Add Files Modal -->
 <div class="modal fade" id="addFilesModal" tabindex="-1" aria-hidden="true">
@@ -47,7 +41,7 @@ $userlist = get_user_list();
                     <div class="row mb-2">
                         <div class="col-md-12 mb-2" id="divxsubmissionfile">
                             <label for="formFileAddFiles" class="form-label">Upload New File</label>
-                            <input class="form-control" type="file" id="xsubmissionfile" />
+                            <input class="form-control" type="file" id="submissionfile" />
                         </div>
                     </div>
                 </div>
@@ -110,6 +104,47 @@ $userlist = get_user_list();
     </form>
 </div>
 
+<!--View Submission Discussion Modal -->
+<div class="modal fade" id="ViewSubmissionDiscussionModal" tabindex="-1" aria-hidden="true">
+    <form id="addModalForm">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel3">View Pre-Review Discussion</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row mb-2">
+                        <div class="col-md-12 mb-2" id="dynamic-column">
+                            <div class="table-responsive text-nowrap">
+                                <table class="table table-striped" id="DataTableSubmissionDiscussion">
+                                    <thead>
+                                        <tr>    
+                                            <th colspan="2">
+                                                <h5 class="card-header">Message</h5>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Answer rows will be dynamically added here -->
+                                    </tbody>
+                                    <tfoot>
+                                        <th colspan="2" style="text-align: right;"></th>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-md-12 mt-2" id="dynamic-column" style="text-align: right;">
+                                <button type="button" onclick="" class="btn btn-primary">Add Message</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
 
 <!-- REVIEW PAGE -->
 <!-- Add Review Discussion Modal -->

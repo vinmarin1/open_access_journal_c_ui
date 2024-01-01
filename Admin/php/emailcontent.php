@@ -101,7 +101,7 @@ $review_files = get_review_files($aid);
                                                         <?php else: ?>
                                                             <?php foreach ($submission_files as $submission_filesval): ?>
                                                                 <?php
-                                                                $isChecked = ($submission_filesval->file_type === 'file with no author') ? 'checked' : '';
+                                                                $isChecked = ($submission_filesval->file_type === 'File with no author') ? 'checked' : '';
                                                                 ?>
                                                                 <tr>
                                                                     <td width="5%"><input class="form-check-input submission-checkbox" type="checkbox" value="" id="defaultCheck1" data-article-files-id="<?php echo $submission_filesval->article_files_id; ?>" <?php echo $isChecked; ?> /></td>

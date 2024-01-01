@@ -165,7 +165,7 @@ table {
                                                                             <tr>
                                                                                 <td width="5%"><?php echo $submission_discussionval->discussion_id; ?></td>
                                                                                 <td width="90%"><?php echo $submission_discussionval->subject; ?></td>
-                                                                                <td width="5%" style="text-align: right;"><a href="javascript:void(0);" onclick="" class="btn btn-outline-dark" style="margin-right: 10px;">View</a></td>
+                                                                                <td width="5%" style="text-align: right;"><a href="javascript:void(0);" onclick="viewSubmissionDiscussion(<?php echo $submission_discussionval->discussion_id; ?>)" class="btn btn-outline-dark" style="margin-right: 10px;">View</a></td>
                                                                             </tr>
                                                                         <?php endforeach; ?>    
                                                                     <?php endif; ?>
@@ -343,42 +343,58 @@ table {
                                                                     <thead>
                                                                         <tr>
                                                                             <th colspan="4"><h6>Reviewers</h6></th>
-                                                                            <th style="text-align: right;">
+                                                                            <th colspan="3" style="text-align: right;">
                                                                                 <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;" data-bs-toggle="modal" data-bs-target="#addReviewerModal">Add Reviewers</button>
                                                                             </th>
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                    <?php if (empty($article_reviewer)): ?>
-                                                                        <tr>
-                                                                            <td colspan="5" class="text-center">No Items</td>
-                                                                        </tr>
-                                                                    <?php else: ?>
-                                                                        <?php foreach ($article_reviewer as $article_reviewerval): ?>
+                                                                        <?php if (empty($article_reviewer)): ?>
                                                                             <tr>
-                                                                                <td width="2%"></td>
-                                                                                <td width="5%"><?php echo $article_reviewerval->reviewer_assigned_id; ?></td>
-                                                                                <td width="5%"><?php echo $article_reviewerval->author_id; ?></td>
-                                                                                <?php
-                                                                                $matchingReviewer = null;
-                                                                                foreach ($reviewer_details as $reviewer) {
-                                                                                    if ($reviewer->author_id == $article_reviewerval->author_id) {
-                                                                                        $matchingReviewer = $reviewer;
-                                                                                        break;
-                                                                                    }
-                                                                                }
-                                                                                if ($matchingReviewer) { ?>
-                                                                                    <td width="83%"><?php echo $matchingReviewer->first_name . ', ' . $matchingReviewer->last_name; ?></td> 
-                                                                                    <td width="5%" style="text-align: right;"><a href="javascript:void(0);" onclick="viewReviewerAnswer(<?php echo $article_reviewerval->author_id; ?>,'<?php echo $article_data[0]->article_id; ?>','<?php echo $article_data[0]->status; ?>')" class="btn btn-outline-dark" style="margin-right: 10px">View</a></td>
+                                                                                <td colspan="7" class="text-center">No Items</td>
                                                                             </tr>
-                                                                                <?php } else { ?>
-                                                                                    <td colspan="5">No matching reviewer found.</td>
-                                                                                <?php } ?>
-                                                                        <?php endforeach; ?>
-                                                                    <?php endif; ?>
+                                                                        <?php else: ?>
+                                                                            <?php foreach ($article_reviewer as $article_reviewerval): ?>
+                                                                                <tr>
+                                                                                    <td width="2%"></td>
+                                                                                    <td width="5%"><?php echo $article_reviewerval->reviewer_assigned_id; ?></td>
+                                                                                    <td width="5%"><?php echo $article_reviewerval->author_id; ?></td>
+                                                                                    <?php
+                                                                                    $matchingReviewer = null;
+                                                                                    foreach ($reviewer_details as $reviewer) {
+                                                                                        if ($reviewer->author_id == $article_reviewerval->author_id) {
+                                                                                            $matchingReviewer = $reviewer;
+                                                                                            break;
+                                                                                        }
+                                                                                    }
+                                                                                    if ($matchingReviewer) { ?>
+                                                                                        <td width="73%"><?php echo $matchingReviewer->first_name . ', ' . $matchingReviewer->last_name; ?></td> 
+                                                                                        <?php if (strpos($article_data[0]->round, 'Round 1') !== false || strpos($article_data[0]->round, 'Round 2') !== false || strpos($article_data[0]->round, 'Round 3') !== false): ?>
+                                                                                            <td width="5%" style="text-align: right;">
+                                                                                                <a href="javascript:void(0);" onclick="viewReviewerAnswer(<?php echo $article_reviewerval->author_id; ?>,'<?php echo $article_data[0]->article_id; ?>','Round 1')" class="btn btn-outline-dark" style="margin-right: 10px">Round 1</a>
+                                                                                            </td>
+                                                                                        <?php endif; ?>
+
+                                                                                        <?php if (strpos($article_data[0]->round, 'Round 2') !== false || strpos($article_data[0]->round, 'Round 3') !== false): ?>
+                                                                                            <td width="5%" style="text-align: right;">
+                                                                                                <a href="javascript:void(0);" onclick="viewReviewerAnswer(<?php echo $article_reviewerval->author_id; ?>,'<?php echo $article_data[0]->article_id; ?>','Round 2')" class="btn btn-outline-dark" style="margin-right: 10px">Round 2</a>
+                                                                                            </td>
+                                                                                        <?php endif; ?>
+
+                                                                                        <?php if (strpos($article_data[0]->round, 'Round 3') !== false): ?>
+                                                                                            <td width="5%" style="text-align: right;">
+                                                                                                <a href="javascript:void(0);" onclick="viewReviewerAnswer(<?php echo $article_reviewerval->author_id; ?>,'<?php echo $article_data[0]->article_id; ?>','Round 3')" class="btn btn-outline-dark" style="margin-right: 10px">Round 3</a>
+                                                                                            </td>
+                                                                                        <?php endif; ?>
+                                                                                </tr>
+                                                                                    <?php } else { ?>
+                                                                                        <td colspan="7">No matching reviewer found.</td>
+                                                                                    <?php } ?>
+                                                                            <?php endforeach; ?>
+                                                                        <?php endif; ?>
                                                                     </tbody>
                                                                     <tfoot>
-                                                                        <th colspan="5" style="text-align: right;"></th>
+                                                                        <th colspan="7" style="text-align: right;"></th>
                                                                     </tfoot>   
                                                                 </table>
                                                             </div>
@@ -1117,7 +1133,7 @@ table {
             $.ajax({
                 type: 'POST',
                 url: '../php/function/wf_modal_function.php',
-                data: { action: 'fetchanswer', reviewer_id: ReviewerId, article_id: ArticleId },
+                data: { action: 'fetchanswer', reviewer_id: ReviewerId, article_id: ArticleId, round: Round },
                 dataType: 'json',
                 success: function (response) {
                     if (response.status === true && response.data.length > 0) {
@@ -1129,6 +1145,43 @@ table {
                         }
 
                         $('#addReviewerAnswerModal').modal('show');
+                    } else {
+                        console.log('No answers found.');
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log('AJAX Error:', textStatus, errorThrown);
+                    console.log('Error fetching reviewer answer data');
+                }
+            });
+        }
+
+        function viewSubmissionDiscussion(DiscussionId) {
+            $.ajax({
+                type: 'POST',
+                url: '../php/function/wf_modal_function.php',
+                data: { action: 'fetchsubmissiondiscussion', discussion_id: DiscussionId},
+                dataType: 'json',
+                success: function (response) {
+                    if (response.status === true && response.data.length > 0) {
+                        const submissionDiscussion = response.data;
+                        $('#DataTableSubmissionDiscussion tbody').empty();
+                        $('#DataTableSubmissionDiscussionFile tbody').empty();
+
+                        var counter = 1;
+                        for (const submissiondiscussion of submissionDiscussion) {
+                            $('#DataTableSubmissionDiscussion tbody').append('<tr><th colspan="2" style="width: 100%;"></th></tr>');
+                            $('#DataTableSubmissionDiscussion tbody').append('<tr><th style="width: 80%;">MESSAGE ' + counter + '</th><th style="width: 20%;">FROM</th></tr>');
+                            $('#DataTableSubmissionDiscussion tbody').append('<tr><td style="width: 80%; white-space: pre-wrap; text-align: justify;"><div style="max-height: 200px; overflow-y: auto;">' + submissiondiscussion.message + '</div></td><td style="width: 20%;">' + submissiondiscussion.fromuser + '</td></tr>');
+
+                            if (submissiondiscussion.file_type !== '') {
+                                $('#DataTableSubmissionDiscussion tbody').append('<tr><th style="width: 80%;">FILE</th><th style="width: 20%;">FILE TYPE</th></tr></tr>');
+                                $('#DataTableSubmissionDiscussion tbody').append('<tr><td style="width: 80%;">' + submissiondiscussion.file + '</td><td style="width: 20%;">' + submissiondiscussion.file_type + '</td></tr>');
+                            }
+                            counter++;
+                        }
+
+                        $('#ViewSubmissionDiscussionModal').modal('show');
                     } else {
                         console.log('No answers found.');
                     }
