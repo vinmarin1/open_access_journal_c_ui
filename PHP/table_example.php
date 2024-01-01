@@ -84,21 +84,12 @@
                     <th id="cont-col" style=" background-color: #0858a4; color: white; font-weight: bold;">Contributor Type</th>
                     <th style=" background-color: #0858a4; color: white; font-weight: bold; width: 30px">Action</th>
                 </tr>
-                <tr>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th>asda</th>
-                </tr>
             </thead>
             <tbody>
               
             </tbody>
         </table>
-  
+
 
     </form>
   </div>
@@ -176,4 +167,3 @@ function deleteData() {
 
 </body>
 </html>
-

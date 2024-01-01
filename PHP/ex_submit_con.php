@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         'file_name3' => $_FILES['file_name3']['name']
     );
 
-    handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $formattedDate, $title, $category, $abstract, $keywords, $reference, $comment, $step, $coAuthors, $primaryContacts, $firstNameC, $lastNameC, $publicNameC, $orcidsC, $emailsC, $firstName, $lastName, $orc_idAuthor, $email, $authorAdditionalRole, $contributorAuthor);
+    handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $formattedDate, $title, $category, $abstract, $keywords, $reference, $comment, $step, $coAuthors, $primaryContacts, $firstNameC, $lastNameC, $publicNameC, $orcidsC, $emailsC, $firstName, $lastName, $orc_idAuthor, $email, $authorAdditionalRole);
 
     Header("Location: ex_submit.php");
     exit();
@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     exit();
 }
 
-function handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $formattedDate, $title, $category, $abstract, $keywords, $reference, $comment, $step, $coAuthors, $primaryContacts, $firstNameC, $lastNameC, $publicNameC, $orcidsC, $emailsC, $firstName, $lastName, $orc_idAuthor, $email, $authorAdditionalRole, $contributorAuthor)
+function handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $formattedDate, $title, $category, $abstract, $keywords, $reference, $comment, $step, $coAuthors, $primaryContacts, $firstNameC, $lastNameC, $publicNameC, $orcidsC, $emailsC, $firstName, $lastName, $orc_idAuthor, $email, $authorAdditionalRole)
 {
     global $lastInsertedArticleId;
 

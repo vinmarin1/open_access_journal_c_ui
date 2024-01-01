@@ -292,71 +292,6 @@ function inputValidation(inputElement, validationElement, conditionFunction) {
 
 
 
-function addRow() {
-  var index = $('#contributorTable tbody tr').length; // Get the current row index
-  var newRow = '<tr>' +
-      '<td><input class="form-control"  type="text" name="firstnameC[]" style="height: 30px;" required></td>' +
-      '<td><input class="form-control"  type="text" name="lastnameC[]" style="height: 30px;" required></td>' +
-      '<td><input class="form-control"  type="text" name="publicnameC[]" style="height: 30px;"></td>' +
-      '<td><input class="form-control"  type="number" name="orcidC[]" style="height: 30px;"></td>' +
-      '<td><input class="form-control"  type="email" name="emailC[]" style="height: 30px;" required></td>' +
-      '<td class="align-middle">' +
-      '<div class="form-check cAuthor" style="display: inline-block; margin-right: 10px">' +
-      '<input class="form-check-input" type="checkbox" name="contributor_type_coauthor[' + index + ']" value="Co-Author">' +
-      '<label class="form-check-label"> Co-Author</label>' +
-      '</div>' +
-     '<div class="form-check pContact" style="display: inline-block">' +
-      '<input class="form-check-input" type="checkbox" name="contributor_type_primarycontact[' + index + ']" value="Primary Contact">' +
-      '<label class="form-check-label"> Primary Contact</label>' +
-      '</div>' +
-      '</td>'
-      +
-      '<td class="align-middle"><input class="form-check-input" type="checkbox" name="selectToDelete"></td>' +
-      '</tr>';
-  
-  $('#contributorTable tbody').append(newRow);
-}
-function saveData() {
-  var formData = new FormData($('#contributorForm')[0]);
-
-  // Add contributor types for each row
-  $('#contributorTable tbody tr').each(function(index, row) {
-      var coAuthorCheckbox = $(row).find('input[name="contributor_type_coauthor[]"]');
-      var primaryContactCheckbox = $(row).find('input[name="contributor_type_primarycontact[]"]');
-
-      if (coAuthorCheckbox.is(':checked')) {
-          formData.append('contributor_type_coauthor[' + index + ']', 'Co-Author');
-      }
-
-      if (primaryContactCheckbox.is(':checked')) {
-          formData.append('contributor_type_primarycontact[' + index + ']', 'Primary Contact');
-      }
-  });
-
-  $.ajax({
-      type: 'POST',
-      url: 'save_cont.php',
-      data: formData,
-      processData: false,
-      contentType: false,
-      success: function(response) {
-          alert('Data saved successfully!');
-      },
-      error: function(error) {
-          alert('Error saving data');
-          console.log(error);
-      }
-  });
-}
-
-
-function deleteData() {
-  // Iterate through each checkbox
-  $('input[name="selectToDelete"]:checked').each(function() {
-      // Delete the corresponding row
-      $(this).closest('tr').remove();
-  });
-}
 
 
 var titleInput = document.getElementById("title");
@@ -383,12 +318,12 @@ var input14 = document.getElementById("input14");
 var input15 = document.getElementById("input15");
 var input15f = document.getElementById("input15f");
 var input15g = document.getElementById("input15g");
-var prevTitle = document.getElementById("prevTitle");
+
 
 titleInput.addEventListener('input', function() {
   input5.value = titleInput.value;
   input11.value = titleInput.value;
-  prevTitle.value = titleInput.value;
+
   
 });
 
