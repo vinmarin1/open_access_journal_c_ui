@@ -237,7 +237,7 @@
   <thead>
     <tr>
       <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">File Name</th>
-      <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">Type</th>
+      <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">File Type</th>
       <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">Action</th>
     </tr>
   </thead>
@@ -499,7 +499,7 @@ function saveData() {
   });
 
   $('#loadingOverlay').show();
-  
+
 }
 
 

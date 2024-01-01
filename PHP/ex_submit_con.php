@@ -105,12 +105,31 @@ function handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $
     $lastInsertedArticleId = database_run($sql, $params, true);
 
     $uploadDirectory = "../Files/submitted-article/";
-
+    
     foreach ($files as $fileKey => $fileName) {
         if (!empty($fileName)) {
             $targetFilePath = $uploadDirectory . $fileName;
+    
+        
+            $fileType = '';
+            switch ($fileKey) {
+                case 'file_name':
+                    $fileType = 'File with author';
+                    break;
+                case 'file_name2':
+                    $fileType = 'File with no author';
+                    break;
+                case 'file_name3':
+                    $fileType = 'Title Page';
+                    break;
+              
+    
+                default:
+                    // Default file type if not matched
+                    $fileType = 'Unknown File Type';
+            }
+    
             if (move_uploaded_file($_FILES[$fileKey]['tmp_name'], $targetFilePath)) {
-                $fileType = ''; // Set the appropriate file type based on $fileKey
                 $files_sql = "INSERT INTO article_files (article_id, author_id, file_type, file_name) VALUES (:article_id, :author_id, :file_type, :file_name)";
                 $files_params = array(
                     'article_id' => $lastInsertedArticleId,
@@ -118,7 +137,7 @@ function handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $
                     'file_type' => $fileType,
                     'file_name' => $fileName
                 );
-
+    
                 database_run($files_sql, $files_params);
             } else {
                 Header("Location: ex_submit.php");
@@ -126,6 +145,7 @@ function handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $
             }
         }
     }
+    
 
 
 
