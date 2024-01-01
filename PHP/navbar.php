@@ -76,36 +76,37 @@ session_start();
 
 <?php
 if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-  $userName = ucfirst($_SESSION['first_name']);
+    $userName = ucfirst($_SESSION['first_name']);
     echo '
+        <div id="notification-container">
+            <button id="notification-button">
+                <i class="fas fa-bell"></i>
+                <span id="notification-count"></span>
+            </button>
+            <div id="notification-box"></div>
+        </div>
 
-    <div id="notification-container">
-      <button id="notification-button">
-        <i class="fas fa-bell"></i>
-        <span id="notification-count"></span>
-      </button>
-      <div id="notification-box"></div>
-    </div>
-
-
-
-    <div class="profile px-4">
-    <a id="user-profile" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    '. $userName .'
-   </a>
-        <li class="dropdown" style="list-style-type: none;">
-            <ul class="dropdown-menu" style="width: 200px; margin-left: -120px; margin-top: 20px">
-            <li><a href="../Admin/php/journalview.php" class="dropdown-item"  style="color: black;">Admin Dashboard</a></li>
-              <li><a href="#" class="dropdown-item"  style="color: black;">My Profile</a></li>
-              <li><a href="author-dashboard.php" class="dropdown-item"  style="color: black;">My Contributions</a></li>
-            
-              <li><a href="author-dashboard.php"  class="dropdown-item" style="color: black;">Update Profile</a></li>
-              <li><a class="dropdown-item" href="../PHP/logout.php"  style="color: black;">Log-out</a></li> 
-            </ul>
-        </li>
-    </div>';
+        <div class="profile px-4">
+            <a id="user-profile" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                '. $userName .'
+            </a>
+            <li class="dropdown" style="list-style-type: none;">
+                <ul class="dropdown-menu" style="width: 200px; margin-left: -120px; margin-top: 20px">
+                    ';
+    if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+        if (isset($_SESSION['role']) && $_SESSION['role'] === 'Admin') {
+            echo '<li><a href="../Admin/php/journalview.php" class="dropdown-item" style="color: black;">Admin Dashboard</a></li>';
+        }
+    }
+    echo '
+                    <li><a href="#" class="dropdown-item" style="color: black;">My Profile</a></li>
+                    <li><a href="author-dashboard.php" class="dropdown-item" style="color: black;">My Contributions</a></li>
+                    <li><a href="author-dashboard.php" class="dropdown-item" style="color: black;">Update Profile</a></li>
+                    <li><a class="dropdown-item" href="../PHP/logout.php" style="color: black;">Log-out</a></li> 
+                </ul>
+            </li>
+        </div>';
 }
-
 ?>
 
 </nav>

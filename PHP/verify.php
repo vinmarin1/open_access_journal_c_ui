@@ -1,4 +1,4 @@
-<!-- <?php
+<?php
 
 	require "../PHP/mail.php";
 	require "../PHP/functions.php";
@@ -11,11 +11,11 @@
 
 			//send email
 			$vars['code'] =  rand(10000,99999);
-	
+
 			//save to database
 			$vars['expires'] = (time() + (24 * 3));
 			$vars['email'] = $_SESSION['USER']->email;
-	
+
 			$query = "insert into verify (code,expires,email) values (:code,:expires,:email)";
 			database_run($query,$vars);
 	
@@ -29,44 +29,74 @@
 		}
 	}
 
-	if($_SERVER['REQUEST_METHOD'] == "POST"){
-
-		if(!check_verified()){
-
-		
-			$query = "select * from verify where code = :code && email = :email";
-			$vars = array();
+	if ($_SERVER['REQUEST_METHOD'] == "POST") {
+		if (!check_verified()) {
 			$vars['email'] = $_SESSION['USER']->email;
 			$vars['code'] = $_POST['code'];
-
-			$row = database_run($query,$vars);
-
-			if(is_array($row)){
+			$query = "SELECT * FROM verify WHERE code = :code AND email = :email";
+			$row = database_run($query, $vars);
+	
+			if (is_array($row)) {
 				$row = $row[0];
 				$time = time();
-
-				if($row->expires > $time){
-
+	
+				if ($row->expires > $time) {
 					$author_id = $_SESSION['USER']->author_id;
-					$query = "UPDATE author SET email_verified = email WHERE author_id  = '$author_id' limit 1";
-					
-					database_run($query);
-					if(check_verified())
-					header("Location: ../PHP/index.php");
-					die;
-				}else{
+					$admin_id = $_SESSION['USER']->admin_id;
+	
+					// Update the email_verified field for the author
+					$query_author = "UPDATE author SET email_verified = email WHERE author_id = :author_id LIMIT 1";
+					$params_author = array('author_id' => $author_id);
+					database_run($query_author, $params_author);
+	
+					// Update the email_verified field for the admin
+					$query_admin = "UPDATE admin SET email_verified = email WHERE admin_id = :admin_id LIMIT 1";
+					$params_admin = array('admin_id' => $admin_id);
+					database_run($query_admin, $params_admin);
+	
+					if (check_verified()) {
+						header("Location: ../PHP/index.php");
+						die;
+					} elseif (check_admin_verified()) {
+						header("Location: ../PHP/index.php");
+						die;
+					} else {
+						echo "Code expired";
+					}
+				} else {
 					echo "Code expired";
 				}
-
-			}else{
+			} else {
 				echo "Code Incorrect";
 			}
-		}else{
+		} else {
 			echo "You're already verified";
 		}
 	}
-
-?> -->
+	
+	function check_admin_verified() {
+		$admin_id = isset($_SESSION['USER']->admin_id) ? $_SESSION['USER']->admin_id : null;
+		if ($admin_id) {
+			$query_admin = "SELECT * FROM admin WHERE admin_id = :admin_id AND email = email_verified LIMIT 1";
+			$params_admin = array('admin_id' => $admin_id);
+			$row_admin = database_run($query_admin, $params_admin);
+			return is_array($row_admin) && $row_admin[0]->email == $row_admin[0]->email_verified;
+		}
+		return false;
+	}
+	
+	function check_verified() {
+		$author_id = isset($_SESSION['USER']->author_id) ? $_SESSION['USER']->author_id : null;
+		if ($author_id) {
+			$query = "SELECT * FROM author WHERE author_id = :id AND email = email_verified LIMIT 1";
+			$params = array('id' => $author_id);
+			$row = database_run($query, $params);
+			return is_array($row) && $row[0]->email == $row[0]->email_verified;
+		}
+		return false;
+	}
+	
+?>
 
 <!DOCTYPE html>
 <html lang="en">

@@ -79,8 +79,20 @@ $userlist = get_user_list();
                     </div>
                     <div class="row mb-2">
                         <div class="col-md-12 mb-2">
+                            <label for="xfilediscussion" class="form-label">File Type</label>
+                            <select id="submissiondiscussion" class="form-select">
+                                <option value="">Select</option>
+                                <option value="Title page">Title page</option>
+                                <option value="File with author">File with author</option>
+                                <option value="File with no author">File with no author</option>
+                                <option value="Others">Others</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-12 mb-2">
                             <label for="formFileAddDiscussion" class="form-label">Upload File</label>
-                            <input class="form-control" type="file" id="formFileAddDiscussion" accept=".pdf, .doc, .docx" />
+                            <input class="form-control" type="file" id="submissionfile" accept=".doc, .docx" />
                         </div>
                     </div>
                 </div>
