@@ -2,6 +2,11 @@
 include 'function/workflow_function.php';
 include 'function/userandroles_function.php';
 
+if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
+    $firstName = isset($_SESSION['first_name']) ? ucfirst($_SESSION['first_name']) : '';;
+    $lastName = isset($_SESSION['last_name']) ? ' ' . ucfirst($_SESSION['last_name']) : '';
+}
+
 $aid = isset($_GET['aid']) ? $_GET['aid'] : 1;
 
 $submission_files = get_submission_files($aid);
@@ -32,7 +37,7 @@ $userlist = get_user_list();
                         <div class="col-md-12 mb-2">
                             <label for="xfiles" class="form-label">If you are uploading a revision of an existing file, please indicate which file.</label>
                             <select id="submissionfileid" class="form-select" onchange="enableFileInput()">
-                                <option value="Null">Select File</option>
+                                <option value="">Select File</option>
                                 <?php foreach ($submission_files as $submission_filesval): ?>
                                     <option value="<?php echo $submission_filesval->article_files_id; ?>"><?php echo $submission_filesval->file_name; ?></option>
                                 <?php endforeach; ?>
@@ -40,9 +45,9 @@ $userlist = get_user_list();
                         </div>
                     </div>
                     <div class="row mb-2">
-                        <div class="col-md-12 mb-2" id="xsubmissionfile">
+                        <div class="col-md-12 mb-2" id="divxsubmissionfile">
                             <label for="formFileAddFiles" class="form-label">Upload New File</label>
-                            <input class="form-control" type="file" id="submissionfile" />
+                            <input class="form-control" type="file" id="xsubmissionfile" />
                         </div>
                     </div>
                 </div>
@@ -58,7 +63,7 @@ $userlist = get_user_list();
 <!-- Add Pre-Review Discussion Modal -->
 <div class="modal fade" id="addDiscussionModal" tabindex="-1" aria-hidden="true">
     <form id="addModalForm1">
-        <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-dialog modal-lg" role="document" enctype="multipart/form-data">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel3">Add Pre-Review Discussion</h5>
@@ -67,20 +72,20 @@ $userlist = get_user_list();
                 <div class="modal-body">
                     <div class="row mb-2">
                         <div class="col-md-12 mb-2">
-                            <label for="subject" class="form-label">Subject</label>
-                            <input type="text" id="subject" class="form-control" placeholder="Subject" required/>
+                            <label for="xsubmissionsubject" class="form-label">Subject</label>
+                            <input type="text" id="submissionsubject" class="form-control" placeholder="Subject" required/>
                         </div>
                     </div>
                     <div class="row mb-2">
                         <div class="col-md-12 mb-2">
-                            <label for="message" class="form-label">Message</label>
-                            <textarea class="form-control" id="message" rows="9"></textarea>
+                            <label for="xsubmissionmessage" class="form-label">Message</label>
+                            <textarea class="form-control" id="submissionmessage" rows="9"></textarea>
                         </div>
                     </div>
                     <div class="row mb-2">
                         <div class="col-md-12 mb-2">
-                            <label for="xfilediscussion" class="form-label">File Type</label>
-                            <select id="submissiondiscussion" class="form-select">
+                            <label for="xsubmissionfiletype" class="form-label">File Type</label>
+                            <select id="submissionfiletype" class="form-select" onchange="enableFileInput1()">
                                 <option value="">Select</option>
                                 <option value="Title page">Title page</option>
                                 <option value="File with author">File with author</option>
@@ -90,15 +95,15 @@ $userlist = get_user_list();
                         </div>
                     </div>
                     <div class="row mb-2">
-                        <div class="col-md-12 mb-2">
-                            <label for="formFileAddDiscussion" class="form-label">Upload File</label>
-                            <input class="form-control" type="file" id="submissionfile" accept=".doc, .docx" />
+                        <div class="col-md-12 mb-2" id="divsubmissionfilexx">
+                            <label for="submissionfilexx" class="form-label">Upload File</label>
+                            <input class="form-control" type="file" id="submissionfilexx" accept=".doc, .docx" />
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="addRecord()">Save changes</button>
+                    <button type="button" class="btn btn-primary" onclick="addSubmissionDiscussion()">Save changes</button>
                 </div>
             </div>
         </div>
@@ -579,18 +584,32 @@ $userlist = get_user_list();
     </form>
 </div>
 <script>
+$(document).ready(function() {
+    enableFileInput();
+    enableFileInput1();
+});
+
 function enableFileInput() {
     var selectedValue = $('#submissionfileid').val();
     
-    if (selectedValue !== 'Null') {
-        $('#xsubmissionfile').show();
+    if (selectedValue !== '') {
+        $('#divxsubmissionfile').show();
         $('#submissionfile').prop('required', true); 
     } else {
-        $('#xsubmissionfile').hide();
+        $('#divxsubmissionfile').hide();
         $('#submissionfile').prop('required', false); 
     }
 }
 
+function enableFileInput1() {
+    var selectedValue = $('#submissionfiletype').val();
+    
+    if (selectedValue !== '') {
+        $('#divsubmissionfilexx').show();
+    } else {
+        $('#divsubmissionfilexx').hide();
+    }
+}
 
 function updateReviewFiles() {
     $('#sloading').toggle();
@@ -802,5 +821,40 @@ function updateFileSubmission() {
     });
 }
 
+var articleId = <?php echo json_encode($aid); ?>;
+var fromuser = <?php echo json_encode($lastName . ', ' . $firstName); ?>;
+
+function addSubmissionDiscussion() {
+    $('#sloading').toggle();
+    var submissionSubject = $('#submissionsubject').val();
+    var submissionMessage = $('#submissionmessage').val();
+    var submissionFiletype = $('#submissionfiletype').val();
+    var submissionFile = $('#submissionfilexx')[0].files[0];
+
+    var formData = new FormData();
+    formData.append('article_id', articleId);
+    formData.append('fromuser', fromuser);
+    formData.append('submissionsubject', submissionSubject);
+    formData.append('submissionmessage', submissionMessage);
+    formData.append('submissionfiletype', submissionFiletype);
+    formData.append('submissionfile', submissionFile);
+    formData.append('action', 'addsubmissiondiscussion');
+
+    $.ajax({
+        url: "../php/function/wf_modal_function.php",
+        type: "POST",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (response) {
+            $('#sloading').toggle();
+            console.log(response);
+            location.reload();
+        },
+        error: function (xhr, status, error) {
+            console.error(xhr, status, error);
+        }
+    });
+}
 </script>
 
