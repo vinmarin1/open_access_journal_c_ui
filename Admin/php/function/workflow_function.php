@@ -264,3 +264,27 @@ if (!function_exists('check_article_reviewer')) {
         return false;
     }
 }
+
+if (!function_exists('get_submission_discussion')) {
+    function get_submission_discussion($aid) {
+        $pdo = connect_to_database();
+
+        if ($pdo) {
+            try {
+                $query = "SELECT * FROM discussion WHERE article_id = :aid AND discussion_type = 'Submission'";
+                $stmt = $pdo->prepare($query);
+                $stmt->bindParam(':aid', $aid, PDO::PARAM_INT);
+                $stmt->execute();
+
+                $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+                return $result;
+            } catch (PDOException $e) {
+                echo "Error: " . $e->getMessage();
+                return false;
+            }
+        }
+
+        return false;
+    }
+}

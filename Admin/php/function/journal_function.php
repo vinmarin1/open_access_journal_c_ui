@@ -90,7 +90,7 @@ include 'dbcon.php';
                 $query = "INSERT INTO journal (journal, journal_title, editorial, description, status, image) 
                           VALUES (?, ?, ?, ?, ?, ?)";
     
-                $result = execute_query($query, [$journal, $journal_title, $editorial, $description, $status, $journalimage], true);
+                $result = execute_query($query, [$journal, $journal_title, $editorial, $description, $status, $imageName], true);
     
                 if ($result !== false) {
                     echo json_encode(['status' => true, 'message' => 'Record added successfully']);

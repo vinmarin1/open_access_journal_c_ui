@@ -13,6 +13,7 @@ $review_files = get_review_files($aid);
 $copyediting_files = get_copyediting_files($aid);
 $production_files = get_production_files($aid);
 $article_discussion = get_article_discussion($aid);
+$submission_discussion = get_submission_discussion($aid);
 $article_participant = get_article_participant($aid);
 $reviewer_email = get_reviewer_content($emc);
 $article_contributors = get_article_contributor($aid);
@@ -155,16 +156,16 @@ table {
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                    <?php if (empty($article_discussion)): ?>
+                                                                    <?php if (empty($submission_discussion)): ?>
                                                                         <tr>
                                                                             <td colspan="3" class="text-center">No Items</td>
                                                                         </tr>
                                                                     <?php else: ?>
-                                                                        <?php foreach ($article_discussion as $article_discussionval): ?>
+                                                                        <?php foreach ($submission_discussion as $submission_discussionval): ?>
                                                                             <tr>
-                                                                                <td width="5%"><?php echo $article_discussionval->id; ?></td>
-                                                                                <td width="85%"><?php echo $article_discussionval->file_name; ?></td>
-                                                                                <td width="5%"></td>
+                                                                                <td width="5%"><?php echo $submission_discussionval->discussion_id; ?></td>
+                                                                                <td width="90%"><?php echo $submission_discussionval->subject; ?></td>
+                                                                                <td width="5%" style="text-align: right;"><a href="javascript:void(0);" onclick="" class="btn btn-outline-dark" style="margin-right: 10px;">View</a></td>
                                                                             </tr>
                                                                         <?php endforeach; ?>    
                                                                     <?php endif; ?>
