@@ -182,8 +182,8 @@ $revision_files = get_revision_files($aid);
                                                         <?php else: ?>
                                                             <?php foreach ($revision_files as $revision_filesval): ?>
                                                                 <tr>
-                                                                    <td width="5%"><input class="form-check-input revision-checkbox" type="checkbox" value="" id="defaultCheck1" data-article-files-id="<?php echo $revision_filesval->revision_files_id; ?>"/></td>
-                                                                    <td width="5%"><?php echo $revision_filesval->article_files_id; ?></td>
+                                                                    <td width="5%"><input class="form-check-input revision-checkbox" type="checkbox" value="" id="defaultCheck1" data-revision-files-id="<?php echo $revision_filesval->revision_files_id; ?>"/></td>
+                                                                    <td width="5%"><?php echo $revision_filesval->revision_files_id; ?></td>
                                                                     <td width="65%">
                                                                         <a href="../../Files/revision-article/<?php echo urlencode($revision_filesval->file_name); ?>" download>
                                                                             <?php echo $revision_filesval->file_name; ?>
@@ -290,9 +290,9 @@ $revision_files = get_revision_files($aid);
 
         var checkedData2 = [];
         checkedCheckboxes2.each(function () {
-            var articleFilesId = $(this).data('article-files-id');
+            var revisionFilesId = $(this).data('revision-files-id');
             checkedData2.push({
-                articleFilesId: articleFilesId
+                revisionFilesId: revisionFilesId
             });
         });
 

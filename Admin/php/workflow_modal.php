@@ -436,9 +436,14 @@ $userlist = get_user_list();
                                             </tr>
                                         <?php else: ?>
                                             <?php foreach ($revision_files as $revision_filesval): ?>
+                                                <?php
+                                                    $isReviewEqualToOne = ($revision_filesval->copyediting == 1);
+                                                ?>
                                                 <tr>
-                                                    <td width="5%"><input class="form-check-input copyeditingrevision-checkbox" type="checkbox" value="" id="defaultCheck1" /></td>
-                                                    <td width="5%"><?php echo $revision_filesval->revision_files_id; ?></td>
+                                                    <td width="5%">
+                                                        <input class="form-check-input copyeditingrevision-checkbox" type="checkbox" value="" id="defaultCheck1" data-article-files-id="<?php echo $revision_filesval->revision_files_id; ?>" <?php echo $isReviewEqualToOne ? 'checked' : ''; ?> />
+                                                    </td>
+                                                        <td width="5%"><?php echo $revision_filesval->revision_files_id; ?></td>
                                                     <td width="65%">
                                                         <a href="/Files/revision-article/<?php echo urlencode($revision_filesval->file_name); ?>" download>
                                                             <?php echo $revision_filesval->file_name; ?>

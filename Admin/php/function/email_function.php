@@ -81,6 +81,7 @@ if (!function_exists('get_email_content')) {
             $article_id = $_POST['article_id'];
             $articleFilesId = $_POST['checkedData'];
             $articleFilesId1 = $_POST['checkedData1'];
+            $revisionFilesId = $_POST['checkedData2'];
 
             if ($mail->send()) {
                 echo "Email sent successfully.";
@@ -93,6 +94,7 @@ if (!function_exists('get_email_content')) {
                     echo "<script>alert('Decline submission successfully.');</script>";
                 } elseif ($id == 3) {
                     updateCopyeditingFiles(1, $articleFilesId1);
+                    updateCopyeditingRevisionFiles(1, $revisionFilesId);
                     updateArticleStatus($article_id, 3);
                     echo "<script>alert('Send to copyediting successfully.');</script>";
                 } elseif ($id == 4) {
@@ -215,6 +217,52 @@ if (!function_exists('get_email_content')) {
             $pdo->commit();
         } else {
             echo "Failed to update file review data";
+            print_r($stm->errorInfo());
+            $pdo->rollBack();
+        }
+    }
+
+    function updateCopyeditingRevisionFiles($status, $revisionFilesIds) {
+    
+        if (!is_array($revisionFilesIds)) {
+            $revisionFilesIds = array($revisionFilesIds);
+        }
+    
+        $decodedIds = json_decode($revisionFilesIds[0], true);
+        $revisionFilesIds = array_column($decodedIds, 'revisionFilesId');
+    
+        // Create an array of named parameters for binding
+        $params = array(':status' => $status);
+        foreach ($revisionFilesIds as $key => $revisionFilesId) {
+            $paramName = ":id$key";
+            $params[$paramName] = $revisionFilesId;
+            $placeholders[] = $paramName;
+        }
+    
+        $placeholders = implode(',', $placeholders);
+    
+        $query = "UPDATE article_revision_files
+                  SET copyediting = :status
+                  WHERE revision_files_id IN ($placeholders)";
+    
+        $pdo = connect_to_database();
+    
+        $pdo->beginTransaction();
+    
+        $stm = $pdo->prepare($query);
+    
+        // Bind the parameters
+        foreach ($params as $paramName => &$paramValue) {
+            $stm->bindParam($paramName, $paramValue, PDO::PARAM_INT);
+        }
+    
+        $check = $stm->execute();
+    
+        if ($check !== false) {
+            echo "Revision Files updated successfully";
+            $pdo->commit();
+        } else {
+            echo "Failed to update file revision data";
             print_r($stm->errorInfo());
             $pdo->rollBack();
         }
