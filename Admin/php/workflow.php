@@ -115,7 +115,7 @@ table {
                                                                             <tr>
                                                                                 <td width="5%"><?php echo $submission_filesval->article_files_id; ?></td>
                                                                                 <td width="65%">
-                                                                                    <a href="../../Files/submitted-article/<?php echo urlencode($submission_filesval->file_name); ?>" download>
+                                                                                    <a href="/Files/submitted-article/<?php echo urlencode($submission_filesval->file_name); ?>" download>
                                                                                         <?php echo $submission_filesval->file_name; ?>
                                                                                     </a>
                                                                                 </td>
@@ -243,7 +243,7 @@ table {
                                                                             <tr>
                                                                                 <td width="5%"><?php echo $review_filesval->article_files_id; ?></td>
                                                                                 <td width="65%">
-                                                                                    <a href="../../Files/submitted-article/<?php echo urlencode($review_filesval->file_name); ?>" download>
+                                                                                    <a href="/Files/submitted-article/<?php echo urlencode($review_filesval->file_name); ?>" download>
                                                                                         <?php echo $review_filesval->file_name; ?>
                                                                                     </a>
                                                                                 </td>
@@ -467,7 +467,7 @@ table {
                                                                             <tr>
                                                                                 <td width="5%"><?php echo $copyediting_filesval->article_files_id; ?></td>
                                                                                 <td width="65%">
-                                                                                    <a href="../../Files/submitted-article/<?php echo urlencode($copyediting_filesval->file_name); ?>" download>
+                                                                                    <a href="/Files/submitted-article/<?php echo urlencode($copyediting_filesval->file_name); ?>" download>
                                                                                         <?php echo $copyediting_filesval->file_name; ?>
                                                                                     </a>
                                                                                 </td>
@@ -595,7 +595,7 @@ table {
                                                                             <tr>
                                                                                 <td width="5%"><?php echo $production_filesval->article_files_id; ?></td>
                                                                                 <td width="65%">
-                                                                                    <a href="../../Files/submitted-article/<?php echo urlencode($production_filesval->file_name); ?>" download>
+                                                                                    <a href="/Files/submitted-article/<?php echo urlencode($production_filesval->file_name); ?>" download>
                                                                                         <?php echo $production_filesval->file_name; ?>
                                                                                     </a>
                                                                                 </td>
@@ -1176,7 +1176,7 @@ table {
 
                             if (submissiondiscussion.file_type !== '') {
                                 $('#DataTableSubmissionDiscussion tbody').append('<tr><th style="width: 80%;">FILE</th><th style="width: 20%;">FILE TYPE</th></tr></tr>');
-                                $('#DataTableSubmissionDiscussion tbody').append('<tr><td style="width: 80%;">' + submissiondiscussion.file + '</td><td style="width: 20%;">' + submissiondiscussion.file_type + '</td></tr>');
+                                $('#DataTableSubmissionDiscussion tbody').append('<tr><td style="width: 80%;"><a href="/Files/discussion-file/' + submissiondiscussion.file + '" download>' + submissiondiscussion.file + '</a></td><td style="width: 20%;">' + submissiondiscussion.file_type + '</td></tr>');
                             }
                             counter++;
                         }
