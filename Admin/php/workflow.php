@@ -365,7 +365,6 @@ table {
                                                                         <?php else: ?>
                                                                             <?php foreach ($article_reviewer as $article_reviewerval): ?>
                                                                                 <tr>
-                                                                                    <td width="2%"></td>
                                                                                     <td width="5%"><?php echo $article_reviewerval->reviewer_assigned_id; ?></td>
                                                                                     <td width="5%"><?php echo $article_reviewerval->author_id; ?></td>
                                                                                     <?php
@@ -377,22 +376,22 @@ table {
                                                                                         }
                                                                                     }
                                                                                     if ($matchingReviewer) { ?>
-                                                                                        <td width="73%"><?php echo $matchingReviewer->first_name . ', ' . $matchingReviewer->last_name; ?></td> 
+                                                                                        <td width="75%"><?php echo $matchingReviewer->last_name . ', ' . $matchingReviewer->first_name; ?></td> 
                                                                                         <?php if (strpos($article_data[0]->round, 'Round 1') !== false || strpos($article_data[0]->round, 'Round 2') !== false || strpos($article_data[0]->round, 'Round 3') !== false): ?>
                                                                                             <td width="5%" style="text-align: right;">
-                                                                                                <a href="javascript:void(0);" onclick="viewReviewerAnswer(<?php echo $article_reviewerval->author_id; ?>,'<?php echo $article_data[0]->article_id; ?>','Round 1')" class="btn btn-outline-dark" style="margin-right: 10px">Round 1</a>
+                                                                                                <a href="javascript:void(0);" onclick="viewReviewerAnswer(<?php echo $article_reviewerval->author_id; ?>,'<?php echo $article_data[0]->article_id; ?>','<?php echo $matchingReviewer->last_name . ', ' . $matchingReviewer->first_name; ?>','Round 1')" class="btn btn-outline-dark" style="margin-right: 10px">Round 1</a>
                                                                                             </td>
                                                                                         <?php endif; ?>
 
                                                                                         <?php if (strpos($article_data[0]->round, 'Round 2') !== false || strpos($article_data[0]->round, 'Round 3') !== false): ?>
                                                                                             <td width="5%" style="text-align: right;">
-                                                                                                <a href="javascript:void(0);" onclick="viewReviewerAnswer(<?php echo $article_reviewerval->author_id; ?>,'<?php echo $article_data[0]->article_id; ?>','Round 2')" class="btn btn-outline-dark" style="margin-right: 10px">Round 2</a>
+                                                                                                <a href="javascript:void(0);" onclick="viewReviewerAnswer(<?php echo $article_reviewerval->author_id; ?>,'<?php echo $article_data[0]->article_id; ?>','<?php echo $matchingReviewer->last_name . ', ' . $matchingReviewer->first_name; ?>','Round 2')" class="btn btn-outline-dark" style="margin-right: 10px">Round 2</a>
                                                                                             </td>
                                                                                         <?php endif; ?>
 
                                                                                         <?php if (strpos($article_data[0]->round, 'Round 3') !== false): ?>
                                                                                             <td width="5%" style="text-align: right;">
-                                                                                                <a href="javascript:void(0);" onclick="viewReviewerAnswer(<?php echo $article_reviewerval->author_id; ?>,'<?php echo $article_data[0]->article_id; ?>','Round 3')" class="btn btn-outline-dark" style="margin-right: 10px">Round 3</a>
+                                                                                                <a href="javascript:void(0);" onclick="viewReviewerAnswer(<?php echo $article_reviewerval->author_id; ?>,'<?php echo $article_data[0]->article_id; ?>','<?php echo $matchingReviewer->last_name . ', ' . $matchingReviewer->first_name; ?>','Round 3')" class="btn btn-outline-dark" style="margin-right: 10px">Round 3</a>
                                                                                             </td>
                                                                                         <?php endif; ?>
                                                                                 </tr>
@@ -943,12 +942,12 @@ table {
                             <div id="quill-emailcontent" style="height: 350px;"></div>
                         </div>
                     </div>
-                    <div class="row mb-2">
+                    <!-- <div class="row mb-2">
                         <div class="col-md-12 mb-2">
                             <label for="formFileAddDiscussion" class="form-label">Upload File</label>
                             <input class="form-control" type="file" id="formFileAddDiscussion" accept=".pdf, .doc, .docx" />
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
@@ -1165,13 +1164,14 @@ table {
             };
         }
 
-        function viewReviewerAnswer(ReviewerId, ArticleId, Round) {
+        function viewReviewerAnswer(ReviewerId, ArticleId,ReviewName, Round) {
             $.ajax({
                 type: 'POST',
                 url: '../php/function/wf_modal_function.php',
                 data: { action: 'fetchanswer', reviewer_id: ReviewerId, article_id: ArticleId, round: Round },
                 dataType: 'json',
                 success: function (response) {
+                    document.getElementById('roundInfo').innerText = 'Reviewer '+ ReviewName + ' ' + Round + ' Answer';
                     if (response.status === true && response.data.length > 0) {
                         const answerData = response.data;
                         $('#DataTableAnswer tbody').empty();
@@ -1193,6 +1193,8 @@ table {
         }
 
         function viewDiscussion(DiscussionId, Subject, Discussion) {
+            $('#messageContainer').hide();
+            $('#addMessageButtonx').show();
             $.ajax({
                 type: 'POST',
                 url: '../php/function/wf_modal_function.php',

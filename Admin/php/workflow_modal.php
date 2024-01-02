@@ -60,7 +60,7 @@ $userlist = get_user_list();
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="addSubmissionDiscussion()">Save changes</button>
+                    <button type="button" class="btn btn-primary" onclick="addDiscussion()">Save changes</button>
                 </div>
             </div>
         </div>
@@ -102,7 +102,7 @@ $userlist = get_user_list();
                             <div class="row mb-2">
                                 <div class="col-md-12 mb-2">
                                     <label for="xsubmissionmessage" class="form-label">Message</label>
-                                    <textarea class="form-control" id="submissionmessage" rows="9"></textarea>
+                                    <textarea class="form-control" id="submissionmessagex" rows="9"></textarea>
                                 </div>
                             </div>
                             <div class="row mb-2">
@@ -125,7 +125,7 @@ $userlist = get_user_list();
                             </div>
                             <div class="row mb-2">
                                 <div class="col-md-12 mt-2" id="dynamic-column" style="text-align: right;">
-                                    <button type="button" id="button" class="btn btn-primary">Send Message</button>
+                                    <button type="button" class="btn btn-primary" onclick="replyDiscussion()">Send Message</button>
                                 </div>
                             </div>
                         </div>
@@ -327,7 +327,7 @@ $userlist = get_user_list();
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel3">Reviewer Answer</h5>
+                    <h5 class="modal-title" id="roundInfo"></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -835,12 +835,12 @@ function updateFileSubmission() {
 var articleId = <?php echo json_encode($aid); ?>;
 var fromuser = <?php echo json_encode($lastName . ', ' . $firstName); ?>;
 
-function addSubmissionDiscussion() {
+function addDiscussion() {
     $('#sloading').toggle();
     var discussionTypeInput = $('#discussionTypeInput').val();
     var submissionSubject = $('#submissionsubject').val();
     var submissionMessage = $('#submissionmessage').val();
-    var submissionFiletype = $('#submissionfiletype').val();
+    var submissionFiletype = $('#submissionfiletypex').val();
     var submissionFile = $('#submissionfilexx')[0].files[0];
 
     var formData = new FormData();
@@ -851,7 +851,39 @@ function addSubmissionDiscussion() {
     formData.append('submissionmessage', submissionMessage);
     formData.append('submissionfiletype', submissionFiletype);
     formData.append('submissionfile', submissionFile);
-    formData.append('action', 'addsubmissiondiscussion');
+    formData.append('action', 'adddiscussion');
+
+    $.ajax({
+        url: "../php/function/wf_modal_function.php",
+        type: "POST",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (response) {
+            $('#sloading').toggle();
+            console.log(response);
+            location.reload();
+        },
+        error: function (xhr, status, error) {
+            console.error(xhr, status, error);
+        }
+    });
+}
+
+function replyDiscussion() {
+    $('#sloading').toggle();
+    var discussionId = $('#discussion_id').val();
+    var submissionMessage = $('#submissionmessagex').val();
+    var submissionFiletype = $('#submissionfiletypex').val();
+    var submissionFile = $('#submissionfilexxx')[0].files[0];
+
+    var formData = new FormData();
+    formData.append('fromuser', fromuser);
+    formData.append('discussion_id', discussionId);
+    formData.append('submissionmessage', submissionMessage);
+    formData.append('submissionfiletype', submissionFiletype);
+    formData.append('submissionfile', submissionFile);
+    formData.append('action', 'replydiscussion');
 
     $.ajax({
         url: "../php/function/wf_modal_function.php",
