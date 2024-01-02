@@ -122,15 +122,20 @@ function renderArticleDetails(data) {
           </div>
       </div>
     `;
-    let contributors = "";
-    if (item.contributors != null) {
-      const authorList = item.contributors.split(";");
-      contributors = authorList.map((contributor, index) => {
-        const [lastName, initials] = contributor.trim().split(",");
-        const formattedName = `${lastName}, ${initials.split(".")[0]}.`;
-        return (index === authorList.length - 1) && index != 0 ? `& ${formattedName}` : formattedName;
-      }).join(', ');
+    function formatContributors(authors) {
+      if (authors != null) {
+          return authors
+              .split(";")
+              .map((author, index, array) => (index === array.length - 1 ? `& ${author}` : author))
+              .join(", ");
+      }
+      return "";
     }
+  
+    let contributors_full = formatContributors(item.contributors_B);
+    let contributors_initial = formatContributors(item.contributors_B);
+    
+    
     const citationSelect = document.querySelector("select");
     citationSelect.addEventListener("change", function () {
       const selectedCitation = citationSelect.value;
@@ -141,33 +146,50 @@ function renderArticleDetails(data) {
             <h4 class="small"><b>${selectedCitation} Citation</b></h4>
             <p>
               ${
-                selectedCitation === "APA"
-                  ? `${contributors}. (${item.publication_date.split(" ")[3]}). ${item.title}. ${item.journal}, ${item.volume.split(" ")[1]}(1). https://openaccessjournalcui-production.up.railway.app/PHP/article-details.php?articleId=${item.article_id}`
-                : selectedCitation === "MLA"
-                  ? `${item.contributors_A.split(";").join(", ")}. "${item.title}." ${item.journal}, ${item.publication_date.split(" ")[3]}, ${item.volume.split(" ")[1]}(1).`
-                : selectedCitation === "Chicago"
-                  ? `${item.contributors_A.split(";").join(", ")}. "${item.title}." ${item.journal} ${item.volume.split(" ")[1]}, no. 1 (${item.publication_date.split(" ")[3]}).  https://openaccessjournalcui-production.up.railway.app/PHP/article-details.php?articleId=${item.article_id}`
-                : `${item.contributors_A.split(";").join(", ")}. ${item.title}. ${item.journal}.`
-                  + ` https://openaccessjournalcui-production.up.railway.app/PHP/article-details.php?articleId=${item.article_id}`
-          }
+                item.contributors != null ?
+                  selectedCitation === "APA"
+                    ? `${contributors_full}. (${item.publication_date.split(" ")[3]}). ${item.title}. ${item.journal}, ${item.volume.split(" ")[1]}(1). https://openaccessjournalcui-production.up.railway.app/PHP/article-details.php?articleId=${item.article_id}`
+                  : selectedCitation === "MLA"
+                    ? `${contributors_initial}. "${item.title}." ${item.journal}, ${item.publication_date.split(" ")[3]}, ${item.volume.split(" ")[1]}(1).`
+                  : selectedCitation === "Chicago"
+                    ? `${contributors_initial}. "${item.title}." ${item.journal} ${item.volume.split(" ")[1]}, no. 1 (${item.publication_date.split(" ")[3]}).  https://openaccessjournalcui-production.up.railway.app/PHP/article-details.php?articleId=${item.article_id}`
+                  : `${item.contributors_A.split(";").join(", ")}. ${item.title}. ${item.journal}.`
+                    + ` https://openaccessjournalcui-production.up.railway.app/PHP/article-details.php?articleId=${item.article_id}`
+                : 
+                  selectedCitation === "APA"
+                      ? `${item.title}(${item.publication_date.split(" ")[3]}). ${item.journal}, ${item.volume.split(" ")[1]}(1). https://openaccessjournalcui-production.up.railway.app/PHP/article-details.php?articleId=${item.article_id}`
+                  : selectedCitation === "MLA"
+                      ? `"${item.title}." ${item.journal}, ${item.publication_date.split(" ")[3]}, ${item.volume.split(" ")[1]}(1).`
+                  : selectedCitation === "Chicago"
+                      ? `${contributors_initial}. "${item.title}." ${item.journal} ${item.volume.split(" ")[1]}, no. 1 (${item.publication_date.split(" ")[3]}).  https://openaccessjournalcui-production.up.railway.app/PHP/article-details.php?articleId=${item.article_id}`
+                  : `${item.title}. ${item.journal}.`
+                      + ` https://openaccessjournalcui-production.up.railway.app/PHP/article-details.php?articleId=${item.article_id}`
+              }
             </p>
           </li>
         </ul>
       `;
     });
+
     const initialSelectedCitation = citationSelect.value;
     citationContent.innerHTML = `   
       <ul>
         <li> 
           <h4 class="small"><b>${initialSelectedCitation} Citation</b></h4>
           <p class="cited" id="cited">
-            ${contributors}. (${item.publication_date.split(" ")[3]}). ${item.title}. ${item.journal}, ${item.volume.split(" ")[1]}(1). https://openaccessjournalcui-production.up.railway.app/PHP/article-details.php?articleId=${item.article_id}
+          ${item.contributors != null ? 
+            `${contributors_full}. (${item.publication_date.split(" ")[3]}). ${item.title}. ${item.journal}, ${item.volume.split(" ")[1]}(1). https://openaccessjournalcui-production.up.railway.app/PHP/article-details.php?articleId=${item.article_id}`
+            : 
+            `${item.title}(${item.publication_date.split(" ")[3]}).${item.journal}, ${item.volume.split(" ")[1]}(1). https://openaccessjournalcui-production.up.railway.app/PHP/article-details.php?articleId=${item.article_id}`
+
+          }
           </p>
         </li>
       </ul>
     `;
 
     const copyBtn = document.getElementById("copy-btn")
+    const inlineBtn = document.getElementById("inline-btn")
 
     copyBtn.addEventListener("click",()=> {
       navigator.clipboard.writeText(citationContent.querySelector("p").innerHTML);
@@ -176,8 +198,18 @@ function renderArticleDetails(data) {
         html: '<h4 style="color: #0858a4; font-family: font-family: Arial, Helvetica, sans-serif">Please read and check the guidelines to proceed</4>',
         icon: 'success',
       })
-   
     })
+
+    inlineBtn.addEventListener("click",()=> {
+      navigator.clipboard.writeText(citationContent.querySelector("p").innerHTML);
+      handleDownloadLog(item.article_id,"citation");
+      Swal.fire({
+        html: '<h4 style="color: #0858a4; font-family: font-family: Arial, Helvetica, sans-serif">Please read and check the guidelines to proceed</4>',
+        icon: 'success',
+      })
+    })
+ 
+
     const downloadBtn = articleElement.querySelector(`#download-btn`);
     const epubBtn = articleElement.querySelector(`#epub-btn`);
     const citeBtn = articleElement.querySelector(`#cite-btn`);
@@ -250,9 +282,6 @@ async function renderRecommended(data) {
   });
 }
 
-function downloadFile(file) {
-  window.location.href = `https://openaccessjournalcui-production.up.railway.app/Files/${file}`;
-}
 
 async function handleDownloadLog(articleId,type) {
   await fetch(
@@ -346,6 +375,7 @@ const closeBtn = document.getElementById("closeCiteModal")
 closeBtn.addEventListener("click", () => {
   toggleCiteModal()
 })
+
 function toggleCiteModal() {
   const citationElement = document.getElementById("citation-container")
 

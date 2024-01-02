@@ -82,7 +82,7 @@ $journal = get_journal_list();
                 <div data-i18n="Boxicons">Dashboard</div>
               </a>
             </li>
-
+            
             <li class="menu-item">
               <a href="journalview.php" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-detail"></i>
@@ -90,6 +90,7 @@ $journal = get_journal_list();
               </a>
             </li>
 
+            <li class="menu-header small text-uppercase"><span class="menu-header-text">Secondary</span></li>
             <li class="menu-item">
               <a href="announcementlist.php" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-detail"></i>
@@ -129,7 +130,7 @@ $journal = get_journal_list();
             </li>
 
             <!-- Misc -->
-            <li class="menu-header small text-uppercase"><span class="menu-header-text">Misc</span></li>
+            <!-- <li class="menu-header small text-uppercase"><span class="menu-header-text">Misc</span></li>
             <li class="menu-item">
               <a
                 href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
@@ -147,7 +148,7 @@ $journal = get_journal_list();
                 <i class="menu-icon tf-icons bx bx-file"></i>
                 <div data-i18n="Documentation">Documentation</div>
               </a>
-            </li>
+            </li> -->
           </ul>
         </aside>
         <!-- / Menu -->

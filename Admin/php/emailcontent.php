@@ -10,6 +10,7 @@ $article_contributor = get_article_contributor($aid);
 $email_content = get_email_content($emc);
 $submission_files = get_submission_files($aid);
 $review_files = get_review_files($aid);
+$revision_files = get_revision_files($aid);
 ?>
 
 <!DOCTYPE html>
@@ -101,7 +102,7 @@ $review_files = get_review_files($aid);
                                                         <?php else: ?>
                                                             <?php foreach ($submission_files as $submission_filesval): ?>
                                                                 <?php
-                                                                $isChecked = ($submission_filesval->file_type === 'file with no author') ? 'checked' : '';
+                                                                $isChecked = ($submission_filesval->file_type === 'File with no author') ? 'checked' : '';
                                                                 ?>
                                                                 <tr>
                                                                     <td width="5%"><input class="form-check-input submission-checkbox" type="checkbox" value="" id="defaultCheck1" data-article-files-id="<?php echo $submission_filesval->article_files_id; ?>" <?php echo $isChecked; ?> /></td>
@@ -174,21 +175,21 @@ $review_files = get_review_files($aid);
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                        <?php if (empty($submission_files)): ?>
+                                                        <?php if (empty($revision_files)): ?>
                                                             <tr>
                                                                 <td colspan="4" class="text-center">No Files</td>
                                                             </tr>
                                                         <?php else: ?>
-                                                            <?php foreach ($submission_files as $submission_filesval): ?>
+                                                            <?php foreach ($revision_files as $revision_filesval): ?>
                                                                 <tr>
-                                                                    <td width="5%"><input class="form-check-input revision-checkbox" type="checkbox" value="" id="defaultCheck1" data-article-files-id="<?php echo $submission_filesval->article_files_id; ?>"/></td>
-                                                                    <td width="5%"><?php echo $submission_filesval->article_files_id; ?></td>
+                                                                    <td width="5%"><input class="form-check-input revision-checkbox" type="checkbox" value="" id="defaultCheck1" data-revision-files-id="<?php echo $revision_filesval->revision_files_id; ?>"/></td>
+                                                                    <td width="5%"><?php echo $revision_filesval->revision_files_id; ?></td>
                                                                     <td width="65%">
-                                                                        <a href="../../Files/submitted-article/<?php echo urlencode($submission_filesval->file_name); ?>" download>
-                                                                            <?php echo $submission_filesval->file_name; ?>
+                                                                        <a href="../../Files/revision-article/<?php echo urlencode($revision_filesval->file_name); ?>" download>
+                                                                            <?php echo $revision_filesval->file_name; ?>
                                                                         </a>
                                                                     </td>
-                                                                    <td width="25%"><?php echo $submission_filesval->file_type; ?></td>
+                                                                    <td width="25%"><?php echo $revision_filesval->file_type; ?></td>
                                                                 </tr>
                                                             <?php endforeach; ?>
                                                         <?php endif; ?>
@@ -289,9 +290,9 @@ $review_files = get_review_files($aid);
 
         var checkedData2 = [];
         checkedCheckboxes2.each(function () {
-            var articleFilesId = $(this).data('article-files-id');
+            var revisionFilesId = $(this).data('revision-files-id');
             checkedData2.push({
-                articleFilesId: articleFilesId
+                revisionFilesId: revisionFilesId
             });
         });
 

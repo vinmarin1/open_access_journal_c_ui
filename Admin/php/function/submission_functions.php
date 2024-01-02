@@ -50,7 +50,6 @@ if (!function_exists('get_journal_list')) {
     }
 }
 
-// Check if the function is not already defined
 if (!function_exists('get_article_list')) {
     function get_article_list($cid) {
         $pdo = connect_to_database();
