@@ -312,3 +312,27 @@ if (!function_exists('get_revision_files')) {
         return false;
     }
 }
+
+if (!function_exists('get_copyeditingrevision_files')) {
+    function get_copyeditingrevision_files($aid) {
+        $pdo = connect_to_database();
+
+        if ($pdo) {
+            try {
+                $query = "SELECT * FROM article_revision_files WHERE article_id = :aid AND copyediting = 1";
+                $stmt = $pdo->prepare($query);
+                $stmt->bindParam(':aid', $aid, PDO::PARAM_INT);
+                $stmt->execute();
+
+                $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+                return $result;
+            } catch (PDOException $e) {
+                echo "Error: " . $e->getMessage();
+                return false;
+            }
+        }
+
+        return false;
+    }
+}

@@ -13,6 +13,7 @@ $review_files = get_review_files($aid);
 $copyediting_files = get_copyediting_files($aid);
 $production_files = get_production_files($aid);
 $revision_files = get_revision_files($aid);
+$copyeditingrevision_files = get_copyeditingrevision_files($aid);
 $article_discussion = get_article_discussion($aid);
 $discussion_list = get_discussion($aid);
 $article_participant = get_article_participant($aid);
@@ -102,7 +103,7 @@ table {
                                                                         <tr>
                                                                             <th colspan="3"><h6>Submission Files</h6></th>
                                                                             <th style="text-align: right;">
-                                                                                <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;" data-bs-toggle="modal" data-bs-target="#addFilesModal">Upload File</button>
+                                                                                <button type="button" class="btn btn-dark" id="uploadButton" style="width: 150px;" data-bs-toggle="modal" data-bs-target="#addFilesModal">Upload File</button>
                                                                             </th>
                                                                         </tr>
                                                                     </thead>
@@ -152,7 +153,7 @@ table {
                                                                         <tr>
                                                                             <th colspan="2"><h6>Submission Discussions</h6></th>
                                                                             <th style="text-align: right;">
-                                                                                <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;" onclick="showDiscussionModal('Submission')" data-bs-toggle="modal" data-bs-target="#addDiscussionModal">Add Discussion</button>
+                                                                                <button type="button" class="btn btn-dark" id="uploadButton" style="width: 150px;" onclick="showDiscussionModal('Submission')" data-bs-toggle="modal" data-bs-target="#addDiscussionModal">Add Discussion</button>
                                                                             </th>
                                                                         </tr>
                                                                     </thead>
@@ -193,7 +194,7 @@ table {
                                                                         <tr>
                                                                             <th colspan="2"><h6>Participants</h6></th>
                                                                             <th style="text-align: right;">
-                                                                                <button type="button" class="btn btn-outline-dark" id="uploadButton" style="margin-left: -10px">Add</button>
+                                                                                <button type="button" class="btn btn-dark" id="uploadButton" style="margin-left: -10px">Add</button>
                                                                             </th>
                                                                         </tr>
                                                                     </thead>
@@ -239,7 +240,7 @@ table {
                                                                         <tr>
                                                                             <th colspan="3"><h6>Review Files</h6></th>
                                                                             <th style="text-align: right;">
-                                                                                <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;" data-bs-toggle="modal" data-bs-target="#addReviewFilesModal">Select Files</button>
+                                                                                <button type="button" class="btn btn-dark" id="uploadButton" style="width: 150px;" data-bs-toggle="modal" data-bs-target="#addReviewFilesModal">Select Files</button>
                                                                             </th>
                                                                         </tr>
                                                                     </thead>
@@ -289,7 +290,7 @@ table {
                                                                         <tr>
                                                                             <th colspan="3"><h6>Revisions</h6></th>
                                                                             <th style="text-align: right;">
-                                                                                <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 160px;" data-bs-toggle="modal" data-bs-target="#addRevisionModal">Upload Revision</button>
+                                                                                <button type="button" class="btn btn-dark" id="uploadButton" style="width: 160px;" data-bs-toggle="modal" data-bs-target="#addRevisionModal">Upload Revision</button>
                                                                             </th>
                                                                         </tr>
                                                                     </thead>
@@ -334,7 +335,7 @@ table {
                                                                         <tr>
                                                                             <th colspan="2"><h6>Participants</h6></th>
                                                                             <th style="text-align: right;">
-                                                                                <button type="button" class="btn btn-outline-dark" id="uploadButton" style="margin-left: -10px">Add</button>
+                                                                                <button type="button" class="btn btn-dark" id="uploadButton" style="margin-left: -10px">Add</button>
                                                                             </th>
                                                                         </tr>
                                                                     </thead>
@@ -366,7 +367,7 @@ table {
                                                                         <tr>
                                                                             <th colspan="4"><h6>Reviewers</h6></th>
                                                                             <th colspan="3" style="text-align: right;">
-                                                                                <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;" data-bs-toggle="modal" data-bs-target="#addReviewerModal">Add Reviewers</button>
+                                                                                <button type="button" class="btn btn-dark" id="uploadButton" style="width: 150px;" data-bs-toggle="modal" data-bs-target="#addReviewerModal">Add Reviewers</button>
                                                                             </th>
                                                                         </tr>
                                                                     </thead>
@@ -427,7 +428,7 @@ table {
                                                                         <tr>
                                                                             <th colspan="2"><h6>Review Discussion</h6></th>
                                                                             <th style="text-align: right;">
-                                                                                <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;" onclick="showDiscussionModal('Review')" data-bs-toggle="modal" data-bs-target="#addDiscussionModal">Add Discussion</button>
+                                                                                <button type="button" class="btn btn-dark" id="uploadButton" style="width: 150px;" onclick="showDiscussionModal('Review')" data-bs-toggle="modal" data-bs-target="#addDiscussionModal">Add Discussion</button>
                                                                             </th>
                                                                         </tr>
                                                                     </thead>
@@ -483,7 +484,7 @@ table {
                                                                         <tr>
                                                                             <th colspan="3"><h6>Draft Files</h6></th>
                                                                             <th style="text-align: right;">
-                                                                                <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;" data-bs-toggle="modal" data-bs-target="#addCopyeditingFilesModal">Select Files</button>
+                                                                                <button type="button" class="btn btn-dark" id="uploadButton" style="width: 150px;" data-bs-toggle="modal" data-bs-target="#addCopyeditingFilesModal">Select Files</button>
                                                                             </th>
                                                                         </tr>
                                                                     </thead>
@@ -502,7 +503,20 @@ table {
                                                                                     </a>
                                                                                 </td>
                                                                                 <td width="25%"><?php echo $copyediting_filesval->file_type; ?></td>
-                                                                                <td width="5%"></td>
+                                                                                <td width="5%"><span class="badge rounded-pill bg-label-warning">Submission</span></td>
+                                                                            </tr>
+                                                                        <?php endforeach; ?>
+                                                                        <?php foreach ($copyeditingrevision_files as $copyeditingrevision_files): ?>
+                                                                            <tr>
+                                                                                <td width="5%"><?php echo $copyeditingrevision_files->revision_files_id; ?></td>
+                                                                                <td width="65%">
+                                                                                    <a href="/Files/revision-article/<?php echo urlencode($copyeditingrevision_files->file_name); ?>" download>
+                                                                                        <?php echo $copyeditingrevision_files->file_name; ?>
+                                                                                    </a>
+                                                                                </td>
+                                                                                <td width="25%"><?php echo $copyeditingrevision_files->file_type; ?></td>
+                                                                                <td width="5%"><span class="badge rounded-pill bg-label-warning">Revision</span></td>
+
                                                                             </tr>
                                                                         <?php endforeach; ?>
                                                                         <?php endif; ?>
@@ -532,7 +546,7 @@ table {
                                                                         <tr>
                                                                             <th colspan="2"><h6>Copyediting Discussions</h6></th>
                                                                             <th style="text-align: right;">
-                                                                                <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;" onclick="showDiscussionModal('Copyediting')" data-bs-toggle="modal" data-bs-target="#addDiscussionModal">Add Discussion</button>
+                                                                                <button type="button" class="btn btn-dark" id="uploadButton" style="width: 150px;" onclick="showDiscussionModal('Copyediting')" data-bs-toggle="modal" data-bs-target="#addDiscussionModal">Add Discussion</button>
                                                                             </th>
                                                                         </tr>
                                                                     </thead>
@@ -573,7 +587,7 @@ table {
                                                                         <tr>
                                                                             <th colspan="2"><h6>Participants</h6></th>
                                                                             <th style="text-align: right;">
-                                                                                <button type="button" class="btn btn-outline-dark" id="uploadButton" style="margin-left: -10px">Add</button>
+                                                                                <button type="button" class="btn btn-dark" id="uploadButton" style="margin-left: -10px">Add</button>
                                                                             </th>
                                                                         </tr>
                                                                     </thead>
@@ -620,7 +634,7 @@ table {
                                                                         <tr>
                                                                             <th colspan="3"><h6>Production Ready Files</h6></th>
                                                                             <th style="text-align: right;">
-                                                                                <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;" data-bs-toggle="modal" data-bs-target="#addCopyeditingFilesModal">Select Files</button>
+                                                                                <button type="button" class="btn btn-dark" id="uploadButton" style="width: 150px;" data-bs-toggle="modal" data-bs-target="#addCopyeditingFilesModal">Select Files</button>
                                                                             </th>
                                                                         </tr>
                                                                     </thead>
@@ -669,7 +683,7 @@ table {
                                                                         <tr>
                                                                             <th colspan="2"><h6>Production Discussions</h6></th>
                                                                             <th style="text-align: right;">
-                                                                                <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;" onclick="showDiscussionModal('Production')" data-bs-toggle="modal" data-bs-target="#addDiscussionModal">Add Discussion</button>
+                                                                                <button type="button" class="btn btn-dark" id="uploadButton" style="width: 150px;" onclick="showDiscussionModal('Production')" data-bs-toggle="modal" data-bs-target="#addDiscussionModal">Add Discussion</button>
                                                                             </th>
                                                                         </tr>
                                                                     </thead>
@@ -710,7 +724,7 @@ table {
                                                                         <tr>
                                                                             <th colspan="2"><h6>Participants</h6></th>
                                                                             <th style="text-align: right;">
-                                                                                <button type="button" class="btn btn-outline-dark" id="uploadButton" style="margin-left: -10px">Add</button>
+                                                                                <button type="button" class="btn btn-dark" id="uploadButton" style="margin-left: -10px">Add</button>
                                                                             </th>
                                                                         </tr>
                                                                     </thead>
@@ -804,7 +818,7 @@ table {
                                                                             <tr>
                                                                                 <th colspan="4"><h6>Contributors</h6></th>
                                                                                 <th style="text-align: right;">
-                                                                                    <button type="button" class="btn btn-outline-dark" id="uploadButton" style="margin-left: -10px" data-bs-toggle="modal" data-bs-target="#addContributorsModal">Add</button>
+                                                                                    <button type="button" class="btn btn-dark" id="uploadButton" style="margin-left: -10px" data-bs-toggle="modal" data-bs-target="#addContributorsModal">Add</button>
                                                                                 </th>
                                                                             </tr>
                                                                         </thead>
