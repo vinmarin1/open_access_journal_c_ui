@@ -300,20 +300,20 @@
   <table class="table table-striped" id="contributorTable" >
             <thead>
                 <tr>
+                    <th style=" background-color: #0858a4; color: white; bold; font-size: 12px; font-weight: normal">Email</th>
                     <th style=" background-color: #0858a4; color: white; font-size: 12px; font-weight: normal">First Name</th>
                     <th style=" background-color: #0858a4; color: white; bold; font-size: 12px; font-weight: normal">Last Name</th>
                     <th style=" background-color: #0858a4; color: white; bold; font-size: 12px; font-weight: normal">Public Name</th>
                     <th style=" background-color: #0858a4; color: white; bold; font-size: 12px; font-weight: normal">ORCID</th>
-                    <th style=" background-color: #0858a4; color: white; bold; font-size: 12px; font-weight: normal">Email</th>
                     <th id="cont-col" style=" background-color: #0858a4; color: white; old; font-size: 12px; font-weight: normal; width: 350px">Contributor Type</th>
                     <th style=" background-color: #0858a4; color: white; width: 30px; bold; font-size: 12px; font-weight: normal">Action</th>
                 </tr>
                <tr>
+                <th><input type="text" style="width: 118px" value="<?php echo $email ?>"  disabled></th>
                 <th><input type="text" style="width: 118px" value="<?php echo $first_name ?>" disabled></th>
                 <th><input type="text" style="width: 118px" value="<?php echo $last_name ?>" disabled></th>
                 <th><input type="text" style="width: 118px"  value="<?php echo $public_name ?>" disabled></th>
                 <th><input type="text" style="width: 118px" value="<?php echo $orc_id ?>"  disabled></th>
-                <th><input type="text" style="width: 118px" value="<?php echo $email ?>"  disabled></th>
                 <th><input type="checkbox" id="authorPcontact" class="form-check-input"><label style="font-weight: normal; font-size: 11px; margin-left: 10px;">Primary Contact</label></th>
                 
                 
@@ -460,11 +460,11 @@
 function addRow() {
     var index = $('#contributorTable tbody tr').length; // Get the current row index
     var newRow = '<tr>' +
+        '<td><input class="form-control email-input" type="email" name="emailC[]" style="height: 30px;" required></td>' +
         '<td><input class="form-control" type="text" name="firstnameC[]" style="height: 30px;" required></td>' +
         '<td><input class="form-control" type="text" name="lastnameC[]" style="height: 30px;" required></td>' +
         '<td><input class="form-control" type="text" name="publicnameC[]" style="height: 30px;"></td>' +
         '<td><input class="form-control" type="number" name="orcidC[]" style="height: 30px;"></td>' +
-        '<td><input class="form-control email-input" type="email" name="emailC[]" style="height: 30px;" required></td>' +
         '<td class="align-middle">' +
         '<div class="form-check cAuthor" style="display: inline-block; margin-right: 10px">' +
         '<input class="form-check-input" type="checkbox" name="contributor_type_coauthor[' + index + ']" value="Co-Author">' +
@@ -503,7 +503,12 @@ $('#contributorTable tbody').on('blur', 'input.email-input', function() {
                     currentRow.find('input[name="orcidC[]"]').val(response.data.orc_id);
                 } else {
                     // Handle the case where the email does not exist in the database
-                    console.log('Email not found in the database');
+                    Swal.fire({
+                    icon: "question",
+                    title: "This email is new to us",
+                    text: "Please try to input the contributors info manually."
+                  
+                  });
                 }
             },
             error: function(xhr, status, error) {

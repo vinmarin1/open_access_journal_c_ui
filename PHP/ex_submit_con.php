@@ -24,7 +24,6 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     $timestamp = strtotime($dateString);
     $formattedDate = date('Y-m-d', $timestamp);
     $content = "-";
-    $step = 4;
     $authorAdditionalRole = isset($_POST['authorPcontact']) ? ', Primary Contact' : '';
  
 
@@ -82,8 +81,8 @@ function handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $
     global $lastInsertedArticleId;
 
     // Insert into article table
-    $sql = "INSERT INTO article (`author`, `volume`, `privacy`, `date`, `title`, `journal_id`, `author_id`, `abstract`, `keyword`, `references`, `content`, `status`, `step`, `comment`)
-            VALUES (:author, :volume, :privacy, :date, :title, :journal_id, :author_id, :abstract, :keyword, :references, :content, :status, :step, :comment)";
+    $sql = "INSERT INTO article (`author`, `volume`, `privacy`, `date`, `title`, `journal_id`, `author_id`, `abstract`, `keyword`, `references`, `content`, `status`, `round`, `comment`)
+            VALUES (:author, :volume, :privacy, :date, :title, :journal_id, :author_id, :abstract, :keyword, :references, :content, :status, :round, :comment)";
 
     $params = array(
         'author' => $contributor,
@@ -98,7 +97,7 @@ function handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $
         'references' => $reference,
         'content' => "-",
         'status' => 5,
-        'step' => $step,
+        'round' => 'Round 1',
         'comment' => $comment
     );
 
@@ -195,9 +194,6 @@ function handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $
         );
 
         database_run($sqlCont, $paramsCont);
-    }
-
-
 
         $emailCont = $emailsC[$key];
 
@@ -206,6 +202,11 @@ function handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $
         $subjectCont = "Review Journal";
         $recipientCont = $emailCont;
         send_mail($recipientCont, $subjectCont, $messageCont);
+    }
+
+
+
+      
     
     
 }
