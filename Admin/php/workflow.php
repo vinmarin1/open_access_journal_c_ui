@@ -12,6 +12,7 @@ $submission_files = get_submission_files($aid);
 $review_files = get_review_files($aid);
 $copyediting_files = get_copyediting_files($aid);
 $production_files = get_production_files($aid);
+$revision_files = get_revision_files($aid);
 $article_discussion = get_article_discussion($aid);
 $discussion_list = get_discussion($aid);
 $article_participant = get_article_participant($aid);
@@ -292,18 +293,30 @@ table {
                                                                             </th>
                                                                         </tr>
                                                                     </thead>
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>ID</th>
+                                                                            <th>FILE NAME</th>
+                                                                            <th>TYPE</th>
+                                                                            <th>FROM</th>
+                                                                        </tr>
+                                                                    </thead>
                                                                     <tbody>
-                                                                    <?php if (empty($article_discussion)): ?>
+                                                                    <?php if (empty($revision_files)): ?>
                                                                         <tr>
                                                                             <td colspan="4" class="text-center">No Files</td>
                                                                         </tr>
                                                                     <?php else: ?>
-                                                                        <?php foreach ($article_discussion as $article_discussionval): ?>
+                                                                        <?php foreach ($revision_files as $revision_filesval): ?>
                                                                             <tr>
-                                                                                <td width="5%"></td>
-                                                                                <td width="5%"><?php echo $article_discussionval->id; ?></td>
-                                                                                <td width="85%"><?php echo $article_discussionval->file_name; ?></td>
-                                                                                <td width="5%"></td>
+                                                                                <td width="5%"><?php echo $revision_filesval->revision_files_id; ?></td>
+                                                                                <td width="55%">
+                                                                                    <a href="/Files/revision-article/<?php echo urlencode($revision_filesval->file_name); ?>" download>
+                                                                                        <?php echo $revision_filesval->file_name; ?>
+                                                                                    </a>
+                                                                                </td>
+                                                                                <td width="20%"><?php echo $revision_filesval->file_type; ?></td>
+                                                                                <td width="20%"><?php echo $revision_filesval->fromuser; ?></td>
                                                                             </tr>
                                                                         <?php endforeach; ?>    
                                                                     <?php endif; ?>

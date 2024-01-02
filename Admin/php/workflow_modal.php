@@ -13,6 +13,7 @@ $submission_files = get_submission_files($aid);
 $review_files = get_review_files($aid);
 $copyediting_files = get_copyediting_files($aid);
 $production_files = get_production_files($aid);
+$revision_files = get_revision_files($aid);
 $userlist = get_user_list();
 ?>
 
@@ -183,35 +184,35 @@ $userlist = get_user_list();
 <!-- Add Revision Modal -->
 <div class="modal fade" id="addRevisionModal" tabindex="-1" aria-hidden="true">
     <form id="addModalForm1">
-        <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-dialog modal-lg" role="document" enctype="multipart/form-data">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel3">Add Revision</h5>
+                    <h5 class="modal-title" id="exampleModalLabel3">Add File Revision</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="row mb-2">
                         <div class="col-md-12 mb-2">
-                            <label for="subject" class="form-label">Subject</label>
-                            <input type="text" id="subject" class="form-control" placeholder="Subject" required/>
+                            <label for="xrevisionfiletype" class="form-label">File Type</label>
+                            <select id="revisionfiletype" class="form-select" onchange="enableFileInput3()">
+                                <option value="">Select</option>
+                                <option value="Title page">Title page</option>
+                                <option value="File with author">File with author</option>
+                                <option value="File with no author">File with no author</option>
+                                <option value="Others">Others</option>
+                            </select>
                         </div>
                     </div>
                     <div class="row mb-2">
-                        <div class="col-md-12 mb-2">
-                            <label for="message" class="form-label">Message</label>
-                            <textarea class="form-control" id="message" rows="9"></textarea>
-                        </div>
-                    </div>
-                    <div class="row mb-2">
-                        <div class="col-md-12 mb-2">
-                            <label for="formFileAddDiscussion" class="form-label">Upload File</label>
-                            <input class="form-control" type="file" id="formFileAddDiscussion" accept=".pdf, .doc, .docx" />
+                        <div class="col-md-12 mb-2" id="divrevisionfile">
+                            <label for="submissionfilexx" class="form-label">Upload File</label>
+                            <input class="form-control" type="file" id="revisionfile" accept=".doc, .docx" />
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="addRecord()">Save changes</button>
+                    <button type="button" class="btn btn-primary" onclick="addRevisionFile()">Save changes</button>
                 </div>
             </div>
         </div>
@@ -429,21 +430,21 @@ $userlist = get_user_list();
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php if (empty($review_files)): ?>
+                                        <?php if (empty($revision_files)): ?>
                                             <tr>
                                                 <td colspan="4" class="text-center">No Files</td>
                                             </tr>
                                         <?php else: ?>
-                                            <?php foreach ($review_files as $review_filesval): ?>
+                                            <?php foreach ($revision_files as $revision_filesval): ?>
                                                 <tr>
-                                                    <td width="5%"><input class="form-check-input copyediting1-checkbox" type="checkbox" value="" id="defaultCheck1" /></td>
-                                                    <td width="5%"><?php echo $review_filesval->article_files_id; ?></td>
+                                                    <td width="5%"><input class="form-check-input copyeditingrevision-checkbox" type="checkbox" value="" id="defaultCheck1" /></td>
+                                                    <td width="5%"><?php echo $revision_filesval->revision_files_id; ?></td>
                                                     <td width="65%">
-                                                        <a href="/Files/submitted-article/<?php echo urlencode($review_filesval->file_name); ?>" download>
-                                                            <?php echo $review_filesval->file_name; ?>
+                                                        <a href="/Files/revision-article/<?php echo urlencode($revision_filesval->file_name); ?>" download>
+                                                            <?php echo $revision_filesval->file_name; ?>
                                                         </a>
                                                     </td>
-                                                    <td width="25%"><?php echo $review_filesval->file_type; ?></td>
+                                                    <td width="25%"><?php echo $revision_filesval->file_type; ?></td>
                                                 </tr>
                                             <?php endforeach; ?>
                                         <?php endif; ?>
@@ -588,6 +589,7 @@ $(document).ready(function() {
     enableFileInput();
     enableFileInput1();
     enableFileInput2();
+    enableFileInput3();
 });
 
 function enableFileInput() {
@@ -619,6 +621,16 @@ function enableFileInput2() {
         $('#divsubmissionfilexxx').show();
     } else {
         $('#divsubmissionfilexxx').hide();
+    }
+}
+
+function enableFileInput3() {
+    var selectedValue = $('#revisionfiletype').val();
+    
+    if (selectedValue !== '') {
+        $('#divrevisionfile').show();
+    } else {
+        $('#divrevisionfile').hide();
     }
 }
 
@@ -885,6 +897,35 @@ function replyDiscussion() {
     formData.append('submissionfile', submissionFile);
     formData.append('action', 'replydiscussion');
 
+    $.ajax({
+        url: "../php/function/wf_modal_function.php",
+        type: "POST",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (response) {
+            $('#sloading').toggle();
+            console.log(response);
+            location.reload();
+        },
+        error: function (xhr, status, error) {
+            console.error(xhr, status, error);
+        }
+    });
+}
+
+function addRevisionFile() {
+    $('#sloading').toggle();
+    var revisionFileType = $('#revisionfiletype').val();
+    var revisionFile = $('#revisionfile')[0].files[0];
+
+    var formData = new FormData();
+    formData.append('article_id', articleId);
+    formData.append('fromuser', fromuser);
+    formData.append('revisionfiletype', revisionFileType);
+    formData.append('revisionfile', revisionFile);
+    formData.append('action', 'addrevisionfile');
+    
     $.ajax({
         url: "../php/function/wf_modal_function.php",
         type: "POST",
