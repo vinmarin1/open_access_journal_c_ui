@@ -13,7 +13,7 @@ $review_files = get_review_files($aid);
 $copyediting_files = get_copyediting_files($aid);
 $production_files = get_production_files($aid);
 $article_discussion = get_article_discussion($aid);
-$submission_discussion = get_submission_discussion($aid);
+$discussion_list = get_discussion($aid);
 $article_participant = get_article_participant($aid);
 $reviewer_email = get_reviewer_content($emc);
 $article_contributors = get_article_contributor($aid);
@@ -149,26 +149,35 @@ table {
                                                                 <table class="table table-striped" id="DataTable">
                                                                     <thead>
                                                                         <tr>
-                                                                            <th colspan="2"><h6>Pre-Review Discussions</h6></th>
+                                                                            <th colspan="2"><h6>Submission Discussions</h6></th>
                                                                             <th style="text-align: right;">
-                                                                                <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;" data-bs-toggle="modal" data-bs-target="#addDiscussionModal">Add Discussion</button>
+                                                                                <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;" onclick="showDiscussionModal('Submission')" data-bs-toggle="modal" data-bs-target="#addDiscussionModal">Add Discussion</button>
                                                                             </th>
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                    <?php if (empty($submission_discussion)): ?>
-                                                                        <tr>
-                                                                            <td colspan="3" class="text-center">No Items</td>
-                                                                        </tr>
-                                                                    <?php else: ?>
-                                                                        <?php foreach ($submission_discussion as $submission_discussionval): ?>
+                                                                        <?php if (empty($discussion_list)): ?>
                                                                             <tr>
-                                                                                <td width="5%"><?php echo $submission_discussionval->discussion_id; ?></td>
-                                                                                <td width="90%"><?php echo $submission_discussionval->subject; ?></td>
-                                                                                <td width="5%" style="text-align: right;"><a href="javascript:void(0);" onclick="viewSubmissionDiscussion(<?php echo $submission_discussionval->discussion_id; ?>)" class="btn btn-outline-dark" style="margin-right: 10px;">View</a></td>
+                                                                                <td colspan="3" class="text-center">No Items</td>
                                                                             </tr>
-                                                                        <?php endforeach; ?>    
-                                                                    <?php endif; ?>
+                                                                        <?php else: ?>
+                                                                            <?php $hasItems = false; ?>
+                                                                            <?php foreach ($discussion_list as $discussion_listval): ?>
+                                                                                <?php if ($discussion_listval->discussion_type === 'Submission'): ?>
+                                                                                    <tr>
+                                                                                        <td width="5%"><?php echo $discussion_listval->discussion_id; ?></td>
+                                                                                        <td width="90%"><?php echo $discussion_listval->subject; ?></td>
+                                                                                        <td width="5%" style="text-align: right;"><a href="javascript:void(0);" onclick="viewDiscussion(<?php echo $discussion_listval->discussion_id; ?>,'<?php echo $discussion_listval->subject; ?>','Submission')" class="btn btn-outline-dark" style="margin-right: 10px;">View</a></td>
+                                                                                    </tr>
+                                                                                    <?php $hasItems = true; ?>
+                                                                                <?php endif; ?>
+                                                                            <?php endforeach; ?>
+                                                                            <?php if (!$hasItems): ?>
+                                                                                <tr>
+                                                                                    <td colspan="3" class="text-center">No Items</td>
+                                                                                </tr>
+                                                                            <?php endif; ?>
+                                                                        <?php endif; ?>
                                                                     </tbody>
                                                                     <tfoot>
                                                                         <th colspan="3" style="text-align: right;"></th>
@@ -406,24 +415,33 @@ table {
                                                                         <tr>
                                                                             <th colspan="2"><h6>Review Discussion</h6></th>
                                                                             <th style="text-align: right;">
-                                                                                <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;" data-bs-toggle="modal" data-bs-target="#addReviewDiscussionModal">Add Discussion</button>
+                                                                                <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;" onclick="showDiscussionModal('Review')" data-bs-toggle="modal" data-bs-target="#addDiscussionModal">Add Discussion</button>
                                                                             </th>
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                    <?php if (empty($article_discussion)): ?>
-                                                                        <tr>
-                                                                            <td colspan="3" class="text-center">No Items</td>
-                                                                        </tr>
-                                                                    <?php else: ?>
-                                                                        <?php foreach ($article_discussion as $article_discussionval): ?>
+                                                                        <?php if (empty($discussion_list)): ?>
                                                                             <tr>
-                                                                                <td width="5%"><?php echo $article_discussionval->id; ?></td>
-                                                                                <td width="85%"><?php echo $article_discussionval->file_name; ?></td>
-                                                                                <td width="5%"></td>
+                                                                                <td colspan="3" class="text-center">No Items</td>
                                                                             </tr>
-                                                                        <?php endforeach; ?>    
-                                                                    <?php endif; ?>
+                                                                        <?php else: ?>
+                                                                            <?php $hasItems = false; ?>
+                                                                            <?php foreach ($discussion_list as $discussion_listval): ?>
+                                                                                <?php if ($discussion_listval->discussion_type === 'Review'): ?>
+                                                                                    <tr>
+                                                                                        <td width="5%"><?php echo $discussion_listval->discussion_id; ?></td>
+                                                                                        <td width="90%"><?php echo $discussion_listval->subject; ?></td>
+                                                                                        <td width="5%" style="text-align: right;"><a href="javascript:void(0);" onclick="viewDiscussion(<?php echo $discussion_listval->discussion_id; ?>,'<?php echo $discussion_listval->subject; ?>','Review')" class="btn btn-outline-dark" style="margin-right: 10px;">View</a></td>
+                                                                                    </tr>
+                                                                                    <?php $hasItems = true; ?>
+                                                                                <?php endif; ?>
+                                                                            <?php endforeach; ?>
+                                                                            <?php if (!$hasItems): ?>
+                                                                                <tr>
+                                                                                    <td colspan="3" class="text-center">No Items</td>
+                                                                                </tr>
+                                                                            <?php endif; ?>
+                                                                        <?php endif; ?>
                                                                     </tbody>
                                                                     <tfoot>
                                                                         <th colspan="3" style="text-align: right;"></th>
@@ -502,24 +520,33 @@ table {
                                                                         <tr>
                                                                             <th colspan="2"><h6>Copyediting Discussions</h6></th>
                                                                             <th style="text-align: right;">
-                                                                                <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;" data-bs-toggle="modal" data-bs-target="#addCopyeditingnModal">Add Discussion</button>
+                                                                                <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;" onclick="showDiscussionModal('Copyediting')" data-bs-toggle="modal" data-bs-target="#addDiscussionModal">Add Discussion</button>
                                                                             </th>
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                    <?php if (empty($article_discussion)): ?>
-                                                                        <tr>
-                                                                            <td colspan="3" class="text-center">No Items</td>
-                                                                        </tr>
-                                                                    <?php else: ?>
-                                                                        <?php foreach ($article_discussion as $article_discussionval): ?>
+                                                                        <?php if (empty($discussion_list)): ?>
                                                                             <tr>
-                                                                                <td width="5%"><?php echo $article_discussionval->id; ?></td>
-                                                                                <td width="85%"><?php echo $article_discussionval->file_name; ?></td>
-                                                                                <td width="5%"></td>
+                                                                                <td colspan="3" class="text-center">No Items</td>
                                                                             </tr>
-                                                                        <?php endforeach; ?>    
-                                                                    <?php endif; ?>
+                                                                        <?php else: ?>
+                                                                            <?php $hasItems = false; ?>
+                                                                            <?php foreach ($discussion_list as $discussion_listval): ?>
+                                                                                <?php if ($discussion_listval->discussion_type === 'Copyediting'): ?>
+                                                                                    <tr>
+                                                                                        <td width="5%"><?php echo $discussion_listval->discussion_id; ?></td>
+                                                                                        <td width="90%"><?php echo $discussion_listval->subject; ?></td>
+                                                                                        <td width="5%" style="text-align: right;"><a href="javascript:void(0);" onclick="viewDiscussion(<?php echo $discussion_listval->discussion_id; ?>,'<?php echo $discussion_listval->subject; ?>','Copyediting')" class="btn btn-outline-dark" style="margin-right: 10px;">View</a></td>
+                                                                                    </tr>
+                                                                                    <?php $hasItems = true; ?>
+                                                                                <?php endif; ?>
+                                                                            <?php endforeach; ?>
+                                                                            <?php if (!$hasItems): ?>
+                                                                                <tr>
+                                                                                    <td colspan="3" class="text-center">No Items</td>
+                                                                                </tr>
+                                                                            <?php endif; ?>
+                                                                        <?php endif; ?>
                                                                     </tbody>
                                                                     <tfoot>
                                                                         <th colspan="3" style="text-align: right;"></th>
@@ -630,24 +657,33 @@ table {
                                                                         <tr>
                                                                             <th colspan="2"><h6>Production Discussions</h6></th>
                                                                             <th style="text-align: right;">
-                                                                                <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;" data-bs-toggle="modal" data-bs-target="#addCopyeditingnModal">Add Discussion</button>
+                                                                                <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;" onclick="showDiscussionModal('Production')" data-bs-toggle="modal" data-bs-target="#addDiscussionModal">Add Discussion</button>
                                                                             </th>
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                    <?php if (empty($article_discussion)): ?>
-                                                                        <tr>
-                                                                            <td colspan="3" class="text-center">No Items</td>
-                                                                        </tr>
-                                                                    <?php else: ?>
-                                                                        <?php foreach ($article_discussion as $article_discussionval): ?>
+                                                                        <?php if (empty($discussion_list)): ?>
                                                                             <tr>
-                                                                                <td width="5%"><?php echo $article_discussionval->id; ?></td>
-                                                                                <td width="85%"><?php echo $article_discussionval->file_name; ?></td>
-                                                                                <td width="5%"></td>
+                                                                                <td colspan="3" class="text-center">No Items</td>
                                                                             </tr>
-                                                                        <?php endforeach; ?>    
-                                                                    <?php endif; ?>
+                                                                        <?php else: ?>
+                                                                            <?php $hasItems = false; ?>
+                                                                            <?php foreach ($discussion_list as $discussion_listval): ?>
+                                                                                <?php if ($discussion_listval->discussion_type === 'Production'): ?>
+                                                                                    <tr>
+                                                                                        <td width="5%"><?php echo $discussion_listval->discussion_id; ?></td>
+                                                                                        <td width="90%"><?php echo $discussion_listval->subject; ?></td>
+                                                                                        <td width="5%" style="text-align: right;"><a href="javascript:void(0);" onclick="viewDiscussion(<?php echo $discussion_listval->discussion_id; ?>,'<?php echo $discussion_listval->subject; ?>','Production')" class="btn btn-outline-dark" style="margin-right: 10px;">View</a></td>
+                                                                                    </tr>
+                                                                                    <?php $hasItems = true; ?>
+                                                                                <?php endif; ?>
+                                                                            <?php endforeach; ?>
+                                                                            <?php if (!$hasItems): ?>
+                                                                                <tr>
+                                                                                    <td colspan="3" class="text-center">No Items</td>
+                                                                                </tr>
+                                                                            <?php endif; ?>
+                                                                        <?php endif; ?>
                                                                     </tbody>
                                                                     <tfoot>
                                                                         <th colspan="3" style="text-align: right;"></th>
@@ -1156,13 +1192,16 @@ table {
             });
         }
 
-        function viewSubmissionDiscussion(DiscussionId) {
+        function viewDiscussion(DiscussionId, Subject, Discussion) {
             $.ajax({
                 type: 'POST',
                 url: '../php/function/wf_modal_function.php',
                 data: { action: 'fetchsubmissiondiscussion', discussion_id: DiscussionId},
                 dataType: 'json',
                 success: function (response) {
+                    document.getElementById('discussionType').innerText = 'View ' + Discussion + ' Discussion';
+                    document.getElementById('discussionSubject').innerText = Subject;
+
                     if (response.status === true && response.data.length > 0) {
                         const submissionDiscussion = response.data;
                         $('#DataTableSubmissionDiscussion tbody').empty();
@@ -1170,6 +1209,8 @@ table {
 
                         var counter = 1;
                         for (const submissiondiscussion of submissionDiscussion) {
+                            $('#discussion_id').val(submissiondiscussion.discussion_id);
+                            
                             $('#DataTableSubmissionDiscussion tbody').append('<tr><th colspan="2" style="width: 100%;"></th></tr>');
                             $('#DataTableSubmissionDiscussion tbody').append('<tr><th style="width: 80%;">MESSAGE ' + counter + '</th><th style="width: 20%;">FROM</th></tr>');
                             $('#DataTableSubmissionDiscussion tbody').append('<tr><td style="width: 80%; white-space: pre-wrap; text-align: justify;"><div style="max-height: 200px; overflow-y: auto;">' + submissiondiscussion.message + '</div></td><td style="width: 20%;">' + submissiondiscussion.fromuser + '</td></tr>');
@@ -1181,7 +1222,7 @@ table {
                             counter++;
                         }
 
-                        $('#ViewSubmissionDiscussionModal').modal('show');
+                        $('#ViewDiscussionModal').modal('show');
                     } else {
                         console.log('No answers found.');
                     }
@@ -1192,6 +1233,14 @@ table {
                 }
             });
         }
+
+        function showDiscussionModal(discussionType) {
+            document.getElementById('discussionTypeInput').value = discussionType;
+            document.getElementById('discussionType').innerText = 'Add ' + discussionType + ' Discussion';
+
+            $('#addDiscussionModal').modal('show');
+        }
+
     </script>
 </body>
 </html

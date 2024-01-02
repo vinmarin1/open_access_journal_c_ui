@@ -367,7 +367,7 @@ include 'dbcon.php';
         $uploadPath = $documentRoot . '/Files/discussion-file/';
         $article_id = $_POST['article_id'];
         $fromuser = $_POST['fromuser'];
-        $discussion_type = "Submission";
+        $discussion_type = $_POST['discussiontype'];
         $submissionsubject = $_POST['submissionsubject'];
         $submissionmessage = $_POST['submissionmessage'];
         $submissionfiletype = isset($_POST['submissionfiletype']) ? $_POST['submissionfiletype'] : '';

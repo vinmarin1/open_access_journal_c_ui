@@ -16,56 +16,19 @@ $production_files = get_production_files($aid);
 $userlist = get_user_list();
 ?>
 
-<!-- SUBMISSION PAGE -->
-<!-- Add Files Modal -->
-<div class="modal fade" id="addFilesModal" tabindex="-1" aria-hidden="true">
-    <form id="updatesubmisionfile" enctype="multipart/form-data">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel3">Update Submission Files</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row mb-2">
-                        <div class="col-md-12 mb-2">
-                            <label for="xfiles" class="form-label">If you are uploading a revision of an existing file, please indicate which file.</label>
-                            <select id="submissionfileid" class="form-select" onchange="enableFileInput()">
-                                <option value="">Select File</option>
-                                <?php foreach ($submission_files as $submission_filesval): ?>
-                                    <option value="<?php echo $submission_filesval->article_files_id; ?>"><?php echo $submission_filesval->file_name; ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row mb-2">
-                        <div class="col-md-12 mb-2" id="divxsubmissionfile">
-                            <label for="formFileAddFiles" class="form-label">Upload New File</label>
-                            <input class="form-control" type="file" id="submissionfile" />
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="updateFileSubmission()">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </form>
-</div>
-
-<!-- Add Pre-Review Discussion Modal -->
+<!-- Add Discussion Modal -->
 <div class="modal fade" id="addDiscussionModal" tabindex="-1" aria-hidden="true">
     <form id="addModalForm1">
         <div class="modal-dialog modal-lg" role="document" enctype="multipart/form-data">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel3">Add Pre-Review Discussion</h5>
+                    <h5 class="modal-title" id="discussionType"></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="row mb-2">
                         <div class="col-md-12 mb-2">
+                            <input type="hidden" id="discussionTypeInput" class="form-control" readonly>
                             <label for="xsubmissionsubject" class="form-label">Subject</label>
                             <input type="text" id="submissionsubject" class="form-control" placeholder="Subject" required/>
                         </div>
@@ -104,8 +67,8 @@ $userlist = get_user_list();
     </form>
 </div>
 
-<!--View Submission Discussion Modal -->
-<div class="modal fade" id="ViewSubmissionDiscussionModal" tabindex="-1" aria-hidden="true">
+<!--View Discussion Modal -->
+<div class="modal fade" id="ViewDiscussionModal" tabindex="-1" aria-hidden="true">
     <form id="addModalForm">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
@@ -116,12 +79,13 @@ $userlist = get_user_list();
                 <div class="modal-body">
                     <div class="row mb-2">
                         <div class="col-md-12 mb-2" id="dynamic-column">
+                            <input type="hidden" id="discussion_id" class="form-control"/>
                             <div class="table-responsive text-nowrap">
                                 <table class="table table-striped" id="DataTableSubmissionDiscussion">
                                     <thead>
                                         <tr>    
                                             <th colspan="2">
-                                                <h5 class="card-header">Message</h5>
+                                                <h5 class="card-header" id="discussionSubject"></h5>
                                             </th>
                                         </tr>
                                     </thead>
@@ -134,9 +98,40 @@ $userlist = get_user_list();
                                 </table>
                             </div>
                         </div>
-                        <div class="row mb-2">
+                        <div class="col-md-12 mb-2" id="messageContainer" style="display: none;">
+                            <div class="row mb-2">
+                                <div class="col-md-12 mb-2">
+                                    <label for="xsubmissionmessage" class="form-label">Message</label>
+                                    <textarea class="form-control" id="submissionmessage" rows="9"></textarea>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-md-12 mb-2">
+                                    <label for="xsubmissionfiletype" class="form-label">File Type</label>
+                                    <select id="submissionfiletypex" class="form-select" onchange="enableFileInput2()">
+                                        <option value="">Select</option>
+                                        <option value="Title page">Title page</option>
+                                        <option value="File with author">File with author</option>
+                                        <option value="File with no author">File with no author</option>
+                                        <option value="Others">Others</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-md-12 mb-2" id="divsubmissionfilexxx">
+                                    <label for="submissionfilexx" class="form-label">Upload File</label>
+                                    <input class="form-control" type="file" id="submissionfilexxx" accept=".doc, .docx" />
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-md-12 mt-2" id="dynamic-column" style="text-align: right;">
+                                    <button type="button" id="button" class="btn btn-primary">Send Message</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-2" id="addMessageButtonx">
                             <div class="col-md-12 mt-2" id="dynamic-column" style="text-align: right;">
-                                <button type="button" onclick="" class="btn btn-primary">Add Message</button>
+                                <button type="button" id="addMessageButton" class="btn btn-primary">Add Message</button>
                             </div>
                         </div>
                     </div>
@@ -146,45 +141,45 @@ $userlist = get_user_list();
     </form>
 </div>
 
-<!-- REVIEW PAGE -->
-<!-- Add Review Discussion Modal -->
-<div class="modal fade" id="addReviewDiscussionModal" tabindex="-1" aria-hidden="true">
-    <form id="addModalForm1">
+<!-- SUBMISSION PAGE -->
+<!-- Add Files Modal -->
+<div class="modal fade" id="addFilesModal" tabindex="-1" aria-hidden="true">
+    <form id="updatesubmisionfile" enctype="multipart/form-data">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel3">Add Review Discussion</h5>
+                    <h5 class="modal-title" id="exampleModalLabel3">Update Submission Files</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="row mb-2">
                         <div class="col-md-12 mb-2">
-                            <label for="subject" class="form-label">Subject</label>
-                            <input type="text" id="subject" class="form-control" placeholder="Subject" required/>
+                            <label for="xfiles" class="form-label">If you are uploading a revision of an existing file, please indicate which file.</label>
+                            <select id="submissionfileid" class="form-select" onchange="enableFileInput()">
+                                <option value="">Select File</option>
+                                <?php foreach ($submission_files as $submission_filesval): ?>
+                                    <option value="<?php echo $submission_filesval->article_files_id; ?>"><?php echo $submission_filesval->file_name; ?></option>
+                                <?php endforeach; ?>
+                            </select>
                         </div>
                     </div>
                     <div class="row mb-2">
-                        <div class="col-md-12 mb-2">
-                            <label for="message" class="form-label">Message</label>
-                            <textarea class="form-control" id="message" rows="9"></textarea>
-                        </div>
-                    </div>
-                    <div class="row mb-2">
-                        <div class="col-md-12 mb-2">
-                            <label for="formFileAddDiscussion" class="form-label">Upload File</label>
-                            <input class="form-control" type="file" id="formFileAddDiscussion" accept=".pdf, .doc, .docx" />
+                        <div class="col-md-12 mb-2" id="divxsubmissionfile">
+                            <label for="formFileAddFiles" class="form-label">Upload New File</label>
+                            <input class="form-control" type="file" id="submissionfile" />
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="addRecord()">Save changes</button>
+                    <button type="button" class="btn btn-primary" onclick="updateFileSubmission()">Save changes</button>
                 </div>
             </div>
         </div>
     </form>
 </div>
 
+<!-- REVIEW PAGE -->
 <!-- Add Revision Modal -->
 <div class="modal fade" id="addRevisionModal" tabindex="-1" aria-hidden="true">
     <form id="addModalForm1">
@@ -509,44 +504,6 @@ $userlist = get_user_list();
     </form>
 </div>
 
-<!-- Add Copyediting Modal -->
-<div class="modal fade" id="addCopyeditingnModal" tabindex="-1" aria-hidden="true">
-    <form id="addModalForm1">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel3">Add Copyediting Discussion</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row mb-2">
-                        <div class="col-md-12 mb-2">
-                            <label for="subject" class="form-label">Subject</label>
-                            <input type="text" id="subject" class="form-control" placeholder="Subject" required/>
-                        </div>
-                    </div>
-                    <div class="row mb-2">
-                        <div class="col-md-12 mb-2">
-                            <label for="message" class="form-label">Message</label>
-                            <textarea class="form-control" id="message" rows="9"></textarea>
-                        </div>
-                    </div>
-                    <div class="row mb-2">
-                        <div class="col-md-12 mb-2">
-                            <label for="formFileAddDiscussion" class="form-label">Upload File</label>
-                            <input class="form-control" type="file" id="formFileAddDiscussion" accept=".pdf, .doc, .docx" />
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="addRecord()">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </form>
-</div>
-
 <!-- PUBLICATION PAGE -->
 <!-- Add Contributors Modal -->
 <div class="modal fade" id="addContributorsModal" tabindex="-1" aria-hidden="true">
@@ -619,9 +576,18 @@ $userlist = get_user_list();
     </form>
 </div>
 <script>
+$(document).ready(function () {
+    $('#addMessageButton').on('click', function () {
+
+        $('#messageContainer').show();
+        $('#addMessageButtonx').hide();
+    });
+});
+
 $(document).ready(function() {
     enableFileInput();
     enableFileInput1();
+    enableFileInput2();
 });
 
 function enableFileInput() {
@@ -643,6 +609,16 @@ function enableFileInput1() {
         $('#divsubmissionfilexx').show();
     } else {
         $('#divsubmissionfilexx').hide();
+    }
+}
+
+function enableFileInput2() {
+    var selectedValue = $('#submissionfiletypex').val();
+    
+    if (selectedValue !== '') {
+        $('#divsubmissionfilexxx').show();
+    } else {
+        $('#divsubmissionfilexxx').hide();
     }
 }
 
@@ -861,6 +837,7 @@ var fromuser = <?php echo json_encode($lastName . ', ' . $firstName); ?>;
 
 function addSubmissionDiscussion() {
     $('#sloading').toggle();
+    var discussionTypeInput = $('#discussionTypeInput').val();
     var submissionSubject = $('#submissionsubject').val();
     var submissionMessage = $('#submissionmessage').val();
     var submissionFiletype = $('#submissionfiletype').val();
@@ -869,6 +846,7 @@ function addSubmissionDiscussion() {
     var formData = new FormData();
     formData.append('article_id', articleId);
     formData.append('fromuser', fromuser);
+    formData.append('discussiontype', discussionTypeInput);
     formData.append('submissionsubject', submissionSubject);
     formData.append('submissionmessage', submissionMessage);
     formData.append('submissionfiletype', submissionFiletype);
