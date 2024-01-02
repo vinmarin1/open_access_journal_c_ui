@@ -129,7 +129,7 @@ $journal = get_journal_list();
             </li>
 
             <!-- Misc -->
-            <li class="menu-header small text-uppercase"><span class="menu-header-text">Misc</span></li>
+            <!-- <li class="menu-header small text-uppercase"><span class="menu-header-text">Misc</span></li>
             <li class="menu-item">
               <a
                 href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
@@ -147,7 +147,7 @@ $journal = get_journal_list();
                 <i class="menu-icon tf-icons bx bx-file"></i>
                 <div data-i18n="Documentation">Documentation</div>
               </a>
-            </li>
+            </li> -->
           </ul>
         </aside>
         <!-- / Menu -->

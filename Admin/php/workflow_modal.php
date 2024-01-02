@@ -261,7 +261,7 @@ $userlist = get_user_list();
                                                 </td>
                                                 <td width="5%"><?php echo $submission_filesval->article_files_id; ?></td>
                                                 <td width="65%">
-                                                    <a href="../../Files/submitted-article/<?php echo urlencode($submission_filesval->file_name); ?>" download>
+                                                    <a href="/Files/submitted-article/<?php echo urlencode($submission_filesval->file_name); ?>" download>
                                                         <?php echo $submission_filesval->file_name; ?>
                                                     </a>
                                                 </td>
@@ -299,7 +299,7 @@ $userlist = get_user_list();
                                                 <tr>
                                                     <td width="5%"><?php echo $review_filesval->article_files_id; ?></td>
                                                     <td width="70%">
-                                                        <a href="../../Files/submitted-article/<?php echo urlencode($review_filesval->file_name); ?>" download>
+                                                        <a href="/Files/submitted-article/<?php echo urlencode($review_filesval->file_name); ?>" download>
                                                             <?php echo $review_filesval->file_name; ?>
                                                         </a>
                                                     </td>
@@ -404,7 +404,7 @@ $userlist = get_user_list();
                                                     </td>
                                                     <td width="5%"><?php echo $submission_filesval->article_files_id; ?></td>
                                                     <td width="65%">
-                                                        <a href="../../Files/submitted-article/<?php echo urlencode($submission_filesval->file_name); ?>" download>
+                                                        <a href="/Files/submitted-article/<?php echo urlencode($submission_filesval->file_name); ?>" download>
                                                             <?php echo $submission_filesval->file_name; ?>
                                                         </a>
                                                     </td>
@@ -444,7 +444,7 @@ $userlist = get_user_list();
                                                     <td width="5%"><input class="form-check-input copyediting1-checkbox" type="checkbox" value="" id="defaultCheck1" /></td>
                                                     <td width="5%"><?php echo $review_filesval->article_files_id; ?></td>
                                                     <td width="65%">
-                                                        <a href="../../../Files/submitted-article/<?php echo urlencode($review_filesval->file_name); ?>" download>
+                                                        <a href="/Files/submitted-article/<?php echo urlencode($review_filesval->file_name); ?>" download>
                                                             <?php echo $review_filesval->file_name; ?>
                                                         </a>
                                                     </td>
@@ -482,7 +482,7 @@ $userlist = get_user_list();
                                                 <tr>
                                                     <td width="5%"><?php echo $copyediting_filesval->article_files_id; ?></td>
                                                     <td width="70%">
-                                                        <a href="../../Files/submitted-article/<?php echo urlencode($copyediting_filesval->file_name); ?>" download>
+                                                        <a href="/Files/submitted-article/<?php echo urlencode($copyediting_filesval->file_name); ?>" download>
                                                             <?php echo $copyediting_filesval->file_name; ?>
                                                         </a>
                                                     </td>
