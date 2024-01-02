@@ -22,8 +22,11 @@ include 'dbcon.php';
         case 'fetchanswer':
             fetchReviewerAnswer();
             break;     
-        case 'addsubmissiondiscussion':
-            addSubmissionDiscussion();
+        case 'adddiscussion':
+            addDiscussion();
+            break; 
+        case 'replydiscussion':
+            replyDiscussion();
             break; 
         case 'fetchsubmissiondiscussion':
             fetchSubmissionDiscussion();
@@ -362,7 +365,7 @@ include 'dbcon.php';
         }
     }
 
-    function addSubmissionDiscussion() {
+    function addDiscussion() {
         $documentRoot = $_SERVER['DOCUMENT_ROOT'];
         $uploadPath = $documentRoot . '/Files/discussion-file/';
         $article_id = $_POST['article_id'];
@@ -428,6 +431,72 @@ include 'dbcon.php';
                 }
             } else {
                 echo json_encode(['status' => false, 'message' => 'Failed to add discussion']);
+            }
+        } catch (Exception $e) {
+            $pdo->rollBack();
+            error_log('Exception: ' . $e->getMessage());
+            echo json_encode(['status' => false, 'message' => 'Failed to add record. Error: ' . $e->getMessage() . $errorMessage]);
+        } finally {
+            $pdo = null;
+        }
+    }
+
+    function replyDiscussion() {
+        $documentRoot = $_SERVER['DOCUMENT_ROOT'];
+        $uploadPath = $documentRoot . '/Files/discussion-file/';
+        $fromuser = $_POST['fromuser'];
+        $discussion_id = $_POST['discussion_id'];
+        $submissionmessage = $_POST['submissionmessage'];
+        $submissionfiletype = isset($_POST['submissionfiletype']) ? $_POST['submissionfiletype'] : '';
+    
+        if (!file_exists($uploadPath)) {
+            mkdir($uploadPath, 0777, true);
+        }
+    
+        $files = isset($_FILES['submissionfile']) ? $_FILES['submissionfile'] : '';
+        $success = true;
+        $errorMessage = '';
+    
+        if (!empty($files['name'])) {
+            // File is provided
+            $fileName = basename($files["name"]);
+            $imageFileType = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+    
+            $allowedFileTypes = array('doc', 'docx');
+    
+            if (!in_array($imageFileType, $allowedFileTypes)) {
+                $success = false;
+                $errorMessage .= "File $fileName - Invalid file type ({$imageFileType}); ";
+            }
+    
+            $maxFileSize = 20 * 1024 * 1024;
+    
+            if ($files["size"] > $maxFileSize) {
+                $success = false;
+                $errorMessage .= "File $fileName - Size exceeds the maximum allowed size; ";
+            }
+    
+            $newFilePath = $uploadPath . $fileName;
+    
+            if ($success && move_uploaded_file($files["tmp_name"], $newFilePath)) {
+                // File is successfully moved to the desired location
+            } else {
+                $errorMessage .= 'File failed to upload. ';
+            }
+        }
+    
+        try {
+            $pdo = connect_to_database();
+            $pdo->beginTransaction();
+
+                $query = "INSERT INTO discussion_message (discussion_id, fromuser, message, file, file_type) VALUES (?, ?, ?, ?, ?)";
+                $result = execute_query($query, [$discussion_id, $fromuser, $submissionmessage, $fileName, $submissionfiletype], true);
+                
+            if ($result !== false) {
+                $pdo->commit();
+                echo json_encode(['status' => true, 'message' => 'Record added successfully']);
+            } else {
+                echo json_encode(['status' => false, 'message' => 'Failed to add discussion message']);
             }
         } catch (Exception $e) {
             $pdo->rollBack();
