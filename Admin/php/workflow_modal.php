@@ -14,6 +14,7 @@ $review_files = get_review_files($aid);
 $copyediting_files = get_copyediting_files($aid);
 $production_files = get_production_files($aid);
 $revision_files = get_revision_files($aid);
+$copyeditingrevision_files = get_copyeditingrevision_files($aid);
 $userlist = get_user_list();
 ?>
 
@@ -441,7 +442,7 @@ $userlist = get_user_list();
                                                 ?>
                                                 <tr>
                                                     <td width="5%">
-                                                        <input class="form-check-input copyeditingrevision-checkbox" type="checkbox" value="" id="defaultCheck1" data-article-files-id="<?php echo $revision_filesval->revision_files_id; ?>" <?php echo $isReviewEqualToOne ? 'checked' : ''; ?> />
+                                                        <input class="form-check-input copyeditingrevision-checkbox" type="checkbox" value="" id="defaultCheck1" data-revision-files-id="<?php echo $revision_filesval->revision_files_id; ?>" <?php echo $isReviewEqualToOne ? 'checked' : ''; ?> />
                                                     </td>
                                                         <td width="5%"><?php echo $revision_filesval->revision_files_id; ?></td>
                                                     <td width="65%">
@@ -480,16 +481,30 @@ $userlist = get_user_list();
                                             </tr>
                                         <?php else: ?>
                                             <?php foreach ($copyediting_files as $copyediting_filesval): ?>
-                                                <tr>
-                                                    <td width="5%"><?php echo $copyediting_filesval->article_files_id; ?></td>
-                                                    <td width="70%">
-                                                        <a href="/Files/submitted-article/<?php echo urlencode($copyediting_filesval->file_name); ?>" download>
-                                                            <?php echo $copyediting_filesval->file_name; ?>
-                                                        </a>
-                                                    </td>
-                                                    <td width="25%"><?php echo $copyediting_filesval->file_type; ?></td>
-                                                </tr>
-                                            <?php endforeach; ?>
+                                            <tr>
+                                                <td width="5%"><?php echo $copyediting_filesval->article_files_id; ?></td>
+                                                <td width="65%">
+                                                    <a href="/Files/submitted-article/<?php echo urlencode($copyediting_filesval->file_name); ?>" download>
+                                                        <?php echo $copyediting_filesval->file_name; ?>
+                                                    </a>
+                                                </td>
+                                                <td width="25%"><?php echo $copyediting_filesval->file_type; ?></td>
+                                                <td width="5%"><span class="badge rounded-pill bg-label-warning">Submission</span></td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                        <?php foreach ($copyeditingrevision_files as $copyeditingrevision_files): ?>
+                                            <tr>
+                                                <td width="5%"><?php echo $copyeditingrevision_files->revision_files_id; ?></td>
+                                                <td width="65%">
+                                                    <a href="/Files/revision-article/<?php echo urlencode($copyeditingrevision_files->file_name); ?>" download>
+                                                        <?php echo $copyeditingrevision_files->file_name; ?>
+                                                    </a>
+                                                </td>
+                                                <td width="25%"><?php echo $copyeditingrevision_files->file_type; ?></td>
+                                                <td width="5%"><span class="badge rounded-pill bg-label-warning">Revision</span></td>
+
+                                            </tr>
+                                        <?php endforeach; ?>
                                         <?php endif; ?>
                                     </tbody>
                                     <tfoot>
@@ -719,6 +734,7 @@ function updateCopyeditingFiles() {
 
 function updateCopyeditingCheckedFiles() {
     var checkedCheckboxes = $('.copyediting-checkbox:checked');
+    var checkedCheckboxes1 = $('.copyeditingrevision-checkbox:checked');
 
     var checkedData = [];
     checkedCheckboxes.each(function () {
@@ -728,15 +744,26 @@ function updateCopyeditingCheckedFiles() {
         });
     });
 
-    var jsonCheckedData = JSON.stringify(checkedData);
+    var checkedData1 = [];
+    checkedCheckboxes1.each(function () {
+        var revisionFilesId = $(this).data('revision-files-id');
+        checkedData1.push({
+            revisionFilesId: revisionFilesId
+        });
+    });
 
-    console.log('Checked Data:', checkedData);
+    var jsonCheckedData = JSON.stringify(checkedData);
+    var jsonCheckedData1 = JSON.stringify(checkedData1);
+
+    console.log('Checked Data:', jsonCheckedData);
+    console.log('Checked Data:', jsonCheckedData1);
 
     $.ajax({
         type: 'POST',
         url: '../php/function/wf_modal_function.php',
         data: {
             checkedData: jsonCheckedData,
+            checkedRevisionData: jsonCheckedData1,
             action: 'updatecopyeditingcheckedfile'
         },
         success: function(response) {
@@ -750,41 +777,9 @@ function updateCopyeditingCheckedFiles() {
     });
 }
 
-// function updateCopyeditingChecked1Files() {
-//     var checkedCheckboxes1 = $('.copyediting1-checkbox:checked');
-
-//     var checkedData1 = [];
-//     checkedCheckboxes1.each(function () {
-//         var articleFilesId = $(this).data('article-files-id');
-//         checkedData1.push({
-//             articleFilesId: articleFilesId
-//         });
-//     });
-
-//     var jsonCheckedData1 = JSON.stringify(checkedData1);
-
-//     console.log('Checked Data:', checkedData1);
-
-//     $.ajax({
-//         type: 'POST',
-//         url: '../php/function/wf_modal_function.php',
-//         data: {
-//             checkedData: jsonCheckedData1,
-//             action: 'updatecopyeditingchecked1file'
-//         },
-//         success: function(response) {
-//             console.log('Checked checkboxes data sent successfully.');
-//             console.log(response);
-//             location.reload();
-//         },
-//         error: function(error) {
-//             console.error('Error sending checked checkboxes data:', error);
-//         }
-//     });
-// }
-
 function updateCopyeditingUncheckedFiles() {
     var uncheckedCheckboxes = $('.copyediting-checkbox:not(:checked)');
+    var uncheckedCheckboxes1 = $('.copyeditingrevision-checkbox:not(:checked)');
 
     var uncheckedData = [];
     uncheckedCheckboxes.each(function () {
@@ -794,15 +789,26 @@ function updateCopyeditingUncheckedFiles() {
         });
     });
 
-    var jsonUncheckedData = JSON.stringify(uncheckedData);
+    var uncheckedData1 = [];
+    uncheckedCheckboxes1.each(function () {
+        var revisionFilesId = $(this).data('revision-files-id');
+        uncheckedData1.push({
+            revisionFilesId: revisionFilesId
+        });
+    });
 
-    console.log('Unchecked Data:', uncheckedData);
+    var jsonUncheckedData = JSON.stringify(uncheckedData);
+    var jsonUncheckedData1 = JSON.stringify(uncheckedData1);
+
+    console.log('Unchecked Data:', jsonUncheckedData);
+    console.log('Unchecked Data:', jsonUncheckedData1);
 
     $.ajax({
         type: 'POST',
         url: '../php/function/wf_modal_function.php',
         data: {
             uncheckedData: jsonUncheckedData,
+            uncheckedRevisionData: jsonUncheckedData1,
             action: 'updatecopyeditinguncheckedfile'
         },
         success: function(response) {

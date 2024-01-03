@@ -202,6 +202,50 @@ $revision_files = get_revision_files($aid);
                                                 </div>
                                             </div>
                                         <?php endif; ?>
+                                        <?php
+                                        if ($emc == 5):
+                                        ?>
+                                            <h5 class="card-header">Files</h5>
+                                            <p>Select files you want to add in production.</p>
+                                            <div class="col-md-12" id="dynamic-column">
+                                                <div class="table-responsive text-nowrap">
+                                                    <table class="table table-striped" id="DataTable">
+                                                        <thead>
+                                                            <tr>
+                                                                <th colspan="4"><h6>Copyedited Files</h6></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <?php if (empty($submission_files)): ?>
+                                                            <tr>
+                                                                <td colspan="4" class="text-center">No Files</td>
+                                                            </tr>
+                                                        <?php else: ?>
+                                                            <?php foreach ($submission_files as $submission_filesval): ?>
+                                                                <?php
+                                                                $isChecked = ($submission_filesval->file_type === 'File with no author') ? 'checked' : '';
+                                                                ?>
+                                                                <tr>
+                                                                    <td width="5%"><input class="form-check-input submission-checkbox" type="checkbox" value="" id="defaultCheck1" data-article-files-id="<?php echo $submission_filesval->article_files_id; ?>" <?php echo $isChecked; ?> /></td>
+                                                                    <td width="5%"><?php echo $submission_filesval->article_files_id; ?></td>
+                                                                    <td width="65%">
+                                                                        <a href="../../Files/submitted-article/<?php echo urlencode($submission_filesval->file_name); ?>" download>
+                                                                            <?php echo $submission_filesval->file_name; ?>
+                                                                        </a>
+                                                                    </td>
+                                                                    <td width="25%"><?php echo $submission_filesval->file_type; ?></td>
+                                                                </tr>
+                                                            <?php endforeach; ?>
+                                                        <?php endif; ?>
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <th colspan="4" style="text-align: right;">
+                                                            </th>
+                                                        </tfoot>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
                             </div>
