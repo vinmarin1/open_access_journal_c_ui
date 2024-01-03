@@ -290,10 +290,11 @@ $id = $_SESSION['id'];
                       foreach ($resultReviewer as $rowReviewer) {
                           echo '<tr>';
                           echo '<td><input type="checkbox"></td>';
-                          $articleId = $row->article_id;
+                       
 
-                          $queryTitle = "SELECT title FROM article WHERE article_id = :article_id";
-                          $titleResult = database_run($queryTitle, array(':article_id' => $articleId));
+                          $queryTitle = "SELECT article.title FROM article JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id WHERE article.status < 5 AND article.author_id = :author_id;
+                          ";
+                          $titleResult = database_run($queryTitle, array(':author_id' => $id));
                           if ($titleResult !== false && count($titleResult) > 0) {
                               echo '<td>' . $titleResult[0]->title . '</td>';
                           } else {
@@ -311,8 +312,19 @@ $id = $_SESSION['id'];
                             echo '<td> No date issued </td>';
                           }
                         
-                          $statusInfo = isset($journalStatus[$row->status]) ? $journalStatus[$row->status] : array('text' => '', 'color' => '', 'borderColor' => '');
-                          echo '<td><center><span class="badge badge-pill" style="background-color: ' . $statusInfo['color'] . '; border: 1px solid ' . $statusInfo['borderColor'] . ';">' . $statusInfo['text'] . '</span></center></td>';
+                          $sqlStatus = "SELECT article.status FROM article JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id WHERE reviewer_assigned.author_id = :author_id";
+
+                          $result = database_run($sqlStatus, array('author_id' => $id));
+
+                          if ($result !== false) {
+                          foreach ($result as $rowStatus) {
+                            $statusInfo = isset($journalStatusReviewer[$rowStatus->status]) ? $journalStatusReviewer[$rowStatus->status] : array('text' => '', 'color' => '', 'borderColor' => '');
+                            echo '<td><center><span class="badge badge-pill" style="background-color: ' . $statusInfo['color'] . '; border: 1px solid ' . $statusInfo['borderColor'] . ';">' . $statusInfo['text'] . '</span></center></td>';
+                          }
+                          } else {
+                          echo "No status or this article has been put on the archive articles"; 
+                          }
+
                         
           
                           echo '</tr>';

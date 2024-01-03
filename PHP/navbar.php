@@ -1,6 +1,9 @@
 <?php 
 
 session_start();
+require 'dbcon.php';
+
+
 
 ?>
 <!DOCTYPE html>
@@ -76,16 +79,24 @@ session_start();
 
 <?php
 if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+   
     $userName = ucfirst($_SESSION['first_name']);
+    $author_id = $_SESSION['id'];
+
+    
+    $sqlNotif = "SELECT article.title FROM article JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id WHERE reviewer_assigned.author_id = :author_id";
+    $sqlNotifRun = database_run($sqlNotif, array(':author_id' => $author_id));
+    
     echo '
         <div id="notification-container">
             <button id="notification-button">
                 <i class="fas fa-bell"></i>
                 <span id="notification-count"></span>
             </button>
+            
             <div id="notification-box"></div>
         </div>
-
+    
         <div class="profile px-4">
             <a id="user-profile" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 '. $userName .'

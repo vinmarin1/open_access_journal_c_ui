@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+require 'dbcon.php';
+$userId = $_SESSION['id'];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,7 +34,27 @@
             <div class="content-over">
                 <div class="cover-content">
                     <p> Dashboard / Reviewer / Submitted Articles </p>
-                    <h3> A Classroom-based Action Research on Selected First Year Information Technology Students of Quezon City University for the Second Semester of Academic Year 2021-2022 </h3>
+                    <h3> 
+                        <?php 
+                        $sqlReviewraticle = "SELECT article.title 
+                                            FROM article 
+                                            JOIN reviewer_assigned ON article.author_id = reviewer_assigned.author_id 
+                                            WHERE reviewer_assigned.article_id = article.article_id 
+                                            AND reviewer_assigned.author_id = :author_id";
+
+                        $result = database_run($sqlReviewraticle, array('author_id' => $userId));
+
+                        if ($result !== false) {
+                            foreach ($result as $row) {
+                                echo $row->title;
+                            }
+                        } else {
+                            echo "No articles found."; 
+                        }
+                        ?>
+                </h3>
+
+
                 </div>
             </div>
         </div>
@@ -40,19 +68,24 @@
 
                 <div class="col-md-6 abstract" style="padding-top:20px;"> 
                     <h4>Abstract</h4>
-                        <p>After fighting the COVID-19 pandemic for more than two years, food production could not keep 
-                            up with the rapid population expansion, which led to increased food prices and the prevalence of hunger and poverty. 
-                            In this feasibility project, the company's primary objective, GAIA Inc., 
-                            is to innovate a mobile application to help the environment produce fresh vegetables at home called GAIA Mobile Application.
-                            It offers a variety of information, knowledge, and step by steps procedures regarding urban farming, types of urban farming, 
-                            plant calendar, soil mixtures, pest control, etc., to promote urban farming in Quezon City. The objective of the market study was to 
-                            determine whether developing a revolutionary mobile application for urban farming would be beneficial and knowledgeable. 
-                            The market study was conducted and involved respondents from several barangays in Quezon City. The findings showed a 97.40% acceptance 
-                            rate from participants, with a total demand of 3,070,623 for 2023. As a result of the rapid growth in technology and the fact that most 
-                            people like to use their mobile phones, researchers believe it would be advantageous to create a product that readily conveys the value 
-                            of urban farming and the advantages it provides to people. Due to the rapid growth of technology, the researchers see it as a benefit to 
-                            produce a product that can easily explain the value of urban farming and its benefits to people. Furthermore, this research aims to
-                            produce a groundbreaking mobile application that will be valuable for students, farmers, agriculture enthusiasts, and plant lovers.
+                        <p>
+                        <?php 
+                        $sqlAbstract = "SELECT article.abstract 
+                                            FROM article 
+                                            JOIN reviewer_assigned ON article.author_id = reviewer_assigned.author_id 
+                                            WHERE reviewer_assigned.article_id = article.article_id 
+                                            AND reviewer_assigned.author_id = :author_id";
+
+                        $result = database_run($sqlAbstract, array('author_id' => $userId));
+
+                        if ($result !== false) {
+                            foreach ($result as $row) {
+                                echo $row->abstract;
+                            }
+                        } else {
+                            echo "No articles found."; 
+                        }
+                        ?>
                         </p>
                 </div>
 
@@ -61,16 +94,66 @@
 
                     <div>
                         <div class="status">
-                            <p>Pending</p>
+                            <p>
+                                <?php
+
+                                    $sqlStatus = "SELECT article_status.status, article.title FROM article_status JOIN article ON article_status.status_id = article.status JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id
+                                    AND reviewer_assigned.author_id = :author_id";
+
+                                    $result = database_run($sqlStatus, array('author_id' => $userId));
+
+                                    if ($result !== false) {
+                                    foreach ($result as $row) {
+                                    echo $row->status;
+                                    }
+                                    } else {
+                                    echo "No status for this article"; 
+                                    }
+                                ?>
+                                
+                            </p>
                         </div>
                         <hr style="height: 2px; background-color: #0858a4; width: 100%">
-                        <h4 style="color: #0858a4; font-family: Arial, Helvetica, sans-serif;" >Submitted in the Gavel</h4>
+                        <h4 style="color: #0858a4; font-family: Arial, Helvetica, sans-serif;" >Submitted in the 
+                        <?php
+                            $sqlJournal = "SELECT journal.journal, article.title FROM journal JOIN article ON journal.journal_id = article.journal_id JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id
+                            AND reviewer_assigned.author_id = :author_id";
+
+                            $result = database_run($sqlJournal, array('author_id' => $userId));
+
+                            if ($result !== false) {
+                            foreach ($result as $row) {
+                            echo $row->journal;
+                            }
+                            } else {
+                            echo "No status for this article"; 
+                            }
+                        ?>
+                        </h4>
                         <div class="logs-date">                
                             <p style="color: black; font-weight: bold;">Logs</p>
                             <p style="font-weight: bold;">Review</p>
                             <p style="font-size: x-small; margin-top: -15px; " >Send for review</p>
                             <p style="font-weight: bold;">Submission</p>
-                            <p style="font-size: x-small; margin-top: -15px; " >Submitted in the Gavel</p>
+                            <p style="font-size: x-small; margin-top: -15px; " >Submitted in the 
+                        
+                            <?php
+                              $sqlJournal = "SELECT journal.journal, article.title FROM journal JOIN article ON journal.journal_id = article.journal_id JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id
+                              AND reviewer_assigned.author_id = :author_id";
+  
+                              $result = database_run($sqlJournal, array('author_id' => $userId));
+  
+                              if ($result !== false) {
+                              foreach ($result as $row) {
+                              echo $row->journal;
+                              }
+                              } else {
+                              echo "Can't determine or the file has been put on the archive"; 
+                              }
+                            
+                            ?>
+                            
+                            </p>
                             <a href="#!">View All Logs</a>
                         </div>
                         <div class="date">
@@ -100,8 +183,40 @@
                             </thead>
                             <tbody id="fileList">
                                 <tr>
-                                    <td id="fileName1">File Name</td>
-                                    <td id="fileType1">2023-11-09</td>
+                                    <td id="fileName1">
+                                    <?php
+                                    $sqlFileName = "SELECT article_files.file_name, article.title FROM article_files JOIN article ON article_files.article_id = article.article_id JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id WHERE article_files.file_type = 'File with no author'
+                                    AND reviewer_assigned.author_id = :author_id";
+        
+                                    $result = database_run($sqlFileName, array('author_id' => $userId));
+        
+                                    if ($result !== false) {
+                                    foreach ($result as $row) {
+                                    echo $row->file_name;
+                                    }
+                                    } else {
+                                    echo "Can't find the file or it has been put on the archive"; 
+                                    }
+                                    
+                                    ?>
+                                    </td>
+                                    <td id="fileType1">
+                                    <?php
+                                        $sqlFileDate = "SELECT article_files.date_added, article.title FROM article_files JOIN article ON article_files.article_id = article.article_id JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id WHERE article_files.file_type = 'File with no author'
+                                        AND reviewer_assigned.author_id = :author_id";
+            
+                                        $result = database_run($sqlFileDate, array('author_id' => $userId));
+            
+                                        if ($result !== false) {
+                                        foreach ($result as $row) {
+                                        echo $row->date_added;
+                                        }
+                                        } else {
+                                        echo "Can't determine date added or the file has been put on the archive"; 
+                                        }
+                                        
+                                    ?>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
