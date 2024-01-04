@@ -25,8 +25,6 @@ $article_contributors = get_article_contributor($aid);
 $article_reviewer = get_article_reviewer($aid);
 $article_reviewer_check = check_article_reviewer($aid);
 $reviewer_details = get_reviewer_details();
-
-print_r($copyedited_files);
 ?>
 
 <!DOCTYPE html>
