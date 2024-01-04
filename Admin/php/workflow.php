@@ -14,6 +14,9 @@ $copyediting_files = get_copyediting_files($aid);
 $production_files = get_production_files($aid);
 $revision_files = get_revision_files($aid);
 $copyeditingrevision_files = get_copyeditingrevision_files($aid);
+$copyeditedsubmission_files = get_copyeditedsubmission_files($aid);
+$copyeditedrevision_files = get_copyeditedrevision_files($aid);
+$copyedited_files = get_copyedited_files($aid);
 $article_discussion = get_article_discussion($aid);
 $discussion_list = get_discussion($aid);
 $article_participant = get_article_participant($aid);
@@ -22,6 +25,8 @@ $article_contributors = get_article_contributor($aid);
 $article_reviewer = get_article_reviewer($aid);
 $article_reviewer_check = check_article_reviewer($aid);
 $reviewer_details = get_reviewer_details();
+
+print_r($copyedited_files);
 ?>
 
 <!DOCTYPE html>
@@ -544,29 +549,58 @@ table {
                                                                 <table class="table table-striped" id="DataTable">
                                                                     <thead>
                                                                         <tr>
-                                                                            <th colspan="2"><h6>Copyedited Files</h6></th>
+                                                                            <th colspan="3"><h6>Copyedited Files</h6></th>
                                                                             <th style="text-align: right;">
-                                                                                <button type="button" class="btn btn-dark" id="uploadButton" style="width: 150px;" onclick="">Select Files</button>
+                                                                                <button type="button" class="btn btn-dark" id="uploadButton" style="width: 150px;" data-bs-toggle="modal" data-bs-target="#addCopyeditedFilesModal">Select Files</button>
                                                                             </th>
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                    <?php if (empty($article_discussion)): ?>
+                                                                    <?php if (empty($copyeditedsubmission_files)  && empty($copyeditedrevision_files)  && empty($copyedited_files)): ?>
                                                                         <tr>
-                                                                            <td colspan="3" class="text-center">No Items</td>
+                                                                            <td colspan="4" class="text-center">No Files</td>
                                                                         </tr>
                                                                     <?php else: ?>
-                                                                        <?php foreach ($article_discussion as $article_discussionval): ?>
-                                                                            <tr>
-                                                                                <td width="5%"><?php echo $article_discussionval->id; ?></td>
-                                                                                <td width="85%"><?php echo $article_discussionval->id; ?></td>
-                                                                                <td width="5%"></td>
-                                                                            </tr>
-                                                                        <?php endforeach; ?>    
+                                                                        <?php foreach ($copyeditedsubmission_files as $copyeditedsubmission_filesval): ?>
+                                                                        <tr>
+                                                                            <td width="5%"><?php echo $copyeditedsubmission_filesval->article_files_id; ?></td>
+                                                                            <td width="65%">
+                                                                                <a href="/Files/submitted-article/<?php echo urlencode($copyeditedsubmission_filesval->file_name); ?>" download>
+                                                                                    <?php echo $copyeditedsubmission_filesval->file_name; ?>
+                                                                                </a>
+                                                                            </td>
+                                                                            <td width="25%"><?php echo $copyeditedsubmission_filesval->file_type; ?></td>
+                                                                            <td width="5%"><span class="badge rounded-pill bg-label-warning">Submission</span></td>
+                                                                        </tr>
+                                                                    <?php endforeach; ?>
+                                                                    <?php foreach ($copyeditedrevision_files as $copyeditedrevision_filesval): ?>
+                                                                        <tr>
+                                                                            <td width="5%"><?php echo $copyeditedrevision_filesval->revision_files_id; ?></td>
+                                                                            <td width="65%">
+                                                                                <a href="/Files/revision-article/<?php echo urlencode($copyeditedrevision_filesval->file_name); ?>" download>
+                                                                                    <?php echo $copyeditedrevision_filesval->file_name; ?>
+                                                                                </a>
+                                                                            </td>
+                                                                            <td width="25%"><?php echo $copyeditedrevision_filesval->file_type; ?></td>
+                                                                            <td width="5%"><span class="badge rounded-pill bg-label-warning">Revision</span></td>
+                                                                        </tr>
+                                                                    <?php endforeach; ?>
+                                                                    <?php foreach ($copyedited_files as $copyedited_filesval): ?>
+                                                                        <tr>
+                                                                            <td width="5%"><?php echo $copyedited_filesval->copyedited_files_id; ?></td>
+                                                                            <td width="65%">
+                                                                                <a href="/Files/copyedited-article/<?php echo urlencode($copyedited_filesval->file_name); ?>" download>
+                                                                                    <?php echo $copyedited_filesval->file_name; ?>
+                                                                                </a>
+                                                                            </td>
+                                                                            <td width="25%"><?php echo $copyedited_filesval->file_type; ?></td>
+                                                                            <td width="5%"><span class="badge rounded-pill bg-label-warning">Copyedited</span></td>
+                                                                        </tr>
+                                                                    <?php endforeach; ?>
                                                                     <?php endif; ?>
                                                                     </tbody>
                                                                     <tfoot>
-                                                                        <th colspan="3" style="text-align: right;"></th>
+                                                                        <th colspan="4" style="text-align: right;"></th>
                                                                     </tfoot>   
                                                                 </table>
                                                             </div>
