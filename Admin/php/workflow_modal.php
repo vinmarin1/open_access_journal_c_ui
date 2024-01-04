@@ -135,10 +135,10 @@ $userlist = get_user_list();
                                 </div>
                             </div>
                         </div>
-                        <div class="row mb-2" id="addMessageButtonx">
-                            <div class="col-md-12 mt-2" id="dynamic-column" style="text-align: right;">
-                                <button type="button" id="addMessageButton" class="btn btn-primary">Add Message</button>
-                            </div>
+                    </div>
+                    <div class="row mb-2" id="addMessageButtonx">
+                        <div class="col-md-12 mt-2" id="dynamic-column" style="text-align: right;">
+                            <button type="button" id="addMessageButton" class="btn btn-primary">Add Message</button>
                         </div>
                     </div>
                 </div>
@@ -712,7 +712,7 @@ $userlist = get_user_list();
                                     <thead>
                                         <tr>
                                             <th colspan="4">
-                                            <h5 class="card-header">Copyediting File</h5>
+                                            <h5 class="card-header">Copyedited File</h5>
                                             </th>
                                         </tr>
                                     </thead>

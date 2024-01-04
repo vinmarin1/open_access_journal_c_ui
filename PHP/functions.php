@@ -44,6 +44,7 @@ function login($data)
             if ($password === $row_author->password) {
                 $_SESSION['USER'] = $row_author;
                 $_SESSION['id'] = $row_author->author_id;
+                $_SESSION['role'] = $row_author->role;
                 $_SESSION['first_name'] = $row_author->first_name;
                 $_SESSION['middle_name'] = $row_author->middle_name;
                 $_SESSION['last_name'] = $row_author->last_name;
