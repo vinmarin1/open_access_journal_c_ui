@@ -266,11 +266,18 @@ $id = $_SESSION['id'];
                   // Assuming you want 10 items per page
                   $itemsPerPageReviewer = 10;
                   $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
-          
-                  $queryReviewr = "SELECT * FROM reviewer_assigned WHERE `author_id` = :author_id LIMIT " . ($currentPage - 1) * $itemsPerPageReviewer . ", $itemsPerPageReviewer";
+                  
+                  $queryReviewer = "SELECT reviewer_assigned.*, article.title 
+                                    FROM reviewer_assigned 
+                                    JOIN article ON article.article_id = reviewer_assigned.article_id 
+                                    WHERE reviewer_assigned.author_id = :author_id 
+                                      AND article.status < 5 
+                                    LIMIT " . ($currentPage - 1) * $itemsPerPageReviewer . ", $itemsPerPageReviewer";
+                  
                   $varsReviewer = array(':author_id' => $id);
-          
-                  $resultReviewer = database_run($queryReviewr, $varsReviewer);
+                  
+                  $resultReviewer = database_run($queryReviewer, $varsReviewer);
+                  
           
                   if ($resultReviewer !== false && count($resultReviewer) > 0) {
                       echo '<table class="table table-hover">';
@@ -304,7 +311,7 @@ $id = $_SESSION['id'];
                           $journalName = isset($journalNames[$row->journal_id]) ? $journalNames[$row->journal_id] : '';
                           echo '<td>' . $journalName . '</td>';
 
-                          $queryDateIssued = "SELECT date_issued FROM reviewer_assigned WHERE author_id = :author_id;";
+                          $queryDateIssued = "SELECT reviewer_assigned.date_issued FROM reviewer_assigned JOIN article ON reviewer_assigned.article_id = article.article_id WHERE article.status < 5 AND reviewer_assigned.author_id = :author_id;";
                           $dateIssuedResult = database_run($queryDateIssued, array(':author_id' => $id));
                           if ($dateIssuedResult !== false && count($dateIssuedResult) > 0){
                             echo '<td>' . $dateIssuedResult[0]->date_issued . '</td>';
@@ -312,12 +319,12 @@ $id = $_SESSION['id'];
                             echo '<td> No date issued </td>';
                           }
                         
-                          $sqlStatus = "SELECT article.status FROM article JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id WHERE reviewer_assigned.author_id = :author_id";
+                          $sqlStatus = "SELECT article.status FROM article JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id WHERE article.status < 5 AND reviewer_assigned.author_id = :author_id";
 
-                          $result = database_run($sqlStatus, array('author_id' => $id));
+                          $resultStatus = database_run($sqlStatus, array('author_id' => $id));
 
-                          if ($result !== false) {
-                          foreach ($result as $rowStatus) {
+                          if ($resultStatus !== false) {
+                          foreach ($resultStatus as $rowStatus) {
                             $statusInfo = isset($journalStatusReviewer[$rowStatus->status]) ? $journalStatusReviewer[$rowStatus->status] : array('text' => '', 'color' => '', 'borderColor' => '');
                             echo '<td><center><span class="badge badge-pill" style="background-color: ' . $statusInfo['color'] . '; border: 1px solid ' . $statusInfo['borderColor'] . ';">' . $statusInfo['text'] . '</span></center></td>';
                           }
