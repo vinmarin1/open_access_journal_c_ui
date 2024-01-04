@@ -263,7 +263,8 @@
 #editor, #editor2, #editor3{
    height: 200px;
    width: 100%;
-   
+   resize: none;
+   font-size: 12px;
  
 }
 
@@ -374,6 +375,11 @@
     margin-left: -20px;
     
    
+}
+
+#input7, #input8{
+    resize: none;
+    height: auto;
 }
 
 #selectRole, #selectRoleUpdate{
@@ -734,9 +740,71 @@
    
 }
 
+#submit{
+    background-color: #0858a4;
+    color: white;
+}
+
 
 #next{
     background-color: #0858a4;
 }
 
 
+#update-article-title, #updatePreviewFileTitle{
+    font-weight: bold;
+    color:#0858a4;
+    text-align: left;
+    margin-bottom: -20px;
+}
+
+#abstractInputPreview, #referencetInputPreview{
+    resize: none;
+}
+
+#previewTitlelabel, #previewAbstractlabel, #previewKeywordlabel, #referenceAbstractlabel, #updatePreviewFile1, #updatePreviewFile2, #updatePreviewFile3{
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: left;
+    color: #0858a4;
+    margin-bottom: 5px;
+    margin-left: 5px;
+
+}
+
+#titleInputPreview, #abstractInputPreview, #keywordInputPreview, #referencetInputPreview{
+    width: 95%;
+    margin-left: 5px;
+    margin-bottom: 20px;
+    font-size: 11px;
+}
+
+#file1UpdatePreview, #file2UpdatePreview, #file3UpdatePreview{
+    width: 70%;
+    margin-left: -25px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    font-size: 11px;
+    display: inline-block;
+
+}
+
+#btnSelectFile1, #btnSelectFile2, #btnSelectFile3{
+    display: inline-block;
+    background-color: #0858a4;
+    
+}
+
+
+#btnPreview_Update{
+    background-color: #0858a4;
+    color: white;
+    float: right;
+    margin-right: 15px;
+}
+
+#btnClose{
+    display: block;
+    float: right;
+    margin-right: 30px;
+    
+}

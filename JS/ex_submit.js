@@ -7,10 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var submitBtn = document.getElementById("submit");
   var form = document.getElementById("form");
   var inputFields = form.querySelectorAll("input");
-  var title = document.getElementById('title');
-  var keywords = document.getElementById('keywords');
-  var abstract = document.getElementById('abstract');
-  var reference = document.getElementById('reference');
+
 
   for (var i = 1; i < tabButtons.length; i++) {
     tabButtons[i].disabled = true;
@@ -135,375 +132,292 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-document.getElementById('form').addEventListener('submit', function (event) {
-  const check = document.getElementById('check').value;
+
+
+
+
+
+document.getElementById('title').addEventListener('input' , function(event){
   const title = document.getElementById('title').value;
-  const abstract = document.getElementById('abstract').value;
-  const keyword = document.getElementById('keyword').value;
-  const reference = document.getElementById('reference').value;
-  const notes = document.getElementById('notes').value;
-  const file_name = document.getElementById('file_name').value;
+  const titlePreview = document.getElementById('input5f1');
+  
 
-  if (!check || !title || !abstract || !keyword || !reference || !notes || !file_name) {
-    event.preventDefault();
-    alert("Please fill in all the required fields.");
-  }
+  
+
+  titlePreview.value = title;
+
+});
+
+
+document.getElementById('editor').addEventListener('input' , function(event){
+  const editor = document.getElementById('editor').value;
+  const abstractPreview = document.getElementById('input7');
+  const abstract = document.getElementById('abstract');
+
+  abstractPreview.value = editor;
+  abstract.value = editor;
+});
+
+
+document.getElementById('keywords').addEventListener('input' , function(event){
+  const keywords = document.getElementById('keywords').value;
+  const keywordsPreview = document.getElementById('input6');
+
+
+  keywordsPreview.value = keywords;
+
+
+});
+
+document.getElementById('editor2').addEventListener('input' , function(event){
+  const editor2 = document.getElementById('editor2').value;
+  const referencePreview = document.getElementById('input8');
+  const reference = document.getElementById('reference');
+  
+
+  referencePreview.value = editor2;
+  reference.value = editor2;
+
+});
+
+
+document.getElementById('editor3').addEventListener('input' , function(event){
+  const editor3 = document.getElementById('editor3').value;
+  const notes = document.getElementById('notes');
+ 
+  
+
+  notes.value = editor3;
+
+
 });
 
 
 
 
-var quill1 = new Quill('#editor', {
-  theme: 'snow'
-});
+document.addEventListener('DOMContentLoaded', function () {
+  const titleInput = document.getElementById('title');
+  const editor = document.getElementById('editor');
+  const keywords = document.getElementById('keywords');
+  const editor2 = document.getElementById('editor2');
 
-var quill2 = new Quill('#editor2', {
-  theme: 'snow'
-});
+  const titleValidation = document.getElementById('title-validation');
+  const abstractValidation = document.getElementById('abstract-validation');
+  const keywordsValidation = document.getElementById('keywords-validation');
+  const referenceValidation = document.getElementById('reference-validation');
 
-var titleInput = document.getElementById("title");
-var keywordsInput = document.getElementById("keywords");
-var abstractInput = document.getElementById('abstract');
-var referenceInput = document.getElementById('reference');
-
-const titleInputValidation = document.getElementById('title');
-const titleValidation = document.getElementById('title-validation');
-
-const keywordsInputValidation = document.getElementById('keywords');
-const keywordsValidation = document.getElementById('keywords-validation');
-
-const abstractInputValidation = document.getElementById('abstract');
-const abstractValidation = document.getElementById('abstract-validation');
-
-quill1.on('text-change', function() {
-  abstractInput.value = quill1.getText();
-  updateButtonState();
-});
-
-quill2.on('text-change', function() {
-  referenceInput.value = quill2.getText();
-  updateButtonState();
-});
-
-titleInput.addEventListener('input', function () {
-  inputValidation(titleInput, titleValidation, function (value) {
-    const wordCount = value.split(/\s+/).length;
-    return wordCount >= 10 && wordCount <= 20;
-  });
-  updateButtonState();
-});
-
-keywordsInput.addEventListener('input', function () {
-  inputValidation(keywordsInput, keywordsValidation, function (value) {
-    const commaCount = (value.match(/,/g) || []).length;
-    return commaCount >= 1 && commaCount <= 4;
-  });
-  updateButtonState();
-});
-
-abstractInput.addEventListener('input', function () {
-  inputValidation(abstractInput, abstractValidation, function (value) {
-    const wordCount = value.split(/\s+/).length;
-    return wordCount < 10;
-  });
-  updateButtonState();
-});
-
-// Periodically check if abstractInput and referenceInput have values
-setInterval(function() {
-  updateButtonState();
-}, 1000); // Adjust the interval as needed
-
-function updateButtonState() {
-  const formFloat = document.getElementById('form-floating-2');
   const formFloating = document.getElementById('form-floating');
-  const formFloating3 = document.getElementById('form-floating-3');
-  const qlToolbar = document.getElementsByClassName('ql-toolbar');
-  const isTitleValid = titleValidation.style.display === 'none';
-  const isKeywordsValid = keywordsValidation.style.display === 'none';
-  const isAbstractValid = abstractValidation.style.display === 'none';
-
-  if (
-    titleInput.value.trim() !== '' &&
-    keywordsInput.value.trim() !== '' &&
-    abstractInput.value.trim() !== '' &&
-    referenceInput.value.trim() !== '' &&
-    isTitleValid &&
-    isKeywordsValid &&
-    isAbstractValid
-  ) {
-    formFloating.style.width = '60%';
-    formFloating3.style.width = '60%';
-    formFloat.style.display = 'inline-block';
-  } else {
-    formFloat.style.display = 'none';
-  }
-
-  
-}
-
-
-function inputValidation(inputElement, validationElement, conditionFunction) {
-  const inputValue = inputElement.value.trim();
-  const isValid = conditionFunction(inputValue);
-  if (isValid) {
-    validationElement.style.display = 'none';
-  } else {
-    validationElement.style.display = 'block';
-  }
-}
-
-
-  var quill3 = new Quill('#editor3', {
-    theme: 'snow'
-  });
-
- 
-
-  quill3.on('text-change', function() {
-    notes.value = quill3.getText();
-  });
-  
-
-  function openFilename(index) {
-    var input = document.getElementById('file_name' + (index === 1 ? '' : index));
-    input.click();
-  
-    input.addEventListener('change', function() {
-      var fileName = input.files[0].name;
-     
-      document.getElementById('fileName' + index).innerText = fileName;
-     
-    });
-  }
-  
-  function deleteFilename(index) {
-    // Get the file input associated with the row
-    var fileInput = document.getElementById('file_name' + (index === 1 ? '' : index));
-
-    // Clear the value of the file input
-    fileInput.value = '';
-
-    // Optionally, you can clear the displayed file name in the table
-    document.getElementById('fileName' + index).innerText = '';
-    // document.getElementById('fileType' + index).innerText = '';
-}
-
-
-
-
-
-
-var titleInput = document.getElementById("title");
-var keywordsInput = document.getElementById("keywords")
-var fileInput = document.getElementById("file_name");
-var fileInputf = document.getElementById("file_name2");
-var fileInputg = document.getElementById("file_name3");
-var contributorInput = document.getElementById("contributor").textContent;
-
-
-
-var input5 = document.getElementById("input5f1");
-var input6 = document.getElementById("input6");
-var input7 = document.getElementById("input7");
-var input8 = document.getElementById("input8");
-var input9 = document.getElementById("input9");
-var input9f = document.getElementById("input9f");
-var input9g = document.getElementById("input9g");
-var input10 = document.getElementById("input10");
-var input11 = document.getElementById("input11");
-var input12 = document.getElementById("input12");
-var input13 = document.getElementById("input13");
-var input14 = document.getElementById("input14");
-var input15 = document.getElementById("input15");
-var input15f = document.getElementById("input15f");
-var input15g = document.getElementById("input15g");
-
-
-titleInput.addEventListener('input', function() {
-  input5.value = titleInput.value;
-  input11.value = titleInput.value;
-
-  
-});
-
-keywordsInput.addEventListener('input', function() {
-  input6.value = keywordsInput.value;
-  input12.value = titleInput.value;
-});
-
-quill1.on('text-change', function() {
-  input7.value = quill1.getText();
-  input13.value = quill1.getText();
-});
-quill2.on('text-change', function() {
-  input8.value = quill2.getText();
-  input14.value = quill2.getText();
-});
-
-fileInput.addEventListener('input', function() {
-
-  if (fileInput.files.length > 0) {
-    
-    input9.value = fileInput.files[0].name;
-   
-    
-  } else {
-   
-    input9.value = "";
-   
-  }
-});
-
-fileInputf.addEventListener('input', function() {
-
-  if (fileInputf.files.length > 0) {
-    
-    input9f.value = fileInputf.files[0].name;
-   
-    
-  } else {
-   
-    input9f.value = "";
-   
-  }
-});
-fileInputg.addEventListener('input', function() {
-
-  if (fileInputg.files.length > 0) {
-    
-    input9g.value = fileInputg.files[0].name;
-   
-    
-  } else {
-   
-    input9g.value = "";
-   
-  }
-});
-
-
-input10.value = contributorInput;
-
-
-
-
-
-
-
-
-
-
-
-
-// document.getElementById('update-cont-2').addEventListener('click', function (event) {
-
-
-
-//   Swal.fire({
-//     html: '<h5 class="title14" id="title-14">Update Article Details</h5>' + '<hr id="swal-d-2">' + '<label class="sub30" id="sub-30">Title: <input type="text" class="form-control" id="input11" value="'+ titleInput.value +'"></label>' +  '<label class="sub31" id="sub-31">Keywords: <input type="text" class="form-control" id="input12" value="'+ keywordsInput.value +'"></label>'  + '<label class="sub32" id="sub-32">Abstract: <input type="text" class="form-control" id="input13" id="input12" value="'+ quill1.getText() +'"></label>' +  '<label class="sub33" id="sub-33">Reference: <input type="text" class="form-control" id="input14" value="'+ quill2.getText() +'"></label>',
-//     footer: '<button  id="btn-article-update">Update</button>',
-//     showConfirmButton: false,
-//   });
-
-//   document.getElementById('btn-article-update').addEventListener('click', function () {
-//     var newTitle = document.getElementById('input11').value;
-//     var newKeywords = document.getElementById('input12').value;
-//     var newAbstract = document.getElementById('input13').value;
-//     var newReference = document.getElementById('input14').value;
-
-  
-//     titleInput.value = newTitle;
-//     keywordsInput.value = newKeywords;
-  
-//     input5.value = newTitle;
-//     input6.value = newKeywords;
-//     input7.value = newAbstract;
-//     input8.value = newReference;
-  
-//     try {
-//       quill1.setText(newAbstract);
-     
-//     } catch (error) {
-//       console.error("Unable to update Abstract Content:", error);
-      
-//     }
-
-//     // i add two separate try catch because its not working when putting them in one :>>>
-    
-//     try {
-//       quill2.setText(newReference);
-     
-//     } catch (error) {
-//       console.error("Unable to update Reference Content:", error);
-      
-//     }
-    
-    
-  
-//     Swal.close();
-//   });
-  
-
- 
-// });
-// document.getElementById('update-cont-3').addEventListener('click', function (event) {
-  
-//   Swal.fire({
-//     html: '<h5 class="title15" id="title-15">Update File Content</h5>' +  '<hr id="swal-d-3">' 
-//     + '<label id="sub-34">File Name: </label>'
-//     + '<input type="text" class="form-control" id="input15" style="width: 70%; display:inline-block" accept=".docx" readonly></input>' + 
-//     '<button type="button" class="btn btn-primary btn-sm" id="newFile">Select File</button> ' + '<input type="text" class="form-control" id="input15f" style="width: 70%; display:inline-block" accept=".docx" readonly></input>' + 
-//     '<button type="button" class="btn btn-primary btn-sm" id="newFilef">Select File</button> '+ '<input type="text" class="form-control" id="input15g" accept=".docx" style="width: 70%; display:inline-block" readonly></input>' + 
-//     '<button type="button" class="btn btn-primary btn-sm" id="newFileg">Select File</button> ',
-//     showConfirmButton: false
-    
-//   })
-
-
-//   document.getElementById('newFile').addEventListener('click', function() {
-//     document.getElementById('file_name').click();
-//   });
-
-//   document.getElementById('file_name').addEventListener('change', function () {
-//     var fileName = this.files[0].name;
-//     document.getElementById('input15').value = fileName;
-// });
-
-// document.getElementById('newFilef').addEventListener('click', function() {
-//   document.getElementById('file_name2').click();
-// });
-
-// document.getElementById('file_name2').addEventListener('change', function () {
-//   var fileNamef = this.files[0].name;
-//   document.getElementById('input15f').value = fileNamef;
-// });
-
-
-// document.getElementById('newFileg').addEventListener('click', function() {
-//   document.getElementById('file_name3').click();
-// });
-
-// document.getElementById('file_name3').addEventListener('change', function () {
-//   var fileNameg = this.files[0].name;
-//   document.getElementById('input15g').value = fileNameg;
-// });
-
-
-
-// });
-
-
-function inputValidation(inputElement, validationElement, conditionFunction) {
-  inputElement.addEventListener('blur', function () {
-      const inputValue = inputElement.value.trim();
-      const isValid = conditionFunction(inputValue);
-      if (isValid) {
-          validationElement.style.display = 'none';
+  const formFloating2 = document.getElementById('form-floating-2');
+  const formFloating3 = document.getElementById('form-floating-3')
+
+  function checkValidations() {
+      // Check if all validations have passed and all inputs have a value
+      if (
+          titleValidation.style.display === 'none' &&
+          abstractValidation.style.display === 'none' &&
+          keywordsValidation.style.display === 'none' &&
+          referenceValidation.style.display === 'none' &&
+          titleInput.value.trim() !== '' &&
+          editor.value.trim() !== '' &&
+          keywords.value.trim() !== '' &&
+          editor2.value.trim() !== ''
+      ) {
+          formFloating.style.width = '60%';
+          formFloating2.style.display = 'inline-block';
+          formFloating3.style.width = '60%';
       } else {
-          validationElement.style.display = 'block';
+          formFloating.style.width = '100%';
+          formFloating2.style.display = 'none';
+          formFloating3.style.width = '100%';
       }
+  }
+
+  titleInput.addEventListener('input', function () {
+      const wordCount = titleInput.value.trim().split(/\s+/).length;
+
+      if (wordCount < 10 || wordCount > 20) {
+          titleValidation.style.display = 'block';
+      } else {
+          titleValidation.style.display = 'none';
+      }
+
+      checkValidations();
+  });
+
+  editor.addEventListener('input', function () {
+      const wordCount = editor.value.trim().split(/\s+/).length;
+
+      if (wordCount < 50 || wordCount > 600) {
+          abstractValidation.style.display = 'block';
+      } else {
+          abstractValidation.style.display = 'none';
+      }
+
+      checkValidations();
+  });
+
+  keywords.addEventListener('input', function () {
+      const commaCount = (keywords.value.match(/,/g) || []).length;
+
+      if (commaCount < 1 || commaCount > 4) {
+          keywordsValidation.style.display = 'block';
+      } else {
+          keywordsValidation.style.display = 'none';
+      }
+
+      checkValidations();
+  });
+
+  editor2.addEventListener('input', function () {
+      const referenceText = editor2.value.trim();
+
+      if (referenceText === '') {
+          referenceValidation.style.display = 'block';
+      } else {
+          referenceValidation.style.display = 'none';
+      }
+
+      checkValidations();
+  });
+});
+
+
+
+
+
+
+function openFilename(index) {
+  var input = document.getElementById('file_name' + (index === 1 ? '' : index));
+  input.click();
+
+  input.addEventListener('change', function() {
+    var fileName = input.files[0].name;
+   
+    document.getElementById('fileName' + index).innerText = fileName;
+   
   });
 }
+
+function deleteFilename(index) {
+  // Get the file input associated with the row
+  var fileInput = document.getElementById('file_name' + (index === 1 ? '' : index));
+
+  // Clear the value of the file input
+  fileInput.value = '';
+
+  // Optionally, you can clear the displayed file name in the table
+  document.getElementById('fileName' + index).innerText = '';
+  // document.getElementById('fileType' + index).innerText = '';
+}
+
+
+function setupFileInput(fileInputId, textInputId) {
+  document.getElementById(fileInputId).addEventListener('change', function(event) {
+    const fileInput = event.target;
+    const fileName = fileInput.files[0].name;
+
+    // Update the value of the corresponding text input with the selected file name
+    document.getElementById(textInputId).value = fileName;
+  });
+}
+
+// Set up listeners for each file input and corresponding text input
+setupFileInput('file_name', 'input9');
+setupFileInput('file_name2', 'input9f');
+setupFileInput('file_name3', 'input9g');
+setupFileInput('file_name', 'file1UpdatePreview');
+setupFileInput('file_name2', 'file2UpdatePreview');
+setupFileInput('file_name3', 'file3UpdatePreview');
+
+
+
+
+
+
+
+
+document.getElementById('update-cont-2').addEventListener('click', function(event) {
+
+  const input5f1 = document.getElementById('input5f1').value;
+  const input7 = document.getElementById('input7').value;
+  const input6 = document.getElementById('input6').value;
+  const input8 = document.getElementById('input8').value;
+ 
+  
+
+  Swal.fire({
+    html: '<div id="update-article-info-container">' +
+    '<p class="h5" id="update-article-title" style=" font-family: Arial, Helvetica, sans-serif;">Update Article Details</p><br><hr>' +
+    '<div id="preview-details-inputs">' +
+    '<p class="h6 mt-5" id="previewTitlelabel">Title:</p> ' + 
+    '<input type="text" class="form-control" id="titleInputPreview" value=" '+ input5f1 +' ">' +
+    '<p class="h6" id="previewAbstractlabel">Abstract:</p> ' + 
+    '<textarea class="form-control" name="abstractInputPreview" id="abstractInputPreview" cols="30" rows="5" style="width: 95%; height: auto" >'+ input7 +'</textarea>' +
+    '<p class="h6" id="previewKeywordlabel">Keyword:</p> ' + 
+    '<input type="text" class="form-control" id="keywordInputPreview" value=" '+ input6 +' ">' +
+    
+    '<p class="h6" id="referenceAbstractlabel">Abstract:</p> ' + 
+    '<textarea class="form-control" name="abstractInputPreview" id="referencetInputPreview" cols="30" rows="5" style="width: 95%; height: auto" >'+ input8 +'</textarea>' +
+    '</div>'+
+    '</div>' + '<button class="btn btn-primary btn-sm" id="btnPreview_Update">Update</button>',
+    showConfirmButton: false,
+  });
+
+  document.getElementById('btnPreview_Update').addEventListener('click', function(event){
+    const titleInputPreview = document.getElementById('titleInputPreview').value;
+    const abstractInputPreview = document.getElementById('abstractInputPreview').value;
+    const keywordInputPreview = document.getElementById('keywordInputPreview').value;
+    const referencetInputPreview = document.getElementById('referencetInputPreview').value;
+
+    const title = document.getElementById('title').value = titleInputPreview;
+    const editor = document.getElementById('editor').value = abstractInputPreview;
+    const keywords = document.getElementById('keywords').value = keywordInputPreview;
+    const editor2 = document.getElementById('editor2').value = referencetInputPreview;
+
+    const input5f1 = document.getElementById('input5f1').value = titleInputPreview;
+    const input7 = document.getElementById('input7').value = abstractInputPreview;
+    const input6 = document.getElementById('input6').value = keywordInputPreview;
+    const input8 = document.getElementById('input8').value = referencetInputPreview;
+
+
+    Swal.close();
+  });
+
+});
+
+document.getElementById('update-cont-3').addEventListener('click', function(event){
+
+  const input9 = document.getElementById('input9').value;
+  const input9f = document.getElementById('input9f').value;
+  const input9g = document.getElementById('input9g').value;
+
+  Swal.fire({
+    html: '<div id="updatePreviewFileContainer">' + 
+          '<p class="h5" id="updatePreviewFileTitle">Update Files</p><br><hr> ' +
+          '<p class="h6 mt-5" id="updatePreviewFile1">File With Author: </p>' +
+          '<input type="text" class="form-control" id="file1UpdatePreview"  value="' + input9 +'">' + '<button type="button" class="btn btn-primary btn-sm" id="btnSelectFile1" onclick="openFilename(1)">Select File</button>' + 
+          '<p class="h6" id="updatePreviewFile2">File With no Author: </p>' +
+          '<input type="text" class="form-control" id="file2UpdatePreview" value="' + input9f +'">' +
+          '<button type="button" class="btn btn-primary btn-sm" id="btnSelectFile2" onclick="openFilename(2)">Select File</button>' +
+          '<p class="h6" id="updatePreviewFile3">Title Page: </p>' +
+          '<input type="text" class="form-control" id="file3UpdatePreview" value="' + input9g +'">' +
+          '<button type="button" class="btn btn-primary btn-sm" id="btnSelectFile2" onclick="openFilename(3)">Select File</button><br>' +
+          '<button type="button"  class="btn btn-secondary btn-sm mt-4" id="btnClose" >Close</button> ' +
+          '</div>',
+    showConfirmButton: false,
+  });
+
+  document.getElementById('btnClose').addEventListener('click', function(event) {
+
+    
+
+    Swal.close();
+
+  });
+
+
+
+});
+
 
 

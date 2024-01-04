@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
 
 <body>
 
@@ -133,20 +133,24 @@
      
       
       <div class="form-floating" id="form-floating">
-        <h6 id="sub-9">Title</h6>
+        <h6 id="sub-9">Title <p id="title-validation" style="color: red; display: none; font-size: 10px;">Title should consist of 10 words and less than 20 words*</p></h6>
 
     
         <input class="form-control" type="text"  id="title" name="title">
       
-        <p id="title-validation" style="color: red; display: none;">Title should consist of 10 words and less than 20 words*</p>
+       
         
-        <h6 id="sub-11">Abstract</h6>
+        <h6 id="sub-11">Abstract<p id="abstract-validation" style="color: red; display: none;  font-size: 10px">The maximum for abstract is 600 words*</p></h6>
 
-        <div id="editor">
+       
+
+        <!-- <div id="editor">
       
-        </div>
+        </div> -->
+        <textarea class="form-control" name="editor" id="editor" cols="30" rows="10"></textarea>
+      
         <input class="form-control" type="text" id="abstract" name="abstract"  style="display: none;">
-        <p id="abstract-validation" style="color: red; display: none;">Maximum of 1000 words*</p>
+       
 
       </div>
 
@@ -194,16 +198,19 @@
 
     <div class="input-details-2 mt-3" id="form-floating-3">
 
-    <h6 id="sub-10">Keywords</h6>
+    <h6 id="sub-10">Keywords <p id="keywords-validation" style="color: red; display: none; font-size: 10px">Keywords should be separated by at least 1 or 4 commas*</p></h6>
       <input class="form-control" type="text" id="keywords" name="keywords">
-      <p id="keywords-validation" style="color: red; display: none;">Keywords should consist at least 1 and a maximum of 4 commas</p>
+      
 
       
-      <h6 class="sub-12 mt-5" id="sub-12">Reference</h6>
+      <h6 class="sub-12 mt-5" id="sub-12">Reference <p id="reference-validation" style="color: red; display: none; font-size: 10px">Reference is required*</p></h6>
 
-      <div id="editor2">
+      <!-- <div id="editor2">
     
-      </div>
+      </div> -->
+      <textarea class="form-control" name="editor2" id="editor2" cols="30" rows="10"></textarea>
+     
+
       <input class="form-control" type="text" id="reference"  name="reference" style="display: none;">
 
       
@@ -335,10 +342,11 @@
 
     <h5 class="title8" id="title-8">Author Notes</h5>
     <h6 class="sub15" id="sub-15">Please provide the following details to help our editorial team manage your submission.</h6>
-    <div id="editor3"></div>
+    <div id="editor4" style="display: none"></div>
 
     </div>
-    <input class="form-control" type="text" id="notes" name="notes" style="display: none;">
+    <textarea class="form-control" name="editor3" id="editor3" cols="30" rows="10" style="width: 93%; height: auto; margin-left: auto;  margin-right: auto "></textarea>
+    <input class="form-control" type="text" id="notes" name="notes" style="display: none; ">
 
 
   </div>
@@ -358,12 +366,17 @@
     <div class="editable-content mt-5" id="editable-content">
       <label id="sub-26">Title: </label><br>
       <input type="text" class="form-control" id="input5f1" readonly><br>
+
+      <label id="sub-28" style="margin-top: 30px">Abstract: </label><br>
+      <!-- <input type="text" class="form-control" id="input7"  readonly><br> -->
+      <textarea class="form-control" name="input7" id="input7" cols="30" rows="10" readonly></textarea>
+
       <label id="sub-27">Keywords: </label><br>
       <input type="text" class="form-control" id="input6" readonly><br>
-      <label id="sub-28">Abstract: </label><br>
-      <input type="text" class="form-control" id="input7" readonly><br>
+    
       <label id="sub-29">Reference: </label><br>
-      <input type="text" class="form-control" id="input8" readonly><br>
+      <!-- <input type="text" class="form-control" id="input8" readonly><br> -->
+      <textarea class="form-control" name="input8" id="input8" cols="30" rows="10" readonly></textarea>
     </div>
 
   
@@ -449,7 +462,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 <script src="../JS/reusable-header.js"></script>
 <script src="../JS/ex_submit.js"></script>  
 <script src="../JS/ex_submit_duplicate_article.js"></script>
