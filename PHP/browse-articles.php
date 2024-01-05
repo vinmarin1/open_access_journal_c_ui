@@ -80,11 +80,14 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 <span class="sort-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><path fill="#e6e6e6" d="M11 7H1l5 7zm-2 7h10l-5-7z"/></svg></span> <!-- Replace with an actual vector icon if available -->
             </div>
             <select id="sortby" name="sortby" class="sort-dropdown" style="color: #0858a4;">
-            <option value="">Choose</option>
+            <option value="" hidden>Choose</option>
             <option value="title">Title</option>
             <option value="recently_added">Recently added</option>
             <option value="publication-date">Publication Date</option>
-            <option value="popular">Most Popular</option>
+            <option value="popular">Interactions (All)</option>
+            <option value="popular">Views</option>
+            <option value="popular">Downloads</option>
+            <option value="popular">Citations</option>
             <!-- Additional sort options here -->
             </select>
         </div>

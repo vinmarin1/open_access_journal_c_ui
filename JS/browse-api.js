@@ -64,6 +64,10 @@ async function fetchData(input,dates,sort) {
                 <p class="stats-value" style="color: #0858a4;">${item.total_downloads}</p>
                 <p class="stats-label" style="color: #959595;">DOWNLOADS</p>
             </div>
+            <div class="view-download">
+            <p class="stats-value" style="color: #0858a4;">${item.total_citations}</p>
+            <p class="stats-label" style="color: #959595;">CITATIONS</p>
+        </div>
         </div>
         <hr style="border-top: 1px solid #ccc; margin: 10px 0;"> <!-- Add a horizontal line -->
         <div class="published-info">

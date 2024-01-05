@@ -88,7 +88,7 @@ function renderArticleDetails(data) {
                       <p style="font-size:small; margin-left: 5px" >DOWNLOADS</p>
                   </div>
                   <div class="citations">
-                      <p style="font-size:large; text-align: center;">20</p>
+                      <p style="font-size:large; text-align: center;">${item.total_citations}</p>
                       <p style="font-size:small; margin-left: 5px" >CITATIONS</p>
                   </div>
               </div>
@@ -195,7 +195,7 @@ function renderArticleDetails(data) {
       navigator.clipboard.writeText(citationContent.querySelector("p").innerHTML);
       handleDownloadLog(item.article_id,"citation");
       Swal.fire({
-        html: '<h4 style="color: #0858a4; font-family: font-family: Arial, Helvetica, sans-serif">Please read and check the guidelines to proceed</4>',
+        html: '<h4 style="color: #0858a4; font-family: font-family: Arial, Helvetica, sans-serif">Successfully copied reference in your clipboard.</h4>',
         icon: 'success',
       })
     })
@@ -204,7 +204,7 @@ function renderArticleDetails(data) {
       navigator.clipboard.writeText(citationContent.querySelector("p").innerHTML);
       handleDownloadLog(item.article_id,"citation");
       Swal.fire({
-        html: '<h4 style="color: #0858a4; font-family: font-family: Arial, Helvetica, sans-serif">Please read and check the guidelines to proceed</4>',
+        html: '<h4 style="color: #0858a4; font-family: font-family: Arial, Helvetica, sans-serif">Successfully copied reference in your clipboard.</4>',
         icon: 'success',
       })
     })
