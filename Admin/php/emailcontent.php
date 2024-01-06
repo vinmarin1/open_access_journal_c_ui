@@ -139,24 +139,26 @@ $revision_files = get_revision_files($aid);
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                        <?php if (empty($submission_files)): ?>
-                                                            <tr>
-                                                                <td colspan="4" class="text-center">No Files</td>
-                                                            </tr>
-                                                        <?php else: ?>
-                                                            <?php foreach ($submission_files as $submission_filesval): ?>
+                                                            <?php if (empty($submission_files)): ?>
                                                                 <tr>
-                                                                    <td width="5%"><input class="form-check-input review-checkbox" type="checkbox" value="" id="defaultCheck1" data-article-files-id="<?php echo $submission_filesval->article_files_id; ?>"/></td>
-                                                                    <td width="5%"><?php echo $submission_filesval->article_files_id; ?></td>
-                                                                    <td width="65%">
-                                                                        <a href="../../Files/submitted-article/<?php echo urlencode($submission_filesval->file_name); ?>" download>
-                                                                            <?php echo $submission_filesval->file_name; ?>
-                                                                        </a>
-                                                                    </td>
-                                                                    <td width="25%"><?php echo $submission_filesval->file_type; ?></td>
+                                                                    <td colspan="4" class="text-center">No Files</td>
                                                                 </tr>
-                                                            <?php endforeach; ?>
-                                                        <?php endif; ?>
+                                                            <?php else: ?>
+                                                                <?php foreach ($submission_files as $submission_filesval): ?>
+                                                                    <?php if ($submission_filesval->file_type !== 'File with no author'): ?>
+                                                                        <tr>
+                                                                            <td width="5%"><input class="form-check-input review-checkbox" type="checkbox" value="" id="defaultCheck1" data-article-files-id="<?php echo $submission_filesval->article_files_id; ?>"/></td>
+                                                                            <td width="5%"><?php echo $submission_filesval->article_files_id; ?></td>
+                                                                            <td width="65%">
+                                                                                <a href="../../Files/submitted-article/<?php echo urlencode($submission_filesval->file_name); ?>" download>
+                                                                                    <?php echo $submission_filesval->file_name; ?>
+                                                                                </a>
+                                                                            </td>
+                                                                            <td width="25%"><?php echo $submission_filesval->file_type; ?></td>
+                                                                        </tr>
+                                                                    <?php endif; ?>
+                                                                <?php endforeach; ?>
+                                                            <?php endif; ?>
                                                         </tbody>
                                                         <tfoot>
                                                             <th colspan="4" style="text-align: right;">

@@ -203,7 +203,7 @@ $userlist = get_user_list();
                                 <option value="">Select</option>
                                 <option value="Title page">Title page</option>
                                 <option value="File with author">File with author</option>
-                                <option value="File with no author">File with no author</option>
+                                <!-- <option value="File with no author">File with no author</option> -->
                                 <option value="Others">Others</option>
                             </select>
                         </div>
@@ -396,6 +396,7 @@ $userlist = get_user_list();
                                             </tr>
                                         <?php else: ?>
                                             <?php foreach ($submission_files as $submission_filesval): ?>
+                                                <?php if ($submission_filesval->file_type !== 'File with no author'): ?>
                                                 <?php
                                                     $isReviewEqualToOne = ($submission_filesval->copyediting == 1);
                                                 ?>
@@ -411,6 +412,7 @@ $userlist = get_user_list();
                                                     </td>
                                                     <td width="25%"><?php echo $submission_filesval->file_type; ?></td>
                                                 </tr>
+                                                <?php endif; ?>
                                             <?php endforeach; ?>
                                         <?php endif; ?>
                                     </tbody>
@@ -557,7 +559,7 @@ $userlist = get_user_list();
                                     <option value="">Select</option>
                                     <option value="Title page">Title page</option>
                                     <option value="File with author">File with author</option>
-                                    <option value="File with no author">File with no author</option>
+                                    <!-- <option value="File with no author">File with no author</option> -->
                                     <option value="Others">Others</option>
                                 </select>
                             </div>
