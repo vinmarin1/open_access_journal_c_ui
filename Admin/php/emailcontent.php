@@ -11,6 +11,7 @@ $email_content = get_email_content($emc);
 $submission_files = get_submission_files($aid);
 $review_files = get_review_files($aid);
 $revision_files = get_revision_files($aid);
+$copyedited_files = get_copyedited_files($aid);
 ?>
 
 <!DOCTYPE html>
@@ -139,24 +140,26 @@ $revision_files = get_revision_files($aid);
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                        <?php if (empty($submission_files)): ?>
-                                                            <tr>
-                                                                <td colspan="4" class="text-center">No Files</td>
-                                                            </tr>
-                                                        <?php else: ?>
-                                                            <?php foreach ($submission_files as $submission_filesval): ?>
+                                                            <?php if (empty($submission_files)): ?>
                                                                 <tr>
-                                                                    <td width="5%"><input class="form-check-input review-checkbox" type="checkbox" value="" id="defaultCheck1" data-article-files-id="<?php echo $submission_filesval->article_files_id; ?>"/></td>
-                                                                    <td width="5%"><?php echo $submission_filesval->article_files_id; ?></td>
-                                                                    <td width="65%">
-                                                                        <a href="../../Files/submitted-article/<?php echo urlencode($submission_filesval->file_name); ?>" download>
-                                                                            <?php echo $submission_filesval->file_name; ?>
-                                                                        </a>
-                                                                    </td>
-                                                                    <td width="25%"><?php echo $submission_filesval->file_type; ?></td>
+                                                                    <td colspan="4" class="text-center">No Files</td>
                                                                 </tr>
-                                                            <?php endforeach; ?>
-                                                        <?php endif; ?>
+                                                            <?php else: ?>
+                                                                <?php foreach ($submission_files as $submission_filesval): ?>
+                                                                    <?php if ($submission_filesval->file_type !== 'File with no author'): ?>
+                                                                        <tr>
+                                                                            <td width="5%"><input class="form-check-input review-checkbox" type="checkbox" value="" id="defaultCheck1" data-article-files-id="<?php echo $submission_filesval->article_files_id; ?>"/></td>
+                                                                            <td width="5%"><?php echo $submission_filesval->article_files_id; ?></td>
+                                                                            <td width="65%">
+                                                                                <a href="../../Files/submitted-article/<?php echo urlencode($submission_filesval->file_name); ?>" download>
+                                                                                    <?php echo $submission_filesval->file_name; ?>
+                                                                                </a>
+                                                                            </td>
+                                                                            <td width="25%"><?php echo $submission_filesval->file_type; ?></td>
+                                                                        </tr>
+                                                                    <?php endif; ?>
+                                                                <?php endforeach; ?>
+                                                            <?php endif; ?>
                                                         </tbody>
                                                         <tfoot>
                                                             <th colspan="4" style="text-align: right;">
@@ -216,27 +219,24 @@ $revision_files = get_revision_files($aid);
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                        <?php if (empty($submission_files)): ?>
-                                                            <tr>
-                                                                <td colspan="4" class="text-center">No Files</td>
-                                                            </tr>
-                                                        <?php else: ?>
-                                                            <?php foreach ($submission_files as $submission_filesval): ?>
-                                                                <?php
-                                                                $isChecked = ($submission_filesval->file_type === 'File with no author') ? 'checked' : '';
-                                                                ?>
+                                                            <?php if (empty($copyedited_files)): ?>
                                                                 <tr>
-                                                                    <td width="5%"><input class="form-check-input submission-checkbox" type="checkbox" value="" id="defaultCheck1" data-article-files-id="<?php echo $submission_filesval->article_files_id; ?>" <?php echo $isChecked; ?> /></td>
-                                                                    <td width="5%"><?php echo $submission_filesval->article_files_id; ?></td>
-                                                                    <td width="65%">
-                                                                        <a href="../../Files/submitted-article/<?php echo urlencode($submission_filesval->file_name); ?>" download>
-                                                                            <?php echo $submission_filesval->file_name; ?>
-                                                                        </a>
-                                                                    </td>
-                                                                    <td width="25%"><?php echo $submission_filesval->file_type; ?></td>
+                                                                    <td colspan="4" class="text-center">No Files</td>
                                                                 </tr>
-                                                            <?php endforeach; ?>
-                                                        <?php endif; ?>
+                                                            <?php else: ?>
+                                                                <?php foreach ($copyedited_files as $copyedited_filesval): ?>
+                                                                    <tr>
+                                                                        <td width="5%"><input class="form-check-input copyedited-checkbox" type="checkbox" value="" id="defaultCheck1" data-copyedited-files-id="<?php echo $copyedited_filesval->copyedited_files_id; ?>" checked/></td>
+                                                                        <td width="5%"><?php echo $copyedited_filesval->copyedited_files_id; ?></td>
+                                                                        <td width="65%">
+                                                                            <a href="../../Files/revision-article/<?php echo urlencode($copyedited_filesval->file_name); ?>" download>
+                                                                                <?php echo $copyedited_filesval->file_name; ?>
+                                                                            </a>
+                                                                        </td>
+                                                                        <td width="25%"><?php echo $copyedited_filesval->file_type; ?></td>
+                                                                    </tr>
+                                                                <?php endforeach; ?>
+                                                            <?php endif; ?>
                                                         </tbody>
                                                         <tfoot>
                                                             <th colspan="4" style="text-align: right;">
