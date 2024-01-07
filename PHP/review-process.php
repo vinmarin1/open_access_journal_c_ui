@@ -27,7 +27,7 @@ $userId = $_SESSION['id'];
 </nav>
 
 
-<form id="multiStepForm">
+<form id="form" method="post" action="reviewer_answer.php">
     <!-- Step 1 -->
     <div class="step active" id="step1">
         <div class="main-container">
@@ -440,11 +440,37 @@ $userId = $_SESSION['id'];
                                 <h5>Paper Length:</h5>
 
                                 <div>
-                                    <input type="radio" name="paperLength" value="tooShort" id="tooShort">
-                                    <label for="tooShort">Too Short</label>
+                                <?php
+                                $sqlQuestionnaire = "SELECT question, answer FROM reviewer_questionnaire";
+                                $result = database_run($sqlQuestionnaire);
+
+                                if ($result) {
+                                    foreach ($result as $row) {
+                                        $question = htmlspecialchars($row->question);
+                                        echo '<li class="list-group-item mt-4" style="list-style: none; font-family: &quot;Times New Roman&quot;, Times, serif; color: #0858a4; font-size: 20px;">' . $question . '</li>';
+
+                                        // Split the choices using commas
+                                        $choices = explode(',', $row->answer);
+
+                                        // Display each choice as a radio button
+                                        foreach ($choices as $choice) {
+                                            $uniqueId = htmlspecialchars(trim($choice)) . '_' . uniqid(); // Create a unique ID for each radio button
+                                            echo '<input type="radio" name="answers[' . $question . ']" value="' . htmlspecialchars(trim($choice)) . '" id="' . $uniqueId . '">';
+                                            echo '<label for="' . $uniqueId . '" style="font-size: small; color: gray;">' . htmlspecialchars(trim($choice)) . '</label><br>';
+                                        }
+                                    }
+                                } else {
+                                    echo 'The questionnaire has not been updated yet';
+                                }
+                                ?>
+
+
+
+
+                                  
                                 </div>
 
-                                <div>
+                                <!-- <div>
                                     <input type="radio" name="paperLength" value="quiteShort" id="quiteShort">
                                     <label for="quiteShort">Quite Short</label>
                                 </div>
@@ -583,7 +609,7 @@ $userId = $_SESSION['id'];
                                 <div style="margin-bottom: 30px;">
                                     <input type="radio" name="expertise" value="expert" id="expert" >
                                     <label for="expert">Expert</label>
-                                </div>
+                                </div> -->
 
 
 
@@ -638,8 +664,8 @@ $userId = $_SESSION['id'];
                         </div>
 
                         <div class="btn-final">
-                            <button class="btn tbn-primary btn-md" type="submit">Submit</button>
-                            <button id="btnCancel" class="btn tbn-primary btn-md" onclick="prevStep()" >Cancel</button>
+                            <button type="submit" id="btnSubmit" class="btn tbn-primary btn-md" >Submit</button>
+                            <button type="button" id="btnCancel" class="btn tbn-primary btn-md" onclick="prevStep()" >Cancel</button>
                         </div>
                     </div>
                 </div>
@@ -653,10 +679,13 @@ $userId = $_SESSION['id'];
             </div>
         </div>
     </div>
+  
 </form>
 
 
-
+  <div id="loadingOverlay">
+        <div id="loadingSpinner"></div>
+    </div>
 </body>
 </html>
 
@@ -671,5 +700,6 @@ $userId = $_SESSION['id'];
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <script src="../JS/reusable-header.js"></script>
     <script src="../JS/review-process.js"></script>
+
 </body>
 </html>

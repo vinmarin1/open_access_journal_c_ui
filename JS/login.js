@@ -1,4 +1,21 @@
 $(document).ready(function() {
+    const spinner = document.getElementById('spinner');
+    const forgotPasswordLink = document.getElementById('forgotPasswordLink');
+
+    forgotPasswordLink.addEventListener('click', function (event) {
+     
+        event.preventDefault();
+
+        spinner.style.display = 'inline-block';
+
+        setTimeout(function () {
+          
+            spinner.style.display = 'none';
+
+            window.location.href = '../PHP/recover_account.php';
+        }, 1000);
+    });
+
     // Click event for the login button
     $('#login-button').on('click', function() {
         $('#login-text').hide();

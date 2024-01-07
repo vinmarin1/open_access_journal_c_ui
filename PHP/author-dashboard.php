@@ -267,7 +267,7 @@ $id = $_SESSION['id'];
                   $itemsPerPageReviewer = 10;
                   $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
                   
-                  $queryReviewer = "SELECT reviewer_assigned.*, article.title 
+                  $queryReviewer = "SELECT reviewer_assigned.*, article.*
                                     FROM reviewer_assigned 
                                     JOIN article ON article.article_id = reviewer_assigned.article_id 
                                     WHERE reviewer_assigned.author_id = :author_id 
@@ -299,38 +299,28 @@ $id = $_SESSION['id'];
                           echo '<td><input type="checkbox"></td>';
                        
 
-                          $queryTitle = "SELECT article.title FROM article JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id WHERE article.status < 5 AND article.author_id = :author_id;
+                          $queryTitle = "SELECT article.title FROM article JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id WHERE article.status < 5 AND reviewer_assigned.author_id = :author_id;
                           ";
                           $titleResult = database_run($queryTitle, array(':author_id' => $id));
                           if ($titleResult !== false && count($titleResult) > 0) {
-                              echo '<td>' . $titleResult[0]->title . '</td>';
+                              echo '<td>' . $rowReviewer->title . '</td>';
                           } else {
                               echo '<td>Unknown Title</td>';
                           }
 
-                          $journalName = isset($journalNames[$row->journal_id]) ? $journalNames[$row->journal_id] : '';
+                          $journalName = isset($journalNames[$rowReviewer->journal_id]) ? $journalNames[$rowReviewer->journal_id] : '';
                           echo '<td>' . $journalName . '</td>';
 
-                          $queryDateIssued = "SELECT reviewer_assigned.date_issued FROM reviewer_assigned JOIN article ON reviewer_assigned.article_id = article.article_id WHERE article.status < 5 AND reviewer_assigned.author_id = :author_id;";
-                          $dateIssuedResult = database_run($queryDateIssued, array(':author_id' => $id));
-                          if ($dateIssuedResult !== false && count($dateIssuedResult) > 0){
-                            echo '<td>' . $dateIssuedResult[0]->date_issued . '</td>';
-                          }else{
-                            echo '<td> No date issued </td>';
-                          }
-                        
-                          $sqlStatus = "SELECT article.status FROM article JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id WHERE article.status < 5 AND reviewer_assigned.author_id = :author_id";
+                         $dateIssued = ($rowReviewer->date_issued);
+                         echo  '<td>' . $dateIssued . '</td>';
 
-                          $resultStatus = database_run($sqlStatus, array('author_id' => $id));
+                           
+                         $statusInfo = isset($journalStatusReviewer[$rowReviewer->status]) ? $journalStatusReviewer[$rowReviewer->status] : array('text' => '', 'color' => '', 'borderColor' => '');
+                        echo '<td><center><span class="badge badge-pill" style="background-color: ' . $statusInfo['color'] . '; border: 1px solid ' . $statusInfo['borderColor'] . ';">' . $statusInfo['text'] . '</span></center></td>';
+                        echo '<td><center>...</center></td>';
+                        echo '</tr>';
 
-                          if ($resultStatus !== false) {
-                          foreach ($resultStatus as $rowStatus) {
-                            $statusInfo = isset($journalStatusReviewer[$rowStatus->status]) ? $journalStatusReviewer[$rowStatus->status] : array('text' => '', 'color' => '', 'borderColor' => '');
-                            echo '<td><center><span class="badge badge-pill" style="background-color: ' . $statusInfo['color'] . '; border: 1px solid ' . $statusInfo['borderColor'] . ';">' . $statusInfo['text'] . '</span></center></td>';
-                          }
-                          } else {
-                          echo "No status or this article has been put on the archive articles"; 
-                          }
+                          
 
                         
           
