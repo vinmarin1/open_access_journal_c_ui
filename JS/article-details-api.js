@@ -126,7 +126,7 @@ function renderArticleDetails(data) {
       if (authors != null) {
           return authors
               .split(";")
-              .map((author, index, array) => (index === array.length - 1 ? `& ${author}` : author))
+              .map((author, index, array) => (index === array.length - 1 && array.length > 1 ? `& ${author}` : author))
               .join(", ");
       }
       return "";
@@ -148,7 +148,7 @@ function renderArticleDetails(data) {
               ${
                 item.contributors != null ?
                   selectedCitation === "APA"
-                    ? `${contributors_full}. (${item.publication_date.split(" ")[3]}). ${item.title}. ${item.journal}, ${item.volume.split(" ")[1]}(1). https://openaccessjournalcui-production.up.railway.app/PHP/article-details.php?articleId=${item.article_id}`
+                    ? `${contributors_full} (${item.publication_date.split(" ")[3]}). ${item.title}. ${item.journal}, ${item.volume.split(" ")[1]}(1). https://openaccessjournalcui-production.up.railway.app/PHP/article-details.php?articleId=${item.article_id}`
                   : selectedCitation === "MLA"
                     ? `${contributors_initial}. "${item.title}." ${item.journal}, ${item.publication_date.split(" ")[3]}, ${item.volume.split(" ")[1]}(1).`
                   : selectedCitation === "Chicago"
@@ -178,7 +178,7 @@ function renderArticleDetails(data) {
           <h4 class="small"><b>${initialSelectedCitation} Citation</b></h4>
           <p class="cited" id="cited">
           ${item.contributors != null ? 
-            `${contributors_full}. (${item.publication_date.split(" ")[3]}). ${item.title}. ${item.journal}, ${item.volume.split(" ")[1]}(1). https://openaccessjournalcui-production.up.railway.app/PHP/article-details.php?articleId=${item.article_id}`
+            `${contributors_full} (${item.publication_date.split(" ")[3]}). ${item.title}. ${item.journal}, ${item.volume.split(" ")[1]}(1). https://openaccessjournalcui-production.up.railway.app/PHP/article-details.php?articleId=${item.article_id}`
             : 
             `${item.title}(${item.publication_date.split(" ")[3]}).${item.journal}, ${item.volume.split(" ")[1]}(1). https://openaccessjournalcui-production.up.railway.app/PHP/article-details.php?articleId=${item.article_id}`
 
