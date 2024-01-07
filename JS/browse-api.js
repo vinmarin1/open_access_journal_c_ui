@@ -44,7 +44,13 @@ async function fetchData(input,dates,sort) {
       for (const keyword of keywordsArray) {
         keywordsHTML += `<span class="keyword">${keyword.trim()}</span>`;
       }
-      
+      let contributorsHTML = "";
+      if (item.contributors != null) {
+        contributorsHTML = "By "
+        for (const contributors of item.contributors.split(",")) {
+          contributorsHTML += `<a href="https://orcid.org/${contributors.split("->")[1]}">${contributors.split("->")[0]}</a> | `;
+        }
+      }
       articleDiv.innerHTML = `
         <div class="article-details">
         <h6 style="color: #0858a4;"><strong>${item.title} - (${item.publication_date})</strong></h6>
@@ -72,7 +78,7 @@ async function fetchData(input,dates,sort) {
         <hr style="border-top: 1px solid #ccc; margin: 10px 0;"> <!-- Add a horizontal line -->
         <div class="published-info">
             <h6 class="publish-label" style="color: #0858a4;"><strong>Published in The ${item.journal}</strong></h6>
-            <p class="authors" style="color: #959595;">${item.author}</p>
+            <p class="authors" style="color: #959595;">${contributorsHTML}</p>
             
         </div>
     </div>
@@ -87,6 +93,5 @@ async function fetchData(input,dates,sort) {
 
   } catch (error) {
     console.error('Error fetching data:', error);
-    // You can handle errors or display a message as needed
   }
 }
