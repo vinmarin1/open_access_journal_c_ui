@@ -49,9 +49,8 @@ include 'function/issue_function.php';
                                 <td width="50%"><?php echo  $issueslistval->cover_image; ?></td>
                                 <td width="50%"><?php echo  $issueslistval->url_path; ?></td>
                                 <td width="10%">
-                                <button type="button" class="btn btn-outline-success">Update</button>
-                                    <!-- btn for delete prod modal -->
-                                    <button type="button" class="btn btn-outline-danger">Delete</button>
+                                <button type="button" class="btn btn-outline-success" onclick="updateModal(<?php echo $issueslistval->issues_id; ?>)">Update</button>
+                                <button type="button" class="btn btn-outline-danger" onclick="archiveJournal(<?php echo $issueslistval->issues_id; ?>, '<?php echo $issueslistval->volume; ?>', '<?php echo $issueslistval->title; ?>')">Archive</button>
                                   </td>
                             </tr>
                         <?php endforeach; ?>
@@ -117,6 +116,36 @@ include 'function/issue_function.php';
             form.reportValidity();
         }
     }
+    function updateModal(issues_id) {
+        $.ajax({
+            type: 'POST',
+            url: '../php/function/issue_function.php',
+            data: { action: 'fetch', issues_id: issues_id },
+            dataType: 'json',
+            success: function (response) {
+                console.log('Response from server:', response);
+
+                if (response.status === true && response.data.length > 0) {
+                    const issueData = response.data[0];
+                    console.log('Issue Data:', issueData);
+
+                    $('#xissues_id').val(issueData.issues_id);
+                    $('#xvolume').val(issueData.volume);
+                    $('#xnumber').val(issueData.number);
+                    $('#xyear').val(issueData.year);
+                    $('#xtitle').val(issueData.title);
+                    $('#xdescription').val(issueData.description);
+                    $('#xurl_path').val(issueData.url_path);
+
+                    $('#updateModal').modal('show');
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log('AJAX Error:', textStatus, errorThrown);
+                console.log('Error fetching user data');
+            }
+        });
+    }
 
     function saveChanges() {
         $('#sloading').toggle();
@@ -129,6 +158,7 @@ include 'function/issue_function.php';
             year: $('#year').val(),
             title: $('#title').val(),
             description: $('#description').val(),
+            url_path: $('#url_path').val(),
         };
 
         $.ajax({
@@ -153,6 +183,39 @@ include 'function/issue_function.php';
                     alert("Failed to update record. Please try again.");
                 }
             },
+        });
+    }
+    
+    function archiveIssue(issues_id, volume, title) {
+        $('#archiveModal').modal('show');
+        $('#archiveModalTitle').text('Archive Issue');
+        $('#issuesInfo').html('<strong>volume:</strong> ' + volume + ' <br><strong>Title:</strong> ' + title + '<br><strong>ID:</strong> ' + issues_id);
+
+        $('#archiveModalSave').off().on('click', function () {
+            $('#sloading').toggle();
+            $.ajax({
+                url: "../php/function/issue_function.php",
+                method: "POST",
+                data: { action: "archive", issues_id: issues_id},
+                success: function (data) {
+                    var response = JSON.parse(data);
+
+                    if (response.status) {
+                        $('#sloading').toggle();
+                        $('#archiveModalMessage').text('Issue archived successfully');
+                    } else {
+                        $('#archiveModalMessage').text('Failed to archive issue');
+                    }
+                        $('#archiveModal').modal('hide');
+                        location.reload();
+                },
+                error: function (xhr, status, error) {
+                    console.error("Ajax request failed:", error);
+                    $('#archiveModalMessage').text('Failed to archive issue');
+                    $('#archiveModal').modal('hide');
+                    location.reload();
+                }
+            });
         });
     }
 
@@ -219,6 +282,83 @@ include 'function/issue_function.php';
         </div>
         </form>
     </div>
+     <!-- Update Modal -->
+     <div class="modal fade" id="updateModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel3">Update Issues</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row mb-2">
+                        <div class="col-md-12 mb-2">
+                            <input type="hidden" id="xissues_id" class="form-control"/>
+                            <label for="xvolume" class="form-label">Volume</label>
+                            <input type="number" id="xvolume" class="form-control" placeholder="volume" />
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-12 mb-2">
+                            <label for="xnumber" class="form-label">Number</label>
+                            <input type="number" id="xnumber" class="form-control" placeholder="number" />
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-12 mb-2">
+                            <label for="xyear" class="form-label">Year</label>
+                            <input type="number" id="xyear" class="form-control" placeholder="year" />
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-12 mb-2">
+                                <label for="xtitle" class="form-label">title</label>
+                                <textarea class="form-control" id="xtitle" rows="9"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                        <div class="col-md-12">
+                                <label for="xdescription" class="form-label">Description</label>
+                                <textarea class="form-control" id="xdescription" rows="9"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                        <div class="col-md-12 mb-2">
+                                <label for="xurl_path" class="form-label">Url Path</label>
+                                <textarea class="form-control" id="xurl_path" rows="9"></textarea>
+                            </div>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="saveChanges()">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Archive Modal -->
+    <div class="modal fade" id="archiveModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="archiveModalTitle">Archive Issue</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <h5 class="modal-title" id="modalToggleLabel">Are you sure you want to archive this Issue?</h5>
+                        <p id="issueInfo"></p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="archiveModalSave">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
 
