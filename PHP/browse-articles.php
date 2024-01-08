@@ -212,21 +212,30 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
         }
     }
     }
-
-
-    // Add event listeners to the checkboxes
     year1Checkbox.addEventListener('change', () => updateSelectedYears(year1Checkbox, "2022"));
     year2Checkbox.addEventListener('change', () => updateSelectedYears(year2Checkbox, "2023"));
     year3Checkbox.addEventListener('change', () => updateSelectedYears(year3Checkbox, "2024"));
     
+    const sortSelect = document.querySelector("select");
+    let sortSelected = "total_interactions"
+
+    
+    // handle search element event submit with sorting change
     document.getElementById('search-form').addEventListener('submit', function(event) {
         event.preventDefault(); 
         let searchInputValue = document.getElementById('result').value;
         let year = document.getElementById('year1').value;
+        fetchData(searchInputValue, selectedYears, sortSelected);
 
-        let sortby = document.getElementById('sortby').value;
-        fetchData(searchInputValue, selectedYears, sortby);
+    });
 
+    // handle sort select element event change
+    sortSelect.addEventListener('change', function(event) {
+        event.preventDefault(); 
+        let searchInputValue = document.getElementById('result').value;
+        let year = document.getElementById('year1').value;
+            sortSelected = sortSelect.value;
+        fetchData(searchInputValue, selectedYears, sortSelected);
     });
 
     var result = document.getElementById('result');
