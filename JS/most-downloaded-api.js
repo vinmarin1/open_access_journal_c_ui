@@ -5,6 +5,14 @@ function navigateToArticle(articleId){
   window.location.href = `../PHP/article-details.php?articleId=${articleId}`;
 }
 
+const sortSelect = document.querySelector("select");
+let sortSelected = "total_interactions"
+sortSelect.addEventListener("change", function () {
+   sortSelected = sortSelect.value;
+   fetchData()
+
+})
+
 async function fetchData() {
   try {
     const response = await fetch('https://web-production-cecc.up.railway.app/api/recommendations/', {
@@ -14,7 +22,7 @@ async function fetchData() {
       },
       body: JSON.stringify({
         "period": "",
-        "category": "total_downloads"
+        "category": sortSelected
       })
     });
 
@@ -27,11 +35,13 @@ async function fetchData() {
     console.log('API Response:', data);
 
     // Assuming 'data.recommendations' is an array
-    const articlesContainer = document.querySelector('#most-downloaded');
+    const articlesContainer = document.querySelector('#most-popular');
+    articlesContainer.innerHTML=''
     
 
     data.recommendations.splice(0,5).forEach(item => {
       const articleDiv = document.createElement('div');
+      articleDiv.innerHTML = ''
       articleDiv.classList.add('item');
       articleDiv.addEventListener('click', () => navigateToArticle(item.article_id));
       articleDiv.innerHTML = `
