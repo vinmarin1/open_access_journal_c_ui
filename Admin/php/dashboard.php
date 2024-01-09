@@ -130,9 +130,17 @@ include 'function/dashboard_functions.php';
                  <!-- Chart containers -->
                 <div class="chart-container">
                     <select id="yearDropdown"></select>
+                    <label for="logType">Select Graph:</label>
+                    <select id="logType" onchange="updateGraph()">
+                        <option value="read">Reads</option>
+                        <option value="download">Downloads</option>
+                    </select>
                     <div class="chart-title">Article Engagement Based On Journal Type</div>
                     <canvas id="lineChart1"></canvas>
                     <div id="conditionalDiv" style="display: none;">Conditional Content</div>
+                    <!-- Add a dropdown for selecting the type -->
+
+                    <!-- Add canvas elements for the charts -->
                 </div> 
                 <div class="chart-container">
                     <div class="chart-title">Article Engagement Based On User Demographics</div>
@@ -188,6 +196,32 @@ include 'function/dashboard_functions.php';
             });
         }
 
+    //     function updateGraph() {
+    //     var selectedType = document.getElementById("logType").value;
+
+    //     // Update the data and redraw the corresponding chart
+    //     if (selectedType === 'read') {
+    //         updateChart(readsData, 'Monthly Reads', 'blue');
+    //     } else if (selectedType === 'download') {
+    //         updateChart(downloadsData, 'Monthly Downloads', 'green');
+    //     }
+    // }
+    // function updateChart(data, label, color) {
+    //     var ctx = document.getElementById(selectedType + 'Chart').getContext('2d');
+    //     var chart = new Chart(ctx, {
+    //         type: 'line',
+    //         data: {
+    //             labels: Object.keys(data),
+    //             datasets: [{
+    //                 label: label,
+    //                 data: Object.values(data),
+    //                 borderColor: color,
+    //                 borderWidth: 2,
+    //                 fill: false
+    //             }]
+    //         }
+    //     });
+
         // Function to fill data for all 12 months
         function fillDataForAllMonths(data) {
             var filledData = Array(12).fill(0); // Initialize array with zeros for all 12 months
@@ -233,17 +267,23 @@ include 'function/dashboard_functions.php';
     ]
 };
         
-          // Years for the dropdown list
-        var years = ['2023', '2024', '2025'];
+<!-- Years for the dropdown list -->
+var years = ['2023', '2024', '2025'];
 
-        // Populate the dropdown list
-        var dropdown = document.getElementById('yearDropdown');
-        for (var i = 0; i < years.length; i++) {
-            var option = document.createElement('option');
-            option.value = years[i];
-            option.text = years[i];
-            dropdown.add(option);
-        }
+<!-- Populate the dropdown list with the selected year -->
+var dropdown = document.getElementById('yearDropdown');
+for (var i = 0; i < years.length; i++) {
+    var option = document.createElement('option');
+    option.value = years[i];
+    option.text = years[i];
+
+    // Set the selected attribute for the current year
+    if (years[i] == <?php echo $selectedYear; ?>) {
+        option.selected = true;
+    }
+
+    dropdown.add(option);
+}
 
 
 
