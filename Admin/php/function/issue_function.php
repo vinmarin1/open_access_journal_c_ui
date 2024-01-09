@@ -113,33 +113,36 @@ if (!function_exists('get_issues_list')) {
                 
         
                 function updateIssueData() {
-                    $issues_id = $_POST['issues_id'];
-                    $updatedData = $_POST['updated_data'];
-                
-                    $query = "UPDATE issues 
-                                SET volume = ?, number = ?, year = ?,title = ?, description = ? url_path = ?
-                                WHERE issues_id = ?";
+                    try {
+                        $issues_id = $_POST['issues_id'];
+                        $updatedData = $_POST['updated_data'];
                     
-                    $pdo = connect_to_database();
-                
-                    $stm = $pdo->prepare($query);   
-                    $check = $stm->execute([
-                        $updatedData['volume'],
-                        $updatedData['number'],
-                        $updatedData['year'],
-                        $updatedData['title'],
-                        $updatedData['description'],
-                        $updatedData['url_path'],
-                        $issues_id
-            
-                    ]);
-                
-                    header('Content-Type: application/json');
-                
-                    if ($check !== false) {
-                        echo json_encode(['status' => true, 'message' => 'issues data updated successfully']);
-                    } else {
-                        echo json_encode(['status' => false, 'message' => 'Failed to update issues data']);
+                        $query = "UPDATE issues 
+                                    SET volume = ?, number = ?, year = ?, title = ?, description = ?, url_path = ?
+                                    WHERE issues_id = ?";
+                        
+                        $pdo = connect_to_database();
+                    
+                        $stm = $pdo->prepare($query);
+                        $check = $stm->execute([
+                            $updatedData['volume'],
+                            $updatedData['number'],
+                            $updatedData['year'],
+                            $updatedData['title'],
+                            $updatedData['description'],
+                            $updatedData['url_path'],
+                            $issues_id
+                        ]);
+                    
+                        header('Content-Type: application/json');
+                    
+                        if ($check !== false) {
+                            echo json_encode(['status' => true, 'message' => 'Issues data updated successfully']);
+                        } else {
+                            echo json_encode(['status' => false, 'message' => 'Failed to update issues data']);
+                        }
+                    } catch (PDOException $e) {
+                        echo json_encode(['status' => false, 'message' => 'Database error: ' . $e->getMessage()]);
                     }
                 }
             
@@ -150,7 +153,7 @@ if (!function_exists('get_issues_list')) {
                     $query = "UPDATE issues  SET status = 0 WHERE issues_id = ?";
                     $result = execute_query($query, [$issues_id]);
                 
-                    echo json_encode(['status' => $result !== false, 'message' => $result !== false ? 'Issues archived successfully' : 'Failed to archive journal']);
+                    echo json_encode(['status' => $result !== false, 'message' => $result !== false ? 'Issues archived successfully' : 'Failed to archive issue']);
                 }
             
                 
