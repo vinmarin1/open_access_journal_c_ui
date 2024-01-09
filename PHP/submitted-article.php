@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+require 'dbcon.php';
+$userId = $_SESSION['id'];
+$articleId = isset($_GET['id']) ? $_GET['id'] : null;
+?>
+
+
 <!DOCTYPE html>
 <html>
 <meta charset="UTF-8">
@@ -24,7 +33,23 @@
         <div class="breadcrumbs">
             Dashboard / Author / Submitted Articles
         </div>
-    A Classroom-based Action Research on Selected First Year Information Technology Students of Quezon City University for the Second Semester of Academic Year 2021-2022
+        <p id="title">
+            <?php 
+                $sqlReviewraticle = "SELECT title FROM article WHERE article_id =:article_id AND author_id =:author_id";
+
+                $result = database_run($sqlReviewraticle, array('author_id' => $userId,
+                        'article_id' => $articleId));
+
+                if ($result !== false) {
+                    foreach ($result as $row) {
+                        echo $row->title;
+                    }
+                } else {
+                    echo "No articles found."; 
+                }
+            ?>
+        </p>
+
     </div>
 </div>
 <div class="row1">
@@ -32,19 +57,66 @@
     <!-- Abstract content goes here -->
         <div class="abstract-title">Abstract</div>
         <div class="abstract-content">
-            After fighting the COVID-19 pandemic for more than two years, food production could not keep up with the rapid population expansion, which led to increased food prices and the prevalence of hunger and poverty. In this feasibility project, the company's primary objective, GAIAnova Inc., is to innovate a mobile application to help the environment produce fresh vegetables at home called GAIAnova Mobile Application. It offers a variety of information, knowledge, and step by step procedures regarding urban farming, types of urban farming, plant diseases, water mixtures, pest control, etc., to promote urban farming in Quezon City. The objective of the market study was to determine self-sufficient gardening as a revolutionary and profitable application for urban farming using the biological and knowledge gap. The market study was conducted with a total respondent of 100-200 every barangay in Quezon City. The findings showed a 97.7% acceptance rate from participants, and involved demands sums $37,234 for 2023. As a result of the rapid growth in technology and the fact that most people like to use their mobile phones, researchers believe it would be advantageous to create a product that readily conveys the value of urban farming and the advantages it can provide to people. Due to the rapid growth of technology, the researchers see it as a benefit to produce a product that easily explains the value of urban farming and its benefits to people. Furthermore, this research aims to produce a groundbreaking mobile application that will be valuable for students, farmers, agriculture enthusiasts, and plant lovers.
+            <p id="display-abstract">
+                <?php 
+                    $sqlReviewraticle = "SELECT abstract FROM article WHERE article_id =:article_id AND author_id =:author_id";
+
+                    $result = database_run($sqlReviewraticle, array('author_id' => $userId,
+                            'article_id' => $articleId));
+
+                    if ($result !== false) {
+                        foreach ($result as $row) {
+                            echo $row->abstract;
+                        }
+                    } else {
+                        echo "No articles found."; 
+                    }
+                ?>
+            </p>
         </div>
     </div>
     <div class="column1">
 
         <div class="status">
-            <span class="status-label review">Review</span>
+        <p id="display-status">
+            <?php
+
+                $sqlStatus = "SELECT article_status.status FROM article_status JOIN article ON article_status.status_id = article.status WHERE article.author_id = :author_id AND article.article_id = :article_id";
+
+                $result = database_run($sqlStatus, array('author_id' => $userId,
+                'article_id' => $articleId));
+
+                if ($result !== false) {
+                foreach ($result as $row) {
+                echo $row->status;
+                }
+                } else {
+                echo "No status for this article"; 
+                }
+            ?>
+        </p>
         </div>
 
         <div class="submit-details">
             <!-- Submission details like dates and IDs goes here -->
             <div class="submit-section">
-                <div class="submit-section-title">Submitted in The Gavel</div>
+                <div class="submit-section-title"><p id="display-submittedOn">
+                    <?php
+
+                        $sqlStatus = "SELECT journal.journal FROM journal JOIN article ON journal.journal_id = article.journal_id WHERE article.author_id = :author_id AND article.article_id = :article_id";
+
+                        $result = database_run($sqlStatus, array('author_id' => $userId,
+                        'article_id' => $articleId));
+
+                        if ($result !== false) {
+                        foreach ($result as $row) {
+                        echo $row->journal;
+                        }
+                        } else {
+                        echo "No journal for this article"; 
+                        }
+                    ?>
+                </p></div>
             </div>
             <div class="logs-date-container">
                 <div class="logs">
@@ -54,7 +126,24 @@
                     <div class="log-entry"><b>Review</b><br>Reviewed by Reviewer B</div>
                     <div class="log-entry"><b>Review</b><br>Reviewed by Reviewer A</div>
                     <div class="log-entry"><b>Review</b><br>Send for review</div>
-                    <div class="log-entry"><b>Submission</b><br>Submitted in the Gavel</div>
+                    <div class="log-entry"><p id="submitOn">
+
+                    <?php
+
+                    $sqlStatus = "SELECT journal.journal FROM journal JOIN article ON journal.journal_id = article.journal_id WHERE article.author_id = :author_id AND article.article_id = :article_id";
+
+                    $result = database_run($sqlStatus, array('author_id' => $userId,
+                    'article_id' => $articleId));
+
+                    if ($result !== false) {
+                    foreach ($result as $row) {
+                    echo $row->journal;
+                    }
+                    } else {
+                    echo "No journal for this article"; 
+                    }
+                    ?>
+                    </p></div>
                 </div>
                 
                 <div class="dates">
@@ -84,43 +173,81 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Article AboutThe Future of Artificial Intelligence_v1.pdf</td>
-                        <td>2023-11-09</td>
+                        <td> 
+                            <?php
+
+                                $sqlStatus = "SELECT article_files.file_name FROM article_files JOIN article ON article_files.article_id = article.article_id WHERE article.author_id = :author_id AND article.article_id = :article_id AND article_files.file_type = 'File with no author' ";
+
+                                $result = database_run($sqlStatus, array('author_id' => $userId,
+                                'article_id' => $articleId));
+
+                                if ($result !== false) {
+                                foreach ($result as $row) {
+                                echo $row->file_name;
+                                }
+                                } else {
+                                echo "No file for this article"; 
+                                }
+                            ?>
+                        </td>
+                        <td>
+                            <?php
+
+                                $sqlStatus = "SELECT article_files.date_added FROM article_files JOIN article ON article_files.article_id = article.article_id WHERE article.author_id = :author_id AND article.article_id = :article_id AND article_files.file_type = 'File with no author' ";
+
+                                $result = database_run($sqlStatus, array('author_id' => $userId,
+                                'article_id' => $articleId));
+
+                                if ($result !== false) {
+                                foreach ($result as $row) {
+                                echo $row->date_added;
+                                }
+                                } else {
+                                echo "No file for this article"; 
+                                }
+                            ?>
+                        </td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <td>Article AboutThe Future of Artificial Intelligence.pdf</td>
                         <td>2023-11-09</td>
-                    </tr>
+                    </tr> -->
                 </tbody>
             </table>
         </div>
         <div class="files-submitted">
-            <div class="table-header">Contributors</div>
-                <table>
-                    <tr>
-                        <th>File name</th>
-                        <th>ORCID</th>
-
-                    </tr>
-                    <tr>
-                        <td>Jane Doe</td>
-                        <td>04923045324</td>
-
-                    </tr>
-                    <tr>
-                        <td>Juan Dela Cruz</td>
-                        <td>04923045324</td>
-
-                    </tr>
-                </table>
+            <div class="table-header"></div>
+        
                 <div class="keywords">
-                    <span>Keywords</span><br><br>
-                    <span class="keyword-tag">technology</span>
-                    <span class="keyword-tag">covid-19</span>
-                    <!-- Repeat the keyword tags as necessary -->
+                    <?php
+                        $sqlKeyword = "SELECT keyword FROM article WHERE article_id = :article_id AND author_id = :author_id";
+                        
+                        $result = database_run($sqlKeyword, array('author_id' => $userId,
+                        'article_id' => $articleId));
+
+                        if ($result !== false) {
+                            foreach ($result as $row) {
+                                $keywords = explode(',', $row->keyword);
+                                foreach ($keywords as $keyword) {
+                                    echo '<li style="list-style-type: none; 
+                                                    margin-right: 5px;
+                                                    width: auto;
+                                                    color: #0858a4;
+                                                    border: 1px solid #0858a4;
+                                                    border-radius: 10px;
+                                                    background-color: white;
+                                                    font-size: 12px;
+                                                    display: inline-block">' . trim($keyword) . '</li>';
+                                }
+                                
+                            }
+                        } else {
+                            echo "No keywords for this article";
+                        }
+                    ?>
                 </div>
+            </div>
         </div>
-    </div>
     <div class="main3">
         <div class="comments-container">
             <div class="table-header">Comments</div>
@@ -225,4 +352,5 @@
 
 </body>
 </html>
+
 

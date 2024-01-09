@@ -83,13 +83,39 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
     $userName = ucfirst($_SESSION['first_name']);
     $author_id = $_SESSION['id'];
 
+  //   $sqlNotif = "SELECT article.article_id, article.title FROM article JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id WHERE reviewer_assigned.author_id = :author_id AND article.status = 5";
+  //   $sqlNotifRun = database_run($sqlNotif, array(':author_id' => $author_id));
     
-    $sqlNotif = "SELECT article.title FROM article JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id WHERE reviewer_assigned.author_id = :author_id";
-    $sqlNotifRun = database_run($sqlNotif, array(':author_id' => $author_id));
+  //   // Check if $sqlNotifRun is not false before using it in the foreach loop
+  //   if ($sqlNotifRun !== false) {
+  //     foreach ($sqlNotifRun as $notif) {
+  //         echo '<div id="nofication-container" style="width: 300px;
+  //             max-width: auto;
+  //             min-width: auto;
+  //             height: 40vh;
+  //             background-color: white;
+  //             float: right;
+  //             z-index: 999;
+  //             margin-top: 20px;
+  //             border-radius: 10px;">
+                      
+  //                     <p class="h5" style="margin-bottom: -30px; margin-top: 10px; margin-left: 10px">Notifications</p><br><hr>
+  
+  //                         <ul style="width: 100%">
+  //                             <li style="list-style-type: none; display: block; font-size: 12px;">
+  //                                 <p style="display: inline-block;">You have been invited as Reviewer Title: </p>
+  //                                 <a style="text-decoration: none; color: gray; display: inline-block;" href="review-process.php?id=' . $notif->article_id . '">' . $notif->title . '</a>
+  //                             </li>
+  //                         </ul>
+  //                 </div>';
+  //     }
+  // }
+  
+    
     
     echo '
         <div id="notification-container">
-            <button id="notification-button">
+            <button type="button" id="notification-button">
                 <i class="fas fa-bell"></i>
                 <span id="notification-count"></span>
             </button>
@@ -122,105 +148,55 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 
 </nav>
 
-<script>
-  document.body.addEventListener('click', function (event) {
-    var notificationBox = document.getElementById('notification-box');
-    var pointsBox = document.getElementById('points-box');
-    var notificationButton = document.getElementById('notification-button');
-    var pointsButton = document.getElementById('points-button');
-
-    if (!event.target.closest('#notification-container') && notificationBox.style.display === 'block') {
-      notificationBox.style.display = 'none';
-    }
-
-    if (!event.target.closest('#points-container') && pointsBox.style.display === 'block') {
-      pointsBox.style.display = 'none';
-    }
-  });
-
+<div class="container-fluid" style="postion: absolute; z-index: 999; width: 100% height: auto">
   <?php
-  $notificationCount = 3;
-  echo "var notificationCount = $notificationCount;\n";
-  ?>
+  if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 
-  function toggleNotification() {
-    var notificationBox = document.getElementById('notification-box');
-    var notificationCountElement = document.getElementById('notification-count');
+    $author_id = $_SESSION['id'];
 
-    var notifications = [
-      "New message received!",
-      "You have a meeting at 2 PM.",
-      "Check your email for updates."
-    ];
-
-    notificationBox.innerHTML = '';
-
-    notifications.forEach(function (message) {
-      var notification = document.createElement('div');
-      notification.className = 'notification-item';
-      notification.textContent = message;
-      notificationBox.appendChild(notification);
-    });
-
-    // Update notification count
-    notificationCount += notifications.length;
-
-    // Update the notification count element
-    notificationCountElement.textContent = notificationCount;
-
-    // Reset the count when the notification box is opened
-    if (notificationBox.style.display === 'none' || notificationBox.style.display === '') {
-      notificationCount = 0;
-      notificationCountElement.textContent = 0;
-    }
-
-    notificationBox.style.display = (notificationBox.style.display === 'none' || notificationBox.style.display === '') ? 'block' : 'none';
-
+    $sqlNotif = "SELECT article.article_id, article.title FROM article JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id WHERE reviewer_assigned.author_id = :author_id AND article.status = 5";
+    $sqlNotifRun = database_run($sqlNotif, array(':author_id' => $author_id));
     
-    notificationCountElement.style.display = 'none';
+    // Check if $sqlNotifRun is not false before using it in the foreach loop
+    if ($sqlNotifRun !== false) {
+      foreach ($sqlNotifRun as $notif) {
+          echo '<div id="nofication-container" style="width: 300px;
+              max-width: auto;
+              min-width: auto;
+              height: 50vh;
+              background-color: white;
+              margin-top: px;
+              border-radius: 10px;
+              margin-left: 1100px;
+              box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+              display: none">
+                      
+                      <p class="h5" style="margin-bottom: -30px; margin-top: 10px; margin-left: 10px">Notifications</p><br><hr>
+  
+                          <ul style="width: 100%">
+                              <li style="list-style-type: none; display: block; font-size: 12px;">
+                                  <p style="display: inline-block;">You have been invited as Reviewer Title: </p>
+                                  <a style="text-decoration: none; color: gray; display: inline-block;" href="review-process.php?id=' . $notif->article_id . '">' . $notif->title . '</a>
+                              </li>
+                          </ul>
+                  </div>';
+      }
+  }
   }
 
-  document.getElementById('notification-button').addEventListener('click', toggleNotification);
+  ?>
+</div>
 
-  var pointsCount = 50; // Set the initial count of points
-  var pointsBox = document.getElementById('points-box');
-  var pointsCountElement = document.getElementById('points-count');
+<script>
 
-  // Example point updates
-  var pointUpdates = [
-    "Earned 10 points for completing a task.",
-    "Received 10 points for logging in.",
-    "Achieved a bonus of 20 points."
-  ];
 
-  // Display each point update
-  pointUpdates.forEach(function (message) {
-    var pointUpdate = document.createElement('div');
-    pointUpdate.className = 'point-update-item';
-    pointUpdate.textContent = message;
-    pointsBox.appendChild(pointUpdate);
-  });
-
-  pointsCount += calculateTotalPoints(pointUpdates);
-
-  // Update the points count element
-  pointsCountElement.textContent = pointsCount;
-
-  function togglePoints() {
-    pointsBox.style.display = (pointsBox.style.display === 'none' || pointsBox.style.display === '') ? 'block' : 'none';
-  }
-
-  function calculateTotalPoints(updates) {
-    return updates.reduce(function (total, update) {
-      var earnedPoints = parseInt(update.match(/\d+/)[0]); // Extract points from the update message
-      return total + (isNaN(earnedPoints) ? 0 : earnedPoints);
-    }, 0);
-  }
 </script>
 
     
       <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" ></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+      <script src="../JS/navbar.js"></script>
 </body>
 </html>
+

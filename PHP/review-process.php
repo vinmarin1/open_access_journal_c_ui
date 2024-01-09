@@ -3,7 +3,7 @@ session_start();
 
 require 'dbcon.php';
 $userId = $_SESSION['id'];
-
+$articleId = isset($_GET['id']) ? $_GET['id'] : null;
 ?>
 
 <!DOCTYPE html>
@@ -33,6 +33,11 @@ $userId = $_SESSION['id'];
         <div class="main-container">
             <div class="content-over">
                 <div class="cover-content">
+                    <!-- <p contenteditable="true" id="htmlContent" name="htmlContent">
+
+                    <?php echo $articleId ?>
+                    </p> -->
+
                     <p> Dashboard / Reviewer / Submitted Articles </p>
                     <h3> 
                         <?php 
@@ -40,9 +45,10 @@ $userId = $_SESSION['id'];
                                             FROM article 
                                             JOIN reviewer_assigned ON article.author_id = reviewer_assigned.author_id 
                                             WHERE reviewer_assigned.article_id = article.article_id AND article.status = 5
-                                            AND reviewer_assigned.author_id = :author_id";
+                                            AND reviewer_assigned.author_id = :author_id AND article.article_id = :article_id";
 
-                        $result = database_run($sqlReviewraticle, array('author_id' => $userId));
+                        $result = database_run($sqlReviewraticle, array('author_id' => $userId,
+                              'article_id' => $articleId));
 
                         if ($result !== false) {
                             foreach ($result as $row) {
@@ -74,9 +80,10 @@ $userId = $_SESSION['id'];
                                             FROM article 
                                             JOIN reviewer_assigned ON article.author_id = reviewer_assigned.author_id 
                                             WHERE reviewer_assigned.article_id = article.article_id AND article.status = 5
-                                            AND reviewer_assigned.author_id = :author_id";
+                                            AND reviewer_assigned.author_id = :author_id AND article.article_id = :article_id" ;
 
-                        $result = database_run($sqlAbstract, array('author_id' => $userId));
+                        $result = database_run($sqlAbstract, array('author_id' => $userId,
+                         'article_id' => $articleId));
 
                         if ($result !== false) {
                             foreach ($result as $row) {
@@ -98,9 +105,10 @@ $userId = $_SESSION['id'];
                                 <?php
 
                                     $sqlStatus = "SELECT article_status.status, article.title FROM article_status JOIN article ON article_status.status_id = article.status JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id AND article.status = 5
-                                    AND reviewer_assigned.author_id = :author_id";
+                                    AND reviewer_assigned.author_id = :author_id AND article.article_id = :article_id";
 
-                                    $result = database_run($sqlStatus, array('author_id' => $userId));
+                                    $result = database_run($sqlStatus, array('author_id' => $userId,
+                                    'article_id' => $articleId));
 
                                     if ($result !== false) {
                                     foreach ($result as $row) {
@@ -117,9 +125,10 @@ $userId = $_SESSION['id'];
                         <h4 style="color: #0858a4; font-family: Arial, Helvetica, sans-serif;" >Submitted in the 
                         <?php
                             $sqlJournal = "SELECT journal.journal, article.title FROM journal JOIN article ON journal.journal_id = article.journal_id JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id AND article.status = 5
-                            AND reviewer_assigned.author_id = :author_id";
+                            AND reviewer_assigned.author_id = :author_id AND article.article_id = :article_id";
 
-                            $result = database_run($sqlJournal, array('author_id' => $userId));
+                            $result = database_run($sqlJournal, array('author_id' => $userId,
+                                  'article_id' => $articleId));
 
                             if ($result !== false) {
                             foreach ($result as $row) {
@@ -139,9 +148,10 @@ $userId = $_SESSION['id'];
                         
                             <?php
                               $sqlJournal = "SELECT journal.journal, article.title FROM journal JOIN article ON journal.journal_id = article.journal_id JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id AND article.status = 5
-                              AND reviewer_assigned.author_id = :author_id";
+                              AND reviewer_assigned.author_id = :author_id AND article.article_id = :article_id";
   
-                              $result = database_run($sqlJournal, array('author_id' => $userId));
+                              $result = database_run($sqlJournal, array('author_id' => $userId,
+                                     'article_id' => $articleId));
   
                               if ($result !== false) {
                               foreach ($result as $row) {
@@ -158,7 +168,7 @@ $userId = $_SESSION['id'];
                         </div>
                         <div class="date">
                             <p style="color: black; font-weight: bold;">Date</p>
-                            <p style="font-size: x-small;">2023-11-09</p>
+                            <p style="font-size: x-small;"><?php echo date('Y-m-d'); ?></p>
                             <p style="margin-top:28px ; font-size: x-small;">2023-11-09</p>
                         </div>
                     </div>
@@ -186,9 +196,10 @@ $userId = $_SESSION['id'];
                                     <td id="fileName1">
                                     <?php
                                     $sqlFileName = "SELECT article_files.file_name, article.title FROM article_files JOIN article ON article_files.article_id = article.article_id JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id WHERE article_files.file_type = 'File with no author' AND article.status = 5
-                                    AND reviewer_assigned.author_id = :author_id";
+                                    AND reviewer_assigned.author_id = :author_id AND article.article_id = :article_id";
         
-                                    $result = database_run($sqlFileName, array('author_id' => $userId));
+                                    $result = database_run($sqlFileName, array('author_id' => $userId,
+                                    'article_id' => $articleId));
         
                                     if ($result !== false) {
                                     foreach ($result as $row) {
@@ -203,9 +214,10 @@ $userId = $_SESSION['id'];
                                     <td id="fileType1">
                                     <?php
                                         $sqlFileDate = "SELECT article_files.date_added, article.title FROM article_files JOIN article ON article_files.article_id = article.article_id JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id WHERE article_files.file_type = 'File with no author' AND article.status = 5
-                                        AND reviewer_assigned.author_id = :author_id";
+                                        AND reviewer_assigned.author_id = :author_id AND article.article_id = :article_id";
             
-                                        $result = database_run($sqlFileDate, array('author_id' => $userId));
+                                        $result = database_run($sqlFileDate, array('author_id' => $userId,
+                                        'article_id' => $articleId));
             
                                         if ($result !== false) {
                                         foreach ($result as $row) {
@@ -278,9 +290,10 @@ $userId = $_SESSION['id'];
                         <div class="keyword1">
                         <ul style="display: flex;">
                             <?php
-                            $sqlKeyword = "SELECT article.keyword FROM article JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id AND article.status = 5 WHERE reviewer_assigned.author_id = :author_id";
+                            $sqlKeyword = "SELECT article.keyword FROM article JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id AND article.status = 5 WHERE reviewer_assigned.author_id = :author_id AND article.article_id = :article_id";
                             
-                            $result = database_run($sqlKeyword, array('author_id' => $userId));
+                            $result = database_run($sqlKeyword, array('author_id' => $userId,
+                            'article_id' => $articleId));
 
                             if ($result !== false) {
                                 foreach ($result as $row) {

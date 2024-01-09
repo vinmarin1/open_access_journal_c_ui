@@ -115,6 +115,18 @@
 }
 
 
+.inviDescript{
+  color: black solid;
+}
+
+.link-list{
+  margin-top: -10px;
+}
+
+.ulList:hover{
+  background-color: #F4F6F7;
+}
+
 
 
 

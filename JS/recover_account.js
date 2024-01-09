@@ -1,50 +1,81 @@
-const emailInput = document.getElementById('email');
-const sendBtn = document.getElementById('sendBtn');
-const firstStep = document.getElementById('firstStep');
-const secondStep = document.getElementById('secondStep');
-const spinner = document.getElementById('spinner');
-const firstStepLabel = document.getElementById('step1Label');
-const secondStepLabel = document.getElementById('step2Label');
-const getEmail = document.getElementById('getEmail');
+$(document).ready(function() {
+    $("#sendBtn").on("click", function() {
+        var email = $("#email").val();
 
+        $(this).prop("disabled", true);
+        $("#spinner").show();
 
+        $.ajax({
+            type: "POST",
+            url: "recover_account_functions.php",
+            data: { email: email },
+            success: function(response) {
+                $("#sendBtn").prop("disabled", false);
 
-emailInput.addEventListener('input', function () {
-    const emailValue = emailInput.value.trim();
-    const emailInputtedValue = document.getElementById('email').value;
+                setTimeout(function() {
+                    $("#spinner").hide();
 
-    getEmail.innerText = emailInputtedValue;
-   
+                    if (response === 'success') {
+                        $("#step1Label").hide();
+                        $("#step2Label").show();
+                        $("#getEmail").text(email);
+                        $("#firstStep").hide();
+                        $("#secondStep").show();
+                    } else {
+                        alert('Error: ' + response);
+                    }
+                }, 3000);
+            },
+            error: function() {
+                $("#sendBtn").prop("disabled", false);
 
-    if (emailValue !== '' && isValidEmail(emailValue)) {
-        sendBtn.removeAttribute('disabled');
-    } else {
-        sendBtn.setAttribute('disabled', 'disabled');
-    }
+                setTimeout(function() {
+                    $("#spinner").hide();
+                    alert('AJAX request failed.');
+                }, 3000);
+            }
+        });
+    });
+
+    // Add input event listener for the email field
+    $("#email").on("input", function() {
+        var email = $("#email").val();
+        // Use a simple email validation regex
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        // Enable or disable the Next button based on the email format
+        $("#sendBtn").prop("disabled", !emailRegex.test(email));
+    });
+
+    // Add input event listener for the OTP field
+    $("#otp").on("input", function() {
+        var otp = $("#otp").val();
+        // Check if the input is a 5-digit number
+        var isFiveDigitNumber = /^\d{5}$/.test(otp);
+
+        // Enable or disable the Enter OTP button based on the input format
+        $("#otpBtn").prop("disabled", !isFiveDigitNumber);
+    });
+
+    $("#form").on("submit", function(e) {
+        e.preventDefault();
+
+        var otp = $("#otp").val();
+
+        $.ajax({
+            type: "POST",
+            url: "check_otp_expiry.php",
+            data: { otp: otp },
+            success: function(response) {
+                if (response === 'expired') {
+                    alert("The OTP you entered has expired. Please try again.");
+                } else {
+                    alert("Entered OTP: " + otp);
+                }
+            },
+            error: function() {
+                alert('Error checking OTP expiry.');
+            }
+        });
+    });
 });
-
-function isValidEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-}
-
-sendBtn.addEventListener('click', function () {
-
-    spinner.style.display = 'inline-block';
-    sendBtn.setAttribute('disabled', 'disabled');
-
- 
-    setTimeout(function () {
-        
-        firstStep.style.display = 'none';
-        firstStepLabel.style.display = 'none';
-        secondStep.style.display = 'block';
-        secondStepLabel.style.display = 'block';
-        spinner.style.display = 'none';
-
-        
-    }, 3000); 
-});
-
-
-

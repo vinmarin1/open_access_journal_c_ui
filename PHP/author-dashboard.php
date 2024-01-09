@@ -183,7 +183,8 @@ $id = $_SESSION['id'];
                           foreach ($result as $row) {
                               echo '<tr>';
                               echo '<td><input type="checkbox"></td>';
-                              echo '<td>' . $row->title . '</td>';
+                              echo '<td><a style="text-decoration: none; color: gray; display: inline-block;" href="submitted-article.php?id=' . $row->article_id . '">' . $row->title . '</a></td>';
+
                            
               
                               $journalName = isset($journalNames[$row->journal_id]) ? $journalNames[$row->journal_id] : '';
