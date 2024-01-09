@@ -84,10 +84,13 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
             <option value="title">Title</option>
             <option value="recently_added">Recently added</option>
             <option value="publication-date">Publication Date</option>
-            <option value="popular">Interactions (All)</option>
-            <option value="popular">Views</option>
-            <option value="popular">Downloads</option>
-            <option value="popular">Citations</option>
+            <optgroup label="Popularity">
+                <option value="popular">All</option>
+                <option value="views">Views</option>
+                <option value="downloads">Downloads</option>
+                <option value="citations">Citations</option>
+            </optgroup>
+         
             <!-- Additional sort options here -->
             </select>
         </div>
@@ -272,6 +275,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 };
                     speechRecognizer.onend = function () {
                     recognizing = false;
+                    searchInputValue = finalTranscripts
                     fetchData(finalTranscripts, selectedYears, sortby);
                     
             };
