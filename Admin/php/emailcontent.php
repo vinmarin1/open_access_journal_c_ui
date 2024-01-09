@@ -215,6 +215,80 @@ $copyedited_files = get_copyedited_files($aid);
                                                     <table class="table table-striped" id="DataTable">
                                                         <thead>
                                                             <tr>
+                                                                <th colspan="4"><h6>Submission Files</h6></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <?php if (empty($submission_files)): ?>
+                                                                <tr>
+                                                                    <td colspan="4" class="text-center">No Files</td>
+                                                                </tr>
+                                                            <?php else: ?>
+                                                                <?php foreach ($submission_files as $submission_filesval): ?>
+                                                                    <?php if ($submission_filesval->copyedited == 1): ?>
+                                                                        <tr>
+                                                                            <td width="5%"><input class="form-check-input copyeditedsubmission-checkbox" type="checkbox" value="" id="defaultCheck1" data-article-files-id="<?php echo $submission_filesval->article_files_id; ?>"/></td>
+                                                                            <td width="5%"><?php echo $submission_filesval->article_files_id; ?></td>
+                                                                            <td width="65%">
+                                                                                <a href="../../Files/submitted-article/<?php echo urlencode($submission_filesval->file_name); ?>" download>
+                                                                                    <?php echo $submission_filesval->file_name; ?>
+                                                                                </a>
+                                                                            </td>
+                                                                            <td width="25%"><?php echo $submission_filesval->file_type; ?></td>
+                                                                        </tr>
+                                                                    <?php endif; ?>
+                                                                <?php endforeach; ?>
+                                                            <?php endif; ?>
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <th colspan="4" style="text-align: right;">
+                                                            </th>
+                                                        </tfoot>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 mt-3" id="dynamic-column">
+                                                <div class="table-responsive text-nowrap">
+                                                    <table class="table table-striped" id="DataTable">
+                                                        <thead>
+                                                            <tr>
+                                                                <th colspan="4"><h6>Revision Files</h6></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <?php if (empty($revision_files)): ?>
+                                                                <tr>
+                                                                    <td colspan="4" class="text-center">No Files</td>
+                                                                </tr>
+                                                            <?php else: ?>
+                                                                <?php foreach ($revision_files as $revision_filesval): ?>
+                                                                    <?php if ($revision_filesval->copyedited == 1): ?>
+                                                                        <tr>
+                                                                            <td width="5%"><input class="form-check-input revisioncopyedited-checkbox" type="checkbox" value="" id="defaultCheck1" data-revision-files-id="<?php echo $revision_filesval->revision_files_id; ?>"/></td>
+                                                                            <td width="5%"><?php echo $revision_filesval->revision_files_id; ?></td>
+                                                                            <td width="65%">
+                                                                                <a href="../../Files/revision-article/<?php echo urlencode($revision_filesval->file_name); ?>" download>
+                                                                                    <?php echo $revision_filesval->file_name; ?>
+                                                                                </a>
+                                                                            </td>
+                                                                            <td width="25%"><?php echo $revision_filesval->file_type; ?></td>
+                                                                        </tr>
+                                                                    <?php endif; ?>
+                                                                <?php endforeach; ?>
+                                                            <?php endif; ?>
+                                                        </tbody>
+                                                        <tfoot>
+                                                            <th colspan="4" style="text-align: right;">
+                                                            </th>
+                                                        </tfoot>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 mt-3" id="dynamic-column">
+                                                <div class="table-responsive text-nowrap">
+                                                    <table class="table table-striped" id="DataTable">
+                                                        <thead>
+                                                            <tr>
                                                                 <th colspan="4"><h6>Copyedited Files</h6></th>
                                                             </tr>
                                                         </thead>
@@ -229,7 +303,7 @@ $copyedited_files = get_copyedited_files($aid);
                                                                         <td width="5%"><input class="form-check-input copyedited-checkbox" type="checkbox" value="" id="defaultCheck1" data-copyedited-files-id="<?php echo $copyedited_filesval->copyedited_files_id; ?>" checked/></td>
                                                                         <td width="5%"><?php echo $copyedited_filesval->copyedited_files_id; ?></td>
                                                                         <td width="65%">
-                                                                            <a href="../../Files/revision-article/<?php echo urlencode($copyedited_filesval->file_name); ?>" download>
+                                                                            <a href="../../Files/copyedited-file/<?php echo urlencode($copyedited_filesval->file_name); ?>" download>
                                                                                 <?php echo $copyedited_filesval->file_name; ?>
                                                                             </a>
                                                                         </td>
@@ -315,6 +389,9 @@ $copyedited_files = get_copyedited_files($aid);
         var checkedCheckboxes = $('.submission-checkbox:checked');
         var checkedCheckboxes1 = $('.review-checkbox:checked');
         var checkedCheckboxes2 = $('.revision-checkbox:checked');
+        var checkedCheckboxes3 = $('.copyeditedsubmission-checkbox:checked');
+        var checkedCheckboxes4 = $('.revisioncopyedited-checkbox:checked');
+        var checkedCheckboxes5 = $('.copyedited-checkbox:checked');
 
         var checkedData = [];
         checkedCheckboxes.each(function () {
@@ -340,11 +417,42 @@ $copyedited_files = get_copyedited_files($aid);
             });
         });
 
+        var checkedData3 = [];
+        checkedCheckboxes3.each(function () {
+            var articleFilesId = $(this).data('article-files-id');
+            checkedData3.push({
+                articleFilesId: articleFilesId
+            });
+        });
+        
+
+        var checkedData4 = [];
+        checkedCheckboxes4.each(function () {
+            var revisionFilesId = $(this).data('revision-files-id');
+            checkedData4.push({
+                revisionFilesId: revisionFilesId
+            });
+        });
+        
+        var checkedData5 = [];
+        checkedCheckboxes5.each(function () {
+            var copyeditedFilesId = $(this).data('copyedited-files-id');
+            checkedData5.push({
+                copyeditedFilesId: copyeditedFilesId
+            });
+        });
+
         var jsonCheckedData = JSON.stringify(checkedData);
         var jsonCheckedData1 = JSON.stringify(checkedData1);
         var jsonCheckedData2 = JSON.stringify(checkedData2);
+        var jsonCheckedData3 = JSON.stringify(checkedData3);
+        var jsonCheckedData4 = JSON.stringify(checkedData4);
+        var jsonCheckedData5 = JSON.stringify(checkedData5);
         var deltaContent = quillInstance.getContents();
         var jsonContent = JSON.stringify(deltaContent);
+            console.log(jsonCheckedData3);
+            console.log(jsonCheckedData4);
+            console.log(jsonCheckedData5);
 
         $.ajax({
             type: 'POST',
@@ -359,6 +467,9 @@ $copyedited_files = get_copyedited_files($aid);
                 checkedData: jsonCheckedData,
                 checkedData1: jsonCheckedData1,
                 checkedData2: jsonCheckedData2,
+                checkedData3: jsonCheckedData3,
+                checkedData4: jsonCheckedData4,
+                checkedData5: jsonCheckedData5,
                 action: 'email'
             },
             success: function (response) {

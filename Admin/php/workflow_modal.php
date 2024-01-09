@@ -52,7 +52,7 @@ $userlist = get_user_list();
                                 <option value="">Select</option>
                                 <option value="Title page">Title page</option>
                                 <option value="File with author">File with author</option>
-                                <option value="File with no author">File with no author</option>
+                                <!-- <option value="File with no author">File with no author</option> -->
                                 <option value="Others">Others</option>
                             </select>
                         </div>
@@ -118,7 +118,7 @@ $userlist = get_user_list();
                                         <option value="">Select</option>
                                         <option value="Title page">Title page</option>
                                         <option value="File with author">File with author</option>
-                                        <option value="File with no author">File with no author</option>
+                                        <!-- <option value="File with no author">File with no author</option> -->
                                         <option value="Others">Others</option>
                                     </select>
                                 </div>

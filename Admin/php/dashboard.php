@@ -39,18 +39,17 @@ include 'function/dashboard_functions.php';
                                 </div>
 
 
-                        <div class="box">
-                            <div class="left-side">
-                                <div class="box-topic">Total Engagements</div>
-                                    <div class="number"><?php echo $totalEngagements; ?></div>
-                                        <div class="indicator">
-                                            <!-- <i class='bx bx-up-arrow-alt'></i> -->
-                                            <!-- <span class="text">Up from yesterday</span> -->
-                                        </div>
-                                    </div>
-                                    <i class='bx bx-book cart three'></i>
-
-                                </div>
+                                <div class="box">
+                        <div class="left-side">
+                            <div class="box-topic">Total Engagements</div>
+                            <div class="number"><?php echo $totalEngagements; ?></div>
+                            <div class="indicator">
+                                <!-- <i class='bx bx-up-arrow-alt'></i> -->
+                                <!-- <span class="text">Up from yesterday</span> -->
+                            </div>
+                        </div>
+                        <i class='bx bx-book cart three'></i>
+                    </div>
 
 
                         <div class="box">
@@ -72,6 +71,13 @@ include 'function/dashboard_functions.php';
                             
                             
                           <style>
+        .increase {
+                color: green; /* Set your desired color for positive percentages */
+            }
+
+     .decrease {
+                color: red; /* Set your desired color for negative percentages */
+            }
         .chart-container {
             width: 750px;
             height: 450px;
@@ -245,21 +251,21 @@ include 'function/dashboard_functions.php';
         var lineChartData2 = {
             labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'Novemeber', 'December'],
             datasets: [{
-                  label: 'Gavel',
+                  label: 'QCU',
             data: [50, 30, 60, 40, 70, 20, 30, 35, 50, 65, 70, 20],
             borderColor: 'rgba(255, 99, 132, 1)',
             borderWidth: 1,
             fill: false
         },
         {
-            label: 'Lamp',
+            label: 'FACULTY',
             data: [40, 20, 50, 30, 60, 10, 20, 25, 40, 55, 60, 10],
             borderColor: 'rgba(75, 192, 192, 1)',
             borderWidth: 1,
             fill: false
         },
         {
-            label: 'Star',
+            label: 'OTHERS',
             data: [60, 40, 70, 50, 80, 30, 40, 45, 60, 75, 80, 30],
             borderColor: 'rgba(255, 205, 86, 1)',
             borderWidth: 1,

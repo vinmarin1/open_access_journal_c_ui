@@ -41,10 +41,9 @@ $id = $_SESSION['id'];
         </h3>
       </div>
       <div>
-        <button class="btn tbn-primary btn-md" id="btn1" onclick="window.location.href='author-dashboard.php'">As
-          Contributor</button>
-        <button class="btn tbn-primary btn-md" id="btn2" onclick="window.location.href='user-dashboard.php'">Edit
-          Profile</button>
+        <button class="btn tbn-primary btn-md" id="btn1" onclick="window.location.href='author-dashboard.php'">My
+          Contributions</button>
+        <button class="btn tbn-primary btn-md" id="btn2" onclick="window.location.href='user-dashboard.php'">Edit/View Profile</button>
       </div>
     </div>
     <div class="main">
