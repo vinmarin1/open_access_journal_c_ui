@@ -41,8 +41,8 @@ $id = $_SESSION['id'];
         </h3>
       </div>
       <div>
-        <button class="btn tbn-primary btn-md" id="btn1" onclick="window.location.href='author-dashboard.php'">As Author</button>
-        <button class="btn tbn-primary btn-md" id="btn2" onclick="window.location.href='reviewer-dashboard.php'">As Reviewer</button>
+        <button class="btn tbn-primary btn-md" id="btn1" onclick="window.location.href='user-dashboard.php'">My Profile</button>
+        <button class="btn tbn-primary btn-md" id="btn2" onclick="window.location.href='author-dashboard.php'">Manage Contribution</button>
       </div>
     </div>
     <div class="main">
@@ -178,33 +178,35 @@ $id = $_SESSION['id'];
 			 <!-- Insert your graph here. For example, an image or a generated chart. -->
 			<div id="rewards-container">
 				<div id="badges-container">
-					<h1>Badges</h1>
-					<div class="xp-container">
-						<!-- XP Bar -->
-						<div class="xp-bar">
-							<div class="progress-bar">
-								<div class="progress" style="width: 66.7%;"></div>
+					<h3>Badges</h3>
+					<div class="badge-box-container">
+						<div class="xp-container">
+							<!-- XP Bar -->
+							<div class="xp-bar">
+								<div class="progress-bar">
+									<div class="progress" style="width: 66.7%;"></div>
+								</div>
+								<span class="xp-label">8/12</span>
 							</div>
-							<span class="xp-label">8/12</span>
+							
 						</div>
-						
-					</div>
-					<div class="badge-box" style="background-image: url('../images/badge1.jpg');"></div>
-					<div class="badge-box" style="background-image: url('../images/badge2.jpg');"></div>
-					<div class="badge-box" style="background-image: url('../images/badge3.jpg');"></div><br>
-					<div class="badge-box" style="background-image: url('../images/badge3.jpg');"></div>
-					<div class="badge-box" style="background-image: url('../images/badge2.jpg');"></div>
-					<div class="badge-box" style="background-image: url('../images/badge1.jpg');"></div><br>
-					<div class="badge-box" style="background-image: url('../images/badge1.jpg');"></div>
-					<div class="badge-box" style="background-image: url('../images/badge2.jpg');"></div>
-					<div class="badge-box" style="background-image: url('../images/badge3.jpg');"></div>
-					<button class="btn btn-primary btn-md btn-seemore" id="see-more">See more</button>
+						<div class="badge-box" style="background-image: url('../images/badge1.jpg');"></div>
+						<div class="badge-box" style="background-image: url('../images/badge2.jpg');"></div>
+						<div class="badge-box" style="background-image: url('../images/badge3.jpg');"></div><br>
+						<div class="badge-box" style="background-image: url('../images/badge3.jpg');"></div>
+						<div class="badge-box" style="background-image: url('../images/badge2.jpg');"></div>
+						<div class="badge-box" style="background-image: url('../images/badge1.jpg');"></div><br>
+						<div class="badge-box" style="background-image: url('../images/badge1.jpg');"></div>
+						<div class="badge-box" style="background-image: url('../images/badge2.jpg');"></div>
+						<div class="badge-box" style="background-image: url('../images/badge3.jpg');"></div>
+						<button class="btn btn-primary btn-md btn-seemore" id="see-more">See more</button>
+					</div>	
 				</div>
 
 				<div id="credit-history-container">
 				  <div class="credit-container">
 					<div class="header-container">
-						<h1>Credits History</h1>
+						<h3>Credits History</h3>
 						<div class="balance-points">Balance:&nbsp;&nbsp;&nbsp;&nbsp;49 </div>
 					</div>
 					<hr>
