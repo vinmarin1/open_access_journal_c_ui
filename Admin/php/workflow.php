@@ -13,9 +13,6 @@ $review_files = get_review_files($aid);
 $copyediting_files = get_copyediting_files($aid);
 $production_files = get_production_files($aid);
 $revision_files = get_revision_files($aid);
-$copyeditingrevision_files = get_copyeditingrevision_files($aid);
-$copyeditedsubmission_files = get_copyeditedsubmission_files($aid);
-$copyeditedrevision_files = get_copyeditedrevision_files($aid);
 $copyedited_files = get_copyedited_files($aid);
 $article_discussion = get_article_discussion($aid);
 $discussion_list = get_discussion($aid);
@@ -394,6 +391,11 @@ table {
                                                                                     }
                                                                                     if ($matchingReviewer) { ?>
                                                                                         <td width="75%"><?php echo $matchingReviewer->last_name . ', ' . $matchingReviewer->first_name; ?></td> 
+                                                                                        <?php if (strpos($article_data[0]->round, 'Round 1') !== false): ?>
+                                                                                            <td width="5%" style="text-align: right;">
+                                                                                                
+                                                                                        <?php endif; ?>
+
                                                                                         <?php if (strpos($article_data[0]->round, 'Round 1') !== false || strpos($article_data[0]->round, 'Round 2') !== false || strpos($article_data[0]->round, 'Round 3') !== false): ?>
                                                                                             <td width="5%" style="text-align: right;">
                                                                                                 <a href="javascript:void(0);" onclick="viewReviewerAnswer(<?php echo $article_reviewerval->author_id; ?>,'<?php echo $article_data[0]->article_id; ?>','<?php echo $matchingReviewer->last_name . ', ' . $matchingReviewer->first_name; ?>','Round 1')" class="btn btn-outline-dark" style="margin-right: 10px">Round 1</a>
@@ -492,37 +494,64 @@ table {
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                    <?php if (empty($copyediting_files) && empty($copyeditingrevision_files)): ?>
-                                                                        <tr>
-                                                                            <td colspan="4" class="text-center">No Files</td>
-                                                                        </tr>
-                                                                    <?php else: ?>
-                                                                        <?php foreach ($copyediting_files as $copyediting_filesval): ?>
-                                                                            <tr>
-                                                                                <td width="5%"><?php echo $copyediting_filesval->article_files_id; ?></td>
-                                                                                <td width="65%">
-                                                                                    <a href="/Files/submitted-article/<?php echo urlencode($copyediting_filesval->file_name); ?>" download>
-                                                                                        <?php echo $copyediting_filesval->file_name; ?>
-                                                                                    </a>
-                                                                                </td>
-                                                                                <td width="25%"><?php echo $copyediting_filesval->file_type; ?></td>
-                                                                                <td width="5%"><span class="badge rounded-pill bg-label-warning">Submission</span></td>
-                                                                            </tr>
-                                                                        <?php endforeach; ?>
-                                                                        <?php foreach ($copyeditingrevision_files as $copyeditingrevision_files): ?>
-                                                                            <tr>
-                                                                                <td width="5%"><?php echo $copyeditingrevision_files->revision_files_id; ?></td>
-                                                                                <td width="65%">
-                                                                                    <a href="/Files/revision-article/<?php echo urlencode($copyeditingrevision_files->file_name); ?>" download>
-                                                                                        <?php echo $copyeditingrevision_files->file_name; ?>
-                                                                                    </a>
-                                                                                </td>
-                                                                                <td width="25%"><?php echo $copyeditingrevision_files->file_type; ?></td>
-                                                                                <td width="5%"><span class="badge rounded-pill bg-label-warning">Revision</span></td>
+                                                                        <?php
+                                                                        $hasCopyeditedFiles = false;
 
+                                                                        foreach ($revision_files as $revision_filesval) {
+                                                                            if ($revision_filesval->copyediting == 1) {
+                                                                                $hasCopyeditedFiles = true;
+                                                                                break;
+                                                                            }
+                                                                        }
+
+                                                                        foreach ($submission_files as $submission_filesval) {
+                                                                            if ($submission_filesval->copyediting == 1) {
+                                                                                $hasCopyeditedFiles = true;
+                                                                                break;
+                                                                            }
+                                                                        }
+                                                                        if ($hasCopyeditedFiles) {
+                                                                            foreach ($revision_files as $revision_filesval) {
+                                                                                if ($revision_filesval->copyediting == 1) {
+                                                                                    ?>
+                                                                                    <tr>
+                                                                                        <td width="5%"><?php echo $revision_filesval->revision_files_id; ?></td>
+                                                                                        <td width="65%">
+                                                                                            <a href="../../Files/submitted-article/<?php echo urlencode($revision_filesval->file_name); ?>" download>
+                                                                                                <?php echo $revision_filesval->file_name; ?>
+                                                                                            </a>
+                                                                                        </td>
+                                                                                        <td width="25%"><?php echo $revision_filesval->file_type; ?></td>
+                                                                                        <td width="5%"><span class="badge rounded-pill bg-label-warning">Revision</span></td>
+                                                                                    </tr>
+                                                                                    <?php
+                                                                                }
+                                                                            }
+
+                                                                            foreach ($submission_files as $submission_filesval) {
+                                                                                if ($submission_filesval->copyediting == 1) {
+                                                                                    ?>
+                                                                                    <tr>
+                                                                                        <td width="5%"><?php echo $submission_filesval->article_files_id; ?></td>
+                                                                                        <td width="65%">
+                                                                                            <a href="../../Files/submitted-article/<?php echo urlencode($submission_filesval->file_name); ?>" download>
+                                                                                                <?php echo $submission_filesval->file_name; ?>
+                                                                                            </a>
+                                                                                        </td>
+                                                                                        <td width="25%"><?php echo $submission_filesval->file_type; ?></td>
+                                                                                        <td width="5%"><span class="badge rounded-pill bg-label-warning">Submission</span></td>
+                                                                                    </tr>
+                                                                                    <?php
+                                                                                }
+                                                                            }
+                                                                        } else {
+                                                                            ?>
+                                                                            <tr>
+                                                                                <td colspan="4" class="text-center">No Items</td>
                                                                             </tr>
-                                                                        <?php endforeach; ?>
-                                                                    <?php endif; ?>
+                                                                            <?php
+                                                                        }
+                                                                        ?>
                                                                     </tbody>
                                                                     <tfoot>
                                                                         <th colspan="4" style="text-align: right;">
@@ -554,48 +583,89 @@ table {
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                    <?php if (empty($copyeditedsubmission_files)  && empty($copyeditedrevision_files)  && empty($copyedited_files)): ?>
-                                                                        <tr>
-                                                                            <td colspan="4" class="text-center">No Files</td>
-                                                                        </tr>
-                                                                    <?php else: ?>
-                                                                        <?php foreach ($copyeditedsubmission_files as $copyeditedsubmission_filesval): ?>
-                                                                        <tr>
-                                                                            <td width="5%"><?php echo $copyeditedsubmission_filesval->article_files_id; ?></td>
-                                                                            <td width="65%">
-                                                                                <a href="/Files/submitted-article/<?php echo urlencode($copyeditedsubmission_filesval->file_name); ?>" download>
-                                                                                    <?php echo $copyeditedsubmission_filesval->file_name; ?>
-                                                                                </a>
-                                                                            </td>
-                                                                            <td width="25%"><?php echo $copyeditedsubmission_filesval->file_type; ?></td>
-                                                                            <td width="5%"><span class="badge rounded-pill bg-label-warning">Submission</span></td>
-                                                                        </tr>
-                                                                    <?php endforeach; ?>
-                                                                    <?php foreach ($copyeditedrevision_files as $copyeditedrevision_filesval): ?>
-                                                                        <tr>
-                                                                            <td width="5%"><?php echo $copyeditedrevision_filesval->revision_files_id; ?></td>
-                                                                            <td width="65%">
-                                                                                <a href="/Files/revision-article/<?php echo urlencode($copyeditedrevision_filesval->file_name); ?>" download>
-                                                                                    <?php echo $copyeditedrevision_filesval->file_name; ?>
-                                                                                </a>
-                                                                            </td>
-                                                                            <td width="25%"><?php echo $copyeditedrevision_filesval->file_type; ?></td>
-                                                                            <td width="5%"><span class="badge rounded-pill bg-label-warning">Revision</span></td>
-                                                                        </tr>
-                                                                    <?php endforeach; ?>
-                                                                    <?php foreach ($copyedited_files as $copyedited_filesval): ?>
-                                                                        <tr>
-                                                                            <td width="5%"><?php echo $copyedited_filesval->copyedited_files_id; ?></td>
-                                                                            <td width="65%">
-                                                                                <a href="/Files/copyedited-article/<?php echo urlencode($copyedited_filesval->file_name); ?>" download>
-                                                                                    <?php echo $copyedited_filesval->file_name; ?>
-                                                                                </a>
-                                                                            </td>
-                                                                            <td width="25%"><?php echo $copyedited_filesval->file_type; ?></td>
-                                                                            <td width="5%"><span class="badge rounded-pill bg-label-warning">Copyedited</span></td>
-                                                                        </tr>
-                                                                    <?php endforeach; ?>
-                                                                    <?php endif; ?>
+                                                                        <?php
+                                                                        $hasCopyeditedFiles = false;
+
+                                                                        foreach ($copyedited_files as $copyedited_filesval) {
+                                                                            if ($copyedited_filesval->copyedited == 1) {
+                                                                                $hasCopyeditedFiles = true;
+                                                                                break;
+                                                                            }
+                                                                        }
+
+                                                                        foreach ($revision_files as $revision_filesval) {
+                                                                            if ($revision_filesval->copyedited == 1) {
+                                                                                $hasCopyeditedFiles = true;
+                                                                                break;
+                                                                            }
+                                                                        }
+
+                                                                        foreach ($submission_files as $submission_filesval) {
+                                                                            if ($submission_filesval->copyedited == 1) {
+                                                                                $hasCopyeditedFiles = true;
+                                                                                break;
+                                                                            }
+                                                                        }
+
+                                                                        if ($hasCopyeditedFiles) {
+                                                                            foreach ($copyedited_files as $copyedited_filesval) {
+                                                                                if ($copyedited_filesval->copyedited == 1) {
+                                                                                    ?>
+                                                                                    <tr>
+                                                                                        <td width="5%"><?php echo $copyedited_filesval->copyedited_files_id; ?></td>
+                                                                                        <td width="65%">
+                                                                                            <a href="../../Files/submitted-article/<?php echo urlencode($copyedited_filesval->file_name); ?>" download>
+                                                                                                <?php echo $copyedited_filesval->file_name; ?>
+                                                                                            </a>
+                                                                                        </td>
+                                                                                        <td width="25%"><?php echo $copyedited_filesval->file_type; ?></td>
+                                                                                        <td width="5%"><span class="badge rounded-pill bg-label-warning">Copyedited</span></td>
+                                                                                    </tr>
+                                                                                    <?php
+                                                                                }
+                                                                            }
+
+                                                                            foreach ($revision_files as $revision_filesval) {
+                                                                                if ($revision_filesval->copyedited == 1) {
+                                                                                    ?>
+                                                                                    <tr>
+                                                                                        <td width="5%"><?php echo $revision_filesval->revision_files_id; ?></td>
+                                                                                        <td width="65%">
+                                                                                            <a href="../../Files/submitted-article/<?php echo urlencode($revision_filesval->file_name); ?>" download>
+                                                                                                <?php echo $revision_filesval->file_name; ?>
+                                                                                            </a>
+                                                                                        </td>
+                                                                                        <td width="25%"><?php echo $revision_filesval->file_type; ?></td>
+                                                                                        <td width="5%"><span class="badge rounded-pill bg-label-warning">Revision</span></td>
+                                                                                    </tr>
+                                                                                    <?php
+                                                                                }
+                                                                            }
+
+                                                                            foreach ($submission_files as $submission_filesval) {
+                                                                                if ($submission_filesval->copyedited == 1) {
+                                                                                    ?>
+                                                                                    <tr>
+                                                                                        <td width="5%"><?php echo $submission_filesval->article_files_id; ?></td>
+                                                                                        <td width="65%">
+                                                                                            <a href="../../Files/submitted-article/<?php echo urlencode($submission_filesval->file_name); ?>" download>
+                                                                                                <?php echo $submission_filesval->file_name; ?>
+                                                                                            </a>
+                                                                                        </td>
+                                                                                        <td width="25%"><?php echo $submission_filesval->file_type; ?></td>
+                                                                                        <td width="5%"><span class="badge rounded-pill bg-label-warning">Submission</span></td>
+                                                                                    </tr>
+                                                                                    <?php
+                                                                                }
+                                                                            }
+                                                                        } else {
+                                                                            ?>
+                                                                            <tr>
+                                                                                <td colspan="4" class="text-center">No Items</td>
+                                                                            </tr>
+                                                                            <?php
+                                                                        }
+                                                                        ?>
                                                                     </tbody>
                                                                     <tfoot>
                                                                         <th colspan="4" style="text-align: right;"></th>
@@ -703,24 +773,89 @@ table {
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                    <?php if (empty($production_files)): ?>
-                                                                        <tr>
-                                                                            <td colspan="4" class="text-center">No Files</td>
-                                                                        </tr>
-                                                                    <?php else: ?>
-                                                                        <?php foreach ($production_files as $production_filesval): ?>
+                                                                        <?php
+                                                                        $hasCopyeditedFiles = false;
+
+                                                                        foreach ($copyedited_files as $copyedited_filesval) {
+                                                                            if ($copyedited_filesval->production == 1) {
+                                                                                $hasCopyeditedFiles = true;
+                                                                                break;
+                                                                            }
+                                                                        }
+
+                                                                        foreach ($revision_files as $revision_filesval) {
+                                                                            if ($revision_filesval->production == 1) {
+                                                                                $hasCopyeditedFiles = true;
+                                                                                break;
+                                                                            }
+                                                                        }
+
+                                                                        foreach ($submission_files as $submission_filesval) {
+                                                                            if ($submission_filesval->production == 1) {
+                                                                                $hasCopyeditedFiles = true;
+                                                                                break;
+                                                                            }
+                                                                        }
+
+                                                                        if ($hasCopyeditedFiles) {
+                                                                            foreach ($copyedited_files as $copyedited_filesval) {
+                                                                                if ($copyedited_filesval->production == 1) {
+                                                                                    ?>
+                                                                                    <tr>
+                                                                                        <td width="5%"><?php echo $copyedited_filesval->copyedited_files_id; ?></td>
+                                                                                        <td width="65%">
+                                                                                            <a href="../../Files/submitted-article/<?php echo urlencode($copyedited_filesval->file_name); ?>" download>
+                                                                                                <?php echo $copyedited_filesval->file_name; ?>
+                                                                                            </a>
+                                                                                        </td>
+                                                                                        <td width="25%"><?php echo $copyedited_filesval->file_type; ?></td>
+                                                                                        <td width="5%"><span class="badge rounded-pill bg-label-warning">Copyedited</span></td>
+                                                                                    </tr>
+                                                                                    <?php
+                                                                                }
+                                                                            }
+
+                                                                            foreach ($revision_files as $revision_filesval) {
+                                                                                if ($revision_filesval->production == 1) {
+                                                                                    ?>
+                                                                                    <tr>
+                                                                                        <td width="5%"><?php echo $revision_filesval->revision_files_id; ?></td>
+                                                                                        <td width="65%">
+                                                                                            <a href="../../Files/submitted-article/<?php echo urlencode($revision_filesval->file_name); ?>" download>
+                                                                                                <?php echo $revision_filesval->file_name; ?>
+                                                                                            </a>
+                                                                                        </td>
+                                                                                        <td width="25%"><?php echo $revision_filesval->file_type; ?></td>
+                                                                                        <td width="5%"><span class="badge rounded-pill bg-label-warning">Revision</span></td>
+                                                                                    </tr>
+                                                                                    <?php
+                                                                                }
+                                                                            }
+
+                                                                            foreach ($submission_files as $submission_filesval) {
+                                                                                if ($submission_filesval->production == 1) {
+                                                                                    ?>
+                                                                                    <tr>
+                                                                                        <td width="5%"><?php echo $submission_filesval->article_files_id; ?></td>
+                                                                                        <td width="65%">
+                                                                                            <a href="../../Files/submitted-article/<?php echo urlencode($submission_filesval->file_name); ?>" download>
+                                                                                                <?php echo $submission_filesval->file_name; ?>
+                                                                                            </a>
+                                                                                        </td>
+                                                                                        <td width="25%"><?php echo $submission_filesval->file_type; ?></td>
+                                                                                        <td width="5%"><span class="badge rounded-pill bg-label-warning">Submission</span></td>
+                                                                                    </tr>
+                                                                                    <?php
+                                                                                }
+                                                                            }
+                                                                        } else {
+                                                                            ?>
                                                                             <tr>
-                                                                                <td width="5%"><?php echo $production_filesval->article_files_id; ?></td>
-                                                                                <td width="65%">
-                                                                                    <a href="/Files/submitted-article/<?php echo urlencode($production_filesval->file_name); ?>" download>
-                                                                                        <?php echo $production_filesval->file_name; ?>
-                                                                                    </a>
-                                                                                </td>
-                                                                                <td width="25%"><?php echo $production_filesval->file_type; ?></td>
-                                                                                <td width="5%"></td>
+                                                                                <td colspan="4" class="text-center">No Items</td>
                                                                             </tr>
-                                                                        <?php endforeach; ?>
-                                                                        <?php endif; ?>
+                                                                            <?php
+                                                                        }
+                                                                        ?>
                                                                     </tbody>
                                                                     <tfoot>
                                                                         <th colspan="4" style="text-align: right;">
@@ -882,7 +1017,7 @@ table {
                                                                             <tr>
                                                                                 <th colspan="4"><h6>Contributors</h6></th>
                                                                                 <th style="text-align: right;">
-                                                                                    <button type="button" class="btn btn-dark" id="uploadButton" style="margin-left: -10px" data-bs-toggle="modal" data-bs-target="#addContributorsModal">Add</button>
+                                                                                    <!-- <button type="button" class="btn btn-dark" id="uploadButton" style="margin-left: -10px" data-bs-toggle="modal" data-bs-target="#addContributorsModal">Add</button> -->
                                                                                 </th>
                                                                             </tr>
                                                                         </thead>
@@ -896,10 +1031,10 @@ table {
                                                                                 <tr>
                                                                                     <td width="5%"><?php echo $article_contributorsval->contributors_id; ?></td>
                                                                                     <td width="40%"><?php echo $article_contributorsval->publicname; ?> <span class="badge rounded-pill bg-label-primary"><?php echo $article_contributorsval->contributor_type; ?></span></td>
-                                                                                    <td width="25%"><?php echo $article_contributorsval->email; ?></td>
-                                                                                    <td width="25%"><?php echo $article_contributorsval->orcid; ?></td>
+                                                                                    <td width="40%"><?php echo $article_contributorsval->email; ?></td>
+                                                                                    <td width="10%"><?php echo $article_contributorsval->orcid; ?></td>
                                                                                     <td width="5%">
-                                                                                        <a href="javascript:void(0);" onclick="" class="btn btn-outline-primary">View</a>
+                                                                                        <!-- <a href="javascript:void(0);" onclick="" class="btn btn-outline-primary">View</a> -->
                                                                                     </td>
                                                                                 </tr>
                                                                             <?php endforeach; ?>    
@@ -1273,7 +1408,10 @@ table {
 
                         $('#addReviewerAnswerModal').modal('show');
                     } else {
-                        console.log('No answers found.');
+                        $('#DataTableAnswer tbody').empty();
+                        $('#DataTableAnswer tbody').append('<tr><td colspan="2"><center>No answer found.</center></td></tr>');
+                        
+                        $('#addReviewerAnswerModal').modal('show');
                     }
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
