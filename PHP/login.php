@@ -30,7 +30,11 @@
            
         </div>
         
-        <a href="">Forgot Password?</a>
+        <a id="forgotPasswordLink" style="color: blue; text-decoration: underline; cursor: pointer  ">Forgot Password?
+            <div class="spinner-border spinner-border-sm" role="status" id="spinner" style="display: none">
+                <span class="visually-hidden"></span>
+            </div>
+        </a>
         <button type="submit" class="btn btn-primary btn-sm" id="login-button">
                 <span id="login-text">Login</span>
                 <div class="spinner-border spinner-border-sm" role="status" id="login-spinner" hidden>

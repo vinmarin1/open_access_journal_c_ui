@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+require 'dbcon.php';
+$userId = $_SESSION['id'];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,14 +27,34 @@
 </nav>
 
 
-<form id="multiStepForm">
+<form id="form" method="post" action="reviewer_answer.php">
     <!-- Step 1 -->
     <div class="step active" id="step1">
         <div class="main-container">
             <div class="content-over">
                 <div class="cover-content">
                     <p> Dashboard / Reviewer / Submitted Articles </p>
-                    <h3> A Classroom-based Action Research on Selected First Year Information Technology Students of Quezon City University for the Second Semester of Academic Year 2021-2022 </h3>
+                    <h3> 
+                        <?php 
+                        $sqlReviewraticle = "SELECT article.title 
+                                            FROM article 
+                                            JOIN reviewer_assigned ON article.author_id = reviewer_assigned.author_id 
+                                            WHERE reviewer_assigned.article_id = article.article_id AND article.status = 5
+                                            AND reviewer_assigned.author_id = :author_id";
+
+                        $result = database_run($sqlReviewraticle, array('author_id' => $userId));
+
+                        if ($result !== false) {
+                            foreach ($result as $row) {
+                                echo $row->title;
+                            }
+                        } else {
+                            echo "No articles found."; 
+                        }
+                        ?>
+                </h3>
+
+
                 </div>
             </div>
         </div>
@@ -38,21 +66,26 @@
                     <!-- This is a Blank space -->
                 </div>
 
-                <div class="col-md-6 abstract" style="padding-top:20px;"> 
+                <div class="col-md-6 abstract" style="padding-top:20px; height: auto"> 
                     <h4>Abstract</h4>
-                        <p>After fighting the COVID-19 pandemic for more than two years, food production could not keep 
-                            up with the rapid population expansion, which led to increased food prices and the prevalence of hunger and poverty. 
-                            In this feasibility project, the company's primary objective, GAIA Inc., 
-                            is to innovate a mobile application to help the environment produce fresh vegetables at home called GAIA Mobile Application.
-                            It offers a variety of information, knowledge, and step by steps procedures regarding urban farming, types of urban farming, 
-                            plant calendar, soil mixtures, pest control, etc., to promote urban farming in Quezon City. The objective of the market study was to 
-                            determine whether developing a revolutionary mobile application for urban farming would be beneficial and knowledgeable. 
-                            The market study was conducted and involved respondents from several barangays in Quezon City. The findings showed a 97.40% acceptance 
-                            rate from participants, with a total demand of 3,070,623 for 2023. As a result of the rapid growth in technology and the fact that most 
-                            people like to use their mobile phones, researchers believe it would be advantageous to create a product that readily conveys the value 
-                            of urban farming and the advantages it provides to people. Due to the rapid growth of technology, the researchers see it as a benefit to 
-                            produce a product that can easily explain the value of urban farming and its benefits to people. Furthermore, this research aims to
-                            produce a groundbreaking mobile application that will be valuable for students, farmers, agriculture enthusiasts, and plant lovers.
+                        <p>
+                        <?php 
+                        $sqlAbstract = "SELECT article.abstract 
+                                            FROM article 
+                                            JOIN reviewer_assigned ON article.author_id = reviewer_assigned.author_id 
+                                            WHERE reviewer_assigned.article_id = article.article_id AND article.status = 5
+                                            AND reviewer_assigned.author_id = :author_id";
+
+                        $result = database_run($sqlAbstract, array('author_id' => $userId));
+
+                        if ($result !== false) {
+                            foreach ($result as $row) {
+                                echo $row->abstract;
+                            }
+                        } else {
+                            echo "No articles found."; 
+                        }
+                        ?>
                         </p>
                 </div>
 
@@ -61,16 +94,66 @@
 
                     <div>
                         <div class="status">
-                            <p>Pending</p>
+                            <p>
+                                <?php
+
+                                    $sqlStatus = "SELECT article_status.status, article.title FROM article_status JOIN article ON article_status.status_id = article.status JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id AND article.status = 5
+                                    AND reviewer_assigned.author_id = :author_id";
+
+                                    $result = database_run($sqlStatus, array('author_id' => $userId));
+
+                                    if ($result !== false) {
+                                    foreach ($result as $row) {
+                                    echo $row->status;
+                                    }
+                                    } else {
+                                    echo "No status for this article"; 
+                                    }
+                                ?>
+                                
+                            </p>
                         </div>
                         <hr style="height: 2px; background-color: #0858a4; width: 100%">
-                        <h4 style="color: #0858a4; font-family: Arial, Helvetica, sans-serif;" >Submitted in the Gavel</h4>
+                        <h4 style="color: #0858a4; font-family: Arial, Helvetica, sans-serif;" >Submitted in the 
+                        <?php
+                            $sqlJournal = "SELECT journal.journal, article.title FROM journal JOIN article ON journal.journal_id = article.journal_id JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id AND article.status = 5
+                            AND reviewer_assigned.author_id = :author_id";
+
+                            $result = database_run($sqlJournal, array('author_id' => $userId));
+
+                            if ($result !== false) {
+                            foreach ($result as $row) {
+                            echo $row->journal;
+                            }
+                            } else {
+                            echo "No status for this article"; 
+                            }
+                        ?>
+                        </h4>
                         <div class="logs-date">                
                             <p style="color: black; font-weight: bold;">Logs</p>
                             <p style="font-weight: bold;">Review</p>
                             <p style="font-size: x-small; margin-top: -15px; " >Send for review</p>
                             <p style="font-weight: bold;">Submission</p>
-                            <p style="font-size: x-small; margin-top: -15px; " >Submitted in the Gavel</p>
+                            <p style="font-size: x-small; margin-top: -15px; " >Submitted in the 
+                        
+                            <?php
+                              $sqlJournal = "SELECT journal.journal, article.title FROM journal JOIN article ON journal.journal_id = article.journal_id JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id AND article.status = 5
+                              AND reviewer_assigned.author_id = :author_id";
+  
+                              $result = database_run($sqlJournal, array('author_id' => $userId));
+  
+                              if ($result !== false) {
+                              foreach ($result as $row) {
+                              echo $row->journal;
+                              }
+                              } else {
+                              echo "Can't determine or the file has been put on the archive"; 
+                              }
+                            
+                            ?>
+                            
+                            </p>
                             <a href="#!">View All Logs</a>
                         </div>
                         <div class="date">
@@ -100,13 +183,45 @@
                             </thead>
                             <tbody id="fileList">
                                 <tr>
-                                    <td id="fileName1">File Name</td>
-                                    <td id="fileType1">2023-11-09</td>
+                                    <td id="fileName1">
+                                    <?php
+                                    $sqlFileName = "SELECT article_files.file_name, article.title FROM article_files JOIN article ON article_files.article_id = article.article_id JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id WHERE article_files.file_type = 'File with no author' AND article.status = 5
+                                    AND reviewer_assigned.author_id = :author_id";
+        
+                                    $result = database_run($sqlFileName, array('author_id' => $userId));
+        
+                                    if ($result !== false) {
+                                    foreach ($result as $row) {
+                                    echo $row->file_name;
+                                    }
+                                    } else {
+                                    echo "Can't find the file or it has been put on the archive"; 
+                                    }
+                                    
+                                    ?>
+                                    </td>
+                                    <td id="fileType1">
+                                    <?php
+                                        $sqlFileDate = "SELECT article_files.date_added, article.title FROM article_files JOIN article ON article_files.article_id = article.article_id JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id WHERE article_files.file_type = 'File with no author' AND article.status = 5
+                                        AND reviewer_assigned.author_id = :author_id";
+            
+                                        $result = database_run($sqlFileDate, array('author_id' => $userId));
+            
+                                        if ($result !== false) {
+                                        foreach ($result as $row) {
+                                        echo $row->date_added;
+                                        }
+                                        } else {
+                                        echo "Can't determine date added or the file has been put on the archive"; 
+                                        }
+                                        
+                                    ?>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
 
-                        <div class="table-container">
+                        <!-- <div class="table-container">
                             <h5>Files Submitted</h5>
                             <table class="table table-hover" id="table-file" style="border-collapse: separate; border-spacing: 10px 10px 10px 10px;">
                                 <thead>
@@ -122,7 +237,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
 
@@ -161,12 +276,33 @@
                     <div class="keywords">
                         <p style="margin-top: 20px; margin-bottom: 10px; color: #959595 ">Keywords</p>
                         <div class="keyword1">
-                            <a href="#!">Technology</a>
-                            <a href="#!">covid-19</a>
-                            <a href="#!">covid-19</a>
-                            <a href="#!">covid-19</a>
-                            <a href="#!">covid-19</a>
-                            <a href="#!">covid-19</a>
+                        <ul style="display: flex;">
+                            <?php
+                            $sqlKeyword = "SELECT article.keyword FROM article JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id AND article.status = 5 WHERE reviewer_assigned.author_id = :author_id";
+                            
+                            $result = database_run($sqlKeyword, array('author_id' => $userId));
+
+                            if ($result !== false) {
+                                foreach ($result as $row) {
+                                    $keywords = explode(',', $row->keyword);
+                                    foreach ($keywords as $keyword) {
+                                        echo '<li style="list-style-type: none; 
+                                                        margin-right: 5px;
+                                                        width: auto;
+                                                        color: #0858a4;
+                                                        border: 1px solid #0858a4;
+                                                        border-radius: 10px;
+                                                        background-color: white;
+                                                        font-size: 12px;">' . trim($keyword) . '</li>';
+                                    }
+                                    
+                                }
+                            } else {
+                                echo "No keywords for this article";
+                            }
+                            ?>
+                        </ul>
+
                         </div>
                     </div>
 
@@ -253,12 +389,12 @@
                         </p>
                     </div>
                     <div class="form-check">
-                        <input type="checkbox" id="checkBox" name="checkBox" value="Check">
+                        <input type="checkbox" id="checkBox" name="checkBox" value="1" >
                         <label for="checkBox" style="color: #0858a4;" >I have read and will follow the steps and Guidelines of reviewing this assign Article.</label><br>
                     </div>
 
                     <div class="btn-action">
-                        <button class="btn tbn-primary btn-md" onclick="nextStep()">Review Form</button>
+                        <button class="btn tbn-primary btn-md" id="reviewBtn" onclick="nextStep()" disabled>Review Form</button>
                     </div> 
                 </div>
 
@@ -304,11 +440,37 @@
                                 <h5>Paper Length:</h5>
 
                                 <div>
-                                    <input type="radio" name="paperLength" value="tooShort" id="tooShort">
-                                    <label for="tooShort">Too Short</label>
+                                <?php
+                                $sqlQuestionnaire = "SELECT question, answer FROM reviewer_questionnaire";
+                                $result = database_run($sqlQuestionnaire);
+
+                                if ($result) {
+                                    foreach ($result as $row) {
+                                        $question = htmlspecialchars($row->question);
+                                        echo '<li class="list-group-item mt-4" style="list-style: none; font-family: &quot;Times New Roman&quot;, Times, serif; color: #0858a4; font-size: 20px;">' . $question . '</li>';
+
+                                        // Split the choices using commas
+                                        $choices = explode(',', $row->answer);
+
+                                        // Display each choice as a radio button
+                                        foreach ($choices as $choice) {
+                                            $uniqueId = htmlspecialchars(trim($choice)) . '_' . uniqid(); // Create a unique ID for each radio button
+                                            echo '<input type="radio" name="answers[' . $question . ']" value="' . htmlspecialchars(trim($choice)) . '" id="' . $uniqueId . '">';
+                                            echo '<label for="' . $uniqueId . '" style="font-size: small; color: gray;">' . htmlspecialchars(trim($choice)) . '</label><br>';
+                                        }
+                                    }
+                                } else {
+                                    echo 'The questionnaire has not been updated yet';
+                                }
+                                ?>
+
+
+
+
+                                  
                                 </div>
 
-                                <div>
+                                <!-- <div>
                                     <input type="radio" name="paperLength" value="quiteShort" id="quiteShort">
                                     <label for="quiteShort">Quite Short</label>
                                 </div>
@@ -447,7 +609,7 @@
                                 <div style="margin-bottom: 30px;">
                                     <input type="radio" name="expertise" value="expert" id="expert" >
                                     <label for="expert">Expert</label>
-                                </div>
+                                </div> -->
 
 
 
@@ -502,8 +664,8 @@
                         </div>
 
                         <div class="btn-final">
-                            <button class="btn tbn-primary btn-md" type="submit">Submit</button>
-                            <button id="btnCancel" class="btn tbn-primary btn-md" onclick="prevStep()" >Cancel</button>
+                            <button type="submit" id="btnSubmit" class="btn tbn-primary btn-md" >Submit</button>
+                            <button type="button" id="btnCancel" class="btn tbn-primary btn-md" onclick="prevStep()" >Cancel</button>
                         </div>
                     </div>
                 </div>
@@ -517,34 +679,13 @@
             </div>
         </div>
     </div>
+  
 </form>
 
 
-<script>
-let currentStep = 1;
-
-function nextStep() {
-    if (currentStep < 3) {
-        document.getElementById(`step${currentStep}`).classList.remove('active');
-        currentStep++;
-        document.getElementById(`step${currentStep}`).classList.add('active');
-    }
-
-    // if (currentStep === 2 && !document.getElementById('vehicle1').checked) {
-    //     alert('Please check the checkbox before proceeding.');
-    //     return;
-    // }
-}
-
-function prevStep() {
-    if (currentStep > 1) {
-        document.getElementById(`step${currentStep}`).classList.remove('active');
-        currentStep--;
-        document.getElementById(`step${currentStep}`).classList.add('active');
-    }
-}
-</script>
-
+  <div id="loadingOverlay">
+        <div id="loadingSpinner"></div>
+    </div>
 </body>
 </html>
 
@@ -558,5 +699,7 @@ function prevStep() {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <script src="../JS/reusable-header.js"></script>
+    <script src="../JS/review-process.js"></script>
+
 </body>
 </html>

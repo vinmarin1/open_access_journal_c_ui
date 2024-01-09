@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
 
 <body>
 
@@ -133,19 +133,24 @@
      
       
       <div class="form-floating" id="form-floating">
-        <h6 id="sub-9">Title</h6>
+        <h6 id="sub-9">Title <p id="title-validation" style="color: red; display: none; font-size: 10px;">Title should consist of 10 words and less than 20 words*</p></h6>
 
     
         <input class="form-control" type="text"  id="title" name="title">
-        <p id="title-validation" style="color: red; display: none;">Title should consist of 10 words and less than 20 words*</p>
-        
-        <h6 id="sub-11">Abstract</h6>
-
-        <div id="editor">
       
-        </div>
+       
+        
+        <h6 id="sub-11">Abstract<p id="abstract-validation" style="color: red; display: none;  font-size: 10px">The maximum for abstract is 600 words*</p></h6>
+
+       
+
+        <!-- <div id="editor">
+      
+        </div> -->
+        <textarea class="form-control" name="editor" id="editor" cols="30" rows="10"></textarea>
+      
         <input class="form-control" type="text" id="abstract" name="abstract"  style="display: none;">
-        <p id="abstract-validation" style="color: red; display: none;">Maximum of 1000 words*</p>
+       
 
       </div>
 
@@ -193,16 +198,19 @@
 
     <div class="input-details-2 mt-3" id="form-floating-3">
 
-    <h6 id="sub-10">Keywords</h6>
+    <h6 id="sub-10">Keywords <p id="keywords-validation" style="color: red; display: none; font-size: 10px">Keywords should be separated by at least 1 or 4 commas*</p></h6>
       <input class="form-control" type="text" id="keywords" name="keywords">
-      <p id="keywords-validation" style="color: red; display: none;">Keywords should consist at least 1 and a maximum of 4 commas</p>
+      
 
       
-      <h6 class="sub-12 mt-5" id="sub-12">Reference</h6>
+      <h6 class="sub-12 mt-5" id="sub-12">Reference <p id="reference-validation" style="color: red; display: none; font-size: 10px">Reference is required*</p></h6>
 
-      <div id="editor2">
+      <!-- <div id="editor2">
     
-      </div>
+      </div> -->
+      <textarea class="form-control" name="editor2" id="editor2" cols="30" rows="10"></textarea>
+     
+
       <input class="form-control" type="text" id="reference"  name="reference" style="display: none;">
 
       
@@ -236,7 +244,7 @@
   <thead>
     <tr>
       <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">File Name</th>
-      <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">Type</th>
+      <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">File Type</th>
       <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">Action</th>
     </tr>
   </thead>
@@ -277,67 +285,53 @@
   
   <div class="contributors-container">
 
-  <?php
-if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-  $first_name = $_SESSION['first_name'];
-  $email = $_SESSION['email'];
-  $orc_id = $_SESSION['orc_id'];
-  
-    
-  $firstName = isset($_SESSION['first_name']) ? ucfirst($_SESSION['first_name']) : '';
-  $middleName = isset($_SESSION['middle_name']) ? ' ' . ucfirst($_SESSION['middle_name']) : '';
-  $lastName = isset($_SESSION['last_name']) ? ' ' . ucfirst($_SESSION['last_name']) : '';
-  $contributor = $firstName . $middleName . $lastName;
-  echo "<p id='contributor' style='display: none'>$contributor
-  </p>";
 
-}
-?>
  
   <h5 class="title7 mt-5" id="title-7">Add Contributors</h5>
   <h6 class="sub14 mt-3" id="sub-14">Add details for all of the contributors to this submission. Contributors added here will be sent an email confirmation of the submission, as well as a copy of all editorial decisions recorded against this submission.</h6>
 
-  <div class="cont">
-    <!-- <h5 class="title8" id="title-8">Contributors</h5> -->
-  <button type="button" class="btn btn-primary btn-sm"id="contributor-btn">Add Contributors</button>
-  </div>
- 
-  <table class="table table-striped" id="table-contributor" name="table-contributor">
-  <thead>
-    <tr >
- 
-      <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">First Name</th>
-      <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">Last Name</th>
-      <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">Public Name</th>
-      <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">ORCID</th>
-      <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">EMAIL</th>
-      <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">CO-AUTHOR</th>
-      <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">PRIMARY CONTACT</th>
-      <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal; ">Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><?php echo $first_name; ?></td>
-      <td><?php echo $lastName; ?></td>
-      <td></td>
-      <td><?php echo $orc_id; ?></td>
-      <td><?php echo $email; ?></td>
-      <td><input type="checkbox" disabled></td>
-      <td><input type="checkbox" value="Primary Contact" id="checkbox1"></td>
-      <td style="width: 150px"></td>
-    </tr>
-  </tbody>
-</table>
+  <?php
+    $first_name = $_SESSION['first_name'];
+    $last_name = $_SESSION['last_name'];
+    $public_name = $_SESSION['public_name'];
+    $orc_id = $_SESSION['orc_id'];
+    $email = $_SESSION['email'];
+  ?>
+  
+  <div class="btn-container">
+      <button type="button" id="addCont" class="btn btn-success btn-sm" onclick="addRow()">Add Contributor</button>
+      <button type="button" id="deleteCont" class="btn btn-danger btn-sm" onclick="deleteData()">Delete Data</button>
+      <!-- <button type="button" class="btn btn-primary btn-sm" onclick="saveData()">Save Data</button> -->
+    </div>
 
-  <div class="hidden-inputs" style="display: none">
-    <input type="hidden" name="contributor_type[]" value="Co-Author">
-    <input type="hidden" name="firstname[]" value="">
-    <input type="hidden" name="lastname[]" value="">
-    <input type="hidden" name="publicname[]" value="">
-    <input type="hidden" name="orcid[]" value="">
-    <input type="hidden" name="email[]" value="">
-  </div>
+  <table class="table table-striped" id="contributorTable" >
+            <thead>
+                <tr>
+                    <th style=" background-color: #0858a4; color: white; bold; font-size: 12px; font-weight: normal">Email</th>
+                    <th style=" background-color: #0858a4; color: white; font-size: 12px; font-weight: normal">First Name</th>
+                    <th style=" background-color: #0858a4; color: white; bold; font-size: 12px; font-weight: normal">Last Name</th>
+                    <th style=" background-color: #0858a4; color: white; bold; font-size: 12px; font-weight: normal">Public Name</th>
+                    <th style=" background-color: #0858a4; color: white; bold; font-size: 12px; font-weight: normal">ORCID</th>
+                    <th id="cont-col" style=" background-color: #0858a4; color: white; old; font-size: 12px; font-weight: normal; width: 350px">Contributor Type</th>
+                    <th style=" background-color: #0858a4; color: white; width: 30px; bold; font-size: 12px; font-weight: normal">Action</th>
+                </tr>
+               <tr>
+                <th><input type="text" style="width: 118px" value="<?php echo $email ?>"  disabled></th>
+                <th><input type="text" style="width: 118px" value="<?php echo $first_name ?>" disabled></th>
+                <th><input type="text" style="width: 118px" value="<?php echo $last_name ?>" disabled></th>
+                <th><input type="text" style="width: 118px"  value="<?php echo $public_name ?>" disabled></th>
+                <th><input type="text" style="width: 118px" value="<?php echo $orc_id ?>"  disabled></th>
+                <th><input type="checkbox" id="authorPcontact" class="form-check-input"><label style="font-weight: normal; font-size: 11px; margin-left: 10px;">Primary Contact</label></th>
+                
+                
+               </tr>
+            </thead>
+            <tbody>
+              
+            </tbody>
+        </table>
+
+
   
   </div>
 
@@ -348,10 +342,11 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 
     <h5 class="title8" id="title-8">Author Notes</h5>
     <h6 class="sub15" id="sub-15">Please provide the following details to help our editorial team manage your submission.</h6>
-    <div id="editor3"></div>
+    <div id="editor4" style="display: none"></div>
 
     </div>
-    <input class="form-control" type="text" id="notes" name="notes" style="display: none;">
+    <textarea class="form-control" name="editor3" id="editor3" cols="30" rows="10" style="width: 93%; height: auto; margin-left: auto;  margin-right: auto "></textarea>
+    <input class="form-control" type="text" id="notes" name="notes" style="display: none; ">
 
 
   </div>
@@ -371,12 +366,17 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
     <div class="editable-content mt-5" id="editable-content">
       <label id="sub-26">Title: </label><br>
       <input type="text" class="form-control" id="input5f1" readonly><br>
+
+      <label id="sub-28" style="margin-top: 30px">Abstract: </label><br>
+      <!-- <input type="text" class="form-control" id="input7"  readonly><br> -->
+      <textarea class="form-control" name="input7" id="input7" cols="30" rows="10" readonly></textarea>
+
       <label id="sub-27">Keywords: </label><br>
       <input type="text" class="form-control" id="input6" readonly><br>
-      <label id="sub-28">Abstract: </label><br>
-      <input type="text" class="form-control" id="input7" readonly><br>
+    
       <label id="sub-29">Reference: </label><br>
-      <input type="text" class="form-control" id="input8" readonly><br>
+      <!-- <input type="text" class="form-control" id="input8" readonly><br> -->
+      <textarea class="form-control" name="input8" id="input8" cols="30" rows="10" readonly></textarea>
     </div>
 
   
@@ -403,7 +403,7 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
       </div> -->
       <!-- <div class="file-content-container mt-3"> -->
         <!-- <input type="text" class="form-control" id="input10" readonly> -->
-        <table class="table table-striped" id="table-contributor-preview" name="table-contributor">
+        <!-- <table class="table table-striped" id="table-contributor-preview" name="table-contributor">
           <thead>
             <tr >
         
@@ -429,7 +429,7 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
               <td style="width: 150px"></td>
             </tr>
           </tbody>
-        </table>
+        </table> -->
       <!-- </div> -->
     </div>
     
@@ -441,40 +441,129 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
   </div>
 </div>
 <div id="btn-action">
-<button type="submit" class="btn btn-success btn-sm" id="submit">Submit</button>
+<button type="submit" class="btn btn-success btn-sm" id="submit" onclick="saveData()">Submit</button>
 <button type="button" class="btn btn-primary btn-sm" id="next">Next</button>
 
 <button type="button" class="btn btn-secondary btn-sm" id="prev">Prev</button>
 
 </div>
 
+<!-- Add this element to your HTML code -->
+<div id="loadingOverlay">
+    <div id="loadingSpinner"></div>
+</div>
 
 </form>
 
 
 
-
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 <script src="../JS/reusable-header.js"></script>
-<script src="../JS/ex_submit.js"></script>
+<script src="../JS/ex_submit.js"></script>  
 <script src="../JS/ex_submit_duplicate_article.js"></script>
 <script src="../JS/ex_submit_journal_type.js"></script>
 <script>
-   var checkbox1 = document.getElementById("checkbox1");
-   var checkbox2 = document.getElementById("checkbox2");
 
-   
-    checkbox1.addEventListener("change", function () {
-        checkbox2.checked = checkbox1.checked;
-    });
 
-    checkbox2.addEventListener("change", function () {
-        checkbox1.checked = checkbox2.checked;
-    });
+function addRow() {
+    var index = $('#contributorTable tbody tr').length; // Get the current row index
+    var newRow = '<tr>' +
+        '<td><input class="form-control email-input" type="email" name="emailC[]" style="height: 30px;" required></td>' +
+        '<td><input class="form-control" type="text" name="firstnameC[]" style="height: 30px;" required></td>' +
+        '<td><input class="form-control" type="text" name="lastnameC[]" style="height: 30px;" required></td>' +
+        '<td><input class="form-control" type="text" name="publicnameC[]" style="height: 30px;"></td>' +
+        '<td><input class="form-control" type="number" name="orcidC[]" style="height: 30px;"></td>' +
+        '<td class="align-middle">' +
+        '<div class="form-check cAuthor" style="display: inline-block; margin-right: 10px">' +
+        '<input class="form-check-input" type="checkbox" name="contributor_type_coauthor[' + index + ']" value="Co-Author">' +
+        '<label class="form-check-label"> Co-Author</label>' +
+        '</div>' +
+        '<div class="form-check pContact" style="display: inline-block">' +
+        '<input class="form-check-input" type="checkbox" name="contributor_type_primarycontact[' + index + ']" value="Primary Contact">' +
+        '<label class="form-check-label"> Primary Contact</label>' +
+        '</div>' +
+        '</td>'
+        +
+        '<td class="align-middle"><input class="form-check-input" type="checkbox" name="selectToDelete"></td>' +
+        '</tr>';
+
+    $('#contributorTable tbody').append(newRow);
+}
+
+// Attach event listener to the email input field for fetching data on blur
+$('#contributorTable tbody').on('blur', 'input.email-input', function() {
+    var email = $(this).val();
+    var currentRow = $(this).closest('tr');
+
+    if (email !== '') {
+      
+        $.ajax({
+            type: 'POST',
+            url: 'fetch_author_data.php', 
+            data: { email: email },
+            dataType: 'json',
+            success: function(response) {
+                if (response.success) {
+                    // Update the current row with fetched data
+                    currentRow.find('input[name="firstnameC[]"]').val(response.data.first_name);
+                    currentRow.find('input[name="lastnameC[]"]').val(response.data.last_name);
+                    currentRow.find('input[name="publicnameC[]"]').val(response.data.public_name);
+                    currentRow.find('input[name="orcidC[]"]').val(response.data.orc_id);
+                } else {
+                    // Handle the case where the email does not exist in the database
+                    Swal.fire({
+                    icon: "question",
+                    title: "This email is new to us",
+                    text: "Please try to input the contributors info manually."
+                  
+                  });
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('Error fetching data:', error);
+            }
+        });
+    }
+});
+
+
+function saveData() {
+
+
+  var formData = new FormData($('#form')[0]);
+
+  // Add contributor types for each row
+  $('#contributorTable tbody tr').each(function(index, row) {
+      var coAuthorCheckbox = $(row).find('input[name="contributor_type_coauthor[]"]');
+      var primaryContactCheckbox = $(row).find('input[name="contributor_type_primarycontact[]"]');
+
+      if (coAuthorCheckbox.is(':checked')) {
+          formData.append('contributor_type_coauthor[' + index + ']', 'Co-Author');
+      }
+
+      if (primaryContactCheckbox.is(':checked')) {
+          formData.append('contributor_type_primarycontact[' + index + ']', 'Primary Contact');
+      }
+  });
+
+  $('#loadingOverlay').show();
+
+}
+
+
+function deleteData() {
+  // Iterate through each checkbox
+  $('input[name="selectToDelete"]:checked').each(function() {
+      // Delete the corresponding row
+      $(this).closest('tr').remove();
+  });
+}
+
 </script>
+
 </body>
 </html>

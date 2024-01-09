@@ -43,7 +43,7 @@
 
       </div>
       <div class="citeation-footer d-flex justify-content-end gap-2">
-        <button class=" cite-btn">Inline Citation</button>
+        <button class=" cite-btn" id="inline-btn">Inline Citation</button>
         <button class=" cite-btn" id="copy-btn">Copy Reference</button>
       </div>
     </div>
@@ -93,7 +93,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="../JS/reusable-header.js"></script>
   <script src="../JS/home-recommended-api.js"></script>
-  <script src="../JS/home-monthly-api.js"></script>
+  <!-- <script src="../JS/home-monthly-api.js"></script> -->
   <script src="../JS/article-details-api.js"></script>
 </body>
 

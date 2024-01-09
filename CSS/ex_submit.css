@@ -263,7 +263,8 @@
 #editor, #editor2, #editor3{
    height: 200px;
    width: 100%;
-   
+   resize: none;
+   font-size: 12px;
  
 }
 
@@ -374,6 +375,11 @@
     margin-left: -20px;
     
    
+}
+
+#input7, #input8{
+    resize: none;
+    height: auto;
 }
 
 #selectRole, #selectRoleUpdate{
@@ -633,6 +639,27 @@
 }
 
 
+.btn-container{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    float: right;
+    
+}
+
+#addCont, #deleteCont{
+    background-color: #0858a4;
+    border: none;
+    border-color: none;
+   
+}
+
+
+
+
+.form-check-label{
+    font-size: 11px;
+}
+
 
 
 #update-cont-2{
@@ -671,6 +698,34 @@
 
 
  
+  #loadingOverlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.7);
+    z-index: 1000;
+}
+
+#loadingSpinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #3498db;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
 
 
 
@@ -685,9 +740,71 @@
    
 }
 
+#submit{
+    background-color: #0858a4;
+    color: white;
+}
+
 
 #next{
     background-color: #0858a4;
 }
 
 
+#update-article-title, #updatePreviewFileTitle{
+    font-weight: bold;
+    color:#0858a4;
+    text-align: left;
+    margin-bottom: -20px;
+}
+
+#abstractInputPreview, #referencetInputPreview{
+    resize: none;
+}
+
+#previewTitlelabel, #previewAbstractlabel, #previewKeywordlabel, #referenceAbstractlabel, #updatePreviewFile1, #updatePreviewFile2, #updatePreviewFile3{
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: left;
+    color: #0858a4;
+    margin-bottom: 5px;
+    margin-left: 5px;
+
+}
+
+#titleInputPreview, #abstractInputPreview, #keywordInputPreview, #referencetInputPreview{
+    width: 95%;
+    margin-left: 5px;
+    margin-bottom: 20px;
+    font-size: 11px;
+}
+
+#file1UpdatePreview, #file2UpdatePreview, #file3UpdatePreview{
+    width: 70%;
+    margin-left: -25px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+    font-size: 11px;
+    display: inline-block;
+
+}
+
+#btnSelectFile1, #btnSelectFile2, #btnSelectFile3{
+    display: inline-block;
+    background-color: #0858a4;
+    
+}
+
+
+#btnPreview_Update{
+    background-color: #0858a4;
+    color: white;
+    float: right;
+    margin-right: 15px;
+}
+
+#btnClose{
+    display: block;
+    float: right;
+    margin-right: 30px;
+    
+}

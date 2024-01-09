@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="d-flex gap-2 header">
+    <div class="d-flex gap-2 header" id="header">
         <img class="img-logo" src="../images/qcu-logo.webp" alt="">
         <div class="logotitle d-flex flex-column gap-1">
           <a>QUEZON CITY UNIVERSITY</a>

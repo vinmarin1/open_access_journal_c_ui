@@ -46,8 +46,8 @@ function renderArticleDetails(data) {
 
     let contributorsHTML = "";
     if (item.contributors != null) {
-      for (const contributors of item.contributors.split("and")) {
-        contributorsHTML += `<a href="https://orcid.org/${contributors.split("->")[1]}">${contributors.split("->")[0]}</a>, `;
+      for (const contributors of item.contributors.split(";")) {
+        contributorsHTML += `<a href="https://orcid.org/${contributors.split(".")[1]}">${contributors.split(".")[0]}</a> | `;
       }
     }
     articleElement.innerHTML = `
@@ -88,7 +88,7 @@ function renderArticleDetails(data) {
                       <p style="font-size:small; margin-left: 5px" >DOWNLOADS</p>
                   </div>
                   <div class="citations">
-                      <p style="font-size:large; text-align: center;">20</p>
+                      <p style="font-size:large; text-align: center;">${item.total_citations}</p>
                       <p style="font-size:small; margin-left: 5px" >CITATIONS</p>
                   </div>
               </div>
@@ -122,55 +122,94 @@ function renderArticleDetails(data) {
           </div>
       </div>
     `;
-    let contributors = "";
-    if (item.contributors != null) {
-      for (const contributor of item.contributors.split("and")) {
-        contributors +=  contributor.split("->")[0];
+    function formatContributors(authors) {
+      if (authors != null) {
+          return authors
+              .split(";")
+              .map((author, index, array) => (index === array.length - 1 && array.length > 1 ? `& ${author}` : author))
+              .join(", ");
       }
+      return "";
     }
+  
+    let contributors_full = formatContributors(item.contributors_B);
+    let contributors_initial = formatContributors(item.contributors_B);
+    
+    
     const citationSelect = document.querySelector("select");
     citationSelect.addEventListener("change", function () {
       const selectedCitation = citationSelect.value;
      
       citationContent.innerHTML = `   
-        <p class="small">${item.title}</p>
         <ul>
           <li> 
             <h4 class="small"><b>${selectedCitation} Citation</b></h4>
             <p>
-            ${selectedCitation === "APA"
-          ? contributors + "." + "(" + item.publication_date.split(" ")[3] + ")." + item.title + "." + item.journal +".<i>"+ item.volume.split(" ")[1]+"</i>("+1+")"
-          : item.contributors_A + "." + item.title + "." + item.journal
-        }
+              ${
+                item.contributors != null ?
+                  selectedCitation === "APA"
+                    ? `${contributors_full} (${item.publication_date.split(" ")[3]}). ${item.title}. ${item.journal}, ${item.volume.split(" ")[1]}(1). https://openaccessjournalcui-production.up.railway.app/PHP/article-details.php?articleId=${item.article_id}`
+                  : selectedCitation === "MLA"
+                    ? `${contributors_initial}. "${item.title}." ${item.journal}, ${item.publication_date.split(" ")[3]}, ${item.volume.split(" ")[1]}(1).`
+                  : selectedCitation === "Chicago"
+                    ? `${contributors_initial}. "${item.title}." ${item.journal} ${item.volume.split(" ")[1]}, no. 1 (${item.publication_date.split(" ")[3]}).  https://openaccessjournalcui-production.up.railway.app/PHP/article-details.php?articleId=${item.article_id}`
+                  : `${item.contributors_A.split(";").join(", ")}. ${item.title}. ${item.journal}.`
+                    + ` https://openaccessjournalcui-production.up.railway.app/PHP/article-details.php?articleId=${item.article_id}`
+                : 
+                  selectedCitation === "APA"
+                      ? `${item.title}(${item.publication_date.split(" ")[3]}). ${item.journal}, ${item.volume.split(" ")[1]}(1). https://openaccessjournalcui-production.up.railway.app/PHP/article-details.php?articleId=${item.article_id}`
+                  : selectedCitation === "MLA"
+                      ? `"${item.title}." ${item.journal}, ${item.publication_date.split(" ")[3]}, ${item.volume.split(" ")[1]}(1).`
+                  : selectedCitation === "Chicago"
+                      ? `${contributors_initial}. "${item.title}." ${item.journal} ${item.volume.split(" ")[1]}, no. 1 (${item.publication_date.split(" ")[3]}).  https://openaccessjournalcui-production.up.railway.app/PHP/article-details.php?articleId=${item.article_id}`
+                  : `${item.title}. ${item.journal}.`
+                      + ` https://openaccessjournalcui-production.up.railway.app/PHP/article-details.php?articleId=${item.article_id}`
+              }
             </p>
           </li>
         </ul>
       `;
     });
+
     const initialSelectedCitation = citationSelect.value;
     citationContent.innerHTML = `   
-      <p class="small">${item.title}</p>
       <ul>
         <li> 
           <h4 class="small"><b>${initialSelectedCitation} Citation</b></h4>
           <p class="cited" id="cited">
-            ${contributors}.(${item.publication_date.split(" ")[3]}).${item.title}.${item.journal}
+          ${item.contributors != null ? 
+            `${contributors_full} (${item.publication_date.split(" ")[3]}). ${item.title}. ${item.journal}, ${item.volume.split(" ")[1]}(1). https://openaccessjournalcui-production.up.railway.app/PHP/article-details.php?articleId=${item.article_id}`
+            : 
+            `${item.title}(${item.publication_date.split(" ")[3]}).${item.journal}, ${item.volume.split(" ")[1]}(1). https://openaccessjournalcui-production.up.railway.app/PHP/article-details.php?articleId=${item.article_id}`
+
+          }
           </p>
         </li>
       </ul>
     `;
 
     const copyBtn = document.getElementById("copy-btn")
+    const inlineBtn = document.getElementById("inline-btn")
 
     copyBtn.addEventListener("click",()=> {
       navigator.clipboard.writeText(citationContent.querySelector("p").innerHTML);
       handleDownloadLog(item.article_id,"citation");
       Swal.fire({
-        html: '<h4 style="color: #0858a4; font-family: font-family: Arial, Helvetica, sans-serif">Please read and check the guidelines to proceed</4>',
+        html: '<h4 style="color: #0858a4; font-family: font-family: Arial, Helvetica, sans-serif">Successfully copied reference in your clipboard.</h4>',
         icon: 'success',
       })
-   
     })
+
+    inlineBtn.addEventListener("click",()=> {
+      navigator.clipboard.writeText(citationContent.querySelector("p").innerHTML);
+      handleDownloadLog(item.article_id,"citation");
+      Swal.fire({
+        html: '<h4 style="color: #0858a4; font-family: font-family: Arial, Helvetica, sans-serif">Successfully copied reference in your clipboard.</4>',
+        icon: 'success',
+      })
+    })
+ 
+
     const downloadBtn = articleElement.querySelector(`#download-btn`);
     const epubBtn = articleElement.querySelector(`#epub-btn`);
     const citeBtn = articleElement.querySelector(`#cite-btn`);
@@ -195,12 +234,14 @@ function renderArticleDetails(data) {
     }
     if (downloadBtn) {
       downloadBtn.addEventListener("click", () => {
-        createCloudConvertJob(item.file_name, "pdf");
         handleDownloadLog(item.article_id,"download");
+        createCloudConvertJob(item.file_name, "pdf");
+       
       });
     }
     if (epubBtn) {
       epubBtn.addEventListener("click", () => {
+        handleDownloadLog(item.article_id,"download");
         createCloudConvertJob(item.file_name, "epub");
       });
     }
@@ -214,7 +255,7 @@ function renderArticleDetails(data) {
 }
 
 function navigateToArticle(articleId) {
-  window.location.href = `/PHP/article-details.php?articleId=${articleId}`;
+  window.location.href = `../PHP/article-details.php?articleId=${articleId}`;
 }
 
 async function renderRecommended(data) {
@@ -241,9 +282,6 @@ async function renderRecommended(data) {
   });
 }
 
-function downloadFile(file) {
-  window.location.href = `https://openaccessjournalcui-production.up.railway.app/Files/${file}`;
-}
 
 async function handleDownloadLog(articleId,type) {
   await fetch(
@@ -337,6 +375,7 @@ const closeBtn = document.getElementById("closeCiteModal")
 closeBtn.addEventListener("click", () => {
   toggleCiteModal()
 })
+
 function toggleCiteModal() {
   const citationElement = document.getElementById("citation-container")
 

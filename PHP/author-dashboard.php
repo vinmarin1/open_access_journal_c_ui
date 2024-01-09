@@ -1,5 +1,7 @@
 <?php 
+require 'dbcon.php';
 session_start();
+$id = $_SESSION['id'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,10 +41,9 @@ session_start();
         </h3>
       </div>
       <div>
-        <button class="btn tbn-primary btn-md" id="btn1" onclick="window.location.href='author-dashboard.php'">As
-          Contributor</button>
-        <button class="btn tbn-primary btn-md" id="btn2" onclick="window.location.href='user-dashboard.php'">Edit
-          Profile</button>
+        <button class="btn tbn-primary btn-md" id="btn1" onclick="window.location.href='author-dashboard.php'">My
+          Contributions</button>
+        <button class="btn tbn-primary btn-md" id="btn2" onclick="window.location.href='user-dashboard.php'">Edit/View Profile</button>
       </div>
     </div>
     <div class="main">
@@ -136,12 +137,7 @@ session_start();
                   </tbody>
                 </table> -->
                 <?php
-   
-     
-                  require 'dbcon.php';
-              
-                  global $con;
-              
+  
                   $journalNames = array(
                       1 => 'The Gavel',
                       2 => 'The Lamp',
@@ -158,7 +154,7 @@ session_start();
                   );
               
                   if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-                      $id = $_SESSION['id'];
+                    
               
                       // Assuming you want 10 items per page
                       $itemsPerPage = 10;
@@ -175,8 +171,8 @@ session_start();
                           echo '<tr>
                                       <th><input type="checkbox"></th>
                                       <th>Title</th>
-                                      <th>Date</th>
                                       <th>Journal</th>
+                                      <th>Date</th>
                                       <th><center>Status</center></th>
                                       <th><center>Action</center></th>
                                   </tr>';
@@ -187,10 +183,11 @@ session_start();
                               echo '<tr>';
                               echo '<td><input type="checkbox"></td>';
                               echo '<td>' . $row->title . '</td>';
-                              echo '<td>' . $row->date_added . '</td>';
+                           
               
                               $journalName = isset($journalNames[$row->journal_id]) ? $journalNames[$row->journal_id] : '';
                               echo '<td>' . $journalName . '</td>';
+                              echo '<td>' . $row->date_added . '</td>';
               
                               $statusInfo = isset($journalStatus[$row->status]) ? $journalStatus[$row->status] : array('text' => '', 'color' => '', 'borderColor' => '');
                               echo '<td><center><span class="badge badge-pill" style="background-color: ' . $statusInfo['color'] . '; border: 1px solid ' . $statusInfo['borderColor'] . ';">' . $statusInfo['text'] . '</span></center></td>';
@@ -217,9 +214,10 @@ session_start();
                           echo '</nav>';
 
                                   } else {
-                                      echo '0 results or error in query execution';
+                                      echo 'You have not submitted any article yet';
                                   }
                               }
+                            
                 ?>
 
 
@@ -242,7 +240,124 @@ session_start();
               </div>
               <div class="tab-pane fade " id="reviews-tab-pane" role="tabpanel" aria-labelledby="reviews-tab"
                 tabindex="0">
-                <table>
+
+
+              <?php
+
+                $journalNamesReviewer = array(
+                  1 => 'The Gavel',
+                  2 => 'The Lamp',
+                  3 => 'The Star',
+                );
+
+                $journalStatusReviewer = array(
+                  1 => array('text' => 'PUBLISHED', 'color' => 'green', 'borderColor' => 'darkgreen'),
+                  2 => array('text' => 'PRODUCTION', 'color' => 'blue', 'borderColor' => 'darkblue'),
+                  3 => array('text' => 'COPYEDITING', 'color' => 'orange', 'borderColor' => 'darkorange'),
+                  4 => array('text' => 'REVIEW', 'color' => 'green', 'borderColor' => 'green'),
+                  5 => array('text' => 'PENDING', 'color' => 'gray', 'borderColor' => 'darkgray'),
+                  6 => array('text' => 'REJECT', 'color' => 'red', 'borderColor' => 'darkred'),
+                );
+
+                if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+                    
+              
+                  // Assuming you want 10 items per page
+                  $itemsPerPageReviewer = 10;
+                  $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
+                  
+                  $queryReviewer = "SELECT reviewer_assigned.*, article.*
+                                    FROM reviewer_assigned 
+                                    JOIN article ON article.article_id = reviewer_assigned.article_id 
+                                    WHERE reviewer_assigned.author_id = :author_id 
+                                      AND article.status < 5 
+                                    LIMIT " . ($currentPage - 1) * $itemsPerPageReviewer . ", $itemsPerPageReviewer";
+                  
+                  $varsReviewer = array(':author_id' => $id);
+                  
+                  $resultReviewer = database_run($queryReviewer, $varsReviewer);
+                  
+          
+                  if ($resultReviewer !== false && count($resultReviewer) > 0) {
+                      echo '<table class="table table-hover">';
+                      echo '<thead>';
+                      echo '<tr>
+                                  <th><input type="checkbox"></th>
+                                  <th>Title</th>
+                                  <th>Journal</th>
+                                  <th>Date Issued</th>
+                                  <th>Status</th>
+                                 
+                               
+                              </tr>';
+                      echo '</thead>';
+          
+                      echo '<tbody>';
+                      foreach ($resultReviewer as $rowReviewer) {
+                          echo '<tr>';
+                          echo '<td><input type="checkbox"></td>';
+                       
+
+                          $queryTitle = "SELECT article.title FROM article JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id WHERE article.status < 5 AND reviewer_assigned.author_id = :author_id;
+                          ";
+                          $titleResult = database_run($queryTitle, array(':author_id' => $id));
+                          if ($titleResult !== false && count($titleResult) > 0) {
+                              echo '<td>' . $rowReviewer->title . '</td>';
+                          } else {
+                              echo '<td>Unknown Title</td>';
+                          }
+
+                          $journalName = isset($journalNames[$rowReviewer->journal_id]) ? $journalNames[$rowReviewer->journal_id] : '';
+                          echo '<td>' . $journalName . '</td>';
+
+                         $dateIssued = ($rowReviewer->date_issued);
+                         echo  '<td>' . $dateIssued . '</td>';
+
+                           
+                         $statusInfo = isset($journalStatusReviewer[$rowReviewer->status]) ? $journalStatusReviewer[$rowReviewer->status] : array('text' => '', 'color' => '', 'borderColor' => '');
+                        echo '<td><center><span class="badge badge-pill" style="background-color: ' . $statusInfo['color'] . '; border: 1px solid ' . $statusInfo['borderColor'] . ';">' . $statusInfo['text'] . '</span></center></td>';
+                        echo '<td><center>...</center></td>';
+                        echo '</tr>';
+
+                          
+
+                        
+          
+                          echo '</tr>';
+                      }
+                      echo '</tbody>';
+                      echo '</table>';
+          
+                      
+                      $queryReviewr = "SELECT COUNT(*) as total FROM reviewer_assigned WHERE `author_id` = :author_id";
+                      $countResultReviewer = database_run($queryReviewr, $varsReviewer);
+                      $totalCount = $countResultReviewer[0]->total;
+          
+                      $totalPages = ceil($totalCount / $itemsPerPage);
+          
+              
+                      echo '<nav aria-label="Page navigation example" class="mt-3">';
+                      echo '<ul class="pagination justify-content-end">';
+                      for ($i = 1; $i <= $totalPages; $i++) {
+                          echo '<li class="page-item ' . ($i == $currentPage ? 'active' : '') . '"><a class="page-link" href="?page=' . $i . '">' . $i . '</a></li>';
+                      }
+                      echo '</ul>';
+                      echo '</nav>';
+
+                              } else {
+                                  echo 'You are not assign as reviewer yet.';
+                              }
+                          }
+                
+              
+
+              ?>
+
+           
+
+
+
+                <!-- <table>
                   <thead>
                     <tr>
                       <th><input type="checkbox"></th>
@@ -295,7 +410,7 @@ session_start();
                     <button>4</button>
                     <button>›</button>
                     <button>»</button>
-                  </div>
+                  </div> -->
                 </div>
               </div>
             </div>

@@ -80,11 +80,17 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 <span class="sort-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><path fill="#e6e6e6" d="M11 7H1l5 7zm-2 7h10l-5-7z"/></svg></span> <!-- Replace with an actual vector icon if available -->
             </div>
             <select id="sortby" name="sortby" class="sort-dropdown" style="color: #0858a4;">
-            <option value="">Choose</option>
+            <option value="" hidden>Choose</option>
             <option value="title">Title</option>
             <option value="recently_added">Recently added</option>
             <option value="publication-date">Publication Date</option>
-            <option value="popular">Most Popular</option>
+            <optgroup label="Popularity">
+                <option value="popular">All</option>
+                <option value="views">Views</option>
+                <option value="downloads">Downloads</option>
+                <option value="citations">Citations</option>
+            </optgroup>
+         
             <!-- Additional sort options here -->
             </select>
         </div>
@@ -209,21 +215,30 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
         }
     }
     }
-
-
-    // Add event listeners to the checkboxes
     year1Checkbox.addEventListener('change', () => updateSelectedYears(year1Checkbox, "2022"));
     year2Checkbox.addEventListener('change', () => updateSelectedYears(year2Checkbox, "2023"));
     year3Checkbox.addEventListener('change', () => updateSelectedYears(year3Checkbox, "2024"));
     
+    const sortSelect = document.querySelector("select");
+    let sortSelected = "total_interactions"
+
+    
+    // handle search element event submit with sorting change
     document.getElementById('search-form').addEventListener('submit', function(event) {
         event.preventDefault(); 
         let searchInputValue = document.getElementById('result').value;
         let year = document.getElementById('year1').value;
+        fetchData(searchInputValue, selectedYears, sortSelected);
 
-        let sortby = document.getElementById('sortby').value;
-        fetchData(searchInputValue, selectedYears, sortby);
+    });
 
+    // handle sort select element event change
+    sortSelect.addEventListener('change', function(event) {
+        event.preventDefault(); 
+        let searchInputValue = document.getElementById('result').value;
+        let year = document.getElementById('year1').value;
+            sortSelected = sortSelect.value;
+        fetchData(searchInputValue, selectedYears, sortSelected);
     });
 
     var result = document.getElementById('result');
@@ -260,6 +275,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 };
                     speechRecognizer.onend = function () {
                     recognizing = false;
+                    searchInputValue = finalTranscripts
                     fetchData(finalTranscripts, selectedYears, sortby);
                     
             };

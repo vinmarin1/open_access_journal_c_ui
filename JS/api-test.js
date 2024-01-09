@@ -36,3 +36,4 @@ async function fetchData() {
     document.getElementById('apiData').innerText = 'Error fetching data';
   }
 }
+

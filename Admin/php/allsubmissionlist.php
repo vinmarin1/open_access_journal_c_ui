@@ -1,11 +1,11 @@
 <?php
 include 'function/redirect.php';
 include 'function/submission_functions.php';
-$cid = isset($_GET['cid']) ? $_GET['cid'] : 1;
+include 'function/journal_function.php';
 
 $contributor = get_contributor_list();
-$journals = get_journal_detail($cid);
-$incomplete_articles = get_article_list($cid);
+$journal_list = get_journal_list();
+$all_articles = get_allarticle_list();
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +16,20 @@ $incomplete_articles = get_article_list($cid);
 
     <!-- Content wrapper -->
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="py-3 mb-4"><span class="text-muted fw-light">Submission /</span> <?php echo $journals[0]->journal; ?></h4>
+        <h4 class="py-3 mb-4"><span class="text-muted fw-light">Submission /</span> All</h4>
+
+        <!-- Journal tabs -->
+        <ul class="nav nav-tabs mb-3" id="journalTabs">
+            <li class="nav-item">
+                <a class="nav-link active" id="tabAll" data-status="">All</a>
+            </li>
+
+            <?php foreach ($journal_list as $journal): ?>
+                <li class="nav-item">
+                    <a class="nav-link" id="tab<?php echo $journal->journal_id; ?>" data-status="<?php echo $journal->journal; ?>"><?php echo $journal->journal; ?></a>
+                </li>
+            <?php endforeach; ?>
+        </ul>
 
         <!-- Status tabs -->
         <ul class="nav nav-tabs mb-3" id="statusTabs">
@@ -47,34 +60,45 @@ $incomplete_articles = get_article_list($cid);
                     <thead>
                         <tr>
                             <th>Article ID</th>
+                            <th>Journal</th>
                             <th>Article</th>
                             <th>Status</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($incomplete_articles as $incomplete_articlesval): ?>
+                        <?php foreach ($all_articles as $all_articlesval): ?>
                             <tr>
-                                <td width="5%"><?php echo $incomplete_articlesval->article_id; ?></td>
-                                <td width="75%">
+                                <td width="5%"><?php echo $all_articlesval->article_id; ?></td>
+                            <?php
+                                $matchingJournal = null;
+                                foreach ($journal_list as $journal) {
+                                    if ($journal->journal_id == $all_articlesval->journal_id) {
+                                        $matchingJournal = $journal;
+                                        break;
+                                    }
+                                }
+                                ?>
+                                <td><?php echo ($matchingJournal !== null) ? $matchingJournal->journal : 'Unknown'; ?></td>
+                                <td width="70%">
                                     <b>
                                         <?php
                                         $author_names = [];
                                         foreach ($contributor as $contributorval) {
-                                            if ($contributorval->article_id == $incomplete_articlesval->article_id) {
+                                            if ($contributorval->article_id == $all_articlesval->article_id) {
                                                 $author_names[] = $contributorval->publicname;
                                             }
                                         }
 
                                         $author_name = implode(', ', $author_names);
 
-                                        echo !empty($author_name) ? $author_name : $incomplete_articlesval->author;
+                                        echo !empty($author_name) ? $author_name : $all_articlesval->author;
                                         ?>
                                     </b><br>
-                                    <?php echo $incomplete_articlesval->title; ?>
+                                    <?php echo $all_articlesval->title; ?>
                                 </td>
                                 <?php
-                                    $statusNumber = $incomplete_articlesval->status;
+                                    $statusNumber = $all_articlesval->status;
 
                                     $statusInfo = [
                                         1 => ['label' => 'Published', 'class' => 'label-success'],
@@ -100,7 +124,7 @@ $incomplete_articles = get_article_list($cid);
                                     </span>
                                 </td>
                                 <td width="5%">                         
-                                    <a href="javascript:void(0);" onclick="viewWorkflow(<?php echo $incomplete_articlesval->article_id; ?>)" class="btn btn-outline-dark">View</a>
+                                    <a href="javascript:void(0);" onclick="viewWorkflow(<?php echo $all_articlesval->article_id; ?>)" class="btn btn-outline-dark">View</a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -129,6 +153,19 @@ $incomplete_articles = get_article_list($cid);
             });
 
             // Apply the status filter when a tab is clicked
+            $('#journalTabs a').on('click', function (e) {
+                e.preventDefault();
+
+                // Remove 'active' class from all tabs
+                $('#journalTabs a').removeClass('active');
+
+                // Add 'active' class to the clicked tab
+                $(this).addClass('active');
+
+                var statusValue = $(this).data('status');
+                dataTable.column(1).search(statusValue).draw();
+            });
+
             $('#statusTabs a').on('click', function (e) {
                 e.preventDefault();
 
@@ -139,7 +176,7 @@ $incomplete_articles = get_article_list($cid);
                 $(this).addClass('active');
 
                 var statusValue = $(this).data('status');
-                dataTable.column(2).search(statusValue).draw();
+                dataTable.column(3).search(statusValue).draw();
             });
         });
 

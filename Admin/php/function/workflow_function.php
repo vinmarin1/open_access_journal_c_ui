@@ -264,3 +264,173 @@ if (!function_exists('check_article_reviewer')) {
         return false;
     }
 }
+
+if (!function_exists('get_discussion')) {
+    function get_discussion($aid) {
+        $pdo = connect_to_database();
+
+        if ($pdo) {
+            try {
+                $query = "SELECT * FROM discussion WHERE article_id = :aid";
+                $stmt = $pdo->prepare($query);
+                $stmt->bindParam(':aid', $aid, PDO::PARAM_INT);
+                $stmt->execute();
+
+                $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+                return $result;
+            } catch (PDOException $e) {
+                echo "Error: " . $e->getMessage();
+                return false;
+            }
+        }
+
+        return false;
+    }
+}
+
+if (!function_exists('get_revision_files')) {
+    function get_revision_files($aid) {
+        $pdo = connect_to_database();
+
+        if ($pdo) {
+            try {
+                $query = "SELECT * FROM article_revision_files WHERE article_id = :aid";
+                $stmt = $pdo->prepare($query);
+                $stmt->bindParam(':aid', $aid, PDO::PARAM_INT);
+                $stmt->execute();
+
+                $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+                return $result;
+            } catch (PDOException $e) {
+                echo "Error: " . $e->getMessage();
+                return false;
+            }
+        }
+
+        return false;
+    }
+}
+
+if (!function_exists('get_copyeditingrevision_files')) {
+    function get_copyeditingrevision_files($aid) {
+        $pdo = connect_to_database();
+
+        if ($pdo) {
+            try {
+                $query = "SELECT * FROM article_revision_files WHERE article_id = :aid AND copyediting = 1";
+                $stmt = $pdo->prepare($query);
+                $stmt->bindParam(':aid', $aid, PDO::PARAM_INT);
+                $stmt->execute();
+
+                $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+                return $result;
+            } catch (PDOException $e) {
+                echo "Error: " . $e->getMessage();
+                return false;
+            }
+        }
+
+        return false;
+    }
+}
+
+if (!function_exists('get_copyeditedsubmission_files')) {
+    function get_copyeditedsubmission_files($aid) {
+        $pdo = connect_to_database();
+
+        if ($pdo) {
+            try {
+                $query = "SELECT * FROM article_files WHERE article_id = :aid AND copyedited = 1";
+                $stmt = $pdo->prepare($query);
+                $stmt->bindParam(':aid', $aid, PDO::PARAM_INT);
+                $stmt->execute();
+
+                $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+                return $result;
+            } catch (PDOException $e) {
+                echo "Error: " . $e->getMessage();
+                return false;
+            }
+        }
+
+        return false;
+    }
+}
+
+
+if (!function_exists('get_copyeditedrevision_files')) {
+    function get_copyeditedrevision_files($aid) {
+        $pdo = connect_to_database();
+
+        if ($pdo) {
+            try {
+                $query = "SELECT * FROM article_revision_files WHERE article_id = :aid AND copyedited = 1";
+                $stmt = $pdo->prepare($query);
+                $stmt->bindParam(':aid', $aid, PDO::PARAM_INT);
+                $stmt->execute();
+
+                $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+                return $result;
+            } catch (PDOException $e) {
+                echo "Error: " . $e->getMessage();
+                return false;
+            }
+        }
+
+        return false;
+    }
+}
+
+
+if (!function_exists('get_allcopyedited_files')) {
+    function get_allcopyedited_files($aid) {
+        $pdo = connect_to_database();
+
+        if ($pdo) {
+            try {
+                $query = "SELECT * FROM article_copyedited_files WHERE article_id = :aid";
+                $stmt = $pdo->prepare($query);
+                $stmt->bindParam(':aid', $aid, PDO::PARAM_INT);
+                $stmt->execute();
+
+                $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+                return $result;
+            } catch (PDOException $e) {
+                echo "Error: " . $e->getMessage();
+                return false;
+            }
+        }
+
+        return false;
+    }
+}
+
+if (!function_exists('get_copyedited_files')) {
+    function get_copyedited_files($aid) {
+        $pdo = connect_to_database();
+
+        if ($pdo) {
+            try {
+                $query = "SELECT * FROM article_copyedited_files WHERE article_id = :aid AND copyedited = 1";
+                $stmt = $pdo->prepare($query);
+                $stmt->bindParam(':aid', $aid, PDO::PARAM_INT);
+                $stmt->execute();
+
+                $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+                return $result;
+            } catch (PDOException $e) {
+                echo "Error: " . $e->getMessage();
+                return false;
+            }
+        }
+
+        return false;
+    }
+}
