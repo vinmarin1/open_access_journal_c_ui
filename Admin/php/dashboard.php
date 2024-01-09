@@ -39,18 +39,17 @@ include 'function/dashboard_functions.php';
                                 </div>
 
 
-                        <div class="box">
-                            <div class="left-side">
-                                <div class="box-topic">Total Engagements</div>
-                                    <div class="number"><?php echo $totalEngagements; ?></div>
-                                        <div class="indicator">
-                                            <!-- <i class='bx bx-up-arrow-alt'></i> -->
-                                            <!-- <span class="text">Up from yesterday</span> -->
-                                        </div>
-                                    </div>
-                                    <i class='bx bx-book cart three'></i>
-
-                                </div>
+                                <div class="box">
+                        <div class="left-side">
+                            <div class="box-topic">Total Engagements</div>
+                            <div class="number"><?php echo $totalEngagements; ?></div>
+                            <div class="indicator">
+                                <!-- <i class='bx bx-up-arrow-alt'></i> -->
+                                <!-- <span class="text">Up from yesterday</span> -->
+                            </div>
+                        </div>
+                        <i class='bx bx-book cart three'></i>
+                    </div>
 
 
                         <div class="box">
@@ -72,6 +71,13 @@ include 'function/dashboard_functions.php';
                             
                             
                           <style>
+        .increase {
+                color: green; /* Set your desired color for positive percentages */
+            }
+
+     .decrease {
+                color: red; /* Set your desired color for negative percentages */
+            }
         .chart-container {
             width: 750px;
             height: 450px;

@@ -50,7 +50,7 @@ include 'function/issue_function.php';
                                 <td width="50%"><?php echo  $issueslistval->url_path; ?></td>
                                 <td width="10%">
                                 <button type="button" class="btn btn-outline-success" onclick="updateModal(<?php echo $issueslistval->issues_id; ?>)">Update</button>
-                                <button type="button" class="btn btn-outline-danger" onclick="archiveJournal(<?php echo $issueslistval->issues_id; ?>, '<?php echo $issueslistval->volume; ?>', '<?php echo $issueslistval->title; ?>')">Archive</button>
+                                <button type="button" class="btn btn-outline-danger" onclick="archiveIssue(<?php echo $issueslistval->issues_id; ?>, '<?php echo $issueslistval->volume; ?>', '<?php echo $issueslistval->title; ?>')">Archive</button>
                                   </td>
                             </tr>
                         <?php endforeach; ?>
@@ -142,7 +142,7 @@ include 'function/issue_function.php';
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.log('AJAX Error:', textStatus, errorThrown);
-                console.log('Error fetching user data');
+                console.log('Error fetching issue data');
             }
         });
     }
@@ -151,14 +151,14 @@ include 'function/issue_function.php';
         $('#sloading').toggle();
         console.log('Save button clicked');
         
-            var issues_id = $('#issues_id').val();
+            var issues_id = $('#xissues_id').val();
             var updatedData = {
-            volume: $('#volume').val(),
-            number: $('#number').val(),
-            year: $('#year').val(),
-            title: $('#title').val(),
-            description: $('#description').val(),
-            url_path: $('#url_path').val(),
+            volume: $('#xvolume').val(),
+            number: $('#xnumber').val(),
+            year: $('#xyear').val(),
+            title: $('#xtitle').val(),
+            description: $('#xdescription').val(),
+            url_path: $('#xurl_path').val(),
         };
 
         $.ajax({
@@ -179,7 +179,7 @@ include 'function/issue_function.php';
                     $('#updateModal').modal('hide');
                     location.reload();
                 } else {
-                    console.error('Error updating journal data:', response.message);
+                    console.error('Error updating issue data:', response.message);
                     alert("Failed to update record. Please try again.");
                 }
             },
@@ -348,7 +348,7 @@ include 'function/issue_function.php';
                 <div class="modal-body">
                     <div class="row">
                         <h5 class="modal-title" id="modalToggleLabel">Are you sure you want to archive this Issue?</h5>
-                        <p id="issueInfo"></p>
+                        <p id="issuesInfo"></p>
                     </div>
                 </div>
                 <div class="modal-footer">
