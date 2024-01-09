@@ -45,10 +45,11 @@ async function fetchData() {
       articleDiv.classList.add('item');
       articleDiv.addEventListener('click', () => navigateToArticle(item.article_id));
       articleDiv.innerHTML = `
-        <span class="title w-100">${item.title.slice(0,60)}...</span>
+        <span class="title w-100">${item.title.slice(0,54)}...</span>
         <ul class="d-flex gap-2">
-          <li class="d-flex flex-column"><span class="total">${item.total_downloads}</span>downloads</li>
           <li class="d-flex flex-column"><span class="total">${item.total_reads}</span>views</li>
+          <li class="d-flex flex-column"><span class="total">${item.total_downloads}</span>downloads</li>
+          <li class="d-flex flex-column"><span class="total">${item.total_citations}</span>citations</li>
         </ul>
       `;
 

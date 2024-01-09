@@ -58,13 +58,13 @@
                 <option value="total_interactions" selected>Most Popular (All)</option>
                 <option value="total_reads">Most Viewed</option>
                 <option value="total_downloads">Most Downloaded</option>
-                <option value="">Most Cited</option>
+                <option value="total_citations">Most Cited</option>
               </select>
             
            
             </h6>
             <div id="most-popular">
-              
+
             </div>
             
           </div>

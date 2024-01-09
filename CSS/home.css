@@ -490,7 +490,7 @@ padding: 2em 8%;
   color:rgb(149, 149, 149);
 }
 
-#most-downloaded div:hover {
+#most-downloaded #most-popular div:hover {
   background-color: rgba(239, 242, 248, 0.617);
   cursor: pointer;
 }
