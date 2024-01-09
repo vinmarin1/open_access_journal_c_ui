@@ -233,17 +233,23 @@ include 'function/dashboard_functions.php';
     ]
 };
         
-          // Years for the dropdown list
-        var years = ['2023', '2024', '2025'];
+<!-- Years for the dropdown list -->
+var years = ['2023', '2024', '2025'];
 
-        // Populate the dropdown list
-        var dropdown = document.getElementById('yearDropdown');
-        for (var i = 0; i < years.length; i++) {
-            var option = document.createElement('option');
-            option.value = years[i];
-            option.text = years[i];
-            dropdown.add(option);
-        }
+<!-- Populate the dropdown list with the selected year -->
+var dropdown = document.getElementById('yearDropdown');
+for (var i = 0; i < years.length; i++) {
+    var option = document.createElement('option');
+    option.value = years[i];
+    option.text = years[i];
+
+    // Set the selected attribute for the current year
+    if (years[i] == <?php echo $selectedYear; ?>) {
+        option.selected = true;
+    }
+
+    dropdown.add(option);
+}
 
 
 
