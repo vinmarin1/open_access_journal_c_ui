@@ -66,6 +66,14 @@ table {
             <div class="row">
                 <div class="col-xl-12">
                     <div class="nav-align-top mb-4">
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item ms-auto">
+                                <button type="button" class="btn btn-dark" id="activityLogButton" style="width: 150px; margin-right: 5px; height: 40px;">Activity Log</button>
+                            </li>
+                            <li class="nav-item">
+                                <a href="javascript:void(0);" onclick="sendForDecline()" class="btn btn-danger btn-lg btn-block" style="width: 200px; height: 40px;">Decline Submission</a>
+                            </li>
+                        </ul>
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
                                 <button type="button" id="addspadding" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-top-workflow" aria-controls="navs-top-workflow" aria-selected="true"> Workflow</button>
@@ -143,7 +151,7 @@ table {
                                                             <?php else: ?>
                                                                 <a href="javascript:void(0);" onclick="sendForReview()" class="btn btn-primary btn-lg btn-block mb-2" style="width: 100%;">Send for Review</a>
                                                                 <button type="button" class="btn btn-outline-primary btn-lg btn-block mb-2" style="width: 100%;">Accept and Skip Review</button>
-                                                                <a href="javascript:void(0);" onclick="sendForDecline()" class="btn btn-outline-danger btn-lg btn-block" style="width: 100%;">Decline Submission</a>
+                                                                <!-- <a href="javascript:void(0);" onclick="sendForDecline()" class="btn btn-outline-danger btn-lg btn-block" style="width: 100%;">Decline Submission</a> -->
                                                             <?php endif; ?>
                                                         </div>
                                                         <div class="col-md-9 mt-4" id="dynamic-column">
@@ -280,7 +288,7 @@ table {
                                                             <?php else: ?>
                                                                 <a href="javascript:void(0);" onclick="sendForRevision()" class="btn btn-outline-primary btn-lg btn-block mb-2" style="width: 100%;">Request Revision</a>
                                                                 <a href="javascript:void(0);" onclick="sendForCopyediting()" class="btn btn-primary btn-lg btn-block mb-2" style="width: 100%;">Accept Submission</a>
-                                                                <a href="javascript:void(0);" onclick="sendForDecline()" class="btn btn-outline-danger btn-lg btn-block" style="width: 100%;">Decline Submission</a>
+                                                                <!-- <a href="javascript:void(0);" onclick="sendForDecline()" class="btn btn-outline-danger btn-lg btn-block" style="width: 100%;">Decline Submission</a> -->
                                                             <?php endif; ?>
                                                         </div>
                                                         <div class="col-md-9 mt-4" id="dynamic-column">
@@ -568,7 +576,7 @@ table {
                                                                 </div>
                                                             <?php else: ?>
                                                                 <a href="javascript:void(0);" onclick="sendForProduction()" class="btn btn-primary btn-lg btn-block mb-2" style="width: 100%;">Send to Production</a>
-                                                                <a href="javascript:void(0);" onclick="" class="btn btn-outline-danger btn-lg btn-block" style="width: 100%;">Cancel Copyediting</a>
+                                                                <!-- <a href="javascript:void(0);" onclick="" class="btn btn-outline-danger btn-lg btn-block" style="width: 100%;">Cancel Copyediting</a> -->
                                                             <?php endif; ?>
                                                         </div>
                                                         <div class="col-md-9 mt-4" id="dynamic-column">
@@ -872,7 +880,7 @@ table {
                                                                 </div>
                                                             <?php else: ?>
                                                                 <a href="javascript:void(0);" onclick="" class="btn btn-primary btn-lg btn-block mb-2" style="width: 100%;">Send to Publication</a>
-                                                                <a href="javascript:void(0);" onclick="" class="btn btn-outline-danger btn-lg btn-block" style="width: 100%;">Cancel Production</a>
+                                                                <!-- <a href="javascript:void(0);" onclick="" class="btn btn-outline-danger btn-lg btn-block" style="width: 100%;">Cancel Production</a> -->
                                                             <?php endif; ?>
                                                         </div>
                                                         <div class="col-md-9 mt-4" id="dynamic-column">
