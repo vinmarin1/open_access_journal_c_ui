@@ -1,0 +1,957 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: white;
+    /* Or use the exact background color from your design */
+}
+
+.content-over {
+    position: relative;
+    width: 100%;
+    max-height: 20em;
+    background-image: url(../images/qcu-bg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    padding: 2em 8%;
+    display: inline-flex;
+    flex-direction: column;
+
+}
+
+.content-over::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(53, 68, 74, 0.7);
+}
+
+.content-over h3 {
+    font-size: 24px !important;
+    color: white;
+    position: relative;
+    z-index: 1;
+    display: block;
+
+}
+
+.content-over h3 {
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 5px;
+}
+
+.content-over button {
+    font-size: 14px;
+    color: white;
+    position: relative;
+    z-index: 1;
+    background-color: #eceef1;
+    border-radius: 20px;
+    margin-top: 20px;
+}
+
+
+
+.content-over button:hover {
+    color: white;
+    position: relative;
+    z-index: 1;
+    background-color: #eceef1;
+    border-radius: 20px;
+    margin-top: 20px;
+    opacity: 0.8;
+}
+
+
+#btn1,
+#btn2 {
+    border: 2px white solid;
+    margin-right: 10px;
+    background-color: transparent;
+    width: 50%;
+    min-width: 120px;
+    max-width: 175px;
+}
+
+
+
+
+
+.main {
+    background-color: white;
+}
+
+.main-profile {
+    background-color: white;
+    padding: 20px;
+    border: 1px solid white;
+    margin: 20px 40px 20px 40px;
+    box-shadow: 0 5px 5px -4px rgba(0, 0, 0, 0.5);
+}
+
+.profile-container {
+    display: flex;
+    background-color: white;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+    
+}
+
+.profile-sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #e9ecef;
+    padding: 20px;
+    border-radius: 10px;
+    margin-right: 20px;
+    width: 20%;
+}
+
+.profile-main {
+    width: 30%;
+    
+}
+
+.profile-pic {
+    display: block;
+    width: 200px;
+    /* Adjust as needed */
+    height: 200px;
+    /* Adjust as needed */
+    margin-top: 10px;
+    border-radius: 50%;
+}
+
+.profile-info {
+    width: 50%;
+    margin-top: 20px;
+
+}
+
+.user-info .role {
+    color: #285581;
+}
+
+
+
+
+.user-info h1 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: .5rem;
+}
+
+.user-info p {
+    font-size: .9rem;
+    color: #666;
+    margin-bottom: .25rem;
+}
+
+.user-info p.subscription {
+    color: #000096;
+
+}
+
+.row {
+    align-items: right;
+}
+
+.points {
+    float: right;
+    margin-right: 20px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: .9rem;
+    color: white;
+    z-index: 1;
+}
+
+#edit-profile {
+
+    font-size: 14px;
+    background-color: #285581;
+    margin-right: 10px;
+    width: 50%;
+    min-width: 120px;
+    max-width: 135px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.vertical-line {
+    border-left: 1px solid #ccc;
+    /* Adjust color and thickness as needed */
+    height: auto;
+    /* Adjust height as needed */
+    margin: 0 10px;
+    /* Add margin for spacing */
+}
+
+.profile-main .details {
+
+    padding: 20px;
+    border-radius: 10px;
+    /* Adjust as needed */
+
+}
+
+.details {
+    
+}
+
+.details p {
+    font-size: .9rem;
+    color: #285581;
+    margin-bottom: .25rem;
+}
+
+.label {
+    font-weight: bold;
+    /* Makes the label text bold */
+    display: inline-block;
+    /* Ensures the label has its own line if necessary */
+    min-width: 180px;
+    /* Adjusts the width of the label to ensure alignment */
+    color: #666;
+    margin-bottom: 10px;
+    /* Other styles as required */
+
+}
+
+.xp-container {
+    margin-top: 20px;
+    /* Add some space between the content and XP container */
+}
+
+.xp-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+
+}
+
+.xp-label {
+    font-weight: bold;
+    margin-top: 5px;
+
+}
+
+.progress-bar {
+    width: 90%;
+    height: 15px;
+    background-color: #ddd !important;
+    /* Bar background color */
+    border-radius: 20px;
+    margin-top: 5px;
+    z-index: 999
+
+
+
+}
+
+.progress {
+    height: 100%;
+    background-color: #588297 !important;
+    /* Progress color */
+    border-radius: 20px;
+    z-index: 999
+
+}
+
+@media (max-width: 768px) {
+    .profile-container {
+        flex-direction: column;
+    }
+
+    .profile-sidebar,
+    .profile-main {
+        width: 100%;
+        margin-bottom: 20px;
+
+    }
+    .expertise {
+        flex-direction: column;
+        padding: 10px; /* Adjust padding for smaller screens */
+    }
+
+    .tab {
+         /* Change the direction to column for smaller screens */
+        text-align: center; /* Center-align the tabs */
+    }
+
+    .tab button {
+        width: 100%; /* Make each button take up the full width */
+        margin-bottom: 10px; /* Add some space between buttons */
+    }
+
+    .tabcontent {
+        display: block; /* Ensure the content is displayed as a block */
+    }
+
+    #about-container,
+    #contribution-container,
+    #rewards-container {
+        width: 100%;
+        padding: 50px; /* Adjust padding for individual content containers */
+        flex-direction: column; /* Change the direction to column for smaller screens */
+        
+    }
+
+    .log-box,
+    .info-box,
+    .stat-card,
+    .badge-box {
+        margin-bottom: 10px; /* Add space between individual boxes */
+        flex-direction: column; /* Change the direction to column for smaller screens */
+
+    }
+
+
+
+
+
+
+
+}
+
+/* Style for the tab buttons */
+.tab {
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    margin-left: 60px;
+
+}
+
+/* Style the buttons inside the tab */
+.expertise {
+    background-color: white;
+
+}
+
+.tab button {
+    font-family: Arial, sans-serif;
+    color: #004e98;
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 20px;
+    /*transition: 0.3s;*/
+    font-size: 17px;
+    font-weight: bold;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+
+    border-bottom: 3px solid #004e98;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+
+    border-top: 1px solid #CCCCCC;
+
+}
+
+.tablinks.active,
+.tablinks:hover {
+    /* Darker background on hover/active */
+    color: #004e98;
+}
+
+.tablinks {}
+
+/* When content is displayed */
+.tabcontent.show {
+    display: block;
+}
+
+
+#about-container {
+    display: flex;
+    margin: 20px;
+
+}
+
+#logrecord-container {
+    width: 250px;
+    height: 100px;
+    margin-top: 3px;
+    text-align: center;
+}
+
+.log-box {
+    border: 1px solid #CCCCCC;
+    margin-top: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+    color: #285581;
+
+}
+
+#info-container {
+    flex: 1;
+    margin-left: 20px;
+
+}
+
+.info-box hr {
+    color: #CCCCCC75;
+}
+
+.info-box h3 {
+    color: #285581;
+
+}
+
+.info-box p {
+    color: #454545;
+}
+
+.info-box {
+    border: 1px solid #CCCCCC;
+    padding: 30px;
+
+}
+
+.bio-container,
+.expertise-container {
+    margin-top: 0px;
+
+}
+
+
+
+
+
+#contribution-container {
+    display: flex;
+    margin: 20px;
+}
+
+#contribution-record-container {
+    width: 20%;
+    margin-top: 5px;
+}
+
+.stats-section {
+    display: grid;
+    width: auto; 
+    gap: 20px;
+    /* space between grid items */
+    background-color: #fff;
+    /* Clear white background */
+    padding: 10px 10px 10px 10px;
+}
+
+.stat-card {
+    background: #F5F7FF;
+    border-radius: 15px;
+    /* Rounded corners as per your image */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow */
+    padding: 20px;
+    /* Padding inside cards */
+    position: relative;
+    /* For absolute positioning of the increase label */
+}
+
+/* Top cards styling */
+.stat-card.top-card {
+    text-align: left;
+    /* Align text to the left */
+}
+
+.stat-card.top-card h2,
+.stat-card.top-card p {
+    margin: 0;
+
+}
+
+.stat-card.top-card h2 {
+    font-size: 16px;
+    /* Adjust font size as needed */
+    font-weight: 300;
+    /* Semi-bold */
+    color: #697077;
+
+}
+
+.stat-card.top-card p {
+    font-size: 15px;
+    /* Larger font size for the numbers */
+    margin-top: 4px;
+    /* Space between the title and the number */
+    color: #004e98;
+
+    font-weight: bold;
+}
+
+/* Increase label styling */
+.increase {
+    background-color: #45D700;
+    /* Lighter green background for the increase label */
+    color: #FFFFFF;
+    /* Green text color for the increase label */
+    padding: 5px 10px;
+    border-radius: 10px;
+    /* Rounded corners for the label */
+    position: absolute;
+    /* Absolute positioning inside the stat card */
+    right: 20px;
+    /* Align to the right */
+    bottom: 20px;
+    /* Align to the bottom */
+    font-weight: bold;
+}
+
+.vertical-line {
+    border-left: 1px solid #ccc;
+    /* Adjust color and thickness as needed */
+    height: auto;
+    /* Adjust height as needed */
+    margin: 0 10px;
+    /* Add margin for spacing */
+}
+
+#graph-container {
+    flex: 1;
+    margin-left: 10px;
+    border: 1px solid #ccc;
+    padding: 20px;
+    color: #285581;
+}
+
+.graph {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 200px;
+
+
+}
+
+
+
+#rewards-container {
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+
+}
+
+#badges-container {
+    border: 1px solid #959595;
+    padding: 0px 0px 20px 0px;
+    margin-right: 10px;
+    text-align: center;
+}
+
+#badges-container h1 {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.badge-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.badge-box {
+    width: 95px;
+    height: 95px;
+    background-color: #f0f0f0;
+    margin: 5px;
+    display: inline-block;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 1px solid #ccc;
+
+}
+
+#see-more {
+    border: 2px #0858a4 solid;
+    background-color: transparent;
+    border-radius: 20px;
+    color: #0858a4;
+    width: 50%;
+    margin-top: 10px;
+    /* Add margin for spacing */
+}
+
+/* Optional: Add hover effect */
+#see-more:hover {
+    background-color: #0858a4;
+    color: #fff;
+}
+
+#credit-history-container {
+    flex: 1;
+    background-color: white;
+    padding: 0px 20px 10px 20px;
+    border-radius: 5px;
+    border: 1px solid #959595;
+    
+    overflow-y: auto;
+
+}
+.table-container {
+    overflow-x: auto; /* Enable horizontal scrollbar if needed */
+}
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+#credit-history-container h1 {
+    color: black;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+
+.balance-points {
+    color: black;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.credit-history-row {
+    background-color: #588297;
+    margin-bottom: 10px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #58829738;
+    border-top: 1px solid #eceef1;
+}
+
+td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 10px solid white !important;
+    font-weight: bold;
+    color: #285581;
+}
+.view-button {
+    width: 100%; /* Make the "View" button fill the entire cell */
+    border-color: #285581; /* Remove default button border */
+    border-radius: 5px; /* Add border-radius for rounded corners */
+    padding: 1px 10px; /* Add padding for better button appearance */
+    background-color: transparent; /* Add a background color */
+    color: #285581; /* Set text color to white */
+    cursor: pointer; /* Add pointer cursor on hover */
+}
+.view-button:hover {
+    background-color: white; /* Change background color on hover */
+}
+
+/* Heart icon styling */
+.balance-points::after {
+    content: '\2665'; /* Unicode for heart symbol */
+    color: #ff0000; /* Change the color as needed (here it's red) */
+    margin-right: 5px; /* Add some space between balance and heart icon */
+    font-size: 1.3em;
+}
+
+
+
+.recommendation-article{
+    display: block;
+    width: 100%;
+    height: 400px;
+    background-color: #F5F7F8
+	
+}
+
+.recommendation-article h2{
+    color: #115272;
+    font-family: 'Times New Roman', Times, serif;
+    margin-left: 95px;
+    display: flex;
+	padding-top: 60px;
+	
+}
+
+.articles-container {
+    width: 85%;
+    height: auto;
+    border: none;
+    margin-left: auto;
+    margin-right: auto;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+	
+}
+
+.articles-container::-webkit-scrollbar {
+    width: 0.5em;
+    background-color: transparent;
+}
+
+.articles-container::-webkit-scrollbar-thumb {
+    background-color: transparent;
+}
+
+.article {
+    
+    width: 25%;
+    height: 100%;
+    margin-right: 80px;
+    background-color: transparent;
+    display: inline-block;
+    white-space: normal; 
+}
+
+.article .h6{
+    font-family: 'Times New Roman', Times, serif;
+    color: #115272;
+    width: auto;
+
+}
+
+.article-info{
+    opacity: 0.6;
+    font-size: 12px;
+    width: 100%;
+}
+
+.author{
+    color: #115272;
+    font-size: 12px;
+    display: block;
+}
+
+.article-content{
+    color: black;
+    font-size: 12px;
+}
+
+
+.btn-article:hover{
+    border: 2px #115272 solid;
+    background-color: transparent;
+    border-radius: 20px;
+    color: #115272;
+    opacity: 0.8;
+}
+
+
+
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+	margin-bottom: 50px;
+	background-color: white;
+}
+
+.continue-reading-article-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border: 1px solid white;
+    padding: 20px;
+    border-radius: 4px;
+    width: 90%;
+	margin-bottom: 10px;
+	box-shadow: 0 5px 5px -4px rgba(0, 0, 0, 0.5);
+}
+
+.continue-reading-article-details {
+    flex: 3;
+    color: #454545;
+}
+
+.continue-reading-article-details .continue-reading-keywords {
+    margin-bottom: 10px;
+}
+
+.continue-reading-article-details .continue-reading-keyword {
+    display: inline-block;
+    background-color: #e1e1e1;
+    padding: 5px 10px;
+    margin-right: 5px;
+    border-radius: 4px;
+    font-size: 0.875em;
+    color: #115272;
+    margin-bottom: 5px;
+}
+
+.continue-reading-article-details h6 {
+    color: #115272;
+}
+
+.continue-reading-article-stats {
+    display: flex;
+    flex-direction: column;
+    padding-left: 10px;
+}
+
+.continue-reading-stats-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.continue-reading-view-downloads {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.continue-reading-stats-values {
+    font-size: larger;
+}
+
+.continue-reading-stats-labels {
+    font-size: smaller;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.continue-reading-published-infos {
+    align-self: flex-start;
+    justify-content: left;
+    width: 100%;
+}
+
+.continue-reading-published-infos h5,
+.continue-reading-published-infos p {
+    margin: 0;
+    text-align: left;
+}
+
+.continue-reading-publish-labels {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.continue-reading-authors {
+    font-style: italic;
+}
+
+.continue-reading-container {
+    display: flex;
+    margin-top: 20px;
+    width: 100%;
+    height: auto;
+    margin-bottom: 50px;
+	
+}
+.continue-reading-container{
+color: #115272;
+}
+.continue-reading-container {
+    flex-direction: column;
+	margin-left: 80px;
+}
+
+
+.featured-updates-container {
+    /* add your styles for the new container */
+	flex-direction: column;
+    width: 50%; /* adjust the width as needed */
+    border: 1px solid #ccc;
+    padding: 10px 30px 30px 30px;
+    border-radius: 4px;
+	margin-right: 20px;
+}
+
+.featured-updates-container h2{
+color: #115272;
+
+}
+
+.ex-featured {
+    display: flex;
+	flex-direction: column;
+    justify-content: center; /* Center horizontally within the container */
+    align-items: center; /* Center vertically within the container */
+}
+
+.example-featured {
+
+    border-radius: 5%;
+    border: 2px solid #285581;
+    width: 100%;
+    height: 100%;
+    display: inline-block; 
+    text-align: center; 
+    margin: 0px 50px 20px 50px; 
+    
+    background-color: white;
+	
+}
+
+
+.example-featured p {
+    text-align: center;
+    margin: 20px 20px 20px 20px;
+    text-align: justify;
+}
+
+.example-featured a{
+    text-decoration: none;
+}
+
+.img-featured {
+    width: 100%;
+    height: 230px;
+    
+}
+
+.img-featured img {
+    width: 100%; /* Make the image fill the width of its container */
+    height: auto; /* Maintain aspect ratio */
+}
+
+#show-more{
+	font-size: 14px;
+    background-color: #285581;
+    margin-right: 10px;
+    width: 50%;
+    min-width: 120px;
+    max-width: 135px;
+	border-radius: 20px;
+    color: white;
+
+}
