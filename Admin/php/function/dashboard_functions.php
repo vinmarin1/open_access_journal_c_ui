@@ -173,7 +173,6 @@ if (isset($_GET['selectedYear'])) {
     $selectedYear = $currentYear; // Default to the current year if not selected
 }
 
-
 $query = "SELECT 
             journal.journal_id,
             journal.journal,
