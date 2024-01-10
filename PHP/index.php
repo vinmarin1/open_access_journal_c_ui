@@ -49,7 +49,7 @@
             <!-- fetch popular articles using api -->
           </div>
           <div class="divider "></div>
-          <div class="col-sm-12 col-lg-4 d-flex flex-column gap-2" id="most-downloaded">
+          <div class="col-sm-12 col-lg-4 d-flex flex-column gap-2" id="most-popular-container">
             <h6 class="text-lg mb-2">
               <select
                 class="form-select"
@@ -387,7 +387,7 @@
   <script src="../JS/reusable-header.js"></script>
   <script src="../JS/home-recommended-api.js"></script>
   <script src="../JS/recently-added-api.js"></script>
-  <script src="../JS/most-downloaded-api.js"></script>
+  <script src="../JS/most-popular-container-api.js"></script>
 </body>
 
 </html>

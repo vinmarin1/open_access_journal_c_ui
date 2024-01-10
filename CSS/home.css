@@ -460,14 +460,14 @@ padding: 2em 8%;
 /* height: 700px; */
 }
 
-#most-downloaded{
+#most-popular-container{
   /* box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.025); */
   display:flex;
   flex-direction: column;
   padding:2em;
   
 }
-#most-downloaded .item {
+#most-popular-container .item {
   display:flex;
 }
 .divider {
@@ -476,25 +476,25 @@ padding: 2em 8%;
   width:20px;
   
 }
-#most-downloaded h6{
+#most-popular-container h6{
   font-weight: 700;
 }
-#most-downloaded span {
+#most-popular-container span {
   color: #0858a4;
   font-family: Arial, Helvetica, sans-serif;
 
 }
-#most-downloaded ul li {
+#most-popular-container ul li {
   text-align: center;
   font-size: 12px;
   color:rgb(149, 149, 149);
 }
 
-#most-downloaded #most-popular div:hover {
+#most-popular-container #most-popular div:hover {
   background-color: rgba(239, 242, 248, 0.617);
   cursor: pointer;
 }
-#most-downloaded .total {
+#most-popular-container .total {
   font-size: 18px;
   font-weight: 700;
   color: #303334;
