@@ -387,7 +387,7 @@
   <script src="../JS/reusable-header.js"></script>
   <script src="../JS/home-recommended-api.js"></script>
   <script src="../JS/recently-added-api.js"></script>
-  <script src="../JS/most-popular-container-api.js"></script>
+  <script src="../JS/most-downloaded-api.js"></script>
 </body>
 
 </html>
