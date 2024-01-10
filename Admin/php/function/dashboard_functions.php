@@ -285,3 +285,42 @@ if ($result !== false) {
 }
 ?>
 
+<?php
+// Assuming you have a function execute_query() for executing SQL queries
+
+// Fetch data from the author table
+$qcuQuery = "SELECT MONTH(date) AS month, COUNT(*) AS count
+             FROM author
+             WHERE position = 'QCU'
+             GROUP BY MONTH(date)
+             ORDER BY MONTH(date)";
+
+$facultyQuery = "SELECT MONTH(date) AS month, COUNT(*) AS count
+                 FROM author
+                 WHERE position = 'FACULTY'
+                 GROUP BY MONTH(date)
+                 ORDER BY MONTH(date)";
+
+$othersQuery = "SELECT MONTH(date) AS month, COUNT(*) AS count
+                 FROM author
+                 WHERE position = 'OTHERS'
+                 GROUP BY MONTH(date)
+                 ORDER BY MONTH(date)";
+
+$qcuResult = execute_query($qcuQuery);
+$facultyResult = execute_query($facultyQuery);
+$othersResult = execute_query($othersQuery);
+
+// Check if all queries were successful
+if ($qcuResult !== false && $facultyResult !== false && $othersResult !== false) {
+    // Combine the results into a single JavaScript object
+    
+} else {
+    echo "Error fetching data.";
+}
+
+// Helper function to convert result array to JavaScript array
+
+?>
+
+

@@ -46,7 +46,7 @@ include 'function/issue_function.php';
                                 <td width="50%"><?php echo  $issueslistval->year; ?></td>
                                 <td width="50%"><?php echo  $issueslistval->title; ?></td>
                                 <td width="50%"><?php echo  $issueslistval->description; ?></td>
-                                <td width="50%"><?php echo  $issueslistval->cover_image; ?></td>
+                                <td width="50%"><img src="<?php echo  $issueslistval->cover_image; ?>" alt="rchi"></td>
                                 <td width="50%"><?php echo  $issueslistval->url_path; ?></td>
                                 <td width="10%">
                                 <button type="button" class="btn btn-outline-success" onclick="updateModal(<?php echo $issueslistval->issues_id; ?>)">Update</button>

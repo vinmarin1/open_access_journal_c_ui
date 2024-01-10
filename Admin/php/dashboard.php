@@ -129,11 +129,15 @@ include 'function/dashboard_functions.php';
 
                  <!-- Chart containers -->
                 <div class="chart-container">
-                    <select id="yearDropdown"></select>
-                    <label for="logType">Select Graph:</label>
-                    <select id="logType" onchange="updateGraph()">
-                        <option value="read">Reads</option>
-                        <option value="download">Downloads</option>
+                    <select id="yearDropdown">
+                    <?php
+                // PHP code for dynamically populating the year dropdown
+                // This assumes you have executed the previous PHP code snippet to fetch available years
+                foreach ($availableYears as $year) {
+                    $selected = ($year == $selectedYear) ? 'selected' : '';
+                    echo "<option value='$year' $selected>$year</option>";
+                }
+                ?>
                     </select>
                     <div class="chart-title">Article Engagement Based On Journal Type</div>
                     <canvas id="lineChart1"></canvas>
@@ -290,29 +294,31 @@ for (var i = 0; i < years.length; i++) {
         // Data for the line chart
         var lineChartData2 = {
             labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'Novemeber', 'December'],
-            datasets: [{
-                  label: 'QCU',
-            data: [50, 30, 60, 40, 70, 20, 30, 35, 50, 65, 70, 20],
-            borderColor: 'rgba(255, 99, 132, 1)',
-            borderWidth: 1,
-            fill: false
-        },
-        {
-            label: 'FACULTY',
-            data: [40, 20, 50, 30, 60, 10, 20, 25, 40, 55, 60, 10],
-            borderColor: 'rgba(75, 192, 192, 1)',
-            borderWidth: 1,
-            fill: false
-        },
-        {
-            label: 'OTHERS',
-            data: [60, 40, 70, 50, 80, 30, 40, 45, 60, 75, 80, 30],
-            borderColor: 'rgba(255, 205, 86, 1)',
-            borderWidth: 1,
-            fill: false
-        }
-    ]
-};
+                datasets: [
+                    {
+                        label: 'QCU',
+                        data: [" . getChartDataArray($qcuResult) . "],
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1,
+                        fill: false
+                    },
+                    {
+                        label: 'FACULTY',
+                        data: [" . getChartDataArray($facultyResult) . "],
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1,
+                        fill: false
+                    },
+                    {
+                        label: 'OTHERS',
+                        data: [" . getChartDataArray($othersResult) . "],
+                        borderColor: 'rgba(255, 205, 86, 1)',
+                        borderWidth: 1,
+                        fill: false
+                    }
+                ]
+            };
+
                 // Data for the bar chart
             var barChartData = {
                 labels: ['1st', '2nd', '3rd', '4th'],
@@ -403,6 +409,70 @@ for (var i = 0; i < years.length; i++) {
                 
         </script>
 
+<?php
+// Fetch the top 5 most viewed or downloaded articles based on the selected type
+$selectedType = isset($_GET['type']) ? $_GET['type'] : 'read'; // Default to 'read' if not selected
+
+$mostViewedQuery = "SELECT article_id, COUNT(*) AS count
+                    FROM logs
+                    WHERE type = '$selectedType'
+                    GROUP BY article_id
+                    ORDER BY count DESC
+                    LIMIT 5";
+
+$mostViewedResult = execute_query($mostViewedQuery);
+
+// Check if the query was successful
+if ($mostViewedResult !== false) {
+    // Display the most viewed or downloaded articles in a card
+    echo "<div class='card'>
+            <div class='card-header'>
+                Top 5 Most " . ucfirst($selectedType) . " Articles
+            </div>
+            <div class='card-body'>
+                <form method='GET' action=''>
+                    <label for='type'>Select Type:</label>
+                    <select name='type' id='type' onchange='this.form.submit()'>
+                        <option value='read' " . ($selectedType == 'read' ? 'selected' : '') . ">Most Viewed</option>
+                        <option value='download' " . ($selectedType == 'download' ? 'selected' : '') . ">Most Downloaded</option>
+                    </select>
+                </form>
+                <table class='table table-bordered'>
+                    <tr>
+                        <th>Article ID</th>
+                        <th>Title</th>
+                        <th>Count</th>
+                        <!-- Add more columns as needed -->
+                    </tr>";
+
+    foreach ($mostViewedResult as $row) {
+        $articleId = $row->article_id;
+        $count = $row->count;
+
+        // Fetch article details for each most viewed or downloaded article
+        $articleQuery = "SELECT * FROM article WHERE article_id = $articleId";
+        $articleResult = execute_query($articleQuery);
+
+        // Check if the article query was successful
+        if ($articleResult !== false && count($articleResult) > 0) {
+            echo "<tr>
+                    <td>{$articleResult[0]->article_id}</td>
+                    <td>{$articleResult[0]->title}</td>
+                    <td>{$count}</td>
+                    <!-- Add more columns as needed -->
+                  </tr>";
+        }
+    }
+
+    echo "</table>
+          </div>
+        </div>";
+} else {
+    echo "Error fetching most viewed or downloaded articles data.";
+}
+?>
+
+         
 
         <!-- Include footer -->
         <?php include 'template/footer.php'; ?>
