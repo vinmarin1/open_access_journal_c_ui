@@ -49,7 +49,7 @@
             <!-- fetch popular articles using api -->
           </div>
           <div class="divider "></div>
-          <div class="col-sm-12 col-lg-4 d-flex flex-column gap-2" id="most-downloaded">
+          <div class="col-sm-12 col-lg-4 d-flex flex-column gap-2" id="most-popular-container">
             <h6 class="text-lg mb-2">
               <select
                 class="form-select"
