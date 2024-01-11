@@ -30,6 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
     
     
+    
     $coAuthors = isset($_POST['contributor_type_coauthor']) ? $_POST['contributor_type_coauthor'] : array();
     $primaryContacts = isset($_POST['contributor_type_primarycontact']) ? $_POST['contributor_type_primarycontact'] : array();
     $firstNameC = $_POST['firstnameC'];
@@ -205,8 +206,15 @@ function handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $
     }
 
 
+    $sqlLogs = "INSERT INTO logs_article(`article_id`, `user_id`, `type`) VALUES (:article_id, :user_id, :type)";
 
+    $logsParams = array(
+        'article_id' => $lastInsertedArticleId,
+        'user_id' => $author_id,
+        'type' => 'Submitted Article'
+    );
       
+    database_run($sqlLogs, $logsParams);
     
     
 }

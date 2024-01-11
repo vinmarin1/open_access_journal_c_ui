@@ -187,10 +187,8 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
   ?>
 </div>
 
-<script>
 
 
-</script>
 
     
       <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" ></script>

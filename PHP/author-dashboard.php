@@ -270,8 +270,7 @@ $id = $_SESSION['id'];
                   $queryReviewer = "SELECT reviewer_assigned.*, article.*
                                     FROM reviewer_assigned 
                                     JOIN article ON article.article_id = reviewer_assigned.article_id 
-                                    WHERE reviewer_assigned.author_id = :author_id 
-                                      AND article.status < 5 
+                                    WHERE article.status < 5 AND reviewer_assigned.accept = 1 AND reviewer_assigned.answer = 1 AND  reviewer_assigned.author_id = :author_id 
                                     LIMIT " . ($currentPage - 1) * $itemsPerPageReviewer . ", $itemsPerPageReviewer";
                   
                   $varsReviewer = array(':author_id' => $id);
@@ -299,7 +298,7 @@ $id = $_SESSION['id'];
                           echo '<td><input type="checkbox"></td>';
                        
 
-                          $queryTitle = "SELECT article.title FROM article JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id WHERE article.status < 5 AND reviewer_assigned.author_id = :author_id;
+                          $queryTitle = "SELECT article.title FROM article JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id WHERE article.status < 5 AND reviewer_assigned.accept = 1 AND reviewer_assigned.answer = 1 AND  reviewer_assigned.author_id = :author_id;
                           ";
                           $titleResult = database_run($queryTitle, array(':author_id' => $id));
                           if ($titleResult !== false && count($titleResult) > 0) {

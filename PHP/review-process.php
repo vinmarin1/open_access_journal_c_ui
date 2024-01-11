@@ -33,10 +33,9 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
         <div class="main-container">
             <div class="content-over">
                 <div class="cover-content">
-                    <!-- <p contenteditable="true" id="htmlContent" name="htmlContent">
+                   
 
-                    <?php echo $articleId ?>
-                    </p> -->
+                
 
                     <p> Dashboard / Reviewer / Submitted Articles </p>
                     <h3> 
@@ -73,6 +72,11 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                 </div>
 
                 <div class="col-md-6 abstract" style="padding-top:20px; height: auto"> 
+               
+
+                    <?php
+                    echo '<input id="getId" name="getId" type="text" value="' . $articleId . '" placeholder="' . $articleId . '" style="display: none">';
+                    ?>
                     <h4>Abstract</h4>
                         <p>
                         <?php 
@@ -325,7 +329,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                 <div class="col-md-4">
                     <!-- This is a Blank space -->
                     <div class="btn">
-                        <button class="btn tbn-primary btn-md nextBtn"  onclick="nextStep()" >Accept</button>
+                        <button class="btn tbn-primary btn-md nextBtn" id="acceptBtn"  onclick="nextStep()" >Accept</button>
                         <button id="btnReject" class="btn tbn-primary btn-md" onclick="prevStep()" >Reject</button>
                     </div>
                 </div>
@@ -711,6 +715,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" ></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
     <script src="../JS/reusable-header.js"></script>
     <script src="../JS/review-process.js"></script>
 

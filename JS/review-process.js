@@ -62,4 +62,36 @@ document.getElementById('form').addEventListener('submit', function(event) {
 
 
 
+document.getElementById('acceptBtn').addEventListener('click', function(event){
+    const rejectBtn = document.getElementById('btnReject');
+    rejectBtn.style.display = 'none';
+});
+
+
+document.getElementById('btnReject').addEventListener('click', function(event){
+    Swal.fire({
+        title: "Decline Invitation",
+        text: "You won't be able to revert this",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "secondary",
+        confirmButtonText: "Decline"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+                text: "Declined invitation",
+                icon: "success",
+                showConfirmButton: false,
+            });
+
+            setTimeout(function() {
+                window.location.href = '../PHP/author-dashboard.php';
+            }, 1000);
+        }
+    });
+});
+
+
+
 
