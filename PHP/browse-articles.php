@@ -242,22 +242,22 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
         year1Checkbox.addEventListener('change', () => updateSelectedYears(year1Checkbox, "2022"));
         year2Checkbox.addEventListener('change', () => updateSelectedYears(year2Checkbox, "2023"));
         year3Checkbox.addEventListener('change', () => updateSelectedYears(year3Checkbox, "2024"));
-        const sortSelect = document.querySelector("select");
-        let sortSelected = "total_interactions"
+        const sortBySelect = document.querySelector("select");
+        let sortBySelected = "total_interactions"
         // handle search element event submit with sorting change
         document.getElementById('search-form').addEventListener('submit', function(event) {
             event.preventDefault();
             let searchInputValue = document.getElementById('result').value;
             let year = document.getElementById('year1').value;
-            fetchData(searchInputValue, selectedYears, sortSelected);
+            fetchData(searchInputValue, selectedYears, sortBySelected);
         });
         // handle sort select element event change
-        sortSelect.addEventListener('change', function(event) {
+        sortBySelect.addEventListener('change', function(event) {
             event.preventDefault();
             let searchInputValue = document.getElementById('result').value;
             let year = document.getElementById('year1').value;
-            sortSelected = sortSelect.value;
-            fetchData(searchInputValue, selectedYears, sortSelected);
+            sortBySelected = sortBySelect.value;
+            fetchData(searchInputValue, selectedYears, sortBySelected);
         });
         var result = document.getElementById('result');
 
