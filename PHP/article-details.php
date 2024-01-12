@@ -62,13 +62,45 @@
       </div>
     </div>
   </div>
+
+  <div class="fluid-container">
+    <div class="recommendation-article" style="background-color: white;" >
+      <h4>Popular Articles This Month</h4>
+      <div class="d-flex container flex-wrap gap-4 justify-content-between">
+        <div id="popular-articles" class="articles-container col-sm-12 col-lg-7">
+          <!-- fetch popular articles using api -->
+        </div>
+        <div class="divider "></div>
+        <div class="col-sm-12 col-lg-4 d-flex flex-column gap-2" id="most-downloaded">
+          <h6 class="text-lg mb-2">
+            <select
+              class="form-select"
+              id="sort-select"
+            >
+              <option value="total_interactions" selected>Most Popular (All)</option>
+              <option value="total_reads">Most Viewed</option>
+              <option value="total_downloads">Most Downloaded</option>
+              <option value="total_citations">Most Cited</option>
+            </select>
+          
+          
+          </h6>
+          <div id="most-popular">
+
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
   <?php
     if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true ){  
       echo '
 
     <div class="fluid-container">
       <div class="recommendation-article">
-        <h4>Recommended for You</h4>
+        <h4>Recommended Articles for You</h4>
         <div id="recommendations" class="articles-container">
 
         </div>
