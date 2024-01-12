@@ -29,7 +29,7 @@ async function fetchData() {
     const articlesContainer = document.querySelector('#popular-articles');
     
 
-    data.results.forEach(item => {
+    data.results.splice(0,10).forEach(item => {
       const articleDiv = document.createElement('div');
       articleDiv.classList.add('article');
       articleDiv.addEventListener('click', () => navigateToArticle(item.article_id));
