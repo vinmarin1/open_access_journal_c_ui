@@ -42,7 +42,7 @@ if (!function_exists('get_announcementtype_list')) {
              fetchUserData();
              break;
          case 'update':
-             updateannouncement_typeData();
+            updateAnnouncementData();
              break;
      }
      
@@ -63,12 +63,13 @@ if (!function_exists('get_announcementtype_list')) {
      function addRecord()
      {
          $announcement_type = $_POST['announcement_type'];
+         $status = 1 ;
         
      
-         $query = "INSERT INTO announcement_type (announcement_type) 
-         VALUES (?)";
+         $query = "INSERT INTO announcement_type (announcement_type, status) 
+         VALUES (?,?)";
        
-         $result = execute_query($query, [$announcement_type ], true);
+         $result = execute_query($query, [$announcement_type ,$status], true);
      
          if ($result !== false) {
              echo json_encode(['status' => true, 'message' => 'Record added successfully']);
@@ -77,31 +78,31 @@ if (!function_exists('get_announcementtype_list')) {
          }
      }
 
-     function updateannouncement_typeData() {
+     function updateAnnouncementData() {
         $announcement_type_id = $_POST['announcement_type_id'];
         $updatedData = $_POST['updated_data'];
     
         $query = "UPDATE announcement_type 
-                  SET announcement_type = ? 
-                  WHERE announcement_type_id = ?";
+                    SET announcement_type = ?
+                    WHERE announcement_type_id = ?";
         
         $pdo = connect_to_database();
     
-        $stm = $pdo->prepare($query);
+        $stm = $pdo->prepare($query);   
         $check = $stm->execute([
             $updatedData['announcement_type'],
             $announcement_type_id
+
         ]);
     
         header('Content-Type: application/json');
     
         if ($check !== false) {
-            echo json_encode(['status' => true, 'message' => 'User data updated successfully']);
+            echo json_encode(['status' => true, 'message' => 'Announncementtype data updated successfully']);
         } else {
-            echo json_encode(['status' => false, 'message' => 'Failed to update user data']);
+            echo json_encode(['status' => false, 'message' => 'Failed to update Announncementtype data']);
         }
     }
-    
     
     function  archiveAnnouncementtype()
     {
