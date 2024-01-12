@@ -1,4 +1,3 @@
-
 .content-over {
     position: relative;
     width: 100%;
@@ -54,7 +53,6 @@ width: 75%;
 }
 
 .abstract{
-    margin-left: 150px;
     /* padding-top: 40px; */
     display: inline-block;
     width: 60%;
@@ -67,6 +65,7 @@ width: 75%;
 }
 
 .abstract h4{
+    padding-top: 20px;
     font-family: Arial, Helvetica, sans-serif;
     color:#0858a4; 
 }
@@ -182,48 +181,79 @@ color: #0858a4;
     font-family: Arial, Helvetica, sans-serif;
     width:85%;
 }
-
 .articles-container {
-    width: 85%;
-    height: auto;
-    border: none;
-    margin-left: auto;
-    margin-right: auto;
-    overflow-x: auto;
-    overflow-y: hidden;
-    white-space: nowrap;
+width: 85%;
+height: auto;
+border: none;
+margin-left: auto;
+margin-right: auto;
+overflow-x: auto;
+overflow-y: hidden;
+white-space: nowrap;
+display:flex;
+gap:24px;
+border-radius: 8px;
+padding:2em 0;
+}
+
+.articles-container-monthly{
+width: 85%;
+height: auto;
+border: none;
+margin-left: auto;
+margin-right: auto;
+overflow-x: auto;
+overflow-y: hidden;
+white-space: nowrap;
 }
 
 .articles-container::-webkit-scrollbar {
-    width: 0.5em;
-    background-color: transparent;
-    /* border:1px solid red; */
+width: 0.5em;
+background-color: transparent;
 }
 
 .articles-container::-webkit-scrollbar-thumb {
-    background-color: transparent;
+background-color: transparent;
+}
+
+.articles-container-monthly::-webkit-scrollbar {
+width: 0.5em;
+background-color: transparent;
+}
+
+.articles-container-monthly::-webkit-scrollbar-thumb {
+background-color: transparent;
 }
 
 .article {
-    width: 25%;
-    height: 100%;
-    margin-right: 80px;
-    background-color: transparent;
-    display: inline-block;
-    white-space: normal; 
+padding: 2em;
+width: 25%;
+min-width: 320px;
+height: 100%;
+background-color: white;
+display: inline-block;
+white-space: normal; 
+border-radius: 4px;
+border: 1px solid #F2F2F2;
+box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.025);
+
+
+}
+.article:hover{
+    background-color: rgba(239, 242, 248, 0.617);
 }
 
 .article .h6{
-    font-family: Arial, Helvetica, sans-serif;
-    color: #0858a4;
-    width: auto;
+font-family: Arial, Helvetica, sans-serif;
+color: #0858a4;
+width: auto;
 
 }
 
 .article-info{
-    opacity: 0.6;
-    font-size: 12px;
-    width: 100%;
+opacity: 0.6;
+font-size: 12px;
+width: 100%;
 }
 
 .author{
@@ -244,6 +274,12 @@ color: #0858a4;
     border-radius: 20px;
     color: #0858a4;
     opacity: 0.8;
+}
+
+#download-btn, #epub-btn {
+    background-color: white;
+    color: #0858a4;
+    border-color: #0858a4;
 }
 
 .frame-border{
@@ -295,4 +331,181 @@ color: #0858a4;
     padding:0.5em 1.5em;
     color: white;
 }
+
+
+.container-fluid{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.popup-form {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    z-index: 1000;
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Adjust the position of the popup */
+.popup-form {
+    top: 100%;
+    left: 5%;
+}
+
+/* Style for the link */
+#popup-link {
+    position: relative;
+}
+
+/* Style for the link when hovered */
+#popup-link:hover .popup-form {
+    display: block;
+}
+
+.arrow-icon {
+    position: absolute;
+    top: 50%; /* Adjust the vertical position */
+    left: 3%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    display: none;
+    color: gray; /* Set the color to your preference */
+}
+
+#popup-link:hover .arrow-icon {
+    display: inline;
+}
+
+.main {
+    background-color: white;
+}
+
+.main-profile {
+    background-color: white;
+    padding: 20px;
+    border: 1px solid white;
+    margin: 20px 40px 20px 40px;
+    box-shadow: 0 5px 5px -4px rgba(0, 0, 0, 0.5);
+}
+
+.profile-container {
+    display: flex;
+    background-color: white;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+    
+}
+
+.profile-sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #e9ecef;
+    padding: 20px;
+    border-radius: 10px;
+    margin-right: 20px;
+    width: 100%;
+}
+
+.profile-main {
+    width: 30%;
+    
+}
+
+.profile-pic, .viewer{
+    /* display: block; */
+    width: 40px;
+    /* Adjust as needed */
+    height: 40px;
+    /* Adjust as needed */
+    border-radius: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.prof-info h2{
+    font-size:x-large;
+}
+
+.prof-info a{
+    font-size:15px;
+    text-decoration: none;
+}
+
+.xp-container {
+    margin-top: 20px;
+    /* Add some space between the content and XP container */
+}
+
+.xp-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.xp-label {
+    font-weight: bold;
+    margin-top: 5px;
+    color: #0858a4;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 15px;
+    background-color: #ddd !important;
+    /* Bar background color */
+    border-radius: 20px;
+    z-index: 999
+}
+
+.progress {
+    height: 100%;
+    background-color: #588297 !important;
+    /* Progress color */
+    border-radius: 20px;
+    z-index: 999
+}
+
+.badge-box {
+    width: 150px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px; /* Add space between individual boxes */
+    flex-direction: column; /* Change the direction to column for smaller screens */
+}
+
+.img-badge {
+    /* display: block; */
+    width: 70px;
+    /* Adjust as needed */
+    height: 70px;
+    /* Adjust as needed */
+    margin-top: 10px;
+    border-radius: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#seeMore-btn {
+    background-color: white;
+    color: #0858a4;
+    border-color: #0858a4;
+    border-radius: 20px;
+}
+
+#seeMore-btn:hover{
+    color: white; 
+    position: relative;
+    z-index: 1;
+    background-color: #0858a4;
+    opacity: 0.8;
+}
+
+
+
+
 
