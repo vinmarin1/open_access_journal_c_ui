@@ -115,7 +115,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
             <!-- Pagination -->
             <!-- Bootstrap Pagination -->
             <nav aria-label="Page navigation">
-                <ul class="pagination justify-content-center">
+                <ul class="pagination justify-content-center" id="pagination-container">
                     <!-- Display "Previous" link if not on the first page -->
                     <li class="page-item">
                         <a class="page-link" href="javascript:void(0);" onclick="changePage('previous')"
@@ -125,17 +125,18 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     </li>
 
                     <!-- Display page numbers -->
-                    <li class="page-item"><a class="page-link active" href="javascript:void(0);"
-                            onclick="changePage(1)">1</a></li>
-                    <li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="changePage(2)">2</a>
+                    <li class="page-item"><a class="page-link" href="javascript:void(0);"
+                            onclick="changePage(0)">1</a></li>
+                    <li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="changePage(1)">2</a>
                     </li>
-                    <li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="changePage(3)">3</a>
+                    <li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="changePage(2)">3</a>
                     </li>
-                    <li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="changePage(4)">4</a>
+                    <li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="changePage(3)">4</a>
                     </li>
-                    <li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="changePage(5)">5</a>
+                    <li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="changePage(4)">5</a>
                     </li>
-
+          
+          
                     <!-- Display "Next" link if not on the last page -->
                     <li class="page-item">
                         <a class="page-link" href="javascript:void(0);" onclick="changePage('next')" aria-label="Next">
@@ -220,88 +221,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
     <script src="../JS/most-downloaded-api.js"></script>
     
     <script src="../JS/browse-api.js"></script>
-    <script>
-        const selectedYears = [];
-        // Get references to the checkboxes
-        const year1Checkbox = document.getElementById('year1');
-        const year2Checkbox = document.getElementById('year2');
-        const year3Checkbox = document.getElementById('year3');
-        // Function to update the selectedYears array based on checkbox state
-        const updateSelectedYears = (checkbox, year) => {
-            if (checkbox.checked) {
-                if (!selectedYears.includes(year)) {
-                    selectedYears.push(year);
-                }
-            } else {
-                const index = selectedYears.indexOf(year);
-                if (index !== -1) {
-                    selectedYears.splice(index, 1);
-                }
-            }
-        }
-        year1Checkbox.addEventListener('change', () => updateSelectedYears(year1Checkbox, "2022"));
-        year2Checkbox.addEventListener('change', () => updateSelectedYears(year2Checkbox, "2023"));
-        year3Checkbox.addEventListener('change', () => updateSelectedYears(year3Checkbox, "2024"));
-        const sortBySelect = document.querySelector("select");
-        let sortBySelected = "total_interactions"
-        // handle search element event submit with sorting change
-        document.getElementById('search-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            let searchInputValue = document.getElementById('result').value;
-            let year = document.getElementById('year1').value;
-            fetchData(searchInputValue, selectedYears, sortBySelected);
-        });
-        // handle sort select element event change
-        sortBySelect.addEventListener('change', function(event) {
-            event.preventDefault();
-            let searchInputValue = document.getElementById('result').value;
-            let year = document.getElementById('year1').value;
-            sortBySelected = sortBySelect.value;
-            fetchData(searchInputValue, selectedYears, sortBySelected);
-        });
-        var result = document.getElementById('result');
 
-        function startConverting() {
-            result.innerText = '';
-            console.log("voice")
-            if ('webkitSpeechRecognition' in window) {
-                var speechRecognizer = new webkitSpeechRecognition();
-                speechRecognizer.continuous = false;
-                speechRecognizer.interimResults = true;
-                speechRecognizer.lang = 'en-US';
-                speechRecognizer.start();
-                var recognizing = false;
-                speechRecognizer.onstart = function() {
-                    recognizing = true;
-                };
-                var finalTranscripts = '';
-                speechRecognizer.onresult = function(event) {
-                    var interimTranscripts = '';
-                    for (var i = event.resultIndex; i < event.results.length; i++) {
-                        var transcript = event.results[i][0].transcript;
-                        if (event.results[i].isFinal) {
-                            finalTranscripts += transcript.replace('.', ''); // Remove periods
-                        } else {
-                            interimTranscripts += transcript;
-                        }
-                    }
-                    console.log(finalTranscripts);
-                    result.setAttribute("value", `${finalTranscripts + interimTranscripts}`);
-                };
-                speechRecognizer.onend = function() {
-                    recognizing = false;
-                    searchInputValue = finalTranscripts
-                    fetchData(finalTranscripts, selectedYears, sortby);
-                };
-                speechRecognizer.onerror = function(event) {
-                    // Handle error if needed
-                };
-            } else {
-                result.innerHTML =
-                    'Your browser is not supported. Please download Google Chrome or update your Google Chrome!';
-            }
-        }
-    </script>
 </body>
 
 </html>
