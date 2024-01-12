@@ -56,9 +56,8 @@
                                     <td width="50%"><?php echo  $announcementlistval->upload_image; ?></td>
                                     <td width="50%"><?php echo  $announcementlistval->expired_date; ?></td>
                                     <td width="10%">
-                                    <button type="button" class="btn btn-outline-success">Update</button>
-                                        <!-- btn for delete prod modal -->
-                                        <button type="button" class="btn btn-outline-danger">Archive</button>
+                                    <button type="button" class="btn btn-outline-success" onclick="updateModal(<?php echo  $announcementlistval->announcement_id; ?>)">Update</button>
+                                    <button type="button" class="btn btn-outline-danger" onclick="archiveAnnouncement(<?php echo  $announcementlistval->announcement_id; ?>, '<?php echo $announcementlistval->announcement_type_id; ?>', '<?php echo $announcementlistval->title; ?>','<?php echo  $announcementlistval->announcement_description; ?>','<?php echo  $announcementlistval->announcement; ?>')">Archive</button>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -86,15 +85,16 @@
                     "searching": true,
                 });
             });
+            
             function addRecord() {
         var form = document.getElementById('addModalForm');
         var formData = new FormData();
-        formData.append('announcement_type_id', $('#announcement_type_id').val());
         formData.append('title', $('#title').val());
         formData.append('description', $('#description').val());
         formData.append('announcement', $('#announcement').val());
         formData.append('upload_image', $('#upload_image')[0].files[0]);
-        formData.append('expiry_date', $('#expiry_date').val());
+        formData.append('expired_date', $('#expired_date').val());
+
         formData.append('action', 'add');
 
         if (form.checkValidity()) {
@@ -106,7 +106,8 @@
                 processData: false,
                 contentType: false,
                 success: function (data) {
-                    var response = JSON.parse(data);
+                console.log('Response from server:', data);
+                var response = JSON.parse(data);
                     if (response.status) {
                         $('#sloading').toggle();
                         alert("Record added successfully");
@@ -116,8 +117,9 @@
                     location.reload();
                 },
                 error: function (xhr, status, error) {
-                    console.error("Ajax request failed:", error);
-                }
+                console.error('AJAX Error:', xhr, status, error);
+               }
+
             });
         } else {
             form.reportValidity();
@@ -134,7 +136,7 @@
             title: $('#title').val(),
             description: $('#description').val(),
             announcement: $('#announcement').val(),
-            expiry_date: $('#expiry_date').val(),
+            expiry_date: $('#expired_date').val(),
         };
 
         $.ajax({
@@ -181,7 +183,7 @@
                                         <label for="announcement_type_id" class="form-label ps-2">Announcement Type</label>
                                         <div class="form-check">
                                             <?php foreach ($announcementtypelist as $announcementtypelistval): ?>
-                                                <input class="form-check-input" type="radio" name="announcement_type_id" id="announcement_type_id<?php echo $announcementtypelistval['announcement_type_id']; ?>" value="<?php echo $announcementType['announcement_type_id']; ?>">
+                                                <input type="radio" name="announcement_type_id" id="announcement_type_id<?php echo $announcementtypelistval['announcement_type_id']; ?>" value="<?php echo $announcementType['announcement_type_id']; ?>">
                                                 <label class="form-check-label" for="announcement_type_id<?php echo $announcementtypelistval['announcement_type_id']; ?>">
                                                     <?php echo $announcementtypelistval['announcement_type']; ?>
                                                 </label><br>
@@ -211,12 +213,13 @@
                         <div class="col-md-12 mb-2" id="xupload_image">
                             <label for="formFileAddFiles" class="form-label">Upload Image</label>
                             <input class="form-control" type="file" id="upload_image" />
+
                         </div>
                     </div>
                     <div class="row mb-2">
                         <div class="col-md-12 mb-2">
-                            <label for="xexpiry_date" class="form-label">Expiry Date</label>
-                            <input type="date" id="expiry_date" class="form-control" placeholder="expiry_date" />
+                            <label for="xexpired_date" class="form-label">Expiry Date</label>
+                            <input type="date" id="expired_date" class="form-control" placeholder="expired_date" />
                         </div>
                     </div>
                 </div>
@@ -225,8 +228,6 @@
                     <button type="button" class="btn btn-primary" onclick="addRecord()">Save changes</button>
                 </div>  
             </div>
-        </div>
-        </form>
     </div>
     </body>
     </html>

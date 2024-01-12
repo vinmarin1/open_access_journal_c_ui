@@ -48,10 +48,9 @@ $announcementtypelist = get_announcementtype_list();
                             <tr>
                                 <td width="50%"><?php echo  $announcementtypelistval->announcement_type_id; ?></td>
                                 <td width="50%"><?php echo  $announcementtypelistval->announcement_type; ?></td>
-                                <td width="10%">
-                                    
-                                <button type="button" class="btn btn-outline-success" onclick="updateModal(<?php echo $announcementtypelistval->announcement_type_id; ?>)">Update</button>
-                                    <button type="button" class="btn btn-outline-danger" onclick="archiveAnnouncementtype(<?php echo  $announcementtypelistval->announcement_type_id; ?>, '<?php echo $announcementtypelistval->announcement_type; ?>')">Archive</button>
+                                <td width="10%">             
+                                <button type="button" class="btn btn-outline-success" onclick="updateModal(<?php echo $announcementtypelistval->announcement_type_id; ?>)">Update</button> 
+                                <button type="button" class="btn btn-outline-danger" onclick="archiveAnnouncementtype(<?php echo  $announcementtypelistval->announcement_type_id; ?>, '<?php echo $announcementtypelistval->announcement_type; ?>')">Archive</button>
                                   </td>
                             </tr>
                         <?php endforeach; ?>
@@ -169,7 +168,7 @@ $announcementtypelist = get_announcementtype_list();
                 location.reload();
             } else {
                 // Handle update failure
-                console.error('Error updating annoumcementtype data:', response.message);
+                console.error('Error updating announcementtype data:', response.message);
                 alert("Failed to update record. Please try again.");
             }
         },
@@ -179,7 +178,7 @@ $announcementtypelist = get_announcementtype_list();
         function archiveAnnouncement_type(announcement_type_id,announcement_type) {
             $('#archiveModal').modal('show');
             $('#archiveModalTitle').text('Archive Announcementtype');
-            $('#announcementtype').html('<strong>Name:</strong> ' + announcement_type + ', <br><strong>ID:</strong> ' + announcement_type_id);
+            $('#announcementtypeInfo').html('<strong>Name:</strong> ' + announcement_type + ', <br><strong>ID:</strong> ' + announcement_type_id);
 
             $('#archiveModalSave').off().on('click', function () {
                 $.ajax({
@@ -192,14 +191,14 @@ $announcementtypelist = get_announcementtype_list();
                         if (response.status) {
                             $('#archiveModalMessage').text('User archived successfully');
                         } else {
-                            $('#archiveModalMessage').text('Failed to archive user');
+                            $('#archiveModalMessage').text('Failed to archive announcementtype');
                         }
                             $('#archiveModal').modal('hide');
                             location.reload();
                     },
                     error: function (xhr, status, error) {
                         console.error("Ajax request failed:", error);
-                        $('#archiveModalMessage').text('Failed to archive user');
+                        $('#archiveModalMessage').text('Failed to archive announcementtype');
                         $('#archiveModal').modal('hide');
                         location.reload();
                     }
@@ -217,7 +216,6 @@ $announcementtypelist = get_announcementtype_list();
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form method="post" enctype="multipart/form-data">
                             <div class="form-group row">
                                 <div class="col-md-8">
                                     <div class="mb-3">
@@ -230,7 +228,6 @@ $announcementtypelist = get_announcementtype_list();
                         <div class="modal-footer">
                             <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-primary" onclick="addRecord()">Save changes</button>
-                            </form>
                         </div>
                     </div>
                 </div>
@@ -272,7 +269,7 @@ $announcementtypelist = get_announcementtype_list();
                 <div class="modal-body">
                     <div class="row">
                         <h5 class="modal-title" id="modalToggleLabel">Are you sure you want to archive the Announcement Type?</h5>
-                        <p id="announcementtype"></p>
+                        <p id="announcementtypeInfo"></p>
                     </div>
                 </div>
                 <div class="modal-footer">

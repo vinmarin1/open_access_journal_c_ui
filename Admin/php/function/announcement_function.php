@@ -68,9 +68,11 @@
         $title = $_POST['title'];
         $description = $_POST['description'];
         $announcement = $_POST['announcement'];
-        $expiry_date = $_POST['expiry_date'];
-
-        $uploadPath = "../../../Files/announcement-image/";
+        $expired_date = $_POST['expired_date'];
+        $status = 1;
+    
+        $documentRoot = $_SERVER['DOCUMENT_ROOT'];
+        $uploadPath = $documentRoot . '/Files/announcement-image/';
 
         if (!file_exists($uploadPath)) {
             mkdir($uploadPath, 0777, true);
@@ -97,10 +99,10 @@
             throw new Exception('File upload error: ' . $_FILES['upload_image']['error']);
         }
 
-        $query = "INSERT INTO announcement (announcement_type_id, title, description, announcement, upload_image, expiry_date) 
-                  VALUES (?, ?, ?, ?, ?, ?)";
+        $query = "INSERT INTO announcement (announcement_type_id, title, description, announcement,status, upload_image, expired_date) 
+                  VALUES (?, ?, ?, ?, ?, ?,?)";
 
-        $result = execute_query($query, [$announcement_type_id, $title, $description, $announcement, $upload_image, $expiry_date]);
+        $result = execute_query($query, [$announcement_type_id, $title, $description, $announcement,$status, $upload_image, $expired_date]);
 
         if ($result !== false) {
             echo json_encode(['status' => true, 'message' => 'Record added successfully']);
