@@ -314,13 +314,30 @@ $othersResult = execute_query($othersQuery);
 // Check if all queries were successful
 if ($qcuResult !== false && $facultyResult !== false && $othersResult !== false) {
     // Combine the results into a single JavaScript object
-    
+    $combinedData = array(
+        'QCU' => convertToJavaScriptArray($qcuResult),
+        'FACULTY' => convertToJavaScriptArray($facultyResult),
+        'OTHERS' => convertToJavaScriptArray($othersResult),
+    );
+
+    // Now you can use $combinedData as needed, for example, convert it to JSON
+    $jsonData = json_encode($combinedData);
+    echo $jsonData;
 } else {
     echo "Error fetching data.";
 }
 
 // Helper function to convert result array to JavaScript array
+function convertToJavaScriptArray($result)
+{
+    $dataArray = array();
+    while ($row = mysqli_fetch_assoc($result)) {
+        $dataArray[] = $row;
+    }
+    return $dataArray;
+}
 
 ?>
+
 
 

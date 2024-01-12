@@ -69,9 +69,12 @@ if (!function_exists('get_issues_list')) {
                         $year = $_POST['year'];
                         $title = $_POST['title'];
                         $description = $_POST['description'];
+                        $status = 1;
                         $url_path = $_POST['url_path'];
-                
-                        $uploadPath = "../../../Files/cover-image/";
+    
+    
+                        $documentRoot = $_SERVER['DOCUMENT_ROOT'];
+                        $uploadPath = $documentRoot . '/Files/cover-image/';
                 
                         if (!file_exists($uploadPath)) {
                             mkdir($uploadPath, 0777, true);
@@ -95,10 +98,10 @@ if (!function_exists('get_issues_list')) {
                             }
                         }
                 
-                        $query = "INSERT INTO issues (volume, number, year, title, description, cover_image, url_path) 
-                                  VALUES (?, ?, ?, ?, ?, ?, ?)";
+                        $query = "INSERT INTO issues (volume, number, year, title, description, status ,cover_image, url_path) 
+                                  VALUES (?, ?, ?, ?, ?, ?, ?,?)";
                 
-                        $result = execute_query($query, [$volume, $number, $year, $title, $description, $cover_image, $url_path]);
+                        $result = execute_query($query, [$volume, $number, $year, $title, $description, $status,$cover_image, $url_path]);
                 
                         if ($result !== false) {
                             echo json_encode(['status' => true, 'message' => 'Record added successfully']);

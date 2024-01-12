@@ -50,8 +50,8 @@ $announcementtypelist = get_announcementtype_list();
                                 <td width="50%"><?php echo  $announcementtypelistval->announcement_type; ?></td>
                                 <td width="10%">
                                     
-                                <button type="button" class="btn btn-outline-success" onclick="openUpdateModal('<?php echo $announcementtypelistval->announcement_type_id; ?>')">Update</button>
-                                <button type="button" class="btn btn-outline-danger" onclick="openArchiveModal(<?php echo $announcementtypelistval->announcement_type_id; ?>, '<?php echo $announcementtypelistval->announcement_type; ?>')">Archive</button>
+                                <button type="button" class="btn btn-outline-success" onclick="updateModal(<?php echo $announcementtypelistval->announcement_type_id; ?>)">Update</button>
+                                    <button type="button" class="btn btn-outline-danger" onclick="archiveAnnouncementtype(<?php echo  $announcementtypelistval->announcement_type_id; ?>, '<?php echo $announcementtypelistval->announcement_type; ?>')">Archive</button>
                                   </td>
                             </tr>
                         <?php endforeach; ?>
@@ -135,7 +135,7 @@ $announcementtypelist = get_announcementtype_list();
         error: function (jqXHR, textStatus, errorThrown) {
             console.log('AJAX Error:', textStatus, errorThrown);
             // Handle AJAX errors
-            console.log('Error fetching user data');
+            console.log('Error fetching announcementtype data');
             // You can perform additional actions here if needed
         }
     });
@@ -169,7 +169,7 @@ $announcementtypelist = get_announcementtype_list();
                 location.reload();
             } else {
                 // Handle update failure
-                console.error('Error updating user data:', response.message);
+                console.error('Error updating annoumcementtype data:', response.message);
                 alert("Failed to update record. Please try again.");
             }
         },
@@ -237,9 +237,9 @@ $announcementtypelist = get_announcementtype_list();
             </div>
             <br><br>
 
-       <!-- Update Modal -->
-    <div class="modal fade" id="updateModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <!-- Update Modal -->
+     <div class="modal fade" id="updateModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel3">Update Announcement Type</h5>
@@ -247,17 +247,20 @@ $announcementtypelist = get_announcementtype_list();
                 </div>
                 <div class="modal-body">
                     <div class="row mb-2">
-                        <div class="col-md-4 mb-2">
+                        <div class="col-md-12 mb-2">
                             <input type="hidden" id="xannouncement_type_id" class="form-control"/>
-                            <label for="announcement_type" class="form-label">Announcement Type</label>
+                            <label for="xannouncement_type" class="form-label">Annoouncement Type</label>
                             <input type="text" id="xannouncement_type" class="form-control" placeholder="announcement_type" />
                         </div>
+                    </div>
+                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="updateModalSave" onclick="saveChanges()">Save changes</button>
+                    <button type="button" class="btn btn-primary" onclick="saveChanges()">Save changes</button>
                 </div>
             </div>
         </div>
+    </div>
         <!-- !-- Archive Modal --> 
      <div class="modal fade" id="archiveModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog" role="document">
