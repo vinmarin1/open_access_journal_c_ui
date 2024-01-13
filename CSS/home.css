@@ -155,13 +155,14 @@
   min-height: 360px;
   padding-top:2em;
   padding-bottom:2em;
+  padding:4%;
 }
 
 .recommendation-article h4{
   
 color: #0858a4;
 font-family: Arial, Helvetica, sans-serif;
-width:85%;
+width:90%;
 }
 
 .articles-container {

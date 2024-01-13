@@ -44,12 +44,12 @@
     <div class="fluid-container">
       <div class="recommendation-article">
         <h4>Recently Published Articles</h4>
-        <div class="d-flex container flex-wrap gap-4 justify-content-between">
-          <div id="popular-articles" class="articles-container col-sm-12 col-lg-7">
+        <div class="container-fluid p-2 d-flex justify-content-center">
+          <div id="popular-articles" class="articles-container p-2 col-sm-12 col-xl-7">
             <!-- fetch popular articles using api -->
           </div>
           <div class="divider "></div>
-          <div class="col-sm-12 col-lg-4 d-flex flex-column gap-2" id="most-popular-container">
+          <div class="col-sm-12 col-xl-4 d-flex flex-column gap-2" id="most-popular-container">
             <h6 class="text-lg mb-2">
               <select
                 class="form-select"
