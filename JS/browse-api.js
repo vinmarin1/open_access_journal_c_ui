@@ -116,7 +116,7 @@ let totalItems=0
   console.log(totalItems,"total")
 
   function generatePagination(totalItems) {
-    const totalPages = Math.ceil(totalItems / 10); // Assuming 10 items per page
+    const totalPages = Math.ceil(totalItems / 10); 
     const paginationContainer = document.getElementById('pagination-container');
 
     // Clear existing content
@@ -131,7 +131,6 @@ let totalItems=0
         pageLink.href = "javascript:void(0);";
         pageLink.textContent = i + 1;
 
-        // Add click event to the dynamically created page link
         pageLink.addEventListener('click', function () {
         changePage(i);
         });

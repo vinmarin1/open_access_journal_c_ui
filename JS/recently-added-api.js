@@ -25,7 +25,6 @@ async function fetchData() {
 
     console.log('API Response:', data);
 
-    // Assuming 'data.recommendations' is an array
     const articlesContainer = document.querySelector('#popular-articles');
     
 
@@ -54,7 +53,6 @@ async function fetchData() {
 
   } catch (error) {
     console.error('Error fetching data:', error);
-    // You can handle errors or display a message as needed
   }
 }
 
