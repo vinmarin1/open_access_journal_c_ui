@@ -424,9 +424,14 @@ $mostViewedResult = execute_query($mostViewedQuery);
 
 // Check if the query was successful
 if ($mostViewedResult !== false) {
-    // Display the most viewed or downloaded articles in a card
-    echo "<div class='card'>
-            <div class='card-header'>
+    // Display the most viewed or downloaded articles and Top 5 Authors in a row
+    echo "<div class='container-fluid'>";
+    echo "<div class='row'>";
+
+    // First Card (Most Viewed or Most Downloaded)
+    echo "<div class='col-md-6'>";
+    echo "<div class='card mb-4'>";
+    echo "<div class='card-header'>
                 Top 5 Most " . ucfirst($selectedType) . " Articles
             </div>
             <div class='card-body'>
@@ -437,12 +442,18 @@ if ($mostViewedResult !== false) {
                         <option value='download' " . ($selectedType == 'download' ? 'selected' : '') . ">Most Downloaded</option>
                     </select>
                 </form>
-                <table class='table table-bordered'>
+                <div class='table-responsive'>";
+
+    echo "<table class='table table-bordered' style='width: 100%;'>
+                    <colgroup>
+                        <col style='width: 10%;'>
+                        <col style='width: 20%;'>
+                        <col style='width: 10%;'>
+                    </colgroup>
                     <tr>
                         <th>Article ID</th>
                         <th>Title</th>
                         <th>Count</th>
-                        <!-- Add more columns as needed -->
                     </tr>";
 
     foreach ($mostViewedResult as $row) {
@@ -459,18 +470,84 @@ if ($mostViewedResult !== false) {
                     <td>{$articleResult[0]->article_id}</td>
                     <td>{$articleResult[0]->title}</td>
                     <td>{$count}</td>
-                    <!-- Add more columns as needed -->
                   </tr>";
         }
     }
 
+    // Assuming you have a function execute_query() for executing SQL queries
+
+// Create an error handling function
+function execute_query_error() {
+    // Implement this function based on how your execute_query() handles errors
+    // You can use error_get_last() or any other method to get the error details
+    // Example:
+    $error = error_get_last();
+    return $error ? $error['message'] : '';
+}
+
+// Specify the author_id for which you want to fetch the top 5 authors
+$authorId = "author_id"; // Replace with the desired author_id
+
+// Fetch the top 5 authors based on the count of publications
+$query = "SELECT author, COUNT(*) AS publication_count
+          FROM article
+          WHERE author_id = $authorId
+          GROUP BY author
+          ORDER BY publication_count DESC
+          LIMIT 5";
+
+$result = execute_query($query);
+
     echo "</table>
           </div>
-        </div>";
+        </div>
+      </div>";
+    echo "</div>"; // Close the first column
+
+    // Second Card (Top 5 Authors) - Moved to the right and aligned to the top
+    echo "<div class='col-md-6'>";
+    echo '<div class="card mb-4 float-end" style="width: 100%;">';
+    echo '<div class="card-header">Top 5 Authors based on Publications</div>';
+    echo '<div class="card-body">';
+    echo '<table class="table table-bordered" style="width: 100%;">';
+    echo '<tr>
+                <th>Author</th>
+                <th>Publication Count</th>
+              </tr>';
+
+    foreach ($result as $row) {
+        echo "<tr>
+                    <td>{$row->author}</td>
+                    <td>{$row->publication_count}</td>
+                  </tr>";
+    }
+
+    echo '</table>';
+    echo '</div>';
+    echo '</div>';
+    echo "</div>"; // Close the second column
+
+    echo "</div>"; // Close the row
+    echo "</div>"; // Close the container
 } else {
     echo "Error fetching most viewed or downloaded articles data.";
 }
 ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
          
 
