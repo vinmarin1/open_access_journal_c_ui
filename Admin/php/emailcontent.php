@@ -2,6 +2,12 @@
 include 'function/redirect.php';
 include 'function/workflow_function.php';
 include 'function/email_function.php';
+
+if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
+    $firstName = isset($_SESSION['first_name']) ? ucfirst($_SESSION['first_name']) : '';;
+    $lastName = isset($_SESSION['last_name']) ? ' ' . ucfirst($_SESSION['last_name']) : '';
+}
+
 $aid = isset($_GET['aid']) ? $_GET['aid'] : 1;
 $emc = isset($_GET['emc']) ? $_GET['emc'] : 1;
 
@@ -378,6 +384,9 @@ $copyedited_files = get_copyedited_files($aid);
         }
     });
 
+    var round = <?php echo json_encode($article_data[0]->round); ?>;
+    var fromuser = <?php echo json_encode($lastName . ', ' . $firstName); ?>;
+
     function sendEmail(quillInstance) {
         $('#sloading').toggle();
         var hiddenEmail = $('#hiddenEmail').val();
@@ -463,6 +472,8 @@ $copyedited_files = get_copyedited_files($aid);
                 quillContentOne: jsonContent,
                 article_id: article_id,
                 id: id,
+                round: round,
+                fromuser: fromuser,
                 title: title,
                 checkedData: jsonCheckedData,
                 checkedData1: jsonCheckedData1,
