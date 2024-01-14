@@ -464,10 +464,11 @@ if (!function_exists('get_email_content')) {
  
              $reviewerid = $_POST['reviewerid'];
              $articleid = $_POST['articleid'];
+             $round = $_POST['round'];
  
              if ($mail->send()) {
                  echo "Email sent to reviewer successfully.";
-                 assignReviewer($articleid, $reviewerid);
+                 assignReviewer($articleid, $reviewerid, $round);
              } else {
                  echo 'Error sending email: ' . $mail->ErrorInfo;
              }
@@ -476,11 +477,11 @@ if (!function_exists('get_email_content')) {
          }
      }
 
-     function assignReviewer($articleid, $reviewerid) {
+     function assignReviewer($articleid, $reviewerid, $round) {
   
-        $query = "INSERT INTO reviewer_assigned (article_id, author_id) VALUES (?, ?)";
+        $query = "INSERT INTO reviewer_assigned (article_id, author_id, round) VALUES (?, ?, ?)";
         
-        $result = execute_query($query, [$articleid, $reviewerid], true);
+        $result = execute_query($query, [$articleid, $reviewerid, $round], true);
         
         if ($result !== false) {
             echo json_encode(['status' => true, 'message' => 'Record added successfully']);

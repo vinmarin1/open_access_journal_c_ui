@@ -129,6 +129,16 @@ $journal = get_journal_list();
               </a>
             </li>
 
+            <!-- Reports -->
+            <li class="menu-header small text-uppercase"><span class="menu-header-text">OTHERS</span></li>
+            <!-- Tables -->
+            <li class="menu-item">
+              <a href="reportlist.php" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-table"></i>
+                <div data-i18n="Tables">Reports</div>
+              </a>
+            </li>
+
             <!-- Misc -->
             <!-- <li class="menu-header small text-uppercase"><span class="menu-header-text">Misc</span></li>
             <li class="menu-item">

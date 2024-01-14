@@ -20,6 +20,7 @@ $allcopyedited_files = get_allcopyedited_files($aid);
 $production_files = get_production_files($aid);
 $revision_files = get_revision_files($aid);
 $userlist = get_user_list();
+$issuelist = get_issues_list();
 ?>
 
 <!-- Add Discussion Modal -->
@@ -774,6 +775,59 @@ $userlist = get_user_list();
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary" onclick="updateCopyeditedFiles()">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<!-- Add Issue Modal -->
+<div class="modal fade" id="addIssueModal" tabindex="-1" aria-hidden="true">
+    <form id="addModalForm">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel3">Select Issues</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row mb-2">
+                        <div class="col-md-12">
+                            <div class="table-responsive text-nowrap">
+                                <table class="table table-striped" id="DataTable">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="5">
+                                                <h5 class="card-header">Issues</h5>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php if (empty($issuelist)): ?>
+                                        <tr>
+                                            <td colspan="5" class="text-center">No Items</td>
+                                        </tr>
+                                    <?php else: ?>
+                                        <?php foreach ($issuelist as $issuelistval): ?>
+                                            <tr>
+                                                <td width="5%"><?php echo $issuelistval->issues_id; ?></td>
+                                                <td width="10%"><?php echo $issuelistval->volume; ?></td>
+                                                <td width="10%"><?php echo $issuelistval->title; ?></td>
+                                                <td width="10%"><?php echo $issuelistval->year; ?></td>
+                                                <td width="15%"><button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 160px;" onclick="" data-bs-toggle="modal">Select</button></td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
+                                    </tbody>
+                                    <tfoot>
+                                        <th colspan="5" style="text-align: right;">
+                                        </th>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
