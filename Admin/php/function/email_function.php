@@ -78,6 +78,8 @@ if (!function_exists('get_email_content')) {
             $mail->Body = $body;
 
             $id = $_POST['id'];
+            $round = $_POST['round'];
+            $fromuser = $_POST['fromuser'];
             $article_id = $_POST['article_id'];
             $articleFilesId = $_POST['checkedData'];
             $articleFilesId1 = $_POST['checkedData1'];
@@ -91,22 +93,33 @@ if (!function_exists('get_email_content')) {
                 if ($id == 1) {
                     updateReviewFiles(1, $articleFilesId);
                     updateArticleStatus($article_id, 4);
+                    addLogs($article_id, $fromuser, 'Send to Review');
                     echo "<script>alert('Send to review successfully.');</script>"; 
                 } elseif ($id == 2) {
                     updateArticleStatus($article_id, 7);
+                    addLogs($article_id, $fromuser, 'Decline for Submission');
                     echo "<script>alert('Decline submission successfully.');</script>";
                 } elseif ($id == 3) {
                     updateCopyeditingFiles(1, $articleFilesId1);
                     updateCopyeditingRevisionFiles(1, $revisionFilesId);
                     updateArticleStatus($article_id, 3);
+                    addLogs($article_id, $fromuser, 'Send to Copyediting');
                     echo "<script>alert('Send to copyediting successfully.');</script>";
                 } elseif ($id == 4) {
+                    if ($round == 'Round 2') {
+                        updateRound($article_id, 'Round 3');
+                        addLogs($article_id, $fromuser, 'Send for Revision Round 3');
+                    } else {
+                        updateRound($article_id, 'Round 2');
+                        addLogs($article_id, $fromuser, 'Send for Revision Round 2');
+                    }
                     echo "<script>alert('Request for revision successfully.');</script>";
                 } elseif ($id == 5) {
                     updateCopyeditedFiles(1, $copyeditedFilesIds);
                     updateCopyeditedSubmissionFiles(1, $copyeditedsubmissionFilesIds);
                     updateCopyeditedRevisionFiles(1, $copyeditedrevisionFilesIds);                
                     updateArticleStatus($article_id, 2);
+                    addLogs($article_id, $fromuser, 'Send to Production');
                     echo "<script>alert('Send to production successfully.');</script>";
             } else {
                 echo 'Error sending email: ' . $mail->ErrorInfo;
@@ -133,6 +146,24 @@ if (!function_exists('get_email_content')) {
             echo "<script>alert('Article Status updated successfully');</script>";
         } else {
             echo "<script>alert('Failed to update status data');</script>";
+        }
+    }
+
+    function updateRound($article_id, $round) {
+    
+        $query = "UPDATE article 
+                SET round = ?
+                WHERE article_id = ?";
+    
+        $pdo = connect_to_database();
+    
+        $stm = $pdo->prepare($query);   
+        $check = $stm->execute([$round, $article_id]);
+    
+        if ($check !== false) {
+            echo "<script>alert('Article round updated successfully');</script>";
+        } else {
+            echo "<script>alert('Failed to update round data');</script>";
         }
     }
 
@@ -482,6 +513,21 @@ if (!function_exists('get_email_content')) {
         $query = "INSERT INTO reviewer_assigned (article_id, author_id, round) VALUES (?, ?, ?)";
         
         $result = execute_query($query, [$articleid, $reviewerid, $round], true);
+        
+        if ($result !== false) {
+            echo json_encode(['status' => true, 'message' => 'Record added successfully']);
+        } else {
+            // $errorInfo = get_db_error_info();
+            // echo json_encode(['status' => false, 'message' => 'Failed to add record', 'error' => $errorInfo]);
+            echo json_encode(['status' => false, 'message' => 'Failed to add record', 'error']);
+        }
+    }
+
+    function addLogs($articleid, $fromuser, $message) {
+  
+        $query = "INSERT INTO logs_article (article_id, fromuser, type) VALUES (?, ?, ?)";
+        
+        $result = execute_query($query, [$articleid, $fromuser, $message], true);
         
         if ($result !== false) {
             echo json_encode(['status' => true, 'message' => 'Record added successfully']);
