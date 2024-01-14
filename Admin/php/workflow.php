@@ -82,10 +82,19 @@ table {
                     <div class="nav-align-top mb-4">
                         <ul class="nav nav-tabs">
                             <li class="nav-item ms-auto">
-                                <button type="button" class="btn btn-dark" id="activityLogButton" style="width: 150px; margin-right: 5px; height: 40px;">Activity Log</button>
+                                <button type="button" class="btn btn-dark" id="activityLogButton" style="width: 150px; margin-right: 5px; height: 40px;" data-bs-toggle="modal" data-bs-target="#viewLogsModal">Activity Log</button>
                             </li>
                             <li class="nav-item">
-                                <a href="javascript:void(0);" onclick="sendForDecline()" class="btn btn-danger btn-lg btn-block" style="width: 200px; height: 40px;">Decline Submission</a>
+                                
+                            <?php
+                                $status = $article_data[0]->status;
+
+                                if ($status == 1) {
+                                    echo '<a href="javascript:void(0);" onclick="archiveArticle()" class="btn btn-danger btn-lg btn-block" style="width: 200px; height: 40px;">Archive Article</a>';
+                                } else {
+                                    echo '<a href="javascript:void(0);" onclick="sendForDecline()" class="btn btn-danger btn-lg btn-block" style="width: 200px; height: 40px;">Decline Submission</a>';
+                                }
+                                ?>
                             </li>
                         </ul>
                         <ul class="nav nav-tabs" role="tablist">
