@@ -434,3 +434,29 @@ if (!function_exists('get_copyedited_files')) {
         return false;
     }
 }
+
+if (!function_exists('get_issues_list')) {
+    function get_issues_list() {
+        $pdo = connect_to_database();
+
+        if ($pdo) {
+            try {
+                $query = "SELECT * FROM issues WHERE status = 1";
+                $stmt = $pdo->prepare($query);
+                $stmt->execute();
+
+                $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+                return $result;
+            } catch (PDOException $e) {
+                echo "Error: " . $e->getMessage();
+                return false;
+            }
+        }
+
+        return false;
+    }
+}
+
+
+

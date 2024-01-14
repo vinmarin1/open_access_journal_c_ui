@@ -22,6 +22,20 @@ $article_contributors = get_article_contributor($aid);
 $article_reviewer = get_article_reviewer($aid);
 $article_reviewer_check = check_article_reviewer($aid);
 $reviewer_details = get_reviewer_details();
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $selectedRound = $_POST["roundFilter"];
+} else {
+    $selectedRound = $article_data[0]->round;
+}
+
+if ($selectedRound == "all") {
+    $filteredData = $article_reviewer; 
+} else {
+    $filteredData = array_filter($article_reviewer, function ($item) use ($selectedRound) {
+        return strpos($item->round, $selectedRound) !== false;
+    });
+}
 ?>
 
 <!DOCTYPE html>
@@ -368,7 +382,23 @@ table {
                                                                 </table>
                                                             </div>
                                                         </div> 
+
                                                         <div class="col-md-12 mt-4" id="dynamic-column">
+                                                            <div class="mb-3">
+                                                                <form method="post" action="">
+                                                                    <?php
+                                                                    // Initialize $selectedRound with the default value from $article_data[0]->round
+                                                                    $selectedRound = isset($_POST["roundFilter"]) ? $_POST["roundFilter"] : $article_data[0]->round;
+                                                                    ?>
+                                                                    <label for="roundFilter" class="form-label">Filter by Round:</label>
+                                                                    <select class="form-select" id="roundFilter" name="roundFilter" onchange="this.form.submit()">
+                                                                        <option value="Round 1" <?php echo ($selectedRound == "Round 1") ? "selected" : ""; ?>>Round 1</option>
+                                                                        <option value="Round 2" <?php echo ($selectedRound == "Round 2") ? "selected" : ""; ?>>Round 2</option>
+                                                                        <option value="Round 3" <?php echo ($selectedRound == "Round 3") ? "selected" : ""; ?>>Round 3</option>
+                                                                    </select>
+                                                                </form>
+                                                            </div>
+
                                                             <div class="table-responsive text-nowrap">
                                                                 <table class="table table-striped" id="DataTable">
                                                                     <thead>
@@ -380,12 +410,12 @@ table {
                                                                         </tr>
                                                                     </thead>
                                                                     <tbody>
-                                                                        <?php if (empty($article_reviewer)): ?>
+                                                                        <?php if (empty($filteredData)): ?>
                                                                             <tr>
                                                                                 <td colspan="7" class="text-center">No Items</td>
                                                                             </tr>
                                                                         <?php else: ?>
-                                                                            <?php foreach ($article_reviewer as $article_reviewerval): ?>
+                                                                            <?php foreach ($filteredData as $article_reviewerval): ?>
                                                                                 <tr>
                                                                                     <td width="5%"><?php echo $article_reviewerval->reviewer_assigned_id; ?></td>
                                                                                     <td width="5%"><?php echo $article_reviewerval->author_id; ?></td>
@@ -398,42 +428,38 @@ table {
                                                                                         }
                                                                                     }
                                                                                     if ($matchingReviewer) { ?>
-                                                                                        <td width="75%"><?php echo $matchingReviewer->last_name . ', ' . $matchingReviewer->first_name; ?></td> 
-                                                                                        <?php if (strpos($article_data[0]->round, 'Round 1') !== false): ?>
-                                                                                            <td width="5%" style="text-align: right;">
-                                                                                                
-                                                                                        <?php endif; ?>
+                                                                                        <td width="75%"><?php echo $matchingReviewer->last_name . ', ' . $matchingReviewer->first_name; ?></td>
+                                                                                        <td colspan="3" style="text-align: right;">
+                                                                                            <?php if (strpos($article_reviewerval->round, 'Round 1') !== false): ?>
+                                                                                                <a href="javascript:void(0);" onclick="viewReviewerAnswer(<?php echo $article_reviewerval->author_id; ?>,'<?php echo $article_data[0]->article_id; ?>','<?php echo $matchingReviewer->last_name . ', ' . $matchingReviewer->first_name; ?>','Round 1')" class="btn btn-outline-dark Round1" style="margin-right: 10px;" >Round 1</a>
+                                                                                            <?php endif; ?>
 
-                                                                                        <?php if (strpos($article_data[0]->round, 'Round 1') !== false || strpos($article_data[0]->round, 'Round 2') !== false || strpos($article_data[0]->round, 'Round 3') !== false): ?>
-                                                                                            <td width="5%" style="text-align: right;">
-                                                                                                <a href="javascript:void(0);" onclick="viewReviewerAnswer(<?php echo $article_reviewerval->author_id; ?>,'<?php echo $article_data[0]->article_id; ?>','<?php echo $matchingReviewer->last_name . ', ' . $matchingReviewer->first_name; ?>','Round 1')" class="btn btn-outline-dark" style="margin-right: 10px">Round 1</a>
-                                                                                            </td>
-                                                                                        <?php endif; ?>
+                                                                                            <?php if (strpos($article_reviewerval->round, 'Round 2') !== false): ?>
+                                                                                                <a href="javascript:void(0);" onclick="viewReviewerAnswer(<?php echo $article_reviewerval->author_id; ?>,'<?php echo $article_data[0]->article_id; ?>','<?php echo $matchingReviewer->last_name . ', ' . $matchingReviewer->first_name; ?>','Round 2')" class="btn btn-outline-dark Round2" style="margin-right: 10px;">Round 2</a>
+                                                                                            <?php endif; ?>
 
-                                                                                        <?php if (strpos($article_data[0]->round, 'Round 2') !== false || strpos($article_data[0]->round, 'Round 3') !== false): ?>
-                                                                                            <td width="5%" style="text-align: right;">
-                                                                                                <a href="javascript:void(0);" onclick="viewReviewerAnswer(<?php echo $article_reviewerval->author_id; ?>,'<?php echo $article_data[0]->article_id; ?>','<?php echo $matchingReviewer->last_name . ', ' . $matchingReviewer->first_name; ?>','Round 2')" class="btn btn-outline-dark" style="margin-right: 10px">Round 2</a>
-                                                                                            </td>
-                                                                                        <?php endif; ?>
-
-                                                                                        <?php if (strpos($article_data[0]->round, 'Round 3') !== false): ?>
-                                                                                            <td width="5%" style="text-align: right;">
-                                                                                                <a href="javascript:void(0);" onclick="viewReviewerAnswer(<?php echo $article_reviewerval->author_id; ?>,'<?php echo $article_data[0]->article_id; ?>','<?php echo $matchingReviewer->last_name . ', ' . $matchingReviewer->first_name; ?>','Round 3')" class="btn btn-outline-dark" style="margin-right: 10px">Round 3</a>
-                                                                                            </td>
-                                                                                        <?php endif; ?>
-                                                                                </tr>
+                                                                                            <?php if (strpos($article_reviewerval->round, 'Round 3') !== false): ?>
+                                                                                                <a href="javascript:void(0);" onclick="viewReviewerAnswer(<?php echo $article_reviewerval->author_id; ?>,'<?php echo $article_data[0]->article_id; ?>','<?php echo $matchingReviewer->last_name . ', ' . $matchingReviewer->first_name; ?>','Round 3')" class="btn btn-outline-dark Round3" style="margin-right: 10px;">Round 3</a>
+                                                                                            <?php endif; ?>
+                                                                                        </td>
+                                                                                    </tr>
                                                                                     <?php } else { ?>
-                                                                                        <td colspan="7">No matching reviewer found.</td>
+                                                                                        <tr>
+                                                                                            <td colspan="7">No matching reviewer found.</td>
+                                                                                        </tr>
                                                                                     <?php } ?>
                                                                             <?php endforeach; ?>
                                                                         <?php endif; ?>
                                                                     </tbody>
                                                                     <tfoot>
-                                                                        <th colspan="7" style="text-align: right;"></th>
-                                                                    </tfoot>   
+                                                                        <tr>
+                                                                            <th colspan="7" style="text-align: right;"></th>
+                                                                        </tr>
+                                                                    </tfoot>
                                                                 </table>
                                                             </div>
-                                                        </div>  
+                                                        </div>
+                                                        
                                                         <div class="col-md-12 mt-4" id="dynamic-column">
                                                             <div class="table-responsive text-nowrap">
                                                                 <table class="table table-striped" id="DataTable">
@@ -879,7 +905,7 @@ table {
                                                                     <p>Submission published.</p>
                                                                 </div>
                                                             <?php else: ?>
-                                                                <a href="javascript:void(0);" onclick="" class="btn btn-primary btn-lg btn-block mb-2" style="width: 100%;">Send to Publication</a>
+                                                                <a href="javascript:void(0);" onclick="" class="btn btn-primary btn-lg btn-block mb-2" style="width: 100%;" data-bs-toggle="modal" data-bs-target="#addIssueModal">Send to Publication</a>
                                                                 <!-- <a href="javascript:void(0);" onclick="" class="btn btn-outline-danger btn-lg btn-block" style="width: 100%;">Cancel Production</a> -->
                                                             <?php endif; ?>
                                                         </div>
@@ -1120,7 +1146,7 @@ table {
                                             $hideRow = false;
 
                                             foreach ($article_reviewer_check as $reviewer) {
-                                                if ($reviewer->author_id == $userlistval->author_id) {
+                                                if ($reviewer->author_id == $userlistval->author_id & $reviewer->round == $article_data[0]->round) {
                                                     $hideRow = true;
                                                     break;
                                                 }
@@ -1162,6 +1188,7 @@ table {
                 <div class="modal-body">
                     <div class="row mb-2">
                         <div class="col-md-12 mb-2">  
+                            <input type="hidden" id="round" value="<?php print $article_data[0]->round ?>" class="form-control"readonly/> 
                             <input type="hidden" id="articleid" value="<?php print $article_data[0]->article_id ?>" class="form-control"readonly/>  
                             <input type="hidden" id="reviewerid" class="form-control"readonly/>
                             <input type="hidden" id="revieweremail" class="form-control"readonly/>
@@ -1306,6 +1333,7 @@ table {
             $('#sloading').toggle();
             var subject = $('#emailsubject').val();
             var articleid = $('#articleid').val();
+            var round = $('#round').val();
             var revieweremail = $('#revieweremail').val();
             var reviewerid = $('#reviewerid').val();
 
@@ -1321,6 +1349,7 @@ table {
                     subject: subject,
                     quillContentOne: jsonContent,
                     articleid: articleid,
+                    round: round,
                     reviewerid: reviewerid,
                     revieweremail: revieweremail,
                     title: title,
