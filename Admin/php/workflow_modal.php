@@ -19,6 +19,7 @@ $copyedited_files = get_copyedited_files($aid);
 $allcopyedited_files = get_allcopyedited_files($aid);
 $production_files = get_production_files($aid);
 $revision_files = get_revision_files($aid);
+$articlelogs = get_article_logs($aid);
 $userlist = get_user_list();
 $issuelist = get_issues_list();
 ?>
@@ -140,6 +141,62 @@ $issuelist = get_issues_list();
                     <div class="row mb-2" id="addMessageButtonx">
                         <div class="col-md-12 mt-2" id="dynamic-column" style="text-align: right;">
                             <button type="button" id="addMessageButton" class="btn btn-primary">Add Message</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- Add Logs Modal -->
+<div class="modal fade" id="viewLogsModal" tabindex="-1" aria-hidden="true">
+    <form id="addModalForm">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel3">View Article Logs</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row mb-2">
+                        <div class="col-md-12">
+                            <div class="table-responsive text-nowrap">
+                                <table class="table table-striped" id="DataTable">
+                                    <thead>
+                                        <tr>
+                                            <th>MESSAGE</th>
+                                            <th>FROM</th>
+                                            <th>DATE</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php if (empty($articlelogs)): ?>
+                                        <tr>
+                                            <td colspan="3" class="text-center">No Items</td>
+                                        </tr>
+                                    <?php else: ?>
+                                        <?php foreach ($articlelogs as $articlelogsval): ?>
+                                            <tr>
+                                                <td width="50%"><?php echo $articlelogsval->type; ?></td>
+                                                <td width="30%"><?php echo $articlelogsval->fromuser; ?></td>
+                                                <td width="20%">
+                                                    <?php
+                                                    $dateTime = new DateTime($articlelogsval->date);
+                                                    echo $dateTime->format('j, F Y');
+                                                    ?>
+                                                </td>
+
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
+                                    </tbody>
+                                    <tfoot>
+                                        <th colspan="3" style="text-align: right;">
+                                        </th>
+                                    </tfoot>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
