@@ -10,6 +10,7 @@ if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
 
 $aid = isset($_GET['aid']) ? $_GET['aid'] : 1;
 $emc = isset($_GET['emc']) ? $_GET['emc'] : 1;
+$issid = isset($_GET['issid']) ? $_GET['issid'] : 1;
 
 $article_data = get_article_data($aid);
 $article_contributor = get_article_contributor($aid);
@@ -384,6 +385,7 @@ $copyedited_files = get_copyedited_files($aid);
         }
     });
 
+    var issues_id = <?php echo json_encode($issid); ?>;
     var round = <?php echo json_encode($article_data[0]->round); ?>;
     var fromuser = <?php echo json_encode($lastName . ', ' . $firstName); ?>;
 
@@ -472,6 +474,7 @@ $copyedited_files = get_copyedited_files($aid);
                 quillContentOne: jsonContent,
                 article_id: article_id,
                 id: id,
+                issues_id: issues_id,
                 round: round,
                 fromuser: fromuser,
                 title: title,
