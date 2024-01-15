@@ -217,7 +217,7 @@ $copyedited_files = get_copyedited_files($aid);
                                         ?>
                                             <h5 class="card-header">Files</h5>
                                             <p>Select files you want to add in production.</p>
-                                            <div class="col-md-12" id="dynamic-column">
+                                            <!-- <div class="col-md-12" id="dynamic-column">
                                                 <div class="table-responsive text-nowrap">
                                                     <table class="table table-striped" id="DataTable">
                                                         <thead>
@@ -290,7 +290,7 @@ $copyedited_files = get_copyedited_files($aid);
                                                         </tfoot>
                                                     </table>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <div class="col-md-12 mt-3" id="dynamic-column">
                                                 <div class="table-responsive text-nowrap">
                                                     <table class="table table-striped" id="DataTable">
@@ -400,8 +400,8 @@ $copyedited_files = get_copyedited_files($aid);
         var checkedCheckboxes = $('.submission-checkbox:checked');
         var checkedCheckboxes1 = $('.review-checkbox:checked');
         var checkedCheckboxes2 = $('.revision-checkbox:checked');
-        var checkedCheckboxes3 = $('.copyeditedsubmission-checkbox:checked');
-        var checkedCheckboxes4 = $('.revisioncopyedited-checkbox:checked');
+        // var checkedCheckboxes3 = $('.copyeditedsubmission-checkbox:checked');
+        // var checkedCheckboxes4 = $('.revisioncopyedited-checkbox:checked');
         var checkedCheckboxes5 = $('.copyedited-checkbox:checked');
 
         var checkedData = [];
@@ -428,22 +428,22 @@ $copyedited_files = get_copyedited_files($aid);
             });
         });
 
-        var checkedData3 = [];
-        checkedCheckboxes3.each(function () {
-            var articleFilesId = $(this).data('article-files-id');
-            checkedData3.push({
-                articleFilesId: articleFilesId
-            });
-        });
+        // var checkedData3 = [];
+        // checkedCheckboxes3.each(function () {
+        //     var articleFilesId = $(this).data('article-files-id');
+        //     checkedData3.push({
+        //         articleFilesId: articleFilesId
+        //     });
+        // });
         
 
-        var checkedData4 = [];
-        checkedCheckboxes4.each(function () {
-            var revisionFilesId = $(this).data('revision-files-id');
-            checkedData4.push({
-                revisionFilesId: revisionFilesId
-            });
-        });
+        // var checkedData4 = [];
+        // checkedCheckboxes4.each(function () {
+        //     var revisionFilesId = $(this).data('revision-files-id');
+        //     checkedData4.push({
+        //         revisionFilesId: revisionFilesId
+        //     });
+        // });
         
         var checkedData5 = [];
         checkedCheckboxes5.each(function () {
@@ -456,13 +456,11 @@ $copyedited_files = get_copyedited_files($aid);
         var jsonCheckedData = JSON.stringify(checkedData);
         var jsonCheckedData1 = JSON.stringify(checkedData1);
         var jsonCheckedData2 = JSON.stringify(checkedData2);
-        var jsonCheckedData3 = JSON.stringify(checkedData3);
-        var jsonCheckedData4 = JSON.stringify(checkedData4);
+        // var jsonCheckedData3 = JSON.stringify(checkedData3);
+        // var jsonCheckedData4 = JSON.stringify(checkedData4);
         var jsonCheckedData5 = JSON.stringify(checkedData5);
         var deltaContent = quillInstance.getContents();
         var jsonContent = JSON.stringify(deltaContent);
-            console.log(jsonCheckedData3);
-            console.log(jsonCheckedData4);
             console.log(jsonCheckedData5);
 
         $.ajax({
@@ -481,8 +479,8 @@ $copyedited_files = get_copyedited_files($aid);
                 checkedData: jsonCheckedData,
                 checkedData1: jsonCheckedData1,
                 checkedData2: jsonCheckedData2,
-                checkedData3: jsonCheckedData3,
-                checkedData4: jsonCheckedData4,
+                // checkedData3: jsonCheckedData3,
+                // checkedData4: jsonCheckedData4,
                 checkedData5: jsonCheckedData5,
                 action: 'email'
             },
