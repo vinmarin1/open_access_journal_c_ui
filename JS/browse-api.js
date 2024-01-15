@@ -299,7 +299,8 @@ async function fetchData(input, dates, journals,sort, currentPage = 0) {
         articleDiv.innerHTML = `
         <div class="article-details">
         <h6 style="color: #0858a4;"><strong>${item.title} - (${
-          item.publication_date
+          
+          new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric' }).format(new Date(item.publication_date))
         })</strong></h6>
         <p style="color: #454545;">${item.abstract.slice(0, 200)} </p>
         <div class="keywords">
