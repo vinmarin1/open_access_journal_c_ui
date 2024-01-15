@@ -10,7 +10,7 @@
             margin: -2px; 
             margin-left: 1px; 
         }
-        #totalArchive{
+        #totalArchived{
             color: #566A7F !important;
         }
     </style>
