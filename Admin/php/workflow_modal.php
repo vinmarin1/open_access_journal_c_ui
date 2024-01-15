@@ -1398,7 +1398,7 @@ function addDiscussion() {
     var discussionTypeInput = $('#discussionTypeInput').val();
     var submissionSubject = $('#submissionsubject').val();
     var submissionMessage = $('#submissionmessage').val();
-    var submissionFiletype = $('#submissionfiletypex').val();
+    var submissionFiletype = $('#submissionfiletype').val();
     var submissionFile = $('#submissionfilexx')[0].files[0];
 
     var formData = new FormData();
