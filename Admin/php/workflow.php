@@ -636,20 +636,6 @@ table {
                                                                             }
                                                                         }
 
-                                                                        foreach ($revision_files as $revision_filesval) {
-                                                                            if ($revision_filesval->copyedited == 1) {
-                                                                                $hasCopyeditedFiles = true;
-                                                                                break;
-                                                                            }
-                                                                        }
-
-                                                                        foreach ($submission_files as $submission_filesval) {
-                                                                            if ($submission_filesval->copyedited == 1) {
-                                                                                $hasCopyeditedFiles = true;
-                                                                                break;
-                                                                            }
-                                                                        }
-
                                                                         if ($hasCopyeditedFiles) {
                                                                             foreach ($copyedited_files as $copyedited_filesval) {
                                                                                 if ($copyedited_filesval->copyedited == 1) {
@@ -668,39 +654,6 @@ table {
                                                                                 }
                                                                             }
 
-                                                                            foreach ($revision_files as $revision_filesval) {
-                                                                                if ($revision_filesval->copyedited == 1) {
-                                                                                    ?>
-                                                                                    <tr>
-                                                                                        <td width="5%"><?php echo $revision_filesval->revision_files_id; ?></td>
-                                                                                        <td width="65%">
-                                                                                            <a href="../../Files/submitted-article/<?php echo urlencode($revision_filesval->file_name); ?>" download>
-                                                                                                <?php echo $revision_filesval->file_name; ?>
-                                                                                            </a>
-                                                                                        </td>
-                                                                                        <td width="25%"><?php echo $revision_filesval->file_type; ?></td>
-                                                                                        <td width="5%"><span class="badge rounded-pill bg-label-warning">Revision</span></td>
-                                                                                    </tr>
-                                                                                    <?php
-                                                                                }
-                                                                            }
-
-                                                                            foreach ($submission_files as $submission_filesval) {
-                                                                                if ($submission_filesval->copyedited == 1) {
-                                                                                    ?>
-                                                                                    <tr>
-                                                                                        <td width="5%"><?php echo $submission_filesval->article_files_id; ?></td>
-                                                                                        <td width="65%">
-                                                                                            <a href="../../Files/submitted-article/<?php echo urlencode($submission_filesval->file_name); ?>" download>
-                                                                                                <?php echo $submission_filesval->file_name; ?>
-                                                                                            </a>
-                                                                                        </td>
-                                                                                        <td width="25%"><?php echo $submission_filesval->file_type; ?></td>
-                                                                                        <td width="5%"><span class="badge rounded-pill bg-label-warning">Submission</span></td>
-                                                                                    </tr>
-                                                                                    <?php
-                                                                                }
-                                                                            }
                                                                         } else {
                                                                             ?>
                                                                             <tr>

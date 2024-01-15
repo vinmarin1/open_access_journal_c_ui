@@ -21,7 +21,7 @@
     <div class="container-xxl flex-grow-1 container-p-y">
         <h4 class="py-3 mb-4" style="display: flex; justify-content: space-between; align-items: baseline;">
             <span class="text-muted fw-light">Others / Report / </span>&nbsp Archive Article
-            <span id="totalArchive" class="text-muted" style="margin-left: auto"></span>
+            <span id="totalArchived" class="text-muted" style="margin-left: auto"></span>
         </h4>
         
         <div class="row mb-2">
@@ -114,7 +114,7 @@
                         var totalRows = api.data().count();
 
                         // Update the content of the span with the total count
-                        $('#totalArchive').text('Total Archive: ' + totalRows);
+                        $('#totalArchived').text('Total Archived: ' + totalRows);
                     }
                 });
             });

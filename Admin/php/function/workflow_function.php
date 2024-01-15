@@ -464,7 +464,7 @@ if (!function_exists('get_article_logs')) {
 
         if ($pdo) {
             try {
-                $query = "SELECT * FROM logs_article WHERE article_id = :aid";
+                $query = "SELECT * FROM logs_article WHERE article_id = :aid ORDER BY logs_id DESC;";
                 $stmt = $pdo->prepare($query);
                 $stmt->bindParam(':aid', $aid, PDO::PARAM_INT);
                 $stmt->execute();
