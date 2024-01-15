@@ -19,13 +19,9 @@ include 'dbcon.php';
             updateCopyeditingRevisionUnCheckedFiles();
             break; 
         case 'updatecopyeditedcheckedfile':
-            // updateCopyeditedSubmissionCheckedFiles();
-            // updateCopyeditedRevisionCheckedFiles();
             updateCopyeditedCheckedFiles();
             break;
         case 'updatecopyediteduncheckedfile':
-            // updateCopyeditedSubmissionUnCheckedFiles();
-            // updateCopyeditedRevisionUnCheckedFiles();
             updateCopyeditedUnCheckedFiles();
             break;    
         case 'updatesubmissionfile':
@@ -49,6 +45,17 @@ include 'dbcon.php';
         case 'uploadcopyeditedfile':
             uploadCopyeditedFile();
             break; 
+        case 'uploadproductionfile':
+            uploadProductionFile();
+            break; 
+        case 'updatefinalcheckedfile':
+            updateProductionCopyeditedCheckedFiles();
+            updateProductionCheckedFiles();
+            break;
+        case 'updatefinaluncheckedfile':
+            updateProductionCopyeditedUnCheckedFiles();
+            updateProductionUnCheckedFiles();
+            break;    
     }
 
     function updateSubmissionFiles() {
@@ -663,10 +670,11 @@ include 'dbcon.php';
     
     function uploadCopyeditedFile() {
         $documentRoot = $_SERVER['DOCUMENT_ROOT'];
-        $uploadPath = $documentRoot . '/Files/copyedited-file/';
+        $uploadPath = $documentRoot . '/Files/final-file/';
         $fromuser = $_POST['fromuser'];
         $article_id = $_POST['article_id'];
         $status = 1;
+        $filefrom = 'Copyedited';
         $copyeditedfiletype = isset($_POST['copyeditedfiletype']) ? $_POST['copyeditedfiletype'] : '';
     
         if (!file_exists($uploadPath)) {
@@ -709,8 +717,8 @@ include 'dbcon.php';
             $pdo = connect_to_database();
             $pdo->beginTransaction();
 
-                $query = "INSERT INTO article_copyedited_files (article_id, fromuser, file_name, file_type, copyedited) VALUES (?, ?, ?, ?, ?)";
-                $result = execute_query($query, [$article_id, $fromuser, $fileName, $copyeditedfiletype, $status], true);
+                $query = "INSERT INTO article_final_files (article_id, fromuser, file_name, file_type, filefrom, copyedited) VALUES (?, ?, ?, ?, ?, ?)";
+                $result = execute_query($query, [$article_id, $fromuser, $fileName, $copyeditedfiletype, $filefrom, $status], true);
                 
             if ($result !== false) {
                 $pdo->commit();
@@ -726,106 +734,6 @@ include 'dbcon.php';
             $pdo = null;
         }
     }
-
-    // function updateCopyeditedSubmissionCheckedFiles() {
-    //     $articleFilesIds = $_POST['checkedData'];
-    //     $status = 1;
-        
-    //     if (!is_array($articleFilesIds)) {
-    //         $articleFilesIds = array($articleFilesIds);
-    //     }
-
-    //     $decodedIds = json_decode($articleFilesIds[0], true);
-    //     $articleFilesIds = array_column($decodedIds, 'articleFilesId');
-
-    //     // Create an array of named parameters for binding
-    //     $params = array(':status' => $status);
-    //     foreach ($articleFilesIds as $key => $articleFilesId) {
-    //         $paramName = ":id$key";
-    //         $params[$paramName] = $articleFilesId;
-    //         $placeholders[] = $paramName;
-    //     }
-
-    //     $placeholders = implode(',', $placeholders);
-
-    //     $query = "UPDATE article_files
-    //             SET copyedited = :status
-    //             WHERE article_files_id IN ($placeholders)";
-
-    //     $pdo = connect_to_database();
-
-    //     $pdo->beginTransaction();
-
-    //     $stm = $pdo->prepare($query);
-
-    //     // Bind the parameters
-    //     foreach ($params as $paramName => &$paramValue) {
-    //         $stm->bindParam($paramName, $paramValue, PDO::PARAM_INT);
-    //     }
-
-    //     $check = $stm->execute();
-
-    //     if ($check !== false) {
-    //         echo "Copyedited Files updated successfully";
-    //         $pdo->commit();
-    //     } else {
-    //         echo "Failed to update file Copyedited data";
-    //         print_r($stm->errorInfo());
-    //         $pdo->rollBack();
-    //     }
-    // }
-
-    // function updateCopyeditedRevisionCheckedFiles() {
-    //     $revisionFilesIds = $_POST['checkedRevisionData'];
-    //     $status = 1;
-    
-    //     if (!is_array($revisionFilesIds)) {
-    //         $revisionFilesIds = array($revisionFilesIds);
-    //     }
-    
-    //     $decodedIds = json_decode($revisionFilesIds[0], true);
-    //     $revisionFilesIds = array_column($decodedIds, 'revisionFilesId');
-    
-    //     // Initialize $placeholders array
-    //     $placeholders = array();
-    
-    //     // Create an array of named parameters for binding
-    //     $params = array(':status' => $status);
-    //     foreach ($revisionFilesIds as $key => $revisionFilesId) {
-    //         $paramName = ":id$key";
-    //         $params[$paramName] = $revisionFilesId;
-    //         $placeholders[] = $paramName;
-    //     }
-    
-    //     // If there are files to update, implode placeholders
-    //     $placeholders = !empty($placeholders) ? implode(',', $placeholders) : '';
-    
-    //     $query = "UPDATE article_revision_files
-    //             SET copyedited = :status
-    //             WHERE revision_files_id IN ($placeholders)";
-    
-    //     $pdo = connect_to_database();
-    
-    //     $pdo->beginTransaction();
-    
-    //     $stm = $pdo->prepare($query);
-    
-    //     // Bind the parameters
-    //     foreach ($params as $paramName => &$paramValue) {
-    //         $stm->bindParam($paramName, $paramValue, PDO::PARAM_INT);
-    //     }
-    
-    //     $check = $stm->execute();
-    
-    //     if ($check !== false) {
-    //         echo "Copyedited Files updated successfully";
-    //         $pdo->commit();
-    //     } else {
-    //         echo "Failed to update file Copyedited data";
-    //         print_r($stm->errorInfo());
-    //         $pdo->rollBack();
-    //     }
-    // }    
 
     function updateCopyeditedCheckedFiles() {
         $copyeditedFilesIds = $_POST['checkedCopyeditedData'];
@@ -848,9 +756,9 @@ include 'dbcon.php';
 
         $placeholders = implode(',', $placeholders);
 
-        $query = "UPDATE article_copyedited_files
+        $query = "UPDATE article_final_files
                 SET copyedited = :status
-                WHERE copyedited_files_id IN ($placeholders)";
+                WHERE final_files_id IN ($placeholders)";
 
         $pdo = connect_to_database();
 
@@ -875,106 +783,6 @@ include 'dbcon.php';
         }
     }
 
-    // function updateCopyeditedSubmissionUnCheckedFiles() {
-    //     $articleFilesIds = $_POST['uncheckedData'];
-    //     $status = 0;
-        
-    //     if (!is_array($articleFilesIds)) {
-    //         $articleFilesIds = array($articleFilesIds);
-    //     }
-
-    //     $decodedIds = json_decode($articleFilesIds[0], true);
-    //     $articleFilesIds = array_column($decodedIds, 'articleFilesId');
-
-    //     // Create an array of named parameters for binding
-    //     $params = array(':status' => $status);
-    //     foreach ($articleFilesIds as $key => $articleFilesId) {
-    //         $paramName = ":id$key";
-    //         $params[$paramName] = $articleFilesId;
-    //         $placeholders[] = $paramName;
-    //     }
-
-    //     $placeholders = implode(',', $placeholders);
-
-    //     $query = "UPDATE article_files
-    //             SET copyedited = :status
-    //             WHERE article_files_id IN ($placeholders)";
-
-    //     $pdo = connect_to_database();
-
-    //     $pdo->beginTransaction();
-
-    //     $stm = $pdo->prepare($query);
-
-    //     // Bind the parameters
-    //     foreach ($params as $paramName => &$paramValue) {
-    //         $stm->bindParam($paramName, $paramValue, PDO::PARAM_INT);
-    //     }
-
-    //     $check = $stm->execute();
-
-    //     if ($check !== false) {
-    //         echo "Copyedited Files updated successfully";
-    //         $pdo->commit();
-    //     } else {
-    //         echo "Failed to update file Copyedited data";
-    //         print_r($stm->errorInfo());
-    //         $pdo->rollBack();
-    //     }
-    // }
-
-    // function updateCopyeditedRevisionUnCheckedFiles() {
-    //     $revisionFilesIds = $_POST['uncheckedRevisionData'];
-    //     echo($revisionFilesIds);
-    //     $status = 0;
-        
-    //     if (!is_array($revisionFilesIds)) {
-    //         $revisionFilesIds = array($revisionFilesIds);
-    //     }
-    
-    //     $decodedIds = json_decode($revisionFilesIds[0], true);
-    //     $revisionFilesIds = array_column($decodedIds, 'revisionFilesId');
-    
-    //     // Initialize $placeholders array
-    //     $placeholders = array();
-    
-    //     // Create an array of named parameters for binding
-    //     $params = array(':status' => $status);
-    //     foreach ($revisionFilesIds as $key => $revisionFilesId) {
-    //         $paramName = ":id$key";
-    //         $params[$paramName] = $revisionFilesId;
-    //         $placeholders[] = $paramName;
-    //     }
-
-    //     $placeholders = implode(',', $placeholders);
-
-    //     $query = "UPDATE article_revision_files
-    //             SET copyedited = :status
-    //             WHERE revision_files_id IN ($placeholders)";
-
-    //     $pdo = connect_to_database();
-
-    //     $pdo->beginTransaction();
-
-    //     $stm = $pdo->prepare($query);
-
-    //     // Bind the parameters
-    //     foreach ($params as $paramName => &$paramValue) {
-    //         $stm->bindParam($paramName, $paramValue, PDO::PARAM_INT);
-    //     }
-
-    //     $check = $stm->execute();
-
-    //     if ($check !== false) {
-    //         echo "Copyedited Files updated successfully";
-    //         $pdo->commit();
-    //     } else {
-    //         echo "Failed to update file Copyedited data";
-    //         print_r($stm->errorInfo());
-    //         $pdo->rollBack();
-    //     }
-    // }
-
     function updateCopyeditedUnCheckedFiles() {
         $copyeditedFilesIds = $_POST['uncheckedCopyeditedData'];
         $status = 0;
@@ -996,9 +804,269 @@ include 'dbcon.php';
 
         $placeholders = implode(',', $placeholders);
 
-        $query = "UPDATE article_copyedited_files
+        $query = "UPDATE article_final_files
                 SET copyedited = :status
-                WHERE copyedited_files_id IN ($placeholders)";
+                WHERE final_files_id IN ($placeholders)";
+
+        $pdo = connect_to_database();
+
+        $pdo->beginTransaction();
+
+        $stm = $pdo->prepare($query);
+
+        // Bind the parameters
+        foreach ($params as $paramName => &$paramValue) {
+            $stm->bindParam($paramName, $paramValue, PDO::PARAM_INT);
+        }
+
+        $check = $stm->execute();
+
+        if ($check !== false) {
+            echo "Copyedited Files updated successfully";
+            $pdo->commit();
+        } else {
+            echo "Failed to update file Copyedited data";
+            print_r($stm->errorInfo());
+            $pdo->rollBack();
+        }
+    }
+
+    function uploadProductionFile() {
+        $documentRoot = $_SERVER['DOCUMENT_ROOT'];
+        $uploadPath = $documentRoot . '/Files/final-file/';
+        $fromuser = $_POST['fromuser'];
+        $article_id = $_POST['article_id'];
+        $status = 1;
+        $filefrom = 'Production';
+        $productionfiletype = isset($_POST['productionfiletype']) ? $_POST['productionfiletype'] : '';
+    
+        if (!file_exists($uploadPath)) {
+            mkdir($uploadPath, 0777, true);
+        }
+    
+        $files = isset($_FILES['productionfile']) ? $_FILES['productionfile'] : '';
+        $success = true;
+        $errorMessage = '';
+    
+        if (!empty($files['name'])) {
+            // File is provided
+            $fileName = basename($files["name"]);
+            $imageFileType = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+    
+            $allowedFileTypes = array('doc', 'docx');
+    
+            if (!in_array($imageFileType, $allowedFileTypes)) {
+                $success = false;
+                $errorMessage .= "File $fileName - Invalid file type ({$imageFileType}); ";
+            }
+    
+            $maxFileSize = 20 * 1024 * 1024;
+    
+            if ($files["size"] > $maxFileSize) {
+                $success = false;
+                $errorMessage .= "File $fileName - Size exceeds the maximum allowed size; ";
+            }
+    
+            $newFilePath = $uploadPath . $fileName;
+    
+            if ($success && move_uploaded_file($files["tmp_name"], $newFilePath)) {
+                // File is successfully moved to the desired location
+            } else {
+                $errorMessage .= 'File failed to upload. ';
+            }
+        }
+    
+        try {
+            $pdo = connect_to_database();
+            $pdo->beginTransaction();
+
+                $query = "INSERT INTO article_final_files (article_id, fromuser, file_name, file_type, filefrom, production) VALUES (?, ?, ?, ?, ?, ?)";
+                $result = execute_query($query, [$article_id, $fromuser, $fileName, $productionfiletype, $filefrom, $status], true);
+                
+            if ($result !== false) {
+                $pdo->commit();
+                echo json_encode(['status' => true, 'message' => 'Record added successfully']);
+            } else {
+                echo json_encode(['status' => false, 'message' => 'Failed to upload production file']);
+            }
+        } catch (Exception $e) {
+            $pdo->rollBack();
+            error_log('Exception: ' . $e->getMessage());
+            echo json_encode(['status' => false, 'message' => 'Failed to add record. Error: ' . $e->getMessage() . $errorMessage]);
+        } finally {
+            $pdo = null;
+        }
+    }
+
+    function updateProductionCopyeditedCheckedFiles() {
+        $copyeditedFilesIds = $_POST['checkedCopyeditedData'];
+        $status = 1;
+        
+        if (!is_array($copyeditedFilesIds)) {
+            $copyeditedFilesIds = array($copyeditedFilesIds);
+        }
+
+        $decodedIds = json_decode($copyeditedFilesIds[0], true);
+        $copyeditedFilesIds = array_column($decodedIds, 'copyeditedFilesId');
+
+        // Create an array of named parameters for binding
+        $params = array(':status' => $status);
+        foreach ($copyeditedFilesIds as $key => $copyeditedFilesId) {
+            $paramName = ":id$key";
+            $params[$paramName] = $copyeditedFilesId;
+            $placeholders[] = $paramName;
+        }
+
+        $placeholders = implode(',', $placeholders);
+
+        $query = "UPDATE article_final_files
+                SET production = :status
+                WHERE final_files_id IN ($placeholders)";
+
+        $pdo = connect_to_database();
+
+        $pdo->beginTransaction();
+
+        $stm = $pdo->prepare($query);
+
+        // Bind the parameters
+        foreach ($params as $paramName => &$paramValue) {
+            $stm->bindParam($paramName, $paramValue, PDO::PARAM_INT);
+        }
+
+        $check = $stm->execute();
+
+        if ($check !== false) {
+            echo "Copyedited Files updated successfully";
+            $pdo->commit();
+        } else {
+            echo "Failed to update file Copyedited data";
+            print_r($stm->errorInfo());
+            $pdo->rollBack();
+        }
+    }
+
+    function updateProductionCheckedFiles() {
+        $productionFilesIds = $_POST['checkedProductionData'];
+        $status = 1;
+        
+        if (!is_array($productionFilesIds)) {
+            $productionFilesIds = array($productionFilesIds);
+        }
+
+        $decodedIds = json_decode($productionFilesIds[0], true);
+        $productionFilesIds = array_column($decodedIds, 'productionFilesId');
+
+        // Create an array of named parameters for binding
+        $params = array(':status' => $status);
+        foreach ($productionFilesIds as $key => $productionFilesId) {
+            $paramName = ":id$key";
+            $params[$paramName] = $productionFilesId;
+            $placeholders[] = $paramName;
+        }
+
+        $placeholders = implode(',', $placeholders);
+
+        $query = "UPDATE article_final_files
+                SET production = :status
+                WHERE final_files_id IN ($placeholders)";
+
+        $pdo = connect_to_database();
+
+        $pdo->beginTransaction();
+
+        $stm = $pdo->prepare($query);
+
+        // Bind the parameters
+        foreach ($params as $paramName => &$paramValue) {
+            $stm->bindParam($paramName, $paramValue, PDO::PARAM_INT);
+        }
+
+        $check = $stm->execute();
+
+        if ($check !== false) {
+            echo "Copyedited Files updated successfully";
+            $pdo->commit();
+        } else {
+            echo "Failed to update file Copyedited data";
+            print_r($stm->errorInfo());
+            $pdo->rollBack();
+        }
+    }
+
+    function updateProductionCopyeditedUnCheckedFiles() {
+        $copyeditedFilesIds = $_POST['uncheckedCopyeditedData'];
+        $status = 0;
+        
+        if (!is_array($copyeditedFilesIds)) {
+            $copyeditedFilesIds = array($copyeditedFilesIds);
+        }
+
+        $decodedIds = json_decode($copyeditedFilesIds[0], true);
+        $copyeditedFilesIds = array_column($decodedIds, 'copyeditedFilesId');
+
+        // Create an array of named parameters for binding
+        $params = array(':status' => $status);
+        foreach ($copyeditedFilesIds as $key => $copyeditedFilesId) {
+            $paramName = ":id$key";
+            $params[$paramName] = $copyeditedFilesId;
+            $placeholders[] = $paramName;
+        }
+
+        $placeholders = implode(',', $placeholders);
+
+        $query = "UPDATE article_final_files
+                SET production = :status
+                WHERE final_files_id IN ($placeholders)";
+
+        $pdo = connect_to_database();
+
+        $pdo->beginTransaction();
+
+        $stm = $pdo->prepare($query);
+
+        // Bind the parameters
+        foreach ($params as $paramName => &$paramValue) {
+            $stm->bindParam($paramName, $paramValue, PDO::PARAM_INT);
+        }
+
+        $check = $stm->execute();
+
+        if ($check !== false) {
+            echo "Copyedited Files updated successfully";
+            $pdo->commit();
+        } else {
+            echo "Failed to update file Copyedited data";
+            print_r($stm->errorInfo());
+            $pdo->rollBack();
+        }
+    }
+
+    
+    function updateProductionUnCheckedFiles() {
+        $productionFilesIds = $_POST['uncheckedProductionData'];
+        $status = 0;
+        
+        if (!is_array($productionFilesIds)) {
+            $productionFilesIds = array($productionFilesIds);
+        }
+
+        $decodedIds = json_decode($productionFilesIds[0], true);
+        $productionFilesIds = array_column($decodedIds, 'productionFilesId');
+
+        // Create an array of named parameters for binding
+        $params = array(':status' => $status);
+        foreach ($productionFilesIds as $key => $productionFilesId) {
+            $paramName = ":id$key";
+            $params[$paramName] = $productionFilesId;
+            $placeholders[] = $paramName;
+        }
+
+        $placeholders = implode(',', $placeholders);
+
+        $query = "UPDATE article_final_files
+                SET production = :status
+                WHERE final_files_id IN ($placeholders)";
 
         $pdo = connect_to_database();
 

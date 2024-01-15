@@ -13,11 +13,11 @@ $submission_files = get_submission_files($aid);
 $review_files = get_review_files($aid);
 $copyediting_files = get_copyediting_files($aid);
 $copyeditingrevision_files = get_copyeditingrevision_files($aid);
-$copyeditedsubmission_files = get_copyeditedsubmission_files($aid);
-$copyeditedrevision_files = get_copyeditedrevision_files($aid);
-$copyedited_files = get_copyedited_files($aid);
+// $copyeditedsubmission_files = get_copyeditedsubmission_files($aid);
+// $copyeditedrevision_files = get_copyeditedrevision_files($aid);
+// $copyedited_files = get_copyedited_files($aid);
 $allcopyedited_files = get_allcopyedited_files($aid);
-$production_files = get_production_files($aid);
+$allproduction_files = get_production_files($aid);
 $revision_files = get_revision_files($aid);
 $articlelogs = get_article_logs($aid);
 $userlist = get_user_list();
@@ -655,9 +655,9 @@ $issuelist = get_issues_list();
                                                 ?>
                                                 <tr>
                                                     <td width="5%">
-                                                        <input class="form-check-input copyedited-checkbox" type="checkbox" value="" id="defaultCheck1" data-copyedited-files-id="<?php echo $allcopyedited_filesval->copyedited_files_id; ?>" <?php echo $isReviewEqualToOne ? 'checked' : ''; ?> />
+                                                        <input class="form-check-input copyedited-checkbox" type="checkbox" value="" id="defaultCheck1" data-final-files-id="<?php echo $allcopyedited_filesval->final_files_id; ?>" <?php echo $isReviewEqualToOne ? 'checked' : ''; ?> />
                                                     </td>
-                                                        <td width="5%"><?php echo $allcopyedited_filesval->copyedited_files_id; ?></td>
+                                                        <td width="5%"><?php echo $allcopyedited_filesval->final_files_id; ?></td>
                                                     <td width="65%">
                                                         <a href="/Files/revision-article/<?php echo urlencode($allcopyedited_filesval->file_name); ?>" download>
                                                             <?php echo $allcopyedited_filesval->file_name; ?>
@@ -688,24 +688,42 @@ $issuelist = get_issues_list();
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php if (empty($copyedited_files)): ?>
+                                        <?php
+                                        $hasCopyeditedFiles = false;
+
+                                        foreach ($allcopyedited_files as $allcopyedited_filesval) {
+                                            if ($allcopyedited_filesval->copyedited == 1) {
+                                                $hasCopyeditedFiles = true;
+                                                break;
+                                            }
+                                        }
+
+                                        if ($hasCopyeditedFiles) {
+                                            foreach ($allcopyedited_files as $allcopyedited_filesval) {
+                                                if ($allcopyedited_filesval->copyedited == 1) {
+                                                    ?>
+                                                    <tr>
+                                                        <td width="5%"><?php echo $allcopyedited_filesval->final_files_id; ?></td>
+                                                        <td width="65%">
+                                                            <a href="../../Files/submitted-article/<?php echo urlencode($allcopyedited_filesval->file_name); ?>" download>
+                                                                <?php echo $allcopyedited_filesval->file_name; ?>
+                                                            </a>
+                                                        </td>
+                                                        <td width="25%"><?php echo $allcopyedited_filesval->file_type; ?></td>
+                                                        <td width="5%"><span class="badge rounded-pill bg-label-warning">Copyedited</span></td>
+                                                    </tr>
+                                                    <?php
+                                                }
+                                            }
+
+                                        } else {
+                                            ?>
                                             <tr>
-                                                <td colspan="4" class="text-center">No Files</td>
+                                                <td colspan="4" class="text-center">No Items</td>
                                             </tr>
-                                        <?php else: ?>
-                                        <?php foreach ($copyedited_files as $copyedited_filesval): ?>
-                                            <tr>
-                                                <td width="5%"><?php echo $copyedited_filesval->copyedited_files_id; ?></td>
-                                                <td width="65%">
-                                                    <a href="/Files/copyedited-article/<?php echo urlencode($copyedited_filesval->file_name); ?>" download>
-                                                        <?php echo $copyedited_filesval->file_name; ?>
-                                                    </a>
-                                                </td>
-                                                <td width="25%"><?php echo $copyedited_filesval->file_type; ?></td>
-                                                <td width="5%"><span class="badge rounded-pill bg-label-warning">Copyedited</span></td>
-                                            </tr>
-                                        <?php endforeach; ?>
-                                        <?php endif; ?>
+                                            <?php
+                                        }
+                                        ?>
                                     </tbody>
                                     <tfoot>
                                         <th colspan="4" style="text-align: right;">
@@ -784,36 +802,220 @@ $issuelist = get_issues_list();
 
 <!-- Add Production Modal -->
 <div class="modal fade" id="addProductionFilesModal" tabindex="-1" aria-hidden="true">
-<form id="addModalForm1">
-        <div class="modal-dialog modal-lg" role="document" enctype="multipart/form-data">
+    <form id="addModalForm">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel3">Add Production Ready File</h5>
+                    <h5 class="modal-title" id="exampleModalLabel3">Select Production Ready Files</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <div class="row mb-2" id="xuploadproductionfile">
+                        <div class="col-md-12 mt-2" id="dynamic-column" style="text-align: right;">
+                            <button type="button" id="uploadproductionfile" class="btn btn-primary">Upload File</button>
+                        </div>
+                    </div>
+                    <div class="col-md-12 mb-2" id="uploadproductionfileContainer" style="display: none;">
+                        <div class="row mb-2">
+                            <div class="col-md-12 mb-2">
+                                <h5 class="card-header">Upload File</h5>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-md-12 mb-2">
+                                <label for="xproductionfiletype" class="form-label">File Type</label>
+                                <select id="productionfiletype" class="form-select" onchange="enableFileInput5()">
+                                    <option value="">Select</option>
+                                    <option value="Title page">Title page</option>
+                                    <option value="File with author">File with author</option>
+                                    <!-- <option value="File with no author">File with no author</option> -->
+                                    <option value="Others">Others</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-md-12 mb-2" id="divproductionfile">
+                                <label for="xproductionfile" class="form-label">Upload File</label>
+                                <input class="form-control" type="file" id="productionfile" accept=".doc, .docx" />
+                            </div>
+                        </div>
+                    <hr>
+                    </div>
                     <div class="row mb-2">
-                        <div class="col-md-12 mb-2">
-                            <label for="xproductionfiletype" class="form-label">File Type</label>
-                            <select id="productionfiletype" class="form-select" onchange="enableFileInput5()">
-                                <option value="">Select</option>
-                                <option value="Title page">Title page</option>
-                                <option value="File with author">File with author</option>
-                                <!-- <option value="File with no author">File with no author</option> -->
-                                <option value="Others">Others</option>
-                            </select>
+                        <div class="col-md-12 mb-2" id="dynamic-column">
+                            <div class="table-responsive text-nowrap">
+                                <table class="table table-striped" id="DataTable">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="4">
+                                            <h5 class="card-header">Copyedited File</h5>
+                                            <p>Select files you want to see in publication.</p>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php if (empty($allcopyedited_files)): ?>
+                                            <tr>
+                                                <td colspan="4" class="text-center">No Files</td>
+                                            </tr>
+                                        <?php else: ?>
+                                            <?php foreach ($allcopyedited_files as $allcopyedited_filesval): ?>
+                                                <?php
+                                                    $isReviewEqualToOne = ($allcopyedited_filesval->production == 1);
+                                                ?>
+                                                <tr>
+                                                    <td width="5%">
+                                                        <input class="form-check-input copyedited-checkbox" type="checkbox" value="" id="defaultCheck1" data-finalcopyedited-files-id="<?php echo $allcopyedited_filesval->final_files_id; ?>" <?php echo $isReviewEqualToOne ? 'checked' : ''; ?> />
+                                                    </td>
+                                                        <td width="5%"><?php echo $allcopyedited_filesval->final_files_id; ?></td>
+                                                    <td width="65%">
+                                                        <a href="/Files/revision-article/<?php echo urlencode($allcopyedited_filesval->file_name); ?>" download>
+                                                            <?php echo $allcopyedited_filesval->file_name; ?>
+                                                        </a>
+                                                    </td>
+                                                    <td width="25%"><?php echo $allcopyedited_filesval->file_type; ?></td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?>
+                                    </tbody>
+                                    <tfoot>
+                                        <th colspan="4" style="text-align: right;">
+                                        </th>
+                                    </tfoot>
+                                </table>
+                            </div>
                         </div>
                     </div>
                     <div class="row mb-2">
-                        <div class="col-md-12 mb-2" id="divproductionfile">
-                            <label for="xproductionfile" class="form-label">Upload File</label>
-                            <input class="form-control" type="file" id="productionfile" accept=".doc, .docx" />
+                        <div class="col-md-12 mb-2" id="dynamic-column">
+                            <div class="table-responsive text-nowrap">
+                                <table class="table table-striped" id="DataTable">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="4">
+                                            <h5 class="card-header">Production File</h5>
+                                            <p>Select files you want to see in publication.</p>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php if (empty($allproduction_files)): ?>
+                                            <tr>
+                                                <td colspan="4" class="text-center">No Files</td>
+                                            </tr>
+                                        <?php else: ?>
+                                            <?php foreach ($allproduction_files as $allproduction_filesval): ?>
+                                                <?php
+                                                    $isReviewEqualToOne = ($allproduction_filesval->production == 1);
+                                                ?>
+                                                <tr>
+                                                    <td width="5%">
+                                                        <input class="form-check-input production-checkbox" type="checkbox" value="" id="defaultCheck1" data-finalproduction-files-id="<?php echo $allproduction_filesval->final_files_id; ?>" <?php echo $isReviewEqualToOne ? 'checked' : ''; ?> />
+                                                    </td>
+                                                        <td width="5%"><?php echo $allproduction_filesval->final_files_id; ?></td>
+                                                    <td width="65%">
+                                                        <a href="/Files/revision-article/<?php echo urlencode($allproduction_filesval->file_name); ?>" download>
+                                                            <?php echo $allproduction_filesval->file_name; ?>
+                                                        </a>
+                                                    </td>
+                                                    <td width="25%"><?php echo $allproduction_filesval->file_type; ?></td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?>
+                                    </tbody>
+                                    <tfoot>
+                                        <th colspan="4" style="text-align: right;">
+                                        </th>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-12  mb-2" id="dynamic-column">
+                            <div class="table-responsive text-nowrap">
+                                <table class="table table-striped" id="DataTable">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="4">
+                                            <h5 class="card-header">Production Ready File</h5>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $hasCopyeditedFiles = false;
+
+                                        foreach ($allcopyedited_files as $allcopyedited_filesval) {
+                                            if ($allcopyedited_filesval->production == 1) {
+                                                $hasCopyeditedFiles = true;
+                                                break;
+                                            }
+                                        }
+
+                                        foreach ($allproduction_files as $allproduction_filesval) {
+                                            if ($allproduction_filesval->production == 1) {
+                                                $hasCopyeditedFiles = true;
+                                                break;
+                                            }
+                                        }
+
+                                        if ($hasCopyeditedFiles) {
+                                            foreach ($allcopyedited_files as $allcopyedited_filesval) {
+                                                if ($allcopyedited_filesval->production == 1) {
+                                                    ?>
+                                                    <tr>
+                                                        <td width="5%"><?php echo $allcopyedited_filesval->final_files_id; ?></td>
+                                                        <td width="65%">
+                                                            <a href="../../Files/submitted-article/<?php echo urlencode($allcopyedited_filesval->file_name); ?>" download>
+                                                                <?php echo $allcopyedited_filesval->file_name; ?>
+                                                            </a>
+                                                        </td>
+                                                        <td width="25%"><?php echo $allcopyedited_filesval->file_type; ?></td>
+                                                        <td width="5%"><span class="badge rounded-pill bg-label-warning">Copyedited</span></td>
+                                                    </tr>
+                                                    <?php
+                                                }
+                                            }
+
+                                            foreach ($allproduction_files as $allproduction_filesval) {
+                                                if ($allproduction_filesval->production == 1) {
+                                                    ?>
+                                                    <tr>
+                                                        <td width="5%"><?php echo $allproduction_filesval->final_files_id; ?></td>
+                                                        <td width="65%">
+                                                            <a href="../../Files/submitted-article/<?php echo urlencode($allproduction_filesval->file_name); ?>" download>
+                                                                <?php echo $allproduction_filesval->file_name; ?>
+                                                            </a>
+                                                        </td>
+                                                        <td width="25%"><?php echo $allproduction_filesval->file_type; ?></td>
+                                                        <td width="5%"><span class="badge rounded-pill bg-label-warning">Production</span></td>
+                                                    </tr>
+                                                    <?php
+                                                }
+                                            }
+
+                                        } else {
+                                            ?>
+                                            <tr>
+                                                <td colspan="4" class="text-center">No Items</td>
+                                            </tr>
+                                            <?php
+                                        }
+                                        ?>
+                                    </tbody>
+                                    <tfoot>
+                                        <th colspan="4" style="text-align: right;">
+                                        </th>
+                                    </tfoot>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="addRevisionFile()">Save changes</button>
+                    <button type="button" class="btn btn-primary" onclick="updateProductionFiles()">Save changes</button>
                 </div>
             </div>
         </div>
@@ -908,6 +1110,14 @@ $(document).ready(function () {
     });
 });
 
+$(document).ready(function () {
+    $('#uploadproductionfile').on('click', function () {
+
+        $('#uploadproductionfileContainer').show();
+        $('#uploadproductionfile').hide();
+    });
+});
+
 $(document).ready(function() {
     enableFileInput();
     enableFileInput1();
@@ -969,7 +1179,7 @@ function enableFileInput4() {
     }
 }
 
-function enableFileInput4() {
+function enableFileInput5() {
     var selectedValue = $('#productionfiletype').val();
     
     if (selectedValue !== '') {
@@ -1321,48 +1531,24 @@ function uploadCopyeditedFiles() {
 }
 
 function updateCopyeditedCheckedFiles() {
-    // var checkedCheckboxes = $('.copyeditedsubmission-checkbox:checked');
-    // var checkedCheckboxes1 = $('.copyeditedrevision-checkbox:checked');
     var checkedCheckboxes2 = $('.copyedited-checkbox:checked');
-
-    // var checkedData = [];
-    // checkedCheckboxes.each(function () {
-    //     var articleFilesId = $(this).data('article-files-id');
-    //     checkedData.push({
-    //         articleFilesId: articleFilesId
-    //     });
-    // });
-
-    // var checkedData1 = [];
-    // checkedCheckboxes1.each(function () {
-    //     var revisionFilesId = $(this).data('revision-files-id');
-    //     checkedData1.push({
-    //         revisionFilesId: revisionFilesId
-    //     });
-    // });
 
     var checkedData2 = [];
     checkedCheckboxes2.each(function () {
-        var copyeditedFilesId = $(this).data('copyedited-files-id');
+        var copyeditedFilesId = $(this).data('final-files-id');
         checkedData2.push({
             copyeditedFilesId: copyeditedFilesId
         });
     });
 
-    // var jsonCheckedData = JSON.stringify(checkedData);
-    // var jsonCheckedData1 = JSON.stringify(checkedData1);
     var jsonCheckedData2 = JSON.stringify(checkedData2);
 
-    // console.log('Checked Data:', jsonCheckedData);
-    // console.log('Checked Data:', jsonCheckedData1);
     console.log('Checked Data:', jsonCheckedData2);
 
     $.ajax({
         type: 'POST',
         url: '../php/function/wf_modal_function.php',
         data: {
-            // checkedData: jsonCheckedData,
-            // checkedRevisionData: jsonCheckedData1,
             checkedCopyeditedData: jsonCheckedData2,
             action: 'updatecopyeditedcheckedfile'
         },
@@ -1378,48 +1564,24 @@ function updateCopyeditedCheckedFiles() {
 }
 
 function updateCopyeditedUncheckedFiles() {
-    // var uncheckedCheckboxes = $('.copyeditedsubmission-checkbox:not(:checked)');
-    // var uncheckedCheckboxes1 = $('.copyeditedrevision-checkbox:not(:checked)');
     var uncheckedCheckboxes2 = $('.copyedited-checkbox:not(:checked)');
-
-    // var uncheckedData = [];
-    // uncheckedCheckboxes.each(function () {
-    //     var articleFilesId = $(this).data('article-files-id');
-    //     uncheckedData.push({
-    //         articleFilesId: articleFilesId
-    //     });
-    // });
-
-    // var uncheckedData1 = [];
-    // uncheckedCheckboxes1.each(function () {
-    //     var revisionFilesId = $(this).data('revision-files-id');
-    //     uncheckedData1.push({
-    //         revisionFilesId: revisionFilesId
-    //     });
-    // });
 
     var uncheckedData2 = [];
     uncheckedCheckboxes2.each(function () {
-        var copyeditedFilesId = $(this).data('copyedited-files-id');
+        var copyeditedFilesId = $(this).data('final-files-id');
         uncheckedData2.push({
             copyeditedFilesId: copyeditedFilesId
         });
     });
 
-    // var jsonUncheckedData = JSON.stringify(uncheckedData);
-    // var jsonUncheckedData1 = JSON.stringify(uncheckedData1);
     var jsonUncheckedData2 = JSON.stringify(uncheckedData2);
 
-    // console.log('Unchecked Data:', jsonUncheckedData);
-    // console.log('Unchecked Data:', jsonUncheckedData1);
     console.log('Unchecked Data:', jsonUncheckedData2);
 
     $.ajax({
         type: 'POST',
         url: '../php/function/wf_modal_function.php',
         data: {
-            // uncheckedData: jsonUncheckedData,
-            // uncheckedRevisionData: jsonUncheckedData1,
             uncheckedCopyeditedData: jsonUncheckedData2,
             action: 'updatecopyediteduncheckedfile'
         },
@@ -1444,6 +1606,139 @@ function SendForPublication(issueId) {
     window.onload = function () {
         $('#sloading').hide();
     };
+}
+
+function updateProductionFiles() {
+    $('#sloading').toggle();
+    var productionfile = $('#productionfile')[0].files[0];
+
+    if (productionfile) {
+        uploadProductionFiles();
+    }
+
+    updateProductionCheckedFiles();
+    updateProductionUncheckedFiles();
+}
+
+function uploadProductionFiles() {
+    $('#sloading').toggle();
+    var productionfileFiletype = $('#productionfiletype').val();
+    var productionfileFile = $('#productionfile')[0].files[0];
+
+    var formData = new FormData();
+    formData.append('article_id', articleId);
+    formData.append('fromuser', fromuser);
+    formData.append('productionfiletype', productionfileFiletype);
+    formData.append('productionfile', productionfileFile);
+    formData.append('action', 'uploadproductionfile');
+
+    console.log(productionfileFiletype);
+    console.log(productionfileFile);
+    $.ajax({
+        url: "../php/function/wf_modal_function.php",
+        type: "POST",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (response) {
+            $('#sloading').toggle();
+            console.log(response);
+            location.reload();
+        },
+        error: function (xhr, status, error) {
+            console.error(xhr, status, error);
+        }
+    });
+}
+
+function updateProductionCheckedFiles() {
+    var checkedCheckboxes1 = $('.production-checkbox:checked');
+    var checkedCheckboxes2 = $('.copyedited-checkbox:checked');
+
+    var checkedData1 = [];
+    checkedCheckboxes1.each(function () {
+        var productionFilesId = $(this).data('finalproduction-files-id');
+        checkedData1.push({
+            productionFilesId: productionFilesId
+        });
+    });
+
+    var checkedData2 = [];
+    checkedCheckboxes2.each(function () {
+        var copyeditedFilesId = $(this).data('finalcopyedited-files-id');
+        checkedData2.push({
+            copyeditedFilesId: copyeditedFilesId
+        });
+    });
+
+    var jsonCheckedData1 = JSON.stringify(checkedData1);
+    var jsonCheckedData2 = JSON.stringify(checkedData2);
+
+    console.log('Checked Data:', jsonCheckedData1);
+    console.log('Checked Data:', jsonCheckedData2);
+
+    $.ajax({
+        type: 'POST',
+        url: '../php/function/wf_modal_function.php',
+        data: {
+            checkedProductionData: jsonCheckedData1,
+            checkedCopyeditedData: jsonCheckedData2,
+            action: 'updatefinalcheckedfile'
+        },
+        success: function(response) {
+            console.log('Checked checkboxes data sent successfully.');
+            console.log(response);
+            location.reload();
+        },
+        error: function(error) {
+            console.error('Error sending checked checkboxes data:', error);
+        }
+    });
+}
+
+function updateProductionUncheckedFiles() {
+    var uncheckedCheckboxes1 = $('.production-checkbox:not(:checked)');
+    var uncheckedCheckboxes2 = $('.copyedited-checkbox:not(:checked)');
+
+    var uncheckedData1 = [];
+    uncheckedCheckboxes1.each(function () {
+        var productionFilesId = $(this).data('finalproduction-files-id');
+        uncheckedData1.push({
+            productionFilesId: productionFilesId
+        });
+    });
+
+    var uncheckedData2 = [];
+    uncheckedCheckboxes2.each(function () {
+        var copyeditedFilesId = $(this).data('finalcopyedited-files-id');
+        uncheckedData2.push({
+            copyeditedFilesId: copyeditedFilesId
+        });
+    });
+
+    var jsonUncheckedData1 = JSON.stringify(uncheckedData1);
+    var jsonUncheckedData2 = JSON.stringify(uncheckedData2);
+
+    console.log('Unchecked Data:', jsonUncheckedData1);
+    console.log('Unchecked Data:', jsonUncheckedData2);
+
+    $.ajax({
+        type: 'POST',
+        url: '../php/function/wf_modal_function.php',
+        data: {
+            uncheckedProductionData: jsonUncheckedData1,
+            uncheckedCopyeditedData: jsonUncheckedData2,
+            action: 'updatefinaluncheckedfile'
+        },
+        success: function(response) {
+            console.log('Unchecked checkboxes data sent successfully.');
+            console.log(response);
+            location.reload();
+        },
+        error: function(error) {
+            console.error('Error sending unchecked checkboxes data:', error);
+        }
+    });
 }
 
 </script>

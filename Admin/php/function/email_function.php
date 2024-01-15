@@ -348,9 +348,9 @@ if (!function_exists('get_email_content')) {
     
         $placeholders = implode(',', $placeholders);
     
-        $query = "UPDATE article_copyedited_files
+        $query = "UPDATE article_final_files
                   SET production = :status
-                  WHERE copyedited_files_id IN ($placeholders)";
+                  WHERE final_files_id IN ($placeholders)";
     
         $pdo = connect_to_database();
     
