@@ -811,7 +811,7 @@ table {
                                                                         <tr>
                                                                             <th colspan="3"><h6>Production Ready Files</h6></th>
                                                                             <th style="text-align: right;">
-                                                                                <button type="button" class="btn btn-dark" id="uploadButton" style="width: 150px;" data-bs-toggle="modal" data-bs-target="#addCopyeditingFilesModal">Select Files</button>
+                                                                                <button type="button" class="btn btn-dark" id="uploadButton" style="width: 150px;" data-bs-toggle="modal" data-bs-target="#addProductionFilesModal">Select Files</button>
                                                                             </th>
                                                                         </tr>
                                                                     </thead>

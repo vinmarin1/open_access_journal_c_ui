@@ -873,7 +873,8 @@ $issuelist = get_issues_list();
                                                 <td width="50%"><?php echo $issuelistval->title; ?></td>
                                                 <td width="20%"><?php echo $issuelistval->year; ?></td>
                                                 <td width="5%">
-                                                    <button type="button" class="btn btn-outline-dark" onclick="SendForPublication(<?php echo $issuelistval->issues_id; ?>)" style="width: 160px;" data-bs-toggle="modal">Select</button>
+                                                <button type="button" class="btn btn-outline-dark" onclick="viewReport('<?php echo $reportlistval->action; ?>')">View</button>
+
                                                 </td>
                                             </tr>
                                         <?php endforeach; ?>
@@ -888,6 +889,44 @@ $issuelist = get_issues_list();
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- Add Production Modal -->
+<div class="modal fade" id="addProductionFilesModal" tabindex="-1" aria-hidden="true">
+<form id="addModalForm1">
+        <div class="modal-dialog modal-lg" role="document" enctype="multipart/form-data">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel3">Add Production Ready File</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row mb-2">
+                        <div class="col-md-12 mb-2">
+                            <label for="xproductionfiletype" class="form-label">File Type</label>
+                            <select id="productionfiletype" class="form-select" onchange="enableFileInput5()">
+                                <option value="">Select</option>
+                                <option value="Title page">Title page</option>
+                                <option value="File with author">File with author</option>
+                                <!-- <option value="File with no author">File with no author</option> -->
+                                <option value="Others">Others</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-12 mb-2" id="divproductionfile">
+                            <label for="xproductionfile" class="form-label">Upload File</label>
+                            <input class="form-control" type="file" id="productionfile" accept=".doc, .docx" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="addRevisionFile()">Save changes</button>
                 </div>
             </div>
         </div>
@@ -988,6 +1027,7 @@ $(document).ready(function() {
     enableFileInput2();
     enableFileInput3();
     enableFileInput4();
+    enableFileInput5();
 });
 
 function enableFileInput() {
@@ -1039,6 +1079,16 @@ function enableFileInput4() {
         $('#divcopyeditedfile').show();
     } else {
         $('#divcopyeditedfile').hide();
+    }
+}
+
+function enableFileInput4() {
+    var selectedValue = $('#productionfiletype').val();
+    
+    if (selectedValue !== '') {
+        $('#divproductionfile').show();
+    } else {
+        $('#divproductionfile').hide();
     }
 }
 
