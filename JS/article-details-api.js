@@ -47,7 +47,7 @@ function renderArticleDetails(data) {
     let contributorsHTML = "";
     if (item.contributors != null) {
       for (const contributors of item.contributors.split(";")) {
-        contributorsHTML += `<a href="https://orcid.org/${contributors.split(".")[1]}">${contributors.split(".")[0]}</a> | `;
+        contributorsHTML += `<a href="https://orcid.org/${contributors.split("->")[1]}">${contributors.split("->")[0]}</a> | `;
       }
     }
     articleElement.innerHTML = `

@@ -72,12 +72,8 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 </div>
                 <div class="checkbox-container">
                     <h5 class="mb-2" style="color: #959595;"><b>YEAR PUBLISHED</b></h5>
-                    <label class="checkbox-label"><input type="checkbox" id="year1" class="checkbox" value=2022 /> 2022
-                        (33)</label><br>
-                    <label class="checkbox-label"><input type="checkbox" id="year2" class="checkbox" value=2023 /> 2023
-                        (44)</label><br>
-                    <label class="checkbox-label"><input type="checkbox" id="year3" class="checkbox" value=2024 /> 2024
-                        (32)</label><br>
+                    <div id="years-container" class="d-flex flex-column">
+                    </div>
                 </div>
             </div>
         </div>

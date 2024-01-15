@@ -1,7 +1,29 @@
 document.addEventListener('DOMContentLoaded', fetchData().then((totalItems) => {
   generatePagination(totalItems);
+  generateYears()
 }));
+ 
 
+const sortBySelect = document.querySelector("select");
+let sortBySelected = "total_interactions"
+// handle search element event submit with sorting change
+document.getElementById('search-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    let searchInputValue = document.getElementById('result').value;
+    let year = document.getElementById('year1').value;
+    fetchData(searchInputValue, selectedYears, sortBySelected).then((totalItems) => {
+      generatePagination(totalItems)});
+});
+// handle sort select element event change
+sortBySelect.addEventListener('change', function(event) {
+    event.preventDefault();
+    let searchInputValue = document.getElementById('result').value;
+    let year = document.getElementById('year1').value;
+    sortBySelected = sortBySelect.value;
+    fetchData(searchInputValue, selectedYears, sortBySelected).then((totalItems) => {
+      generatePagination(totalItems);
+    });
+});
 let totalItems=0
   const selectedYears = [];
   const year1Checkbox = document.getElementById('year1');
@@ -19,42 +41,57 @@ let totalItems=0
           }
       }
   }
-  year1Checkbox.addEventListener('change', () => updateSelectedYears(year1Checkbox, "2022"));
-  year2Checkbox.addEventListener('change', () => updateSelectedYears(year2Checkbox, "2023"));
-  year3Checkbox.addEventListener('change', () => updateSelectedYears(year3Checkbox, "2024"));
+  
+  async function generateYears() {
+    const responseYears = await fetch('https://web-production-cecc.up.railway.app/api/articles/years', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
 
-  const sortBySelect = document.querySelector("select");
-  let sortBySelected = "total_interactions"
-  // handle search element event submit with sorting change
-  document.getElementById('search-form').addEventListener('submit', function(event) {
-      event.preventDefault();
-      let searchInputValue = document.getElementById('result').value;
-      let year = document.getElementById('year1').value;
-      fetchData(searchInputValue, selectedYears, sortBySelected).then((totalItems) => {
-        // Do something with totalItems
-        generatePagination(totalItems)});
-  });
-  // handle sort select element event change
-  sortBySelect.addEventListener('change', function(event) {
-      event.preventDefault();
-      let searchInputValue = document.getElementById('result').value;
-      let year = document.getElementById('year1').value;
-      sortBySelected = sortBySelect.value;
-      fetchData(searchInputValue, selectedYears, sortBySelected).then((totalItems) => {
-        // Do something with totalItems
-        generatePagination(totalItems);
-      });
-  });
+  if (!responseYears.ok) {
+      throw new Error(`HTTP error! Status: ${responseYears.status}`);
+    }
+
+    const dataYears = await responseYears.json()
+    const years = dataYears.distinct_years.split(',').map(Number)
+
+    const yearsContainer = document.getElementById("years-container");
+
+    for (let i = 0; i < years.length; i++) {
+        const yearItem = document.createElement('label');
+        yearItem.classList.add('checkbox-label');
+
+        const yearCheckbox = document.createElement('input');
+        yearCheckbox.type = 'checkbox';
+        yearCheckbox.id = `year${i + 1}`;
+        yearCheckbox.classList.add('checkbox');
+        yearCheckbox.value = years[i];
+
+
+        const labelText = document.createTextNode(` ${years[i]} (20)`);
+        yearItem.appendChild(yearCheckbox);
+        yearItem.appendChild(labelText);
+        
+        yearCheckbox.addEventListener('change', () => updateSelectedYears(yearCheckbox, yearCheckbox.value));
+
+        yearsContainer.appendChild(yearItem);
+    
+    }
+  }
+
+
+
+ 
   const currentPageItem = document.querySelector(`.page-item:nth-child(2)`);
   currentPageItem.classList.add('active');
   function changePage (page) {
       event.preventDefault();
 
-      // Remove "active" class from all page items
       const pageItems = document.querySelectorAll('.page-item');
       pageItems.forEach(item => item.classList.remove('active'));
 
-      // Set "active" class to the clicked page item
       const currentPageItem = document.querySelector(`.page-item:nth-child(${page+1})`);
       if (currentPageItem) {
           currentPageItem.classList.add('active');
@@ -63,9 +100,7 @@ let totalItems=0
       let year = document.getElementById('year1').value;
       sortBySelected = sortBySelect.value;
       fetchData(searchInputValue, selectedYears, sortBySelected,page).then((totalItems) => {
-        // Do something with totalItems
         generatePagination(totalItems)});
-  console.log(totalItems,"total")
 
   }
 
@@ -102,18 +137,15 @@ let totalItems=0
               recognizing = false;
               searchInputValue = finalTranscripts
               fetchData(finalTranscripts, selectedYears, sortby).then((totalItems) => {
-                // Do something with totalItems
                 generatePagination(totalItems)});
           };
           speechRecognizer.onerror = function(event) {
-              // Handle error if needed
           };
       } else {
           result.innerHTML =
               'Your browser is not supported. Please download Google Chrome or update your Google Chrome!';
       }
   }
-  console.log(totalItems,"total")
 
   function generatePagination(totalItems) {
     const totalPages = Math.ceil(totalItems / 10); 
@@ -166,16 +198,11 @@ async function fetchData(input,dates,sort,currentPage=0) {
 
     const data = await response.json();
 
-    console.log('API Response:', data);
-    console.log(dates)
-    // Assuming 'data.recommendations' is an array
     const articlesContainer = document.querySelector('#articles');
     articlesContainer.innerHTML = '';
     const total = document.querySelector('#total');
     total.innerHTML = '';
     let noOfItems = 10
-    console.log(currentPage,"current")
-    console.log((currentPage * noOfItems),( noOfItems * (currentPage+1)),"hello")
     data.results.slice((currentPage * noOfItems),( noOfItems * (currentPage+1))).forEach(item => {
       const articleDiv = document.createElement('div');
       articleDiv.classList.add('articles');
