@@ -137,7 +137,7 @@ $query = "SELECT
         WHERE
             logs.type IN ('read', 'download') && 
             journal.journal_id = 2 &&
-            YEAR(logs.date) = $selectedYear
+            YEAR(logs.date) = $selectedYear 
         GROUP BY 
             journal.journal_id, journal.journal, month
         ORDER BY 
