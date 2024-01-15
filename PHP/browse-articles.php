@@ -33,9 +33,12 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
         </div>
         <form action="" method="GET" class="search-form" id="search-form">
             <div class="search-container d-flex align-items-center">
-                <input id="result" type="text" class="form-control me-2" placeholder="Search Articles..."
+                <input list="articlesList" id="result" type="text" class="form-control me-2" placeholder="Search Articles..."
                     class="search-bar"
                     style="width: 583px; height: 30px; font-style: italic; background-color: white;" />
+                    <datalist id="articlesList">
+                       
+                    </datalist>
                 <div class="d-flex flex-row-reverse">
                     <button class="btn tbn-primary btn-md" id="btn3">Search</button>
                     <button class="btn tbn-primary btn-md" onclick="startConverting();">
@@ -66,9 +69,9 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 <!-- Journals, Year Published, etc. -->
                 <div class="checkbox-container">
                     <h5 class="mb-2" style="color: #959595;"><b>JOURNALS</b></h5>
-                    <label class="checkbox-label"><input type="checkbox" class="checkbox" /> The Gavel (20)</label><br>
-                    <label class="checkbox-label"><input type="checkbox" class="checkbox" /> The Lamp (22)</label><br>
-                    <label class="checkbox-label"><input type="checkbox" class="checkbox" /> The Star (30)</label><br>
+                    <div id="journals-container" class="d-flex flex-column">
+         
+                    </div>
                 </div>
                 <div class="checkbox-container">
                     <h5 class="mb-2" style="color: #959595;"><b>YEAR PUBLISHED</b></h5>
