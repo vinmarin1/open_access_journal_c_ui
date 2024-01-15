@@ -524,7 +524,7 @@ $result = execute_query($query);
 
     echo '</table>';
     echo '</div>';
-    echo '</div>';
+    echo '</div>';  
     echo "</div>"; // Close the second column
 
     echo "</div>"; // Close the row
