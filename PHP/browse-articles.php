@@ -33,9 +33,12 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
         </div>
         <form action="" method="GET" class="search-form" id="search-form">
             <div class="search-container d-flex align-items-center">
-                <input id="result" type="text" class="form-control me-2" placeholder="Search Articles..."
+                <input list="articlesList" id="result" type="text" class="form-control me-2" placeholder="Search Articles..."
                     class="search-bar"
                     style="width: 583px; height: 30px; font-style: italic; background-color: white;" />
+                    <datalist id="articlesList">
+                       
+                    </datalist>
                 <div class="d-flex flex-row-reverse">
                     <button class="btn tbn-primary btn-md" id="btn3">Search</button>
                     <button class="btn tbn-primary btn-md" onclick="startConverting();">
@@ -56,8 +59,9 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
         </form>
     </div>
 
-    <div class="main-container">
-        <div class="sidebar">
+    <div class="main-container container-fluid">
+        <div class="row w-100">
+        <div class="sidebar col-lg-3 col-md-12">
             <h4 style="color: #0858a4;"><b><span id="total"></span></b></h4>
             <!-- Filters Here -->
             <hr style="border-top: 1px solid #ccc; margin: 10px 0;"> <!-- Add a horizontal line -->
@@ -66,9 +70,9 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 <!-- Journals, Year Published, etc. -->
                 <div class="checkbox-container">
                     <h5 class="mb-2" style="color: #959595;"><b>JOURNALS</b></h5>
-                    <label class="checkbox-label"><input type="checkbox" class="checkbox" /> The Gavel (20)</label><br>
-                    <label class="checkbox-label"><input type="checkbox" class="checkbox" /> The Lamp (22)</label><br>
-                    <label class="checkbox-label"><input type="checkbox" class="checkbox" /> The Star (30)</label><br>
+                    <div id="journals-container" class="d-flex flex-column">
+         
+                    </div>
                 </div>
                 <div class="checkbox-container">
                     <h5 class="mb-2" style="color: #959595;"><b>YEAR PUBLISHED</b></h5>
@@ -77,33 +81,33 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 </div>
             </div>
         </div>
-        <div class="articles-containers">
+        <div class="articles-containers col-lg-9 col-md-12">
             <!-- Article 1 -->
-            <div class="sort-container">
+            <div class="sort-container d-flex gap-2">
                 <div class="sort-header">
                     <span class="sort-by-text" style="color: #0858a4;">Sort by</span>
                     <span class="sort-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                             viewBox="0 0 20 20">
                             <path fill="#e6e6e6" d="M11 7H1l5 7zm-2 7h10l-5-7z" /></svg></span>
-                    <!-- Replace with an actual vector icon if available -->
                 </div>
-                <select id="sortby" name="sortby" class="sort-dropdown" style="color: #0858a4;">
-                    <option value="" hidden>Choose</option>
-                    <option value="title">Title</option>
-                    <option value="recently_added">Recently added</option>
-                    <option value="publication-date">Publication Date</option>
-                    <optgroup label="Popularity">
-                        <option value="popular">All</option>
-                        <option value="views">Views</option>
-                        <option value="downloads">Downloads</option>
-                        <option value="citations">Citations</option>
-                    </optgroup>
+                <div>
+                    <select id="sortby" name="sortby" class="sort-dropdown form-select form-select-sm px-8" >
+                        <option value="" hidden>Recently added</option>
+                        <option value="title">Title</option>
+                        <option value="recently_added">Recently added</option>
+                        <option value="publication-date">Publication Date</option>
+                        <optgroup label="Popularity">
+                            <option value="popular">All</option>
+                            <option value="views">Views</option>
+                            <option value="downloads">Downloads</option>
+                            <option value="citations">Citations</option>
+                        </optgroup>
 
-                    <!-- Additional sort options here -->
-                </select>
+                    </select>
+                </div>
             </div>
             <hr style="border-top: 1px solid #ccc; margin: 10px 0;"> <!-- Add a horizontal line -->
-            <div id="articles">
+            <div id="articles" class="d-flex flex-column gap-2 mb-4 w-100">
 
             </div>
 
@@ -141,7 +145,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     </li>
                 </ul>
             </nav>
-        </div>
+        </div></div>
     </div>
 
     <div class="fluid-container">
@@ -163,7 +167,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
     <div class="fluid-container">
         <div class="recommendation-article">
             <h4>Recently Published Articles</h4>
-            <div class="d-flex container flex-wrap gap-4 justify-content-between">
+            <div class="d-flex flex-sm-column flex-xl-row container-fluid gap-4 justify-content-between" style="width:85%;">
                 <div id="popular-articles" class="articles-container col-sm-12 col-lg-7">
                     <!-- fetch popular articles using api -->
                 </div>
