@@ -869,17 +869,20 @@ $issuelist = get_issues_list();
                                         <?php foreach ($issuelist as $issuelistval): ?>
                                             <tr>
                                                 <td width="5%"><?php echo $issuelistval->issues_id; ?></td>
-                                                <td width="10%"><?php echo $issuelistval->volume; ?></td>
-                                                <td width="10%"><?php echo $issuelistval->title; ?></td>
-                                                <td width="10%"><?php echo $issuelistval->year; ?></td>
-                                                <td width="15%"><button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 160px;" onclick="" data-bs-toggle="modal">Select</button></td>
+                                                <td width="20%">Volume <?php echo $issuelistval->volume; ?></td>
+                                                <td width="50%"><?php echo $issuelistval->title; ?></td>
+                                                <td width="20%"><?php echo $issuelistval->year; ?></td>
+                                                <td width="5%">
+                                                    <button type="button" class="btn btn-outline-dark" onclick="SendForPublication(<?php echo $issuelistval->issues_id; ?>)" style="width: 160px;" data-bs-toggle="modal">Select</button>
+                                                </td>
                                             </tr>
                                         <?php endforeach; ?>
                                     <?php endif; ?>
                                     </tbody>
                                     <tfoot>
-                                        <th colspan="5" style="text-align: right;">
-                                        </th>
+                                        <tr>
+                                            <th colspan="5" style="text-align: right;"></th>
+                                        </tr>
                                     </tfoot>
                                 </table>
                             </div>
@@ -1493,5 +1496,18 @@ function updateCopyeditedUncheckedFiles() {
         }
     });
 }
+
+function SendForPublication(issueId) {
+    $('#sloading').show();
+
+    setTimeout(function () {
+        window.location.href = "../php/emailcontent.php?aid=<?php echo $article_data[0]->article_id; ?>&emc=6&issid=" + issueId;
+    }, 2000);
+
+    window.onload = function () {
+        $('#sloading').hide();
+    };
+}
+
 </script>
 

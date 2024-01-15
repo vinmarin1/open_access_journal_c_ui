@@ -81,6 +81,7 @@ if (!function_exists('get_email_content')) {
             $round = $_POST['round'];
             $fromuser = $_POST['fromuser'];
             $article_id = $_POST['article_id'];
+            $issues_id = $_POST['issues_id'];
             $articleFilesId = $_POST['checkedData'];
             $articleFilesId1 = $_POST['checkedData1'];
             $revisionFilesId = $_POST['checkedData2'];
@@ -121,6 +122,11 @@ if (!function_exists('get_email_content')) {
                     updateArticleStatus($article_id, 2);
                     addLogs($article_id, $fromuser, 'Send to Production');
                     echo "<script>alert('Send to production successfully.');</script>";
+                } elseif ($id == 6) {
+                    updateIssues($article_id, $issues_id);
+                    updateArticleStatus($article_id, 1);
+                    addLogs($article_id, $fromuser, 'Article Published');
+                    echo "<script>alert('Send to publication successfully.');</script>";
             } else {
                 echo 'Error sending email: ' . $mail->ErrorInfo;
             }
@@ -164,6 +170,24 @@ if (!function_exists('get_email_content')) {
             echo "<script>alert('Article round updated successfully');</script>";
         } else {
             echo "<script>alert('Failed to update round data');</script>";
+        }
+    }
+
+    function updateIssues($article_id, $issues_id) {
+    
+        $query = "UPDATE article 
+                SET issues_id = ?
+                WHERE article_id = ?";
+    
+        $pdo = connect_to_database();
+    
+        $stm = $pdo->prepare($query);   
+        $check = $stm->execute([$issues_id, $article_id]);
+    
+        if ($check !== false) {
+            echo "<script>alert('Article issues updated successfully');</script>";
+        } else {
+            echo "<script>alert('Failed to update issues data');</script>";
         }
     }
 
