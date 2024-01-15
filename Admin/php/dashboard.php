@@ -129,7 +129,7 @@ include 'function/dashboard_functions.php';
 
                  <!-- Chart containers -->
                 <div class="chart-container">
-                    <select id="yearDropdown">
+                    <select id="yearDropdown" onchange="myFunction()">
                     <?php
                 // PHP code for dynamically populating the year dropdown
                 // This assumes you have executed the previous PHP code snippet to fetch available years
@@ -226,6 +226,12 @@ include 'function/dashboard_functions.php';
     //         }
     //     });
 
+    function myFunction(){
+    var selectedValue = document.getElementById("yearDropdown").value;
+  alert("Selected option: " + selectedValue);
+  //mag query ka with param selectedValue
+  //ang result ilagay sa method na to fillDataForAllMonths()
+}
         // Function to fill data for all 12 months
         function fillDataForAllMonths(data) {
             var filledData = Array(12).fill(0); // Initialize array with zeros for all 12 months
