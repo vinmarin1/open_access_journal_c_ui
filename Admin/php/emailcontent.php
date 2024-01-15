@@ -307,8 +307,8 @@ $copyedited_files = get_copyedited_files($aid);
                                                             <?php else: ?>
                                                                 <?php foreach ($copyedited_files as $copyedited_filesval): ?>
                                                                     <tr>
-                                                                        <td width="5%"><input class="form-check-input copyedited-checkbox" type="checkbox" value="" id="defaultCheck1" data-copyedited-files-id="<?php echo $copyedited_filesval->copyedited_files_id; ?>" checked/></td>
-                                                                        <td width="5%"><?php echo $copyedited_filesval->copyedited_files_id; ?></td>
+                                                                        <td width="5%"><input class="form-check-input copyedited-checkbox" type="checkbox" value="" id="defaultCheck1" data-final-files-id="<?php echo $copyedited_filesval->final_files_id; ?>" checked/></td>
+                                                                        <td width="5%"><?php echo $copyedited_filesval->final_files_id; ?></td>
                                                                         <td width="65%">
                                                                             <a href="../../Files/copyedited-file/<?php echo urlencode($copyedited_filesval->file_name); ?>" download>
                                                                                 <?php echo $copyedited_filesval->file_name; ?>
@@ -447,7 +447,7 @@ $copyedited_files = get_copyedited_files($aid);
         
         var checkedData5 = [];
         checkedCheckboxes5.each(function () {
-            var copyeditedFilesId = $(this).data('copyedited-files-id');
+            var copyeditedFilesId = $(this).data('final-files-id');
             checkedData5.push({
                 copyeditedFilesId: copyeditedFilesId
             });
