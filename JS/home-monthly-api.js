@@ -26,7 +26,7 @@ async function fetchData() {
     console.log('API Response:', data);
 
     // Assuming 'data.recommendations' is an array
-    const articlesContainer = document.querySelector('#popular-articles');
+    const articlesContainer = document.querySelector('#popular-monthly');
     
 
     data.recommendations.forEach(item => {
