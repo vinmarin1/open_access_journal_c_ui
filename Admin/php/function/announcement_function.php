@@ -10,7 +10,7 @@
 
                 if ($pdo) {
                     try {
-                        $query = "SELECT * FROM announcement";
+                        $query = "SELECT * FROM announcement WHERE status = 1";
                         $stmt = $pdo->query($query);
 
                         $result = $stmt->fetchAll(PDO::FETCH_OBJ);

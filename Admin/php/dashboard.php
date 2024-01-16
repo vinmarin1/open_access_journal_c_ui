@@ -430,12 +430,11 @@ $mostViewedResult = execute_query($mostViewedQuery);
 
 // Check if the query was successful
 if ($mostViewedResult !== false) {
-    // Display the most viewed or downloaded articles and Top 5 Authors in a row
+    // Display the Most Viewed or Most Downloaded articles in a table
     echo "<div class='container-fluid'>";
     echo "<div class='row'>";
 
-    // First Card (Most Viewed or Most Downloaded)
-    echo "<div class='col-md-6'>";
+    echo "<div class='col-md-12'>"; // Use the entire width for landscape shape
     echo "<div class='card mb-4'>";
     echo "<div class='card-header'>
                 Top 5 Most " . ucfirst($selectedType) . " Articles
@@ -452,9 +451,9 @@ if ($mostViewedResult !== false) {
 
     echo "<table class='table table-bordered' style='width: 100%;'>
                     <colgroup>
-                        <col style='width: 10%;'>
-                        <col style='width: 20%;'>
-                        <col style='width: 10%;'>
+                        <col style='width: 20%;'> <!-- Adjusted width for Article ID -->
+                        <col style='width: 60%;'> <!-- Adjusted width for Title -->
+                        <col style='width: 20%;'> <!-- Adjusted width for Count -->
                     </colgroup>
                     <tr>
                         <th>Article ID</th>
@@ -480,73 +479,76 @@ if ($mostViewedResult !== false) {
         }
     }
 
-    // Assuming you have a function execute_query() for executing SQL queries
-
-// Create an error handling function
-function execute_query_error() {
-    // Implement this function based on how your execute_query() handles errors
-    // You can use error_get_last() or any other method to get the error details
-    // Example:
-    $error = error_get_last();
-    return $error ? $error['message'] : '';
-}
-
-// Specify the author_id for which you want to fetch the top 5 authors
-$authorId = "author_id"; // Replace with the desired author_id
-
-// Fetch the top 5 authors based on the count of publications
-$query = "SELECT author, COUNT(*) AS publication_count
-          FROM article
-          WHERE author_id = $authorId
-          GROUP BY author
-          ORDER BY publication_count DESC
-          LIMIT 5";
-
-$result = execute_query($query);
-
-    echo "</table>
-          </div>
-        </div>
-      </div>";
-    echo "</div>"; // Close the first column
-
-    // Second Card (Top 5 Authors) - Moved to the right and aligned to the top
-    echo "<div class='col-md-6'>";
-    echo '<div class="card mb-4 float-end" style="width: 100%;">';
-    echo '<div class="card-header">Top 5 Authors based on Publications</div>';
-    echo '<div class="card-body">';
-    echo '<table class="table table-bordered" style="width: 100%;">';
-    echo '<tr>
-                <th>Author</th>
-                <th>Publication Count</th>
-              </tr>';
-
-    foreach ($result as $row) {
-        echo "<tr>
-                    <td>{$row->author}</td>
-                    <td>{$row->publication_count}</td>
-                  </tr>";
-    }
-
-    echo '</table>';
-    echo '</div>';
-    echo '</div>';  
-    echo "</div>"; // Close the second column
+    echo "</table>";
+    echo "</div>";
+    echo "</div>";
+    echo "</div>";
 
     echo "</div>"; // Close the row
     echo "</div>"; // Close the container
 } else {
     echo "Error fetching most viewed or downloaded articles data.";
 }
+
+// Fetch the top 5 contributors based on the "contributors" table
+$contributorsQuery = "SELECT contributors_id, COUNT(article_id) AS article_count
+                      FROM contributors
+                      GROUP BY contributors_id
+                      ORDER BY article_count DESC
+                      LIMIT 5";
+
+$contributorsResult = execute_query($contributorsQuery);
+
+// Check if the query was successful
+if ($contributorsResult !== false) {
+    echo "<div class='container-fluid'>";
+    echo "<div class='row'>";
+
+    echo "<div class='col-md-12'>"; // Use the entire width for landscape shape
+    echo "<div class='card mb-4'>";
+    echo "<div class='card-header'>Top 5 Contributors based on Articles</div>";
+    echo "<div class='card-body'>";
+    echo "<table class='table table-bordered' style='width: 100%;'>
+                    <colgroup>
+                        <col style='width: 20%;'> <!-- Adjusted width for Contributor ID -->
+                        <col style='width: 60%;'> <!-- Adjusted width for Article Count -->
+                        <col style='width: 20%;'> <!-- Adjusted width for Full Name -->
+                    </colgroup>
+                    <tr>
+                        <th>Contributor ID</th>
+                        <th>Article Count</th>
+                        <th>Full Name</th>
+                    </tr>";
+
+    foreach ($contributorsResult as $row) {
+        $contributorsId = $row->contributors_id;
+
+        // Fetch the full name of the contributor
+        $contributorNameQuery = "SELECT CONCAT(firstname, ' ', lastname) AS full_name FROM contributors WHERE contributors_id = $contributorsId";
+        $contributorNameResult = execute_query($contributorNameQuery);
+
+        // Check if the contributor name query was successful
+        if ($contributorNameResult !== false && count($contributorNameResult) > 0) {
+            $fullName = $contributorNameResult[0]->full_name;
+            echo "<tr>
+                    <td>{$contributorsId}</td>
+                    <td>{$row->article_count}</td>
+                    <td>{$fullName}</td>
+                  </tr>";
+        }
+    }
+
+    echo "</table>";
+    echo "</div>";
+    echo "</div>";
+    echo "</div>";
+
+    echo "</div>"; // Close the row
+    echo "</div>"; // Close the container
+} else {
+    echo "Error fetching contributors data. Error: " . execute_query_error();
+}
 ?>
-
-
-
-
-
-
-
-
 
 
 
