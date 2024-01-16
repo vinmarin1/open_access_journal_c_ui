@@ -11,7 +11,7 @@ if (!function_exists('get_issues_list')) {
 
         if ($pdo) {
             try {
-                $query = "SELECT * FROM issues";
+                $query = "SELECT * FROM issues WHERE status = 1";
                 $stmt = $pdo->query($query);
 
                 $result = $stmt->fetchAll(PDO::FETCH_OBJ);
