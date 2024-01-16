@@ -1,6 +1,6 @@
 <?php
 include 'function/redirect.php';
-include 'function_report/report_function.php';
+include 'function/report_function.php';
 
 $reportlist = get_report_list();
 ?>
