@@ -1,0 +1,469 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: white;
+    /* Or use the exact background color from your design */
+}
+
+.content-over {
+    position: relative;
+    width: 100%;
+    max-height: 20em;
+    background-image: url(../images/qcu-bg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    padding: 2em 8%;
+    display: inline-flex;
+    flex-direction: column;
+
+}
+
+.content-over::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(53, 68, 74, 0.7);
+}
+.content-over p, .content-over h2 {
+    color: white; 
+    position: relative;
+    z-index: 1; 
+    display: block;
+    
+    }
+.content-over h2 {
+    font-size: 24px !important;
+    color: white;
+    position: relative;
+    z-index: 1;
+    display: block;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 5px;
+
+}
+
+
+
+.main {
+    background-color: white;
+}
+
+.main-profile {
+    background-color: white;
+    padding: 20px;
+    border: 1px solid white;
+    margin: 0px 40px 5px 40px;
+    box-shadow: 0 5px 5px -4px rgba(0, 0, 0, 0.5);
+}
+
+.profile-container {
+    display: flex;
+    background-color: white;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+    
+}
+
+.profile-sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #e9ecef;
+    padding: 10px;
+    border-radius: 10px;
+    margin-right: 20px;
+    width: 20%;
+}
+
+.profile-main {
+    width: 30%;
+    
+}
+
+.profile-pic {
+    display: block;
+    width: 150px;
+    height: 150px;
+    margin-top: 30px;
+    border-radius: 50%;
+}
+
+.profile-info {
+    width: 50%;
+    
+
+}
+
+.user-info .role {
+    color: #285581;
+}
+
+
+
+
+.user-info h1 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: .5rem;
+}
+
+.user-info p {
+    font-size: .9rem;
+    color: #666;
+    margin-bottom: .25rem;
+}
+
+.user-info p.subscription {
+    color: #000096;
+
+}
+
+.row {
+    align-items: right;
+    margin-bottom: 70px;
+}
+
+.points {
+    float: right;
+    margin-right: 20px;
+}
+
+.vertical-line {
+    border-left: 1px solid #ccc;
+    /* Adjust color and thickness as needed */
+    height: auto;
+    /* Adjust height as needed */
+    margin: 0 10px;
+    /* Add margin for spacing */
+}
+
+.profile-main .details {
+
+    padding: 0 20px 20px 20px;
+    border-radius: 10px;
+    /* Adjust as needed */
+
+}
+
+.details {
+    
+}
+
+.details p {
+    font-size: .9rem;
+    color: #285581;
+
+}
+
+.label {
+    font-weight: bold;
+    display: inline-block;
+    min-width: 180px;
+    color: #666;
+    /* Other styles as required */
+
+}
+.profile-badge p {
+    font-size: .9rem;
+    color: #666;
+    margin-bottom: .25rem;
+}
+.badge-box {
+    width: 65px;
+    height: 65px;
+    background-color: #f0f0f0;
+    margin: 0px 8px 0px 0px;
+    display: inline-block;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 1px solid #ccc;
+
+}
+@media (max-width: 768px) {
+    .profile-container {
+        flex-wrap: wrap;
+    }
+    .profile-sidebar,
+    .profile-info,
+    .profile-main {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .profile-badge,
+    .user-info{
+    text-align: center;
+    }
+    .action-buttons{
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .badge-box {
+        margin: 0 0 10px 0; /* Add margin between badge boxes */
+    }
+
+}
+
+/* Style for the tab buttons */
+.tab {
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    margin-left: 60px;
+
+}
+
+/* Style the buttons inside the tab */
+.expertise {
+    background-color: white;
+
+}
+
+.tab button {
+    font-family: Arial, sans-serif;
+    color: #004e98;
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 20px;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+
+    border-bottom: 3px solid #004e98;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+
+    border-top: 1px solid #CCCCCC;
+
+}
+
+.tablinks.active,
+.tablinks:hover {
+    /* Darker background on hover/active */
+    color: #004e98;
+}
+
+.tablinks {}
+
+/* When content is displayed */
+.tabcontent.show {
+    display: block;
+}
+/* Media Query for screens smaller than 768px */
+@media (max-width: 768px) {
+    .tab {
+        margin-left: 0;
+    }
+
+    .tab button {
+        width: 100%; /* Make buttons full width on smaller screens */
+        margin-bottom: 5px; /* Add spacing between buttons */
+    }
+
+    .tabcontent {
+        padding: 10px; /* Adjust padding for smaller screens */
+    }
+
+}
+
+#about-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px;
+
+}
+
+#logrecord-container {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    margin-top: 3px;
+    text-align: center;
+}
+
+.log-box {
+    border: 1px solid #CCCCCC;
+    margin-top: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+    color: #285581;
+
+}
+
+#info-container {
+    flex: 1;
+    margin-left: 20px;
+
+}
+
+.info-box hr {
+    color: #CCCCCC75;
+}
+
+.info-box h3 {
+    color: #285581;
+
+}
+
+.info-box p {
+    color: #454545;
+}
+
+.info-box {
+    flex: 1;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #CCCCCC;
+    padding: 30px;
+    box-sizing: border-box;
+
+}
+
+.bio-container,
+.expertise-container {
+    margin-top: 0px;
+
+}
+@media screen and (max-width: 768px) {
+    /* Apply styles for screens up to 768 pixels wide */
+    #logrecord-container {
+        max-width: 100%; /* Full width on smaller screens */
+    }
+    #info-container {
+        margin-left: 0;
+    
+    }
+    .info-box {
+        margin-left: 0; /* Reset margin for smaller screens */
+    }
+}
+
+.published-articles {
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+    width: 100%;
+}
+.stats-main{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    border-right: 1px solid #ccc;
+    margin-right: 20px;
+}
+.stats-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    margin-right: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.stat {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 13px;
+    
+}
+
+.stats-values{
+    font-size: larger;
+    color: #285581;
+}
+.stats-labels{
+    font-size: smaller;
+    text-transform: uppercase;
+    margin: 0;
+    color: #6C757D;
+}
+.search-container {
+    display: flex;
+    flex-direction: row;
+    align-items: left;
+    margin-right: 10px;
+}
+input {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 10px;
+    width: 100%; /* Add spacing between stats and search input */
+}
+
+.table-container {
+    width: 100%; /* Set the width to 80% */
+    overflow-x: auto;
+    height: 500px;
+    
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border-top: 30px solid #285581;
+    margin-bottom: 40px;	
+
+    
+}
+th, td {
+    padding: 15px;
+    text-align: left;
+    font-weight: bold;
+}
+td{
+    color: #6C757D;
+}
+th {
+    
+    background-color: #fff;
+}
+/* Media Queries for Responsive Design */
+
+@media (max-width: 768px) {
+    .published-articles {
+        flex-direction: column;
+    }
+
+    .stats-main {
+        width: 100%;
+        border-right: none;
+    }
+    .row {
+        margin-bottom: 30px;
+    }
+    
+    .stats-container {
+        margin-right: 0;
+        border-bottom: none;
+    }
+
+    .stat {
+        margin-bottom: 10px;
+    }
+}
+
+
