@@ -90,7 +90,7 @@
             $(document).ready(function () {
                 var table = $('#DataTable').DataTable({
                     "ajax": {
-                        "url": "../php/function_report/totalarchive_f.php",
+                        "url": "../php/function/totalarchive_f.php",
                         "data": { "month": month, "year": year },
                         "type": "GET"
                     },

@@ -90,7 +90,7 @@
             $(document).ready(function () {
                 var table = $('#DataTable').DataTable({
                     "ajax": {
-                        "url": "../php/function_report/totalpublished_f.php",
+                        "url": "../php/function/totalpublished_f.php",
                         "data": { "month": month, "year": year },
                         "type": "GET"
                     },
@@ -98,7 +98,7 @@
                         { "data": "article_id" },
                         { "data": "title" },
                         { "data": "publication_date" }
-                    ],
+                    ],  
                     "columnDefs": [
                         {
                             "render": function (data, type, row) {
