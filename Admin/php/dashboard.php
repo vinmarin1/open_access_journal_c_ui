@@ -4,7 +4,7 @@ include 'function/dashboard_functions.php';
 
 ?>
 <!DOCTYPE html>
-<link rel="stylesheet" href="../css/stylesheet1.css?<?php echo time(); ?>">
+<link rel="stylesheet" href="../css/dashboard.css?<?php echo time(); ?>">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <html lang="en">
 <body>
@@ -70,103 +70,66 @@ include 'function/dashboard_functions.php';
                             
                             
                             
-                          <style>
-        .increase {
-                color: green; /* Set your desired color for positive percentages */
-            }
 
-     .decrease {
-                color: red; /* Set your desired color for negative percentages */
-            }
-        .chart-container {
-            width: 750px;
-            height: 450px;
-            margin: 20px;
-            background: white;
-        }
-
-        #doughnutContainer1,
-        #doughnutContainer2,
-        #doughnutContainer3 {
-            width: 340px;
-            height: 380px;
-            margin: 20px;
-            position: absolute;
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            background-color: white;
-        }
-
-        #doughnutContainer1 {
-            top: 260px;
-            right: 100px;
-        }
-
-        #doughnutContainer2 {
-            top: 700px;
-            right: 100px;
-        }
-
-        #doughnutContainer3 {
-            top: 1180px;
-            right: 100px;
-        }
-
-        #yearDropdown {
-            top: 10px;
-            right: 10px;
-        }
-
-        .chart-title {
-            text-align: center;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-    </style>
 </head>
 <body>
             <!-- Your existing HTML code -->
 
                  <!-- Chart containers -->
-                <div class="chart-container">
-                    <select id="yearDropdown" onchange="myFunction()">
-                    <?php
-                // PHP code for dynamically populating the year dropdown
-                // This assumes you have executed the previous PHP code snippet to fetch available years
-                foreach ($availableYears as $year) {
-                    $selected = ($year == $selectedYear) ? 'selected' : '';
-                    echo "<option value='$year' $selected>$year</option>";
-                }
-                ?>
-                    </select>
-                    <div class="chart-title">Article Engagement Based On Journal Type</div>
-                    <canvas id="lineChart1"></canvas>
-                    <div id="conditionalDiv" style="display: none;">Conditional Content</div>
-                    <!-- Add a dropdown for selecting the type -->
+            <div class="chart-main">
+                    <div class="chart-row">
+                        <div class="chart-container">
+                            <select id="yearDropdown" onchange="myFunction()">
+                                <?php
+                                // PHP code for dynamically populating the year dropdown
+                                // This assumes you have executed the previous PHP code snippet to fetch available years
+                                foreach ($availableYears as $year) {
+                                    $selected = ($year == $selectedYear) ? 'selected' : '';
+                                    echo "<option value='$year' $selected>$year</option>";
+                                }
+                                ?>
+                            </select>
+                            <div class="chart-title">Article Engagement Based On Journal Type</div>
+                            <canvas id="lineChart1"></canvas>
+                            <div id="conditionalDiv" style="display: none;">Conditional Content</div>
+                        </div>
+                        <div id="doughnutContainer1">
+                            <div class="chart-title">Published Vs Not Published</div>
+                            <canvas id="doughnutChart1"></canvas>
+                        </div>
+                    </div>
+                
+                    <div class="chart-row">
+                        <div class="chart-container">
+                            <div class="chart-title">Article Engagement Based On User Demographics</div>
+                            <canvas id="lineChart2"></canvas>
+                        </div>
 
-                    <!-- Add canvas elements for the charts -->
-                </div> 
-                <div class="chart-container">
-                    <div class="chart-title">Article Engagement Based On User Demographics</div>
-                    <canvas id="lineChart2"></canvas>
-                </div>
-                <div class="chart-container">
-                    <div class="chart-title">Article Submission Per Quarter</div>
-                    <canvas id="barChart"></canvas>
-                </div>       
+                        <div id="doughnutContainer2">
+                            <div class="chart-title">User Demographics</div>
+                            <canvas id="doughnutChart2"></canvas>
+                        </div>
+                    </div>
+
+                        <div class="chart-row">
+                        <div class="chart-container">
+                            <div class="chart-title">Donations</div>
+                            <canvas id="lineChart3"></canvas>
+                        </div>
+
+                        <div id="doughnutContainer3">
+                            <div class="chart-title">Role Distribution</div>
+                            <canvas id="doughnutChart3"></canvas>
+                        </div>
+
+                        <div class="chart-container1">
+                            <div class="chart-title">Article Submission Per Quarter</div>
+                            <canvas id="barChart"></canvas>
+                        </div>
+                    </div>  
+            </div>
                         
-                <div id="doughnutContainer1">
-                    <div class="chart-title">Published Vs Not Published</div>
-                    <canvas id="doughnutChart1"></canvas>
-                </div>
-                <div id="doughnutContainer2">
-                    <div class="chart-title">User Demographics</div>
-                    <canvas id="doughnutChart2"></canvas>
-                </div>
-                <div id="doughnutContainer3">
-                    <div class="chart-title">Role Distribution</div>
-                    <canvas id="doughnutChart3"></canvas>
-                </div>
+
 
     <!-- JavaScript for creating charts -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -325,6 +288,34 @@ for (var i = 0; i < years.length; i++) {
                 ]
             };
 
+             // Data for the line chart
+        var lineChartData3 = {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'Novemeber', 'December'],
+                datasets: [
+                    {
+                        label: 'QCU',
+                        data: [" . getChartDataArray($qcuResult) . "],
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1,
+                        fill: false
+                    },
+                    {
+                        label: 'FACULTY',
+                        data: [" . getChartDataArray($facultyResult) . "],
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1,
+                        fill: false
+                    },
+                    {
+                        label: 'OTHERS',
+                        data: [" . getChartDataArray($othersResult) . "],
+                        borderColor: 'rgba(255, 205, 86, 1)',
+                        borderWidth: 1,
+                        fill: false
+                    }
+                ]
+            };
+
                 // Data for the bar chart
             var barChartData = {
                 labels: ['1st', '2nd', '3rd', '4th'],
@@ -408,12 +399,70 @@ for (var i = 0; i < years.length; i++) {
                 // Create charts
                 createLineChart('lineChart1', lineChartData1);
                 createLineChart('lineChart2', lineChartData2);
+                createLineChart('lineChart3', lineChartData2);
                 createBarChart('barChart', barChartData);
                 createDoughnutChart('doughnutChart1', doughnutChartData1);
                 createDoughnutChart('doughnutChart2', doughnutChartData2);
                 createDoughnutChart('doughnutChart3', doughnutChartData3);
                 
         </script>
+<?php
+
+// Fetch the top 5 contributors based on the "contributors" table
+$contributorsQuery = "SELECT email, COUNT(email) AS email_count
+                      FROM contributors
+                      GROUP BY email
+                      ORDER BY email_count DESC
+                      LIMIT 5";
+
+$contributorsResult = execute_query($contributorsQuery);
+
+// Check if the query was successful
+if ($contributorsResult !== false) {
+    echo "<div class='container-fluid'>";
+    echo "<div class='row'>";
+
+    echo "<div class='col-md-12'>"; // Use the entire width for landscape shape
+    echo "<div class='card mb-4'>";
+    echo "<div class='card-header'>Top 5 Contributors based on Email Count</div>";
+    echo "<div class='card-body'>";
+    echo "<table class='table table-bordered' style='width: 100%;'>
+                    <colgroup>
+                        <col style='width: 60%;'> <!-- Adjusted width for Full Name -->
+                        <col style='width: 20%;'> <!-- Adjusted width for Email Count -->
+                    </colgroup>
+                    <tr>
+                        <th>Name</th>
+                        <th>Contributes</th>
+                    </tr>";
+
+    foreach ($contributorsResult as $row) {
+        $email = $row->email;
+        // Fetch the full name of the contributor based on email
+        $contributorNameQuery = "SELECT CONCAT(firstname, ' ', lastname) AS full_name FROM contributors WHERE email = '$email'";
+        $contributorNameResult = execute_query($contributorNameQuery);
+
+        // Check if the contributor name query was successful
+        if ($contributorNameResult !== false && count($contributorNameResult) > 0) {
+            $fullName = $contributorNameResult[0]->full_name;
+            echo "<tr>
+                    <td>{$fullName}</td>
+                    <td>{$row->email_count}</td>
+                  </tr>";
+        }
+    }
+
+    echo "</table>";
+    echo "</div>";
+    echo "</div>";
+    echo "</div>";
+
+    echo "</div>"; // Close the row
+    echo "</div>"; // Close the container
+} else {
+    echo "Error fetching contributors data. Error: " . execute_query_error();
+}
+?>
 
 <?php
 // Fetch the top 5 most viewed or downloaded articles based on the selected type
@@ -488,65 +537,6 @@ if ($mostViewedResult !== false) {
     echo "</div>"; // Close the container
 } else {
     echo "Error fetching most viewed or downloaded articles data.";
-}
-
-// Fetch the top 5 contributors based on the "contributors" table
-$contributorsQuery = "SELECT contributors_id, COUNT(article_id) AS article_count
-                      FROM contributors
-                      GROUP BY contributors_id
-                      ORDER BY article_count DESC
-                      LIMIT 5";
-
-$contributorsResult = execute_query($contributorsQuery);
-
-// Check if the query was successful
-if ($contributorsResult !== false) {
-    echo "<div class='container-fluid'>";
-    echo "<div class='row'>";
-
-    echo "<div class='col-md-12'>"; // Use the entire width for landscape shape
-    echo "<div class='card mb-4'>";
-    echo "<div class='card-header'>Top 5 Contributors based on Articles</div>";
-    echo "<div class='card-body'>";
-    echo "<table class='table table-bordered' style='width: 100%;'>
-                    <colgroup>
-                        <col style='width: 20%;'> <!-- Adjusted width for Contributor ID -->
-                        <col style='width: 60%;'> <!-- Adjusted width for Article Count -->
-                        <col style='width: 20%;'> <!-- Adjusted width for Full Name -->
-                    </colgroup>
-                    <tr>
-                        <th>Contributor ID</th>
-                        <th>Article Count</th>
-                        <th>Full Name</th>
-                    </tr>";
-
-    foreach ($contributorsResult as $row) {
-        $contributorsId = $row->contributors_id;
-
-        // Fetch the full name of the contributor
-        $contributorNameQuery = "SELECT CONCAT(firstname, ' ', lastname) AS full_name FROM contributors WHERE contributors_id = $contributorsId";
-        $contributorNameResult = execute_query($contributorNameQuery);
-
-        // Check if the contributor name query was successful
-        if ($contributorNameResult !== false && count($contributorNameResult) > 0) {
-            $fullName = $contributorNameResult[0]->full_name;
-            echo "<tr>
-                    <td>{$contributorsId}</td>
-                    <td>{$row->article_count}</td>
-                    <td>{$fullName}</td>
-                  </tr>";
-        }
-    }
-
-    echo "</table>";
-    echo "</div>";
-    echo "</div>";
-    echo "</div>";
-
-    echo "</div>"; // Close the row
-    echo "</div>"; // Close the container
-} else {
-    echo "Error fetching contributors data. Error: " . execute_query_error();
 }
 ?>
 
