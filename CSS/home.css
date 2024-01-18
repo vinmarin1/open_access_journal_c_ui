@@ -504,3 +504,66 @@ padding: 2em 8%;
 h4, h2 {
   font-weight: 500 !important ;
 }
+
+#procedure-container {
+  background: #F7FCFF;
+  padding: 2em 8%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4em;
+}
+
+#procedure-container header {
+  display: flex;
+  flex-direction: column;
+}
+
+#procedure-container h4,
+#procedure-container h2 {
+  text-align: center;
+  color: #285581;
+}
+#procedure-container header span {
+  color: #454545;
+}
+
+#procedure-container .procedures {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5em;
+}
+
+.procedures .procedure {
+  flex: 1;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 13px; 
+  padding: 2em;
+  border-radius: 4px;
+  border: 1px solid #DFDFDF;
+  background: rgba(255, 255, 255, 0.86); box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0);
+}
+
+.procedure .icon {
+  position: absolute;
+  top: -1.5em;
+  background-color: #f8f8f8;
+  border: 2px solid #E56F1F;
+  border-radius: 100%;
+  padding: 0.5em;
+  font-weight: 700;
+}
+.procedure h4 {
+  font-size: 20px;
+}
+
+.procedure p {
+  font-size: small;
+}
