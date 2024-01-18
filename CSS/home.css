@@ -1,3 +1,6 @@
+* {
+  scroll-behavior: smooth  !important;
+}
 
 .main-content{
   width: 100%;
@@ -505,14 +508,19 @@ h4, h2 {
   font-weight: 500 !important ;
 }
 
-#procedure-container {
-  background: #F7FCFF;
+#home section {
   padding: 2em 8%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 4em;
+}
+
+/* PUBLICATION PROCEDURE CSS START*/
+
+#procedure-container {
+  background: #F7FCFF;
 }
 
 #procedure-container header {
@@ -567,3 +575,55 @@ h4, h2 {
 .procedure p {
   font-size: small;
 }
+
+/* PUBLICATION PROCEDURE CSS END*/
+/* QUICK LINKS CSS START*/
+
+#quick-links-container h4,
+#quick-links-container h2 {
+  text-align: center;
+  color: #285581;
+}
+
+#quick-links-container .quick-links {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap:1.5em;
+}
+
+.quick-links .quick-link {
+  min-width: 24em;
+  width: 28%;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 16px; 
+  padding: 2em;
+  border-radius: 4px;
+  border: 1px solid #DFDFDF;
+  background: rgba(255, 255, 255, 0.86); box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.procedure:hover,
+.quick-links .quick-link:hover {
+  background-color: rgba(239, 242, 248, 0.617);
+  transform: translateY(4px);
+}
+
+.quick-link .icon {
+  background-color: #E56F1F;
+  color: white;
+  padding: 1em;
+  border-radius: 100%;
+  width: 4em;
+  height: 4em;
+  display: grid;
+  place-items: center;
+}
+/* QUICK LINKS CSS END*/
+

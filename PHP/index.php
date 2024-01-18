@@ -23,7 +23,7 @@
   <nav class="navigation-menus-container" id="navigation-menus-container">
   </nav>
 
-  <div class="main-content">
+  <div class="main-content" id="home">
     <div class="content-over">
       <div class="cover-content">
         <p>Quezon City University’s Journals</p>
@@ -75,24 +75,24 @@
     <!-- <hr style="height: 2px; background-color: #0858a4; width: 100%"> -->
 
     <?php
-  if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-    echo '
-      <div class="fluid-container">
-      <div class="recommendation-article">
-      <h4>Tailored for You: Recommended Articles Based on Your Interactions</h4>
-        <div id="recommendations" class="articles-container">
+    if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+      echo '
+        <div class="fluid-container">
+        <div class="recommendation-article">
+        <h4>Tailored for You: Recommended Articles Based on Your Interactions</h4>
+          <div id="recommendations" class="articles-container">
+          </div>
+          </div>
         </div>
-        </div>
-      </div>
-    
-      '; 
-  } 
-  ?>
+      
+        '; 
+    } 
+    ?>
 
     <div class="fluid-container mb-3 qoaj">
       <div class="About-container ">
         <div class="ab-qoaj-left">
-          <h4 class="mb-3">About QOAJ</h2>
+          <h4 class="mb-3">About QCUJ</h2>
             <p class="description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis distinctio, debitis
               sed dolores iste, deserunt perspiciatis ducimus odio aliquam facere illo, quasi temporibus aut sint est
               mollitia saepe omnis amet?</p>
@@ -100,7 +100,7 @@
               sed dolores iste, deserunt perspiciatis ducimus odio aliquam facere illo, quasi temporibus aut sint est
               mollitia saepe omnis amet?</p>
             <br>
-            <button style="background-color: #E56F1F;" class="btn btn-md mt-1">Read More</button>
+            <a href="#features-container"><button style="background-color: #E56F1F;" class="btn btn-md mt-1">See Features</button></a>
             <br>
         </div>
 
@@ -133,8 +133,7 @@
     </div>
 
     <div class="fluid-container">
-      <div class="recommendation-container">
-
+      <section id="features-container">
         <div class="row gy-8 gx-md-8 gy-lg-2 gx-xxl-5 justify-content-center">
           <div class="col-11 col-sm-6 col-lg-4 mb-4">
             <div class="badge  p-3 mb-4">
@@ -281,7 +280,7 @@
 
         </div>
 
-      </div>
+      </section>
 
     </div>
     <section id="procedure-container">
@@ -289,8 +288,8 @@
         <h2>Publication Procedure</h2>
         <span>Follow this step and publish your research</span>
       </header>
-      <div class="procedures flex-sm-row flex-column">
-        <div class="procedure w-sm-24 w-100">
+      <div class="procedures flex-md-row flex-column">
+        <div class="procedure ">
           <div class="icon">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="14" stroke-dashoffset="14" d="M6 19h12"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.5s" dur="0.4s" values="14;0"/></path><path stroke-dasharray="18" stroke-dashoffset="18" d="M12 15 h2 v-6 h2.5 L12 4.5M12 15 h-2 v-6 h-2.5 L12 4.5"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.4s" values="18;0"/></path></g></svg>
           </div>
@@ -328,9 +327,63 @@
         </div>
       </div>
     </section>
+    <section id="quick-links-container">
+      <header>
+        <h2>Quick Links</h2>
+      </header>
+      <div class="quick-links">
+        <a href="#" class="quick-link">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M1 6.5A3.5 3.5 0 0 1 4.5 3h4a3.5 3.5 0 0 1 3.469 3.031a3.537 3.537 0 0 1-.122 1.499A3.502 3.502 0 0 1 8.5 10h-.75a.75.75 0 0 1 0-1.5h.75a2 2 0 1 0 0-4h-4a2 2 0 0 0-1.262 3.552a4.494 4.494 0 0 0-.235 1.613A3.5 3.5 0 0 1 1 6.5m8 .25a.75.75 0 0 1-.75.75H7.5a2 2 0 1 0 0 4h4a2 2 0 0 0 1.263-3.551a4.495 4.495 0 0 0 .235-1.613A3.5 3.5 0 0 1 11.5 13h-4a3.5 3.5 0 1 1 0-7h.75a.75.75 0 0 1 .75.75"/></svg>
+          </div>
+          <div class="title">
+            <h4>Check Paper Status</h4>
+          </div>
+        </a>
+        <a href="#" class="quick-link">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M1 6.5A3.5 3.5 0 0 1 4.5 3h4a3.5 3.5 0 0 1 3.469 3.031a3.537 3.537 0 0 1-.122 1.499A3.502 3.502 0 0 1 8.5 10h-.75a.75.75 0 0 1 0-1.5h.75a2 2 0 1 0 0-4h-4a2 2 0 0 0-1.262 3.552a4.494 4.494 0 0 0-.235 1.613A3.5 3.5 0 0 1 1 6.5m8 .25a.75.75 0 0 1-.75.75H7.5a2 2 0 1 0 0 4h4a2 2 0 0 0 1.263-3.551a4.495 4.495 0 0 0 .235-1.613A3.5 3.5 0 0 1 11.5 13h-4a3.5 3.5 0 1 1 0-7h.75a.75.75 0 0 1 .75.75"/></svg>
+          </div>
+          <div class="title">
+            <h4>Publication Guidelines</h4>
+          </div>
+        </a>
+        <a href="#" class="quick-link">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M1 6.5A3.5 3.5 0 0 1 4.5 3h4a3.5 3.5 0 0 1 3.469 3.031a3.537 3.537 0 0 1-.122 1.499A3.502 3.502 0 0 1 8.5 10h-.75a.75.75 0 0 1 0-1.5h.75a2 2 0 1 0 0-4h-4a2 2 0 0 0-1.262 3.552a4.494 4.494 0 0 0-.235 1.613A3.5 3.5 0 0 1 1 6.5m8 .25a.75.75 0 0 1-.75.75H7.5a2 2 0 1 0 0 4h4a2 2 0 0 0 1.263-3.551a4.495 4.495 0 0 0 .235-1.613A3.5 3.5 0 0 1 11.5 13h-4a3.5 3.5 0 1 1 0-7h.75a.75.75 0 0 1 .75.75"/></svg>
+          </div>
+          <div class="title">
+            <h4>Reviewer Guidelines</h4>
+          </div>
+        </a>
+        <a href="#" class="quick-link">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M1 6.5A3.5 3.5 0 0 1 4.5 3h4a3.5 3.5 0 0 1 3.469 3.031a3.537 3.537 0 0 1-.122 1.499A3.502 3.502 0 0 1 8.5 10h-.75a.75.75 0 0 1 0-1.5h.75a2 2 0 1 0 0-4h-4a2 2 0 0 0-1.262 3.552a4.494 4.494 0 0 0-.235 1.613A3.5 3.5 0 0 1 1 6.5m8 .25a.75.75 0 0 1-.75.75H7.5a2 2 0 1 0 0 4h4a2 2 0 0 0 1.263-3.551a4.495 4.495 0 0 0 .235-1.613A3.5 3.5 0 0 1 11.5 13h-4a3.5 3.5 0 1 1 0-7h.75a.75.75 0 0 1 .75.75"/></svg>
+          </div>
+          <div class="title">
+            <h4>Paper Sample Format</h4>
+          </div>
+        </a>
+        <a href="#" class="quick-link">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M1 6.5A3.5 3.5 0 0 1 4.5 3h4a3.5 3.5 0 0 1 3.469 3.031a3.537 3.537 0 0 1-.122 1.499A3.502 3.502 0 0 1 8.5 10h-.75a.75.75 0 0 1 0-1.5h.75a2 2 0 1 0 0-4h-4a2 2 0 0 0-1.262 3.552a4.494 4.494 0 0 0-.235 1.613A3.5 3.5 0 0 1 1 6.5m8 .25a.75.75 0 0 1-.75.75H7.5a2 2 0 1 0 0 4h4a2 2 0 0 0 1.263-3.551a4.495 4.495 0 0 0 .235-1.613A3.5 3.5 0 0 1 11.5 13h-4a3.5 3.5 0 1 1 0-7h.75a.75.75 0 0 1 .75.75"/></svg>
+          </div>
+          <div class="title">
+            <h4>Certification</h4>
+          </div>
+        </a>
+        <a href="#" class="quick-link">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M1 6.5A3.5 3.5 0 0 1 4.5 3h4a3.5 3.5 0 0 1 3.469 3.031a3.537 3.537 0 0 1-.122 1.499A3.502 3.502 0 0 1 8.5 10h-.75a.75.75 0 0 1 0-1.5h.75a2 2 0 1 0 0-4h-4a2 2 0 0 0-1.262 3.552a4.494 4.494 0 0 0-.235 1.613A3.5 3.5 0 0 1 1 6.5m8 .25a.75.75 0 0 1-.75.75H7.5a2 2 0 1 0 0 4h4a2 2 0 0 0 1.263-3.551a4.495 4.495 0 0 0 .235-1.613A3.5 3.5 0 0 1 11.5 13h-4a3.5 3.5 0 1 1 0-7h.75a.75.75 0 0 1 .75.75"/></svg>
+          </div>
+          <div class="title">
+            <h4>Donate to Support</h4>
+          </div>
+        </a>
+      </div>
+    </section>
   </div>
 
-  </div>
 
   <div class="footer" id="footer">
   </div>
