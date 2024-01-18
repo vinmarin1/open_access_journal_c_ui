@@ -29,11 +29,13 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 
 <div class="article-title">
   <!-- Header content like title and authors goes here -->
+  <form id="form">
     <div class="main-title">
         <div class="breadcrumbs">
-            Dashboard / Author / Submitted Articles
+            Dashboard / Author / Submitted Articles <span id="title-validation" style="color: red">The title should be between 10 and 20 words in length</span>
         </div>
-        <p id="title">
+        <input type="text" value="<?php echo $articleId ?>" id="getArticleId" name="getArticleId" style="display: none">
+        <p id="title" name="title">
             <?php 
                 $sqlReviewraticle = "SELECT title FROM article WHERE article_id =:article_id AND author_id =:author_id";
 
@@ -55,9 +57,9 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 <div class="row1">
     <div class="abstract">
     <!-- Abstract content goes here -->
-        <div class="abstract-title">Abstract</div>
+        <div class="abstract-title">Abstract <span id="abstract-validation" style="color: red">The abstract should be between 50 and 200 words in length</span></div>
         <div class="abstract-content">
-            <p id="display-abstract">
+            <p id="display-abstract" name="display-abstract">
                 <?php 
                     $sqlReviewraticle = "SELECT abstract FROM article WHERE article_id =:article_id AND author_id =:author_id";
 
@@ -122,10 +124,25 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                 <div class="logs">
                     
                     <div class="logs-title">Logs</div> <!-- Logs title -->
-                    <div class="log-entry"><b>Review</b><br>1st version revision</div>
-                    <div class="log-entry"><b>Review</b><br>Reviewed by Reviewer B</div>
+                    <div class="log-entry"><br>
+                        <?php
+                            $sqlLogs = "SELECT logs_article.type FROM logs_article JOIN article ON logs_article.article_id = article.article_id WHERE logs_article.article_id = :article_id";
+
+                            $sqlRunLogs = database_run($sqlLogs, array('article_id' => $articleId));
+
+                            if ($sqlRunLogs !== false){
+                                foreach ($sqlRunLogs as $logsRow){
+                                    echo '<p style="display: block">' . $logsRow->type . '</p>';
+                                }
+                            }else{
+                                echo 'no logs for this article';
+                            }
+
+                        ?>
+                    </div>
+                    <!-- <div class="log-entry"><b>Review</b><br>Reviewed by Reviewer B</div>
                     <div class="log-entry"><b>Review</b><br>Reviewed by Reviewer A</div>
-                    <div class="log-entry"><b>Review</b><br>Send for review</div>
+                    <div class="log-entry"><b>Review</b><br>Send for review</div> -->
                     <div class="log-entry"><p id="submitOn">
 
                     <?php
@@ -148,11 +165,26 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                 
                 <div class="dates">
                     <div class="dates-title">Date</div>
+                    <div class="date">
+                      <?php
+                            $sqlLogsDate = "SELECT logs_article.date FROM logs_article JOIN article ON logs_article.article_id = article.article_id WHERE logs_article.article_id = :article_id";
+
+                            $sqlDateParams = database_run($sqlLogsDate, array('article_id' => $articleId));
+
+                            if ($sqlDateParams !== false){
+                                foreach ($sqlDateParams as $logsDate){
+                                    echo '<p style="display: block">' . $logsDate->date . '</p>';
+                                }
+                            }else{
+                                echo 'no logs for this article';
+                            }
+
+                        ?>
+                    </div>
+                    <!-- <div class="date">2023-11-09</div>
                     <div class="date">2023-11-09</div>
                     <div class="date">2023-11-09</div>
-                    <div class="date">2023-11-09</div>
-                    <div class="date">2023-11-09</div>
-                    <div class="date">2023-11-09</div>
+                    <div class="date">2023-11-09</div> -->
                 </div>
             </div>
             <a href="#" class="view-all-logs">View All Logs</a>
@@ -163,7 +195,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 <div class="row2">
     <div class="main2">
         <div class="files-submitted">
-            <div class="table-header">Files Submitted</div>
+            <div class="table-header" id="table">Files Submitted</div>
             <table>
                 <thead>
                     <tr>
@@ -214,7 +246,34 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                     </tr> -->
                 </tbody>
             </table>
+
         </div>
+        <div class="files-submitted" id="reviseFile" style="display: none">
+        <div class="table-header">Upload Revise file</div>
+            <div class="btnUploadFile">
+                <input type="file" class="form-control" name="file_name" id="file_name" accept=".docx" style="display: none">
+            </div>
+            <table class="table table-hover" id="table-file">
+                <thead>
+                    <tr>
+                    <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">File Name</th>
+                    <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">File Type</th>
+                    <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="fileList">
+                    <tr>
+                    <td id="fileName1"></td>
+                    <td id="fileType1">File with no author</td>
+                    <td>
+                        <button type="button" class="btn btn-primary btn-sm" style="margin-right: 5px" id="addFileName" onclick="openFilename(1)">Add File</button>
+                        <button type="button" class="btn btn-danger btn-sm" id="deleteFileName" onclick="deleteFilename(1)">Delete</button>
+                    </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
         <div class="files-submitted">
             <div class="table-header"></div>
         
@@ -270,65 +329,43 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
         <div class="review-rubrics">
             <div class="section-header">Review Rubrics</div>
             <div class="section-body">
-                <p>In the web browser: Does the Little Lemon web app match the UI/UX from the Figma mockup and wireframe?</p>
-                <form>
-                    <ul>
-                        <li>
-                            <label>
-                                <input type="radio" name="question1" value="1">
-                                1 point <span>A</span>
-                            </label>
-                        </li>
-                        <li>
-                            <label>
-                                <input type="radio" name="question1" value="0">
-                                0 points <span>B</span>
-                            </label>
-                        </li>
-                    </ul>
-                </form>
+                <!-- <p>Reviewer Anwers Summary</p> -->
+                <?php
+                                $sqlQuestionnaire = "SELECT question, answer FROM reviewer_questionnaire";
+                                $result = database_run($sqlQuestionnaire);
 
-                <p>Using the web browser developer tools, does the web app use semantic HTML tags appropriately?</p>
-                <form>
-                    <ul>
-                        <li>
-                            <label>
-                                <input type="radio" name="question2" value="1">
-                                1 point <span>A</span>
-                            </label>
-                        </li>
-                        <li>
-                            <label>
-                                <input type="radio" name="question2" value="0">
-                                0 points <span>B</span>
-                            </label>
-                        </li>
-                    </ul>
-                </form>
+                                if ($result) {
+                                    foreach ($result as $row) {
+                                        $question = htmlspecialchars($row->question);
+                                        echo '<li class="list-group-item mt-4" style="list-style: none; font-family: &quot;Times New Roman&quot;, Times, serif; color: #0858a4; font-size: 20px;">' . $question . '</li>';
 
-                <p>Does the web app layout correctly for both mobile and desktop devices?</p>
-                <form>
-                    <ul>
-                        <li>
-                            <label>
-                                <input type="radio" name="question3" value="1">
-                                1 point <span>A</span>
-                            </label>
-                        </li>
-                        <li>
-                            <label>
-                                <input type="radio" name="question3" value="0">
-                                0 points <span>B</span>
-                            </label>
-                        </li>
-                    </ul>
-                </form>
+                                        // Split the choices using commas
+                                        $choices = explode(',', $row->answer);
+
+                                        // Display each choice as a radio button
+                                        foreach ($choices as $choice) {
+                                            $uniqueId = htmlspecialchars(trim($choice)) . '_' . uniqid(); // Create a unique ID for each radio button
+                                            echo '<input type="radio" name="answers[' . $question . ']" value="' . htmlspecialchars(trim($choice)) . '" id="' . $uniqueId . '" disabled>';
+                                            echo '<label for="' . $uniqueId . '" style="font-size: small; color: gray;">' . htmlspecialchars(trim($choice)) . '</label><br>';
+                                        }
+                                    }
+                                } else {
+                                    echo 'The questionnaire has not been updated yet';
+                                }
+                                ?>
+
             </div>
             <div class="action-button">
                 <button type="button" class="btn btn-primary btn-md" id="edit-submission">Edit Submission</button>
+                <button type="submit" class="btn btn-primary btn-md" id="submit-submission" onclick="submitData()" disabled>Submit</button>
+                <button type="button" class="btn btn-secondary btn-md" id="cancel-submission">Cancel Submission</button>
             </div>
         </div>
     </div>
+    <div id="loadingOverlay">
+        <div id="loadingSpinner"></div>
+    </div>
+    </form>
 </div>
 
 

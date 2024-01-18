@@ -247,7 +247,7 @@ document.addEventListener('DOMContentLoaded', function () {
   editor.addEventListener('input', function () {
       const wordCount = editor.value.trim().split(/\s+/).length;
 
-      if (wordCount < 50 || wordCount > 600) {
+      if (wordCount < 50 || wordCount > 200) {
           abstractValidation.style.display = 'block';
       } else {
           abstractValidation.style.display = 'none';
