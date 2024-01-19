@@ -145,7 +145,7 @@ $id = $_SESSION['id'];
                   );
               
                   $journalStatus = array(
-                      1 => array('text' => 'PUBLISHED', 'color' => 'green', 'borderColor' => 'darkgreen'),
+                      1 => array('text' => 'PUBLISHED', 'color' => 'gold', 'borderColor' => 'gold'),
                       2 => array('text' => 'PRODUCTION', 'color' => 'blue', 'borderColor' => 'darkblue'),
                       3 => array('text' => 'COPYEDITING', 'color' => 'orange', 'borderColor' => 'darkorange'),
                       4 => array('text' => 'REVIEW', 'color' => 'green', 'borderColor' => 'green'),

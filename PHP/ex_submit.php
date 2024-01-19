@@ -140,7 +140,7 @@
       
        
         
-        <h6 id="sub-11">Abstract<p id="abstract-validation" style="color: red; display: none;  font-size: 10px">The maximum for abstract is 600 words*</p></h6>
+        <h6 id="sub-11">Abstract<p id="abstract-validation" style="color: red; display: none;  font-size: 10px">The maximum for abstract is 200 words*</p></h6>
 
        
 

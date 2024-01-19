@@ -149,18 +149,7 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 </nav>
 
 <div class="container-fluid" style="postion: absolute; z-index: 999; width: 100% height: auto">
-  <?php
-  if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-
-    $author_id = $_SESSION['id'];
-
-    $sqlNotif = "SELECT article.article_id, article.title FROM article JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id WHERE reviewer_assigned.author_id = :author_id AND article.status = 5";
-    $sqlNotifRun = database_run($sqlNotif, array(':author_id' => $author_id));
-    
-    // Check if $sqlNotifRun is not false before using it in the foreach loop
-    if ($sqlNotifRun !== false) {
-      foreach ($sqlNotifRun as $notif) {
-          echo '<div id="nofication-container" style="width: 300px;
+  <div id="nofication-container" style="width: 300px;
               max-width: auto;
               min-width: auto;
               height: 50vh;
@@ -170,21 +159,35 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
               margin-left: 1100px;
               box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
               display: none">
-                      
-                      <p class="h5" style="margin-bottom: -30px; margin-top: 10px; margin-left: 10px">Notifications</p><br><hr>
+                    <p class="h5" style="margin-bottom: -30px; margin-top: 10px; margin-left: 10px">Notifications</p><br><hr>
   
-                          <ul style="width: 100%">
-                              <li style="list-style-type: none; display: block; font-size: 12px;">
-                                  <p style="display: inline-block;">You have been invited as Reviewer Title: </p>
-                                  <a style="text-decoration: none; color: gray; display: inline-block;" href="review-process.php?id=' . $notif->article_id . '">' . $notif->title . '</a>
-                              </li>
-                          </ul>
-                  </div>';
+  <?php
+  if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+
+    $author_id = $_SESSION['id'];
+
+    $sqlNotif = "SELECT article.article_id, article.title FROM article JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id WHERE reviewer_assigned.author_id = :author_id AND article.status = 4 AND reviewer_assigned.accept = 0 AND reviewer_assigned.answer = 0";
+    $sqlNotifRun = database_run($sqlNotif, array(':author_id' => $author_id));
+    
+    // Check if $sqlNotifRun is not false before using it in the foreach loop
+    if ($sqlNotifRun !== false) {
+      foreach ($sqlNotifRun as $notif) {
+          echo '<ul style="width: 100%" id="invMsgList">
+                  <li style="list-style-type: none; display: block; font-size: 12px;">
+                      <p style="display: inline-block; font-weight: normal">You have been invited as Reviewer Title: </p>
+                      <a id="inviteMessage" style="text-decoration: none; color: gray; display: inline-block;" href="review-process.php?id=' . $notif->article_id . '">' . $notif->title . '</a>
+                  </li>
+              </ul> ';
+                 
       }
+  }else{
+    echo '<p class="h6" style="color: gray; font-weight: normal; margin-left: 10px" >0 Notification</p>';
   }
   }
 
   ?>
+
+  </div>
 </div>
 
 
