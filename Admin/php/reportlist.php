@@ -64,20 +64,30 @@ $reportlist = get_report_list();
         });
 
         function viewReport(action) {
-            $('#sloading').show();
+        $('#sloading').show();
 
-            // Check if the action is 'totalarchive.php'
-            if (action === 'totalarchive.php' || action === 'totalpublished.php') {
-                var currentDate = new Date();
-                var currentMonth = currentDate.getMonth() + 1;
-                var currentYear = currentDate.getFullYear();
+        if (action === 'totalarchive.php' || action === 'totalpublished.php') {
+            var currentDate = new Date();
+            var currentMonth = currentDate.getMonth() + 1;
+            var currentYear = currentDate.getFullYear();
 
-                action = '../php/' + action + '?m=' + currentMonth + '&y=' + currentYear;
-            }
+            action = '../php/' + action + '?m=' + currentMonth + '&y=' + currentYear;
+        } else if (action === 'allarticlereportmtd.php') {
+            var currentDate = new Date();
+            var currentMonth = currentDate.getMonth() + 1;
+            var currentYear = currentDate.getFullYear();
 
-            window.location.href = action;
+            action = '../php/' + action + '?m=' + currentMonth + '&y=' + currentYear + '&s=10';
+        } else if (action === 'allarticlereportytd.php') {
+            var currentDate = new Date();
+            var currentMonth = currentDate.getMonth() + 1;
+            var currentYear = currentDate.getFullYear();
+
+            action = '../php/' + action + '?y=' + currentYear + '&s=10';
         }
 
+        window.location.href = action;
+    }
     </script>
 </body>
 </html>
