@@ -626,4 +626,48 @@ h4, h2 {
   place-items: center;
 }
 /* QUICK LINKS CSS END*/
+/* FAQS FREQUENTLY ASKED QUESTIONS CSS START*/
 
+
+#faqs-container {
+  background: #F7FCFF;
+}
+#faqs-container h2 {
+  text-align: center;
+  color: #285581;
+}
+#faqs-container header {
+  max-width: 48em;
+}
+#faqs-container a {
+  text-decoration: none;
+  font-weight: 600;
+}
+.faq {
+  border-radius: 12px !important;
+  border: 1px solid #DFDFDF;
+  background: #FFF;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25);
+}
+
+
+.faq .accordion-button {
+  color: #0880E8 !important;
+  background-color: white !important;
+  display: flex;
+  gap: 0.5em;
+  font-weight: 700;
+  border-bottom: none;
+}
+
+.faq .accordion-button:not(.collapsed) {
+  box-shadow: none;
+}
+.faq .collapsed {
+  color: #285581 !important;
+}
+
+.faq .accordion-body {
+  padding-left: 3em;
+}
+/* FAQS FREQUENTLY ASKED QUESTIONS CSS START*/
