@@ -127,6 +127,10 @@ if (!function_exists('get_email_content')) {
                     updateArticleStatus($article_id, 1);
                     addLogs($article_id, $fromuser, 'Article Published');
                     echo "<script>alert('Send to publication successfully.');</script>";
+                } elseif ($id == 7) {
+                    updateArticleStatus($article_id, 0);
+                    addLogs($article_id, $fromuser, 'Article move to Archive');
+                    echo "<script>alert('Article move to archive successfully.');</script>";
             } else {
                 echo 'Error sending email: ' . $mail->ErrorInfo;
             }
