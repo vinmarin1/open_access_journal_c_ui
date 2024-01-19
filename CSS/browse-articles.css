@@ -299,6 +299,39 @@
     animation: skeleton-fade 1.5s infinite ease-in-out;
   }
 
+  .journal-preview {
+    display: none;
+    flex-direction: column;
+    gap: 0.5em;
+  }
+  .journal-preview ul {
+    padding:0;
+  }
+  .journal-preview ul li {
+    list-style: none;
+    margin-bottom: 16px;
+  }
+  .journal-preview ul li h3 {
+    font-size: 16px ;
+    text-decoration: none;
+    color: #0858a4; 
+    font-weight: 600;
+    font-family: 'Inter', sans-serif !important;
+  }
+  .journal-preview ul li span {
+    color: #959595; 
+  }
+  .journal-preview img{
+    width: 80%;
+  }
+
+  #journals-container button{
+    background-color: transparent !important;
+    outline: none;
+    border: none;
+    padding: none;
+  }
+
   @keyframes skeleton-fade {
     0%, 100% {
       opacity: 0.5;

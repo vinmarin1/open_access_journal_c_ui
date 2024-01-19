@@ -63,7 +63,37 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
         <div class="row w-100">
         <div class="sidebar col-lg-3 col-md-12">
             <h4 style="color: #0858a4;"><b><span id="total"></span></b></h4>
+            <hr style="border-top: 1px solid #ccc; margin: 10px 0;"> 
             <!-- Filters Here -->
+            <div class="journal-preview">
+                <img />
+                <h2 class="journal"></h2>
+                <ul>
+                    <li class="issn">
+                        <h3>ISSN (online)</h3>
+                        <span></span>
+                    </li>
+                    <li class="date">
+                        <h3>Online Date Start</h3>
+                        <span></span>
+                    </li>
+                    <li class="copyright">
+                        <h3>Copyright Holder</h3>
+                        <span></span>
+                    </li>
+                    <li class="board">
+                        <h3>Editorial Board</h3>
+                        <span></span>
+                    </li>
+                    <li class="info">
+                        <h3>Further Information</h3>
+                        <span></span>
+                    </li>
+                </ul>
+
+
+
+            </div>
             <hr style="border-top: 1px solid #ccc; margin: 10px 0;"> <!-- Add a horizontal line -->
             <div class="filters">
                 <h5 style="color: #0858a4;">Filter search results</h5>
@@ -80,6 +110,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     </div>
                 </div>
             </div>
+          
         </div>
         <div class="articles-containers col-lg-9 col-md-12">
             <!-- Article 1 -->
@@ -172,27 +203,11 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
     <div class="fluid-container">
         <div class="recommendation-article">
             <h4>Top Picks for <?php echo date('F '); ?></h4>
-            <div class="d-flex flex-sm-column flex-xl-row container-fluid gap-4 justify-content-between" style="width:85%;">
-                <div id="popular-monthly" class="articles-container col-sm-12 col-lg-7">
+          
+                <div id="popular-monthly" class="articles-container ">
                     <!-- fetch popular articles using api -->
                 </div>
-                <div class="divider "></div>
-                <div class="col-sm-12 col-lg-4 d-flex flex-column gap-2" id="most-popular-container">
-                    <h6 class="text-lg mb-2">
-                        <select class="form-select" id="sort-select">
-                            <option value="total_interactions" selected>Most Popular (All)</option>
-                            <option value="total_reads">Most Viewed</option>
-                            <option value="total_downloads">Most Downloaded</option>
-                            <option value="total_citations">Most Cited</option>
-                        </select>
-
-                    </h6>
-                    <div id="most-popular">
-
-                    </div>
-
-                </div>
-            </div>
+              
         </div>
     </div>
 
@@ -217,7 +232,6 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
     <script src="../JS/reusable-header.js"></script>
     <script src="../JS/home-recommended-api.js"></script>
     <script src="../JS/most-popular-api.js"></script>
-    <script src="../JS/most-downloaded-api.js"></script>
     <script src="../JS/home-monthly-api.js"></script>
     <script src="../JS/browse-api.js"></script>
 
