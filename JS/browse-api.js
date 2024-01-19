@@ -94,18 +94,39 @@ const updateSelectedJournals = (checkbox, journal) => {
 
 };
 
+async function fetchJournal(journal) {
+  const response = await fetch(
+    `https://web-production-cecc.up.railway.app/api/journal/?id=${journal}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error(`HTTP error! Status: ${response.status}`);
+  }
+
+  const data = await response.json();
+  console.log(data.journalDetails)
+  generateJournalPreview(data.journalDetails)
+}
 // function to generate frontend of journal preview
 function generateJournalPreview(journal) {
   const journalPreview = document.querySelector(".journal-preview");
 
-  if (journal && journal.split(",").length==1){
    journalPreview.classList.add("d-flex")
-  }
 
-  journalPreview.querySelector("img").src = "../Files/journal-image/The Gavel.png";
-  journalPreview.querySelector("h2").innerHTML= journal
-  journalPreview.querySelector("span").innerHTML= '2071-1050 (Online)'
+  journalPreview.querySelector("img").src = `../Files/journal-image/${journal.image}`;
+  journalPreview.querySelector("h2").innerHTML= journal.journal
+  journalPreview.querySelector(".issn").querySelector("span").innerHTML = `2071-1050 (Online)`
+  journalPreview.querySelector(".date").querySelector("span").innerHTML =   new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric' }).format(new Date(journal.date_added))
+  journalPreview.querySelector(".board").querySelector("span").innerHTML = journal.editorial
+  journalPreview.querySelector(".info").querySelector("span").innerHTML = journal.description
 }
+
 
 // function to fetch and generate journal and year filters (dynamic)
 async function generateFilters() {
@@ -180,8 +201,9 @@ async function generateFilters() {
         checkbox.checked = true;
       selectedJournals=[journalId]
       fetchData();
-      
-      generateJournalPreview(journalId)
+      if (selectedJournals.length ==1){
+        fetchJournal(journalId)
+      }
     });
     
     journalItem.appendChild(journalCheckbox);
@@ -324,7 +346,9 @@ async function fetchData(input, dates,sort, currentPage = 0) {
   
   const journalId = getQueryParam("journal");
 
-  generateJournalPreview(journalId)
+  if (journalId && journalId.split(",").length ==1){
+    fetchJournal(journalId)
+  }
 
   const articlesContainer = document.querySelector("#articles");
   const total = document.querySelector("#total");
