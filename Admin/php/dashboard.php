@@ -156,6 +156,14 @@ include 'function/dashboard_functions.php';
                     <canvas id="lineChart2"></canvas>
                 </div>
             </div>
+
+            <div class="container">
+                <div class="chart-container"  style="margin-top: -5px;">
+                    <div class="chart-title">Donations</div>
+                    <canvas id="lineChart3"></canvas>
+                </div>
+            </div>
+            
             <div class="container">
                 <div class="chart-container" >
                     <div class="chart-title">Article Submission Per Quarter</div>
@@ -294,6 +302,33 @@ include 'function/dashboard_functions.php';
         ]
     };
 
+    // / Data for the line chart
+    var lineChartData3 = {
+        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'Novemeber', 'December'],
+        datasets: [{
+                label: 'QCU',
+                data: [" . getChartDataArray($qcuResult) . "],
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1,
+                fill: false
+            },
+            {
+                label: 'FACULTY',
+                data: [" . getChartDataArray($facultyResult) . "],
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1,
+                fill: false
+            },
+            {
+                label: 'OTHERS',
+                data: [" . getChartDataArray($othersResult) . "],
+                borderColor: 'rgba(255, 205, 86, 1)',
+                borderWidth: 1,
+                fill: false
+            }
+        ]
+    };
+
     // Data for the bar chart
     var barChartData = {
         labels: ['1st', '2nd', '3rd', '4th'],
@@ -379,6 +414,7 @@ include 'function/dashboard_functions.php';
     // Create charts
     createLineChart('lineChart1', lineChartData1);
     createLineChart('lineChart2', lineChartData2);
+    createLineChart('lineChart3', lineChartData3);
     createBarChart('barChart', barChartData);
     createDoughnutChart('doughnutChart1', doughnutChartData1);
     createDoughnutChart('doughnutChart2', doughnutChartData2);
