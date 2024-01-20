@@ -36,9 +36,9 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 <input list="articlesList" id="result" type="text" class="form-control me-2 py-3" placeholder="Search Articles..."
                     class="search-bar"
                     style="width: 583px; height: 30px; font-style: italic; background-color: white;" />
-                    <datalist id="articlesList">
+                    <!-- <datalist id="articlesList">
                        
-                    </datalist>
+                    </datalist> -->
                 <div class="d-flex gap-1 flex-row-reverse">
                     <button class="btn tbn-primary btn-md" id="btn3">Search</button>
                     <button class="btn tbn-primary btn-md" id="voiceSearch" onclick="startConverting();">

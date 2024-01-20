@@ -1,6 +1,5 @@
 document.addEventListener( "DOMCrontentLoaded",
-  fetchData().then((totalItems) => {
-    generatePagination(totalItems);
+  fetchData().then(() => {
     generateFilters();
     generateDatalist(articleData);
   })
@@ -43,26 +42,32 @@ document.getElementById("search-form").addEventListener("submit", function (even
     event.preventDefault();
     let searchInputValue = document.getElementById("result").value;
     updateURL(selectedJournals)
-    fetchData(searchInputValue, selectedYears, sortBySelected).then(
-      (totalItems) => {
-        generatePagination(totalItems);
-      }
-    );
+    fetchData(searchInputValue, selectedYears, sortBySelected)
   });
+
+const searchInput = document.getElementById("result");
+let debounceTimer;
+  
+searchInput.addEventListener("input", (event) => {
+  event.preventDefault();
+
+  clearTimeout(debounceTimer);
+
+  debounceTimer = setTimeout(() => {
+    let searchInputValue = searchInput.value;
+    updateURL(selectedJournals);
+    
+    fetchData(searchInputValue, selectedYears, sortBySelected)
+  }, 2000); 
+});
+  
 
 // handle sort select element event change
 sortBySelect.addEventListener("change", function (event) {
   event.preventDefault();
   let searchInputValue = document.getElementById("result").value;
   sortBySelected = sortBySelect.value;
-  fetchData(searchInputValue, selectedYears, sortBySelected).then(
-    
-    (totalItems) => {
-      console.log(selectedYears,"yea")
-      generatePagination(totalItems);
-    }
-
-  );
+  fetchData(searchInputValue, selectedYears, sortBySelected)
 });
 
 
@@ -237,12 +242,7 @@ function changePage(page) {
   let searchInputValue = document.getElementById("result").value;
   let year = document.getElementById("year1").value;
   sortBySelected = sortBySelect.value;
-  fetchData(searchInputValue, selectedYears,sortBySelected, page).then(
-    (totalItems) => {
-      console.log(selectedYears,"yea1")
-      generatePagination(totalItems);
-    }
-  );
+  fetchData(searchInputValue, selectedYears,sortBySelected, page)
 }
 
 var result = document.getElementById("result");
@@ -284,10 +284,7 @@ function startConverting() {
       voiceButton.classList.remove("bg-secondary")
       recognizing = false;
       searchInputValue = finalTranscripts;
-      fetchData(finalTranscripts, selectedYears, sortby).then((totalItems) => {
-        console.log(selectedYears,"ye2")
-        generatePagination(totalItems);
-      });
+      fetchData(finalTranscripts, selectedYears, sortby)
     };
     speechRecognizer.onerror = function (event) {};
   } else {
@@ -330,8 +327,12 @@ function generatePagination(totalItems) {
 
     pageItem.appendChild(pageLink);
     paginationContainer.appendChild(pageItem);
+
   }
+
 }
+
+
 
 function navigateToArticle(articleId) {
   window.location.href = `../PHP/article-details.php?articleId=${articleId}`;
@@ -461,8 +462,7 @@ async function fetchData(input, dates,sort, currentPage = 0) {
       });
       loading.classList.add("d-none") 
     total.innerHTML = `${data.total} searched articles`;
-    totalItems = data.total;
-    return totalItems;
+    generatePagination(data.total)
   } catch (error) {
     console.error("Error fetching data:", error);
     articlesContainer.innerHTML = `No match found for ${input}.`
