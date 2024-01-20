@@ -35,13 +35,13 @@
                     addRecord();
                     break;
                 case 'archive':
-                    archiveUser();
+                    archiveAnnouncement();
                     break;
                 case 'fetch':
                     fetchUserData();
                     break;
                 case 'update':
-                    updateUserData();
+                    updateAnnouncementData();
                     break;
             }
             
@@ -64,11 +64,10 @@
      function addRecord()
     {
     try {
-        $announcement_type_id = $_POST['announcement_type_id'];
         $title = $_POST['title'];
-        $description = $_POST['description'];
+        $announcement_description = $_POST['announcement_description'];
         $announcement = $_POST['announcement'];
-        $expired_date = $_POST['expired_date'];
+        $expiry_date = $_POST['expiry_date'];
         $status = 1;
     
         $documentRoot = $_SERVER['DOCUMENT_ROOT'];
@@ -99,10 +98,10 @@
             throw new Exception('File upload error: ' . $_FILES['upload_image']['error']);
         }
 
-        $query = "INSERT INTO announcement (announcement_type_id, title, description, announcement,status, upload_image, expired_date) 
-                  VALUES (?, ?, ?, ?, ?, ?,?)";
+        $query = "INSERT INTO announcement ( title, announcement_description, announcement,status, upload_image, expiry_date) 
+                  VALUES ( ?, ?, ?, ?, ?, ?)";
 
-        $result = execute_query($query, [$announcement_type_id, $title, $description, $announcement,$status, $upload_image, $expired_date]);
+        $result = execute_query($query, [$title, $announcement_description, $announcement,$status,  $imageName, $expiry_date]);
 
         if ($result !== false) {
             echo json_encode(['status' => true, 'message' => 'Record added successfully']);
@@ -116,31 +115,47 @@
     }
 }
                     
+function updateAnnouncementData() {
+    try {
+        $announcement_id = $_POST['announcement_id'];
+        $updatedData = $_POST['updated_data'];
+    
+        $query = "UPDATE announcement 
+                    SET title = ?, announcement_description = ?, announcement = ? 
+                    WHERE announcement_id = ?";
+        
+        $pdo = connect_to_database();
+    
+        $stm = $pdo->prepare($query);
+        $check = $stm->execute([
+            $updatedData['title'],
+            $updatedData['announcement_description'],
+            $updatedData['announcement'],
+            $announcement_id
+        ]);
+    
+        header('Content-Type: application/json');
+    
+        if ($check !== false) {
+            echo json_encode(['status' => true, 'message' => 'Announcement data updated successfully']);
+        } else {
+            echo json_encode(['status' => false, 'message' => 'Failed to update Announcement data']);
+        }
+    } catch (PDOException $e) {
+        echo json_encode(['status' => false, 'message' => 'Database error: ' . $e->getMessage()]);
+    }
+}
 
+function archiveAnnouncement()
+{
+    $announcement_id = $_POST['announcement_id'];
 
-                    if (!function_exists('get_announcementtype_list')) {
-                        function get_announcementtype_list()
-                        {
-                            $pdo = connect_to_database();
-                    
-                            if ($pdo) {
-                                try {
-                                    $query = "SELECT announcement_type_id, announcement_type FROM announcement_type";
-                                    $stmt = $pdo->query($query);
-                    
-                                    // Fetch the data as an associative array
-                                    $announcementTypes = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                    
-                                    return $announcementTypes;
-                                } catch (PDOException $e) {
-                                    echo "Error: " . $e->getMessage();
-                                    return false;
-                                }
-                            }
-                    
-                            return false;
-                        }
-                    }
+    $query = "UPDATE announcement SET status = 0 WHERE announcement_id = ?";
+    $result = execute_query($query, [$announcement_id]);
+
+    echo json_encode(['status' => $result !== false, 'message' => $result !== false ? 'Announcement archived successfully' : 'Failed to archive announcement']);
+}
+
 
     ?>
 

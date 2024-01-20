@@ -8,7 +8,7 @@ include 'function/dashboard_functions.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/dashboard.css?<?php echo time(); ?>">
+    <link rel="stylesheet" href="../css/dashboard.css?">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
 
@@ -189,7 +189,7 @@ include 'function/dashboard_functions.php';
 
     // Function to create a line chart
     function createLineChart(chartId, data) {
-        console.log(totalGavel, "hello")
+        // console.log(totalGavel, "hello")
         var ctx = document.getElementById(chartId).getContext('2d');
         var myChart = new Chart(ctx, {
             type: 'line',
@@ -280,7 +280,7 @@ include 'function/dashboard_functions.php';
         labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'Novemeber', 'December'],
         datasets: [{
                 label: 'QCU',
-                data: [" . getChartDataArray($qcuResult) . "],
+                data: ["0"],
                 borderColor: 'rgba(255, 99, 132, 1)',
                 borderWidth: 1,
                 fill: false
