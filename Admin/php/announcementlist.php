@@ -1,100 +1,84 @@
-    <?php
-    include 'function/announcement_function.php';
-    $announcementtypelist = get_announcementtype_list();
-    $announcementlist = get_announcement_list();
-    ?>
+<?php
+include 'function/announcement_function.php';
+$announcementlist = get_announcement_list();
+?>
 
-    <!DOCTYPE html>
-    <html lang="en">
-    <body>
-        <!-- Include header -->
-        <?php include 'template/header.php'; ?>
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <!-- Include header -->
+    <?php include 'template/header.php'; ?>
 
-        <!-- Content wrapper -->
-        <div class="container-xxl flex-grow-1 container-p-y">
-            <h4 class="py-3 mb-4"><span class="text-muted fw-light"></span> Announcement</h4>
+    <!-- Content wrapper -->
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <h4 class="py-3 mb-4"><span class="text-muted fw-light"></span>Announcement</h4>
 
-            <!-- Status tabs -->
-            <ul class="nav nav-tabs mb-3" id="statusTabs">
-                <li class="nav-item">
-                    <a class="nav-link" href="announcementlist.php" id="tabIncomplete" data-status="Announcement">Announcement</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="announcementtypelist.php"id="tabProduction" data-status="Announcement Type">Announcement Type</a>
-                </li>
-            </ul>
-            <div class="card">
-            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-                <h5 class="card-header mb-0">Announcement</h5>
-                <div style="display: flex; margin-top: 15px; margin-right: 15px;">
+        <div class="card">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+            <h5 class="card-header mb-0">Announcement</h5>
+            <div style="display: flex; margin-top: 15px; margin-right: 15px;">
                 <button type="button" id="tabAll" class="btn btn-primary" style="margin-right: 10px;" data-bs-toggle="modal" data-bs-target="#addModal">Add Announcement</button>
                 <!-- <button type="button" id="tabPublished" class="btn btn-primary">Download</button> -->
             </div>
         </div>
             <div class="table-responsive text-nowrap">
-                    <table class="table table-striped" id="DataTableAnnouncement">
-                        <thead>
-                            <tr>
+                <table class="table table-striped" id="DataTable">
+                    <thead>
+                        <tr>
                                 <th>Announcement ID</th>
-                                <th>Announcement Type</th>
                                 <th>Title</th>
-                                <th>description</th>
+                                <th>Description</th>
                                 <th>Announcement</th>
                                 <th>Upload Image</th>
-                                <th>Expiry Date </th>
                                 <th>Action</th>
-                            </tr>
-                        </thead>
-                    <tbody>
-                    <?php foreach ($announcementlist as $announcementlistval): ?>
+                        </tr>
+                    </thead>
+                <tbody>
+                <?php foreach ($announcementlist as $announcementlistval): ?>
                                 <tr>
-                                    <td width="5%"><?php echo   $announcementlistval->announcement_id; ?></td>
-                                    <td width="50%"><?php echo  $announcementlistval->announcement_type_id; ?></td>
+                                    <td width="5%"><?php  echo  $announcementlistval->announcement_id; ?></td>
                                     <td width="50%"><?php echo  $announcementlistval->title; ?></td>
                                     <td width="50%"><?php echo  $announcementlistval->announcement_description; ?></td>
                                     <td width="50%"><?php echo  $announcementlistval->announcement; ?></td>
                                     <td width="50%"><?php echo  $announcementlistval->upload_image; ?></td>
-                                    <td width="50%"><?php echo  $announcementlistval->expired_date; ?></td>
                                     <td width="10%">
-                                    <button type="button" class="btn btn-outline-success" onclick="updateModal(<?php echo  $announcementlistval->announcement_id; ?>)">Update</button>
-                                    <button type="button" class="btn btn-outline-danger" onclick="archiveAnnouncement(<?php echo  $announcementlistval->announcement_id; ?>, '<?php echo $announcementlistval->announcement_type_id; ?>', '<?php echo $announcementlistval->title; ?>','<?php echo  $announcementlistval->announcement_description; ?>','<?php echo  $announcementlistval->announcement; ?>')">Archive</button>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                </table>
-                </div>
-            </div>    
+                                <button type="button" class="btn btn-outline-success" onclick="updateModal(<?php echo  $announcementlistval->announcement_id; ?>)">Update</button>
+                                <button type="button" class="btn btn-outline-danger" onclick="archiveAnnouncement(<?php echo  $announcementlistval->announcement_id; ?>, '<?php echo $announcementlistval->title; ?>', '<?php echo $announcementlistval->announcement; ?>')">Archive</button>
+                                  </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+              </table>
+            </div>
+        </div>    
 
+        <!-- Include footer -->
+        <?php include 'template/footer.php'; ?>
+    </div>
 
-            <!-- Include footer -->
-            <?php include 'template/footer.php'; ?>
-        </div>
+    <!-- Include the DataTables CSS and JS files -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
 
-        <!-- Include the DataTables CSS and JS files -->
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
-        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-        <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <!-- DataTables initialization script with status filter -->
+    <script>
+         $(document).ready(function()   {
+        var dataTable = $('#DataTable').DataTable({
+            "paging": true,
+            "ordering": true,
+            "searching": true,
+        });
+    });
 
-        <!-- DataTables initialization script with status filter -->
-        <script>
-                $(document).ready(function() {
-                var dataTable = $('#DataTableAnnouncement').DataTable({
-                    "paging": true,
-                    "ordering": true,
-                    "searching": true,
-                });
-            });
-            
-            function addRecord() {
+        function addRecord() {
         var form = document.getElementById('addModalForm');
         var formData = new FormData();
         formData.append('title', $('#title').val());
-        formData.append('description', $('#description').val());
+        formData.append('announcement_description', $('#announcement_description').val());
         formData.append('announcement', $('#announcement').val());
         formData.append('upload_image', $('#upload_image')[0].files[0]);
-        formData.append('expired_date', $('#expired_date').val());
-
+        formData.append('expiry_date', $('#expiry_date').val());
         formData.append('action', 'add');
 
         if (form.checkValidity()) {
@@ -125,18 +109,45 @@
             form.reportValidity();
         }
     }
+    function updateModal(announcement_id) {
+        $.ajax({
+            type: 'POST',
+            url: '../php/function/announcement_function.php',
+            data: { action: 'fetch', announcement_id: announcement_id },
+            dataType: 'json',
+            success: function (response) {
+                console.log('Response from server:', response);
+
+                if (response.status === true && response.data.length > 0) {
+                    const announcementData = response.data[0];
+                    console.log('Announcement Data:', announcementData);
+
+                    $('#xannouncemet_id').val(announcementData.announcement_id);
+                    $('#xtitle').val(announcementData.title);
+                    $('#xannouncement_description').val(announcementData.announcement_description);
+                    $('#xannouncement').val(announcementData.announcement);
+                   
+
+                    $('#updateModal').modal('show');
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log('AJAX Error:', textStatus, errorThrown);
+                console.log('Error fetching announcement data');
+            }
+        });
+    }
 
     function saveChanges() {
         $('#sloading').toggle();
         console.log('Save button clicked');
 
-            var announcement_id = $('#announcement_id').val();
+            var announcement_id = $('#xannouncement_id').val();
             var updatedData = {
-            announcement_type_id: $('#announcement_type_id').val(),
-            title: $('#title').val(),
-            description: $('#description').val(),
-            announcement: $('#announcement').val(),
-            expiry_date: $('#expired_date').val(),
+            title: $('#xtitle').val(),
+            announcement_description: $('#xannouncement_description').val(),
+            announcement: $('#xannouncement').val(),
+            expiry_date: $('#xexpired_date').val(),
         };
 
         $.ajax({
@@ -157,17 +168,49 @@
                     $('#updateModal').modal('hide');
                     location.reload();
                 } else {
-                    console.error('Error updating journal data:', response.message);
+                    console.error('Error updating announcement data:', response.message);
                     alert("Failed to update record. Please try again.");
                 }
             },
         });
     }
+    
+    function archiveIssue(announcement_id, title, announcement_description, announcement) {
+        $('#archiveModal').modal('show');
+        $('#archiveModalTitle').text('Archive Issue');
+        $('#announcementInfo').html('<strong>title:</strong> ' + title + ' <br><strong>announcement_description:</strong> ' + announcement_description + '<br><strong>ID:</strong> ' + announcement_id'<br><strong>announcement:</strong> ' + announcement);
 
-        </script>
-        
-        <!-- addModal -->
-         <!-- Add Modal -->
+        $('#archiveModalSave').off().on('click', function () {
+            $('#sloading').toggle();
+            $.ajax({
+                url: "../php/function/announcement_function.php",
+                method: "POST",
+                data: { action: "archive", announcement_id: announcement_id},
+                success: function (data) {
+                    var response = JSON.parse(data);
+
+                    if (response.status) {
+                        $('#sloading').toggle();
+                        $('#archiveModalMessage').text('Announcement archived successfully');
+                    } else {
+                        $('#archiveModalMessage').text('Failed to archive Announcement');
+                    }
+                        $('#archiveModal').modal('hide');
+                        location.reload();
+                },
+                error: function (xhr, status, error) {
+                    console.error("Ajax request failed:", error);
+                    $('#archiveModalMessage').text('Failed to archive announcement');
+                    $('#archiveModal').modal('hide');
+                    location.reload();
+                }
+            });
+        });
+    }
+
+    </script>
+
+     <!-- Add Modal -->
      <div class="modal fade" id="addModal" tabindex="-1" aria-hidden="true">
     <form id="addModalForm">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -176,50 +219,35 @@
                     <h5 class="modal-title" id="exampleModalLabel3">Add Announcement</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                            <div class="modal-body">
-                                <div class="form-group row">
-                                <div class="col-md-8">
-                                    <div class="mb-3">
-                                        <label for="announcement_type_id" class="form-label ps-2">Announcement Type</label>
-                                        <div class="form-check">
-                                            <?php foreach ($announcementtypelist as $announcementtypelistval): ?>
-                                                <input type="radio" name="announcement_type_id" id="announcement_type_id<?php echo $announcementtypelistval['announcement_type_id']; ?>" value="<?php echo $announcementType['announcement_type_id']; ?>">
-                                                <label class="form-check-label" for="announcement_type_id<?php echo $announcementtypelistval['announcement_type_id']; ?>">
-                                                    <?php echo $announcementtypelistval['announcement_type']; ?>
-                                                </label><br>
-                                            <?php endforeach; ?>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-2">
-                                    <div class="row mb-2">
-                        <div class="col-md-12" mb-2>
+                <div class="modal-body">
+                    <div class="row mb-2">
+                        <div class="col-md-12 mb-2">
                             <label for="xtitle" class="form-label">Title</label>
-                            <textarea class="form-control" id="title" rows="9"></textarea>
-                        </div>
-                    </div>   
-                    <div class="row mb-2">
-                        <div class="col-md-12" mb-2>
-                            <label for="xdescription" class="form-label">Description</label>
-                            <textarea class="form-control" id="description" rows="9"></textarea>
-                        </div>
-                    </div>   
-                    <div class="row mb-2">
-                        <div class="col-md-12" mb-2>
-                            <label for="xannouncement" class="form-label">Announcement</label>
-                            <textarea class="form-control" id="announcement" rows="9"></textarea>
-                        </div>
-                    </div>  
-                    <div class="row mb-2">
-                        <div class="col-md-12 mb-2" id="xupload_image">
-                            <label for="formFileAddFiles" class="form-label">Upload Image</label>
-                            <input class="form-control" type="file" id="upload_image" />
-
+                            <input type="text" id="title" class="form-control" placeholder="title" required/>
                         </div>
                     </div>
                     <div class="row mb-2">
                         <div class="col-md-12 mb-2">
-                            <label for="xexpired_date" class="form-label">Expiry Date</label>
-                            <input type="date" id="expired_date" class="form-control" placeholder="expired_date" />
+                            <label for="xannouncement_description" class="form-label">Description</label>
+                            <input type="text" id="announcement_description" class="form-control" placeholder="announcement_description" />
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-12 mb-2">
+                            <label for="xannouncement" class="form-label">Announcement</label>
+                            <input type="text" id="announcement" class="form-control" placeholder="announcement" />
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-12 mb-2" id="xUpload_image">
+                            <label for="formFileAddFiles" class="form-label">Upload Image</label>
+                            <input class="form-control" type="file" id="Upload_image" />
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-12 mb-2">
+                            <label for="xexpiry_date" class="form-label">Expiry Date</label>
+                            <input type="date" id="expiry_date" class="form-control" placeholder="expiry_date" />
                         </div>
                     </div>
                 </div>
@@ -228,6 +256,68 @@
                     <button type="button" class="btn btn-primary" onclick="addRecord()">Save changes</button>
                 </div>  
             </div>
+        </div>
+        </form>
     </div>
-    </body>
-    </html>
+     <!-- Update Modal -->
+     <div class="modal fade" id="updateModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel3">Update Announcement</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row mb-2">
+                        <div class="col-md-12 mb-2">
+                            <input type="hidden" id="xannouncement_id" class="form-control"/>
+                            <label for="titlee" class="form-label">Title</label>
+                            <input type="text" id="xtitle" class="form-control" placeholder="title" />
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-12 mb-2">
+                            <label for="xannouncement_description" class="form-label">Announcement Description</label>
+                            <input type="text" id="xannouncement_description" class="form-control" placeholder="announcement_description" />
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-12 mb-2">
+                            <label for="announcement" class="form-label">Announcement</label>
+                            <input type="text" id="announcement" class="form-control" placeholder="announcement" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="saveChanges()">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Archive Modal -->
+    <div class="modal fade" id="archiveModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="archiveModalTitle">Archive Announcement</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <h5 class="modal-title" id="modalToggleLabel">Are you sure you want to archive this Announcement</h5>
+                        <p id="announcementInfo"></p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="archiveModalSave">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+

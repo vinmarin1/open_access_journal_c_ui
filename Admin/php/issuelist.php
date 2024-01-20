@@ -26,14 +26,11 @@ include 'function/issue_function.php';
                 <table class="table table-striped" id="DataTable">
                     <thead>
                         <tr>
-                            <th>Issues ID</th>
+                            <th>ID</th>
                             <th>Volume</th>
                             <th>Number</th>
                             <th>Year</th>
                             <th>Title</th>
-                            <th>Description</th>
-                            <th>Cover Image</th>
-                            <th>Url Path</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -45,9 +42,6 @@ include 'function/issue_function.php';
                                 <td width="50%"><?php echo  $issueslistval->number; ?></td>
                                 <td width="50%"><?php echo  $issueslistval->year; ?></td>
                                 <td width="50%"><?php echo  $issueslistval->title; ?></td>
-                                <td width="50%"><?php echo  $issueslistval->description; ?></td>
-                                <td width="50%"><?php echo  $issueslistval->cover_image; ?>></td>
-                                <td width="50%"><?php echo  $issueslistval->url_path; ?></td>
                                 <td width="10%">
                                 <button type="button" class="btn btn-outline-success" onclick="updateModal(<?php echo $issueslistval->issues_id; ?>)">Update</button>
                                 <button type="button" class="btn btn-outline-danger" onclick="archiveIssue(<?php echo $issueslistval->issues_id; ?>, '<?php echo $issueslistval->volume; ?>', '<?php echo $issueslistval->title; ?>')">Archive</button>
