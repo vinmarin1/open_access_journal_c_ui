@@ -78,7 +78,7 @@ $announcementlist = get_announcement_list();
         formData.append('announcement_description', $('#announcement_description').val());
         formData.append('announcement', $('#announcement').val());
         formData.append('upload_image', $('#upload_image')[0].files[0]);
-        formData.append('expiry_date', $('#expiry_date').val());
+        formData.append('expired_date', $('#expired_date').val());
         formData.append('action', 'add');
 
         if (form.checkValidity()) {
@@ -147,7 +147,7 @@ $announcementlist = get_announcement_list();
             title: $('#xtitle').val(),
             announcement_description: $('#xannouncement_description').val(),
             announcement: $('#xannouncement').val(),
-            expiry_date: $('#xexpired_date').val(),
+            expired_date: $('#xexpired_date').val(),
         };
 
         $.ajax({
@@ -178,7 +178,7 @@ $announcementlist = get_announcement_list();
     function archiveIssue(announcement_id, title, announcement_description, announcement) {
         $('#archiveModal').modal('show');
         $('#archiveModalTitle').text('Archive Issue');
-        $('#announcementInfo').html('<strong>title:</strong> ' + title + ' <br><strong>announcement_description:</strong> ' + announcement_description + '<br><strong>ID:</strong> ' + announcement_id'<br><strong>announcement:</strong> ' + announcement);
+        $('#announcementInfo').html('<strong>title:</strong> ' + title + ' <br><strong>announcement_description:</strong> ' + announcement_description + '<br><strong>ID:</strong> ' + announcement_id);
 
         $('#archiveModalSave').off().on('click', function () {
             $('#sloading').toggle();
@@ -246,8 +246,8 @@ $announcementlist = get_announcement_list();
                     </div>
                     <div class="row mb-2">
                         <div class="col-md-12 mb-2">
-                            <label for="xexpiry_date" class="form-label">Expiry Date</label>
-                            <input type="date" id="expiry_date" class="form-control" placeholder="expiry_date" />
+                            <label for="xexpired_date" class="form-label">Expiry Date</label>
+                            <input type="date" id="expired_date" class="form-control" placeholder="expired_date" />
                         </div>
                     </div>
                 </div>
