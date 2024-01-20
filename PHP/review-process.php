@@ -144,10 +144,24 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                         ?>
                         </h4>
                         <div class="logs-date">                
-                            <p style="color: black; font-weight: bold;">Logs</p>
-                            <p style="font-weight: bold;">Review</p>
-                            <p style="font-size: x-small; margin-top: -15px; " >Send for review</p>
-                            <p style="font-weight: bold;">Submission</p>
+                            <p id="logsTitle" style="color: black; font-weight: bold;">Logs</p>
+                           
+                            <div class="log-entry"><br>
+                                <?php
+                                    $sqlLogs = "SELECT logs_article.type FROM logs_article JOIN article ON logs_article.article_id = article.article_id WHERE logs_article.article_id = :article_id";
+
+                                    $sqlRunLogs = database_run($sqlLogs, array('article_id' => $articleId));
+
+                                    if ($sqlRunLogs !== false){
+                                        foreach ($sqlRunLogs as $logsRow){
+                                            echo '<p class="logsArticle" style="display: block">' . $logsRow->type . '</p>';
+                                        }
+                                    }else{
+                                        echo 'no logs for this article';
+                                    }
+
+                                ?>
+                    </div>
                             <p style="font-size: x-small; margin-top: -15px; " >Submitted in the 
                         
                             <?php
@@ -172,8 +186,20 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                         </div>
                         <div class="date">
                             <p style="color: black; font-weight: bold;">Date</p>
-                            <p style="font-size: x-small;"><?php echo date('Y-m-d'); ?></p>
-                            <p style="margin-top:28px ; font-size: x-small;">2023-11-09</p>
+                            <?php
+                            $sqlLogsDate = "SELECT logs_article.date FROM logs_article JOIN article ON logs_article.article_id = article.article_id WHERE logs_article.article_id = :article_id";
+
+                            $sqlDateParams = database_run($sqlLogsDate, array('article_id' => $articleId));
+
+                            if ($sqlDateParams !== false){
+                                foreach ($sqlDateParams as $logsDate){
+                                    echo '<p style="display: block">' . $logsDate->date . '</p>';
+                                }
+                            }else{
+                                echo 'no logs for this article';
+                            }
+
+                        ?>
                         </div>
                     </div>
                 </div>

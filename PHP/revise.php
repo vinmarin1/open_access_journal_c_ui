@@ -15,19 +15,19 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 
 
-    $sqlRevise = "INSERT INTO article_revision_files(`article_id`, `author_id`, `file_type`, `file_name`, `fromuser`, `copyediting`)
-    VALUES(:article_id, :author_id, :file_type, :file_name, :fromuser, :copyediting)";
+    // $sqlRevise = "INSERT INTO article_revision_files(`article_id`, `author_id`, `file_type`, `file_name`, `fromuser`, `copyediting`)
+    // VALUES(:article_id, :author_id, :file_type, :file_name, :fromuser, :copyediting)";
 
-    $sqlParams = array(
-        'article_id' => $aritcleId,
-        'author_id' => $authorId,
-        'file_type' => 'File with no author',
-        'file_name' => 'www-file.docx',
-        'fromuser' => $userName,
-        'copyediting' => 1
-    );
+    // $sqlParams = array(
+    //     'article_id' => $aritcleId,
+    //     'author_id' => $authorId,
+    //     'file_type' => 'Title page',
+    //     'file_name' => 'www-file.docx',
+    //     'fromuser' => $userName,
+    //     'copyediting' => 1
+    // );
 
-    $sqlRun = database_run($sqlRevise, $sqlParams);
+    // $sqlRun = database_run($sqlRevise, $sqlParams);
 
     $sqlUpdate = "UPDATE article SET title = :title, abstract = :abstract WHERE article_id = :article_id";
 

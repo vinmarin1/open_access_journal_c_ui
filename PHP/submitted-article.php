@@ -29,7 +29,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 
 <div class="article-title">
   <!-- Header content like title and authors goes here -->
-  <form id="form">
+  <form id="form" action="revision-file.php" method="POST" enctype="multipart/form-data">
     <div class="main-title">
         <div class="breadcrumbs">
             Dashboard / Author / Submitted Articles <span id="title-validation" style="color: red">The title should be between 10 and 20 words in length</span>
@@ -309,22 +309,93 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
         </div>
     <div class="main3">
         <div class="comments-container">
-            <div class="table-header">Comments</div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Comment</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>For revision</td>
-                    </tr>
-                    <tr>
-                        <td>Comment Comment Comment Comment Comm...</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-header">Discussion</div>
+            <div class="discussion-container">
+            <?php
+$userId = $_SESSION['id'];    
+
+$sqlDiscussion = "SELECT * FROM discussion WHERE article_id = $articleId";
+$resultDiscussion = database_run($sqlDiscussion);
+
+if ($resultDiscussion !== false) {
+    foreach ($resultDiscussion as $rowDiscussion) {
+        // Output discussion button with a unique ID
+        echo '<button type="button" class="btn btn-secondary btn-sm" style="width: 100%; margin-top: 5px;" onclick="toggleDiscussion(' . $rowDiscussion->discussion_id . ')">' . $rowDiscussion->discussion_type . '</button>';
+
+        // Output discussion messages container with a unique ID and initially hide it
+        echo '<div id="discussion' . $rowDiscussion->discussion_id . '" style="display:none; width: 100%; height: auto; border: none; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; backround-color: #0066cc;">';
+
+        // Fetch discussion messages and sender names for the selected discussion
+        $discussionId = $rowDiscussion->discussion_id;
+        $sqlMessages = "SELECT discussion_message.userId, discussion_message.message, discussion_message.fromuser FROM discussion_message
+                        WHERE discussion_message.discussion_id = $discussionId";
+
+        $resultMessages = database_run($sqlMessages);
+
+        if ($resultMessages !== false) {
+            foreach ($resultMessages as $rowMessage) {
+                echo '<div>';
+                
+                // Check if the message is from the current user
+                if ($rowMessage->userId == $userId) {
+                    // Apply different style for the current user's message (right side)
+                    echo '<p style="font-weight: lighter; display: block; margin-left: 5px; background-color: #ECF0F1; color: black; width: 50%; margin-left: auto; border-radius: 30px 30px 0 0; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">' . $rowMessage->message . '</p>';
+                } else {
+                    // Apply style for other users' messages (left side)
+                    echo '<p style="font-weight: lighter; display: block; margin-top:5px; margin-left: 5px">' . $rowMessage->fromuser .'</p>';
+                    echo '<p style="font-weight: lighter; display: block; margin-top:5px; margin-left: 5px">'. 'Subject: ' . $rowDiscussion->subject . '</p>';
+                    echo '<p style="font-weight: lighter; display: block; margin-left: 5px; background-color: #ECF0F1; color: black; width: 50%; border-radius: 30px 30px 0 0; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">' . $rowMessage->message . '</p>';
+                }
+
+                echo '</div>';
+            }
+        } else {
+            echo '<p class="dmessageNtFound">Discussion messages not found</p>';
+        }
+
+        echo '<style>
+                      
+            #reply-message::-webkit-scrollbar {
+                display: none;
+            }
+        </style>';
+
+        echo '<div style="position: relative; margin-top: 10px; border: 1px solid #ccc; padding: 10px; border-radius: 5px;">';
+
+        // Textarea with a specific max-width, height, and disabled resize
+        // Inside your loop
+        echo '<textarea class="form-control" name="reply-message" id="reply-message-' . $discussionId . '" cols="10" rows="4" style="resize: none; max-width: 100%; height: 10vh; overflow-y: auto; padding-right: 80px;"></textarea>';
+
+        // Reply button inside the textarea, positioned at the lower-right bottom
+        echo '<button type="button" onclick="sendReply(' . $discussionId . ', ' . $articleId . ')" style="position: absolute; bottom: 15px; right: 15px; padding: 5px; background-color: #0066cc; color: #fff; border: none; border-radius: 3px; cursor: pointer;">Reply</button>';
+        echo '</hr>';
+        echo '</div>';
+        
+        echo '</div>';
+        
+    }
+} else {
+    echo '<p class="dmessageNtFound">No discussion for this article yet</p>';
+}
+?>
+
+
+
+
+<!-- <script>
+    // JavaScript function to toggle the visibility of discussion messages
+    function toggleDiscussion(discussionId) {
+        var discussionContainer = document.getElementById('discussion' + discussionId);
+        if (discussionContainer.style.display === 'none') {
+            discussionContainer.style.display = 'block';
+        } else {
+            discussionContainer.style.display = 'none';
+        }
+    }
+</script> -->
+
+
+            </div>
         </div>
         <div class="review-rubrics">
             <div class="section-header">Review Rubrics</div>

@@ -145,12 +145,16 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
+
 function submitData() {
   // Get data from <p> elements
   var title = document.getElementById('title').innerText;
   var abstract = document.getElementById('display-abstract').innerText;
   var articleId = document.getElementById('getArticleId').value; // Assuming you have an input field for articleId
-
+  showLoader();
+  setTimeout(function () {
+    window.location.href = '../PHP/submitted-article.php?id=' + articleId;
+  }, 1000);
   // Use AJAX to send data to the server
   var xhr = new XMLHttpRequest();
   xhr.open('POST', 'revise.php', true);
@@ -158,11 +162,10 @@ function submitData() {
   xhr.onreadystatechange = function () {
       if (xhr.readyState === 4 && xhr.status === 200) {
           
-          showLoader();
           console.log(xhr.responseText);
 
          // Redirect after the AJAX request is complete
-          window.location.href = '../PHP/author-dashboard.php';
+         window.location.href = '../PHP/submitted-article.php?id=' + articleId;
       }
   };
 
@@ -171,3 +174,38 @@ function submitData() {
  
   
 }
+
+
+function toggleDiscussion(discussionId) {
+  var discussionContainer = document.getElementById('discussion' + discussionId);
+  if (discussionContainer.style.display === 'none') {
+      discussionContainer.style.display = 'block';
+  } else {
+      discussionContainer.style.display = 'none';
+  }
+}
+
+
+function sendReply(discussionId, articleId) {
+  // Get the message from the corresponding textarea
+  var message = document.getElementById('reply-message-' + discussionId).value;
+  showLoader();
+  message.value = '';
+  setTimeout(function () {
+    window.location.href = '../PHP/submitted-article.php?id=' + articleId;
+  }, 1000);
+  // Perform an AJAX request to send the reply
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+      // Handle the response if needed
+      console.log(xhr.responseText);
+    }
+  };
+
+  xhr.open('POST', 'discussion-reply.php', true);
+  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  xhr.send('discussion_id=' + discussionId + '&article_id=' + articleId + '&message=' + encodeURIComponent(message));
+}
+
+
