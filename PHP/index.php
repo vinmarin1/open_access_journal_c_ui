@@ -44,8 +44,8 @@
     <div class="fluid-container">
       <div class="recommendation-article">
         <h4>Recently Published Articles</h4>
-        <div class="container-fluid p-2 d-flex flex-sm-column flex-xl-row justify-content-center">
-          <div id="popular-articles" class="articles-container p-2 col-sm-12 col-xl-7">
+        <div class="container-fluid p-2 d-flex flex-column flex-xl-row justify-content-center">
+          <div id="recently-added" class="articles-container p-2 col-sm-12 col-xl-7">
             <!-- fetch popular articles using api -->
           </div>
           <div class="divider "></div>
