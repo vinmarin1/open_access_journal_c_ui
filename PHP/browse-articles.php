@@ -32,10 +32,10 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
             <h4>Articles</h4>
         </div>
         <form action="" method="GET" class="search-form" id="search-form">
-            <div class="search-container d-flex align-items-center">
+            <div class="search-container d-flex flex-sm-row flex-column align-sm-items-center align-items-start gap-1">
                 <input list="articlesList" id="result" type="text" class="form-control me-2 py-3" placeholder="Search Articles..."
                     class="search-bar"
-                    style="width: 583px; height: 30px; font-style: italic; background-color: white;" />
+                    style="height: 30px; font-style: italic; background-color: white;" />
                     <!-- <datalist id="articlesList">
                        
                     </datalist> -->
@@ -143,41 +143,18 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 <div></div>
             </div>
             <hr style="border-top: 1px solid #ccc; margin: 10px 0;"> <!-- Add a horizontal line -->
-            <div id="articles" class="d-flex flex-column gap-2 mb-4 w-100">
+            <div id="articles" class="d-flex flex-column gap-2 mb-4 w-100 p-0 m-0">
 
             </div>
 
             <!-- Repeat for more articles -->
             <!-- Pagination -->
             <!-- Bootstrap Pagination -->
-            <nav aria-label="Page navigation">
-                <ul class="pagination justify-content-center" id="pagination-container">
-                    <!-- Display "Previous" link if not on the first page -->
-                    <li class="page-item">
-                        <a class="page-link" href="javascript:void(0);" onclick="changePage('previous')"
-                            aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-
+            <nav aria-label="Page navigation d-flex justify-items-center align-items-center w-100">
+                <ul class="pagination d-flex flex-wrap w-100" id="pagination-container">
                     <!-- Display page numbers -->
                     <li class="page-item"><a class="page-link" href="javascript:void(0);"
                             onclick="changePage(0)">1</a></li>
-                    <li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="changePage(1)">2</a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="changePage(2)">3</a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="changePage(3)">4</a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="changePage(4)">5</a>
-                    </li>
-          
-          
-                    <!-- Display "Next" link if not on the last page -->
-                    <li class="page-item">
-                        <a class="page-link" href="javascript:void(0);" onclick="changePage('next')" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
                     </li>
                 </ul>
             </nav>
