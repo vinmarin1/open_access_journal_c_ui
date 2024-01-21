@@ -65,7 +65,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
             <h4 style="color: #0858a4;"><b><span id="total"></span></b></h4>
             <hr style="border-top: 1px solid #ccc; margin: 10px 0;"> 
             <!-- Filters Here -->
-            <div class="journal-preview d-flex flex-row flex-lg-column">
+            <div class="journal-preview flex-row flex-lg-column">
                 <div>
                 <img />
                 <h2 class="journal"></h2>
