@@ -106,7 +106,7 @@
                             <input type="hidden" name="currency_code" value="PHP">
                             <input type="hidden" name="no_shipping" value="1">
                             <input type="hidden" name="cmd" value="_xclick">
-                            <input type="hidden" name="return" value="https://openaccessjournalcui-production.up.railway.app/open_access_journal_c_ui/PHP/success.php">
+                            <input type="hidden" name="return" value="https://openaccessjournalcui-production.up.railway.app/PHP/success.php">
                             <input type="hidden" name="cancel_return" value="https://openaccessjournalcui-production.up.railway.app/PHP/donation.php">
 
                             <!---- Step 1 ------>
