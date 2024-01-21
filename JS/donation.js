@@ -14,7 +14,7 @@ x[n].style.display = "block";
     fixStepIndicator(n)
 }
 
-function nextPrev(n) {
+function donate(n) {
 
     var x = document.getElementsByClassName("tab");
 

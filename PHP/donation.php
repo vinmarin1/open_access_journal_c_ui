@@ -270,7 +270,7 @@
                         </div>
 
                         <div class="col-md-12 donate" style="float:right;">
-                            <button type="button" id="donateBtn" onclick="nextPrev(1)" style="font-size: 25px;">DONATE</button>
+                            <button type="button" id="donateBtn" onclick="donate(1)" style="font-size: 25px;">DONATE</button>
                         </div>
 
                     </div>
