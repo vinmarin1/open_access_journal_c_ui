@@ -128,7 +128,6 @@ function generateJournalPreview(journal) {
   journalPreview.querySelector("h2").innerHTML= journal.journal
   journalPreview.querySelector(".issn").querySelector("span").innerHTML = `2071-1050 (Online)`
   journalPreview.querySelector(".date").querySelector("span").innerHTML =   new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric' }).format(new Date(journal.date_added))
-  journalPreview.querySelector(".board").querySelector("span").innerHTML = journal.editorial
   journalPreview.querySelector(".info").querySelector("span").innerHTML = journal.description
 }
 
