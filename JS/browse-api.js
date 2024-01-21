@@ -391,7 +391,8 @@ async function fetchData(input, dates,sort, currentPage = 0) {
       .slice(currentPage * noOfItems, noOfItems * (currentPage + 1))
       .forEach((item) => {
         const articleDiv = document.createElement("div");
-        articleDiv.classList.add("articles");
+        articleDiv.classList.add("articles", "d-flex", "flex-column", "flex-md-row");
+
         articleDiv.addEventListener("click", () =>
           navigateToArticle(item.article_id)
         );
@@ -412,21 +413,21 @@ async function fetchData(input, dates,sort, currentPage = 0) {
         }
         articleDiv.innerHTML = `
         <div class="article-details">
-        <h6 style="color: #0858a4;"><strong>${item.title} - (${
-          
-          new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric' }).format(new Date(item.publication_date))
-        })</strong></h6>
-        <p style="color: #454545;">${item.abstract.slice(0, 200)} </p>
-        <div class="keywords">
-        ${keywordsHTML}
-        </div>
-        ${
-          item.article_contains[0] != ""
-            ? `Terms found:  ${item.article_contains.join(", ")}`
-            : ""
-        }
-    </div>
-    <div class="article-stats">
+          <h6 style="color: #0858a4;"><strong>${item.title} - (${
+            
+            new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric' }).format(new Date(item.publication_date))
+          })</strong></h6>
+         <p style="color: #454545;">${item.abstract.slice(0, 200)} </p>
+          <div class="keywords">
+          ${keywordsHTML}
+          </div>
+          ${
+            item.article_contains[0] != ""
+              ? `Terms found:  ${item.article_contains.join(", ")}`
+              : ""
+          }
+      </div>
+      <div class="article-stats">
         <div class="stats-container">
             <div class="view-download">
                 <p class="stats-value" style="color: #0858a4;">${
