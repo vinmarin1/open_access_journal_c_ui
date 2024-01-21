@@ -1,0 +1,142 @@
+
+main {
+    padding: 0.5em 8%;
+}
+aside, .main {
+    padding: 2%;
+}
+aside {
+    flex: 1;
+}
+.main {
+    flex: 4;
+}
+
+#faqs-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+#faqs-container .header{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+}
+
+#faqs-container .content{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap:2em;
+}
+#faqs-container h3,
+#faqs-container h4 {
+    color: #285581;
+    font-family: Inter !important;
+}
+
+#faqs-container h2{ 
+    color: #285581;
+    font-size: 20px;
+    font-weight: 700; 
+}
+
+
+#faqs-container h3 {
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 1em;
+
+}
+
+#faqs-container h4 {
+    font-size: 16px;
+    font-weight: 600;
+
+}
+
+.menu h3 {
+    color: #285581;
+    font-family: Judson;
+    font-size: 16px;
+    font-weight: 600;
+
+}
+
+#for-contributors-menu ul li {
+    color: #285581;
+    font-family: Judson;
+    font-weight: 400; 
+    list-style: none;
+}
+#for-contributors-menu ul {
+    padding: 0 ;
+}
+
+/* SEARCH CSS START*/
+#search-input{
+    width: 100%;
+    display: flex;
+}
+
+#search-input input:focus,
+#search-input input:hover,
+#search-input input:active,
+#search-input input {
+    outline: none !important;
+    border: 0 !important;
+    border-radius: 4px;
+    border: 1px solid #D8D8D8;
+    background: #FFF;
+    box-shadow: none !important; 
+}
+
+#search-input button {
+    border-radius: 2px;
+    border: 1px solid #E56F1F;
+    background: #E56F1F;
+    padding: 0.5em 1em;
+    color: #FFF;
+    text-align: center;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+/* ACCORDION CSS START */
+.faq .accordion-item {
+    gap:0 !important;
+}
+.faq .accordion-body {
+    font-family: Inter;
+    font-size: 14px; 
+    font-weight: 400 !important;
+}
+
+.faq .accordion-button {
+    color: #0880E8 !important;
+    background-color: #F7FCFF !important;
+    display: flex;
+    font-weight: 700;
+    border-bottom: none;
+    
+  }
+  
+.faq .accordion-button:not(.collapsed) {
+    box-shadow: none;
+}
+.faq .collapsed {
+    color: #285581 !important;
+    background-color: white !important;
+}
+.faq .show {
+    background-color: #F7FCFF !important;
+}
+.faq .accordion-body {
+    padding-left: 3em;
+}

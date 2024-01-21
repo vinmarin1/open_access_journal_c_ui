@@ -17,9 +17,9 @@ require 'dbcon.php';
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg p-0" id="navbar-container" >
-  <div class="container-fluid d-flex flex-row-reverse  py-1">
-    <button class="small btn btn-white navbar-toggle " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="background-color: white; margin-left:8%">
+<nav class="navbar navbar-expand-lg p-0" id="navbar-container">
+  <div class="container-fluid">
+    <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -45,8 +45,14 @@ require 'dbcon.php';
         <li class="nav-item">
           <a class="nav-link" href="announcement.php">Announcements</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="announcement.php">Guidelines</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="about.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Guidelines
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" style="color: black" href="#">Tutorial</a></li>
+            <li><a class="dropdown-item" style="color: black" href="./faqs.php">Frequently Asked Questions</a></li>
+          </ul>
         </li>
       </ul>
  
@@ -159,7 +165,7 @@ require 'dbcon.php';
       </form> 
       <hr>
     </div>
-
+      </div>
   </div>
 </nav>
 <!-- 

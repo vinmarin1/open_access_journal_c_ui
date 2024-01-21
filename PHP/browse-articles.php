@@ -65,24 +65,21 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
             <h4 style="color: #0858a4;"><b><span id="total"></span></b></h4>
             <hr style="border-top: 1px solid #ccc; margin: 10px 0;"> 
             <!-- Filters Here -->
-            <div class="journal-preview">
+            <div class="journal-preview flex-row flex-lg-column">
+                <div>
                 <img />
                 <h2 class="journal"></h2>
+                </div>
+            
                 <ul>
+                    
+
                     <li class="issn">
                         <h3>ISSN (online)</h3>
                         <span></span>
                     </li>
                     <li class="date">
                         <h3>Online Date Start</h3>
-                        <span></span>
-                    </li>
-                    <li class="copyright">
-                        <h3>Copyright Holder</h3>
-                        <span></span>
-                    </li>
-                    <li class="board">
-                        <h3>Editorial Board</h3>
                         <span></span>
                     </li>
                     <li class="info">
@@ -95,18 +92,24 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
 
             </div>
             <hr style="border-top: 1px solid #ccc; margin: 10px 0;"> <!-- Add a horizontal line -->
+     
             <div class="filters">
-                <h5 style="color: #0858a4;">Filter search results</h5>
+                <h4 class="btn collapsed p-0" style="color: #0858a4;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFilters" aria-expanded="false" aria-controls="collapseFilters">
+                    Filter search results
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="7" viewBox="0 0 16 7"><path fill="currentColor" d="M8 6.5a.47.47 0 0 1-.35-.15l-4.5-4.5c-.2-.2-.2-.51 0-.71c.2-.2.51-.2.71 0l4.15 4.15l4.14-4.14c.2-.2.51-.2.71 0c.2.2.2.51 0 .71l-4.5 4.5c-.1.1-.23.15-.35.15Z"/></svg>
+                </h4>
                 <!-- Journals, Year Published, etc. -->
-                <div class="checkbox-container">
-                    <h5 class="mb-2" style="color: #959595;"><b>JOURNALS</b></h5>
-                    <div id="journals-container" class="d-flex flex-column">
-         
+                <div class="collapse show" id="collapseFilters">
+                    <div class="checkbox-container">
+                        <h5 class="mb-2" style="color: #959595;"><b>JOURNALS</b></h5>
+                        <div id="journals-container" class="d-flex flex-row flex-lg-column flex-wrap gap-2">
+            
+                        </div>
                     </div>
-                </div>
-                <div class="checkbox-container">
-                    <h5 class="mb-2" style="color: #959595;"><b>YEAR PUBLISHED</b></h5>
-                    <div id="years-container" class="d-flex flex-column">
+                    <div class="checkbox-container">
+                        <h5 class="mb-2" style="color: #959595;"><b>YEAR PUBLISHED</b></h5>
+                        <div id="years-container" class="d-flex flex-row flex-lg-column flex-wrap gap-2">
+                        </div>
                     </div>
                 </div>
             </div>
