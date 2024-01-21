@@ -90,18 +90,15 @@ function handleCustomAmountSubmit() {
 }
 
 function selectAmount(amount) {
-    // Remove the "clicked" class from all buttons
+
     document.querySelectorAll('.amountBtn button').forEach(function (btn) {
         btn.classList.remove('clicked');
     });
 
-    // Add the "clicked" class to the clicked button
     event.currentTarget.classList.add('clicked');
 
-    // Calculate the equivalent heart points based on the selected amount
     calculateAndDisplay(amount);
 
-    // Set the selected amount in the hidden input field
     document.getElementById('amount').value = amount;
 
 }
