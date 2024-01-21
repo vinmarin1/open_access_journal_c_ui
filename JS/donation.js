@@ -37,7 +37,7 @@ function validateForm() {
 
     var x, y, i, valid = true;
     x = document.getElementsByClassName("tab");
-    y = x[currentTab].getElementsByTagName("");
+    y = x[currentTab].getElementsByTagName("input");
     
     for (i = 0; i < y.length; i++) {
         if (y[i].value == "") {
