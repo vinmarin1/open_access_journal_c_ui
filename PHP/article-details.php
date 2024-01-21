@@ -66,31 +66,12 @@
   <div class="fluid-container">
     <div class="recommendation-article" style="background-color: white;" >
       <h4>Popular Articles This Month</h4>
-      <div class="d-flex container flex-wrap gap-4 justify-content-between">
-        <div id="popular-articles" class="articles-container col-sm-12 col-lg-7">
+    
+        <div id="popular-monthly" class="articles-container">
           <!-- fetch popular articles using api -->
         </div>
-        <div class="divider "></div>
-        <div class="col-sm-12 col-lg-4 d-flex flex-column gap-2" id="most-downloaded">
-          <h6 class="text-lg mb-2">
-            <select
-              class="form-select"
-              id="sort-select"
-            >
-              <option value="total_interactions" selected>Most Popular (All)</option>
-              <option value="total_reads">Most Viewed</option>
-              <option value="total_downloads">Most Downloaded</option>
-              <option value="total_citations">Most Cited</option>
-            </select>
-          
-          
-          </h6>
-          <div id="most-popular">
 
-          </div>
-          
-        </div>
-      </div>
+  
     </div>
   </div>
 
@@ -125,7 +106,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="../JS/reusable-header.js"></script>
   <script src="../JS/home-recommended-api.js"></script>
-  <!-- <script src="../JS/home-monthly-api.js"></script> -->
+  <script src="../JS/home-monthly-api.js"></script>
   <script src="../JS/article-details-api.js"></script>
 </body>
 

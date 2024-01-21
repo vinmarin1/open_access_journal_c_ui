@@ -7,13 +7,14 @@ function navigateToArticle(articleId){
 
 async function fetchData() {
   try {
-    const response = await fetch('https://web-production-cecc.up.railway.app/api/articles/?sort=recently-added', {
+    const response = await fetch('https://web-production-cecc.up.railway.app/api/recommendations/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        "period": ""
+        "period": "",
+        "category": "publication_date"
       })
     });
     
@@ -26,10 +27,10 @@ async function fetchData() {
 
     console.log('API Response:', data);
 
-    const articlesContainer = document.querySelector('#popular-articles');
+    const articlesContainer = document.querySelector('#recently-added');
     
 
-    data.results.splice(0,10).forEach(item => {
+    data.recommendations.splice(0,10).forEach(item => {
       const articleDiv = document.createElement('div');
       articleDiv.classList.add('article');
       articleDiv.addEventListener('click', () => navigateToArticle(item.article_id));
@@ -43,7 +44,7 @@ async function fetchData() {
         <p class="h6" id="title">${item.title}</p>
         <div class="article-info">
           <p class="info" id="category">${item.journal || 'No Journal'}</p>
-          <p class="">${new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric' }).format(new Date(item.date_added))}</p>
+          <p class="">${new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric' }).format(new Date(item.publication_date))}</p>
         </div>
         <p class="article-content" id="abstract">${item.abstract.slice(0,100)}...</p>
         <button class="btn btn-primary btn-md btn-article" style="border: 2px #0858a4 solid; background-color: transparent; border-radius: 20px; color: #0858a4; width: 100%;">Read Article</button>

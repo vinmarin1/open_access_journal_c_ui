@@ -23,7 +23,7 @@
   <nav class="navigation-menus-container" id="navigation-menus-container">
   </nav>
 
-  <div class="main-content">
+  <div class="main-content" id="home">
     <div class="content-over">
       <div class="cover-content">
         <p>Quezon City University’s Journals</p>
@@ -44,8 +44,8 @@
     <div class="fluid-container">
       <div class="recommendation-article">
         <h4>Recently Published Articles</h4>
-        <div class="container-fluid p-2 d-flex flex-sm-column flex-xl-row justify-content-center">
-          <div id="popular-articles" class="articles-container p-2 col-sm-12 col-xl-7">
+        <div class="container-fluid p-2 d-flex flex-column flex-xl-row justify-content-center">
+          <div id="recently-added" class="articles-container p-2 col-sm-12 col-xl-7">
             <!-- fetch popular articles using api -->
           </div>
           <div class="divider "></div>
@@ -75,24 +75,24 @@
     <!-- <hr style="height: 2px; background-color: #0858a4; width: 100%"> -->
 
     <?php
-  if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-    echo '
-      <div class="fluid-container">
-      <div class="recommendation-article">
-      <h4>Tailored for You: Recommended Articles Based on Your Interactions</h4>
-        <div id="recommendations" class="articles-container">
+    if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+      echo '
+        <div class="fluid-container">
+        <div class="recommendation-article">
+        <h4>Tailored for You: Recommended Articles Based on Your Interactions</h4>
+          <div id="recommendations" class="articles-container">
+          </div>
+          </div>
         </div>
-        </div>
-      </div>
-    
-      '; 
-  } 
-  ?>
+      
+        '; 
+    } 
+    ?>
 
     <div class="fluid-container mb-3 qoaj">
       <div class="About-container ">
         <div class="ab-qoaj-left">
-          <h4 class="mb-3">About QOAJ</h2>
+          <h4 class="mb-3">About QCUJ</h2>
             <p class="description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis distinctio, debitis
               sed dolores iste, deserunt perspiciatis ducimus odio aliquam facere illo, quasi temporibus aut sint est
               mollitia saepe omnis amet?</p>
@@ -100,7 +100,7 @@
               sed dolores iste, deserunt perspiciatis ducimus odio aliquam facere illo, quasi temporibus aut sint est
               mollitia saepe omnis amet?</p>
             <br>
-            <button style="background-color: #E56F1F;" class="btn btn-md mt-1">Read More</button>
+            <a href="#features-container"><button style="background-color: #E56F1F;" class="btn btn-md mt-1">See Features</button></a>
             <br>
         </div>
 
@@ -133,8 +133,7 @@
     </div>
 
     <div class="fluid-container">
-      <div class="recommendation-container">
-
+      <section id="features-container">
         <div class="row gy-8 gx-md-8 gy-lg-2 gx-xxl-5 justify-content-center">
           <div class="col-11 col-sm-6 col-lg-4 mb-4">
             <div class="badge  p-3 mb-4">
@@ -281,99 +280,184 @@
 
         </div>
 
+      </section>
+
+    </div>
+    <section id="procedure-container">
+      <header>
+        <h2>Publication Procedure</h2>
+        <span>Follow this step and publish your research</span>
+      </header>
+      <div class="procedures flex-md-row flex-column">
+        <div class="procedure ">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="14" stroke-dashoffset="14" d="M6 19h12"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.5s" dur="0.4s" values="14;0"/></path><path stroke-dasharray="18" stroke-dashoffset="18" d="M12 15 h2 v-6 h2.5 L12 4.5M12 15 h-2 v-6 h-2.5 L12 4.5"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.4s" values="18;0"/></path></g></svg>
+          </div>
+          <h4 class="title">Submit Paper Online</h4>
+          <div class="description">
+            <p>Step 1: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          </div>
+        </div>
+        <div class="procedure">
+          <div class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="M6 15.8L7.143 17L10 14M6 8.8L7.143 10L10 7"/><path d="M13 9h5m-5 7h5m4-4c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12s0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464c.974.974 1.3 2.343 1.41 4.536"/></g></svg>
+          </div>
+          <h4 class="title">Peer Review Process</h4>
+          <div class="description">
+            <p>Step 2: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          </div>
+        </div>
+        <div class="procedure">
+          <div class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M3 13.5a.5.5 0 0 1-.5-.5V3a.5.5 0 0 1 .5-.5h9.25a.75.75 0 0 0 0-1.5H3a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9.75a.75.75 0 0 0-1.5 0V13a.5.5 0 0 1-.5.5zm12.78-8.82a.75.75 0 0 0-1.06-1.06L9.162 9.177L7.289 7.241a.75.75 0 1 0-1.078 1.043l2.403 2.484a.75.75 0 0 0 1.07.01z" clip-rule="evenodd"/></svg>
+          </div>
+          <h4 class="title">Accepted Paper</h4>
+          <div class="description">
+            <p>Step 3: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          </div>
+        </div>
+        <div class="procedure">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 1024 1024"><path fill="currentColor" d="M688 312v-48c0-4.4-3.6-8-8-8H296c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h384c4.4 0 8-3.6 8-8m-392 88c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h184c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8zm376 116c-119.3 0-216 96.7-216 216s96.7 216 216 216s216-96.7 216-216s-96.7-216-216-216m107.5 323.5C750.8 868.2 712.6 884 672 884s-78.8-15.8-107.5-44.5C535.8 810.8 520 772.6 520 732s15.8-78.8 44.5-107.5C593.2 595.8 631.4 580 672 580s78.8 15.8 107.5 44.5C808.2 653.2 824 691.4 824 732s-15.8 78.8-44.5 107.5M761 656h-44.3c-2.6 0-5 1.2-6.5 3.3l-63.5 87.8l-23.1-31.9a7.92 7.92 0 0 0-6.5-3.3H573c-6.5 0-10.3 7.4-6.5 12.7l73.8 102.1c3.2 4.4 9.7 4.4 12.9 0l114.2-158c3.9-5.3.1-12.7-6.4-12.7M440 852H208V148h560v344c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8V108c0-17.7-14.3-32-32-32H168c-17.7 0-32 14.3-32 32v784c0 17.7 14.3 32 32 32h272c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8"/></svg>
+          </div>
+          <h4 class="title">Paper Published</h4>
+          <div class="description">
+            <p>Step 4: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          </div>
+        </div>
       </div>
-
-    </div>
-
-    <!-- <div class="container-fluid">
-<h4 class="plans">QOAJ PLANS</h2>
-  <div class="ex-journal">
-
-  <div class="example-journal">
-  <div class="plans-inside">
-    <h3><b>Basic</b></h3>
-    <br>
-    <hr style="height: 2px; background-color: #0858a4; width: 100%">
-    <div style="display: flex; align-items: center; margin-bottom: 20px">
-      <i style="color: green; margin-right: 30px; margin-left: 60px" class="fa-solid fa-check"></i>
-      <p style="margin: 0;" class="text-xs">Full access to view abstracts <br>for all articles.</p>
-    </div>
-    <div style="display: flex; align-items: center;">
-      <i style="color: green; margin-right: 30px; margin-left: 60px" class="fa-solid fa-check"></i>
-      <p style="margin: 0;" class="text-xs">Access to monthly popular <br>articles.</p>
-    </div>
+    </section>
+    <section id="quick-links-container">
+      <header>
+        <h2>Quick Links</h2>
+      </header>
+      <div class="quick-links">
+        <a href="#" class="quick-link">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M1 6.5A3.5 3.5 0 0 1 4.5 3h4a3.5 3.5 0 0 1 3.469 3.031a3.537 3.537 0 0 1-.122 1.499A3.502 3.502 0 0 1 8.5 10h-.75a.75.75 0 0 1 0-1.5h.75a2 2 0 1 0 0-4h-4a2 2 0 0 0-1.262 3.552a4.494 4.494 0 0 0-.235 1.613A3.5 3.5 0 0 1 1 6.5m8 .25a.75.75 0 0 1-.75.75H7.5a2 2 0 1 0 0 4h4a2 2 0 0 0 1.263-3.551a4.495 4.495 0 0 0 .235-1.613A3.5 3.5 0 0 1 11.5 13h-4a3.5 3.5 0 1 1 0-7h.75a.75.75 0 0 1 .75.75"/></svg>
+          </div>
+          <div class="title">
+            <h4>Check Paper Status</h4>
+          </div>
+        </a>
+        <a href="#" class="quick-link">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M1 6.5A3.5 3.5 0 0 1 4.5 3h4a3.5 3.5 0 0 1 3.469 3.031a3.537 3.537 0 0 1-.122 1.499A3.502 3.502 0 0 1 8.5 10h-.75a.75.75 0 0 1 0-1.5h.75a2 2 0 1 0 0-4h-4a2 2 0 0 0-1.262 3.552a4.494 4.494 0 0 0-.235 1.613A3.5 3.5 0 0 1 1 6.5m8 .25a.75.75 0 0 1-.75.75H7.5a2 2 0 1 0 0 4h4a2 2 0 0 0 1.263-3.551a4.495 4.495 0 0 0 .235-1.613A3.5 3.5 0 0 1 11.5 13h-4a3.5 3.5 0 1 1 0-7h.75a.75.75 0 0 1 .75.75"/></svg>
+          </div>
+          <div class="title">
+            <h4>Publication Guidelines</h4>
+          </div>
+        </a>
+        <a href="#" class="quick-link">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M1 6.5A3.5 3.5 0 0 1 4.5 3h4a3.5 3.5 0 0 1 3.469 3.031a3.537 3.537 0 0 1-.122 1.499A3.502 3.502 0 0 1 8.5 10h-.75a.75.75 0 0 1 0-1.5h.75a2 2 0 1 0 0-4h-4a2 2 0 0 0-1.262 3.552a4.494 4.494 0 0 0-.235 1.613A3.5 3.5 0 0 1 1 6.5m8 .25a.75.75 0 0 1-.75.75H7.5a2 2 0 1 0 0 4h4a2 2 0 0 0 1.263-3.551a4.495 4.495 0 0 0 .235-1.613A3.5 3.5 0 0 1 11.5 13h-4a3.5 3.5 0 1 1 0-7h.75a.75.75 0 0 1 .75.75"/></svg>
+          </div>
+          <div class="title">
+            <h4>Reviewer Guidelines</h4>
+          </div>
+        </a>
+        <a href="#" class="quick-link">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M1 6.5A3.5 3.5 0 0 1 4.5 3h4a3.5 3.5 0 0 1 3.469 3.031a3.537 3.537 0 0 1-.122 1.499A3.502 3.502 0 0 1 8.5 10h-.75a.75.75 0 0 1 0-1.5h.75a2 2 0 1 0 0-4h-4a2 2 0 0 0-1.262 3.552a4.494 4.494 0 0 0-.235 1.613A3.5 3.5 0 0 1 1 6.5m8 .25a.75.75 0 0 1-.75.75H7.5a2 2 0 1 0 0 4h4a2 2 0 0 0 1.263-3.551a4.495 4.495 0 0 0 .235-1.613A3.5 3.5 0 0 1 11.5 13h-4a3.5 3.5 0 1 1 0-7h.75a.75.75 0 0 1 .75.75"/></svg>
+          </div>
+          <div class="title">
+            <h4>Paper Sample Format</h4>
+          </div>
+        </a>
+        <a href="#" class="quick-link">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M1 6.5A3.5 3.5 0 0 1 4.5 3h4a3.5 3.5 0 0 1 3.469 3.031a3.537 3.537 0 0 1-.122 1.499A3.502 3.502 0 0 1 8.5 10h-.75a.75.75 0 0 1 0-1.5h.75a2 2 0 1 0 0-4h-4a2 2 0 0 0-1.262 3.552a4.494 4.494 0 0 0-.235 1.613A3.5 3.5 0 0 1 1 6.5m8 .25a.75.75 0 0 1-.75.75H7.5a2 2 0 1 0 0 4h4a2 2 0 0 0 1.263-3.551a4.495 4.495 0 0 0 .235-1.613A3.5 3.5 0 0 1 11.5 13h-4a3.5 3.5 0 1 1 0-7h.75a.75.75 0 0 1 .75.75"/></svg>
+          </div>
+          <div class="title">
+            <h4>Certification</h4>
+          </div>
+        </a>
+        <a href="#" class="quick-link">
+          <div class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M1 6.5A3.5 3.5 0 0 1 4.5 3h4a3.5 3.5 0 0 1 3.469 3.031a3.537 3.537 0 0 1-.122 1.499A3.502 3.502 0 0 1 8.5 10h-.75a.75.75 0 0 1 0-1.5h.75a2 2 0 1 0 0-4h-4a2 2 0 0 0-1.262 3.552a4.494 4.494 0 0 0-.235 1.613A3.5 3.5 0 0 1 1 6.5m8 .25a.75.75 0 0 1-.75.75H7.5a2 2 0 1 0 0 4h4a2 2 0 0 0 1.263-3.551a4.495 4.495 0 0 0 .235-1.613A3.5 3.5 0 0 1 11.5 13h-4a3.5 3.5 0 1 1 0-7h.75a.75.75 0 0 1 .75.75"/></svg>
+          </div>
+          <div class="title">
+            <h4>Donate to Support</h4>
+          </div>
+        </a>
+      </div>
+    </section>
+    <section id="faqs-container">
+      <header>
+        <h2>Frequently Asked Questions</h2>
+        <span>For a comprehensive list, visit our dedicated <a href="">FAQ page.</a></span>
+      </header>
+      <div class="faqs accordion accordion-flush w-100 d-flex flex-column gap-3">
+        <div class="faq accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 15 15"><path fill="#e56f1f" fill-rule="evenodd" d="M.877 7.5a6.623 6.623 0 1 1 13.246 0a6.623 6.623 0 0 1-13.246 0M7.5 1.827a5.673 5.673 0 1 0 0 11.346a5.673 5.673 0 0 0 0-11.346m.75 8.673a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0m-2.2-4.25c0-.678.585-1.325 1.45-1.325s1.45.647 1.45 1.325c0 .491-.27.742-.736 1.025c-.051.032-.111.066-.176.104a5.28 5.28 0 0 0-.564.36c-.242.188-.524.493-.524.961a.55.55 0 0 0 1.1.004a.443.443 0 0 1 .1-.098c.102-.079.215-.144.366-.232c.078-.045.167-.097.27-.159c.534-.325 1.264-.861 1.264-1.965c0-1.322-1.115-2.425-2.55-2.425c-1.435 0-2.55 1.103-2.55 2.425a.55.55 0 0 0 1.1 0" clip-rule="evenodd"/></svg>
+              <span>How do I submit my article?</span>
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <strong>This is the first item's accordion body.</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+            </div>
+          </div>
+        </div>
+        <div class="faq accordion-item">
+          <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 15 15"><path fill="#e56f1f" fill-rule="evenodd" d="M.877 7.5a6.623 6.623 0 1 1 13.246 0a6.623 6.623 0 0 1-13.246 0M7.5 1.827a5.673 5.673 0 1 0 0 11.346a5.673 5.673 0 0 0 0-11.346m.75 8.673a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0m-2.2-4.25c0-.678.585-1.325 1.45-1.325s1.45.647 1.45 1.325c0 .491-.27.742-.736 1.025c-.051.032-.111.066-.176.104a5.28 5.28 0 0 0-.564.36c-.242.188-.524.493-.524.961a.55.55 0 0 0 1.1.004a.443.443 0 0 1 .1-.098c.102-.079.215-.144.366-.232c.078-.045.167-.097.27-.159c.534-.325 1.264-.861 1.264-1.965c0-1.322-1.115-2.425-2.55-2.425c-1.435 0-2.55 1.103-2.55 2.425a.55.55 0 0 0 1.1 0" clip-rule="evenodd"/></svg>  
+            <span>Is there a publication fee associated with submitting to QOAJ?</span>
+            </button>
+          </h2>
+          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+            </div>
+          </div>
+        </div>
+        <div class="faq accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseOne">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 15 15"><path fill="#e56f1f" fill-rule="evenodd" d="M.877 7.5a6.623 6.623 0 1 1 13.246 0a6.623 6.623 0 0 1-13.246 0M7.5 1.827a5.673 5.673 0 1 0 0 11.346a5.673 5.673 0 0 0 0-11.346m.75 8.673a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0m-2.2-4.25c0-.678.585-1.325 1.45-1.325s1.45.647 1.45 1.325c0 .491-.27.742-.736 1.025c-.051.032-.111.066-.176.104a5.28 5.28 0 0 0-.564.36c-.242.188-.524.493-.524.961a.55.55 0 0 0 1.1.004a.443.443 0 0 1 .1-.098c.102-.079.215-.144.366-.232c.078-.045.167-.097.27-.159c.534-.325 1.264-.861 1.264-1.965c0-1.322-1.115-2.425-2.55-2.425c-1.435 0-2.55 1.103-2.55 2.425a.55.55 0 0 0 1.1 0" clip-rule="evenodd"/></svg>
+              <span>How much time to take publish the single research paper?</span>
+            </button>
+          </h2>
+          <div id="collapseThree" class="accordion-collapse collapse " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+            <div class="accordion-body ">
+              <strong>This is the first item's accordion body.</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+            </div>
+          </div>
+        </div>
+        <div class="faq accordion-item">
+          <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseTwo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 15 15"><path fill="#e56f1f" fill-rule="evenodd" d="M.877 7.5a6.623 6.623 0 1 1 13.246 0a6.623 6.623 0 0 1-13.246 0M7.5 1.827a5.673 5.673 0 1 0 0 11.346a5.673 5.673 0 0 0 0-11.346m.75 8.673a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0m-2.2-4.25c0-.678.585-1.325 1.45-1.325s1.45.647 1.45 1.325c0 .491-.27.742-.736 1.025c-.051.032-.111.066-.176.104a5.28 5.28 0 0 0-.564.36c-.242.188-.524.493-.524.961a.55.55 0 0 0 1.1.004a.443.443 0 0 1 .1-.098c.102-.079.215-.144.366-.232c.078-.045.167-.097.27-.159c.534-.325 1.264-.861 1.264-1.965c0-1.322-1.115-2.425-2.55-2.425c-1.435 0-2.55 1.103-2.55 2.425a.55.55 0 0 0 1.1 0" clip-rule="evenodd"/></svg>  
+            <span>How can authors track the status of their submitted manuscripts throughout the review process?</span>
+            </button>
+          </h2>
+          <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+            </div>
+          </div>
+        </div>
+        <div class="faq accordion-item">
+          <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 15 15"><path fill="#e56f1f" fill-rule="evenodd" d="M.877 7.5a6.623 6.623 0 1 1 13.246 0a6.623 6.623 0 0 1-13.246 0M7.5 1.827a5.673 5.673 0 1 0 0 11.346a5.673 5.673 0 0 0 0-11.346m.75 8.673a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0m-2.2-4.25c0-.678.585-1.325 1.45-1.325s1.45.647 1.45 1.325c0 .491-.27.742-.736 1.025c-.051.032-.111.066-.176.104a5.28 5.28 0 0 0-.564.36c-.242.188-.524.493-.524.961a.55.55 0 0 0 1.1.004a.443.443 0 0 1 .1-.098c.102-.079.215-.144.366-.232c.078-.045.167-.097.27-.159c.534-.325 1.264-.861 1.264-1.965c0-1.322-1.115-2.425-2.55-2.425c-1.435 0-2.55 1.103-2.55 2.425a.55.55 0 0 0 1.1 0" clip-rule="evenodd"/></svg>  
+            <span>Are there specific formatting guidelines that authors need to follow when preparing their manuscripts?</span>
+            </button>
+          </h2>
+          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </section>
   </div>
-</div>
 
-
-<div class="example-journal" >
-  <div class="plans-inside">
-    <h3><b>Package</b></h3>
-    <h5><b> PHP 1.00 / credit </b></h5>
-    <hr style="height: 2px; background-color: #0858a4; width: 100%">
-    <div style="display: flex; align-items: center; margin-bottom: 20px">
-      <i style="color: green; margin-right: 30px; margin-left: 60px" class="fa-solid fa-check"></i>
-      <p style="margin: 0;" class="text-xs">Full access to view abstracts <br>for all articles.</p>
-    </div>
-    <div style="display: flex; align-items: center; margin-bottom: 20px">
-      <i style="color: green; margin-right: 30px; margin-left: 60px; " class="fa-solid fa-check"></i>
-      <p style="margin: 0;" class="text-xs">Access to monthly popular <br>articles.</p>
-    </div>
-    <div style="display: flex; align-items: center; margin-bottom: 20px">
-      <i style="color: green; margin-right: 30px; margin-left: 60px" class="fa-solid fa-check"></i>
-      <p style="margin: 0;" class="text-xs">Personalized content <br>suggestions.</p>
-    </div>
-
-    <div style="display: flex; align-items: center; margin-bottom: 20px">
-      <i style="color: green; margin-right: 30px; margin-left: 60px" class="fa-solid fa-check"></i>
-      <p style="margin: 0;" class="text-xs">No advertisements.</p>
-    </div>
-
-    <div style="display: flex; align-items: center; margin-bottom: 20px">
-      <i style="color: green; margin-right: 30px; margin-left: 60px" class="fa-solid fa-check"></i>
-      <p style="margin: 0;" class="text-xs">Fixed amount of credit <br>points for downloading <br>and submitting articles<br> with no expiration.</p>
-    </div>
-
-  </div>
-  <div id="btn-price">
-    <button class="btn btn-primary btn-md mt-1" onclick="window.location.href='pricing.php'" >See Pricing</button>
-  </div>
-</div>
-
-<div class="example-journal">
-  <div class="plans-inside">
-    <h3><b>Pro</b></h3>
-    <h5><b>PHP 0.50 / credit</b></h5>
-    <hr style="height: 2px; background-color: #0858a4; width: 100%">
-    <div style="display: flex; align-items: center; margin-bottom: 20px">
-      <i style="color: green; margin-right: 30px; margin-left: 60px" class="fa-solid fa-check"></i>
-      <p style="margin: 0;" class="text-xs">Full access to view abstracts <br>for all articles.</p>
-    </div>
-    <div style="display: flex; align-items: center; margin-bottom: 20px">
-      <i style="color: green; margin-right: 30px; margin-left: 60px; " class="fa-solid fa-check"></i>
-      <p style="margin: 0;" class="text-xs">Access to monthly popular <br>articles.</p>
-    </div>
-    <div style="display: flex; align-items: center; margin-bottom: 20px">
-      <i style="color: green; margin-right: 30px; margin-left: 60px" class="fa-solid fa-check"></i>
-      <p style="margin: 0;" class="text-xs">Personalized content <br>suggestions.</p>
-    </div>
-    <div style="display: flex; align-items: center; margin-bottom: 20px">
-      <i style="color: green; margin-right: 30px; margin-left: 60px" class="fa-solid fa-check"></i>
-      <p style="margin: 0;" class="text-xs">No advertisements.</p>
-    </div>
-    <div style="display: flex; align-items: center; margin-bottom: 20px">
-      <i style="color: green; margin-right: 30px; margin-left: 60px" class="fa-solid fa-check"></i>
-      <p style="margin: 0;" class="text-xs">Fixed amount of credit  points <br>each month. Credits  that are not <br>utilized do not roll over at the end <br> of the month. They are, however, <br> up to 50% less expensive<br/> than packages. </p>
-    </div>
-  </div>
-  <div class="btn-price">
-    <button class="btn btn-primary btn-md mt-1" onclick="window.location.href='pricing.php'">See Pricing</button>
-  </div>
-</div>
-  </div> -->
-  </div>
-
-  </div>
 
   <div class="footer" id="footer">
   </div>

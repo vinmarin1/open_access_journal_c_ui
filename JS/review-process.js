@@ -1,25 +1,25 @@
-let currentStep = 1;
+// let currentStep = 1;
 
-function nextStep() {
-    if (currentStep < 3) {
-        document.getElementById(`step${currentStep}`).classList.remove('active');
-        currentStep++;
-        document.getElementById(`step${currentStep}`).classList.add('active');
-    }
+// function nextStep() {
+//     if (currentStep < 3) {
+//         document.getElementById(`step${currentStep}`).classList.remove('active');
+//         currentStep++;
+//         document.getElementById(`step${currentStep}`).classList.add('active');
+//     }
 
-    // if (currentStep === 2 && !document.getElementById('vehicle1').checked) {
-    //     alert('Please check the checkbox before proceeding.');
-    //     return;
-    // }
-}
+//     // if (currentStep === 2 && !document.getElementById('vehicle1').checked) {
+//     //     alert('Please check the checkbox before proceeding.');
+//     //     return;
+//     // }
+// }
 
-function prevStep() {
-    if (currentStep > 1) {
-        document.getElementById(`step${currentStep}`).classList.remove('active');
-        currentStep--;
-        document.getElementById(`step${currentStep}`).classList.add('active');
-    }
-}
+// function prevStep() {
+//     if (currentStep > 1) {
+//         document.getElementById(`step${currentStep}`).classList.remove('active');
+//         currentStep--;
+//         document.getElementById(`step${currentStep}`).classList.add('active');
+//     }
+// }
 
 
 document.addEventListener('DOMContentLoaded', function(event) {
@@ -62,11 +62,78 @@ document.getElementById('form').addEventListener('submit', function(event) {
 
 
 
-document.getElementById('acceptBtn').addEventListener('click', function(event){
+// document.getElementById('acceptBtn').addEventListener('click', function(event){
+//     const rejectBtn = document.getElementById('btnReject');
+//     rejectBtn.style.display = 'none';
+// });
+let currentStep = 1;
+
+document.getElementById('acceptBtn').addEventListener('click', function (event) {
     const rejectBtn = document.getElementById('btnReject');
-    rejectBtn.style.display = 'none';
+    
+
+    function nextStep() {
+        if (currentStep < 3) {
+            document.getElementById(`step${currentStep}`).classList.remove('active');
+            currentStep++;
+            document.getElementById(`step${currentStep}`).classList.add('active');
+        }
+    
+    }
+
+    Swal.fire({
+        text: "Accept Invitation",
+        icon: "info",
+        showCancelButton: true,
+        confirmButtonColor: "primary",
+        cancelButtonColor: "secondary",
+        confirmButtonText: "Accept"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            rejectBtn.style.display = 'none';
+            Swal.fire({
+                text: "Accepted Invitation",
+                icon: "success",
+                showConfirmButton: true,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    setTimeout(function () {
+                        Swal.close();
+                        nextStep();
+                    }, 1000);
+                }
+            });
+        }
+    });
 });
 
+
+
+
+ 
+
+
+
+function prevStep() {
+    if (currentStep > 1) {
+        document.getElementById(`step${currentStep}`).classList.remove('active');
+        currentStep--;
+        document.getElementById(`step${currentStep}`).classList.add('active');
+    }
+}
+
+
+document.getElementById('reviewBtn').addEventListener('click', function(event){
+    function nextStep() {
+        if (currentStep < 3) {
+            document.getElementById(`step${currentStep}`).classList.remove('active');
+            currentStep++;
+            document.getElementById(`step${currentStep}`).classList.add('active');
+        }
+    
+    }
+    nextStep();
+});
 
 document.getElementById('btnReject').addEventListener('click', function(event){
     Swal.fire({
@@ -91,7 +158,4 @@ document.getElementById('btnReject').addEventListener('click', function(event){
         }
     });
 });
-
-
-
 

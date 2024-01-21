@@ -109,7 +109,7 @@ body {
   .logs-title{
     background-color: white; /* White background for date entries */
     color: #606060;
-    padding: 10px; /* Padding within dates */
+    padding-top: 10px; /* Padding within dates */
     border-radius: 5px; /* Rounded corners for date entries */
     text-align: left; /* Aligns the date to the right */
     font-weight: bold;
@@ -117,8 +117,10 @@ body {
   }
   .log-entry {
     flex: 1;
+    color: gray;
+    
   }
-  .log-entry, .date {
+  .date {
     background-color: white;
     color: #959595;
     padding: 10px;
@@ -140,7 +142,7 @@ body {
   .date{
     flex: 1;
     background-color: white; /* White background for date entries */
-    padding: 10px; /* Padding within dates */
+    padding-top: 13px; /* Padding within dates */
     text-align: left; /* Aligns the date to the right */
     margin-bottom: 20px; /* Space between date entries */
     
@@ -255,7 +257,7 @@ ul li span {
 
 #edit-submission {
   margin-top: 40px;
-  margin-bottom: 50px;
+  margin-bottom: 10px;
   font-size: 14px;
   background-color: #285581;
   color: white;
@@ -265,10 +267,78 @@ ul li span {
   min-width: 200px; /* Set a minimum width */
 }
 
+#submit-submission {
+ 
+  margin-bottom: 10px;
+  font-size: 14px;
+  background-color: #285581;
+  color: white;
+  border-radius: 20px;
+  width: 100%; /* Set the width to 50% of its container */
+  max-width: 400px; /* Set a maximum width */
+  min-width: 200px; /* Set a minimum width */
+  display: none;
+}
+
+
+#cancel-submission {
+ 
+  margin-bottom: 10px;
+  font-size: 14px;
+  background-color: #285581;
+  color: white;
+  border-radius: 20px;
+  width: 100%; /* Set the width to 50% of its container */
+  max-width: 400px; /* Set a maximum width */
+  min-width: 200px; /* Set a minimum width */
+  display: none;
+}
+
 .table-header,
 .section-header {
     margin-bottom: 10px;
     font-weight: bold;
     color: #285581;
 }
+
+
+#loadingOverlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.7);
+  z-index: 1000;
+}
+
+#loadingSpinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #3498db;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+#addFileName{
+  background-color: #0066cc;
+}
+
+#title-validation, #abstract-validation{
+  font-weight: normal;
+  opacity: 0.8;
+  display: none;
+}
+
 

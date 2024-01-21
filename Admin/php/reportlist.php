@@ -1,6 +1,6 @@
 <?php
 include 'function/redirect.php';
-include 'function_report/report_function.php';
+include 'function/report_function.php';
 
 $reportlist = get_report_list();
 ?>
@@ -17,7 +17,6 @@ $reportlist = get_report_list();
 
         <div class="card">
             <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-                <h5 class="card-header mb-0">Report List</h5>
             </div>
 
             <div class="table-responsive text-nowrap">
@@ -35,7 +34,9 @@ $reportlist = get_report_list();
                                 <td width="10%"><?php echo $reportlistval->report_id; ?></td>
                                 <td width="85%"><?php echo $reportlistval->title; ?></td>
                                 <td width="5%">
-                                    <button type="button" class="btn btn-outline-dark" onclick="viewReport('<?php echo $reportlistval->action; ?>')">View</button>
+                                    <button type="button" class="btn btn-outline-dark" onclick="viewReport('<?php echo $reportlistval->action; ?>')">
+                                        View
+                                    </button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -63,14 +64,30 @@ $reportlist = get_report_list();
         });
 
         function viewReport(action) {
-            $('#sloading').show();
+        $('#sloading').show();
 
-            setTimeout(function () {
-                window.location.href = "../php/" + action;
-                $('#sloading').hide(); 
-            }, 2000);
+        if (action === 'totalarchive.php' || action === 'totalpublished.php') {
+            var currentDate = new Date();
+            var currentMonth = currentDate.getMonth() + 1;
+            var currentYear = currentDate.getFullYear();
+
+            action = '../php/' + action + '?m=' + currentMonth + '&y=' + currentYear;
+        } else if (action === 'allarticlereportmtd.php') {
+            var currentDate = new Date();
+            var currentMonth = currentDate.getMonth() + 1;
+            var currentYear = currentDate.getFullYear();
+
+            action = '../php/' + action + '?m=' + currentMonth + '&y=' + currentYear + '&s=10';
+        } else if (action === 'allarticlereportytd.php') {
+            var currentDate = new Date();
+            var currentMonth = currentDate.getMonth() + 1;
+            var currentYear = currentDate.getFullYear();
+
+            action = '../php/' + action + '?y=' + currentYear + '&s=10';
         }
 
+        window.location.href = action;
+    }
     </script>
 </body>
 </html>

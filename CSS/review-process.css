@@ -111,6 +111,10 @@
     color: gray;
 }
 
+#logsTitle{
+    margin-bottom: -8px;
+}
+
 .logs-date a{
     color: #0858a4;
     text-decoration: none;
@@ -119,6 +123,10 @@
 .keywords .btn{
     display:flex ;
     flex-direction: row;
+}
+
+.logsArticle{
+    margin-top: 0px;
 }
 
 .keyword1 a{

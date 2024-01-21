@@ -101,6 +101,7 @@ $all_articles = get_allarticle_list();
                                     $statusNumber = $all_articlesval->status;
 
                                     $statusInfo = [
+                                        0 => ['label' => 'Archived', 'class' => 'label-dark'],
                                         1 => ['label' => 'Published', 'class' => 'label-success'],
                                         2 => ['label' => 'Production', 'class' => 'label-info'],
                                         3 => ['label' => 'Copyediting', 'class' => 'label-primary'],
@@ -152,14 +153,11 @@ $all_articles = get_allarticle_list();
                 "order": [[0, 'desc']]  
             });
 
-            // Apply the status filter when a tab is clicked
             $('#journalTabs a').on('click', function (e) {
                 e.preventDefault();
 
-                // Remove 'active' class from all tabs
                 $('#journalTabs a').removeClass('active');
 
-                // Add 'active' class to the clicked tab
                 $(this).addClass('active');
 
                 var statusValue = $(this).data('status');
@@ -169,10 +167,8 @@ $all_articles = get_allarticle_list();
             $('#statusTabs a').on('click', function (e) {
                 e.preventDefault();
 
-                // Remove 'active' class from all tabs
                 $('#statusTabs a').removeClass('active');
 
-                // Add 'active' class to the clicked tab
                 $(this).addClass('active');
 
                 var statusValue = $(this).data('status');
@@ -185,11 +181,9 @@ $all_articles = get_allarticle_list();
             $('#sloading').show();
 
             setTimeout(function () {
-                // Use the articleId parameter instead of trying to access $incomplete_articlesval
                 window.location.href = "../php/workflow.php?aid=" + articleId;
             }, 2000);
 
-            // This will hide the loading indicator when the page loads, not after the setTimeout
             window.onload = function () {
                 $('#sloading').hide();
             };

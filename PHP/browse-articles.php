@@ -33,15 +33,15 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
         </div>
         <form action="" method="GET" class="search-form" id="search-form">
             <div class="search-container d-flex align-items-center">
-                <input list="articlesList" id="result" type="text" class="form-control me-2" placeholder="Search Articles..."
+                <input list="articlesList" id="result" type="text" class="form-control me-2 py-3" placeholder="Search Articles..."
                     class="search-bar"
                     style="width: 583px; height: 30px; font-style: italic; background-color: white;" />
-                    <datalist id="articlesList">
+                    <!-- <datalist id="articlesList">
                        
-                    </datalist>
-                <div class="d-flex flex-row-reverse">
+                    </datalist> -->
+                <div class="d-flex gap-1 flex-row-reverse">
                     <button class="btn tbn-primary btn-md" id="btn3">Search</button>
-                    <button class="btn tbn-primary btn-md" onclick="startConverting();">
+                    <button class="btn tbn-primary btn-md" id="voiceSearch" onclick="startConverting();">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32">
                             <path fill="white"
                                 d="M16 2a6 6 0 0 0-6 6v8a6 6 0 0 0 12 0V8a6 6 0 0 0-6-6ZM7 15a1 1 0 0 1 1 1a8 8 0 1 0 16 0a1 1 0 1 1 2 0c0 5.186-3.947 9.45-9.001 9.95L17 26v3a1 1 0 1 1-2 0v-3l.001-.05C9.947 25.45 6 21.187 6 16a1 1 0 0 1 1-1Z" />
@@ -63,7 +63,37 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
         <div class="row w-100">
         <div class="sidebar col-lg-3 col-md-12">
             <h4 style="color: #0858a4;"><b><span id="total"></span></b></h4>
+            <hr style="border-top: 1px solid #ccc; margin: 10px 0;"> 
             <!-- Filters Here -->
+            <div class="journal-preview">
+                <img />
+                <h2 class="journal"></h2>
+                <ul>
+                    <li class="issn">
+                        <h3>ISSN (online)</h3>
+                        <span></span>
+                    </li>
+                    <li class="date">
+                        <h3>Online Date Start</h3>
+                        <span></span>
+                    </li>
+                    <li class="copyright">
+                        <h3>Copyright Holder</h3>
+                        <span></span>
+                    </li>
+                    <li class="board">
+                        <h3>Editorial Board</h3>
+                        <span></span>
+                    </li>
+                    <li class="info">
+                        <h3>Further Information</h3>
+                        <span></span>
+                    </li>
+                </ul>
+
+
+
+            </div>
             <hr style="border-top: 1px solid #ccc; margin: 10px 0;"> <!-- Add a horizontal line -->
             <div class="filters">
                 <h5 style="color: #0858a4;">Filter search results</h5>
@@ -80,6 +110,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     </div>
                 </div>
             </div>
+          
         </div>
         <div class="articles-containers col-lg-9 col-md-12">
             <!-- Article 1 -->
@@ -105,6 +136,11 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
 
                     </select>
                 </div>
+            </div>
+            <div id="skeleton-container" class="">
+                <div></div>
+                <div></div>
+                <div></div>
             </div>
             <hr style="border-top: 1px solid #ccc; margin: 10px 0;"> <!-- Add a horizontal line -->
             <div id="articles" class="d-flex flex-column gap-2 mb-4 w-100">
@@ -166,37 +202,15 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
     </div>
     <div class="fluid-container">
         <div class="recommendation-article">
-            <h4>Recently Published Articles</h4>
-            <div class="d-flex flex-sm-column flex-xl-row container-fluid gap-4 justify-content-between" style="width:85%;">
-                <div id="popular-articles" class="articles-container col-sm-12 col-lg-7">
+            <h4>Top Picks for <?php echo date('F '); ?></h4>
+          
+                <div id="popular-monthly" class="articles-container ">
                     <!-- fetch popular articles using api -->
                 </div>
-                <div class="divider "></div>
-                <div class="col-sm-12 col-lg-4 d-flex flex-column gap-2" id="most-popular-container">
-                    <h6 class="text-lg mb-2">
-                        <select class="form-select" id="sort-select">
-                            <option value="total_interactions" selected>Most Popular (All)</option>
-                            <option value="total_reads">Most Viewed</option>
-                            <option value="total_downloads">Most Downloaded</option>
-                            <option value="total_citations">Most Cited</option>
-                        </select>
-
-                    </h6>
-                    <div id="most-popular">
-
-                    </div>
-
-                </div>
-            </div>
+              
         </div>
     </div>
-    <div class="fluid-container">
-        <div class="recommendation-article">
-            <h4>Popular Articles this Month</h4>
-            <div id="popular-articles" class="articles-container">
-            </div>
-        </div>
-    </div>
+
     </div>
 
     <div class="footer" id="footer">
@@ -214,12 +228,11 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../JS/reusable-header.js"></script>
     <script src="../JS/home-recommended-api.js"></script>
-    <script src="../JS/home-monthly-api.js"></script>
     <script src="../JS/most-popular-api.js"></script>
-    <script src="../JS/most-downloaded-api.js"></script>
-    
+    <script src="../JS/home-monthly-api.js"></script>
     <script src="../JS/browse-api.js"></script>
 
 </body>
