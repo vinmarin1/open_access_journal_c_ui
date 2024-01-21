@@ -8,7 +8,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QCU PUBLICATION | BROWSE ARTICLES</title>
+    <title>QCU PUBLICATION | FAQs</title>
     <link rel="stylesheet" href="../CSS/faqs.css">
     <link rel="stylesheet" href="../CSS/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -28,7 +28,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
 
     <div class="content-over">
         <div class="cover-content">
-            <p>Home / Browse / Articles</p>
+            <p>Home / Guidelines / FAQs</p>
             <h1>Frequently Asked Questions (FAQs)</h1>
         </div>
     </div>
