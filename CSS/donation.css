@@ -1,0 +1,204 @@
+.content-over {
+    position: relative;
+    width: 100%;
+    height: 25vh;
+    background-image: url(../images/qcu-bg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    padding-top: 70px;
+    padding-left: 150px;
+    
+}
+
+.content-over::before {
+content: "";
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(53, 68, 74, 0.7);
+}
+
+.container-fluid {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container-fluid h2{
+    font-family: Arial, Helvetica, sans-serif;
+    color: #0858a4 ;
+    text-align: center  ;
+}
+.container-fluid p{
+    text-align: justify;
+}
+img{
+    width: 100%;
+    height: 100%;
+}
+
+.helps h2{
+    margin-bottom: 20px;
+}
+
+.helps h3{
+    font-family: Arial, Helvetica, sans-serif;
+    color: #0858a4 ;
+}
+
+.helps img{
+    height: 15vh;
+}
+
+.step-buttons span {
+    border: solid 1px gray;
+    border-radius: 50%;
+    background-color: gray;
+    height: 60px;
+    width: 60px;
+    color: white;
+}
+
+.step {
+    height: 50px;
+    width: 50px;
+    background-color: #bbbbbb;
+    border: none;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.5;
+    color: #fff;
+    font-size: 35px;
+    position: relative;
+    cursor: pointer;
+    z-index: 1; /* Ensure the text is above the line */
+}
+
+.step.active {
+    opacity: 1;
+    background-color: #45D700; /* Change the background color to green */
+    color: white; /* Change the text color to white */
+}
+
+/* Mark the steps that are finished and valid: */
+.step.finish {
+    background-color: #3EC100;
+}
+
+.tab {
+    display: none;
+}
+
+.payment-form {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.amountBtn button{
+    color: black; 
+    position: relative;
+    z-index: 1;
+    background-color: transparent;
+    border-radius: 5px;
+    margin-top: 20px;
+    width: 100%;
+    height: 100%;
+    border: 1px solid gray;
+}
+
+.amountBtn button.clicked {
+    border-color: green !important;
+}
+
+
+
+.custAmount button , .donate button{
+    color: black; 
+    background-color: transparent;
+    width: 100%;
+    height: 70px;
+    border-radius: 5px;
+    margin-top: 20px;
+    border: 1px solid gray;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.donate button:hover{
+    color: white; 
+    position: relative;
+    z-index: 1;
+    background-color: #E56F1F;
+    border-radius: 5px;
+    margin-top: 20px;
+    opacity: 0.8;
+    }
+
+.donate button{
+    background-color: #E56F1F;
+    color: white;
+}
+
+#customAmountPopup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+}
+
+/* Styles for the overlay background when the popup is active */
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+#customAmountPopup{
+    border-radius: 15px;
+}
+
+#customAmountPopup button{
+    background-color: #E56F1F;
+    color: white;
+    border: 1px solid gray;
+}
+
+
+
+.emailDonate label::before{
+    content: "*";
+    color: red; /* Style the asterisk */
+}
+
+.blank{
+    height: 195px;
+}
+
+.blanks{
+    height: 190px;
+}
+
+.donateSum span h4{
+    font-weight: bold;
+}
+
+.payLogo{
+    width: 200px;
+}
+
+
+
