@@ -7,7 +7,7 @@ var x = document.getElementsByClassName("tab");
 x[n].style.display = "block";
 
     if (n == (x.length - 1)) {
-    document.getElementById("donateBtn").innerHTML = "<img src='../images/payLogo.png' alt='Logo' class='payLogo'>";
+    document.getElementById("donateBtn").innerHTML = "<img src='../images/payLogo.png' alt='Logo' class='paysLogo'>";
     } else {
     document.getElementById("donateBtn").innerHTML = "DONATE";
     }
