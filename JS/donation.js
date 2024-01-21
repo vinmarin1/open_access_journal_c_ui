@@ -1,36 +1,35 @@
-var currentTab = 0; 
-showTab(currentTab); 
+var currentTab = 0;
+showTab(currentTab);
 
 function showTab(n) {
+    var x = document.getElementsByClassName("tab");
+    var donateAmountInput = document.getElementsByName("donateamout")[0];
 
-var x = document.getElementsByClassName("tab");
-x[n].style.display = "block";
+    // Log the value for debugging
+    console.log("donateAmountInput value:", donateAmountInput.value);
 
-    if (n == (x.length - 1)) {
-    document.getElementById("donateBtn").innerHTML = "<img src='../images/payLogo.png' alt='Logo' class='paysLogo'>";
+    // Check if the hidden input has data
+    if (donateAmountInput && donateAmountInput.value !== "") {
+        currentTab = 1; 
     } else {
-    document.getElementById("donateBtn").innerHTML = "DONATE";
+        currentTab = 0;
     }
-    fixStepIndicator(n)
+
+    x[currentTab].style.display = "block";
+
+    if (currentTab == (x.length - 1)) {
+        document.getElementById("donateBtn").innerHTML = "<img src='../images/payLogo.png' alt='Logo' class='payLogo'>";
+        document.getElementById("donateBtn").disabled = true;        
+    } else {
+        document.getElementById("donateBtn").innerHTML = "DONATE";
+    }
+
+    fixStepIndicator(currentTab);
 }
 
 function donate(n) {
+    document.getElementById('donateForm').submit();
 
-    var x = document.getElementsByClassName("tab");
-
-    if (n == 1 && !validateForm()) return false;
-
-    x[currentTab].style.display = "none";
-
-    currentTab = currentTab + n;
-
-    if (currentTab >= x.length) {
-
-    document.getElementById("donateForm").submit();
-    return false;
-    }
-
-    showTab(currentTab);
 }
 
 function validateForm() {
@@ -63,23 +62,6 @@ function fixStepIndicator(n) {
     x[n].className += " active";
 }
 
-
-function selectAmount(amount) {
-    // Remove the "clicked" class from all buttons
-    document.querySelectorAll('.amountBtn button').forEach(function(btn) {
-        btn.classList.remove('clicked');
-    });
-
-    // Add the "clicked" class to the clicked button
-    event.currentTarget.classList.add('clicked');
-
-    // Calculate the equivalent heart points based on the selected amount
-    var heartPoints = amount / 50;
-
-    // Update the "Earn" span
-    document.getElementById('heartPoints').textContent = heartPoints;
-}
-
 function togglePopup() {
     var popup = document.getElementById('customAmountPopup');
     var overlay = document.getElementById('overlay');
@@ -92,7 +74,6 @@ function togglePopup() {
     }
 }
 
-// Function to handle custom amount submission
 function handleCustomAmountSubmit() {
     var customAmountInput = document.getElementById('customAmount');
     var customAmount = parseFloat(customAmountInput.value);
@@ -100,8 +81,31 @@ function handleCustomAmountSubmit() {
     if (customAmount < 100) {
         alert('Please enter an amount equal to or greater than 100.');
     } else {
-        alert('Custom Amount Submitted: ' + customAmount);
-        togglePopup(); // Close the popup after submission
+        document.getElementById('amount').value = customAmount;
+
+        calculateAndDisplay(customAmount);
+
+        togglePopup();
     }
 }
 
+function selectAmount(amount) {
+
+    document.querySelectorAll('.amountBtn button').forEach(function (btn) {
+        btn.classList.remove('clicked');
+    });
+
+    event.currentTarget.classList.add('clicked');
+
+    calculateAndDisplay(amount);
+
+    document.getElementById('amount').value = amount;
+
+}
+
+function calculateAndDisplay(amount) {
+    var heartPoints = amount / 50;
+
+    document.getElementById('heartPoints').textContent = heartPoints;
+    document.getElementById('amount').value = amount;
+}

@@ -91,179 +91,159 @@
             <div class="col-md-1">
                 <!------ Blank Space ------>
             </div>
-            <form id="donateForm"   class="col-md-4 mb-5 mt-5 payment-form">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-12 d-flex justify-content-between mt-3">
-                            <span class="step active" style="margin-left: 30px;" title="Amount">1</span>
-                            <span class="step" title="Personal Info">2</span>
-                            <span class="step" style="margin-right: 30px;"  title="Payment Method">3</span>
-                        </div>
-
-                        <!---- Step 1 ------>
-                        <div class="tab" id="tab1">
-                            <div class="container-fluid">
-                                <h2 style="color: black; margin-top:40px ">Select an Amount</h2>
-                                <div class="row amountBtn mt-4">
-                                    <div class="col-md-4 col-6">
-                                        <button type="button" onclick="selectAmount(100)"> 
-                                            <h3>PHP 100 </h3>
-                                            <span style="color:red; font-size:25px">&hearts;</span>
-                                            <span style="margin-left:10px">2</span>
-                                            
-                                        </button>
-                                    </div>
-
-                                    <div class="col-md-4 col-6">
-                                        <button type="button" onclick="selectAmount(200)"> 
-                                            <h3>PHP 200</h3>
-                                            <span style="color:red; font-size:25px">&hearts;</span>
-                                            <span style="margin-left:10px">4</span>
-                                        </button>
-                                    </div>
-
-                                    <div class="col-md-4 col-6  mt-md-0 mt-4">
-                                        <button type="button" onclick="selectAmount(300)"> 
-                                            <h3>PHP 300</h3>
-                                            <span style="color:red; font-size:25px">&hearts;</span>
-                                            <span style="margin-left:10px">6</span>
-                                        </button>
-                                    </div>
-                                
-                                    <div class="col-md-4 col-6 mt-4">
-                                        <button type="button" onclick="selectAmount(500)"> 
-                                            <h3>PHP 500</h3>
-                                            <span style="color:red; font-size:25px">&hearts;</span>
-                                            <span style="margin-left:10px">10</span>
-                                        </button>
-                                    </div>
-
-                                    <div class="col-md-4 col-6 mt-4">
-                                        <button type="button" onclick="selectAmount(1000)"> 
-                                            <h3>PHP 1000</h3>
-                                            <span style="color:red; font-size:25px">&hearts;</span>
-                                            <span style="margin-left:10px">20</span>
-                                        </button>
-                                    </div>
-
-                                    <div class="col-md-4 col-6 mt-4">
-                                        <button type="button" onclick="selectAmount(2000)"> 
-                                            <h3>PHP 2000</h3>
-                                            <span style="color:red; font-size:25px">&hearts;</span>
-                                            <span style="margin-left:10px">40</span>
-                                        </button>
-                                    </div>
-                                </div>
-
-                                <div class="row custAmount mt-5">
-                                    <div class="col-md-12">
-                                        <button type="button"  onclick="togglePopup()">
-                                            <h3> + Custom Amount</h3>
-                                        </button>
-                                    </div>
-                                </div>
-
-                                <!-- Popup form -->
-                                <div id="overlay" onclick="togglePopup()"></div>
-                                <div id="customAmountPopup">
-                                    <form>
-                                        <label for="customAmount">Enter Custom Amount:</label>
-                                        <input type="number" id="customAmount" required>
-                                        <button type="button" onclick="handleCustomAmountSubmit()">Submit</button>
-                                    </form>
-                                </div>
-
-
-                                <div class="row">
-                                    <div class="col-md-12 mt-3">
-                                        <span id="earnLabel" style="color:#A6A6A6" >Earn: </span>
-                                        <span id="heartPoints"></span>
-                                        <span style="color:red; font-size:25px">&hearts;</span>
-                                    </div>
-                                    <div class="col-md-12 mt-3">
-                                        <p>Your donation, regardless of its size, contributes to a future where knowledge is a shared resource. Join us on this journey toward a more equitable and collaborative world.</p>
-                                    </div>                                        
-                                </div>
+            <form id="donateForm" method="post" action="https://www.sandbox.paypal.com/cgi-bin/webscr"  class="col-md-4 mb-5 mt-5 payment-form">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12 d-flex justify-content-between mt-3">
+                                <span class="step active" style="margin-left: 30px;" title="Amount">1</span>
+                                <!-- <span class="step" title="Personal Info">2</span> -->
+                                <span class="step" style="margin-right: 30px;"  title="Payment Method"> 2</span>
                             </div>
+                            <input type="hidden" name="business" value="sb-gju3a29373225@business.example.com">
+                            <input type="hidden" name="item_name" value="Donation">
+                            <input type="hidden" name="item_number" value="1">
+                            <input type="hidden" name="amount" id="amount">
+                            <input type="hidden" name="currency_code" value="PHP">
+                            <input type="hidden" name="no_shipping" value="1">
+                            <input type="hidden" name="cmd" value="_xclick">
+                            <input type="hidden" name="return" value="https://openaccessjournalcui-production.up.railway.app/open_access_journal_c_ui/PHP/success.php">
+                            <input type="hidden" name="cancel_return" value="https://openaccessjournalcui-production.up.railway.app/PHP/donation.php">
 
-                        </div>
+                            <!---- Step 1 ------>
+                            <div class="tab" id="tab1">
+                                <div class="container-fluid">
+                                    <h2 style="color: black; margin-top:40px ">Select an Amount</h2>
+                                    <div class="row amountBtn mt-4">
+                                        <div class="col-md-4 col-6">
+                                            <button type="button" onclick="selectAmount(100)"> 
+                                                <h3>PHP 100 </h3>
+                                                <span style="color:red; font-size:25px">&hearts;</span>
+                                                <span style="margin-left:10px">2</span>
+                                                
+                                            </button>
+                                        </div>
+
+                                        <div class="col-md-4 col-6">
+                                            <button type="button" onclick="selectAmount(200)"> 
+                                                <h3>PHP 200</h3>
+                                                <span style="color:red; font-size:25px">&hearts;</span>
+                                                <span style="margin-left:10px">4</span>
+                                            </button>
+                                        </div>
+
+                                        <div class="col-md-4 col-6  mt-md-0 mt-4">
+                                            <button type="button" onclick="selectAmount(300)"> 
+                                                <h3>PHP 300</h3>
+                                                <span style="color:red; font-size:25px">&hearts;</span>
+                                                <span style="margin-left:10px">6</span>
+                                            </button>
+                                        </div>
+                                    
+                                        <div class="col-md-4 col-6 mt-4">
+                                            <button type="button" onclick="selectAmount(500)"> 
+                                                <h3>PHP 500</h3>
+                                                <span style="color:red; font-size:25px">&hearts;</span>
+                                                <span style="margin-left:10px">10</span>
+                                            </button>
+                                        </div>
+
+                                        <div class="col-md-4 col-6 mt-4">
+                                            <button type="button" onclick="selectAmount(1000)"> 
+                                                <h3>PHP 1000</h3>
+                                                <span style="color:red; font-size:25px">&hearts;</span>
+                                                <span style="margin-left:10px">20</span>
+                                            </button>
+                                        </div>
+
+                                        <div class="col-md-4 col-6 mt-4">
+                                            <button type="button" onclick="selectAmount(2000)"> 
+                                                <h3>PHP 2000</h3>
+                                                <span style="color:red; font-size:25px">&hearts;</span>
+                                                <span style="margin-left:10px">40</span>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="row custAmount mt-5">
+                                        <div class="col-md-12">
+                                            <button type="button"  onclick="togglePopup()">
+                                                <h3> + Custom Amount</h3>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Popup form -->
+                                    <div id="overlay" onclick="togglePopup()"></div>
+                                    <div id="customAmountPopup">
+                                        <form>
+                                            <label for="customAmount">Enter Custom Amount:</label>  
+                                            <input type="number" id="customAmount" required>
+                                            <button type="button" onclick="handleCustomAmountSubmit()">Submit</button>
+                                        </form>
+                                    </div>
 
 
-                        <!---- Step 2 ------>
-                        
-                        <div class="tab">
-                            <h2 style="color: black; margin-top:40px ">Enter Personal Info</h2>
-                            <div class="row mt-4">
-                                <div class="col-md-6">
-                                    <label for="fname">First Name:</label>
-                                    <input type="text" id="fname" name="fname" style="width: 100%; height: 40px; margin-top:10px;"  placeholder="First name"><br><br>
+                                    <div class="row">
+                                        <div class="col-md-12 mt-3">
+                                            <span id="earnLabel" style="color:#A6A6A6" >Earn: </span>
+                                            <span id="heartPoints"></span>
+                                            <span style="color:red; font-size:25px">&hearts;</span>
+                                        </div>
+                                        <div class="col-md-12 mt-3">
+                                            <p>Your donation, regardless of its size, contributes to a future where knowledge is a shared resource. Join us on this journey toward a more equitable and collaborative world.</p>
+                                        </div>                                        
+                                    </div>
                                 </div>
 
-                                <div class="col-md-6">
-                                    <label for="lname">Last Name:</label>
-                                    <input type="text" id="lname" name="lname" style="width: 100%; height: 40px; margin-top:10px;"  placeholder="Last name" ><br><br>
-                                </div>
                             </div>
-
-                            <div class="row">
-                                <div class="col-md-12 emailDonate">
-                                    <label for="dntEmail">Email:</label><br>
-                                    <input type="text" id="dntEmail" name="Email" style="width: 100%; height: 40px; margin-top: 10px;" placeholder="Email"><br><br>
-                                </div>
-
-                                <div class="col-md-12 blank"> <!----------- Blank Space--------------> </div>
-
-                                <div class="col-md-12 mt-5">
-                                    <p>Your donation, regardless of its size, contributes to a future where knowledge is a shared resource. Join us on this journey toward a more equitable and collaborative world.</p>
-                                </div>
-                            </div>
-
-                        </div>
 
                         <!---- Step 3 ------>
-                        <div class="tab" id="donateSum" >
-                            <h2 style="color: black; margin-top:40px ">Donation Summary</h2>
-                            <div class="row">
-                                <div class="col-md-12 mt-4 d-flex align-items-center justify-content-center">
-                                    <p style="color: #A6A6A6;" > Dear Elyana, thank you for your support!</p>
-                                </div>
-                            </div>
+                        <div class="tab" id="donateSum">
+                            <input type="hidden" name="donateamout" value="<?php echo isset($_GET['amount']) ? $_GET['amount'] : ''; ?>">
+                                <h2 style="color: black; margin-top:40px">Donation Summary</h2>
 
-                            <div class="row mt-5">
-                                <div class="col-md-6 col-6" > 
-                                    <span><h4 style="font-weight: bold;">Amount</h4></span>
+                                <div class="row">
+                                    <div class="col-md-12 mt-4 d-flex align-items-center justify-content-center">
+                                        <p style="color: #A6A6A6;">Dear <?php echo isset($_GET['payer_firstname']) ? $_GET['payer_firstname'] : ''; ?>, thank you for your support!</p>
+                                    </div>
                                 </div>
-                                <div class="col-md-6 col-6 text-end"> 
-                                    <span><h4 style="font-weight: bold;">PHP 100</h4></span>
-                                </div>
-                            </div>
 
-                            <div class="row mt-3">
-                                <div class="col-md-6 col-6"> 
-                                    <span><h4 style="font-weight: bold;">First Name</h4></span>
+                                <div class="row mt-5">
+                                    <div class="col-md-6 col-6">
+                                        <span><h4 style="font-weight: bold;">Amount</h4></span>
+                                    </div>
+                                    <div class="col-md-6 col-6 text-end">
+                                        <span><h4 style="font-weight: bold;">PHP <?php echo isset($_GET['amount']) ? $_GET['amount'] : ''; ?></h4></span>
+                                    </div>
                                 </div>
-                                <div class="col-md-6 col-6 text-end"> 
-                                    <span><h5>Elyana</h5></span>
-                                </div>
-                            </div>
 
-                            <div class="row mt-3">
-                                <div class="col-md-6 col-6"> 
-                                    <span><h4 style="font-weight: bold;">Last Name</h4></span>
+                                <div class="row mt-3">
+                                    <div class="col-md-6 col-6">
+                                        <span><h4 style="font-weight: bold;">First Name</h4></span>
+                                    </div>
+                                    <div class="col-md-6 col-6 text-end">
+                                        <span><h5><?php echo isset($_GET['payer_firstname']) ? $_GET['payer_firstname'] : ''; ?></h5></span>
+                                    </div>
                                 </div>
-                                <div class="col-md-6 col-6 text-end"> 
-                                    <span><h5>Española</h5></span>
-                                </div>
-                            </div>
 
-                            <div class="row mt-3">
-                                <div class="col-md-5 col-4"> 
-                                    <span><h4 style="font-weight: bold;">Email</h4></span>
+                                <div class="row mt-3">
+                                    <div class="col-md-6 col-6">
+                                        <span><h4 style="font-weight: bold;">Last Name</h4></span>
+                                    </div>
+                                    <div class="col-md-6 col-6 text-end">
+                                        <span><h5><?php echo isset($_GET['payer_lastname']) ? $_GET['payer_lastname'] : ''; ?></h5></span>
+                                    </div>
                                 </div>
-                                <div class="col-md-7 col-7 text-end"> 
-                                    <span><h5>elyanaespañola@gmail.com</h5></span>
+
+                                <div class="row mt-3">
+                                    <div class="col-md-5 col-4">
+                                        <span><h4 style="font-weight: bold;">Email</h4></span>
+                                    </div>
+                                    <div class="col-md-7 col-7 text-end">
+                                        <span><h5><?php echo isset($_GET['payer_email']) ? $_GET['payer_email'] : ''; ?></h5></span>
+                                    </div>
                                 </div>
-                            </div>
+
 
 
                             <div class="col-md-12 blanks mt-5"> <!----------- Blank Space--------------> </div>
