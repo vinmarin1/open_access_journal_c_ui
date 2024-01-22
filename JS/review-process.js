@@ -145,17 +145,124 @@ document.getElementById('btnReject').addEventListener('click', function(event){
         cancelButtonColor: "secondary",
         confirmButtonText: "Decline"
     }).then((result) => {
-        if (result.isConfirmed) {
-            Swal.fire({
-                text: "Declined invitation",
-                icon: "success",
-                showConfirmButton: false,
-            });
 
+        
+        if (result.isConfirmed) {
+            showLoader();
             setTimeout(function() {
                 window.location.href = '../PHP/author-dashboard.php';
-            }, 1000);
+            }, 2000);
+
+
         }
     });
 });
 
+
+function showLoader() {
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    loadingOverlay.style.display = 'block';
+}
+
+function toggleDiscussion(discussionId) {
+    var discussionContainer = document.getElementById('discussion' + discussionId);
+    if (discussionContainer.style.display === 'none') {
+        discussionContainer.style.display = 'block';
+    } else {
+        discussionContainer.style.display = 'none';
+    }
+  }
+  
+  
+function sendReply(discussionId, articleId) {
+// Get the message from the corresponding textarea
+var message = document.getElementById('reply-message-' + discussionId).value;
+showLoader();
+message.value = '';
+setTimeout(function () {
+    window.location.href = '../PHP/review-process.php?id=' + articleId;
+}, 1000);
+// Perform an AJAX request to send the reply
+var xhr = new XMLHttpRequest();
+xhr.onreadystatechange = function () {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+    // Handle the response if needed
+    console.log(xhr.responseText);
+    }
+};
+
+xhr.open('POST', 'discussion-reply.php', true);
+xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+xhr.send('discussion_id=' + discussionId + '&article_id=' + articleId + '&message=' + encodeURIComponent(message));
+}
+
+
+
+function rejectInvitation(articleId) {
+var xhr = new XMLHttpRequest();
+
+xhr.onreadystatechange = function () {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+        console.log(xhr.responseText);
+        // Handle the response as needed
+    }
+};
+
+xhr.open('POST', 'reject-invi.php', true);
+xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+xhr.send('article_id=' + articleId);
+}
+
+
+
+function viewAllLogs() {
+    var logEntries = document.getElementById('logEntries');
+    var logDates = document.getElementById('logDates');
+    var viewLogsBtn = document.getElementById('viewLogsBtn');
+    var hideLogsBtn = document.getElementById('hideLogsBtn');
+
+    var logEntriesChildren = logEntries.children;
+    var logDatesChildren = logDates.children;
+
+    for (var i = 0; i < logEntriesChildren.length; i++) {
+        logEntriesChildren[i].style.display = 'block';
+    }
+
+    for (var j = 0; j < logDatesChildren.length; j++) {
+        logDatesChildren[j].style.display = 'block';
+    }
+
+    viewLogsBtn.style.display = 'none';
+    hideLogsBtn.style.display = 'block';
+}
+
+function hideLogs() {
+    var logEntries = document.getElementById('logEntries');
+    var logDates = document.getElementById('logDates');
+    var viewLogsBtn = document.getElementById('viewLogsBtn');
+    var hideLogsBtn = document.getElementById('hideLogsBtn');
+
+    var logEntriesChildren = logEntries.children;
+    var logDatesChildren = logDates.children;
+
+    for (var i = 0; i < logEntriesChildren.length; i++) {
+        if (i < 5) {
+            logEntriesChildren[i].style.display = 'block';
+        } else {
+            logEntriesChildren[i].style.display = 'none';
+        }
+    }
+
+    for (var j = 0; j < logDatesChildren.length; j++) {
+        if (j < 5) {
+            logDatesChildren[j].style.display = 'block';
+        } else {
+            logDatesChildren[j].style.display = 'none';
+        }
+    }
+
+    viewLogsBtn.style.display = 'block';
+    hideLogsBtn.style.display = 'none';
+}
+
+ 

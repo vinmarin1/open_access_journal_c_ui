@@ -44,7 +44,8 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                                             FROM article 
                                             JOIN reviewer_assigned ON article.author_id = reviewer_assigned.author_id 
                                             WHERE reviewer_assigned.article_id = article.article_id AND article.status = 4
-                                            AND reviewer_assigned.author_id = :author_id AND article.article_id = :article_id";
+                                            AND reviewer_assigned.author_id = :author_id AND article.article_id = :article_id ORDER BY reviewer_assigned.date_issued DESC
+                                            LIMIT 1";
 
                         $result = database_run($sqlReviewraticle, array('author_id' => $userId,
                               'article_id' => $articleId));
@@ -76,7 +77,33 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 
                     <?php
                     echo '<input id="getId" name="getId" type="text" value="' . $articleId . '" placeholder="' . $articleId . '" style="display: none">';
+
+                    $sqlRound = "SELECT round FROM reviewer_assigned WHERE article_id = $articleId AND author_id = $userId ORDER BY round DESC LIMIT 1";
+                    $sqlRunRound = database_run($sqlRound);
+                    
+                  
+                    if ($sqlRunRound !== false && is_array($sqlRunRound) && count($sqlRunRound) > 0) {
+                       
+                        if (is_object($sqlRunRound[0]) && property_exists($sqlRunRound[0], 'round')) {
+                           
+                            $roundValue = $sqlRunRound[0]->round;
+                    
+                            echo '<input style="display: none" id="getRound" name="getRound" type="text" value="' . $roundValue . '" placeholder="' . $roundValue . '">';
+                        } else {
+                        
+                            echo 'Debugging info: ' . print_r($sqlRunRound, true);
+                            // Handle the case where the 'round' property is not present in the result array
+                            echo 'Error: "round" property not found in result array';
+                        }
+                    } else {
+                        // Output debugging information
+                        echo 'Debugging info: ' . print_r($sqlRunRound, true);
+                        // Handle the case where the query failed or the result is not as expected
+                        echo 'Error fetching round value';
+                    }
+
                     ?>
+
                     <h4>Abstract</h4>
                         <p>
                         <?php 
@@ -84,7 +111,8 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                                             FROM article 
                                             JOIN reviewer_assigned ON article.author_id = reviewer_assigned.author_id 
                                             WHERE reviewer_assigned.article_id = article.article_id AND article.status =4
-                                            AND reviewer_assigned.author_id = :author_id AND article.article_id = :article_id" ;
+                                            AND reviewer_assigned.author_id = :author_id AND article.article_id = :article_id ORDER BY reviewer_assigned.date_issued DESC
+                                            LIMIT 1" ;
 
                         $result = database_run($sqlAbstract, array('author_id' => $userId,
                          'article_id' => $articleId));
@@ -106,22 +134,26 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                     <div>
                         <div class="status">
                             <p>
-                                <?php
+                            <?php
+                            $sqlStatus = "SELECT article_status.status, article.title 
+                                        FROM article_status 
+                                        JOIN article ON article_status.status_id = article.status 
+                                        JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id AND article.status = 4
+                                        WHERE reviewer_assigned.author_id = :author_id AND article.article_id = :article_id
+                                        ORDER BY reviewer_assigned.date_issued DESC
+                                        LIMIT 1";
 
-                                    $sqlStatus = "SELECT article_status.status, article.title FROM article_status JOIN article ON article_status.status_id = article.status JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id AND article.status = 4
-                                    AND reviewer_assigned.author_id = :author_id AND article.article_id = :article_id";
+                            $result = database_run($sqlStatus, array('author_id' => $userId, 'article_id' => $articleId));
 
-                                    $result = database_run($sqlStatus, array('author_id' => $userId,
-                                    'article_id' => $articleId));
-
-                                    if ($result !== false) {
-                                    foreach ($result as $row) {
+                            if ($result !== false) {
+                                foreach ($result as $row) {
                                     echo $row->status;
-                                    }
-                                    } else {
-                                    echo "No status for this article"; 
-                                    }
-                                ?>
+                                }
+                            } else {
+                                echo "No status for this article";
+                            }
+                            ?>
+
                                 
                             </p>
                         </div>
@@ -143,65 +175,63 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                             }
                         ?>
                         </h4>
-                        <div class="logs-date">                
-                            <p id="logsTitle" style="color: black; font-weight: bold;">Logs</p>
-                           
-                            <div class="log-entry"><br>
-                                <?php
-                                    $sqlLogs = "SELECT logs_article.type FROM logs_article JOIN article ON logs_article.article_id = article.article_id WHERE logs_article.article_id = :article_id";
-
-                                    $sqlRunLogs = database_run($sqlLogs, array('article_id' => $articleId));
-
-                                    if ($sqlRunLogs !== false){
-                                        foreach ($sqlRunLogs as $logsRow){
-                                            echo '<p class="logsArticle" style="display: block">' . $logsRow->type . '</p>';
-                                        }
-                                    }else{
-                                        echo 'no logs for this article';
-                                    }
-
-                                ?>
-                    </div>
-                            <p style="font-size: x-small; margin-top: -15px; " >Submitted in the 
-                        
-                            <?php
-                              $sqlJournal = "SELECT journal.journal, article.title FROM journal JOIN article ON journal.journal_id = article.journal_id JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id AND article.status = 4
-                              AND reviewer_assigned.author_id = :author_id AND article.article_id = :article_id";
-  
-                              $result = database_run($sqlJournal, array('author_id' => $userId,
-                                     'article_id' => $articleId));
-  
-                              if ($result !== false) {
-                              foreach ($result as $row) {
-                              echo $row->journal;
-                              }
-                              } else {
-                              echo "Can't determine or the file has been put on the archive"; 
-                              }
-                            
-                            ?>
-                            
-                            </p>
-                            <a href="#!">View All Logs</a>
                         </div>
-                        <div class="date">
-                            <p style="color: black; font-weight: bold;">Date</p>
-                            <?php
-                            $sqlLogsDate = "SELECT logs_article.date FROM logs_article JOIN article ON logs_article.article_id = article.article_id WHERE logs_article.article_id = :article_id";
+            <div class="logs-date">
+                <p id="logsTitle" style="color: black; font-weight: bold;">Logs</p>
+            
+                <div class="log-entry mt-4" id="logEntries">
+                    <?php
+                        $sqlLogs = "SELECT logs_article.type FROM logs_article JOIN article ON logs_article.article_id = article.article_id WHERE logs_article.article_id = :article_id";
 
-                            $sqlDateParams = database_run($sqlLogsDate, array('article_id' => $articleId));
+                        $sqlRunLogs = database_run($sqlLogs, array('article_id' => $articleId));
 
-                            if ($sqlDateParams !== false){
-                                foreach ($sqlDateParams as $logsDate){
-                                    echo '<p style="display: block">' . $logsDate->date . '</p>';
+                        if ($sqlRunLogs !== false){
+                            $count = 0;
+                            foreach ($sqlRunLogs as $logsRow){
+                                if ($count < 5) {
+                                    echo '<p class="logsArticle" style="display: block">' . $logsRow->type . '</p>';
+                                } else {
+                                    echo '<p class="logsArticle" style="display: none">' . $logsRow->type . '</p>';
                                 }
-                            }else{
-                                echo 'no logs for this article';
+                                $count++;
                             }
+                        } else {
+                            echo 'no logs for this article';
+                        }
+                    ?>
+                </div>
+                
+               
 
-                        ?>
-                        </div>
-                    </div>
+                <button type="button" class="btn btn-outline-primary btn-sm"  onclick="viewAllLogs()" id="viewLogsBtn" style="width: 430px; margin-left: -5px;">View All Logs</button>
+                <button type="button" class="btn btn-outline-primary btn-sm"  onclick="hideLogs()" id="hideLogsBtn" style="display: none; width: 430px; margin-left: -5px;">Hide Logs</button>
+            </div>
+
+            <div class="date">
+                <p style="color: black; font-weight: bold;">Date</p>
+                <div class="log-date" id="logDates">
+                    <?php
+                        $sqlLogsDate = "SELECT logs_article.date FROM logs_article JOIN article ON logs_article.article_id = article.article_id WHERE logs_article.article_id = :article_id";
+
+                        $sqlDateParams = database_run($sqlLogsDate, array('article_id' => $articleId));
+
+                        if ($sqlDateParams !== false){
+                            $count = 0;
+                            foreach ($sqlDateParams as $logsDate){
+                                if ($count < 5) {
+                                    echo '<p style="display: block">' . $logsDate->date . '</p>';
+                                } else {
+                                    echo '<p style="display: none">' . $logsDate->date . '</p>';
+                                }
+                                $count++;
+                            }
+                        } else {
+                            echo 'no logs for this article';
+                        }
+                    ?>
+                </div>
+            </div>
+
                 </div>
             </div>
 
@@ -287,22 +317,74 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                     <!-- This is a Blank space -->
                     <div class="table-container">
                         <h5>Comments</h5>
-                        <table class="table table-hover" id="table-file">
-                            <thead>
-                                <tr>
-                                <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">Comments</th>
-                                </tr>
-                            </thead>
-                            <tbody id="commentList">
-                                <tr>
-                                    <td id="comment1">
+                        <?php
+                    $userId = $_SESSION['id'];    
 
-                                    <!---------Comments here---------->
+                    $sqlDiscussion = "SELECT * FROM discussion WHERE article_id = $articleId";
+                    $resultDiscussion = database_run($sqlDiscussion);
 
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>              
+                    if ($resultDiscussion !== false) {
+                        foreach ($resultDiscussion as $rowDiscussion) {
+                            // Output discussion button with a unique ID
+                            echo '<button type="button" class="btn btn-secondary btn-sm" style="width: 100%; margin-top: 5px;" onclick="toggleDiscussion(' . $rowDiscussion->discussion_id . ')">' . $rowDiscussion->discussion_type . '</button>';
+
+                            // Output discussion messages container with a unique ID and initially hide it
+                            echo '<div id="discussion' . $rowDiscussion->discussion_id . '" style="display:none; width: 100%; height: auto; border: none; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; backround-color: #0066cc; margin-left: 10px">';
+
+                            // Fetch discussion messages and sender names for the selected discussion
+                            $discussionId = $rowDiscussion->discussion_id;
+                            $sqlMessages = "SELECT discussion_message.userId, discussion_message.message, discussion_message.fromuser FROM discussion_message
+                                            WHERE discussion_message.discussion_id = $discussionId";
+
+                            $resultMessages = database_run($sqlMessages);
+
+                            if ($resultMessages !== false) {
+                                foreach ($resultMessages as $rowMessage) {
+                                    echo '<div>';
+                                    
+                                    // Check if the message is from the current user
+                                    if ($rowMessage->userId == $userId) {
+                                        // Apply different style for the current user's message (right side)
+                                        echo '<p style="font-weight: lighter; display: block; margin-left: 5px; background-color: #ECF0F1; color: black; width: 50%; margin-left: auto; border-radius: 30px 30px 0 0; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">' . $rowMessage->message . '</p>';
+                                    } else {
+                                        // Apply style for other users' messages (left side)
+                                        echo '<p style="font-weight: lighter; display: block; margin-top:5px; margin-left: 5px">' . $rowMessage->fromuser .'</p>';
+                                        echo '<p style="font-weight: lighter; display: block; margin-top:5px; margin-left: 5px">'. 'Subject: ' . $rowDiscussion->subject . '</p>';
+                                        echo '<p style="font-weight: lighter; display: block; margin-left: 5px; background-color: #ECF0F1; color: black; width: 50%; border-radius: 30px 30px 0 0; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">' . $rowMessage->message . '</p>';
+                                    }
+
+                                    echo '</div>';
+                                }
+                            } else {
+                                echo '<p class="dmessageNtFound">Discussion messages not found</p>';
+                            }
+
+                            echo '<style>
+                                        
+                                #reply-message::-webkit-scrollbar {
+                                    display: none;
+                                }
+                            </style>';
+
+                            echo '<div style="position: relative; margin-top: 10px; border: 1px solid #ccc; padding: 10px; border-radius: 5px; ">';
+
+                            // Textarea with a specific max-width, height, and disabled resize
+                            // Inside your loop
+                            echo '<textarea class="form-control" name="reply-message" id="reply-message-' . $discussionId . '" cols="10" rows="4" style="resize: none; max-width: 100%; height: 10vh; overflow-y: auto; padding-right: 80px;"></textarea>';
+
+                            // Reply button inside the textarea, positioned at the lower-right bottom
+                            echo '<button type="button" onclick="sendReply(' . $discussionId . ', ' . $articleId . ')" style="position: absolute; bottom: 15px; right: 15px; padding: 5px; background-color: #0066cc; color: #fff; border: none; border-radius: 3px; cursor: pointer;">Reply</button>';
+                            echo '</hr>';
+                            echo '</div>';
+                            
+                            echo '</div>';
+                            
+                        }
+                    } else {
+                        echo '<p class="dmessageNtFound">No discussion for this article yet</p>';
+                    }
+                ?>
+           
                     </div>
                 </div>
             </div>
@@ -352,11 +434,11 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-5">
                     <!-- This is a Blank space -->
                     <div class="btn">
-                        <button class="btn tbn-primary btn-md nextBtn" id="acceptBtn"  onclick="nextStep()" >Accept</button>
-                        <button id="btnReject" class="btn tbn-primary btn-md" onclick="prevStep()" >Reject</button>
+                        <button class="btn tbn-primary btn-md nextBtn" id="acceptBtn"  onclick="nextStep()" style="width: 450px; margin-left: -15px" >Accept</button>
+                        <button id="btnReject" class="btn tbn-primary btn-md" onclick="rejectInvitation()"style="width: 450px; margin-left: -15px" >Reject</button>
                     </div>
                 </div>
             </div>
@@ -668,20 +750,20 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                             <div class="col-md-6 comments">
                             <!-- Content for the right half of the screen -->
                             <h4>Additional comment for the following lines: Originality, <br> Literature Review, Evaluation.</h4>                    
-                                <textarea id="addiComment" name="addiComment" class="form-control" rows="8"></textarea>
+                                <textarea id="ansOrig" name="ansOrig" class="form-control" rows="8"></textarea>
                             <br>
                             <h5>Reference:</h5>
-                                <textarea id="reference" name="reference" class="form-control" rows="5" required></textarea>
+                                <textarea id="ansRef" name="ansRef" class="form-control" rows="5" required></textarea>
                             <br>
                                 <h5>Languages:</h5>
-                            <textarea id="languages" name="languages" class="form-control" rows="5" required></textarea>
+                            <textarea id="ansLang" name="ansLang" class="form-control" rows="5" required></textarea>
                             </div>
 
                         </div>
 
                         <hr style="height: 2px; background-color: #0858a4; width: 100%;">
 
-                        <div class="decisions">
+                        <!-- <div class="decisions">
                             <h5>Decision:</h5>
 
                             <div>
@@ -704,7 +786,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                                 <label for="acceptWithout">Accept without modifications</label>
                             </div>
 
-                        </div>
+                        </div> -->
 
                         <div class="btn-final">
                             <button type="submit" id="btnSubmit" class="btn tbn-primary btn-md" >Submit</button>
@@ -749,3 +831,4 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 
 </body>
 </html>
+
