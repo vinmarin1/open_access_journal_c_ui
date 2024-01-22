@@ -322,7 +322,9 @@
     color: #959595; 
   }
   .journal-preview img{
-    width: 60%;
+    width: 8em;
+    object-fit: cover;
+    height:12em;
   }
 
   #journals-container button{

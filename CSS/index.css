@@ -15,11 +15,79 @@ h6 {
   font-family: 'Judson', serif !important;
 }
 
-h4 {
+h1,h4 {
   font-size: 14px;
   font-weight: 600;
 }
 
+a {
+  text-decoration: none !important;
+}
+
+.content-over {
+  position: relative;
+  width: 100%;
+  /* height: 10em; */
+  max-height: 20em;
+  background-image: url(../images/qcu-bg.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  /* padding-top: 70px; */
+  padding: 2em 8%;
+  display: inline-flex;
+  flex-direction: column;
+}
+
+.content-over::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(53, 68, 74, 0.7);
+}
+
+.content-over p,
+.content-over h4,
+.content-over h1{
+  color: white;
+  position: relative;
+  z-index: 1;
+  display: block;
+}
+
+.content-over h4,
+.content-over h1 {
+  font-weight: 500 !important;
+  font-size: 24px;
+}
+
+.content-over span {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.content-over button {
+  color: white;
+  position: relative;
+  z-index: 1;
+  background-color: #E56F1F;
+  border-radius: 20px;
+  /* margin-top: 20px; */
+  padding: 0.5em 1em;
+}
+
+.content-over button:hover {
+  color: white;
+  position: relative;
+  z-index: 1;
+  background-color: #E56F1F;
+  border-radius: 20px;
+  /* margin-top: 20px; */
+  opacity: 0.8;
+}
 
 .recommendation-article {
   display: flex;

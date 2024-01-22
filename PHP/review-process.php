@@ -34,9 +34,6 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
             <div class="content-over">
                 <div class="cover-content">
                    
-
-                
-
                     <p> Dashboard / Reviewer / Submitted Articles </p>
                     <h3> 
                         <?php 

@@ -32,10 +32,10 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
             <h4>Articles</h4>
         </div>
         <form action="" method="GET" class="search-form" id="search-form">
-            <div class="search-container d-flex align-items-center">
+            <div class="search-container d-flex flex-sm-row flex-column align-sm-items-center align-items-start gap-1">
                 <input list="articlesList" id="result" type="text" class="form-control me-2 py-3" placeholder="Search Articles..."
                     class="search-bar"
-                    style="width: 583px; height: 30px; font-style: italic; background-color: white;" />
+                    style="height: 30px; font-style: italic; background-color: white;" />
                     <!-- <datalist id="articlesList">
                        
                     </datalist> -->
@@ -65,24 +65,21 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
             <h4 style="color: #0858a4;"><b><span id="total"></span></b></h4>
             <hr style="border-top: 1px solid #ccc; margin: 10px 0;"> 
             <!-- Filters Here -->
-            <div class="journal-preview">
+            <div class="journal-preview flex-row flex-lg-column">
+                <div>
                 <img />
                 <h2 class="journal"></h2>
+                </div>
+            
                 <ul>
+                    
+
                     <li class="issn">
                         <h3>ISSN (online)</h3>
                         <span></span>
                     </li>
                     <li class="date">
                         <h3>Online Date Start</h3>
-                        <span></span>
-                    </li>
-                    <li class="copyright">
-                        <h3>Copyright Holder</h3>
-                        <span></span>
-                    </li>
-                    <li class="board">
-                        <h3>Editorial Board</h3>
                         <span></span>
                     </li>
                     <li class="info">
@@ -95,18 +92,24 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
 
             </div>
             <hr style="border-top: 1px solid #ccc; margin: 10px 0;"> <!-- Add a horizontal line -->
+     
             <div class="filters">
-                <h5 style="color: #0858a4;">Filter search results</h5>
+                <h4 class="btn collapsed p-0" style="color: #0858a4;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFilters" aria-expanded="false" aria-controls="collapseFilters">
+                    Filter search results
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="7" viewBox="0 0 16 7"><path fill="currentColor" d="M8 6.5a.47.47 0 0 1-.35-.15l-4.5-4.5c-.2-.2-.2-.51 0-.71c.2-.2.51-.2.71 0l4.15 4.15l4.14-4.14c.2-.2.51-.2.71 0c.2.2.2.51 0 .71l-4.5 4.5c-.1.1-.23.15-.35.15Z"/></svg>
+                </h4>
                 <!-- Journals, Year Published, etc. -->
-                <div class="checkbox-container">
-                    <h5 class="mb-2" style="color: #959595;"><b>JOURNALS</b></h5>
-                    <div id="journals-container" class="d-flex flex-column">
-         
+                <div class="collapse show" id="collapseFilters">
+                    <div class="checkbox-container">
+                        <h5 class="mb-2" style="color: #959595;"><b>JOURNALS</b></h5>
+                        <div id="journals-container" class="d-flex flex-row flex-lg-column flex-wrap gap-2">
+            
+                        </div>
                     </div>
-                </div>
-                <div class="checkbox-container">
-                    <h5 class="mb-2" style="color: #959595;"><b>YEAR PUBLISHED</b></h5>
-                    <div id="years-container" class="d-flex flex-column">
+                    <div class="checkbox-container">
+                        <h5 class="mb-2" style="color: #959595;"><b>YEAR PUBLISHED</b></h5>
+                        <div id="years-container" class="d-flex flex-row flex-lg-column flex-wrap gap-2">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -143,41 +146,18 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 <div></div>
             </div>
             <hr style="border-top: 1px solid #ccc; margin: 10px 0;"> <!-- Add a horizontal line -->
-            <div id="articles" class="d-flex flex-column gap-2 mb-4 w-100">
+            <div id="articles" class="d-flex flex-column gap-2 mb-4 w-100 p-0 m-0">
 
             </div>
 
             <!-- Repeat for more articles -->
             <!-- Pagination -->
             <!-- Bootstrap Pagination -->
-            <nav aria-label="Page navigation">
-                <ul class="pagination justify-content-center" id="pagination-container">
-                    <!-- Display "Previous" link if not on the first page -->
-                    <li class="page-item">
-                        <a class="page-link" href="javascript:void(0);" onclick="changePage('previous')"
-                            aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-
+            <nav aria-label="Page navigation d-flex justify-items-center align-items-center w-100">
+                <ul class="pagination d-flex flex-wrap w-100" id="pagination-container">
                     <!-- Display page numbers -->
                     <li class="page-item"><a class="page-link" href="javascript:void(0);"
                             onclick="changePage(0)">1</a></li>
-                    <li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="changePage(1)">2</a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="changePage(2)">3</a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="changePage(3)">4</a>
-                    </li>
-                    <li class="page-item"><a class="page-link" href="javascript:void(0);" onclick="changePage(4)">5</a>
-                    </li>
-          
-          
-                    <!-- Display "Next" link if not on the last page -->
-                    <li class="page-item">
-                        <a class="page-link" href="javascript:void(0);" onclick="changePage('next')" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
                     </li>
                 </ul>
             </nav>

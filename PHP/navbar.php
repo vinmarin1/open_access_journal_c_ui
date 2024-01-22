@@ -17,10 +17,9 @@ require 'dbcon.php';
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg p-0" id="navbar-container" >
-  <div class="container-fluid p-0">
-   
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="background-color: white; margin-left: 50px">
+<nav class="navbar navbar-expand-lg p-0" id="navbar-container">
+  <div class="container-fluid">
+    <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -28,7 +27,6 @@ require 'dbcon.php';
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="index.php">Home</a>
         </li>
-
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="about.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             About
@@ -47,40 +45,19 @@ require 'dbcon.php';
         <li class="nav-item">
           <a class="nav-link" href="announcement.php">Announcements</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="announcement.php">Guidelines</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="about.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Guidelines
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" style="color: black" href="#">Tutorial</a></li>
+            <li><a class="dropdown-item" style="color: black" href="./faqs.php">Frequently Asked Questions</a></li>
+          </ul>
         </li>
       </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-      </form>
-
+ 
       <?php
-          
-              if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-
-              } else {
-              echo '
-              
-              <li class="nav-item dropdown py-2 px-4">
-                <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Log-in
-                </a>
-                <ul class="dropdown-menu" style="margin-left: -50px; width: 100px">
-                <li><a class="dropdown-item" style="color: black" href="login.php" >Log-in</a></li>
-                <li><a class="dropdown-item" style="color: black" href="signup.php">Register</a></li>
-                </ul>
-              </li>
-            ';
-          }
-            ?>
-
-      </div>
-      </div>
-
-      <?php
-      if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-        
+        if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
           $userName = ucfirst($_SESSION['first_name']);
           $author_id = $_SESSION['id'];
 
@@ -112,6 +89,7 @@ require 'dbcon.php';
         //     }
         // }
         
+<<<<<<< HEAD
           
           
         echo '
@@ -177,16 +155,86 @@ require 'dbcon.php';
                   echo '<li><a href="../Admin/php/journalview.php" class="dropdown-item" style="color: black;">Admin Dashboard</a></li>';
               }
           }
+=======
           echo '
-                          <li><a href="user-dashboard.php" class="dropdown-item" style="color: black;">My Profile</a></li>
-                          <li><a href="author-dashboard.php" class="dropdown-item" style="color: black;">My Contributions</a></li>
-                          <li><a href="user-dashboard.php" class="dropdown-item" style="color: black;">Update Profile</a></li>
-                          <li><a class="dropdown-item" href="../PHP/logout.php" style="color: black;">Log-out</a></li> 
-                      </ul>
-                  </li>
-              </div>';
-      }
+          <div class="d-flex justify-content-center align-items-center">
+            <div class="btn-group">
+              <button type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" id="notification-button">
+                  <i class="fas fa-bell"></i>
+                  <span id="notification-count"></span>
+              </button>
+              <ul class="dropdown-menu">';
+                      if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+
+                        $author_id = $_SESSION['id'];
+
+                        $sqlNotif = "SELECT article.article_id, article.title FROM article JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id WHERE reviewer_assigned.author_id = :author_id AND article.status = 4 AND reviewer_assigned.accept = 0 AND reviewer_assigned.answer = 0";
+                        $sqlNotifRun = database_run($sqlNotif, array(':author_id' => $author_id));
+                        
+                        if ($sqlNotifRun !== false) {
+                          foreach ($sqlNotifRun as $notif) {
+                              echo '
+                                    <li   style="padding:8px; list-style-type: none;  font-size: 12px;">
+                                        <p class="d-flex flex-column ">You have been invited as Reviewer 
+                                        <span>Title: </p>
+                                        <a id="inviteMessage" style="text-decoration: none; color: gray; display: inline-block;" href="./review-process.php?id=' . $notif->article_id . '">' . $notif->title . '</a>
+                                        </span>
+                                    </li>
+                                    <li><hr class="dropdown-divider"></li>
+                                ';
+                          }
+                        }else{
+                          echo '<p class="h6" style="color: gray; font-weight: normal; margin-left: 10px" >0 Notification</p>';
+                        }
+                      }
+
+              echo '
+              </ul>
+            </div>
+        
+            <div class="profile px-4">
+              <a id="user-profile" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  '. $userName .'
+              </a>
+              <li class="dropdown" style="list-style-type: none;">
+                <ul class="dropdown-menu" style="width: 200px; margin-left: -120px; margin-top: 20px">
+                  ';
+                  if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+                      if (isset($_SESSION['role']) && $_SESSION['role'] === 'Admin') {
+                          echo '<li><a href="../Admin/php/journalview.php" class="dropdown-item" style="color: black;">Admin Dashboard</a></li>';
+                      }
+                  }
+                  echo '
+                  <li><a href="user-dashboard.php" class="dropdown-item" style="color: black;">My Profile</a></li>
+                  <li><a href="author-dashboard.php" class="dropdown-item" style="color: black;">My Contributions</a></li>
+                  <li><a href="user-dashboard.php" class="dropdown-item" style="color: black;">Update Profile</a></li>
+                  <li><a class="dropdown-item" href="../PHP/logout.php" style="color: black;">Log-out</a></li> 
+                </ul>
+              </li>
+            </div>
+          </div>';
+          } else {
+>>>>>>> 1de3d65809e22f98748941f864dabe6d5aa41f0c
+          echo '
+          <li class="nav-item dropdown py-2 px-4">
+            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Log-in
+            </a>
+            <ul class="dropdown-menu" style="margin-left: -50px; width: 100px">
+            <li><a class="dropdown-item" style="color: black" href="login.php" >Log-in</a></li>
+            <li><a class="dropdown-item" style="color: black" href="signup.php">Register</a></li>
+            </ul>
+          </li>
+          ';
+        }
       ?>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      </form> 
+      <hr>
+    </div>
+      </div>
+  </div>
 </nav>
 <!-- 
 <div class="container-fluid" style="postion: absolute; z-index: 999; width: 100% height: auto">

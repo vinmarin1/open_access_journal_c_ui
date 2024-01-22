@@ -124,8 +124,8 @@ if (!function_exists('get_email_content')) {
                     echo "<script>alert('Send to production successfully.');</script>";
                 } elseif ($id == 6) {
                     updateIssues($article_id, $issues_id);
-                    updateArticleStatus($article_id, 1);
-                    addLogs($article_id, $fromuser, 'Article Published');
+                    updateArticleStatus($article_id, 11);
+                    addLogs($article_id, $fromuser, 'Article send for Publishing');
                     echo "<script>alert('Send to publication successfully.');</script>";
                 } elseif ($id == 7) {
                     updateArticleStatus($article_id, 0);
