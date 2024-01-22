@@ -778,7 +778,7 @@ $issuelist = get_issues_list();
                                                 <td width="50%"><?php echo $issuelistval->title; ?></td>
                                                 <td width="20%"><?php echo $issuelistval->year; ?></td>
                                                 <td width="5%">
-                                                <button type="button" class="btn btn-outline-dark" onclick="SendForPublication('<?php echo $issuelistval->issues_id; ?>')">View</button>
+                                                <button type="button" class="btn btn-outline-dark" onclick="SendForReadyPublication('<?php echo $issuelistval->issues_id; ?>')">View</button>
 
                                                 </td>
                                             </tr>
@@ -1596,7 +1596,7 @@ function updateCopyeditedUncheckedFiles() {
     });
 }
 
-function SendForPublication(issueId) {
+function SendForReadyPublication(issueId) {
     $('#sloading').show();
 
     setTimeout(function () {

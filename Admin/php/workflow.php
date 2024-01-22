@@ -172,7 +172,11 @@ table {
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3 mt-4 mt-lg-0" id="dynamic-column">
-                                                            <?php if ($article_data[0]->status <= 4): ?>
+                                                            <?php if ($article_data[0]->status == 11): ?>
+                                                                <div class="alert alert-white" role="alert">
+                                                                    <p>Submission accepted for review.</p>
+                                                                </div>
+                                                            <?php elseif ($article_data[0]->status <= 4 && $article_data[0]->status == 11): ?>
                                                                 <div class="alert alert-white" role="alert">
                                                                     <p>Submission accepted for review.</p>
                                                                 </div>
@@ -258,7 +262,7 @@ table {
                                                     </div>
                                                 </div>
 <!-- Review -->
-                                                <?php if ($article_data[0]->status >= 5): ?>
+                                                <?php if ($article_data[0]->status >= 5 && $article_data[0]->status != 11): ?>
                                                 <div class="tab-pane fade" id="navs-top-review" role="tabpanel">
                                                     <div class="row">
                                                         <div class="alert alert-white" role="alert">
@@ -308,8 +312,13 @@ table {
                                                                 </table>
                                                             </div>
                                                         </div>
+
                                                         <div class="col-md-3 mt-4 mt-lg-0" id="dynamic-column">
-                                                            <?php if ($article_data[0]->status <= 3): ?>
+                                                            <?php if ($article_data[0]->status == 11): ?>
+                                                                <div class="alert alert-white" role="alert">
+                                                                    <p>Submission accepted for copyediting.</p>
+                                                                </div>
+                                                            <?php elseif ($article_data[0]->status <= 3): ?>
                                                                 <div class="alert alert-white" role="alert">
                                                                     <p>Submission accepted for copyediting.</p>
                                                                 </div>
@@ -406,9 +415,19 @@ table {
                                                                     ?>
                                                                     <label for="roundFilter" class="form-label">Filter by Round:</label>
                                                                     <select class="form-select" id="roundFilter" name="roundFilter" onchange="this.form.submit()">
-                                                                        <option value="Round 1" <?php echo ($selectedRound == "Round 1") ? "selected" : ""; ?>>Round 1</option>
-                                                                        <option value="Round 2" <?php echo ($selectedRound == "Round 2") ? "selected" : ""; ?>>Round 2</option>
-                                                                        <option value="Round 3" <?php echo ($selectedRound == "Round 3") ? "selected" : ""; ?>>Round 3</option>
+                                                                        <?php
+                                                                        // Conditionally generate options based on the value of $article_data[0]->round
+                                                                        if ($article_data[0]->round == "Round 1") {
+                                                                            echo '<option value="Round 1" ' . ($selectedRound == "Round 1" ? "selected" : "") . '>Round 1</option>';
+                                                                        } elseif ($article_data[0]->round == "Round 2") {
+                                                                            echo '<option value="Round 1" ' . ($selectedRound == "Round 1" ? "selected" : "") . '>Round 1</option>';
+                                                                            echo '<option value="Round 2" ' . ($selectedRound == "Round 2" ? "selected" : "") . '>Round 2</option>';
+                                                                        } elseif ($article_data[0]->round == "Round 3") {
+                                                                            echo '<option value="Round 1" ' . ($selectedRound == "Round 1" ? "selected" : "") . '>Round 1</option>';
+                                                                            echo '<option value="Round 2" ' . ($selectedRound == "Round 2" ? "selected" : "") . '>Round 2</option>';
+                                                                            echo '<option value="Round 3" ' . ($selectedRound == "Round 3" ? "selected" : "") . '>Round 3</option>';
+                                                                        }
+                                                                        ?>
                                                                     </select>
                                                                 </form>
                                                             </div>
@@ -444,15 +463,15 @@ table {
                                                                                     if ($matchingReviewer) { ?>
                                                                                         <td width="75%"><?php echo $matchingReviewer->last_name . ', ' . $matchingReviewer->first_name; ?></td>
                                                                                         <td colspan="3" style="text-align: right;">
-                                                                                            <?php if (strpos($article_reviewerval->round, 'Round 1') !== false): ?>
-                                                                                                <a href="javascript:void(0);" onclick="viewReviewerAnswer(<?php echo $article_reviewerval->author_id; ?>,'<?php echo $article_data[0]->article_id; ?>','<?php echo $matchingReviewer->last_name . ', ' . $matchingReviewer->first_name; ?>','Round 1')" class="btn btn-outline-dark Round1" style="margin-right: 10px;" >Round 1</a>
+                                                                                            <?php if ((strpos($article_reviewerval->round, 'Round 1') !== false) && ($article_reviewerval->answer != 0)): ?>
+                                                                                                <a href="javascript:void(0);" onclick="viewReviewerAnswer(<?php echo $article_reviewerval->author_id; ?>,'<?php echo $article_data[0]->article_id; ?>','<?php echo $matchingReviewer->last_name . ', ' . $matchingReviewer->first_name; ?>','Round 1')" class="btn btn-outline-dark Round1" style="margin-right: 10px;">Round 1</a>
                                                                                             <?php endif; ?>
 
-                                                                                            <?php if (strpos($article_reviewerval->round, 'Round 2') !== false): ?>
+                                                                                            <?php if ((strpos($article_reviewerval->round, 'Round 2') !== false) && ($article_reviewerval->answer != 0)): ?>
                                                                                                 <a href="javascript:void(0);" onclick="viewReviewerAnswer(<?php echo $article_reviewerval->author_id; ?>,'<?php echo $article_data[0]->article_id; ?>','<?php echo $matchingReviewer->last_name . ', ' . $matchingReviewer->first_name; ?>','Round 2')" class="btn btn-outline-dark Round2" style="margin-right: 10px;">Round 2</a>
                                                                                             <?php endif; ?>
 
-                                                                                            <?php if (strpos($article_reviewerval->round, 'Round 3') !== false): ?>
+                                                                                            <?php if ((strpos($article_reviewerval->round, 'Round 3') !== false) && ($article_reviewerval->answer != 0)): ?>
                                                                                                 <a href="javascript:void(0);" onclick="viewReviewerAnswer(<?php echo $article_reviewerval->author_id; ?>,'<?php echo $article_data[0]->article_id; ?>','<?php echo $matchingReviewer->last_name . ', ' . $matchingReviewer->first_name; ?>','Round 3')" class="btn btn-outline-dark Round3" style="margin-right: 10px;">Round 3</a>
                                                                                             <?php endif; ?>
                                                                                         </td>
@@ -519,7 +538,7 @@ table {
                                                 </div>
                                                 <?php endif; ?>
 <!-- Copyediting -->
-                                                <?php if ($article_data[0]->status >= 4): ?>
+                                                <?php if ($article_data[0]->status >= 4 && $article_data[0]->status != 11): ?>
                                                 <div class="tab-pane fade" id="navs-top-copyediting" role="tabpanel">
                                                     <div class="row">
                                                         <div class="alert alert-white" role="alert">
@@ -610,7 +629,11 @@ table {
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3 mt-4 mt-lg-0" id="dynamic-column">
-                                                        <?php if ($article_data[0]->status <= 2): ?>
+                                                            <?php if ($article_data[0]->status == 11): ?>
+                                                                <div class="alert alert-white" role="alert">
+                                                                    <p>Submission accepted for production.</p>
+                                                                </div>
+                                                            <?php elseif ($article_data[0]->status <= 2): ?>
                                                                 <div class="alert alert-white" role="alert">
                                                                     <p>Submission accepted for production.</p>
                                                                 </div>
@@ -751,7 +774,7 @@ table {
                                                 </div>
                                                 <?php endif; ?>
 
-<!-- Production -->                             <?php if ($article_data[0]->status >= 3): ?>
+<!-- Production -->                             <?php if ($article_data[0]->status >= 3 && $article_data[0]->status != 11): ?>
                                                 <div class="tab-pane fade" id="navs-top-production" role="tabpanel">
                                                     <div class="row">
                                                         <div class="alert alert-white" role="alert">
@@ -844,7 +867,11 @@ table {
                                                             </div>
                                                         </div>
                                                         <div class="col-md-3 mt-4 mt-lg-0" id="dynamic-column">
-                                                        <?php if ($article_data[0]->status <= 1): ?>
+                                                            <?php if ($article_data[0]->status == 11): ?>
+                                                                <div class="alert alert-white" role="alert">
+                                                                    <p>Submission accepted for copyediting.</p>
+                                                                </div>
+                                                            <?php elseif ($article_data[0]->status <= 1 && $article_data[0]->status == 11): ?>
                                                                 <div class="alert alert-white" role="alert">
                                                                     <p>Submission published.</p>
                                                                 </div>

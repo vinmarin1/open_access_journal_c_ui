@@ -79,6 +79,7 @@ $incomplete_articles = get_article_list($cid);
                                     $statusInfo = [
                                         0 => ['label' => 'Archived', 'class' => 'label-dark'],
                                         1 => ['label' => 'Published', 'class' => 'label-success'],
+                                        11 => ['label' => 'Ready for Published', 'class' => 'label-success'],
                                         2 => ['label' => 'Production', 'class' => 'label-info'],
                                         3 => ['label' => 'Copyediting', 'class' => 'label-primary'],
                                         4 => ['label' => 'Review', 'class' => 'label-warning'],
