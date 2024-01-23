@@ -367,7 +367,7 @@ async function fetchData(input, dates,sort, currentPage = 0) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          journal: journalId!=null ? journalId : [],
+          journal: journalId!=null ? [journalId] : [],
           dates: dates,
           input: typeof input == "string" ? input : "",
         }),
@@ -465,7 +465,7 @@ async function fetchData(input, dates,sort, currentPage = 0) {
     generatePagination(data.total)
   } catch (error) {
     console.error("Error fetching data:", error);
-    articlesContainer.innerHTML = `No match found for ${input}.`
+    articlesContainer.innerHTML = input? `No match found for ${input }.` : "No match found"
     total.innerHTML = '0 searched article'
     loading.classList.add("d-none") 
   }
