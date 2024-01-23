@@ -323,7 +323,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                     if ($resultDiscussion !== false) {
                         foreach ($resultDiscussion as $rowDiscussion) {
                             // Output discussion button with a unique ID
-                            echo '<button type="button" class="btn btn-secondary btn-sm" style="width: 100%; margin-top: 5px;" onclick="toggleDiscussion(' . $rowDiscussion->discussion_id . ')">' . $rowDiscussion->discussion_type . '</button>';
+                            echo '<button type="button" class="btn btn-secondary btn-sm" style="width: 430px; margin-top: 5px; margin-left: -5px" onclick="toggleDiscussion(' . $rowDiscussion->discussion_id . ')">' . $rowDiscussion->discussion_type . '</button>';
 
                             // Output discussion messages container with a unique ID and initially hide it
                             echo '<div id="discussion' . $rowDiscussion->discussion_id . '" style="display:none; width: 100%; height: auto; border: none; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; backround-color: #0066cc; margin-left: 10px">';
@@ -434,8 +434,8 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                 <div class="col-md-5">
                     <!-- This is a Blank space -->
                     <div class="btn">
-                        <button class="btn tbn-primary btn-md nextBtn" id="acceptBtn"  onclick="nextStep()" style="width: 450px; margin-left: -15px" >Accept</button>
-                        <button id="btnReject" class="btn tbn-primary btn-md" onclick="rejectInvitation()"style="width: 450px; margin-left: -15px" >Reject</button>
+                        <button class="btn tbn-primary btn-md nextBtn" id="acceptBtn"  onclick="nextStep()" style="width: 430px; margin-left: -15px" >Accept</button>
+                        <button id="btnReject" class="btn tbn-primary btn-md" onclick="rejectInvitation()"style="width: 430px; margin-left: -15px" >Reject</button>
                     </div>
                 </div>
             </div>

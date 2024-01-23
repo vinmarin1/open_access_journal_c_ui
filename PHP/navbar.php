@@ -118,9 +118,9 @@ require 'dbcon.php';
                 <div class="btn-group">
                   <button type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" id="notification-button">
                       <i class="fas fa-bell"></i>
-                      <span id="notification-count"></span>
+                      <span id="notification-count" style="width: 10px; height: 10px; font-size: 8px"></span>
                   </button>
-                  <ul class="dropdown-menu">';
+                  <ul class="dropdown-menu" style="margin-left: -20px">';
                 
                   if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 
@@ -140,7 +140,7 @@ require 'dbcon.php';
                                       <a id="inviteMessage" style="text-decoration: none; color: gray; display: inline-block;" href="./review-process.php?id=' . $notif->article_id . '">' . $notif->title . '</a>
                                       </span>
                                   </li>
-                                  <li><hr class="dropdown-divider"></li>
+                                 
                               ';
                                 
                       }
@@ -191,28 +191,28 @@ require 'dbcon.php';
                     <p class="h5" style="margin-bottom: -30px; margin-top: 10px; margin-left: 10px">Notifications</p><br><hr>
   
   <?php
-  if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+  // if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 
-    $author_id = $_SESSION['id'];
+  //   $author_id = $_SESSION['id'];
 
-    $sqlNotif = "SELECT article.article_id, article.title FROM article JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id WHERE reviewer_assigned.author_id = :author_id AND article.status = 4 AND reviewer_assigned.accept = 0 AND reviewer_assigned.answer = 0";
-    $sqlNotifRun = database_run($sqlNotif, array(':author_id' => $author_id));
+  //   $sqlNotif = "SELECT article.article_id, article.title FROM article JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id WHERE reviewer_assigned.author_id = :author_id AND article.status = 4 AND reviewer_assigned.accept = 0 AND reviewer_assigned.answer = 0";
+  //   $sqlNotifRun = database_run($sqlNotif, array(':author_id' => $author_id));
     
-    // Check if $sqlNotifRun is not false before using it in the foreach loop
-    if ($sqlNotifRun !== false) {
-      foreach ($sqlNotifRun as $notif) {
-          echo '<ul style="width: 100%" id="invMsgList">
-                  <li style="list-style-type: none; display: block; font-size: 12px;">
-                      <p style="display: inline-block; font-weight: normal">You have been invited as Reviewer Title: </p>
-                      <a id="inviteMessage" style="text-decoration: none; color: gray; display: inline-block;" href="review-process.php?id=' . $notif->article_id . '">' . $notif->title . '</a>
-                  </li>
-              </ul> ';
+  //   // Check if $sqlNotifRun is not false before using it in the foreach loop
+  //   if ($sqlNotifRun !== false) {
+  //     foreach ($sqlNotifRun as $notif) {
+  //         echo '<ul style="width: 100%; margin-right: 40px" id="invMsgList">
+  //                 <li style="list-style-type: none; display: block; font-size: 12px;">
+  //                     <p style="display: inline-block; font-weight: normal">You have been invited as Reviewer Title: </p>
+  //                     <a id="inviteMessage" style="text-decoration: none; color: gray; display: inline-block;" href="review-process.php?id=' . $notif->article_id . '">' . $notif->title . '</a>
+  //                 </li>
+  //             </ul> ';
                  
-      }
-  }else{
-    echo '<p class="h6" style="color: gray; font-weight: normal; margin-left: 10px" >0 Notification</p>';
-  }
-  }
+  //     }
+  // }else{
+  //   echo '<p class="h6" style="color: gray; font-weight: normal; margin-left: 10px" >0 Notification</p>';
+  // }
+  // }
 
   ?>
 

@@ -53,10 +53,10 @@
 #register-button{
     width: 95%;
     margin-top: 10px;
-    color: #0858a4;
     border: none;
-    border: 1px solid;
+    border: 1px red solid;
     background-color: white;
+    color: red;
 }
 
 

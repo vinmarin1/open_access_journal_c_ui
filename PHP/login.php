@@ -35,17 +35,16 @@
                 <span class="visually-hidden"></span>
             </div>
         </a>
-        <button type="submit" class="btn btn-primary btn-sm" id="login-button">
+        <button type="submit" class="btn btn-primary btn-sm" id="login-button" disabled>
                 <span id="login-text">Login</span>
                 <div class="spinner-border spinner-border-sm" role="status" id="login-spinner" hidden>
                     <span class="visually-hidden">Loading...</span>
                 </div>
                 <span id="logging-in-text" style="display: none;">Logging in...</span>
-            </button>
-        <input class="btn btn-primary btn-sm" type="button" value="Register" id="register-button" onclick="window.location.href= '../PHP/signup.php';">
+        </button>
+        <!-- <input class="btn btn-outline-danger btn-sm" type="button" value="Register" id="register-button" onclick="window.location.href= '../PHP/signup.php';"> -->
+        <button class="btn btn-outline-danger btn-sm" type="button" value="Register" id="register-button" onclick="window.location.href= '../PHP/signup.php';">Register</button>
     </form>
-
-
     
 </div>
 

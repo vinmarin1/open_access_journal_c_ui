@@ -74,7 +74,8 @@
             <div class="modal-footer">
           
               <input type="checkbox" class="form-check" name="privacyPolicy" name="privacyPolicy" id="privacyPolicy" value="1" disabled>
-              <p id="privacyStatement" style="font-size: 15px">I've read and agree with the terms and privacy of the website.</p>
+              <button type="button"  class="btn btn-primary btn-sm" id="btn-agree" disabled>I Agree</button>
+              <!-- <p id="privacyStatement" style="font-size: 15px">I've read and agree with the terms and privacy of the website.</p> -->
             </div>
           </div>
         </div>

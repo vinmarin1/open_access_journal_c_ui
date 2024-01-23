@@ -1,3 +1,27 @@
+document.addEventListener('DOMContentLoaded', function() {
+   
+    var emailInput = document.getElementById('email');
+    var loginButton = document.getElementById('login-button');
+
+   
+    emailInput.addEventListener('input', function() {
+    
+        if (isValidEmail(emailInput.value)) {
+          
+            loginButton.removeAttribute('disabled');
+        } else {
+          
+            loginButton.setAttribute('disabled', 'disabled');
+        }
+    });
+
+ 
+    function isValidEmail(email) {
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+});
+
 $(document).ready(function() {
     const spinner = document.getElementById('spinner');
     const forgotPasswordLink = document.getElementById('forgotPasswordLink');
@@ -95,3 +119,5 @@ $(document).ready(function() {
         }
     });
 });
+
+
