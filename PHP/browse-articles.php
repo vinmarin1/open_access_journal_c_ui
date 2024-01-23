@@ -31,7 +31,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
             <p>Home / Browse / Articles</p>
             <h4>Articles</h4>
         </div>
-        <form action="" method="GET" class="search-form" id="search-form">
+        <form action="" method="GET" class="search-form w-50" style="min-width: 20rem;" id="search-form">
             <div class="search-container d-flex flex-sm-row flex-column align-sm-items-center align-items-start gap-1">
                 <input list="articlesList" id="result" type="text" class="form-control me-2 py-3" placeholder="Search Articles..."
                     class="search-bar"
@@ -51,7 +51,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
             </div>
             <!-- <div id="result"></div> -->
 
-            <div class="info-container">
+            <div class="info-container d-none d-sm-flex">
                 <span class="info-icon">&#9432;</span>
                 <span class="search-info">SEARCH BY TITLE, AUTHOR, OR KEYWORD. FOR BETTER RESULTS SEPARATE IT WITH
                     COMMAS (E.G. AI TECHNOLOGY, JUAN DELA CRUZ)</span>
