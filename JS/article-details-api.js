@@ -60,7 +60,7 @@ function renderArticleDetails(data) {
                 <div class="col-md-10 col-12 text-md-left prof-info">
                   <!-- Content for the second column -->
                   <h2>${contributors.split("->")[0]}</h2>
-                  <a href="#!">Primary Author</a>
+                  <a href="#">${contributors.split("->")[2]}</a>
                 </div>
               </div>
               <div class="row">

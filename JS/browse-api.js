@@ -1,28 +1,11 @@
 document.addEventListener( "DOMCrontentLoaded",
   fetchData().then(() => {
     generateFilters();
-    generateDatalist(articleData);
+    // generateDatalist(articleData);
   })
 );
 
-let articleData = []
-// generate data list for search box
-function generateDatalist(articleData){
-  const articleList = document.getElementById("articlesList");
 
-  // Clear existing options in the select element
-  articleList.innerHTML = "";
-  
-  // Iterate over the article data and create options
-  for (const article of articleData) {
-    const option = document.createElement("option");
-    option.value = article.title; 
-    option.text = article.title; 
-    articleList.appendChild(option);
-  console.log(article.title,"data")
-
-  }
-}
 
 let totalItems = 0;
 const selectedYears = [];
@@ -365,7 +348,7 @@ async function fetchData(input, dates,sort, currentPage = 0) {
   loading.classList.add("d-flex")
    console.log(await fetchJournal(journalId),"dd")
 
-  if(await fetchJournal(journalId)==false){
+  if(await fetchJournal(journalId)==false && (journalId && journalId !="") ){
     total.innerHTML = '0 searched article'
     loading.classList.add("d-none") 
     return  articlesContainer.innerHTML = input? `No match found for ${input }.` : "No match found";
