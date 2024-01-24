@@ -63,17 +63,17 @@
     </div>
   </div>
 
-  <div class="fluid-container">
-    <div class="recommendation-article" style="background-color: white;" >
-      <h4>Popular Articles This Month</h4>
-    
-        <div id="popular-monthly" class="articles-container">
-          <!-- fetch popular articles using api -->
-        </div>
 
-  
+  <div class="fluid-container">
+        <div class="recommendation-article bg-white">
+            <h4>Top Picks for <?php echo date('F '); ?></h4>
+          
+                <div id="popular-monthly" class="articles-container ">
+                    <!-- fetch popular articles using api -->
+                </div>
+              
+        </div>
     </div>
-  </div>
 
   <?php
     if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true ){  

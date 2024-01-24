@@ -344,7 +344,7 @@ width: 100%;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     padding: 20px;
     z-index: 1000;
-    width: 100%;
+    min-width: 24rem;
     max-width: 100%;
 }
 
@@ -361,22 +361,10 @@ width: 100%;
 
 /* Style for the link when hovered */
 #popup-link:hover .popup-form {
-    display: block;
+    display: flex;
 }
 
-.arrow-icon {
-    position: absolute;
-    top: 50%; /* Adjust the vertical position */
-    left: 3%;
-    transform: translateX(-50%);
-    font-size: 1.5rem;
-    display: none;
-    color: gray; /* Set the color to your preference */
-}
 
-#popup-link:hover .arrow-icon {
-    display: inline;
-}
 
 .main {
     background-color: white;

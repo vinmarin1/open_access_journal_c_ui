@@ -115,8 +115,15 @@ async function fetchJournal(journal) {
   }
 
   const data = await response.json();
-  console.log(data.journalDetails)
+  if(data.journalDetails==null){
+  console.log(data.journalDetails,"g")
+    return false
+}else{
   generateJournalPreview(data.journalDetails)
+  return true
+}
+  
+  
 }
 // function to generate frontend of journal preview
 function generateJournalPreview(journal) {
@@ -350,11 +357,20 @@ async function fetchData(input, dates,sort, currentPage = 0) {
     fetchJournal(journalId)
   }
 
+
   const articlesContainer = document.querySelector("#articles");
   const total = document.querySelector("#total");
   const loading = document.querySelector('#skeleton-container');
 
   loading.classList.add("d-flex")
+   console.log(await fetchJournal(journalId),"dd")
+
+  if(await fetchJournal(journalId)==false){
+    total.innerHTML = '0 searched article'
+    loading.classList.add("d-none") 
+    return  articlesContainer.innerHTML = input? `No match found for ${input }.` : "No match found";
+    
+  }
 
   // fetch articles
   try {
@@ -367,7 +383,7 @@ async function fetchData(input, dates,sort, currentPage = 0) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          journal: journalId!=null ? [journalId] : [],
+          journal: journalId && journalId!=null ? journalId : "",
           dates: dates,
           input: typeof input == "string" ? input : "",
         }),

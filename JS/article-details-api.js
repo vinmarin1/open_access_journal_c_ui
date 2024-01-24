@@ -47,131 +47,52 @@ function renderArticleDetails(data) {
     let contributorsHTML = "";
     if (item.contributors != null) {
       for (const contributors of item.contributors.split(";")) {
-        contributorsHTML += `<a href="https://orcid.org/${contributors.split("->")[1]}">${contributors.split("->")[0]}</a> | `;
+        contributorsHTML += `
+        <div id="popup-link" class="d-flex">
+          <a href="https://orcid.org/${contributors.split(" ->")[1]}">${contributors.split("->")[0]} </a>
+          <div class="popup-form">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-1">
+                  <!-- Content for the first column -->
+                  <img src="../images/profile.jpg" alt="Profile Picture" class="profile-pic">
+                </div>
+                <div class="col-md-10 col-12 text-md-left prof-info">
+                  <!-- Content for the second column -->
+                  <h2>${contributors.split("->")[0]}</h2>
+                  <a href="#!">Primary Author</a>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-3 col-12 d-flex align-items-center">
+                  <div class="badge-box text-center mx-auto">
+                    <img src="../images/badge1.jpg" alt="Profile Picture" class="img-badge">
+                  </div>
+                  <div class="badge-box text-center mx-auto">
+                    <img src="../images/badge2.jpg" alt="Profile Picture" class="img-badge">
+                  </div>
+                </div>
+              </div>
+              <button class="btn btn-primary btn-md" id="seeMore-btn">See more</button>
+            </div>
+
+          </div>
+        </div>
+       `;
       }
     }
+
+
     articleElement.innerHTML = `
+    
       <div class="content-over">
         <div class="article-title">
             <p>${item.journal}</p>
             <h3>${item.title}</h3>
             <div class="after-title">
-                <div class="authors" id="popup-link">
+                <div class="authors" >
                     <p style= "font-size: small; color: gray" >Author/s</p>
-                    <p>${contributorsHTML}<span class="arrow-icon">&#10151;</span></p>
-
-                    <div class="popup-form">
-                    <!-- Your form content goes here -->
-                    <form>
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-md-1">
-                                    <!-- Content for the first column -->
-                                    <!-- Profile Image -->
-                                    <img src="../images/profile.jpg" alt="Profile Picture" class="profile-pic">
-                                </div>
-    
-                                <div class="col-md-10 col-12 text-md-left prof-info">
-                                    <!-- Content for the second column -->
-                                    <h2>Donalyn Dizon</h2>
-                                    <a href="#!">Reviewer / Author</a>
-                                </div>
-    
-                                <div class="col-md-1 col-12 text-center">
-                                    <!-- Content for the third column -->
-                                    <img src="../images/View.png" alt="viewer" class="viewer">
-                                </div>
-    
-                            </div>
-    
-                            <hr style="height: 1px; background-color: #959595; width: 100%;">
-    
-                            <div class="row">
-                                <div class="col-md-10 text-md-left">
-                                    <!-- Content for the first column -->
-                                    <h2 style="color:#6C757D; font-weight: bold; font-size: 25px">Badges</h2>
-                                </div>
-    
-                                
-                                <div class="col-md-2  text-center">
-                                    <!-- Content for the second column -->
-                                    <span class="xp-label" >56/100</span>
-                                </div>
-    
-    
-                                <div class="col-md-12">
-                                    <!-- Content for the third column -->
-                                    <div class="xp-container">
-                                    <!-- XP Bar -->
-                                        <div class="xp-bar">
-                                            <div class="progress-bar">
-                                                <div class="progress" style="width: 56%;"></div>
-                                            </div>
-                                            <br>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-    
-                            <div class="row">
-                                <div class="col-md-3 col-12 d-flex align-items-center">
-                                    <!-- Content for the first column -->
-                                    <div class="badge-box text-center mx-auto">
-                                        <img src="../images/badge1.jpg" alt="Profile Picture" class="img-badge">
-                                    </div>
-                                </div>
-    
-                                
-                                <div class="col-md-2 col-12 d-flex align-items-center">
-                                    <!-- Content for the second column -->
-                                    <div class="badge-box text-center mx-auto">
-                                        <img src="../images/badge2.jpg" alt="Profile Picture" class="img-badge">
-                                    </div>
-                                </div>
-    
-    
-                                <div class="col-md-2 col-12 d-flex align-items-center">
-                                    <!-- Content for the third column -->
-                                    <div class="badge-box text-center mx-auto">
-                                        <img src="../images/badge3.jpg" alt="Profile Picture" class="img-badge">
-                                    </div>
-                                </div>
-    
-                                <div class="col-md-2 col-12 d-flex align-items-center">
-                                    <!-- Content for the third column -->
-                                    <div class="badge-box text-center mx-auto">
-                                        <img src="../images/badge1.jpg" alt="Profile Picture" class="img-badge">
-                                    </div>
-                                </div>
-    
-                                <div class="col-md-3 col-12 d-flex align-items-center">
-                                    <!-- Content for the third column -->
-                                    <div class="badge-box text-center mx-auto">
-                                        <img src="../images/badge2.jpg" alt="Profile Picture" class="img-badge">
-                                    </div>
-                                </div>
-                            </div>
-                            
-    
-                            <div class="row">
-                                <div class="col-md-9 col-12 text-md-left text-center">
-                                    <!-- Content for the first column -->
-                                    <span style="color:#6C757D" >Showing 1 to 5 of badges</span>
-                                </div>
-    
-                                <div class="col-md-3 col-12 text-center mt-2">
-                                    <!-- Content for the second column -->
-                                    <button class="btn btn-primary btn-md" id="seeMore-btn">See more</button>
-                                </div>
-                            </div>
-    
-    
-                        </div>      
-    
-                    </form>
-                    </div>
-
-
+                    <div class="d-flex gap-1">${contributorsHTML}</div>
                 </div>
                 <div class="volume">
                     <p style= "font-size: small; color: gray" >Journal Issue and Volume</p>
@@ -384,8 +305,13 @@ function navigateToArticle(articleId) {
 }
 
 async function renderRecommended(data) {
+  const container = document.querySelector(".recommendation-article");
   const articleContainer = document.getElementById("similar-articles");
-
+  
+  if (data.length < 1){
+    container.classList.add("d-none")
+    console.log("hello")
+  }
   await data.forEach((article) => {
     const articleElement = document.createElement("div");
     articleElement.classList.add("article");
