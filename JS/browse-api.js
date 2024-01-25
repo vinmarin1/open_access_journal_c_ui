@@ -410,7 +410,7 @@ async function fetchData(input, dates,sort, currentPage = 0) {
             for (const contributors of item.contributors.split(",")) {
               contributorsHTML += `<a href="https://orcid.org/${
                 contributors.split("->")[1]
-              }">${contributors.split("->")[0]}</a> | `;
+              }"> <u>${contributors.split("->")[0]} </u> </a>  `;
             }
           }
           articleDiv.innerHTML = `
@@ -455,7 +455,7 @@ async function fetchData(input, dates,sort, currentPage = 0) {
               <h6 class="publish-label" style="color: #0858a4;"><strong>Published in The ${
                 item.journal
               }</strong></h6>
-              <p class="authors" style="color: #959595;">${contributorsHTML}</p>
+              <p class="authors d-flex flex-wrap gap-1" style="color: #959595;width:20em">${contributorsHTML}</p>
               
           </div>
       </div>

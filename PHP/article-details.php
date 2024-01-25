@@ -8,7 +8,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>QCU PUBLICATION | ARTICLE DETAILS</title>
+  <meta property="og:title" content="QCU PUBLICATION | ARTICLE DETAILS">
+  <meta property="og:description" content="Explore groundbreaking research at QCU with this in-depth article. Gain insights into innovative studies, findings, and academic contributions that shape the intellectual landscape. Stay informed about the latest discoveries in various fields presented in this comprehensive QCU research article. #QCUResearch #AcademicExcellence">
+  <meta property="og:image" content="https://www.google.com/url?sa=i&url=https%3A%2F%2Fqcu.edu.ph%2F&psig=AOvVaw1F8jT0VsKUyfOBiTvO5pDV&ust=1706257892464000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCMDRto6Q-IMDFQAAAAAdAAAAABAE">
+  <meta property="og:url" content="https://openaccessjournalcui-production.up.railway.app/PHP/index.php">
+
+  <meta name="description" content="QCU Article Preview">
+
   <link rel="stylesheet" href="../CSS/article-details.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
