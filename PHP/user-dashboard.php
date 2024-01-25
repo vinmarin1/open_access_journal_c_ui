@@ -11,6 +11,7 @@ $id = $_SESSION['id'];
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>QCU PUBLICATION | USER DASHBOARD</title>
   <link rel="stylesheet" href="../CSS/user-dashboard.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
 
 
 </head>
@@ -59,16 +60,149 @@ $id = $_SESSION['id'];
 						</div>-->
 							<!-- User Info -->
 						<div class="user-info">
-							<h1>Kyle Angeline David</h1>
-							<p class="role">Reviewer / Author</p>
+							<div class="info-header">
+							<h1>
+								<?php
+								if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
+									$firstName = isset($_SESSION['first_name']) ? ucfirst($_SESSION['first_name']) : '';
+									$middleName = isset($_SESSION['middle_name']) ? ' ' . ucfirst($_SESSION['middle_name']) : '';
+									$lastName = isset($_SESSION['last_name']) ? ' ' . ucfirst($_SESSION['last_name']) : '';
+
+									echo $firstName . $middleName . $lastName;
+								}
+								?>
+							</h1>
+								<i class="ri-edit-box-line" id="editIcon"></i>
+							</div>
+							<p class="role">
+								<?php
+								if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
+									$role = isset($_SESSION['role']) ? ucfirst($_SESSION['role']) : '';
+									echo $role;
+								}
+								?>
+							</p>
 							<!-- <p class="subscription">You're subscribed to Package plan</p> -->
 						</div>
 					</div>
-					<!-- Action Buttons -->
+					    <!-- Popup Form -->
+					<div class="popup-form" id="editForm">
+						<div class="form-header">
+							<h4>Edit Profile</h4>
+							<span class="close-icon" id="closeIcon">&times;</span>
+						</div>
+						<div class="form-content">
+							<div class="edit-profile-pic">
+								<!-- Profile Image -->
+								<img src="../images/profile.jpg" alt="Profile Picture" class="profile-pic">
+								<i class="fas fa-camera change-icon"></i>
+							</div>
+							<!-- Personal Information -->
+							<div class="form-section">
+								<h4>Personal Information</h4>
+								<hr>
+								<div class="row-form">
+									<div class="form-row">
+										<label for="firstName">First Name:</label>
+										<input type="text" id="firstName" name="firstName" class="text-box">
+									</div>
+									<div class="form-row">
+										<label for="middleName">Middle Name:</label>
+										<input type="text" id="middleName" name="middleName" class="text-box">
+									</div>
+									<div class="form-row">
+										<label for="lastName">Last Name:</label>
+										<input type="text" id="lastName" name="lastName" class="text-box">
+									</div>
+									<div class="form-row">
+										<label for="affix">Affix:</label>
+										<input type="text" id="Affix" name="Affix" class="text-box">
+									</div>
+									<div class="form-row">
+										<label for="birthdate">Birth Date:</label>
+										<input type="date" id="birthdate" name="birthdate" class="date-box">
+									</div>
+									<div class="form-row">
+										<label for="gender">Gender:</label>
+										<select id="gender" name="gender" class="dropdown-box">
+											<option value="male">Male</option>
+											<option value="female">Female</option>
+											<option value="other">Other</option>
+										</select>
+									</div>
+									<div class="form-row">
+										<label for="status">Status:</label>
+										<select id="status" name="status" class="dropdown-box">
+											<option value="single">Single</option>
+											<option value="married">Married</option>
+											<option value="divorced">Divorced</option>
+											<option value="widowed">Widowed</option>
+										</select>
+									</div>
+									<div class="form-row">
+										<label for="country">Country:</label>
+										<select id="country" name="country" class="dropdown-box">
+											<option value="philippines">Philippines</option>
+											<option value="usa">United States</option>
+											<option value="canada">Canada</option>
+											<option value="uk">United Kingdom</option>
+											<!-- Add more countries as needed -->
+										</select>
+									</div>
+								</div>
+								<!-- Add similar fields for Middle name, Last Name, Affix, Birth date, gender, status, country -->
+							</div>
+
+							<!-- Other Information -->
+							<div class="form-section">
+								<h4>Other Information</h4>
+								<hr>
+								<div class="row-form">
+									<div class="form-row">
+										<label for="email">E-mail:</label>
+										<input type="email" id="email" name="email" class="other-text-box">
+									</div>
+									<div class="form-row">
+										<label for="orcid">ORCID:</label>
+										<input type="text" id="orcid" name="orcid" class="other-text-box" pattern="\d{4}-\d{4}-\d{4}-\d{4}" placeholder="(e.g., xxxx-xxxx-xxxx-xxxx)">
+									</div>
+									<div class="form-row">
+										<label for="affiliation">Affiliation:</label>
+										<input type="text" id="affiliation" name="affiliation" class="other-text-box">
+									</div>
+									<div class="form-row">
+										<label for="position">Position:</label>
+										<input type="text" id="position" name="position" class="other-text-box">
+									</div>
+								</div>
+								<!-- Add similar fields for ORCID, Affiliation, Position -->
+							</div>
+
+							<!-- About me -->
+							<div class="form-section">
+								<h4>About me</h4>
+								<hr>
+								<label for="bio">Bio:</label>
+								<textarea id="bio" name="bio" class="bio-textarea" placeholder="Enter your bio"></textarea>
+								
+								<br><br><br>
+								<label for="fieldofexpertise">Field of Expertise:</label>
+								<div>
+									<input type="text" id="fieldofexpertise" name="fieldofexpertise" class="text-box">
+									<button class="btn tbn-primary btn-md" type="button" id="addExpertiseButton">Add</button>
+								</div>
+								<div id="keywordContainer"></div>
+							</div>
+							
+
+							<button class="btn tbn-primary btn-md" type="button" id="saveButton">Save</button>
+						</div>
+					</div>
 
 					<div class="balance-points">Balance:&nbsp;&nbsp;&nbsp;&nbsp;49 </div>
 
 					<div class="profile-badge">
+						<p class="recent-badges">Recent Badges</p>
 						<div class="badge-box" style="background-image: url('../images/badge1.jpg');"></div>
 						<div class="badge-box" style="background-image: url('../images/badge2.jpg');"></div>
 						<div class="badge-box" style="background-image: url('../images/badge3.jpg');"></div>
@@ -80,12 +214,16 @@ $id = $_SESSION['id'];
 
 				<div class="profile-main">
 					<!-- Detailed Info -->
+					
 					<div class="details">
-						<p><span class="label">Position:</span> Student  </p>
-						<p><span class="label">Gender:</span> Female   </p>
-						<p><span class="label">Birthday:</span> 10/24/2002</p>
-						<p><span class="label">Country:</span> Philippines</p>
-						<p><span class="label">ORCID:</span> 048469754</p>
+						<div class="icon-container">
+							<i class="ri-eye-line" id="toggleIcon"></i>
+						</div>
+						<p><span class="label">Position:</span> <span id="positionLabel">Student</span></p>
+						<p><span class="label">Gender:</span> <span id="genderLabel">Female</span></p>
+						<p><span class="label">Birthday:</span> <span id="birthdayLabel">10/24/2002</span></p>
+						<p><span class="label">Country:</span> <span id="countryLabel">Philippines</span></p>
+						<p><span class="label">ORCID:</span> <span id="orcidLabel">048469754</span></p>
 					</div>
 				</div>
 			</div>
@@ -200,14 +338,45 @@ $id = $_SESSION['id'];
 							</div>
 						</div>	
 					</div>
-
+					<div class="popup-container" id="popup">
+						<h6>Owned Badges</h6>
+						<div class="badge-popup">
+							<!-- Badges go here -->
+							<div class="badge-box" style="background-image: url('../images/badge1.jpg');"></div>
+							<div class="badge-box" style="background-image: url('../images/badge2.jpg');"></div>
+							<div class="badge-box" style="background-image: url('../images/badge3.jpg');"></div>
+							<div class="badge-box" style="background-image: url('../images/badge1.jpg');"></div>
+						</div>
+						<p>Click Badges to Learn More</p>
+					</div>
 					<div id="credit-history-container">
 						<div class="credit-container">
 							<div class="header-container">
-								<h3>Credits History</h3>
+								<h3>Achievements</h3>
 								
 							</div>
-							<hr>
+							<div class="sort-container d-flex flex-column gap-2">
+								<div class="sort-header">
+									<span class="sort-by-text" style="color: #0858a4;">Sort by</span>
+									<span class="sort-icon">
+										<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+											<path fill="#e6e6e6" d="M11 7H1l5 7zm-2 7h10l-5-7z" />
+										</svg>
+									</span>
+									<select id="sortby" name="sortby" class="sort-dropdown form-select form-select-sm px-8">
+										<option value="" hidden>Recently added</option>
+										<option value="title">Title</option>
+										<option value="recently_added">Recently added</option>
+										<option value="publication-date">Publication Date</option>
+										<optgroup label="Popularity">
+											<option value="popular">All</option>
+											<option value="views">Views</option>
+											<option value="downloads">Downloads</option>
+											<option value="citations">Citations</option>
+										</optgroup>
+									</select>
+								</div>
+							</div>
 							<div class="table-container">
 								<table>
 									<tbody>

@@ -71,6 +71,7 @@ body {
     max-width: 175px;
 
 }
+
 #btn2 {
     border: 2px white solid;
     margin-right: 10px;
@@ -121,6 +122,7 @@ body {
 }
 
 .profile-main {
+    position: relative;
     width: 30%;
     
 }
@@ -139,12 +141,168 @@ body {
 
 }
 
-.user-info .role {
-    color: #285581;
+.popup-form {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    width: 70%;
+    overflow: hidden; /* Hide any content that exceeds the container */
+}
+
+.popup-form .form-content {
+    max-height: 600px; /* Adjust the value based on your design */
+    overflow-y: auto; /* Enable scrolling if the content exceeds the height */
 }
 
 
+.form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    background-color: #004e98;
+    width: 100%;
+    color: white;
+    padding: 0px 15px 0px 15px;
+}
 
+.form-header h4 {
+    margin: 0;
+}
+
+.close-icon {
+    cursor: pointer;
+    font-size: 30px;
+}
+.edit-profile-pic {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #e9ecef;
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%;
+}
+.change-icon {
+    margin-top: 5px;
+    cursor: pointer;
+    color: #007bff;
+}
+.form-content {
+    
+    
+}
+
+.form-section {
+    padding: 30px;
+    margin-bottom: 20px;
+}
+.row-form{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.form-row {
+    display: flex;
+    flex-direction: column; /* Arrange label and input in a column */
+    margin-bottom: 10px;
+}
+
+label {
+    margin-bottom: 5px; /* Add some space between label and input */
+    color: #285581;
+}
+
+.text-box {
+    width: 200px;
+    padding: 5px; /* Set the desired width for the text boxes */
+    box-sizing: border-box; /* Include padding in the width calculation */
+}
+.other-text-box{
+    width: 400px;
+    box-sizing: border-box;
+}
+.date-box {
+    width: 200px; /* Set the desired width for the date box */
+    padding: 5px; /* Add padding for better aesthetics */
+    box-sizing: border-box; /* Include padding in the width calculation */
+}
+.dropdown-box {
+    width: 200px; /* Set the desired width for the dropdown */
+    padding: 5px; /* Add padding for better aesthetics */
+    box-sizing: border-box; /* Include padding in the width calculation */
+}
+.bio-textarea {
+    width: 100%; /* Set the desired width for the textarea */
+    height: 120px; /* Set the desired height for the textarea */
+    padding: 5px; /* Add padding for better aesthetics */
+    box-sizing: border-box; /* Include padding in the width calculation */
+}
+#addExpertiseButton{
+    border: 1px #285581 solid;
+    color: #285581;
+    background-color: transparent;
+    width: 100px;
+    font-size: 16px;
+    margin-left: 10px;
+    border-radius: 50px;
+}
+#keywordContainer{
+    width: 100%;
+    border: 1px black solid;
+    height: 200px;
+    margin-top: 20px;
+}
+.keyword {
+    display: inline-block;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+.close-btn {
+    cursor: pointer;
+    margin-left: 5px;
+}
+#saveButton {
+    background-color: #285581;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px auto 40px;
+    border-radius: 50px;
+    cursor: pointer;
+    width: 200px;
+}
+
+
+.row {
+    display: flex;
+    align-items: center;
+}
+.user-info {
+    flex: 1; /* Allow user-info to grow and take available space */
+}
+.info-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+.ri-edit-box-line{
+    font-size: 20px;
+    cursor: pointer;
+}
+.user-info .role {
+    color: #285581;
+}
 
 .user-info h1 {
     font-size: 1.5rem;
@@ -161,31 +319,6 @@ body {
 .user-info p.subscription {
     color: #000096;
 
-}
-
-.row {
-    align-items: right;
-}
-
-.points {
-    float: right;
-    margin-right: 20px;
-}
-
-.action-buttons {
-    display: flex;
-    gap: 10px;
-    margin-top: 10px;
-}
-
-.btn {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: .9rem;
-    color: white;
-    z-index: 1;
 }
 
 #edit-profile {
@@ -212,14 +345,23 @@ body {
 
 .profile-main .details {
 
-    padding: 20px;
+    padding: 5px 20px 0px 20px;
     border-radius: 10px;
     /* Adjust as needed */
 
 }
-
+.icon-container {
+    text-align: right;
+    margin-bottom: 5px;
+}
+.ri-eye-line, .ri-eye-close-line {
+    font-size: 20px;
+    cursor: pointer;
+  }
 .details {
-    
+    padding: 20px;
+    border-radius: 10px;
+    position: relative;
 }
 
 .details p {
@@ -230,17 +372,15 @@ body {
 
 .label {
     font-weight: bold;
-    /* Makes the label text bold */
     display: inline-block;
-    /* Ensures the label has its own line if necessary */
     min-width: 180px;
-    /* Adjusts the width of the label to ensure alignment */
     color: #666;
     margin-bottom: 10px;
-    /* Other styles as required */
 
 }
-
+.hidden {
+    display: none;
+  }
 .xp-container {
     margin-top: 20px;
     /* Add some space between the content and XP container */
@@ -292,20 +432,28 @@ body {
         width: 100%;
         margin-bottom: 20px;
     }
+    .info-header {
+        flex-direction: row; /* Keep elements in a row */
+        justify-content: center; /* Center the elements horizontally */
+        align-items: center; /* Center the elements vertically */
+    }
 
+    .ri-edit-box-line {
+        margin-left: 5px; /* Remove margin for smaller screens */
+
+    }
     .profile-badge,
-    .user-info{
+    .user-info,
+    .balance-points{
     text-align: center;
     }
-    .action-buttons{
-        align-items: center;
-        margin-bottom: 20px;
-    }
-    #edit-profile{
-
-        margin: 0 auto;
+    .popup-form {
+        width: 90%; /* Adjust the width for smaller screens */
     }
 
+    .form-content {
+        padding: 10px; /* Adjust padding for better aesthetics */
+    }
 }
 
 /* Style for the tab buttons */
@@ -415,9 +563,7 @@ body {
 
 }
 
-.info-box hr {
-    color: #CCCCCC75;
-}
+
 
 .info-box h3 {
     color: #285581;
@@ -613,6 +759,7 @@ body {
     width: 100%; /* Full width on small screens */
     max-width: 300px; /* Maximum width on larger screens */
     margin-bottom: 20px;
+    position: relative;
 }
 
 #badges-container h3 {
@@ -628,7 +775,11 @@ body {
     flex-wrap: wrap;
     justify-content: space-between;
 }
-
+.profile-badge p {
+    font-size: .9rem;
+    color: #666;
+    margin-bottom: .25rem;
+}
 .badge-box {
     width: 65px;
     height: 65px;
@@ -641,7 +792,45 @@ body {
     border: 1px solid #ccc;
 
 }
+/*
+.arrow {
+    width: 0;
+    height: 0;
+    border-right: 10px solid red; 
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    top: 50%;
+    right: -200px; 
+    transform: translateY(-50%);
+} 
+*/
+.popup-container {
+    display: none;
+    position: fixed;
+    background-color: #588297;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    padding: 10px;
+    border-radius: 10px;
+    color: #fff;
+    text-align: center;
+}
+.popup-container p{
+    font-size: 12px;
+}
 
+.badge-popup {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 5px;
+    border-radius: 10px;
+    background-color: #fff;
+}
+.badge-popup .badge-box:hover {
+    border-color: #0858a4; /* Change this to the desired border color */
+}
 #see-more {
     border: 2px #0858a4 solid;
     background-color: transparent;
@@ -649,14 +838,15 @@ body {
     color: #0858a4;
     width: 50%;
     margin-top: 10px;
+    cursor: pointer;
     /* Add margin for spacing */
 }
 
 /* Optional: Add hover effect */
-#see-more:hover {
+/*#see-more:hover {
     background-color: #0858a4;
     color: #fff;
-}
+}*/
 
 #credit-history-container {
     width: 100%; /* Full width on small screens */
@@ -675,6 +865,31 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-top: 20px;
+    border-bottom: 1px solid #CCCCCC75;
+}
+.sort-container{
+
+}
+.sort-header {
+    gap: 5px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    padding: 8px;
+    border-bottom: 1px solid #CCCCCC75;
+
+}
+
+.sort-by-text {
+    margin-bottom: 10px;
+    margin-top: 0; /* Adjust the top margin as needed */
+}
+#sortby{
+    color: #285581;
+    margin-top: 10px;
+    width: 200px;
+}
+.sort-icon {
+    margin-bottom: 10px; /* Adjust the bottom margin as needed */
 }
 
 #credit-history-container h3 {
@@ -688,6 +903,7 @@ body {
 .balance-points {
     color: black;
     font-weight: bold;
+    margin-bottom: 10px;
 }
 
 .credit-history-row {
