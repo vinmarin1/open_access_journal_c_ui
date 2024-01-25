@@ -387,7 +387,7 @@ include 'function/dashboard_functions.php';
     var doughnutChartData3 = {
         labels: ['Author', 'Reviewer'],
         datasets: [{
-            data: [50, 100],
+            data: [authorData[0].authorCount, reviewerData[0].reviewerCount],
             backgroundColor: [
                 'rgba(75, 192, 192, 0.5)',
                 'rgba(255, 205, 86, 0.5)'
