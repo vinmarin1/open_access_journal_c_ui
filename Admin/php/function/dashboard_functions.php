@@ -356,9 +356,6 @@ if ($othersResult !== false) {
 ?>
 
 
-
-
-
 <?php
 $query = "SELECT MONTH(created_at) as month, COUNT(*) as donation_count FROM donation GROUP BY month";
 $result3 = execute_query($query);
@@ -375,3 +372,38 @@ if ($result3 !== false) {
 }
 ?>
 
+<?php
+
+// Fetch data from article_final where status_id = 5
+$authorQuery = "SELECT COUNT(*) as authorCount FROM article_final WHERE status_id = 5";
+$authorResult = execute_query($authorQuery);
+
+if ($authorResult !== false) {
+    // Convert the PHP array to a JSON string
+    $jsonAuthorResult = json_encode($authorResult);
+
+    // Pass the JSON string to JavaScript for the line chart
+    echo "<script>var authorData = $jsonAuthorResult;</script>";
+} else {
+    // Handle the error if the query fails
+    echo "<script>console.error('Error fetching data from the database for authors.');</script>";
+}
+?>
+
+<?php
+
+// Fetch data from reviewer_assignment where accept = 1
+$reviewerQuery = "SELECT COUNT(*) as reviewerCount FROM reviewer_assigned WHERE accept = 1";
+$reviewerResult = execute_query($reviewerQuery);
+
+if ($reviewerResult !== false) {
+    // Convert the PHP array to a JSON string
+    $jsonReviewerResult = json_encode($reviewerResult);
+
+    // Pass the JSON string to JavaScript for the line chart
+    echo "<script>var reviewerData = $jsonReviewerResult;</script>";
+} else {
+    // Handle the error if the query fails
+    echo "<script>console.error('Error fetching data from the database for reviewers.');</script>";
+}
+?>
