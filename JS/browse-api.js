@@ -235,10 +235,9 @@ function changePage(page) {
   // fetchData(searchInputValue, selectedYears,sortBySelected, page)
 }
 
-var result = document.getElementById("result");
-
 // speech recognition search
 function startConverting() {
+  var result = document.querySelector("#result");
   var voiceButton = document.getElementById("voiceSearch")
   result.innerText = "";
   console.log("voice");
