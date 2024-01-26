@@ -1,4 +1,4 @@
 <?php
 
-header("Location: https://openaccessjournalcui-production.up.railway.app/PHP/index.php");
+header("Location: ./PHP/index.php");
 ?>

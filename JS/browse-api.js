@@ -1,28 +1,11 @@
 document.addEventListener( "DOMCrontentLoaded",
   fetchData().then(() => {
     generateFilters();
-    generateDatalist(articleData);
+    // generateDatalist(articleData);
   })
 );
 
-let articleData = []
-// generate data list for search box
-function generateDatalist(articleData){
-  const articleList = document.getElementById("articlesList");
 
-  // Clear existing options in the select element
-  articleList.innerHTML = "";
-  
-  // Iterate over the article data and create options
-  for (const article of articleData) {
-    const option = document.createElement("option");
-    option.value = article.title; 
-    option.text = article.title; 
-    articleList.appendChild(option);
-  console.log(article.title,"data")
-
-  }
-}
 
 let totalItems = 0;
 const selectedYears = [];
@@ -115,8 +98,15 @@ async function fetchJournal(journal) {
   }
 
   const data = await response.json();
-  console.log(data.journalDetails)
+  if(data.journalDetails==null){
+  console.log(data.journalDetails,"g")
+    return false
+}else{
   generateJournalPreview(data.journalDetails)
+  return true
+}
+  
+  
 }
 // function to generate frontend of journal preview
 function generateJournalPreview(journal) {
@@ -241,7 +231,8 @@ function changePage(page) {
   let searchInputValue = document.getElementById("result").value;
   let year = document.getElementById("year1").value;
   sortBySelected = sortBySelect.value;
-  fetchData(searchInputValue, selectedYears,sortBySelected, page)
+
+  // fetchData(searchInputValue, selectedYears,sortBySelected, page)
 }
 
 var result = document.getElementById("result");
@@ -350,11 +341,20 @@ async function fetchData(input, dates,sort, currentPage = 0) {
     fetchJournal(journalId)
   }
 
+
   const articlesContainer = document.querySelector("#articles");
   const total = document.querySelector("#total");
   const loading = document.querySelector('#skeleton-container');
 
   loading.classList.add("d-flex")
+   console.log(await fetchJournal(journalId),"dd")
+
+  if(await fetchJournal(journalId)==false && (journalId && journalId !="") ){
+    total.innerHTML = '0 searched article'
+    loading.classList.add("d-none") 
+    return  articlesContainer.innerHTML = input? `No match found for ${input }.` : "No match found";
+    
+  }
 
   // fetch articles
   try {
@@ -367,7 +367,7 @@ async function fetchData(input, dates,sort, currentPage = 0) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          journal: journalId!=null ? journalId : [],
+          journal: journalId && journalId!=null ? journalId : "",
           dates: dates,
           input: typeof input == "string" ? input : "",
         }),
@@ -381,91 +381,109 @@ async function fetchData(input, dates,sort, currentPage = 0) {
     const data = await response.json();
 
    // display and render article items
-    articlesContainer.innerHTML = "";
    
-    total.innerHTML = "";
-    let noOfItems = 10;
+  
     articleData = data.results
-    data.results
-      .slice(currentPage * noOfItems, noOfItems * (currentPage + 1))
-      .forEach((item) => {
-        const articleDiv = document.createElement("div");
-        articleDiv.classList.add("articles", "d-flex", "flex-column", "flex-md-row");
+    function renderArticles(currentPage=0){
+      articlesContainer.innerHTML = "";
+      total.innerHTML = "";
+      let noOfItems = 10;
 
-        articleDiv.addEventListener("click", () =>
-          navigateToArticle(item.article_id)
-        );
-        const keywordsArray = item.keyword.split(",");
+      data.results
+        .slice(currentPage * noOfItems, noOfItems * (currentPage + 1))
+        .forEach((item) => {
+          const articleDiv = document.createElement("div");
+          articleDiv.classList.add("articles", "d-flex", "flex-column", "flex-md-row");
 
-        let keywordsHTML = "";
-        for (const keyword of keywordsArray) {
-          keywordsHTML += `<span class="keyword">${keyword.trim()}</span>`;
-        }
-        let contributorsHTML = "";
-        if (item.contributors != null) {
-          contributorsHTML = "By ";
-          for (const contributors of item.contributors.split(",")) {
-            contributorsHTML += `<a href="https://orcid.org/${
-              contributors.split("->")[1]
-            }">${contributors.split("->")[0]}</a> | `;
+          articleDiv.addEventListener("click", () =>
+            navigateToArticle(item.article_id)
+          );
+          const keywordsArray = item.keyword.split(",");
+
+          let keywordsHTML = "";
+          for (const keyword of keywordsArray) {
+            keywordsHTML += `<span class="keyword">${keyword.trim()}</span>`;
           }
-        }
-        articleDiv.innerHTML = `
-        <div class="article-details">
-          <h6 style="color: #0858a4;"><strong>${item.title} - (${
-            
-            new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric' }).format(new Date(item.publication_date))
-          })</strong></h6>
-         <p style="color: #454545;">${item.abstract.slice(0, 200)} </p>
-          <div class="keywords">
-          ${keywordsHTML}
+          let contributorsHTML = "";
+          if (item.contributors != null) {
+            contributorsHTML = "By ";
+            for (const contributors of item.contributors.split(",")) {
+              contributorsHTML += `<a href="https://orcid.org/${
+                contributors.split("->")[1]
+              }"> <u>${contributors.split("->")[0]} </u> </a>  `;
+            }
+          }
+          articleDiv.innerHTML = `
+          <div class="article-details">
+            <h6 style="color: #0858a4;"><strong>${item.title} - (${
+              
+              new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric' }).format(new Date(item.publication_date))
+            })</strong></h6>
+          <p style="color: #454545;">${item.abstract.slice(0, 200)} </p>
+            <div class="keywords">
+            ${keywordsHTML}
+            </div>
+            ${
+              item.article_contains[0] != ""
+                ? `Terms found:  ${item.article_contains.join(", ")}`
+                : ""
+            }
+        </div>
+        <div class="article-stats">
+          <div class="stats-container">
+              <div class="view-download">
+                  <p class="stats-value" style="color: #0858a4;">${
+                    item.total_reads
+                  }</p>
+                  <p class="stats-label" style="color: #959595;">VIEWS</p>
+              </div>
+              <div class="view-download">
+                  <p class="stats-value" style="color: #0858a4;">${
+                    item.total_downloads
+                  }</p>
+                  <p class="stats-label" style="color: #959595;">DOWNLOADS</p>
+              </div>
+              <div class="view-download">
+              <p class="stats-value" style="color: #0858a4;">${
+                item.total_citations
+              }</p>
+              <p class="stats-label" style="color: #959595;">CITATIONS</p>
           </div>
-          ${
-            item.article_contains[0] != ""
-              ? `Terms found:  ${item.article_contains.join(", ")}`
-              : ""
-          }
+          </div>
+          <hr style="border-top: 1px solid #ccc; margin: 10px 0;"> <!-- Add a horizontal line -->
+          <div class="published-info">
+              <h6 class="publish-label" style="color: #0858a4;"><strong>Published in The ${
+                item.journal
+              }</strong></h6>
+              <p class="authors d-flex flex-wrap gap-1" style="color: #959595;width:20em">${contributorsHTML}</p>
+              
+          </div>
       </div>
-      <div class="article-stats">
-        <div class="stats-container">
-            <div class="view-download">
-                <p class="stats-value" style="color: #0858a4;">${
-                  item.total_reads
-                }</p>
-                <p class="stats-label" style="color: #959595;">VIEWS</p>
-            </div>
-            <div class="view-download">
-                <p class="stats-value" style="color: #0858a4;">${
-                  item.total_downloads
-                }</p>
-                <p class="stats-label" style="color: #959595;">DOWNLOADS</p>
-            </div>
-            <div class="view-download">
-            <p class="stats-value" style="color: #0858a4;">${
-              item.total_citations
-            }</p>
-            <p class="stats-label" style="color: #959595;">CITATIONS</p>
-        </div>
-        </div>
-        <hr style="border-top: 1px solid #ccc; margin: 10px 0;"> <!-- Add a horizontal line -->
-        <div class="published-info">
-            <h6 class="publish-label" style="color: #0858a4;"><strong>Published in The ${
-              item.journal
-            }</strong></h6>
-            <p class="authors" style="color: #959595;">${contributorsHTML}</p>
-            
-        </div>
-    </div>
-      `;
+        `;
 
-        articlesContainer.appendChild(articleDiv);
-      });
-      loading.classList.add("d-none") 
+          articlesContainer.appendChild(articleDiv);
+        });
     total.innerHTML = `${data.total} searched articles`;
+
+    }
+    renderArticles()
+
     generatePagination(data.total)
+    const buttons = document.querySelectorAll('.page-item');
+ 
+    // Add click event listener to each button
+    buttons.forEach((button,index) => {
+      button.addEventListener('click', function() {
+        renderArticles(index)
+      });
+    });
+
+
+    loading.classList.add("d-none") 
+   
   } catch (error) {
     console.error("Error fetching data:", error);
-    articlesContainer.innerHTML = `No match found for ${input}.`
+    articlesContainer.innerHTML = input? `No match found for ${input }.` : "No match found"
     total.innerHTML = '0 searched article'
     loading.classList.add("d-none") 
   }

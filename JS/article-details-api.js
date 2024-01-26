@@ -47,131 +47,52 @@ function renderArticleDetails(data) {
     let contributorsHTML = "";
     if (item.contributors != null) {
       for (const contributors of item.contributors.split(";")) {
-        contributorsHTML += `<a href="https://orcid.org/${contributors.split("->")[1]}">${contributors.split("->")[0]}</a> | `;
+        contributorsHTML += `
+        <div id="popup-link" class="d-flex">
+          <a href="https://orcid.org/${contributors.split(" ->")[1]}">${contributors.split("->")[0]} </a>
+          <div class="popup-form">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-1">
+                  <!-- Content for the first column -->
+                  <img src="../images/profile.jpg" alt="Profile Picture" class="profile-pic">
+                </div>
+                <div class="col-md-10 col-12 text-md-left prof-info">
+                  <!-- Content for the second column -->
+                  <h2>${contributors.split("->")[0]}</h2>
+                  <a href="#">${contributors.split("->")[2]}</a>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-3 col-12 d-flex align-items-center">
+                  <div class="badge-box text-center mx-auto">
+                    <img src="../images/badge1.jpg" alt="Profile Picture" class="img-badge">
+                  </div>
+                  <div class="badge-box text-center mx-auto">
+                    <img src="../images/badge2.jpg" alt="Profile Picture" class="img-badge">
+                  </div>
+                </div>
+              </div>
+              <button class="btn btn-primary btn-md" id="seeMore-btn">See more</button>
+            </div>
+
+          </div>
+        </div>
+       `;
       }
     }
+
+
     articleElement.innerHTML = `
+    
       <div class="content-over">
         <div class="article-title">
             <p>${item.journal}</p>
             <h3>${item.title}</h3>
             <div class="after-title">
-                <div class="authors" id="popup-link">
+                <div class="authors" >
                     <p style= "font-size: small; color: gray" >Author/s</p>
-                    <p>${contributorsHTML}<span class="arrow-icon">&#10151;</span></p>
-
-                    <div class="popup-form">
-                    <!-- Your form content goes here -->
-                    <form>
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-md-1">
-                                    <!-- Content for the first column -->
-                                    <!-- Profile Image -->
-                                    <img src="../images/profile.jpg" alt="Profile Picture" class="profile-pic">
-                                </div>
-    
-                                <div class="col-md-10 col-12 text-md-left prof-info">
-                                    <!-- Content for the second column -->
-                                    <h2>Donalyn Dizon</h2>
-                                    <a href="#!">Reviewer / Author</a>
-                                </div>
-    
-                                <div class="col-md-1 col-12 text-center">
-                                    <!-- Content for the third column -->
-                                    <img src="../images/View.png" alt="viewer" class="viewer">
-                                </div>
-    
-                            </div>
-    
-                            <hr style="height: 1px; background-color: #959595; width: 100%;">
-    
-                            <div class="row">
-                                <div class="col-md-10 text-md-left">
-                                    <!-- Content for the first column -->
-                                    <h2 style="color:#6C757D; font-weight: bold; font-size: 25px">Badges</h2>
-                                </div>
-    
-                                
-                                <div class="col-md-2  text-center">
-                                    <!-- Content for the second column -->
-                                    <span class="xp-label" >56/100</span>
-                                </div>
-    
-    
-                                <div class="col-md-12">
-                                    <!-- Content for the third column -->
-                                    <div class="xp-container">
-                                    <!-- XP Bar -->
-                                        <div class="xp-bar">
-                                            <div class="progress-bar">
-                                                <div class="progress" style="width: 56%;"></div>
-                                            </div>
-                                            <br>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-    
-                            <div class="row">
-                                <div class="col-md-3 col-12 d-flex align-items-center">
-                                    <!-- Content for the first column -->
-                                    <div class="badge-box text-center mx-auto">
-                                        <img src="../images/badge1.jpg" alt="Profile Picture" class="img-badge">
-                                    </div>
-                                </div>
-    
-                                
-                                <div class="col-md-2 col-12 d-flex align-items-center">
-                                    <!-- Content for the second column -->
-                                    <div class="badge-box text-center mx-auto">
-                                        <img src="../images/badge2.jpg" alt="Profile Picture" class="img-badge">
-                                    </div>
-                                </div>
-    
-    
-                                <div class="col-md-2 col-12 d-flex align-items-center">
-                                    <!-- Content for the third column -->
-                                    <div class="badge-box text-center mx-auto">
-                                        <img src="../images/badge3.jpg" alt="Profile Picture" class="img-badge">
-                                    </div>
-                                </div>
-    
-                                <div class="col-md-2 col-12 d-flex align-items-center">
-                                    <!-- Content for the third column -->
-                                    <div class="badge-box text-center mx-auto">
-                                        <img src="../images/badge1.jpg" alt="Profile Picture" class="img-badge">
-                                    </div>
-                                </div>
-    
-                                <div class="col-md-3 col-12 d-flex align-items-center">
-                                    <!-- Content for the third column -->
-                                    <div class="badge-box text-center mx-auto">
-                                        <img src="../images/badge2.jpg" alt="Profile Picture" class="img-badge">
-                                    </div>
-                                </div>
-                            </div>
-                            
-    
-                            <div class="row">
-                                <div class="col-md-9 col-12 text-md-left text-center">
-                                    <!-- Content for the first column -->
-                                    <span style="color:#6C757D" >Showing 1 to 5 of badges</span>
-                                </div>
-    
-                                <div class="col-md-3 col-12 text-center mt-2">
-                                    <!-- Content for the second column -->
-                                    <button class="btn btn-primary btn-md" id="seeMore-btn">See more</button>
-                                </div>
-                            </div>
-    
-    
-                        </div>      
-    
-                    </form>
-                    </div>
-
-
+                    <div class="d-flex gap-1">${contributorsHTML}</div>
                 </div>
                 <div class="volume">
                     <p style= "font-size: small; color: gray" >Journal Issue and Volume</p>
@@ -230,12 +151,19 @@ function renderArticleDetails(data) {
                       Cite
                     </h4>
                   </button>
+                  <a  class="border-0" href="https://www.facebook.com/sharer/sharer.php?u=https://openaccessjournalcui-production.up.railway.app/PHP/article-details.php?articleId=${item.article_id}" target="_blank">
+
                   <button class="btn" id="share-btn">
-                    <h4>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M18 22q-1.25 0-2.125-.875T15 19q0-.175.025-.363t.075-.337l-7.05-4.1q-.425.375-.95.588T6 15q-1.25 0-2.125-.875T3 12q0-1.25.875-2.125T6 9q.575 0 1.1.213t.95.587l7.05-4.1q-.05-.15-.075-.337T15 5q0-1.25.875-2.125T18 2q1.25 0 2.125.875T21 5q0 1.25-.875 2.125T18 8q-.575 0-1.1-.212t-.95-.588L8.9 11.3q.05.15.075.338T9 12q0 .175-.025.363T8.9 12.7l7.05 4.1q.425-.375.95-.587T18 16q1.25 0 2.125.875T21 19q0 1.25-.875 2.125T18 22"/></svg>
-                      Share
-                    </h4>
+                      <h4>
+
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M18 22q-1.25 0-2.125-.875T15 19q0-.175.025-.363t.075-.337l-7.05-4.1q-.425.375-.95.588T6 15q-1.25 0-2.125-.875T3 12q0-1.25.875-2.125T6 9q.575 0 1.1.213t.95.587l7.05-4.1q-.05-.15-.075-.337T15 5q0-1.25.875-2.125T18 2q1.25 0 2.125.875T21 5q0 1.25-.875 2.125T18 8q-.575 0-1.1-.212t-.95-.588L8.9 11.3q.05.15.075.338T9 12q0 .175-.025.363T8.9 12.7l7.05 4.1q.425-.375.95-.587T18 16q1.25 0 2.125.875T21 19q0 1.25-.875 2.125T18 22"/></svg>
+                          Share
+
+                      </h4>
+
                   </button>
+                  </a>
+
                   <button class="btn" id="donate-btn">
                     <h4>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256"><path fill="currentColor" d="M178 32c-20.65 0-38.73 8.88-50 23.89C116.73 40.88 98.65 32 78 32a62.07 62.07 0 0 0-62 62c0 70 103.79 126.66 108.21 129a8 8 0 0 0 7.58 0C136.21 220.66 240 164 240 94a62.07 62.07 0 0 0-62-62m-50 174.8C109.74 196.16 32 147.69 32 94a46.06 46.06 0 0 1 46-46c19.45 0 35.78 10.36 42.6 27a8 8 0 0 0 14.8 0c6.82-16.67 23.15-27 42.6-27a46.06 46.06 0 0 1 46 46c0 53.61-77.76 102.15-96 112.8"/></svg>
@@ -384,8 +312,13 @@ function navigateToArticle(articleId) {
 }
 
 async function renderRecommended(data) {
+  const container = document.querySelector(".recommendation-article");
   const articleContainer = document.getElementById("similar-articles");
-
+  
+  if (data.length < 1){
+    container.classList.add("d-none")
+    console.log("hello")
+  }
   await data.forEach((article) => {
     const articleElement = document.createElement("div");
     articleElement.classList.add("article");

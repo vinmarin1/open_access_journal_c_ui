@@ -209,3 +209,52 @@ function sendReply(discussionId, articleId) {
 }
 
 
+function viewAllLogs() {
+  var logEntries = document.getElementById('logEntries');
+  var logDates = document.getElementById('logDates');
+  var viewLogsBtn = document.getElementById('viewLogsBtn');
+  var hideLogsBtn = document.getElementById('hideLogsBtn');
+
+  var logEntriesChildren = logEntries.children;
+  var logDatesChildren = logDates.children;
+
+  for (var i = 0; i < logEntriesChildren.length; i++) {
+      logEntriesChildren[i].style.display = 'block';
+  }
+
+  for (var j = 0; j < logDatesChildren.length; j++) {
+      logDatesChildren[j].style.display = 'block';
+  }
+
+  viewLogsBtn.style.display = 'none';
+  hideLogsBtn.style.display = 'block';
+}
+
+function hideLogs() {
+  var logEntries = document.getElementById('logEntries');
+  var logDates = document.getElementById('logDates');
+  var viewLogsBtn = document.getElementById('viewLogsBtn');
+  var hideLogsBtn = document.getElementById('hideLogsBtn');
+
+  var logEntriesChildren = logEntries.children;
+  var logDatesChildren = logDates.children;
+
+  for (var i = 0; i < logEntriesChildren.length; i++) {
+      if (i < 5) {
+          logEntriesChildren[i].style.display = 'block';
+      } else {
+          logEntriesChildren[i].style.display = 'none';
+      }
+  }
+
+  for (var j = 0; j < logDatesChildren.length; j++) {
+      if (j < 5) {
+          logDatesChildren[j].style.display = 'block';
+      } else {
+          logDatesChildren[j].style.display = 'none';
+      }
+  }
+
+  viewLogsBtn.style.display = 'block';
+  hideLogsBtn.style.display = 'none';
+}

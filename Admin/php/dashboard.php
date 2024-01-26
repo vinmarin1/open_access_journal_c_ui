@@ -276,25 +276,26 @@ include 'function/dashboard_functions.php';
     }
 
     // Data for the line chart
+
     var lineChartData2 = {
         labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'Novemeber', 'December'],
         datasets: [{
                 label: 'QCU',
-                data: ["0"],
+                data: <?php echo  json_encode(array_column($qcuResult, 'count')); ?>,
                 borderColor: 'rgba(255, 99, 132, 1)',
                 borderWidth: 1,
                 fill: false
             },
             {
                 label: 'FACULTY',
-                data: [" . getChartDataArray($facultyResult) . "],
+                data: <?php echo json_encode(array_column($facultyResult, 'count')); ?>,
                 borderColor: 'rgba(75, 192, 192, 1)',
                 borderWidth: 1,
                 fill: false
             },
             {
                 label: 'OTHERS',
-                data: [" . getChartDataArray($othersResult) . "],
+                data: <?php echo json_encode(array_column($othersResult, 'count')); ?>,
                 borderColor: 'rgba(255, 205, 86, 1)',
                 borderWidth: 1,
                 fill: false
@@ -302,32 +303,21 @@ include 'function/dashboard_functions.php';
         ]
     };
 
-    // / Data for the line chart
+            // / Data for the line chart 3
+            // Parse the JSON string to get the JavaScript object
+    var lineChartData3 = JSON.parse('<?php echo $jsonResult3; ?>');
+    // Use the parsed data for the chart
     var lineChartData3 = {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'Novemeber', 'December'],
+        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
         datasets: [{
-                label: 'QCU',
-                data: [" . getChartDataArray($qcuResult) . "],
-                borderColor: 'rgba(255, 99, 132, 1)',
-                borderWidth: 1,
-                fill: false
-            },
-            {
-                label: 'FACULTY',
-                data: [" . getChartDataArray($facultyResult) . "],
-                borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 1,
-                fill: false
-            },
-            {
-                label: 'OTHERS',
-                data: [" . getChartDataArray($othersResult) . "],
-                borderColor: 'rgba(255, 205, 86, 1)',
-                borderWidth: 1,
-                fill: false
-            }
-        ]
+            label: 'DONATIONS',
+            data: <?php echo json_encode(array_column($result3, 'donation_count')); ?>,
+            borderColor: 'rgba(255, 99, 132, 1)',
+            borderWidth: 1,
+            fill: false
+        }]
     };
+
 
     // Data for the bar chart
     var barChartData = {
@@ -375,9 +365,9 @@ include 'function/dashboard_functions.php';
 
     // Data for Doughnut Chart 2
     var doughnutChartData2 = {
-        labels: <?php echo json_encode(array_column($result, 'position')); ?>,
+        labels: <?php echo json_encode(array_column($result2, 'position')); ?>,
         datasets: [{
-            data: <?php echo json_encode(array_column($result, 'position_count')); ?>,
+            data: <?php echo json_encode(array_column($result2, 'position_count')); ?>,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.5)',
                 'rgba(75, 192, 192, 0.5)',
@@ -397,7 +387,7 @@ include 'function/dashboard_functions.php';
     var doughnutChartData3 = {
         labels: ['Author', 'Reviewer'],
         datasets: [{
-            data: [50, 100],
+            data: [authorData[0].authorCount, reviewerData[0].reviewerCount],
             backgroundColor: [
                 'rgba(75, 192, 192, 0.5)',
                 'rgba(255, 205, 86, 0.5)'

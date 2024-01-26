@@ -271,14 +271,101 @@ $query = "SELECT position, COUNT(*) AS position_count
           WHERE position IN ('QCU', 'FACULTY', 'OTHERS')
           GROUP BY position";
 
-$result = execute_query($query);
+$result2 = execute_query($query);
 
-if ($result !== false) {
+if ($result2 !== false) {
     // Convert the PHP array to a JSON string
-    $jsonResult = json_encode($result);
+    $jsonResult2 = json_encode($result2);
 
     // Pass the JSON string to JavaScript for doughnut chart
-    echo "<script>var doughnutChartData2 = $jsonResult;</script>";
+    echo "<script>var doughnutChartData2 = $jsonResult2;</script>";
+} else {
+    // Handle the error if the query fails
+    echo "<script>console.error('Error fetching data from the database.');</script>";
+}
+?>
+
+
+<!-- Linechart2 function -->
+<?php
+// Assuming you have a function execute_query() for executing SQL queries
+
+// Fetch data from the author table for QCU
+$qcuQuery = "SELECT MONTH(date_added) AS month, COUNT(*) AS count
+             FROM author
+             WHERE position = 'QCU'
+             GROUP BY MONTH(date_added)
+             ORDER BY MONTH(date_added)";
+$qcuResult = execute_query($qcuQuery);
+
+// Check if the query was successful
+if ($qcuResult !== false) {
+    // Convert the PHP array to a JSON string
+    $jsonResultQCU = json_encode($qcuResult);
+
+    // Pass the JSON string to JavaScript for the line chart
+    echo "<script>var lineChartDataQCU = $jsonResultQCU;</script>";
+} else {
+    // Handle the error if the query fails
+    echo "<script>console.error('Error fetching QCU data from the database.');</script>";
+}
+?>
+
+<?php
+// Fetch data from the author table for FACULTY
+$facultyQuery = "SELECT MONTH(date_added) AS month, COUNT(*) AS count
+                 FROM author
+                 WHERE position = 'FACULTY'
+                 GROUP BY MONTH(date_added)
+                 ORDER BY MONTH(date_added)";
+$facultyResult = execute_query($facultyQuery);
+
+// Check if the query was successful
+if ($facultyResult !== false) {
+    // Convert the PHP array to a JSON string
+    $jsonResultFaculty = json_encode($facultyResult);
+
+    // Pass the JSON string to JavaScript for the line chart
+    echo "<script>var lineChartDataFaculty = $jsonResultFaculty;</script>";
+} else {
+    // Handle the error if the query fails
+    echo "<script>console.error('Error fetching FACULTY data from the database.');</script>";
+}
+?>
+
+<?php
+// Fetch data from the author table for OTHERS
+$othersQuery = "SELECT MONTH(date_added) AS month, COUNT(*) AS count
+                FROM author
+                WHERE position = 'OTHERS'
+                GROUP BY MONTH(date_added)
+                ORDER BY MONTH(date_added)";
+$othersResult = execute_query($othersQuery);
+
+// Check if the query was successful
+if ($othersResult !== false) {
+    // Convert the PHP array to a JSON string
+    $jsonResultOthers = json_encode($othersResult);
+
+    // Pass the JSON string to JavaScript for the line chart
+    echo "<script>var lineChartDataOthers = $jsonResultOthers;</script>";
+} else {
+    // Handle the error if the query fails
+    echo "<script>console.error('Error fetching OTHERS data from the database.');</script>";
+}
+?>
+
+
+<?php
+$query = "SELECT MONTH(created_at) as month, COUNT(*) as donation_count FROM donation GROUP BY month";
+$result3 = execute_query($query);
+
+if ($result3 !== false) {
+    // Convert the PHP array to a JSON string
+    $jsonResult3 = json_encode($result3);
+
+    // Pass the JSON string to JavaScript for the line chart
+    echo "<script>var lineChartData3 = $jsonResult3;</script>";
 } else {
     // Handle the error if the query fails
     echo "<script>console.error('Error fetching data from the database.');</script>";
@@ -286,58 +373,37 @@ if ($result !== false) {
 ?>
 
 <?php
-// Assuming you have a function execute_query() for executing SQL queries
 
-// Fetch data from the author table
-$qcuQuery = "SELECT MONTH(date) AS month, COUNT(*) AS count
-             FROM author
-             WHERE position = 'QCU'
-             GROUP BY MONTH(date)
-             ORDER BY MONTH(date)";
+// Fetch data from article_final where status_id = 5
+$authorQuery = "SELECT COUNT(*) as authorCount FROM article_final WHERE status_id = 5";
+$authorResult = execute_query($authorQuery);
 
-$facultyQuery = "SELECT MONTH(date) AS month, COUNT(*) AS count
-                 FROM author
-                 WHERE position = 'FACULTY'
-                 GROUP BY MONTH(date)
-                 ORDER BY MONTH(date)";
+if ($authorResult !== false) {
+    // Convert the PHP array to a JSON string
+    $jsonAuthorResult = json_encode($authorResult);
 
-$othersQuery = "SELECT MONTH(date) AS month, COUNT(*) AS count
-                 FROM author
-                 WHERE position = 'OTHERS'
-                 GROUP BY MONTH(date)
-                 ORDER BY MONTH(date)";
-
-$qcuResult = execute_query($qcuQuery);
-$facultyResult = execute_query($facultyQuery);
-$othersResult = execute_query($othersQuery);
-
-// Check if all queries were successful
-if ($qcuResult !== false && $facultyResult !== false && $othersResult !== false) {
-    // Combine the results into a single JavaScript object
-    $combinedData = array(
-        'QCU' => convertToJavaScriptArray($qcuResult),
-        'FACULTY' => convertToJavaScriptArray($facultyResult),
-        'OTHERS' => convertToJavaScriptArray($othersResult),
-    );
-
-    // Now you can use $combinedData as needed, for example, convert it to JSON
-    $jsonData = json_encode($combinedData);
-    echo $jsonData;
+    // Pass the JSON string to JavaScript for the line chart
+    echo "<script>var authorData = $jsonAuthorResult;</script>";
 } else {
-    echo "Error fetching data.";
+    // Handle the error if the query fails
+    echo "<script>console.error('Error fetching data from the database for authors.');</script>";
 }
-
-// Helper function to convert result array to JavaScript array
-function convertToJavaScriptArray($result)
-{
-    $dataArray = array();
-    while ($row = mysqli_fetch_assoc($result)) {
-        $dataArray[] = $row;
-    }
-    return $dataArray;
-}
-
 ?>
 
+<?php
 
+// Fetch data from reviewer_assignment where accept = 1
+$reviewerQuery = "SELECT COUNT(*) as reviewerCount FROM reviewer_assigned WHERE accept = 1";
+$reviewerResult = execute_query($reviewerQuery);
 
+if ($reviewerResult !== false) {
+    // Convert the PHP array to a JSON string
+    $jsonReviewerResult = json_encode($reviewerResult);
+
+    // Pass the JSON string to JavaScript for the line chart
+    echo "<script>var reviewerData = $jsonReviewerResult;</script>";
+} else {
+    // Handle the error if the query fails
+    echo "<script>console.error('Error fetching data from the database for reviewers.');</script>";
+}
+?>

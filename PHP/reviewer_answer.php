@@ -10,9 +10,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $lastName = $_SESSION['last_name'];
     $middle_name = $_SESSION['middle_name'];
     $userName = $lastName . ' , ' . $firstName .  '  ' . $middle_name;
+    $getRound = $_POST['getRound'];
+    $ansOrig = $_POST['ansOrig'];
+    $ansRef = $_POST['ansRef'];
+    $ansLang = $_POST['ansLang'];
 
-    $sqlReviewerAnswer = "INSERT INTO reviewer_answer (`article_id`, `author_id`, `reviewer_questionnaire`, `answer`, `round`)
-        VALUES (:article_id, :author_id, :reviewer_questionnaire, :answer, 'Round 1')";
+    $sqlReviewerAnswer = "INSERT INTO reviewer_answer (`article_id`, `author_id`, `reviewer_questionnaire`, `answer`, `originality`, `reference`, `languages` ,`round`)
+        VALUES (:article_id, :author_id, :reviewer_questionnaire, :answer, :originality, :reference, :languages, :round)";
 
     foreach ($answers as $question => $answer) {
         $paramsAnswer = array(
@@ -20,12 +24,16 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             'author_id' => $user_id,
             'reviewer_questionnaire' => $question,
             'answer' => $answer,
+            'originality' => $ansOrig,
+            'reference' => $ansRef,
+            'languages' => $ansLang,
+            'round' => $getRound
         );
 
         database_run($sqlReviewerAnswer, $paramsAnswer);
     }
   
-    header('Location: author-dashboard.php');
+    
 
 
     $sqlAnswer = "UPDATE reviewer_assigned SET answer = :answer WHERE author_id = :user_id AND article_id = :article_id";
@@ -63,6 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     database_run($sqlAccept, $sqlAcceptParams);
         
+    header('Location: author-dashboard.php');
 
 } else {
     echo 'Invalid request.';

@@ -120,74 +120,60 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                     ?>
                 </p></div>
             </div>
-            <div class="logs-date-container">
-                <div class="logs">
-                    
-                    <div class="logs-title">Logs</div> <!-- Logs title -->
-                    <div class="log-entry"><br>
-                        <?php
-                            $sqlLogs = "SELECT logs_article.type FROM logs_article JOIN article ON logs_article.article_id = article.article_id WHERE logs_article.article_id = :article_id";
-
-                            $sqlRunLogs = database_run($sqlLogs, array('article_id' => $articleId));
-
-                            if ($sqlRunLogs !== false){
-                                foreach ($sqlRunLogs as $logsRow){
-                                    echo '<p style="display: block">' . $logsRow->type . '</p>';
-                                }
-                            }else{
-                                echo 'no logs for this article';
-                            }
-
-                        ?>
-                    </div>
-                    <!-- <div class="log-entry"><b>Review</b><br>Reviewed by Reviewer B</div>
-                    <div class="log-entry"><b>Review</b><br>Reviewed by Reviewer A</div>
-                    <div class="log-entry"><b>Review</b><br>Send for review</div> -->
-                    <div class="log-entry"><p id="submitOn">
-
+        <div class="logs-date-container">
+            <div class="logs">
+                <div class="logs-title">Logs</div> <!-- Logs title -->
+                <div class="log-entry mt-4" id="logEntries">
                     <?php
+                        $sqlLogs = "SELECT logs_article.type FROM logs_article JOIN article ON logs_article.article_id = article.article_id WHERE logs_article.article_id = :article_id";
+                        $sqlRunLogs = database_run($sqlLogs, array('article_id' => $articleId));
 
-                    $sqlStatus = "SELECT journal.journal FROM journal JOIN article ON journal.journal_id = article.journal_id WHERE article.author_id = :author_id AND article.article_id = :article_id";
-
-                    $result = database_run($sqlStatus, array('author_id' => $userId,
-                    'article_id' => $articleId));
-
-                    if ($result !== false) {
-                    foreach ($result as $row) {
-                    echo $row->journal;
-                    }
-                    } else {
-                    echo "No journal for this article"; 
-                    }
-                    ?>
-                    </p></div>
-                </div>
-                
-                <div class="dates">
-                    <div class="dates-title">Date</div>
-                    <div class="date">
-                      <?php
-                            $sqlLogsDate = "SELECT logs_article.date FROM logs_article JOIN article ON logs_article.article_id = article.article_id WHERE logs_article.article_id = :article_id";
-
-                            $sqlDateParams = database_run($sqlLogsDate, array('article_id' => $articleId));
-
-                            if ($sqlDateParams !== false){
-                                foreach ($sqlDateParams as $logsDate){
-                                    echo '<p style="display: block">' . $logsDate->date . '</p>';
+                        if ($sqlRunLogs !== false){
+                            $count = 0;
+                            foreach ($sqlRunLogs as $logsRow){
+                                if ($count < 5) {
+                                    echo '<p style="display: block">' . $logsRow->type . '</p>';
+                                } else {
+                                    echo '<p style="display: none">' . $logsRow->type . '</p>';
                                 }
-                            }else{
-                                echo 'no logs for this article';
+                                $count++;
                             }
+                        } else {
+                            echo 'no logs for this article';
+                        }
+                    ?>
+                </div>
 
-                        ?>
-                    </div>
-                    <!-- <div class="date">2023-11-09</div>
-                    <div class="date">2023-11-09</div>
-                    <div class="date">2023-11-09</div>
-                    <div class="date">2023-11-09</div> -->
+            </div>
+
+            <div class="dates">
+                <div class="dates-title">Date</div>
+                <div class="date" id="logDates">
+                    <?php
+                        $sqlLogsDate = "SELECT logs_article.date FROM logs_article JOIN article ON logs_article.article_id = article.article_id WHERE logs_article.article_id = :article_id";
+                        $sqlDateParams = database_run($sqlLogsDate, array('article_id' => $articleId));
+
+                        if ($sqlDateParams !== false){
+                            $count = 0;
+                            foreach ($sqlDateParams as $logsDate){
+                                if ($count < 5) {
+                                    echo '<p style="display: block">' . $logsDate->date . '</p>';
+                                } else {
+                                    echo '<p style="display: none">' . $logsDate->date . '</p>';
+                                }
+                                $count++;
+                            }
+                        } else {
+                            echo 'no logs for this article';
+                        }
+                    ?>
                 </div>
             </div>
-            <a href="#" class="view-all-logs">View All Logs</a>
+        </div>
+
+        <button type="button" class="btn btn-outline-primary btn-sm" onclick="viewAllLogs()" id="viewLogsBtn">View All Logs</button>
+        <button type="button" class="btn btn-outline-primary btn-sm" onclick="hideLogs()" id="hideLogsBtn" style="display: none">Hide Logs</button>
+
         </div>
     </div>
 </div> 
@@ -311,73 +297,73 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
         <div class="comments-container">
             <div class="table-header">Discussion</div>
             <div class="discussion-container">
-            <?php
-$userId = $_SESSION['id'];    
+                <?php
+                    $userId = $_SESSION['id'];    
 
-$sqlDiscussion = "SELECT * FROM discussion WHERE article_id = $articleId";
-$resultDiscussion = database_run($sqlDiscussion);
+                    $sqlDiscussion = "SELECT * FROM discussion WHERE article_id = $articleId";
+                    $resultDiscussion = database_run($sqlDiscussion);
 
-if ($resultDiscussion !== false) {
-    foreach ($resultDiscussion as $rowDiscussion) {
-        // Output discussion button with a unique ID
-        echo '<button type="button" class="btn btn-secondary btn-sm" style="width: 100%; margin-top: 5px;" onclick="toggleDiscussion(' . $rowDiscussion->discussion_id . ')">' . $rowDiscussion->discussion_type . '</button>';
+                    if ($resultDiscussion !== false) {
+                        foreach ($resultDiscussion as $rowDiscussion) {
+                            // Output discussion button with a unique ID
+                            echo '<button type="button" class="btn btn-secondary btn-sm" style="width: 100%; margin-top: 5px;" onclick="toggleDiscussion(' . $rowDiscussion->discussion_id . ')">' . $rowDiscussion->discussion_type . '</button>';
 
-        // Output discussion messages container with a unique ID and initially hide it
-        echo '<div id="discussion' . $rowDiscussion->discussion_id . '" style="display:none; width: 100%; height: auto; border: none; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; backround-color: #0066cc;">';
+                            // Output discussion messages container with a unique ID and initially hide it
+                            echo '<div id="discussion' . $rowDiscussion->discussion_id . '" style="display:none; width: 100%; height: auto; border: none; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; backround-color: #0066cc;">';
 
-        // Fetch discussion messages and sender names for the selected discussion
-        $discussionId = $rowDiscussion->discussion_id;
-        $sqlMessages = "SELECT discussion_message.userId, discussion_message.message, discussion_message.fromuser FROM discussion_message
-                        WHERE discussion_message.discussion_id = $discussionId";
+                            // Fetch discussion messages and sender names for the selected discussion
+                            $discussionId = $rowDiscussion->discussion_id;
+                            $sqlMessages = "SELECT discussion_message.userId, discussion_message.message, discussion_message.fromuser FROM discussion_message
+                                            WHERE discussion_message.discussion_id = $discussionId";
 
-        $resultMessages = database_run($sqlMessages);
+                            $resultMessages = database_run($sqlMessages);
 
-        if ($resultMessages !== false) {
-            foreach ($resultMessages as $rowMessage) {
-                echo '<div>';
-                
-                // Check if the message is from the current user
-                if ($rowMessage->userId == $userId) {
-                    // Apply different style for the current user's message (right side)
-                    echo '<p style="font-weight: lighter; display: block; margin-left: 5px; background-color: #ECF0F1; color: black; width: 50%; margin-left: auto; border-radius: 30px 30px 0 0; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">' . $rowMessage->message . '</p>';
-                } else {
-                    // Apply style for other users' messages (left side)
-                    echo '<p style="font-weight: lighter; display: block; margin-top:5px; margin-left: 5px">' . $rowMessage->fromuser .'</p>';
-                    echo '<p style="font-weight: lighter; display: block; margin-top:5px; margin-left: 5px">'. 'Subject: ' . $rowDiscussion->subject . '</p>';
-                    echo '<p style="font-weight: lighter; display: block; margin-left: 5px; background-color: #ECF0F1; color: black; width: 50%; border-radius: 30px 30px 0 0; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">' . $rowMessage->message . '</p>';
-                }
+                            if ($resultMessages !== false) {
+                                foreach ($resultMessages as $rowMessage) {
+                                    echo '<div>';
+                                    
+                                    // Check if the message is from the current user
+                                    if ($rowMessage->userId == $userId) {
+                                        // Apply different style for the current user's message (right side)
+                                        echo '<p style="font-weight: lighter; display: block; margin-left: 5px; background-color: #ECF0F1; color: black; width: 50%; margin-left: auto; border-radius: 30px 30px 0 0; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">' . $rowMessage->message . '</p>';
+                                    } else {
+                                        // Apply style for other users' messages (left side)
+                                        echo '<p style="font-weight: lighter; display: block; margin-top:5px; margin-left: 5px">' . $rowMessage->fromuser .'</p>';
+                                        echo '<p style="font-weight: lighter; display: block; margin-top:5px; margin-left: 5px">'. 'Subject: ' . $rowDiscussion->subject . '</p>';
+                                        echo '<p style="font-weight: lighter; display: block; margin-left: 5px; background-color: #ECF0F1; color: black; width: 50%; border-radius: 30px 30px 0 0; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">' . $rowMessage->message . '</p>';
+                                    }
 
-                echo '</div>';
-            }
-        } else {
-            echo '<p class="dmessageNtFound">Discussion messages not found</p>';
-        }
+                                    echo '</div>';
+                                }
+                            } else {
+                                echo '<p class="dmessageNtFound">Discussion messages not found</p>';
+                            }
 
-        echo '<style>
-                      
-            #reply-message::-webkit-scrollbar {
-                display: none;
-            }
-        </style>';
+                            echo '<style>
+                                        
+                                #reply-message::-webkit-scrollbar {
+                                    display: none;
+                                }
+                            </style>';
 
-        echo '<div style="position: relative; margin-top: 10px; border: 1px solid #ccc; padding: 10px; border-radius: 5px;">';
+                            echo '<div style="position: relative; margin-top: 10px; border: 1px solid #ccc; padding: 10px; border-radius: 5px;">';
 
-        // Textarea with a specific max-width, height, and disabled resize
-        // Inside your loop
-        echo '<textarea class="form-control" name="reply-message" id="reply-message-' . $discussionId . '" cols="10" rows="4" style="resize: none; max-width: 100%; height: 10vh; overflow-y: auto; padding-right: 80px;"></textarea>';
+                            // Textarea with a specific max-width, height, and disabled resize
+                            // Inside your loop
+                            echo '<textarea class="form-control" name="reply-message" id="reply-message-' . $discussionId . '" cols="10" rows="4" style="resize: none; max-width: 100%; height: 10vh; overflow-y: auto; padding-right: 80px;"></textarea>';
 
-        // Reply button inside the textarea, positioned at the lower-right bottom
-        echo '<button type="button" onclick="sendReply(' . $discussionId . ', ' . $articleId . ')" style="position: absolute; bottom: 15px; right: 15px; padding: 5px; background-color: #0066cc; color: #fff; border: none; border-radius: 3px; cursor: pointer;">Reply</button>';
-        echo '</hr>';
-        echo '</div>';
-        
-        echo '</div>';
-        
-    }
-} else {
-    echo '<p class="dmessageNtFound">No discussion for this article yet</p>';
-}
-?>
+                            // Reply button inside the textarea, positioned at the lower-right bottom
+                            echo '<button type="button" onclick="sendReply(' . $discussionId . ', ' . $articleId . ')" style="position: absolute; bottom: 15px; right: 15px; padding: 5px; background-color: #0066cc; color: #fff; border: none; border-radius: 3px; cursor: pointer;">Reply</button>';
+                            echo '</hr>';
+                            echo '</div>';
+                            
+                            echo '</div>';
+                            
+                        }
+                    } else {
+                        echo '<p class="dmessageNtFound">No discussion for this article yet</p>';
+                    }
+                ?>
 
 
 
@@ -402,28 +388,28 @@ if ($resultDiscussion !== false) {
             <div class="section-body">
                 <!-- <p>Reviewer Anwers Summary</p> -->
                 <?php
-                                $sqlQuestionnaire = "SELECT question, answer FROM reviewer_questionnaire";
-                                $result = database_run($sqlQuestionnaire);
+                    $sqlQuestionnaire = "SELECT question, answer FROM reviewer_questionnaire";
+                    $result = database_run($sqlQuestionnaire);
 
-                                if ($result) {
-                                    foreach ($result as $row) {
-                                        $question = htmlspecialchars($row->question);
-                                        echo '<li class="list-group-item mt-4" style="list-style: none; font-family: &quot;Times New Roman&quot;, Times, serif; color: #0858a4; font-size: 20px;">' . $question . '</li>';
+                    if ($result) {
+                        foreach ($result as $row) {
+                            $question = htmlspecialchars($row->question);
+                            echo '<li class="list-group-item mt-4" style="list-style: none; font-family: &quot;Times New Roman&quot;, Times, serif; color: #0858a4; font-size: 20px;">' . $question . '</li>';
 
-                                        // Split the choices using commas
-                                        $choices = explode(',', $row->answer);
+                            // Split the choices using commas
+                            $choices = explode(',', $row->answer);
 
-                                        // Display each choice as a radio button
-                                        foreach ($choices as $choice) {
-                                            $uniqueId = htmlspecialchars(trim($choice)) . '_' . uniqid(); // Create a unique ID for each radio button
-                                            echo '<input type="radio" name="answers[' . $question . ']" value="' . htmlspecialchars(trim($choice)) . '" id="' . $uniqueId . '" disabled>';
-                                            echo '<label for="' . $uniqueId . '" style="font-size: small; color: gray;">' . htmlspecialchars(trim($choice)) . '</label><br>';
-                                        }
-                                    }
-                                } else {
-                                    echo 'The questionnaire has not been updated yet';
-                                }
-                                ?>
+                            // Display each choice as a radio button
+                            foreach ($choices as $choice) {
+                                $uniqueId = htmlspecialchars(trim($choice)) . '_' . uniqid(); // Create a unique ID for each radio button
+                                echo '<input type="radio" name="answers[' . $question . ']" value="' . htmlspecialchars(trim($choice)) . '" id="' . $uniqueId . '" disabled>';
+                                echo '<label for="' . $uniqueId . '" style="font-size: small; color: gray;">' . htmlspecialchars(trim($choice)) . '</label><br>';
+                            }
+                        }
+                    } else {
+                        echo 'The questionnaire has not been updated yet';
+                    }
+                ?>
 
             </div>
             <div class="action-button">

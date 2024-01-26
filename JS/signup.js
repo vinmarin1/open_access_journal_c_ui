@@ -24,6 +24,33 @@ $('#exampleModal').on('shown.bs.modal', function () {
   handleScroll();
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+   
+    var privacyPolicyCheckbox = document.getElementById('privacyPolicy');
+    var agreeButton = document.getElementById('btn-agree');
+    var closeButton = document.querySelector('.modal-content .btn-close');
+ 
+    privacyPolicyCheckbox.addEventListener('change', function() {
+    
+        if (privacyPolicyCheckbox.checked) {
+          
+            agreeButton.removeAttribute('disabled');
+        } else {
+            
+            agreeButton.setAttribute('disabled', 'disabled');
+        }
+    });
+
+    agreeButton.addEventListener('click', function() {
+        // Trigger a click on the close button
+        closeButton.click();
+    });
+
+    
+});
+
+
+
 
 document.getElementById('form').addEventListener('submit', function(event) {
     event.preventDefault();

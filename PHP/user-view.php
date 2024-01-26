@@ -130,7 +130,7 @@
                     </div>
 
                     <div class="table-container">
-                    <table>
+                        <table>
                             <thead>
                                 <tr>
                                     <th>Title</th>

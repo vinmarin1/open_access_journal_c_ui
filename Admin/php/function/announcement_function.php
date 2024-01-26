@@ -67,7 +67,7 @@
         $title = $_POST['title'];
         $announcement_description = $_POST['announcement_description'];
         $announcement = $_POST['announcement'];
-        $expiry_date = $_POST['expiry_date'];
+        $expired_date = $_POST['expired_date'];
         $status = 1;
     
         $documentRoot = $_SERVER['DOCUMENT_ROOT'];
@@ -79,7 +79,7 @@
 
         $imageFile = $_FILES['upload_image'];
         $imageName = basename($imageFile["name"]);
-        $upload_image = '';
+        $upload_image =$imageName;
 
         if (isset($_FILES['upload_image']) && $_FILES['upload_image']['error'] === UPLOAD_ERR_OK) {
             $imageFileType = strtolower(pathinfo($imageName, PATHINFO_EXTENSION));
@@ -98,10 +98,10 @@
             throw new Exception('File upload error: ' . $_FILES['upload_image']['error']);
         }
 
-        $query = "INSERT INTO announcement ( title, announcement_description, announcement,status, upload_image, expiry_date) 
+        $query = "INSERT INTO announcement ( title, announcement_description, announcement,status, upload_image, expired_date) 
                   VALUES ( ?, ?, ?, ?, ?, ?)";
 
-        $result = execute_query($query, [$title, $announcement_description, $announcement,$status,  $imageName, $expiry_date]);
+        $result = execute_query($query, [$title, $announcement_description, $announcement,$status,  $upload_image, $expired_date]);
 
         if ($result !== false) {
             echo json_encode(['status' => true, 'message' => 'Record added successfully']);
