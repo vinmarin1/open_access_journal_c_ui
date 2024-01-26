@@ -50,7 +50,7 @@ require 'dbcon.php';
             Guidelines
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" style="color: black" href="#">Tutorial</a></li>
+            <li><a class="dropdown-item" style="color: black" href="./guidelines.php">For Contributors</a></li>
             <li><a class="dropdown-item" style="color: black" href="./faqs.php">Frequently Asked Questions</a></li>
           </ul>
         </li>

@@ -12,6 +12,15 @@ aside {
     flex: 4;
 }
 
+.menu li {
+    cursor: pointer;
+}
+
+.menu li:hover {
+    text-decoration: underline;
+}
+
+
 #faqs-container {
     display: flex;
     flex-direction: column;
@@ -20,7 +29,7 @@ aside {
 
 #faqs-container .header{
     display: flex;
-    flex-direction: column;
+    flex-direction: column; 
     align-items: flex-start;
     padding: 0;
 }
@@ -31,6 +40,7 @@ aside {
     align-items: flex-start;
     gap:2em;
 }
+
 #faqs-container h3,
 #faqs-container h4 {
     color: #285581;
@@ -42,7 +52,6 @@ aside {
     font-size: 20px;
     font-weight: 700; 
 }
-
 
 #faqs-container h3 {
     text-transform: uppercase;
@@ -140,3 +149,99 @@ aside {
 .faq .accordion-body {
     padding-left: 3em;
 }
+
+#author-guidelines-container .header{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+    min-height: 50px;
+}
+
+#article-submission-container .header{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+    min-height: 50px;
+}
+
+#peer-review-container .header{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+    min-height: 50px;
+}
+
+#become-reviewer-container .header{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+    min-height: 50px;
+}
+
+#author-guidelines-container h2,
+#article-submission-container h2,
+#peer-review-container h2,
+#become-reviewer-container h2 { 
+    color: #285581;
+    font-size: 24px;
+    font-weight: 600; 
+}
+
+#author-guidelines-container h3,
+#author-guidelines-container h4,
+#article-submission-container h3,
+#peer-review-container h3 {
+    color: #285581;
+    font-family: Inter !important;
+}
+
+#author-guidelines-container h3,
+#article-submission-container h3,
+#peer-review-container h3 {
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 1em;
+}
+
+#author-guidelines-container,
+#article-submission-container,
+#peer-review-container,
+#become-reviewer-container {
+    font-family: Inter;
+    font-size: 14px; 
+    font-weight: 400 !important;
+    margin-bottom: 1em;
+}
+
+.s-1, .s-2 {
+    margin-bottom: 2em;
+}
+
+#author-guidelines-container h4 {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.s-2 p {
+    margin-bottom: 1.5em;
+}
+
+table {
+    width: 90%;
+    border-collapse: collapse;
+    margin-bottom: 2em;
+}
+
+table th, table td {
+    border: 1px solid black;
+    padding: 6px;
+    padding-right: 20px;
+}
+
+
+

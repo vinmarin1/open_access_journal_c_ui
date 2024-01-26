@@ -82,3 +82,35 @@ function generateQuestions() {
         </div>
     `).join('');
 }
+
+
+document.addEventListener('DOMContentLoaded', function () {
+
+    var faqToggles = document.querySelectorAll('.faq-toggle');
+
+    faqToggles.forEach(function (toggle) {
+
+        toggle.addEventListener('click', function () {
+
+            var targetId = toggle.getAttribute('data-target');
+
+            document.querySelectorAll('.main').forEach(function (container) {
+                container.style.display = 'none';
+            });
+
+            document.getElementById(targetId + '-container').style.display = 'block';
+        });
+    });
+});
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    var menuItems = document.querySelectorAll('.faq-toggle');
+
+    menuItems.forEach(function (item) {
+        item.addEventListener('click', function () {
+            var target = this.getAttribute('data-target');
+            document.getElementById('guideline-title').textContent = target.replace(/-/g, ' ');
+        });
+    });
+});

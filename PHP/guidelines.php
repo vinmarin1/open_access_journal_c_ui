@@ -8,7 +8,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QCU PUBLICATION | FAQs</title>
+    <title>QCU PUBLICATION | GUIDELINES</title>
     <link rel="stylesheet" href="../CSS/faqs.css">
     <link rel="stylesheet" href="../CSS/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -28,8 +28,8 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
 
     <div class="content-over">
         <div class="cover-content">
-            <p>Home / Guidelines / FAQs</p>
-            <h1 id="guideline-title">Frequently Asked Questions (FAQs)</h1>
+            <p>Home / Guidelines / For Contributors</p>
+            <h1 id="guideline-title">Author Guidelines</h1>
         </div>
     </div>
 
@@ -48,37 +48,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 </ul>
             </div>           
         </aside>
-        <div class="main " id="faqs-container"> 
-            <div class="header">
-                <h2>Frequently Asked Questions</h2>
-                <form action="" class="border" id="search-input">
-                    <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
-                    <button type="submit">Search</button>
-                </form>
-            </div>
-            <div class="content">
-                <div class="category w-100">
-                    <h3>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 15 15"><path fill="#e56f1f" fill-rule="evenodd" d="M.877 7.5a6.623 6.623 0 1 1 13.246 0a6.623 6.623 0 0 1-13.246 0M7.5 1.827a5.673 5.673 0 1 0 0 11.346a5.673 5.673 0 0 0 0-11.346m.75 8.673a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0m-2.2-4.25c0-.678.585-1.325 1.45-1.325s1.45.647 1.45 1.325c0 .491-.27.742-.736 1.025c-.051.032-.111.066-.176.104a5.28 5.28 0 0 0-.564.36c-.242.188-.524.493-.524.961a.55.55 0 0 0 1.1.004a.443.443 0 0 1 .1-.098c.102-.079.215-.144.366-.232c.078-.045.167-.097.27-.159c.534-.325 1.264-.861 1.264-1.965c0-1.322-1.115-2.425-2.55-2.425c-1.435 0-2.55 1.103-2.55 2.425a.55.55 0 0 0 1.1 0" clip-rule="evenodd"/></svg>
-                        General Questions
-                    </h3>
-                    <div id="generalQAs" class="faqs accordion accordion-flush w-100 d-flex flex-column gap-0" id="faqs">
-                    </div>
-                </div>
-                <div class="category w-100">
-                    <h3>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 15 15"><path fill="#e56f1f" fill-rule="evenodd" d="M.877 7.5a6.623 6.623 0 1 1 13.246 0a6.623 6.623 0 0 1-13.246 0M7.5 1.827a5.673 5.673 0 1 0 0 11.346a5.673 5.673 0 0 0 0-11.346m.75 8.673a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0m-2.2-4.25c0-.678.585-1.325 1.45-1.325s1.45.647 1.45 1.325c0 .491-.27.742-.736 1.025c-.051.032-.111.066-.176.104a5.28 5.28 0 0 0-.564.36c-.242.188-.524.493-.524.961a.55.55 0 0 0 1.1.004a.443.443 0 0 1 .1-.098c.102-.079.215-.144.366-.232c.078-.045.167-.097.27-.159c.534-.325 1.264-.861 1.264-1.965c0-1.322-1.115-2.425-2.55-2.425c-1.435 0-2.55 1.103-2.55 2.425a.55.55 0 0 0 1.1 0" clip-rule="evenodd"/></svg>
-                        Submitting to QCUJ
-                    </h3>
-                    <div id="submissionQAs" class="faqs accordion accordion-flush w-100 d-flex flex-column gap-0" id="faqs">
-                    
-                    </div>
-                </div>
-               
-            </div>
-            
-        </div>
-    <div class="main" id="author-guidelines-container" style="display: none;">
+    <div class="main" id="author-guidelines-container">
         <div class="header">
         <h2>Author Guidelines</h2>
         </div>
@@ -209,133 +179,133 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
         </div>
         </div>
     </div>
-    <div class="main" id="article-submission-container" style="display: none;">
-            <div class="header">
-            <h2>Article Submission</h2>
-            </div>
-            <div class="category w-100">
-            <div class="s-1">
-            <h3>Submission</h3>
-            <p>Authors are kindly invited to submit their formatted full papers. All paper submissions will be blind peer 
-                reviewed and evaluated based on originality, research content, correctness, relevance to conference and 
-                readability. Please read complete submission and formatting guidelines before submitting your paper.</p>
-            <ul>
-                <li>Create your account <a href="#">here</a>.</li>
-                <li>Online Submission: Paper Submission can be completed online, <a href="#">here</a>.</li>
-            </ul>
-            <p>The submitting author, generally the corresponding author, is in charge of the document during the submission
-                process. The submitting author must ensure that all qualified co-authors are listed in the
-                author list (see the University Policy on Authorship and Co-authorship in the QCU Research
-                Manual). The authors should have read and approved the final version of the article before
-                submission.</p>
-            </div>
-            <div class="s-1">
-            <h3>Before Submission</h3>
-                <p>Authors are expected to follow the journal’s publication guidelines before submitting their
-                    manuscripts.</p>
-                <p>Submission of an article implies that the work described has not been published previously
-                    (except in the form of an abstract, a published lecture, or an academic thesis); that it is not
-                    under consideration or has been accepted for publication in any other journals; that all
-                    authors were informed about its publication; and that, if accepted, the article will not be
-                    published elsewhere.</p>
-                <p>Furthermore, submission of an article implies that all authors have a significant contribution
-                    to the research, have approved the final article for publication, and have agreed to the
-                    publication of the article.</p>
-                <p>In terms of author contributions, researchers should submit an author statement file outlining
-                    their contributions to the article using the Contributor Roles Taxonomy (CRediT).</p>
-                <p>CRediT statement should be included in the submission of the article and should be
-                    displayed above the acknowledgement section of the published manuscript. Below is a
-                    specific definition of the terms according to Brand et al. (2015) and published in Elsevier.com
-                    (n.d.).</p>
-            </div>
-            <table>
-                <tr>
-                    <th>Term</th>
-                    <th>Definition</th>
-                </tr>
-                <tr>
-                    <td>Conceptualization</td>
-                    <td>Ideas; formulation or evolution of overarching research goals and aims</td>
-                </tr>
-                <tr>
-                    <td>Methodology</td>
-                    <td>Development or design of methodology; creation of models</td>
-                </tr>
-                <tr>
-                    <td>Software</td>
-                    <td>Programming, software development; designing computer
-                        programs; implementation of the computer code and supporting
-                        algorithms; testing of existing code components.</td>
-                </tr>
-                <tr>
-                    <td>Validation</td>
-                    <td>Verification, whether as a part of the activity or separate, of the
-                        overall replication/reproducibility of the results/experiments and
-                        other research outputs</td>
-                </tr>
-                <tr>
-                    <td>Formal Analysis</td>
-                    <td>Application of statistical, mathematical, computational, or other
-                        formal techniques to analyze or synthesize study data.</td>
-                </tr>
-                <tr>
-                    <td>Investigation</td>
-                    <td>Conducting a research and investigation process, specifically
-                        performing the experiments, or data/evidence collection.</td>
-                </tr>
-                <tr>
-                    <td>Resources</td>
-                    <td>Provision of study materials, reagents, materials, patients,
-                        laboratory samples, animals, instrumentation, computing
-                        resources, or other analysis tools.</td>
-                </tr>
-                <tr>
-                    <td>Data Curation</td>
-                    <td>Management activities to annotate (produce metadata), scrub data,
-                        and maintain research data (including software code, where it is
-                        necessary for interpreting the data itself) for initial use and later
-                        reuse.</td>
-                </tr>
-                <tr>
-                    <td>Writing – Original Draft</td>
-                    <td>Preparation, creation, and/or presentation of the published work,
-                        specifically writing the initial draft (including substantive translation)</td>
-                </tr>
-                <tr>
-                    <td>Writing – Review & Editing</td>
-                    <td>Preparation, creation, and/or presentation of the published work by
-                        those from the original research group, specifically critical review,
-                        commentary, or revision – including pre or post publication stages</td>
-                </tr>
-                <tr>
-                    <td>Visualization</td>
-                    <td>Preparation, creation, and/or presentation of the published work,
-                        specifically visualization/data presentation.</td>
-                </tr>
-                <tr>
-                    <td>Supervision</td>
-                    <td>Oversight and Leadership responsibility for the research activity
-                        planning and execution, including mentorship external to the core
-                        team.</td>
-                </tr>
-                <tr>
-                    <td>Project administration</td>
-                    <td>Management and coordination responsibility for the research
-                        activity planning and execution</td>
-                </tr>
-                <tr>
-                    <td>Funding acquisition</td>
-                    <td>Acquisition of the financial support for the project leading to this
-                        publication</td>
-                </tr>
-            </table>
-            <div class="s-1">
-                <p><em>Sample CRediT author statement</em></p>
-                <p><b>Dela Cruz:</b> Conceptualization, Methodology. <b>Bautista:</b> Data curation, Writing-Original draft
-                        preparation. <b>Santos:</b> Visualization, Investigation. <b>Cruz:</b> Supervision. <b>Reyes:</b> Software,
-                        Validation. <b>Jose:</b> Writing-Reviewing and Editing.</p>
-            </div>
-            </div>
+	<div class="main" id="article-submission-container" style="display: none;">
+        <div class="header">
+        <h2>Article Submission</h2>
+        </div>
+        <div class="category w-100">
+        <div class="s-1">
+        <h3>Submission</h3>
+        <p>Authors are kindly invited to submit their formatted full papers. All paper submissions will be blind peer 
+            reviewed and evaluated based on originality, research content, correctness, relevance to conference and 
+            readability. Please read complete submission and formatting guidelines before submitting your paper.</p>
+        <ul>
+            <li>Create your account <a href="#">here</a>.</li>
+            <li>Online Submission: Paper Submission can be completed online, <a href="#">here</a>.</li>
+        </ul>
+        <p>The submitting author, generally the corresponding author, is in charge of the document during the submission
+            process. The submitting author must ensure that all qualified co-authors are listed in the
+            author list (see the University Policy on Authorship and Co-authorship in the QCU Research
+            Manual). The authors should have read and approved the final version of the article before
+            submission.</p>
+        </div>
+        <div class="s-1">
+        <h3>Before Submission</h3>
+            <p>Authors are expected to follow the journal’s publication guidelines before submitting their
+                manuscripts.</p>
+            <p>Submission of an article implies that the work described has not been published previously
+                (except in the form of an abstract, a published lecture, or an academic thesis); that it is not
+                under consideration or has been accepted for publication in any other journals; that all
+                authors were informed about its publication; and that, if accepted, the article will not be
+                published elsewhere.</p>
+            <p>Furthermore, submission of an article implies that all authors have a significant contribution
+                to the research, have approved the final article for publication, and have agreed to the
+                publication of the article.</p>
+            <p>In terms of author contributions, researchers should submit an author statement file outlining
+                their contributions to the article using the Contributor Roles Taxonomy (CRediT).</p>
+            <p>CRediT statement should be included in the submission of the article and should be
+                displayed above the acknowledgement section of the published manuscript. Below is a
+                specific definition of the terms according to Brand et al. (2015) and published in Elsevier.com
+                (n.d.).</p>
+        </div>
+        <table>
+            <tr>
+                <th>Term</th>
+                <th>Definition</th>
+            </tr>
+            <tr>
+                <td>Conceptualization</td>
+                <td>Ideas; formulation or evolution of overarching research goals and aims</td>
+            </tr>
+            <tr>
+                <td>Methodology</td>
+                <td>Development or design of methodology; creation of models</td>
+            </tr>
+            <tr>
+                <td>Software</td>
+                <td>Programming, software development; designing computer
+                    programs; implementation of the computer code and supporting
+                    algorithms; testing of existing code components.</td>
+            </tr>
+            <tr>
+                <td>Validation</td>
+                <td>Verification, whether as a part of the activity or separate, of the
+                    overall replication/reproducibility of the results/experiments and
+                    other research outputs</td>
+            </tr>
+            <tr>
+                <td>Formal Analysis</td>
+                <td>Application of statistical, mathematical, computational, or other
+                    formal techniques to analyze or synthesize study data.</td>
+            </tr>
+            <tr>
+                <td>Investigation</td>
+                <td>Conducting a research and investigation process, specifically
+                    performing the experiments, or data/evidence collection.</td>
+            </tr>
+            <tr>
+                <td>Resources</td>
+                <td>Provision of study materials, reagents, materials, patients,
+                    laboratory samples, animals, instrumentation, computing
+                    resources, or other analysis tools.</td>
+            </tr>
+            <tr>
+                <td>Data Curation</td>
+                <td>Management activities to annotate (produce metadata), scrub data,
+                    and maintain research data (including software code, where it is
+                    necessary for interpreting the data itself) for initial use and later
+                    reuse.</td>
+            </tr>
+            <tr>
+                <td>Writing – Original Draft</td>
+                <td>Preparation, creation, and/or presentation of the published work,
+                    specifically writing the initial draft (including substantive translation)</td>
+            </tr>
+            <tr>
+                <td>Writing – Review & Editing</td>
+                <td>Preparation, creation, and/or presentation of the published work by
+                    those from the original research group, specifically critical review,
+                    commentary, or revision – including pre or post publication stages</td>
+            </tr>
+            <tr>
+                <td>Visualization</td>
+                <td>Preparation, creation, and/or presentation of the published work,
+                    specifically visualization/data presentation.</td>
+            </tr>
+            <tr>
+                <td>Supervision</td>
+                <td>Oversight and Leadership responsibility for the research activity
+                    planning and execution, including mentorship external to the core
+                    team.</td>
+            </tr>
+            <tr>
+                <td>Project administration</td>
+                <td>Management and coordination responsibility for the research
+                    activity planning and execution</td>
+            </tr>
+            <tr>
+                <td>Funding acquisition</td>
+                <td>Acquisition of the financial support for the project leading to this
+                    publication</td>
+            </tr>
+        </table>
+        <div class="s-1">
+            <p><em>Sample CRediT author statement</em></p>
+            <p><b>Dela Cruz:</b> Conceptualization, Methodology. <b>Bautista:</b> Data curation, Writing-Original draft
+                    preparation. <b>Santos:</b> Visualization, Investigation. <b>Cruz:</b> Supervision. <b>Reyes:</b> Software,
+                    Validation. <b>Jose:</b> Writing-Reviewing and Editing.</p>
+        </div>
+        </div>
     </div>
     <div class="main" id="peer-review-container" style="display: none;">
         <div class="header">
