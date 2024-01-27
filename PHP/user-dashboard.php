@@ -2,6 +2,23 @@
 require 'dbcon.php';
 session_start();
 $id = $_SESSION['id'];
+$role = $_SESSION['role'];
+$position = $_SESSION['position'];
+$country = $_SESSION['country'];
+$gender = $_SESSION['gender'];
+
+$birthday = $_SESSION['birthday'];
+$dateTime = new DateTime($birthday);
+$formattedBirthday = $dateTime->format('F j, Y');
+
+$date_added = $_SESSION['date_added'];
+$dateAdded = new DateTime($date_added);
+$formattedDateAdded = $dateAdded->format('F j, Y');
+
+$orc_id = $_SESSION['orc_id'];
+$bio = $_SESSION['bio'];
+$expertise = $_SESSION['expertise'];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -77,7 +94,6 @@ $id = $_SESSION['id'];
 							<p class="role">
 								<?php
 								if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
-									$role = isset($_SESSION['role']) ? ucfirst($_SESSION['role']) : '';
 									echo $role;
 								}
 								?>
@@ -219,11 +235,42 @@ $id = $_SESSION['id'];
 						<div class="icon-container">
 							<i class="ri-eye-line" id="toggleIcon"></i>
 						</div>
-						<p><span class="label">Position:</span> <span id="positionLabel">Student</span></p>
-						<p><span class="label">Gender:</span> <span id="genderLabel">Female</span></p>
-						<p><span class="label">Birthday:</span> <span id="birthdayLabel">10/24/2002</span></p>
-						<p><span class="label">Country:</span> <span id="countryLabel">Philippines</span></p>
-						<p><span class="label">ORCID:</span> <span id="orcidLabel">048469754</span></p>
+						<p><span class="label">Position:</span> <span id="positionLabel">
+						
+							<?php
+							if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
+								echo $position;
+							}
+							?>
+						</span></p>
+						<p><span class="label">Gender</span> <span id="genderLabel">
+						<?php
+								if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
+									echo $gender;
+								}
+							?>
+						</span></p>
+						<p><span class="label">Birthday:</span> <span id="birthdayLabel">
+						<?php
+								if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
+									echo $formattedBirthday;
+								}
+							?>
+						</span></p>
+						<p><span class="label">Country:</span> <span id="countryLabel">
+						<?php
+							if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
+								echo $country;
+							}
+							?>
+						</span></p>
+						<p><span class="label">ORCID:</span> <span id="orcidLabel">
+						<?php
+							if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
+								echo $orc_id;
+							}
+							?>
+						</span></p>
 					</div>
 				</div>
 			</div>
@@ -250,9 +297,44 @@ $id = $_SESSION['id'];
 			<div id="About" class="tabcontent" style="display: block;">
 				<div id="about-container">
 					<div id="logrecord-container">
-						<div class="log-box">Joined December 1, 2023</div>
-						<div class="log-box">Author since December 11, 2023</div>
-						<div class="log-box">Reviewer since December 19, 2023</div>
+						<div class="log-box">Join In Community Since
+						<?php
+							if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
+								echo $formattedDateAdded;
+							}
+						?>
+						</div>
+						<div class="log-box">Author Since: <?php
+							if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
+								echo $formattedDateAdded;
+							}
+						?></div>
+						<div class="log-box"> 
+							
+
+						<?php 
+                        $sqlStartReviewDate = "SELECT date_issued FROM reviewer_assigned WHERE author_id = $id ORDER BY date_issued ASC LIMIT 1 " ;
+
+                        $result = database_run($sqlStartReviewDate);
+
+                        if ($result !== false) {
+                            foreach ($result as $row) {
+
+							$dateIssued = new DateTime($row->date_issued);
+							$formattedDate = $dateIssued->format('F j, Y');
+
+							echo '<p>Reviewer Since: ' . $formattedDate . '</p>';
+
+
+                            }
+                        } else {
+                            echo "You are not reviewer Yet"; 
+                        }
+                        ?>
+
+
+							
+						</div>
 					</div>
 					<div id="info-container">
 						<div class="info-box">
@@ -260,7 +342,11 @@ $id = $_SESSION['id'];
 								<h3>Bio </h3>
 								<hr>
 								<p>
-								“Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet”
+								<?php
+									if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
+										echo $bio;
+									}
+								?>
 								</p>
 							</div>
 						</div>
@@ -269,7 +355,11 @@ $id = $_SESSION['id'];
 								<h3>Expertise </h3>
 								<hr>
 								<p>
-								“Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur."
+								<?php
+									if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
+										echo $expertise;
+									}
+								?>
 								</p>
 							</div>
 						</div>

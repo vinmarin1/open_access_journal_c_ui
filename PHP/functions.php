@@ -53,6 +53,14 @@ function login($data)
                 $_SESSION['email'] = $row_author->email;
                 $_SESSION['orc_id'] = $row_author->orc_id;
                 $_SESSION['public_name'] = $row_author->public_name;
+                $_SESSION['role'] = $row_author->role;
+                $_SESSION['position'] = $row_author->position;
+                $_SESSION['country'] = $row_author->country;
+                $_SESSION['gender'] = $row_author->gender;
+                $_SESSION['birthday'] = $row_author->birth_date;
+                $_SESSION['bio'] = $row_author->bio;
+                $_SESSION['expertise'] = $row_author->field_of_expertise;
+                $_SESSION['date_added'] = $row_author->date_added;
                 $_SESSION['LOGGED_IN'] = true;
             } else {
                 $errors[] = "Wrong email or password";

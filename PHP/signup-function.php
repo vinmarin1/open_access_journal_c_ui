@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     }
 
   
-    $sql = "INSERT INTO author (`first_name`, `last_name`, `middle_name`, `email`, `password`, `privacyAgreement`, `status`)
+    $sql = "INSERT INTO author (`first_name`, `last_name`, `middle_name`, `email`, `password`, `privacyAgreement`, `role`,`status`)
     VALUES (:first_name, :middle_name, :last_name, :email, :password, :privacyAgreement, :status)";
 
     $params = array(
@@ -47,6 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         'email' => $email,
         'password' => $hashedPassword,
         'privacyAgreement' => $privacyPolicy,
+        'role' => 'Author',
         'status' => 1
     );
 

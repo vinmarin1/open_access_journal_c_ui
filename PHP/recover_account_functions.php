@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $code = rand(10000, 99999);
 
     if ($email !== null) {
-        // Set the expiration time to 1 minute from the current time using the database server's time
+       
         $sqlEmail = "INSERT INTO recover_account (`code`, `expires`, `email`) VALUES (:code, DATE_ADD(NOW(), INTERVAL 1 MINUTE), :email)";
 
         $sqlsParams = array(
@@ -19,12 +19,48 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         $emailUser = $email;
 
-        $message = "<p>Hello, $emailUser! Here's your 5-digit code for your account recovery: $code</p>";
+        $message = '
+            <html>
+            <head>
+                <style>
+                    body {
+                        font-family: Arial, sans-serif;
+                        background-color: #f4f4f4;
+                        padding: 20px;
+                    }
+                    .container {
+                        background-color: #fff;
+                        border-radius: 5px;
+                        padding: 20px;
+                        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                    }
+                    h2 {
+                        color: #333;
+                    }
+                    p {
+                        color: #555;
+                    }
+                    .code {
+                        font-size: 24px;
+                        font-weight: bold;
+                        color: #007bff;
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="container">
+                    <p>Hello, ' . $emailUser . '</p>
+                    <p>Here\'s your 5-digit code for your account recovery:</p>
+                    <p class="code">' . $code . '</p>
+                </div>
+            </body>
+            </html>
+        ';
 
         $subjectCont = "Recovery Account";
         $recipientCont = $emailUser;
 
-        // Assuming send_mail function returns true on success
+       
         if (send_mail($recipientCont, $subjectCont, $message)) {
             echo 'success';
         } else {

@@ -52,7 +52,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                                 echo $row->title;
                             }
                         } else {
-                            echo "No articles found."; 
+                            echo "No title for this article."; 
                         }
                         ?>
                 </h3>
