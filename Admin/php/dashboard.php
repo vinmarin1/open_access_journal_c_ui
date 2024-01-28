@@ -387,7 +387,7 @@ include 'function/dashboard_functions.php';
     var doughnutChartData3 = {
         labels: ['Author', 'Reviewer'],
         datasets: [{
-            data: [authorData[0].authorCount, reviewerData[0].reviewerCount],
+            data: [contributorData[0].contributorCount, reviewerData[0].reviewerCount],
             backgroundColor: [
                 'rgba(75, 192, 192, 0.5)',
                 'rgba(255, 205, 86, 0.5)'
@@ -428,9 +428,9 @@ if ($contributorsResult !== false) {
 
     echo "<div class='col-md-12'>"; // Use the entire width for landscape shape
     echo "<div class='card mb-4'>";
-    echo "<div class='card-header'>Top 5 Contributors based on Email Count</div>";
+    echo "<div class='card-header'>Top 5 Contributors </div>";
     echo "<div class='card-body'>";
-    echo "<table class='table table-bordered' style='width: 100%;'>
+    echo "<table class='table table-bordered table-striped' style='width: 100%;'>
                     <colgroup>
                         <col style='width: 60%;'> <!-- Adjusted width for Full Name -->
                         <col style='width: 20%;'> <!-- Adjusted width for Email Count -->
@@ -440,6 +440,7 @@ if ($contributorsResult !== false) {
                         <th>Contributes</th>
                     </tr>";
 
+    $rowColor = 0; // Variable to alternate row colors
     foreach ($contributorsResult as $row) {
         $email = $row->email;
         // Fetch the full name of the contributor based on email
@@ -449,10 +450,16 @@ if ($contributorsResult !== false) {
         // Check if the contributor name query was successful
         if ($contributorNameResult !== false && count($contributorNameResult) > 0) {
             $fullName = $contributorNameResult[0]->full_name;
-            echo "<tr>
+
+            // Use different background colors for alternate rows
+            $rowColorClass = ($rowColor % 2 == 0) ? 'even-row' : 'odd-row';
+
+            echo "<tr class='$rowColorClass'>
                     <td>{$fullName}</td>
                     <td>{$row->email_count}</td>
                   </tr>";
+
+            $rowColor++; // Increment for the next iteration
         }
     }
 
@@ -467,6 +474,7 @@ if ($contributorsResult !== false) {
     echo "Error fetching contributors data. Error: " . execute_query_error();
 }
 ?>
+
 
 <?php
 // Fetch the top 5 most viewed or downloaded articles based on the selected type
@@ -485,35 +493,39 @@ $mostViewedResult = execute_query($mostViewedQuery);
 if ($mostViewedResult !== false) {
     // Display the Most Viewed or Most Downloaded articles in a table
     echo "<div class='container-fluid'>";
-    echo "<div class='row'style=margin-top: 10px;' >";
+    echo "<div class='row' style='margin-top: 10px;'>";
 
-    echo "<div class='col-md-12'>"; // Use the entire width for landscape shape
+    echo "<div class='col-md-12'>";
     echo "<div class='card mb-4'>";
     echo "<div class='card-header'>
                 Top 5 Most " . ucfirst($selectedType) . " Articles
             </div>
             <div class='card-body'>
-                <form method='GET' action=''>
+                <form method='GET' action='' id='typeForm'>
                     <label for='type'>Select Type:</label>
-                    <select name='type' id='type' onchange='this.form.submit()'>
+                    <select name='type' id='type' onchange='updateType(event)' class='form-control'>
                         <option value='read' " . ($selectedType == 'read' ? 'selected' : '') . ">Most Viewed</option>
                         <option value='download' " . ($selectedType == 'download' ? 'selected' : '') . ">Most Downloaded</option>
                     </select>
                 </form>
                 <div class='table-responsive'>";
 
-    echo "<table class='table table-bordered' style='width: 100%;'>
+    echo "<table class='table table-bordered table-striped' style='width: 100%;'>
                     <colgroup>
                         <col style='width: 20%;'> <!-- Adjusted width for Article ID -->
                         <col style='width: 60%;'> <!-- Adjusted width for Title -->
                         <col style='width: 20%;'> <!-- Adjusted width for Count -->
                     </colgroup>
-                    <tr>
-                        <th>Article ID</th>
-                        <th>Title</th>
-                        <th>Count</th>
-                    </tr>";
+                    <thead class='thead-dark'>
+                        <tr>
+                            <th>Article ID</th>
+                            <th>Title</th>
+                            <th>Count</th>
+                        </tr>
+                    </thead>
+                    <tbody>";
 
+    $rowColor = 0; // Variable to alternate row colors
     foreach ($mostViewedResult as $row) {
         $articleId = $row->article_id;
         $count = $row->count;
@@ -524,14 +536,20 @@ if ($mostViewedResult !== false) {
 
         // Check if the article query was successful
         if ($articleResult !== false && count($articleResult) > 0) {
-            echo "<tr>
+            // Use different background colors for alternate rows
+            $rowColorClass = ($rowColor % 2 == 0) ? 'even-row' : 'odd-row';
+
+            echo "<tr class='$rowColorClass'>
                     <td>{$articleResult[0]->article_id}</td>
                     <td>{$articleResult[0]->title}</td>
                     <td>{$count}</td>
                   </tr>";
+
+            $rowColor++; // Increment for the next iteration
         }
     }
 
+    echo "</tbody>";
     echo "</table>";
     echo "</div>";
     echo "</div>";
@@ -543,6 +561,18 @@ if ($mostViewedResult !== false) {
     echo "Error fetching most viewed or downloaded articles data.";
 }
 ?>
+
+<script>
+function updateType() {
+    // Prevent the default form submission behavior
+    event.preventDefault();
+
+    // Submit the form using JavaScript
+    document.getElementById('typeForm').submit();
+}
+</script>
+
+
         <?php include 'template/footer.php'; ?>
     </div>
 

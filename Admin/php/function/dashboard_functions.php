@@ -217,7 +217,7 @@ if ($result !== false) {
 // Fetch data from the database for published and not published articles
 $query = "SELECT 
             COUNT(CASE WHEN status_id = 1 THEN 1 END) AS published_count,
-            COUNT(CASE WHEN status_id = 5 THEN 1 END) AS not_published_count
+            COUNT(CASE WHEN status_id = 6 THEN 1 END) AS not_published_count
           FROM article_final";
 
 $result = execute_query($query);
@@ -374,19 +374,17 @@ if ($result3 !== false) {
 
 <?php
 
-// Fetch data from article_final where status_id = 5
-$authorQuery = "SELECT COUNT(*) as authorCount FROM article_final WHERE status_id = 5";
-$authorResult = execute_query($authorQuery);
-
-if ($authorResult !== false) {
+$contributorQuery = "SELECT COUNT(*) as contributorCount FROM contributors WHERE orcid = orcid ";
+$contributorResult = execute_query($contributorQuery);
+if ($contributorResult !== false) {
     // Convert the PHP array to a JSON string
-    $jsonAuthorResult = json_encode($authorResult);
+    $jsonContributorsResult = json_encode($contributorResult);
 
     // Pass the JSON string to JavaScript for the line chart
-    echo "<script>var authorData = $jsonAuthorResult;</script>";
+    echo "<script>var contributorData = $jsonContributorsResult;</script>";
 } else {
     // Handle the error if the query fails
-    echo "<script>console.error('Error fetching data from the database for authors.');</script>";
+    echo "<script>console.error('Error fetching data from the database for contributors.');</script>";
 }
 ?>
 
