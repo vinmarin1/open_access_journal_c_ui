@@ -1,0 +1,147 @@
+.content-over {
+    position: relative;
+    width: 100%;
+    height: 30vh;
+    background-image: url(../images/qcu-bg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    padding-top: 70px;
+    padding-left: 150px;
+    
+}
+
+.content-over::before {
+content: "";
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(53, 68, 74, 0.7);
+}
+
+.content-over p, .content-over h2 {
+color: white; 
+position: relative;
+z-index: 1; 
+display: block;
+
+}
+
+.content-over h2{
+font-family: Arial, Helvetica, sans-serif;
+margin-top: 20px;
+}
+
+
+p{
+    font-family: Arial, Helvetica, sans-serif;
+    white-space: pre-line;
+}
+
+.journal-title{
+    /* border: 1px red solid; */
+    width: 18%;
+    margin-top: 70px;
+    margin-left: 100px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.journal-title h3{
+    font-family: Arial, Helvetica, sans-serif;
+    color: #0858a4;
+}
+
+.pic-border{
+    border: 1px #0858a4 solid;
+    height: 100%;
+    width: 100%;
+}
+
+.pic-border img{
+    width: 94%;
+    height: 100%;
+    margin: 10px 10px 10px 10px;
+}
+
+.journal-details{
+    /* border: 1px red solid; */
+    width: 60%;
+    height: 100%;
+    display: inline-block;
+    margin-left: 100px;
+    margin-top: 70px;
+}
+
+.journal-details h5{
+    font-family: Arial, Helvetica, sans-serif;
+    color: #0858a4;
+}
+
+.sub-area{
+    display: inline-block;
+    padding-right: 300px;
+}
+
+
+.edit-board{
+    display: inline-block;
+}
+
+
+
+.container {
+    
+    
+
+}
+.all-issues{
+    width: 100%;
+    border: 1px solid #dddddd;
+    position: relative;
+    margin-bottom: 50px
+    
+}
+.container h3 {
+    margin-bottom: 20px;
+    color: #115272;
+}
+
+.header-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    background-color: #285581;
+    color: white;
+    padding: 5px 5px 5px 15px;
+}
+.issue {
+    margin: 20px;
+    padding: 10px;
+    border: 1px solid #dddddd;
+    display: inline-block;
+    max-width: 200px;
+
+}
+.issue p{
+    cursor: pointer;
+}
+.issue img {
+    max-width: 100%;
+    max-height: 300px;
+    
+}
+#see-more {
+    border: 2px #0858a4 solid;
+    background-color: transparent;
+    border-radius: 20px;
+    color: #0858a4;
+    margin-top: 10px;
+    cursor: pointer;
+    position: absolute;
+    bottom: 10px; /* Adjust the distance from the bottom as needed */
+    right: 10px;
+    padding: 10px 30px 10px 30px;
+}
