@@ -2,10 +2,16 @@
 require 'dbcon.php';
 session_start();
 $id = $_SESSION['id'];
+$email = $_SESSION['email'];
+$first_name = $_SESSION['first_name'];
+$middle_name = $_SESSION['middle_name'];
+$last_name = $_SESSION['last_name'];
 $role = $_SESSION['role'];
 $position = $_SESSION['position'];
 $country = $_SESSION['country'];
 $gender = $_SESSION['gender'];
+$afiliations = $_SESSION['afiliations'];
+$status = $_SESSION['status'];
 
 $birthday = $_SESSION['birthday'];
 $dateTime = new DateTime($birthday);
@@ -120,36 +126,40 @@ $expertise = $_SESSION['expertise'];
 								<div class="row-form">
 									<div class="form-row">
 										<label for="firstName">First Name:</label>
-										<input type="text" id="firstName" name="firstName" class="text-box">
+										<input type="text" id="firstName" name="firstName" class="text-box" value="<?php echo $first_name ?>" disabled>
 									</div>
 									<div class="form-row">
 										<label for="middleName">Middle Name:</label>
-										<input type="text" id="middleName" name="middleName" class="text-box">
+										<input type="text" id="middleName" name="middleName" class="text-box"
+										value="<?php echo $middle_name ?>" disabled>
 									</div>
 									<div class="form-row">
 										<label for="lastName">Last Name:</label>
-										<input type="text" id="lastName" name="lastName" class="text-box">
+										<input type="text" id="lastName" name="lastName" class="text-box"
+										value="<?php echo $last_name ?>" disabled>
 									</div>
 									<div class="form-row">
 										<label for="affix">Affix:</label>
-										<input type="text" id="Affix" name="Affix" class="text-box">
+										<input type="text" id="Affix" name="Affix" class="text-box" value="N/A" disabled>
 									</div>
 									<div class="form-row">
 										<label for="birthdate">Birth Date:</label>
-										<input type="date" id="birthdate" name="birthdate" class="date-box">
+										<input type="date" id="birthdate" name="birthdate" class="date-box"
+										value="<?php echo $birthday ?>" disabled>
 									</div>
 									<div class="form-row">
 										<label for="gender">Gender:</label>
-										<select id="gender" name="gender" class="dropdown-box">
+										<select id="gender" name="gender" class="dropdown-box" disabled>
+											<option value="<?php echo $gender?>"><?php echo $gender ?></option>
 											<option value="male">Male</option>
 											<option value="female">Female</option>
-											<option value="other">Other</option>
+											
 										</select>
 									</div>
 									<div class="form-row">
 										<label for="status">Status:</label>
-										<select id="status" name="status" class="dropdown-box">
-											<option value="single">Single</option>
+										<select id="status" name="status" class="dropdown-box" disabled>
+											<option value="<?php echo $status?>">Single</option>
 											<option value="married">Married</option>
 											<option value="divorced">Divorced</option>
 											<option value="widowed">Widowed</option>
@@ -157,8 +167,8 @@ $expertise = $_SESSION['expertise'];
 									</div>
 									<div class="form-row">
 										<label for="country">Country:</label>
-										<select id="country" name="country" class="dropdown-box">
-											<option value="philippines">Philippines</option>
+										<select id="country" name="country" class="dropdown-box" disabled>
+											<option value="<?php echo $country ?>"><?php echo $country ?></option>
 											<option value="usa">United States</option>
 											<option value="canada">Canada</option>
 											<option value="uk">United Kingdom</option>
@@ -176,19 +186,19 @@ $expertise = $_SESSION['expertise'];
 								<div class="row-form">
 									<div class="form-row">
 										<label for="email">E-mail:</label>
-										<input type="email" id="email" name="email" class="other-text-box">
+										<input type="email" id="email" name="email" class="other-text-box" value="<?php echo $email ?>" disabled>
 									</div>
 									<div class="form-row">
 										<label for="orcid">ORCID:</label>
-										<input type="text" id="orcid" name="orcid" class="other-text-box" pattern="\d{4}-\d{4}-\d{4}-\d{4}" placeholder="(e.g., xxxx-xxxx-xxxx-xxxx)">
+										<input type="text" id="orcid" name="orcid" class="other-text-box" pattern="\d{4}-\d{4}-\d{4}-\d{4}" placeholder="(e.g., xxxx-xxxx-xxxx-xxxx)" value="<?php echo $orc_id ?>" disabled>
 									</div>
 									<div class="form-row">
 										<label for="affiliation">Affiliation:</label>
-										<input type="text" id="affiliation" name="affiliation" class="other-text-box">
+										<input type="text" id="affiliation" name="affiliation" class="other-text-box" value="<?php echo $afiliations ?>" disabled>
 									</div>
 									<div class="form-row">
 										<label for="position">Position:</label>
-										<input type="text" id="position" name="position" class="other-text-box">
+										<input type="text" id="position" name="position" class="other-text-box" value="<?php echo $position ?>" disabled>
 									</div>
 								</div>
 								<!-- Add similar fields for ORCID, Affiliation, Position -->
@@ -199,7 +209,7 @@ $expertise = $_SESSION['expertise'];
 								<h4>About me</h4>
 								<hr>
 								<label for="bio">Bio:</label>
-								<textarea id="bio" name="bio" class="bio-textarea" placeholder="Enter your bio"></textarea>
+								<textarea id="bio" name="bio" class="bio-textarea" placeholder="Enter your bio" disabled><?php echo $bio ?></textarea>
 								
 								<br><br><br>
 								<label for="fieldofexpertise">Field of Expertise:</label>
@@ -374,19 +384,122 @@ $expertise = $_SESSION['expertise'];
 						<div class="stats-section">
 							<div class="stat-card top-card">
 								<h2>Total Contributions</h2>
-								<p>98 <span class="increase">+11%</span></p>
+								<p>
+								<?php 
+									$sqlCountAritcle = "SELECT COUNT(*) as total_articles FROM article WHERE author_id = $id" ;
+
+									$result = database_run($sqlCountAritcle);
+
+									if ($result !== false && isset($result[0]->total_articles)) {
+										$totalArticles = $result[0]->total_articles;
+										echo $totalArticles;
+									} else {
+										echo "You are not a reviewer yet"; 
+									}
+								?>
+
+
+
+								<span class="increase">
+								<?php 
+								$sqlCountAritcle = "SELECT COUNT(*) as total_articles FROM article WHERE author_id = $id" ;
+
+								$result = database_run($sqlCountAritcle);
+
+								if ($result !== false && isset($result[0]->total_articles)) {
+									$totalArticles = $result[0]->total_articles;
+
+									$percentageIncrease = 11;
+
+								
+									$increasedCount = $totalArticles * (1 + ($percentageIncrease / 100));
+
+									echo $percentageIncrease .''. "%";
+								} else {
+									echo "You are not a reviewer yet"; 
+								}
+							?>
+
+								</span></p>
 							</div>
 						</div>
 						<div class="stats-section">
 							<div class="stat-card top-card">
 								<h2>Total Reviewed</h2>
-								<p>98 <span class="increase">+11%</span></p>
+								<p>
+								<?php 
+									$sqlReviewedArticles = "SELECT COUNT(*) as total_reviewed FROM reviewer_assigned  WHERE author_id = $id AND answer = 1" ;
+
+									$result = database_run($sqlReviewedArticles);
+
+									if ($result !== false && isset($result[0]->total_reviewed)) {
+										$totalArticles = $result[0]->total_reviewed;
+										echo $totalArticles;
+									} else {
+										echo "You are not a reviewer yet"; 
+									}
+								?>	
+								<span class="increase">
+
+								<?php 
+								$sqlReviewedArticles = "SELECT COUNT(*) as total_reviewed FROM reviewer_assigned  WHERE author_id = $id AND answer = 1" ;
+
+								$result = database_run($sqlReviewedArticles);
+
+								if ($result !== false && isset($result[0]->total_reviewed)) {
+									$totalArticles = $result[0]->total_reviewed;
+
+									$percentageIncrease = 11;
+
+								
+									$increasedCount = $totalArticles * (1 + ($percentageIncrease / 100));
+
+									echo $percentageIncrease .''. "%";
+								} else {
+									echo "You are not a reviewer yet"; 
+								}
+								?>
+								
+								</span></p>
 							</div>
 						</div> 
 						<div class="stats-section">
 							<div class="stat-card top-card">
 								<h2>Total Submissions</h2>
-								<p>98 <span class="increase">+11%</span></p>
+								<p>
+								<?php 
+									$sqlCountAritcle = "SELECT COUNT(*) as total_articles FROM article WHERE author_id = $id" ;
+
+									$result = database_run($sqlCountAritcle);
+
+									if ($result !== false && isset($result[0]->total_articles)) {
+										$totalArticles = $result[0]->total_articles;
+										echo $totalArticles;
+									} else {
+										echo "You are not a reviewer yet"; 
+									}
+								?>
+	
+								<span class="increase">
+								<?php 
+								$sqlCountAritcle = "SELECT COUNT(*) as total_articles FROM article WHERE author_id = $id" ;
+
+								$result = database_run($sqlCountAritcle);
+
+								if ($result !== false && isset($result[0]->total_articles)) {
+									$totalArticles = $result[0]->total_articles;
+
+									$percentageIncrease = 11;
+
+								
+									$increasedCount = $totalArticles * (1 + ($percentageIncrease / 100));
+
+									echo $percentageIncrease .''. "%";
+								} else {
+									echo "You are not a reviewer yet"; 
+								}
+								?>
+								</span></p>
 							</div>
 						</div> 				
 					</div>
@@ -516,7 +629,41 @@ $expertise = $_SESSION['expertise'];
                 <div class="recommendation-article">
                 	<h2>Your Published Articles</h2>
 					<div class="articles-container">
-						<div class="article">
+						
+					<?php 
+						$sql = "SELECT article.title, article.author, article.abstract, journal.journal 
+								FROM article 
+								JOIN journal ON journal.journal_id = article.journal_id 
+								WHERE article.author_id = $id AND article.status = 1";
+
+						$result = database_run($sql);
+
+						if ($result !== false) {
+							foreach ($result as $row) {
+								echo '<div class="article">';
+								echo '<p class="h6">' . $row->title . '</p>';
+								echo '<div class="article-info">';
+								echo '<p class="info" style="display="inline-block; width: auto">' . $row->journal . '</p>';
+								echo '<span class="views" style="display="inline-block; width: auto"> 143</span>';
+								echo '<p class="author">' .$row->author .  '</p>';
+								echo '<p class="article-content">' . $row->abstract .'</p>';
+								echo '</div>';
+								echo '<button type="button" class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
+								background-color: transparent;
+								border-radius: 20px;
+								color: #115272;
+								width: 100%;">Read Article</button>';
+								echo '</div>';
+								
+							}
+						} else {
+							echo "Can't display articles at the moment"; 
+						}
+					?>
+
+
+
+						<!-- <div class="article">
 							<p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
 							<div class="article-info">
 								<p class="info">THE LAMP</p>
@@ -588,7 +735,7 @@ $expertise = $_SESSION['expertise'];
 							border-radius: 20px;
 							color: #115272;
 							width: 100%;">Read Article</button>
-						</div>
+						</div> -->
 					</div>
                 </div>
             </div>
