@@ -59,6 +59,8 @@ function login($data)
                 $_SESSION['gender'] = $row_author->gender;
                 $_SESSION['birthday'] = $row_author->birth_date;
                 $_SESSION['bio'] = $row_author->bio;
+                $_SESSION['status'] = $row_author->status;
+                $_SESSION['afiliations'] = $row_author->afiliations;
                 $_SESSION['expertise'] = $row_author->field_of_expertise;
                 $_SESSION['date_added'] = $row_author->date_added;
                 $_SESSION['LOGGED_IN'] = true;

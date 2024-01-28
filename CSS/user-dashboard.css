@@ -275,12 +275,12 @@ label {
     color: white;
     border: none;
     padding: 10px 20px;
-    display: inline-block;
     font-size: 16px;
-    margin: 10px auto 40px;
+    margin: 10px 20px 40px;
     border-radius: 50px;
     cursor: pointer;
     width: 200px;
+    float: right;
 }
 
 
@@ -1019,11 +1019,18 @@ td {
     white-space: normal; 
 }
 
-.article .h6{
+.article .h6 {
     font-family: 'Times New Roman', Times, serif;
     color: #115272;
     width: auto;
+    height: 10vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
 
+.article .h6::-webkit-scrollbar {
+    width: 0;
+    height: 0;
 }
 
 .article-info{
@@ -1041,6 +1048,15 @@ td {
 .article-content{
     color: black;
     font-size: 12px;
+    width: auto;
+    height: 15vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.article-content::-webkit-scrollbar {
+    width: 0;
+    height: 0;
 }
 
 .btn-article {
