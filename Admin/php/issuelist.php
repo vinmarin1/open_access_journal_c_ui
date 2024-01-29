@@ -46,7 +46,7 @@ include 'function/issue_function.php';
                                 <td width="23%">
                                     <button type="button" class="btn btn-outline-success" onclick="updateModal(<?php echo $issueslistval->issues_id; ?>)">Update</button>
                                     <button type="button" class="btn btn-outline-danger" onclick="archiveIssue(<?php echo $issueslistval->issues_id; ?>, '<?php echo $issueslistval->volume; ?>', '<?php echo $issueslistval->title; ?>')">Archive</button>
-                                    <button type="button" class="btn btn-outline-info" onclick="">Article</button>
+                                    <button type="button" class="btn btn-outline-info" onclick="viewAllArticle(<?php echo $issueslistval->issues_id; ?>)">Article</button>
                                   </td>
                             </tr>
                         <?php endforeach; ?>
@@ -67,12 +67,24 @@ include 'function/issue_function.php';
     <!-- DataTables initialization script with status filter -->
     <script>
          $(document).ready(function()   {
-        var dataTable = $('#DataTable').DataTable({
-            "paging": true,
-            "ordering": true,
-            "searching": true,
+            var dataTable = $('#DataTable').DataTable({
+                "paging": true,
+                "ordering": true,
+                "searching": true,
+            });
         });
-    });
+
+        function viewAllArticle(issueId) {
+            $('#sloading').show();
+
+            setTimeout(function () {
+                window.location.href = "../php/articleissuelist.php?issid=" + issueId;
+            }, 2000);
+
+            window.onload = function () {
+                $('#sloading').hide();
+            };
+        }
 
         function addRecord() {
         var form = document.getElementById('addModalForm');
