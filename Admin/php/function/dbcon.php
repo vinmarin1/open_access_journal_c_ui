@@ -2,8 +2,8 @@
 if (!function_exists('connect_to_database')) {
     function connect_to_database()
     {
-        $string = "mysql:host=mysql5044.site4now.net;dbname=db_aa3190_qoaj";
-        $con = new PDO($string, 'aa3190_qoaj', 'Password1234.');
+        $string = "mysql:host=srv1158.hstgr.io;dbname=u944705315_qcuj";
+        $con = new PDO($string, 'u944705315_qcuj', 'Qcujournal1234.');
 
         if (!$con) {
             return false;
