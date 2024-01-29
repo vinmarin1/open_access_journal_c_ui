@@ -167,7 +167,7 @@ $announcementlist = get_announcement_list();
                     $('#sloading').toggle();
                     alert("Record updated successfully");
                     $('#updateModal').modal('hide');
-                    location.reload();
+                    location.reload();  
                 } else {
                     console.error('Error updating announcement data:', response.message);
                     alert("Failed to update record. Please try again.");
@@ -285,7 +285,7 @@ $announcementlist = get_announcement_list();
                     <div class="row mb-2">
                         <div class="col-md-12 mb-2">
                             <label for="announcement" class="form-label">Announcement</label>
-                            <input type="text" id="announcement" class="form-control" placeholder="announcement" />
+                            <input type="text" id="xannouncement" class="form-control" placeholder="announcement" />
                         </div>
                     </div>
                 </div>
