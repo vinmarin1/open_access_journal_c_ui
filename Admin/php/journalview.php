@@ -6,6 +6,14 @@ $journallist = get_journal_list();
 ?>
 <!DOCTYPE html>
 <html lang="en">
+    <style>
+        .card-text {
+        display: -webkit-box;
+        -webkit-line-clamp: 7;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    </style>
 <body>
     <!-- Include header -->
     <?php include 'template/header.php'; ?>
@@ -17,53 +25,55 @@ $journallist = get_journal_list();
             <button type="button" onclick="window.location.href='newarticleapi.php'" class="btn btn-primary">New Submission</button>
         </div>
 
-            <div class="row mb-5 mt-4">
-                <div class="col-md-6">
-                    <div class="card mb-3">
-                        <div class="row g-0">
-                            <div class="col-md-4">
-                                <img class="card-img card-img-left img-fluid" src="../../Files/journal-image/Journal.jpg" alt="Card image"/>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body">
-                                    <h5 class="card-title">Journal</h5>
-                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                    <p class="card-text"><small class="text-muted">Last updated</small></p>
-                                    <a href="javascript:void(0);" onclick="viewAllSubmissionList()" class="btn btn-primary">View</a>
-                                </div>
+        <div class="row mb-5 mt-4">
+            <div class="col-md-6">
+                <div class="card mb-3" style="min-height: 340px; max-height: 100%; overflow: hidden;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img class="card-img card-img-left img-fluid" src="../../Files/journal-image/Journal.jpg" alt="Card image"/>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Journal</h5>
+                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                <p class="card-text"><small class="text-muted">Last updated</small></p>
+                                <a href="javascript:void(0);" onclick="viewAllSubmissionList()" class="btn btn-primary">View</a>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+
             <?php
-                if ($journallist) {
-                    foreach ($journallist as $journallistval) {
-                        ?>
-                        <div class="col-md-6">
-                            <div class="card mb-3">
-                                <div class="row g-0">
-                                    <div class="col-md-4">
-                                        <img class="card-img card-img-left img-fluid" src="../../Files/journal-image/<?php echo $journallistval->image; ?>" alt="Card image"/>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="card-body">
-                                            <h5 class="card-title"><?php echo $journallistval->journal; ?></h5>
-                                            <p class="card-text"><?php echo $journallistval->description; ?></p>
-                                            <p class="card-text"><small class="text-muted">Last updated <?php echo $journallistval->last_updated; ?></small></p>
-                                            <a href="javascript:void(0);" onclick="viewSubmissionList(<?php echo $journallistval->journal_id; ?>)" class="btn btn-primary">View</a>
-                                        </div>
+            if ($journallist) {
+                foreach ($journallist as $journallistval) {
+                    ?>
+                    <div class="col-md-6">
+                        <div class="card mb-3" style="min-height: 340px; max-height: 100%; overflow: hidden;">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img class="card-img card-img-left img-fluid" src="../../Files/journal-image/<?php echo $journallistval->image; ?>" alt="Card image" style="height: 100%; object-fit: cover;">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><?php echo $journallistval->journal; ?></h5>
+                                        <p class="card-text"><?php echo $journallistval->description; ?></p>
+                                        <p class="card-text"><small class="text-muted">Last updated <?php echo $journallistval->last_updated; ?></small></p>
+                                        <a href="javascript:void(0);" onclick="viewSubmissionList(<?php echo $journallistval->journal_id; ?>)" class="btn btn-primary">View</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <?php
-                    }
-                } else {
-                    echo '<p>No journals found.</p>';
+                    </div>
+                    <?php
                 }
-                ?>
-                </div>
+            } else {
+                echo '<p>No journals found.</p>';
+            }
+            ?>      
             </div>
+        </div>
+
 
         <!-- Include footer -->
         <?php include 'template/footer.php'; ?>
