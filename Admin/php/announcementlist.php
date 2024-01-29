@@ -1,4 +1,5 @@
 <?php
+include 'function/redirect.php';
 include 'function/announcement_function.php';
 $announcementlist = get_announcement_list();
 ?>
