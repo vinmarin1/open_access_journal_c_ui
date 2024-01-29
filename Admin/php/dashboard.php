@@ -1,4 +1,5 @@
 <?php
+include 'function/redirect.php';
 include 'function/dashboard_functions.php';
 ?>
 
