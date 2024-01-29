@@ -176,7 +176,7 @@ table {
                                                                 <div class="alert alert-white" role="alert">
                                                                     <p>Submission accepted for review.</p>
                                                                 </div>
-                                                            <?php elseif ($article_data[0]->status <= 4 && $article_data[0]->status == 11): ?>
+                                                            <?php elseif ($article_data[0]->status <= 4): ?>
                                                                 <div class="alert alert-white" role="alert">
                                                                     <p>Submission accepted for review.</p>
                                                                 </div>

@@ -66,7 +66,7 @@ $reportlist = get_report_list();
         function viewReport(action) {
         $('#sloading').show();
 
-        if (action === 'totalarchive.php' || action === 'totalpublished.php') {
+        if (action === 'totalarchive.php' || action === 'totalpublished.php' || action === 'donationreportmtd.php') {
             var currentDate = new Date();
             var currentMonth = currentDate.getMonth() + 1;
             var currentYear = currentDate.getFullYear();
