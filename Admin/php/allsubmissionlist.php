@@ -46,7 +46,7 @@ $all_articles = get_allarticle_list();
                 <a class="nav-link" id="tabCopyediting" data-status="Copyediting">Copyediting</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="tabPublication" data-status="Publication">Publication</a>
+                <a class="nav-link" id="tabProduction" data-status="Production">Production</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" id="tabPublished" data-status="Published">Published</a>
@@ -103,7 +103,7 @@ $all_articles = get_allarticle_list();
                                     $statusInfo = [
                                         0 => ['label' => 'Archived', 'class' => 'label-dark'],
                                         1 => ['label' => 'Published', 'class' => 'label-success'],
-                                        11 => ['label' => 'Ready for Published', 'class' => 'label-success'],
+                                        11 => ['label' => 'Scheduled', 'class' => 'label-info'],
                                         2 => ['label' => 'Production', 'class' => 'label-info'],
                                         3 => ['label' => 'Copyediting', 'class' => 'label-primary'],
                                         4 => ['label' => 'Review', 'class' => 'label-warning'],

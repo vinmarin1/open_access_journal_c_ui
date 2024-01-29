@@ -38,13 +38,14 @@ include 'function/issue_function.php';
                 <?php foreach ($issueslist as $issueslistval): ?>
                             <tr>
                                 <td width="5%"><?php echo   $issueslistval->issues_id; ?></td>
-                                <td width="50%"><?php echo  $issueslistval->volume; ?></td>
-                                <td width="50%"><?php echo  $issueslistval->number; ?></td>
-                                <td width="50%"><?php echo  $issueslistval->year; ?></td>
-                                <td width="50%"><?php echo  $issueslistval->title; ?></td>
-                                <td width="10%">
-                                <button type="button" class="btn btn-outline-success" onclick="updateModal(<?php echo $issueslistval->issues_id; ?>)">Update</button>
-                                <button type="button" class="btn btn-outline-danger" onclick="archiveIssue(<?php echo $issueslistval->issues_id; ?>, '<?php echo $issueslistval->volume; ?>', '<?php echo $issueslistval->title; ?>')">Archive</button>
+                                <td width="10%"><?php echo  $issueslistval->volume; ?></td>
+                                <td width="10%"><?php echo  $issueslistval->number; ?></td>
+                                <td width="10%"><?php echo  $issueslistval->year; ?></td>
+                                <td width="42%"><?php echo  $issueslistval->title; ?></td>
+                                <td width="23%">
+                                    <button type="button" class="btn btn-outline-success" onclick="updateModal(<?php echo $issueslistval->issues_id; ?>)">Update</button>
+                                    <button type="button" class="btn btn-outline-danger" onclick="archiveIssue(<?php echo $issueslistval->issues_id; ?>, '<?php echo $issueslistval->volume; ?>', '<?php echo $issueslistval->title; ?>')">Archive</button>
+                                    <button type="button" class="btn btn-outline-info" onclick="">Article</button>
                                   </td>
                             </tr>
                         <?php endforeach; ?>
