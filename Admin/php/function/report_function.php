@@ -120,7 +120,25 @@ if (!function_exists('get_report_list')) {
             }
         }
     }
-    
-    
+
+    if (!function_exists('get_donation_list')) {
+        function get_donation_list($month, $year) {
+            $month = $_GET["m"] ?? date('m');
+            $yearx = $_GET["y"] ?? date('Y');
+
+            $sql = "SELECT * FROM `donation` WHERE MONTH(`created_at`) = ? AND YEAR(`created_at`) = ?";
+
+            $results = execute_query($sql, [$month, $year]);
+
+            $data = array();
+
+            if ($results !== false) {
+                $data['donationlist'] = $results;
+                return $data;
+            } else {
+                return array('status' => true, 'data' => []);
+            }
+        }
+    }
 
 ?>
