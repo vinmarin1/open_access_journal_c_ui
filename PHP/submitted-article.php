@@ -170,9 +170,11 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                 </div>
             </div>
         </div>
-
-        <button type="button" class="btn btn-outline-primary btn-sm" onclick="viewAllLogs()" id="viewLogsBtn">View All Logs</button>
-        <button type="button" class="btn btn-outline-primary btn-sm" onclick="hideLogs()" id="hideLogsBtn" style="display: none">Hide Logs</button>
+        <div class="btn-group mb-3">
+            <button type="button" class="btn btn-outline-primary btn-sm" onclick="viewAllLogs()" id="viewLogsBtn">View All Logs</button>
+            <button type="button" class="btn btn-outline-primary btn-sm" onclick="hideLogs()" id="hideLogsBtn" style="display: none">Hide Logs</button>
+        </div>
+       
 
         </div>
     </div>

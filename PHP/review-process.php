@@ -200,8 +200,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                 
                
 
-                <button type="button" class="btn btn-outline-primary btn-sm"  onclick="viewAllLogs()" id="viewLogsBtn" style="width: 430px; margin-left: -5px;">View All Logs</button>
-                <button type="button" class="btn btn-outline-primary btn-sm"  onclick="hideLogs()" id="hideLogsBtn" style="display: none; width: 430px; margin-left: -5px;">Hide Logs</button>
+              
             </div>
 
             <div class="date">
@@ -227,6 +226,10 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                         }
                     ?>
                 </div>
+            </div>
+            <div class="btn-group mt-4">
+            <button type="button" class="btn btn-outline-primary btn-sm"  onclick="viewAllLogs()" id="viewLogsBtn" style="width: 430px; margin-left: -5px;">View All Logs</button>
+                <button type="button" class="btn btn-outline-primary btn-sm"  onclick="hideLogs()" id="hideLogsBtn" style="display: none; width: 430px; margin-left: -5px;">Hide Logs</button>
             </div>
 
                 </div>
