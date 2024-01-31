@@ -750,7 +750,34 @@ $expertise = $_SESSION['expertise'];
 		<section class="flex-container">
 			<div class="continue-reading-container">
 				<h1> Continue Reading</h1>
-				<div class="continue-reading-article-container">
+				<div class="continue-reading-article-container" id="articleDetailsContainer">
+					<!-- <div class="continue-reading-article-details">
+						<h6 class="historyTitle" style="color: #115272;"><strong>Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</strong></h6>
+						<p class="historyAbstract" style="color: #454545;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas. </p>
+						<div class="continue-reading-keywords">
+
+						</div>
+					</div>
+					<div class="continue-reading-article-stats">
+						<div class="continue-reading-stats-container">
+							<div class="continue-reading-view-download">
+								<p class="continue-reading-stats-values historyViews" style="color: #115272;">99</p>
+								<p class="continue-reading-stats-labels" style="color: #959595;">VIEWS</p>
+							</div>
+							<div class="continue-reading-view-downloads">
+								<p class="continue-reading-stats-values historyDownloads" style="color: #115272;">99</p>
+								<p class="continue-reading-stats-labels" style="color: #959595;">DOWNLOADS</p>
+							</div>
+						</div>
+						<hr style="border-top: 1px solid #ccc; margin: 10px 0;">
+						<div class="continue-reading-published-infos">
+							<h6 class="continue-reading-publish-labels historyJournal" style="color: #115272;"><strong>Published in The Gavel</strong></h6>
+							<p class="continue-reading-authors historyAuthor" style="color: #959595;">By Jane Delacruz</p>
+						</div>
+					</div> -->
+				</div>
+				
+				<!-- <div class="continue-reading-article-container">
 					<div class="continue-reading-article-details">
 						<h6 style="color: #115272;"><strong>Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</strong></h6>
 						<p style="color: #454545;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas. </p>
@@ -802,34 +829,7 @@ $expertise = $_SESSION['expertise'];
 							<p class="continue-reading-authors" style="color: #959595;">By Jane Delacruz</p>
 						</div>
 					</div>
-				</div>
-				
-				<div class="continue-reading-article-container">
-					<div class="continue-reading-article-details">
-						<h6 style="color: #115272;"><strong>Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</strong></h6>
-						<p style="color: #454545;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas. </p>
-						<div class="continue-reading-keywords">
-
-						</div>
-					</div>
-					<div class="continue-reading-article-stats">
-						<div class="continue-reading-stats-container">
-							<div class="continue-reading-view-download">
-								<p class="continue-reading-stats-values" style="color: #115272;">99</p>
-								<p class="continue-reading-stats-labels" style="color: #959595;">VIEWS</p>
-							</div>
-							<div class="continue-reading-view-downloads">
-								<p class="continue-reading-stats-values" style="color: #115272;">99</p>
-								<p class="continue-reading-stats-labels" style="color: #959595;">DOWNLOADS</p>
-							</div>
-						</div>
-						<hr style="border-top: 1px solid #ccc; margin: 10px 0;">
-						<div class="continue-reading-published-infos">
-							<h6 class="continue-reading-publish-labels" style="color: #115272;"><strong>Published in The Gavel</strong></h6>
-							<p class="continue-reading-authors" style="color: #959595;">By Jane Delacruz</p>
-						</div>
-					</div>
-				</div>
+				</div> -->
 			</div>
 			
 			
@@ -869,6 +869,56 @@ $expertise = $_SESSION['expertise'];
     <script src="../JS/reusable-header.js"></script>
     <script src="../JS/user-dashboard.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<script>
+		  const apiURL = "https://web-production-cecc.up.railway.app/api/recommendations/";
+
+// Assuming you have the author_id stored in a PHP variable $id
+const authorId = <?php echo $_SESSION['id']; ?>;
+
+// Make a GET request to the API endpoint
+fetch(`${apiURL}${authorId}`)
+	.then(response => response.json())
+	.then(data => {
+		// Get the details of the first 3 articles from the history
+		const latestArticleDetails = data.history.slice(0, 3);
+
+		// Update the container with the latest article details
+		const articleDetailsContainer = document.getElementById('articleDetailsContainer');
+		articleDetailsContainer.innerHTML = latestArticleDetails.map(article => {
+			return `
+				<div class="continue-reading-article-container">
+					<div class="continue-reading-article-details">
+						<h6 class="historyTitle" style="color: #115272;"><strong>${article.title}</strong></h6>
+						<p class="historyAbstract" style="color: #454545;">${article.abstract}</p>
+						<div class="continue-reading-keywords">
+							
+						</div>
+					</div>
+					<div class="continue-reading-article-stats">
+						<div class="continue-reading-stats-container">
+							<div class="continue-reading-view-download">
+								<p class="continue-reading-stats-values historyViews" style="color: #115272;">${article.user_interactions}</p>
+								<p class="continue-reading-stats-labels" style="color: #959595;">VIEWS</p>
+							</div>
+							<div class="continue-reading-view-downloads">
+								<p class="continue-reading-stats-values historyDownloads" style="color: #115272;">${article.user_interactions}</p>
+								<p class="continue-reading-stats-labels" style="color: #959595;">DOWNLOADS</p>
+							</div>
+						</div>
+						<hr style="border-top: 1px solid #ccc; margin: 10px 0;">
+						<div class="continue-reading-published-infos">
+							<h6 class="continue-reading-publish-labels historyJournal" style="color: #115272;"><strong>Published in ${article.journal}</strong></h6>
+							<p class="continue-reading-authors historyAuthor" style="color: #959595;">By ${article.author}</p>
+						</div>
+					</div>
+				</div>
+			`;
+		}).join('');
+	})
+	.catch(error => {
+		console.error('Error fetching data:', error);
+	});
+	</script>
 </body>
 
 </html>

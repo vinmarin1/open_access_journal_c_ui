@@ -255,6 +255,7 @@ document.getElementById('editBtn').addEventListener('click', function(event){
     const editBtn = document.getElementById('editBtn');
     const cancelBtn = document.getElementById('cancelBtn');
     const spinner = cancelBtn.querySelector('.spinner-border');
+    const editForm = document.getElementById('editForm');
 
     spinner.style.display = 'inline-block';
 
@@ -264,8 +265,9 @@ document.getElementById('editBtn').addEventListener('click', function(event){
     
     setTimeout(function() {
         spinner.style.display = 'none';
-        editBtn.style.display = 'inline-block';
+        editForm.style.display = 'none';
         cancelBtn.style.display = 'none';
+        editBtn.style.display = 'inline-block';
         editBtn.disabled = false;
     }, 2000);
 });
