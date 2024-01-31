@@ -181,6 +181,35 @@
 
 
 
+
+.logs-date,
+.date {
+    height: 300px;
+    width: 195px;
+    overflow-y: auto; 
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: transparent transparent; /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari, and Edge */
+.logs-date::-webkit-scrollbar,
+.date::-webkit-scrollbar {
+    width: 0em;
+}
+
+.logs-date::-webkit-scrollbar-thumb,
+.date::-webkit-scrollbar-thumb {
+    background-color: transparent;
+}
+
+.logs-date::-webkit-scrollbar-track,
+.date::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+
+
+
 .guidelines{
     padding-bottom: 90px;
 }

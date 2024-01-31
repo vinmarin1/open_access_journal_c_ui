@@ -283,6 +283,30 @@ label {
     float: right;
 }
 
+#editBtn {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 10px 20px 40px;
+    border-radius: 50px;
+    cursor: pointer;
+    width: 200px;
+    float: right;
+}
+
+#cancelBtn {
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 10px 20px 40px;
+    border-radius: 50px;
+    cursor: pointer;
+    width: 200px;
+    float: right;
+    display: none;
+}
 
 .row {
     display: flex;

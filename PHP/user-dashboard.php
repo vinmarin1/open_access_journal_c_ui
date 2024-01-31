@@ -221,7 +221,14 @@ $expertise = $_SESSION['expertise'];
 							</div>
 							
 
-							<button class="btn tbn-primary btn-md" type="button" id="saveButton">Save</button>
+							<button type="button" class="btn btn-success btn-md" id="editBtn">Edit
+								<span class="spinner-border spinner-border-sm" aria-hidden="true" style="display: none"></span>
+							</button>
+							<button type="button" class="btn btn-secondary btn-md" id="cancelBtn">Cancel
+								<span class="spinner-border spinner-border-sm" aria-hidden="true" style="display: none"></span>
+							</button>
+
+							<button type="submit" class="btn btn-primary btn-md" id="saveButton" disabled>Save</button>
 						</div>
 					</div>
 
