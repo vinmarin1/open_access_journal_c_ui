@@ -44,7 +44,6 @@ p{
     /* border: 1px red solid; */
     width: 18%;
     margin-top: 70px;
-    margin-left: 100px;
     display: inline-block;
     vertical-align: top;
 }
@@ -71,7 +70,6 @@ p{
     width: 60%;
     height: 100%;
     display: inline-block;
-    margin-left: 100px;
     margin-top: 70px;
 }
 
@@ -82,7 +80,6 @@ p{
 
 .sub-area{
     display: inline-block;
-    padding-right: 300px;
 }
 
 

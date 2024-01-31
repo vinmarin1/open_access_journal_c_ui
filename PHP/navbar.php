@@ -31,14 +31,21 @@ require 'dbcon.php';
 
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="about.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            About
+              About
           </a>
           <ul class="dropdown-menu">
-          <li><a class="dropdown-item" style="color: black" href="#">THE WEBSITE</a></li>
-          <li><a class="dropdown-item" style="color: black" href="#">RESEARCH TEAM</a></li>
-          <li><a class="dropdown-item" style="color: black" href="#">DEVELOPERS</a></li>
+              <li class="dropdown-submenu">
+                  <a class="dropdown-item" style="color: black" href="#">General Information</a>
+                  <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" style="color: black" href="#">Sub-Item 1</a></li>
+                      <li><a class="dropdown-item" style="color: black" href="#">Sub-Item 2</a></li>
+                      <!-- Add more sub-items as needed -->
+                  </ul>
+              </li>
+              <li><a class="dropdown-item" style="color: black" href="#">Administrative and Offices</a></li>
           </ul>
-        </li>
+      </li>
+
         <li class="nav-item dropdown">
           <a class="nav-link" role="button" href="publication.php">
             QCU Journals

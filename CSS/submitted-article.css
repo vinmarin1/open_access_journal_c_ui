@@ -96,9 +96,7 @@ body {
     
      /* Space between the title and the logs */
   }
-  .logs{
-    
-  }
+ 
   .logs, .dates {
     flex: 1;
     display: flex;
@@ -127,9 +125,39 @@ body {
     margin-bottom: 2px;
     border-radius: 5px;
   }
-  .dates{
-    
-  }
+
+.logs{
+  height: 250px;
+  overflow-y: auto; 
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: transparent transparent; /* Firefox */
+}
+.dates {
+    height: 250px;
+    overflow-y: auto; 
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: transparent transparent; /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari, and Edge */
+.logs::-webkit-scrollbar,
+.dates::-webkit-scrollbar {
+    width: 0.5em;
+}
+
+.logs::-webkit-scrollbar-thumb,
+.dates::-webkit-scrollbar-thumb {
+    background-color: transparent;
+}
+
+.logs::-webkit-scrollbar-track,
+.dates::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+
+
+
   .dates-title{
     background-color: white; /* White background for date entries */
     color: #606060;
