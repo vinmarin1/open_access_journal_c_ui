@@ -202,3 +202,14 @@ nav .navbar-nav .nav-item:hover {
 .profile {
   color:white;
 }
+
+.submenu {
+  position: absolute;
+  top: 0;
+  left: 102%;
+  margin-top: -1px;
+  display: none;
+}
+
+
+

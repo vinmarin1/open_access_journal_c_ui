@@ -25,8 +25,9 @@
             <h2>QCU Journals</h2>
         </div>
     </div>
+    
     <div id="journals">
-           </div>
+    </div>
   
 </div>
 
