@@ -13,7 +13,7 @@ function generateJournals(data) {
                         <img class="img-fluid" src="../Files/journal-image/${journal.image}" alt="">
                     </div>
                     <div class="d-flex flex-column py-4">
-                        <a href="issues.php">View Issues</a>
+                        <a href="issues.php?journal_id=${journal.journal_id}">View Issues</a>
                         <a href="./browse-articles.php?journal=${journal.journal_id}">View Published Articles</a>
                     </div>
                 </div>
