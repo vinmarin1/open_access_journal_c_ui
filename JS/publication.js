@@ -6,10 +6,11 @@ function generateJournals(data) {
         const subjectAreasHtml = journal.subject_areas.split(",").map((item) => `<li>${item}</li>`).join('');
         const editorialBoardHTML = journal.editorial.split(";").map((item) => `<li>${item}</li>`).join('');
         return `
-            <div class="container-fluid pub-container mb-3 mt-5" id="journal">
-                <div class="row">
-                    <div class="col-md-1">
-
+            <div class="container-fluid pub-container mb-3" id="journal">
+                <div class="journal-title">
+                    <h3>${journal.journal_title}</h3>
+                    <div class="pic-border">
+                        <img class="img-fluid" src="../Files/journal-image/${journal.image}" alt="">
                     </div>
                     <div class="d-flex flex-column py-4">
                         <a href="issues.php?journal_id=${journal.journal_id}">View Issues</a>
@@ -17,26 +18,27 @@ function generateJournals(data) {
                     </div>
                 </div>
 
-                    <div class="col-md-8 journal-details">
-                        <h5>About</h5>
-                        <p style="text-align: justify;">${journal.description}</p>
+                <div class="journal-details">
+                    <h5>About</h5>
+                    <p style="text-align: justify;">${journal.description}</p>
 
-                        <div class="other-info mt-5">
-                            <div class="sub-area mt-4">
-                                <h5><b>Subject Areas</b></h5>
-                                <ul>
-                                    ${subjectAreasHtml}
-                                </ul>
-                            </div>
-                            <div class="edit-board">
-                                <h5><b>Editorial Board</b></h5>
-                                <ul>
-                                ${editorialBoardHTML}
-                                </ul>
-                            </div>
+                    <div class="other-info">
+                        <div class="sub-area">
+                            <h5><b>Subject Areas</b></h5>
+                            <ul>
+                                ${subjectAreasHtml}
+                            </ul>
                         </div>
-                        <hr style="height: 2px; background-color: #0858a4; width: 100%">
+                        <div class="edit-board">
+                            <h5><b>Editorial Board</b></h5>
+                            <ul>
+                               ${editorialBoardHTML}
+                            </ul>
+                        </div>
                     </div>
+
+                    <hr style="height: 2px; background-color: #0858a4; width: 100%">
+
                 </div>
             </div>
         `;
