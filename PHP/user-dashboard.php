@@ -659,7 +659,7 @@ $expertise = $_SESSION['expertise'];
 					<div class="articles-container">
 						
 					<?php 
-						$sql = "SELECT article.title, article.author, article.abstract, journal.journal 
+						$sql = "SELECT article.article_id, article.title, article.author, article.abstract, journal.journal 
 								FROM article 
 								JOIN journal ON journal.journal_id = article.journal_id 
 								WHERE article.author_id = $id AND article.status = 1";
@@ -668,7 +668,7 @@ $expertise = $_SESSION['expertise'];
 
 						if ($result !== false) {
 							foreach ($result as $row) {
-								echo '<div class="article">';
+								echo '<div class="article" data-article-id="' . $row->article_id . '">';
 								echo '<p class="h6">' . $row->title . '</p>';
 								echo '<div class="article-info">';
 								echo '<p class="info" style="display="inline-block; width: auto">' . $row->journal . '</p>';
@@ -676,13 +676,12 @@ $expertise = $_SESSION['expertise'];
 								echo '<p class="author">' .$row->author .  '</p>';
 								echo '<p class="article-content">' . $row->abstract .'</p>';
 								echo '</div>';
-								echo '<button type="button" class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
-								background-color: transparent;
-								border-radius: 20px;
-								color: #115272;
-								width: 100%;">Read Article</button>';
+								echo '<button type="button" class="btn btn-primary btn-md btn-article" onclick="openArticleInNewTab(' . $row->article_id . ')" style=" border: 2px #115272 solid;
+									background-color: transparent;
+									border-radius: 20px;
+									color: #115272;
+									width: 100%;">Read Article</button>';
 								echo '</div>';
-								
 							}
 						} else {
 							echo "Can't display articles at the moment"; 
@@ -892,57 +891,54 @@ $expertise = $_SESSION['expertise'];
     <script src="../JS/user-dashboard.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 	<script>
-		  const apiURL = "https://web-production-cecc.up.railway.app/api/recommendations/";
-
-		  // Assuming you have the author_id stored in a PHP variable $id
-		  const authorId = <?php echo $_SESSION['id']; ?>;
-
-		// Make a GET request to the API endpoint
-		fetch(`${apiURL}${authorId}`)
-			.then(response => response.json())
-			.then(data => {
-				// Get the details of the first 3 articles from the history
-				const latestArticleDetails = data.history.slice(0, 3);
-
-				// Update the container with the latest article details
-				const articleDetailsContainer = document.getElementById('articleDetailsContainer');
-				articleDetailsContainer.innerHTML = latestArticleDetails.map(article => {
-					return `
-						<div class="continue-reading-article-container">
-							<div class="continue-reading-article-details">
-								<h6 class="historyTitle" style="color: #115272;"><strong>${article.title}</strong></h6>
-								<p class="historyAbstract" style="color: #454545;">${article.abstract}</p>
-								<div class="continue-reading-keywords">
-									
-								</div>
-							</div>
-							<div class="continue-reading-article-stats">
-								<div class="continue-reading-stats-container">
-									<div class="continue-reading-view-download">
-										<p class="continue-reading-stats-values historyViews" style="color: #115272;">${article.user_interactions}</p>
-										<p class="continue-reading-stats-labels" style="color: #959595;">VIEWS</p>
-									</div>
-									<div class="continue-reading-view-downloads">
-										<p class="continue-reading-stats-values historyDownloads" style="color: #115272;">${article.user_interactions}</p>
-										<p class="continue-reading-stats-labels" style="color: #959595;">DOWNLOADS</p>
-									</div>
-								</div>
-								<hr style="border-top: 1px solid #ccc; margin: 10px 0;">
-								<div class="continue-reading-published-infos">
-									<h6 class="continue-reading-publish-labels historyJournal" style="color: #115272;"><strong>Published in ${article.journal}</strong></h6>
-									<p class="continue-reading-authors historyAuthor" style="color: #959595;">By ${article.author}</p>
-								</div>
-							</div>
-						</div>
-					`;
-				}).join('');
-			})
-			.catch(error => {
-				console.error('Error fetching data:', error);
-			});
 
 
-	</script>
+function openArticleInNewTab(articleId) {
+        window.open(`../PHP/article-details.php?articleId=${articleId}`, '_blank');
+    }
+  const apiURL = "https://web-production-cecc.up.railway.app/api/recommendations/";
+
+  // Assuming you have the author_id stored in a PHP variable $id
+  const authorId = <?php echo $_SESSION['id']; ?>;
+
+  // Make a GET request to the API endpoint
+  fetch(`${apiURL}${authorId}`)
+    .then(response => response.json())
+    .then(data => {
+      // Get the details of the first 3 articles from the history
+      const latestArticleDetails = data.history.slice(0, 3);
+
+      // Update the container with the latest article details
+      const articleDetailsContainer = document.getElementById('articleDetailsContainer');
+      articleDetailsContainer.innerHTML = latestArticleDetails.map(article => {
+        return `
+          <div class="continue-reading-article-container" data-article-id="${article.article_id}">
+            <div class="continue-reading-article-details">
+              <h6 class="historyTitle" style="color: #115272;"><strong>${article.title}</strong></h6>
+              <p class="historyAbstract" style="color: #454545;">${article.abstract}</p>
+              <div class="continue-reading-keywords"></div>
+            </div>
+            <div class="continue-reading-article-stats">
+              <!-- Remaining code -->
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      // Add click event listener to each article container
+      const articleContainers = document.querySelectorAll('.continue-reading-article-container');
+      articleContainers.forEach(container => {
+        container.addEventListener('click', function() {
+          const articleId = this.getAttribute('data-article-id');
+          window.open(`../PHP/article-details.php?articleId=${articleId}`, '_blank');
+        });
+      });
+    })
+    .catch(error => {
+      console.error('Error fetching data:', error);
+    });
+</script>
+
 </body>
 
 </html>
