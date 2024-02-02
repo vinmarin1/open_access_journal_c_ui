@@ -106,6 +106,7 @@ if (!function_exists('get_email_content')) {
                     
                     if ($articleFilesId1 != '') {
                         updateCopyeditingFiles(1, $articleFilesId1);
+                        updateCopyeditingRevisionFiles(1, $revisionFilesId);
                     } elseif ($revisionFilesId != '') {
                         updateCopyeditingRevisionFiles(1, $revisionFilesId);
                     }
