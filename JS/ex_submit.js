@@ -1,3 +1,11 @@
+document.addEventListener('keydown', function(event) {
+  // Check if the pressed key is Enter (key code 13)
+  if (event.key === 'Enter') {
+      // Prevent the default action (e.g., form submission)
+      event.preventDefault();
+  }
+});
+
 document.addEventListener('DOMContentLoaded', function () {
   var tabButtons = document.querySelectorAll('.nav-link');
   var tabContent = document.querySelectorAll('.tab-pane input');

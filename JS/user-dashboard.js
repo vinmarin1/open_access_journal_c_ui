@@ -135,11 +135,11 @@ function openTab(evt, tabName) {
     const editIcon = document.getElementById('editIcon');
     const editForm = document.getElementById('editForm');
     const closeIcon = document.getElementById('closeIcon');
-    const saveButton = document.getElementById('saveButton');
+   ;
 
     editIcon.addEventListener('click', openEditForm);
     closeIcon.addEventListener('click', closeEditForm);
-    saveButton.addEventListener('click', saveChanges);
+  
 
     function openEditForm() {
         editForm.style.display = 'block';
@@ -195,12 +195,12 @@ document.getElementById('editBtn').addEventListener('click', function(event){
   const firstName = document.getElementById('firstName');
   const middleName = document.getElementById('middleName');
   const lastName = document.getElementById('lastName');
-  const affix = document.getElementById('Affix');
+  const affix = document.getElementById('affix');
   const birthdate = document.getElementById('birthdate');
   const gender = document.getElementById('gender');
   const status = document.getElementById('status');
   const country = document.getElementById('country');
-  const email = document.getElementById('email');
+  // const email = document.getElementById('email');
   const orcid = document.getElementById('orcid');
   const affiliation = document.getElementById('affiliation');
   const position = document.getElementById('position');
@@ -222,7 +222,7 @@ document.getElementById('editBtn').addEventListener('click', function(event){
   gender.disabled = true;
   status.disabled = true;
   country.disabled = true;
-  email.disabled = true;
+  // email.disabled = true;
   orcid.disabled = true;
   affiliation.disabled = true;
   position.disabled = true;
@@ -242,7 +242,7 @@ document.getElementById('editBtn').addEventListener('click', function(event){
       gender.disabled = false;
       status.disabled = false;
       country.disabled = false;
-      email.disabled = false;
+      // email.disabled = false;
       orcid.disabled = false;
       affiliation.disabled = false;
       position.disabled = false;
@@ -255,6 +255,7 @@ document.getElementById('editBtn').addEventListener('click', function(event){
     const editBtn = document.getElementById('editBtn');
     const cancelBtn = document.getElementById('cancelBtn');
     const spinner = cancelBtn.querySelector('.spinner-border');
+    const editForm = document.getElementById('editForm');
 
     spinner.style.display = 'inline-block';
 
@@ -264,8 +265,9 @@ document.getElementById('editBtn').addEventListener('click', function(event){
     
     setTimeout(function() {
         spinner.style.display = 'none';
-        editBtn.style.display = 'inline-block';
+        editForm.style.display = 'none';
         cancelBtn.style.display = 'none';
+        editBtn.style.display = 'inline-block';
         editBtn.disabled = false;
     }, 2000);
 });
@@ -330,11 +332,7 @@ document.getElementById('editBtn').addEventListener('click', function(event){
   });
 
 
-  document.getElementById('email').addEventListener('input', function(event){
-    const saveButton = document.getElementById('saveButton');
-    saveButton.disabled = false;
-  
-  });
+
 
 
   document.getElementById('orcid').addEventListener('input', function(event){
@@ -366,6 +364,26 @@ document.getElementById('editBtn').addEventListener('click', function(event){
     saveButton.disabled = false;
   
   });
+
+
+
+  document.getElementById('saveButton').addEventListener('click', function(event){
+    event.preventDefault();
+    
+    Swal.fire({
+        title: 'Do you want to make this changes?',
+        text: 'You will be logged out after this action',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, make changes!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            document.getElementById('form').submit();
+        }
+    });
+});
 
 
 

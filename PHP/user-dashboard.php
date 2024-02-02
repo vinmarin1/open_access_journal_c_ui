@@ -12,6 +12,8 @@ $country = $_SESSION['country'];
 $gender = $_SESSION['gender'];
 $afiliations = $_SESSION['afiliations'];
 $status = $_SESSION['status'];
+$affix = $_SESSION['affix'];
+$expertise = $_SESSION['expertise'];
 
 $birthday = $_SESSION['birthday'];
 $dateTime = new DateTime($birthday);
@@ -108,130 +110,149 @@ $expertise = $_SESSION['expertise'];
 						</div>
 					</div>
 					    <!-- Popup Form -->
+				
 					<div class="popup-form" id="editForm">
 						<div class="form-header">
 							<h4>Edit Profile</h4>
 							<span class="close-icon" id="closeIcon">&times;</span>
 						</div>
-						<div class="form-content">
-							<div class="edit-profile-pic">
-								<!-- Profile Image -->
-								<img src="../images/profile.jpg" alt="Profile Picture" class="profile-pic">
-								<i class="fas fa-camera change-icon"></i>
-							</div>
-							<!-- Personal Information -->
-							<div class="form-section">
-								<h4>Personal Information</h4>
-								<hr>
-								<div class="row-form">
-									<div class="form-row">
-										<label for="firstName">First Name:</label>
-										<input type="text" id="firstName" name="firstName" class="text-box" value="<?php echo $first_name ?>" disabled>
+						<form id="form" method="POST" action="update-user.php">		
+							<div class="form-content">
+								<div class="edit-profile-pic">
+									<!-- Profile Image -->
+									<img src="../images/profile.jpg" alt="Profile Picture" class="profile-pic">
+									<i class="fas fa-camera change-icon"></i>
+								</div>
+								<!-- Personal Information -->
+								<div class="form-section">
+									<h4>Personal Information</h4>
+									<hr>
+									<div class="row-form">
+										<div class="form-row">
+											<label for="firstName">First Name:</label>
+											<input type="text" id="firstName" name="firstName" class="text-box" value="<?php echo $first_name ?>" disabled>
+										</div>
+										<div class="form-row">
+											<label for="middleName">Middle Name:</label>
+											<input type="text" id="middleName" name="middleName" class="text-box"
+											value="<?php echo $middle_name ?>" disabled>
+										</div>
+										<div class="form-row">
+											<label for="lastName">Last Name:</label>
+											<input type="text" id="lastName" name="lastName" class="text-box"
+											value="<?php echo $last_name ?>" disabled>
+										</div>
+										<div class="form-row">
+											<label for="affix">Affix:</label>
+											<input type="text" id="affix" name="affix" class="text-box" value="<?php echo $affix ?>" disabled>
+										</div>
+										<div class="form-row">
+											<label for="birthdate">Birth Date:</label>
+											<input type="date" id="birthdate" name="birthdate" class="date-box"
+											value="<?php echo $birthday ?>" disabled>
+										</div>
+										<div class="form-row">
+											<label for="gender">Gender:</label>
+											<select id="gender" name="gender" class="dropdown-box" disabled>
+												<option value="<?php echo $gender?>"><?php echo $gender ?></option>
+												<option value="Male">Male</option>
+												<option value="Female">Female</option>
+												
+											</select>
+										</div>
+										<div class="form-row">
+											<label for="status">Status:</label>
+											<select id="status" name="status" class="dropdown-box" disabled>
+												
+												<option value="Married">Married</option>
+												<option value="Divorced">Divorced</option>
+												<option value="Widowed">Widowed</option>
+											</select>
+										</div>
+										<div class="form-row">
+											<label for="country">Country:</label>
+											<select id="country" name="country" class="dropdown-box" disabled>
+												<option value="<?php echo $country ?>"><?php echo $country ?></option>
+												<option value="USA">United States</option>
+												<option value="Canada">Canada</option>
+												<option value="U.K">United Kingdom</option>
+												<option value="Philippines">Philippines</option>
+												<!-- Add more countries as needed -->
+											</select>
+										</div>
 									</div>
-									<div class="form-row">
-										<label for="middleName">Middle Name:</label>
-										<input type="text" id="middleName" name="middleName" class="text-box"
-										value="<?php echo $middle_name ?>" disabled>
+									<!-- Add similar fields for Middle name, Last Name, Affix, Birth date, gender, status, country -->
+								</div>
+
+								<!-- Other Information -->
+								<div class="form-section">
+									<h4>Other Information</h4>
+									<hr>
+									<div class="row-form">
+										<!-- <div class="form-row">
+											<label for="email">E-mail:</label>
+											<input type="email" id="email" name="email" class="other-text-box" value="<?php echo $email ?>" disabled>
+										</div> -->
+										<div class="form-row">
+											<label for="orcid">ORCID:</label>
+											<input type="text" id="orcid" name="orcid" class="other-text-box" pattern="\d{4}-\d{4}-\d{4}-\d{4}" placeholder="(e.g., xxxx-xxxx-xxxx-xxxx)" value="<?php echo $orc_id ?>" disabled>
+										</div>
+										<div class="form-row">
+											<label for="affiliation">Affiliation:</label>
+											<input type="text" id="affiliation" name="affiliation" class="other-text-box" value="<?php echo $afiliations ?>" disabled>
+										</div>
+										<div class="form-row">
+											<label for="position">Position:</label>
+											<input type="text" id="position" name="position" class="other-text-box" value="<?php echo $position ?>" disabled>
+										</div>
 									</div>
-									<div class="form-row">
-										<label for="lastName">Last Name:</label>
-										<input type="text" id="lastName" name="lastName" class="text-box"
-										value="<?php echo $last_name ?>" disabled>
+									<!-- Add similar fields for ORCID, Affiliation, Position -->
+								</div>
+
+								<!-- About me -->
+								<div class="form-section">
+									<h4>About me</h4>
+									<hr>
+									<label for="bio">Bio:</label>
+									<textarea id="bio" name="bio" class="bio-textarea" placeholder="Enter your bio" disabled><?php echo $bio ?></textarea>
+									
+									<br><br><br>
+									<label for="fieldofexpertise">Field of Expertise:</label>
+									<div>
+										<input type="text" id="fieldofexpertise" name="fieldofexpertise" class="text-box" disabled>
+										<button class="btn tbn-primary btn-md" type="button" id="addExpertiseButton" disabled>Add</button>
 									</div>
-									<div class="form-row">
-										<label for="affix">Affix:</label>
-										<input type="text" id="Affix" name="Affix" class="text-box" value="N/A" disabled>
-									</div>
-									<div class="form-row">
-										<label for="birthdate">Birth Date:</label>
-										<input type="date" id="birthdate" name="birthdate" class="date-box"
-										value="<?php echo $birthday ?>" disabled>
-									</div>
-									<div class="form-row">
-										<label for="gender">Gender:</label>
-										<select id="gender" name="gender" class="dropdown-box" disabled>
-											<option value="<?php echo $gender?>"><?php echo $gender ?></option>
-											<option value="male">Male</option>
-											<option value="female">Female</option>
+									<div id="keywordContainer">
+										<?php
+										if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 											
-										</select>
-									</div>
-									<div class="form-row">
-										<label for="status">Status:</label>
-										<select id="status" name="status" class="dropdown-box" disabled>
-											<option value="<?php echo $status?>">Single</option>
-											<option value="married">Married</option>
-											<option value="divorced">Divorced</option>
-											<option value="widowed">Widowed</option>
-										</select>
-									</div>
-									<div class="form-row">
-										<label for="country">Country:</label>
-										<select id="country" name="country" class="dropdown-box" disabled>
-											<option value="<?php echo $country ?>"><?php echo $country ?></option>
-											<option value="usa">United States</option>
-											<option value="canada">Canada</option>
-											<option value="uk">United Kingdom</option>
-											<!-- Add more countries as needed -->
-										</select>
-									</div>
-								</div>
-								<!-- Add similar fields for Middle name, Last Name, Affix, Birth date, gender, status, country -->
-							</div>
+											$expertiseArray = explode(', ', $expertise);
 
-							<!-- Other Information -->
-							<div class="form-section">
-								<h4>Other Information</h4>
-								<hr>
-								<div class="row-form">
-									<div class="form-row">
-										<label for="email">E-mail:</label>
-										<input type="email" id="email" name="email" class="other-text-box" value="<?php echo $email ?>" disabled>
+											
+											foreach ($expertiseArray as $expertiseItem) {
+												echo '<span class="keyword">' . $expertiseItem . '</span>';
+											}
+										}
+										?>
 									</div>
-									<div class="form-row">
-										<label for="orcid">ORCID:</label>
-										<input type="text" id="orcid" name="orcid" class="other-text-box" pattern="\d{4}-\d{4}-\d{4}-\d{4}" placeholder="(e.g., xxxx-xxxx-xxxx-xxxx)" value="<?php echo $orc_id ?>" disabled>
-									</div>
-									<div class="form-row">
-										<label for="affiliation">Affiliation:</label>
-										<input type="text" id="affiliation" name="affiliation" class="other-text-box" value="<?php echo $afiliations ?>" disabled>
-									</div>
-									<div class="form-row">
-										<label for="position">Position:</label>
-										<input type="text" id="position" name="position" class="other-text-box" value="<?php echo $position ?>" disabled>
-									</div>
-								</div>
-								<!-- Add similar fields for ORCID, Affiliation, Position -->
-							</div>
 
-							<!-- About me -->
-							<div class="form-section">
-								<h4>About me</h4>
-								<hr>
-								<label for="bio">Bio:</label>
-								<textarea id="bio" name="bio" class="bio-textarea" placeholder="Enter your bio" disabled><?php echo $bio ?></textarea>
+								</div>
 								
-								<br><br><br>
-								<label for="fieldofexpertise">Field of Expertise:</label>
-								<div>
-									<input type="text" id="fieldofexpertise" name="fieldofexpertise" class="text-box">
-									<button class="btn tbn-primary btn-md" type="button" id="addExpertiseButton">Add</button>
-								</div>
-								<div id="keywordContainer"></div>
+
+								<button type="button" class="btn btn-success btn-md" id="editBtn">Edit
+									<span class="spinner-border spinner-border-sm" aria-hidden="true" style="display: none"></span>
+								</button>
+								<button type="button" class="btn btn-secondary btn-md" id="cancelBtn">Cancel
+									<span class="spinner-border spinner-border-sm" aria-hidden="true" style="display: none"></span>
+								</button>
+
+								
+								<!-- <input type="submit" class="btn btn-primary btn-md" id="saveButton" value="Save" disabled> -->
+								<button type="submit" class="btn btn-primary btn-md" id="saveButton" value="Save" disabled>Save</button>
 							</div>
-							
-
-							<button type="button" class="btn btn-success btn-md" id="editBtn">Edit
-								<span class="spinner-border spinner-border-sm" aria-hidden="true" style="display: none"></span>
-							</button>
-							<button type="button" class="btn btn-secondary btn-md" id="cancelBtn">Cancel
-								<span class="spinner-border spinner-border-sm" aria-hidden="true" style="display: none"></span>
-							</button>
-
-							<button type="submit" class="btn btn-primary btn-md" id="saveButton" disabled>Save</button>
-						</div>
+						</form>
 					</div>
-
+				</form>
 					<div class="balance-points">Balance:&nbsp;&nbsp;&nbsp;&nbsp;49 </div>
 
 					<div class="profile-badge">
@@ -638,7 +659,7 @@ $expertise = $_SESSION['expertise'];
 					<div class="articles-container">
 						
 					<?php 
-						$sql = "SELECT article.title, article.author, article.abstract, journal.journal 
+						$sql = "SELECT article.article_id, article.title, article.author, article.abstract, journal.journal 
 								FROM article 
 								JOIN journal ON journal.journal_id = article.journal_id 
 								WHERE article.author_id = $id AND article.status = 1";
@@ -647,7 +668,7 @@ $expertise = $_SESSION['expertise'];
 
 						if ($result !== false) {
 							foreach ($result as $row) {
-								echo '<div class="article">';
+								echo '<div class="article" data-article-id="' . $row->article_id . '">';
 								echo '<p class="h6">' . $row->title . '</p>';
 								echo '<div class="article-info">';
 								echo '<p class="info" style="display="inline-block; width: auto">' . $row->journal . '</p>';
@@ -655,13 +676,12 @@ $expertise = $_SESSION['expertise'];
 								echo '<p class="author">' .$row->author .  '</p>';
 								echo '<p class="article-content">' . $row->abstract .'</p>';
 								echo '</div>';
-								echo '<button type="button" class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
-								background-color: transparent;
-								border-radius: 20px;
-								color: #115272;
-								width: 100%;">Read Article</button>';
+								echo '<button type="button" class="btn btn-primary btn-md btn-article" onclick="openArticleInNewTab(' . $row->article_id . ')" style=" border: 2px #115272 solid;
+									background-color: transparent;
+									border-radius: 20px;
+									color: #115272;
+									width: 100%;">Read Article</button>';
 								echo '</div>';
-								
 							}
 						} else {
 							echo "Can't display articles at the moment"; 
@@ -750,7 +770,34 @@ $expertise = $_SESSION['expertise'];
 		<section class="flex-container">
 			<div class="continue-reading-container">
 				<h1> Continue Reading</h1>
-				<div class="continue-reading-article-container">
+				<div class="continue-reading-article-container" id="articleDetailsContainer">
+					<!-- <div class="continue-reading-article-details">
+						<h6 class="historyTitle" style="color: #115272;"><strong>Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</strong></h6>
+						<p class="historyAbstract" style="color: #454545;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas. </p>
+						<div class="continue-reading-keywords">
+
+						</div>
+					</div>
+					<div class="continue-reading-article-stats">
+						<div class="continue-reading-stats-container">
+							<div class="continue-reading-view-download">
+								<p class="continue-reading-stats-values historyViews" style="color: #115272;">99</p>
+								<p class="continue-reading-stats-labels" style="color: #959595;">VIEWS</p>
+							</div>
+							<div class="continue-reading-view-downloads">
+								<p class="continue-reading-stats-values historyDownloads" style="color: #115272;">99</p>
+								<p class="continue-reading-stats-labels" style="color: #959595;">DOWNLOADS</p>
+							</div>
+						</div>
+						<hr style="border-top: 1px solid #ccc; margin: 10px 0;">
+						<div class="continue-reading-published-infos">
+							<h6 class="continue-reading-publish-labels historyJournal" style="color: #115272;"><strong>Published in The Gavel</strong></h6>
+							<p class="continue-reading-authors historyAuthor" style="color: #959595;">By Jane Delacruz</p>
+						</div>
+					</div> -->
+				</div>
+				
+				<!-- <div class="continue-reading-article-container">
 					<div class="continue-reading-article-details">
 						<h6 style="color: #115272;"><strong>Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</strong></h6>
 						<p style="color: #454545;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas. </p>
@@ -802,34 +849,7 @@ $expertise = $_SESSION['expertise'];
 							<p class="continue-reading-authors" style="color: #959595;">By Jane Delacruz</p>
 						</div>
 					</div>
-				</div>
-				
-				<div class="continue-reading-article-container">
-					<div class="continue-reading-article-details">
-						<h6 style="color: #115272;"><strong>Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</strong></h6>
-						<p style="color: #454545;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas. </p>
-						<div class="continue-reading-keywords">
-
-						</div>
-					</div>
-					<div class="continue-reading-article-stats">
-						<div class="continue-reading-stats-container">
-							<div class="continue-reading-view-download">
-								<p class="continue-reading-stats-values" style="color: #115272;">99</p>
-								<p class="continue-reading-stats-labels" style="color: #959595;">VIEWS</p>
-							</div>
-							<div class="continue-reading-view-downloads">
-								<p class="continue-reading-stats-values" style="color: #115272;">99</p>
-								<p class="continue-reading-stats-labels" style="color: #959595;">DOWNLOADS</p>
-							</div>
-						</div>
-						<hr style="border-top: 1px solid #ccc; margin: 10px 0;">
-						<div class="continue-reading-published-infos">
-							<h6 class="continue-reading-publish-labels" style="color: #115272;"><strong>Published in The Gavel</strong></h6>
-							<p class="continue-reading-authors" style="color: #959595;">By Jane Delacruz</p>
-						</div>
-					</div>
-				</div>
+				</div> -->
 			</div>
 			
 			
@@ -865,10 +885,60 @@ $expertise = $_SESSION['expertise'];
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../JS/reusable-header.js"></script>
     <script src="../JS/user-dashboard.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<script>
+
+
+function openArticleInNewTab(articleId) {
+        window.open(`../PHP/article-details.php?articleId=${articleId}`, '_blank');
+    }
+  const apiURL = "https://web-production-cecc.up.railway.app/api/recommendations/";
+
+  // Assuming you have the author_id stored in a PHP variable $id
+  const authorId = <?php echo $_SESSION['id']; ?>;
+
+  // Make a GET request to the API endpoint
+  fetch(`${apiURL}${authorId}`)
+    .then(response => response.json())
+    .then(data => {
+      // Get the details of the first 3 articles from the history
+      const latestArticleDetails = data.history.slice(0, 3);
+
+      // Update the container with the latest article details
+      const articleDetailsContainer = document.getElementById('articleDetailsContainer');
+      articleDetailsContainer.innerHTML = latestArticleDetails.map(article => {
+        return `
+          <div class="continue-reading-article-container" data-article-id="${article.article_id}">
+            <div class="continue-reading-article-details">
+              <h6 class="historyTitle" style="color: #115272;"><strong>${article.title}</strong></h6>
+              <p class="historyAbstract" style="color: #454545;">${article.abstract}</p>
+              <div class="continue-reading-keywords"></div>
+            </div>
+            <div class="continue-reading-article-stats">
+              <!-- Remaining code -->
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      // Add click event listener to each article container
+      const articleContainers = document.querySelectorAll('.continue-reading-article-container');
+      articleContainers.forEach(container => {
+        container.addEventListener('click', function() {
+          const articleId = this.getAttribute('data-article-id');
+          window.open(`../PHP/article-details.php?articleId=${articleId}`, '_blank');
+        });
+      });
+    })
+    .catch(error => {
+      console.error('Error fetching data:', error);
+    });
+</script>
+
 </body>
 
 </html>
