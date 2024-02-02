@@ -1,5 +1,4 @@
 document.getElementById('check-duplication').addEventListener('click', function() {
-
     const title = document.getElementById('title').value;
     const abstract = document.getElementById('abstract').value;
     const labelTitle = document.getElementById('label-title');
@@ -11,10 +10,7 @@ document.getElementById('check-duplication').addEventListener('click', function(
     const similarAbstract = document.getElementById('similar-abstract');
     const flagged = document.getElementById('flagged');
     const flaggedT = document.getElementById('flaggedT');
-    const labelDuplicationAb= document.getElementById('result-duplication2');
-
-
-    
+    const labelDuplicationAb = document.getElementById('result-duplication2');
 
     labelTitle.style.color = '#0858a4';
     labelResult.style.color = '#0858a4';
@@ -35,30 +31,26 @@ document.getElementById('check-duplication').addEventListener('click', function(
             labelTitle.style.display = 'none';
             labelAbstract.style.display = 'none';
             journalType.style.display = 'none';
-           
             throw new Error('Network response was not ok');
         }
-      
         return response.json();
-
-      
     })
     .then(data => {
         if (data.similar_articles.length > 0) {
-          
             if(data.similar_articles[0].score.overview >= 1.0 || data.similar_articles[0].score.title >= 1.0){
                 document.getElementById('similar-title').innerHTML = data.similar_articles[0].title;
-                // document.getElementById('similar-abstract').innerHTML = data.similar_articles[0].abstract;
+                const articleId = data.similar_articles[0].article_id;
+                similarTitle.setAttribute('data-article-id', articleId);
                 labelDuplication.innerHTML = 'Title: ' + (data.similar_articles[0].score.title * 100).toFixed(2) + '%';
                 labelDuplicationAb.innerHTML = 'Abstract: ' + (data.similar_articles[0].score.overview * 100).toFixed(2) + '%';
-                
+
                 Swal.fire({
                     title: "Duplication Alert!",
                     icon: "info",
                     text: "Revise your Title and Abstract",
                     showConfirmButton: true
                 });
-    
+
                 journalType.style.display = 'block';
                 labelTitle.style.textAlign = 'left';
                 labelResult.style.textAlign = 'left';
@@ -69,12 +61,12 @@ document.getElementById('check-duplication').addEventListener('click', function(
                 similarTitle.style.color = '#0858a4';
                 flagged.style.display = 'block';
                 flaggedT.innerHTML = 'Flagged as: Duplicate';
-               
+
                 nextBtn.disabled = true;
-    
-            }else if(data.highest_simlarity >= 0.4 && data.highest_simlarity < 1.0){
+            } else if(data.highest_simlarity >= 0.4 && data.highest_simlarity < 1.0){
                 document.getElementById('similar-title').innerHTML = data.similar_articles[0].title;
-                // document.getElementById('similar-abstract').innerHTML = data.similar_articles[0].abstract;
+                const articleId = data.similar_articles[0].article_id;
+                similarTitle.setAttribute('data-article-id', articleId);
                 labelDuplication.innerHTML = 'Title: ' + (data.similar_articles[0].score.title * 100).toFixed(2) + '%';
                 labelDuplicationAb.innerHTML = 'Abstract: ' + (data.similar_articles[0].score.overview * 100).toFixed(2) + '%';
                 Swal.fire({
@@ -83,7 +75,7 @@ document.getElementById('check-duplication').addEventListener('click', function(
                     text: "Revise your title or Abstract",
                     showConfirmButton: true
                 });
-    
+
                 journalType.style.display = 'block';
                 labelTitle.style.textAlign = 'left';
                 labelResult.style.textAlign = 'left';
@@ -94,13 +86,10 @@ document.getElementById('check-duplication').addEventListener('click', function(
                 similarTitle.style.color = '#0858a4';
                 flagged.style.display = 'block';
                 flaggedT.innerHTML = 'Flagged as: Duplicate';
-                
+
                 nextBtn.disabled = true;
-    
-             
-            }else if(data.highest_simlarity <= 0.31){
+            } else if(data.highest_simlarity <= 0.31){
                 document.getElementById('similar-title').innerHTML = '';
-                // document.getElementById('similar-abstract').innerHTML = data.similar_articles[0].abstract;
                 labelDuplication.innerHTML = 'Title: ' + (data.similar_articles[0].score.title * 100).toFixed(2) + '%';
                 labelDuplicationAb.innerHTML = 'Abstract: ' + (data.similar_articles[0].score.overview * 100).toFixed(2) + '%';
                 Swal.fire({
@@ -108,7 +97,7 @@ document.getElementById('check-duplication').addEventListener('click', function(
                     icon: "success",
                     showConfirmButton: true
                 });
-    
+
                 journalType.style.display = 'block';
                 labelTitle.style.textAlign = 'left';
                 labelResult.style.textAlign = 'left';
@@ -119,22 +108,20 @@ document.getElementById('check-duplication').addEventListener('click', function(
                 similarTitle.style.color = '#0858a4';
                 flagged.style.display = 'block';
                 flaggedT.innerHTML = 'Flagged as: Duplicate';
-               
+
                 nextBtn.disabled = false;
-             
             }
-        }else{
+        } else {
             if(data.similar_articles.length === 0){
                 document.getElementById('similar-title').innerHTML = '';
-                // document.getElementById('similar-abstract').innerHTML = data.similar_articles[0].abstract;
-              labelDuplication.style.display = 'none';
-              labelDuplicationAb.style.display = 'none';
+                labelDuplication.style.display = 'none';
+                labelDuplicationAb.style.display = 'none';
                 Swal.fire({
                     html: "<h3 id='article-unique'>Unique Article</h3>",
                     icon: "success",
                     showConfirmButton: true
                 });
-    
+
                 journalType.style.display = 'block';
                 labelTitle.style.textAlign = 'left';
                 labelResult.style.textAlign = 'left';
@@ -143,25 +130,15 @@ document.getElementById('check-duplication').addEventListener('click', function(
                 similarTitle.style.color = '#0858a4';
                 flagged.style.display = 'block';
                 flaggedT.innerHTML = 'Flagged as: Unique';
-               
-                nextBtn.disabled= false;
-    
+
+                nextBtn.disabled = false;
             }
         }
-      
-      
-
-      
-        
-      
-
-      
-       
     })
-
-  
-
     .catch(error => console.error('Error:', error));
 });
 
-
+function openArticleDetails() {
+    const articleId = document.getElementById('similar-title').getAttribute('data-article-id');
+    window.open('article-details.php?articleId=' + articleId, '_blank');
+}

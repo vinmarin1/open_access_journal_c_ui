@@ -164,7 +164,8 @@
           <h6></h6>
           <!-- <label id="label-title">Article: </label> -->
           <p id="label-title">Article:</p>
-          <div id="similar-title"></div>
+          <div id="similar-title" onclick="openArticleDetails()"></div>
+
          
         
           <div id ="similar-abstract"></div>

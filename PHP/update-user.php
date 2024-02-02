@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     );
 
     database_run($sqlUpdateUserInfo, $sqlArray);
-    header('location: logout.php');
+    header('location: user-dashboard.php');
 } else {
     echo 'fail';
 }
