@@ -252,7 +252,7 @@
   <tbody id="fileList">
     <tr>
       <td id="fileName1"></td>
-      <td id="fileType1">File with author</td>
+      <td id="fileType1">File with author name</td>
       <td>
         <button type="button" class="btn btn-primary btn-sm" style="margin-right: 5px" id="addFileName" onclick="openFilename(1)">Add File</button>
         <button type="button" class="btn btn-danger btn-sm" id="deleteFileName" onclick="deleteFilename(1)">Delete</button>
@@ -260,7 +260,7 @@
     </tr>
     <tr>
       <td id="fileName2"></td>
-      <td id="fileType2">File with no author</td>
+      <td id="fileType2">File with no author name</td>
       <td>
         <button type="button" class="btn btn-primary btn-sm" style="margin-right: 5px" id="addFileName2" onclick="openFilename(2)">Add File</button>
         <button type="button" class="btn btn-danger btn-sm" id="deleteFileName2" onclick="deleteFilename(2)">Delete</button>
