@@ -101,11 +101,15 @@ if (!function_exists('get_email_content')) {
                     addLogs($article_id, $fromuser, 'Decline for Submission');
                     echo "<script>alert('Decline submission successfully.');</script>";
                 } elseif ($id == 3) {
-                    updateCopyeditingFiles(1, $articleFilesId1);
-                    updateCopyeditingRevisionFiles(1, $revisionFilesId);
                     updateArticleStatus($article_id, 3);
                     addLogs($article_id, $fromuser, 'Send to Copyediting');
-                    echo "<script>alert('Send to copyediting successfully.');</script>";
+                    
+                    if ($articleFilesId1 != '') {
+                        updateCopyeditingFiles(1, $articleFilesId1);
+                    } elseif ($revisionFilesId != '') {
+                        updateCopyeditingRevisionFiles(1, $revisionFilesId);
+                    }
+                    echo "<script>alert('Send to copyediting successfully.');</script>";                    
                 } elseif ($id == 4) {
                     if ($round == 'Round 2') {
                         updateRound($article_id, 'Round 3');
