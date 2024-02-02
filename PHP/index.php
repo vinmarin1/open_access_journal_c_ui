@@ -32,9 +32,9 @@
             articles</button>
           <?php 
           if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-            echo '<button class="btn btn-md" id="btn2" onclick="window.location.href=\'ex_submit.php\'">Be a contributor</button>';
+            echo '<button class="btn btn-md" id="btn2" onclick="window.location.href=\'ex_submit.php\'">Submit an Article</button>';
           } else {
-            echo '<button class="btn btn-md" id="btn2">Be a contributor</button>';
+            echo '<button class="btn btn-md" id="btn2">Submit an Article</button>';
           }
         ?>
       </div>
@@ -71,7 +71,7 @@
         </div>
       </div>
     </div>
-    <img src="../images/Papers.png" alt="#" class="image">
+    <img src="../images/Papers.png" alt="#" class="image" onclick="window.location.href='./announcement.php'">
     <!-- <hr style="height: 2px; background-color: #0858a4; width: 100%"> -->
 
     <?php
