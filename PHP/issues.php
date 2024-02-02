@@ -74,9 +74,9 @@
                     <img src='../images/volume2-1.jpg' alt="Journal 1">
                     <p style="color: #285581;" onclick="window.location.href='all-issues.php'">Volume 2, Issue 1<br><span style="color: black">2024</span></p>
                 </div>
-                <div class="">
+                <!-- <div class="">
                     <button class="btn btn-primary btn-md btn-seemore" id="see-more">Show All Articles</button>
-                </div>
+                </div> -->
             </div>
         </div>
    
