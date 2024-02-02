@@ -63,6 +63,8 @@ function login($data)
                 $_SESSION['afiliations'] = $row_author->afiliations;
                 $_SESSION['expertise'] = $row_author->field_of_expertise;
                 $_SESSION['date_added'] = $row_author->date_added;
+                $_SESSION['affix'] = $row_author->affix;
+                $_SESSION['expertise'] = $row_author->field_of_expertise;
                 $_SESSION['LOGGED_IN'] = true;
             } else {
                 $errors[] = "Wrong email or password";

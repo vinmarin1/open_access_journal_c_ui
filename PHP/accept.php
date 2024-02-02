@@ -1,5 +1,5 @@
 <?php
-echo "PHP code executed";
+
 require 'dbcon.php';
 session_start();
 

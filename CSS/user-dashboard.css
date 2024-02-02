@@ -255,7 +255,7 @@ label {
     height: 200px;
     margin-top: 20px;
 }
-.keyword {
+.keyword, .getExpertise {
     display: inline-block;
     border: 1px solid #ccc;
     padding: 5px 10px;
@@ -1198,7 +1198,7 @@ td {
     border: none;
     flex-direction: column;
     margin-left: 20px;
-    height: 100%;
+    height: 30vh;
     margin-bottom: 50px;
 }
 
