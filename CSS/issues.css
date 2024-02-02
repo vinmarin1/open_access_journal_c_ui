@@ -1,4 +1,4 @@
-.content-over {
+/* .content-over {
     position: relative;
     width: 100%;
     height: 30vh;
@@ -19,7 +19,7 @@ left: 0;
 width: 100%;
 height: 100%;
 background-color: rgba(53, 68, 74, 0.7);
-}
+} */
 
 .content-over p, .content-over h2 {
 color: white; 

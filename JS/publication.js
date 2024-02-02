@@ -6,7 +6,7 @@ function generateJournals(data) {
         const subjectAreasHtml = journal.subject_areas.split(",").map((item) => `<li>${item}</li>`).join('');
         const editorialBoardHTML = journal.editorial.split(";").map((item) => `<li>${item}</li>`).join('');
         return `
-            <div class="container-fluid pub-container " id="journal">
+            <div class="container-fluid  " id="journal">
                 <div class="col-md-2 me-5 col-12 journal-title">
                     <h3>${journal.journal_title}</h3>
                     <div class="pic-border">
