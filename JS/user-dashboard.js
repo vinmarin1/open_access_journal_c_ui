@@ -205,6 +205,7 @@ document.getElementById('editBtn').addEventListener('click', function(event){
   const affiliation = document.getElementById('affiliation');
   const position = document.getElementById('position');
   const bio = document.getElementById('bio');
+  const changeProfileBtn = document.getElementById('changeProfileBtn');
   const spinner = document.querySelector('#editBtn .spinner-border');
 
   // Show spinner
@@ -227,6 +228,7 @@ document.getElementById('editBtn').addEventListener('click', function(event){
   affiliation.disabled = true;
   position.disabled = true;
   bio.disabled = true;
+  changeProfileBtn.disabled = true;
 
   // Enable everything after 2 seconds
   setTimeout(function() {
@@ -247,6 +249,8 @@ document.getElementById('editBtn').addEventListener('click', function(event){
       affiliation.disabled = false;
       position.disabled = false;
       bio.disabled = false;
+      changeProfileBtn.disabled = false;
+
   }, 2000);
 });
 
@@ -389,3 +393,25 @@ document.getElementById('editBtn').addEventListener('click', function(event){
 
 
 
+document.getElementById('changeProfileBtn').addEventListener('click', function() {
+  document.getElementById('selectProfile').click();
+});
+
+document.getElementById('selectProfile').addEventListener('change', function() {
+  const fileInput = document.getElementById('selectProfile');
+  const profileImage = document.getElementById('profileImage');
+
+  const file = fileInput.files[0];
+
+  if (file) {
+      const reader = new FileReader();
+
+      reader.onload = function(e) {
+          // Update the profile image source with the selected image
+          profileImage.src = e.target.result;
+      };
+
+      // Read the selected file as a data URL
+      reader.readAsDataURL(file);
+  }
+});

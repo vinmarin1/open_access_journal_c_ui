@@ -114,10 +114,10 @@ function handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $
             $fileType = '';
             switch ($fileKey) {
                 case 'file_name':
-                    $fileType = 'File with author';
+                    $fileType = 'File with author name';
                     break;
                 case 'file_name2':
-                    $fileType = 'File with no author';
+                    $fileType = 'File with no author name';
                     break;
                 case 'file_name3':
                     $fileType = 'Title Page';

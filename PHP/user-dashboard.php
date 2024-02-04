@@ -27,6 +27,8 @@ $orc_id = $_SESSION['orc_id'];
 $bio = $_SESSION['bio'];
 $expertise = $_SESSION['expertise'];
 
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -120,8 +122,13 @@ $expertise = $_SESSION['expertise'];
 							<div class="form-content">
 								<div class="edit-profile-pic">
 									<!-- Profile Image -->
-									<img src="../images/profile.jpg" alt="Profile Picture" class="profile-pic">
-									<i class="fas fa-camera change-icon"></i>
+								
+								
+									<img src="../images/capstone1.png" alt="Profile Picture" class="profile-pic" id="profileImage">
+									<button type="button" style="border: none" id="changeProfileBtn"><i class="fas fa-camera change-icon"></i></button>
+									<input type="file" id="selectProfile" style="display: none" accept="image/*">
+
+
 								</div>
 								<!-- Personal Information -->
 								<div class="form-section">

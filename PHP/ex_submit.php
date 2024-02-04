@@ -133,14 +133,14 @@
      
       
       <div class="form-floating" id="form-floating">
-        <h6 id="sub-9">Title <p id="title-validation" style="color: red; display: none; font-size: 10px;">Title should consist of 10 words and less than 20 words*</p></h6>
+        <h6 id="sub-9">Title <p id="title-validation" style="color: red; display: none; font-size: 10px;">The minimum word for title is 5 and maximum of 100 words</p></h6>
 
     
         <input class="form-control" type="text"  id="title" name="title">
       
        
         
-        <h6 id="sub-11">Abstract<p id="abstract-validation" style="color: red; display: none;  font-size: 10px">The maximum for abstract is 200 words*</p></h6>
+        <h6 id="sub-11">Abstract<p id="abstract-validation" style="color: red; display: none;  font-size: 10px">The minimum word for abstract is 10 and maximum of 250 words</p></h6>
 
        
 

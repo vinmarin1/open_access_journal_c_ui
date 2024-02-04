@@ -243,7 +243,7 @@ document.addEventListener('DOMContentLoaded', function () {
   titleInput.addEventListener('input', function () {
       const wordCount = titleInput.value.trim().split(/\s+/).length;
 
-      if (wordCount < 10 || wordCount > 20) {
+      if (wordCount < 5 || wordCount > 100) {
           titleValidation.style.display = 'block';
       } else {
           titleValidation.style.display = 'none';
@@ -255,7 +255,7 @@ document.addEventListener('DOMContentLoaded', function () {
   editor.addEventListener('input', function () {
       const wordCount = editor.value.trim().split(/\s+/).length;
 
-      if (wordCount < 50 || wordCount > 200) {
+      if (wordCount < 10 || wordCount > 250) {
           abstractValidation.style.display = 'block';
       } else {
           abstractValidation.style.display = 'none';

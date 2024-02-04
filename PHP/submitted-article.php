@@ -182,6 +182,9 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 
 <div class="row2">
     <div class="main2">
+        <div class="retrtiveFileDownload">
+
+        </div>
         <div class="files-submitted">
             <div class="table-header" id="table">Files Submitted</div>
             <table>
@@ -213,7 +216,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                         <td>
                             <?php
 
-                                $sqlStatus = "SELECT article_files.date_added FROM article_files JOIN article ON article_files.article_id = article.article_id WHERE article.author_id = :author_id AND article.article_id = :article_id AND article_files.file_type = 'File with no author' ";
+                                $sqlStatus = "SELECT article_files.date_added FROM article_files JOIN article ON article_files.article_id = article.article_id WHERE article.author_id = :author_id AND article.article_id = :article_id AND article_files.file_type = 'File with no author name' ";
 
                                 $result = database_run($sqlStatus, array('author_id' => $userId,
                                 'article_id' => $articleId));
@@ -238,6 +241,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
         </div>
         <div class="files-submitted" id="reviseFile" style="display: none">
         <div class="table-header">Upload Revise file</div>
+        <!-- <button type="button" class="btn btn-primary btn-sm" style="margin-right: 5px" id="downloadFileName" onclick="downloadFile(1)">Download</button> -->
             <div class="btnUploadFile">
                 <input type="file" class="form-control" name="file_name" id="file_name" accept=".docx" style="display: none">
             </div>
@@ -296,7 +300,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
             </div>
         </div>
     <div class="main3" >
-        <div class="comments-container" style="padding-left: 100px">
+        <div class="comments-container" style="padding-left: 50px">
             <div class="table-header">Discussion</div>
             <div class="discussion-container">
                 <?php
@@ -387,7 +391,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
         </div>
         <div class="review-rubrics">
           
-            <div class="action-button" style="padding-left: 90px">
+            <div class="action-button" style="padding-left: 40px">
                 <button type="button" class="btn btn-primary btn-md" id="edit-submission">Edit Submission</button>
                 <button type="submit" class="btn btn-primary btn-md" id="submit-submission" onclick="submitData()" disabled>Submit</button>
                 <button type="button" class="btn btn-secondary btn-md" id="cancel-submission">Cancel Submission</button>

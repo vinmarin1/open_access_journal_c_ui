@@ -175,6 +175,22 @@ function submitData() {
   
 }
 
+function downloadFile(fileId) {
+  // You may need to adjust the URL based on your file structure
+  var fileUrl = '../Files/submitted-article/' + document.getElementById('fileName' + fileId).innerText;
+
+  // Create a temporary link element
+  var downloadLink = document.createElement('a');
+  downloadLink.href = fileUrl;
+  downloadLink.download = document.getElementById('fileName' + fileId).innerText;
+
+  // Trigger a click on the link to start the download
+  document.body.appendChild(downloadLink);
+  downloadLink.click();
+  document.body.removeChild(downloadLink);
+}
+
+
 
 function toggleDiscussion(discussionId) {
   var discussionContainer = document.getElementById('discussion' + discussionId);
