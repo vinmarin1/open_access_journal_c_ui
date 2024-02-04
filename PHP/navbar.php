@@ -31,12 +31,11 @@ require 'dbcon.php';
 
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="about.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            About
+            About Us
           </a>
           <ul class="dropdown-menu">
-          <li><a class="dropdown-item" style="color: black" href="#">THE WEBSITE</a></li>
-          <li><a class="dropdown-item" style="color: black" href="#">RESEARCH TEAM</a></li>
-          <li><a class="dropdown-item" style="color: black" href="#">DEVELOPERS</a></li>
+          <li><a class="dropdown-item" style="color: black" href="general-info.php">General Information</a></li>
+          <li><a class="dropdown-item" style="color: black" href="developers.php">The Developers</a></li>
           </ul>
         </li>
         <li class="nav-item dropdown">
