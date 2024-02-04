@@ -295,7 +295,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                 </div>
             </div>
         </div>
-    <div class="main3">
+    <div class="main3" style="wdith: 100%; padding-left: 100px">
         <div class="comments-container">
             <div class="table-header">Discussion</div>
             <div class="discussion-container">
@@ -385,41 +385,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 
             </div>
         </div>
-        <div class="review-rubrics">
-            <div class="section-header">Review Rubrics</div>
-            <div class="section-body">
-                <!-- <p>Reviewer Anwers Summary</p> -->
-                <?php
-                    $sqlQuestionnaire = "SELECT question, answer FROM reviewer_questionnaire";
-                    $result = database_run($sqlQuestionnaire);
-
-                    if ($result) {
-                        foreach ($result as $row) {
-                            $question = htmlspecialchars($row->question);
-                            echo '<li class="list-group-item mt-4" style="list-style: none; font-family: &quot;Times New Roman&quot;, Times, serif; color: #0858a4; font-size: 20px;">' . $question . '</li>';
-
-                            // Split the choices using commas
-                            $choices = explode(',', $row->answer);
-
-                            // Display each choice as a radio button
-                            foreach ($choices as $choice) {
-                                $uniqueId = htmlspecialchars(trim($choice)) . '_' . uniqid(); // Create a unique ID for each radio button
-                                echo '<input type="radio" name="answers[' . $question . ']" value="' . htmlspecialchars(trim($choice)) . '" id="' . $uniqueId . '" disabled>';
-                                echo '<label for="' . $uniqueId . '" style="font-size: small; color: gray;">' . htmlspecialchars(trim($choice)) . '</label><br>';
-                            }
-                        }
-                    } else {
-                        echo 'The questionnaire has not been updated yet';
-                    }
-                ?>
-
-            </div>
-            <div class="action-button">
-                <button type="button" class="btn btn-primary btn-md" id="edit-submission">Edit Submission</button>
-                <button type="submit" class="btn btn-primary btn-md" id="submit-submission" onclick="submitData()" disabled>Submit</button>
-                <button type="button" class="btn btn-secondary btn-md" id="cancel-submission">Cancel Submission</button>
-            </div>
-        </div>
+       
     </div>
     <div id="loadingOverlay">
         <div id="loadingSpinner"></div>

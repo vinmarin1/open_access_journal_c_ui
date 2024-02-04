@@ -138,7 +138,7 @@ document.getElementById('form').addEventListener('submit', function(event) {
         '&mdname=' + encodeURIComponent(mdname) +
         '&lname=' + encodeURIComponent(lname) +
         '&password=' + encodeURIComponent(password) +
-        '&privacyPolicy=' + encodeURIComponent(privacyPolicy.value));
+        '&privacyPolicy=' + encodeURIComponent(privacyPolicy));
 });
 
 

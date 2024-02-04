@@ -18,7 +18,8 @@ function checkEmailExist($data) {
     return $errors;
 }
 
-if ($_SERVER['REQUEST_METHOD'] === "POST") {
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $fname = $_POST['fname'];
     $mdname = $_POST['mdname'];
@@ -30,17 +31,14 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     $emailErrors = checkEmailExist($_POST);
 
     if (!empty($emailErrors)) {
-        $response['success'] = false;
-        $response['message'] = implode(", ", $emailErrors); 
-        echo json_encode($response);
-        exit(); 
+        echo json_encode(['success' => false, 'message' => implode(', ', $emailErrors)]);
+        exit();
     }
 
-  
     $sql = "INSERT INTO author (`first_name`, `last_name`, `middle_name`, `email`, `password`, `privacyAgreement`, `role`, `status`)
-    VALUES (:first_name, :middle_name, :last_name, :email, :password, :privacyAgreement, :status)";
+            VALUES (:first_name, :middle_name, :last_name, :email, :password, :privacyAgreement, :role, :status)";
 
-    $params = array(
+    $params = [
         'first_name' => $fname,
         'middle_name' => $lname,
         'last_name' => $mdname,
@@ -49,21 +47,17 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         'privacyAgreement' => $privacyPolicy,
         'role' => 'Author',
         'status' => 1
-    );
+    ];
 
     try {
         database_run($sql, $params, true);
-        $response['success'] = true;
-        $response['message'] = 'Registration successful!';
+        echo json_encode(['success' => true, 'message' => 'Registration successful!']);
+    } catch (PDOException $e) {
+        echo json_encode(['success' => false, 'message' => 'Database error: ' . $e->getMessage()]);
     } catch (Exception $e) {
-        $response['success'] = false;
-        $response['message'] = 'Error: can\'t process your registration. Please try again later.';
+        echo json_encode(['success' => false, 'message' => 'Error: can\'t process your registration. Please try again later.']);
     }
-
-    echo json_encode($response);
 } else {
-    $response['success'] = false;
-    $response['message'] = 'Invalid request method.';
-    echo json_encode($response);
+    echo json_encode(['success' => false, 'message' => 'Invalid request method.']);
 }
 ?>

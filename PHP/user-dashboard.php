@@ -312,16 +312,7 @@ $expertise = $_SESSION['expertise'];
 					</div>
 				</div>
 			</div>
-			<div class="xp-container">
-				<!-- XP Bar -->
-				<div class="xp-bar">
-					<div class="progress-bar">
-						<div class="progress" style="width: 56%;"></div>
-					</div>
-					<span class="xp-label">56/100 XP</span>
-				</div>
-				
-			</div>
+			<!--   -->
 		</div>
 		<section class="expertise">
 			<!-- Expertise info here -->
