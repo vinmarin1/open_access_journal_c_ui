@@ -909,9 +909,23 @@ function openArticleInNewTab(articleId) {
               <p class="historyAbstract" style="color: #454545;">${article.abstract}</p>
               <div class="continue-reading-keywords"></div>
             </div>
-            <div class="continue-reading-article-stats">
-              <!-- Remaining code -->
-            </div>
+			<div class="continue-reading-article-stats">
+								<div class="continue-reading-stats-container">
+									<div class="continue-reading-view-download">
+										<p class="continue-reading-stats-values historyViews" style="color: #115272;">${article.user_interactions}</p>
+										<p class="continue-reading-stats-labels" style="color: #959595;">VIEWS</p>
+									</div>
+									<div class="continue-reading-view-downloads">
+										<p class="continue-reading-stats-values historyDownloads" style="color: #115272;">${article.user_interactions}</p>
+										<p class="continue-reading-stats-labels" style="color: #959595;">DOWNLOADS</p>
+									</div>
+								</div>
+								<hr style="border-top: 1px solid #ccc; margin: 10px 0;">
+								<div class="continue-reading-published-infos">
+									<h6 class="continue-reading-publish-labels historyJournal" style="color: #115272;"><strong>Published in ${article.journal}</strong></h6>
+									<p class="continue-reading-authors historyAuthor" style="color: #959595;">By ${article.author}</p>
+								</div>
+							</div>
           </div>
         `;
       }).join('');
