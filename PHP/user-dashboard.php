@@ -253,7 +253,7 @@ $expertise = $_SESSION['expertise'];
 						</form>
 					</div>
 				</form>
-					<div class="balance-points">Balance:&nbsp;&nbsp;&nbsp;&nbsp;49 </div>
+					<div class="balance-points">Community Heart:&nbsp;&nbsp;&nbsp;&nbsp;49 </div>
 
 					<div class="profile-badge">
 						<p class="recent-badges">Recent Badges</p>
