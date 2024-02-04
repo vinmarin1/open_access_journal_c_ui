@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QCU PUBLICATION | QCU JOURNALS</title>
     <link rel="stylesheet" href="../CSS/all-issues.css">
+    <link rel="stylesheet" href="../CSS/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
 
@@ -23,21 +24,21 @@
     <div class="content-over">
         <div class="cover-content">
             <p>Home / Browse / Articles / The Gavel / Volume 1</p>
-            <h2>Volume 1</h2>
+            <h2 id="issue-title"></h2>
         </div>
     </div>
 
 
-        <div class="pub-container">
-            <div class="journal-title">
+        <section class="pub-container d-flex gap-4">
+            <div class="issue-title">
                 <div class="pic-border">
                     <img class="img-fluid" src="../Files/journal-image/The Gavel.png" alt="">
                 </div>
-                <div class="journal-details">
-                    <h4 style="color:#285581">Published in The Gavel</h4><br>
-                    <p><strong style="color:#285581">ISSN (Online):</strong><br> 2071-1050 (Online)</p><br>
-                    <p><strong style="color:#285581">Online Date Start:</strong><br> 2023</p><br>
-                    <p><strong style="color:#285581">Copyright Holder:</strong><br> Quezon City University Publication</p><br>
+                <div class="issue-details">
+                    <h4 style="color:#285581">Published in <span id="issue-journal"></span></h4><br>
+                    <p><strong style="color:#285581">ISSN (Online):</strong><br> <span id="issue-issn"></span> (Online)</p><br>
+                    <p><strong style="color:#285581">Online Date Start:</strong><br> <span id="issue-date"></span></p><br>
+                    <!-- <p><strong style="color:#285581">Copyright Holder:</strong><br> Quezon City University Publication</p><br>
                     <p><strong style="color:#285581">Editorial Board:</strong></p>
                     <p>Editor-in-Chief: Engr. Ryan Flores Arago</p>
                     <p>Managing Editor: Prof. Nelson Lazare</p>
@@ -50,12 +51,12 @@
                     </p><br>
                     <p><strong style="color:#285581">Further Information:</strong>
                     Donation Information
-                    Write for this Journal</p>
+                    Write for this Journal</p> -->
                 </div>
             </div>
 
-            <div class="all-issues">
-                <div class="sort-container d-flex gap-2">
+            <div class="">
+                <div class=" d-flex gap-2">
                     <div class="sort-header">
                         <span class="sort-by-text" style="color: #0858a4;">Sort by</span>
                         <span class="sort-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
@@ -63,7 +64,7 @@
                                 <path fill="#e6e6e6" d="M11 7H1l5 7zm-2 7h10l-5-7z" /></svg></span>
                     </div>
                     <div>
-                        <select id="sortby" name="sortby" class="sort-dropdown form-select form-select-sm px-8" >
+                        <select id="sortby" name="sortby" class="sort-dropdown form-select form-select-sm" >
                             <option value="" hidden>Latest</option>
                             <option value="title">Oldest</option>
                             <option value="recently_added">Popular</option>
@@ -73,242 +74,17 @@
                         </select>
                     </div>
                 </div>
-                <div class="container">
-                    <section class="continue-reading">
-                        <!-- Article Container -->
-                        <div class="article-container">
-                            <!-- Article Content -->
-                            <div class="article-content">
-                                <h6>Article About the Future of Artificial Intelligence: Advancements and Ethical Considerations (MARCH 2023)</h6>
-                                <p class="authors" style="color: #959595;">Author name</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                <div class="article-tags">
-                                    <span class="tag">technology</span>
-                                    <span class="tag">covid-19</span>
-                                    <!-- More tags -->
-                                </div>
-                            </div>
-                            <!-- Article Stats -->
-                            <div class="article-stats">
-                                <div class="download-buttons">
-                                    <button>Download PDF</button>
-                                    <button>Download EPub</button>
-                                </div>
-                                <hr>
-                                <div class="stats-container">
-                                    <div class="view-download">
-                                        <p class="stats-value" style="color: #0858a4;">10.2k</p>
-                                        <p class="stats-label" style="color: #959595;">VIEWS</p>
-                                    </div>
-                                    <div class="view-download">
-                                        <p class="stats-value" style="color: #0858a4;">48k</p>
-                                        <p class="stats-label" style="color: #959595;">DOWNLOADS</p>
-                                    </div>
-                                    <div class="view-download">
-                                        <p class="stats-value" style="color: #0858a4;">10.2k</p>
-                                        <p class="stats-label" style="color: #959595;">CITATIONS</p>
-                                    </div>
-                                    <div class="view-download">
-                                        <p class="stats-value" style="color: #0858a4;">3.2k</p>
-                                        <p class="stats-label" style="color: #959595;">CITATIONS</p>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="download-buttons">
-                                    <button><i class="ri-double-quotes-r"></i>Citations</button>
-                                    <button><i class="ri-share-fill"></i>Share</button>
-                                    <button><i class="ri-heart-fill"></i>Heart</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="article-container">
-                            <!-- Article Content -->
-                            <div class="article-content">
-                                <h6>Article About the Future of Artificial Intelligence: Advancements and Ethical Considerations (MARCH 2023)</h6>
-                                <p class="authors" style="color: #959595;">Author name</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                <div class="article-tags">
-                                    <span class="tag">technology</span>
-                                    <span class="tag">covid-19</span>
-                                    <!-- More tags -->
-                                </div>
-                            </div>
-                            <!-- Article Stats -->
-                            <div class="article-stats">
-                                <div class="download-buttons">
-                                    <button>Download PDF</button>
-                                    <button>Download EPub</button>
-                                </div>
-                                <hr>
-                                <div class="stats-container">
-                                    <div class="view-download">
-                                        <p class="stats-value" style="color: #0858a4;">10.2k</p>
-                                        <p class="stats-label" style="color: #959595;">VIEWS</p>
-                                    </div>
-                                    <div class="view-download">
-                                        <p class="stats-value" style="color: #0858a4;">48k</p>
-                                        <p class="stats-label" style="color: #959595;">DOWNLOADS</p>
-                                    </div>
-                                    <div class="view-download">
-                                        <p class="stats-value" style="color: #0858a4;">10.2k</p>
-                                        <p class="stats-label" style="color: #959595;">CITATIONS</p>
-                                    </div>
-                                    <div class="view-download">
-                                        <p class="stats-value" style="color: #0858a4;">3.2k</p>
-                                        <p class="stats-label" style="color: #959595;">CITATIONS</p>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="download-buttons">
-                                    <button><i class="ri-double-quotes-r"></i>Citations</button>
-                                    <button><i class="ri-share-fill"></i>Share</button>
-                                    <button><i class="ri-heart-fill"></i>Heart</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="article-container">
-                            <!-- Article Content -->
-                            <div class="article-content">
-                                <h6>Article About the Future of Artificial Intelligence: Advancements and Ethical Considerations (MARCH 2023)</h6>
-                                <p class="authors" style="color: #959595;">Author name</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                <div class="article-tags">
-                                    <span class="tag">technology</span>
-                                    <span class="tag">covid-19</span>
-                                    <!-- More tags -->
-                                </div>
-                            </div>
-                            <!-- Article Stats -->
-                            <div class="article-stats">
-                                <div class="download-buttons">
-                                    <button>Download PDF</button>
-                                    <button>Download EPub</button>
-                                </div>
-                                <hr>
-                                <div class="stats-container">
-                                    <div class="view-download">
-                                        <p class="stats-value" style="color: #0858a4;">10.2k</p>
-                                        <p class="stats-label" style="color: #959595;">VIEWS</p>
-                                    </div>
-                                    <div class="view-download">
-                                        <p class="stats-value" style="color: #0858a4;">48k</p>
-                                        <p class="stats-label" style="color: #959595;">DOWNLOADS</p>
-                                    </div>
-                                    <div class="view-download">
-                                        <p class="stats-value" style="color: #0858a4;">10.2k</p>
-                                        <p class="stats-label" style="color: #959595;">CITATIONS</p>
-                                    </div>
-                                    <div class="view-download">
-                                        <p class="stats-value" style="color: #0858a4;">3.2k</p>
-                                        <p class="stats-label" style="color: #959595;">CITATIONS</p>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="download-buttons">
-                                    <button><i class="ri-double-quotes-r"></i>Citations</button>
-                                    <button><i class="ri-share-fill"></i>Share</button>
-                                    <button><i class="ri-heart-fill"></i>Heart</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="article-container">
-                            <!-- Article Content -->
-                            <div class="article-content">
-                                <h6>Article About the Future of Artificial Intelligence: Advancements and Ethical Considerations (MARCH 2023)</h6>
-                                <p class="authors" style="color: #959595;">Author name</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                <div class="article-tags">
-                                    <span class="tag">technology</span>
-                                    <span class="tag">covid-19</span>
-                                    <!-- More tags -->
-                                </div>
-                            </div>
-                            <!-- Article Stats -->
-                            <div class="article-stats">
-                                <div class="download-buttons">
-                                    <button>Download PDF</button>
-                                    <button>Download EPub</button>
-                                </div>
-                                <hr>
-                                <div class="stats-container">
-                                    <div class="view-download">
-                                        <p class="stats-value" style="color: #0858a4;">10.2k</p>
-                                        <p class="stats-label" style="color: #959595;">VIEWS</p>
-                                    </div>
-                                    <div class="view-download">
-                                        <p class="stats-value" style="color: #0858a4;">48k</p>
-                                        <p class="stats-label" style="color: #959595;">DOWNLOADS</p>
-                                    </div>
-                                    <div class="view-download">
-                                        <p class="stats-value" style="color: #0858a4;">10.2k</p>
-                                        <p class="stats-label" style="color: #959595;">CITATIONS</p>
-                                    </div>
-                                    <div class="view-download">
-                                        <p class="stats-value" style="color: #0858a4;">3.2k</p>
-                                        <p class="stats-label" style="color: #959595;">CITATIONS</p>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="download-buttons">
-                                    <button><i class="ri-double-quotes-r"></i>Citations</button>
-                                    <button><i class="ri-share-fill"></i>Share</button>
-                                    <button><i class="ri-heart-fill"></i>Heart</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="article-container">
-                            <!-- Article Content -->
-                            <div class="article-content">
-                                <h6>Article About the Future of Artificial Intelligence: Advancements and Ethical Considerations (MARCH 2023)</h6>
-                                <p class="authors" style="color: #959595;">Author name</p>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                <div class="article-tags">
-                                    <span class="tag">technology</span>
-                                    <span class="tag">covid-19</span>
-                                    <!-- More tags -->
-                                </div>
-                            </div>
-                            <!-- Article Stats -->
-                            <div class="article-stats">
-                                <div class="download-buttons">
-                                    <button>Download PDF</button>
-                                    <button>Download EPub</button>
-                                </div>
-                                <hr>
-                                <div class="stats-container">
-                                    <div class="view-download">
-                                        <p class="stats-value" style="color: #0858a4;">10.2k</p>
-                                        <p class="stats-label" style="color: #959595;">VIEWS</p>
-                                    </div>
-                                    <div class="view-download">
-                                        <p class="stats-value" style="color: #0858a4;">48k</p>
-                                        <p class="stats-label" style="color: #959595;">DOWNLOADS</p>
-                                    </div>
-                                    <div class="view-download">
-                                        <p class="stats-value" style="color: #0858a4;">10.2k</p>
-                                        <p class="stats-label" style="color: #959595;">CITATIONS</p>
-                                    </div>
-                                    <div class="view-download">
-                                        <p class="stats-value" style="color: #0858a4;">3.2k</p>
-                                        <p class="stats-label" style="color: #959595;">CITATIONS</p>
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="download-buttons">
-                                    <button><i class="ri-double-quotes-r"></i>Citations</button>
-                                    <button><i class="ri-share-fill"></i>Share</button>
-                                    <button><i class="ri-heart-fill"></i>Heart</button>
-                                </div>
-                            </div>
-                        </div>
-                        
+                <div class="">
+                    <div class="continue-reading" id="articles-by-issue">
+
+          
                         <!-- More articles -->
-                    </section>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div class="fluid-container">
+        <!-- <div class="fluid-container">
             <div class="recommendation-article">
                 <h4>More Popular in Gavel Volume 1</h4>
                 <div class="articles-container">
@@ -467,7 +243,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
 
 </div>
@@ -480,6 +256,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <script src="../JS/reusable-header.js"></script>
+    <script src="../JS/all-issues.js"></script>
 
 </body>
 </html>
