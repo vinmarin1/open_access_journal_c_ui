@@ -32,7 +32,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
   <form id="form" action="revision-file.php" method="POST" enctype="multipart/form-data">
     <div class="main-title">
         <div class="breadcrumbs">
-            Dashboard / Author / Submitted Articles <span id="title-validation" style="color: red">The title should be between 10 and 20 words in length</span>
+            Dashboard / Author / Submitted Articles <span id="title-validation" style="color: red">The minimum word for title is 5 and maximum of 100 words</span>
         </div>
         <input type="text" value="<?php echo $articleId ?>" id="getArticleId" name="getArticleId" style="display: none">
         <p id="title" name="title">
@@ -57,7 +57,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 <div class="row1">
     <div class="abstract">
     <!-- Abstract content goes here -->
-        <div class="abstract-title">Abstract <span id="abstract-validation" style="color: red">The abstract should be between 50 and 200 words in length</span></div>
+        <div class="abstract-title">Abstract <span id="abstract-validation" style="color: red">The minimum word for abstract is 10 and maximum of 250 words</span></div>
         <div class="abstract-content">
             <p id="display-abstract" name="display-abstract">
                 <?php 
@@ -197,21 +197,23 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                 <tbody>
                     <tr>
                         <td> 
-                            <?php
+                        <?php
+                        $sqlStatus = "SELECT article_files.file_name FROM article_files JOIN article ON article_files.article_id = article.article_id WHERE article.author_id = :author_id AND article.article_id = :article_id AND article_files.file_type = 'File with no author name' ";
 
-                                $sqlStatus = "SELECT article_files.file_name FROM article_files JOIN article ON article_files.article_id = article.article_id WHERE article.author_id = :author_id AND article.article_id = :article_id AND article_files.file_type = 'File with no author name' ";
+                        $result = database_run($sqlStatus, array('author_id' => $userId, 'article_id' => $articleId));
 
-                                $result = database_run($sqlStatus, array('author_id' => $userId,
-                                'article_id' => $articleId));
+                        if ($result !== false) {
+                            foreach ($result as $row) {
+                                $fileName = $row->file_name;
+                                $filePath = '../Files/submitted-article/' . $fileName;
 
-                                if ($result !== false) {
-                                foreach ($result as $row) {
-                                echo $row->file_name;
-                                }
-                                } else {
-                                echo "No file for this article"; 
-                                }
-                            ?>
+                                echo "<a href='download.php?file=$filePath' download>$fileName</a><br>";
+                            }
+                        } else {
+                            echo "No file for this article";
+                        }
+                        ?>
+
                         </td>
                         <td>
                             <?php

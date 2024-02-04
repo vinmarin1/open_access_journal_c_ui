@@ -255,25 +255,26 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                                 <tr>
                                     <td id="fileName1">
                                     <?php
-                                    $sqlFileName = "SELECT article_files.file_name, article.title FROM article_files JOIN article ON article_files.article_id = article.article_id JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id WHERE article_files.file_type = 'File with no author' AND article.status = 5
-                                    AND reviewer_assigned.author_id = :author_id AND article.article_id = :article_id";
-        
-                                    $result = database_run($sqlFileName, array('author_id' => $userId,
-                                    'article_id' => $articleId));
-        
+                                    $sqlFileName = "SELECT article_files.file_name, article.title FROM article_files JOIN article ON article_files.article_id = article.article_id JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id WHERE article_files.file_type = 'File with no author name' AND article.status = 5 AND reviewer_assigned.author_id = :author_id AND article.article_id = :article_id";
+
+                                    $result = database_run($sqlFileName, array('author_id' => $userId, 'article_id' => $articleId));
+
                                     if ($result !== false) {
-                                    foreach ($result as $row) {
-                                    echo $row->file_name;
-                                    }
+                                        foreach ($result as $row) {
+                                            $fileName = $row->file_name;
+                                            $filePath = '../Files/submitted-article/' . $fileName;
+
+                                            echo "<a href='download.php?file=$filePath' download>$fileName</a><br>";
+                                        }
                                     } else {
-                                    echo "Can't find the file or it has been put on the archive"; 
+                                        echo "Can't find the file or it has been put in the archive";
                                     }
-                                    
                                     ?>
+
                                     </td>
                                     <td id="fileType1">
                                     <?php
-                                        $sqlFileDate = "SELECT article_files.date_added, article.title FROM article_files JOIN article ON article_files.article_id = article.article_id JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id WHERE article_files.file_type = 'File with no author' AND article.status = 5
+                                        $sqlFileDate = "SELECT article_files.date_added, article.title FROM article_files JOIN article ON article_files.article_id = article.article_id JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id WHERE article_files.file_type = 'File with no author name' AND article.status = 5
                                         AND reviewer_assigned.author_id = :author_id AND article.article_id = :article_id";
             
                                         $result = database_run($sqlFileDate, array('author_id' => $userId,
@@ -402,7 +403,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                         <div class="keyword1">
                         <ul style="display: flex;">
                             <?php
-                            $sqlKeyword = "SELECT article.keyword FROM article JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id AND article.status = 4 WHERE reviewer_assigned.author_id = :author_id AND article.article_id = :article_id";
+                            $sqlKeyword = "SELECT article.keyword FROM article JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id AND article.status = 5 WHERE reviewer_assigned.author_id = :author_id AND article.article_id = :article_id";
                             
                             $result = database_run($sqlKeyword, array('author_id' => $userId,
                             'article_id' => $articleId));
