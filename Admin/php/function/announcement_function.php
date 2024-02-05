@@ -61,11 +61,12 @@ function fetchUserData() {
 function addRecord()
 {
     try {
+        $annoucementtype = $_POST['annoucementtype'];
         $title = $_POST['title'];
         $announcement_description = $_POST['announcement_description'];
         $announcement = $_POST['announcement'];
         $expired_date = $_POST['expired_date'];
-
+    
         $documentRoot = $_SERVER['DOCUMENT_ROOT'];
         $uploadPath = $documentRoot . '/Files/announcement-image/';
     
@@ -91,23 +92,20 @@ function addRecord()
             }
         }
     
-        $query = "INSERT INTO announcement (title, announcement_description, announcement, upload_image, expired_date) 
-                  VALUES (?, ?, ?, ?, ?)";
+        $query = "INSERT INTO announcement (title, annoucementtype, announcement_description, announcement, upload_image, expired_date) 
+                  VALUES (?, ?, ?, ?, ?, ?)";
     
-    $result = execute_query($query, [$title, $announcement_description, $announcement, $imageName, $expired_date]);
+        $result = execute_query($query, [$title, $annoucementtype, $announcement_description, $announcement, $imageName, $expired_date], true);
     
-        if ($result !== false) {
+        if ($result !== true) {
             echo json_encode(['status' => true, 'message' => 'Record added successfully']);
         } else {
             throw new Exception('Failed to add record');
         }
     } catch (Exception $e) {
-        // If an exception occurs
         echo json_encode(['status' => false, 'message' => $e->getMessage()]);
-        // Log the error to a file or error reporting system
         error_log($e->getMessage(), 0);
     }
-    
 }
                 
 function updateAnnouncementData() {

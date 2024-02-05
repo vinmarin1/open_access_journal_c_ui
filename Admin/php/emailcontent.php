@@ -110,7 +110,7 @@ $copyedited_files = get_copyedited_files($aid);
                                                         <?php else: ?>
                                                             <?php foreach ($submission_files as $submission_filesval): ?>
                                                                 <?php
-                                                                $isChecked = ($submission_filesval->file_type === 'File with no author') ? 'checked' : '';
+                                                                $isChecked = ($submission_filesval->file_type === 'File with no author name') ? 'checked' : '';
                                                                 ?>
                                                                 <tr>
                                                                     <td width="5%"><input class="form-check-input submission-checkbox" type="checkbox" value="" id="defaultCheck1" data-article-files-id="<?php echo $submission_filesval->article_files_id; ?>" <?php echo $isChecked; ?> /></td>
@@ -153,7 +153,7 @@ $copyedited_files = get_copyedited_files($aid);
                                                                 </tr>
                                                             <?php else: ?>
                                                                 <?php foreach ($submission_files as $submission_filesval): ?>
-                                                                    <?php if ($submission_filesval->file_type !== 'File with no author'): ?>
+                                                                    <?php if ($submission_filesval->file_type !== 'File with no author name'): ?>
                                                                         <tr>
                                                                             <td width="5%"><input class="form-check-input review-checkbox" type="checkbox" value="" id="defaultCheck1" data-article-files-id="<?php echo $submission_filesval->article_files_id; ?>"/></td>
                                                                             <td width="5%"><?php echo $submission_filesval->article_files_id; ?></td>

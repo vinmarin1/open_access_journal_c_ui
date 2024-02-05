@@ -324,7 +324,9 @@ table {
                                                                     <p>Submission accepted for copyediting.</p>
                                                                 </div>
                                                             <?php else: ?>
-                                                                <a href="javascript:void(0);" onclick="sendForRevision()" class="btn btn-outline-primary btn-lg btn-block mb-2" style="width: 100%;">Request Revision</a>
+                                                                <?php if ($article_data[0]->round != 'Round 3'): ?>
+                                                                    <a href="javascript:void(0);" onclick="sendForRevision()" class="btn btn-outline-primary btn-lg btn-block mb-2" style="width: 100%;">Request Revision</a>
+                                                                <?php endif; ?>
                                                                 <a href="javascript:void(0);" onclick="sendForCopyediting()" class="btn btn-primary btn-lg btn-block mb-2" style="width: 100%;">Accept Submission</a>
                                                                 <!-- <a href="javascript:void(0);" onclick="sendForDecline()" class="btn btn-outline-danger btn-lg btn-block" style="width: 100%;">Decline Submission</a> -->
                                                             <?php endif; ?>
@@ -1126,7 +1128,11 @@ table {
                                             ?>
                                             <?php if (!$hideRow): ?>
                                                 <tr>
-                                                    <td width="5%"><?php echo $userlistval->author_id; ?></td>
+                                                <td width="5%">
+                                                        <a href="javascript:void(0);" onclick="openPageCentered('../../PHP/reviewerdashboard.php?author_id=<?php echo $userlistval->author_id; ?>')">
+                                                            <?php echo $userlistval->author_id; ?>
+                                                        </a>
+                                                    </td>
                                                     <td width="80%"><?php echo $userlistval->last_name; ?>, <?php echo $userlistval->first_name; ?></td>
                                                     <td width="15%"><button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 160px;" onclick="selectReviewer(<?php echo $userlistval->author_id; ?>, '<?php echo $userlistval->first_name; ?>', '<?php echo $userlistval->last_name; ?>', '<?php echo $userlistval->email_verified; ?>')" data-bs-toggle="modal">Select Reviewer</button></td>
                                                 </tr>
@@ -1503,6 +1509,19 @@ table {
             document.getElementById('discussionType').innerText = 'Add ' + discussionType + ' Discussion';
 
             $('#addDiscussionModal').modal('show');
+        }
+
+        function openPageCentered(url, width = 1200, height = 800) {
+            var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
+            var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;
+
+            var screenWidth = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+            var screenHeight = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+
+            var left = (screenWidth / 2) - (width / 2) + dualScreenLeft;
+            var top = (screenHeight / 2) - (height / 2) + dualScreenTop;
+
+            window.open(url, '_blank', 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + width + ', height=' + height + ', top=' + top + ', left=' + left);
         }
 
     </script>

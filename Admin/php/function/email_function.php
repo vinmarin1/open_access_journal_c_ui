@@ -133,11 +133,11 @@ if (!function_exists('get_email_content')) {
                     addLogs($article_id, $fromuser, 'Article send for Scheduled');
                     echo "<script>alert('Send to Scheduled successfully.');</script>";
                 } elseif ($id == 7) {
-                    updateArticleStatus($article_id, 0);
+                    updateArticleStatusArchive($article_id, 0);
                     addLogs($article_id, $fromuser, 'Article move to Archive');
                     echo "<script>alert('Article move to archive successfully.');</script>";
                 } elseif ($id == 8) {
-                    updateArticleStatus($article_id, 1);
+                    updateArticleStatusPublished($article_id, 1);
                     addLogs($article_id, $fromuser, 'Article Published');
                     echo "<script>alert('Article published successfully.');</script>";
             } else {
@@ -149,7 +149,40 @@ if (!function_exists('get_email_content')) {
         }
     }   
     
-
+    function updateArticleStatusArchive($article_id, $status) {
+        $query = "UPDATE article 
+                  SET status = ?, archive_date = NOW()
+                  WHERE article_id = ?";
+    
+        $pdo = connect_to_database();
+    
+        $stm = $pdo->prepare($query);
+        $check = $stm->execute([$status, $article_id]);
+    
+        if ($check !== false) {
+            echo "<script>alert('Article Status updated successfully');</script>";
+        } else {
+            echo "<script>alert('Failed to update status data');</script>";
+        }
+    }
+    
+    function updateArticleStatusPublished($article_id, $status) {
+        $query = "UPDATE article 
+                  SET status = ?, publication_date = NOW()
+                  WHERE article_id = ?";
+    
+        $pdo = connect_to_database();
+    
+        $stm = $pdo->prepare($query);
+        $check = $stm->execute([$status, $article_id]);
+    
+        if ($check !== false) {
+            echo "<script>alert('Article Status updated successfully');</script>";
+        } else {
+            echo "<script>alert('Failed to update status data');</script>";
+        }
+    }
+    
     function updateArticleStatus($article_id, $status) {
     
         $query = "UPDATE article 
