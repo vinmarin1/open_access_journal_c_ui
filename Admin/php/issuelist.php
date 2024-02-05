@@ -27,6 +27,7 @@ include 'function/issue_function.php';
                 <table class="table table-striped" id="DataTable">
                     <thead>
                         <tr>
+                            <th>ISSN</th>
                             <th>Issues</th>
                             <th>Volume</th>
                             <th>Number</th>
@@ -38,13 +39,14 @@ include 'function/issue_function.php';
                 <tbody>
                 <?php foreach ($issueslist as $issueslistval): ?>
                             <tr>
+                                <td width="5%"><?php echo  $issueslistval->issn; ?></td>
                                 <td width="5%"><?php echo  $issueslistval->issues_id; ?></td>
                                 <td width="5%"><?php echo  $issueslistval->volume; ?></td>
                                 <td width="5%"><?php echo  $issueslistval->number; ?></td>
                                 <td width="5%"><?php echo  $issueslistval->year; ?></td>
                                 <td width="55%"><?php echo  $issueslistval->title; ?></td>
                                 <td width="25%">
-                                    <button type="button" class="btn btn-outline-success" onclick="updateModal(<?php echo $issueslistval->issues_id; ?>)">Update</button>
+                                    <button type="button" class="btn btn-outline-success" onclick="updateModal(<?php echo $issueslistval->id; ?>)">Update</button>
                                     <button type="button" class="btn btn-outline-danger" onclick="archiveIssue(<?php echo $issueslistval->id; ?>, '<?php echo $issueslistval->volume; ?>', '<?php echo $issueslistval->title; ?>')">Archive</button>
                                     <button type="button" class="btn btn-outline-info" onclick="viewAllArticle(<?php echo $issueslistval->issues_id; ?>)">Article</button>
                                   </td>
@@ -91,6 +93,7 @@ include 'function/issue_function.php';
         function addRecord() {
         var form = document.getElementById('addModalForm');
         var formData = new FormData();
+        formData.append('issn', $('#issn').val());
         formData.append('issues', $('#issues').val());
         formData.append('volume', $('#volume').val());
         formData.append('number', $('#number').val());
@@ -132,11 +135,12 @@ include 'function/issue_function.php';
     }
 
     
-    function updateModal(issues_id) {
+    function updateModal(id) {
+        console.log(id);
         $.ajax({
             type: 'POST',
             url: '../php/function/issue_function.php',
-            data: { action: 'fetch', issues_id: issues_id },
+            data: { action: 'fetch', id: id },
             dataType: 'json',
             success: function (response) {
                 console.log('Response from server:', response);
@@ -144,7 +148,7 @@ include 'function/issue_function.php';
                 if (response.status === true && response.data.length > 0) {
                     const issueData = response.data[0];
                     console.log('Issue Data:', issueData);
-
+                    $('#xissn').val(issueData.issn);
                     $('#xissues_id').val(issueData.issues_id);
                     $('#xvolume').val(issueData.volume);
                     $('#xnumber').val(issueData.number);
@@ -167,8 +171,10 @@ include 'function/issue_function.php';
         $('#sloading').toggle();
         console.log('Save button clicked');
         
-            var issues_id = $('#xissues_id').val();
+            var id = $('#xid').val();
             var updatedData = {
+            issn: $('#xissn').val(), 
+            issues_id: $('#xissues_id').val(),    
             volume: $('#xvolume').val(),
             number: $('#xnumber').val(),
             year: $('#xyear').val(),
@@ -182,7 +188,7 @@ include 'function/issue_function.php';
             url: '../php/function/issue_function.php',
             data: {
                 action: 'update',
-                issues_id :issues_id ,
+                id :id ,
                 updated_data: updatedData
             },
             dataType: 'json',
@@ -202,17 +208,17 @@ include 'function/issue_function.php';
         });
     }
     
-    function archiveIssue(issues_id, volume, title) {
+    function archiveIssue(id, volume, title) {
         $('#archiveModal').modal('show');
         $('#archiveModalTitle').text('Archive Issue');
-        $('#issuesInfo').html('<strong>volume:</strong> ' + volume + ' <br><strong>Title:</strong> ' + title + '<br><strong>ID:</strong> ' + issues_id);
+        $('#issuesInfo').html('<strong>volume:</strong> ' + volume + ' <br><strong>Title:</strong> ' + title + '<br><strong>ID:</strong> ' + id);
 
         $('#archiveModalSave').off().on('click', function () {
             $('#sloading').toggle();
             $.ajax({
                 url: "../php/function/issue_function.php",
                 method: "POST",
-                data: { action: "archive", issues_id: issues_id},
+                data: { action: "archive", id: id},
                 success: function (data) {
                     var response = JSON.parse(data);
 
@@ -247,6 +253,12 @@ include 'function/issue_function.php';
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                <div class="row mb-2">
+                        <div class="col-md-12 mb-2">
+                            <label for="xissn" class="form-label">ISSN</label>
+                            <input type="number" id="issn" class="form-control" placeholder="ISSN" required/>
+                        </div>
+                    </div>
                 <div class="row mb-2">
                         <div class="col-md-12 mb-2">
                             <label for="xissues" class="form-label">Issues</label>
@@ -315,7 +327,19 @@ include 'function/issue_function.php';
                 <div class="modal-body">
                     <div class="row mb-2">
                         <div class="col-md-12 mb-2">
-                            <input type="hidden" id="xissues_id" class="form-control"/>
+                            <input type="hidden" id="xid" class="form-control"/>
+                            <label for="xissn" class="form-label">ISSN</label>
+                            <input type="number" id="xissn" class="form-control" placeholder="ISSN" />
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-12 mb-2">
+                            <label for="xissues_id" class="form-label">Issues Number</label>
+                            <input type="number" id="xissues_id" class="form-control" placeholder="issues_id" />
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-12 mb-2">
                             <label for="xvolume" class="form-label">Volume</label>
                             <input type="number" id="xvolume" class="form-control" placeholder="volume" />
                         </div>

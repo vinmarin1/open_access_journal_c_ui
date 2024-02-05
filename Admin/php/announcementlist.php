@@ -44,7 +44,7 @@ $announcementlist = get_announcement_list();
                                     <td width="10%"><?php echo  $announcementlistval->upload_image; ?></td>
                                     <td width="10%">
                                 <button type="button" class="btn btn-outline-success" onclick="updateModal(<?php echo  $announcementlistval->announcement_id; ?>)">Update</button>
-                                <button type="button" class="btn btn-outline-danger" onclick="archiveAnnouncement(<?php echo  $announcementlistval->announcement_id; ?>, '<?php echo $announcementlistval->title; ?>', '<?php echo $announcementlistval->announcement; ?>')">Archive</button>
+                                <button type="button" class="btn btn-outline-danger" onclick="archiveAnnouncement(<?php echo  $announcementlistval->announcement_id; ?>, '<?php echo $announcementlistval->title; ?>', '<?php echo $announcementlistval->announcement_description; ?>')">Archive</button>
                                   </td>
                             </tr>
                         <?php endforeach; ?>
@@ -179,9 +179,9 @@ $announcementlist = get_announcement_list();
         });
     }
     
-    function archiveIssue(announcement_id, title, announcement_description, announcement) {
+    function archiveAnnouncement(announcement_id, title, announcement_description) {
         $('#archiveModal').modal('show');
-        $('#archiveModalTitle').text('Archive Issue');
+        $('#archiveModalTitle').text('Archive Announcement');
         $('#announcementInfo').html('<strong>title:</strong> ' + title + ' <br><strong>announcement_description:</strong> ' + announcement_description + '<br><strong>ID:</strong> ' + announcement_id);
 
         $('#archiveModalSave').off().on('click', function () {
