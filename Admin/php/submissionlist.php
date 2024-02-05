@@ -77,10 +77,10 @@ $incomplete_articles = get_article_list($cid);
                                     $statusNumber = $incomplete_articlesval->status;
 
                                     $statusInfo = [
-                                        0 => ['label' => 'Archived', 'class' => 'label-dark'],
+                                        0 => ['label' => 'Archived', 'class' => 'label-danger'],
                                         1 => ['label' => 'Published', 'class' => 'label-success'],
                                         11 => ['label' => 'Scheduled', 'class' => 'label-info'],
-                                        2 => ['label' => 'Production', 'class' => 'label-info'],
+                                        2 => ['label' => 'Production', 'class' => 'label-dark'],
                                         3 => ['label' => 'Copyediting', 'class' => 'label-primary'],
                                         4 => ['label' => 'Review', 'class' => 'label-warning'],
                                         5 => ['label' => 'Pending', 'class' => 'label-secondary'],

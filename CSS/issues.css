@@ -40,10 +40,13 @@ p{
     white-space: pre-line;
 }
 
+#journal {
+    padding-top: 4rem;
+}
 .journal-title{
     /* border: 1px red solid; */
     width: 18%;
-    margin-top: 70px;
+    /* margin-top: 70px; */
     margin-left: 100px;
     display: inline-block;
     vertical-align: top;
@@ -72,7 +75,7 @@ p{
     height: 100%;
     display: inline-block;
     margin-left: 100px;
-    margin-top: 70px;
+    /* margin-top: 70px; */
 }
 
 .journal-details h5{

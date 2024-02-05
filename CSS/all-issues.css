@@ -1,25 +1,3 @@
-.content-over {
-    position: relative;
-    width: 100%;
-    height: 30vh;
-    background-image: url(../images/qcu-bg.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    padding-top: 70px;
-    padding-left: 150px;
-    
-}
-
-.content-over::before {
-content: "";
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background-color: rgba(53, 68, 74, 0.7);
-}
 
 .content-over p, .content-over h2 {
 color: white; 
@@ -47,13 +25,15 @@ p{
     
 }
 
-.journal-title{
+.issue-title{
     /* border: 1px red solid; */
-    width: 35%;
+    width: 20em;
+    min-width: 20em;
     margin-left: 0px;
-    padding: 70px 70px 10px 20px;
+    /* padding: 70px 70px 10px 20px; */
+    /* padding: 0.5em; */
     vertical-align: top;
-    border: 1px solid #ccc;
+    /* border: 1px solid #ccc; */
 }
 
 .pic-border{
@@ -63,21 +43,22 @@ p{
 }
 
 .pic-border img{
-    width: 94%;
+    width: 50%;
+    min-width:100px;
     height: 100%;
     margin: 10px 10px 10px 10px;
 }
 
-.journal-details {
+.issue-details {
     padding: 20px 0px 0px 10px;
     
 }
 
-.journal-details h4 {
+.issue-details h4 {
     color: #285581;
 }
 
-.journal-details p {
+.issue-details p {
     margin-bottom: 10px;
     color: #959595;
 }

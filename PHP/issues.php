@@ -19,17 +19,17 @@
 </nav>
 
 <div class="main-container">
-    <div class="content-over">
+    <!-- <div class="content-over">
         <div class="cover-content">
             <p>Home / Browse / Articles / The Gavel</p>
-            <h2>The Gavel</h2>
+            <h2 >The Gavel</h2>
         </div>
-    </div>
+    </div> -->
 
     <section id="journals">
         <div class="container-fluid pub-container mb-3" id="journal">
             <div class="journal-title">
-                <h3>QCU Gavel: Journal of Social Sciences</h3>
+                <h3 id="journal_title"></h3>
                 <!-- <div class="pic-border">
                     <img class="img-fluid w-25" src="../Files/journal-image/The Gavel.png" alt="">
                 </div> -->
@@ -37,7 +37,7 @@
 
             <div class="journal-details">
                 <h5>About</h5>
-                <p style="text-align: justify;">QCU Gavel: Journal of Social Sciences is a peer-reviewed journal, published twice a year in print and online. The journal aims to appeal to an interdisciplinary audience, welcoming submissions from various subjects, including accountancy, business administration, criminology, public administration, political science, social policy, social work, sociology, local governance, cultural and gender studies, and more. The journal employs a double-blind peer review procedure to present the most relevant, current, and developing work in the discipline. QCU Gavel aspires to be a vibrant forum for social science research and academic discussion.</p>
+                <p style="text-align: justify;" id="journal_details"></p>
                 <div class="other-info">
                     <!-- <div class="sub-area">
                         <h5><b>Subject Areas</b></h5>
