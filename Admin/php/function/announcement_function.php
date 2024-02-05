@@ -95,7 +95,7 @@ function addRecord()
         $query = "INSERT INTO announcement (title, annoucementtype, announcement_description, announcement, upload_image, expired_date) 
                   VALUES (?, ?, ?, ?, ?, ?)";
     
-        $result = execute_query($query, [$title, $annoucementtype, $announcement_description, $announcement, $imageName, $expired_date]);
+        $result = execute_query($query, [$title, $annoucementtype, $announcement_description, $announcement, $imageName, $expired_date], true);
     
         if ($result !== true) {
             echo json_encode(['status' => true, 'message' => 'Record added successfully']);

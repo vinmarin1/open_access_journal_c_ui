@@ -77,6 +77,7 @@ $journallist = get_journal_list();
         formData.append('editorial', $('#editorial').val());
         formData.append('description', $('#description').val());
         formData.append('journalimage', $('#journalimage')[0].files[0]);
+        formData.append('subject_areas', $('#subject_areas').val());
         formData.append('action', 'add');
         
         if (form.checkValidity()) {
@@ -124,6 +125,7 @@ $journallist = get_journal_list();
                     $('#xjournal_title').val(journalData.journal_title);
                     $('#xeditorial').val(journalData.editorial);
                     $('#xdescription').val(journalData.description);
+                    $('#xsubject_areas').val(journalData.subject_areas);
 
                     $('#updateModal').modal('show');
                 }
@@ -145,6 +147,7 @@ $journallist = get_journal_list();
             journal_title: $('#xjournal_title').val(),
             editorial: $('#xeditorial').val(),
             description: $('#xdescription').val(),
+            subject_areas: $('#xsubject_areas').val(),
         };
 
         $.ajax({
@@ -241,6 +244,12 @@ $journallist = get_journal_list();
                         </div>
                     </div>   
                     <div class="row mb-2">
+                        <div class="col-md-12 mb-2">
+                            <label for="xsubject_areas" class="form-label">Subject Areas</label>
+                            <input type="text" id="subject_areas" class="form-control" placeholder="Subject Areas" required/>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
                         <div class="col-md-12 mb-2" id="xjournalimage">
                             <label for="formFileAddFiles" class="form-label">Upload Image</label>
                             <input class="form-control" type="file" id="journalimage" />
@@ -288,6 +297,12 @@ $journallist = get_journal_list();
                         <div class="col-md-12">
                                 <label for="xdescription" class="form-label">Description</label>
                                 <textarea class="form-control" id="xdescription" rows="9"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                        <div class="col-md-12">
+                                <label for="xsubject_areas" class="form-label">Subject Areas</label>
+                                <input type="text" id="xsubject_areas" class="form-control" placeholder="Subject Areas" />
                             </div>
                         </div>
                 </div>

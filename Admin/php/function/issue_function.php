@@ -124,7 +124,7 @@ if (!function_exists('get_issues_list')) {
                         $query = "INSERT INTO issues (issues_id, volume, number, year, title, description, status ,cover_image, url_path) 
                                   VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)";
                 
-                        $result = execute_query($query, [$issues, $volume, $number, $year, $title, $description, $status,$cover_image, $url_path]);
+                        $result = execute_query($query, [$issues, $volume, $number, $year, $title, $description, $status,$cover_image, $url_path], true);
                 
                         if ($result !== false) {
                             echo json_encode(['status' => true, 'message' => 'Record added successfully']);

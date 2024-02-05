@@ -98,7 +98,7 @@ $announcementlist = get_announcement_list();
                         alert("Record added successfully");
                         location.reload();
                     } else {
-                        alert("Record added successfully");
+                        alert('Failed to add record');
                         location.reload();
                     }
                 },
@@ -170,7 +170,7 @@ $announcementlist = get_announcement_list();
                     $('#sloading').toggle();
                     alert("Record updated successfully");
                     $('#updateModal').modal('hide');
-                    location.reload();
+                    location.reload();  
                 } else {
                     console.error('Error updating announcement data:', response.message);
                     alert("Failed to update record. Please try again.");
@@ -287,7 +287,7 @@ $announcementlist = get_announcement_list();
                     <div class="row mb-2">
                         <div class="col-md-12 mb-2">
                             <input type="hidden" id="xannouncement_id" class="form-control"/>
-                            <label for="titlee" class="form-label">Title</label>
+                            <label for="title" class="form-label">Title</label>
                             <input type="text" id="xtitle" class="form-control" placeholder="title" />
                         </div>
                     </div>
@@ -300,7 +300,7 @@ $announcementlist = get_announcement_list();
                     <div class="row mb-2">
                         <div class="col-md-12 mb-2">
                             <label for="announcement" class="form-label">Announcement</label>
-                            <input type="text" id="announcement" class="form-control" placeholder="announcement" />
+                            <input type="text" id="xannouncement" class="form-control" placeholder="announcement" />
                         </div>
                     </div>
                 </div>
