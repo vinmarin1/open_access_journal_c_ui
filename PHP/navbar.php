@@ -126,7 +126,7 @@ require 'dbcon.php';
 
                     $author_id = $_SESSION['id'];
 
-                    $sqlNotif = "SELECT article.article_id, article.title FROM article JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id WHERE reviewer_assigned.author_id = :author_id AND article.status = 5 AND reviewer_assigned.accept = 0 AND reviewer_assigned.answer = 0 ORDER BY reviewer_assigned.date_issued DESC
+                    $sqlNotif = "SELECT article.article_id, article.title FROM article JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id WHERE reviewer_assigned.author_id = :author_id AND article.status = 4 AND reviewer_assigned.accept = 0 AND reviewer_assigned.answer = 0 ORDER BY reviewer_assigned.date_issued DESC
                     LIMIT 1";
                     $sqlNotifRun = database_run($sqlNotif, array(':author_id' => $author_id));
                     
