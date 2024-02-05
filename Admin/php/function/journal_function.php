@@ -62,6 +62,7 @@ include 'dbcon.php';
             $journal_title = $_POST['journal_title'];
             $editorial = $_POST['editorial'];
             $description = $_POST['description'];
+            $subject_areas = $_POST['subject_areas'];
             $status = 1;
     
             $documentRoot = $_SERVER['DOCUMENT_ROOT'];
@@ -87,10 +88,10 @@ include 'dbcon.php';
                     throw new Exception('Invalid file type.');
                 }
     
-                $query = "INSERT INTO journal (journal, journal_title, editorial, description, status, image) 
-                          VALUES (?, ?, ?, ?, ?, ?)";
+                $query = "INSERT INTO journal (journal, journal_title, editorial, description, status, image, subject_areas) 
+                          VALUES (?, ?, ?, ?, ?, ?, ?)";
     
-                $result = execute_query($query, [$journal, $journal_title, $editorial, $description, $status, $imageName], true);
+                $result = execute_query($query, [$journal, $journal_title, $editorial, $description, $status, $imageName, $subject_areas], true);
     
                 if ($result !== false) {
                     echo json_encode(['status' => true, 'message' => 'Record added successfully']);
@@ -111,7 +112,7 @@ include 'dbcon.php';
         $updatedData = $_POST['updated_data'];
     
         $query = "UPDATE journal 
-                    SET journal = ?, journal_title = ?, editorial = ?, description = ?
+                    SET journal = ?, journal_title = ?, editorial = ?, description = ?, subject_areas = ?
                     WHERE journal_id = ?";
         
         $pdo = connect_to_database();
@@ -122,6 +123,7 @@ include 'dbcon.php';
             $updatedData['journal_title'],
             $updatedData['editorial'],
             $updatedData['description'],
+            $updatedData['subject_areas'],
             $journalId
 
         ]);

@@ -116,7 +116,7 @@ include 'function/issue_function.php';
                         alert("Record added successfully");
                         location.reload();
                     } else {
-                        alert("Record added successfully");
+                        alert('Failed to add record');
                         location.reload();
                     }
                 },
