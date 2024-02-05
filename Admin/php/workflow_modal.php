@@ -454,7 +454,7 @@ $issuelist = get_issues_list();
                                             </tr>
                                         <?php else: ?>
                                             <?php foreach ($submission_files as $submission_filesval): ?>
-                                                <?php if ($submission_filesval->file_type !== 'File with no author'): ?>
+                                                <?php if ($submission_filesval->file_type !== 'File with no author name'): ?>
                                                 <?php
                                                     $isReviewEqualToOne = ($submission_filesval->copyediting == 1);
                                                 ?>
