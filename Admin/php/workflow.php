@@ -324,7 +324,9 @@ table {
                                                                     <p>Submission accepted for copyediting.</p>
                                                                 </div>
                                                             <?php else: ?>
-                                                                <a href="javascript:void(0);" onclick="sendForRevision()" class="btn btn-outline-primary btn-lg btn-block mb-2" style="width: 100%;">Request Revision</a>
+                                                                <?php if ($article_data[0]->round != 'Round 3'): ?>
+                                                                    <a href="javascript:void(0);" onclick="sendForRevision()" class="btn btn-outline-primary btn-lg btn-block mb-2" style="width: 100%;">Request Revision</a>
+                                                                <?php endif; ?>
                                                                 <a href="javascript:void(0);" onclick="sendForCopyediting()" class="btn btn-primary btn-lg btn-block mb-2" style="width: 100%;">Accept Submission</a>
                                                                 <!-- <a href="javascript:void(0);" onclick="sendForDecline()" class="btn btn-outline-danger btn-lg btn-block" style="width: 100%;">Decline Submission</a> -->
                                                             <?php endif; ?>

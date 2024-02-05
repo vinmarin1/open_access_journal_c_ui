@@ -121,17 +121,20 @@ function updateStatus($articleId) {
 
     if ($pdo) {
         try {
-            $query = "UPDATE article SET status = 1 WHERE article_id = :articleId";
+            $query = "UPDATE article SET status = 1, publication_date = NOW() WHERE article_id = :articleId";
 
             $stmt = $pdo->prepare($query);
             $stmt->bindParam(':articleId', $articleId, PDO::PARAM_INT);
             $stmt->execute();
 
+            echo "<script>alert('Article Status updated successfully');</script>";
         } catch (PDOException $e) {
+            echo "<script>alert('Failed to update status data');</script>";
             echo "Error: " . $e->getMessage();
         }
     }
 }
+
 
 
 ?>
