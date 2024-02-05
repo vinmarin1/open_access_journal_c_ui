@@ -71,9 +71,9 @@ if (!function_exists('get_issues_list')) {
      
                 function fetchUserData()
                 {
-                    $issues_id = $_POST['issues_id'];
+                    $id = $_POST['id'];
                 
-                    $result = execute_query("SELECT * FROM issues WHERE issues_id = ?", [$issues_id]);
+                    $result = execute_query("SELECT * FROM issues WHERE id = ?", [$id]);
                 
                     header('Content-Type: application/json');
                 
@@ -87,6 +87,7 @@ if (!function_exists('get_issues_list')) {
                 function addRecord()
                 {
                     try {
+                        $issn = $_POST['issn'];
                         $issues = $_POST['issues'];
                         $volume = $_POST['volume'];
                         $number = $_POST['number'];
@@ -121,10 +122,10 @@ if (!function_exists('get_issues_list')) {
                             }
                         }
                     
-                        $query = "INSERT INTO issues (issues_id, volume, number, year, title, description, status ,cover_image, url_path) 
-                                  VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)";
+                        $query = "INSERT INTO issues (issn, issues_id, volume, number, year, title, description, status ,cover_image, url_path) 
+                                  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,? )";
                 
-                        $result = execute_query($query, [$issues, $volume, $number, $year, $title, $description, $status,$cover_image, $url_path], true);
+                        $result = execute_query($query, [$issn, $issues, $volume, $number, $year, $title, $description, $status,$cover_image, $url_path], true);
                 
                         if ($result !== false) {
                             echo json_encode(['status' => true, 'message' => 'Record added successfully']);
@@ -143,24 +144,26 @@ if (!function_exists('get_issues_list')) {
         
                 function updateIssueData() {
                     try {
-                        $issues_id = $_POST['issues_id'];
+                        $id = $_POST['id'];
                         $updatedData = $_POST['updated_data'];
                     
                         $query = "UPDATE issues 
-                                    SET volume = ?, number = ?, year = ?, title = ?, description = ?, url_path = ?
-                                    WHERE issues_id = ?";
+                                    SET issn = ?, issues_id = ?, volume = ?, number = ?, year = ?, title = ?, description = ?, url_path = ?
+                                    WHERE id = ?";
                         
                         $pdo = connect_to_database();
                     
                         $stm = $pdo->prepare($query);
                         $check = $stm->execute([
+                            $updatedData['issn'],
+                            $updatedData['issues_id'],
                             $updatedData['volume'],
                             $updatedData['number'],
                             $updatedData['year'],
                             $updatedData['title'],
                             $updatedData['description'],
                             $updatedData['url_path'],
-                            $issues_id
+                            $id
                         ]);
                     
                         header('Content-Type: application/json');
@@ -177,7 +180,7 @@ if (!function_exists('get_issues_list')) {
             
                 function archiveIssue()
                 {
-                    $id = $_POST['issues_id'];
+                    $id = $_POST['id'];
             
                     $query = "UPDATE issues  SET status = 0 WHERE id = ?";
                     $result = execute_query($query, [$id]);
