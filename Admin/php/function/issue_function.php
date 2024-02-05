@@ -64,6 +64,7 @@ if (!function_exists('get_issues_list')) {
                 function addRecord()
                 {
                     try {
+                        $issues = $_POST['issues'];
                         $volume = $_POST['volume'];
                         $number = $_POST['number'];
                         $year = $_POST['year'];
@@ -97,10 +98,10 @@ if (!function_exists('get_issues_list')) {
                             }
                         }
                     
-                        $query = "INSERT INTO issues (volume, number, year, title, description, status ,cover_image, url_path) 
-                                  VALUES (?, ?, ?, ?, ?, ?, ?,?)";
+                        $query = "INSERT INTO issues (issues_id, volume, number, year, title, description, status ,cover_image, url_path) 
+                                  VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)";
                 
-                        $result = execute_query($query, [$volume, $number, $year, $title, $description, $status,$cover_image, $url_path]);
+                        $result = execute_query($query, [$issues, $volume, $number, $year, $title, $description, $status,$cover_image, $url_path]);
                 
                         if ($result !== false) {
                             echo json_encode(['status' => true, 'message' => 'Record added successfully']);
@@ -153,10 +154,10 @@ if (!function_exists('get_issues_list')) {
             
                 function archiveIssue()
                 {
-                    $issues_id = $_POST['issues_id'];
+                    $id = $_POST['issues_id'];
             
-                    $query = "UPDATE issues  SET status = 0 WHERE issues_id = ?";
-                    $result = execute_query($query, [$issues_id]);
+                    $query = "UPDATE issues  SET status = 0 WHERE id = ?";
+                    $result = execute_query($query, [$id]);
                 
                     echo json_encode(['status' => $result !== false, 'message' => $result !== false ? 'Issues archived successfully' : 'Failed to archive issue']);
                 }
