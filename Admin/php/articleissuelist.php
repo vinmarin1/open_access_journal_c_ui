@@ -1,6 +1,6 @@
 <?php
 include 'function/redirect.php';
-include 'function/articleissue_function.php';
+include 'function/issue_function.php';
 $issid = isset($_GET['issid']) ? $_GET['issid'] : 1;
 
 $articlelist = get_article_list($issid);
@@ -20,7 +20,7 @@ $articlelist = get_article_list($issid);
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="d-flex justify-content-between align-items-center py-3">
             <h4 class="py-3 mb-4"><span class="text-muted fw-light">Journal /</span> Article Issue</h4>
-            <button type="button" class="btn btn-primary" onclick="submitCheckedArticles()">Submit Checked Articles</button>
+            <button type="button" class="btn btn-primary" id="submitButton" onclick="submitCheckedArticles()">Submit Checked Articles</button>
         </div>
 
         <div class="card">
@@ -91,20 +91,38 @@ $articlelist = get_article_list($issid);
         }
 
         function submitCheckedArticles() {
+            // Disable the button to prevent multiple submissions
+            $('#submitButton').prop('disabled', true);
+            $('#sloading').show();
+
             var checkedArticles = getCheckedArticles();
             console.log('Checked Articles:', checkedArticles);
-            
-            // $.ajax({
-            //     type: 'POST',
-            //     url: 'your_server_script.php',
-            //     data: { checkedArticles: checkedArticles },
-            //     success: function(response) {
-            //         console.log(response);
-            //     },
-            //     error: function(error) {
-            //         console.error(error);
-            //     }
-            // });
+
+            $.ajax({
+                type: 'POST',
+                url: '../php/function/articleissue_function.php',
+                data: { action: 'send_emails', checkedArticles: checkedArticles },
+                dataType: 'json',
+                success: function(response) {
+                    console.log('Response:', response);
+
+                    if (response.status) {
+                        alert("Emails sent successfully");
+                        location.reload();
+                    } else {
+                        alert("Failed to send emails");
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                    alert("Error in AJAX request");
+                },
+                complete: function() {
+                    // Enable the button and hide the loading indicator
+                    $('#submitButton').prop('disabled', false);
+                    $('#sloading').hide();
+                }
+            });
         }
 
         function getCheckedArticles() {
