@@ -368,7 +368,7 @@ function createCloudConvertJob(file, format) {
     tasks: {
       "import-1": {
         operation: "import/url",
-        url: `https://openaccessjournalcui-production.up.railway.app/Files/submitted-article/${file}`,
+        url: `https://qcuj.online/Files/final-file/${file}`,
         filename: file,
       },
       "task-1": {

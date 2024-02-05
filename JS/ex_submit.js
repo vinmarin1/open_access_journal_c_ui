@@ -1,3 +1,11 @@
+document.addEventListener('keydown', function(event) {
+  // Check if the pressed key is Enter (key code 13)
+  if (event.key === 'Enter') {
+      // Prevent the default action (e.g., form submission)
+      event.preventDefault();
+  }
+});
+
 document.addEventListener('DOMContentLoaded', function () {
   var tabButtons = document.querySelectorAll('.nav-link');
   var tabContent = document.querySelectorAll('.tab-pane input');
@@ -235,7 +243,7 @@ document.addEventListener('DOMContentLoaded', function () {
   titleInput.addEventListener('input', function () {
       const wordCount = titleInput.value.trim().split(/\s+/).length;
 
-      if (wordCount < 10 || wordCount > 20) {
+      if (wordCount < 5 || wordCount > 100) {
           titleValidation.style.display = 'block';
       } else {
           titleValidation.style.display = 'none';
@@ -247,7 +255,7 @@ document.addEventListener('DOMContentLoaded', function () {
   editor.addEventListener('input', function () {
       const wordCount = editor.value.trim().split(/\s+/).length;
 
-      if (wordCount < 50 || wordCount > 200) {
+      if (wordCount < 10 || wordCount > 250) {
           abstractValidation.style.display = 'block';
       } else {
           abstractValidation.style.display = 'none';

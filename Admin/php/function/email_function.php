@@ -55,7 +55,7 @@ if (!function_exists('get_email_content')) {
             $mail->SMTPSecure = 'ssl';
             $mail->Port = 465;
 
-            $recipients = explode(', ', $_POST['hiddenEmail']);
+            $recipients = !empty($_POST['hiddenEmail']) ? explode(', ', $_POST['hiddenEmail']) : ['qcujournal@gmail.com'];
 
             $mail->setFrom('qcujournal@gmail.com', 'QCU Journal');
 
@@ -101,11 +101,16 @@ if (!function_exists('get_email_content')) {
                     addLogs($article_id, $fromuser, 'Decline for Submission');
                     echo "<script>alert('Decline submission successfully.');</script>";
                 } elseif ($id == 3) {
-                    updateCopyeditingFiles(1, $articleFilesId1);
-                    updateCopyeditingRevisionFiles(1, $revisionFilesId);
                     updateArticleStatus($article_id, 3);
                     addLogs($article_id, $fromuser, 'Send to Copyediting');
-                    echo "<script>alert('Send to copyediting successfully.');</script>";
+                    
+                    if ($articleFilesId1 != '') {
+                        updateCopyeditingFiles(1, $articleFilesId1);
+                        updateCopyeditingRevisionFiles(1, $revisionFilesId);
+                    } elseif ($revisionFilesId != '') {
+                        updateCopyeditingRevisionFiles(1, $revisionFilesId);
+                    }
+                    echo "<script>alert('Send to copyediting successfully.');</script>";                    
                 } elseif ($id == 4) {
                     if ($round == 'Round 2') {
                         updateRound($article_id, 'Round 3');
@@ -131,6 +136,10 @@ if (!function_exists('get_email_content')) {
                     updateArticleStatus($article_id, 0);
                     addLogs($article_id, $fromuser, 'Article move to Archive');
                     echo "<script>alert('Article move to archive successfully.');</script>";
+                } elseif ($id == 8) {
+                    updateArticleStatus($article_id, 1);
+                    addLogs($article_id, $fromuser, 'Article Published');
+                    echo "<script>alert('Article published successfully.');</script>";
             } else {
                 echo 'Error sending email: ' . $mail->ErrorInfo;
             }

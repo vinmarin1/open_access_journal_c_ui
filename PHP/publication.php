@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QCU PUBLICATION | QCU JOURNALS</title>
     <link rel="stylesheet" href="../CSS/publication.css">
+    <link rel="stylesheet" href="../CSS/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
@@ -25,8 +26,9 @@
             <h2>QCU Journals</h2>
         </div>
     </div>
-    <div id="journals">
-           </div>
+    
+    <section id="journals">
+    </section>
   
 </div>
 

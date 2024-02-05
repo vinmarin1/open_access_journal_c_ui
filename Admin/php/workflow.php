@@ -92,13 +92,14 @@ table {
                                 $status = $article_data[0]->status;
 
                                 if ($status == 1) {
-                                    echo '<a href="javascript:void(0);" onclick="sendForArchive()" class="btn btn-danger btn-lg btn-block" style="width: 200px; height: 40px;">Archive Article</a>';
-                                } else if ($status == 0){
-                                    echo '<a href="javascript:void(0);" onclick="" class="btn btn-primary btn-lg btn-block" style="width: 200px; height: 40px;">Move to Published</a>';
+                                    echo '<a href="javascript:void(0);" onclick="sendForArchive()" class="btn btn-danger btn-lg btn-block" style="width: 200px; height: 40px; margin-right: 5px;">Archive Article</a>';
+                                } else if ($status == 11){
+                                    echo '<a href="javascript:void(0);" onclick="sendForPublished()" class="btn btn-success btn-lg btn-block" style="width: 100px; height: 40px; margin-right: 5px;">Published</a>';
+                                    echo '<a href="javascript:void(0);" onclick="sendForDecline()" class="btn btn-danger btn-lg btn-block" style="width: 100px; height: 40px;">Decline</a>';
+                                }else {
+                                    echo '<a href="javascript:void(0);" onclick="sendForDecline()" class="btn btn-danger btn-lg btn-block" style="width: 100px; height: 40px;">Decline</a>';
                                 }
-                                else {
-                                    echo '<a href="javascript:void(0);" onclick="sendForDecline()" class="btn btn-danger btn-lg btn-block" style="width: 200px; height: 40px;">Decline Submission</a>';
-                                }
+
                                 ?>
                             </li>
                         </ul>
@@ -1403,6 +1404,18 @@ table {
 
             setTimeout(function () {
                 window.location.href = "../php/emailcontent.php?aid=<?php echo $article_data[0]->article_id; ?>&emc=7";
+            }, 2000);
+
+            window.onload = function () {
+                $('#sloading').hide();
+            };
+        }
+
+        function sendForPublished() {
+            $('#sloading').show();
+
+            setTimeout(function () {
+                window.location.href = "../php/emailcontent.php?aid=<?php echo $article_data[0]->article_id; ?>&emc=8";
             }, 2000);
 
             window.onload = function () {

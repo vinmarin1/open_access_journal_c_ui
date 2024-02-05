@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const wordsTitle = titleParagraph.innerText.split(/\s+/);
     const wordCountTitle = wordsTitle.length;
 
-    if (wordCountTitle < 10 || wordCountTitle > 20) {
+    if (wordCountTitle < 5 || wordCountTitle > 100) {
       titleValidation.style.display = 'inline-block';
       return false;
     } else {
@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const wordsAbstract = abstractParagraph.innerText.split(/\s+/);
     const wordCountAbstract = wordsAbstract.length;
 
-    if (wordCountAbstract < 50 || wordCountAbstract > 200) {
+    if (wordCountAbstract <10 || wordCountAbstract > 250) {
       abstractValidation.style.display = 'inline-block';
       return false;
     } else {

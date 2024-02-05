@@ -19,27 +19,27 @@
 </nav>
 
 <div class="main-container">
-    <div class="content-over">
+    <!-- <div class="content-over">
         <div class="cover-content">
             <p>Home / Browse / Articles / The Gavel</p>
-            <h2>The Gavel</h2>
+            <h2 >The Gavel</h2>
         </div>
-    </div>
+    </div> -->
 
-    <div id="journals">
+    <section id="journals">
         <div class="container-fluid pub-container mb-3" id="journal">
             <div class="journal-title">
-                <h3>QCU Gavel: Journal of Social Sciences</h3>
-                <div class="pic-border">
-                    <img class="img-fluid" src="../Files/journal-image/The Gavel.png" alt="">
-                </div>
+                <h3 id="journal_title"></h3>
+                <!-- <div class="pic-border">
+                    <img class="img-fluid w-25" src="../Files/journal-image/The Gavel.png" alt="">
+                </div> -->
             </div>
 
             <div class="journal-details">
                 <h5>About</h5>
-                <p style="text-align: justify;">QCU Gavel: Journal of Social Sciences is a peer-reviewed journal, published twice a year in print and online. The journal aims to appeal to an interdisciplinary audience, welcoming submissions from various subjects, including accountancy, business administration, criminology, public administration, political science, social policy, social work, sociology, local governance, cultural and gender studies, and more. The journal employs a double-blind peer review procedure to present the most relevant, current, and developing work in the discipline. QCU Gavel aspires to be a vibrant forum for social science research and academic discussion.</p>
+                <p style="text-align: justify;" id="journal_details"></p>
                 <div class="other-info">
-                    <div class="sub-area">
+                    <!-- <div class="sub-area">
                         <h5><b>Subject Areas</b></h5>
                         <ul>
                             <li>Information Technology</li>
@@ -52,65 +52,35 @@
                             <li>Power Generation</li>
                             <li>Other relevant areas</li>
                         </ul>
-                    </div>
-                    <div class="edit-board">
+                    </div> -->
+                    <!-- <div class="edit-board">
                         <h5><b>Editorial Board</b></h5>
                         <ul>
                             <li>Editor-in-Chief: Engr. Ryan Flores Arago</li>
                             <li>Managing Editor: Prof. Nelson Lazare</li>
                             <li>Editorial Board Members: Dr. Isagani Tano, Prof. Maria Aura Impang, Engr. Jeffrey Cacho, Engr. Leonard Catchillar, Prof. Randel Estacio</li>
                         </ul>
-                    </div>
+                    </div> -->
                 </div>
                     
             </div>
             <hr style="height: 2px; background-color: #0858a4; width: 100%">
         </div>
-        <div class="container">
+        <div id="issues-per-year-container" class="container">
             <h3>All Issues</h3>
             <div class="all-issues">
-                <div class="header-title">2024</div>
+                <div class="header-title" id="issueYear">2024</div>
                 <div class="issue">
                     <img src='../images/volume2-1.jpg' alt="Journal 1">
                     <p style="color: #285581;" onclick="window.location.href='all-issues.php'">Volume 2, Issue 1<br><span style="color: black">2024</span></p>
                 </div>
-
-                <div class="issue">
-                    <img src='../images/volume2-1.jpg' alt="Journal 2">
-                    <p style="color: #285581;" onclick="window.location.href='all-issues.php'">Volume 2, Issue 2<br><span style="color: black">2024</span></p>
-                </div>
-                <div class="issue">
-                    <img src='../images/volume2-1.jpg' alt="Journal 3">
-                    <p style="color: #285581;" onclick="window.location.href='all-issues.php'">Volume 2, Issue 3<br><span style="color: black">2024</span></p>
-                </div>
-                
-                <div class="">
+                <!-- <div class="">
                     <button class="btn btn-primary btn-md btn-seemore" id="see-more">Show All Articles</button>
-                </div>
+                </div> -->
             </div>
-            
-            <div class="all-issues">
-                <div class="header-title">2023</div>
-                <div class="issue">
-                    <img src='../images/volume1-1.jpg' alt="Journal 1">
-                    <p style="color: #285581;" onclick="window.location.href='all-issues.php'">Volume 1, Issue 1<br><span style="color: black">2023</span></p>
-                </div>
-
-                <div class="issue">
-                    <img src='../images/volume1-2.jpg' alt="Journal 2">
-                    <p style="color: #285581;" onclick="window.location.href='all-issues.php'">Volume 1, Issue 2<br><span style="color: black">2023</span></p>
-                </div>
-                <div class="issue">
-                    <img src='../images/volume1-3.jpg' alt="Journal 2">
-                    <p style="color: #285581;" onclick="window.location.href='all-issues.php'">Volume 1, Issue 2<br><span style="color: black">2023</span></p>
-                </div>
-                <div class="">
-                    <button class="btn btn-primary btn-md btn-seemore" id="see-more">Show All Articles</button>
-                </div>
-            </div>
-            <!-- Add content inside the container as needed -->
         </div>
-    </div>
+   
+    </section>
 
 </div>
 
@@ -125,6 +95,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <script src="../JS/reusable-header.js"></script>
+    <script src="../JS/issues.js"></script>
     <!--<script src="../JS/publication.js"></script>-->
 </body>
 </html>

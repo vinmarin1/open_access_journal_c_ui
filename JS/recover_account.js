@@ -37,23 +37,22 @@ $(document).ready(function() {
         });
     });
 
-    // Add input event listener for the email field
+  
     $("#email").on("input", function() {
         var email = $("#email").val();
         // Use a simple email validation regex
         var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-        // Enable or disable the Next button based on the email format
+    
         $("#sendBtn").prop("disabled", !emailRegex.test(email));
     });
 
-    // Add input event listener for the OTP field
     $("#otp").on("input", function() {
         var otp = $("#otp").val();
-        // Check if the input is a 5-digit number
+      
         var isFiveDigitNumber = /^\d{5}$/.test(otp);
 
-        // Enable or disable the Enter OTP button based on the input format
+  
         $("#otpBtn").prop("disabled", !isFiveDigitNumber);
     });
 
@@ -78,4 +77,13 @@ $(document).ready(function() {
             }
         });
     });
+});
+
+
+
+var otpInput = document.getElementById("otp");
+
+otpInput.addEventListener("input", function() {
+ 
+    this.value = this.value.replace(/\D/g, '');
 });

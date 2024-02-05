@@ -3,6 +3,29 @@
 include 'dbcon.php';
 
 // Check if the function is not already defined
+if (!function_exists('get_article_list')) {
+    function get_article_list($issid) {
+        $pdo = connect_to_database();
+
+        if ($pdo) {
+            try {
+                $query = "SELECT * FROM article WHERE issues_id = :issid AND status = 11";
+                $stmt = $pdo->prepare($query);
+                $stmt->bindParam(':issid', $issid, PDO::PARAM_INT);
+                $stmt->execute();
+
+                $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+                return $result;
+            } catch (PDOException $e) {
+                echo "Error: " . $e->getMessage();
+                return false;
+            }
+        }
+
+        return false;
+    }
+}
 
 if (!function_exists('get_issues_list')) {
     function get_issues_list()
@@ -64,6 +87,7 @@ if (!function_exists('get_issues_list')) {
                 function addRecord()
                 {
                     try {
+                        $issues = $_POST['issues'];
                         $volume = $_POST['volume'];
                         $number = $_POST['number'];
                         $year = $_POST['year'];
@@ -71,23 +95,22 @@ if (!function_exists('get_issues_list')) {
                         $description = $_POST['description'];
                         $status = 1;
                         $url_path = $_POST['url_path'];
-    
-    
+                    
                         $documentRoot = $_SERVER['DOCUMENT_ROOT'];
                         $uploadPath = $documentRoot . '/Files/cover-image/';
-                
+                    
                         if (!file_exists($uploadPath)) {
                             mkdir($uploadPath, 0777, true);
                         }
-                
+                    
                         $imageFile = $_FILES['cover_image'];
                         $imageName = basename($imageFile["name"]);
                         $cover_image = '';
-                
+                    
                         if (isset($_FILES['cover_image']) && $_FILES['cover_image']['error'] === UPLOAD_ERR_OK) {
                             $imageFileType = strtolower(pathinfo($imageName, PATHINFO_EXTENSION));
                             $allowedFileTypes = array('jpg', 'jpeg', 'png', 'gif');
-                
+                    
                             if (in_array($imageFileType, $allowedFileTypes)) {
                                 $cover_image = $uploadPath . $imageName;
                                 if (!move_uploaded_file($imageFile["tmp_name"], $cover_image)) {
@@ -97,21 +120,24 @@ if (!function_exists('get_issues_list')) {
                                 throw new Exception('Invalid file type.');
                             }
                         }
+                    
+                        $query = "INSERT INTO issues (issues_id, volume, number, year, title, description, status ,cover_image, url_path) 
+                                  VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)";
                 
-                        $query = "INSERT INTO issues (volume, number, year, title, description, status ,cover_image, url_path) 
-                                  VALUES (?, ?, ?, ?, ?, ?, ?,?)";
-                
-                        $result = execute_query($query, [$volume, $number, $year, $title, $description, $status,$cover_image, $url_path]);
+                        $result = execute_query($query, [$issues, $volume, $number, $year, $title, $description, $status,$cover_image, $url_path]);
                 
                         if ($result !== false) {
                             echo json_encode(['status' => true, 'message' => 'Record added successfully']);
                         } else {
-                            echo json_encode(['status' => false, 'message' => 'Failed to add record']);
+                            throw new Exception('Failed to add record');
                         }
                     } catch (Exception $e) {
                         // If an exception occurs
                         echo json_encode(['status' => false, 'message' => $e->getMessage()]);
+                        // Log the error to a file or error reporting system
+                        error_log($e->getMessage(), 0);
                     }
+                    
                 }
                 
         
@@ -151,10 +177,10 @@ if (!function_exists('get_issues_list')) {
             
                 function archiveIssue()
                 {
-                    $issues_id = $_POST['issues_id'];
+                    $id = $_POST['issues_id'];
             
-                    $query = "UPDATE issues  SET status = 0 WHERE issues_id = ?";
-                    $result = execute_query($query, [$issues_id]);
+                    $query = "UPDATE issues  SET status = 0 WHERE id = ?";
+                    $result = execute_query($query, [$id]);
                 
                     echo json_encode(['status' => $result !== false, 'message' => $result !== false ? 'Issues archived successfully' : 'Failed to archive issue']);
                 }

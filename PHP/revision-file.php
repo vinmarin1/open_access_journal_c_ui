@@ -37,7 +37,22 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         'copyediting' => 1
     );
 
+    $sqlLogs = "INSERT INTO logs_article (`article_id`, `user_id`, `fromuser`, `type`) VALUES (:article_id, :user_id, :fromuser, :type)";
+
+    $sqlLogsParams = array(
+        'article_id' => $aritcleId,
+        'user_id' => $authorId,
+        'fromuser' => $userName,
+        'type' => 'Edited Article'
+    );
+    
+    database_run($sqlLogs, $sqlLogsParams);
+
     $sqlRun = database_run($sqlRevise, $sqlParams);
     header("Location: author-dashboard.php");
+}else{
+    echo 'Editing Article Failed';
 }
+  
+
 ?>

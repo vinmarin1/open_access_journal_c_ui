@@ -31,12 +31,11 @@ require 'dbcon.php';
 
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="about.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            About
+            About Us
           </a>
           <ul class="dropdown-menu">
-          <li><a class="dropdown-item" style="color: black" href="#">THE WEBSITE</a></li>
-          <li><a class="dropdown-item" style="color: black" href="#">RESEARCH TEAM</a></li>
-          <li><a class="dropdown-item" style="color: black" href="#">DEVELOPERS</a></li>
+          <li><a class="dropdown-item" style="color: black" href="general-info.php">General Information</a></li>
+          <li><a class="dropdown-item" style="color: black" href="developers.php">The Developers</a></li>
           </ul>
         </li>
         <li class="nav-item dropdown">
@@ -47,14 +46,8 @@ require 'dbcon.php';
         <li class="nav-item">
           <a class="nav-link" href="announcement.php">Announcements</a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="about.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Guidelines
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" style="color: black" href="./guidelines.php">For Contributors</a></li>
-            <li><a class="dropdown-item" style="color: black" href="./faqs.php">Frequently Asked Questions</a></li>
-          </ul>
+        <li class="nav-item">
+          <a class="nav-link" href="announcement.php">Guidelines</a>
         </li>
       </ul>
       <form class="d-flex" role="search">
@@ -132,7 +125,7 @@ require 'dbcon.php';
 
                     $author_id = $_SESSION['id'];
 
-                    $sqlNotif = "SELECT article.article_id, article.title FROM article JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id WHERE reviewer_assigned.author_id = :author_id AND article.status = 4 AND reviewer_assigned.accept = 0 AND reviewer_assigned.answer = 0 ORDER BY reviewer_assigned.date_issued DESC
+                    $sqlNotif = "SELECT article.article_id, article.title FROM article JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id WHERE reviewer_assigned.author_id = :author_id AND article.status = 5 AND reviewer_assigned.accept = 0 AND reviewer_assigned.answer = 0 ORDER BY reviewer_assigned.date_issued DESC
                     LIMIT 1";
                     $sqlNotifRun = database_run($sqlNotif, array(':author_id' => $author_id));
                     
@@ -235,9 +228,4 @@ require 'dbcon.php';
       <script src="../JS/navbar.js"></script>
 </body>
 </html>
-
-
-
-
-
 

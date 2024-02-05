@@ -40,7 +40,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                         $sqlReviewraticle = "SELECT article.title 
                                             FROM article 
                                             JOIN reviewer_assigned ON article.author_id = reviewer_assigned.author_id 
-                                            WHERE reviewer_assigned.article_id = article.article_id AND article.status = 4
+                                            WHERE reviewer_assigned.article_id = article.article_id AND article.status = 5
                                             AND reviewer_assigned.author_id = :author_id AND article.article_id = :article_id ORDER BY reviewer_assigned.date_issued DESC
                                             LIMIT 1";
 
@@ -107,7 +107,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                         $sqlAbstract = "SELECT article.abstract 
                                             FROM article 
                                             JOIN reviewer_assigned ON article.author_id = reviewer_assigned.author_id 
-                                            WHERE reviewer_assigned.article_id = article.article_id AND article.status =4
+                                            WHERE reviewer_assigned.article_id = article.article_id AND article.status =5
                                             AND reviewer_assigned.author_id = :author_id AND article.article_id = :article_id ORDER BY reviewer_assigned.date_issued DESC
                                             LIMIT 1" ;
 
@@ -135,7 +135,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                             $sqlStatus = "SELECT article_status.status, article.title 
                                         FROM article_status 
                                         JOIN article ON article_status.status_id = article.status 
-                                        JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id AND article.status = 4
+                                        JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id AND article.status = 5
                                         WHERE reviewer_assigned.author_id = :author_id AND article.article_id = :article_id
                                         ORDER BY reviewer_assigned.date_issued DESC
                                         LIMIT 1";
@@ -157,7 +157,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                         <hr style="height: 2px; background-color: #0858a4; width: 100%">
                         <h4 style="color: #0858a4; font-family: Arial, Helvetica, sans-serif;" >Submitted in the 
                         <?php
-                            $sqlJournal = "SELECT journal.journal, article.title FROM journal JOIN article ON journal.journal_id = article.journal_id JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id AND article.status = 4
+                            $sqlJournal = "SELECT journal.journal, article.title FROM journal JOIN article ON journal.journal_id = article.journal_id JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id AND article.status = 5
                             AND reviewer_assigned.author_id = :author_id AND article.article_id = :article_id";
 
                             $result = database_run($sqlJournal, array('author_id' => $userId,
@@ -200,8 +200,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                 
                
 
-                <button type="button" class="btn btn-outline-primary btn-sm"  onclick="viewAllLogs()" id="viewLogsBtn" style="width: 430px; margin-left: -5px;">View All Logs</button>
-                <button type="button" class="btn btn-outline-primary btn-sm"  onclick="hideLogs()" id="hideLogsBtn" style="display: none; width: 430px; margin-left: -5px;">Hide Logs</button>
+              
             </div>
 
             <div class="date">
@@ -228,6 +227,10 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                     ?>
                 </div>
             </div>
+            <div class="btn-group mt-4">
+            <button type="button" class="btn btn-outline-primary btn-sm"  onclick="viewAllLogs()" id="viewLogsBtn" style="width: 430px; margin-left: -5px;">View All Logs</button>
+                <button type="button" class="btn btn-outline-primary btn-sm"  onclick="hideLogs()" id="hideLogsBtn" style="display: none; width: 430px; margin-left: -5px;">Hide Logs</button>
+            </div>
 
                 </div>
             </div>
@@ -252,25 +255,26 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                                 <tr>
                                     <td id="fileName1">
                                     <?php
-                                    $sqlFileName = "SELECT article_files.file_name, article.title FROM article_files JOIN article ON article_files.article_id = article.article_id JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id WHERE article_files.file_type = 'File with no author' AND article.status = 4
-                                    AND reviewer_assigned.author_id = :author_id AND article.article_id = :article_id";
-        
-                                    $result = database_run($sqlFileName, array('author_id' => $userId,
-                                    'article_id' => $articleId));
-        
+                                    $sqlFileName = "SELECT article_files.file_name, article.title FROM article_files JOIN article ON article_files.article_id = article.article_id JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id WHERE article_files.file_type = 'File with no author name' AND article.status = 5 AND reviewer_assigned.author_id = :author_id AND article.article_id = :article_id";
+
+                                    $result = database_run($sqlFileName, array('author_id' => $userId, 'article_id' => $articleId));
+
                                     if ($result !== false) {
-                                    foreach ($result as $row) {
-                                    echo $row->file_name;
-                                    }
+                                        foreach ($result as $row) {
+                                            $fileName = $row->file_name;
+                                            $filePath = '../Files/submitted-article/' . $fileName;
+
+                                            echo "<a href='download.php?file=$filePath' download>$fileName</a><br>";
+                                        }
                                     } else {
-                                    echo "Can't find the file or it has been put on the archive"; 
+                                        echo "Can't find the file or it has been put in the archive";
                                     }
-                                    
                                     ?>
+
                                     </td>
                                     <td id="fileType1">
                                     <?php
-                                        $sqlFileDate = "SELECT article_files.date_added, article.title FROM article_files JOIN article ON article_files.article_id = article.article_id JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id WHERE article_files.file_type = 'File with no author' AND article.status = 4
+                                        $sqlFileDate = "SELECT article_files.date_added, article.title FROM article_files JOIN article ON article_files.article_id = article.article_id JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id WHERE article_files.file_type = 'File with no author name' AND article.status = 5
                                         AND reviewer_assigned.author_id = :author_id AND article.article_id = :article_id";
             
                                         $result = database_run($sqlFileDate, array('author_id' => $userId,
@@ -399,7 +403,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                         <div class="keyword1">
                         <ul style="display: flex;">
                             <?php
-                            $sqlKeyword = "SELECT article.keyword FROM article JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id AND article.status = 4 WHERE reviewer_assigned.author_id = :author_id AND article.article_id = :article_id";
+                            $sqlKeyword = "SELECT article.keyword FROM article JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id AND article.status = 5 WHERE reviewer_assigned.author_id = :author_id AND article.article_id = :article_id";
                             
                             $result = database_run($sqlKeyword, array('author_id' => $userId,
                             'article_id' => $articleId));

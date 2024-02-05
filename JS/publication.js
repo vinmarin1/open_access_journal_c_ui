@@ -6,19 +6,19 @@ function generateJournals(data) {
         const subjectAreasHtml = journal.subject_areas.split(",").map((item) => `<li>${item}</li>`).join('');
         const editorialBoardHTML = journal.editorial.split(";").map((item) => `<li>${item}</li>`).join('');
         return `
-            <div class="container-fluid pub-container mb-3" id="journal">
-                <div class="journal-title">
+            <div class="container-fluid  " id="journal">
+                <div class="col-md-2 me-5 col-12 journal-title">
                     <h3>${journal.journal_title}</h3>
                     <div class="pic-border">
                         <img class="img-fluid" src="../Files/journal-image/${journal.image}" alt="">
                     </div>
                     <div class="d-flex flex-column py-4">
-                        <a href="issues.php">View Issues</a>
+                        <a href="issues.php?journal_id=${journal.journal_id}">View Issues</a>
                         <a href="./browse-articles.php?journal=${journal.journal_id}">View Published Articles</a>
                     </div>
                 </div>
 
-                <div class="journal-details">
+                <div class="col-md-8 col-12 journal-details">
                     <h5>About</h5>
                     <p style="text-align: justify;">${journal.description}</p>
 

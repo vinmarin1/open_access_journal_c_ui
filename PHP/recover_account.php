@@ -35,7 +35,7 @@
             <div class="label">
             </div>
             <div class="input-group mb-3" id="inputFields1">
-                <input type="number" class="form-control"  aria-describedby="basic-addon1" name="otp" id="otp" style="text-align: center">
+                <input type="text" class="form-control" aria-describedby="basic-addon1" name="otp" id="otp" style="text-align: center">
                 <button type="submit" class="btn btn-primary btn-md" id="otpBtn" disabled>Enter OTP</button>
             </div>
         </div>
@@ -47,5 +47,6 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="../JS/recover_account.js"></script>
+
 </body>
 </html>

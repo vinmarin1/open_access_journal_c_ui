@@ -70,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
     handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $formattedDate, $title, $category, $abstract, $keywords, $reference, $comment, $step, $coAuthors, $primaryContacts, $firstNameC, $lastNameC, $publicNameC, $orcidsC, $emailsC, $firstName, $lastName, $orc_idAuthor, $email, $authorAdditionalRole);
 
-    Header("Location: ex_submit.php");
+    Header("Location: author-dashboard.php");
     exit();
 } else {
     echo 'Error: Invalid request method.';
@@ -114,10 +114,10 @@ function handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $
             $fileType = '';
             switch ($fileKey) {
                 case 'file_name':
-                    $fileType = 'File with author';
+                    $fileType = 'File with author name';
                     break;
                 case 'file_name2':
-                    $fileType = 'File with no author';
+                    $fileType = 'File with no author name';
                     break;
                 case 'file_name3':
                     $fileType = 'Title Page';
@@ -140,7 +140,7 @@ function handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $
     
                 database_run($files_sql, $files_params);
             } else {
-                Header("Location: ex_submit.php");
+                Header("Location: author-dashboard.php");
                 exit();
             }
         }

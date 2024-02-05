@@ -32,7 +32,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
   <form id="form" action="revision-file.php" method="POST" enctype="multipart/form-data">
     <div class="main-title">
         <div class="breadcrumbs">
-            Dashboard / Author / Submitted Articles <span id="title-validation" style="color: red">The title should be between 10 and 20 words in length</span>
+            Dashboard / Author / Submitted Articles <span id="title-validation" style="color: red">The minimum word for title is 5 and maximum of 100 words</span>
         </div>
         <input type="text" value="<?php echo $articleId ?>" id="getArticleId" name="getArticleId" style="display: none">
         <p id="title" name="title">
@@ -57,7 +57,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 <div class="row1">
     <div class="abstract">
     <!-- Abstract content goes here -->
-        <div class="abstract-title">Abstract <span id="abstract-validation" style="color: red">The abstract should be between 50 and 200 words in length</span></div>
+        <div class="abstract-title">Abstract <span id="abstract-validation" style="color: red">The minimum word for abstract is 10 and maximum of 250 words</span></div>
         <div class="abstract-content">
             <p id="display-abstract" name="display-abstract">
                 <?php 
@@ -170,9 +170,11 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                 </div>
             </div>
         </div>
-
-        <button type="button" class="btn btn-outline-primary btn-sm" onclick="viewAllLogs()" id="viewLogsBtn">View All Logs</button>
-        <button type="button" class="btn btn-outline-primary btn-sm" onclick="hideLogs()" id="hideLogsBtn" style="display: none">Hide Logs</button>
+        <div class="btn-group mb-3">
+            <button type="button" class="btn btn-outline-primary btn-sm" onclick="viewAllLogs()" id="viewLogsBtn">View All Logs</button>
+            <button type="button" class="btn btn-outline-primary btn-sm" onclick="hideLogs()" id="hideLogsBtn" style="display: none">Hide Logs</button>
+        </div>
+       
 
         </div>
     </div>
@@ -180,6 +182,9 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 
 <div class="row2">
     <div class="main2">
+        <div class="retrtiveFileDownload">
+
+        </div>
         <div class="files-submitted">
             <div class="table-header" id="table">Files Submitted</div>
             <table>
@@ -192,26 +197,28 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                 <tbody>
                     <tr>
                         <td> 
-                            <?php
+                        <?php
+                        $sqlStatus = "SELECT article_files.file_name FROM article_files JOIN article ON article_files.article_id = article.article_id WHERE article.author_id = :author_id AND article.article_id = :article_id AND article_files.file_type = 'File with no author name' ";
 
-                                $sqlStatus = "SELECT article_files.file_name FROM article_files JOIN article ON article_files.article_id = article.article_id WHERE article.author_id = :author_id AND article.article_id = :article_id AND article_files.file_type = 'File with no author' ";
+                        $result = database_run($sqlStatus, array('author_id' => $userId, 'article_id' => $articleId));
 
-                                $result = database_run($sqlStatus, array('author_id' => $userId,
-                                'article_id' => $articleId));
+                        if ($result !== false) {
+                            foreach ($result as $row) {
+                                $fileName = $row->file_name;
+                                $filePath = '../Files/submitted-article/' . $fileName;
 
-                                if ($result !== false) {
-                                foreach ($result as $row) {
-                                echo $row->file_name;
-                                }
-                                } else {
-                                echo "No file for this article"; 
-                                }
-                            ?>
+                                echo "<a href='download.php?file=$filePath' download>$fileName</a><br>";
+                            }
+                        } else {
+                            echo "No file for this article";
+                        }
+                        ?>
+
                         </td>
                         <td>
                             <?php
 
-                                $sqlStatus = "SELECT article_files.date_added FROM article_files JOIN article ON article_files.article_id = article.article_id WHERE article.author_id = :author_id AND article.article_id = :article_id AND article_files.file_type = 'File with no author' ";
+                                $sqlStatus = "SELECT article_files.date_added FROM article_files JOIN article ON article_files.article_id = article.article_id WHERE article.author_id = :author_id AND article.article_id = :article_id AND article_files.file_type = 'File with no author name' ";
 
                                 $result = database_run($sqlStatus, array('author_id' => $userId,
                                 'article_id' => $articleId));
@@ -236,6 +243,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
         </div>
         <div class="files-submitted" id="reviseFile" style="display: none">
         <div class="table-header">Upload Revise file</div>
+        <!-- <button type="button" class="btn btn-primary btn-sm" style="margin-right: 5px" id="downloadFileName" onclick="downloadFile(1)">Download</button> -->
             <div class="btnUploadFile">
                 <input type="file" class="form-control" name="file_name" id="file_name" accept=".docx" style="display: none">
             </div>
@@ -293,8 +301,8 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                 </div>
             </div>
         </div>
-    <div class="main3">
-        <div class="comments-container">
+    <div class="main3" >
+        <div class="comments-container" style="padding-left: 50px">
             <div class="table-header">Discussion</div>
             <div class="discussion-container">
                 <?php
@@ -384,35 +392,8 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
             </div>
         </div>
         <div class="review-rubrics">
-            <div class="section-header">Review Rubrics</div>
-            <div class="section-body">
-                <!-- <p>Reviewer Anwers Summary</p> -->
-                <?php
-                    $sqlQuestionnaire = "SELECT question, answer FROM reviewer_questionnaire";
-                    $result = database_run($sqlQuestionnaire);
-
-                    if ($result) {
-                        foreach ($result as $row) {
-                            $question = htmlspecialchars($row->question);
-                            echo '<li class="list-group-item mt-4" style="list-style: none; font-family: &quot;Times New Roman&quot;, Times, serif; color: #0858a4; font-size: 20px;">' . $question . '</li>';
-
-                            // Split the choices using commas
-                            $choices = explode(',', $row->answer);
-
-                            // Display each choice as a radio button
-                            foreach ($choices as $choice) {
-                                $uniqueId = htmlspecialchars(trim($choice)) . '_' . uniqid(); // Create a unique ID for each radio button
-                                echo '<input type="radio" name="answers[' . $question . ']" value="' . htmlspecialchars(trim($choice)) . '" id="' . $uniqueId . '" disabled>';
-                                echo '<label for="' . $uniqueId . '" style="font-size: small; color: gray;">' . htmlspecialchars(trim($choice)) . '</label><br>';
-                            }
-                        }
-                    } else {
-                        echo 'The questionnaire has not been updated yet';
-                    }
-                ?>
-
-            </div>
-            <div class="action-button">
+          
+            <div class="action-button" style="padding-left: 40px">
                 <button type="button" class="btn btn-primary btn-md" id="edit-submission">Edit Submission</button>
                 <button type="submit" class="btn btn-primary btn-md" id="submit-submission" onclick="submitData()" disabled>Submit</button>
                 <button type="button" class="btn btn-secondary btn-md" id="cancel-submission">Cancel Submission</button>

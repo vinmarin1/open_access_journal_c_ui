@@ -1,4 +1,4 @@
-.content-over {
+/* .content-over {
     position: relative;
     width: 100%;
     height: 30vh;
@@ -19,7 +19,7 @@ left: 0;
 width: 100%;
 height: 100%;
 background-color: rgba(53, 68, 74, 0.7);
-}
+} */
 
 .content-over p, .content-over h2 {
 color: white; 
@@ -40,10 +40,13 @@ p{
     white-space: pre-line;
 }
 
+#journal {
+    padding-top: 4rem;
+}
 .journal-title{
     /* border: 1px red solid; */
     width: 18%;
-    margin-top: 70px;
+    /* margin-top: 70px; */
     margin-left: 100px;
     display: inline-block;
     vertical-align: top;
@@ -72,7 +75,7 @@ p{
     height: 100%;
     display: inline-block;
     margin-left: 100px;
-    margin-top: 70px;
+    /* margin-top: 70px; */
 }
 
 .journal-details h5{
@@ -106,14 +109,14 @@ p{
 }
 .container h3 {
     margin-bottom: 20px;
-    color: #115272;
+    color: #0858a4;
 }
 
 .header-title {
     font-size: 20px;
     font-weight: bold;
     margin-bottom: 10px;
-    background-color: #285581;
+    background-color: #0858a4;
     color: white;
     padding: 5px 5px 5px 15px;
 }

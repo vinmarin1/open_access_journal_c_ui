@@ -133,14 +133,14 @@
      
       
       <div class="form-floating" id="form-floating">
-        <h6 id="sub-9">Title <p id="title-validation" style="color: red; display: none; font-size: 10px;">Title should consist of 10 words and less than 20 words*</p></h6>
+        <h6 id="sub-9">Title <p id="title-validation" style="color: red; display: none; font-size: 10px;">The minimum word for title is 5 and maximum of 100 words</p></h6>
 
     
         <input class="form-control" type="text"  id="title" name="title">
       
        
         
-        <h6 id="sub-11">Abstract<p id="abstract-validation" style="color: red; display: none;  font-size: 10px">The maximum for abstract is 200 words*</p></h6>
+        <h6 id="sub-11">Abstract<p id="abstract-validation" style="color: red; display: none;  font-size: 10px">The minimum word for abstract is 10 and maximum of 250 words</p></h6>
 
        
 
@@ -164,7 +164,8 @@
           <h6></h6>
           <!-- <label id="label-title">Article: </label> -->
           <p id="label-title">Article:</p>
-          <div id="similar-title"></div>
+          <div id="similar-title" onclick="openArticleDetails()"></div>
+
          
         
           <div id ="similar-abstract"></div>
@@ -251,7 +252,7 @@
   <tbody id="fileList">
     <tr>
       <td id="fileName1"></td>
-      <td id="fileType1">File with author</td>
+      <td id="fileType1">File with author name</td>
       <td>
         <button type="button" class="btn btn-primary btn-sm" style="margin-right: 5px" id="addFileName" onclick="openFilename(1)">Add File</button>
         <button type="button" class="btn btn-danger btn-sm" id="deleteFileName" onclick="deleteFilename(1)">Delete</button>
@@ -259,7 +260,7 @@
     </tr>
     <tr>
       <td id="fileName2"></td>
-      <td id="fileType2">File with no author</td>
+      <td id="fileType2">File with no author name</td>
       <td>
         <button type="button" class="btn btn-primary btn-sm" style="margin-right: 5px" id="addFileName2" onclick="openFilename(2)">Add File</button>
         <button type="button" class="btn btn-danger btn-sm" id="deleteFileName2" onclick="deleteFilename(2)">Delete</button>

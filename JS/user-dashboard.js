@@ -135,11 +135,11 @@ function openTab(evt, tabName) {
     const editIcon = document.getElementById('editIcon');
     const editForm = document.getElementById('editForm');
     const closeIcon = document.getElementById('closeIcon');
-    const saveButton = document.getElementById('saveButton');
+   ;
 
     editIcon.addEventListener('click', openEditForm);
     closeIcon.addEventListener('click', closeEditForm);
-    saveButton.addEventListener('click', saveChanges);
+  
 
     function openEditForm() {
         editForm.style.display = 'block';
@@ -189,7 +189,229 @@ document.getElementById('addExpertiseButton').addEventListener('click', function
   
   
   
+document.getElementById('editBtn').addEventListener('click', function(event){
+  const editBtn = document.getElementById('editBtn');
+  const cancelBtn = document.getElementById('cancelBtn');
+  const firstName = document.getElementById('firstName');
+  const middleName = document.getElementById('middleName');
+  const lastName = document.getElementById('lastName');
+  const affix = document.getElementById('affix');
+  const birthdate = document.getElementById('birthdate');
+  const gender = document.getElementById('gender');
+  const status = document.getElementById('status');
+  const country = document.getElementById('country');
+  // const email = document.getElementById('email');
+  const orcid = document.getElementById('orcid');
+  const affiliation = document.getElementById('affiliation');
+  const position = document.getElementById('position');
+  const bio = document.getElementById('bio');
+  const changeProfileBtn = document.getElementById('changeProfileBtn');
+  const spinner = document.querySelector('#editBtn .spinner-border');
+
+  // Show spinner
+  spinner.style.display = 'inline-block';
+
+  // Disable "Edit" button
+  editBtn.disabled = true;
+
+  // Disable other form elements
+  firstName.disabled = true;
+  middleName.disabled = true;
+  lastName.disabled = true;
+  affix.disabled = true;
+  birthdate.disabled = true;
+  gender.disabled = true;
+  status.disabled = true;
+  country.disabled = true;
+  // email.disabled = true;
+  orcid.disabled = true;
+  affiliation.disabled = true;
+  position.disabled = true;
+  bio.disabled = true;
+  changeProfileBtn.disabled = true;
+
+  // Enable everything after 2 seconds
+  setTimeout(function() {
+      spinner.style.display = 'none';
+      editBtn.disabled = false;
+      editBtn.style.display = 'none';
+      cancelBtn.style.display = 'inline-block';
+      firstName.disabled = false;
+      middleName.disabled = false;
+      lastName.disabled = false;
+      affix.disabled = false;
+      birthdate.disabled = false;
+      gender.disabled = false;
+      status.disabled = false;
+      country.disabled = false;
+      // email.disabled = false;
+      orcid.disabled = false;
+      affiliation.disabled = false;
+      position.disabled = false;
+      bio.disabled = false;
+      changeProfileBtn.disabled = false;
+
+  }, 2000);
+});
+
+
+  document.getElementById('cancelBtn').addEventListener('click', function(event){
+    const editBtn = document.getElementById('editBtn');
+    const cancelBtn = document.getElementById('cancelBtn');
+    const spinner = cancelBtn.querySelector('.spinner-border');
+    const editForm = document.getElementById('editForm');
+
+    spinner.style.display = 'inline-block';
+
+    
+    editBtn.disabled = true;
+
+    
+    setTimeout(function() {
+        spinner.style.display = 'none';
+        editForm.style.display = 'none';
+        cancelBtn.style.display = 'none';
+        editBtn.style.display = 'inline-block';
+        editBtn.disabled = false;
+    }, 2000);
+});
+
+
   
   
+  document.getElementById('firstName').addEventListener('input', function(event){
+    const saveButton = document.getElementById('saveButton');
+    saveButton.disabled = false;
   
+  });
+
+
+  document.getElementById('middleName').addEventListener('input', function(event){
+    const saveButton = document.getElementById('saveButton');
+    saveButton.disabled = false;
   
+  });
+
+
+  
+  document.getElementById('lastName').addEventListener('input', function(event){
+    const saveButton = document.getElementById('saveButton');
+    saveButton.disabled = false;
+  
+  });
+
+
+  document.getElementById('affix').addEventListener('input', function(event){
+    const saveButton = document.getElementById('saveButton');
+    saveButton.disabled = false;
+  
+  });
+
+
+  
+  document.getElementById('birthdate').addEventListener('change', function(event){
+    const saveButton = document.getElementById('saveButton');
+    saveButton.disabled = false;
+  
+  });
+
+  document.getElementById('gender').addEventListener('change', function(event){
+    const saveButton = document.getElementById('saveButton');
+    saveButton.disabled = false;
+  
+  });
+
+
+  document.getElementById('status').addEventListener('change', function(event){
+    const saveButton = document.getElementById('saveButton');
+    saveButton.disabled = false;
+  
+  });
+
+
+  document.getElementById('country').addEventListener('change', function(event){
+    const saveButton = document.getElementById('saveButton');
+    saveButton.disabled = false;
+  
+  });
+
+
+
+
+
+  document.getElementById('orcid').addEventListener('input', function(event){
+    const saveButton = document.getElementById('saveButton');
+    saveButton.disabled = false;
+  
+  });
+
+
+
+  document.getElementById('affiliation').addEventListener('input', function(event){
+    const saveButton = document.getElementById('saveButton');
+    saveButton.disabled = false;
+  
+  });
+
+
+  
+  document.getElementById('position').addEventListener('input', function(event){
+    const saveButton = document.getElementById('saveButton');
+    saveButton.disabled = false;
+  
+  });
+
+
+   
+  document.getElementById('bio').addEventListener('input', function(event){
+    const saveButton = document.getElementById('saveButton');
+    saveButton.disabled = false;
+  
+  });
+
+
+
+  document.getElementById('saveButton').addEventListener('click', function(event){
+    event.preventDefault();
+    
+    Swal.fire({
+        title: 'Do you want to make this changes?',
+        text: 'You will be logged out after this action',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, make changes!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            document.getElementById('form').submit();
+        }
+    });
+});
+
+
+
+
+
+document.getElementById('changeProfileBtn').addEventListener('click', function() {
+  document.getElementById('selectProfile').click();
+});
+
+document.getElementById('selectProfile').addEventListener('change', function() {
+  const fileInput = document.getElementById('selectProfile');
+  const profileImage = document.getElementById('profileImage');
+
+  const file = fileInput.files[0];
+
+  if (file) {
+      const reader = new FileReader();
+
+      reader.onload = function(e) {
+          // Update the profile image source with the selected image
+          profileImage.src = e.target.result;
+      };
+
+      // Read the selected file as a data URL
+      reader.readAsDataURL(file);
+  }
+});
