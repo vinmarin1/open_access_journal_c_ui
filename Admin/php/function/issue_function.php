@@ -98,10 +98,10 @@ if (!function_exists('get_issues_list')) {
                         }
                     
                         $query = "INSERT INTO issues (volume, number, year, title, description, status ,cover_image, url_path) 
-                                  VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-                    
-                        $result = execute_query($query, [$volume, $number, $year, $title, $description, $status, $imageName, $url_path]);
-                    
+                                  VALUES (?, ?, ?, ?, ?, ?, ?,?)";
+                
+                        $result = execute_query($query, [$volume, $number, $year, $title, $description, $status,$cover_image, $url_path]);
+                
                         if ($result !== false) {
                             echo json_encode(['status' => true, 'message' => 'Record added successfully']);
                         } else {
