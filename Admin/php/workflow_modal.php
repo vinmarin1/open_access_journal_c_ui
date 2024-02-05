@@ -1494,6 +1494,7 @@ function updateCopyeditedFiles() {
     var copyeditedFile = $('#copyeditedfile')[0].files[0];
 
     if (copyeditedFile) {
+        $('#sloading').toggle();
         uploadCopyeditedFiles();
     }
 
@@ -1502,7 +1503,6 @@ function updateCopyeditedFiles() {
 }
 
 function uploadCopyeditedFiles() {
-    $('#sloading').toggle();
     var copyeditedFiletype = $('#copyeditedfiletype').val();
     var copyeditedFile = $('#copyeditedfile')[0].files[0];
 
@@ -1613,6 +1613,7 @@ function updateProductionFiles() {
     var productionfile = $('#productionfile')[0].files[0];
 
     if (productionfile) {
+        $('#sloading').toggle();
         uploadProductionFiles();
     }
 
@@ -1621,7 +1622,6 @@ function updateProductionFiles() {
 }
 
 function uploadProductionFiles() {
-    $('#sloading').toggle();
     var productionfileFiletype = $('#productionfiletype').val();
     var productionfileFile = $('#productionfile')[0].files[0];
 

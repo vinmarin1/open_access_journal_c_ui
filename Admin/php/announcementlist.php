@@ -26,9 +26,9 @@ $announcementlist = get_announcement_list();
                 <table class="table table-striped" id="DataTable">
                     <thead>
                         <tr>
-                                <th>Announcement ID</th>
+                                <th>ID</th>
+                                <th>Type</th>
                                 <th>Title</th>
-                                <th>Description</th>
                                 <th>Announcement</th>
                                 <th>Upload Image</th>
                                 <th>Action</th>
@@ -38,10 +38,10 @@ $announcementlist = get_announcement_list();
                 <?php foreach ($announcementlist as $announcementlistval): ?>
                                 <tr>
                                     <td width="5%"><?php  echo  $announcementlistval->announcement_id; ?></td>
+                                    <td width="15%"><?php echo  $announcementlistval->annoucementtype; ?></td>
                                     <td width="50%"><?php echo  $announcementlistval->title; ?></td>
-                                    <td width="50%"><?php echo  $announcementlistval->announcement_description; ?></td>
-                                    <td width="50%"><?php echo  $announcementlistval->announcement; ?></td>
-                                    <td width="50%"><?php echo  $announcementlistval->upload_image; ?></td>
+                                    <td width="10%"><?php echo  $announcementlistval->announcement; ?></td>
+                                    <td width="10%"><?php echo  $announcementlistval->upload_image; ?></td>
                                     <td width="10%">
                                 <button type="button" class="btn btn-outline-success" onclick="updateModal(<?php echo  $announcementlistval->announcement_id; ?>)">Update</button>
                                 <button type="button" class="btn btn-outline-danger" onclick="archiveAnnouncement(<?php echo  $announcementlistval->announcement_id; ?>, '<?php echo $announcementlistval->title; ?>', '<?php echo $announcementlistval->announcement; ?>')">Archive</button>
@@ -75,10 +75,10 @@ $announcementlist = get_announcement_list();
     function addRecord() {
         var form = document.getElementById('addModalForm');
         var formData = new FormData();
+        formData.append('annoucementtype', $('#annoucementtype').val());
         formData.append('title', $('#title').val());
         formData.append('announcement_description', $('#announcement_description').val());
         formData.append('announcement', $('#announcement').val());
-        formData.append('title', $('#title').val());
         formData.append('upload_image', $('#upload_image')[0].files[0]);
         formData.append('expired_date', $('#expired_date').val());
         formData.append('action', 'add');
@@ -93,16 +93,19 @@ $announcementlist = get_announcement_list();
                 contentType: false,
                 success: function (data) {
                     var response = JSON.parse(data);
+                    $('#sloading').toggle();
                     if (response.status) {
-                        $('#sloading').toggle();
                         alert("Record added successfully");
+                        location.reload();
                     } else {
                         alert("Record added successfully");
+                        location.reload();
                     }
-                    location.reload();
                 },
                 error: function (xhr, status, error) {
                     console.error("Ajax request failed:", error);
+                    $('#sloading').toggle();
+                    alert("Failed to add record. Please try again.");
                 }
             });
         } else {
@@ -211,8 +214,8 @@ $announcementlist = get_announcement_list();
 
     </script>
 
-     <!-- Add Modal -->
-     <div class="modal fade" id="addModal" tabindex="-1" aria-hidden="true">
+<!-- Add Modal -->
+<div class="modal fade" id="addModal" tabindex="-1" aria-hidden="true">
     <form id="addModalForm">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
@@ -223,6 +226,17 @@ $announcementlist = get_announcement_list();
                 <div class="modal-body">
                     <div class="row mb-2">
                         <div class="col-md-12 mb-2">
+                            <label for="xannoucementtype" class="form-label">Annoucement Type</label>
+                            <select id="annoucementtype" class="form-select">
+                                <option value="Annoucement">Annoucement</option>
+                                <option value="News">News</option>
+                                <option value="Call for papers">Call for papers</option>
+                                <option value="Others">Others</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-12 mb-2">
                             <label for="xtitle" class="form-label">Title</label>
                             <input type="text" id="title" class="form-control" placeholder="title" required/>
                         </div>
@@ -230,7 +244,7 @@ $announcementlist = get_announcement_list();
                     <div class="row mb-2">
                         <div class="col-md-12 mb-2">
                             <label for="xannouncement_description" class="form-label">Description</label>
-                            <input type="text" id="announcement_description" class="form-control" placeholder="announcement_description" />
+                            <input type="text" id="announcement_description" class="form-control" placeholder="description" />
                         </div>
                     </div>
                     <div class="row mb-2">
@@ -260,6 +274,7 @@ $announcementlist = get_announcement_list();
         </div>
         </form>
     </div>
+
      <!-- Update Modal -->
      <div class="modal fade" id="updateModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
