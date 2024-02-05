@@ -124,6 +124,7 @@ include 'function/issue_function.php';
             form.reportValidity();
         }
     }
+    
     function updateModal(issues_id) {
         $.ajax({
             type: 'POST',

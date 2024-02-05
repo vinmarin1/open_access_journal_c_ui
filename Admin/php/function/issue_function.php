@@ -71,23 +71,22 @@ if (!function_exists('get_issues_list')) {
                         $description = $_POST['description'];
                         $status = 1;
                         $url_path = $_POST['url_path'];
-    
-    
+                    
                         $documentRoot = $_SERVER['DOCUMENT_ROOT'];
                         $uploadPath = $documentRoot . '/Files/cover-image/';
-                
+                    
                         if (!file_exists($uploadPath)) {
                             mkdir($uploadPath, 0777, true);
                         }
-                
+                    
                         $imageFile = $_FILES['cover_image'];
                         $imageName = basename($imageFile["name"]);
                         $cover_image = '';
-                
+                    
                         if (isset($_FILES['cover_image']) && $_FILES['cover_image']['error'] === UPLOAD_ERR_OK) {
                             $imageFileType = strtolower(pathinfo($imageName, PATHINFO_EXTENSION));
                             $allowedFileTypes = array('jpg', 'jpeg', 'png', 'gif');
-                
+                    
                             if (in_array($imageFileType, $allowedFileTypes)) {
                                 $cover_image = $uploadPath . $imageName;
                                 if (!move_uploaded_file($imageFile["tmp_name"], $cover_image)) {
@@ -97,21 +96,24 @@ if (!function_exists('get_issues_list')) {
                                 throw new Exception('Invalid file type.');
                             }
                         }
-                
+                    
                         $query = "INSERT INTO issues (volume, number, year, title, description, status ,cover_image, url_path) 
-                                  VALUES (?, ?, ?, ?, ?, ?, ?,?)";
-                
-                        $result = execute_query($query, [$volume, $number, $year, $title, $description, $status,$cover_image, $url_path]);
-                
+                                  VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                    
+                        $result = execute_query($query, [$volume, $number, $year, $title, $description, $status, $imageName, $url_path]);
+                    
                         if ($result !== false) {
                             echo json_encode(['status' => true, 'message' => 'Record added successfully']);
                         } else {
-                            echo json_encode(['status' => false, 'message' => 'Failed to add record']);
+                            throw new Exception('Failed to add record');
                         }
                     } catch (Exception $e) {
                         // If an exception occurs
                         echo json_encode(['status' => false, 'message' => $e->getMessage()]);
+                        // Log the error to a file or error reporting system
+                        error_log($e->getMessage(), 0);
                     }
+                    
                 }
                 
         

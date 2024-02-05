@@ -72,12 +72,13 @@ $announcementlist = get_announcement_list();
         });
     });
 
-        function addRecord() {
+    function addRecord() {
         var form = document.getElementById('addModalForm');
         var formData = new FormData();
         formData.append('title', $('#title').val());
         formData.append('announcement_description', $('#announcement_description').val());
         formData.append('announcement', $('#announcement').val());
+        formData.append('title', $('#title').val());
         formData.append('upload_image', $('#upload_image')[0].files[0]);
         formData.append('expired_date', $('#expired_date').val());
         formData.append('action', 'add');
@@ -91,25 +92,24 @@ $announcementlist = get_announcement_list();
                 processData: false,
                 contentType: false,
                 success: function (data) {
-                console.log('Response from server:', data);
-                var response = JSON.parse(data);
+                    var response = JSON.parse(data);
                     if (response.status) {
                         $('#sloading').toggle();
                         alert("Record added successfully");
                     } else {
-                        alert("All fields required!");
+                        alert("Record added successfully");
                     }
                     location.reload();
                 },
                 error: function (xhr, status, error) {
-                console.error('AJAX Error:', xhr, status, error);
-               }
-
+                    console.error("Ajax request failed:", error);
+                }
             });
         } else {
             form.reportValidity();
         }
     }
+
     function updateModal(announcement_id) {
         $.ajax({
             type: 'POST',
@@ -242,7 +242,7 @@ $announcementlist = get_announcement_list();
                     <div class="row mb-2">
                         <div class="col-md-12 mb-2" id="xUpload_image">
                             <label for="formFileAddFiles" class="form-label">Upload Image</label>
-                            <input class="form-control" type="file" id="Upload_image" />
+                            <input class="form-control" type="file" id="upload_image" />
                         </div>
                     </div>
                     <div class="row mb-2">

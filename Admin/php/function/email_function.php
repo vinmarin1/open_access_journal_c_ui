@@ -55,7 +55,7 @@ if (!function_exists('get_email_content')) {
             $mail->SMTPSecure = 'ssl';
             $mail->Port = 465;
 
-            $recipients = explode(', ', $_POST['hiddenEmail']);
+            $recipients = !empty($_POST['hiddenEmail']) ? explode(', ', $_POST['hiddenEmail']) : ['qcujournal@gmail.com'];
 
             $mail->setFrom('qcujournal@gmail.com', 'QCU Journal');
 
@@ -131,6 +131,10 @@ if (!function_exists('get_email_content')) {
                     updateArticleStatus($article_id, 0);
                     addLogs($article_id, $fromuser, 'Article move to Archive');
                     echo "<script>alert('Article move to archive successfully.');</script>";
+                } elseif ($id == 8) {
+                    updateArticleStatus($article_id, 1);
+                    addLogs($article_id, $fromuser, 'Article Published');
+                    echo "<script>alert('Article published successfully.');</script>";
             } else {
                 echo 'Error sending email: ' . $mail->ErrorInfo;
             }
