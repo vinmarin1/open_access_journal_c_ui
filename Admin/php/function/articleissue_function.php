@@ -51,43 +51,12 @@ function getArticleAndContributors($articleIds) {
     return false;
 }
 
-function sendEmail($recipient, $articleTitle, $emailContent) {
-    $mail = new PHPMailer(true);
-
-    // print_r($recipient);exit;
-    try {
-        $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com';
-        $mail->SMTPAuth = true;
-        $mail->Username = 'qcujournal@gmail.com';
-        $mail->Password = 'txtprxrytyqmloth';
-        $mail->SMTPSecure = 'ssl';
-        $mail->Port = 465;
-        $mail->addAddress($recipient);
-
-        $mail->setFrom('qcujournal@gmail.com', 'QCU Journal');
-
-        $subject = 'Editor Decision: ' . $articleTitle;
-        $mail->Subject = $subject;
-
-        $mail->isHTML(true);
-
-        $mail->Body = $emailContent;
-
-        $mail->send();
-    } catch (Exception $e) {
-
-        echo 'Mailer Error: ' . $mail->ErrorInfo;
-    }
-}
-
 function sendEmails()
 {
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['checkedArticles'])) {
         $checkedArticles = $_POST['checkedArticles'];
 
         foreach ($checkedArticles as $articleId) {
-
             $articleAndContributors = getArticleAndContributors([$articleId]);
 
             if (is_array($articleAndContributors)) {
@@ -102,11 +71,12 @@ function sendEmails()
 
                     $emailContent = "Dear authors,<br><br>We have reached a decision regarding your submission to $articleTitle.<br><br>Decision: Article Published<br><br><br>Submission URL: [Your Submission URL]<br><br>";
 
-                    sendEmail($recipient, $articleTitle, $emailContent);
-                    updateStatus($articleId);
-                }
-            } else {
+                    $sendEmailResult = sendEmail($recipient, $articleTitle, $emailContent);
 
+                    if ($sendEmailResult) {
+                        updateStatus($articleId);
+                    }
+                }
             }
         }
 
@@ -116,7 +86,39 @@ function sendEmails()
     }
 }
 
-function updateStatus($articleId) {
+function sendEmail($recipient, $articleTitle, $emailContent)
+{
+    try {
+        $mail = new PHPMailer(true);
+
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'qcujournal@gmail.com';
+        $mail->Password = 'txtprxrytyqmloth';
+        $mail->SMTPSecure = 'ssl';
+        $mail->Port = 465;
+        $mail->addAddress($recipient);
+        $mail->setFrom('qcujournal@gmail.com', 'QCU Journal');
+
+        $subject = 'Editor Decision: ' . $articleTitle;
+        $mail->Subject = $subject;
+
+        $mail->isHTML(true);
+        $mail->Body = $emailContent;
+
+        $mail->send();
+
+        return true;
+    } catch (Exception $e) {
+        // Log the error for debugging
+        error_log('Error sending email: ' . $mail->ErrorInfo);
+        return false;
+    }
+}
+
+function updateStatus($articleId)
+{
     $pdo = connect_to_database();
 
     if ($pdo) {
@@ -126,15 +128,8 @@ function updateStatus($articleId) {
             $stmt = $pdo->prepare($query);
             $stmt->bindParam(':articleId', $articleId, PDO::PARAM_INT);
             $stmt->execute();
-
-            echo "<script>alert('Article Status updated successfully');</script>";
         } catch (PDOException $e) {
-            echo "<script>alert('Failed to update status data');</script>";
-            echo "Error: " . $e->getMessage();
         }
     }
 }
-
-
-
 ?>

@@ -20,7 +20,7 @@ $articlelist = get_article_list($issid);
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="d-flex justify-content-between align-items-center py-3">
             <h4 class="py-3 mb-4"><span class="text-muted fw-light">Journal /</span> Article Issue</h4>
-            <button type="button" class="btn btn-primary" id="submitButton" onclick="submitCheckedArticles()">Submit Checked Articles</button>
+            <button type="button" class="btn btn-primary" id="submitButton" onclick="submitCheckedArticles()">Published Checked Articles</button>
         </div>
 
         <div class="card">
@@ -91,7 +91,6 @@ $articlelist = get_article_list($issid);
         }
 
         function submitCheckedArticles() {
-            // Disable the button to prevent multiple submissions
             $('#submitButton').prop('disabled', true);
             $('#sloading').show();
 
@@ -105,9 +104,16 @@ $articlelist = get_article_list($issid);
                 dataType: 'json',
                 success: function(response) {
                     console.log('Response:', response);
-
+                    
                     if (response.status) {
                         alert("Emails sent successfully");
+                        
+                        // Check if there's a success alert script in the message
+                        if (response.message.indexOf('Article Status updated successfully') !== -1) {
+                            // Update the status here or perform any other actions
+                            // You may want to reload the page or update the UI accordingly
+                        }
+                        
                         location.reload();
                     } else {
                         alert("Failed to send emails");
