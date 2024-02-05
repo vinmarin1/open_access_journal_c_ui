@@ -1531,6 +1531,7 @@ function uploadCopyeditedFiles() {
 }
 
 function updateCopyeditedCheckedFiles() {
+    $('#sloading').toggle();
     var checkedCheckboxes2 = $('.copyedited-checkbox:checked');
 
     var checkedData2 = [];
@@ -1555,6 +1556,7 @@ function updateCopyeditedCheckedFiles() {
         success: function(response) {
             console.log('Checked checkboxes data sent successfully.');
             console.log(response);
+            $('#sloading').toggle();
             location.reload();
         },
         error: function(error) {
@@ -1564,6 +1566,7 @@ function updateCopyeditedCheckedFiles() {
 }
 
 function updateCopyeditedUncheckedFiles() {
+    $('#sloading').toggle();
     var uncheckedCheckboxes2 = $('.copyedited-checkbox:not(:checked)');
 
     var uncheckedData2 = [];
@@ -1589,6 +1592,7 @@ function updateCopyeditedUncheckedFiles() {
             console.log('Unchecked checkboxes data sent successfully.');
             console.log(response);
             location.reload();
+            $('#sloading').toggle();
         },
         error: function(error) {
             console.error('Error sending unchecked checkboxes data:', error);
@@ -1609,7 +1613,6 @@ function SendForReadyPublication(issueId) {
 }
 
 function updateProductionFiles() {
-    $('#sloading').toggle();
     var productionfile = $('#productionfile')[0].files[0];
 
     if (productionfile) {
@@ -1652,6 +1655,7 @@ function uploadProductionFiles() {
 }
 
 function updateProductionCheckedFiles() {
+    $('#sloading').toggle();
     var checkedCheckboxes1 = $('.production-checkbox:checked');
     var checkedCheckboxes2 = $('.copyedited-checkbox:checked');
 
@@ -1689,6 +1693,7 @@ function updateProductionCheckedFiles() {
             console.log('Checked checkboxes data sent successfully.');
             console.log(response);
             location.reload();
+            $('#sloading').toggle();
         },
         error: function(error) {
             console.error('Error sending checked checkboxes data:', error);
@@ -1697,6 +1702,7 @@ function updateProductionCheckedFiles() {
 }
 
 function updateProductionUncheckedFiles() {
+    $('#sloading').toggle();
     var uncheckedCheckboxes1 = $('.production-checkbox:not(:checked)');
     var uncheckedCheckboxes2 = $('.copyedited-checkbox:not(:checked)');
 
@@ -1734,6 +1740,7 @@ function updateProductionUncheckedFiles() {
             console.log('Unchecked checkboxes data sent successfully.');
             console.log(response);
             location.reload();
+            $('#sloading').toggle();
         },
         error: function(error) {
             console.error('Error sending unchecked checkboxes data:', error);
