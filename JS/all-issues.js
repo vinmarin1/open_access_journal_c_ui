@@ -59,45 +59,42 @@ async function generateArticlesBasedOnIssues() {
     <div class="article-container">
         <!-- Article Content -->
         <div class="article-content">
-            <h6>${article.title} (MARCH 2023)</h6>
-            <p class="authors" style="color: #959595;">Author name</p>
-            <p>${article.abstract}</p>
-            <div class="article-tags">
+            <h6>${article.title} (${
+                new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric' }).format(new Date(article.publication_date))
+              })</h6>
+            <!--<p class="authors" style="color: #959595;">Author name</p>-->
+            <p>${article.abstract.slice(0,150)}...</p>
+            <!--<div class="article-tags">
                 <span class="tag">technology</span>
                 <span class="tag">covid-19</span>
-                <!-- More tags -->
-            </div>
+                 More tags 
+            </div> -->
         </div>
         <!-- Article Stats -->
         <div class="article-stats">
             <div class="download-buttons">
                 <button>Download PDF</button>
-                <button>Download EPub</button>
             </div>
             <hr>
             <div class="stats-container">
                 <div class="view-download">
-                    <p class="stats-value" style="color: #0858a4;">10.2k</p>
+                    <p class="stats-value" style="color: #0858a4;">${article.total_reads}</p>
                     <p class="stats-label" style="color: #959595;">VIEWS</p>
                 </div>
                 <div class="view-download">
-                    <p class="stats-value" style="color: #0858a4;">48k</p>
+                    <p class="stats-value" style="color: #0858a4;">${article.total_downloads}</p>
                     <p class="stats-label" style="color: #959595;">DOWNLOADS</p>
                 </div>
                 <div class="view-download">
-                    <p class="stats-value" style="color: #0858a4;">10.2k</p>
-                    <p class="stats-label" style="color: #959595;">CITATIONS</p>
-                </div>
-                <div class="view-download">
-                    <p class="stats-value" style="color: #0858a4;">3.2k</p>
+                    <p class="stats-value" style="color: #0858a4;">${article.total_citations}</p>
                     <p class="stats-label" style="color: #959595;">CITATIONS</p>
                 </div>
             </div>
             <br>
             <div class="download-buttons">
-                <button><i class="ri-double-quotes-r"></i>Citations</button>
+                <!--<button><i class="ri-double-quotes-r"></i>Citations</button>
                 <button><i class="ri-share-fill"></i>Share</button>
-                <button><i class="ri-heart-fill"></i>Heart</button>
+                <button><i class="ri-heart-fill"></i>Heart</button> -->
             </div>
         </div>
     </div>`).join('');
