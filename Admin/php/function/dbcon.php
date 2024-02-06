@@ -2,8 +2,8 @@
 if (!function_exists('connect_to_database')) {
     function connect_to_database()
     {
-        $string = "mysql:host=srv1158.hstgr.io;dbname=u944705315_qcuj";
-        $con = new PDO($string, 'u944705315_qcuj', 'Qcujournal1234.');
+        $string = "mysql:host=srv1158.hstgr.io;dbname=u944705315_qcuj2024";
+        $con = new PDO($string, 'u944705315_qcuj2024', 'Qcujournal1234.');
 
         if (!$con) {
             return false;
