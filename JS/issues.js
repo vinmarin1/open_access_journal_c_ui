@@ -32,6 +32,7 @@ async function fetchAndGenerateJournal() {
     // const journalName = document.querySelector("#journal_name")
     const journalTitle = document.querySelector("#journal_title")
     const journalDescription = document.querySelector("#journal_details")
+    journalDescription.innerHTML=""
 
     // journalName.innerHTML = journalDetails.journal
     journalTitle.innerHTML = journalDetails.journal_title
