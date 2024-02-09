@@ -54,31 +54,32 @@
 
   <div class="descript-1 pt-3">
     <div class="form-check" id="checkList-1">
-    <input type="checkbox" id="check-1">
+    <input type="checkbox" class="my-checkbox" id="check-1">
+
     <p class="st-1">The submission has not been previously published, nor is it before another journal for consideration (or an explanation has been provided in Comments to the Editor).</p>
     </div>
    <div class="form-check" id="checkList-2">
-   <input type="checkbox" id="check-2">
+   <input type="checkbox" class="my-checkbox" id="check-2">
    <p class="st-2">Note that your paper will be submitted to iThenticate.com (Plagiarism Detection Software) to check the similarity score.</p>
    </div>
     <div class="form-check" id="checkList-3">
-    <input type="checkbox" id="check-3">
+    <input type="checkbox" class="my-checkbox" id="check-3">
     <p class="st-3">The submission file is in Microsoft Word document file format. Please do NOT submit in pdf.</p>
     </div>
     <div class="form-check" id="checkList-4">
-    <input type="checkbox" id="check-4">
+    <input type="checkbox" class="my-checkbox" id="check-4">
     <p class="st-4">Where available, URLs for online references have been provided.</p>
     </div>
-    <div class="form-check" id="checkList-5">
-    <input type="checkbox" id="check-5">
+    <!-- <div class="form-check" id="checkList-5">
+    <input type="checkbox" class="my-checkbox" id="check-5">
     <p class="st-4">Where available, URLs for online references have been provided.</p>
-    </div>
+    </div> -->
     <div class="form-check" id="check-6">
-    <input type="checkbox" id="check-6">
+    <input type="checkbox" class="my-checkbox" id="check-6">
     <p class="st-5" style="width: 90%; display: inline-block">The text is single-column; single-spaced; uses a 11-point font (except for section headings which is 12); employs italics, rather than underlining (except with URL addresses); and all illustrations, figures, and tables are placed within the text at the appropriate points, rather than at the end. The Book Antiqua font should be used for all text in the paper. Use A4 page set-up. The top and bottom margins are 1.4 inches and the right/left margins are 1.2 inches.</p>
     </div>
     <div class="form-check" id="check-7">
-    <input type="checkbox" id="check-7">
+    <input type="checkbox" class="my-checkbox" id="check-7">
     <p class="st-6">The text adheres to the stylistic and bibliographic requirements outlined in the Author Guidelines, which is found in About the Journal.</p>
 
     </div>
@@ -104,7 +105,7 @@
   <div class="descript-2 pt-3">
 
   <div class="form-check">
-  <input type="checkbox" id="check" name="check" value="1">
+  <input type="checkbox" class="my-checkbox" id="check" name="check" value="1">
   <p class="st-7">The authors agree to the terms of this Copyright Notice, which will apply to this submission if and when it is published by this journal (comments to the editor can be added below).</p>
 
 
@@ -113,7 +114,7 @@
 </div>
 
 </div>
-  
+<button type="button" class="btn btn-primary btn-sm" id="next1" >Next</button>
 
 </div>
 
@@ -136,7 +137,7 @@
         <h6 id="sub-9">Title <p id="title-validation" style="color: red; display: none; font-size: 10px;">The minimum word for title is 5 and maximum of 100 words</p></h6>
 
     
-        <input class="form-control" type="text"  id="title" name="title">
+        <input class="form-control artcl" type="text"  id="title" name="title">
       
        
         
@@ -149,7 +150,7 @@
         </div> -->
         <textarea class="form-control" name="editor" id="editor" cols="30" rows="10"></textarea>
       
-        <input class="form-control" type="text" id="abstract" name="abstract"  style="display: none;">
+        <input class="form-control artcl" type="text" id="abstract" name="abstract"  style="display: none;">
        
 
       </div>
@@ -188,11 +189,13 @@
           <p class="suggestion-title">QOAJ can suggest journal based on your article</p>
         </div>
         <button type="button" class="btn btn-primary btn-sm" id="check-duplication">Check</button>
+      
         <!-- <button type="button" class="btn btn-primary btn-sm" id="btn-okay">Okay</button> -->
       </div>
 
   
-    
+  
+   
       
 
     </div>
@@ -200,11 +203,11 @@
     <div class="input-details-2 mt-3" id="form-floating-3">
 
     <h6 id="sub-10">Keywords <p id="keywords-validation" style="color: red; display: none; font-size: 10px">Keywords should be separated by at least 1 or 4 commas*</p></h6>
-      <input class="form-control" type="text" id="keywords" name="keywords">
+      <input class="form-control artcl" type="text" id="keywords" name="keywords">
       
 
       
-      <h6 class="sub-12 mt-5" id="sub-12">Reference <p id="reference-validation" style="color: red; display: none; font-size: 10px">Reference is required*</p></h6>
+      <h6 class="sub-12 mt-5 artcl" id="sub-12">Reference <p id="reference-validation" style="color: red; display: none; font-size: 10px">Reference is required*</p></h6>
 
       <!-- <div id="editor2">
     
@@ -221,7 +224,9 @@
 
 
     
-  
+<button type="button" class="btn btn-primary btn-sm" id="next" >Next</button>
+
+<button type="button" class="btn btn-secondary btn-sm" id="prev">Prev</button>
     
   </div>
    
@@ -279,7 +284,9 @@
 
   </div>
  
+  <button type="button" class="btn btn-primary btn-sm" id="next3" >Next</button>
 
+  <button type="button" class="btn btn-secondary btn-sm" id="prev3">Prev</button>
   </div>
 
   <div class="tab-pane fade" id="contributors-tab-pane" role="tabpanel" aria-labelledby="contributors-tab" tabindex="0">
@@ -332,7 +339,8 @@
             </tbody>
         </table>
 
-
+  <button type="button" class="btn btn-primary btn-sm" id="next4" >Next</button>
+  <button type="button" class="btn btn-secondary btn-sm" id="prev4">Prev</button>
   
   </div>
 
@@ -348,7 +356,9 @@
     </div>
     <textarea class="form-control" name="editor3" id="editor3" cols="30" rows="10" style="width: 93%; height: auto; margin-left: auto;  margin-right: auto "></textarea>
     <input class="form-control" type="text" id="notes" name="notes" style="display: none; ">
-
+  
+  <button type="button" class="btn btn-primary btn-sm" id="next5" >Next</button>
+  <button type="button" class="btn btn-secondary btn-sm" id="prev5">Prev</button>
 
   </div>
 
@@ -437,15 +447,18 @@
    
 
   </div>
-
-
+ 
+  <button type="button" class="btn btn-success btn-sm" id="submit" onclick="saveData()" >Submit</button>
+  <button type="button" class="btn btn-secondary btn-sm" id="prevReview">Prev</button>
+  
   </div>
+
 </div>
 <div id="btn-action">
-<button type="submit" class="btn btn-success btn-sm" id="submit" onclick="saveData()">Submit</button>
-<button type="button" class="btn btn-primary btn-sm" id="next">Next</button>
+<!-- <button type="submit" class="btn btn-success btn-sm" id="submit" onclick="saveData()"  disabled>Submit</button> -->
+<!-- <button type="button" class="btn btn-primary btn-sm" id="next" >Next</button>
 
-<button type="button" class="btn btn-secondary btn-sm" id="prev">Prev</button>
+<button type="button" class="btn btn-secondary btn-sm" id="prev">Prev</button> -->
 
 </div>
 
@@ -470,99 +483,135 @@
 <script>
 
 
-function addRow() {
-    var index = $('#contributorTable tbody tr').length; // Get the current row index
-    var newRow = '<tr>' +
-        '<td><input class="form-control email-input" type="email" name="emailC[]" style="height: 30px;" required></td>' +
-        '<td><input class="form-control" type="text" name="firstnameC[]" style="height: 30px;" required></td>' +
-        '<td><input class="form-control" type="text" name="lastnameC[]" style="height: 30px;" required></td>' +
-        '<td><input class="form-control" type="text" name="publicnameC[]" style="height: 30px;"></td>' +
-        '<td><input class="form-control" type="number" name="orcidC[]" style="height: 30px;"></td>' +
-        '<td class="align-middle">' +
-        '<div class="form-check cAuthor" style="display: inline-block; margin-right: 10px">' +
-        '<input class="form-check-input" type="checkbox" name="contributor_type_coauthor[' + index + ']" value="Co-Author">' +
-        '<label class="form-check-label"> Co-Author</label>' +
-        '</div>' +
-        '<div class="form-check pContact" style="display: inline-block">' +
-        '<input class="form-check-input" type="checkbox" name="contributor_type_primarycontact[' + index + ']" value="Primary Contact">' +
-        '<label class="form-check-label"> Primary Contact</label>' +
-        '</div>' +
-        '</td>'
-        +
-        '<td class="align-middle"><input class="form-check-input" type="checkbox" name="selectToDelete"></td>' +
-        '</tr>';
+// function addRow() {
+//     var index = $('#contributorTable tbody tr').length; // Get the current row index
+//     var newRow = '<tr>' +
+//         '<td><input class="form-control email-input" type="email" name="emailC[]" style="height: 30px;" required></td>' +
+//         '<td><input class="form-control" type="text" name="firstnameC[]" style="height: 30px;" required></td>' +
+//         '<td><input class="form-control" type="text" name="lastnameC[]" style="height: 30px;" required></td>' +
+//         '<td><input class="form-control" type="text" name="publicnameC[]" style="height: 30px;"></td>' +
+//         '<td><input class="form-control" type="number" name="orcidC[]" style="height: 30px;"></td>' +
+//         '<td class="align-middle">' +
+//         '<div class="form-check cAuthor" style="display: inline-block; margin-right: 10px">' +
+//         '<input class="form-check-input" type="checkbox" name="contributor_type_coauthor[' + index + ']" value="Co-Author">' +
+//         '<label class="form-check-label"> Co-Author</label>' +
+//         '</div>' +
+//         '<div class="form-check pContact" style="display: inline-block">' +
+//         '<input class="form-check-input" type="checkbox" name="contributor_type_primarycontact[' + index + ']" value="Primary Contact">' +
+//         '<label class="form-check-label"> Primary Contact</label>' +
+//         '</div>' +
+//         '</td>'
+//         +
+//         '<td class="align-middle"><input class="form-check-input" type="checkbox" name="selectToDelete"></td>' +
+//         '</tr>';
 
-    $('#contributorTable tbody').append(newRow);
-}
+//     $('#contributorTable tbody').append(newRow);
+// }
 
-// Attach event listener to the email input field for fetching data on blur
-$('#contributorTable tbody').on('blur', 'input.email-input', function() {
-    var email = $(this).val();
-    var currentRow = $(this).closest('tr');
+// // Attach event listener to the email input field for fetching data on blur
+// $('#contributorTable tbody').on('blur', 'input.email-input', function() {
+//     var email = $(this).val();
+//     var currentRow = $(this).closest('tr');
 
-    if (email !== '') {
+//     if (email !== '') {
       
-        $.ajax({
-            type: 'POST',
-            url: 'fetch_author_data.php', 
-            data: { email: email },
-            dataType: 'json',
-            success: function(response) {
-                if (response.success) {
-                    // Update the current row with fetched data
-                    currentRow.find('input[name="firstnameC[]"]').val(response.data.first_name);
-                    currentRow.find('input[name="lastnameC[]"]').val(response.data.last_name);
-                    currentRow.find('input[name="publicnameC[]"]').val(response.data.public_name);
-                    currentRow.find('input[name="orcidC[]"]').val(response.data.orc_id);
-                } else {
-                    // Handle the case where the email does not exist in the database
-                    Swal.fire({
-                    icon: "question",
-                    title: "This email is new to us",
-                    text: "Please try to input the contributors info manually."
+//         $.ajax({
+//             type: 'POST',
+//             url: 'fetch_author_data.php', 
+//             data: { email: email },
+//             dataType: 'json',
+//             success: function(response) {
+//                 if (response.success) {
+//                     // Update the current row with fetched data
+//                     currentRow.find('input[name="firstnameC[]"]').val(response.data.first_name);
+//                     currentRow.find('input[name="lastnameC[]"]').val(response.data.last_name);
+//                     currentRow.find('input[name="publicnameC[]"]').val(response.data.public_name);
+//                     currentRow.find('input[name="orcidC[]"]').val(response.data.orc_id);
+//                 } else {
+//                     // Handle the case where the email does not exist in the database
+//                     Swal.fire({
+//                     icon: "question",
+//                     title: "This email is new to us",
+//                     text: "Please try to input the contributors info manually."
                   
-                  });
-                }
-            },
-            error: function(xhr, status, error) {
-                console.error('Error fetching data:', error);
-            }
-        });
-    }
-});
+//                   });
+//                 }
+//             },
+//             error: function(xhr, status, error) {
+//                 console.error('Error fetching data:', error);
+//             }
+//         });
+//     }
+// });
 
 
-function saveData() {
+// function saveData() {
+//   const title = document.getElementById('title');
+//   const form = document.getElementById('form');
+
+//   if (title.value === '') {
+//     alert('You should provide a title before submission');
+  
+//     return;
+//   } else {
+   
+//     var formData = new FormData(form);
+
+//     $('#contributorTable tbody tr').each(function (index, row) {
+//       var coAuthorCheckbox = $(row).find('input[name="contributor_type_coauthor[]"]');
+//       var primaryContactCheckbox = $(row).find('input[name="contributor_type_primarycontact[]"]');
+
+//       if (coAuthorCheckbox.is(':checked')) {
+//         formData.append('contributor_type_coauthor[' + index + ']', 'Co-Author');
+//       }
+
+//       if (primaryContactCheckbox.is(':checked')) {
+//         formData.append('contributor_type_primarycontact[' + index + ']', 'Primary Contact');
+//       }
+//     });
+
+//     $('#loadingOverlay').show();
+    
+//     // Continue with the rest of your code
+    
+//     // Submit the form programmatically
+//     form.submit();
+//   }
+// }
 
 
-  var formData = new FormData($('#form')[0]);
 
-  // Add contributor types for each row
-  $('#contributorTable tbody tr').each(function(index, row) {
-      var coAuthorCheckbox = $(row).find('input[name="contributor_type_coauthor[]"]');
-      var primaryContactCheckbox = $(row).find('input[name="contributor_type_primarycontact[]"]');
-
-      if (coAuthorCheckbox.is(':checked')) {
-          formData.append('contributor_type_coauthor[' + index + ']', 'Co-Author');
-      }
-
-      if (primaryContactCheckbox.is(':checked')) {
-          formData.append('contributor_type_primarycontact[' + index + ']', 'Primary Contact');
-      }
-  });
-
-  $('#loadingOverlay').show();
-
-}
+// // function saveData() {
 
 
-function deleteData() {
-  // Iterate through each checkbox
-  $('input[name="selectToDelete"]:checked').each(function() {
-      // Delete the corresponding row
-      $(this).closest('tr').remove();
-  });
-}
+// //   var formData = new FormData($('#form')[0]);
+
+// //   // Add contributor types for each row
+// //   $('#contributorTable tbody tr').each(function(index, row) {
+// //       var coAuthorCheckbox = $(row).find('input[name="contributor_type_coauthor[]"]');
+// //       var primaryContactCheckbox = $(row).find('input[name="contributor_type_primarycontact[]"]');
+
+// //       if (coAuthorCheckbox.is(':checked')) {
+// //           formData.append('contributor_type_coauthor[' + index + ']', 'Co-Author');
+// //       }
+
+// //       if (primaryContactCheckbox.is(':checked')) {
+// //           formData.append('contributor_type_primarycontact[' + index + ']', 'Primary Contact');
+// //       }
+// //   });
+
+// //   $('#loadingOverlay').show();
+
+// // }
+
+
+// function deleteData() {
+//   // Iterate through each checkbox
+//   $('input[name="selectToDelete"]:checked').each(function() {
+//       // Delete the corresponding row
+//       $(this).closest('tr').remove();
+//   });
+// }
 
 </script>
 

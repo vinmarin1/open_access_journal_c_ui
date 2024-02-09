@@ -63,6 +63,11 @@ document.getElementById('check-duplication').addEventListener('click', function(
                 flaggedT.innerHTML = 'Flagged as: Duplicate';
 
                 nextBtn.disabled = true;
+
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'Duplicated title and abstract detected!'
+                });
             } else if(data.highest_simlarity >= 0.4 && data.highest_simlarity < 1.0){
                 document.getElementById('similar-title').innerHTML = data.similar_articles[0].title;
                 const articleId = data.similar_articles[0].article_id;
@@ -88,6 +93,11 @@ document.getElementById('check-duplication').addEventListener('click', function(
                 flaggedT.innerHTML = 'Flagged as: Duplicate';
 
                 nextBtn.disabled = true;
+
+                Swal.fire({
+                    icon: 'warning',
+                    text: 'Duplicated title and abstract detected!'
+                });
             } else if(data.highest_simlarity <= 0.31){
                 document.getElementById('similar-title').innerHTML = '';
                 labelDuplication.innerHTML = 'Title: ' + (data.similar_articles[0].score.title * 100).toFixed(2) + '%';

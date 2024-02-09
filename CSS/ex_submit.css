@@ -730,7 +730,7 @@
 
 
 
-#prev, #next, #submit, #check-d{
+#prev, #prev2, #prev3, #prev4, #prev5, #prevReview, #next, #next1, #next3, #next4, #next5, #submit, #check-d{
     float: right;
     margin-left: 10px;
     width: 120px;
@@ -746,7 +746,7 @@
 }
 
 
-#next{
+#next, #next1, #next3, #next4, #next5{
     background-color: #0858a4;
 }
 

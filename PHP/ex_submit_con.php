@@ -33,11 +33,11 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     
     $coAuthors = isset($_POST['contributor_type_coauthor']) ? $_POST['contributor_type_coauthor'] : array();
     $primaryContacts = isset($_POST['contributor_type_primarycontact']) ? $_POST['contributor_type_primarycontact'] : array();
-    $firstNameC = $_POST['firstnameC'];
-    $lastNameC = $_POST['lastnameC'];
-    $publicNameC = $_POST['publicnameC'];
-    $orcidsC = $_POST['orcidC'];
-    $emailsC = $_POST['emailC'];
+    $firstNameC = isset($_POST['firstnameC']) ? $_POST['firstnameC'] : array();
+    $lastNameC = isset($_POST['lastnameC']) ? $_POST['lastnameC'] : array();
+    $publicNameC = isset($_POST['publicnameC']) ? $_POST['publicnameC'] : array();
+    $orcidsC = isset($_POST['orcidC']) ? $_POST['orcidC'] : array();
+    $emailsC = isset($_POST['emailC']) ? $_POST['emailC'] : array();
 
 
     $email = $_SESSION['email'];
@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         'file_name3' => $_FILES['file_name3']['name']
     );
 
-    handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $formattedDate, $title, $category, $abstract, $keywords, $reference, $comment, $step, $coAuthors, $primaryContacts, $firstNameC, $lastNameC, $publicNameC, $orcidsC, $emailsC, $firstName, $lastName, $orc_idAuthor, $email, $authorAdditionalRole);
+    handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $formattedDate, $title, $category, $abstract, $keywords, $reference, $comment, $coAuthors, $primaryContacts, $firstNameC, $lastNameC, $publicNameC, $orcidsC, $emailsC, $firstName, $lastName, $orc_idAuthor, $email, $authorAdditionalRole);
 
     Header("Location: author-dashboard.php");
     exit();
@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     exit();
 }
 
-function handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $formattedDate, $title, $category, $abstract, $keywords, $reference, $comment, $step, $coAuthors, $primaryContacts, $firstNameC, $lastNameC, $publicNameC, $orcidsC, $emailsC, $firstName, $lastName, $orc_idAuthor, $email, $authorAdditionalRole)
+function handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $formattedDate, $title, $category, $abstract, $keywords, $reference, $comment, $coAuthors, $primaryContacts, $firstNameC, $lastNameC, $publicNameC, $orcidsC, $emailsC, $firstName, $lastName, $orc_idAuthor, $email, $authorAdditionalRole)
 {
     global $lastInsertedArticleId;
 
@@ -196,13 +196,7 @@ function handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $
 
         database_run($sqlCont, $paramsCont);
 
-        $emailCont = $emailsC[$key];
-
-        $messageCont = "<p>You've been included as a contributor for the Journal</p><br> <label style='display: inline-block;'>Title: </label> <p style='display: inline-block;'>$title</p> <br><label style='display: inline-block;'>Abstract: </label><p style='display: inline-block;'>$abstract</p>";
-    
-        $subjectCont = "Review Journal";
-        $recipientCont = $emailCont;
-        send_mail($recipientCont, $subjectCont, $messageCont);
+  
     }
 
 
