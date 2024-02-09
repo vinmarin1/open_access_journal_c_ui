@@ -8,7 +8,7 @@ function get_journal_list($journal_id = null)
     if ($pdo) {
         try {
             if (!empty($journal_id)) {
-                $query = "SELECT * FROM journal WHERE id = :journal_id AND status = 1";
+                $query = "SELECT * FROM journal WHERE journal_id = :journal_id AND status = 1";
                 $stmt = $pdo->prepare($query);
                 $stmt->bindParam(':journal_id', $journal_id, PDO::PARAM_STR);
             } else {
