@@ -126,9 +126,9 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 </div>
                 <div>
                     <select id="sortby" name="sortby" class="sort-dropdown form-select form-select-sm px-8" >
-                        <option value="" hidden>Recently added</option>
+                        <option value="" hidden>Choose</option>
                         <option value="title">Title</option>
-                        <option value="recently_added">Recently added</option>
+                        <!-- <option value="recently_added">Recently added</option> -->
                         <option value="publication-date">Publication Date</option>
                         <optgroup label="Popularity">
                             <option value="popular">All</option>

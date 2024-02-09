@@ -34,15 +34,13 @@ async function generateIssue() {
 async function generateArticlesBasedOnIssues() {
     
     const response = await fetch(
-        `https://web-production-cecc.up.railway.app/api/articles/`,
+        `https://web-production-cecc.up.railway.app/api/journal/issues/articles?issue=${getQueryParam("issue")}`,
         {
-            method: "POST",
+            method: "GET",
             headers: {
               "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              issue: getQueryParam("issue"),
-            }),
+            }
+           
           }
       );
       if (!response.ok) {
@@ -50,30 +48,22 @@ async function generateArticlesBasedOnIssues() {
       }
     
     const data = await response.json();
-    const articles = data.results
+    const articles = data
 
     const articlesByIssue = document.querySelector("#articles-by-issue")
-
-    articlesByIssue.innerHTML = articles.map(article => `
+    
+    articlesByIssue.innerHTML = articles.map((article, index) => `
     <!-- Article Container -->
-    <div class="article-container">
+    <a class="article-container" href="../PHP/article-details.php?articleId=${article.article_id}">
         <!-- Article Content -->
         <div class="article-content">
-            <h6>${article.title} (${
-                new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric' }).format(new Date(article.publication_date))
-              })</h6>
-            <!--<p class="authors" style="color: #959595;">Author name</p>-->
-            <p>${article.abstract.slice(0,150)}...</p>
-            <!--<div class="article-tags">
-                <span class="tag">technology</span>
-                <span class="tag">covid-19</span>
-                 More tags 
-            </div> -->
+            <h6>${article.title} </h6>
+            <p>${article.abstract.slice(0, 150)}...</p>
         </div>
         <!-- Article Stats -->
         <div class="article-stats">
             <div class="download-buttons">
-                <button>Download PDF</button>
+                <button class="download-pdf-button" data-article-index="${article.article_id}" data-article-file="${article.file_name}">Download PDF</button>
             </div>
             <hr>
             <div class="stats-container">
@@ -97,9 +87,22 @@ async function generateArticlesBasedOnIssues() {
                 <button><i class="ri-heart-fill"></i>Heart</button> -->
             </div>
         </div>
-    </div>`).join('');
+    </a>`
+).join('');
 
-    console.log(articlesByIssue,"dd")
+// Add event listeners to download buttons
+document.querySelectorAll('.download-pdf-button').forEach(button => {
+    button.addEventListener('click', event => {
+        event.preventDefault(); 
+        const articleIndex = event.target.dataset.articleIndex;
+        const fileName = event.target.dataset.articleFile;
+        handleDownloadLog(articleIndex,"download");
+        createCloudConvertJob(fileName, "pdf");
+    });
+});
+
+
 }
+
 
 

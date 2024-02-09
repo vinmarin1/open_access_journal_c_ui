@@ -58,26 +58,30 @@ async function generateIssues() {
     
     const data = await response.json();
     const issuesPerYear = data.issuesPerYear
+    if (Object.keys(issuesPerYear).length === 0) {
+      issuesPerYearContainer.innerHTML ="No issues"
+     }else{
     renderIssues(issuesPerYear)
+     
+     }
 }
 function renderIssuesContent(issues) {
     return issues.map(issue => `
-        <div class="issue" onclick="window.location.href='all-issues.php?issue=${issue.issues_id}'" >
-            <img src='../images/volume2-1.jpg' alt="Journal 1">
-            <p style="color: #285581;">${issue.title}<br><span style="color: black">${issue.year}</span></p>
-        </div>
-    `).join('');
+    <div class="issue" onclick="window.location.href='all-issues.php?issue=${issue.issues_id}'" >
+        <img src='../files/cover-image/${issue.cover_image}' alt="Journal 1">
+        <p style="color: #285581;">${issue.title}<br><span style="color: black">${issue.year}</span></p>
+    </div>
+`).join('');
+   
 }
 
 function renderIssues(data) {
     const issuesPerYearContainer = document.querySelector('#issues-per-year-container')
+
     issuesPerYearContainer.innerHTML = Object.entries(data).map(([year, issues], index) => `
         <div class="all-issues">
             <div class="header-title" id="issueYear">${year}</div>
             ${renderIssuesContent(issues)}
-            <div class="">
-                <button class="btn btn-primary btn-md btn-seemore" id="see-more">Show All Articles</button>
-            </div>
         </div>
     `).join('');
     console.log(data, "dataaa");
