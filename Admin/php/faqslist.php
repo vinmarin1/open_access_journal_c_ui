@@ -139,7 +139,7 @@ $faqslist = get_faqs_list();
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.log('AJAX Error:', textStatus, errorThrown);
-                console.log('Error fetching Faqs data');
+                console.log('Error fetching faqs data');
             }
         });
     }
