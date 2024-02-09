@@ -72,7 +72,15 @@ $journal = get_journal_list();
           </div>
 
           <div class="menu-inner-shadow"></div>
+          <?php
+            if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
+                $firstName = isset($_SESSION['first_name']) ? ucfirst($_SESSION['first_name']) : '';
+                $middleName = isset($_SESSION['middle_name']) ? ' ' . ucfirst($_SESSION['middle_name']) : '';
+                $lastName = isset($_SESSION['last_name']) ? ' ' . ucfirst($_SESSION['last_name']) : '';
 
+                echo '<span class="fw-medium d-block">' . $firstName . $middleName . $lastName . '</span>';
+            }
+            ?>
           <ul class="menu-inner py-1">
           <li class="menu-header small text-uppercase"><span class="menu-header-text">Main</span></li>
             <!-- Dashboards -->
@@ -90,21 +98,33 @@ $journal = get_journal_list();
               </a>
             </li>
 
-            <li class="menu-header small text-uppercase"><span class="menu-header-text">Secondary</span></li>
-            <li class="menu-item">
-              <a href="announcementlist.php" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-detail"></i>
-                <div data-i18n="Boxicons">Announcement</div>
-              </a>
-            </li>
 
-            <li class="menu-item">
-              <a href="issuelist.php" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-detail"></i>
-                <div data-i18n="Boxicons">Issue</div>
-              </a>
-            </li>
+            <?php
+              if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
+                  $journal_id = isset($_SESSION['journal_id']) ? ucfirst($_SESSION['journal_id']) : '';
+                  if(!empty($journal_id)) {
+              ?>
 
+              <li class="menu-header small text-uppercase"><span class="menu-header-text">Secondary</span></li>
+                <li class="menu-item">
+                  <a href="announcementlist.php" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-detail"></i>
+                    <div data-i18n="Boxicons">Announcement</div>
+                  </a>
+                </li>
+
+                <li class="menu-item">
+                  <a href="issuelist.php" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-detail"></i>
+                    <div data-i18n="Boxicons">Issue</div>
+                  </a>
+                </li>
+
+              <?php
+                  }
+              }
+              ?>
+              
             <!-- Forms & Tables -->
             <li class="menu-header small text-uppercase"><span class="menu-header-text">Settings</span></li>
             <!-- Tables -->
