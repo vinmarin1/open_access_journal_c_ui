@@ -88,14 +88,11 @@ if (!function_exists('get_issues_list')) {
                 {
                     try {
                         $issn = $_POST['issn'];
-                        $issues = $_POST['issues'];
                         $volume = $_POST['volume'];
                         $number = $_POST['number'];
                         $year = $_POST['year'];
                         $title = $_POST['title'];
-                        $description = $_POST['description'];
                         $status = 1;
-                        $url_path = $_POST['url_path'];
                     
                         $documentRoot = $_SERVER['DOCUMENT_ROOT'];
                         $uploadPath = $documentRoot . '/Files/cover-image/';
@@ -122,10 +119,10 @@ if (!function_exists('get_issues_list')) {
                             }
                         }
                     
-                        $query = "INSERT INTO issues (issn, issues_id, volume, number, year, title, description, status ,cover_image, url_path) 
-                                  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?,? )";
+                        $query = "INSERT INTO issues (issn, volume, number, year, title,  status ,cover_image) 
+                                  VALUES (?, ?, ?, ?, ?, ?, ? )";
                 
-                        $result = execute_query($query, [$issn, $issues, $volume, $number, $year, $title, $description, $status,$cover_image, $url_path], true);
+                        $result = execute_query($query, [$issn,  $volume, $number, $year, $title,  $status,$cover_image], true);
                 
                         if ($result !== false) {
                             echo json_encode(['status' => true, 'message' => 'Record added successfully']);
@@ -148,7 +145,7 @@ if (!function_exists('get_issues_list')) {
                         $updatedData = $_POST['updated_data'];
                     
                         $query = "UPDATE issues 
-                                    SET issn = ?, issues_id = ?, volume = ?, number = ?, year = ?, title = ?, description = ?, url_path = ?
+                                    SET issn = ?,  volume = ?, number = ?, year = ?, title = ?
                                     WHERE id = ?";
                         
                         $pdo = connect_to_database();
@@ -156,13 +153,10 @@ if (!function_exists('get_issues_list')) {
                         $stm = $pdo->prepare($query);
                         $check = $stm->execute([
                             $updatedData['issn'],
-                            $updatedData['issues_id'],
                             $updatedData['volume'],
                             $updatedData['number'],
                             $updatedData['year'],
                             $updatedData['title'],
-                            $updatedData['description'],
-                            $updatedData['url_path'],
                             $id
                         ]);
                     
