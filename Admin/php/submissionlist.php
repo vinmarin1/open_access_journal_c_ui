@@ -1,8 +1,19 @@
 <?php
 include 'function/redirect.php';
 include 'function/submission_functions.php';
-$cid = isset($_GET['cid']) ? $_GET['cid'] : 1;
 
+$cid_get = isset($_GET['cid']) ? $_GET['cid'] : 1;
+
+if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
+    $journal_id = isset($_SESSION['journal_id']) ? ($_SESSION['journal_id']) : '';
+    if(empty($journal_id) && $journal_id !== NULL) {
+        $cid = $cid_get;
+    } else {
+        $cid = $journal_id;
+    }
+}
+
+// $cid = $cid_get;
 $contributor = get_contributor_list();
 $journals = get_journal_detail($cid);
 $incomplete_articles = get_article_list($cid);

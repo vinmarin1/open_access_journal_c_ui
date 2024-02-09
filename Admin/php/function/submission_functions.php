@@ -27,21 +27,21 @@ if (!function_exists('get_allarticle_list')) {
 }
 
 if (!function_exists('get_journal_list')) {
-    function get_journal_list($journal_id = null) {
+    function get_journal_list($cid = null) {
         $pdo = connect_to_database();
 
         if ($pdo) {
             try {
                 $query = "SELECT * FROM journal WHERE status = 1";
 
-                if (!empty($journal_id)) {
-                    $query .= " AND journal_id = :journal_id";
+                if (!empty($cid)) {
+                    $query .= " AND journal_id = :cid";
                 }
 
                 $stmt = $pdo->prepare($query);
 
-                if (!empty($journal_id)) {
-                    $stmt->bindParam(':journal_id', $journal_id, PDO::PARAM_INT);
+                if (!empty($cid)) {
+                    $stmt->bindParam(':cid', $cid, PDO::PARAM_INT);
                 }
 
                 $stmt->execute();
