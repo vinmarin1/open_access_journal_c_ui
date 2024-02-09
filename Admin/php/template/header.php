@@ -90,9 +90,11 @@ $journal = get_journal_list();
             </li>
 
             <?php
+
               if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
-                  $journal_id = isset($_SESSION['journal_id']) ? ucfirst($_SESSION['journal_id']) : '';
-                  if(!empty($journal_id)) {
+                $journal_id = isset($_SESSION['journal_id']) ? ($_SESSION['journal_id']) : '';
+
+                  if(empty($journal_id) && $journal_id !== NULL) {
               ?>
 
               <li class="menu-header small text-uppercase"><span class="menu-header-text">Secondary</span></li>
@@ -107,6 +109,13 @@ $journal = get_journal_list();
                   <a href="issuelist.php" class="menu-link">
                     <i class="menu-icon tf-icons bx bx-detail"></i>
                     <div data-i18n="Boxicons">Issue</div>
+                  </a>
+                </li>   
+
+                <li class="menu-item">
+                  <a href="faqslist.php" class="menu-link">
+                    <i class="menu-icon tf-icons bx bx-detail"></i>
+                    <div data-i18n="Boxicons">FAQS</div>
                   </a>
                 </li>   
 

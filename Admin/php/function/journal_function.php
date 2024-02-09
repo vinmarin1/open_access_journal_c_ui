@@ -1,34 +1,30 @@
 <?php
 include 'dbcon.php';
 
-function get_journal_list($journal_id = null)
-{
-    $pdo = connect_to_database();
+if (!function_exists('get_journal_list')) {
+    function get_journal_list()
+    {
+        $pdo = connect_to_database();
 
-    if ($pdo) {
-        try {
-            if (!empty($journal_id)) {
-                $query = "SELECT * FROM journal WHERE journal_id = :journal_id AND status = 1";
-                $stmt = $pdo->prepare($query);
-                $stmt->bindParam(':journal_id', $journal_id, PDO::PARAM_STR);
-            } else {
+        if ($pdo) {
+            try {
                 $query = "SELECT * FROM journal WHERE status = 1";
                 $stmt = $pdo->query($query);
+
+                $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+                return $result;
+            } catch (PDOException $e) {
+
+                echo "Error: " . $e->getMessage();
+                return false;
             }
-
-            $stmt->execute();
-
-            $result = $stmt->fetchAll(PDO::FETCH_OBJ);
-
-            return $result;
-        } catch (PDOException $e) {
-            echo "Error: " . $e->getMessage();
-            return false;
         }
-    }
 
-    return false;
+        return false;
+    }
 }
+
     $action = isset($_POST['action']) ? $_POST['action'] : '';
 
         switch ($action) {
