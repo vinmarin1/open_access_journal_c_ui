@@ -2,7 +2,11 @@
 include 'function/redirect.php';
 include 'function/submission_functions.php';
 
-$journallist = get_journal_list();
+if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
+    $journal_id = isset($_SESSION['journal_id']) ? ucfirst($_SESSION['journal_id']) : '';
+}
+
+$journallist = get_journal_list($journal_id);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,6 +30,11 @@ $journallist = get_journal_list();
         </div>
 
         <div class="row mb-5 mt-4">
+        <?php
+        if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
+        $journal_id = isset($_SESSION['journal_id']) ? ucfirst($_SESSION['journal_id']) : '';
+            if(!empty($journal_id)) {
+        ?>
             <div class="col-md-6">
                 <div class="card mb-3" style="min-height: 340px; max-height: 100%; overflow: hidden;">
                     <div class="row g-0">
@@ -43,6 +52,10 @@ $journallist = get_journal_list();
                     </div>
                 </div>
             </div>
+        <?php
+            }
+        }
+        ?>
 
             <?php
             if ($journallist) {
