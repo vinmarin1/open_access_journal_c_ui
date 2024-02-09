@@ -44,8 +44,8 @@ include 'function/issue_function.php';
                                 <td width="5%"><?php echo  $issueslistval->year; ?></td>
                                 <td width="55%"><?php echo  $issueslistval->title; ?></td>
                                 <td width="25%">
-                                    <button type="button" class="btn btn-outline-success" onclick="updateModal(<?php echo $issueslistval->id; ?>)">Update</button>
-                                    <button type="button" class="btn btn-outline-danger" onclick="archiveIssue(<?php echo $issueslistval->id; ?>, '<?php echo $issueslistval->volume; ?>', '<?php echo $issueslistval->title; ?>')">Archive</button>
+                                    <button type="button" class="btn btn-outline-success" onclick="updateModal(<?php echo $issueslistval->issues_id; ?>)">Update</button>
+                                    <button type="button" class="btn btn-outline-danger" onclick="archiveIssue(<?php echo $issueslistval->issues_id; ?>, '<?php echo $issueslistval->volume; ?>', '<?php echo $issueslistval->title; ?>')">Archive</button>
                                     <button type="button" class="btn btn-outline-info" onclick="viewAllArticle(<?php echo $issueslistval->issues_id; ?>)">Article</button>
                                   </td>
                             </tr>

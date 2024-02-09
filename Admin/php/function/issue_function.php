@@ -73,7 +73,7 @@ if (!function_exists('get_issues_list')) {
                 {
                     $id = $_POST['id'];
                 
-                    $result = execute_query("SELECT * FROM issues WHERE id = ?", [$id]);
+                    $result = execute_query("SELECT * FROM issues WHERE issues_id = ?", [$id]);
                 
                     header('Content-Type: application/json');
                 
@@ -146,7 +146,7 @@ if (!function_exists('get_issues_list')) {
                     
                         $query = "UPDATE issues 
                                     SET issn = ?,  volume = ?, number = ?, year = ?, title = ?
-                                    WHERE id = ?";
+                                    WHERE issues_id = ?";
                         
                         $pdo = connect_to_database();
                     
@@ -176,7 +176,7 @@ if (!function_exists('get_issues_list')) {
                 {
                     $id = $_POST['id'];
             
-                    $query = "UPDATE issues  SET status = 0 WHERE id = ?";
+                    $query = "UPDATE issues  SET status = 0 WHERE issues_id = ?";
                     $result = execute_query($query, [$id]);
                 
                     echo json_encode(['status' => $result !== false, 'message' => $result !== false ? 'Issues archived successfully' : 'Failed to archive issue']);
