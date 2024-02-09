@@ -72,15 +72,6 @@ $journal = get_journal_list();
           </div>
 
           <div class="menu-inner-shadow"></div>
-          <?php
-            if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
-                $firstName = isset($_SESSION['first_name']) ? ucfirst($_SESSION['first_name']) : '';
-                $middleName = isset($_SESSION['middle_name']) ? ' ' . ucfirst($_SESSION['middle_name']) : '';
-                $lastName = isset($_SESSION['last_name']) ? ' ' . ucfirst($_SESSION['last_name']) : '';
-
-                echo '<span class="fw-medium d-block">' . $firstName . $middleName . $lastName . '</span>';
-            }
-            ?>
           <ul class="menu-inner py-1">
           <li class="menu-header small text-uppercase"><span class="menu-header-text">Main</span></li>
             <!-- Dashboards -->
@@ -97,7 +88,6 @@ $journal = get_journal_list();
                 <div data-i18n="Boxicons">Submission</div>
               </a>
             </li>
-
 
             <?php
               if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
@@ -118,36 +108,36 @@ $journal = get_journal_list();
                     <i class="menu-icon tf-icons bx bx-detail"></i>
                     <div data-i18n="Boxicons">Issue</div>
                   </a>
-                </li>
+                </li>   
 
-              <?php
+            <!-- Forms & Tables -->
+            <li class="menu-header small text-uppercase"><span class="menu-header-text">Settings</span></li>
+              <!-- Tables -->
+              <li class="menu-item">
+                <a href="journallist.php" class="menu-link">
+                  <i class="menu-icon tf-icons bx bx-table"></i>
+                  <div data-i18n="Tables">Journal</div>
+                </a>
+              </li>
+
+              <li class="menu-item">
+                <a href="userandroleslist.php" class="menu-link">
+                  <i class="menu-icon tf-icons bx bx-table"></i>
+                  <div data-i18n="Tables">User & Roles</div>
+                </a>
+              </li>
+
+              <li class="menu-item">
+                <a href="questionnaire.php" class="menu-link">
+                  <i class="menu-icon tf-icons bx bx-table"></i>
+                  <div data-i18n="Tables">Questionnaire</div>
+                </a>
+              </li>
+
+            <?php
                   }
               }
               ?>
-              
-            <!-- Forms & Tables -->
-            <li class="menu-header small text-uppercase"><span class="menu-header-text">Settings</span></li>
-            <!-- Tables -->
-            <li class="menu-item">
-              <a href="journallist.php" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-table"></i>
-                <div data-i18n="Tables">Journal</div>
-              </a>
-            </li>
-
-            <li class="menu-item">
-              <a href="userandroleslist.php" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-table"></i>
-                <div data-i18n="Tables">User & Roles</div>
-              </a>
-            </li>
-
-            <li class="menu-item">
-              <a href="questionnaire.php" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-table"></i>
-                <div data-i18n="Tables">Questionnaire</div>
-              </a>
-            </li>
 
             <!-- Reports -->
             <li class="menu-header small text-uppercase"><span class="menu-header-text">OTHERS</span></li>
