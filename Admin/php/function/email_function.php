@@ -103,16 +103,17 @@ if (!function_exists('get_email_content')) {
                 } elseif ($id == 3) {
                     updateArticleStatus($article_id, 3);
                     addLogs($article_id, $fromuser, 'Send to Copyediting');
-                    
-                    if ($articleFilesId1 == '') {
+
+                    if (empty($articleFilesId1)) {
                         updateCopyeditingRevisionFiles(1, $revisionFilesId);
-                    } elseif ($revisionFilesId == '') {
+                    } elseif (empty($revisionFilesId)) {
                         updateCopyeditingFiles(1, $articleFilesId1);
-                    } else {
+                    } elseif (!empty($articleFilesId1) && !empty($revisionFilesId)) {
                         updateCopyeditingRevisionFiles(1, $revisionFilesId);
                         updateCopyeditingFiles(1, $articleFilesId1);
                     }
-                    echo "<script>alert('Send to copyediting successfully.');</script>";                    
+                     
+                    echo "<script>alert('Send to copyediting successfully.');</script>";
                 } elseif ($id == 4) {
                     if ($round == 'Round 2') {
                         updateRound($article_id, 'Round 3');
