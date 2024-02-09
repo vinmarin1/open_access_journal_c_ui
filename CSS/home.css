@@ -552,15 +552,29 @@ h4, h2 {
   display: flex;
   position: relative;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start; /* Align content at the top */
   align-items: center;
   gap: 13px; 
   padding: 2em;
   border-radius: 4px;
   border: 1px solid #DFDFDF;
-  background: rgba(255, 255, 255, 0.86); box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0);
+  background: rgba(255, 255, 255, 0.86); 
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0);
+
 }
 
+.procedure .title {
+  margin-bottom: 10px; /* Add margin between title and description */
+}
+
+.procedure .description {
+  margin-bottom: auto; /* Push the description to the top */
+}
+.procedure{
+  width: 400px;
+  height: 300px;
+
+}
 .procedure .icon {
   position: absolute;
   top: -1.5em;
