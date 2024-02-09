@@ -16,7 +16,7 @@ $all_articles = get_allarticle_list();
 
     <!-- Content wrapper -->
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="py-3 mb-4"><span class="text-muted fw-light">Submission /</span> All</h4>
+        <h4 class="py-3 mb-4"><a href="../php/journalview.php"><span class="text-muted fw-light">Submission /</span></a> All</h4>
 
         <!-- Journal tabs -->
         <ul class="nav nav-tabs mb-3" id="journalTabs">
