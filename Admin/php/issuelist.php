@@ -28,7 +28,6 @@ include 'function/issue_function.php';
                     <thead>
                         <tr>
                             <th>ISSN</th>
-                            <th>Issues</th>
                             <th>Volume</th>
                             <th>Number</th>
                             <th>Year</th>
@@ -40,7 +39,6 @@ include 'function/issue_function.php';
                 <?php foreach ($issueslist as $issueslistval): ?>
                             <tr>
                                 <td width="5%"><?php echo  $issueslistval->issn; ?></td>
-                                <td width="5%"><?php echo  $issueslistval->issues_id; ?></td>
                                 <td width="5%"><?php echo  $issueslistval->volume; ?></td>
                                 <td width="5%"><?php echo  $issueslistval->number; ?></td>
                                 <td width="5%"><?php echo  $issueslistval->year; ?></td>
@@ -94,14 +92,11 @@ include 'function/issue_function.php';
         var form = document.getElementById('addModalForm');
         var formData = new FormData();
         formData.append('issn', $('#issn').val());
-        formData.append('issues', $('#issues').val());
         formData.append('volume', $('#volume').val());
         formData.append('number', $('#number').val());
         formData.append('year', $('#year').val());
         formData.append('title', $('#title').val());
-        formData.append('description', $('#description').val());
         formData.append('cover_image', $('#cover_image')[0].files[0]);
-        formData.append('url_path', $('#url_path').val());
         formData.append('action', 'add');
 
         if (form.checkValidity()) {
@@ -149,13 +144,10 @@ include 'function/issue_function.php';
                     const issueData = response.data[0];
                     console.log('Issue Data:', issueData);
                     $('#xissn').val(issueData.issn);
-                    $('#xissues_id').val(issueData.issues_id);
                     $('#xvolume').val(issueData.volume);
                     $('#xnumber').val(issueData.number);
                     $('#xyear').val(issueData.year);
                     $('#xtitle').val(issueData.title);
-                    $('#xdescription').val(issueData.description);
-                    $('#xurl_path').val(issueData.url_path);
 
                     $('#updateModal').modal('show');
                 }
@@ -174,13 +166,10 @@ include 'function/issue_function.php';
             var id = $('#xid').val();
             var updatedData = {
             issn: $('#xissn').val(), 
-            issues_id: $('#xissues_id').val(),    
             volume: $('#xvolume').val(),
             number: $('#xnumber').val(),
             year: $('#xyear').val(),
             title: $('#xtitle').val(),
-            description: $('#xdescription').val(),
-            url_path: $('#xurl_path').val(),
         };
 
         $.ajax({
@@ -256,13 +245,7 @@ include 'function/issue_function.php';
                 <div class="row mb-2">
                         <div class="col-md-12 mb-2">
                             <label for="xissn" class="form-label">ISSN</label>
-                            <input type="number" id="issn" class="form-control" placeholder="ISSN" required/>
-                        </div>
-                    </div>
-                <div class="row mb-2">
-                        <div class="col-md-12 mb-2">
-                            <label for="xissues" class="form-label">Issues</label>
-                            <input type="number" id="issues" class="form-control" placeholder="issues" required/>
+                            <input type="text" id="issn" class="form-control" placeholder="ISSN" required/>
                         </div>
                     </div>
                     <div class="row mb-2">
@@ -290,21 +273,9 @@ include 'function/issue_function.php';
                         </div>
                     </div>   
                     <div class="row mb-2">
-                        <div class="col-md-12" mb-2>
-                            <label for="xdescription" class="form-label">Description</label>
-                            <textarea class="form-control" id="description" rows="9"></textarea>
-                        </div>
-                    </div>   
-                    <div class="row mb-2">
                         <div class="col-md-12 mb-2" id="xcover_image">
                             <label for="formFileAddFiles" class="form-label">Cover Image</label>
                             <input class="form-control" type="file" id="cover_image" />
-                        </div>
-                    </div>
-                    <div class="row mb-2">
-                        <div class="col-md-12 mb-2">
-                            <label for="xurl_path" class="form-label">Url Path</label>
-                            <input type="text" id="url_path" class="form-control" placeholder="url_path" />
                         </div>
                     </div>
                 </div>
@@ -329,7 +300,7 @@ include 'function/issue_function.php';
                         <div class="col-md-12 mb-2">
                             <input type="hidden" id="xid" class="form-control"/>
                             <label for="xissn" class="form-label">ISSN</label>
-                            <input type="number" id="xissn" class="form-control" placeholder="ISSN" />
+                            <input type="text" id="xissn" class="form-control" placeholder="ISSN" />
                         </div>
                     </div>
                     <div class="row mb-2">
@@ -360,18 +331,6 @@ include 'function/issue_function.php';
                         <div class="col-md-12 mb-2">
                                 <label for="xtitle" class="form-label">title</label>
                                 <textarea class="form-control" id="xtitle" rows="9"></textarea>
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                        <div class="col-md-12">
-                                <label for="xdescription" class="form-label">Description</label>
-                                <textarea class="form-control" id="xdescription" rows="9"></textarea>
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                        <div class="col-md-12 mb-2">
-                                <label for="xurl_path" class="form-label">Url Path</label>
-                                <textarea class="form-control" id="xurl_path" rows="9"></textarea>
                             </div>
                         </div>
                 </div>
