@@ -46,8 +46,16 @@ require 'dbcon.php';
         <li class="nav-item">
           <a class="nav-link" href="announcement.php">Announcements</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="guidelines.php">Guidelines</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="about.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Guidelines
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" style="color: black" href="./guidelines.php">For Contributors</a></li>
+            <li><a class="dropdown-item" style="color: black" href="./faqs.php">Frequently Asked Questions</a></li>
+          </ul>
+          <li class="nav-item">
+            <a class="nav-link" href="donation.php">Donation</a>
         </li>
       </ul>
       <form class="d-flex" role="search">

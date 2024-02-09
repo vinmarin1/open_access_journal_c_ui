@@ -40,12 +40,10 @@ p{
     font-family: Arial, Helvetica, sans-serif;
     white-space: pre-line;
 }
-.border-joy{
+.border-joy img{
     border: 1px #0858a4 solid;
-    height: 400px;
-    display: inline-block;
-    margin-top: 80px;
-    margin-left: 200px;
+    height: 50vh;
+    padding:  10px 10px 10px 10px;
 }
 
 .img-announce{
@@ -69,10 +67,6 @@ p{
     width: 90%;
 }
 
-.announce-text{
-    margin-left: 30px;
-}
-
 .announce-text h2 {
     font-family: Arial, Helvetica, sans-serif;
     color: #0858a4;
@@ -88,13 +82,6 @@ p{
     padding: 15px;
 }
 
-.announce-text-2 {
-    display: inline-block;
-    margin-left: 60px;
-    margin-right: 60px;
-    max-width: 60%;
-    margin-top: 50px;
-}
 
 .announce-text-2 h2 {
     font-family: Arial, Helvetica, sans-serif;
@@ -102,15 +89,6 @@ p{
 }
 
 
-/* Add max-width and text-align properties to .announce-text-2 */
-.announce-text-2 {
-    max-width: 40%; /* Adjust the value as needed */
-    text-align: left; /* or center or justify based on your preference */
-}
-
-.announce-text-2 p{
-    max-width: 100%;
-}
 
 .featured {
     background-color: #B7CBD4;
@@ -119,38 +97,17 @@ p{
 .featured h2{
     font-family: Arial, Helvetica, sans-serif;
     color: #0858a4;
-    margin-left: 55px;
-    padding-top: 20px;
 }
 .example-featured {
     border-color: #0858a4;
     border-radius: 5%;
     border: 2px solid;
-    width: 100%;
-    height: 100%;
-    display: inline-block; 
+    height: 60vh;
     text-align: center; 
-    margin: 20px 50px 20px 50px; 
     box-shadow: 0 0 20px gray;
     background-color: white;
 }
 
-.img-featured img {
-    width: 100%; /* Make the image fill the width of its container */
-    height: auto; /* Maintain aspect ratio */
-}
-
-#example-mid {
-    margin-left: -120px;
-    margin-right: -120px;
-    border-color: #0858a4;
-    border-radius: 2%;
-    border: 2px solid;
-    width: 100%;
-    height: 100%;
-    display: inline-block; 
-    text-align: center; 
-}
 
 .example-featured h3 {
     text-align: center;
@@ -159,7 +116,6 @@ p{
 
 .example-featured p {
     text-align: center;
-    margin: 20px 20px 20px 20px;
     text-align: justify;
 }
 
@@ -173,11 +129,7 @@ p{
     align-items: center; /* Center vertically within the container */
 }
 
-.img-featured {
-    width: 100%;
-    height: 300px;
-    padding: 10px 10px 10px 10px;
-}
+
 
 .watch-vid{
 display: block;
@@ -218,7 +170,6 @@ background-color: transparent;
 
 .video{
 margin-top: 60px;
-width: 25%;
 height: 100%;
 margin-right: 80px;
 display: inline-block;
@@ -226,24 +177,14 @@ white-space: normal;
 }
 
 .video img{
-    width: 100%;
-    height: 100%;
-    margin-left: -1px;
+    height: 25vh;
+    width: 40vh;
 }
 
-.policy{
-    margin-left: 100px;
-    width: 80%;
-}
 
-#policy-top h2{
-    padding-top: 70px;
-}
 .policy h2{
     font-family: Arial, Helvetica, sans-serif;
     color: #0858a4;
-    padding-top: 20px;
-
 }
 
 .qcu-date-container{
