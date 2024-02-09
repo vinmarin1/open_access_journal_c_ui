@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QCU PUBLICATION | QCU JOURNALS</title>
     <link rel="stylesheet" href="../CSS/issues.css">
+    <link rel="stylesheet" href="../CSS/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
 </head>
@@ -29,47 +30,25 @@
     <section id="journals">
         <div class="container-fluid pub-container mb-3" id="journal">
             <div class="journal-title">
-                <h3 id="journal_title"></h3>
-                <!-- <div class="pic-border">
-                    <img class="img-fluid w-25" src="../Files/journal-image/The Gavel.png" alt="">
-                </div> -->
+                <h3 id="journal_title">
+                </h3>
             </div>
-
             <div class="journal-details">
                 <h5>About</h5>
-                <p style="text-align: justify;" id="journal_details"></p>
-                <div class="other-info">
-                    <!-- <div class="sub-area">
-                        <h5><b>Subject Areas</b></h5>
-                        <ul>
-                            <li>Information Technology</li>
-                            <li>Industrial Engineering</li>
-                            <li>Electronics</li>
-                            <li>Management Information Systems</li>
-                            <li>Cybersecurity and Privacy</li>
-                            <li>Communications Infrastructure and Facilities</li>
-                            <li>New Energy Technology and Energy-saving Technology</li>
-                            <li>Power Generation</li>
-                            <li>Other relevant areas</li>
-                        </ul>
-                    </div> -->
-                    <!-- <div class="edit-board">
-                        <h5><b>Editorial Board</b></h5>
-                        <ul>
-                            <li>Editor-in-Chief: Engr. Ryan Flores Arago</li>
-                            <li>Managing Editor: Prof. Nelson Lazare</li>
-                            <li>Editorial Board Members: Dr. Isagani Tano, Prof. Maria Aura Impang, Engr. Jeffrey Cacho, Engr. Leonard Catchillar, Prof. Randel Estacio</li>
-                        </ul>
-                    </div> -->
-                </div>
-                    
+                <p style="text-align: justify;" id="journal_details">
+                </p>
             </div>
             <hr style="height: 2px; background-color: #0858a4; width: 100%">
         </div>
         <div id="issues-per-year-container" class="container">
             <h3>All Issues</h3>
+            <div id="skeleton-container" class="d-flex">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
             <div class="all-issues">
-              
+            
             </div>
         </div>
    
