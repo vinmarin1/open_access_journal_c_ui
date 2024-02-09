@@ -69,7 +69,14 @@ $journallist = get_journal_list($journal_id);
                                         <h5 class="card-title"><?php echo $journallistval->journal; ?></h5>
                                         <p class="card-text"><?php echo $journallistval->description; ?></p>
                                         <p class="card-text"><small class="text-muted">Last updated <?php echo $journallistval->last_updated; ?></small></p>
-                                        <a href="javascript:void(0);" onclick="viewSubmissionList(<?php echo $journallistval->journal_id; ?>)" class="btn btn-primary">View</a>
+                                        <?php
+                                            $journal_id = isset($_SESSION['journal_id']) ? $_SESSION['journal_id'] : '';
+                                            if(empty($journal_id)) {
+                                            ?>
+                                                <a href="javascript:void(0);" onclick="viewSubmissionList(<?php echo $journallistval->journal_id; ?>)" class="btn btn-primary">View</a>
+                                        <?php } else { ?>
+                                                <a href="javascript:void(0);" onclick="viewSubmissionList1()" class="btn btn-primary">View</a>
+                                        <?php } ?>
                                     </div>
                                 </div>
                             </div>
@@ -102,6 +109,18 @@ $journallist = get_journal_list($journal_id);
 
         setTimeout(function () {
             window.location.href = "../php/submissionlist.php?cid=" + journalId;
+        }, 2000);
+
+        window.onload = function () {
+            $('#sloading').hide();
+        };
+    }
+
+    function viewSubmissionList1() {
+        $('#sloading').show();
+
+        setTimeout(function () {
+            window.location.href = "../php/submissionlist.php"
         }, 2000);
 
         window.onload = function () {
