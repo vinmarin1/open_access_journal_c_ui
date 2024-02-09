@@ -69,14 +69,7 @@
         <div id="issues-per-year-container" class="container">
             <h3>All Issues</h3>
             <div class="all-issues">
-                <div class="header-title" id="issueYear">2024</div>
-                <div class="issue">
-                    <img src='../images/volume2-1.jpg' alt="Journal 1">
-                    <p style="color: #285581;" onclick="window.location.href='all-issues.php'">Volume 2, Issue 1<br><span style="color: black">2024</span></p>
-                </div>
-                <!-- <div class="">
-                    <button class="btn btn-primary btn-md btn-seemore" id="see-more">Show All Articles</button>
-                </div> -->
+              
             </div>
         </div>
    

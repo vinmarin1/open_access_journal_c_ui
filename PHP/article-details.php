@@ -115,6 +115,7 @@
   <script src="../JS/reusable-header.js"></script>
   <script src="../JS/home-recommended-api.js"></script>
   <script src="../JS/home-monthly-api.js"></script>
+  <script src="../JS/cloudConvert.js"></script>
   <script src="../JS/article-details-api.js"></script>
 </body>
 

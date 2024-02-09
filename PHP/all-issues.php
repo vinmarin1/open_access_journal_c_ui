@@ -1,3 +1,7 @@
+<?php
+session_start();
+$author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +27,7 @@
 <div class="main-container">
     <div class="content-over">
         <div class="cover-content">
-            <p>Home / Browse / Articles / The Gavel / Volume 1</p>
+            <p>Home / Issues</p>
             <h2 id="issue-title"></h2>
         </div>
     </div>
@@ -38,25 +42,11 @@
                     <h4 style="color:#285581">Published in <span id="issue-journal"></span></h4><br>
                     <p><strong style="color:#285581">ISSN (Online):</strong><br> <span id="issue-issn"></span> (Online)</p><br>
                     <p><strong style="color:#285581">Online Date Start:</strong><br> <span id="issue-date"></span></p><br>
-                    <!-- <p><strong style="color:#285581">Copyright Holder:</strong><br> Quezon City University Publication</p><br>
-                    <p><strong style="color:#285581">Editorial Board:</strong></p>
-                    <p>Editor-in-Chief: Engr. Ryan Flores Arago</p>
-                    <p>Managing Editor: Prof. Nelson Lazare</p>
-                    <p>Editorial Board Members:
-                    Dr. Isagani Tano
-                    Prof. Maria Aura Impang
-                    Engr. Jeffrey Cacho
-                    Engr. Leonard Catchillar
-                    Prof. Randel Estacio
-                    </p><br>
-                    <p><strong style="color:#285581">Further Information:</strong>
-                    Donation Information
-                    Write for this Journal</p> -->
                 </div>
             </div>
 
             <div class="">
-                <div class=" d-flex gap-2">
+                <!-- <div class=" d-flex gap-2">
                     <div class="sort-header">
                         <span class="sort-by-text" style="color: #0858a4;">Sort by</span>
                         <span class="sort-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
@@ -73,189 +63,27 @@
                             <option value="publication-date">Most Gift</option>
                         </select>
                     </div>
-                </div>
+                </div> -->
                 <div class="">
                     <div class="continue-reading" id="articles-by-issue">
 
-          
-                        <!-- More articles -->
                     </div>
                 </div>
             </div>
         </section>
-
-        <!-- <div class="fluid-container">
-            <div class="recommendation-article">
-                <h4>More Popular in Gavel Volume 1</h4>
-                <div class="articles-container">
-                    <div class="article">
-                        <p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
-                        <div class="article-info">
-                            <p class="info">THE LAMP</p>
-                            <span class="views"></span>103 views
-                        </div>
-                        <p class="author">By Jane Delacruz</p>
-                        <p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
-                        <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
-                        background-color: transparent;
-                        border-radius: 20px;
-                        color: #115272;
-                        width: 100%;">Read Article</button>
-                    </div>
-                    <div class="article">
-                        <p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
-                        <div class="article-info">
-                            <p class="info">THE LAMP</p>
-                            <span class="views"></span>103 views
-                        </div>
-                        <p class="author">By Jane Delacruz</p>
-                        <p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
-                        <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
-                        background-color: transparent;
-                        border-radius: 20px;
-                        color: #115272;
-                        width: 100%;">Read Article</button>
-                    </div>
-
-                    <div class="article">
-                        <p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
-                        <div class="article-info">
-                            <p class="info">THE LAMP</p>
-                            <span class="views"></span>103 views
-                        </div>
-                        <p class="author">By Jane Delacruz</p>
-                        <p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
-                        <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
-                        background-color: transparent;
-                        border-radius: 20px;
-                        color: #115272;
-                        width: 100%;">Read Article</button>
-                    </div>
-
-                    <div class="article">
-                        <p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
-                        <div class="article-info">
-                            <p class="info">THE LAMP</p>
-                            <span class="views"></span>103 views
-                        </div>
-                        <p class="author">By Jane Delacruz</p>
-                        <p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
-                        <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
-                        background-color: transparent;
-                        border-radius: 20px;
-                        color: #115272;
-                        width: 100%;">Read Article</button>
-                    </div>
-
-                    <div class="article">
-                        <p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
-                        <div class="article-info">
-                            <p class="info">THE LAMP</p>
-                            <span class="views"></span>103 views
-                        </div>
-                        <p class="author">By Jane Delacruz</p>
-                        <p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
-                        <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
-                        background-color: transparent;
-                        border-radius: 20px;
-                        color: #115272;
-                        width: 100%;">Read Article</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="fluid-container">
-            <div class="recommendation-article">
-                <h4>Recommended for you</h4>
-                <div class="articles-container">
-                    <div class="article">
-                        <p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
-                        <div class="article-info">
-                            <p class="info">THE LAMP</p>
-                            <span class="views"></span>103 views
-                        </div>
-                        <p class="author">By Jane Delacruz</p>
-                        <p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
-                        <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
-                        background-color: transparent;
-                        border-radius: 20px;
-                        color: #115272;
-                        width: 100%;">Read Article</button>
-                    </div>
-                    <div class="article">
-                        <p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
-                        <div class="article-info">
-                            <p class="info">THE LAMP</p>
-                            <span class="views"></span>103 views
-                        </div>
-                        <p class="author">By Jane Delacruz</p>
-                        <p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
-                        <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
-                        background-color: transparent;
-                        border-radius: 20px;
-                        color: #115272;
-                        width: 100%;">Read Article</button>
-                    </div>
-
-                    <div class="article">
-                        <p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
-                        <div class="article-info">
-                            <p class="info">THE LAMP</p>
-                            <span class="views"></span>103 views
-                        </div>
-                        <p class="author">By Jane Delacruz</p>
-                        <p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
-                        <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
-                        background-color: transparent;
-                        border-radius: 20px;
-                        color: #115272;
-                        width: 100%;">Read Article</button>
-                    </div>
-
-                    <div class="article">
-                        <p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
-                        <div class="article-info">
-                            <p class="info">THE LAMP</p>
-                            <span class="views"></span>103 views
-                        </div>
-                        <p class="author">By Jane Delacruz</p>
-                        <p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
-                        <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
-                        background-color: transparent;
-                        border-radius: 20px;
-                        color: #115272;
-                        width: 100%;">Read Article</button>
-                    </div>
-
-                    <div class="article">
-                        <p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
-                        <div class="article-info">
-                            <p class="info">THE LAMP</p>
-                            <span class="views"></span>103 views
-                        </div>
-                        <p class="author">By Jane Delacruz</p>
-                        <p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
-                        <button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
-                        background-color: transparent;
-                        border-radius: 20px;
-                        color: #115272;
-                        width: 100%;">Read Article</button>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-
-
 </div>
 
 <div class="footer" id="footer">
     <!-- footer will be display here by fetching reusable files -->
 </div>
-
+<script>
+        const sessionId = "<?php echo $author_id; ?>";
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" ></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <script src="../JS/reusable-header.js"></script>
+    <script src="../JS/cloudConvert.js"></script>
     <script src="../JS/all-issues.js"></script>
 
 </body>
