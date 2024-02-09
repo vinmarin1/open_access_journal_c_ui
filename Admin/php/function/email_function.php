@@ -104,11 +104,13 @@ if (!function_exists('get_email_content')) {
                     updateArticleStatus($article_id, 3);
                     addLogs($article_id, $fromuser, 'Send to Copyediting');
                     
-                    if ($articleFilesId1 != '') {
+                    if ($articleFilesId1 == '') {
+                        updateCopyeditingRevisionFiles(1, $revisionFilesId);
+                    } elseif ($revisionFilesId == '') {
                         updateCopyeditingFiles(1, $articleFilesId1);
+                    } else {
                         updateCopyeditingRevisionFiles(1, $revisionFilesId);
-                    } elseif ($revisionFilesId != '') {
-                        updateCopyeditingRevisionFiles(1, $revisionFilesId);
+                        updateCopyeditingFiles(1, $articleFilesId1);
                     }
                     echo "<script>alert('Send to copyediting successfully.');</script>";                    
                 } elseif ($id == 4) {
