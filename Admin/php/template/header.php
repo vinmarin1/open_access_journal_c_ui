@@ -90,7 +90,6 @@ $journal = get_journal_list();
             </li>
 
             <?php
-
               if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
                 $journal_id = isset($_SESSION['journal_id']) ? ($_SESSION['journal_id']) : '';
 
@@ -117,7 +116,12 @@ $journal = get_journal_list();
                     <i class="menu-icon tf-icons bx bx-detail"></i>
                     <div data-i18n="Boxicons">FAQS</div>
                   </a>
-                </li>   
+                </li>  
+
+                <?php
+                  }
+              }
+              ?>
 
             <!-- Forms & Tables -->
             <li class="menu-header small text-uppercase"><span class="menu-header-text">Settings</span></li>
@@ -128,6 +132,13 @@ $journal = get_journal_list();
                   <div data-i18n="Tables">Journal</div>
                 </a>
               </li>
+
+              <?php
+              if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
+                $journal_id = isset($_SESSION['journal_id']) ? ($_SESSION['journal_id']) : '';
+
+                  if(empty($journal_id) && $journal_id !== NULL) {
+              ?>
 
               <li class="menu-item">
                 <a href="userandroleslist.php" class="menu-link">
@@ -143,11 +154,6 @@ $journal = get_journal_list();
                 </a>
               </li>
 
-            <?php
-                  }
-              }
-              ?>
-
             <!-- Reports -->
             <li class="menu-header small text-uppercase"><span class="menu-header-text">OTHERS</span></li>
             <!-- Tables -->
@@ -157,6 +163,11 @@ $journal = get_journal_list();
                 <div data-i18n="Tables">Reports</div>
               </a>
             </li>
+
+            <?php
+                  }
+              }
+              ?>
 
             <!-- Misc -->
             <!-- <li class="menu-header small text-uppercase"><span class="menu-header-text">Misc</span></li>

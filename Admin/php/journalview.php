@@ -5,7 +5,6 @@ include 'function/submission_functions.php';
 if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
     $journal_id = isset($_SESSION['journal_id']) ? ($_SESSION['journal_id']) : '';
 }
-// print_r( $journal_id);exit;
 
 $journallist = get_journal_list($journal_id);
 ?>
@@ -27,7 +26,7 @@ $journallist = get_journal_list($journal_id);
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="d-flex justify-content-between align-items-center py-3">
             <h4><span class="text-muted fw-light">Main /</span> Submission</h4>
-            <button type="button" onclick="window.location.href='newarticleapi.php'" class="btn btn-primary">New Submission</button>
+            <!-- <button type="button" onclick="window.location.href='newarticleapi.php'" class="btn btn-primary">New Submission</button> -->
         </div>
 
         <div class="row mb-5 mt-4">

@@ -2,7 +2,11 @@
 include 'function/redirect.php';
 include 'function/journal_function.php';
 
-$journallist = get_journal_list();
+if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
+    $journal_id = isset($_SESSION['journal_id']) ? ($_SESSION['journal_id']) : '';
+}
+
+$journallist = get_journal_list($journal_id);
 ?>
 
 <!DOCTYPE html>
@@ -20,8 +24,9 @@ $journallist = get_journal_list();
                 <h5 class="card-header mb-0">Journal List</h5>
 
                 <div style="display: flex; margin-top: 15px; margin-right: 15px;">
+                <?php if(empty($journal_id) && $journal_id !== NULL) { ?>
                     <button type="button" id="tabAll" class="btn btn-primary" style="margin-right: 10px;" data-bs-toggle="modal" data-bs-target="#addModal">Add Journal</button>
-                    <button type="button" id="tabPublished" class="btn btn-primary">Download</button>
+                    <?php } ?>
                 </div>
             </div>
 
