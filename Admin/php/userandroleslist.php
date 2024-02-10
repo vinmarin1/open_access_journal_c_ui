@@ -4,6 +4,7 @@ include 'function/userandroles_function.php';
 
 $userlist = get_user_list();
 $rolelist = get_role_list();
+$journallist = get_journal_list();
 ?>
 
 <!DOCTYPE html>
@@ -148,6 +149,8 @@ $rolelist = get_role_list();
                 orcidurl: $("#orcidurl").val(),
                 school_name: $("#school_name").val(),
                 field_expertise: $("#field_expertise").val(),
+                journal_id: $("#journal_id").val(),
+                role: $("#role").val(),
                 action: "add"
             };
 
@@ -412,6 +415,20 @@ $rolelist = get_role_list();
             });
         });
     }
+
+    $(document).ready(function() {
+        $('#role').change(function() {
+            var selectedRole = $(this).val();
+
+            if (selectedRole === "Admin") {
+
+                $('#journalDropdown').show();
+            } else {
+
+                $('#journalDropdown').hide();
+            }
+        });
+    });
     </script>
 
      <!-- Add Modal -->
@@ -453,6 +470,26 @@ $rolelist = get_role_list();
                                 <span id="sphone_number" class="input-group-text"><i class="bx bx-phone"></i></span>
                                 <input type="text" id="phone_number" class="form-control phone-mask" placeholder="639 799 8941" aria-label="639 799 8941" aria-describedby="basic-icon-default-phone2" />
                             </div>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-6 mb-2">
+                            <label for="xrole" class="form-label">Role</label>
+                            <select id="role" class="form-select">
+                                <option value="Null">Select Role</option>
+                                <?php foreach ($rolelist as $role): ?>
+                                    <option value="<?php echo $role->role; ?>"><?php echo $role->role_name; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-2" id="journalDropdown" style="display: none;">
+                            <label for="xjournal" class="form-label">Journal</label>
+                            <select id="journal_id" class="form-select">
+                                <option value="Null">Select Journal</option>
+                                <?php foreach ($journallist as $journal): ?>
+                                    <option value="<?php echo $journal->journal_id; ?>"><?php echo $journal->journal; ?></option>
+                                <?php endforeach; ?>
+                            </select>
                         </div>
                     </div>
                     <div class="row mb-2">
@@ -701,5 +738,6 @@ $rolelist = get_role_list();
             </div>
         </div>
     </div>
+    
 </body>
 </html>

@@ -21,6 +21,27 @@ include 'dbcon.php';
         return false;
     }
 
+    function get_journal_list()
+    {
+        $pdo = connect_to_database();
+
+        if ($pdo) {
+            try {
+                $query = "SELECT * FROM journal WHERE status = 1";
+                $stmt = $pdo->query($query);
+
+                $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+                return $result;
+            } catch (PDOException $e) {
+                echo "Error: " . $e->getMessage();
+                return false;
+            }
+        }
+
+        return false;
+    }
+
     function get_role_list()
     {
         $pdo = connect_to_database();
@@ -112,12 +133,14 @@ include 'dbcon.php';
         $field_expertise = $_POST['field_expertise'];
         $orcid = $_POST['orcid'];
         $orcidurl = $_POST['orcidurl'];
+        $journal_id = $_POST['journal_id'];
+        $role = $_POST['role'];
         $status = 1;
     
-        $query = "INSERT INTO author (first_name, middle_name, last_name, email, gender, birth_date, phone_number, school_name, field_of_expertise, `orc_id`, `url_orc_id`, `status`) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $query = "INSERT INTO author (journal_id, first_name, middle_name, last_name, email, gender, birth_date, phone_number, school_name, field_of_expertise, `orc_id`, `url_orc_id`, `role`, `status`) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     
-        $result = execute_query($query, [$first_name, $middle_name, $last_name, $email, $gender, $dob, $phone_number, $school_name, $field_expertise, $orcid, $orcidurl, $status
+        $result = execute_query($query, [$journal_id, $first_name, $middle_name, $last_name, $email, $gender, $dob, $phone_number, $school_name, $field_expertise, $orcid, $orcidurl, $role, $status
         ], true);
     
         if ($result !== false) {

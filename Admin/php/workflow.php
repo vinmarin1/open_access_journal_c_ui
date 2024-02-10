@@ -1527,30 +1527,30 @@ table {
         $(document).ready(function() {
         $('#downloadAllButton').click(function() {
             <?php foreach ($submission_files as $submission_filesval): ?>
-                downloadFile('../../Files/submitted-article/<?php echo urlencode($submission_filesval->file_name); ?>');
+                downloadFile('../../Files/submitted-article/<?php echo ($submission_filesval->file_name); ?>');
             <?php endforeach; ?>
         });
         $('#downloadAllButton1').click(function() {
             <?php foreach ($submission_files as $submission_filesval): ?>
-                downloadFile('../../Files/submitted-article/<?php echo urlencode($submission_filesval->file_name); ?>');
+                downloadFile('../../Files/submitted-article/<?php echo ($submission_filesval->file_name); ?>');
             <?php endforeach; ?>
         });
         $('#downloadAllButton2').click(function() {
             <?php foreach ($revision_files as $revision_filesval): ?>
-                downloadFile('../../Files/submitted-article/<?php echo urlencode($revision_filesval->file_name); ?>');
+                downloadFile('../../Files/submitted-article/<?php echo ($revision_filesval->file_name); ?>');
             <?php endforeach; ?>
 
             <?php foreach ($submission_files as $submission_filesval): ?>
-                downloadFile('../../Files/submitted-article/<?php echo urlencode($submission_filesval->file_name); ?>');
+                downloadFile('../../Files/submitted-article/<?php echo ($submission_filesval->file_name); ?>');
             <?php endforeach; ?>
         });
         $('#downloadButton3').click(function() {
             <?php foreach ($allcopyedited_files as $allcopyedited_filesval): ?>
-                downloadFile('../../Files/final-article/<?php echo urlencode($allcopyedited_filesval->file_name); ?>');
+                downloadFile('../../Files/final-article/<?php echo ($allcopyedited_filesval->file_name); ?>');
             <?php endforeach; ?>
 
             <?php foreach ($allproduction_files as $allproduction_filesval): ?>
-                downloadFile('../../Files/final-article/<?php echo urlencode($allproduction_filesval->file_name); ?>');
+                downloadFile('../../Files/final-article/<?php echo ($allproduction_filesval->file_name); ?>');
             <?php endforeach; ?>
         });
 

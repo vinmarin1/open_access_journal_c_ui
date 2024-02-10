@@ -256,20 +256,20 @@ $journal = get_journal_list();
                       <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="#">
-                        <i class="bx bx-user me-2"></i>
-                        <span class="align-middle" onclick="location.href='../../PHP/author-dashboard.php'">User Dashboard</span>
-                      </a>
+                        <a class="dropdown-item" href="../../PHP/author-dashboard.php">
+                            <i class="bx bx-user me-2"></i>
+                            <span class="align-middle">User Dashboard</span>
+                        </a>
                     </li>
                     <li>
                       <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="javascript:void(0);">
-                        <i class="bx bx-power-off me-2"></i>
-                          <span class="align-middle logout-link" onclick="location.href='../../PHP/logout.php'">Log Out</span>
+                      <a class="dropdown-item" href="../../PHP/logout.php">
+                          <i class="bx bx-power-off me-2"></i>
+                          <span class="align-middle">Log Out</span>
                       </a>
-                    </li>
+                  </li>
                   </ul>
                 </li>
               </ul>
