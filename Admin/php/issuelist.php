@@ -42,10 +42,10 @@ include 'function/issue_function.php';
                                 <td width="5%"><?php echo  $issueslistval->volume; ?></td>
                                 <td width="5%"><?php echo  $issueslistval->number; ?></td>
                                 <td width="5%"><?php echo  $issueslistval->year; ?></td>
-                                <td width="55%"><?php echo  $issueslistval->title; ?></td>
-                                <td width="25%">
-                                    <button type="button" class="btn btn-outline-success" onclick="updateModal(<?php echo $issueslistval->id; ?>)">Update</button>
-                                    <button type="button" class="btn btn-outline-danger" onclick="archiveIssue(<?php echo $issueslistval->id; ?>, '<?php echo $issueslistval->volume; ?>', '<?php echo $issueslistval->title; ?>')">Archive</button>
+                                <td width="30%"><?php echo  $issueslistval->title; ?></td>
+                                <td width="32%">
+                                    <button type="button" class="btn btn-outline-success" onclick="updateModal(<?php echo $issueslistval->issues_id; ?>)">Update</button>
+                                    <button type="button" class="btn btn-outline-danger" onclick="archiveIssue(<?php echo $issueslistval->issues_id; ?>, '<?php echo $issueslistval->volume; ?>', '<?php echo $issueslistval->title; ?>')">Archive</button>
                                     <button type="button" class="btn btn-outline-info" onclick="viewAllArticle(<?php echo $issueslistval->issues_id; ?>)">Article</button>
                                   </td>
                             </tr>
@@ -143,6 +143,7 @@ include 'function/issue_function.php';
                 if (response.status === true && response.data.length > 0) {
                     const issueData = response.data[0];
                     console.log('Issue Data:', issueData);
+                    $('#xid').val(issueData.issues_id);
                     $('#xissn').val(issueData.issn);
                     $('#xvolume').val(issueData.volume);
                     $('#xnumber').val(issueData.number);
@@ -287,6 +288,7 @@ include 'function/issue_function.php';
         </div>
         </form>
     </div>
+
      <!-- Update Modal -->
      <div class="modal fade" id="updateModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -301,12 +303,6 @@ include 'function/issue_function.php';
                             <input type="hidden" id="xid" class="form-control"/>
                             <label for="xissn" class="form-label">ISSN</label>
                             <input type="text" id="xissn" class="form-control" placeholder="ISSN" />
-                        </div>
-                    </div>
-                    <div class="row mb-2">
-                        <div class="col-md-12 mb-2">
-                            <label for="xissues_id" class="form-label">Issues Number</label>
-                            <input type="number" id="xissues_id" class="form-control" placeholder="issues_id" />
                         </div>
                     </div>
                     <div class="row mb-2">
