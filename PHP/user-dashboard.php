@@ -682,7 +682,7 @@ $expertise = $_SESSION['expertise'];
 								echo '</div>';
 							}
 						} else {
-							echo "Can't display articles at the moment"; 
+							echo "<p>You don't have published article yet, want to published article? Click here <a href='ex_submit.php'>Submit Article</a></p>"; 
 						}
 					?>
 

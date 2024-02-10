@@ -439,7 +439,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                     <!-- This is a Blank space -->
                     <div class="btn">
                         <button class="btn tbn-primary btn-md nextBtn" id="acceptBtn"  onclick="nextStep()" style="width: 430px; margin-left: -15px" >Accept</button>
-                        <button id="btnReject" class="btn tbn-primary btn-md" onclick="rejectInvitation()"style="width: 430px; margin-left: -15px" >Reject</button>
+                        <button id="btnReject" class="btn tbn-primary btn-md" onclick="rejectInvitation()"style="width: 430px; margin-left: -15px" >Decline</button>
                     </div>
                 </div>
             </div>
