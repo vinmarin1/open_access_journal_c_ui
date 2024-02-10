@@ -67,7 +67,7 @@ $id = $_SESSION['id'];
               <div role="presentation" class="tab">
                 <li class="w-100 p-2" id="archive-tab" data-bs-toggle="tab" data-bs-target="#archive-tab-pane" type="button"
                   role="tab" aria-controls="archive-tab-pane" aria-selected="false" style="list-style-type: none ">
-                  Archives
+                  Invitation
                 </li>
               </div>
               <button class="btn" id="btn3" onclick="window.location.href='ex_submit.php'">Submit Article</button>
@@ -450,12 +450,14 @@ $id = $_SESSION['id'];
                           
                         $statusInfo = isset($journalStatusArchive[$rowReviewer->status]) ? $journalStatusArchive[$rowReviewer->status] : array('text' => '', 'color' => '', 'borderColor' => '');
                         echo '<td><center><span class="badge badge-pill" style="background-color: ' . $statusInfo['color'] . '; border: 1px solid ' . $statusInfo['borderColor'] . ';">' . $statusInfo['text'] . '</span></center></td>';
-                    
+                  
                         $invitation = $rowReviewer->accept;
-                        $statusText = ($invitation == 1 ? 'Accepted' : 'Pending');
-                        $statusColor = ($invitation == 1 ? 'green' : 'gray');
-
+                        $statusText = ($invitation == 1 ? 'Accepted' : ($invitation == 2 ? 'Declined' : 'Pending'));
+                        $statusColor = ($invitation == 1 ? 'green' : ($invitation == 2 ? 'orange' : 'gray'));
+                        
                         echo '<td style="font-weight: bold; color: ' . $statusColor . ';">' . $statusText . ' </td>';
+                     
+                        
 
 
                       
