@@ -166,7 +166,7 @@ table {
                                                                     </tbody>
                                                                     <tfoot>
                                                                         <th colspan="4" style="text-align: right;">
-                                                                            <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;">Download File</button>
+                                                                            <button type="button" class="btn btn-outline-dark" id="downloadAllButton" style="width: 150px;">Download File</button>
                                                                         </th>
                                                                     </tfoot>   
                                                                 </table>
@@ -307,7 +307,7 @@ table {
                                                                     </tbody>
                                                                     <tfoot>
                                                                         <th colspan="4" style="text-align: right;">
-                                                                            <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;">Download File</button>
+                                                                            <button type="button" class="btn btn-outline-dark" id="downloadAllButton1" style="width: 150px;">Download File</button>
                                                                         </th>
                                                                     </tfoot>   
                                                                 </table>
@@ -625,7 +625,7 @@ table {
                                                                     </tbody>
                                                                     <tfoot>
                                                                         <th colspan="4" style="text-align: right;">
-                                                                            <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;">Download File</button>
+                                                                            <button type="button" class="btn btn-outline-dark" id="downloadAllButton2" style="width: 150px;">Download File</button>
                                                                         </th>
                                                                     </tfoot>   
                                                                 </table>
@@ -841,7 +841,7 @@ table {
                                                                                     <tr>
                                                                                         <td width="5%"><?php echo $allproduction_filesval->final_files_id; ?></td>
                                                                                         <td width="65%">
-                                                                                            <a href="../../Files/submitted-article/<?php echo ($allproduction_filesval->file_name); ?>" download>
+                                                                                            <a href="../../Files/final-article/<?php echo ($allproduction_filesval->file_name); ?>" download>
                                                                                                 <?php echo $allproduction_filesval->file_name; ?>
                                                                                             </a>
                                                                                         </td>
@@ -863,7 +863,7 @@ table {
                                                                     </tbody>
                                                                     <tfoot>
                                                                         <th colspan="4" style="text-align: right;">
-                                                                            <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;">Download File</button>
+                                                                            <button type="button" class="btn btn-outline-dark" id="downloadAllButton3" style="width: 150px;">Download File</button>
                                                                         </th>
                                                                     </tfoot>   
                                                                 </table>
@@ -1523,6 +1523,46 @@ table {
 
             window.open(url, '_blank', 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + width + ', height=' + height + ', top=' + top + ', left=' + left);
         }
+
+        $(document).ready(function() {
+        $('#downloadAllButton').click(function() {
+            <?php foreach ($submission_files as $submission_filesval): ?>
+                downloadFile('../../Files/submitted-article/<?php echo urlencode($submission_filesval->file_name); ?>');
+            <?php endforeach; ?>
+        });
+        $('#downloadAllButton1').click(function() {
+            <?php foreach ($submission_files as $submission_filesval): ?>
+                downloadFile('../../Files/submitted-article/<?php echo urlencode($submission_filesval->file_name); ?>');
+            <?php endforeach; ?>
+        });
+        $('#downloadAllButton2').click(function() {
+            <?php foreach ($revision_files as $revision_filesval): ?>
+                downloadFile('../../Files/submitted-article/<?php echo urlencode($revision_filesval->file_name); ?>');
+            <?php endforeach; ?>
+
+            <?php foreach ($submission_files as $submission_filesval): ?>
+                downloadFile('../../Files/submitted-article/<?php echo urlencode($submission_filesval->file_name); ?>');
+            <?php endforeach; ?>
+        });
+        $('#downloadButton3').click(function() {
+            <?php foreach ($allcopyedited_files as $allcopyedited_filesval): ?>
+                downloadFile('../../Files/final-article/<?php echo urlencode($allcopyedited_filesval->file_name); ?>');
+            <?php endforeach; ?>
+
+            <?php foreach ($allproduction_files as $allproduction_filesval): ?>
+                downloadFile('../../Files/final-article/<?php echo urlencode($allproduction_filesval->file_name); ?>');
+            <?php endforeach; ?>
+        });
+
+        function downloadFile(fileUrl) {
+            var link = document.createElement('a');
+            link.href = fileUrl;
+            link.download = fileUrl.substr(fileUrl.lastIndexOf('/') + 1);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    });
 
     </script>
 </body>

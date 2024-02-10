@@ -29,13 +29,13 @@ $action = isset($_POST['action']) ? $_POST['action'] : '';
 
         switch ($action) {
             case 'fetch':
-                fetchFaqslData();
+                fetchFaqsData();
                 break;
             case 'add':
                 addRecord();
                 break;
             case 'update':
-                updateFaqslData();
+                updateFaqsData();
                 break;
             case 'archive':
                 archiveFaqs();
@@ -80,10 +80,8 @@ $action = isset($_POST['action']) ? $_POST['action'] : '';
         $id = $_POST['id'];
         $updatedData = $_POST['updated_data'];
     
-        $query = "UPDATE faqs 
-                    SET question = ?, anwswer = ?, category = ?, description = ?,link = ?
-                    WHERE id = ?";
-        
+        $query = "UPDATE faqs SET question = ?, answer = ?, category = ?, description = ?, link = ? WHERE id = ?";
+    
         $pdo = connect_to_database();
     
         $stm = $pdo->prepare($query);   
@@ -94,17 +92,18 @@ $action = isset($_POST['action']) ? $_POST['action'] : '';
             $updatedData['description'],
             $updatedData['link'],
             $id
-
         ]);
     
         header('Content-Type: application/json');
     
         if ($check !== false) {
-            echo json_encode(['status' => true, 'message' => 'Faqs data updated successfully']);
+            echo json_encode(['status' => true, 'message' => 'FAQs data updated successfully']);
         } else {
-            echo json_encode(['status' => false, 'message' => 'Failed to update faqs data']);
+
+            $errorInfo = $stm->errorInfo();
+            echo json_encode(['status' => false, 'message' => 'Failed to update FAQs data', 'error' => $errorInfo]);
         }
-    }
+    }    
 
     function archiveFaqs()
     {

@@ -62,18 +62,18 @@ if (!function_exists('get_issues_list')) {
              archiveIssue();
              break;
          case 'fetch':
-             fetchUserData();
+             fetchIssueData();
              break;
          case 'update':
              updateIssueData();
              break;
      }
      
-                function fetchUserData()
+                function fetchIssueData()
                 {
                     $id = $_POST['id'];
                 
-                    $result = execute_query("SELECT * FROM issues WHERE id = ?", [$id]);
+                    $result = execute_query("SELECT * FROM issues WHERE issues_id = ?", [$id]);
                 
                     header('Content-Type: application/json');
                 
@@ -119,10 +119,10 @@ if (!function_exists('get_issues_list')) {
                             }
                         }
                     
-                        $query = "INSERT INTO issues (issn, volume, number, year, title,  status ,cover_image) 
+                        $query = "INSERT INTO issues (issn, volume, number, year, title,  status , cover_image) 
                                   VALUES (?, ?, ?, ?, ?, ?, ? )";
                 
-                        $result = execute_query($query, [$issn,  $volume, $number, $year, $title,  $status,$cover_image], true);
+                        $result = execute_query($query, [$issn,  $volume, $number, $year, $title,  $status, $imageName], true);
                 
                         if ($result !== false) {
                             echo json_encode(['status' => true, 'message' => 'Record added successfully']);
@@ -137,7 +137,6 @@ if (!function_exists('get_issues_list')) {
                     }
                     
                 }
-                
         
                 function updateIssueData() {
                     try {
@@ -146,7 +145,7 @@ if (!function_exists('get_issues_list')) {
                     
                         $query = "UPDATE issues 
                                     SET issn = ?,  volume = ?, number = ?, year = ?, title = ?
-                                    WHERE id = ?";
+                                    WHERE issues_id = ?";
                         
                         $pdo = connect_to_database();
                     
