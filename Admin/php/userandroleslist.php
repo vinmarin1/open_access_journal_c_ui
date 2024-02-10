@@ -142,6 +142,7 @@ $journallist = get_journal_list();
                 middle_name: $("#middle_name").val(),
                 last_name: $("#last_name").val(),
                 email: $("#email").val(),
+                password: $("#password").val(),
                 phone_number: $("#phone_number").val(),
                 gender: $("#gender").val(),
                 dob: $("#dob").val(),
@@ -150,7 +151,7 @@ $journallist = get_journal_list();
                 school_name: $("#school_name").val(),
                 field_expertise: $("#field_expertise").val(),
                 journal_id: $("#journal_id").val(),
-                role: $("#role").val(),
+                role: $("#xxrole").val(),
                 action: "add"
             };
 
@@ -224,6 +225,9 @@ $journallist = get_journal_list();
                     console.log('User Data:', userData);
 
                     $('#xauthorid').val(userData.author_id);
+                    $('#xjournal_id').val(userData.journal_id);
+                    $('#xrole').val(userData.role);
+                    $('#xpassword').val(userData.password);
                     $('#xfirst_name').val(userData.first_name);
                     $('#xmiddle_name').val(userData.middle_name);
                     $('#xlast_name').val(userData.last_name);
@@ -417,7 +421,7 @@ $journallist = get_journal_list();
     }
 
     $(document).ready(function() {
-        $('#role').change(function() {
+        $('#xxrole').change(function() {
             var selectedRole = $(this).val();
 
             if (selectedRole === "Admin") {
@@ -465,17 +469,14 @@ $journallist = get_journal_list();
                             </div>
                         </div>
                         <div class="col-md-6 mb-2">
-                            <label class="form-label" for="xphone_number">Phone No</label>
-                            <div class="input-group input-group-merge">
-                                <span id="sphone_number" class="input-group-text"><i class="bx bx-phone"></i></span>
-                                <input type="text" id="phone_number" class="form-control phone-mask" placeholder="639 799 8941" aria-label="639 799 8941" aria-describedby="basic-icon-default-phone2" />
-                            </div>
+                            <label class="form-label" for="xpassword">Password</label>
+                            <input type="password" id="password" class="form-control" placeholder="Password" required/>
                         </div>
                     </div>
                     <div class="row mb-2">
                         <div class="col-md-6 mb-2">
                             <label for="xrole" class="form-label">Role</label>
-                            <select id="role" class="form-select">
+                            <select id="xxrole" class="form-select">
                                 <option value="Null">Select Role</option>
                                 <?php foreach ($rolelist as $role): ?>
                                     <option value="<?php echo $role->role; ?>"><?php echo $role->role_name; ?></option>
@@ -513,28 +514,39 @@ $journallist = get_journal_list();
                             <input type="text" id="orcid" class="form-control" placeholder="ORCID" required/>
                         </div>
                         <div class="col-md-6 mb-2">
+                            <label class="form-label" for="xphone_number">Phone No</label>
+                            <div class="input-group input-group-merge">
+                                <span id="sphone_number" class="input-group-text"><i class="bx bx-phone"></i></span>
+                                <input type="text" id="phone_number" class="form-control phone-mask" placeholder="639 799 8941" aria-label="639 799 8941" aria-describedby="basic-icon-default-phone2" />
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="row mb-3">
+                        <div class="col-md-12 mb-2">
                             <label for="xorcidurl" class="form-label">ORCID URL</label>
                             <input type="text" id="orcidurl" class="form-control" placeholder="ORCID URL" required/>
                         </div>
                     </div>
                     <div class="row mb-2">
-                        <div class="col-md-6 mb-2">
+                        <div class="col-md-12 mb-2">
                             <label for="xschoolname" class="form-label">SCHOOL NAME</label>
                             <input type="text" id="school_name" class="form-control" placeholder="SCHOOL NAME" />
                         </div>
-                        <div class="col-md-6 mb-2">
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-12 mb-2">
                             <label for="xexpertise" class="form-label">EXPERTISE</label>
                             <input type="text" id="field_expertise" class="form-control" placeholder="EXPERTISE" />
                         </div>
                     </div>
-                    <div class="row mb-2">
+                    <!-- <div class="row mb-2">
                         <div class="col-md-12">
                             <div class="form-check form-switch">
                                 <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" />
                                 <label class="form-check-label" for="flexSwitchCheckDefault">Notify user by email.</label>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
@@ -584,6 +596,26 @@ $journallist = get_journal_list();
                                 <span id="sphone_number" class="input-group-text"><i class="bx bx-phone"></i></span>
                                 <input type="text" id="xphone_number" class="form-control phone-mask" placeholder="639 799 8941" aria-label="639 799 8941" aria-describedby="basic-icon-default-phone2" />
                             </div>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-6 mb-2">
+                            <label for="xrole" class="form-label">Role</label>
+                            <select id="xrole" class="form-select">
+                                <option value="Null">Select Role</option>
+                                <?php foreach ($rolelist as $role): ?>
+                                    <option value="<?php echo $role->role; ?>"><?php echo $role->role_name; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-2" id="journalDropdown" style="display: none;">
+                            <label for="xjournal" class="form-label">Journal</label>
+                            <select id="xjournal_id" class="form-select">
+                                <option value="Null">Select Journal</option>
+                                <?php foreach ($journallist as $journal): ?>
+                                    <option value="<?php echo $journal->journal_id; ?>"><?php echo $journal->journal; ?></option>
+                                <?php endforeach; ?>
+                            </select>
                         </div>
                     </div>
                     <div class="row mb-2">

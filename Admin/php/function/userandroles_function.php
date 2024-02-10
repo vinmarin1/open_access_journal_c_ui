@@ -21,6 +21,7 @@ include 'dbcon.php';
         return false;
     }
 
+if (!function_exists('get_journal_list')) {
     function get_journal_list()
     {
         $pdo = connect_to_database();
@@ -41,6 +42,7 @@ include 'dbcon.php';
 
         return false;
     }
+}
 
     function get_role_list()
     {
@@ -126,6 +128,8 @@ include 'dbcon.php';
         $middle_name = $_POST['middle_name'];
         $last_name = $_POST['last_name'];
         $email = $_POST['email'];
+        $password = $_POST['password'];
+        $hashedPassword = hash('sha256', $password);
         $gender = $_POST['gender'];
         $dob = $_POST['dob'];
         $phone_number = $_POST['phone_number'];
@@ -137,10 +141,10 @@ include 'dbcon.php';
         $role = $_POST['role'];
         $status = 1;
     
-        $query = "INSERT INTO author (journal_id, first_name, middle_name, last_name, email, gender, birth_date, phone_number, school_name, field_of_expertise, `orc_id`, `url_orc_id`, `role`, `status`) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $query = "INSERT INTO author (journal_id, first_name, middle_name, last_name, email, password, gender, birth_date, phone_number, school_name, field_of_expertise, `orc_id`, `url_orc_id`, `role`, `status`) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     
-        $result = execute_query($query, [$journal_id, $first_name, $middle_name, $last_name, $email, $gender, $dob, $phone_number, $school_name, $field_expertise, $orcid, $orcidurl, $role, $status
+        $result = execute_query($query, [$journal_id, $first_name, $middle_name, $last_name, $email, $hashedPassword, $gender, $dob, $phone_number, $school_name, $field_expertise, $orcid, $orcidurl, $role, $status
         ], true);
     
         if ($result !== false) {
