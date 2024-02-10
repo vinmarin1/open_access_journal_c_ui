@@ -611,7 +611,7 @@ h4, h2 {
 }
 
 .quick-links .quick-link {
-  min-width: 18em;
+  min-width: 20em;
   width: 25%;
   flex: 1;
   display: flex;
