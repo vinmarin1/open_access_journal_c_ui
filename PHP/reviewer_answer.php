@@ -4,6 +4,7 @@ session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $user_id = $_SESSION['id'];
+    $email = $_SESSION['email'];
     $answers = $_POST['answers'];
     $article_id = $_POST['getId'];  // Retrieve the article ID
     $firstName = $_SESSION['first_name'];
@@ -70,6 +71,18 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     );
 
     database_run($sqlAccept, $sqlAcceptParams);
+
+    $sqlPoint = "INSERT INTO user_points(`user_id`, `email`, `action_engage`, `point_earned`) VALUES (:user_id, :email, :action_engage, :point_earned)";
+
+    $logsPoints = array(
+        'user_id' => $user_id,
+        'email' => $email,
+        'action_engage' => 'Reviewed an Article',
+        'point_earned' => 1
+    );
+      
+    database_run($sqlPoint, $logsPoints);
+
         
     header('Location: author-dashboard.php');
 

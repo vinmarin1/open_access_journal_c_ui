@@ -209,6 +209,18 @@ function handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $
     );
       
     database_run($sqlLogs, $logsParams);
+
+    $sqlPoint = "INSERT INTO user_points(`user_id`, `email`, `action_engage`, `point_earned`) VALUES (:user_id, :email, :action_engage, :point_earned)";
+
+    $logsPoints = array(
+        'user_id' => $author_id,
+        'email' => $email,
+        'action_engage' => 'Submitted Article',
+        'point_earned' => 1
+    );
+      
+    database_run($sqlPoint, $logsPoints);
+
     
     
 }
