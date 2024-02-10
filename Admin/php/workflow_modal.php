@@ -320,7 +320,7 @@ $issuelist = get_issues_list();
                                                 </td>
                                                 <td width="5%"><?php echo $submission_filesval->article_files_id; ?></td>
                                                 <td width="65%">
-                                                    <a href="/Files/submitted-article/<?php echo urlencode($submission_filesval->file_name); ?>" download>
+                                                    <a href="../../Files/submitted-article/<?php echo ($submission_filesval->file_name); ?>" download>
                                                         <?php echo $submission_filesval->file_name; ?>
                                                     </a>
                                                 </td>
@@ -358,7 +358,7 @@ $issuelist = get_issues_list();
                                                 <tr>
                                                     <td width="5%"><?php echo $review_filesval->article_files_id; ?></td>
                                                     <td width="70%">
-                                                        <a href="/Files/submitted-article/<?php echo urlencode($review_filesval->file_name); ?>" download>
+                                                        <a href="../../Files/submitted-article/<?php echo ($review_filesval->file_name); ?>" download>
                                                             <?php echo $review_filesval->file_name; ?>
                                                         </a>
                                                     </td>
@@ -464,7 +464,7 @@ $issuelist = get_issues_list();
                                                     </td>
                                                     <td width="5%"><?php echo $submission_filesval->article_files_id; ?></td>
                                                     <td width="65%">
-                                                        <a href="/Files/submitted-article/<?php echo urlencode($submission_filesval->file_name); ?>" download>
+                                                        <a href="../../Files/submitted-article/<?php echo ($submission_filesval->file_name); ?>" download>
                                                             <?php echo $submission_filesval->file_name; ?>
                                                         </a>
                                                     </td>
@@ -510,7 +510,7 @@ $issuelist = get_issues_list();
                                                     </td>
                                                         <td width="5%"><?php echo $revision_filesval->revision_files_id; ?></td>
                                                     <td width="65%">
-                                                        <a href="/Files/revision-article/<?php echo urlencode($revision_filesval->file_name); ?>" download>
+                                                        <a href="../../Files/revision-article/<?php echo ($revision_filesval->file_name); ?>" download>
                                                             <?php echo $revision_filesval->file_name; ?>
                                                         </a>
                                                     </td>
@@ -548,7 +548,7 @@ $issuelist = get_issues_list();
                                             <tr>
                                                 <td width="5%"><?php echo $copyediting_filesval->article_files_id; ?></td>
                                                 <td width="65%">
-                                                    <a href="/Files/submitted-article/<?php echo urlencode($copyediting_filesval->file_name); ?>" download>
+                                                    <a href="../../Files/submitted-article/<?php echo ($copyediting_filesval->file_name); ?>" download>
                                                         <?php echo $copyediting_filesval->file_name; ?>
                                                     </a>
                                                 </td>
@@ -560,7 +560,7 @@ $issuelist = get_issues_list();
                                             <tr>
                                                 <td width="5%"><?php echo $copyeditingrevision_filesval->revision_files_id; ?></td>
                                                 <td width="65%">
-                                                    <a href="/Files/revision-article/<?php echo urlencode($copyeditingrevision_filesval->file_name); ?>" download>
+                                                    <a href="../../Files/revision-article/<?php echo ($copyeditingrevision_filesval->file_name); ?>" download>
                                                         <?php echo $copyeditingrevision_filesval->file_name; ?>
                                                     </a>
                                                 </td>
@@ -659,7 +659,7 @@ $issuelist = get_issues_list();
                                                     </td>
                                                         <td width="5%"><?php echo $allcopyedited_filesval->final_files_id; ?></td>
                                                     <td width="65%">
-                                                        <a href="/Files/revision-article/<?php echo urlencode($allcopyedited_filesval->file_name); ?>" download>
+                                                        <a href="../../Files/revision-article/<?php echo ($allcopyedited_filesval->file_name); ?>" download>
                                                             <?php echo $allcopyedited_filesval->file_name; ?>
                                                         </a>
                                                     </td>
@@ -705,7 +705,7 @@ $issuelist = get_issues_list();
                                                     <tr>
                                                         <td width="5%"><?php echo $allcopyedited_filesval->final_files_id; ?></td>
                                                         <td width="65%">
-                                                            <a href="../../Files/submitted-article/<?php echo urlencode($allcopyedited_filesval->file_name); ?>" download>
+                                                            <a href="../../Files/submitted-article/<?php echo ($allcopyedited_filesval->file_name); ?>" download>
                                                                 <?php echo $allcopyedited_filesval->file_name; ?>
                                                             </a>
                                                         </td>
@@ -869,7 +869,7 @@ $issuelist = get_issues_list();
                                                     </td>
                                                         <td width="5%"><?php echo $allcopyedited_filesval->final_files_id; ?></td>
                                                     <td width="65%">
-                                                        <a href="/Files/revision-article/<?php echo urlencode($allcopyedited_filesval->file_name); ?>" download>
+                                                        <a href="../../Files/revision-article/<?php echo ($allcopyedited_filesval->file_name); ?>" download>
                                                             <?php echo $allcopyedited_filesval->file_name; ?>
                                                         </a>
                                                     </td>
@@ -914,7 +914,7 @@ $issuelist = get_issues_list();
                                                     </td>
                                                         <td width="5%"><?php echo $allproduction_filesval->final_files_id; ?></td>
                                                     <td width="65%">
-                                                        <a href="/Files/revision-article/<?php echo urlencode($allproduction_filesval->file_name); ?>" download>
+                                                        <a href="../../Files/revision-article/<?php echo ($allproduction_filesval->file_name); ?>" download>
                                                             <?php echo $allproduction_filesval->file_name; ?>
                                                         </a>
                                                     </td>
@@ -967,7 +967,7 @@ $issuelist = get_issues_list();
                                                     <tr>
                                                         <td width="5%"><?php echo $allcopyedited_filesval->final_files_id; ?></td>
                                                         <td width="65%">
-                                                            <a href="../../Files/submitted-article/<?php echo urlencode($allcopyedited_filesval->file_name); ?>" download>
+                                                            <a href="../../Files/submitted-article/<?php echo ($allcopyedited_filesval->file_name); ?>" download>
                                                                 <?php echo $allcopyedited_filesval->file_name; ?>
                                                             </a>
                                                         </td>
@@ -984,7 +984,7 @@ $issuelist = get_issues_list();
                                                     <tr>
                                                         <td width="5%"><?php echo $allproduction_filesval->final_files_id; ?></td>
                                                         <td width="65%">
-                                                            <a href="../../Files/submitted-article/<?php echo urlencode($allproduction_filesval->file_name); ?>" download>
+                                                            <a href="../../Files/submitted-article/<?php echo ($allproduction_filesval->file_name); ?>" download>
                                                                 <?php echo $allproduction_filesval->file_name; ?>
                                                             </a>
                                                         </td>

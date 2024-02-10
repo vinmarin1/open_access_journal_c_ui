@@ -295,7 +295,7 @@ table {
                                                                             <tr>
                                                                                 <td width="5%"><?php echo $review_filesval->article_files_id; ?></td>
                                                                                 <td width="65%">
-                                                                                    <a href="../../Files/submitted-article/<?php echo urlencode($review_filesval->file_name); ?>" download>
+                                                                                    <a href="../../Files/submitted-article/<?php echo ($review_filesval->file_name); ?>" download>
                                                                                         <?php echo $review_filesval->file_name; ?>
                                                                                     </a>
                                                                                 </td>
@@ -360,7 +360,7 @@ table {
                                                                             <tr>
                                                                                 <td width="5%"><?php echo $revision_filesval->revision_files_id; ?></td>
                                                                                 <td width="55%">
-                                                                                    <a href="../../Files/revision-article/<?php echo urlencode($revision_filesval->file_name); ?>" download>
+                                                                                    <a href="../../Files/revision-article/<?php echo ($revision_filesval->file_name); ?>" download>
                                                                                         <?php echo $revision_filesval->file_name; ?>
                                                                                     </a>
                                                                                 </td>
@@ -587,7 +587,7 @@ table {
                                                                                     <tr>
                                                                                         <td width="5%"><?php echo $revision_filesval->revision_files_id; ?></td>
                                                                                         <td width="65%">
-                                                                                            <a href="../../Files/submitted-article/<?php echo urlencode($revision_filesval->file_name); ?>" download>
+                                                                                            <a href="../../Files/submitted-article/<?php echo ($revision_filesval->file_name); ?>" download>
                                                                                                 <?php echo $revision_filesval->file_name; ?>
                                                                                             </a>
                                                                                         </td>
@@ -604,7 +604,7 @@ table {
                                                                                     <tr>
                                                                                         <td width="5%"><?php echo $submission_filesval->article_files_id; ?></td>
                                                                                         <td width="65%">
-                                                                                            <a href="../../Files/submitted-article/<?php echo urlencode($submission_filesval->file_name); ?>" download>
+                                                                                            <a href="../../Files/submitted-article/<?php echo ($submission_filesval->file_name); ?>" download>
                                                                                                 <?php echo $submission_filesval->file_name; ?>
                                                                                             </a>
                                                                                         </td>
@@ -674,7 +674,7 @@ table {
                                                                                     <tr>
                                                                                         <td width="5%"><?php echo $allcopyedited_filesval->final_files_id; ?></td>
                                                                                         <td width="65%">
-                                                                                            <a href="../../Files/submitted-article/<?php echo urlencode($allcopyedited_filesval->file_name); ?>" download>
+                                                                                            <a href="../../Files/submitted-article/<?php echo ($allcopyedited_filesval->file_name); ?>" download>
                                                                                                 <?php echo $allcopyedited_filesval->file_name; ?>
                                                                                             </a>
                                                                                         </td>
@@ -824,7 +824,7 @@ table {
                                                                                     <tr>
                                                                                         <td width="5%"><?php echo $allcopyedited_filesval->final_files_id; ?></td>
                                                                                         <td width="65%">
-                                                                                            <a href="../../Files/submitted-article/<?php echo urlencode($allcopyedited_filesval->file_name); ?>" download>
+                                                                                            <a href="../../Files/submitted-article/<?php echo ($allcopyedited_filesval->file_name); ?>" download>
                                                                                                 <?php echo $allcopyedited_filesval->file_name; ?>
                                                                                             </a>
                                                                                         </td>
@@ -841,7 +841,7 @@ table {
                                                                                     <tr>
                                                                                         <td width="5%"><?php echo $allproduction_filesval->final_files_id; ?></td>
                                                                                         <td width="65%">
-                                                                                            <a href="../../Files/submitted-article/<?php echo urlencode($allproduction_filesval->file_name); ?>" download>
+                                                                                            <a href="../../Files/submitted-article/<?php echo ($allproduction_filesval->file_name); ?>" download>
                                                                                                 <?php echo $allproduction_filesval->file_name; ?>
                                                                                             </a>
                                                                                         </td>
