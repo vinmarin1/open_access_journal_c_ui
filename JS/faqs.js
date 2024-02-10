@@ -65,7 +65,7 @@ async function generateQuestions() {
     const data = await response.json();
     const generalQASContainer = document.getElementById("generalQAs");
 
-    generalQASContainer.innerHTML = data.faqs.filter(faq => faq.category === 'general_questions').map(faq => `
+    generalQASContainer.innerHTML = data.faqs.filter(faq => faq.category === 'GENERAL QUESTIONS').map(faq => `
         <div class="faq accordion-item">
             <h4 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${faq.id}" aria-expanded="false" aria-controls="collapse${faq.id}">
@@ -82,7 +82,7 @@ async function generateQuestions() {
 
     const submissionQASContainer = document.getElementById("submissionQAs");
 
-    submissionQASContainer.innerHTML = data.faqs.filter(faq => faq.category === 'publication_questions').map(faq => `
+    submissionQASContainer.innerHTML = data.faqs.filter(faq => faq.category === 'SUBMITTING ARTICLES').map(faq => `
         <div class="faq accordion-item">
             <h4 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${faq.id}" aria-expanded="false" aria-controls="collapse${faq.id}">

@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", generateQuestions);
 async function generateQuestions() {
 
     const response = await fetch(
-        `https://web-production-cecc.up.railway.app/api/faqs/?limit=3&category=general_questions`,
+          `https://web-production-cecc.up.railway.app/api/faqs/?limit=3&category=GENERAL QUESTIONS`,
         {
           method: "GET",
           headers: {

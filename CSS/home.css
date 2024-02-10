@@ -307,7 +307,7 @@ padding: 2em 8%;
 
 .ab-qoaj-left {
 flex: 1; /* Take up available space */
-min-width:400px;
+min-width:22em;
 }
 
 .ab-qoaj-right {
@@ -571,7 +571,7 @@ h4, h2 {
   margin-bottom: auto; /* Push the description to the top */
 }
 .procedure{
-  width: 400px;
+  /* width: 400px; */
   height: 300px;
 
 }
@@ -611,8 +611,8 @@ h4, h2 {
 }
 
 .quick-links .quick-link {
-  min-width: 24em;
-  width: 28%;
+  min-width: 18em;
+  width: 25%;
   flex: 1;
   display: flex;
   align-items: center;
