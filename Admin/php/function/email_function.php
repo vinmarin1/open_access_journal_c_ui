@@ -85,8 +85,6 @@ if (!function_exists('get_email_content')) {
             $articleFilesId = $_POST['checkedData'];
             $articleFilesId1 = $_POST['checkedData1'];
             $revisionFilesId = $_POST['checkedData2'];
-            // $copyeditedsubmissionFilesIds = $_POST['checkedData3'];
-            // $copyeditedrevisionFilesIds = $_POST['checkedData4'];
             $copyeditedFilesIds = $_POST['checkedData5'];
 
             if ($mail->send()) {
@@ -124,9 +122,7 @@ if (!function_exists('get_email_content')) {
                     }
                     echo "<script>alert('Request for revision successfully.');</script>";
                 } elseif ($id == 5) {
-                    updateCopyeditedFiles(1, $copyeditedFilesIds);
-                    // updateCopyeditedSubmissionFiles(1, $copyeditedsubmissionFilesIds);
-                    // updateCopyeditedRevisionFiles(1, $copyeditedrevisionFilesIds);                
+                    updateCopyeditedFiles(1, $copyeditedFilesIds);                
                     updateArticleStatus($article_id, 2);
                     addLogs($article_id, $fromuser, 'Send to Production');
                     echo "<script>alert('Send to production successfully.');</script>";
@@ -423,95 +419,6 @@ if (!function_exists('get_email_content')) {
             $pdo->rollBack();
         }
     }
-
-    // function updateCopyeditedSubmissionFiles($status, $copyeditedsubmissionFilesIds) {
-
-    //     if (!is_array($copyeditedsubmissionFilesIds)) {
-    //         $copyeditedsubmissionFilesIds = array($copyeditedsubmissionFilesIds);
-    //     }
-    
-    //     $decodedIds = json_decode($copyeditedsubmissionFilesIds[0], true);
-    //     $copyeditedsubmissionFilesIds = array_column($decodedIds, 'articleFilesId');
-    
-    //     $params = array(':status' => $status);
-    //     foreach ($copyeditedsubmissionFilesIds as $key => $articleFilesId) {
-    //         $paramName = ":id$key";
-    //         $params[$paramName] = $articleFilesId;
-    //         $placeholders[] = $paramName;
-    //     }
-    
-    //     $placeholders = implode(',', $placeholders);
-    
-    //     $query = "UPDATE article_files
-    //               SET production = :status
-    //               WHERE article_files_id IN ($placeholders)";
-    
-    //     $pdo = connect_to_database();
-    
-    //     $pdo->beginTransaction();
-    
-    //     $stm = $pdo->prepare($query);
-    
-    //     // Bind the parameters
-    //     foreach ($params as $paramName => &$paramValue) {
-    //         $stm->bindParam($paramName, $paramValue, PDO::PARAM_INT);
-    //     }
-    
-    //     $check = $stm->execute();
-    
-    //     if ($check !== false) {
-    //         echo "Review production Files updated successfully";
-    //         $pdo->commit();
-    //     } else {
-    //         echo "Failed to update file review production data";
-    //         print_r($stm->errorInfo());
-    //         $pdo->rollBack();
-    //     }
-    // }
-
-    // function updateCopyeditedRevisionFiles($status, $copyeditedrevisionFilesIds) {
-    //     if (!is_array($copyeditedrevisionFilesIds)) {
-    //         $copyeditedrevisionFilesIds = array($copyeditedrevisionFilesIds);
-    //     }
-    
-    //     $decodedIds = json_decode($copyeditedrevisionFilesIds[0], true);
-    //     $revisionFileIds = array_column($decodedIds, 'revisionFilesId');
-
-    //     $params = array(':status' => $status);
-
-    //     foreach ($revisionFileIds as $key => $revisionFilesId) {
-    //         $paramName = ":id$key";
-    //         $params[$paramName] = $revisionFilesId;
-    //         $placeholders[] = $paramName;
-    //     }
-    
-    //     $placeholders = empty($placeholders) ? 'NULL' : implode(',', $placeholders);
-    
-    //     $query = "UPDATE article_revision_files
-    //               SET production = :status
-    //               WHERE revision_files_id IN ($placeholders)";
-    
-    //     $pdo = connect_to_database();
-    
-    //     $pdo->beginTransaction();
-    
-    //     $stm = $pdo->prepare($query);
-    
-    //     foreach ($params as $paramName => &$paramValue) {
-    //         $stm->bindParam($paramName, $paramValue, PDO::PARAM_INT);
-    //     }
-    
-    //     $check = $stm->execute();
-    
-    //     if ($check !== false) {
-    //         echo "Revision production Files updated successfully";
-    //         $pdo->commit();
-    //     } else {
-    //         echo "Failed to update file revision production data";
-    //         print_r($stm->errorInfo());
-    //         $pdo->rollBack();
-    //     }
-    // }    
 
     if (!function_exists('get_reviewer_content')) {
         function get_reviewer_content($emc) {
