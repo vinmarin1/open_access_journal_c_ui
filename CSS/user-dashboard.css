@@ -870,6 +870,7 @@ label {
 }*/
 
 #credit-history-container {
+    height: 404px;
     width: 100%; /* Full width on small screens */
     max-width: none; /* Remove max-width on larger screens */
     background-color: white;
@@ -962,13 +963,8 @@ td {
     background-color: white; /* Change background color on hover */
 }
 
-/* Heart icon styling */
-.balance-points::after {
-    content: '\2665'; /* Unicode for heart symbol */
-    color: #ff0000; /* Change the color as needed (here it's red) */
-    margin-right: 5px; /* Add some space between balance and heart icon */
-    font-size: 1.3em;
-}
+
+
 @media screen and (max-width: 768px) {
     /* Apply styles for screens wider than 768 pixels */
 #rewards-container {
@@ -1348,3 +1344,11 @@ color: #115272;
         width: 100%;
     }
 }
+
+
+.table-container {
+    max-height: 300px;
+    overflow-y: auto; 
+  }
+  
+  

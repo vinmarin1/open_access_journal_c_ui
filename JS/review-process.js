@@ -135,28 +135,28 @@ document.getElementById('reviewBtn').addEventListener('click', function(event){
     nextStep();
 });
 
-document.getElementById('btnReject').addEventListener('click', function(event){
-    Swal.fire({
-        title: "Decline Invitation",
-        text: "You won't be able to revert this",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#d33",
-        cancelButtonColor: "secondary",
-        confirmButtonText: "Decline"
-    }).then((result) => {
+// document.getElementById('btnReject').addEventListener('click', function(event){
+//     Swal.fire({
+//         title: "Decline Invitation",
+//         text: "You won't be able to revert this",
+//         icon: "warning",
+//         showCancelButton: true,
+//         confirmButtonColor: "#d33",
+//         cancelButtonColor: "secondary",
+//         confirmButtonText: "Decline"
+//     }).then((result) => {
 
         
-        if (result.isConfirmed) {
-            showLoader();
-            setTimeout(function() {
-                window.location.href = '../PHP/author-dashboard.php';
-            }, 2000);
+//         if (result.isConfirmed) {
+//             showLoader();
+//             setTimeout(function() {
+//                 window.location.href = '../PHP/author-dashboard.php';
+//             }, 1000);
 
 
-        }
-    });
-});
+//         }
+//     });
+// });
 
 
 function showLoader() {
@@ -191,27 +191,13 @@ xhr.onreadystatechange = function () {
     }
 };
 
-xhr.open('POST', 'discussion-reply.php', true);
+xhr.open('POST', '../PHP/discussion-reply.php', true);
 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 xhr.send('discussion_id=' + discussionId + '&article_id=' + articleId + '&message=' + encodeURIComponent(message));
 }
 
 
 
-function rejectInvitation(articleId) {
-var xhr = new XMLHttpRequest();
-
-xhr.onreadystatechange = function () {
-    if (xhr.readyState == 4 && xhr.status == 200) {
-        console.log(xhr.responseText);
-        // Handle the response as needed
-    }
-};
-
-xhr.open('POST', 'reject-invi.php', true);
-xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-xhr.send('article_id=' + articleId);
-}
 
 
 

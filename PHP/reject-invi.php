@@ -5,7 +5,7 @@ session_start();
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $user_id = $_SESSION['id'];
     $answers = $_POST['answers'];
-    $article_id = $_POST['article_id'];
+    $articleId = $_POST['article_id'];
     $firstName = $_SESSION['first_name'];
     $lastName = $_SESSION['last_name'];
     $middle_name = $_SESSION['middle_name'];
@@ -13,10 +13,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     
     $sqlReject = "UPDATE reviewer_assigned
                   SET accept = 2
-                  WHERE article_id = $article_id
-                  AND author_id = $user_id
-                  ORDER BY timestamp_column DESC
-                  LIMIT 1";
+                  WHERE article_id = $articleId
+                  AND author_id = $user_id";
 
     database_run($sqlReject);
 

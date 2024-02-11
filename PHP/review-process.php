@@ -439,7 +439,8 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                     <!-- This is a Blank space -->
                     <div class="btn">
                         <button class="btn tbn-primary btn-md nextBtn" id="acceptBtn"  onclick="nextStep()" style="width: 430px; margin-left: -15px" >Accept</button>
-                        <button id="btnReject" class="btn tbn-primary btn-md" onclick="rejectInvitation()"style="width: 430px; margin-left: -15px" >Reject</button>
+                        <button id="btnReject" class="btn tbn-primary btn-md" onclick="rejectInvitation('<?php echo $articleId; ?>')" style="width: 430px; margin-left: -15px">Decline</button>
+
                     </div>
                 </div>
             </div>
@@ -829,7 +830,44 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
     <script src="../JS/reusable-header.js"></script>
     <script src="../JS/review-process.js"></script>
+    <script>
+        document.getElementById('btnReject').addEventListener('click', function(event){
+    Swal.fire({
+        title: "Decline Invitation",
+        text: "You won't be able to revert this",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "secondary",
+        confirmButtonText: "Decline"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            showLoader();
 
+            // Send AJAX request
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'reject-invi.php', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            
+            var articleId = "<?php echo $articleId; ?>";
+
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    // AJAX request was successful
+                    window.location.href = '../PHP/author-dashboard.php';
+                } else {
+                    // Handle errors if any
+                    console.error('AJAX request failed with status: ' + xhr.status);
+                }
+            };
+
+            // Send the request with articleId
+            xhr.send('article_id=' + articleId);
+        }
+    });
+});
+
+    </script>
 </body>
 </html>
 
