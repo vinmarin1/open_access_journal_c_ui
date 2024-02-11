@@ -1,15 +1,17 @@
-document.addEventListener( "DOMCrontentLoaded",
+let selectedJournals = [];
+let selectedJournalsName = [];
+
+document.addEventListener( "DOMContentLoaded",
   fetchData().then(() => {
     generateFilters();
+    previewFilters()
     // generateDatalist(articleData);
   })
 );
 
-
-
 let totalItems = 0;
 const selectedYears = [];
-let selectedJournals = [];
+
 const sortBySelect = document.querySelector("select");
 let sortBySelected = "total_interactions";
 
@@ -54,11 +56,13 @@ sortBySelect.addEventListener("change", function (event) {
 });
 
 
+
 // updte selected years based on checkbox
 const updateSelectedYears = (checkbox, year) => {
   if (checkbox.checked) {
     if (!selectedYears.includes(year)) {
       selectedYears.push(year);
+      
     }
   } else {
     const index = selectedYears.indexOf(year);
@@ -68,18 +72,20 @@ const updateSelectedYears = (checkbox, year) => {
   }
 };
 
-const updateSelectedJournals = (checkbox, journal) => {
+const updateSelectedJournals = (checkbox, journal,journalName) => {
   if (checkbox.checked) {
     if (!selectedJournals.includes(journal)) {
       selectedJournals.push(journal);
+      selectedJournalsName.push(journalName)
     }
   } else {
     const index = selectedJournals.indexOf(journal);
     if (index !== -1) {
       selectedJournals.splice(index, 1);
+      selectedJournalsName.splice(index, 1);
     }
   }
-
+console.log(selectedJournals,"selected")
 };
 
 async function fetchJournal(journal) {
@@ -107,6 +113,17 @@ async function fetchJournal(journal) {
 }
   
   
+}
+
+function previewFilters(){
+const selectedFiltersContainer= document.querySelector("#selected-filters")
+selectedFiltersContainer.innerHTML=""
+let selectedFilters = selectedJournalsName.concat(selectedYears)
+selectedFilters.forEach(journal => {
+  const journalElement = document.createElement("span");
+  journalElement.innerHTML =  journal;
+  selectedFiltersContainer.appendChild(journalElement);
+});
 }
 // function to generate frontend of journal preview
 function generateJournalPreview(journal) {
@@ -159,8 +176,11 @@ async function generateFilters() {
     yearItem.appendChild(yearCheckbox);
     yearItem.appendChild(labelText);
 
-    yearCheckbox.addEventListener("change", () =>
-      updateSelectedYears(yearCheckbox, yearCheckbox.value)
+    yearCheckbox.addEventListener("change", () =>{
+        updateSelectedYears(yearCheckbox, yearCheckbox.value);
+        fetchData(searchInput.value, selectedYears, sortBySelected)
+        previewFilters()
+      }
     );
 
     yearsContainer.appendChild(yearItem);
@@ -178,35 +198,39 @@ async function generateFilters() {
 
     const labelText = document.createTextNode(` ${journals[i].split("->")[1]}`);
     const labelButton = document.createElement("button")
-    labelButton.innerHTML = ` <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32"><path fill="none" stroke="#0858a4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M22 3h7v7m-1.5-5.5L20 12m-3-7H8a3 3 0 0 0-3 3v16a3 3 0 0 0 3 3h16a3 3 0 0 0 3-3v-9"/></svg>`
+    // labelButton.innerHTML = ` <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32"><path fill="none" stroke="#0858a4" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M22 3h7v7m-1.5-5.5L20 12m-3-7H8a3 3 0 0 0-3 3v16a3 3 0 0 0 3 3h16a3 3 0 0 0 3-3v-9"/></svg>`
 
-    labelButton.addEventListener('click', function() {
-      const journalId = journals[i].split(" ->")[0];
-      updateURL([journalId]);
+    // labelButton.addEventListener('click', function() {
+    //   const journalId = journals[i].split(" ->")[0];
+    //   updateURL([journalId]);
     
-      // Reset all checkboxes to unchecked
-      const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-      checkboxes.forEach(checkbox => {
-        checkbox.checked = false;
-      });
+    //   // Reset all checkboxes to unchecked
+    //   const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    //   checkboxes.forEach(checkbox => {
+    //     checkbox.checked = false;
+    //   });
     
-      // Set the specific checkbox to checked
-      const checkbox = document.getElementById(`journal${journalId}`);
-        checkbox.checked = true;
-      selectedJournals=[journalId]
-      fetchData();
-      if (selectedJournals.length ==1){
-        fetchJournal(journalId)
-      }
-    });
+    //   // Set the specific checkbox to checked
+    //   const checkbox = document.getElementById(`journal${journalId}`);
+    //     checkbox.checked = true;
+    //   selectedJournals=[journalId]
+    //   fetchData();
+    //   if (selectedJournals.length ==1){
+    //     fetchJournal(journalId)
+    //   }
+    // });
     
     journalItem.appendChild(journalCheckbox);
     journalItem.appendChild(labelText);
     journalItem.appendChild(labelButton)
 
-    journalCheckbox.addEventListener("change", () =>
-      updateSelectedJournals(journalCheckbox, journalCheckbox.value)
-      // console.log(journalCheckbox.value, "journal")
+    journalCheckbox.addEventListener("change", () => {
+      updateSelectedJournals(journalCheckbox, journalCheckbox.value,labelText.textContent)
+      updateURL(selectedJournals)
+      fetchData(searchInput.value, selectedYears, sortBySelected)
+      
+      previewFilters()
+      }
     );
 
     journalsContainer.appendChild(journalItem);
@@ -335,16 +359,21 @@ async function fetchData(input, dates,sort, currentPage = 0) {
   }
   
   const journalId = getQueryParam("journal");
-
+  const journalPreview = document.querySelector(".journal-preview");
+  journalPreview.classList.add("d-none")
   if (journalId && journalId.split(",").length ==1){
+    journalPreview.classList.add("d-flex")
+    journalPreview.classList.remove("d-none")
     fetchJournal(journalId)
   }
 
 
   const articlesContainer = document.querySelector("#articles");
+  articlesContainer.innerHTML=""
   const total = document.querySelector("#total");
   const loading = document.querySelector('#skeleton-container');
-
+  
+  console.log(loading, "loading")
   loading.classList.add("d-flex")
    console.log(await fetchJournal(journalId),"dd")
 
@@ -461,12 +490,15 @@ async function fetchData(input, dates,sort, currentPage = 0) {
         `;
 
           articlesContainer.appendChild(articleDiv);
+          
         });
     total.innerHTML = `${data.total} searched articles`;
 
+    loading.classList.add("d-none") 
+    console.log(loading, "notloading")
     }
     renderArticles()
-
+    previewFilters()
     generatePagination(data.total)
     const buttons = document.querySelectorAll('.page-item');
  
@@ -478,12 +510,12 @@ async function fetchData(input, dates,sort, currentPage = 0) {
     });
 
 
-    loading.classList.add("d-none") 
    
   } catch (error) {
     console.error("Error fetching data:", error);
     articlesContainer.innerHTML = input? `No match found for ${input }.` : "No match found"
     total.innerHTML = '0 searched article'
     loading.classList.add("d-none") 
+    console.log(loading, "notloading")
   }
 }
