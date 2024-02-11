@@ -736,6 +736,11 @@ include 'dbcon.php';
     }
 
     function updateCopyeditedCheckedFiles() {
+        if(empty($_POST['checkedCopyeditedData'])) {
+            echo "No checked data received.";
+            return;
+        }
+
         $copyeditedFilesIds = $_POST['checkedCopyeditedData'];
         $status = 1;
         
@@ -784,6 +789,11 @@ include 'dbcon.php';
     }
 
     function updateCopyeditedUnCheckedFiles() {
+        if(empty($_POST['uncheckedCopyeditedData'])) {
+            echo "No unchecked data received.";
+            return;
+        }
+
         $copyeditedFilesIds = $_POST['uncheckedCopyeditedData'];
         $status = 0;
         
@@ -899,6 +909,11 @@ include 'dbcon.php';
     }
 
     function updateProductionCopyeditedCheckedFiles() {
+        if(empty($_POST['checkedCopyeditedData'])) {
+            echo "No checked data received.";
+            return;
+        }
+
         $copyeditedFilesIds = $_POST['checkedCopyeditedData'];
         $status = 1;
         
@@ -947,6 +962,11 @@ include 'dbcon.php';
     }
 
     function updateProductionCheckedFiles() {
+        if(empty($_POST['checkedProductionData'])) {
+            echo "No checked data received.";
+            return;
+        }
+
         $productionFilesIds = $_POST['checkedProductionData'];
         $status = 1;
         
@@ -995,6 +1015,11 @@ include 'dbcon.php';
     }
 
     function updateProductionCopyeditedUnCheckedFiles() {
+        if(empty($_POST['uncheckedCopyeditedData'])) {
+            echo "No unchecked data received.";
+            return;
+        }
+
         $copyeditedFilesIds = $_POST['uncheckedCopyeditedData'];
         $status = 0;
         
@@ -1044,6 +1069,11 @@ include 'dbcon.php';
 
     
     function updateProductionUnCheckedFiles() {
+        if(empty($_POST['uncheckedProductionData'])) {
+            echo "No unchecked data received.";
+            return;
+        }
+
         $productionFilesIds = $_POST['uncheckedProductionData'];
         $status = 0;
         
