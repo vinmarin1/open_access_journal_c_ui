@@ -11,13 +11,25 @@ include 'dbcon.php';
             updaterReviewUnCheckedFiles();
             break; 
         case 'updatecopyeditingcheckedfile':
-            updateCopyeditingCheckedFiles();
-            updateCopyeditingRevisionCheckedFiles();
+            if (!empty($_POST['checkedData'])) {
+                $articleFilesIds = $_POST['checkedData'];
+                updateCopyeditingCheckedFiles();
+            }
+            if (!empty($_POST['checkedRevisionData'])) {
+                $revisionFilesIds = $_POST['checkedRevisionData'];
+                updateCopyeditingRevisionCheckedFiles();
+            }
             break;
         case 'updatecopyeditinguncheckedfile':
-            updateCopyeditingUnCheckedFiles();
-            updateCopyeditingRevisionUnCheckedFiles();
-            break; 
+            if (!empty($_POST['uncheckedData'])) {
+                $articleFilesIds = $_POST['uncheckedData'];
+                updateCopyeditingUnCheckedFiles();
+            }
+            if (!empty($_POST['uncheckedRevisionData'])) {
+                $revisionFilesIds = $_POST['uncheckedRevisionData'];
+                updateCopyeditingRevisionUnCheckedFiles();
+            }
+            break;
         case 'updatecopyeditedcheckedfile':
             updateCopyeditedCheckedFiles();
             break;
