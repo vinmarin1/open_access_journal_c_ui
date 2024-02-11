@@ -209,7 +209,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
     <script src="../JS/home-recommended-api.js"></script>
     <script src="../JS/most-popular-api.js"></script>
     <script src="../JS/home-monthly-api.js"></script>
-    <script src="../JS/browse-api.js"></script>
+    <?php include '../JS/browse/browse.php'; ?>
 
 </body>
 
