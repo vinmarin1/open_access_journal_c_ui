@@ -38,6 +38,8 @@ $expertise = $_SESSION['expertise'];
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>QCU PUBLICATION | USER DASHBOARD</title>
   <link rel="stylesheet" href="../CSS/user-dashboard.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
 
 
@@ -78,7 +80,23 @@ $expertise = $_SESSION['expertise'];
 			<div class="profile-container">
 				<div class="profile-sidebar">
 					<!-- Profile Image -->
-					<img src="../images/profile.jpg" alt="Profile Picture" class="profile-pic">
+					<img src="../images/profile.jpg" alt="Profile Picture" class="profile-pic" id="profileImage">
+					<input type="file" accept="image/*" style="display:none" id="fileInput">
+					<button type="button" class="btn btn-secondary btn-sm"  onclick="openFileInput()"><i class="fa-solid fa-camera"></i></button>
+					
+					<!-- Modal for Image Preview and Confirmation -->
+					<div id="imageModal" class="modal" style="display:none">
+						<div class="modal-content mt-3" style="width: 30%; height: 55%; margin-left: auto; margin-right: auto;">
+							<p class="h6 mt-2" style="text-align: center; magin: 0; border-bottom: 1px gray solid">Change Profile Picture</p>
+							
+							<img class="img-fluid mt-4" src="" alt="Selected Image" id="selectedImagePreview" style="height: 50%; width: 50%; border-radius: 60%; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; margin-left: auto; margin-right: auto">
+							<div class="btn-change mt-5" style="width: 100%">
+							<button type="button" class="btn btn-success btn-sm" style="width: 95%; display: block; margin-left: 10px" onclick="saveProfile()">Save</button>
+							<button type="button" class="btn btn-secondary btn-sm mt-1" style="width: 95%; display: block; margin-left: 10px" onclick="cancelUpdate()">Cancel</button>
+							</div>
+							
+						</div>
+					</div>
 				</div>
 				<div class="profile-info">
 					<div class="row">
@@ -120,8 +138,8 @@ $expertise = $_SESSION['expertise'];
 						</div>
 						<form id="form" method="POST" action="update-user.php">		
 							<div class="form-content">
-								<div class="edit-profile-pic">
-									<!-- Profile Image -->
+								<!-- <div class="edit-profile-pic">
+								
 								
 								
 									<img src="../images/capstone1.png" alt="Profile Picture" class="profile-pic" id="profileImage">
@@ -129,7 +147,7 @@ $expertise = $_SESSION['expertise'];
 									<input type="file" id="selectProfile" style="display: none" accept="image/*">
 
 
-								</div>
+								</div> -->
 								<!-- Personal Information -->
 								<div class="form-section">
 									<h4>Personal Information</h4>
@@ -272,7 +290,8 @@ $expertise = $_SESSION['expertise'];
 						} else {
 							echo "No points found for the user.";
 						}
-					?>
+					?><i id="heartIcon" class="fa-solid fa-heart" style="color: red; margin-left: 5px" title="Community Heart, for more info click it."></i>
+
 
 					
 
@@ -1010,6 +1029,8 @@ function openArticleInNewTab(articleId) {
       })
       .catch(error => console.error('Error fetching countries:', error));
 });
+
+
 
 	
 </script>

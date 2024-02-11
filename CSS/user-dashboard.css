@@ -963,13 +963,8 @@ td {
     background-color: white; /* Change background color on hover */
 }
 
-/* Heart icon styling */
-.balance-points::after {
-    content: '\2665'; /* Unicode for heart symbol */
-    color: #ff0000; /* Change the color as needed (here it's red) */
-    margin-right: 5px; /* Add some space between balance and heart icon */
-    font-size: 1.3em;
-}
+
+
 @media screen and (max-width: 768px) {
     /* Apply styles for screens wider than 768 pixels */
 #rewards-container {

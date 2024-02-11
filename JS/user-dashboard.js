@@ -431,3 +431,55 @@ document.getElementById('selectProfile').addEventListener('change', function() {
       reader.readAsDataURL(file);
   }
 });
+
+function openFileInput() {
+  const fileInput = document.getElementById('fileInput');
+  const imageModal = document.getElementById('imageModal');
+  const selectedImagePreview = document.getElementById('selectedImagePreview');
+
+  fileInput.click();
+
+  fileInput.addEventListener('change', function () {
+      const file = fileInput.files[0];
+
+      if (file) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+              selectedImagePreview.src = e.target.result;
+              imageModal.style.display = 'block';
+          };
+          reader.readAsDataURL(file);
+      }
+  });
+}
+
+function saveProfile() {
+  const fileInput = document.getElementById('fileInput');
+  const profileImage = document.getElementById('profileImage');
+  const imageModal = document.getElementById('imageModal');
+  imageModal.style.display = 'none';
+  Swal.fire({
+    icon: 'success',
+    text: 'Change profile picture successfully',
+    showConfirmButton: true
+  }).then(() => {
+  
+    profileImage.src = document.getElementById('selectedImagePreview').src;
+    fileInput.value = null;
+   
+  });
+}
+
+
+function cancelUpdate() {
+  const fileInput = document.getElementById('fileInput');
+  const imageModal = document.getElementById('imageModal');
+
+  // Clear the file input
+  fileInput.value = null;
+
+  // Hide the image modal without saving
+  imageModal.style.display = 'none';
+}
+
+
