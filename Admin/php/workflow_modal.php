@@ -1198,6 +1198,13 @@ function updateReviewFiles() {
 function updateReviewCheckedFiles() {
     var checkedCheckboxes = $('.review-checkbox:checked');
 
+    if (checkedCheckboxes.length === 0) {
+        console.log("No checked files. Aborting update.");
+        return; // Exit the function
+    }
+
+    $('#sloading').toggle();
+
     var checkedData = [];
     checkedCheckboxes.each(function () {
         var articleFilesId = $(this).data('article-files-id');
@@ -1230,6 +1237,13 @@ function updateReviewCheckedFiles() {
 
 function updateReviewUncheckedFiles() {
     var uncheckedCheckboxes = $('.review-checkbox:not(:checked)');
+
+    if (uncheckedCheckboxes.length === 0) {
+        console.log("No unchecked files. Aborting update.");
+        return; // Exit the function
+    }
+
+    $('#sloading').toggle();
 
     var uncheckedData = [];
     uncheckedCheckboxes.each(function () {
@@ -1271,6 +1285,11 @@ function updateCopyeditingCheckedFiles() {
     var checkedCheckboxes = $('.copyediting-checkbox:checked');
     var checkedCheckboxes1 = $('.copyeditingrevision-checkbox:checked');
 
+    if (checkedCheckboxes.length === 0 && checkedCheckboxes1.length === 0) {
+        console.log("No checkboxes checked. Aborting update.");
+        return;
+    }
+
     var checkedData = [];
     checkedCheckboxes.each(function () {
         var articleFilesId = $(this).data('article-files-id');
@@ -1302,6 +1321,7 @@ function updateCopyeditingCheckedFiles() {
             action: 'updatecopyeditingcheckedfile'
         },
         success: function(response) {
+            $('#sloading').toggle();
             console.log('Checked checkboxes data sent successfully.');
             console.log(response);
             location.reload();
@@ -1315,6 +1335,11 @@ function updateCopyeditingCheckedFiles() {
 function updateCopyeditingUncheckedFiles() {
     var uncheckedCheckboxes = $('.copyediting-checkbox:not(:checked)');
     var uncheckedCheckboxes1 = $('.copyeditingrevision-checkbox:not(:checked)');
+
+    if (uncheckedCheckboxes.length === 0 && uncheckedCheckboxes1.length === 0) {
+        console.log("No unheckboxes checked. Aborting update.");
+        return;
+    }
 
     var uncheckedData = [];
     uncheckedCheckboxes.each(function () {
@@ -1347,6 +1372,7 @@ function updateCopyeditingUncheckedFiles() {
             action: 'updatecopyeditinguncheckedfile'
         },
         success: function(response) {
+            $('#sloading').toggle();
             console.log('Unchecked checkboxes data sent successfully.');
             console.log(response);
             location.reload();
@@ -1531,8 +1557,14 @@ function uploadCopyeditedFiles() {
 }
 
 function updateCopyeditedCheckedFiles() {
-    $('#sloading').toggle();
     var checkedCheckboxes2 = $('.copyedited-checkbox:checked');
+
+    if (checkedCheckboxes2.length === 0) {
+        console.log("No checked files. Aborting update.");
+        return; // Exit the function
+    }
+
+    $('#sloading').toggle();
 
     var checkedData2 = [];
     checkedCheckboxes2.each(function () {
@@ -1566,8 +1598,14 @@ function updateCopyeditedCheckedFiles() {
 }
 
 function updateCopyeditedUncheckedFiles() {
-    $('#sloading').toggle();
     var uncheckedCheckboxes2 = $('.copyedited-checkbox:not(:checked)');
+
+    if (uncheckedCheckboxes2.length === 0) {
+        console.log("No unchecked files. Aborting update.");
+        return; // Exit the function
+    }
+
+    $('#sloading').toggle();
 
     var uncheckedData2 = [];
     uncheckedCheckboxes2.each(function () {
