@@ -179,12 +179,6 @@ $expertise = $_SESSION['expertise'];
 										<div class="form-row">
 											<label for="country">Country:</label>
 											<select id="country" name="country" class="dropdown-box" disabled>
-												<option value="<?php echo $country ?>"><?php echo $country ?></option>
-												<option value="USA">United States</option>
-												<option value="Canada">Canada</option>
-												<option value="U.K">United Kingdom</option>
-												<option value="Philippines">Philippines</option>
-												<!-- Add more countries as needed -->
 											</select>
 										</div>
 									</div>
@@ -987,6 +981,37 @@ function openArticleInNewTab(articleId) {
     .catch(error => {
       console.error('Error fetching data:', error);
     });
+
+	document.addEventListener('DOMContentLoaded', function () {
+  const countrySelect = document.getElementById('country');
+  countrySelect.disabled = true;
+
+
+  fetch('https://restcountries.com/v3.1/all')
+      .then(response => response.json())
+      .then(data => {
+       
+          if (data.find(country => country.name.common === '<?php echo $country ?>')) {
+              const userCountryOption = document.createElement('option');
+              userCountryOption.value = '<?php echo $country ?>';
+              userCountryOption.textContent = '<?php echo $country ?>';
+              countrySelect.appendChild(userCountryOption);
+          }
+
+      
+          data.forEach(country => {
+              const option = document.createElement('option');
+              option.value = country.name.common;
+              option.textContent = country.name.common;
+              countrySelect.appendChild(option);
+          });
+
+         
+      })
+      .catch(error => console.error('Error fetching countries:', error));
+});
+
+	
 </script>
 
 </body>
