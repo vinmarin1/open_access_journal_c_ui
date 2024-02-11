@@ -131,6 +131,11 @@ include 'dbcon.php';
     }
     
     function updaterReviewCheckedFiles() {
+        if(empty($_POST['checkedData'])) {
+            echo "No checked data received.";
+            return;
+        }
+
         $articleFilesIds = $_POST['checkedData'];
         $status = 1;
         
@@ -179,6 +184,11 @@ include 'dbcon.php';
     }
     
     function updaterReviewUnCheckedFiles() {
+        if(empty($_POST['uncheckedData'])) {
+            echo "No unchecked data received.";
+            return;
+        }
+
         $articleFilesIds = $_POST['uncheckedData'];
         $status = 0;
         
@@ -228,6 +238,11 @@ include 'dbcon.php';
     }
 
     function updateCopyeditingCheckedFiles() {
+        if(empty($_POST['checkedData'])) {
+            echo "No checked data received.";
+            return;
+        }
+
         $articleFilesIds = $_POST['checkedData'];
         $status = 1;
         
@@ -276,6 +291,11 @@ include 'dbcon.php';
     }
 
     function updateCopyeditingRevisionCheckedFiles() {
+        if(empty($_POST['checkedRevisionData'])) {
+            echo "No checked data received.";
+            return;
+        }
+
         $revisionFilesIds = $_POST['checkedRevisionData'];
         $status = 1;
     
@@ -328,6 +348,11 @@ include 'dbcon.php';
     }    
     
     function updateCopyeditingUnCheckedFiles() {
+        if(empty($_POST['uncheckedData'])) {
+            echo "No unchecked data received.";
+            return;
+        }
+
         $articleFilesIds = $_POST['uncheckedData'];
         $status = 0;
         
