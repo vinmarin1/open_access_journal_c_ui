@@ -870,6 +870,7 @@ label {
 }*/
 
 #credit-history-container {
+    height: 404px;
     width: 100%; /* Full width on small screens */
     max-width: none; /* Remove max-width on larger screens */
     background-color: white;
@@ -1348,3 +1349,11 @@ color: #115272;
         width: 100%;
     }
 }
+
+
+.table-container {
+    max-height: 300px;
+    overflow-y: auto; 
+  }
+  
+  

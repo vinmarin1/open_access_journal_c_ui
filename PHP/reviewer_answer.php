@@ -72,12 +72,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     database_run($sqlAccept, $sqlAcceptParams);
 
-    $sqlPoint = "INSERT INTO user_points(`user_id`, `email`, `action_engage`, `point_earned`) VALUES (:user_id, :email, :action_engage, :point_earned)";
+    $sqlPoint = "INSERT INTO user_points(`user_id`, `email`, `action_engage`, `article_id`, `point_earned`) VALUES (:user_id, :email, :action_engage, :article_id, :point_earned)";
 
     $logsPoints = array(
         'user_id' => $user_id,
         'email' => $email,
         'action_engage' => 'Reviewed an Article',
+        'article_id' => $article_id,
         'point_earned' => 1
     );
       

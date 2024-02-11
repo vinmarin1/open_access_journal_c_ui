@@ -631,218 +631,55 @@ $expertise = $_SESSION['expertise'];
 							<div class="table-container">
 								<table>
 									<tbody>
-										
-										
-											<?php
-												$sqlAchivement = "SELECT action_engage FROM user_points WHERE action_engage = 'Reviewed an Article' AND user_id = :user_id";
-
-												$result = database_run($sqlAchivement, array('user_id' => $id));
-
-												if ($result !== false) {
-													
-													foreach ($result as $row) {
-														echo '<tr>';
-														echo '<td>' . $row->action_engage .'</td>';  
-														
-														
-													}		
-												}
-
-												$sqlAchivementDate = "SELECT `date` FROM user_points WHERE action_engage = 'Reviewed an Article' AND user_id = :user_id";
-
-												$resultDate = database_run($sqlAchivementDate, array('user_id' => $id));
-
-												if ($resultDate !== false) {
-													
-													foreach ($resultDate as $rowDate) {
-													
-														$formattedDateTime = date('F j, Y g:i:s A', strtotime($rowDate->date));
-														echo '<td>' . $formattedDateTime . '</td>';
-														
-														
-														
-													}		
-												}
 
 
-												$sqlAchivementPoints = "SELECT `point_earned` FROM user_points WHERE action_engage = 'Reviewed an Article' AND user_id = :user_id";
-
-												$resultPoints = database_run($sqlAchivementPoints, array('user_id' => $id));
-
-												if ($resultPoints !== false) {
-													
-													foreach ($resultPoints as $rowPoints) {
-													
-														
-														echo '<td style="color: red;">You earned ' . $rowPoints->point_earned . ' Community Heart</td>';
-														echo '	<td><button type="button" class="view-button">View</button></td>';
-														echo '</tr>';
-														
-													}		
-												}
-											?>
-
-											<?php
-												$sqlAchivement = "SELECT action_engage FROM user_points WHERE action_engage = 'Submitted an Article' AND user_id = :user_id";
-
-												$result = database_run($sqlAchivement, array('user_id' => $id));
-
-												if ($result !== false) {
-													
-													foreach ($result as $row) {
-														echo '<tr>';
-														echo '<td>' . $row->action_engage .'</td>';  
-														
-														
-													}		
-												}
-
-												$sqlAchivementDate = "SELECT `date` FROM user_points WHERE action_engage = 'Submitted an Article' AND user_id = :user_id";
-
-												$resultDate = database_run($sqlAchivementDate, array('user_id' => $id));
-
-												if ($resultDate !== false) {
-													
-													foreach ($resultDate as $rowDate) {
-													
-														$formattedDateTime = date('F j, Y g:i:s A', strtotime($rowDate->date));
-														echo '<td>' . $formattedDateTime . '</td>';
-														
-														
-														
-													}		
-												}
-
-
-												$sqlAchivementPoints = "SELECT `point_earned` FROM user_points WHERE action_engage = 'Submitted an Article' AND user_id = :user_id";
-
-												$resultPoints = database_run($sqlAchivementPoints, array('user_id' => $id));
-
-												if ($resultPoints !== false) {
-													
-													foreach ($resultPoints as $rowPoints) {
-													
-														
-														echo '<td style="color: red;">You earned ' . $rowPoints->point_earned . ' Community Heart</td>';
-														echo '	<td><button type="button" class="view-button">View</button></td>';
-														echo '</tr>';
-														
-													}		
-												}
-											?>
-
-											<?php
-												$sqlAchivement = "SELECT article.title, article.status, user_points.action_engage FROM article JOIN user_points ON article.article_id = user_points.article_id WHERE article.author_id = :author_id  AND article.status = 1 AND user_points.action_engage = 'Published an Article'";
-
-												$result = database_run($sqlAchivement, array('author_id' => $id));
-
-												if ($result !== false) {
-													
-													foreach ($result as $row) {
-														echo '<tr>';
-														echo '<td>' . $row->action_engage .'</td>';  
-														
-														
-													}		
-												}
-
-												$sqlAchivementDate = "SELECT article.title, article.status, user_points.date FROM article JOIN user_points ON article.article_id = user_points.article_id WHERE article.author_id = :author_id  AND article.status = 1 AND user_points.action_engage = 'Published an Article'";
-
-												$resultDate = database_run($sqlAchivementDate, array('author_id' => $id));
-
-												if ($resultDate !== false) {
-													
-													foreach ($resultDate as $rowDate) {
-														
-														$formattedDateTime = date('F j, Y g:i:s A', strtotime($rowDate->date));
-														echo '<td>' . $formattedDateTime . '</td>';
-
-														
-														
-														
-													}		
-												}
-
-
-												$sqlAchivementPoints =  "SELECT article.title, article.status, user_points.point_earned FROM article JOIN user_points ON article.article_id = user_points.article_id WHERE article.author_id = :author_id  AND article.status = 1 AND user_points.action_engage = 'Published an Article'";
-
-												$resultPoints = database_run($sqlAchivementPoints, array('author_id' => $id));
-
-												if ($resultPoints !== false) {
-													
-													foreach ($resultPoints as $rowPoints) {
-													
-														
-														echo '<td style="color: red;">You earned ' . $rowPoints->point_earned . ' Community Heart</td>';
-														echo '	<td><button type="button" class="view-button">View</button></td>';
-														echo '</tr>';
-														
-													}		
-												}
-											?>
-
-
-											<?php
-											$sqlAchivement = "SELECT user_points.action_engage FROM user_points JOIN reviewer_assigned ON user_points.user_id = reviewer_assigned.author_id JOIN article ON reviewer_assigned.article_id = article.article_id WHERE article.status = 1 AND reviewer_assigned.accept = 1 AND reviewer_assigned.answer = 1 AND user_points.action_engage = 'Reviewed Article Published'AND user_points.user_id = :author_id;";
-										
-
-												$result = database_run($sqlAchivement, array('author_id' => $id));
-
-												if ($result !== false) {
-													
-													foreach ($result as $row) {
-														echo '<tr>';
-														echo '<td>' . $row->action_engage .'</td>';
-														
-														
-													}		
-												}
-
-												$sqlAchivementDate = "SELECT user_points.date FROM user_points JOIN reviewer_assigned ON user_points.user_id = reviewer_assigned.author_id JOIN article ON reviewer_assigned.article_id = article.article_id WHERE article.status = 1 AND reviewer_assigned.accept = 1 AND reviewer_assigned.answer = 1 AND user_points.action_engage = 'Reviewed Article Published'AND user_points.user_id = :author_id;";
-
-												$resultDate = database_run($sqlAchivementDate, array('author_id' => $id));
-
-												if ($resultDate !== false) {
-													
-													foreach ($resultDate as $rowDate) {
-														
-														$formattedDateTime = date('F j, Y g:i:s A', strtotime($rowDate->date));
-														echo '<td>' . $formattedDateTime . '</td>';
-														
-														
-														
-														
-													}		
-												}
-
-
-												$sqlAchivementPoints =  "SELECT user_points.point_earned FROM user_points JOIN reviewer_assigned ON user_points.user_id = reviewer_assigned.author_id JOIN article ON reviewer_assigned.article_id = article.article_id WHERE article.status = 1 AND reviewer_assigned.accept = 1 AND reviewer_assigned.answer = 1 AND user_points.action_engage = 'Reviewed Article Published'AND user_points.user_id = :author_id;";
-
-												$resultPoints = database_run($sqlAchivementPoints, array('author_id' => $id));
-
-												if ($resultPoints !== false) {
-													
-													foreach ($resultPoints as $rowPoints) {
-													
-														
-														echo '<td style="color: red;">You earned ' . $rowPoints->point_earned . ' Community Heart</td>';
-														echo '	<td><button type="button" class="view-button">View</button></td>';
-														echo '</tr>';
-														
-													}		
-												}
-												
-											?>
-
-
-
-
+									<?php
+										$sqlAchievements = "
+											(SELECT 'Published an Article' as action_engage, article.title, article.status, user_points.date, user_points.point_earned
+											FROM article
+											JOIN user_points ON article.article_id = user_points.article_id
+											WHERE article.author_id = :author_id AND article.status = 1 AND user_points.action_engage = 'Published an Article')
 											
-										
-
-										
-										
+											UNION
 											
+											(SELECT 'Reviewed Article Published' as action_engage, NULL as title, NULL as status, user_points.date, user_points.point_earned
+											FROM user_points
+											JOIN reviewer_assigned ON user_points.user_id = reviewer_assigned.author_id
+											JOIN article ON reviewer_assigned.article_id = article.article_id
+											WHERE article.status = 1 AND reviewer_assigned.accept = 1 AND reviewer_assigned.answer = 1 AND user_points.action_engage = 'Reviewed Article Published' AND user_points.user_id = :author_id)
+											
+											UNION
+											
+											(SELECT 'Submitted an Article' as action_engage, NULL as title, NULL as status, user_points.date, user_points.point_earned
+											FROM user_points
+											WHERE user_points.action_engage = 'Submitted an Article' AND user_points.user_id = :user_id)
+											
+											UNION
+											
+											(SELECT 'Reviewed an Article' as action_engage, NULL as title, NULL as status, user_points.date, user_points.point_earned
+											FROM user_points
+											WHERE user_points.action_engage = 'Reviewed an Article' AND user_points.user_id = :user_id)
+											
+											ORDER BY date DESC
+										";
+
+										$result = database_run($sqlAchievements, array('author_id' => $id, 'user_id' => $id));
+
+										if ($result !== false) {
+											foreach ($result as $row) {
+												echo '<tr>';
+												echo '<td>' . $row->action_engage .'</td>';
+												// echo '<td>' . ($row->title ?? '') .'</td>';
+												// echo '<td>' . ($row->status ?? '') .'</td>';
+												$formattedDateTime = date('F j, Y g:i:s A', strtotime($row->date));
+												echo '<td>' . $formattedDateTime . '</td>';
+												echo '<td style="color: red;">You earned ' . $row->point_earned . ' Community Heart</td>';
+												echo '<td><button type="button" class="view-button">View</button></td>';
+												echo '</tr>';
+											}
+										}
+										?>
+
 									</tbody>
 								</table>
 							</div>
