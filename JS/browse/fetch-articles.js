@@ -143,7 +143,7 @@ async function fetchData(input, dates,sort) {
       loading.classList.add("d-none") 
       }
       renderArticles()
-      previewFilters()
+      // previewFilters()
       generatePagination(data.total)
       const buttons = document.querySelectorAll('.page-item');
    

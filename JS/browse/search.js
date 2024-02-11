@@ -4,8 +4,9 @@ let selectedJournalsName = [];
 
 document.addEventListener( "DOMContentLoaded",
   fetchData().then(() => {
+  
     generateFilters();
-    previewFilters()
+    // previewFilters();
     // generateDatalist(articleData);
   })
 );
@@ -22,6 +23,20 @@ function updateURL(selectedJournals){
   url.searchParams.set('journal', selectedJournals); 
   history.replaceState(null, '', url.toString());
 }
+// Function to initialize checkboxes based on URL query parameter
+const initializeCheckboxes = () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const selectedJournalsParam = urlParams.get("journal");
+  if (selectedJournalsParam) {
+    const selectedJournalsArray = selectedJournalsParam.split(",");
+    selectedJournalsArray.forEach((journalId) => {
+      const checkbox = document.querySelector(`input[value='${journalId}']`);
+      if (checkbox) {
+        checkbox.checked = true;
+      }
+    });
+  }
+};
 
 // handle search element event submit with sorting change
 document.getElementById("search-form").addEventListener("submit", function (event) {

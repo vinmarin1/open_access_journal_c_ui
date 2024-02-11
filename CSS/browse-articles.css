@@ -334,6 +334,15 @@
     padding: none;
   }
 
+  #selected-filters span {
+    border:1px solid #0858a4;
+    padding: 0.5em;
+    font-size: 12px;
+    border-radius: 2em;
+    color: #0858a4;
+    display: flex;
+    gap: 1;
+  }
   @keyframes skeleton-fade {
     0%, 100% {
       opacity: 0.5;
