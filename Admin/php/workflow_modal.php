@@ -1203,8 +1203,6 @@ function updateReviewCheckedFiles() {
         return; // Exit the function
     }
 
-    $('#sloading').toggle();
-
     var checkedData = [];
     checkedCheckboxes.each(function () {
         var articleFilesId = $(this).data('article-files-id');
@@ -1225,6 +1223,7 @@ function updateReviewCheckedFiles() {
             action: 'updatereviewcheckedfile'
         },
         success: function(response) {
+            $('#sloading').toggle();
             console.log('Checked checkboxes data sent successfully.');
             console.log(response);
             location.reload();
@@ -1242,8 +1241,6 @@ function updateReviewUncheckedFiles() {
         console.log("No unchecked files. Aborting update.");
         return; // Exit the function
     }
-
-    $('#sloading').toggle();
 
     var uncheckedData = [];
     uncheckedCheckboxes.each(function () {
@@ -1265,6 +1262,7 @@ function updateReviewUncheckedFiles() {
             action: 'updatereviewuncheckedfile'
         },
         success: function(response) {
+            $('#sloading').toggle();
             console.log('Unchecked checkboxes data sent successfully.');
             console.log(response);
             location.reload();
@@ -1564,8 +1562,6 @@ function updateCopyeditedCheckedFiles() {
         return; // Exit the function
     }
 
-    $('#sloading').toggle();
-
     var checkedData2 = [];
     checkedCheckboxes2.each(function () {
         var copyeditedFilesId = $(this).data('final-files-id');
@@ -1604,8 +1600,6 @@ function updateCopyeditedUncheckedFiles() {
         console.log("No unchecked files. Aborting update.");
         return; // Exit the function
     }
-
-    $('#sloading').toggle();
 
     var uncheckedData2 = [];
     uncheckedCheckboxes2.each(function () {
