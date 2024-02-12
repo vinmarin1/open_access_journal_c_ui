@@ -18,7 +18,7 @@ include 'dbcon.php';
 
 <?php
                 // Fetch total articles from the database
-                $query = "SELECT COUNT(*) as totalArticles FROM article";
+                $query = "SELECT COUNT(*) as totalArticles FROM article_final";
                 $result = execute_query($query);
                 
                 // Check if the query was successful
@@ -236,6 +236,15 @@ if ($result !== false) {
 
 <?php
 // Assuming you have a database connection and a function execute_query for executing SQL queries
+// Fetch total logs from the database for journal_id=3 and the current year
+$currentYear = date('Y'); // Get the current year
+
+// Check if a specific year is selected from the dropdown
+if (isset($_GET['selectedYear'])) {
+    $selectedYear = $_GET['selectedYear'];
+} else {
+    $selectedYear = $currentYear; // Default to the current year if not selected
+}
 
 // Fetch data from the database for each quarter and journal
 $query = "SELECT 

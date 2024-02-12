@@ -259,7 +259,7 @@ include 'function/dashboard_functions.php';
     };
 
     // Years for the dropdown list
-    var years = ['2023', '2024', '2025'];
+    var years = ['2024', '2025'];
 
     // Populate the dropdown list with the selected year
     var dropdown = document.getElementById('yearDropdown');
