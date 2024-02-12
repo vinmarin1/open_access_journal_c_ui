@@ -99,10 +99,57 @@ document.getElementById('form').addEventListener('submit', function(event) {
         span5.style.display = 'inline-block';
         hasError = true;
     }
+    
 
     if (hasError) {
         return;
     }
+
+ 
+
+function isValidEmail(email) {
+    // Use a regular expression to check if the email format is valid
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+function isValidPassword(password) {
+    // Check if the password contains at least 1 uppercase letter, 1 special character, and does not exceed 8 characters
+    const uppercaseRegex = /[A-Z]/;
+    const specialCharRegex = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/;
+
+    return uppercaseRegex.test(password) && specialCharRegex.test(password) && password.length <= 8;
+}
+
+
+
+if (!isValidEmail(email)) {
+    document.getElementById('spanEmailValidation').style.display = 'inline-block';
+    hasError = true;
+}
+
+if (fname.length < 2) {
+    document.getElementById('spanFnameValidation').style.display = 'inline-block';
+    hasError = true;
+}
+
+if (mdname.length < 2) {
+    document.getElementById('spanMdValidation').style.display = 'inline-block';
+    hasError = true;
+}
+
+if (lname.length < 2) {
+    document.getElementById('spanLnValidation').style.display = 'inline-block';
+    hasError = true;
+}
+
+if (!isValidPassword(password)) {
+    document.getElementById('spanPasswordValidation').style.display = 'inline-block';
+    hasError = true;
+}
+
+
+
 
     if (!privacyPolicy.checked) {
         Swal.fire({

@@ -21,27 +21,27 @@
 
        <p class="h4 mt-4">REGISTER</p>
        <div class="input-field pt-5">
-           <label for="email">Email:</label><span id="span1">*</span>
+           <label for="email">Email:</label><span id="span1">*</span><span id="spanEmailValidation" style="display: none; color: red; font-size: 11px">Invalid email</span>
            <input type="email" class="input form-control" name="email"  id="email" >
         </div>
 
        <div class="input-field ">
-           <label for="fname">First Name:</label><span id="span2">*</span>
+           <label for="fname">First Name:</label><span id="span2">*</span></span><span id="spanFnameValidation" style="display: none; color: red; font-size: 11px">First name should be at least 2 characters</span>
            <input type="text" class="input form-control" name="fname"  id="fname" >
         </div>
         <div class="input-field">
-            <label for="mdname">Middle Name:</label><span id="span3">*</span>
+            <label for="mdname">Middle Name:</label><span id="span3">*</span><span id="spanMdValidation" style="display: none; color: red; font-size: 11px">Middle name should be at least 2 characters</span>
            <input type="text" class="input form-control" name="mdname"  id="mdname" >
         </div>
         <div class="input-field">
-            <label for="lname">Last Name:</label><span id="span4">*</span>
+            <label for="lname">Last Name:</label><span id="span4">*</span><span id="spanLnValidation" style="display: none; color: red; font-size: 11px">Last name should be at least 2 characters</span>
            <input type="text" class="input form-control" name="lname"  id="lname" >
         </div>
 
     
        
         <div class="input-field">
-            <label for="password">Password:</label><span id="span5">*</span>
+            <label for="password">Password:</label><span id="span5">*</span><span id="spanPasswordValidation" style="display: none; color: red; font-size: 11px">Password should contain at least 1 uppercase 1 special character and must not exceed 8 characters</span>
            <input type="password" class="input form-control" name="password"  id="password" >
         </div>
       

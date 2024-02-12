@@ -36,7 +36,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
         <section class="pub-container d-flex gap-4">
             <div class="issue-title">
                 <div class="pic-border">
-                    <img class="img-fluid" src="../Files/journal-image/The Gavel.png" alt="">
+                    <img class="img-fluid"  alt="">
                 </div>
                 <div class="issue-details">
                     <h4 style="color:#285581">Published in <span id="issue-journal"></span></h4><br>
@@ -68,6 +68,14 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     <div class="continue-reading" id="articles-by-issue">
 
                     </div>
+                    <nav aria-label="Page navigation d-flex justify-items-center align-items-center w-100">
+                    <ul class="pagination">
+                        <li class="page-item" id="previous-page">Previous</li>
+                        <li class="page-item">1</li>
+                        <li class="page-item" id="next-page">Next</li>
+                    </ul>
+
+                    </nav>
                 </div>
             </div>
         </section>

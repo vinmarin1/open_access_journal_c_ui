@@ -107,22 +107,35 @@ function openTab(evt, tabName) {
       const label3 = document.getElementById('countryLabel');
       const label4 = document.getElementById('orcidLabel');
   
+      // Store original information
+      const originalData = {
+          position: label.innerText,
+          gender: label1.innerText,
+          birthday: label2.innerText,
+          country: label3.innerText,
+          orcid: label4.innerText
+      };
+  
       icon.addEventListener('click', toggleDetails);
   
       function toggleDetails() {
           if (label.classList.contains('bullet')) {
-              label.innerHTML = 'Student';
-              label1.innerHTML = 'Female';
-              label2.innerHTML = '10/24/2002';
-              label3.innerHTML = 'Philippines';
-              label4.innerHTML = '048469754';
+              // Toggle back to original information only if it is not null
+              if (originalData.position !== null) label.innerText = originalData.position;
+              if (originalData.gender !== null) label1.innerText = originalData.gender;
+              if (originalData.birthday !== null) label2.innerText = originalData.birthday;
+              if (originalData.country !== null) label3.innerText = originalData.country;
+              if (originalData.orcid !== null) label4.innerText = originalData.orcid;
+  
               label.classList.remove('bullet');
           } else {
-              label.innerHTML = '********';
-              label1.innerHTML = '********';
-              label2.innerHTML = '********';
-              label3.innerHTML = '********';
-              label4.innerHTML = '********';
+              // Mask the information only if it is not null
+              label.innerText = originalData.position !== null ? '********' : '';
+              label1.innerText = originalData.gender !== null ? '********' : '';
+              label2.innerText = originalData.birthday !== null ? '********' : '';
+              label3.innerText = originalData.country !== null ? '********' : '';
+              label4.innerText = originalData.orcid !== null ? '********' : '';
+  
               label.classList.add('bullet');
           }
   
@@ -130,6 +143,7 @@ function openTab(evt, tabName) {
           icon.classList.toggle('ri-eye-close-line');
       }
   });
+  
   /* edit profile form */
   document.addEventListener('DOMContentLoaded', function () {
     const editIcon = document.getElementById('editIcon');
@@ -187,7 +201,7 @@ document.getElementById('addExpertiseButton').addEventListener('click', function
   document.getElementById('fieldofexpertise').value = '';
 });
   
-  
+
   
 document.getElementById('editBtn').addEventListener('click', function(event){
   const editBtn = document.getElementById('editBtn');
@@ -250,6 +264,8 @@ document.getElementById('editBtn').addEventListener('click', function(event){
       position.disabled = false;
       bio.disabled = false;
       changeProfileBtn.disabled = false;
+
+   
 
   }, 2000);
 });
@@ -415,3 +431,55 @@ document.getElementById('selectProfile').addEventListener('change', function() {
       reader.readAsDataURL(file);
   }
 });
+
+function openFileInput() {
+  const fileInput = document.getElementById('fileInput');
+  const imageModal = document.getElementById('imageModal');
+  const selectedImagePreview = document.getElementById('selectedImagePreview');
+
+  fileInput.click();
+
+  fileInput.addEventListener('change', function () {
+      const file = fileInput.files[0];
+
+      if (file) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+              selectedImagePreview.src = e.target.result;
+              imageModal.style.display = 'block';
+          };
+          reader.readAsDataURL(file);
+      }
+  });
+}
+
+function saveProfile() {
+  const fileInput = document.getElementById('fileInput');
+  const profileImage = document.getElementById('profileImage');
+  const imageModal = document.getElementById('imageModal');
+  imageModal.style.display = 'none';
+  Swal.fire({
+    icon: 'success',
+    text: 'Change profile picture successfully',
+    showConfirmButton: true
+  }).then(() => {
+  
+    profileImage.src = document.getElementById('selectedImagePreview').src;
+    fileInput.value = null;
+   
+  });
+}
+
+
+function cancelUpdate() {
+  const fileInput = document.getElementById('fileInput');
+  const imageModal = document.getElementById('imageModal');
+
+  // Clear the file input
+  fileInput.value = null;
+
+  // Hide the image modal without saving
+  imageModal.style.display = 'none';
+}
+
+

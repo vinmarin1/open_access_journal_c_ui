@@ -304,6 +304,12 @@ document.addEventListener('DOMContentLoaded', function(){
     const abstractValue = abstract.value.trim(); 
     const abstractWordCount = abstractValue.split(/\s+/).length; 
     const keywordsValue = keywords.value.trim(); 
+    const checkArticle = document.getElementById('check-duplication');
+
+
+    // if(!checkArticle.clicked){
+      
+    // }
 
     if (titleValue === '' || abstract.value === '' || keywordsValue === '' || reference.value === ''){
       

@@ -30,10 +30,7 @@ $faqslist = get_faqs_list();
                         <tr>
                             <th>ID</th>
                             <th>Questions</th>
-                            <th>Answer</th>
                             <th>Category</th>
-                            <th>Description</th>
-                            <th>Link</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -42,10 +39,7 @@ $faqslist = get_faqs_list();
                             <tr>
                                 <td width="5%"><?php echo  $faqslistval->id; ?></td>
                                 <td width="85%"><?php echo  $faqslistval->question; ?></td>
-                                <td width="85%"><?php echo  $faqslistval->answer; ?></td>
                                 <td width="85%"><?php echo  $faqslistval->category; ?></td>
-                                <td width="85%"><?php echo  $faqslistval->description; ?></td>
-                                <td width="85%"><?php echo  $faqslistval->link; ?></td>
                                 <td width="10%">
                                     <button type="button" class="btn btn-outline-success" onclick="updateModal(<?php echo $faqslistval->id; ?>)">Update</button>
                                     <button type="button" class="btn btn-outline-danger" onclick="archiveFaqs(<?php echo $faqslistval->id; ?>, '<?php echo $faqslistval->question; ?>', '<?php echo $faqslistval->answer; ?>')">Archive</button>

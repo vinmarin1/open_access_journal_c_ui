@@ -32,6 +32,7 @@ async function fetchAndGenerateJournal() {
     // const journalName = document.querySelector("#journal_name")
     const journalTitle = document.querySelector("#journal_title")
     const journalDescription = document.querySelector("#journal_details")
+    journalDescription.innerHTML=""
 
     // journalName.innerHTML = journalDetails.journal
     journalTitle.innerHTML = journalDetails.journal_title
@@ -68,7 +69,7 @@ async function generateIssues() {
 function renderIssuesContent(issues) {
     return issues.map(issue => `
     <div class="issue" onclick="window.location.href='all-issues.php?issue=${issue.issues_id}'" >
-        <img src='../files/cover-image/${issue.cover_image}' alt="Journal 1">
+        <img src='../Files/cover-image/${issue.cover_image}' alt="Journal 1">
         <p style="color: #285581;">${issue.title}<br><span style="color: black">${issue.year}</span></p>
     </div>
 `).join('');

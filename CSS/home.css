@@ -151,6 +151,17 @@
 }
 
 
+.title:hover {
+  white-space: normal;
+}
+
+.center-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 10px; /* Adjust spacing between title and center-container */
+}
 .recommendation-article{
   display: flex;
   flex-direction: column;
@@ -202,7 +213,8 @@ background-color: transparent;
 }
 
 .articles-container::-webkit-scrollbar-thumb {
-background-color: transparent;
+  background-color: #b8b7b7;
+  border-radius: 8px; /* Adjusted border radius */
 }
 
 .articles-container-monthly::-webkit-scrollbar {
@@ -211,7 +223,8 @@ background-color: transparent;
 }
 
 .articles-container-monthly::-webkit-scrollbar-thumb {
-background-color: transparent;
+  background-color: #b8b7b7;
+  border-radius: 8px; /* Adjusted border radius */
 }
 
 .article {
@@ -278,7 +291,9 @@ background-color: transparent;
 background-color: transparent;
 }
 
-
+#recently-added {
+  max-height: 400px;
+}
 
 .btn-article:hover{
 border: 2px #0858a4 solid;
@@ -307,15 +322,8 @@ padding: 2em 8%;
 
 .ab-qoaj-left {
 flex: 1; /* Take up available space */
-min-width:400px;
-}
+min-width: 25em;
 
-.ab-qoaj-right {
-flex: 1; /* Take up available space */
-display:flex;
-flex-wrap: wrap;
-justify-items: center;
-width:700px;
 }
 
 .ab-qoaj-left h4 {
@@ -325,7 +333,7 @@ margin-top: 20px;
 }
 
 .ab-qoaj-left p {
-width: 88%;
+width: 100%;
 color: white;
 text-align: justify;
 }
@@ -345,6 +353,17 @@ opacity: 0.8;
 color: white;
 }
 
+.ab-qoaj-right {
+  flex: 1; /* Take up available space */
+  display:flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  max-width: 350px;
+  
+  }
+  
 .ab-qoaj-right p {
 color: white;
 margin-bottom: 10px;
@@ -552,15 +571,29 @@ h4, h2 {
   display: flex;
   position: relative;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start; /* Align content at the top */
   align-items: center;
   gap: 13px; 
   padding: 2em;
   border-radius: 4px;
   border: 1px solid #DFDFDF;
-  background: rgba(255, 255, 255, 0.86); box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0);
+  background: rgba(255, 255, 255, 0.86); 
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0);
+
 }
 
+.procedure .title {
+  margin-bottom: 10px; /* Add margin between title and description */
+}
+
+.procedure .description {
+  margin-bottom: auto; /* Push the description to the top */
+}
+.procedure{
+  /* width: 400px; */
+  height: 300px;
+
+}
 .procedure .icon {
   position: absolute;
   top: -1.5em;
@@ -597,8 +630,8 @@ h4, h2 {
 }
 
 .quick-links .quick-link {
-  min-width: 24em;
-  width: 28%;
+  min-width: 20em;
+  width: 25%;
   flex: 1;
   display: flex;
   align-items: center;

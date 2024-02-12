@@ -43,8 +43,8 @@ $announcementlist = get_announcement_list();
                                     <td width="10%"><?php echo  $announcementlistval->announcement; ?></td>
                                     <td width="10%"><?php echo  $announcementlistval->upload_image; ?></td>
                                     <td width="10%">
-                                <button type="button" class="btn btn-outline-success" onclick="updateModal(<?php echo  $announcementlistval->announcement_id; ?>)">Update</button>
-                                <button type="button" class="btn btn-outline-danger" onclick="archiveAnnouncement(<?php echo  $announcementlistval->announcement_id; ?>, '<?php echo $announcementlistval->title; ?>', '<?php echo $announcementlistval->announcement_description; ?>')">Archive</button>
+                                <button type="button" class="btn btn-outline-success" onclick="updateModal(<?php echo $announcementlistval->announcement_id; ?>)">Update</button>
+                                <button type="button" class="btn btn-outline-danger" onclick="archiveAnnouncement(<?php echo $announcementlistval->announcement_id; ?>, '<?php echo $announcementlistval->title; ?>', '<?php echo $announcementlistval->announcement_description; ?>')">Archive</button>
                                   </td>
                             </tr>
                         <?php endforeach; ?>
@@ -126,7 +126,7 @@ $announcementlist = get_announcement_list();
                     const announcementData = response.data[0];
                     console.log('Announcement Data:', announcementData);
 
-                    $('#xannouncemet_id').val(announcementData.announcement_id);
+                    $('#xannouncement_id').val(announcementData.announcement_id);
                     $('#xtitle').val(announcementData.title);
                     $('#xannouncement_description').val(announcementData.announcement_description);
                     $('#xannouncement').val(announcementData.announcement);
@@ -277,7 +277,7 @@ $announcementlist = get_announcement_list();
 
      <!-- Update Modal -->
      <div class="modal fade" id="updateModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel3">Update Announcement</h5>

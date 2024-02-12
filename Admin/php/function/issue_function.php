@@ -27,6 +27,29 @@ if (!function_exists('get_article_list')) {
     }
 }
 
+if (!function_exists('get_journal_list')) {
+    function get_journal_list()
+    {
+        $pdo = connect_to_database();
+
+        if ($pdo) {
+            try {
+                $query = "SELECT * FROM journal WHERE status = 1";
+                $stmt = $pdo->query($query);
+
+                $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+                return $result;
+            } catch (PDOException $e) {
+                echo "Error: " . $e->getMessage();
+                return false;
+            }
+        }
+
+        return false;
+    }
+}
+
 if (!function_exists('get_issues_list')) {
     function get_issues_list()
     {
@@ -62,14 +85,14 @@ if (!function_exists('get_issues_list')) {
              archiveIssue();
              break;
          case 'fetch':
-             fetchUserData();
+             fetchIssueData();
              break;
          case 'update':
              updateIssueData();
              break;
      }
      
-                function fetchUserData()
+                function fetchIssueData()
                 {
                     $id = $_POST['id'];
                 
@@ -92,6 +115,7 @@ if (!function_exists('get_issues_list')) {
                         $number = $_POST['number'];
                         $year = $_POST['year'];
                         $title = $_POST['title'];
+                        $journal_id = $_POST['journal_id'];
                         $status = 1;
                     
                         $documentRoot = $_SERVER['DOCUMENT_ROOT'];
@@ -119,10 +143,10 @@ if (!function_exists('get_issues_list')) {
                             }
                         }
                     
-                        $query = "INSERT INTO issues (issn, volume, number, year, title,  status ,cover_image) 
-                                  VALUES (?, ?, ?, ?, ?, ?, ? )";
+                        $query = "INSERT INTO issues (issn, volume, number, journal_id, year, title,  status , cover_image) 
+                                  VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
                 
-                        $result = execute_query($query, [$issn,  $volume, $number, $year, $title,  $status,$cover_image], true);
+                        $result = execute_query($query, [$issn,  $volume, $number, $journal_id, $year, $title,  $status, $imageName], true);
                 
                         if ($result !== false) {
                             echo json_encode(['status' => true, 'message' => 'Record added successfully']);
@@ -137,7 +161,6 @@ if (!function_exists('get_issues_list')) {
                     }
                     
                 }
-                
         
                 function updateIssueData() {
                     try {

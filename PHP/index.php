@@ -90,17 +90,15 @@
     ?>
 
     <div class="fluid-container mb-3 qoaj">
-      <div class="About-container ">
-        <div class="ab-qoaj-left">
+      <div class="About-container">
+        <div class="ab-qoaj-left d-flex flex-column align-items-center align-items-sm-start gap-1">
           <h4 class="mb-3">About QCUJ</h2>
-            <p class="description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis distinctio, debitis
-              sed dolores iste, deserunt perspiciatis ducimus odio aliquam facere illo, quasi temporibus aut sint est
-              mollitia saepe omnis amet?</p>
-            <p class="description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quis distinctio, debitis
-              sed dolores iste, deserunt perspiciatis ducimus odio aliquam facere illo, quasi temporibus aut sint est
-              mollitia saepe omnis amet?</p>
+            <p class="description">Say goodbye to research submission struggles! Open Access Journal System for QCU (OAJS QCU) is your new best friend, making sharing your work simple and quick. Think of it as a smooth online portal where you can easily submit your research for expert review. </p>
+            <p class="description">Quezon City University (QCU), recognized by the Commission on Higher Education (CHED), holds dear the values of cultivating a vibrant research culture and disseminating new knowledge for the betterment of society. Understanding that the impact of research hinges on its accessibility and publication, QCU has established the QCU Journals as a platform for its researchers to share their valuable findings and contributions.</p>
+            <p class="description">This website is powered by an artificial intelligence and machine learning to improve the user experience. All articles are freely available to download and read, without any paywalls or restrictions.</p>
+
             <br>
-            <a href="#features-container"><button style="background-color: #E56F1F;" class="btn btn-md mt-1">See Features</button></a>
+            <button style="background-color: #E56F1F; max-width:20em;" class="btn btn-md mt-1 w-100">See Features</button>
             <br>
         </div>
 
@@ -110,22 +108,9 @@
             <p>Articles published</p>
           </div>
           <div class="divider-line-2"></div>
-
           <div class="text1">
             <h4>89</h4>
             <p>Total Contribution</p>
-          </div>
-          <div class="divider-line-2"></div>
-
-          <div class="text1">
-            <h4>12,093</h4>
-            <p>Page Visitors</p>
-          </div>
-          <div class="divider-line-2"></div>
-
-          <div class="text1">
-            <h4>3,668</h4>
-            <p>Articles Downloads</p>
           </div>
         </div>
       </div>
@@ -295,7 +280,7 @@
           </div>
           <h4 class="title">Submit Paper Online</h4>
           <div class="description">
-            <p>Step 1: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p>Step 1: Create an account on the QCU Journals platform. This is your account for managing submissions, tracking their progress, and staying informed. Make sure your manuscript adheres to the specific formatting and style guidelines of your chosen journal.</p>
           </div>
         </div>
         <div class="procedure">
@@ -304,7 +289,7 @@
           </div>
           <h4 class="title">Peer Review Process</h4>
           <div class="description">
-            <p>Step 2: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p>Step 2: Your paper will be assigned to qualified experts in your field who will carefully assess your work based on criteria, providing valuable feedback and suggestions for improvement.</p>
           </div>
         </div>
         <div class="procedure">
@@ -313,7 +298,7 @@
           </div>
           <h4 class="title">Accepted Paper</h4>
           <div class="description">
-            <p>Step 3: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p>Step 3: Before final publication, the journal's editorial team will strictly copyedit your accepted paper, ensuring and enhancing the overall clarity and conciseness of your writing.</p>
           </div>
         </div>
         <div class="procedure">
@@ -322,12 +307,12 @@
           </div>
           <h4 class="title">Paper Published</h4>
           <div class="description">
-            <p>Step 4: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p>Step 4: After the copyediting stage, your paper undergoes a final review for formatting and compliance with journal guidelines. Upon final approval, your research will be published on the QCU Journals platform, becoming accessible to a global audience.</p>
           </div>
         </div>
       </div>
     </section>
-    <section id="quick-links-container">
+    <section id="quick-links-container" class="">
       <header>
         <h2>Quick Links</h2>
       </header>

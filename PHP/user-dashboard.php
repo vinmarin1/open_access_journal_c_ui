@@ -38,6 +38,8 @@ $expertise = $_SESSION['expertise'];
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>QCU PUBLICATION | USER DASHBOARD</title>
   <link rel="stylesheet" href="../CSS/user-dashboard.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
 
 
@@ -78,7 +80,23 @@ $expertise = $_SESSION['expertise'];
 			<div class="profile-container">
 				<div class="profile-sidebar">
 					<!-- Profile Image -->
-					<img src="../images/profile.jpg" alt="Profile Picture" class="profile-pic">
+					<img src="../images/profile.jpg" alt="Profile Picture" class="profile-pic" id="profileImage">
+					<input type="file" accept="image/*" style="display:none" id="fileInput">
+					<button type="button" class="btn btn-secondary btn-sm"  onclick="openFileInput()"><i class="fa-solid fa-camera"></i></button>
+					
+					<!-- Modal for Image Preview and Confirmation -->
+					<div id="imageModal" class="modal" style="display:none">
+						<div class="modal-content mt-3" style="width: 30%; height: 55%; margin-left: auto; margin-right: auto;">
+							<p class="h6 mt-2" style="text-align: center; magin: 0; border-bottom: 1px gray solid">Change Profile Picture</p>
+							
+							<img class="img-fluid mt-4" src="" alt="Selected Image" id="selectedImagePreview" style="height: 50%; width: 50%; border-radius: 60%; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; margin-left: auto; margin-right: auto">
+							<div class="btn-change mt-5" style="width: 100%">
+							<button type="button" class="btn btn-success btn-sm" style="width: 95%; display: block; margin-left: 10px" onclick="saveProfile()">Save</button>
+							<button type="button" class="btn btn-secondary btn-sm mt-1" style="width: 95%; display: block; margin-left: 10px" onclick="cancelUpdate()">Cancel</button>
+							</div>
+							
+						</div>
+					</div>
 				</div>
 				<div class="profile-info">
 					<div class="row">
@@ -120,8 +138,8 @@ $expertise = $_SESSION['expertise'];
 						</div>
 						<form id="form" method="POST" action="update-user.php">		
 							<div class="form-content">
-								<div class="edit-profile-pic">
-									<!-- Profile Image -->
+								<!-- <div class="edit-profile-pic">
+								
 								
 								
 									<img src="../images/capstone1.png" alt="Profile Picture" class="profile-pic" id="profileImage">
@@ -129,7 +147,7 @@ $expertise = $_SESSION['expertise'];
 									<input type="file" id="selectProfile" style="display: none" accept="image/*">
 
 
-								</div>
+								</div> -->
 								<!-- Personal Information -->
 								<div class="form-section">
 									<h4>Personal Information</h4>
@@ -170,7 +188,7 @@ $expertise = $_SESSION['expertise'];
 										<div class="form-row">
 											<label for="status">Status:</label>
 											<select id="status" name="status" class="dropdown-box" disabled>
-												
+												<option value="Single">Single</option>
 												<option value="Married">Married</option>
 												<option value="Divorced">Divorced</option>
 												<option value="Widowed">Widowed</option>
@@ -179,12 +197,6 @@ $expertise = $_SESSION['expertise'];
 										<div class="form-row">
 											<label for="country">Country:</label>
 											<select id="country" name="country" class="dropdown-box" disabled>
-												<option value="<?php echo $country ?>"><?php echo $country ?></option>
-												<option value="USA">United States</option>
-												<option value="Canada">Canada</option>
-												<option value="U.K">United Kingdom</option>
-												<option value="Philippines">Philippines</option>
-												<!-- Add more countries as needed -->
 											</select>
 										</div>
 									</div>
@@ -260,7 +272,30 @@ $expertise = $_SESSION['expertise'];
 						</form>
 					</div>
 				</form>
-					<div class="balance-points">Community Heart:&nbsp;&nbsp;&nbsp;&nbsp;49 </div>
+					<div class="balance-points">Community Heart:&nbsp;
+					<?php
+						$sqlPoints = "SELECT point_earned FROM user_points WHERE user_id = $id";
+
+						$result = database_run($sqlPoints);
+
+						if ($result !== false) {
+							$totalPoints = 0;
+
+							foreach ($result as $row) {
+								$points = $row->point_earned;
+								$totalPoints += $points;
+							}
+
+							echo  $totalPoints;
+						} else {
+							echo "No points found for the user.";
+						}
+					?><i id="heartIcon" class="fa-solid fa-heart" style="color: red; margin-left: 5px" title="Community Heart, for more info click it."></i>
+
+
+					
+
+					</div>
 
 					<div class="profile-badge">
 						<p class="recent-badges">Recent Badges</p>
@@ -585,7 +620,7 @@ $expertise = $_SESSION['expertise'];
 								
 							</div>
 							<div class="sort-container d-flex flex-column gap-2">
-								<div class="sort-header">
+								<!-- <div class="sort-header">
 									<span class="sort-by-text" style="color: #0858a4;">Sort by</span>
 									<span class="sort-icon">
 										<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
@@ -604,44 +639,60 @@ $expertise = $_SESSION['expertise'];
 											<option value="citations">Citations</option>
 										</optgroup>
 									</select>
-								</div>
+								</div> -->
 							</div>
 							<div class="table-container">
 								<table>
 									<tbody>
-										<tr class="no-data-message" style="display: none;">
-											<td colspan="6">No records found</td>
-										</tr>
-										<tr>
-											<td>Review an Article</td>
-											<td>12 / 16 / 2023</td>
-											<td>1 Heart</td>
-											<td><button class="view-button">View</button></td>
-										</tr>
-										<tr>
-											<td>Received Certificate</td>
-											<td>12 / 16 / 2023</td>
-											<td>By reviewing</td>
-											<td><button class="view-button">View</button></td>
-										</tr>
-										<tr>
-											<td>Received Certificate</td>
-											<td>12 / 16 / 2023</td>
-											<td>Published</td>
-											<td><button class="view-button">View</button></td>
-										</tr>
-										<tr>
-											<td>Publish and Article</td>
-											<td>12 / 16 / 2023</td>
-											<td>1 Heart</td>
-											<td><button class="view-button">View</button></td>
-										</tr>
-										<tr>
-											<td>Donate</td>
-											<td>12 / 16 / 2023</td>
-											<td>1 Heart</td>
-											<td><button class="view-button">View</button></td>
-										</tr>
+
+
+									<?php
+										$sqlAchievements = "
+											(SELECT 'Published an Article' as action_engage, article.title, article.status, user_points.date, user_points.point_earned
+											FROM article
+											JOIN user_points ON article.article_id = user_points.article_id
+											WHERE article.author_id = :author_id AND article.status = 1 AND user_points.action_engage = 'Published an Article')
+											
+											UNION
+											
+											(SELECT 'Reviewed Article Published' as action_engage, NULL as title, NULL as status, user_points.date, user_points.point_earned
+											FROM user_points
+											JOIN reviewer_assigned ON user_points.user_id = reviewer_assigned.author_id
+											JOIN article ON reviewer_assigned.article_id = article.article_id
+											WHERE article.status = 1 AND reviewer_assigned.accept = 1 AND reviewer_assigned.answer = 1 AND user_points.action_engage = 'Reviewed Article Published' AND user_points.user_id = :author_id)
+											
+											UNION
+											
+											(SELECT 'Submitted an Article' as action_engage, NULL as title, NULL as status, user_points.date, user_points.point_earned
+											FROM user_points
+											WHERE user_points.action_engage = 'Submitted an Article' AND user_points.user_id = :user_id)
+											
+											UNION
+											
+											(SELECT 'Reviewed an Article' as action_engage, NULL as title, NULL as status, user_points.date, user_points.point_earned
+											FROM user_points
+											WHERE user_points.action_engage = 'Reviewed an Article' AND user_points.user_id = :user_id)
+											
+											ORDER BY date DESC
+										";
+
+										$result = database_run($sqlAchievements, array('author_id' => $id, 'user_id' => $id));
+
+										if ($result !== false) {
+											foreach ($result as $row) {
+												echo '<tr>';
+												echo '<td>' . $row->action_engage .'</td>';
+												// echo '<td>' . ($row->title ?? '') .'</td>';
+												// echo '<td>' . ($row->status ?? '') .'</td>';
+												$formattedDateTime = date('F j, Y g:i:s A', strtotime($row->date));
+												echo '<td>' . $formattedDateTime . '</td>';
+												echo '<td style="color: red;">You earned ' . $row->point_earned . ' Community Heart</td>';
+												echo '<td><button type="button" class="view-button">View</button></td>';
+												echo '</tr>';
+											}
+										}
+										?>
+
 									</tbody>
 								</table>
 							</div>
@@ -682,7 +733,7 @@ $expertise = $_SESSION['expertise'];
 								echo '</div>';
 							}
 						} else {
-							echo "Can't display articles at the moment"; 
+							echo "<p>You don't have published article yet, want to published article? Click here <a href='ex_submit.php'>Submit Article</a></p>"; 
 						}
 					?>
 
@@ -949,6 +1000,39 @@ function openArticleInNewTab(articleId) {
     .catch(error => {
       console.error('Error fetching data:', error);
     });
+
+	document.addEventListener('DOMContentLoaded', function () {
+  const countrySelect = document.getElementById('country');
+  countrySelect.disabled = true;
+
+
+  fetch('https://restcountries.com/v3.1/all')
+      .then(response => response.json())
+      .then(data => {
+       
+          if (data.find(country => country.name.common === '<?php echo $country ?>')) {
+              const userCountryOption = document.createElement('option');
+              userCountryOption.value = '<?php echo $country ?>';
+              userCountryOption.textContent = '<?php echo $country ?>';
+              countrySelect.appendChild(userCountryOption);
+          }
+
+      
+          data.forEach(country => {
+              const option = document.createElement('option');
+              option.value = country.name.common;
+              option.textContent = country.name.common;
+              countrySelect.appendChild(option);
+          });
+
+         
+      })
+      .catch(error => console.error('Error fetching countries:', error));
+});
+
+
+
+	
 </script>
 
 </body>

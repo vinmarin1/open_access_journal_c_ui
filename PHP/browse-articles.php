@@ -70,10 +70,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 <img />
                 <h2 class="journal"></h2>
                 </div>
-            
                 <ul>
-                    
-
                     <li class="issn">
                         <h3>ISSN (online)</h3>
                         <span></span>
@@ -87,9 +84,6 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                         <span></span>
                     </li>
                 </ul>
-
-
-
             </div>
             <hr style="border-top: 1px solid #ccc; margin: 10px 0;"> <!-- Add a horizontal line -->
      
@@ -139,6 +133,8 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
 
                     </select>
                 </div>
+                <div id="selected-filters"></div>
+                
             </div>
             <div id="skeleton-container" class="">
                 <div></div>
@@ -213,7 +209,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
     <script src="../JS/home-recommended-api.js"></script>
     <script src="../JS/most-popular-api.js"></script>
     <script src="../JS/home-monthly-api.js"></script>
-    <script src="../JS/browse-api.js"></script>
+    <?php include '../JS/browse/browse.php'; ?>
 
 </body>
 

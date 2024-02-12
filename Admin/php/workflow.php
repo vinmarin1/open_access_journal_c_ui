@@ -154,7 +154,7 @@ table {
                                                                             <tr>
                                                                                 <td width="5%"><?php echo $submission_filesval->article_files_id; ?></td>
                                                                                 <td width="65%">
-                                                                                    <a href="/Files/submitted-article/<?php echo urlencode($submission_filesval->file_name); ?>" download>
+                                                                                    <a href="../../Files/submitted-article/<?php echo ($submission_filesval->file_name); ?>" download>
                                                                                         <?php echo $submission_filesval->file_name; ?>
                                                                                     </a>
                                                                                 </td>
@@ -166,7 +166,7 @@ table {
                                                                     </tbody>
                                                                     <tfoot>
                                                                         <th colspan="4" style="text-align: right;">
-                                                                            <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;">Download File</button>
+                                                                            <button type="button" class="btn btn-outline-dark" id="downloadAllButton" style="width: 150px;">Download File</button>
                                                                         </th>
                                                                     </tfoot>   
                                                                 </table>
@@ -295,7 +295,7 @@ table {
                                                                             <tr>
                                                                                 <td width="5%"><?php echo $review_filesval->article_files_id; ?></td>
                                                                                 <td width="65%">
-                                                                                    <a href="/Files/submitted-article/<?php echo urlencode($review_filesval->file_name); ?>" download>
+                                                                                    <a href="../../Files/submitted-article/<?php echo ($review_filesval->file_name); ?>" download>
                                                                                         <?php echo $review_filesval->file_name; ?>
                                                                                     </a>
                                                                                 </td>
@@ -307,7 +307,7 @@ table {
                                                                     </tbody>
                                                                     <tfoot>
                                                                         <th colspan="4" style="text-align: right;">
-                                                                            <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;">Download File</button>
+                                                                            <button type="button" class="btn btn-outline-dark" id="downloadAllButton1" style="width: 150px;">Download File</button>
                                                                         </th>
                                                                     </tfoot>   
                                                                 </table>
@@ -360,7 +360,7 @@ table {
                                                                             <tr>
                                                                                 <td width="5%"><?php echo $revision_filesval->revision_files_id; ?></td>
                                                                                 <td width="55%">
-                                                                                    <a href="/Files/revision-article/<?php echo urlencode($revision_filesval->file_name); ?>" download>
+                                                                                    <a href="../../Files/revision-article/<?php echo ($revision_filesval->file_name); ?>" download>
                                                                                         <?php echo $revision_filesval->file_name; ?>
                                                                                     </a>
                                                                                 </td>
@@ -467,15 +467,15 @@ table {
                                                                                         <td width="75%"><?php echo $matchingReviewer->last_name . ', ' . $matchingReviewer->first_name; ?></td>
                                                                                         <td colspan="3" style="text-align: right;">
                                                                                             <?php if ((strpos($article_reviewerval->round, 'Round 1') !== false) && ($article_reviewerval->answer != 0)): ?>
-                                                                                                <a href="javascript:void(0);" onclick="viewReviewerAnswer(<?php echo $article_reviewerval->author_id; ?>,'<?php echo $article_data[0]->article_id; ?>','<?php echo $matchingReviewer->last_name . ', ' . $matchingReviewer->first_name; ?>','Round 1')" class="btn btn-outline-dark Round1" style="margin-right: 10px;">Round 1</a>
+                                                                                                <a href="javascript:void(0);" onclick="viewReviewerAnswer(<?php echo $article_reviewerval->author_id; ?>,'<?php echo $article_data[0]->article_id; ?>','<?php echo $matchingReviewer->last_name . ', ' . $matchingReviewer->first_name; ?>','Round 1')" class="btn btn-outline-dark Round1" style="margin-right: 10px;">Answer</a>
                                                                                             <?php endif; ?>
 
                                                                                             <?php if ((strpos($article_reviewerval->round, 'Round 2') !== false) && ($article_reviewerval->answer != 0)): ?>
-                                                                                                <a href="javascript:void(0);" onclick="viewReviewerAnswer(<?php echo $article_reviewerval->author_id; ?>,'<?php echo $article_data[0]->article_id; ?>','<?php echo $matchingReviewer->last_name . ', ' . $matchingReviewer->first_name; ?>','Round 2')" class="btn btn-outline-dark Round2" style="margin-right: 10px;">Round 2</a>
+                                                                                                <a href="javascript:void(0);" onclick="viewReviewerAnswer(<?php echo $article_reviewerval->author_id; ?>,'<?php echo $article_data[0]->article_id; ?>','<?php echo $matchingReviewer->last_name . ', ' . $matchingReviewer->first_name; ?>','Round 2')" class="btn btn-outline-dark Round2" style="margin-right: 10px;">Answer</a>
                                                                                             <?php endif; ?>
 
                                                                                             <?php if ((strpos($article_reviewerval->round, 'Round 3') !== false) && ($article_reviewerval->answer != 0)): ?>
-                                                                                                <a href="javascript:void(0);" onclick="viewReviewerAnswer(<?php echo $article_reviewerval->author_id; ?>,'<?php echo $article_data[0]->article_id; ?>','<?php echo $matchingReviewer->last_name . ', ' . $matchingReviewer->first_name; ?>','Round 3')" class="btn btn-outline-dark Round3" style="margin-right: 10px;">Round 3</a>
+                                                                                                <a href="javascript:void(0);" onclick="viewReviewerAnswer(<?php echo $article_reviewerval->author_id; ?>,'<?php echo $article_data[0]->article_id; ?>','<?php echo $matchingReviewer->last_name . ', ' . $matchingReviewer->first_name; ?>','Round 3')" class="btn btn-outline-dark Round3" style="margin-right: 10px;">Answer</a>
                                                                                             <?php endif; ?>
                                                                                         </td>
                                                                                     </tr>
@@ -587,7 +587,7 @@ table {
                                                                                     <tr>
                                                                                         <td width="5%"><?php echo $revision_filesval->revision_files_id; ?></td>
                                                                                         <td width="65%">
-                                                                                            <a href="../../Files/submitted-article/<?php echo urlencode($revision_filesval->file_name); ?>" download>
+                                                                                            <a href="../../Files/submitted-article/<?php echo ($revision_filesval->file_name); ?>" download>
                                                                                                 <?php echo $revision_filesval->file_name; ?>
                                                                                             </a>
                                                                                         </td>
@@ -604,7 +604,7 @@ table {
                                                                                     <tr>
                                                                                         <td width="5%"><?php echo $submission_filesval->article_files_id; ?></td>
                                                                                         <td width="65%">
-                                                                                            <a href="../../Files/submitted-article/<?php echo urlencode($submission_filesval->file_name); ?>" download>
+                                                                                            <a href="../../Files/submitted-article/<?php echo ($submission_filesval->file_name); ?>" download>
                                                                                                 <?php echo $submission_filesval->file_name; ?>
                                                                                             </a>
                                                                                         </td>
@@ -625,7 +625,7 @@ table {
                                                                     </tbody>
                                                                     <tfoot>
                                                                         <th colspan="4" style="text-align: right;">
-                                                                            <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;">Download File</button>
+                                                                            <button type="button" class="btn btn-outline-dark" id="downloadAllButton2" style="width: 150px;">Download File</button>
                                                                         </th>
                                                                     </tfoot>   
                                                                 </table>
@@ -674,7 +674,7 @@ table {
                                                                                     <tr>
                                                                                         <td width="5%"><?php echo $allcopyedited_filesval->final_files_id; ?></td>
                                                                                         <td width="65%">
-                                                                                            <a href="../../Files/submitted-article/<?php echo urlencode($allcopyedited_filesval->file_name); ?>" download>
+                                                                                            <a href="../../Files/submitted-article/<?php echo ($allcopyedited_filesval->file_name); ?>" download>
                                                                                                 <?php echo $allcopyedited_filesval->file_name; ?>
                                                                                             </a>
                                                                                         </td>
@@ -824,7 +824,7 @@ table {
                                                                                     <tr>
                                                                                         <td width="5%"><?php echo $allcopyedited_filesval->final_files_id; ?></td>
                                                                                         <td width="65%">
-                                                                                            <a href="../../Files/submitted-article/<?php echo urlencode($allcopyedited_filesval->file_name); ?>" download>
+                                                                                            <a href="../../Files/submitted-article/<?php echo ($allcopyedited_filesval->file_name); ?>" download>
                                                                                                 <?php echo $allcopyedited_filesval->file_name; ?>
                                                                                             </a>
                                                                                         </td>
@@ -841,7 +841,7 @@ table {
                                                                                     <tr>
                                                                                         <td width="5%"><?php echo $allproduction_filesval->final_files_id; ?></td>
                                                                                         <td width="65%">
-                                                                                            <a href="../../Files/submitted-article/<?php echo urlencode($allproduction_filesval->file_name); ?>" download>
+                                                                                            <a href="../../Files/final-article/<?php echo ($allproduction_filesval->file_name); ?>" download>
                                                                                                 <?php echo $allproduction_filesval->file_name; ?>
                                                                                             </a>
                                                                                         </td>
@@ -863,7 +863,7 @@ table {
                                                                     </tbody>
                                                                     <tfoot>
                                                                         <th colspan="4" style="text-align: right;">
-                                                                            <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 150px;">Download File</button>
+                                                                            <button type="button" class="btn btn-outline-dark" id="downloadAllButton3" style="width: 150px;">Download File</button>
                                                                         </th>
                                                                     </tfoot>   
                                                                 </table>
@@ -1523,6 +1523,46 @@ table {
 
             window.open(url, '_blank', 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + width + ', height=' + height + ', top=' + top + ', left=' + left);
         }
+
+        $(document).ready(function() {
+        $('#downloadAllButton').click(function() {
+            <?php foreach ($submission_files as $submission_filesval): ?>
+                downloadFile('../../Files/submitted-article/<?php echo ($submission_filesval->file_name); ?>');
+            <?php endforeach; ?>
+        });
+        $('#downloadAllButton1').click(function() {
+            <?php foreach ($submission_files as $submission_filesval): ?>
+                downloadFile('../../Files/submitted-article/<?php echo ($submission_filesval->file_name); ?>');
+            <?php endforeach; ?>
+        });
+        $('#downloadAllButton2').click(function() {
+            <?php foreach ($revision_files as $revision_filesval): ?>
+                downloadFile('../../Files/submitted-article/<?php echo ($revision_filesval->file_name); ?>');
+            <?php endforeach; ?>
+
+            <?php foreach ($submission_files as $submission_filesval): ?>
+                downloadFile('../../Files/submitted-article/<?php echo ($submission_filesval->file_name); ?>');
+            <?php endforeach; ?>
+        });
+        $('#downloadButton3').click(function() {
+            <?php foreach ($allcopyedited_files as $allcopyedited_filesval): ?>
+                downloadFile('../../Files/final-article/<?php echo ($allcopyedited_filesval->file_name); ?>');
+            <?php endforeach; ?>
+
+            <?php foreach ($allproduction_files as $allproduction_filesval): ?>
+                downloadFile('../../Files/final-article/<?php echo ($allproduction_filesval->file_name); ?>');
+            <?php endforeach; ?>
+        });
+
+        function downloadFile(fileUrl) {
+            var link = document.createElement('a');
+            link.href = fileUrl;
+            link.download = fileUrl.substr(fileUrl.lastIndexOf('/') + 1);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    });
 
     </script>
 </body>

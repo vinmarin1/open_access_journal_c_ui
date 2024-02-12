@@ -179,7 +179,15 @@ $issuelist = get_issues_list();
                                         <?php foreach ($articlelogs as $articlelogsval): ?>
                                             <tr>
                                                 <td width="50%"><?php echo $articlelogsval->type; ?></td>
-                                                <td width="30%"><?php echo $articlelogsval->fromuser; ?></td>
+                                                <td width="30%">
+                                                    <?php 
+                                                        if (!empty($articlelogsval->fromuser)) {
+                                                            echo $articlelogsval->fromuser;
+                                                        } else {
+                                                            echo $article_data[0]->author; 
+                                                        }
+                                                    ?>
+                                                </td>
                                                 <td width="20%">
                                                     <?php
                                                     $dateTime = new DateTime($articlelogsval->date);
@@ -320,7 +328,7 @@ $issuelist = get_issues_list();
                                                 </td>
                                                 <td width="5%"><?php echo $submission_filesval->article_files_id; ?></td>
                                                 <td width="65%">
-                                                    <a href="/Files/submitted-article/<?php echo urlencode($submission_filesval->file_name); ?>" download>
+                                                    <a href="../../Files/submitted-article/<?php echo ($submission_filesval->file_name); ?>" download>
                                                         <?php echo $submission_filesval->file_name; ?>
                                                     </a>
                                                 </td>
@@ -358,7 +366,7 @@ $issuelist = get_issues_list();
                                                 <tr>
                                                     <td width="5%"><?php echo $review_filesval->article_files_id; ?></td>
                                                     <td width="70%">
-                                                        <a href="/Files/submitted-article/<?php echo urlencode($review_filesval->file_name); ?>" download>
+                                                        <a href="../../Files/submitted-article/<?php echo ($review_filesval->file_name); ?>" download>
                                                             <?php echo $review_filesval->file_name; ?>
                                                         </a>
                                                     </td>
@@ -464,7 +472,7 @@ $issuelist = get_issues_list();
                                                     </td>
                                                     <td width="5%"><?php echo $submission_filesval->article_files_id; ?></td>
                                                     <td width="65%">
-                                                        <a href="/Files/submitted-article/<?php echo urlencode($submission_filesval->file_name); ?>" download>
+                                                        <a href="../../Files/submitted-article/<?php echo ($submission_filesval->file_name); ?>" download>
                                                             <?php echo $submission_filesval->file_name; ?>
                                                         </a>
                                                     </td>
@@ -510,7 +518,7 @@ $issuelist = get_issues_list();
                                                     </td>
                                                         <td width="5%"><?php echo $revision_filesval->revision_files_id; ?></td>
                                                     <td width="65%">
-                                                        <a href="/Files/revision-article/<?php echo urlencode($revision_filesval->file_name); ?>" download>
+                                                        <a href="../../Files/revision-article/<?php echo ($revision_filesval->file_name); ?>" download>
                                                             <?php echo $revision_filesval->file_name; ?>
                                                         </a>
                                                     </td>
@@ -548,7 +556,7 @@ $issuelist = get_issues_list();
                                             <tr>
                                                 <td width="5%"><?php echo $copyediting_filesval->article_files_id; ?></td>
                                                 <td width="65%">
-                                                    <a href="/Files/submitted-article/<?php echo urlencode($copyediting_filesval->file_name); ?>" download>
+                                                    <a href="../../Files/submitted-article/<?php echo ($copyediting_filesval->file_name); ?>" download>
                                                         <?php echo $copyediting_filesval->file_name; ?>
                                                     </a>
                                                 </td>
@@ -560,7 +568,7 @@ $issuelist = get_issues_list();
                                             <tr>
                                                 <td width="5%"><?php echo $copyeditingrevision_filesval->revision_files_id; ?></td>
                                                 <td width="65%">
-                                                    <a href="/Files/revision-article/<?php echo urlencode($copyeditingrevision_filesval->file_name); ?>" download>
+                                                    <a href="../../Files/revision-article/<?php echo ($copyeditingrevision_filesval->file_name); ?>" download>
                                                         <?php echo $copyeditingrevision_filesval->file_name; ?>
                                                     </a>
                                                 </td>
@@ -659,7 +667,7 @@ $issuelist = get_issues_list();
                                                     </td>
                                                         <td width="5%"><?php echo $allcopyedited_filesval->final_files_id; ?></td>
                                                     <td width="65%">
-                                                        <a href="/Files/revision-article/<?php echo urlencode($allcopyedited_filesval->file_name); ?>" download>
+                                                        <a href="../../Files/revision-article/<?php echo ($allcopyedited_filesval->file_name); ?>" download>
                                                             <?php echo $allcopyedited_filesval->file_name; ?>
                                                         </a>
                                                     </td>
@@ -705,7 +713,7 @@ $issuelist = get_issues_list();
                                                     <tr>
                                                         <td width="5%"><?php echo $allcopyedited_filesval->final_files_id; ?></td>
                                                         <td width="65%">
-                                                            <a href="../../Files/submitted-article/<?php echo urlencode($allcopyedited_filesval->file_name); ?>" download>
+                                                            <a href="../../Files/submitted-article/<?php echo ($allcopyedited_filesval->file_name); ?>" download>
                                                                 <?php echo $allcopyedited_filesval->file_name; ?>
                                                             </a>
                                                         </td>
@@ -869,7 +877,7 @@ $issuelist = get_issues_list();
                                                     </td>
                                                         <td width="5%"><?php echo $allcopyedited_filesval->final_files_id; ?></td>
                                                     <td width="65%">
-                                                        <a href="/Files/revision-article/<?php echo urlencode($allcopyedited_filesval->file_name); ?>" download>
+                                                        <a href="../../Files/revision-article/<?php echo ($allcopyedited_filesval->file_name); ?>" download>
                                                             <?php echo $allcopyedited_filesval->file_name; ?>
                                                         </a>
                                                     </td>
@@ -914,7 +922,7 @@ $issuelist = get_issues_list();
                                                     </td>
                                                         <td width="5%"><?php echo $allproduction_filesval->final_files_id; ?></td>
                                                     <td width="65%">
-                                                        <a href="/Files/revision-article/<?php echo urlencode($allproduction_filesval->file_name); ?>" download>
+                                                        <a href="../../Files/revision-article/<?php echo ($allproduction_filesval->file_name); ?>" download>
                                                             <?php echo $allproduction_filesval->file_name; ?>
                                                         </a>
                                                     </td>
@@ -967,7 +975,7 @@ $issuelist = get_issues_list();
                                                     <tr>
                                                         <td width="5%"><?php echo $allcopyedited_filesval->final_files_id; ?></td>
                                                         <td width="65%">
-                                                            <a href="../../Files/submitted-article/<?php echo urlencode($allcopyedited_filesval->file_name); ?>" download>
+                                                            <a href="../../Files/submitted-article/<?php echo ($allcopyedited_filesval->file_name); ?>" download>
                                                                 <?php echo $allcopyedited_filesval->file_name; ?>
                                                             </a>
                                                         </td>
@@ -984,7 +992,7 @@ $issuelist = get_issues_list();
                                                     <tr>
                                                         <td width="5%"><?php echo $allproduction_filesval->final_files_id; ?></td>
                                                         <td width="65%">
-                                                            <a href="../../Files/submitted-article/<?php echo urlencode($allproduction_filesval->file_name); ?>" download>
+                                                            <a href="../../Files/submitted-article/<?php echo ($allproduction_filesval->file_name); ?>" download>
                                                                 <?php echo $allproduction_filesval->file_name; ?>
                                                             </a>
                                                         </td>
@@ -1198,6 +1206,11 @@ function updateReviewFiles() {
 function updateReviewCheckedFiles() {
     var checkedCheckboxes = $('.review-checkbox:checked');
 
+    if (checkedCheckboxes.length === 0) {
+        console.log("No checked files. Aborting update.");
+        return; // Exit the function
+    }
+
     var checkedData = [];
     checkedCheckboxes.each(function () {
         var articleFilesId = $(this).data('article-files-id');
@@ -1218,6 +1231,7 @@ function updateReviewCheckedFiles() {
             action: 'updatereviewcheckedfile'
         },
         success: function(response) {
+            $('#sloading').toggle();
             console.log('Checked checkboxes data sent successfully.');
             console.log(response);
             location.reload();
@@ -1230,6 +1244,11 @@ function updateReviewCheckedFiles() {
 
 function updateReviewUncheckedFiles() {
     var uncheckedCheckboxes = $('.review-checkbox:not(:checked)');
+
+    if (uncheckedCheckboxes.length === 0) {
+        console.log("No unchecked files. Aborting update.");
+        return; // Exit the function
+    }
 
     var uncheckedData = [];
     uncheckedCheckboxes.each(function () {
@@ -1251,6 +1270,7 @@ function updateReviewUncheckedFiles() {
             action: 'updatereviewuncheckedfile'
         },
         success: function(response) {
+            $('#sloading').toggle();
             console.log('Unchecked checkboxes data sent successfully.');
             console.log(response);
             location.reload();
@@ -1270,6 +1290,11 @@ function updateCopyeditingFiles() {
 function updateCopyeditingCheckedFiles() {
     var checkedCheckboxes = $('.copyediting-checkbox:checked');
     var checkedCheckboxes1 = $('.copyeditingrevision-checkbox:checked');
+
+    if (checkedCheckboxes.length === 0 && checkedCheckboxes1.length === 0) {
+        console.log("No checkboxes checked. Aborting update.");
+        return;
+    }
 
     var checkedData = [];
     checkedCheckboxes.each(function () {
@@ -1302,6 +1327,7 @@ function updateCopyeditingCheckedFiles() {
             action: 'updatecopyeditingcheckedfile'
         },
         success: function(response) {
+            $('#sloading').toggle();
             console.log('Checked checkboxes data sent successfully.');
             console.log(response);
             location.reload();
@@ -1315,6 +1341,11 @@ function updateCopyeditingCheckedFiles() {
 function updateCopyeditingUncheckedFiles() {
     var uncheckedCheckboxes = $('.copyediting-checkbox:not(:checked)');
     var uncheckedCheckboxes1 = $('.copyeditingrevision-checkbox:not(:checked)');
+
+    if (uncheckedCheckboxes.length === 0 && uncheckedCheckboxes1.length === 0) {
+        console.log("No unheckboxes checked. Aborting update.");
+        return;
+    }
 
     var uncheckedData = [];
     uncheckedCheckboxes.each(function () {
@@ -1347,6 +1378,7 @@ function updateCopyeditingUncheckedFiles() {
             action: 'updatecopyeditinguncheckedfile'
         },
         success: function(response) {
+            $('#sloading').toggle();
             console.log('Unchecked checkboxes data sent successfully.');
             console.log(response);
             location.reload();
@@ -1531,8 +1563,12 @@ function uploadCopyeditedFiles() {
 }
 
 function updateCopyeditedCheckedFiles() {
-    $('#sloading').toggle();
     var checkedCheckboxes2 = $('.copyedited-checkbox:checked');
+
+    if (checkedCheckboxes2.length === 0) {
+        console.log("No checked files. Aborting update.");
+        return; // Exit the function
+    }
 
     var checkedData2 = [];
     checkedCheckboxes2.each(function () {
@@ -1566,8 +1602,12 @@ function updateCopyeditedCheckedFiles() {
 }
 
 function updateCopyeditedUncheckedFiles() {
-    $('#sloading').toggle();
     var uncheckedCheckboxes2 = $('.copyedited-checkbox:not(:checked)');
+
+    if (uncheckedCheckboxes2.length === 0) {
+        console.log("No unchecked files. Aborting update.");
+        return; // Exit the function
+    }
 
     var uncheckedData2 = [];
     uncheckedCheckboxes2.each(function () {
