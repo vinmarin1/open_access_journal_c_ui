@@ -70,9 +70,9 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     </div>
                     <nav aria-label="Page navigation d-flex justify-items-center align-items-center w-100">
                     <ul class="pagination">
-                        <li class="page-item" id="previous-page">Previous</li>
-                        <li class="page-item">1</li>
-                        <li class="page-item" id="next-page">Next</li>
+                        <li class="page-item border p-2 rounded" id="previous-page">Previous</li>
+                        <li class="page-item px-4 py-2">1</li>
+                        <li class="page-item border p-2 rounded" id="next-page">Next</li>
                     </ul>
 
                     </nav>
