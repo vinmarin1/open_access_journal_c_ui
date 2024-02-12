@@ -112,9 +112,6 @@
             <h4>89</h4>
             <p>Total Contribution</p>
           </div>
-
-
-        
         </div>
       </div>
 
