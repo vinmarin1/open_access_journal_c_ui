@@ -2,7 +2,8 @@
 include 'function/redirect.php';
 include 'function/issue_function.php';
 
-    $issueslist = get_issues_list();
+$issueslist = get_issues_list();
+$journallist = get_journal_list();
 ?>
 
 <!DOCTYPE html>
@@ -96,6 +97,7 @@ include 'function/issue_function.php';
         formData.append('number', $('#number').val());
         formData.append('year', $('#year').val());
         formData.append('title', $('#title').val());
+        formData.append('journal_id', $('#journal_id').val());
         formData.append('cover_image', $('#cover_image')[0].files[0]);
         formData.append('action', 'add');
 
@@ -268,11 +270,22 @@ include 'function/issue_function.php';
                         </div>
                     </div>
                     <div class="row mb-2">
-                        <div class="col-md-12" mb-2>
+                        <div class="col-md-12 mb-2">
                             <label for="xtitle" class="form-label">Title</label>
                             <textarea class="form-control" id="title" rows="9"></textarea>
                         </div>
                     </div>   
+                    <div class="row mb-2">
+                        <div class="col-md-12">
+                            <label for="xjournal" class="form-label">Journal</label>
+                            <select id="journal_id" class="form-select">
+                                <option value="Null">Select Journal</option>
+                                <?php foreach ($journallist as $journal): ?>
+                                    <option value="<?php echo $journal->journal_id; ?>"><?php echo $journal->journal; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
                     <div class="row mb-2">
                         <div class="col-md-12 mb-2" id="xcover_image">
                             <label for="formFileAddFiles" class="form-label">Cover Image</label>
