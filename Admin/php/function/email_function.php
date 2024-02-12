@@ -100,11 +100,11 @@ if (!function_exists('get_email_content')) {
                     echo "<script>alert('Decline submission successfully.');</script>";
                 } elseif ($id == 3) {
 
-                    if (empty($articleFilesId1)) {
+                    if (empty($articleFilesId1) || (is_array($articleFilesId1) && empty($articleFilesId1))) {
                         updateCopyeditingRevisionFiles(1, $revisionFilesId);
                         updateArticleStatus($article_id, 3);
                         addLogs($article_id, $fromuser, 'Send to Copyediting');
-                    } elseif (empty($revisionFilesId)) {
+                    } elseif (empty($revisionFilesId) || (is_array($revisionFilesId) && empty($revisionFilesId))) {
                         updateCopyeditingFiles(1, $articleFilesId1);
                         updateArticleStatus($article_id, 3);
                         addLogs($article_id, $fromuser, 'Send to Copyediting');
@@ -113,7 +113,7 @@ if (!function_exists('get_email_content')) {
                         updateCopyeditingFiles(1, $articleFilesId1);
                         updateArticleStatus($article_id, 3);
                         addLogs($article_id, $fromuser, 'Send to Copyediting');
-                    }
+                    }                    
                      
                     echo "<script>alert('Send to copyediting successfully.');</script>";
                 } elseif ($id == 4) {
