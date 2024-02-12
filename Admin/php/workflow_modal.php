@@ -179,7 +179,15 @@ $issuelist = get_issues_list();
                                         <?php foreach ($articlelogs as $articlelogsval): ?>
                                             <tr>
                                                 <td width="50%"><?php echo $articlelogsval->type; ?></td>
-                                                <td width="30%"><?php echo $articlelogsval->fromuser; ?></td>
+                                                <td width="30%">
+                                                    <?php 
+                                                        if (!empty($articlelogsval->fromuser)) {
+                                                            echo $articlelogsval->fromuser;
+                                                        } else {
+                                                            echo $article_data[0]->author; 
+                                                        }
+                                                    ?>
+                                                </td>
                                                 <td width="20%">
                                                     <?php
                                                     $dateTime = new DateTime($articlelogsval->date);
