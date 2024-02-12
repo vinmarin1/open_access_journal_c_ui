@@ -1008,9 +1008,9 @@ table {
                                                                         <label for="defaultFormControlInput3" class="form-label">Abstract</label>
                                                                         <div id="quill-abstract" style="height: 250px;"></div>
                                                                     </div>
-                                                                    <div class="d-flex justify-content-end mt-4" style="margin-bottom: -28px;">
+                                                                    <!-- <div class="d-flex justify-content-end mt-4" style="margin-bottom: -28px;">
                                                                         <button type="submit" class="btn btn-primary">Save</button>
-                                                                    </div>
+                                                                    </div> -->
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1065,9 +1065,9 @@ table {
                                                                         <label for="defaultFormControlInput3" class="form-label">Reference</label>
                                                                         <div id="quill-reference" style="height: 250px;"></div>
                                                                     </div>
-                                                                    <div class="d-flex justify-content-end mt-4" style="margin-bottom: -28px;">
+                                                                    <!-- <div class="d-flex justify-content-end mt-4" style="margin-bottom: -28px;">
                                                                         <button type="submit" class="btn btn-primary">Save</button>
-                                                                    </div>
+                                                                    </div> -->
                                                                 </div>
                                                             </div>
                                                         </div>

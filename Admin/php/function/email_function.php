@@ -99,16 +99,20 @@ if (!function_exists('get_email_content')) {
                     addLogs($article_id, $fromuser, 'Decline for Submission');
                     echo "<script>alert('Decline submission successfully.');</script>";
                 } elseif ($id == 3) {
-                    updateArticleStatus($article_id, 3);
-                    addLogs($article_id, $fromuser, 'Send to Copyediting');
 
                     if (empty($articleFilesId1)) {
                         updateCopyeditingRevisionFiles(1, $revisionFilesId);
+                        updateArticleStatus($article_id, 3);
+                        addLogs($article_id, $fromuser, 'Send to Copyediting');
                     } elseif (empty($revisionFilesId)) {
                         updateCopyeditingFiles(1, $articleFilesId1);
+                        updateArticleStatus($article_id, 3);
+                        addLogs($article_id, $fromuser, 'Send to Copyediting');
                     } elseif (!empty($articleFilesId1) && !empty($revisionFilesId)) {
                         updateCopyeditingRevisionFiles(1, $revisionFilesId);
                         updateCopyeditingFiles(1, $articleFilesId1);
+                        updateArticleStatus($article_id, 3);
+                        addLogs($article_id, $fromuser, 'Send to Copyediting');
                     }
                      
                     echo "<script>alert('Send to copyediting successfully.');</script>";
@@ -489,16 +493,16 @@ if (!function_exists('get_email_content')) {
      }
 
      function assignReviewer($articleid, $reviewerid, $round) {
-  
-        $query = "INSERT INTO reviewer_assigned (article_id, author_id, round) VALUES (?, ?, ?)";
+        $deadline = date('Y-m-d H:i:s', strtotime('+1 week'));
+    
+        $query = "INSERT INTO reviewer_assigned (article_id, author_id, round, deadline) VALUES (?, ?, ?, ?)";
         
-        $result = execute_query($query, [$articleid, $reviewerid, $round], true);
+        $result = execute_query($query, [$articleid, $reviewerid, $round, $deadline], true);
         
         if ($result !== false) {
             echo json_encode(['status' => true, 'message' => 'Record added successfully']);
         } else {
-            // $errorInfo = get_db_error_info();
-            // echo json_encode(['status' => false, 'message' => 'Failed to add record', 'error' => $errorInfo]);
+
             echo json_encode(['status' => false, 'message' => 'Failed to add record', 'error']);
         }
     }

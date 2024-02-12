@@ -743,7 +743,7 @@ include 'dbcon.php';
             $fileName = basename($files["name"]);
             $imageFileType = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
     
-            $allowedFileTypes = array('doc', 'docx');
+            $allowedFileTypes = array('doc', 'docx', 'pdf');
     
             if (!in_array($imageFileType, $allowedFileTypes)) {
                 $success = false;
@@ -916,7 +916,7 @@ include 'dbcon.php';
             $fileName = basename($files["name"]);
             $imageFileType = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
     
-            $allowedFileTypes = array('doc', 'docx');
+            $allowedFileTypes = array('pdf');
     
             if (!in_array($imageFileType, $allowedFileTypes)) {
                 $success = false;
