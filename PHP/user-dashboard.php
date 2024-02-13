@@ -663,8 +663,9 @@ $expertise = $_SESSION['expertise'];
 											
 											UNION
 											
-											(SELECT 'Submitted an Article' as action_engage, NULL as title, NULL as status, user_points.date, user_points.point_earned
+											(SELECT 'Submitted an Article' as action_engage, article.title, NULL as status, user_points.date, user_points.point_earned
 											FROM user_points
+											JOIN article ON user_points.article_id = article.article_id
 											WHERE user_points.action_engage = 'Submitted an Article' AND user_points.user_id = :user_id)
 											
 											UNION
@@ -682,7 +683,7 @@ $expertise = $_SESSION['expertise'];
 											foreach ($result as $row) {
 												echo '<tr>';
 												echo '<td>' . $row->action_engage .'</td>';
-												// echo '<td>' . ($row->title ?? '') .'</td>';
+												echo '<td style="display: none">' . $row->title .'</td>';
 												// echo '<td>' . ($row->status ?? '') .'</td>';
 												$formattedDateTime = date('F j, Y g:i:s A', strtotime($row->date));
 												echo '<td>' . $formattedDateTime . '</td>';
@@ -1031,7 +1032,49 @@ function openArticleInNewTab(articleId) {
 });
 
 
+document.addEventListener('DOMContentLoaded', function () {
+    // Attach click event listener to all elements with class 'view-button'
+    var viewButtons = document.querySelectorAll('.view-button');
+    viewButtons.forEach(function (button) {
+      button.addEventListener('click', function () {
+        // Find the corresponding achievement row
+        var achievementRow = button.closest('tr');
+        
+        // Get the action_engage and title values
+        var actionEngage = achievementRow.querySelector('td:first-child').textContent.trim();
+        var title = achievementRow.querySelector('td:nth-child(2)').textContent.trim();
 
+    
+        if (actionEngage === 'Submitted an Article') {
+       
+          var userId = <?php echo $id; ?>;
+
+        
+        //   alert('Viewing article for "Submitted an Article" achievement\nTitle: ' + title);
+
+			Swal.fire({
+		
+			html: "<p style='font-weight: bold'>You got 1 Community heart because you submitted an article</p>" + "<p>Title: " + title + "</p>",
+			imageUrl: "../images/qcu-bg.jpg",
+			imageWidth: 400,
+			imageHeight: 200,
+			imageAlt: "Custom image"
+			});
+
+        
+        }else if(actionEngage === 'Reviewed Article Published'){
+			Swal.fire({
+	
+			html: "<p style='font-weight: bold'>You got 1 Community heart because you help us published an article</p>" + "<p>Title: " + title + "</p>",
+			imageUrl: "../images/qcu-bg.jpg",
+			imageWidth: 400,
+			imageHeight: 200,
+			imageAlt: "Custom image"
+			});
+		}
+      });
+    });
+  });
 	
 </script>
 
