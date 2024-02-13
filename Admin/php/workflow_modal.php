@@ -623,9 +623,9 @@ $issuelist = get_issues_list();
                                 <label for="xcopyeditedfiletype" class="form-label">File Type</label>
                                 <select id="copyeditedfiletype" class="form-select" onchange="enableFileInput4()">
                                     <option value="">Select</option>
+                                    <option value="Final">Final</option>
                                     <option value="Title page">Title page</option>
                                     <option value="File with author">File with author</option>
-                                    <!-- <option value="File with no author">File with no author</option> -->
                                     <option value="Others">Others</option>
                                 </select>
                             </div>
@@ -633,7 +633,7 @@ $issuelist = get_issues_list();
                         <div class="row mb-2">
                             <div class="col-md-12 mb-2" id="divcopyeditedfile">
                                 <label for="xcopyeditedfile" class="form-label">Upload File</label>
-                                <input class="form-control" type="file" id="copyeditedfile" accept=".doc, .docx" />
+                                <input class="form-control" type="file" id="copyeditedfile" accept=".doc, .docx, .pdf" />
                             </div>
                         </div>
                     <hr>
@@ -834,9 +834,9 @@ $issuelist = get_issues_list();
                                 <label for="xproductionfiletype" class="form-label">File Type</label>
                                 <select id="productionfiletype" class="form-select" onchange="enableFileInput5()">
                                     <option value="">Select</option>
+                                    <option value="Final">Final</option>
                                     <option value="Title page">Title page</option>
                                     <option value="File with author">File with author</option>
-                                    <!-- <option value="File with no author">File with no author</option> -->
                                     <option value="Others">Others</option>
                                 </select>
                             </div>
@@ -844,7 +844,7 @@ $issuelist = get_issues_list();
                         <div class="row mb-2">
                             <div class="col-md-12 mb-2" id="divproductionfile">
                                 <label for="xproductionfile" class="form-label">Upload File</label>
-                                <input class="form-control" type="file" id="productionfile" accept=".doc, .docx" />
+                                <input class="form-control" type="file" id="productionfile" accept=".pdf" />
                             </div>
                         </div>
                     <hr>

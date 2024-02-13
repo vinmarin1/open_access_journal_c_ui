@@ -489,16 +489,16 @@ if (!function_exists('get_email_content')) {
      }
 
      function assignReviewer($articleid, $reviewerid, $round) {
-  
-        $query = "INSERT INTO reviewer_assigned (article_id, author_id, round) VALUES (?, ?, ?)";
+        $deadline = date('Y-m-d H:i:s', strtotime('+1 week'));
+    
+        $query = "INSERT INTO reviewer_assigned (article_id, author_id, round, deadline) VALUES (?, ?, ?, ?)";
         
-        $result = execute_query($query, [$articleid, $reviewerid, $round], true);
+        $result = execute_query($query, [$articleid, $reviewerid, $round, $deadline], true);
         
         if ($result !== false) {
             echo json_encode(['status' => true, 'message' => 'Record added successfully']);
         } else {
-            // $errorInfo = get_db_error_info();
-            // echo json_encode(['status' => false, 'message' => 'Failed to add record', 'error' => $errorInfo]);
+
             echo json_encode(['status' => false, 'message' => 'Failed to add record', 'error']);
         }
     }

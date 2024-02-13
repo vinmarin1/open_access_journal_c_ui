@@ -214,8 +214,8 @@ if(isset($_GET['author_id'])) {
 								<hr>
 								<p>
 								<?php
-									if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
-										echo $bio;
+									if (isset($result->bio)) {
+										echo $result->bio;
 									}
 								?>
 								</p>
@@ -227,8 +227,8 @@ if(isset($_GET['author_id'])) {
 								<hr>
 								<p>
 								<?php
-									if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
-										echo $expertise;
+									if (isset($result->expertise)) {
+										echo $result->expertise;
 									}
 								?>
 								</p>
