@@ -86,7 +86,6 @@ if (!function_exists('get_email_content')) {
             $articleFilesId1 = $_POST['checkedData1'];
             $revisionFilesId = $_POST['checkedData2'];
             $copyeditedFilesIds = $_POST['checkedData5'];
-
             if ($mail->send()) {
                 echo "Email sent successfully.";
                 if ($id == 1) {
@@ -99,22 +98,23 @@ if (!function_exists('get_email_content')) {
                     addLogs($article_id, $fromuser, 'Decline for Submission');
                     echo "<script>alert('Decline submission successfully.');</script>";
                 } elseif ($id == 3) {
-
-                    if (empty($articleFilesId1) || (is_array($articleFilesId1) && empty($articleFilesId1))) {
-                        updateCopyeditingRevisionFiles(1, $revisionFilesId);
-                        updateArticleStatus($article_id, 3);
-                        addLogs($article_id, $fromuser, 'Send to Copyediting');
-                    } elseif (empty($revisionFilesId) || (is_array($revisionFilesId) && empty($revisionFilesId))) {
-                        updateCopyeditingFiles(1, $articleFilesId1);
-                        updateArticleStatus($article_id, 3);
-                        addLogs($article_id, $fromuser, 'Send to Copyediting');
-                    } elseif (!empty($articleFilesId1) && !empty($revisionFilesId)) {
-                        updateCopyeditingRevisionFiles(1, $revisionFilesId);
-                        updateCopyeditingFiles(1, $articleFilesId1);
-                        updateArticleStatus($article_id, 3);
-                        addLogs($article_id, $fromuser, 'Send to Copyediting');
-                    }                    
-                     
+                    try {
+                        if (empty($articleFilesId1)) {
+                            updateCopyeditingRevisionFiles(1, $revisionFilesId);
+                            updateArticleStatus($article_id, 3);
+                            addLogs($article_id, $fromuser, 'Send to Copyediting');
+                        } elseif (empty($revisionFilesId)) {
+                            updateCopyeditingFiles(1, $articleFilesId1);
+                            updateArticleStatus($article_id, 3);
+                            addLogs($article_id, $fromuser, 'Send to Copyediting');
+                        } elseif (!empty($articleFilesId1) && !empty($revisionFilesId)) {
+                            updateCopyeditingRevisionFiles(1, $revisionFilesId);
+                            updateCopyeditingFiles(1, $articleFilesId1);
+                            updateArticleStatus($article_id, 3);
+                            addLogs($article_id, $fromuser, 'Send to Copyediting');
+                        }
+                    } catch (Exception $e) {
+                    }     
                     echo "<script>alert('Send to copyediting successfully.');</script>";
                 } elseif ($id == 4) {
                     if ($round == 'Round 2') {
