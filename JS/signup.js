@@ -105,6 +105,8 @@ document.getElementById('form').addEventListener('submit', function(event) {
         return;
     }
 
+    
+
  
 
 function isValidEmail(email) {
@@ -151,13 +153,25 @@ if (!isValidPassword(password)) {
 
 
 
-    if (!privacyPolicy.checked) {
-        Swal.fire({
-            icon: "info",
-            text: "You must read and agree with the terms and privacy of the website"
-        });
-        return;
-    }
+if (!privacyPolicy.checked) {
+    hasError = true;
+    Swal.fire({
+        icon: "info",
+        text: "You must read and agree with the terms and privacy of the website"
+    });
+    return;
+}
+
+
+if (hasError) {
+    // Validation failed, do not proceed with registration
+    // Optionally, you can display a general validation error message
+    Swal.fire({
+        icon: "error",
+        text: "Please correct the validation errors before submitting the form."
+    });
+} else {
+    // Validation passed, proceed with registration
 
     const xhr = new XMLHttpRequest();
     xhr.open('POST', '../PHP/signup-function.php', true);
@@ -186,6 +200,35 @@ if (!isValidPassword(password)) {
         '&lname=' + encodeURIComponent(lname) +
         '&password=' + encodeURIComponent(password) +
         '&privacyPolicy=' + encodeURIComponent(privacyPolicy));
+}
+
+    // const xhr = new XMLHttpRequest();
+    // xhr.open('POST', '../PHP/signup-function.php', true);
+    // xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    // xhr.onreadystatechange = function () {
+    //     if (xhr.readyState == 4 && xhr.status == 200) {
+    //         const response = JSON.parse(xhr.responseText);
+    //         if (response.success) {
+    //             Swal.fire({
+    //                 icon: "success",
+    //                 text: response.message
+    //             }).then(function() {
+    //                 window.location.href = "../PHP/signup.php";
+    //             });
+    //         } else {
+    //             Swal.fire({
+    //                 icon: "error",
+    //                 text: response.message
+    //             });
+    //         }
+    //     }
+    // };
+    // xhr.send('email=' + encodeURIComponent(email) +
+    //     '&fname=' + encodeURIComponent(fname) +
+    //     '&mdname=' + encodeURIComponent(mdname) +
+    //     '&lname=' + encodeURIComponent(lname) +
+    //     '&password=' + encodeURIComponent(password) +
+    //     '&privacyPolicy=' + encodeURIComponent(privacyPolicy));
 });
 
 
