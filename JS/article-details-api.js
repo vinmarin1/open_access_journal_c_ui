@@ -41,7 +41,7 @@ function renderArticleDetails(data) {
 
     let keywordsHTML = "";
     for (const keyword of keywordsArray) {
-      keywordsHTML += `<a href="">${keyword.trim()}</a>`;
+      keywordsHTML += `<a>${keyword.trim()}</a>`;
     }
 
     let contributorsHTML = "";
@@ -49,31 +49,27 @@ function renderArticleDetails(data) {
       for (const contributors of item.contributors.split(";")) {
         contributorsHTML += `
         <div id="popup-link" class="d-flex">
-          <a href="https://orcid.org/${contributors.split(" ->")[1]}">${contributors.split("->")[0]} </a>
+          <a href="#">${contributors.split("->")[0]} </a>
           <div class="popup-form">
             <div class="container-fluid">
               <div class="row">
-                <div class="col-md-1">
-                  <!-- Content for the first column -->
+                <!-- <div class="col-md-2">
                   <img src="../images/profile.jpg" alt="Profile Picture" class="profile-pic">
-                </div>
-                <div class="col-md-10 col-12 text-md-left prof-info">
+                </div> -->
+                <div class="col-md-10 col-12 prof-info">
                   <!-- Content for the second column -->
-                  <h2>${contributors.split("->")[0]}</h2>
-                  <a href="#">${contributors.split("->")[2]}</a>
+                  <p class="!font-bold">${contributors.split("->")[0]}</p>
+                  <span class="text-xs">${contributors.split("->")[2]}</span>
                 </div>
               </div>
-              <div class="row">
-                <div class="col-md-3 col-12 d-flex align-items-center">
-                  <div class="badge-box text-center mx-auto">
-                    <img src="../images/badge1.jpg" alt="Profile Picture" class="img-badge">
-                  </div>
-                  <div class="badge-box text-center mx-auto">
-                    <img src="../images/badge2.jpg" alt="Profile Picture" class="img-badge">
-                  </div>
-                </div>
-              </div>
-              <button class="btn btn-primary btn-md" id="seeMore-btn">See more</button>
+           
+              ${contributors.split("->")[2].includes("Primary Contact") ? `<a class="btn btn-primary btn-md" id="seeMore-btn" href="mailto:${contributors.split("->")[3]}">Contact</a>` : ''}
+                <a class="btn btn-primary btn-md" id="seeMore-btn" href="./user-view.php?orcid=${contributors.split("->")[1]}">View Profile</a>
+                <a href="https://orcid.org/${contributors.split("->")[1]}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512">
+                	<path fill="#a7cf36" d="M294.75 188.19h-45.92V342h47.47c67.62 0 83.12-51.34 83.12-76.91c0-41.64-26.54-76.9-84.67-76.9M256 8C119 8 8 119 8 256s111 248 248 248s248-111 248-248S393 8 256 8m-80.79 360.76h-29.84v-207.5h29.84zm-14.92-231.14a19.57 19.57 0 1 1 19.57-19.57a19.64 19.64 0 0 1-19.57 19.57M300 369h-81V161.26h80.6c76.73 0 110.44 54.83 110.44 103.85C410 318.39 368.38 369 300 369" />
+                </svg>
+                </a>
             </div>
 
           </div>
