@@ -234,41 +234,33 @@ if ($result !== false) {
 ?>
 
 
-<?php
-// Assuming you have a database connection and a function execute_query for executing SQL queries
-// Fetch total logs from the database for journal_id=3 and the current year
-$currentYear = date('Y'); // Get the current year
+    <?php
+    $currentYear = date("Y"); // Get the current year
 
-// Check if a specific year is selected from the dropdown
-if (isset($_GET['selectedYear'])) {
-    $selectedYear = $_GET['selectedYear'];
-} else {
-    $selectedYear = $currentYear; // Default to the current year if not selected
-}
+    $query = "SELECT 
+                journal_id,
+                COUNT(CASE WHEN MONTH(publication_date) BETWEEN 1 AND 3 AND YEAR(publication_date) = $currentYear AND status_id = 1 THEN 1 END) AS q1_count,
+                COUNT(CASE WHEN MONTH(publication_date) BETWEEN 4 AND 6 AND YEAR(publication_date) = $currentYear AND status_id = 1 THEN 1 END) AS q2_count,
+                COUNT(CASE WHEN MONTH(publication_date) BETWEEN 7 AND 9 AND YEAR(publication_date) = $currentYear AND status_id = 1 THEN 1 END) AS q3_count,
+                COUNT(CASE WHEN MONTH(publication_date) BETWEEN 10 AND 12 AND YEAR(publication_date) = $currentYear AND status_id = 1 THEN 1 END) AS q4_count
+            FROM article_final    
+            WHERE journal_id IN (1, 2, 3) AND status_id = 1
+            GROUP BY journal_id";
 
-// Fetch data from the database for each quarter and journal
-$query = "SELECT 
-            journal_id,
-            COUNT(CASE WHEN MONTH(publication_date) BETWEEN 1 AND 3 THEN 1 END) AS q1_count,
-            COUNT(CASE WHEN MONTH(publication_date) BETWEEN 4 AND 6 THEN 1 END) AS q2_count,
-            COUNT(CASE WHEN MONTH(publication_date) BETWEEN 7 AND 9 THEN 1 END) AS q3_count,
-            COUNT(CASE WHEN MONTH(publication_date) BETWEEN 10 AND 12 THEN 1 END) AS q4_count
-          FROM article_final
-          WHERE journal_id IN (1, 2, 3)
-          GROUP BY journal_id";
+        $result = execute_query($query);
 
-$result = execute_query($query);
+        if ($result !== false) {
+            // Pass the PHP array to JavaScript using json_encode
+            echo "<script>";
+            echo "var barChartData = " . json_encode($result) . ";";
+            echo "</script>";
+        } else {
+            // Handle the error if the query fails
+            echo "<script>console.error('Error executing the query.');</script>";
+        }
 
-if ($result !== false) {
-    // Pass the PHP array to JavaScript using json_encode
-    echo "<script>";
-    echo "var barChartData = " . json_encode($result) . ";";
-    echo "</script>";
-} else {
-    // Handle the error if the query fails
-    echo "<script>console.error('Error fetching data from the database.');</script>";
-}
-?>
+    ?>
+
 
 
 <?php

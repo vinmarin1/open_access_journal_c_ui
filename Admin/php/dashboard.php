@@ -233,30 +233,32 @@ include 'function/dashboard_functions.php';
 
     // Data for the line chart
     var lineChartData1 = {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'Novemeber', 'December'],
-        datasets: [{
-                label: 'Gavel',
-                data: dynamicData,
-                borderColor: 'rgba(255, 99, 132, 1)',
-                borderWidth: 1,
-                fill: false
-            },
-            {
-                label: 'Lamp',
-                data: dynamicData1,
-                borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 1,
-                fill: false
-            },
-            {
-                label: 'Star',
-                data: dynamicData2,
-                borderColor: 'rgba(255, 205, 86, 1)',
-                borderWidth: 1,
-                fill: false
-            }
-        ]
-    };
+    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'Novemeber', 'December'],
+    datasets: [
+        {
+            label: 'Gavel',
+            data: dynamicData,
+            borderColor: '#E56F1F', // Updated color code
+            borderWidth: 1,
+            fill: false
+        },
+        {
+            label: 'Lamp',
+            data: dynamicData1,
+            borderColor: '#004e98', // Updated color code
+            borderWidth: 1,
+            fill: false
+        },
+        {
+            label: 'Star',
+            data: dynamicData2,
+            borderColor: '#ff944d', // Updated color code
+            borderWidth: 1,
+            fill: false
+        }
+    ]
+};
+
 
     // Years for the dropdown list
     var years = ['2024', '2025'];
@@ -283,21 +285,21 @@ include 'function/dashboard_functions.php';
         datasets: [{
                 label: 'QCU',
                 data: <?php echo  json_encode(array_column($qcuResult, 'count')); ?>,
-                borderColor: 'rgba(255, 99, 132, 1)',
+                borderColor: '#E56F1F', 
                 borderWidth: 1,
                 fill: false
             },
             {
                 label: 'FACULTY',
                 data: <?php echo json_encode(array_column($facultyResult, 'count')); ?>,
-                borderColor: 'rgba(75, 192, 192, 1)',
+                borderColor: '#004e98',
                 borderWidth: 1,
                 fill: false
             },
             {
                 label: 'OTHERS',
                 data: <?php echo json_encode(array_column($othersResult, 'count')); ?>,
-                borderColor: 'rgba(255, 205, 86, 1)',
+                borderColor: '#ff944d',
                 borderWidth: 1,
                 fill: false
             }
@@ -313,7 +315,7 @@ include 'function/dashboard_functions.php';
         datasets: [{
             label: 'DONATIONS',
             data: <?php echo json_encode(array_column($result3, 'donation_count')); ?>,
-            borderColor: 'rgba(255, 99, 132, 1)',
+            borderColor: '#E56F1F',
             borderWidth: 1,
             fill: false
         }]
@@ -326,21 +328,21 @@ include 'function/dashboard_functions.php';
         datasets: [{
                 label: 'Gavel',
                 data: [barChartData[0].q1_count, barChartData[0].q2_count, barChartData[0].q3_count, barChartData[0].q4_count],
-                backgroundColor: 'rgba(75, 192, 192, 0.5)', // First color
+                backgroundColor: '#E56F1F', // First color
                 borderColor: 'rgba(75, 192, 192, 1)',
                 borderWidth: 1
             },
             {
                 label: 'Lamp',
                 data: [barChartData[1].q1_count, barChartData[1].q2_count, barChartData[1].q3_count, barChartData[1].q4_count],
-                backgroundColor: 'rgba(255, 99, 132, 0.5)', // Second color
+                backgroundColor: '#004e98', // Second color
                 borderColor: 'rgba(255, 99, 132, 1)',
                 borderWidth: 1
             },
             {
                 label: 'Star',
                 data: [barChartData[2].q1_count, barChartData[2].q2_count, barChartData[2].q3_count, barChartData[2].q4_count],
-                backgroundColor: 'rgba(255, 205, 86, 0.5)', // Third color
+                backgroundColor: '#ff944d', // Third color
                 borderColor: 'rgba(255, 205, 86, 1)',
                 borderWidth: 1
             }
@@ -353,8 +355,8 @@ include 'function/dashboard_functions.php';
         datasets: [{
             data: [doughnutChartData1[0].not_published_count, doughnutChartData1[0].published_count],
             backgroundColor: [
-                'rgba(255, 99, 132, 0.5)',
-                'rgba(75, 192, 192, 0.5)',
+                '#004e98',
+                '#E56F1F',
             ],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
@@ -370,9 +372,9 @@ include 'function/dashboard_functions.php';
         datasets: [{
             data: <?php echo json_encode(array_column($result2, 'position_count')); ?>,
             backgroundColor: [
-                'rgba(255, 99, 132, 0.5)',
-                'rgba(75, 192, 192, 0.5)',
-                'rgba(255, 205, 86, 0.5)'
+                '#004e98',
+                '#E56F1F',
+                '#ff944d'
             ],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
@@ -390,8 +392,8 @@ include 'function/dashboard_functions.php';
         datasets: [{
             data: [contributorData[0].contributorCount, reviewerData[0].reviewerCount],
             backgroundColor: [
-                'rgba(75, 192, 192, 0.5)',
-                'rgba(255, 205, 86, 0.5)'
+                '#004e98',
+                '#E56F1F',
             ],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
