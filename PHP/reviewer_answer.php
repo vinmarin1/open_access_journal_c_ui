@@ -13,11 +13,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $userName = $lastName . ' , ' . $firstName .  '  ' . $middle_name;
     $getRound = $_POST['getRound'];
     $ansOrig = $_POST['ansOrig'];
-    $ansRef = $_POST['ansRef'];
-    $ansLang = $_POST['ansLang'];
+    // $ansRef = $_POST['ansRef'];
+    // $ansLang = $_POST['ansLang'];
 
-    $sqlReviewerAnswer = "INSERT INTO reviewer_answer (`article_id`, `author_id`, `reviewer_questionnaire`, `answer`, `originality`, `reference`, `languages` ,`round`)
-        VALUES (:article_id, :author_id, :reviewer_questionnaire, :answer, :originality, :reference, :languages, :round)";
+    $sqlReviewerAnswer = "INSERT INTO reviewer_answer (`article_id`, `author_id`, `reviewer_questionnaire`, `answer`, `comment`, `round`)
+        VALUES (:article_id, :author_id, :reviewer_questionnaire, :answer, :comment, :round)";
 
     foreach ($answers as $question => $answer) {
         $paramsAnswer = array(
@@ -25,9 +25,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             'author_id' => $user_id,
             'reviewer_questionnaire' => $question,
             'answer' => $answer,
-            'originality' => $ansOrig,
-            'reference' => $ansRef,
-            'languages' => $ansLang,
+            'comment' => $ansOrig,
+            // 'reference' => $ansRef,
+            // 'languages' => $ansLang,
             'round' => $getRound
         );
 

@@ -67,7 +67,7 @@ $id = $_SESSION['id'];
               <div role="presentation" class="tab">
                 <li class="w-100 p-2" id="archive-tab" data-bs-toggle="tab" data-bs-target="#archive-tab-pane" type="button"
                   role="tab" aria-controls="archive-tab-pane" aria-selected="false" style="list-style-type: none ">
-                  Invitation Archive
+                  All Invitation
                 </li>
               </div>
               <button class="btn" id="btn3" onclick="window.location.href='ex_submit.php'">Submit Article</button>

@@ -64,6 +64,11 @@
                 
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim  veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea  commodo consequat. Duis aute irure dolor in reprehenderit in voluptate  velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit</p>
             </div>
+
+            <div class="story">
+                <h3>WHAT'S DIFFERENCE IN US</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim  veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea  commodo consequat. Duis aute irure dolor in reprehenderit in voluptate  velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id </p>
+            </div>
         </div>
 
 
@@ -130,9 +135,9 @@
 
         <div class="col-md-3 mb-3 executives text-center">
             <div class="uniteam-content">
-                <img src="../images/uniteam.png" alt="" class="img-fluid">
-                <p class="mt-2">NAME</p>
-                <p style="background-color: #E5F5FF; font-weight:normal; font-size: medium; ">POSITION</p>
+                <img src="../images/Director.jpg" alt="" class="img-fluid">
+                <p class="mt-2">Angelito P. Baustista, Jr.</p>
+                <p style="background-color: #E5F5FF; font-weight:normal; font-size: medium; "> LPT, MA Comm - Director of Research Management Office</p>
             </div>
         </div>
 
@@ -140,9 +145,10 @@
 
         <div class="col-md-3 mb-3 executives text-center">
             <div class="uniteam-content">
-                <img src="../images/uniteam.png" alt="" class="img-fluid">
-                <p class="mt-2">NAME</p>
-                <p style="background-color: #E5F5FF; font-weight:normal; font-size: medium; ">POSITION</p>
+                <img src="../images/assistant.jpg" alt="" class="img-fluid">
+                <p class="mt-2">Bernard F. Gaya</p>
+                <p style="background-color: #E5F5FF; font-weight:normal; font-size: medium; "> Administrative support assistant
+</p>
             </div>
         </div>
 
@@ -150,9 +156,9 @@
 
         <div class="col-md-3 mb-3 executives text-center">
             <div class="uniteam-content">
-                <img src="../images/uniteam.png" alt="" class="img-fluid">
-                <p class="mt-2">NAME</p>
-                <p style="background-color: #E5F5FF; font-weight:normal; font-size: medium; ">POSITION</p>
+                <img src="../images/Head-Publication.jpg" alt="" class="img-fluid">
+                <p class="mt-2">Candice Erika J. Rudi</p>
+                <p style="background-color: #E5F5FF; font-weight:normal; font-size: medium; ">Head of Publication</p>
             </div>
         </div>
     </div>

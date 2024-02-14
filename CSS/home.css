@@ -385,6 +385,39 @@ border-left: 2px solid white;
 height: 60px;
 display: inline-block;
 }
+
+/* New CSS for responsive layout */
+
+@media (max-width: 767px) {
+  .About-container {
+    flex-direction: column;
+    /* Display in column layout */
+    align-items: center;
+    text-align: center;
+    padding: 2em 5%;
+    /* Adjust padding for smaller screens */
+  }
+
+  .ab-qoaj-left,
+  .ab-qoaj-right {
+    flex: none;
+    /* Disable flex to allow natural width */
+    width: 100%;
+    /* Set width to full for column layout */
+    min-width: auto;
+    /* Reset min-width */
+  }
+
+  .ab-qoaj-left {
+    margin-bottom: 1em;
+    /* Add spacing between left and right sections */
+  }
+
+  .ab-qoaj-left h4 {
+    font-size: 1.5em;
+    /* Adjust font size for smaller screens */
+  }
+}
 .image{
 width: 100%;
 height: 400px;

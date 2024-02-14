@@ -43,7 +43,6 @@ async function fetchData() {
         <p class="h6" id="title">${item.title}</p>
         <div class="article-info">
           <p class="info" id="category">${item.journal || 'No Journal'}</p>
-          <p class="views" id="category">${item.total_interactions} views </p>
         </div>
         <p class="article-content" id="abstract">${item.abstract.slice(0,100)}...</p>
         <button class="btn btn-primary btn-md btn-article" style="border: 2px #0858a4 solid; background-color: transparent; border-radius: 20px; color: #0858a4; width: 100%;">Read Article</button>

@@ -39,8 +39,8 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                         <?php 
                         $sqlReviewraticle = "SELECT article.title 
                                             FROM article 
-                                            JOIN reviewer_assigned ON article.author_id = reviewer_assigned.author_id 
-                                            WHERE reviewer_assigned.article_id = article.article_id AND article.status = 4
+                                            JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id 
+                                            WHERE article.status = 4
                                             AND reviewer_assigned.author_id = :author_id AND article.article_id = :article_id ORDER BY reviewer_assigned.date_issued DESC
                                             LIMIT 1";
 
@@ -104,22 +104,22 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                     <h4>Abstract</h4>
                         <p>
                         <?php 
-                        $sqlAbstract = "SELECT article.abstract 
+                        $sqlReviewraticle = "SELECT article.abstract 
                                             FROM article 
-                                            JOIN reviewer_assigned ON article.author_id = reviewer_assigned.author_id 
-                                            WHERE reviewer_assigned.article_id = article.article_id AND article.status =4
+                                            JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id 
+                                            WHERE article.status = 4
                                             AND reviewer_assigned.author_id = :author_id AND article.article_id = :article_id ORDER BY reviewer_assigned.date_issued DESC
-                                            LIMIT 1" ;
+                                            LIMIT 1";
 
-                        $result = database_run($sqlAbstract, array('author_id' => $userId,
-                         'article_id' => $articleId));
+                        $result = database_run($sqlReviewraticle, array('author_id' => $userId,
+                              'article_id' => $articleId));
 
                         if ($result !== false) {
                             foreach ($result as $row) {
                                 echo $row->abstract;
                             }
                         } else {
-                            echo "No articles found."; 
+                            echo "No abstract for this article."; 
                         }
                         ?>
                         </p>
@@ -438,8 +438,8 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                 <div class="col-md-5">
                     <!-- This is a Blank space -->
                     <div class="btn">
-                        <button class="btn tbn-primary btn-md nextBtn" id="acceptBtn"  onclick="nextStep()" style="width: 430px; margin-left: -15px" >Accept</button>
-                        <button id="btnReject" class="btn tbn-primary btn-md" onclick="rejectInvitation('<?php echo $articleId; ?>')" style="width: 430px; margin-left: -15px">Decline</button>
+                        <button type="button" class="btn tbn-primary btn-md nextBtn" id="acceptBtn"  onclick="nextStep()" style="width: 430px; margin-left: -15px" >Accept</button>
+                        <button type="button"  id="btnReject" class="btn tbn-primary btn-md" onclick="rejectInvitation('<?php echo $articleId; ?>')" style="width: 430px; margin-left: -15px">Decline</button>
 
                     </div>
                 </div>
@@ -521,7 +521,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                     </div>
 
                     <div class="btn-action">
-                        <button class="btn tbn-primary btn-md" id="reviewBtn" onclick="nextStep()" disabled>Review Form</button>
+                        <button type="button" class="btn tbn-primary btn-md" id="reviewBtn" onclick="nextStep()" disabled>Review Form</button>
                     </div> 
                 </div>
 
@@ -582,7 +582,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                                         // Display each choice as a radio button
                                         foreach ($choices as $choice) {
                                             $uniqueId = htmlspecialchars(trim($choice)) . '_' . uniqid(); // Create a unique ID for each radio button
-                                            echo '<input type="radio" name="answers[' . $question . ']" value="' . htmlspecialchars(trim($choice)) . '" id="' . $uniqueId . '">';
+                                            echo '<input type="radio" name="answers[' . $question . ']" value="' . htmlspecialchars(trim($choice)) . '" id="' . $uniqueId . '" required>';
                                             echo '<label for="' . $uniqueId . '" style="font-size: small; color: gray;">' . htmlspecialchars(trim($choice)) . '</label><br>';
                                         }
                                     }
@@ -754,12 +754,12 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                             <h4>Additional comment for the following lines: Originality, <br> Literature Review, Evaluation.</h4>                    
                                 <textarea id="ansOrig" name="ansOrig" class="form-control" rows="8"></textarea>
                             <br>
-                            <h5>Reference:</h5>
+                            <!-- <h5>Reference:</h5>
                                 <textarea id="ansRef" name="ansRef" class="form-control" rows="5" required></textarea>
                             <br>
                                 <h5>Languages:</h5>
                             <textarea id="ansLang" name="ansLang" class="form-control" rows="5" required></textarea>
-                            </div>
+                            </div> -->
 
                         </div>
 

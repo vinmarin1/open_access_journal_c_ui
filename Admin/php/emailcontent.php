@@ -138,7 +138,7 @@ $copyedited_files = get_copyedited_files($aid);
                                         ?>
                                             <h5 class="card-header">Files</h5>
                                             <p>Select files you want to add in copyediting.</p>
-                                            <div class="col-md-12" id="dynamic-column">
+                                            <!-- <div class="col-md-12" id="dynamic-column">
                                                 <div class="table-responsive text-nowrap">
                                                     <table class="table table-striped" id="DataTable">
                                                         <thead>
@@ -175,7 +175,7 @@ $copyedited_files = get_copyedited_files($aid);
                                                     </table>
                                                 </div>
                                             </div>
-                                            </br>
+                                            </br> -->
                                             <div class="col-md-12" id="dynamic-column">
                                                 <div class="table-responsive text-nowrap">
                                                     <table class="table table-striped" id="DataTable">
@@ -412,13 +412,13 @@ $copyedited_files = get_copyedited_files($aid);
             });
         });
 
-        var checkedData1 = [];
-        checkedCheckboxes1.each(function () {
-            var articleFilesId = $(this).data('article-files-id');
-            checkedData1.push({
-                articleFilesId: articleFilesId
-            });
-        });
+        // var checkedData1 = [];
+        // checkedCheckboxes1.each(function () {
+        //     var articleFilesId = $(this).data('article-files-id');
+        //     checkedData1.push({
+        //         articleFilesId: articleFilesId
+        //     });
+        // });
 
         var checkedData2 = [];
         checkedCheckboxes2.each(function () {
@@ -454,7 +454,7 @@ $copyedited_files = get_copyedited_files($aid);
         });
 
         var jsonCheckedData = JSON.stringify(checkedData);
-        var jsonCheckedData1 = JSON.stringify(checkedData1);
+        // var jsonCheckedData1 = JSON.stringify(checkedData1);
         var jsonCheckedData2 = JSON.stringify(checkedData2);
         // var jsonCheckedData3 = JSON.stringify(checkedData3);
         // var jsonCheckedData4 = JSON.stringify(checkedData4);
@@ -477,7 +477,7 @@ $copyedited_files = get_copyedited_files($aid);
                 fromuser: fromuser,
                 title: title,
                 checkedData: jsonCheckedData,
-                checkedData1: jsonCheckedData1,
+                // checkedData1: jsonCheckedData1,
                 checkedData2: jsonCheckedData2,
                 // checkedData3: jsonCheckedData3,
                 // checkedData4: jsonCheckedData4,

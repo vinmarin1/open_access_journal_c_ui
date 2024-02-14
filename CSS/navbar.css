@@ -12,7 +12,11 @@
 #navbarSupportedContent{
   padding-left: 50px;
 }
-
+@media (max-width: 768px) {
+  #navbarSupportedContent {
+    padding-left: 0;
+  }
+}
 #notification-container {
   position: relative;
 }
