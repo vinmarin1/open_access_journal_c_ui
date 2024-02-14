@@ -98,9 +98,9 @@ async function fetchData(input, dates,sort) {
               ${keywordsHTML}
               </div>
               ${
-                item.article_contains[0] != ""
-                  ? `Terms found:  ${item.article_contains.join(", ")}`
-                  : ""
+              item.article_contains 
+                    ? `Terms found:  ${item.article_contains.join(", ")}`
+                    : ""
               }
           </div>
           <div class="article-stats">
