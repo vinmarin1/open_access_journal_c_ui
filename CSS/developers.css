@@ -55,6 +55,7 @@
 
 .leaders-content , .members-content{
     background-color: #FFFFFF;
+    width: 33vh;
 }
 
 
@@ -78,6 +79,17 @@
 
 .soc-links{
     font-size:xx-large;
+}
+
+
+
+
+/* Media query for mobile view */
+@media screen and (max-width: 767px) {
+    .leaders-content, .members-content {
+        width: 80%; /* Adjust width for mobile view */
+        margin: 0 auto; /* Center the content horizontally */
+    }
 }
 
 
