@@ -219,7 +219,7 @@ document.getElementById('editBtn').addEventListener('click', function(event){
   const affiliation = document.getElementById('affiliation');
   const position = document.getElementById('position');
   const bio = document.getElementById('bio');
-  const changeProfileBtn = document.getElementById('changeProfileBtn');
+ 
   const spinner = document.querySelector('#editBtn .spinner-border');
 
   // Show spinner
@@ -242,7 +242,7 @@ document.getElementById('editBtn').addEventListener('click', function(event){
   affiliation.disabled = true;
   position.disabled = true;
   bio.disabled = true;
-  changeProfileBtn.disabled = true;
+ 
 
   // Enable everything after 2 seconds
   setTimeout(function() {
@@ -263,7 +263,7 @@ document.getElementById('editBtn').addEventListener('click', function(event){
       affiliation.disabled = false;
       position.disabled = false;
       bio.disabled = false;
-      changeProfileBtn.disabled = false;
+     
 
    
 
