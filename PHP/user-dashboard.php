@@ -648,14 +648,14 @@ $expertise = $_SESSION['expertise'];
 
 									<?php
 										$sqlAchievements = "
-											(SELECT 'Published an Article' as action_engage, article.title, article.status, user_points.date, user_points.point_earned
-											FROM article
-											JOIN user_points ON article.article_id = user_points.article_id
-											WHERE article.author_id = :author_id AND article.status = 1 AND user_points.action_engage = 'Published an Article')
+											(SELECT 'Published an Article' as action_engage, article.title, NULL as status, user_points.date, user_points.point_earned
+											FROM user_points
+											JOIN article ON user_points.article_id = article.article_id
+											WHERE user_points.action_engage = 'Published an Article' AND user_points.user_id = :user_id AND article.status = 1)
 											
 											UNION
 											
-											(SELECT 'Reviewed Article Published' as action_engage, NULL as title, NULL as status, user_points.date, user_points.point_earned
+											(SELECT 'Reviewed Article Published' as action_engage, article.title, NULL as status, user_points.date, user_points.point_earned
 											FROM user_points
 											JOIN reviewer_assigned ON user_points.user_id = reviewer_assigned.author_id
 											JOIN article ON reviewer_assigned.article_id = article.article_id
@@ -670,9 +670,11 @@ $expertise = $_SESSION['expertise'];
 											
 											UNION
 											
-											(SELECT 'Reviewed an Article' as action_engage, NULL as title, NULL as status, user_points.date, user_points.point_earned
+											(SELECT 'Reviewed an Article' as action_engage, article.title, NULL as status, user_points.date, user_points.point_earned
 											FROM user_points
-											WHERE user_points.action_engage = 'Reviewed an Article' AND user_points.user_id = :user_id)
+											JOIN reviewer_assigned ON user_points.user_id = reviewer_assigned.author_id
+											JOIN article ON reviewer_assigned.article_id = article.article_id
+											WHERE article.status = 4 AND reviewer_assigned.accept = 1 AND reviewer_assigned.answer = 1 AND user_points.action_engage = 'Reviewed an Article' AND user_points.user_id = :author_id)
 											
 											ORDER BY date DESC
 										";
@@ -687,7 +689,7 @@ $expertise = $_SESSION['expertise'];
 												// echo '<td>' . ($row->status ?? '') .'</td>';
 												$formattedDateTime = date('F j, Y g:i:s A', strtotime($row->date));
 												echo '<td>' . $formattedDateTime . '</td>';
-												echo '<td style="color: red;">You earned ' . $row->point_earned . ' Community Heart</td>';
+												echo '<td style="color: green;">You earned ' . $row->point_earned . ' Community Heart</td>';
 												echo '<td><button type="button" class="view-button">View</button></td>';
 												echo '</tr>';
 											}
@@ -1063,6 +1065,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
         
         }else if(actionEngage === 'Reviewed Article Published'){
+			Swal.fire({
+	
+			html: "<p style='font-weight: bold'>You got 3 Community heart because the article you reviewed was published</p>" + "<p>Title: " + title + "</p>",
+			imageUrl: "../images/qcu-bg.jpg",
+			imageWidth: 400,
+			imageHeight: 200,
+			imageAlt: "Custom image"
+			});
+		}else if(actionEngage === 'Published an Article'){
+			Swal.fire({
+	
+			html: "<p style='font-weight: bold'>You got 3 Community heart because you've successfully published an article</p>" + "<p>Title: " + title + "</p>",
+			imageUrl: "../images/qcu-bg.jpg",
+			imageWidth: 400,
+			imageHeight: 200,
+			imageAlt: "Custom image"
+			});
+		}else if(actionEngage === 'Reviewed an Article'){
 			Swal.fire({
 	
 			html: "<p style='font-weight: bold'>You got 1 Community heart because you help us published an article</p>" + "<p>Title: " + title + "</p>",
