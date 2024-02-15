@@ -1076,7 +1076,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		}else if(actionEngage === 'Published an Article'){
 			Swal.fire({
 	
-			html: "<p style='font-weight: bold'>You got 3 Community heart because you've successfully published an article</p>" + "<p>Title: " +  title + "</p>" + "<br>" + "<div class='container-fluid' id='cert-container' style='width: 100%; height: 300px; backround-color: black'></div>",
+			html: "<p style='font-weight: bold'>You got 3 Community heart because you've successfully published an article</p>" + "<p>Title: " +  title + "</p>",
 			imageUrl: "../images/qcu-bg.jpg",
 			imageWidth: 400,
 			imageHeight: 200,
