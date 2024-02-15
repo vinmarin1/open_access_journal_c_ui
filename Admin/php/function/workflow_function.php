@@ -385,14 +385,16 @@ if (!function_exists('get_allcopyedited_files')) {
     }
 }
 
+
 if (!function_exists('get_issues_list')) {
-    function get_issues_list() {
+    function get_issues_list($journal_id) {
         $pdo = connect_to_database();
 
         if ($pdo) {
             try {
-                $query = "SELECT * FROM issues WHERE status = 1";
+                $query = "SELECT * FROM issues WHERE journal_id = :journal_id AND status = 1";
                 $stmt = $pdo->prepare($query);
+                $stmt->bindParam(':journal_id', $journal_id, PDO::PARAM_INT);
                 $stmt->execute();
 
                 $result = $stmt->fetchAll(PDO::FETCH_OBJ);

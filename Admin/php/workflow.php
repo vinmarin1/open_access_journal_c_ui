@@ -1443,6 +1443,10 @@ table {
 
                         for (const answer of answerData) {
                             $('#DataTableAnswer tbody').append('<tr><td>' + answer.reviewer_questionnaire + '</td><td>' + answer.answer + '</td></tr>');
+                            if (answerData.length > 0) {
+                                const firstComment = answerData[0].comment;
+                                $('#DataTableAnswer tfoot').empty().append('<tr><th>Reviewer Comment</th></tr><tr><td>' + firstComment + '</td></tr>');
+                            }
                         }
 
                         $('#addReviewerAnswerModal').modal('show');

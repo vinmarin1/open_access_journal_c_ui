@@ -20,8 +20,10 @@ $allcopyedited_files = get_allcopyedited_files($aid);
 $allproduction_files = get_production_files($aid);
 $revision_files = get_revision_files($aid);
 $articlelogs = get_article_logs($aid);
+$articledata = get_article_data($aid);
+$journal_id = $articledata[0]->journal_id;
+$issuelist = get_issues_list($journal_id);
 $userlist = get_user_list();
-$issuelist = get_issues_list();
 ?>
 
 <!-- Add Discussion Modal -->
