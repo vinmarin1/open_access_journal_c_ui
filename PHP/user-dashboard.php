@@ -297,14 +297,14 @@ $expertise = $_SESSION['expertise'];
 
 					</div>
 
-					<div class="profile-badge">
+					<!-- <div class="profile-badge">
 						<p class="recent-badges">Recent Badges</p>
 						<div class="badge-box" style="background-image: url('../images/badge1.jpg');"></div>
 						<div class="badge-box" style="background-image: url('../images/badge2.jpg');"></div>
 						<div class="badge-box" style="background-image: url('../images/badge3.jpg');"></div>
 						<div class="badge-box" style="background-image: url('../images/badge2.jpg');"></div>
 						<div class="badge-box" style="background-image: url('../images/badge1.jpg');"></div>
-					</div>
+					</div> -->
 				</div>
 				<hr class="vertical-line">
 
@@ -580,12 +580,12 @@ $expertise = $_SESSION['expertise'];
 						<div class="badge-box-container">
 							<div class="xp-container">
 								<!-- XP Bar -->
-								<div class="xp-bar">
+								<!-- <div class="xp-bar">
 									<div class="progress-bar">
 										<div class="progress" style="width: 66.7%;"></div>
 									</div>
 									<span class="xp-label">8/12</span>
-								</div>
+								</div> -->
 								
 							</div>
 							<div class="badge-box" style="background-image: url('../images/badge1.jpg');"></div>
@@ -598,7 +598,7 @@ $expertise = $_SESSION['expertise'];
 							<div class="badge-box" style="background-image: url('../images/badge2.jpg');"></div>
 							<div class="badge-box" style="background-image: url('../images/badge3.jpg');"></div>
 							<div class="badge-see-more">
-								<button class="btn btn-primary btn-md btn-seemore" id="see-more">See more</button>
+								<!-- <button class="btn btn-primary btn-md btn-seemore" id="see-more">See more</button> -->
 							</div>
 						</div>	
 					</div>
@@ -1076,7 +1076,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		}else if(actionEngage === 'Published an Article'){
 			Swal.fire({
 	
-			html: "<p style='font-weight: bold'>You got 3 Community heart because you've successfully published an article</p>" + "<p>Title: " + title + "</p>",
+			html: "<p style='font-weight: bold'>You got 3 Community heart because you've successfully published an article</p>" + "<p>Title: " +  title + "</p>" + "<br>" + "<div class='container-fluid' id='cert-container' style='width: 100%; height: 300px; backround-color: black'></div>",
 			imageUrl: "../images/qcu-bg.jpg",
 			imageWidth: 400,
 			imageHeight: 200,
