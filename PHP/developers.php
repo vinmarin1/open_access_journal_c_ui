@@ -37,7 +37,7 @@
 
             <div class="col-md-11 head-text">
                 <div class="container-fluid row">
-                    <div class="col-md-3 col-12">
+                    <div class="col-md-5 col-12">
                         <h4 class="mt-4" style="color:#F4900C" >We Think, We Research, We Write:</h4>
                         <h4 style="color:#FFFFFF" >Building Knowledge, Uniting Minds!</h4>
                         <hr style="height: 5px; background-color: #F4900C; width: 87%">
@@ -59,37 +59,36 @@
     </div>
 
     <div class="row">
-    <div class="col-md-1"> <!------ blank space -------> </div>
-        <div class="col-md-11">
+    <div class="col-md-2" style="margin-left:-40px"> <!------ blank space -------> </div>
+        <div class="col-md-10">
             <h3>HEADS</h3>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-md-1"> <!------ blank space -------> </div>
+            <div class="col-md-2" style="margin-left:-40px"> <!------ blank space -------> </div>
+            <div class="col-md-3">
+                <div class="mt-2 mb-2 leaders-content text-center">
+                    <img src="../images/baylon.png" alt="" class="img-fluid">
+                    <div class="description" >
+                        <p class="mt-2" style="font-size:medium;">ELOISA MARIE M. BAYLON</p>
+                        <p style="font-weight:normal; font-size: small;">PROJECT MANAGER</p>
+                        <p style="font-weight:normal; font-size: smaller; text-align: center; ">Leading the team, plays a crucial role in guiding the development process, contributing not only to project documentation but also lending a hand to the developers, including efforts in the UI team.</p>
+                    </div>
 
-        <div class="col-md-3">
-            <div class="mt-2 mb-2 leaders-content text-center">
-                <img src="../images/baylon.png" alt="" class="img-fluid">
-                <div class="description" >
-                    <p class="mt-2" style="font-size:medium;">ELOISA MARIE M. BAYLON</p>
-                    <p style="font-weight:normal; font-size: small;">PROJECT MANAGER</p>
-                    <p style="font-weight:normal; font-size: smaller; text-align: center; ">Leading the team, plays a crucial role in guiding the development process, contributing not only to project documentation but also lending a hand to the developers, including efforts in the UI team.</p>
-                </div>
+                    <div class="row soc-links" >
+                        <div class="col-md-3 col-3"><a href="https://www.facebook.com/eloisamaglana10/"><i class="fab fa-facebook-f" style="color: blue;"></i></a></div>
 
-                <div class="row soc-links" >
-                    <div class="col-md-3 col-3"><a href="https://www.facebook.com/eloisamaglana10/"><i class="fab fa-facebook-f" style="color: blue;"></i></a></div>
+                        <div class="col-md-3 col-3"><a href="mailto:eloisamariebaylon@gmail.com"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M32 6v20c0 1.135-.865 2-2 2h-2V9.849l-12 8.62l-12-8.62V28H2c-1.135 0-2-.865-2-2V6c0-.568.214-1.068.573-1.422A1.973 1.973 0 0 1 2 4h.667L16 13.667L29.333 4H30c.568 0 1.068.214 1.427.578c.359.354.573.854.573 1.422"/></svg></a></div>
 
-                    <div class="col-md-3 col-3"><a href="mailto:eloisamariebaylon@gmail.com"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M32 6v20c0 1.135-.865 2-2 2h-2V9.849l-12 8.62l-12-8.62V28H2c-1.135 0-2-.865-2-2V6c0-.568.214-1.068.573-1.422A1.973 1.973 0 0 1 2 4h.667L16 13.667L29.333 4H30c.568 0 1.068.214 1.427.578c.359.354.573.854.573 1.422"/></svg></a></div>
+                        <div class="col-md-3 col-3"><a href="https://www.instagram.com/eloisamaglana?igsh=MzV3YWZ5ZzZtd3l0"><i class="fa-brands fa-instagram" style="color: blue;"></i></a></div>
 
-                    <div class="col-md-3 col-3"><a href="https://www.instagram.com/eloisamaglana?igsh=MzV3YWZ5ZzZtd3l0"><i class="fa-brands fa-instagram" style="color: blue;"></i></a></div>
-
-                    <div class="col-md-3 col-3"><a href=""><i class="fa-brands fa-linkedin" style="color: blue;"></a></i></div>
+                        <div class="col-md-3 col-3"><a href=""><i class="fa-brands fa-linkedin" style="color: blue;"></a></i></div>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="col-md-1"> <!------ blank space -------> </div>
+        
         <div class="col-md-3">
             <div class="mt-2 mb-2 leaders-content text-center">
                 <img src="../images/pangilinan.png" alt="" class="img-fluid">
@@ -113,7 +112,7 @@
             
         </div>
 
-        <div class="col-md-1"> <!------ blank space -------> </div>
+        
         <div class="col-md-3">
             <div class="mt-2 mb-2 leaders-content text-center">
                 <img src="../images/pingol.png" alt="" class="img-fluid">
@@ -134,8 +133,6 @@
                 </div>
             </div>
         </div>
-
-        
     </div>
 
     
@@ -202,8 +199,8 @@
                 <img src="../images/david.png" alt="" class="img-fluid">
                 <div class="description" >
                     <p class="mt-2" style="font-size:medium;">KYLE ANGELINE O. DAVID</p>
-                    <p style="font-weight:normal; font-size: small;">UI/UX DESIGNER</p>
-                    <p style="font-weight:normal; font-size: smaller; text-align: center; ">Admin Side UI/UX Designer, contributes on creating intuitive and efficient interfaces tailored for administrative tasks, ensuring a seamless and effective experience for system administrators.</p>
+                    <p style="font-weight:normal; font-size: small;  margin-top: -10px;">UI/UX DESIGNER</p>
+                    <p style="font-weight:normal; font-size: smaller; text-align: center;  margin-top: -10px;">Admin Side UI/UX Designer, contributes on creating intuitive and efficient interfaces tailored for administrative tasks, ensuring a seamless and effective experience for system administrators.</p>
                 </div>
 
                 <div class="row soc-links" >
@@ -282,8 +279,8 @@
                 <img src="../images/gozo.png" alt="" class="img-fluid">
                 <div class="description" >
                     <p class="mt-2" style="font-size:medium;">MARVIN O. GOZO</p>
-                    <p style="font-weight:normal; font-size: small;">BACK-END PROGRAMMER</p>
-                    <p style="font-weight:normal; font-size: smaller; text-align: center; ">Managed user-side programming, playing roles in both front-end and back-end development.Managed user-side programming, playing roles in both front-end and back-end development.</p>
+                    <p style="font-weight:normal; font-size: small;  margin-top: -10px;">BACK-END PROGRAMMER</p>
+                    <p style="font-weight:normal; font-size: smaller; text-align: center;  margin-top: -10px;">Managed user-side programming, playing roles in both front-end and back-end development.Managed user-side programming, playing roles in both front-end and back-end development.</p>
                 </div>
 
                 <div class="row soc-links" >
@@ -581,8 +578,8 @@
                 <img src="../images/malazarte.png" alt="" class="img-fluid">
                 <div class="description" >
                     <p class="mt-2" style="font-size:medium;">MASTERSON KURT MALAZARTE</p>
-                    <p style="font-weight:normal; font-size: small;">TECHNICAL WRITER/RESEARCHER</p>
-                    <p style="font-weight:normal; font-size:smaller; text-align: center; ">Serves as a technical writer and researcher.  Contributes to creating detailed technical documentation while also conducting research to enhance project understanding and content accuracy.</p>
+                    <p style="font-weight:normal; font-size: small;  margin-top: -10px;">TECHNICAL WRITER/RESEARCHER</p>
+                    <p style="font-weight:normal; font-size:smaller; text-align: center;  margin-top: -13px;">Serves as a technical writer and researcher.  Contributes to creating detailed technical documentation while also conducting research to enhance project understanding and content accuracy.</p>
                 </div>
 
                 <div class="row soc-links" >

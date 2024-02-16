@@ -51,16 +51,12 @@ p{
     color: #0858a4;
 }
 
-.pic-border{
-    border: 1px #0858a4 solid;
-    height: 100%;
-    width: 100%;
-}
+
 
 .pic-border img{
-    width: 94%;
-    height: 100%;
-    margin: 10px 10px 10px 10px;
+    border: 1px #0858a4 solid;
+    width: 100%;
+    padding: 7px 7px 7px 7px;
 }
 
 .journal-details{

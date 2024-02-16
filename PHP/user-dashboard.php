@@ -41,8 +41,7 @@ $expertise = $_SESSION['expertise'];
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
-
-
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400&display=swap">
 </head>
 
 <body>
@@ -297,14 +296,14 @@ $expertise = $_SESSION['expertise'];
 
 					</div>
 
-					<div class="profile-badge">
+					<!-- <div class="profile-badge">
 						<p class="recent-badges">Recent Badges</p>
 						<div class="badge-box" style="background-image: url('../images/badge1.jpg');"></div>
 						<div class="badge-box" style="background-image: url('../images/badge2.jpg');"></div>
 						<div class="badge-box" style="background-image: url('../images/badge3.jpg');"></div>
 						<div class="badge-box" style="background-image: url('../images/badge2.jpg');"></div>
 						<div class="badge-box" style="background-image: url('../images/badge1.jpg');"></div>
-					</div>
+					</div> -->
 				</div>
 				<hr class="vertical-line">
 
@@ -580,12 +579,12 @@ $expertise = $_SESSION['expertise'];
 						<div class="badge-box-container">
 							<div class="xp-container">
 								<!-- XP Bar -->
-								<div class="xp-bar">
+								<!-- <div class="xp-bar">
 									<div class="progress-bar">
 										<div class="progress" style="width: 66.7%;"></div>
 									</div>
 									<span class="xp-label">8/12</span>
-								</div>
+								</div> -->
 								
 							</div>
 							<div class="badge-box" style="background-image: url('../images/badge1.jpg');"></div>
@@ -598,7 +597,7 @@ $expertise = $_SESSION['expertise'];
 							<div class="badge-box" style="background-image: url('../images/badge2.jpg');"></div>
 							<div class="badge-box" style="background-image: url('../images/badge3.jpg');"></div>
 							<div class="badge-see-more">
-								<button class="btn btn-primary btn-md btn-seemore" id="see-more">See more</button>
+								<!-- <button class="btn btn-primary btn-md btn-seemore" id="see-more">See more</button> -->
 							</div>
 						</div>	
 					</div>
@@ -648,14 +647,14 @@ $expertise = $_SESSION['expertise'];
 
 									<?php
 										$sqlAchievements = "
-											(SELECT 'Published an Article' as action_engage, article.title, article.status, user_points.date, user_points.point_earned
-											FROM article
-											JOIN user_points ON article.article_id = user_points.article_id
-											WHERE article.author_id = :author_id AND article.status = 1 AND user_points.action_engage = 'Published an Article')
+											(SELECT 'Published an Article' as action_engage, article.title, article.journal_id,NULL as status, user_points.date, user_points.point_earned
+											FROM user_points
+											JOIN article ON user_points.article_id = article.article_id
+											WHERE user_points.action_engage = 'Published an Article' AND user_points.user_id = :user_id AND article.status = 1)
 											
 											UNION
 											
-											(SELECT 'Reviewed Article Published' as action_engage, NULL as title, NULL as status, user_points.date, user_points.point_earned
+											(SELECT 'Reviewed Article Published' as action_engage, article.title, article.journal_id, NULL as status, user_points.date, user_points.point_earned
 											FROM user_points
 											JOIN reviewer_assigned ON user_points.user_id = reviewer_assigned.author_id
 											JOIN article ON reviewer_assigned.article_id = article.article_id
@@ -663,16 +662,18 @@ $expertise = $_SESSION['expertise'];
 											
 											UNION
 											
-											(SELECT 'Submitted an Article' as action_engage, article.title, NULL as status, user_points.date, user_points.point_earned
+											(SELECT 'Submitted an Article' as action_engage, article.title, article.journal_id, NULL as status, user_points.date, user_points.point_earned
 											FROM user_points
 											JOIN article ON user_points.article_id = article.article_id
 											WHERE user_points.action_engage = 'Submitted an Article' AND user_points.user_id = :user_id)
 											
 											UNION
 											
-											(SELECT 'Reviewed an Article' as action_engage, NULL as title, NULL as status, user_points.date, user_points.point_earned
+											(SELECT 'Reviewed an Article' as action_engage, article.title, article.journal_id, NULL as status, user_points.date, user_points.point_earned
 											FROM user_points
-											WHERE user_points.action_engage = 'Reviewed an Article' AND user_points.user_id = :user_id)
+											JOIN reviewer_assigned ON user_points.user_id = reviewer_assigned.author_id
+											JOIN article ON reviewer_assigned.article_id = article.article_id
+											WHERE article.status = 4 AND reviewer_assigned.accept = 1 AND reviewer_assigned.answer = 1 AND user_points.action_engage = 'Reviewed an Article' AND user_points.user_id = :author_id)
 											
 											ORDER BY date DESC
 										";
@@ -681,14 +682,20 @@ $expertise = $_SESSION['expertise'];
 
 										if ($result !== false) {
 											foreach ($result as $row) {
+												$journalMapping = [
+													'1' => 'The Gavel',
+													'2' => 'The Lamp',
+													'3' => 'The Star',
+												];
+										
 												echo '<tr>';
 												echo '<td>' . $row->action_engage .'</td>';
+												echo '<td>' . $journalMapping[$row->journal_id] .'</td>';
 												echo '<td style="display: none">' . $row->title .'</td>';
-												// echo '<td>' . ($row->status ?? '') .'</td>';
 												$formattedDateTime = date('F j, Y g:i:s A', strtotime($row->date));
 												echo '<td>' . $formattedDateTime . '</td>';
-												echo '<td style="color: red;">You earned ' . $row->point_earned . ' Community Heart</td>';
-												echo '<td><button type="button" class="view-button">View</button></td>';
+												echo '<td style="color: green;">You earned ' . $row->point_earned . ' Community Heart</td>';
+												echo '<td><button type="button" class="view-button" onclick="updateEngagementTitle(\'' . htmlspecialchars($row->title) . '\', \'' . $journalMapping[$row->journal_id] . '\')">View</button></td>';
 												echo '</tr>';
 											}
 										}
@@ -929,18 +936,40 @@ $expertise = $_SESSION['expertise'];
 		</section>
 	</div>
 
-    <div class="footer" id="footer">
-	<!-- footer will be display here by fetching reusable files -->
+
+<div class="container-fluid mt-5" id="certContainerHead" style="display: none">
+    <div class="cert-container d-flex justify-content-center align-items-center">
+        <img class="img-fluid" id="cert1" src="../images/Bg-cert" alt="cert">
+		<div class="cert-category">
+			<p class="h2" id="category"></p>
+			<p class="h6" id="awardee">This Certificate is Awarded to</p>
+			<p class="h1" id="awardeeName">
+				<?php 
+				echo $first_name . ' ' . $middle_name . ' ' . $last_name	
+				?>
+			</p>
+			<p class="h6" id="engagement">For participating in the peer review process for the article entitled:</p>
+			<p class="h3" id="engagementTitle"></p>
+		</div>
     </div>
+</div>
+
+
+
+	
+
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <script src="../JS/reusable-header.js"></script>
     <script src="../JS/user-dashboard.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	
 	<script>
+	
 
 
 function openArticleInNewTab(articleId) {
@@ -1042,7 +1071,7 @@ document.addEventListener('DOMContentLoaded', function () {
         
         // Get the action_engage and title values
         var actionEngage = achievementRow.querySelector('td:first-child').textContent.trim();
-        var title = achievementRow.querySelector('td:nth-child(2)').textContent.trim();
+        var title = achievementRow.querySelector('td:nth-child(3)').textContent.trim();
 
     
         if (actionEngage === 'Submitted an Article') {
@@ -1065,6 +1094,24 @@ document.addEventListener('DOMContentLoaded', function () {
         }else if(actionEngage === 'Reviewed Article Published'){
 			Swal.fire({
 	
+			html: "<p style='font-weight: bold'>You got 3 Community heart because the article you reviewed was published</p>" + "<p>Title: " + title + "</p>" + "<br>" + "<button type='button' onclick='downloadCertificate()'>Download Cert</button>",
+			imageUrl: "../images/qcu-bg.jpg",
+			imageWidth: 400,
+			imageHeight: 200,
+			imageAlt: "Custom image"
+			});
+		}else if(actionEngage === 'Published an Article'){
+			Swal.fire({
+	
+			html: "<p style='font-weight: bold'>You got 3 Community heart because you've successfully published an article</p>" + "<p>Title: " +  title + "</p>",
+			imageUrl: "../images/qcu-bg.jpg",
+			imageWidth: 400,
+			imageHeight: 200,
+			imageAlt: "Custom image"
+			});
+		}else if(actionEngage === 'Reviewed an Article'){
+			Swal.fire({
+	
 			html: "<p style='font-weight: bold'>You got 1 Community heart because you help us published an article</p>" + "<p>Title: " + title + "</p>",
 			imageUrl: "../images/qcu-bg.jpg",
 			imageWidth: 400,
@@ -1076,6 +1123,34 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 	
+
+  function updateEngagementTitle(title, journalId) {
+    document.getElementById("engagementTitle").innerHTML = title;
+    document.getElementById("category").innerHTML = 'Journal of ' + journalId;
+}
+
+
+	function downloadCertificate() {
+    // Get the certificate container by ID
+    var certificateContainer = document.getElementById('certContainerHead');
+
+    // Use html2canvas to capture the content as an image
+    html2canvas(certificateContainer).then(function(canvas) {
+        // Convert the canvas to a data URL
+        var dataUrl = canvas.toDataURL('image/png');
+
+        // Create a link element
+        var link = document.createElement('a');
+
+        // Set the download attribute and the href with the data URL
+        link.download = 'certificate.png';
+        link.href = dataUrl;
+
+        // Trigger a click on the link to start the download
+        link.click();
+    });
+}
+
 </script>
 
 </body>
