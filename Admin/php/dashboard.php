@@ -237,21 +237,21 @@ include 'function/dashboard_functions.php';
         datasets: [{
                 label: 'Gavel',
                 data: dynamicData,
-                borderColor: 'rgba(255, 99, 132, 1)',
+                borderColor: '#0074cc',
                 borderWidth: 1,
                 fill: false
             },
             {
                 label: 'Lamp',
                 data: dynamicData1,
-                borderColor: 'rgba(75, 192, 192, 1)',
+                borderColor: '#ff7f00',
                 borderWidth: 1,
                 fill: false
             },
             {
                 label: 'Star',
                 data: dynamicData2,
-                borderColor: 'rgba(255, 205, 86, 1)',
+                borderColor: '#ff0000',
                 borderWidth: 1,
                 fill: false
             }
@@ -283,21 +283,21 @@ include 'function/dashboard_functions.php';
         datasets: [{
                 label: 'QCU',
                 data: <?php echo  json_encode(array_column($qcuResult, 'count')); ?>,
-                borderColor: 'rgba(255, 99, 132, 1)',
+                borderColor: '#0074cc',
                 borderWidth: 1,
                 fill: false
             },
             {
                 label: 'FACULTY',
                 data: <?php echo json_encode(array_column($facultyResult, 'count')); ?>,
-                borderColor: 'rgba(75, 192, 192, 1)',
+                borderColor: '#ff7f00',
                 borderWidth: 1,
                 fill: false
             },
             {
                 label: 'OTHERS',
                 data: <?php echo json_encode(array_column($othersResult, 'count')); ?>,
-                borderColor: 'rgba(255, 205, 86, 1)',
+                borderColor: '#ff0000',
                 borderWidth: 1,
                 fill: false
             }
@@ -313,7 +313,7 @@ include 'function/dashboard_functions.php';
         datasets: [{
             label: 'DONATIONS',
             data: <?php echo json_encode(array_column($result3, 'donation_count')); ?>,
-            borderColor: 'rgba(255, 99, 132, 1)',
+            borderColor: '#ff0000',
             borderWidth: 1,
             fill: false
         }]
@@ -326,21 +326,21 @@ include 'function/dashboard_functions.php';
         datasets: [{
                 label: 'Gavel',
                 data: [barChartData[0].q1_count, barChartData[0].q2_count, barChartData[0].q3_count, barChartData[0].q4_count],
-                backgroundColor: 'rgba(75, 192, 192, 0.5)', // First color
+                backgroundColor: '#0074cc', // First color
                 borderColor: 'rgba(75, 192, 192, 1)',
                 borderWidth: 1
             },
             {
                 label: 'Lamp',
                 data: [barChartData[1].q1_count, barChartData[1].q2_count, barChartData[1].q3_count, barChartData[1].q4_count],
-                backgroundColor: 'rgba(255, 99, 132, 0.5)', // Second color
+                backgroundColor: '#ff7f00', // Second color
                 borderColor: 'rgba(255, 99, 132, 1)',
                 borderWidth: 1
             },
             {
                 label: 'Star',
                 data: [barChartData[2].q1_count, barChartData[2].q2_count, barChartData[2].q3_count, barChartData[2].q4_count],
-                backgroundColor: 'rgba(255, 205, 86, 0.5)', // Third color
+                backgroundColor: '#ff0000', // Third color
                 borderColor: 'rgba(255, 205, 86, 1)',
                 borderWidth: 1
             }
@@ -353,8 +353,8 @@ include 'function/dashboard_functions.php';
         datasets: [{
             data: [doughnutChartData1[0].not_published_count, doughnutChartData1[0].published_count],
             backgroundColor: [
-                'rgba(255, 99, 132, 0.5)',
-                'rgba(75, 192, 192, 0.5)',
+                '#0074cc',
+                '#ff0000'
             ],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
@@ -370,9 +370,9 @@ include 'function/dashboard_functions.php';
         datasets: [{
             data: <?php echo json_encode(array_column($result2, 'position_count')); ?>,
             backgroundColor: [
-                'rgba(255, 99, 132, 0.5)',
-                'rgba(75, 192, 192, 0.5)',
-                'rgba(255, 205, 86, 0.5)'
+                '#0074cc',
+                '#ff7f00',
+                '#ff0000'
             ],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
@@ -390,8 +390,8 @@ include 'function/dashboard_functions.php';
         datasets: [{
             data: [contributorData[0].contributorCount, reviewerData[0].reviewerCount],
             backgroundColor: [
-                'rgba(75, 192, 192, 0.5)',
-                'rgba(255, 205, 86, 0.5)'
+                '#0074cc',
+                '#ff7f00'
             ],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
