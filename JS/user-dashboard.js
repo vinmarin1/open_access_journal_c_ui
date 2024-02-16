@@ -206,6 +206,7 @@ document.getElementById('addExpertiseButton').addEventListener('click', function
 document.getElementById('editBtn').addEventListener('click', function(event){
   const editBtn = document.getElementById('editBtn');
   const cancelBtn = document.getElementById('cancelBtn');
+  const spinner = document.querySelector('#editBtn .spinner-border');
   const firstName = document.getElementById('firstName');
   const middleName = document.getElementById('middleName');
   const lastName = document.getElementById('lastName');
@@ -219,8 +220,8 @@ document.getElementById('editBtn').addEventListener('click', function(event){
   const affiliation = document.getElementById('affiliation');
   const position = document.getElementById('position');
   const bio = document.getElementById('bio');
-  const changeProfileBtn = document.getElementById('changeProfileBtn');
-  const spinner = document.querySelector('#editBtn .spinner-border');
+ 
+
 
   // Show spinner
   spinner.style.display = 'inline-block';
@@ -242,7 +243,7 @@ document.getElementById('editBtn').addEventListener('click', function(event){
   affiliation.disabled = true;
   position.disabled = true;
   bio.disabled = true;
-  changeProfileBtn.disabled = true;
+ 
 
   // Enable everything after 2 seconds
   setTimeout(function() {
@@ -263,7 +264,7 @@ document.getElementById('editBtn').addEventListener('click', function(event){
       affiliation.disabled = false;
       position.disabled = false;
       bio.disabled = false;
-      changeProfileBtn.disabled = false;
+     
 
    
 
@@ -277,6 +278,21 @@ document.getElementById('editBtn').addEventListener('click', function(event){
     const spinner = cancelBtn.querySelector('.spinner-border');
     const editForm = document.getElementById('editForm');
 
+    const firstName = document.getElementById('firstName');
+    const middleName = document.getElementById('middleName');
+    const lastName = document.getElementById('lastName');
+    const affix = document.getElementById('affix');
+    const birthdate = document.getElementById('birthdate');
+    const gender = document.getElementById('gender');
+    const status = document.getElementById('status');
+    const country = document.getElementById('country');
+    // const email = document.getElementById('email');
+    const orcid = document.getElementById('orcid');
+    const affiliation = document.getElementById('affiliation');
+    const position = document.getElementById('position');
+    const bio = document.getElementById('bio');
+   
+
     spinner.style.display = 'inline-block';
 
     
@@ -289,6 +305,19 @@ document.getElementById('editBtn').addEventListener('click', function(event){
         cancelBtn.style.display = 'none';
         editBtn.style.display = 'inline-block';
         editBtn.disabled = false;
+        firstName.disabled = true;
+        middleName.disabled = true;
+        lastName.disabled = true;
+        affix.disabled = true;
+        birthdate.disabled = true;
+        gender.disabled = true;
+        status.disabled = true;
+        country.disabled = true;
+        // email.disabled = true;
+        orcid.disabled = true;
+        affiliation.disabled = true;
+        position.disabled = true;
+        bio.disabled = true;
     }, 2000);
 });
 

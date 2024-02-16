@@ -57,7 +57,6 @@ include 'dbcon.php';
             updateProductionUnCheckedFiles();
             break;
         default:
-            echo "Invalid action specified.";
     }
 
 
