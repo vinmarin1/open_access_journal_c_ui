@@ -372,6 +372,7 @@ if ($result3 !== false) {
 }
 ?>
 
+
 <?php
 
 $contributorQuery = "SELECT COUNT(*) as contributorCount FROM contributors WHERE orcid = orcid ";

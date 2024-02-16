@@ -402,6 +402,7 @@ include 'function/dashboard_functions.php';
         }]
     };
 
+
     // Create charts
     createLineChart('lineChart1', lineChartData1);
     createLineChart('lineChart2', lineChartData2);
