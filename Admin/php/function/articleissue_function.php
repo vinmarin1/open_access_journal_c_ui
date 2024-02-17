@@ -55,60 +55,6 @@ function sendEmails()
 {
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['checkedArticles'])) {
         $checkedArticles = $_POST['checkedArticles'];
-
-        foreach ($checkedArticles as $articleId) {
-            $reviewerEmails = [];
-            $articleAuthorEmails = [];
-
-            // Get reviewers' and article authors' emails for the current article ID
-            $query = "
-            SELECT 
-                ra.author_id,
-                a.email AS reviewer_email,
-                NULL AS article_author_email
-            FROM 
-                reviewer_assigned ra
-            JOIN 
-                author a ON ra.author_id = a.author_id
-            WHERE 
-                ra.article_id = ?;
-
-            UNION
-
-            SELECT 
-                ar.author_id,
-                NULL AS reviewer_email,
-                a.email AS article_author_email
-            FROM 
-                article ar
-            JOIN 
-                author a ON ar.author_id = a.author_id
-            WHERE 
-                ar.article_id = ?;
-            ";
-
-            $result = execute_query($query, [$articleId, $articleId]);
-
-            if ($result) {
-                while ($row = mysqli_fetch_assoc($result)) {
-                    if ($row['reviewer_email'] !== null) {
-                        $reviewerEmails[$row['author_id']] = $row['reviewer_email'];
-                    }
-                    if ($row['article_author_email'] !== null) {
-                        $articleAuthorEmails[$row['author_id']] = $row['article_author_email'];
-                    }
-                }
-            }
-
-            // Insert points for each author
-            foreach ($reviewerEmails as $authorId => $authorEmail) {
-                addUserPoints($articleId, $authorId, $authorEmail);
-            }
-
-            foreach ($articleAuthorEmails as $authorId => $authorEmail) {
-                addUserPointsAuthor($articleId, $authorId, $authorEmail);
-            }
-
             // Your existing code for sending emails and updating status goes here
             foreach ($checkedArticles as $articleId) {
                 $articleAndContributors = getArticleAndContributors([$articleId]);
@@ -133,7 +79,7 @@ function sendEmails()
                     }
                 }
             }
-        }
+    
 
         echo json_encode(['status' => true, 'message' => 'Emails sent successfully']);
     } else {
@@ -188,7 +134,7 @@ function updateStatus($articleId)
     }
 }
 
-function addUserPoints($article_id, $author_id, $author_email) {
+function addUserPointsReviewer($article_id, $author_id, $author_email) {
     $action_engage = "Reviewed Article Published";
     $points = 3;
 

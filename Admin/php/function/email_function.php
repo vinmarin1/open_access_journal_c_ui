@@ -129,6 +129,7 @@ if (!function_exists('get_email_content')) {
                     echo "<script>alert('Article move to archive successfully.');</script>";
                 } elseif ($id == 8) {
                     addUserPoints($article_id, $author_id, $author_email);
+                    addUserPointsReviewer($article_id);
                     updateArticleStatusPublished($article_id, 1);
                     addLogs($article_id, $fromuser, 'Article Published');
                     echo "<script>alert('Article published successfully.');</script>";
@@ -141,11 +142,51 @@ if (!function_exists('get_email_content')) {
         }
     }   
 
+    function addUserPointsReviewer($article_id){
+
+        $query = "SELECT ra.article_id, a.author_id, a.email
+                  FROM reviewer_assigned ra
+                  JOIN author a ON ra.author_id = a.author_id
+                  WHERE ra.article_id = $article_id AND ra.accept = 1 AND ra.answer = 1";
+        
+        $result = execute_query($query);
+        
+        // Check if $result is an array
+        if (is_array($result)) {
+            // Process the array directly
+            foreach ($result as $row) {
+                $article_id = $row->article_id;
+                $author_id = $row->author_id;
+                $author_email = $row->email;
+        
+                $action_engage = "Reviewed Article Published";
+                $points = 3;
+        
+                $query = "INSERT INTO user_points (user_id, email, action_engage, article_id, point_earned) VALUES (?, ?, ?, ?, ?)";
+                
+                $result_insert = execute_query($query, [$author_id, $author_email, $action_engage, $article_id, $points], true);
+                
+                if ($result_insert !== false) {
+                    echo json_encode(['status' => true, 'message' => 'Points added successfully']);
+                } else {
+                    echo json_encode(['status' => false, 'message' => 'Failed to add points record', 'error']);
+                }
+            }
+        } elseif ($result !== false && mysqli_num_rows($result) > 0) {
+            // Process the result set as before
+            while ($row = mysqli_fetch_assoc($result)) {
+                // Your existing code here
+            }
+        } else {
+            echo json_encode(['status' => true, 'message' => 'No data found']);
+        }
+    }
+
     function addUserPoints($article_id, $author_id, $author_email) {
         $action_engage = "Published an Article";
         $points = 3;
     
-        $query = "INSERT INTO user_points (user_id, email, action_engage, article_id, points_earned) VALUES (?, ?, ?, ?, ?)";
+        $query = "INSERT INTO user_points (user_id, email, action_engage, article_id, point_earned) VALUES (?, ?, ?, ?, ?)";
         
         $result = execute_query($query, [$author_id, $author_email, $action_engage, $article_id, $points], true);
         
