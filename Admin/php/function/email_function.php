@@ -404,8 +404,12 @@ if (!function_exists('get_email_content')) {
             $placeholders[] = $paramName;
         }
     
-        $placeholders = implode(',', $placeholders);
-    
+        if (empty($placeholders)) {
+            $placeholders = 0;
+        } else {
+            $placeholders = implode(',', $placeholders);
+        }        
+        
         $query = "UPDATE article_final_files
                   SET production = :status
                   WHERE final_files_id IN ($placeholders)";
