@@ -106,7 +106,7 @@ function sendEmails()
             }
 
             foreach ($articleAuthorEmails as $authorId => $authorEmail) {
-                addUserPoints($articleId, $authorId, $authorEmail);
+                addUserPointsAuthor($articleId, $authorId, $authorEmail);
             }
 
             // Your existing code for sending emails and updating status goes here
@@ -185,6 +185,38 @@ function updateStatus($articleId)
             $stmt->execute();
         } catch (PDOException $e) {
         }
+    }
+}
+
+function addUserPoints($article_id, $author_id, $author_email) {
+    $action_engage = "Reviewed Article Published";
+    $points = 3;
+
+    $query = "INSERT INTO user_points (user_id, email, action_engage, article_id, points_earned) VALUES (?, ?, ?, ?, ?)";
+    
+    $result = execute_query($query, [$author_id, $author_email, $action_engage, $article_id, $points], true);
+    
+    if ($result !== false) {
+        echo json_encode(['status' => true, 'message' => 'Points added successfully']);
+    } else {
+
+        echo json_encode(['status' => false, 'message' => 'Failed to add points record', 'error']);
+    }
+}
+
+function addUserPointsAuthor($article_id, $author_id, $author_email) {
+    $action_engage = "Published an Article";
+    $points = 3;
+
+    $query = "INSERT INTO user_points (user_id, email, action_engage, article_id, points_earned) VALUES (?, ?, ?, ?, ?)";
+    
+    $result = execute_query($query, [$author_id, $author_email, $action_engage, $article_id, $points], true);
+    
+    if ($result !== false) {
+        echo json_encode(['status' => true, 'message' => 'Points added successfully']);
+    } else {
+
+        echo json_encode(['status' => false, 'message' => 'Failed to add points record', 'error']);
     }
 }
 ?>
