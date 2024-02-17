@@ -396,8 +396,8 @@ $copyedited_files = get_copyedited_files($aid);
         var hiddenEmail = $('#hiddenEmail').val();
         var subject = $('#subject').val();
         var article_id = $('#article_id').val();
-        var author_id = <?php echo json_encode ($article_data[0]->author_id); ?>
-        var author_email = <?php echo json_encode ($author_details[0]->email); ?>
+        var author_id = <?php echo json_encode ($article_data[0]->author_id); ?>;
+        var author_email = <?php echo json_encode ($author_details[0]->email); ?>;
         var id = $('#id').val();
         var title = <?php echo json_encode($article_data[0]->title); ?>;
 
