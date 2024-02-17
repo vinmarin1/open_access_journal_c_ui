@@ -81,6 +81,8 @@ if (!function_exists('get_email_content')) {
             $round = $_POST['round'];
             $fromuser = $_POST['fromuser'];
             $article_id = $_POST['article_id'];
+            $author_id = $_POST['author_id'];
+            $author_email = $_POST['author_email'];
             $issues_id = $_POST['issues_id'];
             $articleFilesId = $_POST['checkedData'];
             // $articleFilesId1 = $_POST['checkedData1'];
@@ -126,6 +128,7 @@ if (!function_exists('get_email_content')) {
                     addLogs($article_id, $fromuser, 'Article move to Archive');
                     echo "<script>alert('Article move to archive successfully.');</script>";
                 } elseif ($id == 8) {
+                    addUserPoints($article_id, $author_id, $author_email);
                     updateArticleStatusPublished($article_id, 1);
                     addLogs($article_id, $fromuser, 'Article Published');
                     echo "<script>alert('Article published successfully.');</script>";
@@ -137,6 +140,22 @@ if (!function_exists('get_email_content')) {
             echo 'Mailer Error: ' . $mail->ErrorInfo;
         }
     }   
+
+    function addUserPoints($article_id, $author_id, $author_email) {
+        $action_engage = "Published an Article";
+        $points = 3;
+    
+        $query = "INSERT INTO user_points (user_id, email, action_engage, article_id, points_earned) VALUES (?, ?, ?, ?, ?)";
+        
+        $result = execute_query($query, [$author_id, $author_email, $action_engage, $article_id, $points], true);
+        
+        if ($result !== false) {
+            echo json_encode(['status' => true, 'message' => 'Points added successfully']);
+        } else {
+
+            echo json_encode(['status' => false, 'message' => 'Failed to add points record', 'error']);
+        }
+    }
     
     function updateArticleStatusArchive($article_id, $status) {
         $query = "UPDATE article 
@@ -335,7 +354,11 @@ if (!function_exists('get_email_content')) {
             $placeholders[] = $paramName;
         }
     
-        $placeholders = implode(',', $placeholders);
+        if (empty($placeholders)) {
+            $placeholders = 0;
+        } else {
+            $placeholders = implode(',', $placeholders);
+        }        
     
         $query = "UPDATE article_revision_files
                   SET copyediting = :status
