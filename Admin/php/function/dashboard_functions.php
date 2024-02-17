@@ -46,7 +46,7 @@ include 'dbcon.php';
 
 <?php
                 // Fetch total logs from the database where issues_id = 5
-                $query = "SELECT COUNT(*) as totalOngoingarticles FROM article_final WHERE status_id = 5";
+                $query = "SELECT COUNT(*) as totalOngoingarticles FROM article WHERE status = 5";
                 $result = execute_query($query);
 
                 // Check if the query was successful
@@ -216,9 +216,9 @@ if ($result !== false) {
 <?php
 // Fetch data from the database for published and not published articles
 $query = "SELECT 
-            COUNT(CASE WHEN status_id = 1 THEN 1 END) AS published_count,
-            COUNT(CASE WHEN status_id = 6 THEN 1 END) AS not_published_count
-          FROM article_final";
+            COUNT(CASE WHEN status = 1 THEN 1 END) AS published_count,
+            COUNT(CASE WHEN status = 6 THEN 1 END) AS not_published_count
+          FROM article";
 
 $result = execute_query($query);
 
@@ -235,17 +235,16 @@ if ($result !== false) {
 
 
 <?php
-// Assuming you have a database connection and a function execute_query for executing SQL queries
+$currentYear = date("Y"); // Get the current year
 
-// Fetch data from the database for each quarter and journal
 $query = "SELECT 
             journal_id,
-            COUNT(CASE WHEN MONTH(publication_date) BETWEEN 1 AND 3 THEN 1 END) AS q1_count,
-            COUNT(CASE WHEN MONTH(publication_date) BETWEEN 4 AND 6 THEN 1 END) AS q2_count,
-            COUNT(CASE WHEN MONTH(publication_date) BETWEEN 7 AND 9 THEN 1 END) AS q3_count,
-            COUNT(CASE WHEN MONTH(publication_date) BETWEEN 10 AND 12 THEN 1 END) AS q4_count
-          FROM article_final
-          WHERE journal_id IN (1, 2, 3)
+            COUNT(CASE WHEN MONTH(publication_date) BETWEEN 1 AND 3 AND YEAR(publication_date) = $currentYear AND status = 1 THEN 1 END) AS q1_count,
+            COUNT(CASE WHEN MONTH(publication_date) BETWEEN 4 AND 6 AND YEAR(publication_date) = $currentYear AND status = 1 THEN 1 END) AS q2_count,
+            COUNT(CASE WHEN MONTH(publication_date) BETWEEN 7 AND 9 AND YEAR(publication_date) = $currentYear AND status = 1 THEN 1 END) AS q3_count,
+            COUNT(CASE WHEN MONTH(publication_date) BETWEEN 10 AND 12 AND YEAR(publication_date) = $currentYear AND status = 1 THEN 1 END) AS q4_count
+          FROM article
+          WHERE journal_id IN (1, 2, 3) AND status = 1
           GROUP BY journal_id";
 
 $result = execute_query($query);
@@ -371,6 +370,7 @@ if ($result3 !== false) {
     echo "<script>console.error('Error fetching data from the database.');</script>";
 }
 ?>
+
 
 <?php
 

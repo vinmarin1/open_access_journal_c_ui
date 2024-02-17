@@ -108,8 +108,18 @@ function renderArticleDetails(data) {
           <div class="abstract col-sm-7">
               <h4>Abstract</h4>
               <button class="btn btn-md" id="read-btn">Read Full Article</button>
-              <button class="btn tbn-primary btn-md" id="download-btn">Download PDF</button>
-              <button class="btn tbn-primary btn-md" id="epub-btn">Download EPUB</button>
+              <button class="btn tbn-primary btn-md" id="download-btn">Download PDF <span class="d-none" id="downloadLoading"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+              <path fill="none" stroke="#0880E8" stroke-dasharray="15" stroke-dashoffset="15" stroke-linecap="round" stroke-width="2" d="M12 3C16.9706 3 21 7.02944 21 12">
+                <animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0" />
+                <animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12" />
+              </path>
+            </svg></span></button>
+              <button class="btn tbn-primary btn-md" id="epub-btn">Download EPUB <span class="d-none" id="epubLoading"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+              <path fill="none" stroke="#0880E8" stroke-dasharray="15" stroke-dashoffset="15" stroke-linecap="round" stroke-width="2" d="M12 3C16.9706 3 21 7.02944 21 12">
+                <animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0" />
+                <animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12" />
+              </path>
+            </svg></span></button>
               <p>${item.abstract}</p>
           </div>
           
@@ -281,17 +291,58 @@ function renderArticleDetails(data) {
     });
 
     }
+  
     if (downloadBtn) {
       downloadBtn.addEventListener("click", () => {
-        handleDownloadLog(item.article_id,"download");
-        createCloudConvertJob(item.file_name, "pdf");
+        try{
+          let fileExtension = item.file_name.split('.').pop();
+          if (fileExtension === "docx") {
+            createCloudConvertJob(item.file_name,"docx", "pdf");
+          }else if (fileExtension === "pdf") {
+            let fileUrl = `https://qcuj.online/Files/final-file/${encodeURIComponent(item.file_name)}`;
+            let link = document.createElement("a");
+            link.setAttribute("href", fileUrl);
+            link.setAttribute("download", "");
+            link.style.display = "none";
+            
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+          }else{
+            createCloudConvertJob(item.file_name, fileExtension, "pdf")
+          }
+          handleDownloadLog(item.article_id, "download");
+          Swal.fire({
+            html: '<h4 style="color: #0858a4; font-family: font-family: Arial, Helvetica, sans-serif">Successfully downloaded.</h4>',
+            icon: 'success',
+          })
+        }catch(error){
+          Swal.fire({
+            html: '<h4 style="color: #0858a4; font-family: font-family: Arial, Helvetica, sans-serif">Failed to download. No file available</h4>',
+            icon: 'warning',
+          })
+        }
+
        
-      });
+        
+    });
     }
     if (epubBtn) {
       epubBtn.addEventListener("click", () => {
-        handleDownloadLog(item.article_id,"download");
-        createCloudConvertJob(item.file_name, "epub");
+        try{
+          Swal.fire({
+            html: '<h4 style="color: #0858a4; font-family: font-family: Arial, Helvetica, sans-serif">Successfully downloaded.</h4>',
+            icon: 'success',
+          })
+          var fileExtension = item.file_name.split('.').pop();
+          createCloudConvertJob(item.file_name, fileExtension, "epub")
+          handleDownloadLog(item.article_id,"download");
+        }catch(error){
+          Swal.fire({
+            html: '<h4 style="color: #0858a4; font-family: font-family: Arial, Helvetica, sans-serif">Failed to download. No article file available.</h4>',
+            icon: 'warning',
+          })
+        }
       });
     }
     if (citeBtn) {
