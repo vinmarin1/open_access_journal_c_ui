@@ -1,12 +1,149 @@
-#navbar-container{
+/* Navbar container */
+#navbar-container {
+  background-color: #004e98;
+}
+
+/* Navbar links */
+#navbarSupportedContent a {
+  color: white;
+  text-decoration: none;
+}
+
+/* #navbarSupportedContent a:hover {
+  background-color: #ff6700; 
+} */
+
+/* Navbar toggler button */
+.navbar-toggler {
+  background-color: white;
+}
+
+/* Notification button */
+#notification-button,
+#points-button {
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  position: relative;
+  border: none;
+  background: none;
+  color: white;
+}
+
+/* Notification count badge */
+#notification-count,
+#points-count {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 5px;
+  font-size: 12px;
+}
+
+/* Notification box */
+#notification-box,
+#points-box {
+  display: none;
+  background-color: white;
+  color: black;
+  padding: 15px;
+  border: 1px solid #0858A4;
+  border-radius: 5px;
+  margin-top: 10px;
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+}
+
+/* Notification items */
+#notification-items-container ul,
+#notification-items-container ul li {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+#notification-items-container ul li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+#notification-items-container ul li:hover {
+  background-color: #EAEDED;
+}
+
+/* Points container */
+#points-container {
+  position: relative;
+}
+
+/* Submenu */
+.submenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #004e98;
+  padding: 10px;
+  display: none;
+}
+
+.submenu a {
+  display: block;
+  color: white;
+  padding: 8px;
+  text-decoration: none;
+}
+
+.submenu a:hover {
+  background-color: #ff6700; /* Highlight on hover */
+}
+.nav-link {
+  width:100%;
+  display:flex;
+}
+#navbar-container .nav-item {
+  display:flex;
+  padding: 0.5em;
+}
+
+nav .navbar-nav .nav-item:hover {
+  background-color: #ff6700;
+}
+.profile{
+  color: white;
+}
+#navbarSupportedContent{
+  padding-left: 50px;
+}
+
+@media (max-width: 768px) {
+  #navbarSupportedContent {
+    padding-left: 0;
+  }
+  #navbarSupportedContent a {
+    padding: 1rem;
+  }
+  #navbar-container .nav-item {
+    display: block;
+    padding: 0%;
+    margin-left: block;
+  }
+}
+/* #navbar-container{
     background-color: #004e98;
-    /* margin-top: 4px; */
+    
 
 }
 
 #navbarSupportedContent a{
     color: white;
-    /* margin-right: 20px; */
+    
 }
 
 #navbarSupportedContent{
@@ -61,8 +198,8 @@
   top: 100%;
   left: 50%;
   transform: translateX(-50%);
-  width: 200px; /* Increased width */
-  max-height: 400px; /* Maximum height to enable scrolling if content exceeds */
+  width: 200px; 
+  max-height: 400px; 
   overflow-y: auto;
 }
 
@@ -213,7 +350,7 @@ nav .navbar-nav .nav-item:hover {
   left: 102%;
   margin-top: -1px;
   display: none;
-}
+} */
 
 
 

@@ -19,7 +19,6 @@ require 'dbcon.php';
 <body>
 <nav class="navbar navbar-expand-lg p-0" id="navbar-container" >
   <div class="container-fluid p-0">
-
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="background-color: white;">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -58,9 +57,9 @@ require 'dbcon.php';
             <a class="nav-link" href="donation.php">Donation</a>
         </li>
       </ul>
-      <form class="d-flex" role="search">
+      <!-- <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-      </form>
+      </form> -->
 
       <?php
           
@@ -73,7 +72,7 @@ require 'dbcon.php';
                 <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Log-in
                 </a>
-                <ul class="dropdown-menu" style="margin-left: -50px; width: 100px">
+                <ul class="dropdown-menu" id="login-register" style="margin-left: -50px; width: 100px">
                 <li><a class="dropdown-item" style="color: black" href="login.php" >Log-in</a></li>
                 <li><a class="dropdown-item" style="color: black" href="signup.php">Register</a></li>
                 </ul>
