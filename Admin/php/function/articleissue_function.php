@@ -57,24 +57,79 @@ function sendEmails()
         $checkedArticles = $_POST['checkedArticles'];
 
         foreach ($checkedArticles as $articleId) {
-            $articleAndContributors = getArticleAndContributors([$articleId]);
+            $reviewerEmails = [];
+            $articleAuthorEmails = [];
 
-            if (is_array($articleAndContributors)) {
-                foreach ($articleAndContributors as $contributor) {
-                    $recipient = $contributor['email'];
+            // Get reviewers' and article authors' emails for the current article ID
+            $query = "
+            SELECT 
+                ra.author_id,
+                a.email AS reviewer_email,
+                NULL AS article_author_email
+            FROM 
+                reviewer_assigned ra
+            JOIN 
+                author a ON ra.author_id = a.author_id
+            WHERE 
+                ra.article_id = ?;
 
-                    if (empty($recipient) || !filter_var($recipient, FILTER_VALIDATE_EMAIL)) {
-                        $recipient = 'qcujournal@gmail.com';
+            UNION
+
+            SELECT 
+                ar.author_id,
+                NULL AS reviewer_email,
+                a.email AS article_author_email
+            FROM 
+                article ar
+            JOIN 
+                author a ON ar.author_id = a.author_id
+            WHERE 
+                ar.article_id = ?;
+            ";
+
+            $result = execute_query($query, [$articleId, $articleId]);
+
+            if ($result) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                    if ($row['reviewer_email'] !== null) {
+                        $reviewerEmails[$row['author_id']] = $row['reviewer_email'];
                     }
+                    if ($row['article_author_email'] !== null) {
+                        $articleAuthorEmails[$row['author_id']] = $row['article_author_email'];
+                    }
+                }
+            }
 
-                    $articleTitle = $contributor['title'];
+            // Insert points for each author
+            foreach ($reviewerEmails as $authorId => $authorEmail) {
+                addUserPoints($articleId, $authorId, $authorEmail);
+            }
 
-                    $emailContent = "Dear authors,<br><br>We have reached a decision regarding your submission to $articleTitle.<br><br>Decision: Article Published<br><br><br>Submission URL: [Your Submission URL]<br><br>";
+            foreach ($articleAuthorEmails as $authorId => $authorEmail) {
+                addUserPoints($articleId, $authorId, $authorEmail);
+            }
 
-                    $sendEmailResult = sendEmail($recipient, $articleTitle, $emailContent);
+            // Your existing code for sending emails and updating status goes here
+            foreach ($checkedArticles as $articleId) {
+                $articleAndContributors = getArticleAndContributors([$articleId]);
 
-                    if ($sendEmailResult) {
-                        updateStatus($articleId);
+                if (is_array($articleAndContributors)) {
+                    foreach ($articleAndContributors as $contributor) {
+                        $recipient = $contributor['email'];
+
+                        if (empty($recipient) || !filter_var($recipient, FILTER_VALIDATE_EMAIL)) {
+                            $recipient = 'qcujournal@gmail.com';
+                        }
+
+                        $articleTitle = $contributor['title'];
+
+                        $emailContent = "Dear authors,<br><br>We have reached a decision regarding your submission to $articleTitle.<br><br>Decision: Article Published<br><br><br>Submission URL: [Your Submission URL]<br><br>";
+
+                        $sendEmailResult = sendEmail($recipient, $articleTitle, $emailContent);
+
+                        if ($sendEmailResult) {
+                            updateStatus($articleId);
+                        }
                     }
                 }
             }

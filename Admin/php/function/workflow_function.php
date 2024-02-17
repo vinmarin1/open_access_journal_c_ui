@@ -434,5 +434,29 @@ if (!function_exists('get_article_logs')) {
     }
 }
 
+if (!function_exists('getauthordetails')) {
+    function getauthordetails($author_id) {
+        $pdo = connect_to_database();
+
+        if ($pdo) {
+            try {
+                $query = "SELECT * FROM author WHERE author_id = :author_id";
+                $stmt = $pdo->prepare($query);
+                $stmt->bindParam(':author_id', $author_id, PDO::PARAM_INT);
+                $stmt->execute();
+
+                $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+                return $result;
+            } catch (PDOException $e) {
+                echo "Error: " . $e->getMessage();
+                return false;
+            }
+        }
+
+        return false;
+    }
+}
+
 
 
