@@ -23,6 +23,9 @@ $reviewer_email = get_reviewer_content($emc);
 $article_contributors = get_article_contributor($aid);
 $article_reviewer = get_article_reviewer($aid);
 $article_reviewer_check = check_article_reviewer($aid);
+$article_reviewer_accept = check_reviewer_accept($aid);
+$article_reviewer_notcomplete = check_reviewer_notcomplete($aid);
+$article_reviewer_ongoing = check_reviewer_ongoing($aid);
 $reviewer_details = get_reviewer_details();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -1125,16 +1128,55 @@ table {
                                                     break;
                                                 }
                                             }
+
+                                            $totalAcceptCount = 0;
+                                            foreach ($article_reviewer_accept as $reviewertotalaccept) {
+                                                if ($reviewertotalaccept->author_id == $userlistval->author_id) {
+                                                    $totalAcceptCount++;
+                                                }
+                                            }
+
+                                            $totalDeclineCount = 0;
+                                            foreach ($article_reviewer_notcomplete as $reviewertotalnotcomplete) {
+                                                if ($reviewertotalnotcomplete->author_id == $userlistval->author_id) {
+                                                    $totalDeclineCount++;
+                                                }
+                                            }
+
+                                            $totalOngoingCount = 0;
+                                            foreach ($article_reviewer_ongoing as $reviewertotalongoing) {
+                                                if ($reviewertotalongoing->author_id == $userlistval->author_id) {
+                                                    $totalOngoingCount++;
+                                                }
+                                            }
                                             ?>
                                             <?php if (!$hideRow): ?>
                                                 <tr>
-                                                <td width="5%">
-                                                        <a href="javascript:void(0);" onclick="openPageCentered('../../PHP/reviewerdashboard.php?author_id=<?php echo $userlistval->author_id; ?>')">
-                                                            <?php echo $userlistval->author_id; ?>
-                                                        </a>
+                                                    <td width="0%">
                                                     </td>
-                                                    <td width="80%"><?php echo $userlistval->last_name; ?>, <?php echo $userlistval->first_name; ?></td>
-                                                    <td width="15%"><button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 160px;" onclick="selectReviewer(<?php echo $userlistval->author_id; ?>, '<?php echo $userlistval->first_name; ?>', '<?php echo $userlistval->last_name; ?>', '<?php echo $userlistval->email_verified; ?>')" data-bs-toggle="modal">Select Reviewer</button></td>
+                                                    <td width="85%">
+                                                        <a href="javascript:void(0);" onclick="openPageCentered('../../PHP/reviewerdashboard.php?author_id=<?php echo $userlistval->author_id; ?>')">
+                                                            <?php echo $userlistval->author_id . '-'; ?>
+                                                            <?php echo $userlistval->last_name . ', '; ?> 
+                                                            <?php echo $userlistval->first_name . ' '; ?> 
+                                                        </a>
+                                                        <div id="details_<?php echo $userlistval->author_id; ?>" style="display: none;">
+                                                            <br>
+                                                            <?php echo 'Expertise: ' . $userlistval->field_of_expertise; ?> 
+                                                            <br>
+                                                            <?php echo 'Role: ' . $userlistval->role; ?> 
+                                                            <br>
+                                                            <?php echo "Reviews completed: " . $totalAcceptCount; ?> 
+                                                            <br>
+                                                            <?php echo "Reviews ongoing: " . $totalOngoingCount; ?> 
+                                                            <br>
+                                                            <?php echo "Reviews not completed: " . $totalDeclineCount; ?> 
+                                                        </div>
+                                                    </td>
+                                                    <td width="15%">
+                                                        <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 160px;" onclick="selectReviewer(<?php echo $userlistval->author_id; ?>, '<?php echo $userlistval->first_name; ?>', '<?php echo $userlistval->last_name; ?>', '<?php echo $userlistval->email_verified; ?>')" data-bs-toggle="modal">Select Reviewer</button>
+                                                        <button type="button" class="btn btn-outline-dark" style="width: 20px;" onclick="toggleDetails('details_<?php echo $userlistval->author_id; ?>')">!</button>
+                                                    </td>
                                                 </tr>
                                             <?php endif; ?>
                                         <?php endforeach; ?>
@@ -1202,6 +1244,15 @@ table {
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
 
     <script>
+        function toggleDetails(detailsId) {
+            var details = document.getElementById(detailsId);
+            if (details.style.display === "none") {
+                details.style.display = "block";
+            } else {
+                details.style.display = "none";
+            }
+        }
+
         document.addEventListener("DOMContentLoaded", function () {
 
             const urlHash = window.location.hash;
