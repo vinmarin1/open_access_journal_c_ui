@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php include('./meta.php'); ?>
     <title>QCU TIMES | RECOVER ACCOUNT</title>
     <link rel="stylesheet" href="../CSS/recover_account.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+    <?php require 'header.php' ?>
 <form id="form">
         <p class="h3" id="step1Label">Recover Account</p>
         <p class="h5 mb-5" style="text-align: center; display: none" id="step2Label">We've sent OTP code to this E-mail <br>

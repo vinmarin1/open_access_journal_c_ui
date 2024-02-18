@@ -5,8 +5,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php include('./meta.php'); ?>
     <title>QCU PUBLICATION | QCU JOURNALS</title>
     <link rel="stylesheet" href="../CSS/all-issues.css">
     <link rel="stylesheet" href="../CSS/index.css">
@@ -39,7 +38,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     <img class="img-fluid"  alt="">
                 </div>
                 <div class="issue-details">
-                    <h4 style="color:#285581">Published in <span id="issue-journal"></span></h4><br>
+                    <h4 style="color:#285581">Published in <h4 id="issue-journal"></h4></h4><br>
                     <p><strong style="color:#285581">ISSN (Online):</strong><br> <span id="issue-issn"></span> (Online)</p><br>
                     <p><strong style="color:#285581">Online Date Start:</strong><br> <span id="issue-date"></span></p><br>
                 </div>
@@ -70,9 +69,9 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     </div>
                     <nav aria-label="Page navigation d-flex justify-items-center align-items-center w-100">
                     <ul class="pagination">
-                        <li class="page-item border p-2 rounded" id="previous-page">Previous</li>
-                        <li class="page-item px-4 py-2">1</li>
-                        <li class="page-item border p-2 rounded" id="next-page">Next</li>
+                        <button class="page-item border bg-white border-primary py-2 px-4 link-primary rounded hover:opacity-80" id="previous-page">Previous</button>
+                        <li class="page-item px-4 py-2" id="current-page">1</li>
+                        <button class="page-item border bg-white border-primary py-2 px-4 rounded link-primary hover:opacity-80" id="next-page">Next</button>
                     </ul>
 
                     </nav>

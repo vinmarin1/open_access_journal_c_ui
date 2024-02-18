@@ -9,6 +9,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Welcome to QCU Journals, where you can find the latest articles, and updates on various topics. Explore our diverse collection now!">
+  <meta name="keywords" content="QCU Publication, Open access Journal, QCUJ">
+  <link rel="icon" type="image/png" href="../images/qcu-logo.webp">
   <title>QCU PUBLICATION | HOME</title>
   <link rel="stylesheet" href="../CSS/home.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -94,7 +97,7 @@
         <div class="ab-qoaj-left d-flex flex-column align-items-center align-items-sm-start gap-1">
           <h4 class="mb-3">About QCUJ</h2>
             <p class="description">Say goodbye to research submission struggles! Open Access Journal System for QCU (OAJS QCU) is your new best friend, making sharing your work simple and quick. Think of it as a smooth online portal where you can easily submit your research for expert review. </p>
-            <p class="description">Quezon City University (QCU), recognized by the Commission on Higher Education (CHED), holds dear the values of cultivating a vibrant research culture and disseminating new knowledge for the betterment of society. Understanding that the impact of research hinges on its accessibility and publication, QCU has established the QCU Journals as a platform for its researchers to share their valuable findings and contributions.</p>
+            <p class="description"><a href="https://qcu.edu.ph/" class="text-white">Quezon City University (QCU)</a>, recognized by the Commission on Higher Education (CHED), holds dear the values of cultivating a vibrant research culture and disseminating new knowledge for the betterment of society. Understanding that the impact of research hinges on its accessibility and publication, QCU has established the QCU Journals as a platform for its researchers to share their valuable findings and contributions.</p>
             <p class="description">This website is powered by an artificial intelligence and machine learning to improve the user experience. All articles are freely available to download and read, without any paywalls or restrictions.</p>
 
             <br>
@@ -332,7 +335,7 @@
             <h4>Check Paper Status</h4>
           </div>
         </a>
-        <a href="guidelines.php" class="quick-link">
+        <a href="./guidelines.php#author-guidelines" class="quick-link">
           <div class="icon">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M1 6.5A3.5 3.5 0 0 1 4.5 3h4a3.5 3.5 0 0 1 3.469 3.031a3.537 3.537 0 0 1-.122 1.499A3.502 3.502 0 0 1 8.5 10h-.75a.75.75 0 0 1 0-1.5h.75a2 2 0 1 0 0-4h-4a2 2 0 0 0-1.262 3.552a4.494 4.494 0 0 0-.235 1.613A3.5 3.5 0 0 1 1 6.5m8 .25a.75.75 0 0 1-.75.75H7.5a2 2 0 1 0 0 4h4a2 2 0 0 0 1.263-3.551a4.495 4.495 0 0 0 .235-1.613A3.5 3.5 0 0 1 11.5 13h-4a3.5 3.5 0 1 1 0-7h.75a.75.75 0 0 1 .75.75"/></svg>
           </div>
@@ -340,7 +343,7 @@
             <h4>Publication Guidelines</h4>
           </div>
         </a>
-        <a href="#" class="quick-link">
+        <a href="./guidelines.php#become-reviewer" class="quick-link">
           <div class="icon">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M1 6.5A3.5 3.5 0 0 1 4.5 3h4a3.5 3.5 0 0 1 3.469 3.031a3.537 3.537 0 0 1-.122 1.499A3.502 3.502 0 0 1 8.5 10h-.75a.75.75 0 0 1 0-1.5h.75a2 2 0 1 0 0-4h-4a2 2 0 0 0-1.262 3.552a4.494 4.494 0 0 0-.235 1.613A3.5 3.5 0 0 1 1 6.5m8 .25a.75.75 0 0 1-.75.75H7.5a2 2 0 1 0 0 4h4a2 2 0 0 0 1.263-3.551a4.495 4.495 0 0 0 .235-1.613A3.5 3.5 0 0 1 11.5 13h-4a3.5 3.5 0 1 1 0-7h.75a.75.75 0 0 1 .75.75"/></svg>
           </div>
@@ -348,7 +351,7 @@
             <h4>Reviewer Guidelines</h4>
           </div>
         </a>
-        <a href="#" class="quick-link">
+        <a href="./guidelines.php#templates-for-author" class="quick-link">
           <div class="icon">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" d="M1 6.5A3.5 3.5 0 0 1 4.5 3h4a3.5 3.5 0 0 1 3.469 3.031a3.537 3.537 0 0 1-.122 1.499A3.502 3.502 0 0 1 8.5 10h-.75a.75.75 0 0 1 0-1.5h.75a2 2 0 1 0 0-4h-4a2 2 0 0 0-1.262 3.552a4.494 4.494 0 0 0-.235 1.613A3.5 3.5 0 0 1 1 6.5m8 .25a.75.75 0 0 1-.75.75H7.5a2 2 0 1 0 0 4h4a2 2 0 0 0 1.263-3.551a4.495 4.495 0 0 0 .235-1.613A3.5 3.5 0 0 1 11.5 13h-4a3.5 3.5 0 1 1 0-7h.75a.75.75 0 0 1 .75.75"/></svg>
           </div>
