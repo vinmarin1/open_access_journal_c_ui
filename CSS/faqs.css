@@ -2,14 +2,13 @@
 main {
     padding: 0.5em 8%;
 }
-aside, .main {
+.main {
+    flex: 4;
     padding: 2%;
 }
 aside {
     flex: 1;
-}
-.main {
-    flex: 4;
+    padding-top: 2%;
 }
 
 .menu li {
@@ -72,6 +71,7 @@ aside {
     font-family: Judson;
     font-size: 16px;
     font-weight: 600;
+    margin-bottom: 1em;
 
 }
 
@@ -80,6 +80,7 @@ aside {
     font-family: Judson;
     font-weight: 400; 
     list-style: none;
+    margin-bottom: 10px;
 }
 #for-contributors-menu ul {
     padding: 0 ;
@@ -174,7 +175,39 @@ aside {
     min-height: 50px;
 }
 
-#become-reviewer-container .header{
+#become-a-reviewer-container .header{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+    min-height: 50px;
+}
+
+#tutorial-on-publication-container .header{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+    min-height: 50px;
+}
+
+#tutorial-on-review-container .header{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+    min-height: 50px;
+}
+
+#templates-for-author-container .header{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+    min-height: 50px;
+}
+
+#publication-policy-container .header{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -185,7 +218,11 @@ aside {
 #author-guidelines-container h2,
 #article-submission-container h2,
 #peer-review-container h2,
-#become-reviewer-container h2 { 
+#become-a-reviewer-container h2,
+#tutorial-on-publication-container h2,
+#tutorial-on-review-container h2,
+#templates-for-author-container h2,
+#publication-policy-container h2 { 
     color: #285581;
     font-size: 24px;
     font-weight: 600; 
@@ -194,14 +231,20 @@ aside {
 #author-guidelines-container h3,
 #author-guidelines-container h4,
 #article-submission-container h3,
-#peer-review-container h3 {
+#peer-review-container h3,
+#tutorial-on-publication-container h3, 
+#templates-for-author-container h3,
+#publication-policy-container h3{
     color: #285581;
     font-family: Inter !important;
 }
 
 #author-guidelines-container h3,
 #article-submission-container h3,
-#peer-review-container h3 {
+#peer-review-container h3,
+#tutorial-on-publication-container h3,
+#templates-for-author-container h3,
+#publication-policy-container h3 {
     text-transform: uppercase;
     font-size: 16px;
     font-weight: 700;
@@ -211,7 +254,11 @@ aside {
 #author-guidelines-container,
 #article-submission-container,
 #peer-review-container,
-#become-reviewer-container {
+#become-a-reviewer-container,
+#tutorial-on-publication-container,
+#tutorial-on-review-container,
+#templates-for-author-container,
+#publication-policy-container {
     font-family: Inter;
     font-size: 14px; 
     font-weight: 400 !important;
@@ -222,13 +269,20 @@ aside {
     margin-bottom: 2em;
 }
 
-#author-guidelines-container h4 {
-    font-size: 14px;
-    font-weight: 600;
+.s-2 p {
+    margin-bottom: 0.5rem;
 }
 
-.s-2 p {
-    margin-bottom: 1.5em;
+#author-guidelines-container h4,
+#templates-for-author-container h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #285581;
+    font-family: Inter !important;
+}
+
+#templates-for-author-container h4 {
+    margin-bottom: 0.5rem;
 }
 
 table {
@@ -243,5 +297,37 @@ table th, table td {
     padding-right: 20px;
 }
 
+.img-reg {
+    height: auto;
+    width: 100%;
 
+}
 
+.img-sub {
+    height: auto;
+    width: 90%;
+    margin-top: 1em;
+
+}
+
+#templates-for-author-container .s-1 p {
+    margin-bottom: 1.5rem;
+}
+
+#btn1, #btn2 {
+    margin-bottom: 1.5rem;
+    font-size: 12px;
+    background-color: transparent;
+    border-radius: 20px;
+    color: #0858a4;
+    border: 2px#0858a4 solid;
+}
+
+#btn1{
+    margin-right: 5px;
+    
+  }
+  
+#btn2{
+    width: 4rem;
+  }
