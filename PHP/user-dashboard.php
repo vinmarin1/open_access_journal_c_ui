@@ -678,7 +678,7 @@ $expertise = $_SESSION['expertise'];
 											FROM user_points
 											JOIN reviewer_assigned ON user_points.user_id = reviewer_assigned.author_id
 											JOIN article ON reviewer_assigned.article_id = article.article_id
-											WHERE article.status = 4 AND reviewer_assigned.accept = 1 AND reviewer_assigned.answer = 1 AND user_points.action_engage = 'Reviewed an Article' AND user_points.user_id = :author_id)
+											WHERE reviewer_assigned.accept = 1 AND reviewer_assigned.answer = 1 AND user_points.action_engage = 'Reviewed an Article' AND user_points.user_id = :author_id)
 											
 											ORDER BY date DESC
 										";
