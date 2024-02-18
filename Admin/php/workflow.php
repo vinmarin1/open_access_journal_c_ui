@@ -229,7 +229,7 @@ table {
                                                             </div>
                                                         </div>  
                                                         <div class="col-md-3 mt-4" id="dynamic-column">
-                                                            <div class="table-responsive text-nowrap">
+                                                            <!-- <div class="table-responsive text-nowrap">
                                                                 <table class="table table-striped" id="DataTable">
                                                                     <thead>
                                                                         <tr>
@@ -258,7 +258,7 @@ table {
                                                                         <th colspan="3" style="text-align: right;"></th>
                                                                     </tfoot> 
                                                                 </table>
-                                                            </div>
+                                                            </div> -->
                                                         </div>
                                                     </div>
                                                 </div>
@@ -377,7 +377,7 @@ table {
                                                             </div>
                                                         </div>  
                                                         <div class="col-md-3 mt-4" id="dynamic-column">
-                                                            <div class="table-responsive text-nowrap">
+                                                            <!-- <div class="table-responsive text-nowrap">
                                                                 <table class="table table-striped" id="DataTable">
                                                                     <thead>
                                                                         <tr>
@@ -406,7 +406,7 @@ table {
                                                                         <th colspan="3" style="text-align: right;"></th>
                                                                     </tfoot> 
                                                                 </table>
-                                                            </div>
+                                                            </div> -->
                                                         </div> 
 
                                                         <div class="col-md-12 mt-4" id="dynamic-column">
@@ -701,7 +701,7 @@ table {
                                                             </div>
                                                         </div>  
                                                         <div class="col-md-3 mt-4" id="dynamic-column">
-                                                            <div class="table-responsive text-nowrap">
+                                                            <!-- <div class="table-responsive text-nowrap">
                                                                 <table class="table table-striped" id="DataTable">
                                                                     <thead>
                                                                         <tr>
@@ -730,7 +730,7 @@ table {
                                                                         <th colspan="3" style="text-align: right;"></th>
                                                                     </tfoot> 
                                                                 </table>
-                                                            </div>
+                                                            </div> -->
                                                         </div> 
                                                         <div class="col-md-12 mt-4" id="dynamic-column">
                                                             <div class="table-responsive text-nowrap">
@@ -872,13 +872,13 @@ table {
                                                         <div class="col-md-3 mt-4 mt-lg-0" id="dynamic-column">
                                                             <?php if ($article_data[0]->status == 11): ?>
                                                                 <div class="alert alert-white" role="alert">
-                                                                    <p>Submission accepted for copyediting.</p>
+                                                                    <p>Submission accepted for scheduled.</p>
                                                                 </div>
-                                                            <?php elseif ($article_data[0]->status <= 1 && $article_data[0]->status == 11): ?>
+                                                            <?php elseif ($article_data[0]->status = 1): ?>
                                                                 <div class="alert alert-white" role="alert">
                                                                     <p>Submission published.</p>
                                                                 </div>
-                                                            <?php else: ?>
+                                                            <?php elseif ($article_data[0]->status >= 2): ?>
                                                                 <a href="javascript:void(0);" onclick="" class="btn btn-primary btn-lg btn-block mb-2" style="width: 100%;" data-bs-toggle="modal" data-bs-target="#addIssueModal">Send to Publication</a>
                                                                 <!-- <a href="javascript:void(0);" onclick="" class="btn btn-outline-danger btn-lg btn-block" style="width: 100%;">Cancel Production</a> -->
                                                             <?php endif; ?>
@@ -925,7 +925,7 @@ table {
                                                             </div>
                                                         </div>  
                                                         <div class="col-md-3 mt-4" id="dynamic-column">
-                                                            <div class="table-responsive text-nowrap">
+                                                            <!-- <div class="table-responsive text-nowrap">
                                                                 <table class="table table-striped" id="DataTable">
                                                                     <thead>
                                                                         <tr>
@@ -954,7 +954,7 @@ table {
                                                                         <th colspan="3" style="text-align: right;"></th>
                                                                     </tfoot> 
                                                                 </table>
-                                                            </div>
+                                                            </div> -->
                                                         </div> 
                                                     </div>
                                                 </div>
