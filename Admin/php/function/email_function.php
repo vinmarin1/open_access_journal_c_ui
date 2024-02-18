@@ -574,10 +574,5 @@ if (!function_exists('get_email_content')) {
             // echo json_encode(['status' => false, 'message' => 'Failed to add record', 'error' => $errorInfo]);
             echo json_encode(['status' => false, 'message' => 'Failed to add record', 'error']);
         }
-    }
-    
-
- 
-
-     
+    }  
 ?>
