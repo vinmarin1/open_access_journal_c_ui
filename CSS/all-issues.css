@@ -187,7 +187,10 @@ p{
 }
 
 
+.article-container:hover {
+    background-color: rgba(239, 242, 248, 0.456);
 
+}
 
 
 .recommendation-article{
@@ -267,4 +270,8 @@ p{
     border-radius: 20px;
     color: #115272;
     opacity: 0.8;
+}
+
+#next-page, #previous-page {
+    cursor: pointer;
 }
