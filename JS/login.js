@@ -25,6 +25,8 @@ document.addEventListener('DOMContentLoaded', function() {
 $(document).ready(function() {
     const spinner = document.getElementById('spinner');
     const forgotPasswordLink = document.getElementById('forgotPasswordLink');
+    var failedAttempts = 0;
+    var disableLoginTimer;
 
     forgotPasswordLink.addEventListener('click', function (event) {
      
@@ -103,6 +105,43 @@ $(document).ready(function() {
                         $('#logging-in-text').hide();
                         $('#login-text').show();
                         $('#register-button').prop('disabled', false);
+                        
+                        failedAttempts++;
+                        if (failedAttempts >= 3) {
+                            var remainingSeconds = 60;
+                            disableLoginTimer = setInterval(function () {
+                                var countDownValue = Math.ceil(remainingSeconds);
+                                $('#countDown').text('Account disabled. Try again in ' + countDownValue + ' seconds');
+                                $('#email').prop('disabled', true);
+                                $('#password').prop('disabled', true);
+                                $('#login-button').prop('disabled', true);
+
+                               
+                                $.ajax({
+                                    type: "POST",
+                                    url: "attemp_login_email.php",
+                                    data: { email: $('#email').val() }, 
+                                    success: function (response) {
+                                        console.log("Email sent successfully");
+                                    },
+                                    error: function (error) {
+                                        console.error("Error sending email");
+                                    }
+                                });
+                        
+
+                                if (remainingSeconds <= 0) {
+                                    clearInterval(disableLoginTimer);
+                                    $('#countDown').text('');
+                                    $('#email').prop('disabled', false);
+                                    $('#password').prop('disabled', false);
+                                    $('#login-button').prop('disabled', true);
+                                    failedAttempts = 0; 
+                                }
+                                remainingSeconds--;
+                            }, 1000);
+                        }
+
                         Swal.fire({
                             icon: "error",
                             title: "Error",
@@ -119,5 +158,4 @@ $(document).ready(function() {
         }
     });
 });
-
 
