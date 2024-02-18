@@ -125,7 +125,11 @@ document.addEventListener('DOMContentLoaded', function () {
     menuItems.forEach(function (item) {
         item.addEventListener('click', function () {
             var target = this.getAttribute('data-target');
-            document.getElementById('guideline-title').textContent = target.replace(/-/g, ' ');
+            var formattedTarget = target.replace(/-/g, ' ')
+                                        .replace(/\b\w/g, function(char) {
+                                            return char.toUpperCase();
+                                        });
+            document.getElementById('guideline-title').textContent = formattedTarget;
         });
     });
 });
