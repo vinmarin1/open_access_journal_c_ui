@@ -48,13 +48,21 @@
     font-size: small;
 }
 
-.story p{
-    text-align: justify;
-    color:#115272;
+.ourStory p{
+    overflow: scroll;
+    height: 50%;
 }
 
-.story h3{
-    color:#115272;
+.story p {
+    text-align: justify;
+    color: #115272;
+    overflow: auto;
+    max-height: 180px; /* Adjust this value as needed */
+    padding: 15px;
+}
+
+.story h3 {
+    color: #115272;
 }
 
 .img-story{

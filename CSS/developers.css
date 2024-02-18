@@ -43,6 +43,10 @@
     background-color: #004e98;
 }
 
+.dev-team{
+    background-color: #E5F5FF;
+}
+
 .dev-team h2, .dev-team h3{
     color: #115272;
 }
@@ -55,14 +59,17 @@
 
 .leaders-content , .members-content{
     background-color: #FFFFFF;
-    width: 33vh;
+    width: 30vh;
+    border-radius: 15px;
+    height: 97%;
 }
 
 
 .leaders-content img , .members-content img{
-    height: 30vh;
+    height: 28vh;
     width: auto;
-    border-radius: 15px
+    border-radius: 15px;
+    padding: 10px;
 }
 
 .leaders-content p , .members-content p{
@@ -77,9 +84,25 @@
     padding-right: 10px;
 }
 
-.soc-links{
-    font-size:xx-large;
+.description p {
+    overflow: auto; /* or scroll if you want a scrollbar */
+    max-height: 100px; /* adjust the height as needed */
 }
+.description p::-webkit-scrollbar {
+    width: 0; /* Remove scrollbar width */
+    height: 0; /* Remove scrollbar height */
+    visibility: hidden; /* Hide scrollbar */
+}
+
+
+.soc-links{
+    font-size:large;
+    padding-bottom: 5px;
+    display: flex;
+    flex-direction: row ;
+}
+
+
 
 
 

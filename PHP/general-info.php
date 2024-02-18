@@ -37,7 +37,7 @@
 
             <div class="col-md-11 head-text">
                 <div class="container-fluid row">
-                    <div class="col-md-3 col-12">
+                    <div class="col-md-5 col-12">
                         <h4 class="mt-4" style="color:#F4900C" >We Think, We Research, We Write:</h4>
                         <h4 style="color:#FFFFFF" >Building Knowledge, Uniting Minds!</h4>
                         <hr style="height: 5px; background-color: #F4900C; width: 87%">
@@ -58,16 +58,26 @@
         <div class="col-md-1"> <!------ blank space -------> </div>
 
         <div class="col-md-6">
-            <div class="story">
+            <div class="story" id="ourStory" >
                 <h3>OUR STORY</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim  veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea  commodo consequat. Duis aute irure dolor in reprehenderit in voluptate  velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id </p>
-                
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim  veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea  commodo consequat. Duis aute irure dolor in reprehenderit in voluptate  velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit</p>
+                <p>In the bustling heart of Quezon City University, a dedicated team known as the Research Management Office (RMO) plays a vital role in nurturing innovation and discovery. Led by a seasoned director, this hub of research activity is divided into three specialized units, each with a distinct mission.  
+                <br>
+                <br>
+                The Publications Unit serves as the voice of QCUs research endeavors, meticulously transforming raw findings into polished journals, reports, and even newsletters. Under their watchful eye, the University's research outputs gain a platform to reach wider audiences and spark dialogue.
+                <br>
+                <br>
+                Meanwhile, the Intellectual Property Unit stands as a guardian of ingenuity. They guide researchers and creators through the complex world of intellectual property rights, ensuring their ideas are protected and nurtured to their full potential. By fostering university-industry partnerships and facilitating technology transfer, they turn research breakthroughs into tangible benefits for both creators and the university.
+                <br>
+                <br>
+                The Center for Quezon City Studies is a hive of passionate detectives, piecing together the city's rich history and vibrant culture. They team up with experts from all over to shine a light on the city's unique soul, sharing their discoveries through books, journals, and lively discussions.
+                <br>
+                <br>
+                Together, these units they empower researchers, protect ideas, and celebrate the city's heritage, all while contributing to the university's vibrant intellectual landscape. Their story is one of dedication, innovation, and a shared passion for pushing the boundaries of knowledge.
             </div>
 
             <div class="story">
                 <h3>WHAT'S DIFFERENCE IN US</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim  veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea  commodo consequat. Duis aute irure dolor in reprehenderit in voluptate  velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id </p>
+                <p>QCU Journal aims to challenge conventional publication by incorporating technology into the user experience. The journal uses AI features to recommend articles based on the user's reading preferences. More so, we keep track of the trending articles in the data analytics dashboard to provide insights on pressing issues without compromising the system's integrity. To maintain the journal's credibility, the system incorporates plagiarism checkers while suggesting which journal an article belongs to through machine learning. With the open-access journal, we help reach a global audience and bring the most relevant articles to people of different backgrounds. </p>
             </div>
         </div>
 
