@@ -10,6 +10,7 @@
 		if(!check_verified()){
 
 			//send email
+			$_SESSION['LOGGED_IN'] = false;
 			$vars['code'] =  rand(10000,99999);
 
 			//save to database
