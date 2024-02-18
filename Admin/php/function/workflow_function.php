@@ -266,14 +266,13 @@ if (!function_exists('check_article_reviewer')) {
 }
 
 if (!function_exists('check_reviewer_accept')) {
-    function check_reviewer_accept($aid) {
+    function check_reviewer_accept() {
         $pdo = connect_to_database();
 
         if ($pdo) {
             try {
                 $query = "SELECT * FROM reviewer_assigned WHERE accept = 1 AND answer = 1";
                 $stmt = $pdo->prepare($query);
-                $stmt->bindParam(':aid', $aid, PDO::PARAM_INT);
                 $stmt->execute();
 
                 $result = $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -290,14 +289,13 @@ if (!function_exists('check_reviewer_accept')) {
 }
 
 if (!function_exists('check_reviewer_notcomplete')) {
-    function check_reviewer_notcomplete($aid) {
+    function check_reviewer_notcomplete() {
         $pdo = connect_to_database();
 
         if ($pdo) {
             try {
                 $query = "SELECT * FROM reviewer_assigned WHERE accept = 0 AND answer = 0 AND DATE(deadline) <= CURDATE();";
                 $stmt = $pdo->prepare($query);
-                $stmt->bindParam(':aid', $aid, PDO::PARAM_INT);
                 $stmt->execute();
 
                 $result = $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -314,14 +312,13 @@ if (!function_exists('check_reviewer_notcomplete')) {
 }
 
 if (!function_exists('check_reviewer_ongoing')) {
-    function check_reviewer_ongoing($aid) {
+    function check_reviewer_ongoing() {
         $pdo = connect_to_database();
 
         if ($pdo) {
             try {
                 $query = "SELECT * FROM reviewer_assigned WHERE accept = 0 AND answer = 0 AND DATE(deadline) >= CURDATE();";
                 $stmt = $pdo->prepare($query);
-                $stmt->bindParam(':aid', $aid, PDO::PARAM_INT);
                 $stmt->execute();
 
                 $result = $stmt->fetchAll(PDO::FETCH_OBJ);

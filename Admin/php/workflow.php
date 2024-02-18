@@ -23,9 +23,9 @@ $reviewer_email = get_reviewer_content($emc);
 $article_contributors = get_article_contributor($aid);
 $article_reviewer = get_article_reviewer($aid);
 $article_reviewer_check = check_article_reviewer($aid);
-$article_reviewer_accept = check_reviewer_accept($aid);
-$article_reviewer_notcomplete = check_reviewer_notcomplete($aid);
-$article_reviewer_ongoing = check_reviewer_ongoing($aid);
+$article_reviewer_accept = check_reviewer_accept();
+$article_reviewer_notcomplete = check_reviewer_notcomplete();
+$article_reviewer_ongoing = check_reviewer_ongoing();
 $reviewer_details = get_reviewer_details();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
