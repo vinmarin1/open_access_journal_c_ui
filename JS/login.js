@@ -82,6 +82,8 @@ $(document).ready(function() {
                     var data = JSON.parse(response);
                     if (data.success) {
                         $('#logging-in-text').text('Logging in...');
+                        $('#logging-in-text').show();
+                        $('#login-spinner').show();
                         $.ajax({
                             type: "POST",
                             url: "../PHP/functions.php", // Change the URL to the correct endpoint
@@ -95,11 +97,18 @@ $(document).ready(function() {
                                     window.location.href = "../PHP/author-dashboard.php";
                                 } else {
                                     window.location.href = "../PHP/verify.php";
+                                    setTimeout(function() {
+                                        $('#logging-in-text').hide();
+                                        $('#login-spinner').hide();
+                                        $('#login-text').show();
+                                    }, 5000); 
                                 }
                             },
                         });
-                        $('#logging-in-text').show();
-                        
+                   
+                       
+                      
+                       
                     } else {
                         $('#login-spinner').hide();
                         $('#logging-in-text').hide();

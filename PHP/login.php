@@ -41,6 +41,7 @@
                 </div>
                 <span id="logging-in-text" style="display: none;">Logging in...</span>
         </button>
+        <span id="countDown" style="color: red"></span>
         <!-- <input class="btn btn-outline-danger btn-sm" type="button" value="Register" id="register-button" onclick="window.location.href= '../PHP/signup.php';"> -->
         <button class="btn btn-outline-danger btn-sm" type="button" value="Register" id="register-button" onclick="window.location.href= '../PHP/signup.php';">Register</button>
     </form>
