@@ -10,8 +10,7 @@ $articles = database_run($query);
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php include('./meta.php'); ?>
     <title>Article List</title>
 </head>
 <body>

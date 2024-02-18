@@ -9,6 +9,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Welcome to QCU Journals, where you can find the latest articles, and updates on various topics. Explore our diverse collection now!">
+  <meta name="keywords" content="QCU Publication, Open access Journal, QCUJ">
+  <link rel="icon" type="image/png" href="../images/qcu-logo.webp">
   <title>QCU PUBLICATION | HOME</title>
   <link rel="stylesheet" href="../CSS/home.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -94,7 +97,7 @@
         <div class="ab-qoaj-left d-flex flex-column align-items-center align-items-sm-start gap-1">
           <h4 class="mb-3">About QCUJ</h2>
             <p class="description">Say goodbye to research submission struggles! Open Access Journal System for QCU (OAJS QCU) is your new best friend, making sharing your work simple and quick. Think of it as a smooth online portal where you can easily submit your research for expert review. </p>
-            <p class="description">Quezon City University (QCU), recognized by the Commission on Higher Education (CHED), holds dear the values of cultivating a vibrant research culture and disseminating new knowledge for the betterment of society. Understanding that the impact of research hinges on its accessibility and publication, QCU has established the QCU Journals as a platform for its researchers to share their valuable findings and contributions.</p>
+            <p class="description"><a href="https://qcu.edu.ph/" class="text-white">Quezon City University (QCU)</a>, recognized by the Commission on Higher Education (CHED), holds dear the values of cultivating a vibrant research culture and disseminating new knowledge for the betterment of society. Understanding that the impact of research hinges on its accessibility and publication, QCU has established the QCU Journals as a platform for its researchers to share their valuable findings and contributions.</p>
             <p class="description">This website is powered by an artificial intelligence and machine learning to improve the user experience. All articles are freely available to download and read, without any paywalls or restrictions.</p>
 
             <br>
