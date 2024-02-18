@@ -59,15 +59,21 @@
               <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-              <div id="firstP">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Recusandae quae deserunt vel laboriosam omnis molestiae cupiditate impedit, sapiente eveniet fuga illum fugiat rem nihil ipsa culpa harum cumque explicabo dignissimos earum officiis accusantium voluptatibus porro iusto? Quos aspernatur obcaecati dicta velit voluptas. Ipsam quia, dolores mollitia odit omnis, nesciunt repellat voluptatibus consequatur fugiat nemo asperiores? Necessitatibus, voluptatum aspernatur placeat labore dignissimos eveniet laudantium unde ullam distinctio excepturi dolores possimus enim, sapiente, a cupiditate quidem? Aut, dolor voluptate cupiditate, quidem ullam exercitationem laborum consequatur ad mollitia expedita dolore! Dolore asperiores libero quos veniam ex, voluptatem ullam rerum accusantium quam. Nam magni modi et optio animi ea rerum vitae tenetur repudiandae corrupti nulla ratione natus ab ullam id suscipit, odio fugiat aliquam recusandae quod dolores! Quod velit alias ea ducimus non ab aliquam aliquid. Non dolorem, praesentium ipsa voluptatum, aut, porro quas quae provident suscipit ipsam sint dolor excepturi minus facilis autem tenetur unde molestiae illum asperiores! Voluptates suscipit ratione, veritatis eos exercitationem vel vitae minima, repudiandae soluta accusantium, sequi velit alias sint atque totam fuga distinctio? Magni reiciendis porro facilis commodi suscipit, at consectetur officiis rerum, quod maiores nulla beatae pariatur possimus accusamus. 
+            <div class="modal-body mt-2">
+              <div class="mt-1" id="firstP">
+              PRIVACY POLICY
+              This privacy describe our policies and procedure on the collection, use and disclosure of your Information when you use the Quezon City University Journals.
               </div>
-              <div id="secondP">
-              Quod aspernatur incidunt ad laudantium, nesciunt animi beatae nisi! Modi dolorem eligendi sapiente expedita, assumenda suscipit quam recusandae consectetur omnis ab? Minus odit error dolor consequatur facere consequuntur possimus, magnam unde minima beatae quibusdam sunt similique. Fugiat a, accusantium quasi laudantium suscipit pariatur tenetur velit aliquid nostrum iure ipsum aliquam cum dolorum quod hic quos ad deleniti iusto corrupti obcaecati ratione debitis. Est id nihil dignissimos, officia eaque consectetur voluptatem ab optio sequi nostrum accusamus quae impedit cupiditate pariatur delectus similique. Esse nesciunt temporibus incidunt, ducimus dolores ipsa in laboriosam, dolorem quam optio expedita deserunt quibusdam distinctio eius alias et porro vel voluptates possimus libero accusamus impedit consequatur? Rerum, delectus magnam optio assumenda placeat unde perspiciatis voluptas doloribus nihil a omnis voluptatibus amet exercitationem, eos modi non numquam tempore culpa ratione et! Iste impedit repellendus, beatae deserunt neque magni nemo, officia quae ipsam expedita numquam placeat, fugiat ratione qui esse alias sed nobis aliquam. Eveniet repellat distinctio quod esse consequuntur commodi. Alias facere, ipsam beatae nulla saepe adipisci, quis incidunt ullam corporis itaque expedita eaque! Temporibus voluptatibus neque rem ex modi excepturi asperiores blanditiis non sequi odit? Accusantium, veniam non repellendus nulla delectus quas aliquid soluta veritatis cupiditate sed nesciunt eos, quasi nemo tenetur! Esse voluptatum excepturi labore perspiciatis blanditiis culpa, incidunt suscipit vel non illo officia reprehenderit eaque corporis saepe exercitationem ea cum vero! Suscipit, molestias iste illum consequuntur earum cupiditate, magni minima aperiam quia pariatur dolorum deserunt temporibus rerum maiores, consectetur omnis laudantium magnam.
+              <div class="mt-4" id="secondP">
+              We use your personal data to provide and  improve the service. By using the service, you agree to the collection and use of information in accordance with this privacy.
+              
+           
               </div>
-              <div id="thirdP">
-              Hic beatae voluptatibus tenetur et provident aut in, recusandae animi totam? Animi repellat nobis voluptatibus eveniet modi debitis maxime necessitatibus suscipit ipsa esse aspernatur aliquid laudantium labore eaque, tempora cumque vel, consequuntur, voluptates aliquam nemo illum porro accusamus iusto! Nemo dolore molestiae suscipit harum, corrupti officiis incidunt rem explicabo, alias voluptates perferendis repellat sunt. Aliquid, nemo. Consectetur doloribus ab repellat. At, in.
+              <div class="mt-4">
+              WHAT INFORMATION DO WE COLLECT?
+              </div>
+              <div class="mt-4" id="thirdP">
+              In this Privacy Policy, your "personal information" means information that could allow you to be identified. This typically includes information such as your name, address, username, profile picture, email address, ORCID and phone number.
               </div>
 
             </div>
