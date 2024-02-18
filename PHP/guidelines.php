@@ -6,8 +6,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php include('./meta.php'); ?>
     <title>QCU PUBLICATION | GUIDELINES</title>
     <link rel="stylesheet" href="../CSS/faqs.css">
     <link rel="stylesheet" href="../CSS/index.css">
