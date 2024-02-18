@@ -334,7 +334,7 @@ function renderArticleDetails(data) {
           Swal.fire({
             html: `
             <h4 style="color: #0858a4; font-family: font-family: Arial, Helvetica, sans-serif">Download Started. Your download will start shortly. </h4>
-            <p style="font-size: 16px;">If it doesn\'t start automatically, <a href="YOUR_DOWNLOAD_URL_HERE">click here</a>.</p>'
+            <p style="font-size: 16px;">If it doesn\'t start automatically, <a href="#">click here</a>.</p>'
 
             `,
             icon: 'success',

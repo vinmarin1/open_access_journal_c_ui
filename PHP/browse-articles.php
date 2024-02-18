@@ -139,7 +139,6 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
             <div id="skeleton-container" class="">
                 <div></div>
                 <div></div>
-                <div></div>
             </div>
             <hr style="border-top: 1px solid #ccc; margin: 10px 0;"> <!-- Add a horizontal line -->
             <div id="articles" class="d-flex flex-column gap-2 mb-4 w-100 p-0 m-0">

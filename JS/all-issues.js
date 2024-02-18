@@ -42,7 +42,6 @@ async function generateArticlesBasedOnIssues(page) {
             headers: {
               "Content-Type": "application/json",
             }
-           
           }
       );
       if (!response.ok) {
@@ -97,15 +96,43 @@ document.querySelectorAll('.download-pdf-button').forEach(button => {
         event.preventDefault(); 
         const articleIndex = event.target.dataset.articleIndex;
         const fileName = event.target.dataset.articleFile;
+        const fileType = event.target.dataset.articleFile.split(".").pop()
         handleDownloadLog(articleIndex,"download");
-        createCloudConvertJob(fileName, "pdf");
+        createCloudConvertJob(fileName, fileType,"pdf");
     });
 });
 
-
-
+if (data.length === 0) {
+    articlesByIssue.innerHTML= `
+    <div class="w-full w-100">
+    <p>No more articles found</p>
+    </div>
+    `
+    document.getElementById("next-page").setAttribute("disabled", true);
+} else {
+    document.getElementById("next-page").removeAttribute("disabled");
+}
 
 }
+
+
+function changePage(page) {
+    if (page === 'next') {
+            currentPage += 1;
+    } else if (page === 'previous') {
+        if (currentPage > 1) {
+            currentPage -= 1;
+        } else {
+            return; 
+        }
+    }
+    
+    document.getElementById("current-page").innerHTML = currentPage
+    
+    generateArticlesBasedOnIssues(currentPage);
+}
+
+
 document.getElementById('previous-page').addEventListener("click", function() {
     changePage("previous");
 });
@@ -113,17 +140,3 @@ document.getElementById('previous-page').addEventListener("click", function() {
 document.getElementById('next-page').addEventListener("click", function() {
     changePage("next");
 });
-
-function changePage(page) {
-    if (page === 'next') {
-        currentPage += 1; // Increment currentPage for next page
-    } else if (page === 'previous') {
-        if (currentPage > 1) {
-            currentPage -= 1; // Decrement currentPage for previous page if currentPage is greater than 1
-        } else {
-            return; // If currentPage is 1, do not go to previous page
-        }
-    }
-    
-    generateArticlesBasedOnIssues(currentPage); // Call your function to generate articles based on the currentPage
-}
