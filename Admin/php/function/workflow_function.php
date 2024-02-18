@@ -265,6 +265,78 @@ if (!function_exists('check_article_reviewer')) {
     }
 }
 
+if (!function_exists('check_reviewer_accept')) {
+    function check_reviewer_accept($aid) {
+        $pdo = connect_to_database();
+
+        if ($pdo) {
+            try {
+                $query = "SELECT * FROM reviewer_assigned WHERE accept = 1 AND answer = 1";
+                $stmt = $pdo->prepare($query);
+                $stmt->bindParam(':aid', $aid, PDO::PARAM_INT);
+                $stmt->execute();
+
+                $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+                return $result;
+            } catch (PDOException $e) {
+                echo "Error: " . $e->getMessage();
+                return false;
+            }
+        }
+
+        return false;
+    }
+}
+
+if (!function_exists('check_reviewer_notcomplete')) {
+    function check_reviewer_notcomplete($aid) {
+        $pdo = connect_to_database();
+
+        if ($pdo) {
+            try {
+                $query = "SELECT * FROM reviewer_assigned WHERE accept = 0 AND answer = 0 AND DATE(deadline) <= CURDATE();";
+                $stmt = $pdo->prepare($query);
+                $stmt->bindParam(':aid', $aid, PDO::PARAM_INT);
+                $stmt->execute();
+
+                $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+                return $result;
+            } catch (PDOException $e) {
+                echo "Error: " . $e->getMessage();
+                return false;
+            }
+        }
+
+        return false;
+    }
+}
+
+if (!function_exists('check_reviewer_ongoing')) {
+    function check_reviewer_ongoing($aid) {
+        $pdo = connect_to_database();
+
+        if ($pdo) {
+            try {
+                $query = "SELECT * FROM reviewer_assigned WHERE accept = 0 AND answer = 0 AND DATE(deadline) >= CURDATE();";
+                $stmt = $pdo->prepare($query);
+                $stmt->bindParam(':aid', $aid, PDO::PARAM_INT);
+                $stmt->execute();
+
+                $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+                return $result;
+            } catch (PDOException $e) {
+                echo "Error: " . $e->getMessage();
+                return false;
+            }
+        }
+
+        return false;
+    }
+}
+
 if (!function_exists('get_discussion')) {
     function get_discussion($aid) {
         $pdo = connect_to_database();

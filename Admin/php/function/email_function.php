@@ -96,7 +96,7 @@ if (!function_exists('get_email_content')) {
                     addLogs($article_id, $fromuser, 'Send to Review');
                     echo "<script>alert('Send to review successfully.');</script>"; 
                 } elseif ($id == 2) {
-                    updateArticleStatus($article_id, 7);
+                    updateArticleStatus($article_id, 6);
                     addLogs($article_id, $fromuser, 'Decline for Submission');
                     echo "<script>alert('Decline submission successfully.');</script>";
                 } elseif ($id == 3) {
