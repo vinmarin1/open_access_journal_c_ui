@@ -877,7 +877,7 @@ table {
                                                                 <div class="alert alert-white" role="alert">
                                                                     <p>Submission accepted for scheduled.</p>
                                                                 </div>
-                                                            <?php elseif ($article_data[0]->status = 1): ?>
+                                                            <?php elseif ($article_data[0]->status == 1): ?>
                                                                 <div class="alert alert-white" role="alert">
                                                                     <p>Submission published.</p>
                                                                 </div>
