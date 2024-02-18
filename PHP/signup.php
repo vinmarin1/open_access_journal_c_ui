@@ -41,7 +41,7 @@
     
        
         <div class="input-field">
-            <label for="password">Password:</label><span id="span5">*</span><span id="spanPasswordValidation" style="display: none; color: red; font-size: 11px">Password should contain at least 1 uppercase 1 special character and must not exceed 8 characters</span>
+            <label for="password">Password:</label><span id="span5">*</span><span id="spanPasswordValidation" style="display: none; color: red; font-size: 11px">Password should at least contain 1 Uppercase 1 Special Character and 1 Number</span>
            <input type="password" class="input form-control" name="password"  id="password" >
         </div>
       
