@@ -61,7 +61,7 @@ include 'dbcon.php';
 
 
     function updateSubmissionFiles() {
-        $uploadPath = "../Files/submitted-article/";
+        $uploadPath = "../../../Files/submitted-article/";
         $submissionFileId = isset($_POST['submissionfileid']) ? $_POST['submissionfileid'] : '';
     
         if (!file_exists($uploadPath)) {
@@ -495,7 +495,7 @@ include 'dbcon.php';
     }
 
     function addDiscussion() {
-        $uploadPath = "../Files/discussion-file/";
+        $uploadPath = "../../../Files/discussion-file/";
         $article_id = $_POST['article_id'];
         $fromuser = $_POST['fromuser'];
         $discussion_type = $_POST['discussiontype'];
@@ -570,7 +570,7 @@ include 'dbcon.php';
     }
 
     function replyDiscussion() {
-        $uploadPath = "../Files/discussion-file/";
+        $uploadPath = "../../../Files/discussion-file/";
         $fromuser = $_POST['fromuser'];
         $discussion_id = $_POST['discussion_id'];
         $submissionmessage = $_POST['submissionmessage'];
@@ -649,7 +649,7 @@ include 'dbcon.php';
     }
 
     function addRevisionFile() {
-        $uploadPath = "../Files/revision-article/";
+        $uploadPath = "../../../Files/revision-article/";
         $article_id = $_POST['article_id'];
         $author_id = NULL;  // Change 'Null' to NULL
         $fromuser = $_POST['fromuser'];
@@ -673,13 +673,6 @@ include 'dbcon.php';
             if (!in_array($imageFileType, $allowedFileTypes)) {
                 $success = false;
                 $errorMessage .= "File $fileName - Invalid file type ({$imageFileType}); ";
-            }
-    
-            $maxFileSize = 20 * 1024 * 1024;
-    
-            if ($files["size"] > $maxFileSize) {
-                $success = false;
-                $errorMessage .= "File $fileName - Size exceeds the maximum allowed size; ";
             }
     
             $newFilePath = $uploadPath . $fileName;
@@ -717,7 +710,7 @@ include 'dbcon.php';
     }        
     
     function uploadCopyeditedFile() {
-        $uploadPath = "../Files/final-file/";
+        $uploadPath = "../../../Files/final-file/";
         $fromuser = $_POST['fromuser'];
         $article_id = $_POST['article_id'];
         $status = 1;
@@ -882,7 +875,7 @@ include 'dbcon.php';
     }
 
     function uploadProductionFile() {
-        $uploadPath = "../Files/final-file/";
+        $uploadPath = "../../../Files/final-file/";
         $fromuser = $_POST['fromuser'];
         $article_id = $_POST['article_id'];
         $status = 1;

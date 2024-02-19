@@ -72,9 +72,7 @@ if (!function_exists('get_journal_list')) {
             $description = $_POST['description'];
             $subject_areas = $_POST['subject_areas'];
             $status = 1;
-    
-            $documentRoot = $_SERVER['DOCUMENT_ROOT'];
-            $uploadPath = $documentRoot . '/Files/journal-image/';
+            $uploadPath = "../../../Files/journal-image/";
     
             if (!file_exists($uploadPath)) {
                 mkdir($uploadPath, 0777, true);
