@@ -16,8 +16,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     // $ansRef = $_POST['ansRef'];
     // $ansLang = $_POST['ansLang'];
 
-    $sqlReviewerAnswer = "INSERT INTO reviewer_answer (`article_id`, `author_id`, `reviewer_questionnaire`, `answer`, `comment`, `round`)
-        VALUES (:article_id, :author_id, :reviewer_questionnaire, :answer, :comment, :round)";
+    $sqlReviewerAnswer = "INSERT INTO reviewer_answer (`article_id`, `author_id`, `reviewer_questionnaire`, `answer`, `round`)
+        VALUES (:article_id, :author_id, :reviewer_questionnaire, :answer, :round)";
 
     foreach ($answers as $question => $answer) {
         $paramsAnswer = array(
@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             'author_id' => $user_id,
             'reviewer_questionnaire' => $question,
             'answer' => $answer,
-            'comment' => $ansOrig,
+            // 'comment' => $ansOrig,
             // 'reference' => $ansRef,
             // 'languages' => $ansLang,
             'round' => $getRound
@@ -36,16 +36,17 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
   
     
 
-
-    $sqlAnswer = "UPDATE reviewer_assigned SET answer = :answer WHERE author_id = :user_id AND article_id = :article_id";
+    $sqlUpdate = "UPDATE reviewer_assigned SET answer = :answer, accept = :accept, comment = :comment WHERE author_id = :user_id AND article_id = :article_id";
 
     $sqlUpdateParams = array(
-        'answer' => 1,
-        'user_id' => $user_id,
-        'article_id' => $article_id
+    'answer' => 1,
+    'accept' => 1,
+    'comment' => $ansOrig,
+    'user_id' => $user_id,
+    'article_id' => $article_id
     );
-    
-    database_run($sqlAnswer, $sqlUpdateParams);
+
+    database_run($sqlUpdate, $sqlUpdateParams);
 
     
     $sqlLogs = "INSERT INTO logs_article (`article_id`, `user_id`, `fromuser`, `type`) VALUES (:article_id, :user_id, :fromuser, :type)";
@@ -62,15 +63,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     
 
-    $sqlAccept = "UPDATE reviewer_assigned SET accept = :accept WHERE author_id = :user_id AND article_id = :article_id";
+    // $sqlAccept = "UPDATE reviewer_assigned SET accept = :accept WHERE author_id = :user_id AND article_id = :article_id";
 
-    $sqlAcceptParams = array(
-        'accept' => 1,
-        'user_id' => $user_id,
-        'article_id' => $article_id
-    );
+    // $sqlAcceptParams = array(
+    //     'accept' => 1,
+    //     'user_id' => $user_id,
+    //     'article_id' => $article_id
+    // );
 
-    database_run($sqlAccept, $sqlAcceptParams);
+    // database_run($sqlAccept, $sqlAcceptParams);
 
     $sqlPoint = "INSERT INTO user_points(`user_id`, `email`, `action_engage`, `article_id`, `point_earned`) VALUES (:user_id, :email, :action_engage, :article_id, :point_earned)";
 

@@ -189,7 +189,10 @@ p{
 }
 
 
+.article-container:hover {
+    background-color: rgba(239, 242, 248, 0.456);
 
+}
 
 
 .recommendation-article{

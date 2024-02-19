@@ -10,6 +10,7 @@
 		if(!check_verified()){
 
 			//send email
+			$_SESSION['LOGGED_IN'] = false;
 			$vars['code'] =  rand(10000,99999);
 
 			//save to database
@@ -101,8 +102,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php include('./meta.php'); ?>
     <title>QCU TIMES PUBLICATION | VERIFICATION CODE</title>
 	<link rel="stylesheet" href="../CSS/verify.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">

@@ -69,7 +69,7 @@ async function generateIssues() {
 function renderIssuesContent(issues) {
     return issues.map(issue => `
     <div class="issue" onclick="window.location.href='all-issues.php?issue=${issue.issues_id}'" >
-        <img src='../Files/cover-image/${issue.cover_image}' alt="Journal 1">
+        <img src='../Files/cover-image/${issue.cover_image}' alt="Journal">
         <p style="color: #285581;">${issue.title}<br><span style="color: black">${issue.year}</span></p>
     </div>
 `).join('');

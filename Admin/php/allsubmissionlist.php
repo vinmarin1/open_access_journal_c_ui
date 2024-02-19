@@ -126,7 +126,7 @@ $all_articles = get_allarticle_list();
                                     </span>
                                 </td>
                                 <td width="5%">                         
-                                    <a href="javascript:void(0);" onclick="viewWorkflow(<?php echo $all_articlesval->article_id; ?>)" class="btn btn-outline-dark">View</a>
+                                    <a href="javascript:void(0);" onclick="viewWorkflow(<?php echo $all_articlesval->article_id; ?>, '<?php echo $all_articlesval->workflow; ?>')" class="btn btn-outline-dark">View</a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -177,14 +177,15 @@ $all_articles = get_allarticle_list();
             });
         });
 
-        
-        function viewWorkflow(articleId) {
-            $('#sloading').show();
+        function viewWorkflow(articleId, workflow) {
+            $('#sloading').show(); // Show loading indicator
 
             setTimeout(function () {
-                window.location.href = "../php/workflow.php?aid=" + articleId;
+                // Redirect to the workflow page after 2 seconds
+                window.location.href = "../php/workflow.php?aid=" + articleId + workflow;
             }, 2000);
 
+            // Hide loading indicator when the page is fully loaded
             window.onload = function () {
                 $('#sloading').hide();
             };

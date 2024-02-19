@@ -120,7 +120,18 @@ function renderArticleDetails(data) {
                 <animateTransform attributeName="transform" dur="1.5s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12" />
               </path>
             </svg></span></button>
-              <p>${item.abstract}</p>
+              <p class="mb-4 pb-4">${item.abstract}</p>
+              <br/>
+              
+              <iframe
+                  src="https://qcuj.online/Files/final-file/${encodeURIComponent(item.file_name)}"
+                  width="100%"
+                  height="800px"
+                  loading="lazy"
+                  title="PDF-file"
+                  class="d-none"
+                  frameborder="0"
+              ></iframe>
           </div>
           
           <div class="col-lg-3 pt-4 pb-4">
@@ -169,13 +180,13 @@ function renderArticleDetails(data) {
 
                   </button>
                   </a>
-
+                  <!--
                   <button class="btn" id="donate-btn">
                     <h4>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256"><path fill="currentColor" d="M178 32c-20.65 0-38.73 8.88-50 23.89C116.73 40.88 98.65 32 78 32a62.07 62.07 0 0 0-62 62c0 70 103.79 126.66 108.21 129a8 8 0 0 0 7.58 0C136.21 220.66 240 164 240 94a62.07 62.07 0 0 0-62-62m-50 174.8C109.74 196.16 32 147.69 32 94a46.06 46.06 0 0 1 46-46c19.45 0 35.78 10.36 42.6 27a8 8 0 0 0 14.8 0c6.82-16.67 23.15-27 42.6-27a46.06 46.06 0 0 1 46 46c0 53.61-77.76 102.15-96 112.8"/></svg>
                       Heart
                     </h4>
-                  </button>
+                  </button>-->
               </div>
           </div>
           </div>
@@ -258,7 +269,8 @@ function renderArticleDetails(data) {
         icon: 'success',
       })
     })
-
+    
+    if (inlineBtn){
     inlineBtn.addEventListener("click",()=> {
       navigator.clipboard.writeText(citationContent.querySelector("p").innerHTML);
       handleDownloadLog(item.article_id,"citation");
@@ -266,8 +278,9 @@ function renderArticleDetails(data) {
         html: '<h4 style="color: #0858a4; font-family: font-family: Arial, Helvetica, sans-serif">Successfully copied reference in your clipboard.</4>',
         icon: 'success',
       })
-    })
+    })}
  
+    const readBtn = articleElement.querySelector(`#read-btn`);
 
     const downloadBtn = articleElement.querySelector(`#download-btn`);
     const epubBtn = articleElement.querySelector(`#epub-btn`);
@@ -288,9 +301,15 @@ function renderArticleDetails(data) {
       });
       epubBtn.addEventListener("click", () => {
         window.location.href = "../PHP/login.php";
-    });
+      });
+  
 
     }
+    
+    readBtn.addEventListener("click", () => {
+      document.querySelector("iframe").classList.remove("d-none")
+    });
+    
   
     if (downloadBtn) {
       downloadBtn.addEventListener("click", () => {
@@ -304,7 +323,7 @@ function renderArticleDetails(data) {
             link.setAttribute("href", fileUrl);
             link.setAttribute("download", "");
             link.style.display = "none";
-            
+            link.setAttribute("target", "_blank");
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
@@ -313,7 +332,11 @@ function renderArticleDetails(data) {
           }
           handleDownloadLog(item.article_id, "download");
           Swal.fire({
-            html: '<h4 style="color: #0858a4; font-family: font-family: Arial, Helvetica, sans-serif">Successfully downloaded.</h4>',
+            html: `
+            <h4 style="color: #0858a4; font-family: font-family: Arial, Helvetica, sans-serif">Download Started. Your download will start shortly. </h4>
+            <p style="font-size: 16px;">If it doesn\'t start automatically, <a href="#">click here</a>.</p>'
+
+            `,
             icon: 'success',
           })
         }catch(error){

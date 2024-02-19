@@ -23,7 +23,6 @@ $articlelogs = get_article_logs($aid);
 $articledata = get_article_data($aid);
 $journal_id = $articledata[0]->journal_id;
 $issuelist = get_issues_list($journal_id);
-$userlist = get_user_list();
 ?>
 
 <!-- Add Discussion Modal -->
@@ -330,7 +329,7 @@ $userlist = get_user_list();
                                                 </td>
                                                 <td width="5%"><?php echo $submission_filesval->article_files_id; ?></td>
                                                 <td width="65%">
-                                                    <a href="../../Files/submitted-article/<?php echo ($submission_filesval->file_name); ?>" download>
+                                                    <a href="../../../Files/submitted-article/<?php echo ($submission_filesval->file_name); ?>" download>
                                                         <?php echo $submission_filesval->file_name; ?>
                                                     </a>
                                                 </td>
@@ -368,7 +367,7 @@ $userlist = get_user_list();
                                                 <tr>
                                                     <td width="5%"><?php echo $review_filesval->article_files_id; ?></td>
                                                     <td width="70%">
-                                                        <a href="../../Files/submitted-article/<?php echo ($review_filesval->file_name); ?>" download>
+                                                        <a href="../../../Files/submitted-article/<?php echo ($review_filesval->file_name); ?>" download>
                                                             <?php echo $review_filesval->file_name; ?>
                                                         </a>
                                                     </td>
@@ -412,7 +411,6 @@ $userlist = get_user_list();
                                     <thead>
                                         <tr>
                                             <th>Question</th>
-                                            <th>Answer</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -427,7 +425,8 @@ $userlist = get_user_list();
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Accept</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -474,7 +473,7 @@ $userlist = get_user_list();
                                                     </td>
                                                     <td width="5%"><?php echo $submission_filesval->article_files_id; ?></td>
                                                     <td width="65%">
-                                                        <a href="../../Files/submitted-article/<?php echo ($submission_filesval->file_name); ?>" download>
+                                                        <a href="../../../Files/submitted-article/<?php echo ($submission_filesval->file_name); ?>" download>
                                                             <?php echo $submission_filesval->file_name; ?>
                                                         </a>
                                                     </td>
@@ -520,7 +519,7 @@ $userlist = get_user_list();
                                                     </td>
                                                         <td width="5%"><?php echo $revision_filesval->revision_files_id; ?></td>
                                                     <td width="65%">
-                                                        <a href="../../Files/revision-article/<?php echo ($revision_filesval->file_name); ?>" download>
+                                                        <a href="../../../Files/revision-article/<?php echo ($revision_filesval->file_name); ?>" download>
                                                             <?php echo $revision_filesval->file_name; ?>
                                                         </a>
                                                     </td>
@@ -558,7 +557,7 @@ $userlist = get_user_list();
                                             <tr>
                                                 <td width="5%"><?php echo $copyediting_filesval->article_files_id; ?></td>
                                                 <td width="65%">
-                                                    <a href="../../Files/submitted-article/<?php echo ($copyediting_filesval->file_name); ?>" download>
+                                                    <a href="../../../Files/submitted-article/<?php echo ($copyediting_filesval->file_name); ?>" download>
                                                         <?php echo $copyediting_filesval->file_name; ?>
                                                     </a>
                                                 </td>
@@ -570,7 +569,7 @@ $userlist = get_user_list();
                                             <tr>
                                                 <td width="5%"><?php echo $copyeditingrevision_filesval->revision_files_id; ?></td>
                                                 <td width="65%">
-                                                    <a href="../../Files/revision-article/<?php echo ($copyeditingrevision_filesval->file_name); ?>" download>
+                                                    <a href="../../../Files/revision-article/<?php echo ($copyeditingrevision_filesval->file_name); ?>" download>
                                                         <?php echo $copyeditingrevision_filesval->file_name; ?>
                                                     </a>
                                                 </td>
@@ -669,7 +668,7 @@ $userlist = get_user_list();
                                                     </td>
                                                         <td width="5%"><?php echo $allcopyedited_filesval->final_files_id; ?></td>
                                                     <td width="65%">
-                                                        <a href="../../Files/revision-article/<?php echo ($allcopyedited_filesval->file_name); ?>" download>
+                                                        <a href="../../../Files/revision-article/<?php echo ($allcopyedited_filesval->file_name); ?>" download>
                                                             <?php echo $allcopyedited_filesval->file_name; ?>
                                                         </a>
                                                     </td>
@@ -715,7 +714,7 @@ $userlist = get_user_list();
                                                     <tr>
                                                         <td width="5%"><?php echo $allcopyedited_filesval->final_files_id; ?></td>
                                                         <td width="65%">
-                                                            <a href="../../Files/submitted-article/<?php echo ($allcopyedited_filesval->file_name); ?>" download>
+                                                            <a href="../../../Files/submitted-article/<?php echo ($allcopyedited_filesval->file_name); ?>" download>
                                                                 <?php echo $allcopyedited_filesval->file_name; ?>
                                                             </a>
                                                         </td>
@@ -879,7 +878,7 @@ $userlist = get_user_list();
                                                     </td>
                                                         <td width="5%"><?php echo $allcopyedited_filesval->final_files_id; ?></td>
                                                     <td width="65%">
-                                                        <a href="../../Files/revision-article/<?php echo ($allcopyedited_filesval->file_name); ?>" download>
+                                                        <a href="../../../Files/revision-article/<?php echo ($allcopyedited_filesval->file_name); ?>" download>
                                                             <?php echo $allcopyedited_filesval->file_name; ?>
                                                         </a>
                                                     </td>
@@ -924,7 +923,7 @@ $userlist = get_user_list();
                                                     </td>
                                                         <td width="5%"><?php echo $allproduction_filesval->final_files_id; ?></td>
                                                     <td width="65%">
-                                                        <a href="../../Files/revision-article/<?php echo ($allproduction_filesval->file_name); ?>" download>
+                                                        <a href="../../../Files/revision-article/<?php echo ($allproduction_filesval->file_name); ?>" download>
                                                             <?php echo $allproduction_filesval->file_name; ?>
                                                         </a>
                                                     </td>
@@ -977,7 +976,7 @@ $userlist = get_user_list();
                                                     <tr>
                                                         <td width="5%"><?php echo $allcopyedited_filesval->final_files_id; ?></td>
                                                         <td width="65%">
-                                                            <a href="../../Files/submitted-article/<?php echo ($allcopyedited_filesval->file_name); ?>" download>
+                                                            <a href="../../../Files/submitted-article/<?php echo ($allcopyedited_filesval->file_name); ?>" download>
                                                                 <?php echo $allcopyedited_filesval->file_name; ?>
                                                             </a>
                                                         </td>
@@ -994,7 +993,7 @@ $userlist = get_user_list();
                                                     <tr>
                                                         <td width="5%"><?php echo $allproduction_filesval->final_files_id; ?></td>
                                                         <td width="65%">
-                                                            <a href="../../Files/submitted-article/<?php echo ($allproduction_filesval->file_name); ?>" download>
+                                                            <a href="../../../Files/submitted-article/<?php echo ($allproduction_filesval->file_name); ?>" download>
                                                                 <?php echo $allproduction_filesval->file_name; ?>
                                                             </a>
                                                         </td>

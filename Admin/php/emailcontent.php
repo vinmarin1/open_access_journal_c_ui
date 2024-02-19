@@ -13,8 +13,10 @@ $emc = isset($_GET['emc']) ? $_GET['emc'] : 1;
 $issid = isset($_GET['issid']) ? $_GET['issid'] : 1;
 
 $article_data = get_article_data($aid);
-$article_contributor = get_article_contributor($aid);
 $email_content = get_email_content($emc);
+$article_contributor = get_article_contributor($aid);
+$author_id = $article_data[0]->author_id;
+$author_details = getauthordetails($author_id);
 $submission_files = get_submission_files($aid);
 $review_files = get_review_files($aid);
 $revision_files = get_revision_files($aid);
@@ -394,6 +396,8 @@ $copyedited_files = get_copyedited_files($aid);
         var hiddenEmail = $('#hiddenEmail').val();
         var subject = $('#subject').val();
         var article_id = $('#article_id').val();
+        var author_id = <?php echo json_encode ($article_data[0]->author_id); ?>;
+        var author_email = <?php echo json_encode ($author_details[0]->email); ?>;
         var id = $('#id').val();
         var title = <?php echo json_encode($article_data[0]->title); ?>;
 
@@ -471,6 +475,8 @@ $copyedited_files = get_copyedited_files($aid);
                 subject: subject,
                 quillContentOne: jsonContent,
                 article_id: article_id,
+                author_id: author_id,
+                author_email: author_email,
                 id: id,
                 issues_id: issues_id,
                 round: round,
@@ -488,7 +494,23 @@ $copyedited_files = get_copyedited_files($aid);
                 $('#sloading').toggle();
                 console.log(response);
                 alert('Email sent to author successfully.');
-                window.location.href = '../php/workflow.php?aid=<?php echo $article_data[0]->article_id; ?>';
+                if (<?php print $email_content[0]->id ?> == 1) {
+                    window.location.href = '../php/workflow.php?aid=<?php echo $article_data[0]->article_id; ?>#navs-top-review';
+                } else if (<?php print $email_content[0]->id ?> == 2) {
+                    window.location.href = '../php/workflow.php?aid=<?php echo $article_data[0]->article_id; ?>#navs-top-submission';
+                } else if (<?php print $email_content[0]->id ?> == 3) {
+                    window.location.href = '../php/workflow.php?aid=<?php echo $article_data[0]->article_id; ?>#navs-top-copyediting';
+                } else if (<?php print $email_content[0]->id ?> == 4) {
+                    window.location.href = '../php/workflow.php?aid=<?php echo $article_data[0]->article_id; ?>#navs-top-review';
+                } else if (<?php print $email_content[0]->id ?> == 5) {
+                    window.location.href = '../php/workflow.php?aid=<?php echo $article_data[0]->article_id; ?>#navs-top-production';
+                } else if (<?php print $email_content[0]->id ?> == 6) {
+                    window.location.href = '../php/workflow.php?aid=<?php echo $article_data[0]->article_id; ?>#navs-top-production';
+                } else if (<?php print $email_content[0]->id ?> == 7) {
+                    window.location.href = '../php/workflow.php?aid=<?php echo $article_data[0]->article_id; ?>#navs-top-production';
+                } else if (<?php print $email_content[0]->id ?> == 8) {
+                    window.location.href = '../php/workflow.php?aid=<?php echo $article_data[0]->article_id; ?>#navs-top-production';
+                }
             },
             error: function (error) {
                 console.error(error);

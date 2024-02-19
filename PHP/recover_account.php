@@ -1,35 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php include('./meta.php'); ?>
     <title>QCU TIMES | RECOVER ACCOUNT</title>
     <link rel="stylesheet" href="../CSS/recover_account.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+    <?php require 'header.php' ?>
 <form id="form">
-        <p class="h3" id="step1Label">Recover Account</p>
+        <p class="h3" id="step1Label">Recovery Account</p>
         <p class="h5 mb-5" style="text-align: center; display: none" id="step2Label">We've sent OTP code to this E-mail <br>
             <span class="h6">Please Enter the 5 digit code to recover you account</span><br>
             <span class="h6" style="color: blue" id="getEmail"></span>
         </p>
         <div id="firstStep">
             <div class="label">
-                <label for="email">Email:</label><br>
+                <label for="email">Email: <span style="color: red; font-size: 11px; display: none" id="emailR">*</span></label><br>
+                <input type="email" class="form-control"  aria-describedby="basic-addon1" name="email" id="email">
+            </div>
+            <div class="label">
+                <label for="email">Password: <span style="color: red; font-size: 11px; display: none" id="passwordR">*</span></label><br>
+                <input type="password" class="form-control"  aria-describedby="basic-addon1" name="password" id="password">
+            </div>
+            <div class="label">
+                <label for="email">New Password: <span style="color: red; font-size: 11px; display: none" id="nPasswordR">*</span></label><br>
+                <input type="password" class="form-control"  aria-describedby="basic-addon1" name="nPassword" id="nPassword">
+            </div>
+            <div class="label">
+                <label for="email">Confirm Password: <span style="color: red; font-size: 11px; display: none" id="cPasswordR">*</span></label><br>
+                <input type="password" class="form-control"  aria-describedby="basic-addon1" name="cPassword" id="cPassword">
             </div>
             <div class="input-group mb-3" id="inputFields">
-                <input type="text" class="form-control"  aria-describedby="basic-addon1" name="email" id="email">
-                <button type="button" class="btn btn-primary btn-md" id="sendBtn" disabled>
+              
+                <button type="button" class="btn btn-primary btn-md" id="sendBtn">
 
                     Next
                     <div class="spinner-border spinner-border-sm" role="status" id="spinner" style="display: none">
-                        <span class="visually-hidden">Sending OTP...</span>
+                        <span class="visually-hidden" id="otpSending">Sending OTP...</span>
                     </div>
                 </button>
             </div>
         </div>
+
 
         <div id="secondStep">
             <div class="label">

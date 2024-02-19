@@ -1,5 +1,7 @@
 <?php
 include 'dbcon.php';
+ini_set('post_max_size', '64M');
+ini_set('upload_max_filesize', '64M');
 
     $action = isset($_POST['action']) ? $_POST['action'] : '';
 
@@ -61,8 +63,7 @@ include 'dbcon.php';
 
 
     function updateSubmissionFiles() {
-        $documentRoot = $_SERVER['DOCUMENT_ROOT'];
-        $uploadPath = $documentRoot . '/Files/submitted-article/';
+        $uploadPath = "../../../Files/submitted-article/";
         $submissionFileId = isset($_POST['submissionfileid']) ? $_POST['submissionfileid'] : '';
     
         if (!file_exists($uploadPath)) {
@@ -496,8 +497,7 @@ include 'dbcon.php';
     }
 
     function addDiscussion() {
-        $documentRoot = $_SERVER['DOCUMENT_ROOT'];
-        $uploadPath = $documentRoot . '/Files/discussion-file/';
+        $uploadPath = "../../../Files/discussion-file/";
         $article_id = $_POST['article_id'];
         $fromuser = $_POST['fromuser'];
         $discussion_type = $_POST['discussiontype'];
@@ -572,8 +572,7 @@ include 'dbcon.php';
     }
 
     function replyDiscussion() {
-        $documentRoot = $_SERVER['DOCUMENT_ROOT'];
-        $uploadPath = $documentRoot . '/Files/discussion-file/';
+        $uploadPath = "../../../Files/discussion-file/";
         $fromuser = $_POST['fromuser'];
         $discussion_id = $_POST['discussion_id'];
         $submissionmessage = $_POST['submissionmessage'];
@@ -652,8 +651,7 @@ include 'dbcon.php';
     }
 
     function addRevisionFile() {
-        $documentRoot = $_SERVER['DOCUMENT_ROOT'];
-        $uploadPath = $documentRoot . '/Files/revision-article/';
+        $uploadPath = "../../../Files/revision-article/";
         $article_id = $_POST['article_id'];
         $author_id = NULL;  // Change 'Null' to NULL
         $fromuser = $_POST['fromuser'];
@@ -677,13 +675,6 @@ include 'dbcon.php';
             if (!in_array($imageFileType, $allowedFileTypes)) {
                 $success = false;
                 $errorMessage .= "File $fileName - Invalid file type ({$imageFileType}); ";
-            }
-    
-            $maxFileSize = 20 * 1024 * 1024;
-    
-            if ($files["size"] > $maxFileSize) {
-                $success = false;
-                $errorMessage .= "File $fileName - Size exceeds the maximum allowed size; ";
             }
     
             $newFilePath = $uploadPath . $fileName;
@@ -721,8 +712,7 @@ include 'dbcon.php';
     }        
     
     function uploadCopyeditedFile() {
-        $documentRoot = $_SERVER['DOCUMENT_ROOT'];
-        $uploadPath = $documentRoot . '/Files/final-file/';
+        $uploadPath = "../../../Files/final-file/";
         $fromuser = $_POST['fromuser'];
         $article_id = $_POST['article_id'];
         $status = 1;
@@ -748,14 +738,7 @@ include 'dbcon.php';
                 $success = false;
                 $errorMessage .= "File $fileName - Invalid file type ({$imageFileType}); ";
             }
-    
-            $maxFileSize = 20 * 1024 * 1024;
-    
-            if ($files["size"] > $maxFileSize) {
-                $success = false;
-                $errorMessage .= "File $fileName - Size exceeds the maximum allowed size; ";
-            }
-    
+
             $newFilePath = $uploadPath . $fileName;
     
             if ($success && move_uploaded_file($files["tmp_name"], $newFilePath)) {
@@ -894,8 +877,7 @@ include 'dbcon.php';
     }
 
     function uploadProductionFile() {
-        $documentRoot = $_SERVER['DOCUMENT_ROOT'];
-        $uploadPath = $documentRoot . '/Files/final-file/';
+        $uploadPath = "../../../Files/final-file/";
         $fromuser = $_POST['fromuser'];
         $article_id = $_POST['article_id'];
         $status = 1;
@@ -921,14 +903,7 @@ include 'dbcon.php';
                 $success = false;
                 $errorMessage .= "File $fileName - Invalid file type ({$imageFileType}); ";
             }
-    
-            $maxFileSize = 20 * 1024 * 1024;
-    
-            if ($files["size"] > $maxFileSize) {
-                $success = false;
-                $errorMessage .= "File $fileName - Size exceeds the maximum allowed size; ";
-            }
-    
+
             $newFilePath = $uploadPath . $fileName;
     
             if ($success && move_uploaded_file($files["tmp_name"], $newFilePath)) {

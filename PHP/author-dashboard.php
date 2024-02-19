@@ -1,6 +1,10 @@
 <?php 
 require 'dbcon.php';
 session_start();
+if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
+	header('Location: ./login.php');
+	exit();
+  }
 $id = $_SESSION['id'];
 ?>
 <!DOCTYPE html>
@@ -395,7 +399,7 @@ $id = $_SESSION['id'];
                   $sqlArchive = "SELECT reviewer_assigned.*, article.*
                                     FROM reviewer_assigned 
                                     JOIN article ON article.article_id = reviewer_assigned.article_id 
-                                    WHERE article.status < 5  AND  reviewer_assigned.author_id = :author_id 
+                                    WHERE article.status < 5  AND  reviewer_assigned.author_id = :author_id ORDER BY reviewer_assigned.date_issued DESC
                                     LIMIT " . ($currentPage - 1) * $itemsPerPageArchive . ", $itemsPerPageArchive";
                   
                   $varsAchive = array(':author_id' => $id);
@@ -424,7 +428,7 @@ $id = $_SESSION['id'];
                           echo '<td><input type="checkbox"></td>';
                       
 
-                          $queryTitle = "SELECT article.title FROM article JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id WHERE article.status < 5 AND  reviewer_assigned.author_id = :author_id;
+                          $queryTitle = "SELECT article.title FROM article JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id WHERE article.status < 5 AND  reviewer_assigned.author_id = :author_id ;
                           ";
                           $titleResult = database_run($queryTitle, array(':author_id' => $id));
                           if ($titleResult !== false && count($titleResult) > 0) {

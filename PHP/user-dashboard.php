@@ -1,6 +1,12 @@
 <?php 
 require 'dbcon.php';
 session_start();
+
+if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
+	header('Location: ./login.php');
+	exit();
+  }
+
 $id = $_SESSION['id'];
 $email = $_SESSION['email'];
 $first_name = $_SESSION['first_name'];
@@ -26,6 +32,7 @@ $formattedDateAdded = $dateAdded->format('F j, Y');
 $orc_id = $_SESSION['orc_id'];
 $bio = $_SESSION['bio'];
 $expertise = $_SESSION['expertise'];
+
 
 
 
@@ -286,9 +293,7 @@ $expertise = $_SESSION['expertise'];
 							}
 
 							echo  $totalPoints;
-						} else {
-							echo "No points found for the user.";
-						}
+						} 
 					?><i id="heartIcon" class="fa-solid fa-heart" style="color: red; margin-left: 5px" title="Community Heart, for more info click it."></i>
 
 
@@ -673,7 +678,7 @@ $expertise = $_SESSION['expertise'];
 											FROM user_points
 											JOIN reviewer_assigned ON user_points.user_id = reviewer_assigned.author_id
 											JOIN article ON reviewer_assigned.article_id = article.article_id
-											WHERE article.status = 4 AND reviewer_assigned.accept = 1 AND reviewer_assigned.answer = 1 AND user_points.action_engage = 'Reviewed an Article' AND user_points.user_id = :author_id)
+											WHERE reviewer_assigned.accept = 1 AND reviewer_assigned.answer = 1 AND user_points.action_engage = 'Reviewed an Article' AND user_points.user_id = :author_id)
 											
 											ORDER BY date DESC
 										";
@@ -948,8 +953,48 @@ $expertise = $_SESSION['expertise'];
 				echo $first_name . ' ' . $middle_name . ' ' . $last_name	
 				?>
 			</p>
-			<p class="h6" id="engagement">For participating in the peer review process for the article entitled:</p>
+			<p class="h6" id="engagement">For participating in the peer review process for the article titled:</p>
 			<p class="h3" id="engagementTitle"></p>
+		</div>
+    </div>
+</div>
+
+<div class="container-fluid mt-5" id="certPublishedHead" style="display: none">
+    <div class="cert-container d-flex justify-content-center align-items-center">
+        <img class="img-fluid" id="cert2" src="../images/author-cert.jpg" alt="cert" style="width: 800px;
+		height: 500px;
+		">
+		<div class="cert-category-published" style="position: absolute;">
+			<p class="h2" id="categoryPublished" style="  
+			font-weight: bold;
+			text-align: center;
+			font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+			font-style: italic;"></p>
+			<p class="h6" id="awardeePublished" style="
+			font-family: 'Times New Roman', Times, serif;
+			font-weight: bold;
+			margin-left: 80px;
+			margin-top: 25px;">This Certificate is Awarded to</p>
+			<p class="h1" id="awardeeNamePublished" style="    
+			text-align: center;
+			font-family: 'Dancing Script', cursive;
+			font-weight: bold;
+			font-style: italic;
+			font-size: 50px;">
+				<?php 
+				echo $first_name . ' ' . $middle_name . ' ' . $last_name	
+				?>
+			</p>
+			<p class="h6" id="engagementPublished" style="    
+			font-family: 'Times New Roman', Times, serif;
+			font-weight: bold;
+			margin-left: 80px;">For successfully publishing the article titled:</p>
+			<p class="h3" id="engagementTitlePublished" style="
+			font-weight: bold;
+			text-align: center;
+			font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+			font-style: italic;
+			width: 720px;"></p>
 		</div>
     </div>
 </div>
@@ -1064,73 +1109,88 @@ function openArticleInNewTab(articleId) {
 document.addEventListener('DOMContentLoaded', function () {
     // Attach click event listener to all elements with class 'view-button'
     var viewButtons = document.querySelectorAll('.view-button');
+    const reviewerCert = document.getElementById('certContainerHead');
+	const authorCert = document.getElementById('certPublishedHead');
+
+
     viewButtons.forEach(function (button) {
-      button.addEventListener('click', function () {
-        // Find the corresponding achievement row
-        var achievementRow = button.closest('tr');
-        
-        // Get the action_engage and title values
-        var actionEngage = achievementRow.querySelector('td:first-child').textContent.trim();
-        var title = achievementRow.querySelector('td:nth-child(3)').textContent.trim();
+        button.addEventListener('click', function () {
 
-    
-        if (actionEngage === 'Submitted an Article') {
-       
-          var userId = <?php echo $id; ?>;
+            reviewerCert.style.display = 'block';
+			authorCert.style.display = 'block';
 
-        
-        //   alert('Viewing article for "Submitted an Article" achievement\nTitle: ' + title);
+            // Find the corresponding achievement row
+            var achievementRow = button.closest('tr');
+            
+            // Get the action_engage and title values
+            var actionEngage = achievementRow.querySelector('td:first-child').textContent.trim();
+            var title = achievementRow.querySelector('td:nth-child(3)').textContent.trim();
 
-			Swal.fire({
-		
-			html: "<p style='font-weight: bold'>You got 1 Community heart because you submitted an article</p>" + "<p>Title: " + title + "</p>",
-			imageUrl: "../images/qcu-bg.jpg",
-			imageWidth: 400,
-			imageHeight: 200,
-			imageAlt: "Custom image"
-			});
+            if (actionEngage === 'Submitted an Article') {
+                Swal.fire({
+                    html: "<p style='font-weight: bold'>You got 1 Community heart because you submitted an article</p>" + "<p>Title: " + title + "</p>",
+                    imageUrl: "../images/qcu-bg.jpg",
+                    imageWidth: 400,
+                    imageHeight: 200,
+                    imageAlt: "Custom image",
+                    didClose: function () {
+                        // This will be executed when the Swal modal is closed
+                        reviewerCert.style.display = 'none';
+						authorCert.style.display = 'block';
 
-        
-        }else if(actionEngage === 'Reviewed Article Published'){
-			Swal.fire({
-	
-			html: "<p style='font-weight: bold'>You got 3 Community heart because the article you reviewed was published</p>" + "<p>Title: " + title + "</p>" + "<br>" + "<button type='button' onclick='downloadCertificate()'>Download Cert</button>",
-			imageUrl: "../images/qcu-bg.jpg",
-			imageWidth: 400,
-			imageHeight: 200,
-			imageAlt: "Custom image"
-			});
-		}else if(actionEngage === 'Published an Article'){
-			Swal.fire({
-	
-			html: "<p style='font-weight: bold'>You got 3 Community heart because you've successfully published an article</p>" + "<p>Title: " +  title + "</p>",
-			imageUrl: "../images/qcu-bg.jpg",
-			imageWidth: 400,
-			imageHeight: 200,
-			imageAlt: "Custom image"
-			});
-		}else if(actionEngage === 'Reviewed an Article'){
-			Swal.fire({
-	
-			html: "<p style='font-weight: bold'>You got 1 Community heart because you help us published an article</p>" + "<p>Title: " + title + "</p>",
-			imageUrl: "../images/qcu-bg.jpg",
-			imageWidth: 400,
-			imageHeight: 200,
-			imageAlt: "Custom image"
-			});
-		}
-      });
+                    }
+                });
+            } else if (actionEngage === 'Reviewed Article Published') {
+                Swal.fire({
+                    html: "<p style='font-weight: bold'>You got 3 Community heart because the article you reviewed was published</p>" + "<p>Title: " + title + "</p>" + "<br>" + "<button type='button' onclick='downloadCertificate()'>Download Cert</button>",
+                    imageUrl: "../images/qcu-bg.jpg",
+                    imageWidth: 400,
+                    imageHeight: 200,
+                    imageAlt: "Custom image",
+                    didClose: function () {
+                        reviewerCert.style.display = 'none';
+						authorCert.style.display = 'block';
+                    }
+                });
+            } else if (actionEngage === 'Published an Article') {
+                Swal.fire({
+                    html: "<p style='font-weight: bold'>You got 3 Community heart because you've successfully published an article</p>" + "<p>Title: " +  title + "</p>" + "<br>" + "<button type='button' onclick='downloadCertificatePublished()'>Download Cert</button>",
+                    imageUrl: "../images/qcu-bg.jpg",
+                    imageWidth: 400,
+                    imageHeight: 200,
+                    imageAlt: "Custom image",
+                    didClose: function () {
+                        reviewerCert.style.display = 'none';
+						authorCert.style.display = 'block';
+                    }
+                });
+            } else if (actionEngage === 'Reviewed an Article') {
+                Swal.fire({
+                    html: "<p style='font-weight: bold'>You got 1 Community heart because you help us published an article</p>" + "<p>Title: " + title + "</p>",
+                    imageUrl: "../images/qcu-bg.jpg",
+                    imageWidth: 400,
+                    imageHeight: 200,
+                    imageAlt: "Custom image",
+                    didClose: function () {
+                        reviewerCert.style.display = 'none';
+						authorCert.style.display = 'block';
+                    }
+                });
+            }
+        });
     });
-  });
-	
+});
 
-  function updateEngagementTitle(title, journalId) {
+function updateEngagementTitle(title, journalId) {
     document.getElementById("engagementTitle").innerHTML = title;
     document.getElementById("category").innerHTML = 'Journal of ' + journalId;
+
+	document.getElementById("engagementTitlePublished").innerHTML = title;
+    document.getElementById("categoryPublished").innerHTML = 'Journal of ' + journalId;
 }
 
 
-	function downloadCertificate() {
+function downloadCertificate() {
     // Get the certificate container by ID
     var certificateContainer = document.getElementById('certContainerHead');
 
@@ -1149,6 +1209,31 @@ document.addEventListener('DOMContentLoaded', function () {
         // Trigger a click on the link to start the download
         link.click();
     });
+
+	
+}
+
+function downloadCertificatePublished() {
+    // Get the certificate container by ID
+    var certificateContainerPublished = document.getElementById('certPublishedHead');
+
+    // Use html2canvas to capture the content as an image
+    html2canvas(certificateContainerPublished).then(function(canvas) {
+        // Convert the canvas to a data URL
+        var dataUrl = canvas.toDataURL('image/png');
+
+        // Create a link element
+        var link = document.createElement('a');
+
+        // Set the download attribute and the href with the data URL
+        link.download = 'certificatePublished.png';
+        link.href = dataUrl;
+
+        // Trigger a click on the link to start the download
+        link.click();
+    });
+
+	
 }
 
 </script>

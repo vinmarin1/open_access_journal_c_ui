@@ -23,6 +23,12 @@ $reviewer_email = get_reviewer_content($emc);
 $article_contributors = get_article_contributor($aid);
 $article_reviewer = get_article_reviewer($aid);
 $article_reviewer_check = check_article_reviewer($aid);
+$article_reviewer_accept = check_reviewer_accept();
+$article_reviewer_notcomplete = check_reviewer_notcomplete();
+$article_reviewer_ongoing = check_reviewer_ongoing();
+$authorlist = get_author_list();
+// print_r($article_reviewer_check);
+// print_r($authorlist);exit;
 $reviewer_details = get_reviewer_details();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -229,7 +235,7 @@ table {
                                                             </div>
                                                         </div>  
                                                         <div class="col-md-3 mt-4" id="dynamic-column">
-                                                            <div class="table-responsive text-nowrap">
+                                                            <!-- <div class="table-responsive text-nowrap">
                                                                 <table class="table table-striped" id="DataTable">
                                                                     <thead>
                                                                         <tr>
@@ -258,7 +264,7 @@ table {
                                                                         <th colspan="3" style="text-align: right;"></th>
                                                                     </tfoot> 
                                                                 </table>
-                                                            </div>
+                                                            </div> -->
                                                         </div>
                                                     </div>
                                                 </div>
@@ -377,7 +383,7 @@ table {
                                                             </div>
                                                         </div>  
                                                         <div class="col-md-3 mt-4" id="dynamic-column">
-                                                            <div class="table-responsive text-nowrap">
+                                                            <!-- <div class="table-responsive text-nowrap">
                                                                 <table class="table table-striped" id="DataTable">
                                                                     <thead>
                                                                         <tr>
@@ -406,7 +412,7 @@ table {
                                                                         <th colspan="3" style="text-align: right;"></th>
                                                                     </tfoot> 
                                                                 </table>
-                                                            </div>
+                                                            </div> -->
                                                         </div> 
 
                                                         <div class="col-md-12 mt-4" id="dynamic-column">
@@ -701,7 +707,7 @@ table {
                                                             </div>
                                                         </div>  
                                                         <div class="col-md-3 mt-4" id="dynamic-column">
-                                                            <div class="table-responsive text-nowrap">
+                                                            <!-- <div class="table-responsive text-nowrap">
                                                                 <table class="table table-striped" id="DataTable">
                                                                     <thead>
                                                                         <tr>
@@ -730,7 +736,7 @@ table {
                                                                         <th colspan="3" style="text-align: right;"></th>
                                                                     </tfoot> 
                                                                 </table>
-                                                            </div>
+                                                            </div> -->
                                                         </div> 
                                                         <div class="col-md-12 mt-4" id="dynamic-column">
                                                             <div class="table-responsive text-nowrap">
@@ -824,7 +830,7 @@ table {
                                                                                     <tr>
                                                                                         <td width="5%"><?php echo $allcopyedited_filesval->final_files_id; ?></td>
                                                                                         <td width="65%">
-                                                                                            <a href="../../Files/submitted-article/<?php echo ($allcopyedited_filesval->file_name); ?>" download>
+                                                                                            <a href="../../../Files/final-article/<?php echo ($allcopyedited_filesval->file_name); ?>" download>
                                                                                                 <?php echo $allcopyedited_filesval->file_name; ?>
                                                                                             </a>
                                                                                         </td>
@@ -872,13 +878,13 @@ table {
                                                         <div class="col-md-3 mt-4 mt-lg-0" id="dynamic-column">
                                                             <?php if ($article_data[0]->status == 11): ?>
                                                                 <div class="alert alert-white" role="alert">
-                                                                    <p>Submission accepted for copyediting.</p>
+                                                                    <p>Submission accepted for scheduled.</p>
                                                                 </div>
-                                                            <?php elseif ($article_data[0]->status <= 1 && $article_data[0]->status == 11): ?>
+                                                            <?php elseif ($article_data[0]->status == 1): ?>
                                                                 <div class="alert alert-white" role="alert">
                                                                     <p>Submission published.</p>
                                                                 </div>
-                                                            <?php else: ?>
+                                                            <?php elseif ($article_data[0]->status >= 2): ?>
                                                                 <a href="javascript:void(0);" onclick="" class="btn btn-primary btn-lg btn-block mb-2" style="width: 100%;" data-bs-toggle="modal" data-bs-target="#addIssueModal">Send to Publication</a>
                                                                 <!-- <a href="javascript:void(0);" onclick="" class="btn btn-outline-danger btn-lg btn-block" style="width: 100%;">Cancel Production</a> -->
                                                             <?php endif; ?>
@@ -925,7 +931,7 @@ table {
                                                             </div>
                                                         </div>  
                                                         <div class="col-md-3 mt-4" id="dynamic-column">
-                                                            <div class="table-responsive text-nowrap">
+                                                            <!-- <div class="table-responsive text-nowrap">
                                                                 <table class="table table-striped" id="DataTable">
                                                                     <thead>
                                                                         <tr>
@@ -954,7 +960,7 @@ table {
                                                                         <th colspan="3" style="text-align: right;"></th>
                                                                     </tfoot> 
                                                                 </table>
-                                                            </div>
+                                                            </div> -->
                                                         </div> 
                                                     </div>
                                                 </div>
@@ -1105,36 +1111,83 @@ table {
                                     <thead>
                                         <tr>
                                             <th colspan="3">
-                                            <h5 class="card-header">Locate a Reviewer</h5>
+                                                <h5 class="card-header">Locate a Reviewer</h5>
                                             </th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <?php if (empty($userlist)): ?>
+                                    <?php if (empty($authorlist)): ?>
                                         <tr>
                                             <td colspan="3" class="text-center">No Items</td>
                                         </tr>
                                     <?php else: ?>
-                                        <?php foreach ($userlist as $userlistval): ?>
+                                        <?php foreach ($authorlist as $userlistval): ?>
                                             <?php
-                                            $hideRow = false;
+                                            $hideRow = false; 
+                                            if ($article_data[0]->author_id == $userlistval->author_id) {
+                                                $hideRow = true;
+                                            } else {
+                                                // If not, check the reviewers
+                                                foreach ($article_reviewer_check as $reviewer) {
+                                                    if ($reviewer->round == $article_data[0]->round && 
+                                                        $reviewer->author_id == $userlistval->author_id) {
+                                                        $hideRow = true;
+                                                        break; 
+                                                    }
+                                                }
+                                            }
 
-                                            foreach ($article_reviewer_check as $reviewer) {
-                                                if ($reviewer->author_id == $userlistval->author_id & $reviewer->round == $article_data[0]->round) {
-                                                    $hideRow = true;
-                                                    break;
+                                            $totalAcceptCount = 0;
+                                            foreach ($article_reviewer_accept as $reviewertotalaccept) {
+                                                if ($reviewertotalaccept->author_id == $userlistval->author_id) {
+                                                    $totalAcceptCount++;
+                                                }
+                                            }
+
+                                            $totalDeclineCount = 0;
+                                            foreach ($article_reviewer_notcomplete as $reviewertotalnotcomplete) {
+                                                if ($reviewertotalnotcomplete->author_id == $userlistval->author_id) {
+                                                    $totalDeclineCount++;
+                                                }
+                                            }
+
+                                            $totalOngoingCount = 0;
+                                            foreach ($article_reviewer_ongoing as $reviewertotalongoing) {
+                                                if ($reviewertotalongoing->author_id == $userlistval->author_id) {
+                                                    $totalOngoingCount++;
                                                 }
                                             }
                                             ?>
                                             <?php if (!$hideRow): ?>
                                                 <tr>
-                                                <td width="5%">
-                                                        <a href="javascript:void(0);" onclick="openPageCentered('../../PHP/reviewerdashboard.php?author_id=<?php echo $userlistval->author_id; ?>')">
-                                                            <?php echo $userlistval->author_id; ?>
-                                                        </a>
+                                                    <td width="5">
+                                                        <?php echo $userlistval->author_id; ?>
                                                     </td>
-                                                    <td width="80%"><?php echo $userlistval->last_name; ?>, <?php echo $userlistval->first_name; ?></td>
-                                                    <td width="15%"><button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 160px;" onclick="selectReviewer(<?php echo $userlistval->author_id; ?>, '<?php echo $userlistval->first_name; ?>', '<?php echo $userlistval->last_name; ?>', '<?php echo $userlistval->email_verified; ?>')" data-bs-toggle="modal">Select Reviewer</button></td>
+                                                    <td width="85%">
+                                                        <a href="javascript:void(0);" onclick="openPageCentered('../../PHP/reviewerdashboard.php?author_id=<?php echo $userlistval->author_id; ?>')">
+                                                            <?php echo $userlistval->author_id . '-'; ?>
+                                                            <?php echo $userlistval->last_name . ', '; ?> 
+                                                            <?php echo $userlistval->first_name . ' '; ?> 
+                                                        </a>
+                                                        <div id="details_<?php echo $userlistval->author_id; ?>" style="display: none;">
+                                                            <br>
+                                                            <?php echo 'Expertise: ' . $userlistval->field_of_expertise; ?> 
+                                                            <br>
+                                                            <?php echo 'Role: ' . $userlistval->role; ?> 
+                                                            <br>
+                                                            <?php echo "Reviews completed: " . $totalAcceptCount; ?> 
+                                                            <br>
+                                                            <?php echo "Reviews ongoing: " . $totalOngoingCount; ?> 
+                                                            <br>
+                                                            <?php echo "Reviews not completed: " . $totalDeclineCount; ?> 
+                                                        </div>
+                                                    </td>
+                                                    <td width="15%">
+                                                        <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 160px;" onclick="selectReviewer(<?php echo $userlistval->author_id; ?>, '<?php echo $userlistval->first_name; ?>', '<?php echo $userlistval->last_name; ?>', '<?php echo $userlistval->email_verified; ?>')" data-bs-toggle="modal">Select Reviewer</button>
+                                                        <button type="button" class="btn btn-outline-dark" style="width: 20px;" onclick="toggleDetails('details_<?php echo $userlistval->author_id; ?>', this)">
+                                                            <span class="arrow-icon">&#x25BC;</span>
+                                                        </button>
+                                                    </td>
                                                 </tr>
                                             <?php endif; ?>
                                         <?php endforeach; ?>
@@ -1202,6 +1255,17 @@ table {
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
 
     <script>
+        function toggleDetails(detailsId, button) {
+            var details = document.getElementById(detailsId);
+            if (details.style.display === "none") {
+                details.style.display = "block";
+                button.querySelector('.arrow-icon').innerHTML = '&#x25B2;'; // Arrow up
+            } else {
+                details.style.display = "none";
+                button.querySelector('.arrow-icon').innerHTML = '&#x25BC;'; // Arrow down
+            }
+        }
+
         document.addEventListener("DOMContentLoaded", function () {
 
             const urlHash = window.location.hash;
@@ -1442,13 +1506,11 @@ table {
                         $('#DataTableAnswer tbody').empty();
 
                         for (const answer of answerData) {
-                            $('#DataTableAnswer tbody').append('<tr><td>' + answer.reviewer_questionnaire + '</td><td>' + answer.answer + '</td></tr>');
-                            if (answerData.length > 0) {
-                                const firstComment = answerData[0].comment;
-                                $('#DataTableAnswer tfoot').empty().append('<tr><th>Reviewer Comment</th></tr><tr><td>' + firstComment + '</td></tr>');
-                            }
-                        }
+                            $('#DataTableAnswer tbody').append('<tr><td width="50%"><div style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">' + 
+                            answer.reviewer_questionnaire + '</div><div style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Answer: ' + 
+                            answer.answer + '</div></td></tr>');
 
+                        }
                         $('#addReviewerAnswerModal').modal('show');
                     } else {
                         $('#DataTableAnswer tbody').empty();

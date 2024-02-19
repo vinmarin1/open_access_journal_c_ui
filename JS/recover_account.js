@@ -1,89 +1,93 @@
-$(document).ready(function() {
-    $("#sendBtn").on("click", function() {
-        var email = $("#email").val();
+function validateEmail(email, emailR) {
+    if (email === '') {
+        emailR.style.display = 'inline-block';
+        emailR.textContent = 'Invalid email';
+    } else {
+        const emailRegex = /^\S+@\S+\.\S+$/;
+        if (!emailRegex.test(email)) {
+            emailR.style.display = 'inline-block';
+            emailR.textContent = 'Invalid email';
+        } else {
+            emailR.style.display = 'none';
+        }
+    }
+}
 
-        $(this).prop("disabled", true);
-        $("#spinner").show();
 
-        $.ajax({
-            type: "POST",
-            url: "recover_account_functions.php",
-            data: { email: email },
-            success: function(response) {
-                $("#sendBtn").prop("disabled", false);
+function validatePassword(password, passwordR) {
+    if (password === '') {
+        passwordR.style.display = 'inline-block';
+        passwordR.textContent = 'Password must contain at least 1 Uppercase, 1 Special Character, and 1 Number';
+    } else {
+        const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])/;
+        if (!passwordRegex.test(password)) {
+            passwordR.style.display = 'inline-block';
+            passwordR.textContent = 'Password must contain at least 1 Uppercase, 1 Special Character, and 1 Number';
+        } else {
+            passwordR.style.display = 'none';
+        }
+    }
+}
 
-                setTimeout(function() {
-                    $("#spinner").hide();
 
-                    if (response === 'success') {
-                        $("#step1Label").hide();
-                        $("#step2Label").show();
-                        $("#getEmail").text(email);
-                        $("#firstStep").hide();
-                        $("#secondStep").show();
-                    } else {
-                        alert('Error: ' + response);
-                    }
-                }, 3000);
-            },
-            error: function() {
-                $("#sendBtn").prop("disabled", false);
+document.getElementById('email').addEventListener('input', function () {
+    const email = this.value;
+    const emailR = document.getElementById('emailR');
+    validateEmail(email, emailR);
+});
 
-                setTimeout(function() {
-                    $("#spinner").hide();
-                    alert('AJAX request failed.');
-                }, 3000);
-            }
-        });
-    });
+document.getElementById('password').addEventListener('input', function () {
+    const password = this.value;
+    const passwordR = document.getElementById('passwordR');
+    validatePassword(password, passwordR);
+});
 
-  
-    $("#email").on("input", function() {
-        var email = $("#email").val();
-        // Use a simple email validation regex
-        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+document.getElementById('nPassword').addEventListener('input', function () {
+    const nPassword = this.value;
+    const nPasswordR = document.getElementById('nPasswordR');
+    validatePassword(nPassword, nPasswordR);
+});
 
-    
-        $("#sendBtn").prop("disabled", !emailRegex.test(email));
-    });
-
-    $("#otp").on("input", function() {
-        var otp = $("#otp").val();
-      
-        var isFiveDigitNumber = /^\d{5}$/.test(otp);
-
-  
-        $("#otpBtn").prop("disabled", !isFiveDigitNumber);
-    });
-
-    $("#form").on("submit", function(e) {
-        e.preventDefault();
-
-        var otp = $("#otp").val();
-
-        $.ajax({
-            type: "POST",
-            url: "check_otp_expiry.php",
-            data: { otp: otp },
-            success: function(response) {
-                if (response === 'expired') {
-                    alert("The OTP you entered has expired. Please try again.");
-                } else {
-                    alert("Entered OTP: " + otp);
-                }
-            },
-            error: function() {
-                alert('Error checking OTP expiry.');
-            }
-        });
-    });
+document.getElementById('cPassword').addEventListener('input', function () {
+    const cPassword = this.value;
+    const cPasswordR = document.getElementById('cPasswordR');
+    validatePassword(cPassword, cPasswordR);
 });
 
 
+document.getElementById('sendBtn').addEventListener('click', function (event) {
+    const sendBtn = document.getElementById('sendBtn').value;
+    const spinner = document.getElementById('spinner').value;
 
-var otpInput = document.getElementById("otp");
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const nPassword = document.getElementById('nPassword').value;
+    const cPassword = document.getElementById('cPassword').value;
 
-otpInput.addEventListener("input", function() {
- 
-    this.value = this.value.replace(/\D/g, '');
+    const emailR = document.getElementById('emailR');
+    const passwordR = document.getElementById('passwordR');
+    const nPasswordR = document.getElementById('nPasswordR');
+    const cPasswordR = document.getElementById('cPasswordR');
+
+
+    validateEmail(email, emailR);
+    validatePassword(password, passwordR);
+    validatePassword(nPassword, nPasswordR);
+    validatePassword(cPassword, cPasswordR);
+
+    if (cPassword !== nPassword || nPassword !== cPassword) {
+        Swal.fire({
+            icon: 'warning',
+            title: 'Password mismatch',
+            text: 'New password and confirm password do not match, please try again'
+        });
+    }else{
+        sendBtn.innerText = '';
+        document.getElementById('spinner').style.display = 'inline-block'; 
+        document.getElementById('otpSending').style.display = 'inline-block'; 
+        setTimeout(function () {
+            document.getElementById('spinner').style.display = 'none';
+            document.getElementById('otpSending').style.display = 'none';
+        }, 2000);
+    }
 });

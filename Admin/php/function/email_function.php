@@ -81,6 +81,8 @@ if (!function_exists('get_email_content')) {
             $round = $_POST['round'];
             $fromuser = $_POST['fromuser'];
             $article_id = $_POST['article_id'];
+            $author_id = $_POST['author_id'];
+            $author_email = $_POST['author_email'];
             $issues_id = $_POST['issues_id'];
             $articleFilesId = $_POST['checkedData'];
             // $articleFilesId1 = $_POST['checkedData1'];
@@ -90,16 +92,16 @@ if (!function_exists('get_email_content')) {
                 echo "Email sent successfully.";
                 if ($id == 1) {
                     updateReviewFiles(1, $articleFilesId);
-                    updateArticleStatus($article_id, 4);
+                    updateArticleStatus($article_id, 4, '#navs-top-review');
                     addLogs($article_id, $fromuser, 'Send to Review');
                     echo "<script>alert('Send to review successfully.');</script>"; 
                 } elseif ($id == 2) {
-                    updateArticleStatus($article_id, 7);
+                    updateArticleStatus($article_id, 6, '#navs-top-submission');
                     addLogs($article_id, $fromuser, 'Decline for Submission');
                     echo "<script>alert('Decline submission successfully.');</script>";
                 } elseif ($id == 3) {
                     updateCopyeditingRevisionFiles(1, $revisionFilesId);
-                    updateArticleStatus($article_id, 3);
+                    updateArticleStatus($article_id, 3, '#navs-top-copyediting');
                     addLogs($article_id, $fromuser, 'Send to Copyediting');
                     echo "<script>alert('Send to copyediting successfully.');</script>";
                 } elseif ($id == 4) {
@@ -113,20 +115,22 @@ if (!function_exists('get_email_content')) {
                     echo "<script>alert('Request for revision successfully.');</script>";
                 } elseif ($id == 5) {
                     updateCopyeditedFiles(1, $copyeditedFilesIds);                
-                    updateArticleStatus($article_id, 2);
+                    updateArticleStatus($article_id, 2, '#navs-top-production');
                     addLogs($article_id, $fromuser, 'Send to Production');
                     echo "<script>alert('Send to production successfully.');</script>";
                 } elseif ($id == 6) {
                     updateIssues($article_id, $issues_id);
-                    updateArticleStatus($article_id, 11);
+                    updateArticleStatus($article_id, 11, '#navs-top-production');
                     addLogs($article_id, $fromuser, 'Article send for Scheduled');
                     echo "<script>alert('Send to Scheduled successfully.');</script>";
                 } elseif ($id == 7) {
                     updateArticleStatusArchive($article_id, 0);
-                    addLogs($article_id, $fromuser, 'Article move to Archive');
+                    addLogs($article_id, $fromuser, 'Article move to Archive', '#navs-top-production');
                     echo "<script>alert('Article move to archive successfully.');</script>";
                 } elseif ($id == 8) {
-                    updateArticleStatusPublished($article_id, 1);
+                    addUserPoints($article_id, $author_id, $author_email);
+                    addUserPointsReviewer($article_id);
+                    updateArticleStatusPublished($article_id, 1, '#navs-top-production');
                     addLogs($article_id, $fromuser, 'Article Published');
                     echo "<script>alert('Article published successfully.');</script>";
             } else {
@@ -137,16 +141,72 @@ if (!function_exists('get_email_content')) {
             echo 'Mailer Error: ' . $mail->ErrorInfo;
         }
     }   
+
+    function addUserPointsReviewer($article_id){
+
+        $query = "SELECT ra.article_id, a.author_id, a.email
+                  FROM reviewer_assigned ra
+                  JOIN author a ON ra.author_id = a.author_id
+                  WHERE ra.article_id = $article_id AND ra.accept = 1 AND ra.answer = 1";
+        
+        $result = execute_query($query);
+        
+        // Check if $result is an array
+        if (is_array($result)) {
+            // Process the array directly
+            foreach ($result as $row) {
+                $article_id = $row->article_id;
+                $author_id = $row->author_id;
+                $author_email = $row->email;
+        
+                $action_engage = "Reviewed Article Published";
+                $points = 3;
+        
+                $query = "INSERT INTO user_points (user_id, email, action_engage, article_id, point_earned) VALUES (?, ?, ?, ?, ?)";
+                
+                $result_insert = execute_query($query, [$author_id, $author_email, $action_engage, $article_id, $points], true);
+                
+                if ($result_insert !== false) {
+                    echo json_encode(['status' => true, 'message' => 'Points added successfully']);
+                } else {
+                    echo json_encode(['status' => false, 'message' => 'Failed to add points record', 'error']);
+                }
+            }
+        } elseif ($result !== false && mysqli_num_rows($result) > 0) {
+            // Process the result set as before
+            while ($row = mysqli_fetch_assoc($result)) {
+                // Your existing code here
+            }
+        } else {
+            echo json_encode(['status' => true, 'message' => 'No data found']);
+        }
+    }
+
+    function addUserPoints($article_id, $author_id, $author_email) {
+        $action_engage = "Published an Article";
+        $points = 3;
     
-    function updateArticleStatusArchive($article_id, $status) {
+        $query = "INSERT INTO user_points (user_id, email, action_engage, article_id, point_earned) VALUES (?, ?, ?, ?, ?)";
+        
+        $result = execute_query($query, [$author_id, $author_email, $action_engage, $article_id, $points], true);
+        
+        if ($result !== false) {
+            echo json_encode(['status' => true, 'message' => 'Points added successfully']);
+        } else {
+
+            echo json_encode(['status' => false, 'message' => 'Failed to add points record', 'error']);
+        }
+    }
+    
+    function updateArticleStatusArchive($article_id, $status, $workflow) {
         $query = "UPDATE article 
-                  SET status = ?, archive_date = NOW()
+                  SET status = ?, workflow = ?, archive_date = NOW()
                   WHERE article_id = ?";
     
         $pdo = connect_to_database();
     
         $stm = $pdo->prepare($query);
-        $check = $stm->execute([$status, $article_id]);
+        $check = $stm->execute([$status, $workflow, $article_id]);
     
         if ($check !== false) {
             echo "<script>alert('Article Status updated successfully');</script>";
@@ -155,15 +215,15 @@ if (!function_exists('get_email_content')) {
         }
     }
     
-    function updateArticleStatusPublished($article_id, $status) {
+    function updateArticleStatusPublished($article_id, $status, $workflow) {
         $query = "UPDATE article 
-                  SET status = ?, publication_date = NOW()
+                  SET status = ?, workflow = ?, publication_date = NOW()
                   WHERE article_id = ?";
     
         $pdo = connect_to_database();
     
         $stm = $pdo->prepare($query);
-        $check = $stm->execute([$status, $article_id]);
+        $check = $stm->execute([$status, $workflow ,$article_id]);
     
         if ($check !== false) {
             echo "<script>alert('Article Status updated successfully');</script>";
@@ -172,16 +232,16 @@ if (!function_exists('get_email_content')) {
         }
     }
     
-    function updateArticleStatus($article_id, $status) {
+    function updateArticleStatus($article_id, $status, $workflow) {
     
         $query = "UPDATE article 
-                SET status = ?
+                SET status = ?, workflow = ?
                 WHERE article_id = ?";
     
         $pdo = connect_to_database();
     
         $stm = $pdo->prepare($query);   
-        $check = $stm->execute([$status, $article_id]);
+        $check = $stm->execute([$status, $workflow, $article_id]);
     
         if ($check !== false) {
             echo "<script>alert('Article Status updated successfully');</script>";
@@ -335,7 +395,11 @@ if (!function_exists('get_email_content')) {
             $placeholders[] = $paramName;
         }
     
-        $placeholders = implode(',', $placeholders);
+        if (empty($placeholders)) {
+            $placeholders = 0;
+        } else {
+            $placeholders = implode(',', $placeholders);
+        }        
     
         $query = "UPDATE article_revision_files
                   SET copyediting = :status
@@ -381,8 +445,12 @@ if (!function_exists('get_email_content')) {
             $placeholders[] = $paramName;
         }
     
-        $placeholders = implode(',', $placeholders);
-    
+        if (empty($placeholders)) {
+            $placeholders = 0;
+        } else {
+            $placeholders = implode(',', $placeholders);
+        }        
+        
         $query = "UPDATE article_final_files
                   SET production = :status
                   WHERE final_files_id IN ($placeholders)";
@@ -506,10 +574,5 @@ if (!function_exists('get_email_content')) {
             // echo json_encode(['status' => false, 'message' => 'Failed to add record', 'error' => $errorInfo]);
             echo json_encode(['status' => false, 'message' => 'Failed to add record', 'error']);
         }
-    }
-    
-
- 
-
-     
+    }  
 ?>

@@ -113,7 +113,7 @@ $incomplete_articles = get_article_list($cid);
                                     </span>
                                 </td>
                                 <td width="5%">                         
-                                    <a href="javascript:void(0);" onclick="viewWorkflow(<?php echo $incomplete_articlesval->article_id; ?>)" class="btn btn-outline-dark">View</a>
+                                    <a href="javascript:void(0);" onclick="viewWorkflow(<?php echo $incomplete_articlesval->article_id; ?>, '<?php echo $incomplete_articlesval->workflow; ?>')" class="btn btn-outline-dark">View</a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -156,16 +156,15 @@ $incomplete_articles = get_article_list($cid);
             });
         });
 
-        
-        function viewWorkflow(articleId) {
-            $('#sloading').show();
+        function viewWorkflow(articleId, workflow) {
+            $('#sloading').show(); // Show loading indicator
 
             setTimeout(function () {
-                // Use the articleId parameter instead of trying to access $incomplete_articlesval
-                window.location.href = "../php/workflow.php?aid=" + articleId;
+                // Redirect to the workflow page after 2 seconds
+                window.location.href = "../php/workflow.php?aid=" + articleId + workflow;
             }, 2000);
 
-            // This will hide the loading indicator when the page loads, not after the setTimeout
+            // Hide loading indicator when the page is fully loaded
             window.onload = function () {
                 $('#sloading').hide();
             };

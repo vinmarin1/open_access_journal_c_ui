@@ -95,8 +95,11 @@ input[type="submit"]:hover{
     width: 95%;
 }
 
+#thirdP{
+    width: 100%;
+}
 
-
-
-
-
+.mt-4, .mt-1{
+    text-align: justify;
+ 
+}

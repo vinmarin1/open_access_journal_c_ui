@@ -116,11 +116,12 @@ function isValidEmail(email) {
 }
 
 function isValidPassword(password) {
-    // Check if the password contains at least 1 uppercase letter, 1 special character, and does not exceed 8 characters
+    // Check if the password contains at least 1 uppercase letter, 1 special character, 1 number, and does not exceed 8 characters
     const uppercaseRegex = /[A-Z]/;
     const specialCharRegex = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/;
+    const numberRegex = /[0-9]/;
 
-    return uppercaseRegex.test(password) && specialCharRegex.test(password) && password.length <= 8;
+    return uppercaseRegex.test(password) && specialCharRegex.test(password) && numberRegex.test(password) && password.length <= 8;
 }
 
 
