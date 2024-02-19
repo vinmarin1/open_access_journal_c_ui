@@ -827,7 +827,7 @@ table {
                                                                                     <tr>
                                                                                         <td width="5%"><?php echo $allcopyedited_filesval->final_files_id; ?></td>
                                                                                         <td width="65%">
-                                                                                            <a href="../../Files/submitted-article/<?php echo ($allcopyedited_filesval->file_name); ?>" download>
+                                                                                            <a href="../../Files/final-article/<?php echo ($allcopyedited_filesval->file_name); ?>" download>
                                                                                                 <?php echo $allcopyedited_filesval->file_name; ?>
                                                                                             </a>
                                                                                         </td>
@@ -1123,7 +1123,7 @@ table {
                                             $hideRow = false;
 
                                             foreach ($article_reviewer_check as $reviewer) {
-                                                if ($reviewer->author_id == $userlistval->author_id & $reviewer->round == $article_data[0]->round) {
+                                                if ($reviewer->author_id == $userlistval->author_id & $reviewer->round == $article_data[0]->round & $userlistval->author_id == $article_data[0]->author_id) {
                                                     $hideRow = true;
                                                     break;
                                                 }
@@ -1493,9 +1493,11 @@ table {
                         $('#DataTableAnswer tbody').empty();
 
                         for (const answer of answerData) {
-                            $('#DataTableAnswer tbody').append('<tr><td>' + answer.reviewer_questionnaire + '</td><td>' + answer.answer + '</td></tr>');
-                        }
+                            $('#DataTableAnswer tbody').append('<tr><td width="50%"><div style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">' + 
+                            answer.reviewer_questionnaire + '</div><div style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Answer: ' + 
+                            answer.answer + '</div></td></tr>');
 
+                        }
                         $('#addReviewerAnswerModal').modal('show');
                     } else {
                         $('#DataTableAnswer tbody').empty();
