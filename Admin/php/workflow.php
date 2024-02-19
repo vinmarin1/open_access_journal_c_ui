@@ -26,6 +26,9 @@ $article_reviewer_check = check_article_reviewer($aid);
 $article_reviewer_accept = check_reviewer_accept();
 $article_reviewer_notcomplete = check_reviewer_notcomplete();
 $article_reviewer_ongoing = check_reviewer_ongoing();
+$authorlist = get_author_list();
+// print_r($article_reviewer_check);
+// print_r($authorlist);exit;
 $reviewer_details = get_reviewer_details();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -827,7 +830,7 @@ table {
                                                                                     <tr>
                                                                                         <td width="5%"><?php echo $allcopyedited_filesval->final_files_id; ?></td>
                                                                                         <td width="65%">
-                                                                                            <a href="../../Files/final-article/<?php echo ($allcopyedited_filesval->file_name); ?>" download>
+                                                                                            <a href="../../../Files/final-article/<?php echo ($allcopyedited_filesval->file_name); ?>" download>
                                                                                                 <?php echo $allcopyedited_filesval->file_name; ?>
                                                                                             </a>
                                                                                         </td>
@@ -1108,24 +1111,29 @@ table {
                                     <thead>
                                         <tr>
                                             <th colspan="3">
-                                            <h5 class="card-header">Locate a Reviewer</h5>
+                                                <h5 class="card-header">Locate a Reviewer</h5>
                                             </th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <?php if (empty($userlist)): ?>
+                                    <?php if (empty($authorlist)): ?>
                                         <tr>
                                             <td colspan="3" class="text-center">No Items</td>
                                         </tr>
                                     <?php else: ?>
-                                        <?php foreach ($userlist as $userlistval): ?>
+                                        <?php foreach ($authorlist as $userlistval): ?>
                                             <?php
-                                            $hideRow = false;
-
-                                            foreach ($article_reviewer_check as $reviewer) {
-                                                if ($reviewer->author_id == $userlistval->author_id & $reviewer->round == $article_data[0]->round & $userlistval->author_id == $article_data[0]->author_id) {
-                                                    $hideRow = true;
-                                                    break;
+                                            $hideRow = false; 
+                                            if ($article_data[0]->author_id == $userlistval->author_id) {
+                                                $hideRow = true;
+                                            } else {
+                                                // If not, check the reviewers
+                                                foreach ($article_reviewer_check as $reviewer) {
+                                                    if ($reviewer->round == $article_data[0]->round && 
+                                                        $reviewer->author_id == $userlistval->author_id) {
+                                                        $hideRow = true;
+                                                        break; 
+                                                    }
                                                 }
                                             }
 
@@ -1152,7 +1160,8 @@ table {
                                             ?>
                                             <?php if (!$hideRow): ?>
                                                 <tr>
-                                                    <td width="0%">
+                                                    <td width="5">
+                                                        <?php echo $userlistval->author_id; ?>
                                                     </td>
                                                     <td width="85%">
                                                         <a href="javascript:void(0);" onclick="openPageCentered('../../PHP/reviewerdashboard.php?author_id=<?php echo $userlistval->author_id; ?>')">
@@ -1175,7 +1184,9 @@ table {
                                                     </td>
                                                     <td width="15%">
                                                         <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 160px;" onclick="selectReviewer(<?php echo $userlistval->author_id; ?>, '<?php echo $userlistval->first_name; ?>', '<?php echo $userlistval->last_name; ?>', '<?php echo $userlistval->email_verified; ?>')" data-bs-toggle="modal">Select Reviewer</button>
-                                                        <button type="button" class="btn btn-outline-dark" style="width: 20px;" onclick="toggleDetails('details_<?php echo $userlistval->author_id; ?>')">!</button>
+                                                        <button type="button" class="btn btn-outline-dark" style="width: 20px;" onclick="toggleDetails('details_<?php echo $userlistval->author_id; ?>', this)">
+                                                            <span class="arrow-icon">&#x25BC;</span>
+                                                        </button>
                                                     </td>
                                                 </tr>
                                             <?php endif; ?>
@@ -1244,12 +1255,14 @@ table {
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
 
     <script>
-        function toggleDetails(detailsId) {
+        function toggleDetails(detailsId, button) {
             var details = document.getElementById(detailsId);
             if (details.style.display === "none") {
                 details.style.display = "block";
+                button.querySelector('.arrow-icon').innerHTML = '&#x25B2;'; // Arrow up
             } else {
                 details.style.display = "none";
+                button.querySelector('.arrow-icon').innerHTML = '&#x25BC;'; // Arrow down
             }
         }
 
