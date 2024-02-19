@@ -92,16 +92,16 @@ if (!function_exists('get_email_content')) {
                 echo "Email sent successfully.";
                 if ($id == 1) {
                     updateReviewFiles(1, $articleFilesId);
-                    updateArticleStatus($article_id, 4);
+                    updateArticleStatus($article_id, 4, '#navs-top-review');
                     addLogs($article_id, $fromuser, 'Send to Review');
                     echo "<script>alert('Send to review successfully.');</script>"; 
                 } elseif ($id == 2) {
-                    updateArticleStatus($article_id, 6);
+                    updateArticleStatus($article_id, 6, '#navs-top-submission');
                     addLogs($article_id, $fromuser, 'Decline for Submission');
                     echo "<script>alert('Decline submission successfully.');</script>";
                 } elseif ($id == 3) {
                     updateCopyeditingRevisionFiles(1, $revisionFilesId);
-                    updateArticleStatus($article_id, 3);
+                    updateArticleStatus($article_id, 3, '#navs-top-copyediting');
                     addLogs($article_id, $fromuser, 'Send to Copyediting');
                     echo "<script>alert('Send to copyediting successfully.');</script>";
                 } elseif ($id == 4) {
@@ -115,22 +115,22 @@ if (!function_exists('get_email_content')) {
                     echo "<script>alert('Request for revision successfully.');</script>";
                 } elseif ($id == 5) {
                     updateCopyeditedFiles(1, $copyeditedFilesIds);                
-                    updateArticleStatus($article_id, 2);
+                    updateArticleStatus($article_id, 2, '#navs-top-production');
                     addLogs($article_id, $fromuser, 'Send to Production');
                     echo "<script>alert('Send to production successfully.');</script>";
                 } elseif ($id == 6) {
                     updateIssues($article_id, $issues_id);
-                    updateArticleStatus($article_id, 11);
+                    updateArticleStatus($article_id, 11, '#navs-top-production');
                     addLogs($article_id, $fromuser, 'Article send for Scheduled');
                     echo "<script>alert('Send to Scheduled successfully.');</script>";
                 } elseif ($id == 7) {
                     updateArticleStatusArchive($article_id, 0);
-                    addLogs($article_id, $fromuser, 'Article move to Archive');
+                    addLogs($article_id, $fromuser, 'Article move to Archive', '#navs-top-production');
                     echo "<script>alert('Article move to archive successfully.');</script>";
                 } elseif ($id == 8) {
                     addUserPoints($article_id, $author_id, $author_email);
                     addUserPointsReviewer($article_id);
-                    updateArticleStatusPublished($article_id, 1);
+                    updateArticleStatusPublished($article_id, 1, '#navs-top-production');
                     addLogs($article_id, $fromuser, 'Article Published');
                     echo "<script>alert('Article published successfully.');</script>";
             } else {
@@ -198,15 +198,15 @@ if (!function_exists('get_email_content')) {
         }
     }
     
-    function updateArticleStatusArchive($article_id, $status) {
+    function updateArticleStatusArchive($article_id, $status, $workflow) {
         $query = "UPDATE article 
-                  SET status = ?, archive_date = NOW()
+                  SET status = ?, workflow = ?, archive_date = NOW()
                   WHERE article_id = ?";
     
         $pdo = connect_to_database();
     
         $stm = $pdo->prepare($query);
-        $check = $stm->execute([$status, $article_id]);
+        $check = $stm->execute([$status, $workflow, $article_id]);
     
         if ($check !== false) {
             echo "<script>alert('Article Status updated successfully');</script>";
@@ -215,15 +215,15 @@ if (!function_exists('get_email_content')) {
         }
     }
     
-    function updateArticleStatusPublished($article_id, $status) {
+    function updateArticleStatusPublished($article_id, $status, $workflow) {
         $query = "UPDATE article 
-                  SET status = ?, publication_date = NOW()
+                  SET status = ?, workflow = ?, publication_date = NOW()
                   WHERE article_id = ?";
     
         $pdo = connect_to_database();
     
         $stm = $pdo->prepare($query);
-        $check = $stm->execute([$status, $article_id]);
+        $check = $stm->execute([$status, $workflow ,$article_id]);
     
         if ($check !== false) {
             echo "<script>alert('Article Status updated successfully');</script>";
@@ -232,16 +232,16 @@ if (!function_exists('get_email_content')) {
         }
     }
     
-    function updateArticleStatus($article_id, $status) {
+    function updateArticleStatus($article_id, $status, $workflow) {
     
         $query = "UPDATE article 
-                SET status = ?
+                SET status = ?, workflow = ?
                 WHERE article_id = ?";
     
         $pdo = connect_to_database();
     
         $stm = $pdo->prepare($query);   
-        $check = $stm->execute([$status, $article_id]);
+        $check = $stm->execute([$status, $workflow, $article_id]);
     
         if ($check !== false) {
             echo "<script>alert('Article Status updated successfully');</script>";
