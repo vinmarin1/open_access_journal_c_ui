@@ -494,7 +494,23 @@ $copyedited_files = get_copyedited_files($aid);
                 $('#sloading').toggle();
                 console.log(response);
                 alert('Email sent to author successfully.');
-                window.location.href = '../php/workflow.php?aid=<?php echo $article_data[0]->article_id; ?>';
+                if (<?php print $email_content[0]->id ?> == 1) {
+                    window.location.href = '../php/workflow.php?aid=<?php echo $article_data[0]->article_id; ?>#navs-top-review';
+                } else if (<?php print $email_content[0]->id ?> == 2) {
+                    window.location.href = '../php/workflow.php?aid=<?php echo $article_data[0]->article_id; ?>#navs-top-submission';
+                } else if (<?php print $email_content[0]->id ?> == 3) {
+                    window.location.href = '../php/workflow.php?aid=<?php echo $article_data[0]->article_id; ?>#navs-top-copyediting';
+                } else if (<?php print $email_content[0]->id ?> == 4) {
+                    window.location.href = '../php/workflow.php?aid=<?php echo $article_data[0]->article_id; ?>#navs-top-review';
+                } else if (<?php print $email_content[0]->id ?> == 5) {
+                    window.location.href = '../php/workflow.php?aid=<?php echo $article_data[0]->article_id; ?>#navs-top-production';
+                } else if (<?php print $email_content[0]->id ?> == 6) {
+                    window.location.href = '../php/workflow.php?aid=<?php echo $article_data[0]->article_id; ?>#navs-top-production';
+                } else if (<?php print $email_content[0]->id ?> == 7) {
+                    window.location.href = '../php/workflow.php?aid=<?php echo $article_data[0]->article_id; ?>#navs-top-production';
+                } else if (<?php print $email_content[0]->id ?> == 8) {
+                    window.location.href = '../php/workflow.php?aid=<?php echo $article_data[0]->article_id; ?>#navs-top-production';
+                }
             },
             error: function (error) {
                 console.error(error);

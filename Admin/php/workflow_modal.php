@@ -407,12 +407,11 @@ $userlist = get_user_list();
                 <div class="modal-body">
                     <div class="row mb-2">
                         <div class="col-md-12 mb-2" id="dynamic-column">
-                            <div class="table text-nowrap">
+                            <div class="table-responsive text-nowrap">
                                 <table class="table table-striped" id="DataTableAnswer">
                                     <thead>
                                         <tr>
                                             <th>Question</th>
-                                            <th>Answer</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -427,8 +426,8 @@ $userlist = get_user_list();
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Accept</button>
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Accept</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
