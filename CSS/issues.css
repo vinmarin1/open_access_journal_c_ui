@@ -82,7 +82,19 @@ p{
     font-family: Arial, Helvetica, sans-serif;
     color: #0858a4;
 }
-
+@media only screen and (max-width: 768px) {
+    /* Adjustments for smaller screens */
+    .journal-title {
+        width: 100%;
+        margin-left: 0;
+    }
+    
+    .journal-details{
+        width: 100%;
+        margin-left: 0;
+    }
+    /* Adjust any other elements as needed */
+}
 .sub-area{
     display: inline-block;
     padding-right: 300px;

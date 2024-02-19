@@ -60,26 +60,24 @@ require 'dbcon.php';
       <!-- <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
       </form> -->
-
-      <?php
-          
-              if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-
-              } else {
-              echo '
-              
-              <li class="nav-item dropdown py-2 px-4">
+    <!-- Login Dropdown -->
+    <?php
+    if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
+        echo '
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown" id="navlogin">
                 <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Log-in
+                    Log-in
                 </a>
-                <ul class="dropdown-menu" id="login-register" style="margin-left: -50px; width: 100px">
-                <li><a class="dropdown-item" style="color: black" href="login.php" >Log-in</a></li>
-                <li><a class="dropdown-item" style="color: black" href="signup.php">Register</a></li>
+                <ul class="dropdown-menu dropdown-menu-end" id="login-register">
+                    <li><a class="dropdown-item" style="color: black" href="login.php" >Log-in</a></li>
+                    <li><a class="dropdown-item" style="color: black" href="signup.php">Register</a></li>
                 </ul>
-              </li>
-            ';
-          }
-            ?>
+            </li>
+        </ul>
+        ';
+    }
+    ?>
 
       </div>
       </div>

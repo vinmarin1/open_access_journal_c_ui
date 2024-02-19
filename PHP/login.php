@@ -21,16 +21,16 @@
         <p class="h4" id="login-label" style="color: black; font-family: Arial, Helvetica, sans-serif">LOGIN</p>
         <div class="input-field ">
            <label for="email">Email:</label>
-           <input type="email" class="input form-control" name="email"  id="email" >
+           <input type="email" class="input form-control" name="email"  id="email" placeholder="Enter your email">
         </div>
        
         <div class="input-field">
            <label for="password">Password:</label>
-           <input type="password" class="input form-control" name="password"  id="password" >
+           <input type="password" class="input form-control" name="password"  id="password" placeholder="Enter your password">
            
         </div>
         
-        <a id="forgotPasswordLink" style="color: blue; text-decoration: underline; cursor: pointer  ">Forgot Password?
+        <a id="forgotPasswordLink" style="color: blue; text-decoration: underline; cursor: pointer  "><i class="fas fa-question-circle"></i> Forgot Password?
             <div class="spinner-border spinner-border-sm" role="status" id="spinner" style="display: none">
                 <span class="visually-hidden"></span>
             </div>

@@ -5,58 +5,81 @@
     align-items: center;
     width: 100%;
     min-height: 80vh;
+    padding: 0 10px;
 }
 
-
 #form{
+    max-width: 400px; /* Set maximum width to prevent overflow on smaller screens */
+    width: 100%;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; 
+    padding: 30px;   
+}
+/* #form{
     width: 400px;
     height: 400px;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; 
     padding-top: 20px;
     padding-left: 20px;   
-    /* margin-bottom: 50px; */
-}
+} */
 
 #login-label{
     margin-bottom: 50px;
     font-family: Arial, Helvetica, sans-serif;
 }
-
-#form input[type="email"], input[type="password"]{
+#form input[type="email"], 
+#form input[type="password"]{
+    width: 100%; /* Make input fields take full width */
+}
+/* #form input[type="email"], input[type="password"]{
     width: 95%;
 
-}
+} */
 
 #form label{
     margin-bottom: 5px;
     font-size: 12px;
     font-weight: bold;
 }
-
 #form a{
+    margin-top: 20px; /* Reduce margin for smaller screens */
+    margin-bottom: 20px; /* Reduce margin for smaller screens */
+    float: right;
+}
+/* #form a{
     float: right;
     margin-right: 22px;
     margin-top: 20px;
     margin-bottom: 20px;
-}
+} */
 
 .btns{
     margin-top: 20px;
     margin-bottom: 50px;
 }
+#login-button,
+#register-button{
+    width: 100%; /* Make buttons take full width */
+}
 
 #login-button{
-    width: 95%;
     background-color: #0858a4;
 }
 
 #register-button{
-    width: 95%;
     margin-top: 10px;
     border: none;
     border: 1px red solid;
     background-color: white;
     color: red;
 }
-
+@media only screen and (min-width: 600px) {
+    /* Apply styles for screens wider than 600px */
+    .form-container{
+        padding: 0; /* Remove padding for larger screens */
+    }
+    
+    #form{
+        width: 400px; /* Maintain width for larger screens */
+    }
+}
 
