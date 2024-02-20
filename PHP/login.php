@@ -15,7 +15,7 @@
 <nav class="navigation-menus-container"  id="navigation-menus-container">
 </nav>
 <div class="d-flex">
-    <div class="form-container" style="background-color: #fafcff   ">
+    <div class="form-container d-none d-sm-flex" style="background-color: #fafcff ">
         <div class="d-flex flex-column gap-4" style="width:75%">
           <h2 class="font-weight-bold text-xl" style="font-size:40px; font-weight:600;"><span>Quezon City University <span >Journals</span></span> </h2>
           <span>Enjoy unrestricted access to all articles without logging in! For a tailored experience, exclusive features, and to stay updated with our latest content, log in now.</span>
