@@ -575,23 +575,53 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-
-
-
 function openFilename(index) {
   var input = document.getElementById('file_name' + (index === 1 ? '' : index));
   input.click();
 
-  input.addEventListener('change', function() {
-    var fileName = input.files[0].name;
-   
-    document.getElementById('fileName' + index).innerText = fileName;
-   
+  input.addEventListener('change', function () {
+      checkFileSize(input, 1.5 * 1024 * 1024, index);
   });
 }
 
+function checkFileSize(input, maxSizeInBytes, index) {
+  var files = input.files;
+
+  if (files.length > 0) {
+      var fileSize = files[0].size; // in bytes
+      var maxSize = maxSizeInBytes;
+
+      if (fileSize > maxSize) {
+          Swal.fire({
+              icon: 'warning',
+              text: 'Please select a file equal or less than 1.5 MB to continue'
+          });
+          var fileInput = document.getElementById('file_name' + (index === 1 ? '' : index));
+
+          // Clear the value of the file input
+          fileInput.value = '';
+      } else {
+          var fileName = input.files[0].name;
+          document.getElementById('fileName' + index).innerText = fileName;
+      }
+  }
+}
+
+document.getElementById('file_name').addEventListener('change', function () {
+  openFilename(1);
+});
+
+document.getElementById('file_name2').addEventListener('change', function () {
+  openFilename(2);
+});
+
+document.getElementById('file_name3').addEventListener('change', function () {
+  openFilename(3);
+});
+
+
 function deleteFilename(index) {
-  // Get the file input associated with the row
+
   var fileInput = document.getElementById('file_name' + (index === 1 ? '' : index));
 
   // Clear the value of the file input
