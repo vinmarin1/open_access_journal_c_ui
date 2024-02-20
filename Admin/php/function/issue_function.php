@@ -117,9 +117,7 @@ if (!function_exists('get_issues_list')) {
                         $title = $_POST['title'];
                         $journal_id = $_POST['journal_id'];
                         $status = 1;
-                    
-                        $documentRoot = $_SERVER['DOCUMENT_ROOT'];
-                        $uploadPath = $documentRoot . '/Files/cover-image/';
+                        $uploadPath = "../../../Files/cover-image/";
                     
                         if (!file_exists($uploadPath)) {
                             mkdir($uploadPath, 0777, true);

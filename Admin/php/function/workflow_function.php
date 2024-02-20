@@ -265,6 +265,75 @@ if (!function_exists('check_article_reviewer')) {
     }
 }
 
+if (!function_exists('check_reviewer_accept')) {
+    function check_reviewer_accept() {
+        $pdo = connect_to_database();
+
+        if ($pdo) {
+            try {
+                $query = "SELECT * FROM reviewer_assigned WHERE accept = 1 AND answer = 1";
+                $stmt = $pdo->prepare($query);
+                $stmt->execute();
+
+                $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+                return $result;
+            } catch (PDOException $e) {
+                echo "Error: " . $e->getMessage();
+                return false;
+            }
+        }
+
+        return false;
+    }
+}
+
+if (!function_exists('check_reviewer_notcomplete')) {
+    function check_reviewer_notcomplete() {
+        $pdo = connect_to_database();
+
+        if ($pdo) {
+            try {
+                $query = "SELECT * FROM reviewer_assigned WHERE accept = 0 AND answer = 0 AND DATE(deadline) <= CURDATE();";
+                $stmt = $pdo->prepare($query);
+                $stmt->execute();
+
+                $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+                return $result;
+            } catch (PDOException $e) {
+                echo "Error: " . $e->getMessage();
+                return false;
+            }
+        }
+
+        return false;
+    }
+}
+
+if (!function_exists('check_reviewer_ongoing')) {
+    function check_reviewer_ongoing() {
+        $pdo = connect_to_database();
+
+        if ($pdo) {
+            try {
+                $query = "SELECT * FROM reviewer_assigned WHERE accept = 0 AND answer = 0 AND DATE(deadline) >= CURDATE();";
+                $stmt = $pdo->prepare($query);
+                $stmt->execute();
+
+                $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+                return $result;
+            } catch (PDOException $e) {
+                echo "Error: " . $e->getMessage();
+                return false;
+            }
+        }
+
+        return false;
+    }
+}
+
 if (!function_exists('get_discussion')) {
     function get_discussion($aid) {
         $pdo = connect_to_database();
@@ -458,5 +527,27 @@ if (!function_exists('getauthordetails')) {
     }
 }
 
+if (!function_exists('get_author_list')) {
+    function get_author_list()
+    {
+        $pdo = connect_to_database();
+
+        if ($pdo) {
+            try {
+                $query = "SELECT * FROM author WHERE status = 1";
+                $stmt = $pdo->query($query);
+
+                $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+                return $result;
+            } catch (PDOException $e) {
+                echo "Error: " . $e->getMessage();
+                return false;
+            }
+        }
+
+        return false;
+    }
+}
 
 

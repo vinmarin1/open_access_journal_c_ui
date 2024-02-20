@@ -353,8 +353,8 @@ include 'function/dashboard_functions.php';
         datasets: [{
             data: [doughnutChartData1[0].not_published_count, doughnutChartData1[0].published_count],
             backgroundColor: [
-                '#0074cc',
-                '#ff0000'
+                '#ff0000',
+                '#0074cc'
             ],
             borderColor: [
                 'rgba(255, 99, 132, 1)',

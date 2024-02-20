@@ -132,9 +132,11 @@ p{
         }
 
         .download-buttons {
-            display: flex;
-            justify-content: space-between;
+            display: inline-block;
+            /* display: flex;
+            justify-content: space-between; */
             padding: 5px;
+            text-align: center;
         }
 
         .download-buttons button {
@@ -144,7 +146,7 @@ p{
             color: #0858a4;
             cursor: pointer;
 			padding: 5px 10px 5px 10px;
-			
+			display: inline-block;
         }
 
         .stats-container {
@@ -271,7 +273,57 @@ p{
     color: #115272;
     opacity: 0.8;
 }
+@media only screen and (max-width: 768px) {
+    .pub-container {
+        flex-direction: column;
+        gap: 20px;
+    }
 
-#next-page, #previous-page {
-    cursor: pointer;
+    .issue-title {
+        text-align: left;
+        order: initial;
+        margin-bottom: 10px;
+    }
+    .sort-container{
+        margin-left: 0px;
+        padding: 0px 0px 0px 0px;
+    }
+    .sort-container label {
+        margin-right: 0px;
+    
+    }
+    .issue-details {
+        text-align: left;
+    }
+
+    .pagination {
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .page-item {
+        margin: 0 5px;
+        padding: 5px 10px;
+    }
+    .article-container{
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+    .article-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .article-content {
+        max-width: 100%;
+        flex: 1; 
+    }
+
+    .article-stats {
+        margin-top: 10px; /* Adjust spacing between article-content and article-stats */
+    }
+    .continue-reading {
+        margin-right: 0px;
+    }
 }

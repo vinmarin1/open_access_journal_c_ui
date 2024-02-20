@@ -18,6 +18,9 @@
   background-color: white;
 }
 
+nav .navbar-nav #navlogin:hover {
+  background-color: transparent !important;
+}
 /* Notification button */
 #notification-button,
 #points-button {
@@ -134,6 +137,10 @@ nav .navbar-nav .nav-item:hover {
     padding: 0%;
     margin-left: block;
   }
+  nav .navbar-nav #navlogin:hover {
+    background-color: #ff6700 !important;
+  }
+  
 }
 /* #navbar-container{
     background-color: #004e98;
