@@ -15,25 +15,25 @@
 <nav class="navigation-menus-container"  id="navigation-menus-container">
 </nav>
 <div class="d-flex">
-    <div class="form-container d-none d-sm-flex" style="background-color: #fafcff ">
+    <div class="form-container d-none d-sm-flex" id="login-banner">
+        <img src="../images/qcu-bg.jpg" class="image-cover">
         <div class="d-flex flex-column gap-4" style="width:75%">
-          <h2 class="font-weight-bold text-xl" style="font-size:40px; font-weight:600;"><span>Quezon City University <span >Journals</span></span> </h2>
+          <h2 class="font-weight-bold text-xl" style=" font-weight:600;"><span>Quezon City University <span >Journals</span></span> </h2>
           <span>Enjoy unrestricted access to all articles without logging in! For a tailored experience, exclusive features, and to stay updated with our latest content, log in now.</span>
-          <div>
+          <div class="d-flex gap-1 flex-wrap w-75">
             <span class="features">Personalized recommendations</span> 
             <span class="features">Submit articles</span>
             <span class="features">Become a reviewer</span>
-            <span class="features">Display your Contributions</span>
             <span class="features">Download Articles</span>
           </div>
           
-          <button class="btn text-white w-50"  style="background-color:#0858a4" onclick="window.location.href='browse-articles.php'">
+          <button class="btn text-white w-50"  style="background-color:#E56F1F" onclick="window.location.href='browse-articles.php'">
             Browse Now
           </button>
         </div>
     </div>
     <div class="form-container">
-        <form method="post" id="form">
+        <form method="post" id="form" class="bg-white">
             <p class="h4" id="login-label" style="color:rgb(33, 33, 33); font-family: Arial, Helvetica, sans-serif; font-weight:bold">Log in and Access your Account</p>
             <div class="input-field ">
                <label for="email">Email:</label>
