@@ -1401,6 +1401,14 @@ function updateFileSubmission() {
         return; 
     }
 
+    if (submissionFile) {
+        if (submissionFile.size >= 45 * 1024 * 1024) { 
+            $('#sloading').toggle();
+            alert("File size exceeds the limit of 45 MB. Please upload a smaller file.");
+            return;
+        }
+    }
+
     var formData = new FormData();
     formData.append('submissionfileid', submissionFileId);
     formData.append('submissionfile', submissionFile);
@@ -1433,6 +1441,14 @@ function addDiscussion() {
     var submissionMessage = $('#submissionmessage').val();
     var submissionFiletype = $('#submissionfiletype').val();
     var submissionFile = $('#submissionfilexx')[0].files[0];
+
+    if (submissionFile) {
+        if (submissionFile.size >= 45 * 1024 * 1024) { 
+            $('#sloading').toggle();
+            alert("File size exceeds the limit of 45 MB. Please upload a smaller file.");
+            return;
+        }
+    }
 
     var formData = new FormData();
     formData.append('article_id', articleId);
@@ -1467,6 +1483,14 @@ function replyDiscussion() {
     var submissionMessage = $('#submissionmessagex').val();
     var submissionFiletype = $('#submissionfiletypex').val();
     var submissionFile = $('#submissionfilexxx')[0].files[0];
+    
+    if (submissionFile) {
+        if (submissionFile.size >= 45 * 1024 * 1024) { 
+            $('#sloading').toggle();
+            alert("File size exceeds the limit of 45 MB. Please upload a smaller file.");
+            return;
+        }
+    }
 
     var formData = new FormData();
     formData.append('fromuser', fromuser);
@@ -1498,6 +1522,14 @@ function addRevisionFile() {
     var revisionFileType = $('#revisionfiletype').val();
     var revisionFile = $('#revisionfile')[0].files[0];
 
+    if (revisionFile) {
+        if (revisionFile.size >= 45 * 1024 * 1024) { 
+            $('#sloading').toggle();
+            alert("File size exceeds the limit of 45 MB. Please upload a smaller file.");
+            return;
+        }
+    }
+
     var formData = new FormData();
     formData.append('article_id', articleId);
     formData.append('fromuser', fromuser);
@@ -1527,8 +1559,13 @@ function updateCopyeditedFiles() {
     var copyeditedFile = $('#copyeditedfile')[0].files[0];
 
     if (copyeditedFile) {
-        $('#sloading').toggle();
-        uploadCopyeditedFiles();
+        if (copyeditedFile.size <= 45 * 1024 * 1024) { 
+            uploadCopyeditedFiles();
+        } else {
+            $('#sloading').toggle();
+            alert("File size exceeds the limit of 45 MB. Please upload a smaller file.");
+            return;
+        }
     }
 
     updateCopyeditedCheckedFiles();
@@ -1654,11 +1691,17 @@ function SendForReadyPublication(issueId) {
 }
 
 function updateProductionFiles() {
+    $('#sloading').toggle();
     var productionfile = $('#productionfile')[0].files[0];
 
     if (productionfile) {
-        $('#sloading').toggle();
-        uploadProductionFiles();
+        if (productionfile.size <= 45 * 1024 * 1024) { 
+            uploadProductionFiles();
+        } else {
+            $('#sloading').toggle();
+            alert("File size exceeds the limit of 45 MB. Please upload a smaller file.");
+            return;
+        }
     }
 
     updateProductionCheckedFiles();

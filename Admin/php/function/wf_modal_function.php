@@ -157,7 +157,11 @@ ini_set('upload_max_filesize', '64M');
             $placeholders[] = $paramName;
         }
 
-        $placeholders = implode(',', $placeholders);
+        if (empty($placeholders)) {
+            $placeholders = 0;
+        } else {
+            $placeholders = implode(',', $placeholders);
+        }     
 
         $query = "UPDATE article_files
                 SET review = :status
@@ -211,7 +215,11 @@ ini_set('upload_max_filesize', '64M');
             $placeholders[] = $paramName;
         }
 
-        $placeholders = implode(',', $placeholders);
+        if (empty($placeholders)) {
+            $placeholders = 0;
+        } else {
+            $placeholders = implode(',', $placeholders);
+        }     
 
         $query = "UPDATE article_files
                 SET review = :status
@@ -271,7 +279,11 @@ ini_set('upload_max_filesize', '64M');
             $placeholders[] = $paramName;
         }
     
-        $placeholders = implode(',', $placeholders);
+        if (empty($placeholders)) {
+            $placeholders = 0;
+        } else {
+            $placeholders = implode(',', $placeholders);
+        }     
     
         $query = "UPDATE article_files
                 SET copyediting = :status
@@ -331,7 +343,11 @@ ini_set('upload_max_filesize', '64M');
             $placeholders[] = $paramName;
         }
     
-        $placeholders = implode(',', $placeholders);
+        if (empty($placeholders)) {
+            $placeholders = 0;
+        } else {
+            $placeholders = implode(',', $placeholders);
+        }     
     
         $query = "UPDATE article_revision_files
                 SET copyediting = :status
@@ -391,7 +407,11 @@ ini_set('upload_max_filesize', '64M');
             $placeholders[] = $paramName;
         }
     
-        $placeholders = implode(',', $placeholders);
+        if (empty($placeholders)) {
+            $placeholders = 0;
+        } else {
+            $placeholders = implode(',', $placeholders);
+        }     
     
         $query = "UPDATE article_files
                 SET copyediting = :status
@@ -451,7 +471,11 @@ ini_set('upload_max_filesize', '64M');
             $placeholders[] = $paramName;
         }
     
-        $placeholders = implode(',', $placeholders);
+        if (empty($placeholders)) {
+            $placeholders = 0;
+        } else {
+            $placeholders = implode(',', $placeholders);
+        }     
     
         $query = "UPDATE article_revision_files
                 SET copyediting = :status
@@ -794,7 +818,11 @@ ini_set('upload_max_filesize', '64M');
             $placeholders[] = $paramName;
         }
 
-        $placeholders = implode(',', $placeholders);
+        if (empty($placeholders)) {
+            $placeholders = 0;
+        } else {
+            $placeholders = implode(',', $placeholders);
+        }     
 
         $query = "UPDATE article_final_files
                 SET copyedited = :status
@@ -847,7 +875,11 @@ ini_set('upload_max_filesize', '64M');
             $placeholders[] = $paramName;
         }
 
-        $placeholders = implode(',', $placeholders);
+        if (empty($placeholders)) {
+            $placeholders = 0;
+        } else {
+            $placeholders = implode(',', $placeholders);
+        }     
 
         $query = "UPDATE article_final_files
                 SET copyedited = :status
@@ -966,7 +998,11 @@ ini_set('upload_max_filesize', '64M');
             $placeholders[] = $paramName;
         }
     
-        $placeholders = implode(',', $placeholders);
+        if (empty($placeholders)) {
+            $placeholders = 0;
+        } else {
+            $placeholders = implode(',', $placeholders);
+        }     
     
         $query = "UPDATE article_final_files
                 SET production = :status
@@ -1026,7 +1062,11 @@ ini_set('upload_max_filesize', '64M');
             $placeholders[] = $paramName;
         }
     
-        $placeholders = implode(',', $placeholders);
+        if (empty($placeholders)) {
+            $placeholders = 0;
+        } else {
+            $placeholders = implode(',', $placeholders);
+        }     
     
         $query = "UPDATE article_final_files
                 SET production = :status
@@ -1086,7 +1126,11 @@ ini_set('upload_max_filesize', '64M');
             $placeholders[] = $paramName;
         }
     
-        $placeholders = implode(',', $placeholders);
+        if (empty($placeholders)) {
+            $placeholders = 0;
+        } else {
+            $placeholders = implode(',', $placeholders);
+        }     
     
         $query = "UPDATE article_final_files
                 SET production = :status
@@ -1146,7 +1190,11 @@ ini_set('upload_max_filesize', '64M');
             $placeholders[] = $paramName;
         }
     
-        $placeholders = implode(',', $placeholders);
+        if (empty($placeholders)) {
+            $placeholders = 0;
+        } else {
+            $placeholders = implode(',', $placeholders);
+        }     
     
         $query = "UPDATE article_final_files
                 SET production = :status
