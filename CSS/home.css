@@ -159,7 +159,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  /* flex-direction: column; */
   margin-top: 10px; /* Adjust spacing between title and center-container */
 }
 .recommendation-article{
@@ -557,7 +557,7 @@ padding: 2em 8%;
 #most-popular-container{
   /* box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.025); */
   display:flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   padding:10px;
   
 }
