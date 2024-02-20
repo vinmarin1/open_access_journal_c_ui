@@ -66,12 +66,32 @@
     background-color: #0858a4;
 }
 .features {
-    border: 1px  #ff9021  solid;
-    background-color: white;
-    size: 12px;
-    color: #ff9021 ;
-    padding: 4px 8px;
+    size: 10px;
+    color: #b7d9f9 ;
+    padding: 4px 0px ;
     border-radius: 4px;
+}
+
+.features::after {
+    content:"•";
+    padding: 4px 8px;
+}
+button:hover {
+    opacity: 70%;
+}
+#login-banner {
+    position: relative;
+    color:azure;
+}
+.image-cover {
+    min-height: 88vh;
+    position: absolute;
+    top:0;
+    left: 0;
+    z-index:-1;
+    opacity: 88%;
+    max-width: 50rem;
+    filter: brightness(20%);
 }
 #register-button{
     margin-top: 10px;
