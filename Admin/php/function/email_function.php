@@ -303,7 +303,11 @@ if (!function_exists('get_email_content')) {
             $placeholders[] = $paramName;
         }
     
-        $placeholders = implode(',', $placeholders);
+        if (empty($placeholders)) {
+            $placeholders = 0;
+        } else {
+            $placeholders = implode(',', $placeholders);
+        }     
     
         $query = "UPDATE article_files
                   SET review = :status
@@ -349,7 +353,11 @@ if (!function_exists('get_email_content')) {
             $placeholders[] = $paramName;
         }
     
-        $placeholders = implode(',', $placeholders);
+        if (empty($placeholders)) {
+            $placeholders = 0;
+        } else {
+            $placeholders = implode(',', $placeholders);
+        }     
     
         $query = "UPDATE article_files
                   SET copyediting = :status
