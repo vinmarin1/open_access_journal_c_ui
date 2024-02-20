@@ -67,15 +67,22 @@
            
             </h6>
             <div id="most-popular">
-
             </div>
-            
           </div>
         </div>
       </div>
     </div>
-    <img src="../images/Papers.png" alt="#" class="image" onclick="window.location.href='./announcement.php'">
-    <!-- <hr style="height: 2px; background-color: #0858a4; width: 100%"> -->
+    <div>
+    
+    <div class="image-container">
+      <img src="../Files/announcement-image/default.png" alt="#" class="image">
+      <div class="hover-details text-white">
+        <h4>Call for papers</h4>
+        <p>QCUJ is currently inviting authors to submit their articles for consideration in The Lamp Journal.</p>
+        <p>The deadline for article submission is fast approaching! Authors are encouraged to submit their manuscripts by August 31, 2024.</p>
+        <span onclick="window.location.href='./announcement.php'" class="button">View Announcement</span>
+      </div>
+    </div>
 
     <?php
     if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
