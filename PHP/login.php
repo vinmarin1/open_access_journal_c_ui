@@ -20,7 +20,7 @@
         <div class="d-flex flex-column gap-4" style="width:75%">
           <h2 class="font-weight-bold text-xl" style=" font-weight:600;"><span>Quezon City University <span >Journals</span></span> </h2>
           <span>Enjoy unrestricted access to all articles without logging in! For a tailored experience, exclusive features, and to stay updated with our latest content, log in now.</span>
-          <div class="d-flex gap-1 flex-wrap w-75">
+          <div class="d-none d-md-flex gap-1 flex-wrap w-75">
             <span class="features">Personalized recommendations</span> 
             <span class="features">Submit articles</span>
             <span class="features">Become a reviewer</span>
