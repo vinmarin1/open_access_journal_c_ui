@@ -146,7 +146,7 @@
       
        
         
-        <h6 id="sub-11">Abstract<p id="abstract-validation" style="color: red; display: none;  font-size: 10px">The minimum word for abstract is 10 and maximum of 250 words</p></h6>
+        <h6 id="sub-11">Abstract<p id="abstract-validation" style="color: red; display: none;  font-size: 10px">The minimum word for abstract is 10 and maximum of 600 words</p></h6>
 
        
 

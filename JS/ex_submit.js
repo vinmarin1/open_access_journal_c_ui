@@ -539,7 +539,7 @@ document.addEventListener('DOMContentLoaded', function () {
   editor.addEventListener('input', function () {
       const wordCount = editor.value.trim().split(/\s+/).length;
 
-      if (wordCount < 10 || wordCount > 250) {
+      if (wordCount < 10 || wordCount > 600) {
           abstractValidation.style.display = 'block';
       } else {
           abstractValidation.style.display = 'none';
