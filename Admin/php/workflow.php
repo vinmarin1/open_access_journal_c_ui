@@ -27,8 +27,7 @@ $article_reviewer_accept = check_reviewer_accept();
 $article_reviewer_notcomplete = check_reviewer_notcomplete();
 $article_reviewer_ongoing = check_reviewer_ongoing();
 $authorlist = get_author_list();
-// print_r($article_reviewer_check);
-// print_r($authorlist);exit;
+$article_finalfile_checker = check_article_articlefinalfile($aid);
 $reviewer_details = get_reviewer_details();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -160,7 +159,7 @@ table {
                                                                             <tr>
                                                                                 <td width="5%"><?php echo $submission_filesval->article_files_id; ?></td>
                                                                                 <td width="65%">
-                                                                                    <a href="../../Files/submitted-article/<?php echo ($submission_filesval->file_name); ?>" download>
+                                                                                    <a href="../../../Files/submitted-article/<?php echo ($submission_filesval->file_name); ?>" download>
                                                                                         <?php echo $submission_filesval->file_name; ?>
                                                                                     </a>
                                                                                 </td>
@@ -301,7 +300,7 @@ table {
                                                                             <tr>
                                                                                 <td width="5%"><?php echo $review_filesval->article_files_id; ?></td>
                                                                                 <td width="65%">
-                                                                                    <a href="../../Files/submitted-article/<?php echo ($review_filesval->file_name); ?>" download>
+                                                                                    <a href="../../../Files/submitted-article/<?php echo ($review_filesval->file_name); ?>" download>
                                                                                         <?php echo $review_filesval->file_name; ?>
                                                                                     </a>
                                                                                 </td>
@@ -366,7 +365,7 @@ table {
                                                                             <tr>
                                                                                 <td width="5%"><?php echo $revision_filesval->revision_files_id; ?></td>
                                                                                 <td width="55%">
-                                                                                    <a href="../../Files/revision-article/<?php echo ($revision_filesval->file_name); ?>" download>
+                                                                                    <a href="../../../Files/revision-article/<?php echo ($revision_filesval->file_name); ?>" download>
                                                                                         <?php echo $revision_filesval->file_name; ?>
                                                                                     </a>
                                                                                 </td>
@@ -593,7 +592,7 @@ table {
                                                                                     <tr>
                                                                                         <td width="5%"><?php echo $revision_filesval->revision_files_id; ?></td>
                                                                                         <td width="65%">
-                                                                                            <a href="../../Files/submitted-article/<?php echo ($revision_filesval->file_name); ?>" download>
+                                                                                            <a href="../../../Files/submitted-article/<?php echo ($revision_filesval->file_name); ?>" download>
                                                                                                 <?php echo $revision_filesval->file_name; ?>
                                                                                             </a>
                                                                                         </td>
@@ -610,7 +609,7 @@ table {
                                                                                     <tr>
                                                                                         <td width="5%"><?php echo $submission_filesval->article_files_id; ?></td>
                                                                                         <td width="65%">
-                                                                                            <a href="../../Files/submitted-article/<?php echo ($submission_filesval->file_name); ?>" download>
+                                                                                            <a href="../../../Files/submitted-article/<?php echo ($submission_filesval->file_name); ?>" download>
                                                                                                 <?php echo $submission_filesval->file_name; ?>
                                                                                             </a>
                                                                                         </td>
@@ -680,7 +679,7 @@ table {
                                                                                     <tr>
                                                                                         <td width="5%"><?php echo $allcopyedited_filesval->final_files_id; ?></td>
                                                                                         <td width="65%">
-                                                                                            <a href="../../Files/submitted-article/<?php echo ($allcopyedited_filesval->file_name); ?>" download>
+                                                                                            <a href="../../../Files/-article/<?php echo ($allcopyedited_filesval->file_name); ?>" download>
                                                                                                 <?php echo $allcopyedited_filesval->file_name; ?>
                                                                                             </a>
                                                                                         </td>
@@ -830,7 +829,7 @@ table {
                                                                                     <tr>
                                                                                         <td width="5%"><?php echo $allcopyedited_filesval->final_files_id; ?></td>
                                                                                         <td width="65%">
-                                                                                            <a href="../../../Files/final-article/<?php echo ($allcopyedited_filesval->file_name); ?>" download>
+                                                                                            <a href="../../../Files/final-file/<?php echo ($allcopyedited_filesval->file_name); ?>" download>
                                                                                                 <?php echo $allcopyedited_filesval->file_name; ?>
                                                                                             </a>
                                                                                         </td>
@@ -847,7 +846,7 @@ table {
                                                                                     <tr>
                                                                                         <td width="5%"><?php echo $allproduction_filesval->final_files_id; ?></td>
                                                                                         <td width="65%">
-                                                                                            <a href="../../Files/final-article/<?php echo ($allproduction_filesval->file_name); ?>" download>
+                                                                                            <a href="../../../Files/final-file/<?php echo ($allproduction_filesval->file_name); ?>" download>
                                                                                                 <?php echo $allproduction_filesval->file_name; ?>
                                                                                             </a>
                                                                                         </td>
@@ -885,7 +884,7 @@ table {
                                                                     <p>Submission published.</p>
                                                                 </div>
                                                             <?php elseif ($article_data[0]->status >= 2): ?>
-                                                                <a href="javascript:void(0);" onclick="" class="btn btn-primary btn-lg btn-block mb-2" style="width: 100%;" data-bs-toggle="modal" data-bs-target="#addIssueModal">Send to Publication</a>
+                                                                <a href="javascript:void(0);" onclick="checkFinalFileSubmission()" class="btn btn-primary btn-lg btn-block mb-2" style="width: 100%;">Send to Publication</a>
                                                                 <!-- <a href="javascript:void(0);" onclick="" class="btn btn-outline-danger btn-lg btn-block" style="width: 100%;">Cancel Production</a> -->
                                                             <?php endif; ?>
                                                         </div>
@@ -1593,42 +1592,53 @@ table {
         $(document).ready(function() {
         $('#downloadAllButton').click(function() {
             <?php foreach ($submission_files as $submission_filesval): ?>
-                downloadFile('../../Files/submitted-article/<?php echo ($submission_filesval->file_name); ?>');
+                downloadFile('../../../Files/submitted-article/<?php echo ($submission_filesval->file_name); ?>');
             <?php endforeach; ?>
         });
         $('#downloadAllButton1').click(function() {
             <?php foreach ($submission_files as $submission_filesval): ?>
-                downloadFile('../../Files/submitted-article/<?php echo ($submission_filesval->file_name); ?>');
+                downloadFile('../../../Files/submitted-article/<?php echo ($submission_filesval->file_name); ?>');
             <?php endforeach; ?>
         });
         $('#downloadAllButton2').click(function() {
             <?php foreach ($revision_files as $revision_filesval): ?>
-                downloadFile('../../Files/submitted-article/<?php echo ($revision_filesval->file_name); ?>');
+                downloadFile('../../../Files/submitted-article/<?php echo ($revision_filesval->file_name); ?>');
             <?php endforeach; ?>
 
             <?php foreach ($submission_files as $submission_filesval): ?>
-                downloadFile('../../Files/submitted-article/<?php echo ($submission_filesval->file_name); ?>');
+                downloadFile('../../../Files/submitted-article/<?php echo ($submission_filesval->file_name); ?>');
             <?php endforeach; ?>
         });
         $('#downloadButton3').click(function() {
             <?php foreach ($allcopyedited_files as $allcopyedited_filesval): ?>
-                downloadFile('../../Files/final-article/<?php echo ($allcopyedited_filesval->file_name); ?>');
+                downloadFile('../../../Files/final-file/<?php echo ($allcopyedited_filesval->file_name); ?>');
             <?php endforeach; ?>
 
             <?php foreach ($allproduction_files as $allproduction_filesval): ?>
-                downloadFile('../../Files/final-article/<?php echo ($allproduction_filesval->file_name); ?>');
+                downloadFile('../../../Files/final-file/<?php echo ($allproduction_filesval->file_name); ?>');
             <?php endforeach; ?>
         });
 
-        function downloadFile(fileUrl) {
-            var link = document.createElement('a');
-            link.href = fileUrl;
-            link.download = fileUrl.substr(fileUrl.lastIndexOf('/') + 1);
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+            function downloadFile(fileUrl) {
+                var link = document.createElement('a');
+                link.href = fileUrl;
+                link.download = fileUrl.substr(fileUrl.lastIndexOf('/') + 1);
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+        });
+
+        function checkFinalFileSubmission() {
+            <?php
+            if (is_array($article_finalfile_checker) && (empty($article_finalfile_checker) || $article_finalfile_checker[0] === 0)) {
+                echo 'alert("Please submit or select final file into production before proceeding.");';
+                echo 'return;';
+            }
+            ?>
+            
+            $('#addIssueModal').modal('show');
         }
-    });
 
     </script>
 </body>
