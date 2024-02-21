@@ -18,7 +18,7 @@ include 'dbcon.php';
 
 <?php
                 // Fetch total articles from the database
-                $query = "SELECT COUNT(*) as totalArticles FROM article";
+                $query = "SELECT COUNT(*) as totalArticles FROM article WHERE status = 1";
                 $result = execute_query($query);
                 
                 // Check if the query was successful
@@ -45,18 +45,19 @@ include 'dbcon.php';
 ?>         
 
 <?php
-                // Fetch total logs from the database where issues_id = 5
-                $query = "SELECT COUNT(*) as totalOngoingarticles FROM article WHERE status = 5";
-                $result = execute_query($query);
+    // Fetch total logs from the database where issues_id = 5
+    $query = "SELECT COUNT(*) as totalOngoingarticles FROM article WHERE status IN (2, 3, 4, 5)";
+    $result = execute_query($query);
 
-                // Check if the query was successful
-                if ($result !== false) {
-                    // Correct the variable name here
-                    $totalOngoingarticles = $result[0]->totalOngoingarticles;
-                } else {
-                    $totalOngoingarticles = "Error fetching data";
-                }
+    // Check if the query was successful
+    if ($result !== false) {
+        // Correct the variable name here
+        $totalOngoingarticles = $result[0]->totalOngoingarticles;
+    } else {
+        $totalOngoingarticles = "Error fetching data";
+    }
 ?>
+
 
    
 <?php
