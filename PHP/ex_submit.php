@@ -207,7 +207,7 @@
 
     <div class="input-details-2 mt-3" id="form-floating-3">
 
-    <h6 id="sub-10">Keywords <p id="keywords-validation" style="color: red; display: none; font-size: 10px">Keywords should be separated by at least 1 or 4 commas*</p></h6>
+    <h6 id="sub-10">Keywords <p id="keywords-validation" style="color: red; display: none; font-size: 10px">Please provide atleast 5 keywords separated by commas*</p></h6>
       <input class="form-control artcl" type="text" id="keywords" name="keywords">
       
 
