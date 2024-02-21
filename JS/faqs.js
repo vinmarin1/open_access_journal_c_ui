@@ -133,3 +133,15 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+function downloadFile(event) {
+    
+    event.preventDefault();
+    var fileUrl = event.target.href;
+    var link = document.createElement('a');
+    link.href = fileUrl;
+    link.download = fileUrl.substring(fileUrl.lastIndexOf('/') + 1);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
