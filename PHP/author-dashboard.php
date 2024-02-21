@@ -74,7 +74,29 @@ $id = $_SESSION['id'];
                   All Invitation
                 </li>
               </div>
-              <button class="btn" id="btn3" onclick="window.location.href='ex_submit.php'">Submit Article</button>
+              <!-- <button class="btn" id="btn3" onclick="window.location.href='ex_submit.php'">Submit Article</button> -->
+              <?php
+// Check if all required fields are present in the session
+if (
+    isset($_SESSION['first_name']) && !empty($_SESSION['first_name']) &&
+    isset($_SESSION['middle_name']) && !empty($_SESSION['middle_name']) &&
+    isset($_SESSION['last_name']) && !empty($_SESSION['last_name']) &&
+    isset($_SESSION['birthday']) && !empty($_SESSION['birthday']) &&
+    isset($_SESSION['gender']) && !empty($_SESSION['gender']) &&
+    isset($_SESSION['status']) && !empty($_SESSION['status']) &&
+    isset($_SESSION['country']) && !empty($_SESSION['country']) &&
+    isset($_SESSION['afiliations']) && !empty($_SESSION['afiliations']) &&
+    isset($_SESSION['position']) && !empty($_SESSION['position'])
+) {
+    // All required fields are present, echo the button without the disabled attribute
+    echo '<button class="btn" id="btn3" onclick="window.location.href=\'ex_submit.php\'">Submit Article</button>';
+} else {
+    // Some required fields are missing, echo the button with the disabled attribute
+    echo '<button class="btn" id="btn3" onclick="window.location.href=\'ex_submit.php\'" disabled>Submit Article</button>';
+}
+?>
+
+
             </ul>
 
             <div class="tab-content" id="myTabContent">

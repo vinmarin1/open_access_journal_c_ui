@@ -194,6 +194,7 @@ $expertise = $_SESSION['expertise'];
 										<div class="form-row">
 											<label for="status">Status:</label>
 											<select id="status" name="status" class="dropdown-box" disabled>
+											<option value="<?php echo $status?>"><?php echo $status ?></option>
 												<option value="Single">Single</option>
 												<option value="Married">Married</option>
 												<option value="Divorced">Divorced</option>
