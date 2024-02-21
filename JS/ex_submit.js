@@ -524,10 +524,14 @@ document.addEventListener('DOMContentLoaded', function () {
       }
   }
 
-  titleInput.addEventListener('input', function () {
+  titleInput.addEventListener('blur', function () {
       const wordCount = titleInput.value.trim().split(/\s+/).length;
 
-      if (wordCount < 5 || wordCount > 100) {
+      if (wordCount < 4) {
+          titleValidation.innerHTML = "Title is too short. Please provide a comprehensive title."
+          titleValidation.style.display = 'block';
+      } else if(wordCount >100){
+          titleValidation.innerHTML = "Title is too long."
           titleValidation.style.display = 'block';
       } else {
           titleValidation.style.display = 'none';
@@ -536,22 +540,24 @@ document.addEventListener('DOMContentLoaded', function () {
       checkValidations();
   });
 
-  editor.addEventListener('input', function () {
-      const wordCount = editor.value.trim().split(/\s+/).length;
-
-      if (wordCount < 10 || wordCount > 600) {
-          abstractValidation.style.display = 'block';
-      } else {
-          abstractValidation.style.display = 'none';
-      }
-
-      checkValidations();
+  editor.addEventListener('blur', function () {
+    const wordCount = editor.value.trim().split(/\s+/).length;
+    if (wordCount < 250) {
+      abstractValidation.innerHTML = "Abstract too short";
+      abstractValidation.style.display = "block";
+    } else if (wordCount > 350) {
+      abstractValidation.innerHTML = "Please limit your abstract to a maximum of 300 words";
+      abstractValidation.style.display = "block";
+    } else {
+      abstractValidation.style.display = "none";
+    }
+    checkValidations();
   });
 
-  keywords.addEventListener('input', function () {
-      const commaCount = (keywords.value.match(/,/g) || []).length;
+  keywords.addEventListener('blur', function () {
+      const wordCount = keywords.value.trim().split(",").length;
 
-      if (commaCount < 1 || commaCount > 4) {
+      if (wordCount <= 4) {
           keywordsValidation.style.display = 'block';
       } else {
           keywordsValidation.style.display = 'none';
