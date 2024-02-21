@@ -37,11 +37,11 @@ $journallist = get_journal_list($journal_id);
                 <div class="card mb-3" style="min-height: 340px; max-height: 100%; overflow: hidden;">
                     <div class="row g-0">
                         <div class="col-md-4">
-                            <img class="card-img card-img-left img-fluid" src="../../Files/journal-image/Journal.jpg" alt="Card image"/>
+                            <img class="card-img card-img-left img-fluid" src="../../Files/journal-image/JournalAll.png" alt="Card image"/>
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
-                                <h5 class="card-title">Journal</h5>
+                                <h5 class="card-title">All Journal</h5>
                                 <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                                 <p class="card-text"><small class="text-muted">Last updated</small></p>
                                 <a href="javascript:void(0);" onclick="viewAllSubmissionList()" class="btn btn-primary">View</a>
