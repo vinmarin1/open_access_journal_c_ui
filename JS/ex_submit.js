@@ -542,10 +542,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
   editor.addEventListener('blur', function () {
     const wordCount = editor.value.trim().split(/\s+/).length;
-    if (wordCount < 250) {
+    if (wordCount < 100) {
       abstractValidation.innerHTML = "Abstract too short";
       abstractValidation.style.display = "block";
-    } else if (wordCount > 350) {
+    } else if (wordCount > 300) {
       abstractValidation.innerHTML = "Please limit your abstract to a maximum of 300 words";
       abstractValidation.style.display = "block";
     } else {
