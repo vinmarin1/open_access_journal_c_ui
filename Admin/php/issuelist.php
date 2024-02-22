@@ -28,6 +28,7 @@ $journallist = get_journal_list();
                 <table class="table table-striped" id="DataTable">
                     <thead>
                         <tr>
+                            <th>ID</th>
                             <th>ISSN</th>
                             <th>Volume</th>
                             <th>Number</th>
@@ -39,12 +40,13 @@ $journallist = get_journal_list();
                 <tbody>
                 <?php foreach ($issueslist as $issueslistval): ?>
                             <tr>
+                                <td width="5%"><?php echo  $issueslistval->issues_id; ?></td>
                                 <td width="5%"><?php echo  $issueslistval->issn; ?></td>
                                 <td width="5%"><?php echo  $issueslistval->volume; ?></td>
                                 <td width="5%"><?php echo  $issueslistval->number; ?></td>
                                 <td width="5%"><?php echo  $issueslistval->year; ?></td>
-                                <td width="30%"><?php echo  $issueslistval->title; ?></td>
-                                <td width="32%">
+                                <td width="25%"><?php echo  $issueslistval->title; ?></td>
+                                <td width="35%">
                                     <button type="button" class="btn btn-outline-success" onclick="updateModal(<?php echo $issueslistval->issues_id; ?>)">Update</button>
                                     <button type="button" class="btn btn-outline-danger" onclick="archiveIssue(<?php echo $issueslistval->issues_id; ?>, '<?php echo $issueslistval->volume; ?>', '<?php echo $issueslistval->title; ?>')">Archive</button>
                                     <button type="button" class="btn btn-outline-info" onclick="viewAllArticle(<?php echo $issueslistval->issues_id; ?>)">Article</button>
