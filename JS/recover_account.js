@@ -1,93 +1,94 @@
-function validateEmail(email, emailR) {
-    if (email === '') {
-        emailR.style.display = 'inline-block';
-        emailR.textContent = 'Invalid email';
+
+
+function validateEmail() {
+    const emailInput = document.getElementById("email").value;
+    const firstStepForm = document.getElementById('firstStepForm');
+    const secondStepForm = document.getElementById('secondStepForm');
+    const emailInputted = document.getElementById('emailInputted');
+    const spinner = document.getElementById('spinnerSpinner');
+    const btnRequestLink = document.getElementById('btnRequestLink');
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    
+
+    if (emailRegex.test(emailInput)) {
+        // Show the spinner and change button text
+        spinner.style.display = 'inline-block';
+        btnRequestLink.innerHTML = 'Sending link...';
+        sessionStorage.setItem('userEmail', emailInput);
+
+        $.ajax({
+            type: "POST",
+            url: "../PHP/recover_account_functions.php",
+            data: { email: emailInput },
+            success: function (response) {
+                alert('Please check your email');
+                firstStepForm.style.display = 'none';
+                secondStepForm.style.display = 'block';
+                emailInputted.innerHTML = emailInput;
+                emailInputted.style.color = 'blue';
+
+                // Call the checkQueryParameter function and pass the email value
+                checkQueryParameter(emailInput);
+                sessionStorage.setItem('userEmail', emailInput);
+
+            },
+            error: function (xhr, status, error) {
+                console.error(xhr.responseText);
+            },
+            complete: function () {
+                // Hide the spinner and restore button text
+                spinner.style.display = 'none';
+                btnRequestLink.innerHTML = 'Request a reset link';
+            }
+        });
     } else {
-        const emailRegex = /^\S+@\S+\.\S+$/;
-        if (!emailRegex.test(email)) {
-            emailR.style.display = 'inline-block';
-            emailR.textContent = 'Invalid email';
-        } else {
-            emailR.style.display = 'none';
-        }
-    }
-}
-
-
-function validatePassword(password, passwordR) {
-    if (password === '') {
-        passwordR.style.display = 'inline-block';
-        passwordR.textContent = 'Password must contain at least 1 Uppercase, 1 Special Character, and 1 Number';
-    } else {
-        const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])/;
-        if (!passwordRegex.test(password)) {
-            passwordR.style.display = 'inline-block';
-            passwordR.textContent = 'Password must contain at least 1 Uppercase, 1 Special Character, and 1 Number';
-        } else {
-            passwordR.style.display = 'none';
-        }
-    }
-}
-
-
-document.getElementById('email').addEventListener('input', function () {
-    const email = this.value;
-    const emailR = document.getElementById('emailR');
-    validateEmail(email, emailR);
-});
-
-document.getElementById('password').addEventListener('input', function () {
-    const password = this.value;
-    const passwordR = document.getElementById('passwordR');
-    validatePassword(password, passwordR);
-});
-
-document.getElementById('nPassword').addEventListener('input', function () {
-    const nPassword = this.value;
-    const nPasswordR = document.getElementById('nPasswordR');
-    validatePassword(nPassword, nPasswordR);
-});
-
-document.getElementById('cPassword').addEventListener('input', function () {
-    const cPassword = this.value;
-    const cPasswordR = document.getElementById('cPasswordR');
-    validatePassword(cPassword, cPasswordR);
-});
-
-
-document.getElementById('sendBtn').addEventListener('click', function (event) {
-    const sendBtn = document.getElementById('sendBtn').value;
-    const spinner = document.getElementById('spinner').value;
-
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    const nPassword = document.getElementById('nPassword').value;
-    const cPassword = document.getElementById('cPassword').value;
-
-    const emailR = document.getElementById('emailR');
-    const passwordR = document.getElementById('passwordR');
-    const nPasswordR = document.getElementById('nPasswordR');
-    const cPasswordR = document.getElementById('cPasswordR');
-
-
-    validateEmail(email, emailR);
-    validatePassword(password, passwordR);
-    validatePassword(nPassword, nPasswordR);
-    validatePassword(cPassword, cPasswordR);
-
-    if (cPassword !== nPassword || nPassword !== cPassword) {
         Swal.fire({
             icon: 'warning',
-            title: 'Password mismatch',
-            text: 'New password and confirm password do not match, please try again'
+            text: 'Please enter a valid email address'
         });
-    }else{
-        sendBtn.innerText = '';
-        document.getElementById('spinner').style.display = 'inline-block'; 
-        document.getElementById('otpSending').style.display = 'inline-block'; 
-        setTimeout(function () {
-            document.getElementById('spinner').style.display = 'none';
-            document.getElementById('otpSending').style.display = 'none';
-        }, 2000);
+    }
+}
+
+
+
+document.getElementById('password').addEventListener('input', function (event) {
+    const passwordInput = event.target.value;
+    const passValidation = document.getElementById('PassValidation');
+
+    const hasUppercase = /[A-Z]/.test(passwordInput);
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(passwordInput);
+    const hasNumber = /\d/.test(passwordInput);
+
+    if (passwordInput === '') {
+        passValidation.style.display = 'block';
+        passValidation.innerHTML = 'Password must not be empty';
+    } else if (!(hasUppercase && hasSpecialChar && hasNumber)) {
+        passValidation.style.display = 'block';
+        passValidation.innerHTML = 'Password must contain 1 Uppercase, 1 Special Character, and 1 Number';
+    } else {
+     
+        passValidation.style.display = 'none';
     }
 });
+
+
+document.getElementById('confirmPassword').addEventListener('input', function (event) {
+    const newPasswordInput = event.target.value;
+    const newPassValidation = document.getElementById('newPassValidation');
+
+    const hasUppercase = /[A-Z]/.test(newPasswordInput);
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(newPasswordInput);
+    const hasNumber = /\d/.test(newPasswordInput);
+
+    if (newPasswordInput === '') {
+        newPassValidation.style.display = 'block';
+        newPassValidation.innerHTML = 'Password must not be empty';
+    } else if (!(hasUppercase && hasSpecialChar && hasNumber)) {
+        newPassValidation.style.display = 'block';
+        newPassValidation.innerHTML = 'Password must contain 1 Uppercase, 1 Special Character, and 1 Number';
+    } else {
+     
+        newPassValidation.style.display = 'none';
+    }
+});
+
