@@ -173,6 +173,7 @@ include 'function/dashboard_functions.php';
             </div>
 </div>
 <!-- JavaScript for creating charts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.3/jspdf.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     // Function to create a bar chart

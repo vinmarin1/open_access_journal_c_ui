@@ -472,7 +472,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                         any of the details displayed here by clicking the edit button at the top of each section.</li>
                     <li>When you are done, you can click the ‘Submit’ button below.</li>
                 </ol>
-                <img src="../images/step5.png" alt="" class="img-reg">
+                <img src="../images/step6.png" alt="" class="img-reg">
             </div>
         </div>
 	</div>
@@ -492,9 +492,9 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 submitting the manuscript, please ensure that your paper is prepared using the QCU journal template. This will ensure 
                 fast processing and publication of your manuscript. Any script that does not meet the requirements under the guidelines 
                 for the author will not be processed or continued.</p>
-                <li><a href='download.php?file=template-star.docx'>QCU Star - Journal of Science and Technology Article Template</a></li>
-                <li><a href='download.php?file=template-lamp.docx'>QCU Lamp - Journal of Education Article Template</a></li>
-                <li><a href='download.php?file=template-gavel.docx'>QCU Gavel - Journal of Social Sciences Article Template</a></li>
+                <li><a href='download.php?file=template-star.docx' onclick="downloadFile(event)">QCU Star - Journal of Science and Technology Article Template</a></li>
+                <li><a href='download.php?file=template-lamp.docx' onclick="downloadFile(event)">QCU Lamp - Journal of Education Article Template</a></li>
+                <li><a href='download.php?file=template-gavel.docx' onclick="downloadFile(event)">QCU Gavel - Journal of Social Sciences Article Template</a></li>
             </div>
             
         </div>

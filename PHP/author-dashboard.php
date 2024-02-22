@@ -74,7 +74,38 @@ $id = $_SESSION['id'];
                   All Invitation
                 </li>
               </div>
-              <button class="btn" id="btn3" onclick="window.location.href='ex_submit.php'">Submit Article</button>
+              <!-- <button class="btn" id="btn3" onclick="window.location.href='ex_submit.php'">Submit Article</button> -->
+              <?php
+// Check if all required fields are present in the session
+if (
+    isset($_SESSION['first_name']) && !empty($_SESSION['first_name']) &&
+    isset($_SESSION['middle_name']) && !empty($_SESSION['middle_name']) &&
+    isset($_SESSION['last_name']) && !empty($_SESSION['last_name']) &&
+    isset($_SESSION['birthday']) && !empty($_SESSION['birthday']) &&
+    isset($_SESSION['gender']) && !empty($_SESSION['gender']) &&
+    isset($_SESSION['status']) && !empty($_SESSION['status']) &&
+    isset($_SESSION['country']) && !empty($_SESSION['country']) &&
+    isset($_SESSION['afiliations']) && !empty($_SESSION['afiliations']) &&
+    isset($_SESSION['position']) && !empty($_SESSION['position'])
+) {
+    // All required fields are present, echo the button without the disabled attribute
+    echo '<button class="btn" id="btn3" onclick="window.location.href=\'ex_submit.php\'">Submit Article</button>';
+} else {
+    // Some required fields are missing, echo the button with the disabled attribute
+    echo '<button class="btn" id="btn3D">Submit Article</button>';
+    echo "<script>
+    document.getElementById('btn3D').addEventListener('click', function(event){
+        Swal.fire({
+          icon: 'warning',
+          text: 'Please Complete your profile details before submitting a paper'
+        });
+    });
+  </script>";
+
+}
+?>
+
+
             </ul>
 
             <div class="tab-content" id="myTabContent">
@@ -550,6 +581,7 @@ $id = $_SESSION['id'];
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../JS/reusable-header.js"></script>
     <script src="../JS/author-dashboard.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

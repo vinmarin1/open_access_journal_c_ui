@@ -11,7 +11,7 @@
 #form{
     max-width: 400px; /* Set maximum width to prevent overflow on smaller screens */
     width: 100%;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; 
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 4px 8px; 
     padding: 30px;   
 }
 /* #form{
@@ -23,7 +23,8 @@
 } */
 
 #login-label{
-    margin-bottom: 50px;
+
+    margin-bottom: 1em;
     font-family: Arial, Helvetica, sans-serif;
 }
 #form input[type="email"], 
@@ -64,13 +65,40 @@
 #login-button{
     background-color: #0858a4;
 }
+.features {
+    size: 10px;
+    color: #b7d9f9 ;
+    padding: 4px 0px ;
+    border-radius: 4px;
+}
 
+.features::after {
+    content:"•";
+    padding: 4px 8px;
+}
+button:hover {
+    opacity: 70%;
+}
+#login-banner {
+    position: relative;
+    color:azure;
+}
+.image-cover {
+    min-height: 88vh;
+    position: absolute;
+    top:0;
+    left: 0;
+    z-index:-1;
+    opacity: 88%;
+    max-width: 50rem;
+    filter: brightness(20%);
+}
 #register-button{
     margin-top: 10px;
     border: none;
-    border: 1px red solid;
+    border: 1px #0858a4 solid;
     background-color: white;
-    color: red;
+    color: #0858a4;
 }
 @media only screen and (min-width: 600px) {
     /* Apply styles for screens wider than 600px */

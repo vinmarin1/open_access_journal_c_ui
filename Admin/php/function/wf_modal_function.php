@@ -59,52 +59,58 @@ include 'dbcon.php';
         default:
     }
 
-
     function updateSubmissionFiles() {
         $uploadPath = "../../../Files/submitted-article/";
         $submissionFileId = isset($_POST['submissionfileid']) ? $_POST['submissionfileid'] : '';
+        $article_id = $_POST['article_id'];
     
         if (!file_exists($uploadPath)) {
             mkdir($uploadPath, 0777, true);
         }
     
-        $files = $_FILES['submissionfile'];
         $success = true;
         $errorMessage = '';
     
-        $fileName = basename($files["name"]);
-        $imageFileType = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+        if (!empty($_FILES["submissionfile"]["name"])) {
+            $file_name = basename($_FILES["submissionfile"]["name"]);
     
-        $allowedFileTypes = array('doc', 'docx');
+            $timestamp = time();
+            $hashedTimestamp = hash('sha256', (string)$timestamp);
+            $last12Hash = substr($hashedTimestamp, -12);
     
-        if (!in_array($imageFileType, $allowedFileTypes)) {
-            $success = false;
-            $errorMessage .= "File $fileName - Invalid file type ({$imageFileType}); ";
+            $imageFileType = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
+    
+            $hashfilename = $article_id . '-' . $last12Hash . '-' . $imageFileType;
+    
+            $allowedFileTypes = array('doc', 'docx');
+    
+            if (!in_array($imageFileType, $allowedFileTypes)) {
+                $success = false;
+                $errorMessage .= "File $hashfilename - Invalid file type ({$imageFileType}); ";
+            }
+    
+            $newFilePath = $uploadPath . $hashfilename;
+    
+            if ($success && move_uploaded_file($_FILES["submissionfile"]["tmp_name"], $newFilePath)) {
+                header('Content-Type: application/json');
+                updateSelectedSubmissionFiles($submissionFileId, $hashfilename); // Changed $fileName to $hashfilename
+                echo json_encode(['success' => true, 'submissionfileid' => $submissionFileId]);
+                error_log("File path: " . $newFilePath);
+                error_log("File permissions: " . decoct(fileperms($newFilePath)));
+                return; // Stop execution after successful upload
+            } else {
+                $errorMessage = 'File failed to upload. ' . $errorMessage;
+                header('Content-Type: application/json');
+                echo json_encode(['success' => false, 'message' => $errorMessage, 'submissionfileid' => $submissionFileId]);
+                return; // Stop execution after upload failure
+            }
         }
     
-        $maxFileSize = 20 * 1024 * 1024;
+        // Handle case where no file is provided
+        header('Content-Type: application/json');
+        echo json_encode(['success' => false, 'message' => 'No file provided', 'submissionfileid' => $submissionFileId]);
+    }    
     
-        if ($files["size"] > $maxFileSize) {
-            $success = false;
-            $errorMessage .= "File $fileName - Size exceeds the maximum allowed size; ";
-        }
-    
-        $newFilePath = $uploadPath . $fileName;
-    
-        if ($success && move_uploaded_file($files["tmp_name"], $newFilePath)) {
-            header('Content-Type: application/json');
-            updateSelectedSubmissionFiles($submissionFileId, $fileName);
-            echo json_encode(['success' => true, 'submissionfileid' => $submissionFileId]);
-            error_log("File path: " . $uploadPath);
-            error_log("File permissions: " . decoct(fileperms($uploadPath)));
-
-        } else {
-            $errorMessage = 'File failed to upload. ' . $errorMessage;
-            header('Content-Type: application/json');
-            echo json_encode(['success' => false, 'message' => $errorMessage, 'submissionfileid' => $submissionFileId]);
-            
-        }
-    }
    
     function updateSelectedSubmissionFiles($submissionFileId, $fileName) {
         
@@ -686,27 +692,33 @@ include 'dbcon.php';
         $files = isset($_FILES['revisionfile']) ? $_FILES['revisionfile'] : '';
         $success = true;
         $errorMessage = '';
-    
+        
         if (!empty($files['name'])) {
-            // File is provided
-            $fileName = basename($files["name"]);
-            $imageFileType = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
-    
-            $allowedFileTypes = array('doc', 'docx');
-    
+            $file_name = basename($_FILES["revisionfile"]["name"]); 
+        
+            $timestamp = time();
+            $hashedTimestamp = hash('sha256', (string)$timestamp);
+            $last12Hash = substr($hashedTimestamp, -12);
+        
+            $imageFileType = strtolower(pathinfo($file_name, PATHINFO_EXTENSION)); 
+        
+            $hashfilename = $article_id . '-' . $last12Hash . '-' . $revisionfiletype . '.' . $imageFileType;
+        
+            $allowedFileTypes = array('doc', 'docx', 'pdf');
+        
             if (!in_array($imageFileType, $allowedFileTypes)) {
                 $success = false;
-                $errorMessage .= "File $fileName - Invalid file type ({$imageFileType}); ";
+                $errorMessage .= "File $hashfilename - Invalid file type ({$imageFileType}); ";
             }
-    
-            $newFilePath = $uploadPath . $fileName;
-    
+        
+            $newFilePath = $uploadPath . $hashfilename;
+        
             if ($success && move_uploaded_file($files["tmp_name"], $newFilePath)) {
-                // File is successfully moved to the desired location
+
             } else {
                 $errorMessage .= 'File failed to upload. ';
             }
-        }
+        }   
     
         try {
             $pdo = connect_to_database();
@@ -715,7 +727,7 @@ include 'dbcon.php';
             $query = "INSERT INTO article_revision_files (article_id, author_id, file_type, file_name, fromuser) VALUES (?, ?, ?, ?, ?)";
             $stmt = $pdo->prepare($query);
             echo($query);
-            $result = $stmt->execute([$article_id, $author_id, $revisionfiletype, $fileName, $fromuser]);
+            $result = $stmt->execute([$article_id, $author_id, $revisionfiletype, $hashfilename, $fromuser]);
         
             if ($result !== false) {
                 $pdo->commit();
@@ -744,38 +756,44 @@ include 'dbcon.php';
         if (!file_exists($uploadPath)) {
             mkdir($uploadPath, 0777, true);
         }
-    
+
         $files = isset($_FILES['copyeditedfile']) ? $_FILES['copyeditedfile'] : '';
         $success = true;
         $errorMessage = '';
-    
+        
         if (!empty($files['name'])) {
-            // File is provided
-            $fileName = basename($files["name"]);
-            $imageFileType = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
-    
+            $file_name = basename($_FILES["copyeditedfile"]["name"]); 
+        
+            $timestamp = time();
+            $hashedTimestamp = hash('sha256', (string)$timestamp);
+            $last12Hash = substr($hashedTimestamp, -12);
+        
+            $imageFileType = strtolower(pathinfo($file_name, PATHINFO_EXTENSION)); 
+        
+            $hashfilename = $article_id . '-' . $last12Hash . '-' . $copyeditedfiletype . '.' . $imageFileType;
+        
             $allowedFileTypes = array('doc', 'docx', 'pdf');
-    
+        
             if (!in_array($imageFileType, $allowedFileTypes)) {
                 $success = false;
-                $errorMessage .= "File $fileName - Invalid file type ({$imageFileType}); ";
+                $errorMessage .= "File $hashfilename - Invalid file type ({$imageFileType}); ";
             }
-
-            $newFilePath = $uploadPath . $fileName;
-    
+        
+            $newFilePath = $uploadPath . $hashfilename;
+        
             if ($success && move_uploaded_file($files["tmp_name"], $newFilePath)) {
-                // File is successfully moved to the desired location
+
             } else {
                 $errorMessage .= 'File failed to upload. ';
             }
-        }
+        }            
     
         try {
             $pdo = connect_to_database();
             $pdo->beginTransaction();
 
                 $query = "INSERT INTO article_final_files (article_id, fromuser, file_name, file_type, filefrom, copyedited) VALUES (?, ?, ?, ?, ?, ?)";
-                $result = execute_query($query, [$article_id, $fromuser, $fileName, $copyeditedfiletype, $filefrom, $status], true);
+                $result = execute_query($query, [$article_id, $fromuser, $hashfilename, $copyeditedfiletype, $filefrom, $status], true);
                 
             if ($result !== false) {
                 $pdo->commit();
@@ -923,32 +941,38 @@ include 'dbcon.php';
         $errorMessage = '';
     
         if (!empty($files['name'])) {
-            // File is provided
-            $fileName = basename($files["name"]);
-            $imageFileType = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
-    
+            $file_name = basename($_FILES["productionfile"]["name"]); 
+        
+            $timestamp = time();
+            $hashedTimestamp = hash('sha256', (string)$timestamp);
+            $last12Hash = substr($hashedTimestamp, -12);
+        
+            $imageFileType = strtolower(pathinfo($file_name, PATHINFO_EXTENSION)); 
+        
+            $hashfilename = $article_id . '-' . $last12Hash . '-' . $productionfiletype . '.' . $imageFileType;
+        
             $allowedFileTypes = array('pdf');
-    
+        
             if (!in_array($imageFileType, $allowedFileTypes)) {
                 $success = false;
-                $errorMessage .= "File $fileName - Invalid file type ({$imageFileType}); ";
+                $errorMessage .= "File $hashfilename - Invalid file type ({$imageFileType}); ";
             }
-
-            $newFilePath = $uploadPath . $fileName;
-    
+        
+            $newFilePath = $uploadPath . $hashfilename;
+        
             if ($success && move_uploaded_file($files["tmp_name"], $newFilePath)) {
-                // File is successfully moved to the desired location
+
             } else {
                 $errorMessage .= 'File failed to upload. ';
             }
-        }
+        }   
     
         try {
             $pdo = connect_to_database();
             $pdo->beginTransaction();
 
                 $query = "INSERT INTO article_final_files (article_id, fromuser, file_name, file_type, filefrom, production) VALUES (?, ?, ?, ?, ?, ?)";
-                $result = execute_query($query, [$article_id, $fromuser, $fileName, $productionfiletype, $filefrom, $status], true);
+                $result = execute_query($query, [$article_id, $fromuser, $hashfilename, $productionfiletype, $filefrom, $status], true);
                 
             if ($result !== false) {
                 $pdo->commit();

@@ -60,6 +60,8 @@ document.getElementById('form').addEventListener('submit', function(event) {
     const mdname = document.getElementById('mdname').value;
     const lname = document.getElementById('lname').value;
     const password = document.getElementById('password').value;
+    const orcid = document.getElementById('orcid').value;
+    
 
     const span1 = document.getElementById('span1');
     const span2 = document.getElementById('span2');
@@ -94,7 +96,7 @@ document.getElementById('form').addEventListener('submit', function(event) {
         span4.style.display = 'inline-block';
         hasError = true;
     }
-
+ 
     if (password === "") {
         span5.style.display = 'inline-block';
         hasError = true;
@@ -124,6 +126,14 @@ function isValidPassword(password) {
     return uppercaseRegex.test(password) && specialCharRegex.test(password) && numberRegex.test(password) && password.length <= 8;
 }
 
+async function isOrcid(orcid) {
+    // Check if orcid is existing or not but orcid is still optional
+    const response = await fetch(`https://pub.orcid.org/v3.0/${orcid}`);
+    if (orcid != "" && response.status != 200) {
+        return false; 
+    }
+    return true; 
+}
 
 
 if (!isValidEmail(email)) {
@@ -145,12 +155,17 @@ if (lname.length < 2) {
     document.getElementById('spanLnValidation').style.display = 'inline-block';
     hasError = true;
 }
+(async () => {
+    if (!await isOrcid(orcid)) {
+        document.getElementById('spanOrcidValidation').style.display = 'inline-block';
+        hasError = true;
+    }
+})();
 
 if (!isValidPassword(password)) {
     document.getElementById('spanPasswordValidation').style.display = 'inline-block';
     hasError = true;
 }
-
 
 
 
@@ -254,16 +269,40 @@ document.getElementById('password').addEventListener('input', function() {
     document.getElementById('span5').style.display = 'none';
 });
 
+document.getElementById('orcid').addEventListener('input', function() {
+    document.getElementById('span6').style.display = 'none';
+});
 
 
 
-
+async function isOrcid(orcid) {
+    const response = await fetch(`https://pub.orcid.org/v3.0/${orcid}`);
+    if (response.status != 200) {
+            return false; 
+    }
+    return true; 
+}
 
 document.getElementById('email').addEventListener('blur', function() {
     const email = document.getElementById('email').value;
     if(email === ""){
         document.getElementById('span1').style.display = 'inline-block';
     }
+   
+});
+
+
+document.getElementById('orcid').addEventListener('blur', function() {
+    const orcid = document.getElementById('orcid').value;
+    (async () => {
+        // if there's an input there's a need to validate the orcid
+        if (orcid != "" && !await isOrcid(orcid)) {
+            document.getElementById('spanOrcidValidation').style.display = 'inline-block';
+            hasError = true;
+        }else{
+            document.getElementById('spanOrcidValidation').style.display = 'none';
+        }
+    })();
    
 });
 

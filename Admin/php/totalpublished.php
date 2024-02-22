@@ -1,10 +1,13 @@
 <?php
+include 'function/redirect.php';
 include 'function/report_function.php';
 
 $yearval = isset($_GET['y']) ? $_GET['y'] : date('Y');
 $monthval = isset($_GET['m']) ? $_GET['m'] : date('m');
 
 $articlelist = get_published_article_list($monthval, $yearval);
+$articlepublishedtotal = get_published_article_total($monthval, $yearval);
+// $totalPublishedArticles = count($articlepublishedtotal['articlelist']);
 ?>  
 <!DOCTYPE html>
 <html lang="en">

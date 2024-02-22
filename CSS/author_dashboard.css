@@ -323,7 +323,7 @@ th {
   border: 1px solid #3ABC5E;
 }
 
-#btn3 {
+#btn3, #btn3D{
   padding: 8px 40px;
   font-size: 14px;
   border: none;
@@ -340,6 +340,11 @@ th {
 
 }
 
+#btn3D:hover {
+  background-color: #eceef1;
+  color: #3a3a3a;
+
+}
 hr {
   border: 0;
   height: 1px;
