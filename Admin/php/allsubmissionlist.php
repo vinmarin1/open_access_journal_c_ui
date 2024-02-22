@@ -82,17 +82,21 @@ $all_articles = get_allarticle_list();
                                 <td><?php echo ($matchingJournal !== null) ? $matchingJournal->journal : 'Unknown'; ?></td>
                                 <td width="70%">
                                     <b>
-                                        <?php
+                                    <?php
                                         $author_names = [];
                                         foreach ($contributor as $contributorval) {
                                             if ($contributorval->article_id == $all_articlesval->article_id) {
-                                                $author_names[] = $contributorval->publicname;
+                                                $author_names[] = $contributorval->lastname . ', ' . $contributorval->firstname;
                                             }
                                         }
 
-                                        $author_name = implode(', ', $author_names);
+                                        if (!empty($author_names)) {
+                                            $author_name = implode(', ', $author_names);
+                                        } else {
+                                            $author_name = $all_articlesval->author;
+                                        }
 
-                                        echo !empty($author_name) ? $author_name : $all_articlesval->author;
+                                        echo $author_name;
                                         ?>
                                     </b><br>
                                     <?php echo $all_articlesval->title; ?>

@@ -69,14 +69,21 @@ $incomplete_articles = get_article_list($cid);
                                 <td width="5%"><?php echo $incomplete_articlesval->article_id; ?></td>
                                 <td width="75%">
                                     <b>
-                                        <?php
+                                    <?php
                                         $author_names = [];
                                         foreach ($contributor as $contributorval) {
                                             if ($contributorval->article_id == $incomplete_articlesval->article_id) {
-                                                $author_names[] = $contributorval->firstname . ', ' . $contributorval->lastname;
+                                                $author_names[] = $contributorval->lastname . ', ' . $contributorval->firstname;
                                             }
                                         }
-                                        $author_name = implode(', ', $author_names);
+
+                                        if (!empty($author_names)) {
+                                            $author_name = implode(', ', $author_names);
+                                        } else {
+                                            $author_name = $incomplete_articlesval->author;
+                                        }
+
+                                        echo $author_name;
                                         ?>
                                     </b><br>
                                     <?php echo $incomplete_articlesval->title; ?>
