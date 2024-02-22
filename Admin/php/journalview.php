@@ -62,7 +62,7 @@ $journallist = get_journal_list($journal_id);
                         <div class="card mb-3" style="min-height: 340px; max-height: 100%; overflow: hidden;">
                             <div class="row g-0">
                                 <div class="col-md-4">
-                                    <img class="card-img card-img-left img-fluid" src="../../Files/journal-image/<?php echo $journallistval->image; ?>" alt="Card image" style="height: 100%; object-fit: cover;">
+                                    <img class="card-img card-img-left img-fluid" src="../../Files/journal-image/<?php echo $journallistval->image; ?>" alt="Card image" style="height: 100%; width:100%; object-fit: cover;">
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
