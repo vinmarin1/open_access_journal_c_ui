@@ -66,7 +66,7 @@ $reportlist = get_report_list();
         function viewReport(action) {
         $('#sloading').show();
 
-        if (action === 'totalarchive.php' || action === 'totalpublished.php' || action === 'donationreportmtd.php') {
+        if (action === 'totalarchive.php' || action === 'totalpublished.php' || action === 'donationreportmtd.php' || action === 'totalreport.php') {
             var currentDate = new Date();
             var currentMonth = currentDate.getMonth() + 1;
             var currentYear = currentDate.getFullYear();
@@ -84,8 +84,9 @@ $reportlist = get_report_list();
             var currentYear = currentDate.getFullYear();
 
             action = '../php/' + action + '?y=' + currentYear + '&s=10';
+        } if (action === 'topcontributors.php' || action === 'topreviewer.php') {
+            action = '../php/' + action;
         }
-
         window.location.href = action;
     }
     </script>

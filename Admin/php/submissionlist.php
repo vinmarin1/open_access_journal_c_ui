@@ -73,7 +73,7 @@ $incomplete_articles = get_article_list($cid);
                                         $author_names = [];
                                         foreach ($contributor as $contributorval) {
                                             if ($contributorval->article_id == $incomplete_articlesval->article_id) {
-                                                $author_names[] = $contributorval->publicname;
+                                                $author_names[] = $contributorval->firstname . ', ' . $contributorval->lastname;
                                             }
                                         }
                                         $author_name = implode(', ', $author_names);
