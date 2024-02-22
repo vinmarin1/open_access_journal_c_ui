@@ -76,10 +76,7 @@ $incomplete_articles = get_article_list($cid);
                                                 $author_names[] = $contributorval->publicname;
                                             }
                                         }
-
                                         $author_name = implode(', ', $author_names);
-
-                                        echo !empty($author_name) ? $author_name : $incomplete_articlesval->author;
                                         ?>
                                     </b><br>
                                     <?php echo $incomplete_articlesval->title; ?>
