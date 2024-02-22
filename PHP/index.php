@@ -34,10 +34,29 @@
           <button class="btn  btn-md" id="btn1" onclick="window.location.href='browse-articles.php'">Browse
             articles</button>
           <?php 
-          if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+          if (
+          isset($_SESSION['first_name']) && !empty($_SESSION['first_name']) &&
+          isset($_SESSION['middle_name']) && !empty($_SESSION['middle_name']) &&
+          isset($_SESSION['last_name']) && !empty($_SESSION['last_name']) &&
+          isset($_SESSION['gender']) && !empty($_SESSION['gender']) &&
+          isset($_SESSION['status']) && !empty($_SESSION['status']) &&
+          isset($_SESSION['country']) && !empty($_SESSION['country']) &&
+          isset($_SESSION['afiliations']) && !empty($_SESSION['afiliations']) &&
+          isset($_SESSION['position']) && !empty($_SESSION['position'])
+          ) {
             echo '<button class="btn btn-md" id="btn2" onclick="window.location.href=\'ex_submit.php\'">Submit an Article</button>';
+          
           } else {
-            echo '<button class="btn btn-md" id="btn2" onclick="window.location.href=\'./login.php\'">Submit an Article</button>';
+            echo '<button class="btn btn-md" id="btn2">Submit an Article</button>';
+            echo "<script>
+          
+            document.getElementById('btn2').addEventListener('click', function(event){
+                Swal.fire({
+                  icon: 'warning',
+                  text: 'Please Complete your profile details before submitting a paper'
+                });
+            });
+          </script>";
           }
         ?>
       </div>
@@ -406,6 +425,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="../JS/reusable-header.js"></script>
   <script src="../JS/home-recommended-api.js"></script>
   <script src="../JS/recently-added-api.js"></script>
