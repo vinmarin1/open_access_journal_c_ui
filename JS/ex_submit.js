@@ -445,7 +445,7 @@ document.getElementById('editor').addEventListener('input' , function(event){
   const editor = document.getElementById('editor').value;
   const abstractPreview = document.getElementById('input7');
   const abstract = document.getElementById('abstract');
-
+  
   abstractPreview.value = editor;
   abstract.value = editor;
 });
@@ -541,7 +541,8 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   editor.addEventListener('blur', function () {
-    const wordCount = editor.value.trim().split(/\s+/).length;
+    const text = editor.value.trim();
+    const wordCount = text === "" ? 0 : text.match(/\b(?![\(\)\[\]\{\}]+)\S+\b/g).length;
     if (wordCount < 100) {
       abstractValidation.innerHTML = "Abstract too short";
       abstractValidation.style.display = "block";
@@ -552,6 +553,12 @@ document.addEventListener('DOMContentLoaded', function () {
       abstractValidation.style.display = "none";
     }
     checkValidations();
+  });
+  
+  editor.addEventListener('input', function () {
+    const text = editor.value.trim();
+    const wordCount = text === "" ? 0 : text.match(/\b(?![\(\)\[\]\{\}]+)\S+\b/g).length;
+    document.querySelector("#total-words-abstract").innerHTML = `${wordCount} / 300 words`;
   });
 
   keywords.addEventListener('blur', function () {

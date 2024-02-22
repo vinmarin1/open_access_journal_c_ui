@@ -156,7 +156,9 @@
         <textarea class="form-control" name="editor" id="editor" cols="30" rows="10"></textarea>
       
         <input class="form-control artcl" type="text" id="abstract" name="abstract"  style="display: none;">
-       
+        <div class="d-flex flex-column">
+        <span id="total-words-abstract" class="text-end w-full"></span>
+        </div>
 
       </div>
 
