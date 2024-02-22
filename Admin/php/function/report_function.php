@@ -141,4 +141,24 @@ if (!function_exists('get_report_list')) {
         }
     }
 
+    if (!function_exists('get_published_article_total')) {
+        function get_published_article_total($month, $year) {
+            $month = $_GET["m"] ?? date('m');
+            $year = $_GET["y"] ?? date('Y');
+
+            $sql = "SELECT `article_id`, `title`, `publication_date` FROM `article` WHERE `status` = 1 AND MONTH(`publication_date`) = ? AND YEAR(`publication_date`) = ?";
+
+            $results = execute_query($sql, [$month, $year]);
+
+            $data = array();
+
+            if ($results !== false) {
+                $data['articlelist'] = $results;
+                return $data;
+            } else {
+                return array('status' => true, 'data' => []);
+            }
+        }
+    }
+
 ?>
