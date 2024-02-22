@@ -1,4 +1,5 @@
 <?php
+include 'function/redirect.php';
 include 'function/report_function.php';
 
 $yearval = isset($_GET['y']) ? $_GET['y'] : date('Y');
