@@ -550,4 +550,27 @@ if (!function_exists('get_author_list')) {
     }
 }
 
+if (!function_exists('check_article_articlefinalfile')) {
+    function check_article_articlefinalfile($aid) {
+        $pdo = connect_to_database();
+
+        if ($pdo) {
+            try {
+                $query = "SELECT * FROM article_final_files WHERE article_id = :aid AND production = 1";
+                $stmt = $pdo->prepare($query);
+                $stmt->bindParam(':aid', $aid, PDO::PARAM_INT);
+                $stmt->execute();
+
+                $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+                return $result;
+            } catch (PDOException $e) {
+                echo "Error: " . $e->getMessage();
+                return false;
+            }
+        }
+
+        return false;
+    }
+}
 

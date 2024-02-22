@@ -668,7 +668,7 @@ $issuelist = get_issues_list($journal_id);
                                                     </td>
                                                         <td width="5%"><?php echo $allcopyedited_filesval->final_files_id; ?></td>
                                                     <td width="65%">
-                                                        <a href="../../../Files/revision-article/<?php echo ($allcopyedited_filesval->file_name); ?>" download>
+                                                        <a href="../../../Files/final-file/<?php echo ($allcopyedited_filesval->file_name); ?>" download>
                                                             <?php echo $allcopyedited_filesval->file_name; ?>
                                                         </a>
                                                     </td>
@@ -714,7 +714,7 @@ $issuelist = get_issues_list($journal_id);
                                                     <tr>
                                                         <td width="5%"><?php echo $allcopyedited_filesval->final_files_id; ?></td>
                                                         <td width="65%">
-                                                            <a href="../../../Files/submitted-article/<?php echo ($allcopyedited_filesval->file_name); ?>" download>
+                                                            <a href="../../../Files/final-file/<?php echo ($allcopyedited_filesval->file_name); ?>" download>
                                                                 <?php echo $allcopyedited_filesval->file_name; ?>
                                                             </a>
                                                         </td>
@@ -878,7 +878,7 @@ $issuelist = get_issues_list($journal_id);
                                                     </td>
                                                         <td width="5%"><?php echo $allcopyedited_filesval->final_files_id; ?></td>
                                                     <td width="65%">
-                                                        <a href="../../../Files/revision-article/<?php echo ($allcopyedited_filesval->file_name); ?>" download>
+                                                        <a href="../../../Files/final-file/<?php echo ($allcopyedited_filesval->file_name); ?>" download>
                                                             <?php echo $allcopyedited_filesval->file_name; ?>
                                                         </a>
                                                     </td>
@@ -923,7 +923,7 @@ $issuelist = get_issues_list($journal_id);
                                                     </td>
                                                         <td width="5%"><?php echo $allproduction_filesval->final_files_id; ?></td>
                                                     <td width="65%">
-                                                        <a href="../../../Files/revision-article/<?php echo ($allproduction_filesval->file_name); ?>" download>
+                                                        <a href="../../../Files/final-file/<?php echo ($allproduction_filesval->file_name); ?>" download>
                                                             <?php echo $allproduction_filesval->file_name; ?>
                                                         </a>
                                                     </td>
@@ -976,7 +976,7 @@ $issuelist = get_issues_list($journal_id);
                                                     <tr>
                                                         <td width="5%"><?php echo $allcopyedited_filesval->final_files_id; ?></td>
                                                         <td width="65%">
-                                                            <a href="../../../Files/submitted-article/<?php echo ($allcopyedited_filesval->file_name); ?>" download>
+                                                            <a href="../../../Files/final-file/<?php echo ($allcopyedited_filesval->file_name); ?>" download>
                                                                 <?php echo $allcopyedited_filesval->file_name; ?>
                                                             </a>
                                                         </td>
@@ -993,7 +993,7 @@ $issuelist = get_issues_list($journal_id);
                                                     <tr>
                                                         <td width="5%"><?php echo $allproduction_filesval->final_files_id; ?></td>
                                                         <td width="65%">
-                                                            <a href="../../../Files/submitted-article/<?php echo ($allproduction_filesval->file_name); ?>" download>
+                                                            <a href="../../../Files/final-file/<?php echo ($allproduction_filesval->file_name); ?>" download>
                                                                 <?php echo $allproduction_filesval->file_name; ?>
                                                             </a>
                                                         </td>
@@ -1394,6 +1394,7 @@ function updateFileSubmission() {
     $('#sloading').toggle();
     var submissionFileId = $('#submissionfileid').val();
     var submissionFile = $('#submissionfile')[0].files[0];
+    var articleId = <?php echo json_encode($aid); ?>;
 
     if ($('#submissionfile').prop('required') && !submissionFile) {
         $('#sloading').toggle();
@@ -1413,6 +1414,7 @@ function updateFileSubmission() {
     formData.append('submissionfileid', submissionFileId);
     formData.append('submissionfile', submissionFile);
     formData.append('action', 'updatesubmissionfile');
+    formData.append('article_id', articleId);
 
     $.ajax({
         url: "../php/function/wf_modal_function.php",
