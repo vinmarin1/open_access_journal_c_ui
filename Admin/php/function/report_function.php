@@ -140,6 +140,46 @@ if (!function_exists('get_report_list')) {
             }
         }
     }
+    
+    if (!function_exists('get_donationforgraph')) {
+        function get_donationforgraph() {
+            $sql = "SELECT 
+                    years.year_number,
+                    CONCAT('Month ', months.month_number) AS month,
+                    COALESCE(SUM(donation.amount), 0) AS total_donation
+                FROM (
+                    SELECT 1 AS month_number
+                    UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7
+                    UNION SELECT 8 UNION SELECT 9 UNION SELECT 10 UNION SELECT 11 UNION SELECT 12
+                ) AS months
+                CROSS JOIN (
+                    SELECT 2023 AS year_number
+                    UNION SELECT YEAR(CURRENT_DATE()) AS year_number
+                ) AS years
+                LEFT JOIN (
+                    SELECT 
+                        MONTH(created_at) AS donation_month, 
+                        YEAR(created_at) AS donation_year,
+                        amount
+                    FROM 
+                        donation
+                ) AS donation ON months.month_number = donation.donation_month AND years.year_number = donation.donation_year
+                GROUP BY years.year_number, months.month_number
+                ORDER BY years.year_number, months.month_number;
+                ";
+                            
+            $results = execute_query($sql);
+    
+            $data = array();
+    
+            if ($results !== false) {
+                $data['donationforgraph'] = $results;
+                return $data;
+            } else {
+                return array('status' => true, 'data' => []);
+            }
+        }
+    }
 
     if (!function_exists('get_published_article_total')) {
         function get_published_article_total($month, $year) {
