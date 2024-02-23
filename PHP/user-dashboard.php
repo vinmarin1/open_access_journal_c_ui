@@ -682,15 +682,53 @@ $expertise = $_SESSION['expertise'];
 						</span></p>
 						<p><span class="label">Country:</span> <span id="countryLabel">
 						<?php
-							if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
-								echo $country;
+							if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+								$sqlSelectName = "SELECT country FROM author WHERE author_id = :author_id";
+							
+								$result = database_run($sqlSelectName, array(':author_id' => $id));
+
+								if ($result) {
+									
+									if (count($result) > 0) {
+										$user = $result[0];
+										$country = $user->country;
+									
+										echo $country;
+									
+										
+						
+									} else {
+										echo "User not found.";
+									}
+								} else {
+									echo "Unable to fetch user info.";
+								}
 							}
 							?>
 						</span></p>
 						<p><span class="label">ORCID:</span> <span id="orcidLabel">
-						<?php
-							if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
-								echo $orc_id;
+							<?php
+							if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+								$sqlSelectName = "SELECT orc_id FROM author WHERE author_id = :author_id";
+							
+								$result = database_run($sqlSelectName, array(':author_id' => $id));
+
+								if ($result) {
+									
+									if (count($result) > 0) {
+										$user = $result[0];
+										$orc_id = $user->orc_id;
+									
+										echo $orc_id;
+									
+										
+						
+									} else {
+										echo "User not found.";
+									}
+								} else {
+									echo "Unable to fetch user info.";
+								}
 							}
 							?>
 						</span></p>
@@ -713,16 +751,54 @@ $expertise = $_SESSION['expertise'];
 					<div id="logrecord-container">
 						<div class="log-box">Join In Community Since
 						<?php
-							if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
-								echo $formattedDateAdded;
+						if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+							$sqlSelectName = "SELECT date_added FROM author WHERE author_id = :author_id";
+
+							$result = database_run($sqlSelectName, array(':author_id' => $id));
+
+							if ($result) {
+								if (count($result) > 0) {
+									$user = $result[0];
+									$date_added = $user->date_added;
+
+									// Format the date as a string (assuming $birth_date is in 'YYYY-MM-DD' format)
+									$formatted_date_addedd = date('F j, Y', strtotime($date_added));
+
+									echo $formatted_date_addedd;
+								} else {
+									echo "User not found.";
+								}
+							} else {
+								echo "Unable to fetch user info.";
 							}
+						}
 						?>
 						</div>
-						<div class="log-box">Author Since: <?php
-							if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
-								echo $formattedDateAdded;
+						<div class="log-box">
+							<?php
+							if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+								$sqlSelectName = "SELECT date_added FROM article WHERE author_id = :author_id ORDER BY date_added ASC LIMIT 1 ";
+
+								$result = database_run($sqlSelectName, array(':author_id' => $id));
+
+								if ($result) {
+									if (count($result) > 0) {
+										$user = $result[0];
+										$date_added = $user->date_added;
+
+										$formatted_date_added = date('F j, Y', strtotime($date_added));
+
+										echo 'Author Since: ' . $formatted_date_added;
+									} else {
+										echo "You did not submit any articles yet.";
+									}
+								} else {
+									echo "You did not submit any articles yet.";
+								}
 							}
-						?></div>
+							?>
+
+						</div>
 						<div class="log-box"> 
 							
 
@@ -1434,7 +1510,30 @@ function openArticleInNewTab(articleId) {
       .then(response => response.json())
       .then(data => {
        
-          if (data.find(country => country.name.common === '<?php echo $country ?>')) {
+          if (data.find(country => country.name.common === '<?php
+							if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+								$sqlSelectName = "SELECT country FROM author WHERE author_id = :author_id";
+							
+								$result = database_run($sqlSelectName, array(':author_id' => $id));
+
+								if ($result) {
+									
+									if (count($result) > 0) {
+										$user = $result[0];
+										$country = $user->country;
+									
+										echo $country;
+									
+										
+						
+									} else {
+										echo "User not found.";
+									}
+								} else {
+									echo "Unable to fetch user info.";
+								}
+							}
+							?>')) {
               const userCountryOption = document.createElement('option');
               userCountryOption.value = '<?php echo $country ?>';
               userCountryOption.textContent = '<?php echo $country ?>';
