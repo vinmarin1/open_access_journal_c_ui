@@ -108,7 +108,7 @@ function renderArticleDetails(data) {
           <div class="abstract col-sm-7">
               <h4>Abstract</h4>
               <button class="btn btn-md" id="read-btn">Read Full Article</button>
-              <div class="alert alert-light" role="alert">
+              <div class="alert alert-light" role="alert" id="login-redirect">
                 You are not logged in. To download and read full article, please <a href="./login.php" class="alert-link">login</a>
               </div>
               <button class="btn tbn-primary btn-md" id="download-btn">Download PDF <span class="d-none" id="downloadLoading"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
@@ -288,17 +288,20 @@ function renderArticleDetails(data) {
     const downloadBtn = articleElement.querySelector(`#download-btn`);
     const epubBtn = articleElement.querySelector(`#epub-btn`);
     const citeBtn = articleElement.querySelector(`#cite-btn`);
+    const loginRedirect = articleElement.querySelector(`#login-redirect`);
     // const viewFullArticle = articleElement.querySelector(`#btn1`);
 
     if (active) {
       downloadBtn.style.display = "inline-block";
       epubBtn.style.display = "inline-block";
       readBtn.style.display = "inline-block";
+      loginRedirect.style.display = "none";
     } else {
       downloadBtn.style.display = "none";
       epubBtn.style.display = "none";
       readBtn.style.display = "none";
-      document.createElement('span').innerHTML = "You are not logged in. To download and read the full article, please <a href='./login.php'>log in</a>.";
+      loginRedirect.style.display = "inline-block";
+      
       readBtn.addEventListener("click", () => {
         window.location.href = "../php/login.php";
       });
