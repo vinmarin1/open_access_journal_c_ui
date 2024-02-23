@@ -37,7 +37,7 @@ function login($data)
         $arr['email'] = $data['email'];
         $password = hash('sha256', $data['password']);
 
-        $query_author = "SELECT * FROM author WHERE email = :email LIMIT 1";
+        $query_author = "SELECT * FROM author WHERE email = :email AND status = 1 LIMIT 1";
         $row_author = database_run($query_author, $arr);
 
         if (is_array($row_author)) {
@@ -71,7 +71,7 @@ function login($data)
                 $errors[] = "Wrong email or password";
             }
         } else {
-            $query_admin = "SELECT * FROM admin WHERE email = :email LIMIT 1";
+            $query_admin = "SELECT * FROM admin WHERE email = :email AND status = 1 LIMIT 1";
             $row_admin = database_run($query_admin, $arr);
 
             if (is_array($row_admin)) {
