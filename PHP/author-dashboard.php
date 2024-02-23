@@ -255,7 +255,7 @@ $id = $_SESSION['id'];
                           echo '</nav>';
 
                                   } else {
-                                      echo 'You have not submitted any article yet';
+                                      echo  '<div class="p-4">You have not submitted any article yet</div>';
                                   }
                               }
                             
@@ -542,15 +542,16 @@ $id = $_SESSION['id'];
           </div>
         </div>
 
-        <div class="row">
-          <div class="graph-section">
+        <div class="row ">
             <!-- Graph placeholder -->
+        
+          <!-- <div class="graph-section">
             <h3>Published Articles Engagement</h3>
             <canvas id="articlesChart" width="400" height="120"></canvas>
-          </div>
-          <div class="stats-section">
+          </div> -->
+          <div class="d-flex flex-wrap gap-4">
             <!-- Top row cards -->
-            <div class="stat-card top-card">
+            <div class="stat-card top-card ">
               <h2>Total Views</h2>
               <p>98 <span class="increase">+11%</span></p>
             </div>

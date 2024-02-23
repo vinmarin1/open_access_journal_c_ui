@@ -64,8 +64,8 @@ input[type="submit"]{
 }
 
 
-#span1, #span2, #span3, #span4, #span5{
-    display: none;
+#orcidVlalidation, #span1, #span2, #span3, #span4, #span5{
+
     color: red;
 }
 

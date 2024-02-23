@@ -62,44 +62,62 @@ document.getElementById('form').addEventListener('submit', function(event) {
     const password = document.getElementById('password').value;
     const orcid = document.getElementById('orcid').value;
     
+    const emailBorder = document.getElementById('email');
+    const fnameBorder = document.getElementById('fname');
+    const orcidBorder = document.getElementById('orcid');
+    const lnameBorder = document.getElementById('lname');
+    const passwordBorder = document.getElementById('password');
 
     const span1 = document.getElementById('span1');
     const span2 = document.getElementById('span2');
     const span3 = document.getElementById('span3');
     const span4 = document.getElementById('span4');
     const span5 = document.getElementById('span5');
+    const orcidVlalidation = document.getElementById('orcidVlalidation');
 
-    span1.style.display = 'none';
-    span2.style.display = 'none';
-    span3.style.display = 'none';
-    span4.style.display = 'none';
-    span5.style.display = 'none';
+    // span1.style.display = 'none';
+    // span2.style.display = 'none';
+    // span3.style.display = 'none';
+    // span4.style.display = 'none';
+    // span5.style.display = 'none';
+    // orcidVlalidation.style.display = 'none';
 
     let hasError = false;
 
     if (email === "") {
-        span1.style.display = 'inline-block';
+        // span1.style.display = 'inline-block';
         hasError = true;
+        emailBorder.style.border = '1px solid red';
+        
+    }
+
+    if (orcid === "") {
+        // orcidVlalidation.style.display = 'inline-block';
+        hasError = true;
+        orcidBorder.style.border = '1px solid red';
     }
 
     if (fname === "") {
-        span2.style.display = 'inline-block';
+        // span2.style.display = 'inline-block';
         hasError = true;
+        fnameBorder.style.border = '1px solid red';
     }
 
-    if (mdname === "") {
-        span3.style.display = 'inline-block';
-        hasError = true;
-    }
+    // if (mdname === "") {
+    //     span3.style.display = 'inline-block';
+    //     hasError = true;
+    // }
 
     if (lname === "") {
-        span4.style.display = 'inline-block';
+        // span4.style.display = 'inline-block';
         hasError = true;
+        lnameBorder.style.border = '1px solid red';
     }
  
     if (password === "") {
-        span5.style.display = 'inline-block';
+        // span5.style.display = 'inline-block';
         hasError = true;
+        passwordBorder.style.border = '1px solid red';
     }
     
 
@@ -211,6 +229,7 @@ if (hasError) {
         }
     };
     xhr.send('email=' + encodeURIComponent(email) +
+        '&orcid=' + encodeURIComponent(orcid) +
         '&fname=' + encodeURIComponent(fname) +
         '&mdname=' + encodeURIComponent(mdname) +
         '&lname=' + encodeURIComponent(lname) +
@@ -250,11 +269,15 @@ if (hasError) {
 
 
 document.getElementById('email').addEventListener('input', function() {
+    const email = document.getElementById('email');
+    email.style.border = '1px solid';
     document.getElementById('span1').style.display = 'none';
 });
 
 document.getElementById('fname').addEventListener('input', function() {
     document.getElementById('span2').style.display = 'none';
+    const fname = document.getElementById('fname');
+    fname.style.border = '1px solid';
 });
 
 document.getElementById('mdname').addEventListener('input', function() {
@@ -263,14 +286,20 @@ document.getElementById('mdname').addEventListener('input', function() {
 
 document.getElementById('lname').addEventListener('input', function() {
     document.getElementById('span4').style.display = 'none';
+    const lname = document.getElementById('lname');
+    lname.style.border = '1px solid';
 });
 
 document.getElementById('password').addEventListener('input', function() {
     document.getElementById('span5').style.display = 'none';
+    const password = document.getElementById('password');
+    password.style.border = '1px solid';
 });
 
 document.getElementById('orcid').addEventListener('input', function() {
     document.getElementById('span6').style.display = 'none';
+    const orcid = document.getElementById('orcid');
+    orcid.style.border = '1px solid';
 });
 
 

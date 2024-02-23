@@ -21,6 +21,7 @@ function checkEmailExist($data) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
+    $orcid = $_POST['orcid'];
     $fname = $_POST['fname'];
     $mdname = $_POST['mdname'];
     $password = $_POST['password'];
@@ -35,14 +36,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     }
 
-    $sql = "INSERT INTO author (`first_name`, `last_name`, `middle_name`, `email`, `password`, `privacyAgreement`, `role`, `status`)
-            VALUES (:first_name, :middle_name, :last_name, :email, :password, :privacyAgreement, :role, :status)";
+    $sql = "INSERT INTO author (`first_name`, `last_name`, `middle_name`, `email`, `orc_id`, `password`, `privacyAgreement`, `role`, `status`)
+            VALUES (:first_name, :middle_name, :last_name, :email, :orc_id, :password, :privacyAgreement, :role, :status)";
 
     $params = [
         'first_name' => $fname,
         'middle_name' => $lname,
         'last_name' => $mdname,
         'email' => $email,
+        'orc_id' => $orcid,
         'password' => $hashedPassword,
         'privacyAgreement' => $privacyPolicy,
         'role' => 'Author',

@@ -666,6 +666,7 @@ label {
     padding: 20px;
     /* Padding inside cards */
     position: relative;
+    
     /* For absolute positioning of the increase label */
 }
 
