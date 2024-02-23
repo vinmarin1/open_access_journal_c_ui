@@ -108,6 +108,9 @@ function renderArticleDetails(data) {
           <div class="abstract col-sm-7">
               <h4>Abstract</h4>
               <button class="btn btn-md" id="read-btn">Read Full Article</button>
+              <div class="alert alert-light" role="alert">
+                You are not logged in. To download and read full article, please <a href="./login.php" class="alert-link">login</a>
+              </div>
               <button class="btn tbn-primary btn-md" id="download-btn">Download PDF <span class="d-none" id="downloadLoading"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
               <path fill="none" stroke="#0880E8" stroke-dasharray="15" stroke-dashoffset="15" stroke-linecap="round" stroke-width="2" d="M12 3C16.9706 3 21 7.02944 21 12">
                 <animate fill="freeze" attributeName="stroke-dashoffset" dur="0.3s" values="15;0" />
@@ -290,12 +293,15 @@ function renderArticleDetails(data) {
     if (active) {
       downloadBtn.style.display = "inline-block";
       epubBtn.style.display = "inline-block";
+      readBtn.style.display = "inline-block";
     } else {
-      // downloadBtn.style.display = "none";
-
-      // // viewFullArticle.addEventListener("click", () => {
-      // //   window.location.href = "../php/login.php";
-      // // });
+      downloadBtn.style.display = "none";
+      epubBtn.style.display = "none";
+      readBtn.style.display = "none";
+      document.createElement('span').innerHTML = "You are not logged in. To download and read the full article, please <a href='./login.php'>log in</a>.";
+      readBtn.addEventListener("click", () => {
+        window.location.href = "../php/login.php";
+      });
       downloadBtn.addEventListener("click", () => {
           window.location.href = "../PHP/login.php";
       });
@@ -305,10 +311,11 @@ function renderArticleDetails(data) {
   
 
     }
-    
+    if (readBtn) {
     readBtn.addEventListener("click", () => {
       document.querySelector("iframe").classList.remove("d-none")
     });
+  }
     
   
     if (downloadBtn) {
