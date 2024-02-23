@@ -69,7 +69,8 @@ session_start();
             <form id="finalStepForm">
                 <p class="h2 pt-4">Password changed</p>
                 <p class="h6 pt-4">Your password has been successfuly changed.</p>
-                <button type="button" class="btn btn-primary btn-sm mt-3" onclick="window.location.href='login.php'">Log-in</button>
+                <button type="button" class="btn btn-primary btn-sm mt-3" onclick="window.location.href='https://www.qcuj.online/PHP/login.php'">Log-in</button>
+
             </form>
           
         </div>

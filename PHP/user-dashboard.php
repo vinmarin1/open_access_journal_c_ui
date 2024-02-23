@@ -67,9 +67,26 @@ $expertise = $_SESSION['expertise'];
 		<div class="cover-content">
 			<h3>Hello,
 			<?php
-			if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
-				$firstName = isset($_SESSION['first_name']) ? ucfirst($_SESSION['first_name']) : '';
-				echo $firstName ;
+			if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+				$sqlSelectName = "SELECT first_name, middle_name, last_name FROM author WHERE author_id = :author_id";
+			
+				$result = database_run($sqlSelectName, array(':author_id' => $id));
+
+				if ($result) {
+					
+					if (count($result) > 0) {
+						$user = $result[0];
+						$firstName = $user->first_name;
+						$middleName = $user->middle_name;
+						$lastName = $user->last_name;
+
+						echo "$firstName $middleName $lastName";
+					} else {
+						echo "User not found.";
+					}
+				} else {
+					echo "Unable to fetch user info.";
+				}
 			}
 			?>
 			</h3>
@@ -111,22 +128,53 @@ $expertise = $_SESSION['expertise'];
 						<div class="user-info">
 							<div class="info-header">
 							<h1>
-								<?php
-								if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
-									$firstName = isset($_SESSION['first_name']) ? ucfirst($_SESSION['first_name']) : '';
-									$middleName = isset($_SESSION['middle_name']) ? ' ' . ucfirst($_SESSION['middle_name']) : '';
-									$lastName = isset($_SESSION['last_name']) ? ' ' . ucfirst($_SESSION['last_name']) : '';
+							<?php
+							if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+								$sqlSelectName = "SELECT first_name, middle_name, last_name FROM author WHERE author_id = :author_id";
+							
+								$result = database_run($sqlSelectName, array(':author_id' => $id));
 
-									echo $firstName . $middleName . $lastName;
+								if ($result) {
+									
+									if (count($result) > 0) {
+										$user = $result[0];
+										$firstName = $user->first_name;
+										$middleName = $user->middle_name;
+										$lastName = $user->last_name;
+
+										echo "$firstName $middleName $lastName";
+									} else {
+										echo "User not found.";
+									}
+								} else {
+									echo "Unable to fetch user info.";
 								}
-								?>
+							}
+							?>
 							</h1>
 								<i class="ri-edit-box-line" id="editIcon"></i>
 							</div>
 							<p class="role">
 								<?php
-								if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
-									echo $role;
+								if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+									$sqlSelectName = "SELECT role FROM author WHERE author_id = :author_id";
+								
+									$result = database_run($sqlSelectName, array(':author_id' => $id));
+
+									if ($result) {
+										
+										if (count($result) > 0) {
+											$user = $result[0];
+											$role = $user->role;
+											
+
+											echo "$role";
+										} else {
+											echo "Can't identify user role.";
+										}
+									} else {
+										echo "Unable to fetch user role.";
+									}
 								}
 								?>
 							</p>
@@ -159,21 +207,118 @@ $expertise = $_SESSION['expertise'];
 									<div class="row-form">
 										<div class="form-row">
 											<label for="firstName">First Name:</label>
-											<input type="text" id="firstName" name="firstName" class="text-box" value="<?php echo $first_name ?>" disabled>
+											<?php
+											if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+												$sqlSelectName = "SELECT first_name FROM author WHERE author_id = :author_id";
+											
+												$result = database_run($sqlSelectName, array(':author_id' => $id));
+
+												if ($result) {
+													
+													if (count($result) > 0) {
+														$user = $result[0];
+														$firstName = $user->first_name;
+													
+														echo '<input type="text" id="firstName" name="firstName" class="text-box" value="' . $firstName . '" disabled>';
+
+										
+													} else {
+														echo "User not found.";
+													}
+												} else {
+													echo "Unable to fetch user info.";
+												}
+											}
+											?>
+										
 										</div>
 										<div class="form-row">
 											<label for="middleName">Middle Name:</label>
-											<input type="text" id="middleName" name="middleName" class="text-box"
-											value="<?php echo $middle_name ?>" disabled>
+											<?php
+											if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+												$sqlSelectName = "SELECT middle_name FROM author WHERE author_id = :author_id";
+											
+												$result = database_run($sqlSelectName, array(':author_id' => $id));
+
+												if ($result) {
+													
+													if (count($result) > 0) {
+														$user = $result[0];
+														$middle_name = $user->middle_name;
+													
+														echo '<input type="text" id="middleName" name="middleName" class="text-box"
+														value="' . $middle_name . '" disabled>';
+													
+										
+													} else {
+														echo "User not found.";
+													}
+												} else {
+													echo "Unable to fetch user info.";
+												}
+											}
+											?>
+						
+										
 										</div>
 										<div class="form-row">
 											<label for="lastName">Last Name:</label>
-											<input type="text" id="lastName" name="lastName" class="text-box"
-											value="<?php echo $last_name ?>" disabled>
+											<?php
+											if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+												$sqlSelectName = "SELECT last_name FROM author WHERE author_id = :author_id";
+											
+												$result = database_run($sqlSelectName, array(':author_id' => $id));
+
+												if ($result) {
+													
+													if (count($result) > 0) {
+														$user = $result[0];
+														$last_name = $user->last_name;
+													
+														echo '<input type="text" id="lastName" name="lastName" class="text-box"
+														value="' . $last_name . '" disabled>';
+													
+														
+										
+													} else {
+														echo "User not found.";
+													}
+												} else {
+													echo "Unable to fetch user info.";
+												}
+											}
+											?>
+						
+											
 										</div>
 										<div class="form-row">
 											<label for="affix">Affix:</label>
-											<input type="text" id="affix" name="affix" class="text-box" value="<?php echo $affix ?>" disabled>
+											<?php
+											if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+												$sqlSelectName = "SELECT affix FROM author WHERE author_id = :author_id";
+											
+												$result = database_run($sqlSelectName, array(':author_id' => $id));
+
+												if ($result) {
+													
+													if (count($result) > 0) {
+														$user = $result[0];
+														$affix = $user->affix;
+													
+														echo '<input type="text" id="affix" name="affix" class="text-box"
+														value="' . $affix . '" disabled>';
+													
+														
+										
+													} else {
+														echo "User not found.";
+													}
+												} else {
+													echo "Unable to fetch user info.";
+												}
+											}
+											?>
+											
 										</div>
 										<div class="form-row">
 											<label for="birthdate">Birth Date:</label>
@@ -183,16 +328,57 @@ $expertise = $_SESSION['expertise'];
 										<div class="form-row">
 											<label for="gender">Gender:</label>
 											<select id="gender" name="gender" class="dropdown-box" disabled>
-												<option value="<?php echo $gender?>"><?php echo $gender ?></option>
+												<?php
+												if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+													$sqlSelectName = "SELECT gender FROM author WHERE author_id = :author_id";
+
+													$result = database_run($sqlSelectName, array(':author_id' => $id));
+
+													if ($result) {
+														if (count($result) > 0) {
+															$user = $result[0];
+															$gender = $user->gender;
+
+															// Output the selected option based on the user's gender
+															echo '<option value="' . $gender . '" selected>' . $gender . '</option>';
+														} else {
+															echo "User not found.";
+														}
+													} else {
+														echo "Unable to fetch user info.";
+													}
+												}
+												?>
 												<option value="Male">Male</option>
 												<option value="Female">Female</option>
-												
 											</select>
+
 										</div>
 										<div class="form-row">
 											<label for="status">Status:</label>
 											<select id="status" name="status" class="dropdown-box" disabled>
-											<option value="<?php echo $status?>"><?php echo $status ?></option>
+											
+												<?php
+												if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+													$sqlSelectName = "SELECT marital_status FROM author WHERE author_id = :author_id";
+
+													$result = database_run($sqlSelectName, array(':author_id' => $id));
+
+													if ($result) {
+														if (count($result) > 0) {
+															$user = $result[0];
+															$marital_status = $user->marital_status;
+
+															// Output the selected option based on the user's gender
+															echo '<option value="' . $marital_status . '" selected>' . $marital_status . '</option>';
+														} else {
+															echo "User not found.";
+														}
+													} else {
+														echo "Unable to fetch user info.";
+													}
+												}
+												?>
 												<option value="Single">Single</option>
 												<option value="Married">Married</option>
 												<option value="Divorced">Divorced</option>
@@ -219,15 +405,90 @@ $expertise = $_SESSION['expertise'];
 										</div> -->
 										<div class="form-row">
 											<label for="orcid">ORCID:</label>
-											<input type="text" id="orcid" name="orcid" class="other-text-box" pattern="\d{4}-\d{4}-\d{4}-\d{4}" placeholder="(e.g., xxxx-xxxx-xxxx-xxxx)" value="<?php echo $orc_id ?>" disabled>
+											<?php
+											if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+												$sqlSelectName = "SELECT orc_id FROM author WHERE author_id = :author_id";
+											
+												$result = database_run($sqlSelectName, array(':author_id' => $id));
+
+												if ($result) {
+													
+													if (count($result) > 0) {
+														$user = $result[0];
+														$orc_id = $user->orc_id;
+													
+														echo '<input type="text"  id="orcid" name="orcid" class="other-text-box" pattern="\d{4}-\d{4}-\d{4}-\d{4}" placeholder="(e.g., xxxx-xxxx-xxxx-xxxx)"
+														value="' . $orc_id . '" disabled>';
+													
+														
+										
+													} else {
+														echo "User not found.";
+													}
+												} else {
+													echo "Unable to fetch user info.";
+												}
+											}
+											?>
+										
 										</div>
 										<div class="form-row">
 											<label for="affiliation">Affiliation:</label>
-											<input type="text" id="affiliation" name="affiliation" class="other-text-box" value="<?php echo $afiliations ?>" disabled>
+											<?php
+											if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+												$sqlSelectName = "SELECT afiliations FROM author WHERE author_id = :author_id";
+											
+												$result = database_run($sqlSelectName, array(':author_id' => $id));
+
+												if ($result) {
+													
+													if (count($result) > 0) {
+														$user = $result[0];
+														$afiliations = $user->afiliations;
+													
+														echo '<input type="text" id="affiliation" name="affiliation" class="other-text-box"
+														value="' . $afiliations . '" disabled>';
+													
+														
+										
+													} else {
+														echo "User not found.";
+													}
+												} else {
+													echo "Unable to fetch user info.";
+												}
+											}
+											?>
+											
 										</div>
 										<div class="form-row">
 											<label for="position">Position:</label>
-											<input type="text" id="position" name="position" class="other-text-box" value="<?php echo $position ?>" disabled>
+											<?php
+											if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+												$sqlSelectName = "SELECT position FROM author WHERE author_id = :author_id";
+											
+												$result = database_run($sqlSelectName, array(':author_id' => $id));
+
+												if ($result) {
+													
+													if (count($result) > 0) {
+														$user = $result[0];
+														$position = $user->position;
+													
+														echo '<input type="text" id="position" name="position" class="other-text-box"
+														value="' . $position . '" disabled>';
+													
+														
+										
+													} else {
+														echo "User not found.";
+													}
+												} else {
+													echo "Unable to fetch user info.";
+												}
+											}
+											?>
+										
 										</div>
 									</div>
 									<!-- Add similar fields for ORCID, Affiliation, Position -->
@@ -238,7 +499,27 @@ $expertise = $_SESSION['expertise'];
 									<h4>About me</h4>
 									<hr>
 									<label for="bio">Bio:</label>
-									<textarea id="bio" name="bio" class="bio-textarea" placeholder="Enter your bio" disabled><?php echo $bio ?></textarea>
+										<?php
+										if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+											$sqlSelectName = "SELECT bio FROM author WHERE author_id = :author_id";
+
+											$result = database_run($sqlSelectName, array(':author_id' => $id));
+
+											if ($result) {
+												if (count($result) > 0) {
+													$user = $result[0];
+													$bio = $user->bio;
+
+													echo '<textarea id="bio" name="bio" class="bio-textarea" placeholder="Enter your bio" disabled>' . $bio . '</textarea>';
+												} else {
+													echo "User not found.";
+												}
+											} else {
+												echo "Unable to fetch user info.";
+											}
+										}
+										?>
+
 									
 									<br><br><br>
 									<label for="fieldofexpertise">Field of Expertise:</label>
@@ -323,24 +604,81 @@ $expertise = $_SESSION['expertise'];
 						<p><span class="label">Position:</span> <span id="positionLabel">
 						
 							<?php
-							if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
-								echo $position;
+							if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+								$sqlSelectName = "SELECT position FROM author WHERE author_id = :author_id";
+							
+								$result = database_run($sqlSelectName, array(':author_id' => $id));
+
+								if ($result) {
+									
+									if (count($result) > 0) {
+										$user = $result[0];
+										$position = $user->position;
+									
+										echo $position;
+									
+										
+						
+									} else {
+										echo "User not found.";
+									}
+								} else {
+									echo "Unable to fetch user info.";
+								}
 							}
 							?>
 						</span></p>
 						<p><span class="label">Gender</span> <span id="genderLabel">
 						<?php
-								if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
-									echo $gender;
+							if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+								$sqlSelectName = "SELECT gender FROM author WHERE author_id = :author_id";
+							
+								$result = database_run($sqlSelectName, array(':author_id' => $id));
+
+								if ($result) {
+									
+									if (count($result) > 0) {
+										$user = $result[0];
+										$gender = $user->gender;
+									
+										echo $gender;
+									
+										
+						
+									} else {
+										echo "User not found.";
+									}
+								} else {
+									echo "Unable to fetch user info.";
 								}
+							}
 							?>
 						</span></p>
 						<p><span class="label">Birthday:</span> <span id="birthdayLabel">
 						<?php
-								if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
-									echo $formattedBirthday;
+						if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+							$sqlSelectName = "SELECT birth_date FROM author WHERE author_id = :author_id";
+
+							$result = database_run($sqlSelectName, array(':author_id' => $id));
+
+							if ($result) {
+								if (count($result) > 0) {
+									$user = $result[0];
+									$birth_date = $user->birth_date;
+
+									// Format the date as a string (assuming $birth_date is in 'YYYY-MM-DD' format)
+									$formatted_birth_date = date('F j, Y', strtotime($birth_date));
+
+									echo $formatted_birth_date;
+								} else {
+									echo "User not found.";
 								}
-							?>
+							} else {
+								echo "Unable to fetch user info.";
+							}
+						}
+						?>
+
 						</span></p>
 						<p><span class="label">Country:</span> <span id="countryLabel">
 						<?php

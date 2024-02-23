@@ -421,7 +421,6 @@ document.getElementById('editBtn').addEventListener('click', function(event){
     
     Swal.fire({
         title: 'Do you want to make this changes?',
-        text: 'You will be logged out after this action',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',

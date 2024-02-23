@@ -15,15 +15,17 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $position = $_POST['position'];
     $affix = $_POST['affix'];
     $bio = $_POST['bio'];
+    $birthdate = $_POST['birthdate'];
 
-    $sqlUpdateUserInfo = "UPDATE author SET first_name = :first_name, affix = :affix, middle_name = :middle_name, last_name = :last_name, gender = :gender, status = :status, country = :country, afiliations = :afiliations, bio = :bio, position = :position, orc_id = :orc_id WHERE author_id = :author_id";
+    $sqlUpdateUserInfo = "UPDATE author SET first_name = :first_name, affix = :affix, middle_name = :middle_name, last_name = :last_name, birth_date = :birth_date, gender = :gender, marital_status = :marital_status, country = :country, afiliations = :afiliations, bio = :bio, position = :position, orc_id = :orc_id WHERE author_id = :author_id";
     $sqlArray = array(
         'first_name' => $firstName,
         'affix' => $affix,
         'middle_name' => $middleName,
         'last_name' => $lastName,
+        'birth_date' => $birthdate,
         'gender' => $gender,
-        'status' => $status,
+        'marital_status' => $status,
         'country' => $country,
         'afiliations' => $affiliation,
         'position' => $position,
@@ -33,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     );
 
     database_run($sqlUpdateUserInfo, $sqlArray);
-    header('location: logout.php');
+    header('location: user-dashboard.php');
 } else {
     echo 'fail';
 }
