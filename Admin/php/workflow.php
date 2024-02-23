@@ -99,7 +99,7 @@ table {
                                 if ($status == 1) {
                                     echo '<a href="javascript:void(0);" onclick="sendForArchive()" class="btn btn-danger btn-lg btn-block" style="width: 200px; height: 40px; margin-right: 5px;">Archive Article</a>';
                                 } else if ($status == 11){
-                                    echo '<a href="javascript:void(0);" onclick="sendForPublished()" class="btn btn-success btn-lg btn-block" style="width: 100px; height: 40px; margin-right: 5px;">Published</a>';
+                                    echo '<a href="javascript:void(0);" onclick="sendForPublished()" class="btn btn-success btn-lg btn-block" style="width: 100px; height: 40px; margin-right: 5px;">Publish</a>';
                                     echo '<a href="javascript:void(0);" onclick="sendForDecline()" class="btn btn-danger btn-lg btn-block" style="width: 100px; height: 40px;">Decline</a>';
                                 }else {
                                     echo '<a href="javascript:void(0);" onclick="sendForDecline()" class="btn btn-danger btn-lg btn-block" style="width: 100px; height: 40px;">Decline</a>';
