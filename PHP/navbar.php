@@ -172,7 +172,7 @@ require 'dbcon.php';
                           ';
           if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
               if (isset($_SESSION['role']) && $_SESSION['role'] === 'Admin') {
-                  echo '<li><a href="../Admin/php/dashboard.php" class="dropdown-item" style="color: black;">Admin Dashboard</a></li>';
+                  echo '<li><a href="../Admin/php/journalview.php" class="dropdown-item" style="color: black;">Admin Dashboard</a></li>';
               }
           }
           echo '
