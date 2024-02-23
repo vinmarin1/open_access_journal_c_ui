@@ -59,7 +59,7 @@ $journal = get_journal_list();
 
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
-            <a href="index.html" class="app-brand-link">
+            <a href="dashboard.php" class="app-brand-link">
             <span class="app-brand-logo demo">
                 <img src="../assets/img/qculogo.png" alt="QCULogo" class="w-100"/>
             </span>
@@ -208,7 +208,7 @@ $journal = get_journal_list();
 
             <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
               <!-- Search -->
-              <div class="navbar-nav align-items-center">
+              <!-- <div class="navbar-nav align-items-center">
                 <div class="nav-item d-flex align-items-center">
                   <i class="bx bx-search fs-4 lh-0"></i>
                   <input
@@ -217,7 +217,7 @@ $journal = get_journal_list();
                     placeholder="Search..."
                     aria-label="Search..." />
                 </div>
-              </div>
+              </div> -->
               <!-- /Search -->
 
               <ul class="navbar-nav flex-row align-items-center ms-auto">
