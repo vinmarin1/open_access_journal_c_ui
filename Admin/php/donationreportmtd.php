@@ -67,15 +67,15 @@ $seriesString = json_encode($series);
         </h4>
 
         <div class="col-12 mb-4">
-                  <div class="card">
-                    <div class="row row-bordered g-0">
-                      <div class="col-md-12">
-                        <h5 class="card-header m-0 me-2 pb-3">Donation</h5>
-                        <div id="totalRevenueChart" class="px-2"></div>
-                      </div>
+            <div class="card">
+                <div class="row row-bordered g-0">
+                    <div class="col-md-12">
+                    <h5 class="card-header m-0 me-2 pb-3">Donation</h5>
+                    <div id="totalRevenueChart" class="px-2"></div>
                     </div>
-                  </div>
                 </div>
+            </div>
+        </div>
 
         <div class="row mb-2">
             <div class="col-md-6 mb-2">

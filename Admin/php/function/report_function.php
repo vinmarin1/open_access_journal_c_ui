@@ -282,6 +282,44 @@ if (!function_exists('get_report_list')) {
         }
     }
 
+    if (!function_exists('get_top5contributors_list')) {
+        function get_top5contributors_list() {
+            $firstDayOfMonth = date('Y-m-01');
+            $lastDayOfMonth = date('Y-m-t');
+            
+            $sql = "SELECT 
+                        contributors_id, 
+                        article_id, 
+                        contributor_type, 
+                        firstname, 
+                        lastname, 
+                        publicname, 
+                        orcid, 
+                        email, 
+                        date_added,
+                        COUNT(*) AS email_count
+                    FROM 
+                        contributors
+                    WHERE 
+                        date_added BETWEEN '{$firstDayOfMonth}' AND '{$lastDayOfMonth}'
+                    GROUP BY 
+                        email
+                    ORDER BY 
+                        email_count DESC
+                    LIMIT 5;";
+                                
+            $results = execute_query($sql);
+                $data['top5contributorslist'] = $results;
+                return $data;
+            if ($results !== false) {
+        
+            } else {
+                return array(); 
+            }
+        }
+    }
+    
+
     if (!function_exists('get_topreviewer_list')) {
         function get_topreviewer_list() {
 
@@ -298,7 +336,9 @@ if (!function_exists('get_report_list')) {
             WHERE 
                 a.status = 1
             GROUP BY 
-                a.author_id, a.first_name, a.last_name, a.email;";
+                a.author_id, a.first_name, a.last_name, a.email
+            ORDER BY 
+                count_reviewed DESC;";
         
             $results = execute_query($sql);
     
@@ -312,5 +352,40 @@ if (!function_exists('get_report_list')) {
             }
         }
     }
+
+    if (!function_exists('get_top5reviewer_list')) {
+        function get_top5reviewer_list() {
+            $firstDayOfMonth = date('Y-m-01');
+            $lastDayOfMonth = date('Y-m-t');
+            
+            $sql = "SELECT 
+                        a.author_id,
+                        COALESCE(COUNT(ra.author_id), 0) AS count_reviewed,
+                        a.first_name,
+                        a.last_name,
+                        a.email
+                    FROM 
+                        author a
+                    LEFT JOIN 
+                        reviewer_assigned ra ON ra.author_id = a.author_id AND ra.accept = 1 AND ra.answer = 1 AND ra.date_issued BETWEEN '{$firstDayOfMonth}' AND '{$lastDayOfMonth}'
+                    WHERE 
+                        a.status = 1
+                    GROUP BY 
+                        a.author_id, a.first_name, a.last_name, a.email
+                    ORDER BY 
+                        count_reviewed DESC
+                    LIMIT 5;";
+            
+            $results = execute_query($sql);
+    
+            if ($results !== false) {
+                $data['top5reviewerlist'] = $results;
+                return $data;
+            } else {
+                return array(); // Return an empty array if there are no results or an error occurs
+            }
+        }
+    }
+    
 
 ?>
