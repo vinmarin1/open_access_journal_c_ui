@@ -537,7 +537,6 @@ if (!function_exists('get_author_list')) {
                 $query = "SELECT * FROM author 
                     WHERE status = 1 
                     AND email_verified IS NOT NULL 
-                    AND afiliations IS NOT NULL 
                     AND birth_date IS NOT NULL 
                     AND orc_id IS NOT NULL 
                     AND field_of_expertise IS NOT NULL 
