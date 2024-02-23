@@ -18,7 +18,7 @@ body {
     flex-direction: column;
 
 }
-
+/* 
 .content-over::before {
     content: "";
     position: absolute;
@@ -27,7 +27,7 @@ body {
     width: 100%;
     height: 100%;
     background-color: rgba(53, 68, 74, 0.7);
-}
+} */
 
 .content-over h3 {
     font-size: 24px !important;
@@ -104,7 +104,7 @@ body {
 .profile-container {
     display: flex;
     background-color: white;
-    justify-content: center;
+    justify-content: space-between;
     width: 100%;
     position: relative;
     
@@ -118,7 +118,8 @@ body {
     padding: 10px;
     border-radius: 10px;
     margin-right: 20px;
-    width: 20%;
+    width: 16%;
+    justify-content: center;
 }
 
 .profile-main {
@@ -129,8 +130,8 @@ body {
 
 .profile-pic {
     display: block;
-    width: 150px;
-    height: 150px;
+    width: 60px;
+    height: 60px;
     margin-top: 10px;
     border-radius: 50%;
 }
@@ -151,6 +152,8 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 1000;
     width: 70%;
+    max-width: 1000px;
+    
     overflow: hidden; /* Hide any content that exceeds the container */
 }
 
@@ -366,7 +369,7 @@ label {
 
 .profile-main .details {
 
-    padding: 5px 20px 0px 20px;
+    /* padding: 5px 20px 0px 20px; */
     border-radius: 10px;
     /* Adjust as needed */
 
@@ -376,11 +379,15 @@ label {
     margin-bottom: 5px;
 }
 .ri-eye-line, .ri-eye-close-line {
-    font-size: 20px;
+    font-size: 14px;
     cursor: pointer;
+    position: absolute;
+    top:0;
+    right:0;
   }
 .details {
-    padding: 20px;
+    position: relative;
+    /* padding: 20px; */
     border-radius: 10px;
     position: relative;
 }
@@ -452,6 +459,9 @@ label {
     .profile-main {
         width: 100%;
         margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
     }
     .info-header {
         flex-direction: row; /* Keep elements in a row */
@@ -465,7 +475,8 @@ label {
     }
     .profile-badge,
     .user-info,
-    .balance-points{
+    .balance-points,
+    #btn1{
     text-align: center;
     }
     .popup-form {
@@ -481,7 +492,7 @@ label {
 .tab {
     font-family: Arial, sans-serif;
     overflow: hidden;
-    margin-left: 60px;
+    /* margin-left: 60px; */
 
 }
 
@@ -518,7 +529,7 @@ label {
 /* Style the tab content */
 .tabcontent {
     display: none;
-    padding: 6px 12px;
+    /* padding: 6px 12px; */
 
     border-top: 1px solid #CCCCCC;
 
@@ -565,15 +576,14 @@ label {
     width: 100%;
     max-width: 250px;
     height: auto;
-    margin-top: 3px;
+    /* margin-top: 3px; */
     text-align: center;
 }
 
 .log-box {
     border: 1px solid #CCCCCC;
-    margin-top: 5px;
     padding: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 8px;
     color: #285581;
 
 }
@@ -586,7 +596,7 @@ label {
 
 
 
-.info-box h3 {
+.info-box h3, .info-box span {
     color: #285581;
 
 }
@@ -597,10 +607,10 @@ label {
 
 .info-box {
     flex: 1;
-    margin-left: 20px;
-    margin-bottom: 20px;
+    /* margin-left: 20px; */
+    margin-bottom: 8px;
     border: 1px solid #CCCCCC;
-    padding: 30px;
+    padding: 2%;
     box-sizing: border-box;
 
 }
@@ -1005,7 +1015,7 @@ td {
 }
 
 .articles-container {
-    width: 85%;
+    width: 100% !important;
     height: auto;
     border: none;
     margin-left: auto;
@@ -1122,7 +1132,7 @@ td {
 .historyTitle,
 .historyAbstract {
     width: 100%;
-    height: 20vh;
+    /* height: 20vh; */
     overflow-y: auto;
     scrollbar-width: thin; /* For Firefox */
     scrollbar-color: transparent transparent; /* For Firefox */
@@ -1154,11 +1164,11 @@ td {
     justify-content: space-between;
     align-items: flex-start;
     border: 1px solid white;
-    padding: 20px;
+    /* padding: 20px; */
     border-radius: 4px;
-    width: 90%;
+    width: 100%;
 	margin-bottom: 10px;
-	box-shadow: 0 5px 5px -4px rgba(0, 0, 0, 0.5);
+	box-shadow: 0 1px 1px -2px rgba(0, 0, 0, 0.2);
 }
 
 .continue-reading-article-details {
@@ -1194,7 +1204,7 @@ td {
     border: none;
     flex-direction: column;
     margin-left: 20px;
-    height: 30vh;
+    /* height: 30vh; */
     margin-bottom: 50px;
 }
 
@@ -1405,4 +1415,8 @@ height: 500px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-style: italic;
     width: 720px;
+}
+
+section {
+    padding: 1em 8% !important;
 }
