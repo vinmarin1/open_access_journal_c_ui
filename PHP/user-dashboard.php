@@ -45,6 +45,7 @@ $expertise = $_SESSION['expertise'];
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>QCU PUBLICATION | USER DASHBOARD</title>
   <link rel="stylesheet" href="../CSS/user-dashboard.css">
+  <link rel="stylesheet" href="../CSS/index.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
@@ -68,21 +69,18 @@ $expertise = $_SESSION['expertise'];
 			<?php
 			if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
 				$firstName = isset($_SESSION['first_name']) ? ucfirst($_SESSION['first_name']) : '';
-				$middleName = isset($_SESSION['middle_name']) ? ' ' . ucfirst($_SESSION['middle_name']) : '';
-				$lastName = isset($_SESSION['last_name']) ? ' ' . ucfirst($_SESSION['last_name']) : '';
-			
-				echo $firstName . $middleName . $lastName;
+				echo $firstName ;
 			}
 			?>
 			</h3>
 		</div>
-		<div>
+		<!-- <div>
 			<button class="btn tbn-primary btn-md" id="btn1" onclick="window.location.href='user-dashboard.php'">My Profile</button>
-			<button class="btn tbn-primary btn-md" id="btn2" onclick="window.location.href='author-dashboard.php'">Manage Contribution</button>
-		</div>
+			<button class="btn tbn-primary btn-md" id="btn2" onclick="window.location.href='author-dashboard.php'">Manage Articles</button>
+		</div> -->
     </div>
     <div class="main">
-		<div class="main-profile">
+		<section >
 			<div class="profile-container">
 				<div class="profile-sidebar">
 					<!-- Profile Image -->
@@ -139,7 +137,7 @@ $expertise = $_SESSION['expertise'];
 				
 					<div class="popup-form" id="editForm">
 						<div class="form-header">
-							<h4>Edit Profile</h4>
+							<span>Edit Profile</span>
 							<span class="close-icon" id="closeIcon">&times;</span>
 						</div>
 						<form id="form" method="POST" action="update-user.php">		
@@ -156,7 +154,7 @@ $expertise = $_SESSION['expertise'];
 								</div> -->
 								<!-- Personal Information -->
 								<div class="form-section">
-									<h4>Personal Information</h4>
+									<h5>Personal Information</h5>
 									<hr>
 									<div class="row-form">
 										<div class="form-row">
@@ -212,7 +210,7 @@ $expertise = $_SESSION['expertise'];
 
 								<!-- Other Information -->
 								<div class="form-section">
-									<h4>Other Information</h4>
+									<h5>Other Information</h5>
 									<hr>
 									<div class="row-form">
 										<!-- <div class="form-row">
@@ -296,11 +294,13 @@ $expertise = $_SESSION['expertise'];
 							echo  $totalPoints;
 						} 
 					?><i id="heartIcon" class="fa-solid fa-heart" style="color: red; margin-left: 5px" title="Community Heart, for more info click it."></i>
-
+					
 
 					
 
 					</div>
+					<button class="btn  btn-md text-white" id="btn1" onclick="window.location.href='author-dashboard.php'">Manage Articles</button>
+					
 
 					<!-- <div class="profile-badge">
 						<p class="recent-badges">Recent Badges</p>
@@ -415,8 +415,8 @@ $expertise = $_SESSION['expertise'];
 					<div id="info-container">
 						<div class="info-box">
 							<div class="bio-container">
-								<h3>Bio </h3>
-								<hr>
+								<span>Bio </span>
+								<!-- <hr> -->
 								<p>
 								<?php
 									if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
@@ -428,8 +428,8 @@ $expertise = $_SESSION['expertise'];
 						</div>
 						<div class="info-box">
 							<div class="expertise-container">
-								<h3>Expertise </h3>
-								<hr>
+								<span>Expertise </span>
+								<!-- <hr> -->
 								<p>
 								<?php
 									if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
@@ -716,9 +716,9 @@ $expertise = $_SESSION['expertise'];
 			</div>
 		</section>
 		<section class="published-articles">
-            <div class="fluid-container">
-                <div class="recommendation-article">
-                	<h2>Your Published Articles</h2>
+            <!-- <div class="fluid-container"> -->
+                <div>
+                	<h4>Your Published Articles</h4>
 					<div class="articles-container">
 						
 					<?php 
@@ -751,7 +751,20 @@ $expertise = $_SESSION['expertise'];
 						}
 					?>
 
-
+						<!-- <div class="article">
+							<p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
+							<div class="article-info">
+								<p class="info">THE LAMP</p>
+								<span class="views"></span>103 views
+							</div>
+							<p class="author">By Jane Delacruz</p>
+							<p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
+							<button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
+							background-color: transparent;
+							border-radius: 20px;
+							color: #115272;
+							width: 100%;">Read Article</button>
+						</div> -->
 
 						<!-- <div class="article">
 							<p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
@@ -827,103 +840,102 @@ $expertise = $_SESSION['expertise'];
 							width: 100%;">Read Article</button>
 						</div> -->
 					</div>
-                </div>
+                <!-- </div> -->
             </div>
 		</section>
-		<section class="flex-container">
-			<div class="continue-reading-container">
-				<h1> Continue Reading</h1>
-				<div class="continue-reading-article-container" id="articleDetailsContainer">
-					<!-- <div class="continue-reading-article-details">
-						<h6 class="historyTitle" style="color: #115272;"><strong>Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</strong></h6>
-						<p class="historyAbstract" style="color: #454545;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas. </p>
-						<div class="continue-reading-keywords">
+		<section>
+			<h4> Continue Reading</h4>
+			<div  id="articleDetailsContainer">
+				<!-- <div class="continue-reading-article-details">
+					<h6 class="historyTitle" style="color: #115272;"><strong>Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</strong></h6>
+					<p class="historyAbstract" style="color: #454545;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas. </p>
+					<div class="continue-reading-keywords">
 
-						</div>
-					</div>
-					<div class="continue-reading-article-stats">
-						<div class="continue-reading-stats-container">
-							<div class="continue-reading-view-download">
-								<p class="continue-reading-stats-values historyViews" style="color: #115272;">99</p>
-								<p class="continue-reading-stats-labels" style="color: #959595;">VIEWS</p>
-							</div>
-							<div class="continue-reading-view-downloads">
-								<p class="continue-reading-stats-values historyDownloads" style="color: #115272;">99</p>
-								<p class="continue-reading-stats-labels" style="color: #959595;">DOWNLOADS</p>
-							</div>
-						</div>
-						<hr style="border-top: 1px solid #ccc; margin: 10px 0;">
-						<div class="continue-reading-published-infos">
-							<h6 class="continue-reading-publish-labels historyJournal" style="color: #115272;"><strong>Published in The Gavel</strong></h6>
-							<p class="continue-reading-authors historyAuthor" style="color: #959595;">By Jane Delacruz</p>
-						</div>
-					</div> -->
-				</div>
-				
-				<!-- <div class="continue-reading-article-container">
-					<div class="continue-reading-article-details">
-						<h6 style="color: #115272;"><strong>Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</strong></h6>
-						<p style="color: #454545;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas. </p>
-						<div class="continue-reading-keywords">
-
-						</div>
-					</div>
-					<div class="continue-reading-article-stats">
-						<div class="continue-reading-stats-container">
-							<div class="continue-reading-view-download">
-								<p class="continue-reading-stats-values" style="color: #115272;">99</p>
-								<p class="continue-reading-stats-labels" style="color: #959595;">VIEWS</p>
-							</div>
-							<div class="continue-reading-view-downloads">
-								<p class="continue-reading-stats-values" style="color: #115272;">99</p>
-								<p class="continue-reading-stats-labels" style="color: #959595;">DOWNLOADS</p>
-							</div>
-						</div>
-						<hr style="border-top: 1px solid #ccc; margin: 10px 0;">
-						<div class="continue-reading-published-infos">
-							<h6 class="continue-reading-publish-labels" style="color: #115272;"><strong>Published in The Gavel</strong></h6>
-							<p class="continue-reading-authors" style="color: #959595;">By Jane Delacruz</p>
-						</div>
 					</div>
 				</div>
-				
-				<div class="continue-reading-article-container">
-					<div class="continue-reading-article-details">
-						<h6 style="color: #115272;"><strong>Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</strong></h6>
-						<p style="color: #454545;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas. </p>
-						<div class="continue-reading-keywords">
-
+				<div class="continue-reading-article-stats">
+					<div class="continue-reading-stats-container">
+						<div class="continue-reading-view-download">
+							<p class="continue-reading-stats-values historyViews" style="color: #115272;">99</p>
+							<p class="continue-reading-stats-labels" style="color: #959595;">VIEWS</p>
+						</div>
+						<div class="continue-reading-view-downloads">
+							<p class="continue-reading-stats-values historyDownloads" style="color: #115272;">99</p>
+							<p class="continue-reading-stats-labels" style="color: #959595;">DOWNLOADS</p>
 						</div>
 					</div>
-					<div class="continue-reading-article-stats">
-						<div class="continue-reading-stats-container">
-							<div class="continue-reading-view-download">
-								<p class="continue-reading-stats-values" style="color: #115272;">99</p>
-								<p class="continue-reading-stats-labels" style="color: #959595;">VIEWS</p>
-							</div>
-							<div class="continue-reading-view-downloads">
-								<p class="continue-reading-stats-values" style="color: #115272;">99</p>
-								<p class="continue-reading-stats-labels" style="color: #959595;">DOWNLOADS</p>
-							</div>
-						</div>
-						<hr style="border-top: 1px solid #ccc; margin: 10px 0;">
-						<div class="continue-reading-published-infos">
-							<h6 class="continue-reading-publish-labels" style="color: #115272;"><strong>Published in The Gavel</strong></h6>
-							<p class="continue-reading-authors" style="color: #959595;">By Jane Delacruz</p>
-						</div>
+					<hr style="border-top: 1px solid #ccc; margin: 10px 0;">
+					<div class="continue-reading-published-infos">
+						<h6 class="continue-reading-publish-labels historyJournal" style="color: #115272;"><strong>Published in The Gavel</strong></h6>
+						<p class="continue-reading-authors historyAuthor" style="color: #959595;">By Jane Delacruz</p>
 					</div>
-				</div> -->
+				</div> 
+				-->
 			</div>
 			
+			<!-- <div class="continue-reading-article-container">
+				<div class="continue-reading-article-details">
+					<h6 style="color: #115272;"><strong>Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</strong></h6>
+					<p style="color: #454545;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas. </p>
+					<div class="continue-reading-keywords">
+
+					</div>
+				</div>
+				<div class="continue-reading-article-stats">
+					<div class="continue-reading-stats-container">
+						<div class="continue-reading-view-download">
+							<p class="continue-reading-stats-values" style="color: #115272;">99</p>
+							<p class="continue-reading-stats-labels" style="color: #959595;">VIEWS</p>
+						</div>
+						<div class="continue-reading-view-downloads">
+							<p class="continue-reading-stats-values" style="color: #115272;">99</p>
+							<p class="continue-reading-stats-labels" style="color: #959595;">DOWNLOADS</p>
+						</div>
+					</div>
+					<hr style="border-top: 1px solid #ccc; margin: 10px 0;">
+					<div class="continue-reading-published-infos">
+						<h6 class="continue-reading-publish-labels" style="color: #115272;"><strong>Published in The Gavel</strong></h6>
+						<p class="continue-reading-authors" style="color: #959595;">By Jane Delacruz</p>
+					</div>
+				</div>
+			</div>
 			
-			<div class="featured-updates-container">
+			<div class="continue-reading-article-container">
+				<div class="continue-reading-article-details">
+					<h6 style="color: #115272;"><strong>Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</strong></h6>
+					<p style="color: #454545;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas. </p>
+					<div class="continue-reading-keywords">
+
+					</div>
+				</div>
+				<div class="continue-reading-article-stats">
+					<div class="continue-reading-stats-container">
+						<div class="continue-reading-view-download">
+							<p class="continue-reading-stats-values" style="color: #115272;">99</p>
+							<p class="continue-reading-stats-labels" style="color: #959595;">VIEWS</p>
+						</div>
+						<div class="continue-reading-view-downloads">
+							<p class="continue-reading-stats-values" style="color: #115272;">99</p>
+							<p class="continue-reading-stats-labels" style="color: #959595;">DOWNLOADS</p>
+						</div>
+					</div>
+					<hr style="border-top: 1px solid #ccc; margin: 10px 0;">
+					<div class="continue-reading-published-infos">
+						<h6 class="continue-reading-publish-labels" style="color: #115272;"><strong>Published in The Gavel</strong></h6>
+						<p class="continue-reading-authors" style="color: #959595;">By Jane Delacruz</p>
+					</div>
+				</div>
+			</div> -->
+		</section>
+			
+			
+			<!-- <div class="featured-updates-container">
 				<h2>Featured Updates</h2>
 				<div class="ex-featured">
 					<div class="example-featured">
 						<p><b>USaid.Gov</b><br>Through a USAID grant awarded to the Quezon City University, local government officials of Quezon City, youth council members, and leaders of local community organizations compl....</p>
 						<div class="img-featured mb-3">
 							<img src="../images/featured.png" alt="">
-							<!-- <img src="../images/featured.png" alt=""> -->
 							<a href="">USAID Trains Quezon City Barangay Leaders to Impro...</a>
 						</div>
 					</div>
@@ -932,14 +944,12 @@ $expertise = $_SESSION['expertise'];
 						<p><b>USaid.Gov</b><br>Through a USAID grant awarded to the Quezon City University, local government officials of Quezon City, youth council members, and leaders of local community organizations compl....</p>
 						<div class="img-featured mb-3">
 							<img src="../images/featured.png" alt="">
-							<!-- <img src="../images/featured.png" alt=""> -->
 							<a href="">USAID Trains Quezon City Barangay Leaders to Impro...</a>
 						</div>
 					</div>
 				</div>
 				<button type="button" class="btn tbn-primary btn-md" id="show-more">Show more</button>
-			</div>
-		</section>
+			</div> -->
 	</div>
 
 
@@ -1040,7 +1050,7 @@ function openArticleInNewTab(articleId) {
           <div class="continue-reading-article-container" data-article-id="${article.article_id}">
             <div class="continue-reading-article-details">
               <h6 class="historyTitle" style="color: #115272;"><strong>${article.title}</strong></h6>
-              <p class="historyAbstract" style="color: #454545;">${article.abstract}</p>
+              <p class="historyAbstract" style="color: #454545;">${article.abstract.slice(0,150)}</p>
               <div class="continue-reading-keywords"></div>
             </div>
 			<div class="continue-reading-article-stats">
