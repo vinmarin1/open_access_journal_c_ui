@@ -75,6 +75,7 @@ $journal = get_journal_list();
           <ul class="menu-inner py-1">
           <li class="menu-header small text-uppercase"><span class="menu-header-text">Main</span></li>
             <!-- Dashboards -->
+
             <li class="menu-item">
               <a href="dashboard.php" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-detail"></i>
@@ -83,12 +84,12 @@ $journal = get_journal_list();
             </li>
             
             <li class="menu-item">
-              <a href="journalview.php" class="menu-link">
-                <i class="menu-icon tf-icons bx bx-detail"></i>
-                <div data-i18n="Boxicons">Submission</div>
+              <a href="journalview.php" class="menu-link <?php if(basename($_SERVER['PHP_SELF']) == 'allsubmissionlist.php') echo 'active'; ?>">
+                  <i class="menu-icon tf-icons bx bx-detail"></i>
+                  <div data-i18n="Boxicons">Submission</div>
               </a>
-            </li>
-
+          </li>
+          
             <?php
               if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
                 $journal_id = isset($_SESSION['journal_id']) ? ($_SESSION['journal_id']) : '';
@@ -191,8 +192,23 @@ $journal = get_journal_list();
             </li> -->
           </ul>
         </aside>
-        <!-- / Menu -->
+        <script>
+          // Get the current URL
+          var currentUrl = window.location.href;
 
+          // Get all menu links
+          var menuLinks = document.querySelectorAll('.menu-link');
+
+          // Loop through each menu link
+          menuLinks.forEach(function(link) {
+              // Check if the link's href matches the current URL or is a parent of the current URL
+              if (currentUrl.startsWith(link.href) || currentUrl === link.href) {
+                  // Add the "active" class to the parent <li> element
+                  link.parentNode.classList.add('active');
+              }
+          });
+        </script>
+        <!-- / Menu -->
         <!-- Layout container -->
         <div class="layout-page">
           <!-- Navbar -->
