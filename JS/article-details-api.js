@@ -156,7 +156,7 @@ function renderArticleDetails(data) {
               <hr style="height: 2px; background-color: #0858a4; width: 80%">
 
               <div class="article-pub">
-                  <h4>Published in the Gavel</h4>
+                  <h4>Published in ${item.journal}</h4>
                   <p style="margin-top: 20px; color: black">ISSN(Online)</p>
                   <p>2071-1050(Online)</p>
                   <p style="margin-top: 20px; color: black ">Date Published</p>
