@@ -49,7 +49,7 @@ function renderArticleDetails(data) {
       for (const contributors of item.contributors.split(";")) {
         contributorsHTML += `
         <div id="popup-link" class="d-flex">
-          <a href="#">${contributors.split("->")[0]} </a>
+          <a href="#" class="text-muted">${contributors.split("->")[0]} </a>
           <div class="popup-form">
             <div class="container-fluid">
               <div class="row">
@@ -92,7 +92,7 @@ function renderArticleDetails(data) {
                 </div>
                 <div class="volume">
                     <p style= "font-size: small; color: gray" >Journal Issue and Volume</p>
-                    <p>Volume 1</p>
+                    <p href="./all-issues??issue=${item.issues_id}"><a class="text-muted" href="./all-issues??issue=${item.issues_id}">${item.issue_title}</a></p>
                 </div>
             </div>
         </div>
@@ -158,7 +158,7 @@ function renderArticleDetails(data) {
               <div class="article-pub">
                   <h4>Published in ${item.journal}</h4>
                   <p style="margin-top: 20px; color: black">ISSN(Online)</p>
-                  <p>2071-1050(Online)</p>
+                  <p>${item.issn}</p>
                   <p style="margin-top: 20px; color: black ">Date Published</p>
                   <p>${item.publication_date}</p>
                   <p style="margin-top: 20px; margin-bottom: 10px; color: black ">Keywords</p>
