@@ -298,36 +298,62 @@ document.addEventListener('DOMContentLoaded', function(){
     }
   });
 
+  const checkArticle = document.getElementById('check-duplication');
+  let checkArticleClicked = false;
+  
+  checkArticle.addEventListener('click', function() {
+      checkArticleClicked = true;
+  });
+  
+
+  title.addEventListener('input', function() {
+      checkArticleClicked = false;
+      fileTab.disabled = true;
+  });
+  
+  editor.addEventListener('input', function() {
+      checkArticleClicked = false;
+      fileTab.disabled = true;
+  });
+  
+  keywords.addEventListener('input', function() {
+      checkArticleClicked = false;
+      fileTab.disabled = true;
+  });
+
+  editor2.addEventListener('input', function() {
+    checkArticleClicked = false;
+    fileTab.disabled = true;
+  });
+  
   nextBtnArticle.addEventListener('click', function(event) {
-    const titleValue = title.value.trim(); 
-    const titleWordCount = titleValue.split(/\s+/).length; 
-    const abstractValue = abstract.value.trim(); 
-    const abstractWordCount = abstractValue.split(/\s+/).length; 
-    const keywordsValue = keywords.value.trim(); 
-    const checkArticle = document.getElementById('check-duplication');
-
-
-    // if(!checkArticle.clicked){
-      
-    // }
-
-    if (titleValue === '' || abstract.value === '' || keywordsValue === '' || reference.value === ''){
-      
-        Swal.fire({
-            icon: 'warning',
-            text: 'You have to give all the article details before proceeding'
-        });
-    } else if (titleWordCount < 5 || abstractWordCount < 10 || !keywordsValue.includes(',') || keywordsValue === ',') {
-        Swal.fire({
-            icon: 'warning',
-            text: 'Kindly correct the article details by the said validation'
-        });
-    } else {
-        fileTab.disabled = false;
-        fileTab.click();
-    }
-});
-
+      const titleValue = title.value.trim(); 
+      const titleWordCount = titleValue.split(/\s+/).length; 
+      const abstractValue = abstract.value.trim(); 
+      const abstractWordCount = abstractValue.split(/\s+/).length; 
+      const keywordsValue = keywords.value.trim(); 
+  
+      if (titleValue === '' || abstract.value === '' || keywordsValue === '' || reference.value === '') {
+          Swal.fire({
+              icon: 'warning',
+              text: 'You have to give all the article details before proceeding'
+          });
+      } else if (titleWordCount < 5 || abstractWordCount < 10 || !keywordsValue.includes(',') || keywordsValue === ',') {
+          Swal.fire({
+              icon: 'warning',
+              text: 'Kindly correct the article details by the said validation'
+          });
+      } else if (!checkArticleClicked) {
+          Swal.fire({
+              icon: 'warning',
+              text: 'Please check your article before proceeding'
+          });
+      } else {
+          fileTab.disabled = false;
+          fileTab.click();
+      }
+  });
+  
 
 
   nextFile.addEventListener('click', function(event){
