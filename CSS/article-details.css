@@ -276,10 +276,21 @@ width: 100%;
     opacity: 0.8;
 }
 
-#download-btn, #epub-btn {
+#download-btn, #epub-btn, #cite-btn {
     background-color: white;
     color: #0858a4;
     border-color: #0858a4;
+}
+
+.share-btn {
+    background-color: white;
+    color: #0858a4;
+    border: none !important;
+    outline: none;
+    text-decoration: none;
+    margin-right: 1em;
+    margin-top: 1em;
+    
 }
 
 .frame-border{
@@ -324,12 +335,12 @@ width: 100%;
 }
 
 .cite-btn {
-    outline: none;
+    /* outline: none;
     border: none;
     background-color: #0858a4;
     border-radius: 20px;
     padding:0.5em 1.5em;
-    color: white;
+    color: white; */
 }
 
 
