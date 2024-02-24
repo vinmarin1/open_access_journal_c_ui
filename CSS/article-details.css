@@ -150,7 +150,8 @@ color: #0858a4;
     border: 1px #0858a4 solid;
     border-radius: 10px;
     text-decoration: none;
-    padding: 3px;
+    padding: 3px 13px !important;
+    font-size: 14px;
 }
 
 .keyword1{
@@ -276,7 +277,7 @@ width: 100%;
     opacity: 0.8;
 }
 
-#download-btn, #epub-btn, #cite-btn {
+#download-btn, #epub-btn, #cite-btn, #copy-btn {
     background-color: white;
     color: #0858a4;
     border-color: #0858a4;
@@ -326,12 +327,12 @@ width: 100%;
     top: 50%;
     right: 50%;
     transform: translate(50%, -50%);
-    width: 40em;
-    height: 24em;
+    min-height: 24em;
     background-color: #F5F7F8;
     z-index: 99;
     padding: 2em;
     border-radius: 4px;
+    min-width: 22em;
 }
 
 .cite-btn {

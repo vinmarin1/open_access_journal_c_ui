@@ -35,7 +35,7 @@
   <div class="main-container" id="article_details">
   </div>
   <div id="citation-container" class="d-none">
-    <div id="citations" class="d-flex flex-column justify-content-between">
+    <div id="citations" class="d-flex flex-column justify-content-between w-50">
       <div class="citation-header d-flex justify-content-between">
         <h2>Citations</h2>  
         <button id="closeCiteModal" class="btn">
@@ -52,7 +52,7 @@
       </div>
       <div class="citeation-footer d-flex justify-content-end gap-2">
         <!-- <button class=" cite-btn" id="inline-btn">Inline Citation</button> -->
-        <button class=" cite-btn" id="copy-btn">Copy Reference</button>
+        <button class="btn cite-btn" id="copy-btn">Copy Reference</button>
       </div>
     </div>
   </div>
