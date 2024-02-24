@@ -103,14 +103,15 @@ function handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $
     );
 
     $lastInsertedArticleId = database_run($sql, $params, true);
-
     $uploadDirectory = "../Files/submitted-article/";
     
     foreach ($files as $fileKey => $fileName) {
         if (!empty($fileName)) {
             $targetFilePath = $uploadDirectory . $fileName;
     
-        
+            // Create a hash from the lastInsertedArticleId
+            $articleHash = substr(hash('sha256', (string)$lastInsertedArticleId), -12);
+    
             $fileType = '';
             switch ($fileKey) {
                 case 'file_name':
@@ -122,20 +123,24 @@ function handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $
                 case 'file_name3':
                     $fileType = 'Title Page';
                     break;
-              
     
                 default:
-                    // Default file type if not matched
                     $fileType = 'Unknown File Type';
             }
     
-            if (move_uploaded_file($_FILES[$fileKey]['tmp_name'], $targetFilePath)) {
+            // Get the file extension
+            $fileExtension = pathinfo($fileName, PATHINFO_EXTENSION);
+    
+            // Create the new fileName using the specified format
+            $newFileName = "{$lastInsertedArticleId}-{$articleHash}-{$fileType}.{$fileExtension}";
+    
+            if (move_uploaded_file($_FILES[$fileKey]['tmp_name'], $uploadDirectory . $newFileName)) {
                 $files_sql = "INSERT INTO article_files (article_id, author_id, file_type, file_name) VALUES (:article_id, :author_id, :file_type, :file_name)";
                 $files_params = array(
                     'article_id' => $lastInsertedArticleId,
                     'author_id' => $author_id,
                     'file_type' => $fileType,
-                    'file_name' => $fileName
+                    'file_name' => $newFileName
                 );
     
                 database_run($files_sql, $files_params);

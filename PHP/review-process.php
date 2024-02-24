@@ -473,7 +473,24 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 
                     <ol>
                         <li> Consult Reviewer Guidelines below. </li>
-                        <li> Click on file names to download and review (on screen or by printing) the files associated with this submission. Submission Manuscript 9106-29276-2-RV.DOCX 2023-10-16 Supplementary File(s) None </li>
+                        <li> Click on file names to download and review (on screen or by printing) the files associated with this submission. Submission Manuscript 
+                        <?php
+                            $sqlFileName = "SELECT article_files.file_name, article.title FROM article_files JOIN article ON article_files.article_id = article.article_id JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id WHERE article_files.file_type = 'File with no author name' AND article.status = 4 AND reviewer_assigned.author_id = :author_id AND article.article_id = :article_id";
+
+                            $result = database_run($sqlFileName, array('author_id' => $userId, 'article_id' => $articleId));
+
+                            if ($result !== false) {
+                                foreach ($result as $row) {
+                                    $fileName = $row->file_name;
+                                    $filePath = '../Files/submitted-article/' . $fileName;
+
+                                    echo "<a href='download.php?file=$filePath' download>$fileName</a><br>";
+                                }
+                            } else {
+                                echo "Can't find the file or it has been put in the archive";
+                            }
+                            ?>     
+                        Supplementary File(s) None </li>
                         <li> Click on icon to fill in the review form. Review Form Comment </li>
                         <li> In addition, you can upload files for the editor and/or author to consult. Uploaded files None </li>
                         <li> Select a recommendation and submit the review to complete the process. You must enter a review or upload a file before selecting a recommendation.</li>
