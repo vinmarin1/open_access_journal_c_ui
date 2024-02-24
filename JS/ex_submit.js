@@ -149,6 +149,7 @@ document.addEventListener('DOMContentLoaded', function(){
   const nextCont = document.getElementById('next4');
   const prevBCont = document.getElementById('prev4');
   const authorPcontact = document.getElementById('authorPcontact');
+  const authorPcontactValue = document.getElementById('authorPcontactValue');
   const nextNote = document.getElementById('next5');
   const prevNote = document.getElementById('prev5');
   const prevReview = document.getElementById('prevReview');
@@ -290,13 +291,13 @@ document.addEventListener('DOMContentLoaded', function(){
 
   });
 
-  authorPcontact.addEventListener('change', function(event){
-    if (authorPcontact.checked){
-      authorPcontact.value = 'Primary Contact';
-    }else{
-      authorPcontact.value = '';
+  authorPcontact.addEventListener('change', function(event) {
+    if (authorPcontact.checked) {
+        authorPcontactValue.value = ' , Primary Contact';
+    } else {
+        authorPcontactValue.value = '';
     }
-  });
+});
 
   const checkArticle = document.getElementById('check-duplication');
   let checkArticleClicked = false;

@@ -336,7 +336,7 @@
                 <th><input type="text" style="width: 118px" value="<?php echo $last_name ?>" disabled></th>
                 <th><input type="text" style="width: 118px"  value="<?php echo $public_name ?>" disabled></th>
                 <th><input type="text" style="width: 118px" value="<?php echo $orc_id ?>"  disabled></th>
-                <th><input type="checkbox" id="authorPcontact" class="form-check-input"><label style="font-weight: normal; font-size: 11px; margin-left: 10px;">Primary Contact</label></th>
+                <th><input type="checkbox" id="authorPcontact" class="form-check-input"><input type="hidden" id="authorPcontactValue" name="authorPcontactValue" value=""><label style="font-weight: normal; font-size: 11px; margin-left: 10px;">Primary Contact</label></th>
                 
                 
                </tr>

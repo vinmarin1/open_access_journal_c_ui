@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     $timestamp = strtotime($dateString);
     $formattedDate = date('Y-m-d', $timestamp);
     $content = "-";
-    $authorAdditionalRole = isset($_POST['authorPcontact']) ? ', Primary Contact' : '';
+    $authorAdditionalRole = $_POST['authorPcontactValue'];
  
 
 
