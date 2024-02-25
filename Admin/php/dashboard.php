@@ -75,7 +75,7 @@ include 'function/dashboard_functions.php';
 
                 <div class="box">
                     <div class="box-content">
-                        <div class="box-topic">Total Articles</div>
+                        <div class="box-topic">Total Published Articles</div>
                         <div class="number"><?php echo $totalArticles; ?></div>
                         <div class="indicator">
                             <!-- <i class='bx bx-up-arrow-alt'></i> -->
@@ -132,6 +132,12 @@ include 'function/dashboard_functions.php';
                             <canvas id="doughnutChart3"></canvas>
                         </div>
                     </div>
+                    <!-- <div class="col-md-4 mb-2">
+                        <div class="chart-container" id="doughnutContainer4">
+                            <div class="chart-title">Journal</div>
+                            <canvas id="doughnutChart4"></canvas>
+                        </div>
+                    </div> -->
                 </div>
             </div>
 
@@ -173,7 +179,6 @@ include 'function/dashboard_functions.php';
             </div>
 </div>
 <!-- JavaScript for creating charts -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.3/jspdf.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     // Function to create a bar chart
@@ -403,6 +408,9 @@ include 'function/dashboard_functions.php';
         }]
     };
 
+   
+
+
 
     // Create charts
     createLineChart('lineChart1', lineChartData1);
@@ -412,6 +420,7 @@ include 'function/dashboard_functions.php';
     createDoughnutChart('doughnutChart1', doughnutChartData1);
     createDoughnutChart('doughnutChart2', doughnutChartData2);
     createDoughnutChart('doughnutChart3', doughnutChartData3);
+    // createDoughnutChart('doughnutChart4', doughnutChartData4);
 
 </script>
 <?php

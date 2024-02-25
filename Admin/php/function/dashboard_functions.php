@@ -5,7 +5,7 @@ include 'dbcon.php';
 
 <?php
                      // Fetch total users from the database
-                $query = "SELECT COUNT(*) as totalUsers FROM author";
+                $query =  "SELECT COUNT(*) as totalUsers FROM author WHERE status = 1";
                 $result = execute_query($query);
 
                 // Check if the query was successful
@@ -406,3 +406,4 @@ if ($reviewerResult !== false) {
     echo "<script>console.error('Error fetching data from the database for reviewers.');</script>";
 }
 ?>
+
