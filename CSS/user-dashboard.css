@@ -165,13 +165,14 @@ body {
 
 .form-header {
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     align-items: center;
     border-bottom: 1px solid #ccc;
     background-color: #004e98;
     width: 100%;
     color: white;
     padding: 0px 15px 0px 15px;
+    height: 80px;
 }
 
 .form-header h4 {
@@ -271,41 +272,46 @@ label {
     margin-left: 5px;
 }
 #saveButton {
-    background-color: #285581;
-    color: white;
+    background-color: white;
+    color: black;
+    /* color: white; */
     border: none;
-    padding: 10px 20px;
+    /* padding: 10px 20px; */
     font-size: 16px;
-    margin: 10px 20px 40px;
+    /* margin: 10px 20px 40px; */
     border-radius: 50px;
     cursor: pointer;
-    width: 200px;
-    float: right;
+    width: 100px;
+    margin-left: 650px;
+ 
 }
 
 #editBtn {
-    background-color: green;
+    /* background-color: green; */
     color: white;
     border: none;
-    padding: 10px 20px;
+    /* padding: 10px 20px; */
     font-size: 16px;
-    margin: 10px 20px 40px;
+    /* margin: 10px 20px 40px; */
     border-radius: 50px;
     cursor: pointer;
-    width: 200px;
+    /* width: 200px; */
     float: right;
 }
 
 #cancelBtn {
+    background-color: white;
     border: none;
-    padding: 10px 20px;
+    color: black;
+    /* padding: 10px 20px; */
     font-size: 16px;
-    margin: 10px 20px 40px;
+    /* margin: 10px 20px 40px; */
     border-radius: 50px;
     cursor: pointer;
-    width: 200px;
+    width: 100px;
     float: right;
-    display: none;
+    margin-left: 10px;
+  
 }
 
 .row {

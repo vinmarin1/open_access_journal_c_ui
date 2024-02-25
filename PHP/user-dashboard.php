@@ -186,7 +186,9 @@ $expertise = $_SESSION['expertise'];
 					<div class="popup-form" id="editForm">
 						<div class="form-header">
 							<span>Edit Profile</span>
-							<span class="close-icon" id="closeIcon">&times;</span>
+							<button type="button" class="btn btn-outline-light" id="saveButton">Save</button>
+							<button type="button" class="btn btn-outline-light" id="cancelBtn">Cancel</button>
+							<!-- <span class="close-icon" id="closeIcon">&times;</span> -->
 						</div>
 						<form id="form" method="POST" action="update-user.php">		
 							<div class="form-content">
@@ -219,7 +221,7 @@ $expertise = $_SESSION['expertise'];
 														$user = $result[0];
 														$firstName = $user->first_name;
 													
-														echo '<input type="text" id="firstName" name="firstName" class="text-box" value="' . $firstName . '" disabled>';
+														echo '<input type="text" id="firstName" name="firstName" class="text-box" value="' . $firstName . '" >';
 
 										
 													} else {
@@ -247,7 +249,7 @@ $expertise = $_SESSION['expertise'];
 														$middle_name = $user->middle_name;
 													
 														echo '<input type="text" id="middleName" name="middleName" class="text-box"
-														value="' . $middle_name . '" disabled>';
+														value="' . $middle_name . '" >';
 													
 										
 													} else {
@@ -276,7 +278,7 @@ $expertise = $_SESSION['expertise'];
 														$last_name = $user->last_name;
 													
 														echo '<input type="text" id="lastName" name="lastName" class="text-box"
-														value="' . $last_name . '" disabled>';
+														value="' . $last_name . '" >';
 													
 														
 										
@@ -306,7 +308,7 @@ $expertise = $_SESSION['expertise'];
 														$affix = $user->affix;
 													
 														echo '<input type="text" id="affix" name="affix" class="text-box"
-														value="' . $affix . '" disabled>';
+														value="' . $affix . '" >';
 													
 														
 										
@@ -323,11 +325,11 @@ $expertise = $_SESSION['expertise'];
 										<div class="form-row">
 											<label for="birthdate">Birth Date:</label>
 											<input type="date" id="birthdate" name="birthdate" class="date-box"
-											value="<?php echo $birthday ?>" disabled>
+											value="<?php echo $birthday ?>" >
 										</div>
 										<div class="form-row">
 											<label for="gender">Gender:</label>
-											<select id="gender" name="gender" class="dropdown-box" disabled>
+											<select id="gender" name="gender" class="dropdown-box" >
 												<?php
 												if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 													$sqlSelectName = "SELECT gender FROM author WHERE author_id = :author_id";
@@ -356,7 +358,7 @@ $expertise = $_SESSION['expertise'];
 										</div>
 										<div class="form-row">
 											<label for="status">Status:</label>
-											<select id="status" name="status" class="dropdown-box" disabled>
+											<select id="status" name="status" class="dropdown-box" >
 											
 												<?php
 												if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
@@ -387,7 +389,7 @@ $expertise = $_SESSION['expertise'];
 										</div>
 										<div class="form-row">
 											<label for="country">Country:</label>
-											<select id="country" name="country" class="dropdown-box" disabled>
+											<select id="country" name="country" class="dropdown-box" >
 											</select>
 										</div>
 									</div>
@@ -401,7 +403,7 @@ $expertise = $_SESSION['expertise'];
 									<div class="row-form">
 										<!-- <div class="form-row">
 											<label for="email">E-mail:</label>
-											<input type="email" id="email" name="email" class="other-text-box" value="<?php echo $email ?>" disabled>
+											<input type="email" id="email" name="email" class="other-text-box" value="<?php echo $email ?>" >
 										</div> -->
 										<div class="form-row">
 											<label for="orcid">ORCID:</label>
@@ -418,7 +420,7 @@ $expertise = $_SESSION['expertise'];
 														$orc_id = $user->orc_id;
 													
 														echo '<input type="text"  id="orcid" name="orcid" class="other-text-box" pattern="\d{4}-\d{4}-\d{4}-\d{4}" placeholder="(e.g., xxxx-xxxx-xxxx-xxxx)"
-														value="' . $orc_id . '" disabled>';
+														value="' . $orc_id . '" >';
 													
 														
 										
@@ -447,7 +449,7 @@ $expertise = $_SESSION['expertise'];
 														$afiliations = $user->afiliations;
 													
 														echo '<input type="text" id="affiliation" name="affiliation" class="other-text-box"
-														value="' . $afiliations . '" disabled>';
+														value="' . $afiliations . '" >';
 													
 														
 										
@@ -476,7 +478,7 @@ $expertise = $_SESSION['expertise'];
 														$position = $user->position;
 													
 														echo '<input type="text" id="position" name="position" class="other-text-box"
-														value="' . $position . '" disabled>';
+														value="' . $position . '" >';
 													
 														
 										
@@ -510,7 +512,7 @@ $expertise = $_SESSION['expertise'];
 													$user = $result[0];
 													$bio = $user->bio;
 
-													echo '<textarea id="bio" name="bio" class="bio-textarea" placeholder="Enter your bio" disabled>' . $bio . '</textarea>';
+													echo '<textarea id="bio" name="bio" class="bio-textarea" placeholder="Enter your bio" >' . $bio . '</textarea>';
 												} else {
 													echo "User not found.";
 												}
@@ -544,16 +546,16 @@ $expertise = $_SESSION['expertise'];
 								</div>
 								
 
-								<button type="button" class="btn btn-success btn-md" id="editBtn">Edit
+								<!-- <button type="button" class="btn btn-success btn-md" id="editBtn">Edit
 									<span class="spinner-border spinner-border-sm" aria-hidden="true" style="display: none"></span>
 								</button>
 								<button type="button" class="btn btn-secondary btn-md" id="cancelBtn">Cancel
 									<span class="spinner-border spinner-border-sm" aria-hidden="true" style="display: none"></span>
-								</button>
+								</button> -->
 
 								
 								<!-- <input type="submit" class="btn btn-primary btn-md" id="saveButton" value="Save" disabled> -->
-								<button type="submit" class="btn btn-primary btn-md" id="saveButton" value="Save" disabled>Save</button>
+								<!-- <button type="submit" class="btn btn-primary btn-md" id="saveButton" value="Save" disabled>Save</button> -->
 							</div>
 						</form>
 					</div>
@@ -1503,7 +1505,7 @@ function openArticleInNewTab(articleId) {
 
 	document.addEventListener('DOMContentLoaded', function () {
   const countrySelect = document.getElementById('country');
-  countrySelect.disabled = true;
+//   countrySelect.disabled = true;
 
 
   fetch('https://restcountries.com/v3.1/all')
@@ -1552,6 +1554,45 @@ function openArticleInNewTab(articleId) {
       })
       .catch(error => console.error('Error fetching countries:', error));
 });
+
+
+document.getElementById('cancelBtn').addEventListener('click', function(event){
+    const editForm = document.getElementById('editForm');
+    const firstNameInput = document.getElementById('firstName');
+	const middleName = document.getElementById('middleName');
+	const lastName = document.getElementById('lastName');
+	const affix = document.getElementById('affix');
+	const birthdate = document.getElementById('birthdate');
+	const gender = document.getElementById('gender');
+	const status = document.getElementById('status');
+	const country = document.getElementById('country');
+	// const email = document.getElementById('email');
+	const orcid = document.getElementById('orcid');
+	const affiliation = document.getElementById('affiliation');
+	const position = document.getElementById('position');
+	const bio = document.getElementById('bio');
+  
+	editForm.style.display = 'none';
+
+    firstNameInput.value = "<?php echo htmlspecialchars($firstName); ?>";
+	middleName.value = "<?php echo htmlspecialchars($middle_name); ?>";
+	lastName.value = "<?php echo htmlspecialchars($last_name); ?>";
+	affix.value = "<?php echo htmlspecialchars($affix); ?>";
+	birthdate.value = "<?php echo htmlspecialchars($birthday); ?>";
+	gender.value = "<?php echo htmlspecialchars($gender); ?>";
+	status.value = "<?php echo htmlspecialchars($marital_status); ?>";
+	country.value = "<?php echo htmlspecialchars($country); ?>";
+	orcid.value = "<?php echo htmlspecialchars($orc_id); ?>";
+	affiliation.value = "<?php echo htmlspecialchars($afiliations); ?>";
+	position.value = "<?php echo htmlspecialchars($position); ?>";
+	bio.value = "<?php echo htmlspecialchars($bio); ?>";
+	
+
+
+
+ 
+});
+
 
 
 document.addEventListener('DOMContentLoaded', function () {

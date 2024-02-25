@@ -4,7 +4,7 @@
 	require "../PHP/functions.php";
 	check_login();
 
-	$errors = array();
+	// $errors = array();
 
 	if($_SERVER['REQUEST_METHOD'] == "GET" ){
 		if(!check_verified()){
@@ -68,7 +68,7 @@
 					echo "Code expired";
 				}
 			} else {
-				echo "Code Incorrect";
+				echo "";
 			}
 		} else {
 			echo "You're already verified";
@@ -111,7 +111,7 @@
 </head>
 <body>
 
-			
+		<?php require 'header.php' ?>	
 		<form method="post">
 		<p class="descript">An OTP code was sent to <span><b><?php echo $vars['email'];?></b></span></p>
 		<div>
@@ -126,7 +126,7 @@
 					if (empty($_POST['code'])) {
 						echo "*Please enter the 5-digit code sent to your email";
 					} else {
-						echo "Code Incorrect";
+						echo "";
 					}
 				}
 			}
