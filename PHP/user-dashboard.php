@@ -547,21 +547,38 @@ $expertise = $_SESSION['expertise'];
 									<br><br><br>
 									<label for="fieldofexpertise">Field of Expertise:</label>
 									<div>
-										<input type="text" id="fieldofexpertise" name="fieldofexpertise" class="text-box" disabled>
-										<button class="btn tbn-primary btn-md" type="button" id="addExpertiseButton" disabled>Add</button>
+										<input type="text" id="fieldofexpertise" name="fieldofexpertise" class="text-box">
+										<button class="btn tbn-primary btn-md" type="button" id="addExpertiseButton">Add</button>
 									</div>
 									<div id="keywordContainer">
-										<?php
-										if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-											
-											$expertiseArray = explode(', ', $expertise);
 
+										<?php
+											if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+												$sqlSelectName = "SELECT field_of_expertise FROM author WHERE author_id = :author_id";
 											
-											foreach ($expertiseArray as $expertiseItem) {
-												echo '<span class="keyword">' . $expertiseItem . '</span>';
+												$result = database_run($sqlSelectName, array(':author_id' => $id));
+
+												if ($result) {
+													
+													if (count($result) > 0) {
+														$user = $result[0];
+														$field_of_expertise = $user->field_of_expertise;
+														$expertiseArray = explode(', ', $field_of_expertise);
+														
+														foreach($expertiseArray as $expertiseItem){
+															echo '<span class="keyword" contenteditable="true" id="expertise" name="expertise">' . htmlspecialchars($expertiseItem) . '</span>';
+
+														}
+														
+										
+													} else {
+														echo "";
+													}
+												} else {
+													echo "Unable to fetch user info.";
+												}
 											}
-										}
-										?>
+											?>
 									</div>
 
 								</div>
@@ -1597,6 +1614,8 @@ document.getElementById('cancelBtn').addEventListener('click', function(event){
 	const affiliation = document.getElementById('affiliation');
 	const position = document.getElementById('position');
 	const bio = document.getElementById('bio');
+	
+
   
 	editForm.style.display = 'none';
 
@@ -1612,6 +1631,7 @@ document.getElementById('cancelBtn').addEventListener('click', function(event){
 	affiliation.value = "<?php echo htmlspecialchars($afiliations); ?>";
 	position.value = "<?php echo htmlspecialchars($position); ?>";
 	bio.value = "<?php echo htmlspecialchars($bio); ?>";
+	
 	
 
 

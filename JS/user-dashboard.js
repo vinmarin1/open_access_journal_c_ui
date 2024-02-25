@@ -196,6 +196,7 @@ document.getElementById('addExpertiseButton').addEventListener('click', function
   keywordElement.appendChild(keywordText);
   keywordElement.appendChild(closeButton);
   document.getElementById('keywordContainer').appendChild(keywordElement);
+ 
 
   // Clear the input field
   document.getElementById('fieldofexpertise').value = '';
