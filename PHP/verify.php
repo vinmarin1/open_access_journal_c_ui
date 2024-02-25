@@ -56,7 +56,9 @@
 					database_run($query_admin, $params_admin);
 	
 					if (check_verified()) {
+						$_SESSION['LOGGED_IN'] = true;
 						header("Location: ../PHP/index.php");
+						
 						die;
 					} elseif (check_admin_verified()) {
 						header("Location: ../PHP/index.php");
