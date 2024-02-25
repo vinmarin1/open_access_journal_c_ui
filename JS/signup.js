@@ -55,6 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
 document.getElementById('form').addEventListener('submit', function(event) {
     event.preventDefault();
 
+    const form = document.getElementById('form');
     const email = document.getElementById('email').value;
     const fname = document.getElementById('fname').value;
     const mdname = document.getElementById('mdname').value;
@@ -141,7 +142,7 @@ function isValidPassword(password) {
     const specialCharRegex = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/;
     const numberRegex = /[0-9]/;
 
-    return uppercaseRegex.test(password) && specialCharRegex.test(password) && numberRegex.test(password) && password.length <= 8;
+    return uppercaseRegex.test(password) && specialCharRegex.test(password) && numberRegex.test(password) && password.length <= 50;
 }
 
 async function isOrcid(orcid) {
@@ -149,8 +150,10 @@ async function isOrcid(orcid) {
     const response = await fetch(`https://pub.orcid.org/v3.0/${orcid}`);
     if (orcid != "" && response.status != 200) {
         return false; 
+
     }
     return true; 
+    
 }
 
 
@@ -179,6 +182,8 @@ if (lname.length < 2) {
         hasError = true;
     }
 })();
+
+
 
 if (!isValidPassword(password)) {
     document.getElementById('spanPasswordValidation').style.display = 'inline-block';
@@ -337,7 +342,7 @@ document.getElementById('orcid').addEventListener('blur', function() {
         // if there's an input there's a need to validate the orcid
         if (orcid != "" && !await isOrcid(orcid)) {
             document.getElementById('spanOrcidValidation').style.display = 'inline-block';
-           
+         
             hasError = true;
         }else{
             document.getElementById('spanOrcidValidation').style.display = 'none';

@@ -26,7 +26,7 @@
         <div class="input-field">
             <label for="orcid">ORCID:</label> <span id="orcidVlalidation">*</span><span class="text-muted" style="font-size:12px; font-weight:bold;" id="span6">  </span><span id="spanOrcidValidation" style="display: none; color: red; font-size: 11px">Orcid invalid</span>
             <span class="d-block text-muted" style="font-size:12px">If you do not have an ORCID, <a class="text-reset" href="https://orcid.org/register">register here</a></span>
-           <input type="text" class="input form-control" name="orcid"  id="orcid" >
+           <input type="text" class="input form-control" name="orcid"  id="orcid" placeholder="Example: xxxx-xxxx-xxxx-xxxx">
         </div>
 
        <div class="input-field ">
