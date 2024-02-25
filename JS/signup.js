@@ -297,7 +297,7 @@ document.getElementById('password').addEventListener('input', function() {
 });
 
 document.getElementById('orcid').addEventListener('input', function() {
-    document.getElementById('span6').style.display = 'none';
+    document.getElementById('orcidVlalidation').style.display = 'none';
     const orcid = document.getElementById('orcid');
     orcid.style.border = '1px solid';
 });
@@ -320,13 +320,24 @@ document.getElementById('email').addEventListener('blur', function() {
    
 });
 
+document.getElementById('orcid').addEventListener('blur', function() {
+    const orcid = document.getElementById('orcid').value;
+    if(orcid === ""){
+        document.getElementById('orcidVlalidation').style.display = 'inline-block';
+    }
+   
+});
+
+
 
 document.getElementById('orcid').addEventListener('blur', function() {
     const orcid = document.getElementById('orcid').value;
+   
     (async () => {
         // if there's an input there's a need to validate the orcid
         if (orcid != "" && !await isOrcid(orcid)) {
             document.getElementById('spanOrcidValidation').style.display = 'inline-block';
+           
             hasError = true;
         }else{
             document.getElementById('spanOrcidValidation').style.display = 'none';
