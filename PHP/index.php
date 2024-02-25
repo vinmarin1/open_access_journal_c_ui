@@ -33,32 +33,50 @@
         <h4>Find or Submit Research Articles</h2>
           <button class="btn  btn-md" id="btn1" onclick="window.location.href='browse-articles.php'">Browse
             articles</button>
-          <?php 
-          if (
-          isset($_SESSION['first_name']) && !empty($_SESSION['first_name']) &&
-          isset($_SESSION['middle_name']) && !empty($_SESSION['middle_name']) &&
-          isset($_SESSION['last_name']) && !empty($_SESSION['last_name']) &&
-          isset($_SESSION['gender']) && !empty($_SESSION['gender']) &&
-          isset($_SESSION['status']) && !empty($_SESSION['status']) &&
-          isset($_SESSION['country']) && !empty($_SESSION['country']) &&
-          isset($_SESSION['afiliations']) && !empty($_SESSION['afiliations']) &&
-          isset($_SESSION['position']) && !empty($_SESSION['position'])
-          ) {
-            echo '<button class="btn btn-md" id="btn2" onclick="window.location.href=\'ex_submit.php\'">Submit an Article</button>';
-          
-          } else {
-            echo '<button class="btn btn-md" id="btn2">Submit an Article</button>';
-            echo "<script>
-          
-            document.getElementById('btn2').addEventListener('click', function(event){
-                Swal.fire({
-                  icon: 'warning',
-                  text: 'Please Complete your profile details before submitting a paper'
-                });
-            });
-          </script>";
-          }
-        ?>
+            <?php
+              if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+                  $sqlSelectProfile = "SELECT first_name, middle_name, last_name, birth_date, gender, marital_status, orc_id, afiliations, position FROM author WHERE author_id = :author_id";
+
+                  $resultProfile = database_run($sqlSelectProfile, array(':author_id' => $author_id));
+
+                  if ($resultProfile) {
+                      if (count($resultProfile) > 0) {
+                          $userProfile = $resultProfile[0];
+
+                          // Check for the presence of all required fields
+                          $requiredFields = ['first_name', 'middle_name', 'last_name', 'birth_date', 'gender', 'marital_status', 'orc_id', 'afiliations', 'position'];
+
+                          $profileComplete = true;
+                          foreach ($requiredFields as $field) {
+                              if (empty($userProfile->$field)) {
+                                  $profileComplete = false;
+                                  break;
+                              }
+                          }
+                          if ($profileComplete) {
+                            echo "<button class='btn btn-md' id='btn2' onclick='window.location.href=\"ex_submit.php\"'>Submit an Article</button>";
+                        } else {
+                            echo "<button class='btn btn-md' id='btn2'>Submit an Article</button>";
+                            echo "<script>
+                                    document.getElementById('btn2').addEventListener('click', function(event){
+                                        Swal.fire({
+                                            icon: 'warning',
+                                            text: 'Please complete your profile details before submitting a paper'
+                                        });
+                                    });
+                                  </script>";
+                        }                        
+                      } else {
+                          echo "User not found.";
+                      }
+                  } else {
+                      echo "Unable to fetch user info.";
+                  }
+              }
+              ?>
+
+
+         
       </div>
 
     </div>

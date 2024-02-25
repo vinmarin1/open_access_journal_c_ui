@@ -695,31 +695,34 @@ $expertise = $_SESSION['expertise'];
 							?>
 						</span></p>
 						<p><span class="label">Birthday:</span> <span id="birthdayLabel">
-						<?php
-						if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-							$sqlSelectName = "SELECT birth_date FROM author WHERE author_id = :author_id";
+							<?php
+							if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+								$sqlSelectName = "SELECT birth_date FROM author WHERE author_id = :author_id";
 
-							$result = database_run($sqlSelectName, array(':author_id' => $id));
+								$result = database_run($sqlSelectName, array(':author_id' => $id));
 
-							if ($result) {
-								if (count($result) > 0) {
-									$user = $result[0];
-									$birth_date = $user->birth_date;
+								if ($result) {
+									if (count($result) > 0) {
+										$user = $result[0];
+										$birth_date = $user->birth_date;
 
-									// Format the date as a string (assuming $birth_date is in 'YYYY-MM-DD' format)
-									$formatted_birth_date = date('F j, Y', strtotime($birth_date));
-
-									echo $formatted_birth_date;
+										if ($birth_date !== NULL) {
+										
+											$formatted_birth_date = date('F j, Y', strtotime($birth_date));
+											echo $formatted_birth_date;
+										} else {
+											echo ""; 
+										}
+									} else {
+										echo "User not found.";
+									}
 								} else {
-									echo "User not found.";
+									echo "Unable to fetch user info.";
 								}
-							} else {
-								echo "Unable to fetch user info.";
 							}
-						}
-						?>
-
+							?>
 						</span></p>
+
 						<p><span class="label">Country:</span> <span id="countryLabel">
 						<?php
 							if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
@@ -1200,8 +1203,27 @@ $expertise = $_SESSION['expertise'];
 									width: 100%;">Read Article</button>';
 								echo '</div>';
 							}
-						} else {
+						}elseif(isset($_SESSION['first_name']) && !empty($_SESSION['first_name']) &&
+						isset($_SESSION['middle_name']) && !empty($_SESSION['middle_name']) &&
+						isset($_SESSION['last_name']) && !empty($_SESSION['last_name']) &&
+						isset($_SESSION['birthday']) && !empty($_SESSION['birthday']) &&
+						isset($_SESSION['gender']) && !empty($_SESSION['gender']) &&
+						isset($_SESSION['status']) && !empty($_SESSION['status']) &&
+						isset($_SESSION['country']) && !empty($_SESSION['country']) &&
+						isset($_SESSION['afiliations']) && !empty($_SESSION['afiliations']) &&
+						isset($_SESSION['position']) && !empty($_SESSION['position'])){
 							echo "<p>You don't have published article yet, want to published article? Click here <a href='ex_submit.php'>Submit Article</a></p>"; 
+						} 
+						else {
+							echo "<p id='linkSubmit2'>You don't have published article yet, want to published article? Click here <a href='#'>Submit Article</a></p>"; 
+							echo "<script>
+							document.getElementById('linkSubmit2').addEventListener('click', function(event){
+								Swal.fire({
+								icon: 'warning',
+								text: 'Please Complete your profile details before submitting a paper'
+								});
+							});
+						</script>";
 						}
 					?>
 
@@ -1465,8 +1487,6 @@ $expertise = $_SESSION['expertise'];
 </div>
 <div id="loadingOverlay">
     <div id="loadingSpinner"></div>
-	<br>
-	<span>Updating your profile...</span>
 </div>
 
 
