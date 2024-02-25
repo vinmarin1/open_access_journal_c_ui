@@ -312,6 +312,8 @@ document.getElementById('addExpertiseButton').addEventListener('click', function
     }).then((result) => {
         if (result.isConfirmed) {
             document.getElementById('form').submit();
+            document.getElementById('loadingOverlay').style.display = 'block';
+            document.getElementById('editForm').style.display = 'none';
         }
     });
 });

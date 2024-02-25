@@ -324,8 +324,29 @@ $expertise = $_SESSION['expertise'];
 										</div>
 										<div class="form-row">
 											<label for="birthdate">Birth Date:</label>
-											<input type="date" id="birthdate" name="birthdate" class="date-box"
-											value="<?php echo $birthday ?>" >
+										
+											<?php
+												if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+													$sqlSelectName = "SELECT birth_date FROM author WHERE author_id = :author_id";
+
+													$result = database_run($sqlSelectName, array(':author_id' => $id));
+
+													if ($result) {
+														if (count($result) > 0) {
+															$user = $result[0];
+															$birth_date = $user->birth_date;
+
+															// Output the selected option based on the user's gender
+															echo '<input type="date" id="birthdate" name="birthdate" class="date-box" value="' . $birth_date . '" >';
+
+														} else {
+															echo "User not found.";
+														}
+													} else {
+														echo "Unable to fetch user info.";
+													}
+												}
+												?>
 										</div>
 										<div class="form-row">
 											<label for="gender">Gender:</label>
@@ -1424,6 +1445,11 @@ $expertise = $_SESSION['expertise'];
 			width: 720px;"></p>
 		</div>
     </div>
+</div>
+<div id="loadingOverlay">
+    <div id="loadingSpinner"></div>
+	<br>
+	<span>Updating your profile...</span>
 </div>
 
 
