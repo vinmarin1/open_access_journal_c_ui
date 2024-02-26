@@ -101,10 +101,9 @@ table {
                                 } else if ($status == 11){
                                     echo '<a href="javascript:void(0);" onclick="sendForPublished()" class="btn btn-success btn-lg btn-block" style="width: 100px; height: 40px; margin-right: 5px;">Publish</a>';
                                     echo '<a href="javascript:void(0);" onclick="sendForDecline()" class="btn btn-danger btn-lg btn-block" style="width: 100px; height: 40px;">Decline</a>';
-                                }else {
+                                }else if ($status != 6){
                                     echo '<a href="javascript:void(0);" onclick="sendForDecline()" class="btn btn-danger btn-lg btn-block" style="width: 100px; height: 40px;">Decline</a>';
                                 }
-
                                 ?>
                             </li>
                         </ul>
@@ -1249,6 +1248,39 @@ table {
     </form>
 </div>
 
+<div class="modal fade" id="DuplicateModal" tabindex="-1" aria-hidden="true">
+    <form id="addModalForm1">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel3">Duplicate <span id="AuthorName"></span> Content</h5>
+                    <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+                </div>
+                <div class="modal-body">
+                    <div class="row mb-2">
+                        <div class="col-md-10">
+                            <div class="card-body">
+                                <div id="Selectedarticle"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-10">
+                            <div class="card-body">
+                                <div id="SimilararticleLits"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                    <!-- <button type="button" class="btn btn-primary" onclick="" id="submitBtn">Submit</button> -->
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
@@ -1265,7 +1297,69 @@ table {
             }
         }
 
+
         document.addEventListener("DOMContentLoaded", function () {
+        var articleID = <?php echo $article_data[0]->article_id; ?>;
+
+        async function fetchData() {
+            try {
+                const response = await fetch('https://web-production-cecc.up.railway.app//api/check/duplication/v2', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        id: articleID
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                console.log('API Response:', data);
+
+                if (data.flagged) {
+                    // Show the modal
+                    $('#DuplicateModal').modal('show');
+
+                    // Display selected article
+                    const articleSelectedListContainer = document.getElementById('Selectedarticle');
+                    const articleSelectedElement = document.createElement('div');
+                    articleSelectedElement.innerHTML = `<h5>Selected Article</h5><p><b>Article ID: </b>${data.selected_article.article_id}</p><p>${data.selected_article.title}</p>`;
+                    articleSelectedListContainer.appendChild(articleSelectedElement);
+
+                    // Display similar articles
+                    const articleListContainer = document.getElementById('SimilararticleLits');
+                    data.similar_articles.forEach(article => {
+                        const articleElement = document.createElement('div');
+                        articleElement.innerHTML = `
+                            <h5>Similar Article</h5>
+                            <p><b>Article ID: </b>${article.article_id}</p>
+                            <p>${article.title}</p>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p><b>Title Score: </b><small class="text-danger fw-semibold"><i class="bx bx-chevron-down"></i>
+                                    </i>${(article.score.title * 100).toFixed(2)}%</small></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p><b>Overview Score: </b><small class="text-danger fw-semibold"><i class="bx bx-chevron-down"></i>
+                                    </i>${(article.score.overview * 100).toFixed(2)}%</small></p>
+                                </div>
+                            </div>
+                        `;
+                        articleListContainer.appendChild(articleElement);
+                    });
+                }
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                document.getElementById('apiData').innerText = 'Error fetching data';
+            }
+        }
+
+        // Call the fetchData function when the DOM is loaded
+        fetchData();
 
             const urlHash = window.location.hash;
             if (urlHash) {
