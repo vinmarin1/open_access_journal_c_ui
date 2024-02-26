@@ -4,12 +4,12 @@ include 'function/report_function.php';
 
 $topcontributorslist = get_topcontributors_list();
 $top5contributorslist = get_top5contributors_list();
-$donationreport = get_donationforgraph();
+$contributorsreport = get_contributorsgraph();
 $seriesData = [];
-foreach ($donationreport['donationforgraph'] as $donation) {
-    $year = $donation->year_number;
-    $month = intval(substr($donation->month, -1)); // Extract month number from "Month X"
-    $total_donation = intval($donation->total_donation); // Ensure total_donation is converted to an integer
+foreach ($contributorsreport['contributorsforgraph'] as $contributors) {
+    $year = $contributors->year_number;
+    $month = intval(substr($contributors->month, -1)); // Extract month number from "Month X"
+    $total_contributes = intval($contributors->total_contributes); // Ensure total_donation is converted to an integer
     
     if (!isset($seriesData[$year])) {
         $seriesData[$year] = [
@@ -20,12 +20,12 @@ foreach ($donationreport['donationforgraph'] as $donation) {
 
     // Update the total donation for the corresponding month
     if ($month >= 1 && $month <= 12) {
-        $seriesData[$year]['data'][$month - 1] += $total_donation; // Accumulate total donations
+        $seriesData[$year]['data'][$month - 1] += $total_contributes; // Accumulate total donations
     }
 
     // Ensure that negative total donation values are included correctly
-    if ($total_donation < 0 && $month >= 1 && $month <= 12) {
-        $seriesData[$year]['data'][$month - 1] = $total_donation;
+    if ($total_contributes < 0 && $month >= 1 && $month <= 12) {
+        $seriesData[$year]['data'][$month - 1] = $total_contributes;
     }
 }
 
