@@ -111,13 +111,35 @@
     </div>
     <div>
     
-    <div class="image-container">
-      <img src="../Files/announcement-image/default.png" alt="#" class="image">
-      <div class="hover-details text-white">
-        <h4>Call for papers</h4>
-        <p>QCUJ is currently inviting authors to submit their articles for consideration in The Lamp Journal.</p>
-        <p>The deadline for article submission is fast approaching! Authors are encouraged to submit their manuscripts by August 31, 2024.</p>
-        <span onclick="window.location.href='./announcement.php'" class="button">View Announcement</span>
+    <?php
+    // Fetch data from the database
+    $query = "SELECT * FROM announcement WHERE annoucementtype = 'Call for papers' AND status = 1";
+    $announcements = database_run($query);
+
+    // Check if there are announcements
+    if ($announcements !== false && !empty($announcements)) {
+        // Loop through each announcement
+        foreach ($announcements as $announcement) {
+        ?>
+        <div class="image-container">
+         <img src="../Files/announcement-image/<?php echo $announcement->upload_image; ?>" alt="#" class="image">
+                        <div class="hover-details text-white">
+                        <h4><?php echo $announcement->title; ?></h4>
+                        <p><?php echo $announcement->announcement_description; ?></p>
+                        <p><?php echo $announcement->announcement; ?></p>
+                        <!-- You can display additional details here if needed -->
+                        <span onclick="window.location.href='./announcement.php?id=<?php echo $announcement->announcement_id; ?>'" class="button">View Announcement</span>
+              </div>
+          </div>
+        <?php
+    }
+} else {
+    // No announcements available or error occurred
+    if ($announcements === false) {
+        echo "No announcements available.";
+    }
+}
+?>
       </div>
     </div>
 
