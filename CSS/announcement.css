@@ -187,6 +187,17 @@ white-space: normal;
     color: #0858a4;
 }
 
+
+.policy p {
+    overflow: auto; /* or scroll if you want a scrollbar */
+    max-height: 100px; /* adjust the height as needed */
+}
+.policy p::-webkit-scrollbar {
+    width: 0; /* Remove scrollbar width */
+    height: 0; /* Remove scrollbar height */
+    visibility: auto; /* Hide scrollbar */
+}
+
 .qcu-date-container{
     text-align: right;
 }

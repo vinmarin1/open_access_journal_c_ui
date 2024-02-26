@@ -210,65 +210,43 @@
 </div>
 
 <div class="container-fluid">
-    <div class="row mt-4">
-        <div class="col-md-1"></div>
-        <div class="col-md-9 policy" id="policy-top">
-        <h2>UNEP 2023 Champion of the Earth for Policy Leadership</h2>
-            <p>BREAKING NEWS: ALCUCOA awards Level II Accreditation to Quezon City University
-        No less than the Hon. Mayor Ma. Josefina “Joy” G. Belmonte, Chairperson of the QCU Board of Regents, receives the certificates of accreditation from the Association of Local Colleges and Universities Commission on Accreditation (ALCUCOA), certifying the Level II Accreditation of QCU’s Bachelor of Science (BS) in Entrepreneurship, BS Industrial Engineering, and BS Information Technology on the second day of the 16th ALCUCOA National Conference held on October 3, 2023 at the Manila Hotel.
-        Joining Mayor Joy in receiving the certificates are QCU President Dr. Theresita V. Atienza, Vice President for Academic Affairs Bradford Antonio C. Martinez, and other officials of QCU. Dr. Raymond Arcega, President and Executive Director of ALCUCOA, together with the Officials of the ALCUCOA Board, and Cong. Mark Go of the Legislative District of Baguio awarded the certificates to QCU.
-        QCU is also awaiting the results of the Level II accreditation of the BS Electronics Engineering program.</p>
-            <div class="qcu-date-container">
-                <p class="qcu-name">QCU</p>
-                <p class="qcu-date">October 2023</p>
-            </div>
-        </div>
-    </div>
+<?php
+        $hostname = "srv1158.hstgr.io"; 
+        $dbuser = "u944705315_qcuj2024";
+        $dbpass = "Qcujournal1234.";
+        $dbName = "u944705315_qcuj2024";
+        $conn = mysqli_connect($hostname, $dbuser, $dbpass, $dbName);
+        if (!$conn) {
+            die("connection is not available");
+        }
 
-    <div class="row mt-3">
-        <div class="col-md-1"></div>
-        <div class="col-md-9 policy" id="policy-top">
-        <h2>UNEP 2023 Champion of the Earth for Policy Leadership</h2>
-            <p>BREAKING NEWS: ALCUCOA awards Level II Accreditation to Quezon City University
-        No less than the Hon. Mayor Ma. Josefina “Joy” G. Belmonte, Chairperson of the QCU Board of Regents, receives the certificates of accreditation from the Association of Local Colleges and Universities Commission on Accreditation (ALCUCOA), certifying the Level II Accreditation of QCU’s Bachelor of Science (BS) in Entrepreneurship, BS Industrial Engineering, and BS Information Technology on the second day of the 16th ALCUCOA National Conference held on October 3, 2023 at the Manila Hotel.
-        Joining Mayor Joy in receiving the certificates are QCU President Dr. Theresita V. Atienza, Vice President for Academic Affairs Bradford Antonio C. Martinez, and other officials of QCU. Dr. Raymond Arcega, President and Executive Director of ALCUCOA, together with the Officials of the ALCUCOA Board, and Cong. Mark Go of the Legislative District of Baguio awarded the certificates to QCU.
-        QCU is also awaiting the results of the Level II accreditation of the BS Electronics Engineering program.</p>
-            <div class="qcu-date-container">
-                <p class="qcu-name">QCU</p>
-                <p class="qcu-date">October 2023</p>
-            </div>
-        </div>
-    </div>
 
-    <div class="row mt-3">
-        <div class="col-md-1"></div>
-        <div class="col-md-9 policy" id="policy-top">
-        <h2>UNEP 2023 Champion of the Earth for Policy Leadership</h2>
-            <p>BREAKING NEWS: ALCUCOA awards Level II Accreditation to Quezon City University
-        No less than the Hon. Mayor Ma. Josefina “Joy” G. Belmonte, Chairperson of the QCU Board of Regents, receives the certificates of accreditation from the Association of Local Colleges and Universities Commission on Accreditation (ALCUCOA), certifying the Level II Accreditation of QCU’s Bachelor of Science (BS) in Entrepreneurship, BS Industrial Engineering, and BS Information Technology on the second day of the 16th ALCUCOA National Conference held on October 3, 2023 at the Manila Hotel.
-        Joining Mayor Joy in receiving the certificates are QCU President Dr. Theresita V. Atienza, Vice President for Academic Affairs Bradford Antonio C. Martinez, and other officials of QCU. Dr. Raymond Arcega, President and Executive Director of ALCUCOA, together with the Officials of the ALCUCOA Board, and Cong. Mark Go of the Legislative District of Baguio awarded the certificates to QCU.
-        QCU is also awaiting the results of the Level II accreditation of the BS Electronics Engineering program.</p>
-            <div class="qcu-date-container">
-                <p class="qcu-name">QCU</p>
-                <p class="qcu-date">October 2023</p>
-            </div>
-        </div>
-    </div>
+        $sql = "SELECT * FROM announcement WHERE status = 1";
+        $result = mysqli_query($conn,$sql);
+        while ($row=mysqli_fetch_array($result)) {
+            $id = $row["announcement_id"];
+            $type = $row["announcementtype"];
+            $title = $row["title"];
+            $description = $row["announcement_description"];
+            $announcement = $row["announcement"];
+            $img = $row["upload_image"];
+            $dateAdded = $row["date_added"];
+            // $dateExpired = $row["expired_date"];
 
-    <div class="row mt-3">
-        <div class="col-md-1"></div>
-        <div class="col-md-9 policy" id="policy-top">
-        <h2>UNEP 2023 Champion of the Earth for Policy Leadership</h2>
-            <p>BREAKING NEWS: ALCUCOA awards Level II Accreditation to Quezon City University
-        No less than the Hon. Mayor Ma. Josefina “Joy” G. Belmonte, Chairperson of the QCU Board of Regents, receives the certificates of accreditation from the Association of Local Colleges and Universities Commission on Accreditation (ALCUCOA), certifying the Level II Accreditation of QCU’s Bachelor of Science (BS) in Entrepreneurship, BS Industrial Engineering, and BS Information Technology on the second day of the 16th ALCUCOA National Conference held on October 3, 2023 at the Manila Hotel.
-        Joining Mayor Joy in receiving the certificates are QCU President Dr. Theresita V. Atienza, Vice President for Academic Affairs Bradford Antonio C. Martinez, and other officials of QCU. Dr. Raymond Arcega, President and Executive Director of ALCUCOA, together with the Officials of the ALCUCOA Board, and Cong. Mark Go of the Legislative District of Baguio awarded the certificates to QCU.
-        QCU is also awaiting the results of the Level II accreditation of the BS Electronics Engineering program.</p>
-            <div class="qcu-date-container">
-                <p class="qcu-name">QCU</p>
-                <p class="qcu-date">October 2023</p>
+        echo " <div class='row mt-4'>
+        <div class='col-md-1'></div>
+        <div class='col-md-9 policy' id='policy-top'>
+        <h2>$title</h2>
+            <p>$announcement</p>
+            <div class='qcu-date-container'>
+                <p class='qcu-name'>QCU</p>
+                <p class='qcu-date'>$dateAdded</p>
             </div>
         </div>
     </div>
+        ";
+        }
+        ?>
 </div>
 
 
