@@ -113,7 +113,7 @@
     
     <?php
     // Fetch data from the database
-    $query = "SELECT * FROM announcement WHERE annoucementtype = 'Call for papers' AND status = 1";
+    $query = "SELECT * FROM announcement WHERE announcementtype = 'Call for papers' AND status = 1";
     $announcements = database_run($query);
 
     // Check if there are announcements
