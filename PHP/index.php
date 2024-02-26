@@ -61,7 +61,7 @@
                                     document.getElementById('btn2').addEventListener('click', function(event){
                                         Swal.fire({
                                             icon: 'warning',
-                                            text: 'Please complete your profile details before submitting a paper'
+                                            text: 'Please complete the required data in your profile details before submitting a paper'
                                         });
                                     });
                                   </script>";

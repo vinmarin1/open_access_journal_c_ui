@@ -34,7 +34,7 @@
            <input type="text" class="input form-control" name="fname"  id="fname" >
         </div>
         <div class="input-field">
-            <label for="mdname">Middle Name: </label><span id="spanMdValidation" style="display: none; color: red; font-size: 11px">Middle name should be at least 2 characters</span>
+            <label for="mdname">Middle Name: (Optional)</label><span id="spanMdValidation" style="display: none; color: red; font-size: 11px">Middle name should be at least 2 characters</span>
            <input type="text" class="input form-control" name="mdname"  id="mdname" >
         </div>
         <div class="input-field">

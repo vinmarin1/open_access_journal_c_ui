@@ -149,11 +149,11 @@ async function isOrcid(orcid) {
     // Check if orcid is existing or not but orcid is still optional
     const response = await fetch(`https://pub.orcid.org/v3.0/${orcid}`);
     if (orcid != "" && response.status != 200) {
-        // return false; 
+        return false; 
    
 
     }
-    // return true; 
+    return true; 
    
 }
 
