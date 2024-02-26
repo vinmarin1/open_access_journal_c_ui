@@ -99,6 +99,7 @@ table {
                                 if ($status == 1) {
                                     echo '<a href="javascript:void(0);" onclick="sendForArchive()" class="btn btn-danger btn-lg btn-block" style="width: 200px; height: 40px; margin-right: 5px;">Archive Article</a>';
                                 } else if ($status == 11){
+                                    echo '<a href="javascript:void(0);" onclick="openPagePreviewCentered(\'../../PHP/article-details-preview.php?articleId=' . $article_data[0]->article_id . '\')" class="btn btn-primary btn-lg btn-block" style="width: 100px; height: 40px; margin-right: 5px;">Preview</a>';
                                     echo '<a href="javascript:void(0);" onclick="sendForPublished()" class="btn btn-success btn-lg btn-block" style="width: 100px; height: 40px; margin-right: 5px;">Publish</a>';
                                     echo '<a href="javascript:void(0);" onclick="sendForDecline()" class="btn btn-danger btn-lg btn-block" style="width: 100px; height: 40px;">Decline</a>';
                                 }else if ($status != 6){
@@ -1258,14 +1259,14 @@ table {
                 </div>
                 <div class="modal-body">
                     <div class="row mb-2">
-                        <div class="col-md-10">
+                        <div class="col-md-12">
                             <div class="card-body">
                                 <div id="Selectedarticle"></div>
                             </div>
                         </div>
                     </div>
                     <div class="row mb-2">
-                        <div class="col-md-10">
+                        <div class="col-md-12">
                             <div class="card-body">
                                 <div id="SimilararticleLits"></div>
                             </div>
@@ -1299,67 +1300,94 @@ table {
 
 
         document.addEventListener("DOMContentLoaded", function () {
-        var articleID = <?php echo $article_data[0]->article_id; ?>;
+            $('#sloading').toggle();
+            var articleID = <?php echo $article_data[0]->article_id; ?>;
 
-        async function fetchData() {
-            try {
-                const response = await fetch('https://web-production-cecc.up.railway.app//api/check/duplication/v2', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        id: articleID
-                    })
-                });
-
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-
-                const data = await response.json();
-                console.log('API Response:', data);
-
-                if (data.flagged) {
-                    // Show the modal
-                    $('#DuplicateModal').modal('show');
-
-                    // Display selected article
-                    const articleSelectedListContainer = document.getElementById('Selectedarticle');
-                    const articleSelectedElement = document.createElement('div');
-                    articleSelectedElement.innerHTML = `<h5>Selected Article</h5><p><b>Article ID: </b>${data.selected_article.article_id}</p><p>${data.selected_article.title}</p>`;
-                    articleSelectedListContainer.appendChild(articleSelectedElement);
-
-                    // Display similar articles
-                    const articleListContainer = document.getElementById('SimilararticleLits');
-                    data.similar_articles.forEach(article => {
-                        const articleElement = document.createElement('div');
-                        articleElement.innerHTML = `
-                            <h5>Similar Article</h5>
-                            <p><b>Article ID: </b>${article.article_id}</p>
-                            <p>${article.title}</p>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <p><b>Title Score: </b><small class="text-danger fw-semibold"><i class="bx bx-chevron-down"></i>
-                                    </i>${(article.score.title * 100).toFixed(2)}%</small></p>
-                                </div>
-                                <div class="col-md-6">
-                                    <p><b>Overview Score: </b><small class="text-danger fw-semibold"><i class="bx bx-chevron-down"></i>
-                                    </i>${(article.score.overview * 100).toFixed(2)}%</small></p>
-                                </div>
-                            </div>
-                        `;
-                        articleListContainer.appendChild(articleElement);
+            async function fetchData() {
+                try {
+                    const response = await fetch('https://web-production-cecc.up.railway.app//api/check/duplication/v2', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            id: articleID
+                        })
                     });
-                }
-            } catch (error) {
-                console.error('Error fetching data:', error);
-                document.getElementById('apiData').innerText = 'Error fetching data';
-            }
-        }
 
-        // Call the fetchData function when the DOM is loaded
-        fetchData();
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+
+                    const data = await response.json();
+                    console.log('API Response:', data);
+                    $('#sloading').toggle();
+
+                    if (data.flagged) {
+                        // Show the modal
+                        $('#DuplicateModal').modal('show');
+
+                        // Display selected article
+                        const articleSelectedListContainer = document.getElementById('Selectedarticle');
+                        const articleSelectedElement = document.createElement('div');
+                        articleSelectedElement.innerHTML = `
+                            <h5>Selected Article</h5><p><b>Article ID: </b>${data.selected_article.article_id}</p>
+                            <div class="card accordion-item mb-4">
+                                <h2 class="accordion-header" id="headingSelected">
+                                    <button type="button" class="accordion-button" data-bs-toggle="collapse" data-bs-target="#accordionSelected" aria-expanded="true" aria-controls="accordionSelected">${data.selected_article.title}</button>
+                                </h2>
+                                <div id="accordionSelected" class="accordion-collapse collapse" data-bs-parent="#Selectedarticle">
+                                    <div class="accordion-body text-start">${data.selected_article.abstract}</div>
+                                </div>
+                            </div>`;
+
+                        articleSelectedListContainer.appendChild(articleSelectedElement);
+
+                        // Display similar articles
+                        const articleListContainer = document.getElementById('SimilararticleLits');
+                        data.similar_articles.forEach((article, index) => {
+                            const articleElement = document.createElement('div');
+                            articleElement.innerHTML = `
+                                <h5>Similar Article</h5>
+                                <div class="row">
+                                    <div class="col-md-6 text-start">
+                                        <p><b>Article ID: </b>${article.article_id}</p>
+                                    </div>
+                                    <div class="col-md-6 text-end">
+                                        <a href="javascript:void(0);" onclick="viewArticle(${article.article_id})" class="btn btn-sm btn-dark">View More</a>
+                                    </div>
+                                </div>
+                                <div class="card accordion-item mb-4">
+                                    <h2 class="accordion-header" id="headingSimilar${index}">
+                                        <button type="button" class="accordion-button" data-bs-toggle="collapse" data-bs-target="#accordionSimilar${index}" aria-expanded="true" aria-controls="accordionSimilar${index}">${article.title}</button>
+                                    </h2>
+                                    <div id="accordionSimilar${index}" class="accordion-collapse collapse" data-bs-parent="#SimilararticleLits">
+                                        <div class="accordion-body text-start">${article.abstract}</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <p><b>Title: </b><small class="text-danger fw-semibold"><i class="bx bx-chevron-up"></i>${(article.score.title * 100).toFixed(2)}%</small></p>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p><b>Overview: </b><small class="text-danger fw-semibold"><i class="bx bx-chevron-up"></i>${(article.score.overview * 100).toFixed(2)}%</small></p>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p><b>Overall: </b><small class="text-danger fw-semibold"><i class="bx bx-chevron-up"></i>${(article.score.total * 100).toFixed(2)}%</small></p>
+                                    </div>
+                                </div>
+                            `;
+                            articleListContainer.appendChild(articleElement);
+                        });
+                    }
+                } catch (error) {
+                    console.error('Error fetching data:', error);
+                    document.getElementById('apiData').innerText = 'Error fetching data';
+                }
+            }
+
+            // Call the fetchData function when the DOM is loaded
+            fetchData();
 
             const urlHash = window.location.hash;
             if (urlHash) {
@@ -1390,6 +1418,18 @@ table {
                 ]
             });
         });
+
+        function viewArticle(articleId) {
+            $('#sloading').show();
+
+            setTimeout(function () {
+                window.location.href = "../php/workflow.php?aid=" + articleId;
+            }, 2000);
+
+            window.onload = function () {
+                $('#sloading').hide();
+            };
+        }
 
         function selectReviewer(authorId, firstName, lastName, email) {
             $('#AssignReviewer').modal('show');
@@ -1668,6 +1708,36 @@ table {
             document.getElementById('discussionType').innerText = 'Add ' + discussionType + ' Discussion';
 
             $('#addDiscussionModal').modal('show');
+        }
+        
+        function openPagePreviewCentered(url, width = 1200, height = 800) {
+            var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
+            var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;
+
+            var screenWidth = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+            var screenHeight = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+
+            var left = (screenWidth / 2) - (width / 2) + dualScreenLeft;
+            var top = (screenHeight / 2) - (height / 2) + dualScreenTop;
+
+            var previewWindow = window.open(url, '_blank', 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + width + ', height=' + height + ', top=' + top + ', left=' + left);
+
+            // Create a transparent overlay div
+            var overlay = document.createElement('div');
+            overlay.style.position = 'fixed';
+            overlay.style.top = '0';
+            overlay.style.left = '0';
+            overlay.style.width = '100%';
+            overlay.style.height = '100%';
+            overlay.style.backgroundColor = 'transparent';
+            overlay.style.zIndex = '9999';
+            overlay.style.pointerEvents = 'none'; // Disable pointer events to make content not clickable
+            document.body.appendChild(overlay);
+
+            // Close the overlay when the preview window is closed
+            previewWindow.addEventListener('beforeunload', function() {
+                document.body.removeChild(overlay);
+            });
         }
 
         function openPageCentered(url, width = 1200, height = 800) {
