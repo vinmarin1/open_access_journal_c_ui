@@ -140,9 +140,7 @@
     }
 }
 ?>
-      </div>
-    </div>
-
+      
     <?php
     if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
       echo '
