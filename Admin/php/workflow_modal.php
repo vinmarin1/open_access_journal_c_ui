@@ -1395,6 +1395,8 @@ function updateFileSubmission() {
     var submissionFileId = $('#submissionfileid').val();
     var submissionFile = $('#submissionfile')[0].files[0];
     var articleId = <?php echo json_encode($aid); ?>;
+    var fileType = $('#submissionfileid option:selected').text(); // Get the selected file type
+    console.log(fileType);
 
     if ($('#submissionfile').prop('required') && !submissionFile) {
         $('#sloading').toggle();
@@ -1415,6 +1417,7 @@ function updateFileSubmission() {
     formData.append('submissionfile', submissionFile);
     formData.append('action', 'updatesubmissionfile');
     formData.append('article_id', articleId);
+    formData.append('fileType', fileType); // Append the file type to the form data
 
     $.ajax({
         url: "../php/function/wf_modal_function.php",
