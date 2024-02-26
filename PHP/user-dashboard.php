@@ -100,11 +100,42 @@ $expertise = $_SESSION['expertise'];
 		<section >
 			<div class="profile-container">
 				<div class="profile-sidebar">
-					<!-- Profile Image -->
-					<img src="../images/profile.jpg" alt="Profile Picture" class="profile-pic" id="profileImage">
+			
+					<!-- <img src="../images/profile.jpg" alt="Profile Picture" class="profile-pic" id="profileImage">
 					<input type="file" accept="image/*" style="display:none" id="fileInput">
-					<button type="button" class="btn btn-secondary btn-sm"  onclick="openFileInput()"><i class="fa-solid fa-camera"></i></button>
-					
+					<button type="button" class="btn btn-secondary btn-sm"  onclick="openFileInput()"><i class="fa-solid fa-camera"></i></button> -->
+					<?php
+					if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+						$sqlSelectProfile = "SELECT profile_pic FROM author WHERE author_id = :author_id";
+
+						$result = database_run($sqlSelectProfile, array(':author_id' => $id));
+
+						if ($result) {
+							if (count($result) > 0) {
+								$user = $result[0];
+								$profilePic = $user->profile_pic;
+
+								
+								if (empty($profilePic)) {
+									$profilePic = "../images/profile.jpg";
+								}
+
+
+								echo '<div>';
+								echo '<img src="' . htmlspecialchars($profilePic) . '" alt="Profile Picture" class="profile-pic" id="profileImage">';
+								echo '<input type="file" accept="image/*" style="display:none" id="fileInput" name="fileInput">';
+								echo '<button type="button" class="btn btn-secondary btn-sm" onclick="openFileInput()" style="margin-left: 15px"><i class="fa-solid fa-camera"></i></button>';
+								echo '</div>';
+							} else {
+								echo "User not found.";
+							}
+						} else {
+							echo "Unable to fetch profile picture.";
+						}
+					}
+					?>
+
+
 					<!-- Modal for Image Preview and Confirmation -->
 					<div id="imageModal" class="modal" style="display:none">
 						<div class="modal-content mt-3" style="width: 30%; height: 55%; margin-left: auto; margin-right: auto;">
@@ -1537,6 +1568,45 @@ $expertise = $_SESSION['expertise'];
 	
 	<script>
 	
+
+function saveProfile() {
+  const fileInput = document.getElementById('fileInput');
+  const profileImage = document.getElementById('profileImage');
+  const imageModal = document.getElementById('imageModal');
+  const selectedImagePreview = document.getElementById('selectedImagePreview');
+  const id = <?php echo $id; ?>; // Assuming $id is available in your PHP script
+
+  // Check if a new image is selected
+  if (fileInput.files.length > 0) {
+    // Prepare FormData to send file data
+    const formData = new FormData();
+    formData.append('file', fileInput.files[0]);
+    formData.append('id', id);
+
+    // Use AJAX to send the file to user-profile.php for processing
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', '../PHP/user-profile.php', true);
+
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        // Update profile picture on success
+        profileImage.src = selectedImagePreview.src;
+        imageModal.style.display = 'none';
+
+        Swal.fire({
+          icon: 'success',
+          text: 'Change profile picture successfully',
+          showConfirmButton: true
+        });
+      }
+    };
+
+    xhr.send(formData);
+  } else {
+    // No new image selected, just close the modal
+    imageModal.style.display = 'none';
+  }
+}
 
 
 function openArticleInNewTab(articleId) {

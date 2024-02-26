@@ -367,22 +367,22 @@ function openFileInput() {
   });
 }
 
-function saveProfile() {
-  const fileInput = document.getElementById('fileInput');
-  const profileImage = document.getElementById('profileImage');
-  const imageModal = document.getElementById('imageModal');
-  imageModal.style.display = 'none';
-  Swal.fire({
-    icon: 'success',
-    text: 'Change profile picture successfully',
-    showConfirmButton: true
-  }).then(() => {
+// function saveProfile() {
+//   const fileInput = document.getElementById('fileInput');
+//   const profileImage = document.getElementById('profileImage');
+//   const imageModal = document.getElementById('imageModal');
+//   imageModal.style.display = 'none';
+//   Swal.fire({
+//     icon: 'success',
+//     text: 'Change profile picture successfully',
+//     showConfirmButton: true
+//   }).then(() => {
   
-    profileImage.src = document.getElementById('selectedImagePreview').src;
-    fileInput.value = null;
+//     profileImage.src = document.getElementById('selectedImagePreview').src;
+//     fileInput.value = null;
    
-  });
-}
+//   });
+// }
 
 
 function cancelUpdate() {
