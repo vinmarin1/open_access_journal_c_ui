@@ -591,7 +591,7 @@ document.addEventListener('DOMContentLoaded', function () {
   keywords.addEventListener('blur', function () {
       const wordCount = keywords.value.trim().split(",").length;
 
-      if (wordCount <= 4) {
+      if (wordCount > 5) {
           keywordsValidation.style.display = 'block';
       } else {
           keywordsValidation.style.display = 'none';
