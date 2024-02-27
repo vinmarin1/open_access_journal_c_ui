@@ -65,13 +65,12 @@ function addRecord()
         $title = $_POST['title'];
         $announcement_description = $_POST['announcement_description'];
         $announcement = $_POST['announcement'];
-    
-        $documentRoot = $_SERVER['DOCUMENT_ROOT'];
-        $uploadPath = $documentRoot . '/Files/announcement-image/';
-            
-        $files = isset($_FILES['upload_image']) ? $_FILES['upload_image'] : '';
+        
+        $uploadPath = "../../../Files/announcement-image/";
+
+        $files = isset($_FILES['upload_image']) ? $_FILES['upload_image'] : ''; 
         $file_name = basename($_FILES["upload_image"]["name"]);
-    
+        
         $timestamp = time();
         $success = true;
         $hashedTimestamp = hash('sha256', (string)$timestamp);
@@ -111,7 +110,7 @@ function addRecord()
         error_log($e->getMessage(), 0);
     }
 }
-                
+           
 function updateAnnouncementData() {
     try {
         $announcement_id = $_POST['announcement_id'];
