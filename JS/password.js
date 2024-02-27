@@ -47,7 +47,7 @@ function checkStrength(password) {
         number.classList.remove('fa-check');
     }
     //If it has one special character
-    if (password.match(/([!,%,&,@,#,$,^,*,?,_,~])/)) {
+    if (password.match(/([!,%,&,@,#,$,^,*,?,_,~,(,)])/)) {
         strength += 1;
         specialChar.classList.remove('fa-circle');
         specialChar.classList.add('fa-check');

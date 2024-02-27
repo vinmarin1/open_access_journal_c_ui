@@ -11,11 +11,10 @@
 #form{
     width: auto;
     height: auto;
-    box-shadow:  0 20px 20px rgba(0, 0, 0, 0.1);
-    padding-left: 20px;
-    padding-top: 20px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 4px 8px; 
     margin-bottom: 50px;
     width: 40%;
+    padding:1em 2em;
  
 }
 
@@ -31,7 +30,7 @@ form label{
 
 .input-field{
     display: block;
-    margin-right: 10px;
+    /* margin-right: 10px; */
 }
 
 input[type="text"], input[type="email"], input[type="number"], input[type="date"], #genSelect, input[type="password"]{
@@ -117,13 +116,13 @@ input[type="submit"]:hover{
     right: 3%;
 }
 .progress-bar-danger {
-    background-color: #e90f10;
+    background-color: #e90f10 !important;
 }
 .progress-bar-warning{
-    background-color: #ffad00;
+    background-color: #ffad00 !important;
 }
 .progress-bar-success{
-    background-color: #02b502;
+    background-color: #02b502 !important;
 }
 .login-btn{
     width: 180px !important;
