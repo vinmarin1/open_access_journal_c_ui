@@ -40,13 +40,13 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
             <ul id="for-contributors">
                 <li class="faq-toggle" id="author-guidelines" data-target="author-guidelines">Author Guidelines</li>
                 <li class="faq-toggle" data-target="article-submission">Article Submission</li>
-                <li class="faq-toggle" data-target="peer-review">Peer-review Process</li>
+                <li class="faq-toggle" data-target="peer-review-process">Peer-review Process</li>
                 <li class="faq-toggle" id="become-a-reviewer" data-target="become-a-reviewer">Become A Reviewer</li>
                 <li class="faq-toggle" data-target="tutorial-on-publication">Tutorial on Publication</li>
                 <li class="faq-toggle" data-target="tutorial-on-review">Tutorial on Review</li>
                 <li class="faq-toggle" data-target="templates-for-author">Templates for Author</li>
                 <li class="faq-toggle" data-target="publication-policy">Publication Policy</li>
-                <li class="faq-toggle" data-target="faqs">FAQs</li>
+                <li class="faq-toggle" data-target="frequently-asked-questions">FAQs</li>
                 </ul>
             </div>           
         </aside>
@@ -309,7 +309,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
         </div>
         </div>
     </div>
-    <div class="main" id="peer-review-container" style="display: none;">
+    <div class="main" id="peer-review-process-container" style="display: none;">
         <div class="header">
         <h2>Editorial Procedures and Peer-Review</h2>
         </div>
@@ -476,12 +476,93 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
             </div>
         </div>
 	</div>
-    <div class="main" id="tutorial-on-review-container" style="display: none;">
-        <div class="header">
+<div class="main" id="tutorial-on-review-container" style="display: none;">
+    <div class="header">
             <h2>Tutorial on Review</h2>
         </div>
-    </div>
-    <div class="main" id="templates-for-author-container" style="display: none;">
+        <div class="category w-100">
+            <div class="s-1">
+                <p>Welcome to our Publication Tutorial for Quezon City University Journal. This guide simplifies the process, ensuring a smooth experience for all contributors. Let's make your publication journey 
+                    hassle-free – get started now! Begin your submission and share your insights with our scholarly community!</p>
+            </div>
+            <div class="s-2">
+                <h3>Registering with Open Access Journal</h3>
+                <p>Begin your publication journey by registering with Quezon City University Journal. Follow these simple steps
+                    to create your account:</p>
+                <ol type="1">
+                    <li>Visit our journal website and click on the "Register" button.</li>
+                    <li>Fill in the required information, including your name, email address, and a secure password.</li>
+                    <li>Read and agree to the terms and conditions.</li>
+                    <li>Click "Register" to complete the registration process.</li>
+                </ol>
+                <img src="../images/Registration.png" alt="" class="img-reg">
+            </div>
+            <div class="s-2">
+                <h3>Manage Contributions</h3>
+                <ol type="1">
+                    <li>Click the menu at the top right where you can read your name.</li>
+                    <li>Click My Contributions to proceed to the next step.</li>
+                </ol>
+                <img src="../images/Submission.png" alt="" class="img-sub">
+            </div>
+            <div class="s-2">
+                <h3>Select Article</h3>
+                <p>In this page, You will see all your Submissions and All your reviews. You may proceed as a Reviewer.</p>
+                <ol type="1">
+                    <li>Click the ‘All Reviews’ to see the list of Articles and their status.</li>
+                    <li>You can also click the notification bell to see the pending Article that needed to review.</li>
+                </ol>
+                <img src="../images/step1.png" alt="" class="img-reg">
+            </div>
+            <div class="s-2">
+                <h3>Article Preview</h3>
+                <ol type="1">
+                    <li>You can read the content of this Article through this page. </li>
+                    <li>After you click the article, You can decide if you will accept to review or decline.</li>
+                </ol>
+                <img src="../images/step2.png" alt="" class="img-reg">
+            </div>
+            <div class="s-2">
+                <h3>Review Steps and Guidelines</h3>
+                <p>After the reviewer decide on accepting this Article, They can answer the Review Guidelines.</p>
+                <ol type="1">
+                    <li>Read the following Rules and Guidelines by reviewing this Article.</li>
+                    <li>After they read the Rules and Guidelines, The Reviewer may proceed on the checkbox below before they click the “next” button.</li>
+                </ol>
+                <img src="../images/step3.png" alt="" class="img-reg">
+            </div>
+            <div class="s-2">
+                <h3>Review Form</h3>
+                <p>The Reviewer are done to read the steps and Guidelines, They will now see the Review Form.</p>
+                <ol type="1">
+                    <li>The Reviewer should answer all the Questions.</li>
+                    <li>There is also a textbox beside of the Questions where the Reviewer can leave a comment.</li>
+                    <li>Below of these Questionnaire, The Reviewer can click the ‘Submit’ Button if they are done.</li>
+                </ol>
+                <img src="../images/step4.png" alt="" class="img-reg">
+            </div>
+            <div class="s-2">
+                <h3>Step 5: Notes</h3>
+                <p>Provide the following details to help our editorial team manage your submission.</p>
+                <ol type="1">
+                    <li>Just click the space below and write the notes that you want to tell in our Editorial team.</li>
+                    <li>After you write your notes you can proceed to the next step by clicking the ‘next’ button.</li>
+                </ol>
+                <img src="../images/step5.png" alt="" class="img-reg">
+            </div>
+            <div class="s-2">
+                <h3>Step 6: Preview</h3>
+                <p>Provide the following details to help our editorial team manage your submission.</p>
+                <ol type="1">
+                    <li>Review the information you have entered before you complete your submission. You can change
+                        any of the details displayed here by clicking the edit button at the top of each section.</li>
+                    <li>When you are done, you can click the ‘Submit’ button below.</li>
+                </ol>
+                <img src="../images/step6.png" alt="" class="img-reg">
+            </div>
+        </div>
+</div>
+<div class="main" id="templates-for-author-container" style="display: none;">
         <div class="header">
             <h2>Templates for Author</h2>
         </div>
@@ -498,8 +579,8 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
             </div>
             
         </div>
-    </div>
-    <div class="main" id="publication-policy-container" style="display: none;">
+</div>
+<div class="main" id="publication-policy-container" style="display: none;">
         <div class="header">
             <h2>Publication Policy</h2>
         </div>
@@ -583,8 +664,38 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     and policies indicated in the Philippines’ Data Privacy Act of 2012, the Cybercrime
                     Prevention Act of 2012, and the Intellectual Property Code.</p>
             </div>
-        </div>
     </div>
+</div>
+<div class="main " id="frequently-asked-questions-container" style="display: none;"> 
+            <div class="header">
+                <h2>Frequently Asked Questions</h2>
+               <!-- <form action="" class="border" id="search-input">
+                    <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
+                    <button type="submit">Search</button>
+                </form>-->
+            </div>
+            <div class="content">
+                <div class="category w-100">
+                    <h3>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 15 15"><path fill="#e56f1f" fill-rule="evenodd" d="M.877 7.5a6.623 6.623 0 1 1 13.246 0a6.623 6.623 0 0 1-13.246 0M7.5 1.827a5.673 5.673 0 1 0 0 11.346a5.673 5.673 0 0 0 0-11.346m.75 8.673a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0m-2.2-4.25c0-.678.585-1.325 1.45-1.325s1.45.647 1.45 1.325c0 .491-.27.742-.736 1.025c-.051.032-.111.066-.176.104a5.28 5.28 0 0 0-.564.36c-.242.188-.524.493-.524.961a.55.55 0 0 0 1.1.004a.443.443 0 0 1 .1-.098c.102-.079.215-.144.366-.232c.078-.045.167-.097.27-.159c.534-.325 1.264-.861 1.264-1.965c0-1.322-1.115-2.425-2.55-2.425c-1.435 0-2.55 1.103-2.55 2.425a.55.55 0 0 0 1.1 0" clip-rule="evenodd"/></svg>
+                        General Questions
+                    </h3>
+                    <div id="generalQAs" class="faqs accordion accordion-flush w-100 d-flex flex-column gap-0" id="faqs">
+                    </div>
+                </div>
+                <div class="category w-100">
+                    <h3>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 15 15"><path fill="#e56f1f" fill-rule="evenodd" d="M.877 7.5a6.623 6.623 0 1 1 13.246 0a6.623 6.623 0 0 1-13.246 0M7.5 1.827a5.673 5.673 0 1 0 0 11.346a5.673 5.673 0 0 0 0-11.346m.75 8.673a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0m-2.2-4.25c0-.678.585-1.325 1.45-1.325s1.45.647 1.45 1.325c0 .491-.27.742-.736 1.025c-.051.032-.111.066-.176.104a5.28 5.28 0 0 0-.564.36c-.242.188-.524.493-.524.961a.55.55 0 0 0 1.1.004a.443.443 0 0 1 .1-.098c.102-.079.215-.144.366-.232c.078-.045.167-.097.27-.159c.534-.325 1.264-.861 1.264-1.965c0-1.322-1.115-2.425-2.55-2.425c-1.435 0-2.55 1.103-2.55 2.425a.55.55 0 0 0 1.1 0" clip-rule="evenodd"/></svg>
+                        Submitting to QCUJ
+                    </h3>
+                    <div id="submissionQAs" class="faqs accordion accordion-flush w-100 d-flex flex-column gap-0" id="faqs">
+                    
+                    </div>
+                </div>
+               
+            </div>
+            
+        </div>
     </main>
 
     <div class="footer" id="footer">
