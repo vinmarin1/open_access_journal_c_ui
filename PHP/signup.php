@@ -16,10 +16,8 @@
 <div class="form-container">
 	
     <form method="POST" id="form" action="signup-function.php">
-      
-
        <p class="h4 mt-4">REGISTER</p>
-       <div class="input-field pt-5">
+       <div class="input-field">
            <label for="email">Email:</label><span id="span1">*</span><span id="spanEmailValidation" style="display: none; color: red; font-size: 11px">Invalid email</span>
            <input type="email" class="input form-control" name="email"  id="email">
         </div>
@@ -41,12 +39,53 @@
             <label for="lname">Last Name:</label><span id="span4">*</span><span id="spanLnValidation" style="display: none; color: red; font-size: 11px">Last name should be at least 2 characters</span>
            <input type="text" class="input form-control" name="lname"  id="lname" >
         </div>
+        <div class="input-field" style="position:relative">
+          <label for="password">Password:</label><span id="span5">*</span><span id="spanPasswordValidation" style="display: none; color: red; font-size: 11px">Password should at least contain 1 Uppercase 1 Special Character and 1 Number</span>
+          <input type="password" class="input form-control" name="password"  id="password" >
+          <span class="show-pass" onclick="toggle()">
+              <i class="far fa-eye" onclick="myFunction(this)"></i>
+          </span>
+          <div id="popover-password" class="d-none">
+              <p><span id="result"></span></p>
+              <div class="progress mb-2">
+                  <div id="password-strength" 
+                      class="progress-bar" 
+                      role="progressbar" 
+                      aria-valuenow="40" 
+                      aria-valuemin="0" 
+                      aria-valuemax="100" 
+                      style="width:0%">
+                  </div>
+              </div>
+              <ul class="list-unstyled text-muted" style="font-size:12px">
+                  <li class="">
+                      <span class="low-upper-case">
+                          <i class="fas fa-circle" aria-hidden="true"></i>
+                          &nbsp;Lowercase &amp; Uppercase
+                      </span>
+                  </li>
+                  <li class="">
+                      <span class="one-number">
+                          <i class="fas fa-circle" aria-hidden="true"></i>
+                          &nbsp;Number (0-9)
+                      </span> 
+                  </li>
+                  <li class="">
+                      <span class="one-special-char">
+                          <i class="fas fa-circle" aria-hidden="true"></i>
+                          &nbsp;Special Character (!@#$%^&*)
+                      </span>
+                  </li>
+                  <li class="">
+                      <span class="eight-character">
+                          <i class="fas fa-circle" aria-hidden="true"></i>
+                          &nbsp;Atleast 8 Character
+                      </span>
+                  </li>
+              </ul>
+      
+          </div>
 
-    
-       
-        <div class="input-field">
-            <label for="password">Password:</label><span id="span5">*</span><span id="spanPasswordValidation" style="display: none; color: red; font-size: 11px">Password should at least contain 1 Uppercase 1 Special Character and 1 Number</span>
-           <input type="password" class="input form-control" name="password"  id="password" >
         </div>
       
       <div class="fluid-container" id="footer-form">
@@ -102,5 +141,6 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script src="../JS/signup.js"></script>
+<script src="../JS/password.js"></script>
 </body>
 </html>

@@ -72,6 +72,8 @@
                   } else {
                       echo "Unable to fetch user info.";
                   }
+              } else {
+                echo "<button class='btn btn-md' id='btn2' onclick='window.location.href=\"ex_submit.php\"'>Submit an Article</button>";
               }
               ?>
 

@@ -379,5 +379,8 @@ document.getElementById('password').addEventListener('blur', function() {
         document.getElementById('span5').style.display = 'inline-block';
     };
 });
+document.getElementById('password').addEventListener('focus', function(){
+    document.getElementById('popover-password').classList.remove('d-none');
+})
 
 
