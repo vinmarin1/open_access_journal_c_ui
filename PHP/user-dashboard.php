@@ -609,27 +609,28 @@ $expertise = $_SESSION['expertise'];
 												$result = database_run($sqlSelectName, array(':author_id' => $id));
 
 												if ($result) {
-													
 													if (count($result) > 0) {
 														$user = $result[0];
 														$field_of_expertise = $user->field_of_expertise;
-														$expertiseArray = explode(', ', $field_of_expertise);
-														
-														foreach($expertiseArray as $expertiseItem){
-															echo '<span class="keyword" contenteditable="true" id="expertise" name="expertise">' . htmlspecialchars($expertiseItem) . '</span>';
-
+												
+														if (!empty($field_of_expertise)) {
+															$expertiseArray = explode(', ', $field_of_expertise);
+												
+															foreach ($expertiseArray as $expertiseItem) {
+																echo '<span class="keyword" contenteditable="true" id="expertise" name="expertise">' . htmlspecialchars($expertiseItem) . '</span>';
+															}
 														}
-														
-										
 													} else {
-														echo "";
+														echo '';
 													}
-												} else {
+												}
+												 else {
 													echo "Unable to fetch user info.";
 												}
 											}
 											?>
 									</div>
+									<input type="hidden" id="expertiseData" name="expertiseData" value="">
 
 								</div>
 								

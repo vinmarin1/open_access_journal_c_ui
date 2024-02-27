@@ -197,13 +197,32 @@ document.getElementById('addExpertiseButton').addEventListener('click', function
   keywordElement.appendChild(closeButton);
   document.getElementById('keywordContainer').appendChild(keywordElement);
  
+  updateHiddenInput();
 
   // Clear the input field
   document.getElementById('fieldofexpertise').value = '';
 });
   
 
-  
+document.getElementById('keywordContainer').addEventListener('input', function(event) {
+  if (event.target.classList.contains('keyword')) {
+      // Update the hidden input with expertise data
+      updateHiddenInput();
+  }
+});
+
+function updateHiddenInput() {
+  var expertiseSpans = document.querySelectorAll('.keyword');
+  var expertiseData = [];
+
+  expertiseSpans.forEach(function(span) {
+      var expertiseText = span.textContent.replace('x', '').trim();
+      expertiseData.push(expertiseText);
+  });
+
+  // Update the hidden input with comma-separated expertise data
+  document.getElementById('expertiseData').value = expertiseData.join(', ');
+}
 
 
 
