@@ -61,41 +61,45 @@ function fetchUserData() {
 function addRecord()
 {
     try {
-        $annoucementtype = $_POST['annoucementtype'];
+        $announcementtype = $_POST['announcementtype'];
         $title = $_POST['title'];
         $announcement_description = $_POST['announcement_description'];
         $announcement = $_POST['announcement'];
-        $expired_date = $_POST['expired_date'];
     
         $documentRoot = $_SERVER['DOCUMENT_ROOT'];
         $uploadPath = $documentRoot . '/Files/announcement-image/';
+            
+        $files = isset($_FILES['upload_image']) ? $_FILES['upload_image'] : '';
+        $file_name = basename($_FILES["upload_image"]["name"]);
     
-        if (!file_exists($uploadPath)) {
-            mkdir($uploadPath, 0777, true);
+        $timestamp = time();
+        $success = true;
+        $hashedTimestamp = hash('sha256', (string)$timestamp);
+        $last12Hash = substr($hashedTimestamp, -12);
+
+        $imageFileType = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
+
+        $hashfilename = $last12Hash . '-' . $announcementtype . '-' . $title . '.' . $imageFileType;
+
+        $allowedFileTypes = array('jpg', 'jpeg', 'png', 'gif');
+        
+        if (!in_array($imageFileType, $allowedFileTypes)) {
+            $success = false;
+            throw new Exception("File $hashfilename - Invalid file type ({$imageFileType})");
+        }
+
+        $upload_image = $uploadPath . $hashfilename;
+
+        if ($success && move_uploaded_file($_FILES["upload_image"]["tmp_name"], $upload_image)) {
+            // File uploaded successfully
+        } else {
+            throw new Exception('Failed to move uploaded file.');
         }
     
-        $imageFile = $_FILES['upload_image'];
-        $imageName = basename($imageFile["name"]);
-        $upload_image = '';
+        $query = "INSERT INTO announcement (title, announcementtype, announcement_description, announcement, upload_image) 
+                  VALUES (?, ?, ?, ?, ?)";
     
-        if (isset($_FILES['upload_image']) && $_FILES['upload_image']['error'] === UPLOAD_ERR_OK) {
-            $imageFileType = strtolower(pathinfo($imageName, PATHINFO_EXTENSION));
-            $allowedFileTypes = array('jpg', 'jpeg', 'png', 'gif');
-    
-            if (in_array($imageFileType, $allowedFileTypes)) {
-                $upload_image = $uploadPath . $imageName;
-                if (!move_uploaded_file($imageFile["tmp_name"], $upload_image)) {
-                    throw new Exception('Failed to move uploaded file.');
-                }
-            } else {
-                throw new Exception('Invalid file type.');
-            }
-        }
-    
-        $query = "INSERT INTO announcement (title, annoucementtype, announcement_description, announcement, upload_image, expired_date) 
-                  VALUES (?, ?, ?, ?, ?, ?)";
-    
-        $result = execute_query($query, [$title, $annoucementtype, $announcement_description, $announcement, $imageName, $expired_date], true);
+        $result = execute_query($query, [$title, $announcementtype, $announcement_description, $announcement, $hashfilename], true);
     
         if ($result !== true) {
             echo json_encode(['status' => true, 'message' => 'Record added successfully']);
