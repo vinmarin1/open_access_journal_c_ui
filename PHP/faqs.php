@@ -28,7 +28,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
     <div class="content-over">
         <div class="cover-content">
             <p>Home / Guidelines / FAQs</p>
-            <h1 id="guideline-title">Frequently Asked Questions (FAQs)</h1>
+            <h1 id="guideline-title">Frequently Asked Questions</h1>
         </div>
     </div>
 
@@ -37,23 +37,25 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
         <div class="menu" id="for-contributors-menu">
             <h3>For Contributors</h3>
             <ul id="for-contributors">
-                <li class="faq-toggle" data-target="author-guidelines">Author Guidelines</li>
+            <li class="faq-toggle" id="author-guidelines" data-target="author-guidelines">Author Guidelines</li>
                 <li class="faq-toggle" data-target="article-submission">Article Submission</li>
-                <li class="faq-toggle" data-target="peer-review">Peer-review Process</li>
-                <li class="faq-toggle" data-target="become-reviewer">Become A Reviewer</li>
-                    <li>Formatting Guidelines</li>
-                    <li>Tutorial on Publication</li>
-                    <li>Research Manual</li>
+                <li class="faq-toggle" data-target="peer-review-process">Peer-review Process</li>
+                <li class="faq-toggle" id="become-a-reviewer" data-target="become-a-reviewer">Become A Reviewer</li>
+                <li class="faq-toggle" data-target="tutorial-on-publication">Tutorial on Publication</li>
+                <li class="faq-toggle" data-target="tutorial-on-review">Tutorial on Review</li>
+                <li class="faq-toggle" data-target="templates-for-author">Templates for Author</li>
+                <li class="faq-toggle" data-target="publication-policy">Publication Policy</li>
+                <li class="faq-toggle" data-target="frequently-asked-questions">FAQs</li>
                 </ul>
             </div>           
         </aside>
-        <div class="main " id="faqs-container"> 
+        <div class="main " id="frequently-asked-questions-container"> 
             <div class="header">
                 <h2>Frequently Asked Questions</h2>
-                <form action="" class="border" id="search-input">
+                <!--<form action="" class="border" id="search-input">
                     <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
                     <button type="submit">Search</button>
-                </form>
+                </form>-->
             </div>
             <div class="content">
                 <div class="category w-100">
@@ -208,135 +210,135 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
         </div>
         </div>
     </div>
-    <div class="main" id="article-submission-container" style="display: none;">
-            <div class="header">
-            <h2>Article Submission</h2>
-            </div>
-            <div class="category w-100">
-            <div class="s-1">
-            <h3>Submission</h3>
-            <p>Authors are kindly invited to submit their formatted full papers. All paper submissions will be blind peer 
-                reviewed and evaluated based on originality, research content, correctness, relevance to conference and 
-                readability. Please read complete submission and formatting guidelines before submitting your paper.</p>
-            <ul>
-                <li>Create your account <a href="#">here</a>.</li>
-                <li>Online Submission: Paper Submission can be completed online, <a href="#">here</a>.</li>
-            </ul>
-            <p>The submitting author, generally the corresponding author, is in charge of the document during the submission
-                process. The submitting author must ensure that all qualified co-authors are listed in the
-                author list (see the University Policy on Authorship and Co-authorship in the QCU Research
-                Manual). The authors should have read and approved the final version of the article before
-                submission.</p>
-            </div>
-            <div class="s-1">
-            <h3>Before Submission</h3>
-                <p>Authors are expected to follow the journal’s publication guidelines before submitting their
-                    manuscripts.</p>
-                <p>Submission of an article implies that the work described has not been published previously
-                    (except in the form of an abstract, a published lecture, or an academic thesis); that it is not
-                    under consideration or has been accepted for publication in any other journals; that all
-                    authors were informed about its publication; and that, if accepted, the article will not be
-                    published elsewhere.</p>
-                <p>Furthermore, submission of an article implies that all authors have a significant contribution
-                    to the research, have approved the final article for publication, and have agreed to the
-                    publication of the article.</p>
-                <p>In terms of author contributions, researchers should submit an author statement file outlining
-                    their contributions to the article using the Contributor Roles Taxonomy (CRediT).</p>
-                <p>CRediT statement should be included in the submission of the article and should be
-                    displayed above the acknowledgement section of the published manuscript. Below is a
-                    specific definition of the terms according to Brand et al. (2015) and published in Elsevier.com
-                    (n.d.).</p>
-            </div>
-            <table>
-                <tr>
-                    <th>Term</th>
-                    <th>Definition</th>
-                </tr>
-                <tr>
-                    <td>Conceptualization</td>
-                    <td>Ideas; formulation or evolution of overarching research goals and aims</td>
-                </tr>
-                <tr>
-                    <td>Methodology</td>
-                    <td>Development or design of methodology; creation of models</td>
-                </tr>
-                <tr>
-                    <td>Software</td>
-                    <td>Programming, software development; designing computer
-                        programs; implementation of the computer code and supporting
-                        algorithms; testing of existing code components.</td>
-                </tr>
-                <tr>
-                    <td>Validation</td>
-                    <td>Verification, whether as a part of the activity or separate, of the
-                        overall replication/reproducibility of the results/experiments and
-                        other research outputs</td>
-                </tr>
-                <tr>
-                    <td>Formal Analysis</td>
-                    <td>Application of statistical, mathematical, computational, or other
-                        formal techniques to analyze or synthesize study data.</td>
-                </tr>
-                <tr>
-                    <td>Investigation</td>
-                    <td>Conducting a research and investigation process, specifically
-                        performing the experiments, or data/evidence collection.</td>
-                </tr>
-                <tr>
-                    <td>Resources</td>
-                    <td>Provision of study materials, reagents, materials, patients,
-                        laboratory samples, animals, instrumentation, computing
-                        resources, or other analysis tools.</td>
-                </tr>
-                <tr>
-                    <td>Data Curation</td>
-                    <td>Management activities to annotate (produce metadata), scrub data,
-                        and maintain research data (including software code, where it is
-                        necessary for interpreting the data itself) for initial use and later
-                        reuse.</td>
-                </tr>
-                <tr>
-                    <td>Writing – Original Draft</td>
-                    <td>Preparation, creation, and/or presentation of the published work,
-                        specifically writing the initial draft (including substantive translation)</td>
-                </tr>
-                <tr>
-                    <td>Writing – Review & Editing</td>
-                    <td>Preparation, creation, and/or presentation of the published work by
-                        those from the original research group, specifically critical review,
-                        commentary, or revision – including pre or post publication stages</td>
-                </tr>
-                <tr>
-                    <td>Visualization</td>
-                    <td>Preparation, creation, and/or presentation of the published work,
-                        specifically visualization/data presentation.</td>
-                </tr>
-                <tr>
-                    <td>Supervision</td>
-                    <td>Oversight and Leadership responsibility for the research activity
-                        planning and execution, including mentorship external to the core
-                        team.</td>
-                </tr>
-                <tr>
-                    <td>Project administration</td>
-                    <td>Management and coordination responsibility for the research
-                        activity planning and execution</td>
-                </tr>
-                <tr>
-                    <td>Funding acquisition</td>
-                    <td>Acquisition of the financial support for the project leading to this
-                        publication</td>
-                </tr>
-            </table>
-            <div class="s-1">
-                <p><em>Sample CRediT author statement</em></p>
-                <p><b>Dela Cruz:</b> Conceptualization, Methodology. <b>Bautista:</b> Data curation, Writing-Original draft
-                        preparation. <b>Santos:</b> Visualization, Investigation. <b>Cruz:</b> Supervision. <b>Reyes:</b> Software,
-                        Validation. <b>Jose:</b> Writing-Reviewing and Editing.</p>
-            </div>
-            </div>
+	<div class="main" id="article-submission-container" style="display: none;">
+        <div class="header">
+        <h2>Article Submission</h2>
+        </div>
+        <div class="category w-100">
+        <div class="s-1">
+        <h3>Submission</h3>
+        <p>Authors are kindly invited to submit their formatted full papers. All paper submissions will be blind peer 
+            reviewed and evaluated based on originality, research content, correctness, relevance to conference and 
+            readability. Please read complete submission and formatting guidelines before submitting your paper.</p>
+        <ul>
+            <li>Create your account <a href="#">here</a>.</li>
+            <li>Online Submission: Paper Submission can be completed online, <a href="#">here</a>.</li>
+        </ul>
+        <p>The submitting author, generally the corresponding author, is in charge of the document during the submission
+            process. The submitting author must ensure that all qualified co-authors are listed in the
+            author list (see the University Policy on Authorship and Co-authorship in the QCU Research
+            Manual). The authors should have read and approved the final version of the article before
+            submission.</p>
+        </div>
+        <div class="s-1">
+        <h3>Before Submission</h3>
+            <p>Authors are expected to follow the journal’s publication guidelines before submitting their
+                manuscripts.</p>
+            <p>Submission of an article implies that the work described has not been published previously
+                (except in the form of an abstract, a published lecture, or an academic thesis); that it is not
+                under consideration or has been accepted for publication in any other journals; that all
+                authors were informed about its publication; and that, if accepted, the article will not be
+                published elsewhere.</p>
+            <p>Furthermore, submission of an article implies that all authors have a significant contribution
+                to the research, have approved the final article for publication, and have agreed to the
+                publication of the article.</p>
+            <p>In terms of author contributions, researchers should submit an author statement file outlining
+                their contributions to the article using the Contributor Roles Taxonomy (CRediT).</p>
+            <p>CRediT statement should be included in the submission of the article and should be
+                displayed above the acknowledgement section of the published manuscript. Below is a
+                specific definition of the terms according to Brand et al. (2015) and published in Elsevier.com
+                (n.d.).</p>
+        </div>
+        <table>
+            <tr>
+                <th>Term</th>
+                <th>Definition</th>
+            </tr>
+            <tr>
+                <td>Conceptualization</td>
+                <td>Ideas; formulation or evolution of overarching research goals and aims</td>
+            </tr>
+            <tr>
+                <td>Methodology</td>
+                <td>Development or design of methodology; creation of models</td>
+            </tr>
+            <tr>
+                <td>Software</td>
+                <td>Programming, software development; designing computer
+                    programs; implementation of the computer code and supporting
+                    algorithms; testing of existing code components.</td>
+            </tr>
+            <tr>
+                <td>Validation</td>
+                <td>Verification, whether as a part of the activity or separate, of the
+                    overall replication/reproducibility of the results/experiments and
+                    other research outputs</td>
+            </tr>
+            <tr>
+                <td>Formal Analysis</td>
+                <td>Application of statistical, mathematical, computational, or other
+                    formal techniques to analyze or synthesize study data.</td>
+            </tr>
+            <tr>
+                <td>Investigation</td>
+                <td>Conducting a research and investigation process, specifically
+                    performing the experiments, or data/evidence collection.</td>
+            </tr>
+            <tr>
+                <td>Resources</td>
+                <td>Provision of study materials, reagents, materials, patients,
+                    laboratory samples, animals, instrumentation, computing
+                    resources, or other analysis tools.</td>
+            </tr>
+            <tr>
+                <td>Data Curation</td>
+                <td>Management activities to annotate (produce metadata), scrub data,
+                    and maintain research data (including software code, where it is
+                    necessary for interpreting the data itself) for initial use and later
+                    reuse.</td>
+            </tr>
+            <tr>
+                <td>Writing – Original Draft</td>
+                <td>Preparation, creation, and/or presentation of the published work,
+                    specifically writing the initial draft (including substantive translation)</td>
+            </tr>
+            <tr>
+                <td>Writing – Review & Editing</td>
+                <td>Preparation, creation, and/or presentation of the published work by
+                    those from the original research group, specifically critical review,
+                    commentary, or revision – including pre or post publication stages</td>
+            </tr>
+            <tr>
+                <td>Visualization</td>
+                <td>Preparation, creation, and/or presentation of the published work,
+                    specifically visualization/data presentation.</td>
+            </tr>
+            <tr>
+                <td>Supervision</td>
+                <td>Oversight and Leadership responsibility for the research activity
+                    planning and execution, including mentorship external to the core
+                    team.</td>
+            </tr>
+            <tr>
+                <td>Project administration</td>
+                <td>Management and coordination responsibility for the research
+                    activity planning and execution</td>
+            </tr>
+            <tr>
+                <td>Funding acquisition</td>
+                <td>Acquisition of the financial support for the project leading to this
+                    publication</td>
+            </tr>
+        </table>
+        <div class="s-1">
+            <p><em>Sample CRediT author statement</em></p>
+            <p><b>Dela Cruz:</b> Conceptualization, Methodology. <b>Bautista:</b> Data curation, Writing-Original draft
+                    preparation. <b>Santos:</b> Visualization, Investigation. <b>Cruz:</b> Supervision. <b>Reyes:</b> Software,
+                    Validation. <b>Jose:</b> Writing-Reviewing and Editing.</p>
+        </div>
+        </div>
     </div>
-    <div class="main" id="peer-review-container" style="display: none;">
+    <div class="main" id="peer-review-process-container" style="display: none;">
         <div class="header">
         <h2>Editorial Procedures and Peer-Review</h2>
         </div>
@@ -391,8 +393,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
             pagination checking, and publication in the journal.</p>
         </div>
         </div>
-    </div>
-    <div class="main" id="become-reviewer-container" style="display: none;">
+    </div>    <div class="main" id="become-a-reviewer-container" style="display: none;">
         <div class="header">
         <h2>Become A Reviewer</h2>
         </div>
@@ -411,6 +412,288 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
         </div>
         </div>
 	</div>
+    <div class="main" id="tutorial-on-publication-container" style="display: none;">
+        <div class="header">
+            <h2>Tutorial on Publication</h2>
+        </div>
+        <div class="category w-100">
+            <div class="s-1">
+                <p>Welcome to our Publication Tutorial for Quezon City University Journal. This guide simplifies the process, 
+                ensuring a smooth experience for all contributors. Let's make your publication journey hassle-free – get
+                started now! Begin your submission and share your insights with our scholarly community!</p>
+            </div>
+            <div class="s-2">
+                <h3>Registering with Open Access Journal</h3>
+                <p>Begin your publication journey by registering with Quezon City University Journal. Follow these simple steps
+                    to create your account:</p>
+                <ol type="1">
+                    <li>Visit our journal website and click on the "Register" button.</li>
+                    <li>Fill in the required information, including your name, email address, and a secure password.</li>
+                    <li>Read and agree to the terms and conditions.</li>
+                    <li>Click "Register" to complete the registration process.</li>
+                </ol>
+                <img src="../images/Registration.png" alt="" class="img-reg">
+            </div>
+            <div class="s-2">
+                <h3>Making a Submission</h3>
+                <p>After completing the registration, log in to your account.</p>
+                <p>Once you are logged in, click on 'Be a Contributor' to begin the process of submitting your articles.</p>
+                <img src="../images/Submission.png" alt="" class="img-sub">
+            </div>
+            <div class="s-2">
+                <h3>Step 1: Privacy</h3>
+                <p>Begin your publication journey by following and reading the submission checklist.</p>
+                <ol type="1">
+                    <li>Review and complete all items on the submission checklist before proceeding.</li>
+                    <li>Read the copyright notice for terms regarding content use and protection.</li>
+                    <li>Review the privacy statement to understand how personal information is handled.</li>
+                    <li>Put a check on a Checkbox and proceed to the next tab.</li>
+                </ol>
+                <img src="../images/step1.png" alt="" class="img-reg">
+            </div>
+            <div class="s-2">
+                <h3>Step 2: Article Details</h3>
+                <p>Write all the information needed and follow the instruction below.</p>
+                <ol type="1">
+                    <li>Title - Enter a clear and informative title for your article.</li>
+                    <li>Abstract - Summarize your article's key points briefly.</li>
+                    <li>Keywords - List relevant keywords for searchability.</li>
+                    <li>Reference - Provide a list of sources following the required citation style.</li>
+                    <li>After you fill all the necessary information for your article, click the ‘Next’ button and proceed to the next step.</li>
+                </ol>
+                <img src="../images/step2.png" alt="" class="img-reg">
+            </div>
+            <div class="s-2">
+                <h3>Step 3: Upload File</h3>
+                <ol type="1">
+                    <li>You can click add file to upload your article in which type of file you are going to submit.</li>
+                    <li>After you upload your file, click the ‘Next’ button and proceed to the next step.</li>
+                </ol>
+                <img src="../images/step3.png" alt="" class="img-reg">
+            </div>
+            <div class="s-2">
+                <h3>Step 4: Contributors</h3>
+                <p>Add details for all of the contributors to this submission. Contributors added here will be sent an email confirmation
+                    of the submission, as well as a copy of all editorial decisions recorded against this submission.</p>
+                <ol type="1">
+                    <li>If you have a co-author you can click the ‘Add contributor’.</li>
+                    <li>Fill up their information in the box provided.</li>
+                    <li>If you want to delete a data that you added, you can fill the checkbox and click the ‘Delete data’.</li>
+                    <li>If you are done you will now proceed to the next step by clicking the ‘next’ button.</li>
+                </ol>
+                <img src="../images/step4.png" alt="" class="img-reg">
+            </div>
+            <div class="s-2">
+                <h3>Step 5: Notes</h3>
+                <p>Provide the following details to help our editorial team manage your submission.</p>
+                <ol type="1">
+                    <li>Just click the space below and write the notes that you want to tell in our Editorial team.</li>
+                    <li>After you write your notes you can proceed to the next step by clicking the ‘next’ button.</li>
+                </ol>
+                <img src="../images/step5.png" alt="" class="img-reg">
+            </div>
+            <div class="s-2">
+                <h3>Step 6: Preview</h3>
+                <p>Provide the following details to help our editorial team manage your submission.</p>
+                <ol type="1">
+                    <li>Review the information you have entered before you complete your submission. You can change
+                        any of the details displayed here by clicking the edit button at the top of each section.</li>
+                    <li>When you are done, you can click the ‘Submit’ button below.</li>
+                </ol>
+                <img src="../images/step6.png" alt="" class="img-reg">
+            </div>
+        </div>
+	</div>
+<div class="main" id="tutorial-on-review-container" style="display: none;">
+    <div class="header">
+            <h2>Tutorial on Review</h2>
+        </div>
+        <div class="category w-100">
+            <div class="s-1">
+                <p>Welcome to our Publication Tutorial for Quezon City University Journal. This guide simplifies the process, ensuring a smooth experience for all contributors. Let's make your publication journey 
+                    hassle-free – get started now! Begin your submission and share your insights with our scholarly community!</p>
+            </div>
+            <div class="s-2">
+                <h3>Registering with Open Access Journal</h3>
+                <p>Begin your publication journey by registering with Quezon City University Journal. Follow these simple steps
+                    to create your account:</p>
+                <ol type="1">
+                    <li>Visit our journal website and click on the "Register" button.</li>
+                    <li>Fill in the required information, including your name, email address, and a secure password.</li>
+                    <li>Read and agree to the terms and conditions.</li>
+                    <li>Click "Register" to complete the registration process.</li>
+                </ol>
+                <img src="../images/Registration.png" alt="" class="img-reg">
+            </div>
+            <div class="s-2">
+                <h3>Manage Contributions</h3>
+                <ol type="1">
+                    <li>Click the menu at the top right where you can read your name.</li>
+                    <li>Click My Contributions to proceed to the next step.</li>
+                </ol>
+                <img src="../images/Submission.png" alt="" class="img-sub">
+            </div>
+            <div class="s-2">
+                <h3>Select Article</h3>
+                <p>In this page, You will see all your Submissions and All your reviews. You may proceed as a Reviewer.</p>
+                <ol type="1">
+                    <li>Click the ‘All Reviews’ to see the list of Articles and their status.</li>
+                    <li>You can also click the notification bell to see the pending Article that needed to review.</li>
+                </ol>
+                <img src="../images/step1.png" alt="" class="img-reg">
+            </div>
+            <div class="s-2">
+                <h3>Article Preview</h3>
+                <ol type="1">
+                    <li>You can read the content of this Article through this page. </li>
+                    <li>After you click the article, You can decide if you will accept to review or decline.</li>
+                </ol>
+                <img src="../images/step2.png" alt="" class="img-reg">
+            </div>
+            <div class="s-2">
+                <h3>Review Steps and Guidelines</h3>
+                <p>After the reviewer decide on accepting this Article, They can answer the Review Guidelines.</p>
+                <ol type="1">
+                    <li>Read the following Rules and Guidelines by reviewing this Article.</li>
+                    <li>After they read the Rules and Guidelines, The Reviewer may proceed on the checkbox below before they click the “next” button.</li>
+                </ol>
+                <img src="../images/step3.png" alt="" class="img-reg">
+            </div>
+            <div class="s-2">
+                <h3>Review Form</h3>
+                <p>The Reviewer are done to read the steps and Guidelines, They will now see the Review Form.</p>
+                <ol type="1">
+                    <li>The Reviewer should answer all the Questions.</li>
+                    <li>There is also a textbox beside of the Questions where the Reviewer can leave a comment.</li>
+                    <li>Below of these Questionnaire, The Reviewer can click the ‘Submit’ Button if they are done.</li>
+                </ol>
+                <img src="../images/step4.png" alt="" class="img-reg">
+            </div>
+            <div class="s-2">
+                <h3>Step 5: Notes</h3>
+                <p>Provide the following details to help our editorial team manage your submission.</p>
+                <ol type="1">
+                    <li>Just click the space below and write the notes that you want to tell in our Editorial team.</li>
+                    <li>After you write your notes you can proceed to the next step by clicking the ‘next’ button.</li>
+                </ol>
+                <img src="../images/step5.png" alt="" class="img-reg">
+            </div>
+            <div class="s-2">
+                <h3>Step 6: Preview</h3>
+                <p>Provide the following details to help our editorial team manage your submission.</p>
+                <ol type="1">
+                    <li>Review the information you have entered before you complete your submission. You can change
+                        any of the details displayed here by clicking the edit button at the top of each section.</li>
+                    <li>When you are done, you can click the ‘Submit’ button below.</li>
+                </ol>
+                <img src="../images/step6.png" alt="" class="img-reg">
+            </div>
+        </div>
+</div>
+<div class="main" id="templates-for-author-container" style="display: none;">
+        <div class="header">
+            <h2>Templates for Author</h2>
+        </div>
+        <div class="category w-100">
+            <div class="s-1">
+            <p>We have prepared a manuscript template to help authors when submitting their manuscript to one of our journals. 
+                The author must submit the manuscript that has been corrected and in accordance with the template provided. Before 
+                submitting the manuscript, please ensure that your paper is prepared using the QCU journal template. This will ensure 
+                fast processing and publication of your manuscript. Any script that does not meet the requirements under the guidelines 
+                for the author will not be processed or continued.</p>
+                <li><a href='download.php?file=template-star.docx' onclick="downloadFile(event)">QCU Star - Journal of Science and Technology Article Template</a></li>
+                <li><a href='download.php?file=template-lamp.docx' onclick="downloadFile(event)">QCU Lamp - Journal of Education Article Template</a></li>
+                <li><a href='download.php?file=template-gavel.docx' onclick="downloadFile(event)">QCU Gavel - Journal of Social Sciences Article Template</a></li>
+            </div>
+            
+        </div>
+</div>
+<div class="main" id="publication-policy-container" style="display: none;">
+        <div class="header">
+            <h2>Publication Policy</h2>
+        </div>
+        <div class="category w-100">
+            <div class="s-1">
+                <h3>PUBLICATION ETHICS</h3>
+                <p>The editors of this journal use a rigorous peer-review system and adhere to strong ethical
+                    values and standards to ensure that only high-quality research works are accepted.</p>
+                <p>Plagiarism, falsification, fabrication, unethical co-authorship practices, and other examples of
+                    research misconduct are taken extremely seriously by the editors of QCU Journals. They are
+                    instructed to deal with a zero-tolerance approach in such circumstances.</p>
+            </div>
+            <div class="s-2">
+                <p>Researchers who wish to publish their articles or reviews in QCU Journals should abide by
+                    the following:</p>
+                <ul>
+                    <li>Any information in the manuscript that could be construed as a potential conflict of
+                        interest for the authors must be mentioned.</li>
+                    <li>Authors must truthfully describe the research results and provide an objective
+                        analysis and interpretation of the study’s significant findings.</li>
+                    <li>The data and methods employed in the study must be explained in sufficient detail in
+                        the publication for other researchers to repeat the work.</li>
+                    <li>It is not permitted to submit articles to multiple journals at the same time.</li>
+                    <li>It is not acceptable to republish anything that is not new or has been published in
+                        another language.</li>
+                    <li>If the authors discover errors or inconsistencies after their manuscript has been
+                        published, they must immediately notify the journal editors to take necessary action.</li>
+                <ul type="circle">
+                    <li>An erratum must be published if serious errors could jeopardize the
+                        researchers’ work or reputation.</li>
+                    <li>If the findings are revealed to be incorrect, the researchers must sign a
+                        retraction describing the error and how it affected the manuscript and the
+                        study’s conclusions.</li>
+                </ul>
+                    <li>Manuscripts submitted for publication in any QCU Journal should not contain any
+                        previously published information. If the researcher uses previously published figures
+                        or images, the researcher must seek the copyright holder’s permission to publish
+                        under the Creative Commons-BY license.</li>
+                <ul type="circle">
+                    <li>Plagiarism, fabrication, falsification of data, manipulation of the image, and
+                        other forms of research misconduct are not tolerated.</li>
+                    <li>Plagiarism refers to the act of representing as one’s original work the creative
+                        works of another, without appropriate acknowledgment of the author or
+                        source, even the researcher’s work (The University of Melbourne, n.d.).</li>
+                    <li>The manuscript will be rejected if any research misconduct is discovered
+                        throughout the peer-review process.</li>
+                    <li>If any scientific misconduct is discovered after the manuscript has been
+                        published, the editorial board may issue a correction or retract the paper.</li>
+                </ul>
+                    <li>Our editors will investigate any claims of research misconduct in publication. Proper
+                        steps will be considered to correct or retract the article if there is proof of misconduct.
+                        When publishing with the QCU Journals, authors are expected to follow the most
+                        acceptable ethical publication procedures.</li>
+                </ul>
+            </div>
+            <div class="s-2">
+                <h3>CITATION POLICY</h3>
+                <p>Authors should ensure that information borrowed from other references is properly
+                    referenced and obtained relevant permission from the original authors.</p>
+                <p>Self-citation of one’s work in excess should be avoided at all costs. Similarly, researchers
+                    should avoid citing their own, friends’, or peers’ publications first.</p>
+                <p>Original wording obtained straight from the works of other scholars should be included in
+                    quotation marks and accompanied by suitable citations.</p>
+            </div>
+            <div class="s-2">
+                <h3>COPYRIGHT AND LICENSING</h3>
+                <p>The authors maintain copyright for all works published in the QCU journals. The articles are
+                    published under the Creative Commons CC BY 4.0 license, allowing anybody to download
+                    and read them for free. The article may also be reused and quoted as long as the original
+                    published version is referenced. These terms provide the most widespread use and visibility
+                    of the work while guaranteeing that the creators are appropriately credited.</p>
+            </div>
+            <div class="s-2">
+                <h3>INSTITUTIONAL REPOSITORY</h3>
+                <p>All articles published in the QCU Journals will be archived in the institutional repository
+                    system and database of the Quezon City University.</p>
+            </div>
+            <div class="s-2">
+                <h3>DATA PRIVACY, INTELLECTUAL PROPERTY, AND ANTI-PIRACY</h3>
+                <p>All articles published in the QCU Journals should conform with the relevant rules, guidelines,
+                    and policies indicated in the Philippines’ Data Privacy Act of 2012, the Cybercrime
+                    Prevention Act of 2012, and the Intellectual Property Code.</p>
+            </div>
+    </div>
+</div>
     </main>
 
     <div class="footer" id="footer">
