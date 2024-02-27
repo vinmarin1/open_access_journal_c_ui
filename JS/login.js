@@ -2,11 +2,11 @@ document.addEventListener('DOMContentLoaded', function() {
    
     var emailInput = document.getElementById('email');
     var loginButton = document.getElementById('login-button');
-
+    var captcha = document.getElementById('cpatchaTextBox');
    
     emailInput.addEventListener('input', function() {
     
-        if (isValidEmail(emailInput.value)) {
+        if (isValidEmail(emailInput.value) && validateCaptcha()) {
           
             loginButton.removeAttribute('disabled');
         } else {
@@ -14,8 +14,32 @@ document.addEventListener('DOMContentLoaded', function() {
             loginButton.setAttribute('disabled', 'disabled');
         }
     });
+    
+    captcha.addEventListener('input', function() {
+    
+        if (isValidEmail(emailInput.value) && validateCaptcha()) {
+          
+            loginButton.removeAttribute('disabled');
+        } else {
+          
+            loginButton.setAttribute('disabled', 'disabled');
+        }
+    });
+    
+    
+    
 
- 
+    function validateCaptcha() {
+        event.preventDefault();
+        debugger
+        if (document.getElementById("cpatchaTextBox").value == code) {
+            captcha.style.border = "1px solid green";
+          return true
+        }else{
+            captcha.style.border = "1px solid red";
+          return false
+        }
+      }
     function isValidEmail(email) {
         var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
