@@ -169,6 +169,8 @@ function openTab(evt, tabName) {
     }
 });
 
+document.getElementById('expertiseData').value = getExpertiseData();
+
 //add keyword
 document.getElementById('addExpertiseButton').addEventListener('click', function() {
   // Get the input value
@@ -206,12 +208,13 @@ document.getElementById('addExpertiseButton').addEventListener('click', function
 
 document.getElementById('keywordContainer').addEventListener('input', function(event) {
   if (event.target.classList.contains('keyword')) {
-      // Update the hidden input with expertise data
+      // Update the hidden input with expertise data only if changes were made
       updateHiddenInput();
   }
 });
 
-function updateHiddenInput() {
+
+function getExpertiseData() {
   var expertiseSpans = document.querySelectorAll('.keyword');
   var expertiseData = [];
 
@@ -220,11 +223,17 @@ function updateHiddenInput() {
       expertiseData.push(expertiseText);
   });
 
-  // Update the hidden input with comma-separated expertise data
-  document.getElementById('expertiseData').value = expertiseData.join(', ');
+  return expertiseData.join(', ');
 }
 
+function updateHiddenInput() {
+  var currentExpertiseData = getExpertiseData();
 
+  // Update the hidden input with expertise data only if changes were made
+  if (currentExpertiseData !== document.getElementById('expertiseData').value) {
+      document.getElementById('expertiseData').value = currentExpertiseData;
+  }
+}
 
   
   

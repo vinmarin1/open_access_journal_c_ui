@@ -161,7 +161,7 @@ $expertise = $_SESSION['expertise'];
 							<h1>
 							<?php
 							if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-								$sqlSelectName = "SELECT first_name, middle_name, last_name, affix, birth_date, gender, marital_status, country, orc_id, afiliations, position, bio FROM author WHERE author_id = :author_id";
+								$sqlSelectName = "SELECT first_name, middle_name, last_name, affix, birth_date, gender, marital_status, country, orc_id, afiliations, position, bio, field_of_expertise FROM author WHERE author_id = :author_id";
 
 								$result = database_run($sqlSelectName, array(':author_id' => $id));
 
@@ -180,8 +180,9 @@ $expertise = $_SESSION['expertise'];
 										$afiliations = $user->afiliations;
 										$position = $user->position;
 										$bio = $user->bio;
+										$field_of_expertise = $user->field_of_expertise;
 
-										$profileFields = array($firstName, $middleName, $lastName, $affix, $birthDate, $gender, $maritalStatus, $country, $orcId, $afiliations, $position, $bio);
+										$profileFields = array($firstName, $middleName, $lastName, $affix, $birthDate, $gender, $maritalStatus, $country, $orcId, $afiliations, $position, $bio, $field_of_expertise);
 										$completedFields = count(array_filter($profileFields, function($field) { return !empty($field); }));
 										$totalFields = count($profileFields);
 
@@ -1237,7 +1238,7 @@ $expertise = $_SESSION['expertise'];
 
 						$result = database_run($sql);
 
-						$sqlSelectProfile = "SELECT first_name, middle_name, last_name, birth_date, gender, marital_status, orc_id, afiliations, position FROM author WHERE author_id = :author_id";
+						$sqlSelectProfile = "SELECT first_name, middle_name, last_name, birth_date, gender, marital_status, orc_id, afiliations, position, field_of_expertise FROM author WHERE author_id = :author_id";
 
 						$resultProfile = database_run($sqlSelectProfile, array(':author_id' => $id));
 
@@ -1263,7 +1264,7 @@ $expertise = $_SESSION['expertise'];
 								$userProfile = $resultProfile[0];
 	  
 								// Check for the presence of all required fields
-								$requiredFields = ['first_name', 'middle_name', 'last_name', 'birth_date', 'gender', 'marital_status', 'orc_id', 'afiliations', 'position'];
+								$requiredFields = ['first_name', 'middle_name', 'last_name', 'birth_date', 'gender', 'marital_status', 'orc_id', 'afiliations', 'position', 'field_of_expertise'];
 	  
 								$profileComplete = true;
 								foreach ($requiredFields as $field) {
