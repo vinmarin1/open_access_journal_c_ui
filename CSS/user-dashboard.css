@@ -165,13 +165,14 @@ body {
 
 .form-header {
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     align-items: center;
     border-bottom: 1px solid #ccc;
     background-color: #004e98;
     width: 100%;
     color: white;
     padding: 0px 15px 0px 15px;
+    height: 80px;
 }
 
 .form-header h4 {
@@ -271,41 +272,46 @@ label {
     margin-left: 5px;
 }
 #saveButton {
-    background-color: #285581;
-    color: white;
+    background-color: white;
+    color: black;
+    /* color: white; */
     border: none;
-    padding: 10px 20px;
+    /* padding: 10px 20px; */
     font-size: 16px;
-    margin: 10px 20px 40px;
+    /* margin: 10px 20px 40px; */
     border-radius: 50px;
     cursor: pointer;
-    width: 200px;
-    float: right;
+    width: 100px;
+    margin-left: 650px;
+ 
 }
 
 #editBtn {
-    background-color: green;
+    /* background-color: green; */
     color: white;
     border: none;
-    padding: 10px 20px;
+    /* padding: 10px 20px; */
     font-size: 16px;
-    margin: 10px 20px 40px;
+    /* margin: 10px 20px 40px; */
     border-radius: 50px;
     cursor: pointer;
-    width: 200px;
+    /* width: 200px; */
     float: right;
 }
 
 #cancelBtn {
+    background-color: white;
     border: none;
-    padding: 10px 20px;
+    color: black;
+    /* padding: 10px 20px; */
     font-size: 16px;
-    margin: 10px 20px 40px;
+    /* margin: 10px 20px 40px; */
     border-radius: 50px;
     cursor: pointer;
-    width: 200px;
+    width: 100px;
     float: right;
-    display: none;
+    margin-left: 10px;
+  
 }
 
 .row {
@@ -1420,4 +1426,33 @@ height: 500px;
 
 section {
     padding: 1em 8% !important;
+}
+
+#loadingOverlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.7);
+    z-index: 1000;
+}
+
+#loadingSpinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #3498db;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }

@@ -196,6 +196,7 @@ document.getElementById('addExpertiseButton').addEventListener('click', function
   keywordElement.appendChild(keywordText);
   keywordElement.appendChild(closeButton);
   document.getElementById('keywordContainer').appendChild(keywordElement);
+ 
 
   // Clear the input field
   document.getElementById('fieldofexpertise').value = '';
@@ -203,123 +204,7 @@ document.getElementById('addExpertiseButton').addEventListener('click', function
   
 
   
-document.getElementById('editBtn').addEventListener('click', function(event){
-  const editBtn = document.getElementById('editBtn');
-  const cancelBtn = document.getElementById('cancelBtn');
-  const spinner = document.querySelector('#editBtn .spinner-border');
-  const firstName = document.getElementById('firstName');
-  const middleName = document.getElementById('middleName');
-  const lastName = document.getElementById('lastName');
-  const affix = document.getElementById('affix');
-  const birthdate = document.getElementById('birthdate');
-  const gender = document.getElementById('gender');
-  const status = document.getElementById('status');
-  const country = document.getElementById('country');
-  // const email = document.getElementById('email');
-  const orcid = document.getElementById('orcid');
-  const affiliation = document.getElementById('affiliation');
-  const position = document.getElementById('position');
-  const bio = document.getElementById('bio');
- 
 
-
-  // Show spinner
-  spinner.style.display = 'inline-block';
-
-  // Disable "Edit" button
-  editBtn.disabled = true;
-
-  // Disable other form elements
-  firstName.disabled = true;
-  middleName.disabled = true;
-  lastName.disabled = true;
-  affix.disabled = true;
-  birthdate.disabled = true;
-  gender.disabled = true;
-  status.disabled = true;
-  country.disabled = true;
-  // email.disabled = true;
-  orcid.disabled = true;
-  affiliation.disabled = true;
-  position.disabled = true;
-  bio.disabled = true;
- 
-
-  // Enable everything after 2 seconds
-  setTimeout(function() {
-      spinner.style.display = 'none';
-      editBtn.disabled = false;
-      editBtn.style.display = 'none';
-      cancelBtn.style.display = 'inline-block';
-      firstName.disabled = false;
-      middleName.disabled = false;
-      lastName.disabled = false;
-      affix.disabled = false;
-      birthdate.disabled = false;
-      gender.disabled = false;
-      status.disabled = false;
-      country.disabled = false;
-      // email.disabled = false;
-      orcid.disabled = false;
-      affiliation.disabled = false;
-      position.disabled = false;
-      bio.disabled = false;
-     
-
-   
-
-  }, 2000);
-});
-
-
-  document.getElementById('cancelBtn').addEventListener('click', function(event){
-    const editBtn = document.getElementById('editBtn');
-    const cancelBtn = document.getElementById('cancelBtn');
-    const spinner = cancelBtn.querySelector('.spinner-border');
-    const editForm = document.getElementById('editForm');
-
-    const firstName = document.getElementById('firstName');
-    const middleName = document.getElementById('middleName');
-    const lastName = document.getElementById('lastName');
-    const affix = document.getElementById('affix');
-    const birthdate = document.getElementById('birthdate');
-    const gender = document.getElementById('gender');
-    const status = document.getElementById('status');
-    const country = document.getElementById('country');
-    // const email = document.getElementById('email');
-    const orcid = document.getElementById('orcid');
-    const affiliation = document.getElementById('affiliation');
-    const position = document.getElementById('position');
-    const bio = document.getElementById('bio');
-   
-
-    spinner.style.display = 'inline-block';
-
-    
-    editBtn.disabled = true;
-
-    
-    setTimeout(function() {
-        spinner.style.display = 'none';
-        editForm.style.display = 'none';
-        cancelBtn.style.display = 'none';
-        editBtn.style.display = 'inline-block';
-        editBtn.disabled = false;
-        firstName.disabled = true;
-        middleName.disabled = true;
-        lastName.disabled = true;
-        affix.disabled = true;
-        birthdate.disabled = true;
-        gender.disabled = true;
-        status.disabled = true;
-        country.disabled = true;
-        // email.disabled = true;
-        orcid.disabled = true;
-        affiliation.disabled = true;
-        position.disabled = true;
-        bio.disabled = true;
-    }, 2000);
-});
 
 
   
@@ -418,7 +303,6 @@ document.getElementById('editBtn').addEventListener('click', function(event){
 
   document.getElementById('saveButton').addEventListener('click', function(event){
     event.preventDefault();
-    
     Swal.fire({
         title: 'Do you want to make this changes?',
         icon: 'warning',
@@ -429,6 +313,8 @@ document.getElementById('editBtn').addEventListener('click', function(event){
     }).then((result) => {
         if (result.isConfirmed) {
             document.getElementById('form').submit();
+            document.getElementById('loadingOverlay').style.display = 'block';
+            document.getElementById('editForm').style.display = 'none';
         }
     });
 });
@@ -481,22 +367,22 @@ function openFileInput() {
   });
 }
 
-function saveProfile() {
-  const fileInput = document.getElementById('fileInput');
-  const profileImage = document.getElementById('profileImage');
-  const imageModal = document.getElementById('imageModal');
-  imageModal.style.display = 'none';
-  Swal.fire({
-    icon: 'success',
-    text: 'Change profile picture successfully',
-    showConfirmButton: true
-  }).then(() => {
+// function saveProfile() {
+//   const fileInput = document.getElementById('fileInput');
+//   const profileImage = document.getElementById('profileImage');
+//   const imageModal = document.getElementById('imageModal');
+//   imageModal.style.display = 'none';
+//   Swal.fire({
+//     icon: 'success',
+//     text: 'Change profile picture successfully',
+//     showConfirmButton: true
+//   }).then(() => {
   
-    profileImage.src = document.getElementById('selectedImagePreview').src;
-    fileInput.value = null;
+//     profileImage.src = document.getElementById('selectedImagePreview').src;
+//     fileInput.value = null;
    
-  });
-}
+//   });
+// }
 
 
 function cancelUpdate() {

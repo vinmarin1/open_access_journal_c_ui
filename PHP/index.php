@@ -33,32 +33,50 @@
         <h4>Find or Submit Research Articles</h2>
           <button class="btn  btn-md" id="btn1" onclick="window.location.href='browse-articles.php'">Browse
             articles</button>
-          <?php 
-          if (
-          isset($_SESSION['first_name']) && !empty($_SESSION['first_name']) &&
-          isset($_SESSION['middle_name']) && !empty($_SESSION['middle_name']) &&
-          isset($_SESSION['last_name']) && !empty($_SESSION['last_name']) &&
-          isset($_SESSION['gender']) && !empty($_SESSION['gender']) &&
-          isset($_SESSION['status']) && !empty($_SESSION['status']) &&
-          isset($_SESSION['country']) && !empty($_SESSION['country']) &&
-          isset($_SESSION['afiliations']) && !empty($_SESSION['afiliations']) &&
-          isset($_SESSION['position']) && !empty($_SESSION['position'])
-          ) {
-            echo '<button class="btn btn-md" id="btn2" onclick="window.location.href=\'ex_submit.php\'">Submit an Article</button>';
-          
-          } else {
-            echo '<button class="btn btn-md" id="btn2">Submit an Article</button>';
-            echo "<script>
-          
-            document.getElementById('btn2').addEventListener('click', function(event){
-                Swal.fire({
-                  icon: 'warning',
-                  text: 'Please Complete your profile details before submitting a paper'
-                });
-            });
-          </script>";
-          }
-        ?>
+            <?php
+              if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+                  $sqlSelectProfile = "SELECT first_name, middle_name, last_name, birth_date, gender, marital_status, orc_id, afiliations, position FROM author WHERE author_id = :author_id";
+
+                  $resultProfile = database_run($sqlSelectProfile, array(':author_id' => $author_id));
+
+                  if ($resultProfile) {
+                      if (count($resultProfile) > 0) {
+                          $userProfile = $resultProfile[0];
+
+                          // Check for the presence of all required fields
+                          $requiredFields = ['first_name', 'middle_name', 'last_name', 'birth_date', 'gender', 'marital_status', 'orc_id', 'afiliations', 'position'];
+
+                          $profileComplete = true;
+                          foreach ($requiredFields as $field) {
+                              if (empty($userProfile->$field)) {
+                                  $profileComplete = false;
+                                  break;
+                              }
+                          }
+                          if ($profileComplete) {
+                            echo "<button class='btn btn-md' id='btn2' onclick='window.location.href=\"ex_submit.php\"'>Submit an Article</button>";
+                        } else {
+                            echo "<button class='btn btn-md' id='btn2'>Submit an Article</button>";
+                            echo "<script>
+                                    document.getElementById('btn2').addEventListener('click', function(event){
+                                        Swal.fire({
+                                            icon: 'warning',
+                                            text: 'Please complete the required data in your profile details before submitting a paper'
+                                        });
+                                    });
+                                  </script>";
+                        }                        
+                      } else {
+                          echo "User not found.";
+                      }
+                  } else {
+                      echo "Unable to fetch user info.";
+                  }
+              }
+              ?>
+
+
+         
       </div>
 
     </div>
@@ -93,16 +111,36 @@
     </div>
     <div>
     
-    <div class="image-container">
-      <img src="../Files/announcement-image/default.png" alt="#" class="image">
-      <div class="hover-details text-white">
-        <h4>Call for papers</h4>
-        <p>QCUJ is currently inviting authors to submit their articles for consideration in The Lamp Journal.</p>
-        <p>The deadline for article submission is fast approaching! Authors are encouraged to submit their manuscripts by August 31, 2024.</p>
-        <span onclick="window.location.href='./announcement.php'" class="button">View Announcement</span>
-      </div>
-    </div>
+    <?php
+    // Fetch data from the database
+    $query = "SELECT * FROM announcement WHERE announcementtype = 'Call for papers' AND status = 1";
+    $announcements = database_run($query);
 
+    // Check if there are announcements
+    if ($announcements !== false && !empty($announcements)) {
+        // Loop through each announcement
+        foreach ($announcements as $announcement) {
+        ?>
+        <div class="image-container">
+         <img src="../Files/announcement-image/<?php echo $announcement->upload_image; ?>" alt="#" class="image">
+                        <div class="hover-details text-white">
+                        <h4><?php echo $announcement->title; ?></h4>
+                        <p><?php echo $announcement->announcement_description; ?></p>
+                        <p><?php echo $announcement->announcement; ?></p>
+                        <!-- You can display additional details here if needed -->
+                        <span onclick="window.location.href='./announcement.php?id=<?php echo $announcement->announcement_id; ?>'" class="button">View Announcement</span>
+              </div>
+          </div>
+        <?php
+    }
+} else {
+    // No announcements available or error occurred
+    if ($announcements === false) {
+        echo "No announcements available.";
+    }
+}
+?>
+      
     <?php
     if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
       echo '

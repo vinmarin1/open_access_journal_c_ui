@@ -4,7 +4,7 @@
 	require "../PHP/functions.php";
 	check_login();
 
-	$errors = array();
+	// $errors = array();
 
 	if($_SERVER['REQUEST_METHOD'] == "GET" ){
 		if(!check_verified()){
@@ -56,7 +56,9 @@
 					database_run($query_admin, $params_admin);
 	
 					if (check_verified()) {
+						$_SESSION['LOGGED_IN'] = true;
 						header("Location: ../PHP/index.php");
+						
 						die;
 					} elseif (check_admin_verified()) {
 						header("Location: ../PHP/index.php");
@@ -68,9 +70,10 @@
 					echo "Code expired";
 				}
 			} else {
-				echo "Code Incorrect";
+				echo "";
 			}
 		} else {
+			$_SESSION['LOGGED_IN'] = true;
 			echo "You're already verified";
 		}
 	}
@@ -111,13 +114,13 @@
 </head>
 <body>
 
-			
-		<form method="post">
+		<?php require 'header.php' ?>	
+		<form method="post" id="form">
 		<p class="descript">An OTP code was sent to <span><b><?php echo $vars['email'];?></b></span></p>
 		<div>
 		
 		</div>
-			<input type="text" name="code" placeholder="Enter the 5 digit code ">
+			<input type="text" id="code" name="code" placeholder="Enter the 5 digit code ">
  			<br>
 			 <p class="validation" id="validation">
 			<?php
@@ -126,7 +129,7 @@
 					if (empty($_POST['code'])) {
 						echo "*Please enter the 5-digit code sent to your email";
 					} else {
-						echo "Code Incorrect";
+						echo "";
 					}
 				}
 			}
@@ -134,7 +137,7 @@
 			</p>
 
 			<br>
-			<input class="btn btn-primary btn-sm" type="submit" value="Verify">
+			<input type="button" id="verifyBtn" class="btn btn-primary btn-sm" value="Verify">
 		</form>
 	
 
@@ -144,7 +147,40 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
-<script src="../JS/reusable-header_footer.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="../JS/reusable-header_footer.js"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+        const codeInput = document.getElementById('code');
+        const verifyBtn = document.getElementById('verifyBtn');
+		const form = document.getElementById('form');
+
+        verifyBtn.addEventListener('click', function () {
+            const codeValue = codeInput.value;
+
+            if (codeValue === '') {
+               Swal.fire({
+				icon: 'warning',
+				text: 'Please enter the OTP CODE'
+			   });
+            } else if (codeValue.length <= 4) {
+                Swal.fire({
+				icon: 'warning',
+				text: 'Invalid OTP Code, Please Try again'
+			   });
+            } else {
+                form.submit();
+            }
+        });
+
+        codeInput.addEventListener('input', function () {
+            let sanitizedValue = this.value.replace(/\D/g, '');
+            sanitizedValue = sanitizedValue.slice(0, 5);
+            this.value = sanitizedValue;
+        });
+    });
+</script>
 </body>
 </html>

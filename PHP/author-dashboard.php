@@ -75,34 +75,51 @@ $id = $_SESSION['id'];
                 </li>
               </div>
               <!-- <button class="btn" id="btn3" onclick="window.location.href='ex_submit.php'">Submit Article</button> -->
-              <?php
-// Check if all required fields are present in the session
-              if (
-                  isset($_SESSION['first_name']) && !empty($_SESSION['first_name']) &&
-                  isset($_SESSION['middle_name']) && !empty($_SESSION['middle_name']) &&
-                  isset($_SESSION['last_name']) && !empty($_SESSION['last_name']) &&
-                  isset($_SESSION['gender']) && !empty($_SESSION['gender']) &&
-                  isset($_SESSION['status']) && !empty($_SESSION['status']) &&
-                  isset($_SESSION['country']) && !empty($_SESSION['country']) &&
-                  isset($_SESSION['afiliations']) && !empty($_SESSION['afiliations']) &&
-                  isset($_SESSION['position']) && !empty($_SESSION['position'])
-              ) {
-                  // All required fields are present, echo the button without the disabled attribute
-                  echo '<button class="btn" id="btn3" onclick="window.location.href=\'ex_submit.php\'">Submit Article</button>';
-              } else {
-                  // Some required fields are missing, echo the button with the disabled attribute
-                  echo '<button class="btn" id="btn3D">Submit Article</button>';
-                  echo "<script>
-                  document.getElementById('btn3D').addEventListener('click', function(event){
-                      Swal.fire({
-                        icon: 'warning',
-                        text: 'Please Complete your profile details before submitting a paper'
-                      });
-                  });
-                </script>";
 
+
+              <?php
+              if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+                  $sqlSelectProfile = "SELECT first_name, middle_name, last_name, birth_date, gender, marital_status, orc_id, afiliations, position FROM author WHERE author_id = :author_id";
+
+                  $resultProfile = database_run($sqlSelectProfile, array(':author_id' => $id));
+
+                  if ($resultProfile) {
+                      if (count($resultProfile) > 0) {
+                          $userProfile = $resultProfile[0];
+
+                          // Check for the presence of all required fields
+                          $requiredFields = ['first_name', 'middle_name', 'last_name', 'birth_date', 'gender', 'marital_status', 'orc_id', 'afiliations', 'position'];
+
+                          $profileComplete = true;
+                          foreach ($requiredFields as $field) {
+                              if (empty($userProfile->$field)) {
+                                  $profileComplete = false;
+                                  break;
+                              }
+                          }
+                          if ($profileComplete) {
+                            echo '<button class="btn" id="btn3" onclick="window.location.href=\'ex_submit.php\'">Submit an Article</button>';
+                        } else {
+                          echo '<button class="btn" id="btn3D">Submit an Article</button>';
+                            echo "<script>
+                                    document.getElementById('btn3D').addEventListener('click', function(event){
+                                        Swal.fire({
+                                            icon: 'warning',
+                                            text: 'Please complete the required data in your profile details before submitting a paper'
+                                        });
+                                    });
+                                  </script>";
+                        }                        
+                      } else {
+                          echo "User not found.";
+                      }
+                  } else {
+                      echo "Unable to fetch user info.";
+                  }
               }
               ?>
+
+            
 
 
             </ul>

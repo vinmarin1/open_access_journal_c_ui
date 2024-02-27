@@ -16,7 +16,7 @@ form{
      margin-bottom: 40px;
  }
  
- .descript, input[type="text"], input[type="submit"]{
+ .descript, input[type="text"], input[type="button"]{
      margin-left: auto;
      margin-right: auto;
      width: 90%;
@@ -24,8 +24,12 @@ form{
      padding-left: 10px;
      outline: none;
      margin-left: 20px;
-     
+   
  
+ }
+
+ input[type="button"]{
+    margin-bottom: 20px;
  }
  
  .descript{

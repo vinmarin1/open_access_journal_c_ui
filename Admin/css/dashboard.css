@@ -194,7 +194,8 @@
 }
 #doughnutContainer1,
 #doughnutContainer2,
-#doughnutContainer3 {
+#doughnutContainer3,
+#doughnutContainer4 {
     width: auto;
     height: auto;
     border-radius: 15px;

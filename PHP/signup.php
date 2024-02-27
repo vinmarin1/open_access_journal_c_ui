@@ -26,7 +26,7 @@
         <div class="input-field">
             <label for="orcid">ORCID:</label> <span id="orcidVlalidation">*</span><span class="text-muted" style="font-size:12px; font-weight:bold;" id="span6">  </span><span id="spanOrcidValidation" style="display: none; color: red; font-size: 11px">Orcid invalid</span>
             <span class="d-block text-muted" style="font-size:12px">If you do not have an ORCID, <a class="text-reset" href="https://orcid.org/register">register here</a></span>
-           <input type="text" class="input form-control" name="orcid"  id="orcid" >
+           <input type="text" class="input form-control" name="orcid"  id="orcid" placeholder="Example: xxxx-xxxx-xxxx-xxxx">
         </div>
 
        <div class="input-field ">
@@ -34,7 +34,7 @@
            <input type="text" class="input form-control" name="fname"  id="fname" >
         </div>
         <div class="input-field">
-            <label for="mdname">Middle Name: </label><span id="spanMdValidation" style="display: none; color: red; font-size: 11px">Middle name should be at least 2 characters</span>
+            <label for="mdname">Middle Name: (Optional)</label><span id="spanMdValidation" style="display: none; color: red; font-size: 11px">Middle name should be at least 2 characters</span>
            <input type="text" class="input form-control" name="mdname"  id="mdname" >
         </div>
         <div class="input-field">

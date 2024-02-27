@@ -38,7 +38,7 @@ $announcementlist = get_announcement_list();
                 <?php foreach ($announcementlist as $announcementlistval): ?>
                                 <tr>
                                     <td width="5%"><?php  echo  $announcementlistval->announcement_id; ?></td>
-                                    <td width="15%"><?php echo  $announcementlistval->annoucementtype; ?></td>
+                                    <td width="15%"><?php echo  $announcementlistval->announcementtype; ?></td>
                                     <td width="50%"><?php echo  $announcementlistval->title; ?></td>
                                     <td width="10%"><?php echo  $announcementlistval->announcement; ?></td>
                                     <td width="10%"><?php echo  $announcementlistval->upload_image; ?></td>
@@ -75,12 +75,11 @@ $announcementlist = get_announcement_list();
     function addRecord() {
         var form = document.getElementById('addModalForm');
         var formData = new FormData();
-        formData.append('annoucementtype', $('#annoucementtype').val());
+        formData.append('announcementtype', $('#announcementtype').val());
         formData.append('title', $('#title').val());
         formData.append('announcement_description', $('#announcement_description').val());
         formData.append('announcement', $('#announcement').val());
         formData.append('upload_image', $('#upload_image')[0].files[0]);
-        formData.append('expired_date', $('#expired_date').val());
         formData.append('action', 'add');
 
         if (form.checkValidity()) {
@@ -98,8 +97,7 @@ $announcementlist = get_announcement_list();
                         alert("Record added successfully");
                         location.reload();
                     } else {
-                        alert('Failed to add record');
-                        location.reload();
+                        alert('Failed to add record: ' + response.message);
                     }
                 },
                 error: function (xhr, status, error) {
@@ -227,7 +225,7 @@ $announcementlist = get_announcement_list();
                     <div class="row mb-2">
                         <div class="col-md-12 mb-2">
                             <label for="xannoucementtype" class="form-label">Annoucement Type</label>
-                            <select id="annoucementtype" class="form-select">
+                            <select id="announcementtype" class="form-select">
                                 <option value="Annoucement">Annoucement</option>
                                 <option value="News">News</option>
                                 <option value="Call for papers">Call for papers</option>
@@ -257,12 +255,6 @@ $announcementlist = get_announcement_list();
                         <div class="col-md-12 mb-2" id="xUpload_image">
                             <label for="formFileAddFiles" class="form-label">Upload Image</label>
                             <input class="form-control" type="file" id="upload_image" />
-                        </div>
-                    </div>
-                    <div class="row mb-2">
-                        <div class="col-md-12 mb-2">
-                            <label for="xexpired_date" class="form-label">Expiry Date</label>
-                            <input type="date" id="expired_date" class="form-control" placeholder="expired_date" />
                         </div>
                     </div>
                 </div>
