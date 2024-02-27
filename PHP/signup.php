@@ -44,9 +44,53 @@
 
     
        
-        <div class="input-field">
-            <label for="password">Password:</label><span id="span5">*</span><span id="spanPasswordValidation" style="display: none; color: red; font-size: 11px">Password should at least contain 1 Uppercase 1 Special Character and 1 Number</span>
-           <input type="password" class="input form-control" name="password"  id="password" >
+        <div class="input-field" style="position:relative">
+          <label for="password">Password:</label><span id="span5">*</span><span id="spanPasswordValidation" style="display: none; color: red; font-size: 11px">Password should at least contain 1 Uppercase 1 Special Character and 1 Number</span>
+          <input type="password" class="input form-control" name="password"  id="password" >
+          <span class="show-pass" onclick="toggle()">
+              <i class="far fa-eye" onclick="myFunction(this)"></i>
+          </span>
+                        <div id="popover-password">
+                            <p><span id="result"></span></p>
+                            <div class="progress">
+                                <div id="password-strength" 
+                                    class="progress-bar" 
+                                    role="progressbar" 
+                                    aria-valuenow="40" 
+                                    aria-valuemin="0" 
+                                    aria-valuemax="100" 
+                                    style="width:0%">
+                                </div>
+                            </div>
+                            <ul class="list-unstyled">
+                                <li class="">
+                                    <span class="low-upper-case">
+                                        <i class="fas fa-circle" aria-hidden="true"></i>
+                                        &nbsp;Lowercase &amp; Uppercase
+                                    </span>
+                                </li>
+                                <li class="">
+                                    <span class="one-number">
+                                        <i class="fas fa-circle" aria-hidden="true"></i>
+                                        &nbsp;Number (0-9)
+                                    </span> 
+                                </li>
+                                <li class="">
+                                    <span class="one-special-char">
+                                        <i class="fas fa-circle" aria-hidden="true"></i>
+                                        &nbsp;Special Character (!@#$%^&*)
+                                    </span>
+                                </li>
+                                <li class="">
+                                    <span class="eight-character">
+                                        <i class="fas fa-circle" aria-hidden="true"></i>
+                                        &nbsp;Atleast 8 Character
+                                    </span>
+                                </li>
+                            </ul>
+                    
+                        </div>
+
         </div>
       
       <div class="fluid-container" id="footer-form">
@@ -102,5 +146,6 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script src="../JS/signup.js"></script>
+<script src="../JS/password.js"></script>
 </body>
 </html>
