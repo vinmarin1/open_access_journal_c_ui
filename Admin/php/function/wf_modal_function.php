@@ -63,24 +63,18 @@ include 'dbcon.php';
         $uploadPath = "../../../Files/submitted-article/";
         $submissionFileId = isset($_POST['submissionfileid']) ? $_POST['submissionfileid'] : '';
         $article_id = $_POST['article_id'];
-    
-        if (!file_exists($uploadPath)) {
-            mkdir($uploadPath, 0777, true);
-        }
+        $fileType = $_POST['fileType'];
+        $fileNameWithoutExtension = pathinfo($fileType, PATHINFO_FILENAME); // Extract filename without extension
     
         $success = true;
         $errorMessage = '';
     
         if (!empty($_FILES["submissionfile"]["name"])) {
-            $file_name = basename($_FILES["submissionfile"]["name"]);
-    
-            $timestamp = time();
-            $hashedTimestamp = hash('sha256', (string)$timestamp);
-            $last12Hash = substr($hashedTimestamp, -12);
-    
-            $imageFileType = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
-    
-            $hashfilename = $article_id . '-' . $last12Hash . '-' . $imageFileType;
+            $file_name = basename($_FILES["submissionfile"]["name"]); 
+        
+            $imageFileType = strtolower(pathinfo($file_name, PATHINFO_EXTENSION)); 
+
+            $hashfilename = $fileNameWithoutExtension . '.' . $imageFileType; 
     
             $allowedFileTypes = array('doc', 'docx');
     
@@ -111,7 +105,6 @@ include 'dbcon.php';
         echo json_encode(['success' => false, 'message' => 'No file provided', 'submissionfileid' => $submissionFileId]);
     }    
     
-   
     function updateSelectedSubmissionFiles($submissionFileId, $fileName) {
         
         $query = "UPDATE article_files 
