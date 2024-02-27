@@ -43,15 +43,24 @@
             <div class="input-field">
                <label for="password">Password:</label>
                <input type="password" class="input form-control text-xs" name="password"  id="password" placeholder="Enter your password">
-               
             </div>
             
-            <a id="forgotPasswordLink" style="color: #0858a4; text-decoration: underline; cursor: pointer  ">Forgot Password?
-                <div class="spinner-border spinner-border-sm" role="status" id="spinner" style="display: none">
-                    <span class="visually-hidden"></span>
-                </div>
-            </a>
-            
+            <div class="border rounded mt-2 p-2 d-flex gap-1">
+               <div class="d-flex flex-column">
+                   <label for="password" class="w-50">Enter captcha: </label>
+                   <input type="text" placeholder="Captcha" class="input form-control text-xs" id="cpatchaTextBox" />
+               </div>
+               <div class="d-flex align-items-end  ">
+                   <div id="captcha" class="h-75">
+                   </div>
+                   <a class="p-0 m-0" onclick="createCaptcha()">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                        	<path fill="none" stroke="currentColor" stroke-width="2" d="M20 8c-1.403-2.96-4.463-5-8-5a9 9 0 1 0 0 18a9 9 0 0 0 9-9m0-9v6h-6" />
+                        </svg>
+                   </a>
+               </div>
+           </div>
+          
             <button type="submit" class="btn btn-primary btn-sm mt-4" id="login-button" disabled>
                     <span id="login-text">Login</span>
                     <div class="spinner-border spinner-border-sm" role="status" id="login-spinner" hidden>
@@ -62,7 +71,11 @@
             <span id="countDown" style="color: red"></span>
             <!-- <input class="btn btn-outline-danger btn-sm" type="button" value="Register" id="register-button" onclick="window.location.href= '../PHP/signup.php';"> -->
             <button class="btn btn-outline-primary btn-sm" type="button" value="Register" id="register-button" onclick="window.location.href= '../PHP/signup.php';">Register</button>
-            
+            <a id="forgotPasswordLink" style="color: #0858a4; text-decoration: underline; cursor: pointer  ">Forgot Password?
+                <div class="spinner-border spinner-border-sm" role="status" id="spinner" style="display: none">
+                    <span class="visually-hidden"></span>
+                </div>
+            </a>
         </form>
         
     </div>
@@ -77,6 +90,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="../JS/login.js"></script>
+<script src="../JS/captcha.js"></script>
 <script src="../JS/reusable-header.js"></script>
 
     <script>
