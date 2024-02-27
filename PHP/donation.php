@@ -1,3 +1,7 @@
+<?php
+  include 'functions.php';
+  $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -99,15 +103,16 @@
                                 <span class="step" style="margin-right: 30px;"  title="Payment Method"> 2</span>
                             </div>
                             <input type="hidden" name="business" value="sb-gju3a29373225@business.example.com">
-                            <input type="hidden" name="item_name" value="Donation">
-                            <input type="hidden" name="item_number" value="1">
+                            <input type="hidden" name="item_name" value="<?php print $author_id?>">
                             <input type="hidden" name="amount" id="amount">
                             <input type="hidden" name="currency_code" value="PHP">
                             <input type="hidden" name="no_shipping" value="1">
                             <input type="hidden" name="cmd" value="_xclick">
-                            <input type="hidden" name="return" value="https://www.qcuj.online/PHP/success.php">
-                            <input type="hidden" name="cancel_return" value="https://www.qcuj.online/PHP/donation.php">
+                            <!-- <input type="hidden" name="return" value="https://www.qcuj.online/PHP/success.php">
+                            <input type="hidden" name="cancel_return" value="https://www.qcuj.online/PHP/donation.php"> -->
 
+                            <input type="hidden" name="return" value="http://localhost/open_access_journal_c_ui/PHP/success.php">
+                            <input type="hidden" name="cancel_return" value="http://localhost/open_access_journal_c_ui/PHP/donation.php">
                             <!---- Step 1 ------>
                             <div class="tab" id="tab1">
                                 <div class="container-fluid">
