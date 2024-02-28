@@ -1707,9 +1707,6 @@ function updateProductionFiles() {
             return;
         }
     }
-
-    updateProductionCheckedFiles();
-    updateProductionUncheckedFiles();
 }
 
 function uploadProductionFiles() {
@@ -1734,6 +1731,8 @@ function uploadProductionFiles() {
         success: function (response) {
             $('#sloading').toggle();
             console.log(response);
+            updateProductionCheckedFiles();
+            updateProductionUncheckedFiles();
             location.reload();
         },
         error: function (xhr, status, error) {
