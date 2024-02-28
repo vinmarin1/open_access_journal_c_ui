@@ -202,7 +202,6 @@ if (!privacyPolicy.checked) {
     return;
 }
 
-
 if (hasError) {
     // Validation failed, do not proceed with registration
     // Optionally, you can display a general validation error message
@@ -210,7 +209,13 @@ if (hasError) {
         icon: "error",
         text: "Please correct the validation errors before submitting the form."
     });
-} else {
+} else 
+if(!captchaSolved){
+    Swal.fire({
+        icon: "error",
+        text: "Please answer captcha "
+    });
+}else {
     // Validation passed, proceed with registration
 
     const xhr = new XMLHttpRequest();

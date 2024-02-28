@@ -6,7 +6,8 @@
     <link rel="stylesheet" href="../CSS/signup.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  
+    <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
+    
 </head>
 <body>
 
@@ -86,10 +87,16 @@
       
           </div>
 
+
         </div>
-      
+        <div id="h-captcha-container">
+            <div class="h-captcha" data-sitekey="540dedd9-f0b7-412d-a713-1c4e383ee944"></div>
+        </div>
+        
+
+
       <div class="fluid-container" id="footer-form">
-     
+ 
       <button type="button" class="btn btn-outline-primary btn-sm" id="privacyBtn"  data-bs-toggle="modal" data-bs-target="#exampleModal">Check Privacy</button>
       <input type="submit" value="Register" class="btn btn-primary btn-sm" id="signUpBtn">
 
@@ -133,9 +140,39 @@
 
     </form>
 </div>
+<script>
+    let captchaSolved = false;
+    var hasError = false
 
+    // Function to render the hCaptcha widget and handle callback
+    function render() {
+        hcaptcha.render(document.querySelector("#h-captcha-container > .h-captcha"), {
+            sitekey: "540dedd9-f0b7-412d-a713-1c4e383ee944",
+            callback: (token) => {
+                // document.querySelector(".h-captcha").classList.add("border", "border-success");
+                captchaSolved = true;
+                checkCaptchaStatus(); 
+                console.log(captchaSolved,"ff")
+            },
+            size: "normal"
+        });
+    }
 
+    // Function to check the captcha status
+    function checkCaptchaStatus() {
+        if (captchaSolved) {
+            hasError = false
+            console.log("Captcha solved!");
+            return true;
+        } else {
+            hasError = true
+            console.log("Captcha not solved yet.");
+        return false;
+        }
+    }
 
+    render();
+</script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
