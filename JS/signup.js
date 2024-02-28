@@ -158,6 +158,7 @@ async function isOrcid(orcid) {
 }
 
 
+
 if (!isValidEmail(email)) {
     document.getElementById('spanEmailValidation').style.display = 'inline-block';
     hasError = true;
@@ -177,12 +178,6 @@ if (lname.length < 2) {
     document.getElementById('spanLnValidation').style.display = 'inline-block';
     hasError = true;
 }
-(async () => {
-    if (!await isOrcid(orcid)) {
-        document.getElementById('spanOrcidValidation').style.display = 'inline-block';
-        hasError = true;
-    }
-})();
 
 
 
@@ -201,23 +196,35 @@ if (!privacyPolicy.checked) {
     });
     return;
 }
+(async () => {
+    console.log('Starting validation...');
+    if (!await isOrcid(orcid)) {
+        console.log('ORCID is not valid. Halting execution.');
+        document.getElementById('spanOrcidValidation').style.display = 'inline-block';
+        Swal.fire({
+            icon: "info",
+            text: "ORCID is not valid"
+        });
+        hasError = true;
+        return; 
+    }
 
-if (hasError) {
+if(!captchaSolved){
+    Swal.fire({
+        icon: "error",
+        text: "Please answer captcha "
+    });
+}
+else if (hasError) {
     // Validation failed, do not proceed with registration
     // Optionally, you can display a general validation error message
     Swal.fire({
         icon: "error",
         text: "Please correct the validation errors before submitting the form."
     });
-} else 
-if(!captchaSolved){
-    Swal.fire({
-        icon: "error",
-        text: "Please answer captcha "
-    });
-}else {
+} else {
     // Validation passed, proceed with registration
-
+    console.log(hasError,"haserrorr2")
     const xhr = new XMLHttpRequest();
     xhr.open('POST', '../PHP/signup-function.php', true);
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -247,7 +254,7 @@ if(!captchaSolved){
         '&password=' + encodeURIComponent(password) +
         '&privacyPolicy=' + encodeURIComponent(privacyPolicy));
 }
-
+})();
     // const xhr = new XMLHttpRequest();
     // xhr.open('POST', '../PHP/signup-function.php', true);
     // xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
