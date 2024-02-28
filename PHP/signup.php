@@ -90,7 +90,20 @@
 
         </div>
         <div id="h-captcha-container">
-            <div class="h-captcha" data-sitekey="540dedd9-f0b7-412d-a713-1c4e383ee944"></div>
+           <div id="h-captcha-container"
+                class="h-captcha"
+                data-sitekey="540dedd9-f0b7-412d-a713-1c4e383ee944"
+                data-theme="light"
+                data-size="normal"
+                data-tabindex="0"
+                data-callback="handleCaptchaResponse"
+                data-expired-callback="handleExpiredCaptcha"
+                data-chalexpired-callback="handleChallengeExpired"
+                data-open-callback="handleChallengeOpen"
+                data-close-callback="handleChallengeClose"
+                data-error-callback="handleCaptchaError">
+            </div>
+
         </div>
         
 
@@ -142,11 +155,10 @@
 </div>
 <script>
     let captchaSolved = false;
-    var hasError = false
 
     // Function to render the hCaptcha widget and handle callback
-    function render() {
-        hcaptcha.render(document.querySelector("#h-captcha-container > .h-captcha"), {
+    async function render() {
+        await hcaptcha.render(document.querySelector("#h-captcha-container > .h-captcha"), {
             sitekey: "540dedd9-f0b7-412d-a713-1c4e383ee944",
             callback: (token) => {
                 // document.querySelector(".h-captcha").classList.add("border", "border-success");
@@ -156,16 +168,15 @@
             },
             size: "normal"
         });
+        
     }
 
     // Function to check the captcha status
     function checkCaptchaStatus() {
         if (captchaSolved) {
-            hasError = false
             console.log("Captcha solved!");
             return true;
         } else {
-            hasError = true
             console.log("Captcha not solved yet.");
         return false;
         }
