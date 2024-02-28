@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="../CSS/signup.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
     
 </head>
 <body>
@@ -43,7 +42,7 @@
         <div class="input-field" style="position:relative">
           <label for="password">Password:</label><span id="span5">*</span><span id="spanPasswordValidation" style="display: none; color: red; font-size: 11px">Password should at least contain 1 Uppercase 1 Special Character and 1 Number</span>
           <input type="password" class="input form-control" name="password"  id="password" >
-          <span class="show-pass" onclick="toggle()">
+          <span id="show-pass" class="show-pass d-none" onclick="toggle()">
               <i class="far fa-eye" onclick="myFunction(this)"></i>
           </span>
           <div id="popover-password" class="d-none">
@@ -89,25 +88,11 @@
 
 
         </div>
-        <div id="h-captcha-container">
-           <div id="h-captcha-container"
-                class="h-captcha"
-                data-sitekey="540dedd9-f0b7-412d-a713-1c4e383ee944"
-                data-theme="light"
-                data-size="normal"
-                data-tabindex="0"
-                data-callback="handleCaptchaResponse"
-                data-expired-callback="handleExpiredCaptcha"
-                data-chalexpired-callback="handleChallengeExpired"
-                data-open-callback="handleChallengeOpen"
-                data-close-callback="handleChallengeClose"
-                data-error-callback="handleCaptchaError">
-            </div>
-
+       <div id="h-captcha-container"
+            class="h-captcha"
+            data-sitekey="540dedd9-f0b7-412d-a713-1c4e383ee944"
+         >
         </div>
-        
-
-
       <div class="fluid-container" id="footer-form">
  
       <button type="button" class="btn btn-outline-primary btn-sm" id="privacyBtn"  data-bs-toggle="modal" data-bs-target="#exampleModal">Check Privacy</button>
@@ -153,42 +138,42 @@
 
     </form>
 </div>
+<script src="https://js.hcaptcha.com/1/api.js"></script>
+
 <script>
     let captchaSolved = false;
 
     // Function to render the hCaptcha widget and handle callback
-    async function render() {
-        await hcaptcha.render(document.querySelector("#h-captcha-container > .h-captcha"), {
+    function render() {
+        hcaptcha.render(document.querySelector(".h-captcha"), {
             sitekey: "540dedd9-f0b7-412d-a713-1c4e383ee944",
             callback: (token) => {
-                // document.querySelector(".h-captcha").classList.add("border", "border-success");
                 captchaSolved = true;
                 checkCaptchaStatus(); 
-                console.log(captchaSolved,"ff")
+                console.log(captchaSolved,"ff");
             },
             size: "normal"
         });
-        
     }
 
     // Function to check the captcha status
     function checkCaptchaStatus() {
         if (captchaSolved) {
             console.log("Captcha solved!");
-            return true;
         } else {
             console.log("Captcha not solved yet.");
-        return false;
         }
     }
 
     render();
 </script>
+
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script src="../JS/signup.js"></script>
 <script src="../JS/password.js"></script>
+
 </body>
 </html>

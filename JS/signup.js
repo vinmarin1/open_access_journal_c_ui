@@ -386,6 +386,7 @@ document.getElementById('password').addEventListener('blur', function() {
 });
 document.getElementById('password').addEventListener('focus', function(){
     document.getElementById('popover-password').classList.remove('d-none');
+    document.getElementById('show-pass').classList.remove('d-none');
 })
 
 
