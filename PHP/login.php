@@ -45,7 +45,7 @@
                <input type="password" class="input form-control text-xs" name="password"  id="password" placeholder="Enter your password">
             </div>
             
-            <div class="border rounded mt-2 p-2 d-flex gap-1">
+            <!-- <div class="border rounded mt-2 p-2 d-flex gap-1">
                <div class="d-flex flex-column">
                    <label for="password" class="w-50">Enter captcha: </label>
                    <input type="text" placeholder="Captcha" class="input form-control text-xs" id="cpatchaTextBox" />
@@ -59,8 +59,12 @@
                         </svg>
                    </a>
                </div>
-           </div>
-          
+           </div> -->
+           <!-- <div id="h-captcha-container"
+                class="h-captcha"
+                data-sitekey="540dedd9-f0b7-412d-a713-1c4e383ee944"
+             >
+            </div> -->
             <button type="submit" class="btn btn-primary btn-sm mt-4" id="login-button" disabled>
                     <span id="login-text">Login</span>
                     <div class="spinner-border spinner-border-sm" role="status" id="login-spinner" hidden>
@@ -84,13 +88,15 @@
 
 	
 
+<!-- <script src="https://js.hcaptcha.com/1/api.js"></script> -->
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- <script src="../JS/hcaptcha.js"></script> -->
+
 <script src="../JS/login.js"></script>
-<script src="../JS/captcha.js"></script>
 <script src="../JS/reusable-header.js"></script>
 
     <script>

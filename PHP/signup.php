@@ -16,7 +16,7 @@
 <div class="form-container">
 	
     <form method="POST" id="form" action="signup-function.php">
-       <p class="h4 mt-4">REGISTER</p>
+       <p class="h5 my-3">Create your QCUJ Account</p>
        <div class="input-field">
            <label for="email">Email:</label><span id="span1">*</span><span id="spanEmailValidation" style="display: none; color: red; font-size: 11px">Invalid email</span>
            <input type="email" class="input form-control" name="email"  id="email">
@@ -140,33 +140,7 @@
 </div>
 <script src="https://js.hcaptcha.com/1/api.js"></script>
 
-<script>
-    let captchaSolved = false;
-
-    // Function to render the hCaptcha widget and handle callback
-    function render() {
-        hcaptcha.render(document.querySelector(".h-captcha"), {
-            sitekey: "540dedd9-f0b7-412d-a713-1c4e383ee944",
-            callback: (token) => {
-                captchaSolved = true;
-                checkCaptchaStatus(); 
-                console.log(captchaSolved,"ff");
-            },
-            size: "normal"
-        });
-    }
-
-    // Function to check the captcha status
-    function checkCaptchaStatus() {
-        if (captchaSolved) {
-            console.log("Captcha solved!");
-        } else {
-            console.log("Captcha not solved yet.");
-        }
-    }
-
-    render();
-</script>
+<script src="../JS/hcaptcha.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
