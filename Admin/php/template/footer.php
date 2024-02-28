@@ -11,11 +11,25 @@
 }
 
 #sloading img {
-    width: 8%;
-    height: 8%;
+    width: 5%;
+    height: 5%;
+    margin-top: 350px;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw; 
+    height: 100vh; 
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 9999;
 }
 </style>
-<div id='sloading'><center><img src='../assets/img/loading.gif'></center></div>
+<div  id='sloading' class="overlay"><!-- Add overlay here -->
+    <center><img src='../assets/img/loading.gif'></center>
+</div>
+
 <!-- Footer -->
 <footer class="content-footer footer bg-footer-theme">
     <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
