@@ -1572,9 +1572,6 @@ function updateCopyeditedFiles() {
             return;
         }
     }
-
-    updateCopyeditedCheckedFiles();
-    updateCopyeditedUncheckedFiles();
 }
 
 function uploadCopyeditedFiles() {
@@ -1597,6 +1594,8 @@ function uploadCopyeditedFiles() {
         success: function (response) {
             $('#sloading').toggle();
             console.log(response);
+            updateCopyeditedCheckedFiles();
+            updateCopyeditedUncheckedFiles();
             location.reload();
         },
         error: function (xhr, status, error) {
