@@ -124,8 +124,8 @@ if (!function_exists('get_email_content')) {
                     addLogs($article_id, $fromuser, 'Article send for Scheduled');
                     echo "<script>alert('Send to Scheduled successfully.');</script>";
                 } elseif ($id == 7) {
-                    updateArticleStatusArchive($article_id, 0);
-                    addLogs($article_id, $fromuser, 'Article move to Archive', '#navs-top-production');
+                    updateArticleStatusArchive($article_id, 0, '#navs-top-production');
+                    addLogs($article_id, $fromuser, 'Article move to Archive');
                     echo "<script>alert('Article move to archive successfully.');</script>";
                 } elseif ($id == 8) {
                     addUserPoints($article_id, $author_id, $author_email);

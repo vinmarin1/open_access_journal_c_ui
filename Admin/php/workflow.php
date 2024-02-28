@@ -1127,13 +1127,19 @@ table {
                                             if ($article_data[0]->author_id == $userlistval->author_id) {
                                                 $hideRow = true;
                                             } else {
-                                                // If not, check the reviewers
                                                 foreach ($article_reviewer_check as $reviewer) {
-                                                    if ($reviewer->round == $article_data[0]->round && 
-                                                        $reviewer->author_id == $userlistval->author_id) {
+                                                    if ($reviewer->round == $article_data[0]->round && $reviewer->author_id == $userlistval->author_id) {
                                                         $hideRow = true;
                                                         break; 
                                                     }
+                                                }
+                                            }
+
+                                            // Check if the email exists in $article_contributors
+                                            foreach ($article_contributors as $contributor) {
+                                                if ($contributor->email == $userlistval->email) {
+                                                    $hideRow = true;
+                                                    break;
                                                 }
                                             }
 
