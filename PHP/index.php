@@ -44,7 +44,7 @@
                           $userProfile = $resultProfile[0];
 
                           // Check for the presence of all required fields
-                          $requiredFields = ['first_name', 'middle_name', 'last_name', 'birth_date', 'gender', 'marital_status', 'orc_id', 'afiliations', 'position', 'field_of_expertise'];
+                          $requiredFields = ['first_name', 'last_name', 'birth_date', 'gender', 'marital_status', 'orc_id', 'afiliations', 'position', 'field_of_expertise'];
 
                           $profileComplete = true;
                           foreach ($requiredFields as $field) {

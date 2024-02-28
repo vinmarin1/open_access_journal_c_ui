@@ -4,6 +4,25 @@ document.addEventListener('keydown', function(event) {
   }
 });
 
+function checkDuplication() {
+    // Disable the button
+    document.getElementById("check-duplication").disabled = true;
+    
+    // Hide the text and show the spinner
+    document.getElementById("check-text").style.display = "none";
+    document.getElementById("check-spinner").style.display = "inline-block";
+    document.getElementById("checking-text").style.display = "inline"; // Show the checking text
+
+    // Simulate some asynchronous operation, like an AJAX request
+    setTimeout(function() {
+        // Once the operation is complete, re-enable the button and revert the state
+        document.getElementById("check-duplication").disabled = false;
+        document.getElementById("check-text").style.display = "inline";
+        document.getElementById("check-spinner").style.display = "none";
+        document.getElementById("checking-text").style.display = "none";
+    }, 2000); // Adjust the timeout value as needed
+}
+
 
 
 // document.addEventListener('DOMContentLoaded', function () {

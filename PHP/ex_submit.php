@@ -195,11 +195,17 @@
           </select>
           <p class="suggestion-title">QOAJ can suggest journal based on your article</p>
         </div>
-        <button type="button" class="btn btn-primary btn-sm" id="check-duplication">Check</button>
+        <button type="button" class="btn btn-primary btn-sm mt-4" id="check-duplication" onclick="checkDuplication()">
+            <span id="check-text">Check</span>
+            <div class="spinner-border spinner-border-sm" role="status" id="check-spinner" style="display: none;">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <span id="checking-text" style="display: none;">Checking...</span>
+        </button>
+
       
         <!-- <button type="button" class="btn btn-primary btn-sm" id="btn-okay">Okay</button> -->
       </div>
-
   
   
    
