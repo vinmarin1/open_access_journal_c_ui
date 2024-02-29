@@ -134,11 +134,9 @@
     </div>
    
 
-    <div class="input-details">
-
-     
+    <div class="input-details d-flex flex-column-reverse gap-3 flex-sm-row">
       
-      <div class="form-floating" id="form-floating">
+      <div class="form-floating w-100" id="form-floating">
         <h6 id="sub-9">Title <p id="title-validation" style="color: red; display: none; font-size: 10px;">The minimum word for title is 5 and maximum of 100 words</p></h6>
 
     
@@ -163,15 +161,16 @@
       </div>
 
       <div class="form-floating-2" id="form-floating-2">
-        <div id="flagged">
-          <h6 id="flaggedT"></h6>
-        </div>
+       
         <!-- <h5 id="duplication-title">Checking of Details</h5> -->
         <div class="duplicated-article">
           <h6 class="checker-titles">Duplication Checker</h6>
+          <div id="flagged">
+            <span id="flaggedT"></span>
+          </div>
           <h6></h6>
           <!-- <label id="label-title">Article: </label> -->
-          <p id="label-title">Article:</p>
+          <p id="label-title" class="d-none">Article:</p>
           <div id="similar-title" onclick="openArticleDetails()"></div>
 
          
@@ -179,7 +178,7 @@
           <div id ="similar-abstract"></div>
         
           <!-- <label  id="label-result">Result: </label> -->
-          <p id="label-result">Result:</p>
+          <p id="label-result"class="d-none">Result:</p>
           
           <div id="result-duplication" style="color: #115272"></div>
           <div id="result-duplication2" style="color: #115272"></div>
@@ -206,14 +205,9 @@
       
         <!-- <button type="button" class="btn btn-primary btn-sm" id="btn-okay">Okay</button> -->
       </div>
-  
-  
-   
-      
-
     </div>
 
-    <div class="input-details-2 mt-3" id="form-floating-3">
+    <div class="input-details-2 mt-3 w-100 w-sm-50" id="form-floating-3">
 
     <h6 id="sub-10">Keywords <p id="keywords-validation" style="color: red; display: none; font-size: 10px">Maximum of 5 keywords separated by commas*</p></h6>
       <input class="form-control artcl" type="text" id="keywords" name="keywords">
