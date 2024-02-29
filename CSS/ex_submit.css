@@ -54,7 +54,7 @@
 
 .form-floating-2{
     display: none;
-    width: 300px;
+    width: 100%;
     max-width: 350px;
     min-width: auto;
     float: right;
@@ -67,40 +67,42 @@
 
 #duplication-title, .checker-titles, #flaggedT{
     color: #0858a4;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Arial, Helvetica, sans-serif !important;
     font-weight: bold;
 }
 
 #flagged{
     margin-bottom: 10px;
     display: none;
+    font-weight: bold;
 }
 
 
-.duplicated-article, .journal-type-container, #flagged{
-    border: 1px #999999 solid;
+.duplicated-article, .journal-type-container{
+    border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color);
     width: auto;
     height: auto;
     border-radius: 5px;
-    padding-top: 10px;
-    padding-left: 10px;
-    font-family: 'Times New Roman', Times, serif;
+    padding: 10px;
+    /* font-family: 'Times New Roman', Times, serif; */
 }
 
 .suggestion-title{
-    margin-top: 20px;
-    color: #0858a4;
-    font-family: 'Times New Roman', Times, serif;
+    /* margin-top: 20px; */
+    /* color: #0858a4; */
+    /* font-family: 'Times New Roman', Times, serif; */
     width: 95%;
-    
+    font-size: 14px;
+    font-size: 12px;
+    margin-top: 8px;
     
    
 }
 
 #label-title, #label-result{
-    text-align: center;
+    text-align: left;
     color:#115272;
-    font-family: 'Times New Roman', Times, serif;
+    /* font-family: 'Times New Roman', Times, serif; */
   
 }
 
@@ -114,11 +116,11 @@
     height: auto;
     overflow-x: auto;
     overflow-y: auto;
-    font-size: 11px;
-    font-weight: bold;
-    color:#0858a4;
-    margin-bottom: 20px;
-    font-family: 'Times New Roman', Times, serif;
+    font-size: 14px;
+    /* font-weight: bold; */
+    /* color:#0858a4; */
+    /* margin-bottom: 20px; */
+    /* font-family: 'Times New Roman', Times, serif; */
 }
 #similar-abstract{
     height: auto;
