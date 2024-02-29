@@ -26,7 +26,7 @@
 </nav>
 
 
-<form action="ex_submit_con.php" method="post" id="form" enctype="multipart/form-data">
+<form action="ex_submit_con.php" method="post" id="form" enctype="multipart/form-data" id="submit-form">
 <ul class="nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item" role="presentation" style="margin-left: -10px;">
     <button class="nav-link active" id="privacy-tab" data-bs-toggle="tab" data-bs-target="#privacy-tab-pane" type="button" role="tab" aria-controls="privacy-tab-pane" aria-selected="true">Privacy</button>
@@ -53,66 +53,72 @@
 
   <div class="tab-pane fade show active" id="privacy-tab-pane" role="tabpanel" aria-labelledby="privacy-tab" tabindex="0">
 
-  <p class="h5 pt-5" id="title-1">Submission Checklist</p>
+  <p class="h6" id="title-1">Submission Checklist</p>
   <p class="h6" id="sub-1">Indicate that this submission is ready to be considered by this journal by checking off the following (comments to the editor can be added below).</p>
  
 
   <div class="descript-1 pt-3">
-    <div class="form-check" id="checkList-1">
-    <input type="checkbox" class="my-checkbox" id="check-1">
-
-    <p class="st-1">The submission has not been previously published, nor is it before another journal for consideration (or an explanation has been provided in Comments to the Editor).</p>
+    <div class=" " id="checkList-1">
+      <label for="check-1" class="checkItem">
+        <input type="checkbox" class="my-checkbox" id="check-1" name="">
+        <p class="st-1">The submission has not been previously published, nor is it before another journal for consideration (or an explanation has been provided in Comments to the Editor).</p>
+      </label>
     </div>
-   <div class="form-check" id="checkList-2">
-   <input type="checkbox" class="my-checkbox" id="check-2">
-   <p class="st-2">Note that your paper will be submitted to iThenticate.com (Plagiarism Detection Software) to check the similarity score.</p>
-   </div>
-    <div class="form-check" id="checkList-3">
-    <input type="checkbox" class="my-checkbox" id="check-3">
-    <p class="st-3">The submission file is in Microsoft Word document file format. Please do NOT submit in pdf.</p>
+    <div class="" id="checkList-2">
+      <label for="check-2" class="checkItem">
+        <input type="checkbox" class="my-checkbox" id="check-2">
+        <p class="st-2">Note that your paper will be submitted to iThenticate.com (Plagiarism Detection Software) to check the similarity score.</p>
+      </label>
     </div>
-    <div class="form-check" id="checkList-4">
-    <input type="checkbox" class="my-checkbox" id="check-4">
-    <p class="st-4">Where available, URLs for online references have been provided.</p>
+    <div class="" id="checkList-3">
+      <label for="check-3" class="checkItem">
+        <input type="checkbox" class="my-checkbox" id="check-3">
+        <p class="st-3">The submission file is in Microsoft Word document file format. Please do NOT submit in pdf.</p>
+      </label>
     </div>
-    <!-- <div class="form-check" id="checkList-5">
+    <div class="" id="checkList-4">
+      <label for="check-4" class="checkItem">
+        <input type="checkbox" class="my-checkbox" id="check-4">
+        <p class="st-4">Where available, URLs for online references have been provided.</p>
+      </label>
+    </div>
+    <!-- <div class="" id="checkList-5">
     <input type="checkbox" class="my-checkbox" id="check-5">
     <p class="st-4">Where available, URLs for online references have been provided.</p>
     </div> -->
-    <div class="form-check" id="check-6">
-    <input type="checkbox" class="my-checkbox" id="check-6">
-    <p class="st-5" style="width: 90%; display: inline-block">The text is single-column; single-spaced; uses a 11-point font (except for section headings which is 12); employs italics, rather than underlining (except with URL addresses); and all illustrations, figures, and tables are placed within the text at the appropriate points, rather than at the end. The Book Antiqua font should be used for all text in the paper. Use A4 page set-up. The top and bottom margins are 1.4 inches and the right/left margins are 1.2 inches.</p>
+    <div class="" id="checkList-6">
+      <label for="check-6" class="checkItem">
+        <input type="checkbox" class="my-checkbox" id="check-6">
+        <p class="st-5" >The text is single-column; single-spaced; uses a 11-point font (except for section headings which is 12); employs italics, rather than underlining (except with URL addresses); and all illustrations, figures, and tables are placed within the text at the appropriate points, rather than at the end. The Book Antiqua font should be used for all text in the paper. Use A4 page set-up. The top and bottom margins are 1.4 inches and the right/left margins are 1.2 inches.</p>
+      </label>
     </div>
-    <div class="form-check" id="check-7">
-    <input type="checkbox" class="my-checkbox" id="check-7">
-    <p class="st-6">The text adheres to the stylistic and bibliographic requirements outlined in the Author Guidelines, which is found in About the Journal.</p>
-
+    <div class="" id="checkList-7">
+      <label for="check-7" class="checkItem">
+        <input type="checkbox" class="my-checkbox" id="check-7">
+        <p class="st-6">The text adheres to the stylistic and bibliographic requirements outlined in the Author Guidelines, which is found in About the Journal.</p>
+      </label>
     </div>
-  
-   
-
-
-
   </div>
   
   <hr id="line-1">
 
-  <p class="h5 pt-3" id="title-2">Copyright Notice</p>
+  <p class="h6 pt-3" id="title-2">Copyright Notice</p>
   <p class="h6 pt-3" id="sub-2">Authors who publish with this journal also agree to the following terms: </p>
-  <p class="h6 pt-3" id="sub-3">Authors are able to enter into separate, additional contractual arrangements for the non-exclusive distribution of the journal's published version of the work (e.g., post it to an institutional repository or publish it in a book), with an acknowledgement of its initial publication in this journal.</p>
-  <p class="h6 pt-3" id="sub-4">Authors are permitted and encouraged to post their work online (e.g., in institutional repositories or on their website) as this can lead to productive exchanges, as well as earlier and greater citation of published work.</p>
+  <p class="h6 " id="sub-3">Authors are able to enter into separate, additional contractual arrangements for the non-exclusive distribution of the journal's published version of the work (e.g., post it to an institutional repository or publish it in a book), with an acknowledgement of its initial publication in this journal.</p>
+  <p class="h6 " id="sub-4">Authors are permitted and encouraged to post their work online (e.g., in institutional repositories or on their website) as this can lead to productive exchanges, as well as earlier and greater citation of published work.</p>
 
   <hr id="line-2">
 
-  <p class="h5 pt-3" id="title-3">Journal's Privacy Statement</p>
+  <p class="h6 pt-3" id="title-3">Journal's Privacy Statement</p>
   <p class="h6" id="sub-5">The names and email addresses entered in this journal site will be used exclusively for the stated purposes of this journal and will not be made available for any other purpose or to any other party</p>
 
   <div class="descript-2 pt-3">
 
-  <div class="form-check">
-  <input type="checkbox" class="my-checkbox" id="check" name="check" value="1">
-  <p class="st-7">The authors agree to the terms of this Copyright Notice, which will apply to this submission if and when it is published by this journal (comments to the editor can be added below).</p>
-
+  <div class="">
+  <label for="check" class="checkItem">
+    <input type="checkbox" class="my-checkbox" id="check" name="check" value="1">
+    <p class="st-7">The authors agree to the terms of this Copyright Notice, which will apply to this submission if and when it is published by this journal (comments to the editor can be added below).</p>
+  </label>
 
   
 
@@ -126,28 +132,18 @@
   <div class="tab-pane fade" id="article-tab-pane" role="tabpanel" aria-labelledby="article-tab" tabindex="0">
   
   <div class="article-details">
-    <div class="details">
-      <p class="h5 pt-5" id="title-4">Article Details</p>
+    <div class="details py-2">
+      <p class="h6 pt-3 " id="title-4">Article Details</p>
       <p class="h6" id="sub-6" style="#0858a4">Please provide the following details to help us manage your submission in our system.</p>
-     
-    
     </div>
-   
-
     <div class="input-details d-flex flex-column-reverse gap-3 flex-sm-row">
       
-      <div class="form-floating w-100" id="form-floating">
+      <div class="form-floating w-100 mt-1" id="form-floating">
         <h6 id="sub-9">Title <p id="title-validation" style="color: red; display: none; font-size: 10px;">The minimum word for title is 5 and maximum of 100 words</p></h6>
 
     
         <input class="form-control artcl" type="text"  id="title" name="title">
-      
-       
-        
         <h6 id="sub-11">Abstract<p id="abstract-validation" style="color: red; display: none;  font-size: 10px">The minimum word for abstract is 10 and maximum of 600 words</p></h6>
-
-       
-
         <!-- <div id="editor">
       
         </div> -->
@@ -179,9 +175,11 @@
         
           <!-- <label  id="label-result">Result: </label> -->
           <p id="label-result"class="d-none">Result:</p>
-          
-          <div id="result-duplication" style="color: #115272"></div>
-          <div id="result-duplication2" style="color: #115272"></div>
+          <div class="d-flex gap-2">
+            <div id="result-duplication" style="color: #115272"></div>
+            <div id="result-duplication2" style="color: #115272"></div>
+          </div>
+         
         </div>
 
         <div class="journal-type-container">
@@ -192,9 +190,9 @@
             <option value="2" id="lamp">The Lamp</option>
             <option value="3" id="star">The Star</option>
           </select>
-          <p class="suggestion-title">QOAJ can suggest journal based on your article</p>
+          <span class="suggestion-title">QOAJ can suggest journal based on your article</span>
         </div>
-        <button type="button" class="btn btn-primary btn-sm mt-4" id="check-duplication" onclick="checkDuplication()">
+        <button type="button" class="btn btn-primary btn-sm mt-2" id="check-duplication" onclick="checkDuplication()">
             <span id="check-text">Check</span>
             <div class="spinner-border spinner-border-sm" role="status" id="check-spinner" style="display: none;">
                 <span class="visually-hidden">Loading...</span>
@@ -336,7 +334,7 @@
                 <th><input type="text" style="width: 118px" value="<?php echo $last_name ?>" disabled></th>
                 <th><input type="text" style="width: 118px"  value="<?php echo $public_name ?>" disabled></th>
                 <th><input type="text" style="width: 118px" value="<?php echo $orc_id ?>"  disabled></th>
-                <th><input type="checkbox" id="authorPcontact" class="form-check-input"><input type="hidden" id="authorPcontactValue" name="authorPcontactValue" value=""><label style="font-weight: normal; font-size: 11px; margin-left: 10px;">Primary Contact</label></th>
+                <th><input type="checkbox" id="authorPcontact" class="-input"><input type="hidden" id="authorPcontactValue" name="authorPcontactValue" value=""><label style="font-weight: normal; font-size: 11px; margin-left: 10px;">Primary Contact</label></th>
                 
                 
                </tr>
@@ -499,17 +497,17 @@
 //         '<td><input class="form-control" type="text" name="publicnameC[]" style="height: 30px;"></td>' +
 //         '<td><input class="form-control" type="number" name="orcidC[]" style="height: 30px;"></td>' +
 //         '<td class="align-middle">' +
-//         '<div class="form-check cAuthor" style="display: inline-block; margin-right: 10px">' +
-//         '<input class="form-check-input" type="checkbox" name="contributor_type_coauthor[' + index + ']" value="Co-Author">' +
-//         '<label class="form-check-label"> Co-Author</label>' +
+//         '<div class=" cAuthor" style="display: inline-block; margin-right: 10px">' +
+//         '<input class="-input" type="checkbox" name="contributor_type_coauthor[' + index + ']" value="Co-Author">' +
+//         '<label class="-label"> Co-Author</label>' +
 //         '</div>' +
-//         '<div class="form-check pContact" style="display: inline-block">' +
-//         '<input class="form-check-input" type="checkbox" name="contributor_type_primarycontact[' + index + ']" value="Primary Contact">' +
-//         '<label class="form-check-label"> Primary Contact</label>' +
+//         '<div class=" pContact" style="display: inline-block">' +
+//         '<input class="-input" type="checkbox" name="contributor_type_primarycontact[' + index + ']" value="Primary Contact">' +
+//         '<label class="-label"> Primary Contact</label>' +
 //         '</div>' +
 //         '</td>'
 //         +
-//         '<td class="align-middle"><input class="form-check-input" type="checkbox" name="selectToDelete"></td>' +
+//         '<td class="align-middle"><input class="-input" type="checkbox" name="selectToDelete"></td>' +
 //         '</tr>';
 
 //     $('#contributorTable tbody').append(newRow);
