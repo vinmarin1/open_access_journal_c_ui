@@ -1369,11 +1369,26 @@ table {
                         badgeElement.textContent = similarArticlesCount;
 
                         const badgeContainer = document.getElementById('badgeContainer');
-                        badgeContainer.appendChild(badgeElement);
-                        document.querySelector('.duplicateButton').classList.remove('d-none');
+                        if (badgeContainer) {
+                            badgeContainer.appendChild(badgeElement);
+                        }
+
+                        const duplicateButton = document.querySelector('.duplicateButton');
+                        if (duplicateButton) {
+                            duplicateButton.classList.remove('d-none');
+                        }
                     } else {
-                        document.querySelector('.duplicateButton').classList.add('d-none');
+                        const badgeContainer = document.getElementById('badgeContainer');
+                        const badgeElement = document.createElement('span');
+                        if (badgeContainer) {
+                            badgeContainer.appendChild(badgeElement);
+                        }
+                        const duplicateButton = document.querySelector('.duplicateButton');
+                        if (duplicateButton) {
+                            duplicateButton.classList.remove('d-none');
+                        }
                     }
+
 
                     if (data.flagged) {
                         $('#DuplicateModal').modal('show');
@@ -1431,8 +1446,11 @@ table {
                         });
                     }
                 } catch (error) {
-                    console.error('Error fetching data:', error);
-                    document.getElementById('apiData').innerText = 'Error fetching data';
+                console.error('Error fetching data:', error);
+                const apiDataElement = document.getElementById('apiData');
+                    if (apiDataElement) {
+                        apiDataElement.innerText = 'Error fetching data';
+                    }
                 }
             }
 
@@ -1543,8 +1561,11 @@ table {
                     });
                 }
             } catch (error) {
-                console.error('Error fetching data:', error);
-                document.getElementById('apiData').innerText = 'Error fetching data';
+            console.error('Error fetching data:', error);
+            const apiDataElement = document.getElementById('apiData');
+                if (apiDataElement) {
+                    apiDataElement.innerText = 'Error fetching data';
+                }
             }
         }
 

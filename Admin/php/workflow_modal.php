@@ -1563,15 +1563,17 @@ function updateCopyeditedFiles() {
     $('#sloading').toggle();
     var copyeditedFile = $('#copyeditedfile')[0].files[0];
 
-    if (copyeditedFile) {
-        if (copyeditedFile.size <= 1.5 * 1024 * 1024) { 
-            uploadCopyeditedFiles();
-        } else {
-            $('#sloading').toggle();
-            alert("File size exceeds the limit of 1.5 MB. Please upload a smaller file.");
-            return;
-        }
+    if (!copyeditedFile) {
+        updateCopyeditedCheckedFiles();
+        updateCopyeditedUncheckedFiles();
+    } else if (copyeditedFile.size <= 1.5 * 1024 * 1024) {
+        uploadCopyeditedFiles();
+    } else {
+        $('#sloading').toggle();
+        alert("File size exceeds the limit of 1.5 MB. Please upload a smaller file.");
+        return;
     }
+
 }
 
 function uploadCopyeditedFiles() {
@@ -1594,8 +1596,6 @@ function uploadCopyeditedFiles() {
         success: function (response) {
             $('#sloading').toggle();
             console.log(response);
-            updateCopyeditedCheckedFiles();
-            updateCopyeditedUncheckedFiles();
             location.reload();
         },
         error: function (xhr, status, error) {
@@ -1698,15 +1698,17 @@ function updateProductionFiles() {
     $('#sloading').toggle();
     var productionfile = $('#productionfile')[0].files[0];
 
-    if (productionfile) {
-        if (productionfile.size <= 1.5 * 1024 * 1024) { 
-            uploadProductionFiles();
-        } else {
-            $('#sloading').toggle();
-            alert("File size exceeds the limit of 1.5 MB. Please upload a smaller file.");
-            return;
-        }
+    if (!productionfile) {
+        updateProductionCheckedFiles();
+        updateProductionUncheckedFiles();
+    } else if (productionfile.size <= 1.5 * 1024 * 1024) {
+        uploadProductionFiles();
+    } else {
+        $('#sloading').toggle();
+        alert("File size exceeds the limit of 1.5 MB. Please upload a smaller file.");
+        return;
     }
+
 }
 
 function uploadProductionFiles() {
@@ -1731,8 +1733,6 @@ function uploadProductionFiles() {
         success: function (response) {
             $('#sloading').toggle();
             console.log(response);
-            updateProductionCheckedFiles();
-            updateProductionUncheckedFiles();
             location.reload();
         },
         error: function (xhr, status, error) {
