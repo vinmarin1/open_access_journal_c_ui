@@ -144,7 +144,7 @@
     <div class="row">
         <div class="col-md-1" style="margin-left:-80px"> <!------ blank space -------> </div>
             <div class="col-md-10">
-                <h3>DESIGNER</h3>
+                <h3>DESIGNERS</h3>
             </div>
         </div>
     </div>
@@ -444,7 +444,7 @@
     <div class="row">
         <div class="col-md-1" style="margin-left:-80px"> <!------ blank space -------> </div>
             <div class="col-md-10">
-                <h3 style="color: #115272;">DOCUMENTATION/RESEARCHER</h3>
+                <h3 style="color: #115272;">DOCUMENTATIONS/RESEARCHERS</h3>
             </div>
         </div>
     </div>
