@@ -91,6 +91,9 @@ $expertise = $_SESSION['expertise'];
 			}
 			?>
 			</h3>
+			<h4 id="liveData">
+			
+			</h4>
 		</div>
 		<!-- <div>
 			<button class="btn tbn-primary btn-md" id="btn1" onclick="window.location.href='user-dashboard.php'">My Profile</button>
@@ -1816,6 +1819,9 @@ $expertise = $_SESSION['expertise'];
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+	<script src="jquery-3.7.1.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <script src="../JS/reusable-header.js"></script>
@@ -2148,6 +2154,27 @@ function downloadCertificatePublished() {
 
 	
 }
+
+$(document).ready(function () {
+        // Update live data initially
+        updateLiveData();
+
+        // Set interval to update live data every 5 seconds (adjust as needed)
+        setInterval(updateLiveData, 2000);
+    });
+
+    function updateLiveData() {
+        $.ajax({
+            url: '../PHP/fetch_data.php',
+            type: 'GET',
+            success: function (data) {
+                $('#liveData').text(data);
+            },
+            error: function () {
+                console.log('Error updating live data.');
+            }
+        });
+    }
 
 </script>
 
