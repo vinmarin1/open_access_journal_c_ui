@@ -144,7 +144,7 @@ $expertise = $_SESSION['expertise'];
 							
 							<img class="img-fluid mt-4" src="" alt="Selected Image" id="selectedImagePreview" style="height: 50%; width: 50%; border-radius: 60%; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; margin-left: auto; margin-right: auto">
 							<div class="btn-change mt-5" style="width: 100%">
-							<button type="button" class="btn btn-success btn-sm" style="width: 95%; display: block; margin-left: 10px" onclick="saveProfile()">Save</button>
+							<button type="button" class="btn btn-success btn-sm" style="width: 95%; display: block; margin-left: 10px;" onclick="saveProfile()">Save</button>
 							<button type="button" class="btn btn-secondary btn-sm mt-1" style="width: 95%; display: block; margin-left: 10px" onclick="cancelUpdate()">Cancel</button>
 							</div>
 							
