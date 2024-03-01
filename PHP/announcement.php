@@ -292,7 +292,7 @@ if ($announcementCount > 0) {
         echo " <div class='row mt-4'>
         <div class='col-md-2'>
             <div class='announcement-pic text-center'>
-                <img src='$img' alt='#!' class='img-fluid'>
+                <img src='../Files/announcement-image/$img' alt='#!' class='img-fluid'>
             </div>
         </div>
         <div class='col-md-9 policy' id='policy-top'>
@@ -308,13 +308,6 @@ if ($announcementCount > 0) {
         }
         ?>
 </div>
-
-
-
-
-
-
-
 
 
 

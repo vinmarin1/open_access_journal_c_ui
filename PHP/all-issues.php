@@ -1,6 +1,7 @@
 <?php
 session_start();
 $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,6 +15,8 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
 
 </head>
 <body>
+
+
 
 <div class="header-container" id="header-container">
 <!-- header will be display here by fetching reusable files -->
@@ -32,6 +35,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
     </div>
 
 
+
         <section class="pub-container d-flex gap-4">
             <div class="issue-title">
                 <div class="pic-border">
@@ -43,6 +47,8 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     <p><strong style="color:#285581">Online Date Start:</strong><br> <span id="issue-date"></span></p><br>
                 </div>
             </div>
+
+            
 
             <div class="">
                 <!-- <div class=" d-flex gap-2">
@@ -75,7 +81,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     </ul>
 
                     </nav>
-                </div>
+                </div>  
             </div>
         </section>
 </div>
@@ -83,7 +89,12 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
 <div class="footer" id="footer">
     <!-- footer will be display here by fetching reusable files -->
 </div>
-<script>
+
+    <script>
+        // Pass the user's login status to the JavaScript file
+        const isLoggedIn = <?php echo isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true ? 'true' : 'false'; ?>;
+    </script>
+    <script>
         const sessionId = "<?php echo $author_id; ?>";
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" ></script>
@@ -91,7 +102,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <script src="../JS/reusable-header.js"></script>
     <script src="../JS/cloudConvert.js"></script>
-    <script src="../JS/all-issues.js"></script>
+    <script src="../JS/all-issues.js" defer></script>
 
 </body>
 </html>
