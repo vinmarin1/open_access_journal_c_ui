@@ -302,6 +302,33 @@ $journal = get_journal_list();
           </div>
         </nav>
         <script>
+          // Pusher.logToConsole = true;
+
+          // var pusher = new Pusher('cabcad916f55a998eaf5', {
+          //   cluster: 'ap1'
+          // });
+
+          // var channel = pusher.subscribe('my-channel');
+          // channel.bind('my-event', function(data) {
+          //   updateNotificationCount();
+          // });
+
+          // function updateNotificationCount() {
+          //   var xhr = new XMLHttpRequest();
+          //   xhr.onreadystatechange = function() {
+          //     if (xhr.readyState === XMLHttpRequest.DONE) {
+          //       if (xhr.status === 200) {
+          //         document.getElementById('notification-count').textContent = xhr.responseText;
+          //       } else {
+          //         console.error('Failed to fetch notification count:', xhr.statusText);
+          //       }
+          //     }
+          //   };
+          //   xhr.open('GET', 'function/get_notification_count.php', true);
+          //   xhr.send();
+          // }
+
+          // window.addEventListener('load', updateNotificationCount);
           Pusher.logToConsole = true;
 
           var pusher = new Pusher('cabcad916f55a998eaf5', {
@@ -310,23 +337,6 @@ $journal = get_journal_list();
 
           var channel = pusher.subscribe('my-channel');
           channel.bind('my-event', function(data) {
-            updateNotificationCount();
+            alert(JSON.stringify(data));
           });
-
-          function updateNotificationCount() {
-            var xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function() {
-              if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 200) {
-                  document.getElementById('notification-count').textContent = xhr.responseText;
-                } else {
-                  console.error('Failed to fetch notification count:', xhr.statusText);
-                }
-              }
-            };
-            xhr.open('GET', 'function/get_notification_count.php', true);
-            xhr.send();
-          }
-
-          window.addEventListener('load', updateNotificationCount);
         </script>
