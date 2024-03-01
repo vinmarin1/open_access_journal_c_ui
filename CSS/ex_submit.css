@@ -119,7 +119,7 @@ text-align: justify !important;
 #result-duplication, #result-duplication2{
     text-align: left;
     color:#115272;
-    font-family: 'Times New Roman', Times, serif;
+    /* font-family: 'Times New Roman', Times, serif; */
 }
 
 #similar-title{
