@@ -1,5 +1,6 @@
 <?php
 include 'dbcon.php';
+// require '../../vendor/autoload.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -7,7 +8,6 @@ use PHPMailer\PHPMailer\Exception;
 require 'PHPMailer-master/src/Exception.php';
 require 'PHPMailer-master/src/PHPMailer.php';
 require 'PHPMailer-master/src/SMTP.php';
-require '../../vendor/autoload.php';
 
 // Check if the function is not already defined
 if (!function_exists('get_email_content')) {
@@ -158,19 +158,19 @@ function sendEmail()
 
 function addNotification($articleid, $author_id, $title, $message)
 {
-    $options = array(
-        'cluster' => 'ap1',
-        'useTLS' => true
-    );
-    $pusher = new Pusher\Pusher(
-        'cabcad916f55a998eaf5',
-        '0aef8b4d2da6760f5726',
-        '1764683',
-        $options
-    );
+    // $options = array(
+    //     'cluster' => 'ap1',
+    //     'useTLS' => true
+    // );
+    // $pusher = new Pusher\Pusher(
+    //     'cabcad916f55a998eaf5',
+    //     '0aef8b4d2da6760f5726',
+    //     '1764683',
+    //     $options
+    // );
 
-    $data['message'] = 'hello world';
-    $pusher->trigger('my-channel', 'my-event', $data);
+    // $data['message'] = 'hello world';
+    // $pusher->trigger('my-channel', 'my-event', $data);
 
     $description = $articleid . ' - ' . $title . ', ' . $message;
 
