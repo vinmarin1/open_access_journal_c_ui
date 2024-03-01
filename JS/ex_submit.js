@@ -608,16 +608,18 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   keywords.addEventListener('blur', function () {
-      const wordCount = keywords.value.trim().split(",").length;
+    const words = keywords.value.trim().split(",");
+    const nonEmptyWords = words.filter(word => word.trim() !== ''); 
 
-      if (wordCount > 5) {
-          keywordsValidation.style.display = 'block';
-      } else {
-          keywordsValidation.style.display = 'none';
-      }
+    if (nonEmptyWords.length < 3) {
+        keywordsValidation.style.display = 'block';
+    } else {
+        keywordsValidation.style.display = 'none';
+    }
 
-      checkValidations();
-  });
+    checkValidations();
+});
+
 
   editor2.addEventListener('input', function () {
       const referenceText = editor2.value.trim();
@@ -719,83 +721,17 @@ setupFileInput('file_name3', 'file3UpdatePreview');
 
 document.getElementById('update-cont-2').addEventListener('click', function(event) {
 
-  const input5f1 = document.getElementById('input5f1').value;
-  const input7 = document.getElementById('input7').value;
-  const input6 = document.getElementById('input6').value;
-  const input8 = document.getElementById('input8').value;
- 
-  
-
-  Swal.fire({
-    html: '<div id="update-article-info-container">' +
-    '<p class="h5" id="update-article-title" style=" font-family: Arial, Helvetica, sans-serif;">Update Article Details</p><br><hr>' +
-    '<div id="preview-details-inputs">' +
-    '<p class="h6 mt-5" id="previewTitlelabel">Title:</p> ' + 
-    '<input type="text" class="form-control" id="titleInputPreview" value=" '+ input5f1 +' ">' +
-    '<p class="h6" id="previewAbstractlabel">Abstract:</p> ' + 
-    '<textarea class="form-control" name="abstractInputPreview" id="abstractInputPreview" cols="30" rows="5" style="width: 95%; height: auto" >'+ input7 +'</textarea>' +
-    '<p class="h6" id="previewKeywordlabel">Keyword:</p> ' + 
-    '<input type="text" class="form-control" id="keywordInputPreview" value=" '+ input6 +' ">' +
-    
-    '<p class="h6" id="referenceAbstractlabel">Reference:</p> ' + 
-    '<textarea class="form-control" name="abstractInputPreview" id="referencetInputPreview" cols="30" rows="5" style="width: 95%; height: auto" >'+ input8 +'</textarea>' +
-    '</div>'+
-    '</div>' + '<button class="btn btn-primary btn-sm" id="btnPreview_Update">Update</button>',
-    showConfirmButton: false,
-  });
-
-  document.getElementById('btnPreview_Update').addEventListener('click', function(event){
-    const titleInputPreview = document.getElementById('titleInputPreview').value;
-    const abstractInputPreview = document.getElementById('abstractInputPreview').value;
-    const keywordInputPreview = document.getElementById('keywordInputPreview').value;
-    const referencetInputPreview = document.getElementById('referencetInputPreview').value;
-
-    const title = document.getElementById('title').value = titleInputPreview;
-    const editor = document.getElementById('editor').value = abstractInputPreview;
-    const keywords = document.getElementById('keywords').value = keywordInputPreview;
-    const editor2 = document.getElementById('editor2').value = referencetInputPreview;
-
-    const input5f1 = document.getElementById('input5f1').value = titleInputPreview;
-    const input7 = document.getElementById('input7').value = abstractInputPreview;
-    const input6 = document.getElementById('input6').value = keywordInputPreview;
-    const input8 = document.getElementById('input8').value = referencetInputPreview;
-
-
-    Swal.close();
-  });
+  const articleButton = document.getElementById('article-tab');
+  articleButton.click();
 
 });
 
+
 document.getElementById('update-cont-3').addEventListener('click', function(event){
 
-  const input9 = document.getElementById('input9').value;
-  const input9f = document.getElementById('input9f').value;
-  const input9g = document.getElementById('input9g').value;
-
-  Swal.fire({
-    html: '<div id="updatePreviewFileContainer">' + 
-          '<p class="h5" id="updatePreviewFileTitle">Update Files</p><br><hr> ' +
-          '<p class="h6 mt-5" id="updatePreviewFile1">File with author name: </p>' +
-          '<input type="text" class="form-control" id="file1UpdatePreview"  value="' + input9 +'" disabled>' + '<button type="button" class="btn btn-primary btn-sm" id="btnSelectFile1" onclick="openFilename(1)">Select File</button>' + 
-          '<p class="h6" id="updatePreviewFile2">File With no author name: </p>' +
-          '<input type="text" class="form-control" id="file2UpdatePreview" value="' + input9f +'" disabled>' +
-          '<button type="button" class="btn btn-primary btn-sm" id="btnSelectFile2" onclick="openFilename(2)">Select File</button>' +
-          '<p class="h6" id="updatePreviewFile3">Title Page: </p>' +
-          '<input type="text" class="form-control" id="file3UpdatePreview" value="' + input9g +'" disabled>' +
-          '<button type="button" class="btn btn-primary btn-sm" id="btnSelectFile2" onclick="openFilename(3)">Select File</button><br>' +
-          '<button type="button"  class="btn btn-secondary btn-sm mt-4" id="btnClose" >Close</button> ' +
-          '</div>',
-    showConfirmButton: false,
-  });
-
-  document.getElementById('btnClose').addEventListener('click', function(event) {
-
-    
-
-    Swal.close();
-
-  });
-
+ 
+  const fileTab = document.getElementById('file-tab');
+  fileTab.click();
 
 
 });
