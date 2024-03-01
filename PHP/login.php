@@ -1,12 +1,3 @@
-<?php
-
-if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
-	header('Location: ./index.php');
-	exit();
-  }
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
