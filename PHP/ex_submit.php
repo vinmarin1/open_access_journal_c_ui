@@ -207,7 +207,7 @@
 
     <div class="input-details-2 mt-3 w-100 w-sm-50" id="form-floating-3">
 
-    <h6 id="sub-10">Keywords <p id="keywords-validation" style="color: red; display: none; font-size: 10px">Maximum of 5 keywords separated by commas*</p></h6>
+    <h6 id="sub-10">Keywords <p id="keywords-validation" style="color: red; display: none; font-size: 10px">Minimum of 3 keywords separated by comma*</p></h6>
       <input class="form-control artcl" type="text" id="keywords" name="keywords">
       
 
