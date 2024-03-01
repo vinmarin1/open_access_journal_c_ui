@@ -50,6 +50,7 @@ $expertise = $_SESSION['expertise'];
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400&display=swap">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -203,7 +204,11 @@ $expertise = $_SESSION['expertise'];
 							?>
 
 							</h1>
-								<i class="ri-edit-box-line" id="editIcon"></i>
+								<!-- <i class="ri-edit-box-line" id="editIcon" style="color: green solid"></i> -->
+
+								<label id="editIcon" style="cursor: pointer; color: green"><span style="padding-right: 5px; font-size: 12px; font-family: Arial, Helvetica, sans-serif;
+   								">Edit</span><i class="fa-solid fa-pen-to-square" style="color: green"></i></label>
+							
 							</div>
 							<p class="role">
 								<?php
@@ -492,7 +497,7 @@ $expertise = $_SESSION['expertise'];
 														$orc_id = $user->orc_id;
 													
 														echo '<input type="text"  id="orcid" name="orcid" class="other-text-box" pattern="\d{4}-\d{4}-\d{4}-\d{4}" placeholder="(e.g., xxxx-xxxx-xxxx-xxxx)"
-														value="' . $orc_id . '" >';
+														value="' . $orc_id . '" disabled>';
 													
 														
 										

@@ -809,7 +809,7 @@ function addRow() {
       '<td><input class="form-control" type="text" name="firstnameC[]" style="height: 30px;" ></td>' +
       '<td><input class="form-control" type="text" name="lastnameC[]" style="height: 30px;" ></td>' +
       '<td><input class="form-control" type="text" name="publicnameC[]" style="height: 30px;"></td>' +
-      '<td><input class="form-control" type="number" name="orcidC[]" style="height: 30px;"></td>' +
+      '<td><input class="form-control" type="text" name="orcidC[]" style="height: 30px;"></td>' +
       '<td class="align-middle">' +
       '<div class="form-check cAuthor" style="display: inline-block; margin-right: 10px">' +
       '<input class="form-check-input" type="checkbox" name="contributor_type_coauthor[' + index + ']" value="Co-Author">' +
@@ -831,6 +831,20 @@ function addRow() {
 $('#contributorTable tbody').on('blur', 'input.email-input', function() {
   var email = $(this).val();
   var currentRow = $(this).closest('tr');
+
+  const inputElement = document.querySelector('input[name="orcidC[]"]');
+
+// Add an event listener to the input element
+inputElement.addEventListener('input', function (event) {
+  // Get the input value
+  let inputValue = event.target.value;
+
+  // Remove non-numeric characters using a regular expression
+  inputValue = inputValue.replace(/\D/g, '');
+
+  // Update the input field with the cleaned value
+  event.target.value = inputValue;
+});
 
   if (email !== '') {
     
@@ -862,6 +876,8 @@ $('#contributorTable tbody').on('blur', 'input.email-input', function() {
       });
   }
 });
+
+
 
 
 function saveData() {
