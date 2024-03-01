@@ -160,9 +160,9 @@
        
         <!-- <h5 id="duplication-title">Checking of Details</h5> -->
         <div class="duplicated-article">
-          <h6 class="checker-titles">Duplication Checker</h6>
+          <h6 class="checker-titles">Duplication Checker <span id="flaggedT"></span></h6>
           <div id="flagged">
-            <span id="flaggedT"></span>
+          
           </div>
           <h6></h6>
           <!-- <label id="label-title">Article: </label> -->
@@ -190,7 +190,7 @@
             <option value="2" id="lamp">The Lamp</option>
             <option value="3" id="star">The Star</option>
           </select>
-          <span class="suggestion-title">QOAJ can suggest journal based on your article</span>
+          <span class="suggestion-title text-muted">QCUJ can suggest journal based on your article</span>
         </div>
         <button type="button" class="btn btn-primary btn-sm mt-2" id="check-duplication" onclick="checkDuplication()">
             <span id="check-text">Check</span>
