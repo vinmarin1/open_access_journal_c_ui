@@ -112,11 +112,11 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                             <input type="hidden" name="currency_code" value="PHP">
                             <input type="hidden" name="no_shipping" value="1">
                             <input type="hidden" name="cmd" value="_xclick">
-                            <input type="hidden" name="return" value="https://www.qcuj.online/PHP/success.php">
-                            <input type="hidden" name="cancel_return" value="https://www.qcuj.online/PHP/donation.php">
-                            <!-- 
+                            <!-- <input type="hidden" name="return" value="https://www.qcuj.online/PHP/success.php">
+                            <input type="hidden" name="cancel_return" value="https://www.qcuj.online/PHP/donation.php"> -->
+
                             <input type="hidden" name="return" value="http://localhost/open_access_journal_c_ui/PHP/success.php">
-                            <input type="hidden" name="cancel_return" value="http://localhost/open_access_journal_c_ui/PHP/donation.php"> -->
+                            <input type="hidden" name="cancel_return" value="http://localhost/open_access_journal_c_ui/PHP/donation.php">
                             <!---- Step 1 ------>
                             <div class="tab" id="tab1">
                                 <div class="container-fluid">
