@@ -1,6 +1,5 @@
 <?php
 include 'dbcon.php';
-require '../../vendor/autoload.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -8,6 +7,7 @@ use PHPMailer\PHPMailer\Exception;
 require 'PHPMailer-master/src/Exception.php';
 require 'PHPMailer-master/src/PHPMailer.php';
 require 'PHPMailer-master/src/SMTP.php';
+require '../../vendor/autoload.php';
 
 // Check if the function is not already defined
 if (!function_exists('get_email_content')) {
@@ -181,11 +181,10 @@ function addNotification($articleid, $author_id, $title, $message)
     if ($result !== false) {
         echo json_encode(['status' => true, 'message' => 'Record added successfully']);
     } else {
-        // $errorInfo = get_db_error_info();
-        // echo json_encode(['status' => false, 'message' => 'Failed to add record', 'error' => $errorInfo]);
-        echo json_encode(['status' => false, 'message' => 'Failed to add record', 'error']);
+        echo json_encode(['status' => false, 'message' => 'Failed to add record']);
     }
 }
+
 
 function addUserPointsReviewer($article_id)
 {
