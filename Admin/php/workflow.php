@@ -1600,7 +1600,7 @@ table {
                 theme: 'snow'
             });
                 
-            var abstractContent = '<?php echo addslashes($article_data[0]->abstract); ?>';
+            var abstractContent = <?php echo json_encode($article_data[0]->abstract); ?>;
             var referenceContent = '<?php echo addslashes($article_data[0]->references); ?>';
             var emailContent = <?php echo json_encode($reviewer_email[0]->content); ?>;
             var title = <?php echo json_encode($article_data[0]->title); ?>;
