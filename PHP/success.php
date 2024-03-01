@@ -52,6 +52,13 @@ if (!empty($_GET)) {
 
             $result2 = database_run($sql2, array($author_id, $payer_email, $product, $point_earned), true);
 
+            $title = 'Send Donation';
+            $description = $payer_name . ' Send Donation PHP ' . $amount;
+
+            $sql3 = "INSERT INTO `notification`(`user_id`, `title`, `description`) VALUES (?, ?, ?)";
+
+            $result3 = database_run($sql3, array($author_id, $title, $description), true);
+
             header('Location: donation.php?payer_firstname=' . urlencode($payer_firstname) . '&payer_lastname=' . urlencode($payer_lastname) . '&payer_email=' . urlencode($payer_email) . '&amount=' . urlencode($amount));
             exit();
         } else {

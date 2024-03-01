@@ -44,7 +44,6 @@ $seriesString = json_encode($series);
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
-    <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
 </head>
 <style>
     #nopadding {
@@ -177,17 +176,6 @@ $seriesString = json_encode($series);
 
     <!-- DataTables initialization script -->
     <script>
-        Pusher.logToConsole = true;
-
-        var pusher = new Pusher('cabcad916f55a998eaf5', {
-            cluster: 'ap1'
-        });
-
-        var channel = pusher.subscribe('my-channel');
-        channel.bind('my-event', function(data) {
-            alert(JSON.stringify(data));
-        });
-
         $(document).ready(function() {
             $('#DataTable').DataTable({});
         });
