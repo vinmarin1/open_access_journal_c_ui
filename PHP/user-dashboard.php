@@ -46,7 +46,7 @@ $expertise = $_SESSION['expertise'];
   <title>QCU PUBLICATION | USER DASHBOARD</title>
   <link rel="stylesheet" href="../CSS/user-dashboard.css">
   <link rel="stylesheet" href="../CSS/index.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"> -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400&display=swap">
@@ -2155,26 +2155,6 @@ function downloadCertificatePublished() {
 	
 }
 
-$(document).ready(function () {
-        // Update live data initially
-        updateLiveData();
-
-        // Set interval to update live data every 5 seconds (adjust as needed)
-        setInterval(updateLiveData, 2000);
-    });
-
-    function updateLiveData() {
-        $.ajax({
-            url: '../PHP/fetch_data.php',
-            type: 'GET',
-            success: function (data) {
-                $('#liveData').text(data);
-            },
-            error: function () {
-                console.log('Error updating live data.');
-            }
-        });
-    }
 
 </script>
 

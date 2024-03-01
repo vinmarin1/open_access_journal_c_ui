@@ -131,9 +131,7 @@ require 'dbcon.php';
         // Check if $sqlNotifRun is not false before using it in the foreach loop
         if ($sqlNotifRun !== false) {
             $notificationCount = count($sqlNotifRun);
-            echo '<span id="notification-count" style="width: 10px; height: 10px; font-size: 5px; text-align: center; display: inline-block; line-height: 5px;"></span>';
-
-            echo '<script></script>';
+            echo '<span id="notification-count" style="width: 10px; height: 10px; font-size: 5px; text-align: center; display: inline-block; line-height: 5px;">' . $notificationCount . '</span>';
 
         }
     }
