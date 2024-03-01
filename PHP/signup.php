@@ -31,10 +31,10 @@
            <label for="fname">First Name:</label><span id="span2">*</span></span><span id="spanFnameValidation" style="display: none; color: red; font-size: 11px">First name should be at least 2 characters</span>
            <input type="text" class="input form-control" name="fname"  id="fname" >
         </div>
-        <div class="input-field">
+        <!-- <div class="input-field">
             <label for="mdname">Middle Name: (Optional)</label><span id="spanMdValidation" style="display: none; color: red; font-size: 11px">Middle name should be at least 2 characters</span>
            <input type="text" class="input form-control" name="mdname"  id="mdname" >
-        </div>
+        </div> -->
         <div class="input-field">
             <label for="lname">Last Name:</label><span id="span4">*</span><span id="spanLnValidation" style="display: none; color: red; font-size: 11px">Last name should be at least 2 characters</span>
            <input type="text" class="input form-control" name="lname"  id="lname" >

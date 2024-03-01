@@ -58,7 +58,7 @@ document.getElementById('form').addEventListener('submit', function(event) {
     const form = document.getElementById('form');
     const email = document.getElementById('email').value;
     const fname = document.getElementById('fname').value;
-    const mdname = document.getElementById('mdname').value;
+    // const mdname = document.getElementById('mdname').value;
     const lname = document.getElementById('lname').value;
     const password = document.getElementById('password').value;
     const orcid = document.getElementById('orcid').value;
@@ -169,10 +169,10 @@ if (fname.length < 2) {
     hasError = true;
 }
 
-if (mdname.length < 2) {
-    document.getElementById('spanMdValidation').style.display = 'inline-block';
-    hasError = true;
-}
+// if (mdname.length < 2) {
+//     document.getElementById('spanMdValidation').style.display = 'inline-block';
+//     hasError = true;
+// }
 
 if (lname.length < 2) {
     document.getElementById('spanLnValidation').style.display = 'inline-block';
@@ -249,7 +249,7 @@ else if (hasError) {
     xhr.send('email=' + encodeURIComponent(email) +
         '&orcid=' + encodeURIComponent(orcid) +
         '&fname=' + encodeURIComponent(fname) +
-        '&mdname=' + encodeURIComponent(mdname) +
+        // '&mdname=' + encodeURIComponent(mdname) +
         '&lname=' + encodeURIComponent(lname) +
         '&password=' + encodeURIComponent(password) +
         '&privacyPolicy=' + encodeURIComponent(privacyPolicy));
@@ -298,9 +298,9 @@ document.getElementById('fname').addEventListener('input', function() {
     fname.style.border = '1px solid';
 });
 
-document.getElementById('mdname').addEventListener('input', function() {
-    document.getElementById('span3').style.display = 'none';
-});
+// document.getElementById('mdname').addEventListener('input', function() {
+//     document.getElementById('span3').style.display = 'none';
+// });
 
 document.getElementById('lname').addEventListener('input', function() {
     document.getElementById('span4').style.display = 'none';
@@ -371,12 +371,12 @@ document.getElementById('fname').addEventListener('blur', function() {
     };
 });
 
-document.getElementById('mdname').addEventListener('blur', function() {
-    const mdname = document.getElementById('mdname').value;
-    if(mdname === ""){
-        document.getElementById('span3').style.display = 'inline-block';
-    };
-});
+// document.getElementById('mdname').addEventListener('blur', function() {
+//     const mdname = document.getElementById('mdname').value;
+//     if(mdname === ""){
+//         document.getElementById('span3').style.display = 'inline-block';
+//     };
+// });
 
 document.getElementById('lname').addEventListener('blur', function() {
     const lname = document.getElementById('lname').value;

@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $orcid = $_POST['orcid'];
     $fname = $_POST['fname'];
-    $mdname = $_POST['mdname'];
+    // $mdname = $_POST['mdname'];
     $password = $_POST['password'];
     $hashedPassword = hash('sha256', $password);
     $lname = $_POST['lname'];
@@ -51,13 +51,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo json_encode(['success' => false, 'message' => implode(', ', $orcidErrors)]);
     } else {
         // Your insertion code here
-        $sql = "INSERT INTO author (`first_name`, `last_name`, `middle_name`, `email`, `orc_id`, `password`, `privacyAgreement`, `role`, `status`)
-            VALUES (:first_name, :middle_name, :last_name, :email, :orc_id, :password, :privacyAgreement, :role, :status)";
+        $sql = "INSERT INTO author (`first_name`, `last_name`, `email`, `orc_id`, `password`, `privacyAgreement`, `role`, `status`)
+            VALUES (:first_name, :last_name, :email, :orc_id, :password, :privacyAgreement, :role, :status)";
 
         $params = [
             'first_name' => $fname,
-            'middle_name' => $lname,
-            'last_name' => $mdname,
+            // 'middle_name' => $lname,
+            'last_name' => $lname,
             'email' => $email,
             'orc_id' => $orcid,
             'password' => $hashedPassword,

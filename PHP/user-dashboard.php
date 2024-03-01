@@ -1235,7 +1235,7 @@ $expertise = $_SESSION['expertise'];
 										echo '<div class="badge-box" style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
 
 
-									}elseif (count($result) >= 3 && count($resultReviewed) === 3 && count($resultDonation) >= 3) {
+									}elseif (count($result) >= 3 && count($resultReviewed) >= 3 && count($resultDonation) >= 3) {
 										
 										echo '<div class="badge-box" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
 										echo '<div class="badge-box" style="background-image: url(\'../images/third_review_badges.png\');"></div>';
