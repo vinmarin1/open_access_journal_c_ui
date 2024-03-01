@@ -58,7 +58,7 @@ $seriesString = json_encode($series);
     <!-- Content wrapper -->
     <div class="container-xxl flex-grow-1 container-p-y">
         <h4 class="py-3 mb-4" style="display: flex; justify-content: space-between; align-items: baseline;">
-            <span class="text-muted fw-light">Others / Report / </span>&nbsp; Donation Report
+        Others / <a href="../php/reportlist.php"> <span class="text-muted fw-light">&nbsp;Report /</span></a>&nbsp; Donation Report
             <span id="totalPublished" class="text-muted" style="margin-left: auto">
                 <button type="button" class="btn btn-success" onclick="exportToExcel()">
                     Export &nbsp<i class="bx bx-download"></i>
