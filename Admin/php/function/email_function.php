@@ -1,5 +1,6 @@
 <?php
 include 'dbcon.php';
+require '../../vendor/autoload.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -155,13 +156,27 @@ function sendEmail()
     }
 }
 
-function addNotification($articleid, $fromuser, $title, $message)
+function addNotification($articleid, $author_id, $title, $message)
 {
+    $options = array(
+        'cluster' => 'ap1',
+        'useTLS' => true
+    );
+    $pusher = new Pusher\Pusher(
+        'cabcad916f55a998eaf5',
+        '0aef8b4d2da6760f5726',
+        '1764683',
+        $options
+    );
+
+    $data['message'] = 'hello world';
+    $pusher->trigger('my-channel', 'my-event', $data);
+
     $description = $articleid . ' - ' . $title . ', ' . $message;
 
-    $query = "INSERT INTO notification (article_id, fromuser, title, description) VALUES (?, ?, ?, ?)";
+    $query = "INSERT INTO notification (article_id, author_id, title, description) VALUES (?, ?, ?, ?)";
 
-    $result = execute_query($query, [$articleid, $fromuser, $message, $description], true);
+    $result = execute_query($query, [$articleid, $author_id, $message, $description], true);
 
     if ($result !== false) {
         echo json_encode(['status' => true, 'message' => 'Record added successfully']);
