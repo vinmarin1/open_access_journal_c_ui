@@ -206,12 +206,16 @@
 
     <div class="input-details-2 mt-3 w-100 w-sm-50" id="form-floating-3">
 
-    <h6 id="sub-10">Keywords <p id="keywords-validation" style="color: red; display: none; font-size: 10px">Maximum of 5 keywords separated by commas*</p></h6>
-      <input class="form-control artcl" type="text" list="keywordList" id="keywords" name="keywords">
+    <h6 id="sub-10">Keywords <p id="keywords-validation" style="color: red; display: none; font-size: 10px">Maximum of 5 keywords*</p></h6>
+      <div class="d-flex gap-2" style="height: 30px">
+      <div id="display-keywords" class="d-flex gap-2">
+        <span class="border px-2 py-1 rounded">...</span>
+      </div>
+      <input class="form-control artcl" type="text" list="keywordList" id="keywords" name="keywords" placeholder="type and enter">
+      </div>
       <datalist id="keywordList">
         
       </datalist>
-      <div id="display-keywords"></div>
       
       <h6 class="sub-12 mt-5 artcl" id="sub-12">Reference <p id="reference-validation" style="color: red; display: none; font-size: 10px">Reference is required*</p></h6>
 
