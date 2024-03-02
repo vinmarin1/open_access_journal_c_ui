@@ -1,6 +1,7 @@
 <?php
 require 'dbcon.php';
 require '../vendor/autoload.php';
+require '../PHP/notification_functions.php';
 
 $options = array(
     'cluster' => 'ap1',
@@ -52,12 +53,13 @@ if (!empty($_GET)) {
 
             $result2 = database_run($sql2, array($author_id, $payer_email, $product, $point_earned), true);
 
+            $article_id = 1;
             $title = 'Send Donation';
             $description = $payer_name . ' Send Donation PHP ' . $amount;
 
-            $sql3 = "INSERT INTO `notification`(`author_id`, `title`, `description`) VALUES (?, ?, ?)";
-
-            $result3 = database_run($sql3, array($author_id, $title, $description), true);
+            // $sql3 = "INSERT INTO `notification`(`author_id`, `title`, `description`) VALUES (?, ?, ?)";
+            // $result3 = database_run($sql3, array($author_id, $title, $description), true);
+            addNotification($article_id, $author_id, $title, $message);
 
             header('Location: donation.php?payer_firstname=' . urlencode($payer_firstname) . '&payer_lastname=' . urlencode($payer_lastname) . '&payer_email=' . urlencode($payer_email) . '&amount=' . urlencode($amount));
             exit();
