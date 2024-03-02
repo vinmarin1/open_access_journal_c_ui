@@ -208,9 +208,11 @@
     <div class="input-details-2 mt-3 w-100 w-sm-50" id="form-floating-3">
 
     <h6 id="sub-10">Keywords <p id="keywords-validation" style="color: red; display: none; font-size: 10px">Maximum of 5 keywords separated by commas*</p></h6>
-      <input class="form-control artcl" type="text" id="keywords" name="keywords">
-      
-
+      <input class="form-control artcl" type="text" list="keywordList" id="keywords" name="keywords">
+      <datalist id="keywordList">
+        
+      </datalist>
+      <div id="display-keywords"></div>
       
       <h6 class="sub-12 mt-5 artcl" id="sub-12">Reference <p id="reference-validation" style="color: red; display: none; font-size: 10px">Reference is required*</p></h6>
 
@@ -388,7 +390,7 @@
       <textarea class="form-control" name="input7" id="input7" cols="30" rows="10" readonly></textarea>
 
       <label id="sub-27">Keywords: </label><br>
-      <input type="text" class="form-control" id="input6" readonly><br>
+      <input type="text" class="form-control" id="input6" name="input6" readonly><br>
     
       <label id="sub-29">Reference: </label><br>
       <!-- <input type="text" class="form-control" id="input8" readonly><br> -->
@@ -482,6 +484,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="../JS/reusable-header.js"></script>
+<script src="../JS/ex_submit_keywords.js"></script>  
 <script src="../JS/ex_submit.js"></script>  
 <script src="../JS/ex_submit_duplicate_article.js"></script>
 <script src="../JS/ex_submit_journal_type.js"></script>
