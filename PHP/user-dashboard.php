@@ -100,6 +100,7 @@ $expertise = $_SESSION['expertise'];
 		<section >
 			<div class="profile-container">
 				<div class="profile-sidebar">
+					<div class="profile-pic-container">
 			
 					<!-- <img src="../images/profile.jpg" alt="Profile Picture" class="profile-pic" id="profileImage">
 					<input type="file" accept="image/*" style="display:none" id="fileInput">
@@ -122,9 +123,13 @@ $expertise = $_SESSION['expertise'];
 
 
 								echo '<div>';
-								echo '<img src="' . htmlspecialchars($profilePic) . '" alt="Profile Picture" class="profile-pic" id="profileImage">';
+								echo '<img src="' . htmlspecialchars($profilePic) . '" alt="Profile Picture" class="profile-pic" onclick="openFileInput()" id="profileImage">';
+								// echo '<input type="file" accept="image/*" style="display:none" id="fileInput" name="fileInput">';
+								// echo '<div class="change-profile-text">Change Profile</div>';
+								echo '<div class="edit-icon" onclick="openFileInput()"> <span>&#9998;</span>Change Profile </div>';
+								// echo '<button type="button" class="btn btn-secondary btn-sm" style="margin-left: 15px"><i class="fa-solid fa-camera"></i></button>';
+								echo '</div>';
 								echo '<input type="file" accept="image/*" style="display:none" id="fileInput" name="fileInput">';
-								echo '<button type="button" class="btn btn-secondary btn-sm" onclick="openFileInput()" style="margin-left: 15px"><i class="fa-solid fa-camera"></i></button>';
 								echo '</div>';
 							} else {
 								echo "User not found.";

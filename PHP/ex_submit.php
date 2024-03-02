@@ -188,7 +188,6 @@
         <div class="journal-type-container">
           <h6 class="checker-titles">Journal Classification</h6>
           <select class="form-select" name="journal-type" id="journal-type">
-         
             <option value="1" id="gavel">The Gavel</option>
             <option value="2" id="lamp">The Lamp</option>
             <option value="3" id="star">The Star</option>
