@@ -212,6 +212,7 @@
         <span class="border px-2 py-1 rounded">...</span>
       </div>
       <input class="form-control artcl" type="text" list="keywordList" id="keywords" name="keywords" placeholder="type and enter">
+      <button class="btn btn-white" id="keyword-btn" >+</button>
       </div>
       <datalist id="keywordList">
         
@@ -380,7 +381,7 @@
   Once you complete your submission, a member of our editorial team will be assigned to review it. Please ensure the details you have entered here are as accurate as possible.</h6>
 
   <div class="article-info-container">
-    <div class="article-header">
+    <div class="article-header d-flex justify-content-between">
       <h5 class="title10" id="title-10f">Details</h5>
       <button type="button" class="btn btn-outline-light btn-sm" id="update-cont-2">View</button>
     </div>
@@ -403,7 +404,7 @@
   
     <div class="file-container">
       <h5 class="title11" id="title-11">Files: </h5>
-      <div class="file-header-container">
+      <div class="file-header-container d-flex justify-content-between">
         <h5 class="title1f" id="title1f">File Name</h5>
         <button type="button" class="btn btn-outline-light btn-sm" id="update-cont-3">View</button>
     
