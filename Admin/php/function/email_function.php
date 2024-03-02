@@ -1,6 +1,6 @@
 <?php
 include 'dbcon.php';
-require_once('../../vendor/autoload.php');
+require 'vendor/autoload.php';
 // require '../../PHP/notification_functions.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
