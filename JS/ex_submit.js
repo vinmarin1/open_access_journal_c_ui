@@ -720,50 +720,8 @@ setupFileInput('file_name3', 'file3UpdatePreview');
 
 document.getElementById('update-cont-2').addEventListener('click', function(event) {
 
-  const input5f1 = document.getElementById('input5f1').value;
-  const input7 = document.getElementById('input7').value;
-  const input6 = document.getElementById('input6').value;
-  const input8 = document.getElementById('input8').value;
- 
-  
-
-  Swal.fire({
-    html: '<div id="update-article-info-container">' +
-    '<p class="h5" id="update-article-title" style=" font-family: Arial, Helvetica, sans-serif;">Update Article Details</p><br><hr>' +
-    '<div id="preview-details-inputs">' +
-    '<p class="h6 mt-5" id="previewTitlelabel">Title:</p> ' + 
-    '<input type="text" class="form-control" id="titleInputPreview" value=" '+ input5f1 +' ">' +
-    '<p class="h6" id="previewAbstractlabel">Abstract:</p> ' + 
-    '<textarea class="form-control" name="abstractInputPreview" id="abstractInputPreview" cols="30" rows="5" style="width: 95%; height: auto" >'+ input7 +'</textarea>' +
-    '<p class="h6" id="previewKeywordlabel">Keyword:</p> ' + 
-    '<input type="text" class="form-control" id="keywordInputPreview" name="keywordInputPreview" value=" '+ input6 +' ">' +
-    
-    '<p class="h6" id="referenceAbstractlabel">Reference:</p> ' + 
-    '<textarea class="form-control" name="abstractInputPreview" id="referencetInputPreview" cols="30" rows="5" style="width: 95%; height: auto" >'+ input8 +'</textarea>' +
-    '</div>'+
-    '</div>' + '<button class="btn btn-primary btn-sm" id="btnPreview_Update">Update</button>',
-    showConfirmButton: false,
-  });
-
-  document.getElementById('btnPreview_Update').addEventListener('click', function(event){
-    const titleInputPreview = document.getElementById('titleInputPreview').value;
-    const abstractInputPreview = document.getElementById('abstractInputPreview').value;
-    const keywordInputPreview = document.getElementById('keywordInputPreview').value;
-    const referencetInputPreview = document.getElementById('referencetInputPreview').value;
-
-    const title = document.getElementById('title').value = titleInputPreview;
-    const editor = document.getElementById('editor').value = abstractInputPreview;
-    const keywords = document.getElementById('keywords').value = keywordInputPreview;
-    const editor2 = document.getElementById('editor2').value = referencetInputPreview;
-
-    const input5f1 = document.getElementById('input5f1').value = titleInputPreview;
-    const input7 = document.getElementById('input7').value = abstractInputPreview;
-    const input6 = document.getElementById('input6').value = keywordInputPreview;
-    const input8 = document.getElementById('input8').value = referencetInputPreview;
-
-
-    Swal.close();
-  });
+  const articleButton = document.getElementById('article-tab');
+  articleButton.click();
 
 });
 
