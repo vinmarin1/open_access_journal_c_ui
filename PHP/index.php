@@ -486,8 +486,7 @@ if ($total_users !== false) {
   </div>
 
 
-  <div class="footer" id="footer">
-  </div>
+  <?php require 'footer.php' ?>
 
   <script>
     const sessionId = "<?php echo $author_id; ?>";

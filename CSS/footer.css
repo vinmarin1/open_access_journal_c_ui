@@ -1,104 +1,10 @@
-.footer-container{
-    background-color: #0858A4;
-    padding-left: 40px;
-    bottom:0;
-    overflow: hidden;
-    width: 100%;
-   
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Judson', serif !important;
 }
-
-.footer{
-    text-align: left;
-    height: 100px;
-}
-
-
-
-
-.img-fluid{
-    width: 60px;
-    height: 60px;
-    margin-left: 20px;
-    margin-right: 10px;
-    margin-top: -30px;
-}
-
-
-.f-logotitle{
-    height: 100%;
-    width: auto;
-    display: inline-block;
-    padding-top: 80px;
-    color: white;
-}
-
-
-.footer a{
-    font-weight: bold;
-    font-size: 20px;
-    font-family: 'Times New Roman';
-    color: rgb(255, 255, 255);
-    padding-top: -5px;
-    
-}
-
-
-.footer a:hover{
-    color: silver;
-    cursor: auto;
-}
-
-.footer a:focus{
-    color: silver;
-}
-
-.footer span{
-    font-family: Arial, Helvetica, sans-serif;
-    display: block;
-    font-size: 15px;
-    color: white;
-}
-
-.links{
-text-align: center;
-}
-
-.links a{
-    color: white;
-    text-decoration: none;
-    display: inline-block;
-    margin: 0 10px 40px 0;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: normal;
-    font-size: 12px;
-    
-    
-}
-
-.links a:hover{
-    cursor: pointer;
-}
-
-.links ul a{
-    margin: 0;
-}
-
-.copyright{
-    color: white;
-    font-size: 15px;
-    text-align: right;
-    margin: 0 20px 40px 0;
-    
-}
-.copyright a{
-    color: white;
-    text-decoration:underline;
-    font-size: 15px;
-    margin-right: 10px;
-}
-.copyright a:hover{
-    cursor: pointer;
-    color: white;
+h4 {
+    font-size:14px;
+    font-weight: 600;
 }
 
 body{
@@ -106,22 +12,88 @@ body{
     padding: 0;
 }
 
-@media (max-width: 768px) {
-/* Adjust the styles for smaller screens */
-.footer {
-    text-align: center; /* Center-align the content */
+.foot{
+    background-color: #0858A4;
+    bottom:0;
+    width: 100%;
 }
 
-.f-logotitle {
-    padding-top: 10px; /* Add space between the logo and text */
+
+.img-logo{
+    width: 60px;
+    height: 60px;
+    /* margin-left: 20px;
+    margin-right: 10px;
+    margin-top: -30px; */
+  }
+
+
+.foot a{
+    font-weight: bold;
+    font-size: 20px;
+    font-family: 'Times New Roman';
+    color: white;
+    display: block;
+  }
+
+
+.foot a:hover{
+    color: white;
+    cursor: auto;
 }
 
-.copyright {
-    text-align: center; /* Center-align the copyright text */
-    margin-top: 10px; /* Add space between the copyright and content above it */
+.foot a:focus{
+    color: white;
 }
 
-.img-fluid {
-    max-width: 80px; /* Adjust the image size */
+.foot span{
+    font-family: Arial, Helvetica, sans-serif;
+    display: block;
+    font-size: 15px;
+    color: white;
 }
+
+.copyright{
+    color: white;
+    font-size: 15px;
+
 }
+
+.copyright a{
+    color: white;
+    text-decoration:underline;
+    font-size: 15px;
+    margin-right: 10px;
+    text-align: right;
+}
+.copyright a:hover{
+    cursor: pointer;
+    color: white;
+}
+
+.links a {
+    margin: 5px;
+    text-decoration: none;
+    font-size: 15px;
+    margin: 0 20px 10px 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: normal;
+}
+
+.links li :hover{
+    cursor: pointer;
+}
+
+.dropdown-menu a{
+    font-size: 17px;
+    margin: 0;
+}
+
+.links-box{
+    display: flex;
+    flex-direction: row;
+}
+
+
+
+
