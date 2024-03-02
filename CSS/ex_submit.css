@@ -456,7 +456,7 @@ text-align: justify !important;
 
 
 .article-info-container{
-    width: 800px;
+    width: 90%;
     margin-left: auto;
     margin-right: auto;
     margin-top: 40px;
@@ -678,7 +678,7 @@ text-align: justify !important;
     width: 100px;
     border-radius: 10px;
     float: right;
-    margin-left: 610px;
+    /* margin-left: 610px; */
     
   }
 

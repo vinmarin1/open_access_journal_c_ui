@@ -1,41 +1,48 @@
 const keywordInput = document.querySelector('#keywords');
 const keywordsDisplay = document.querySelector('#display-keywords');
+const keywordBtn = document.querySelector('#keyword-btn');
+const keywordsPreview = document.getElementById('input6');
+
 let keywordArray = []; 
 
-
-function displayKeywords(event){
-    const keywordsPreview = document.getElementById('input6');
-
-    let keywordInputValue = keywordInput.value;
-    if ((event.key === "Enter" || event.keyCode == 13) && keywordInputValue !== "") {
-        
-        keywordArray.push(keywordInputValue); 
-        keywordsPreview.value = keywordArray.join(',');
-        console.log(keywordsPreview.value);
-        const span = document.createElement('span');
-        span.classList.add('keyTag','border', 'px-2', 'py-1', 'rounded', 'text-white', 'bg-secondary', 'd-flex', 'gap-2');
-        span.textContent = keywordInputValue.trim(); 
-        
-        const deleteIcon = document.createElement('span');
-        deleteIcon.innerHTML = '&#10006;'; 
-        deleteIcon.classList.add('delete-icon');
-        deleteIcon.addEventListener('click', function() {
-            span.remove();
-            keywordArray = keywordArray.filter(keyword => keyword !== keywordInputValue);
-        });
-
-
-        span.appendChild(deleteIcon);
-        keywordsDisplay.appendChild(span); 
-        
-        keywordInput.value = '';
-        
-    }
+function generateKeywords(keywordInputValue){
     
+    keywordArray.push(keywordInputValue); 
+    keywordsPreview.value = keywordArray.join(',');
+    console.log(keywordsPreview.value);
+    const span = document.createElement('span');
+    span.classList.add('keyTag','border', 'px-2', 'py-1', 'rounded', 'text-white', 'bg-secondary', 'd-flex', 'gap-2');
+    span.textContent = keywordInputValue.trim(); 
+    
+    const deleteIcon = document.createElement('span');
+    deleteIcon.innerHTML = '&#10006;'; 
+    deleteIcon.classList.add('delete-icon');
+    deleteIcon.addEventListener('click', function() {
+        span.remove();
+        keywordArray = keywordArray.filter(keyword => keyword !== keywordInputValue);
+    });
+
+
+    span.appendChild(deleteIcon);
+    keywordsDisplay.appendChild(span); 
+    
+    keywordInput.value = '';
+}
+function displayKeywords(event){
+    let keywordInputValue = keywordInput.value;
+    
+    if ((event.key === "Enter" || event.keyCode == 13) && keywordInputValue !== "") {
+      generateKeywords(keywordInputValue)
+    }
+}
+function displayKeywordsByClick(event){
+    event.preventDefault();
+    let keywordInputValue = keywordInput.value;
+    generateKeywords(keywordInputValue);
 }
 
-keywordInput.addEventListener("keypress", displayKeywords); 
 keywordInput.addEventListener("keydown", displayKeywords); 
+keywordBtn.addEventListener("click", displayKeywordsByClick); 
 document.addEventListener("DOMContentLoaded", function () {
 
 const keywordList = document.querySelector("#keywordList");
