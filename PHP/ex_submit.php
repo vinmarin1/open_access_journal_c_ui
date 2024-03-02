@@ -160,14 +160,14 @@
        
         <!-- <h5 id="duplication-title">Checking of Details</h5> -->
         <div class="duplicated-article">
-          <h6 class="checker-titles">Duplication Checker <span id="flaggedT"></span></h6>
+          <h6 class="checker-titles">Originality Checker <span id="flaggedT"></span></h6>
           <div id="flagged">
           
           </div>
           <h6></h6>
           <!-- <label id="label-title">Article: </label> -->
           <p id="label-title" class="d-none">Article:</p>
-          <div id="similar-title" onclick="openArticleDetails()"></div>
+          <div id="similar-title" class="text-muted" onclick="openArticleDetails()"></div>
 
          
         
@@ -175,9 +175,9 @@
         
           <!-- <label  id="label-result">Result: </label> -->
           <p id="label-result"class="d-none">Result:</p>
-          <div class="d-flex gap-2">
-            <div id="result-duplication" style="color: #115272"></div>
-            <div id="result-duplication2" style="color: #115272"></div>
+          <div class="d-flex gap-2 text-muted">
+            Title: <div id="result-duplication" style="color: #115272">...</div>
+            Abstract: <div id="result-duplication2" style="color: #115272">...</div>
           </div>
          
         </div>
