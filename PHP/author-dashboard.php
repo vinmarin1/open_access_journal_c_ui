@@ -53,6 +53,47 @@ $id = $_SESSION['id'];
     <div class="main">
       <div class="">
         <div class="articles-section">
+        <?php
+        if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+            $sqlSelectProfile = "SELECT first_name, middle_name, last_name, birth_date, gender, marital_status, orc_id, afiliations, position, field_of_expertise FROM author WHERE author_id = :author_id";
+
+            $resultProfile = database_run($sqlSelectProfile, array(':author_id' => $id));
+
+            if ($resultProfile) {
+                if (count($resultProfile) > 0) {
+                    $userProfile = $resultProfile[0];
+
+                    // Check for the presence of all required fields
+                    $requiredFields = ['first_name', 'middle_name', 'last_name', 'birth_date', 'gender', 'marital_status', 'orc_id', 'afiliations', 'position', 'field_of_expertise'];
+
+                    $profileComplete = true;
+                    foreach ($requiredFields as $field) {
+                        if (empty($userProfile->$field)) {
+                            $profileComplete = false;
+                            break;
+                        }
+                    }
+                    if ($profileComplete) {
+                        echo '<button class="btn" id="btn3" onclick="window.location.href=\'ex_submit.php\'">Submit an Article</button>';
+                    } else {
+                        echo '<button class="btn" id="btn3D">Submit an Article</button>';
+                        echo "<script>
+                                    document.getElementById('btn3D').addEventListener('click', function(event){
+                                        Swal.fire({
+                                            icon: 'warning',
+                                            text: 'Please complete the required data in your profile details before submitting a paper'
+                                        });
+                                    });
+                                  </script>";
+                    }                        
+                } else {
+                    echo "User not found.";
+                }
+            } else {
+                echo "Unable to fetch user info.";
+            }
+        }
+        ?>
           <div class="tabs">
             <ul class="" id="myTab" role="tablist" style="margin-left:-40px; margin-bottom:0">
               <div role="presentation" class="tab active">
@@ -74,54 +115,6 @@ $id = $_SESSION['id'];
                   All Invitation
                 </li>
               </div>
-              <!-- <button class="btn" id="btn3" onclick="window.location.href='ex_submit.php'">Submit Article</button> -->
-
-
-              <?php
-              if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-                  $sqlSelectProfile = "SELECT first_name, middle_name, last_name, birth_date, gender, marital_status, orc_id, afiliations, position, field_of_expertise FROM author WHERE author_id = :author_id";
-
-                  $resultProfile = database_run($sqlSelectProfile, array(':author_id' => $id));
-
-                  if ($resultProfile) {
-                      if (count($resultProfile) > 0) {
-                          $userProfile = $resultProfile[0];
-
-                          // Check for the presence of all required fields
-                          $requiredFields = ['first_name', 'middle_name', 'last_name', 'birth_date', 'gender', 'marital_status', 'orc_id', 'afiliations', 'position', 'field_of_expertise'];
-
-                          $profileComplete = true;
-                          foreach ($requiredFields as $field) {
-                              if (empty($userProfile->$field)) {
-                                  $profileComplete = false;
-                                  break;
-                              }
-                          }
-                          if ($profileComplete) {
-                            echo '<button class="btn" id="btn3" onclick="window.location.href=\'ex_submit.php\'">Submit an Article</button>';
-                        } else {
-                          echo '<button class="btn" id="btn3D">Submit an Article</button>';
-                            echo "<script>
-                                    document.getElementById('btn3D').addEventListener('click', function(event){
-                                        Swal.fire({
-                                            icon: 'warning',
-                                            text: 'Please complete the required data in your profile details before submitting a paper'
-                                        });
-                                    });
-                                  </script>";
-                        }                        
-                      } else {
-                          echo "User not found.";
-                      }
-                  } else {
-                      echo "Unable to fetch user info.";
-                  }
-              }
-              ?>
-
-            
-
-
             </ul>
 
             <div class="tab-content" id="myTabContent">
@@ -402,7 +395,7 @@ $id = $_SESSION['id'];
                       echo '</nav>';
 
                               } else {
-                                  echo 'You are not assign as reviewer yet.';
+                                  echo '<div class="p-4">You are not assign as reviewer yet.</div>';
                               }
                           }
                 
@@ -542,7 +535,7 @@ $id = $_SESSION['id'];
                       echo '</nav>';
 
                               } else {
-                                  echo 'You are not invited to as reviewer yet for article';
+                                  echo '<div class="p-4">You are not invited to as reviewer yet for article</div>';
                               }
                           }
 

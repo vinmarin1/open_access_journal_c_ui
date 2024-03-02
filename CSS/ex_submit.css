@@ -173,9 +173,9 @@ text-align: justify !important;
 }
 
 #line-1, #line-2{
-    border: 1px #285581 solid;
-    width: 500px;
-    /* margin-top: 40px; */
+    border: 1px #0858a4 solid;
+    width: 100%;
+    margin-top: 40px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -820,4 +820,13 @@ text-align: justify !important;
     float: right;
     margin-right: 30px;
     
+}
+
+@media screen and (max-width: 768px) {
+    #title-1, #sub-1{
+        width: 100%;
+    }
+    /* .descript-1, .descript-2{
+        margin-left: 0;
+    } */
 }

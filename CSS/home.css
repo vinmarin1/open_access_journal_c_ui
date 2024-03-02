@@ -254,6 +254,13 @@ box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.025);
 }
 
 .article .h6{
+font-size: 18px;
+line-height: 24px;
+overflow: hidden;
+display: -webkit-box;
+-webkit-line-clamp: 3; /* Limit the number of lines to display */
+-webkit-box-orient: vertical;
+text-overflow: ellipsis;
 font-family: Arial, Helvetica, sans-serif;
 color: #0858a4;
 width: auto;
@@ -680,9 +687,16 @@ h4, h2 {
 .procedure p {
   font-size: small;
 }
+.row p {
+  text-align: justify;
+}
 
 /* PUBLICATION PROCEDURE CSS END*/
 /* QUICK LINKS CSS START*/
+
+.procedure .description {
+  text-align: justify;
+}
 
 #quick-links-container h4,
 #quick-links-container h2 {

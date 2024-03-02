@@ -10,7 +10,9 @@ aside {
     flex: 1;
     padding-top: 2%;
 }
-
+.main p, main li {
+    text-align: justify;
+}
 .menu li {
     cursor: pointer;
 }
@@ -272,10 +274,12 @@ aside {
 
 .s-1, .s-2 {
     margin-bottom: 2em;
+    
 }
 
-.s-2 p {
+.s-1 p, .s-2 p {
     margin-bottom: 0.5rem;
+    
 }
 
 #author-guidelines-container h4,
@@ -291,7 +295,8 @@ aside {
 }
 
 table {
-    width: 90%;
+    max-width: 100%;
+    width: auto;
     border-collapse: collapse;
     margin-bottom: 2em;
 }
@@ -299,7 +304,7 @@ table {
 table th, table td {
     border: 1px solid black;
     padding: 6px;
-    padding-right: 20px;
+    /* padding-right: 20px; */
 }
 
 .img-reg {

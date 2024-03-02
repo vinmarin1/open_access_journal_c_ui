@@ -619,8 +619,9 @@ document.addEventListener('DOMContentLoaded', function () {
           keywordsValidation.style.display = 'none';
       }
 
-      checkValidations();
-  });
+    checkValidations();
+});
+
 
   editor2.addEventListener('input', function () {
       const referenceText = editor2.value.trim();
@@ -722,6 +723,11 @@ setupFileInput('file_name3', 'file3UpdatePreview');
 
 document.getElementById('update-cont-2').addEventListener('click', function(event) {
 
+  const articleButton = document.getElementById('article-tab');
+  articleButton.click();
+
+});
+
   const input5f1 = document.getElementById('input5f1').value;
   const input7 = document.getElementById('input7').value;
   const input6 = document.getElementById('input6').value;
@@ -771,34 +777,9 @@ document.getElementById('update-cont-2').addEventListener('click', function(even
 
 document.getElementById('update-cont-3').addEventListener('click', function(event){
 
-  const input9 = document.getElementById('input9').value;
-  const input9f = document.getElementById('input9f').value;
-  const input9g = document.getElementById('input9g').value;
-
-  Swal.fire({
-    html: '<div id="updatePreviewFileContainer">' + 
-          '<p class="h5" id="updatePreviewFileTitle">Update Files</p><br><hr> ' +
-          '<p class="h6 mt-5" id="updatePreviewFile1">File with author name: </p>' +
-          '<input type="text" class="form-control" id="file1UpdatePreview"  value="' + input9 +'" disabled>' + '<button type="button" class="btn btn-primary btn-sm" id="btnSelectFile1" onclick="openFilename(1)">Select File</button>' + 
-          '<p class="h6" id="updatePreviewFile2">File With no author name: </p>' +
-          '<input type="text" class="form-control" id="file2UpdatePreview" value="' + input9f +'" disabled>' +
-          '<button type="button" class="btn btn-primary btn-sm" id="btnSelectFile2" onclick="openFilename(2)">Select File</button>' +
-          '<p class="h6" id="updatePreviewFile3">Title Page: </p>' +
-          '<input type="text" class="form-control" id="file3UpdatePreview" value="' + input9g +'" disabled>' +
-          '<button type="button" class="btn btn-primary btn-sm" id="btnSelectFile2" onclick="openFilename(3)">Select File</button><br>' +
-          '<button type="button"  class="btn btn-secondary btn-sm mt-4" id="btnClose" >Close</button> ' +
-          '</div>',
-    showConfirmButton: false,
-  });
-
-  document.getElementById('btnClose').addEventListener('click', function(event) {
-
-    
-
-    Swal.close();
-
-  });
-
+ 
+  const fileTab = document.getElementById('file-tab');
+  fileTab.click();
 
 
 });

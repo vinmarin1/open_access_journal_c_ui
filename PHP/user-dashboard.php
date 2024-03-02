@@ -46,7 +46,7 @@ $expertise = $_SESSION['expertise'];
   <title>QCU PUBLICATION | USER DASHBOARD</title>
   <link rel="stylesheet" href="../CSS/user-dashboard.css">
   <link rel="stylesheet" href="../CSS/index.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"> -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400&display=swap">
@@ -91,6 +91,9 @@ $expertise = $_SESSION['expertise'];
 			}
 			?>
 			</h3>
+			<h4 id="liveData">
+			
+			</h4>
 		</div>
 		<!-- <div>
 			<button class="btn tbn-primary btn-md" id="btn1" onclick="window.location.href='user-dashboard.php'">My Profile</button>
@@ -101,6 +104,7 @@ $expertise = $_SESSION['expertise'];
 		<section >
 			<div class="profile-container">
 				<div class="profile-sidebar">
+					<div class="profile-pic-container">
 			
 					<!-- <img src="../images/profile.jpg" alt="Profile Picture" class="profile-pic" id="profileImage">
 					<input type="file" accept="image/*" style="display:none" id="fileInput">
@@ -123,9 +127,13 @@ $expertise = $_SESSION['expertise'];
 
 
 								echo '<div>';
-								echo '<img src="' . htmlspecialchars($profilePic) . '" alt="Profile Picture" class="profile-pic" id="profileImage">';
+								echo '<img src="' . htmlspecialchars($profilePic) . '" alt="Profile Picture" class="profile-pic" onclick="openFileInput()" id="profileImage">';
+								// echo '<input type="file" accept="image/*" style="display:none" id="fileInput" name="fileInput">';
+								// echo '<div class="change-profile-text">Change Profile</div>';
+								echo '<div class="edit-icon" onclick="openFileInput()"> <span>&#9998;</span>Change Profile </div>';
+								// echo '<button type="button" class="btn btn-secondary btn-sm" style="margin-left: 15px"><i class="fa-solid fa-camera"></i></button>';
+								echo '</div>';
 								echo '<input type="file" accept="image/*" style="display:none" id="fileInput" name="fileInput">';
-								echo '<button type="button" class="btn btn-secondary btn-sm" onclick="openFileInput()" style="margin-left: 15px"><i class="fa-solid fa-camera"></i></button>';
 								echo '</div>';
 							} else {
 								echo "User not found.";
@@ -1816,6 +1824,9 @@ $expertise = $_SESSION['expertise'];
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+	<script src="jquery-3.7.1.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <script src="../JS/reusable-header.js"></script>
@@ -2148,6 +2159,7 @@ function downloadCertificatePublished() {
 
 	
 }
+
 
 </script>
 
