@@ -1,6 +1,6 @@
 <?php
 require 'dbcon.php';
-require '../../../vendor/autoload.php';
+require '../vendor/autoload.php';
 
 $options = array(
     'cluster' => 'ap1',

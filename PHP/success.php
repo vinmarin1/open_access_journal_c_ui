@@ -1,18 +1,18 @@
 <?php
 require 'dbcon.php';
-require '../vendor/autoload.php';
+// require '../vendor/autoload.php';
 require '../PHP/notification_functions.php';
 
-$options = array(
-    'cluster' => 'ap1',
-    'useTLS' => true
-);
-$pusher = new Pusher\Pusher(
-    'cabcad916f55a998eaf5',
-    '0aef8b4d2da6760f5726',
-    '1764683',
-    $options
-);
+// $options = array(
+//     'cluster' => 'ap1',
+//     'useTLS' => true
+// );
+// $pusher = new Pusher\Pusher(
+//     'cabcad916f55a998eaf5',
+//     '0aef8b4d2da6760f5726',
+//     '1764683',
+//     $options
+// );
 
 if (!empty($_GET)) {
     session_start();
@@ -46,8 +46,8 @@ if (!empty($_GET)) {
         $result = database_run($sql, array($author_id, $txn_id, $payer_id, $payer_name, $payer_email, $txn_id, $product, $currency, $amount, $status), true);
 
         if ($result) {
-            $data['message'] = 'hello world';
-            $pusher->trigger('my-channel', 'my-event', $data);
+            // $data['message'] = 'hello world';
+            // $pusher->trigger('my-channel', 'my-event', $data);
 
             $sql2 = "INSERT INTO `user_points`(`user_id`, `email`, `action_engage`, `point_earned`) VALUES (?, ?, ?, ?)";
 
