@@ -1,6 +1,6 @@
 <?php
 include 'dbcon.php';
-require '../../vendor/autoload.php';
+require 'vendor/autoload.php';
 // require '../../PHP/notification_functions.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -175,7 +175,7 @@ function addNotification($article_id, $author_id, $title, $message)
 
     $description = $article_id . ' - ' . $title . ', ' . $message;
 
-    $query = "INSERT INTO `notification`(`article_id`,`author_id`, `title`, `description`) VALUES (?, ?, ?, ?)";
+    $query = "INSERT INTO notification (article_id, author_id, title, description) VALUES (?, ?, ?, ?)";
 
     $result = execute_query($query, [$article_id, $author_id, $message, $description], true);
 
