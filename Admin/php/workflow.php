@@ -82,7 +82,7 @@ table {
 
     <!-- Content wrapper -->
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h5 class="py-3 mb-4"><a href="../php/submissionlist.php?cid=<?php echo $article_data[0]->journal_id; ?>"><span class="text-muted fw-light">Submission /</span></a><?php echo $article_data[0]->article_id; ?> / <?php echo $article_data[0]->title; ?></h5>
+        <h5 class="py-3 mb-4"><a href="../php/submissionlist.php?cid=<?php echo $article_data[0]->journal_id; ?>"><span class="text-muted fw-light">Submission /</span></a>&nbsp;<?php echo $article_data[0]->article_id; ?> / <?php echo $article_data[0]->title; ?></h5>
 
             <div class="row">
                 <div class="col-xl-12">

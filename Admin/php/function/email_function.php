@@ -1,7 +1,6 @@
 <?php
 include 'dbcon.php';
 require 'vendor/autoload.php';
-// require '../../PHP/notification_functions.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
