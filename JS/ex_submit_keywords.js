@@ -7,13 +7,13 @@ function displayKeywords(event){
     const keywordsPreview = document.getElementById('input6');
 
     let keywordInputValue = keywordInput.value;
-   
     if ((event.key === "Enter" || event.keyCode == 13) && keywordInputValue !== "") {
+        
         keywordArray.push(keywordInputValue); 
         keywordsPreview.value = keywordArray.join(',');
         console.log(keywordsPreview.value);
         const span = document.createElement('span');
-        span.classList.add('border', 'px-2', 'py-1', 'rounded');
+        span.classList.add('keyTag','border', 'px-2', 'py-1', 'rounded', 'text-white', 'bg-secondary', 'd-flex', 'gap-2');
         span.textContent = keywordInputValue.trim(); 
         
         const deleteIcon = document.createElement('span');

@@ -248,15 +248,10 @@ text-align: justify !important;
     margin-bottom: 20px;
 }
 
-#title, #keywords{
-    /* font-size: 11px; */
-
+.keyTag:focus , .keyTag:active, .keyTag:hover {
+    background-color: #0858a4 !important;
+    cursor: pointer;
 }
-
-#keywords{
-    margin-bottom: 20px;
-}
-
 
 .input-details-2{
     max-width: 100%;
