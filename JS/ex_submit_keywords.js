@@ -8,8 +8,7 @@ function displayKeywords(event){
 
     let keywordInputValue = keywordInput.value;
    
-    if (event.keyCode == 13 && keywordInputValue !== "") {
-  
+    if ((event.key === "Enter" || event.keyCode == 13) && keywordInputValue !== "") {
         keywordArray.push(keywordInputValue); 
         keywordsPreview.value = keywordArray.join(',');
         console.log(keywordsPreview.value);
