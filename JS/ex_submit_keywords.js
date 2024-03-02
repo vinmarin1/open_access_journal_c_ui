@@ -34,8 +34,8 @@ function displayKeywords(event){
     
 }
 
+keywordInput.addEventListener("keypress", displayKeywords); 
 keywordInput.addEventListener("keydown", displayKeywords); 
-
 document.addEventListener("DOMContentLoaded", function () {
 
 const keywordList = document.querySelector("#keywordList");
