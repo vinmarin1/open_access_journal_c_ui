@@ -14,16 +14,8 @@ $announcementlist = get_announcement_list();
     <div class="container-xxl flex-grow-1 container-p-y">
         <h4 class="py-3 mb-4"><span class="text-muted fw-light"></span>Announcement</h4>
 
-        <div class="card">
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-            <h5 class="card-header mb-0">Announcement</h5>
-            <div style="display: flex; margin-top: 15px; margin-right: 15px;">
-                <button type="button" id="tabAll" class="btn btn-primary" style="margin-right: 10px;" data-bs-toggle="modal" data-bs-target="#addModal">Add Announcement</button>
-                <!-- <button type="button" id="tabPublished" class="btn btn-primary">Download</button> -->
-            </div>
-        </div>
-         <!-- Status tabs -->
-         <ul class="nav nav-tabs mb-3" id="statusTabs">
+        <!-- Status tabs -->
+        <ul class="nav nav-tabs mb-3" id="statusTabs">
             <li class="nav-item">
                 <a class="nav-link active" id="tabAll" data-status="">All</a>
             </li>
@@ -40,6 +32,15 @@ $announcementlist = get_announcement_list();
                 <a class="nav-link" id="tabOthers" data-status="Others">Others</a>
             </li>
         </ul>
+
+        <div class="card">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+            <h5 class="card-header mb-0">Announcement List</h5>
+            <div style="display: flex; margin-top: 15px; margin-right: 15px;">
+                <button type="button" id="tabAll" class="btn btn-primary" style="margin-right: 10px;" data-bs-toggle="modal" data-bs-target="#addModal">Add Announcement</button>
+                <!-- <button type="button" id="tabPublished" class="btn btn-primary">Download</button> -->
+            </div>
+        </div>
             <div class="table-responsive text-nowrap">
                 <table class="table table-striped" id="DataTable">
                     <thead>

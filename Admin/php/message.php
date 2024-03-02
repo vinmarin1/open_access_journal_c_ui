@@ -15,16 +15,8 @@ $messagelist = get_message_list();
    <div class="container-xxl flex-grow-1 container-p-y">
         <h4 class="py-3 mb-4"><span class="text-muted fw-light"></span> Message</h4>
 
-        <div class="card">
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-            <h5 class="card-header mb-0">Message</h5>
-            <div style="display: flex; margin-top: 15px; margin-right: 15px;">
-                <!-- <button type="button" id="tabAll" class="btn btn-primary" style="margin-right: 10px;" data-bs-toggle="modal" data-bs-target="#addModal">Add Message</button> -->
-                <!-- <button type="button" id="tabPublished" class="btn btn-primary">Download</button> -->
-            </div>
-        </div>
-         <!-- Status tabs -->
-         <ul class="nav nav-tabs mb-3" id="statusTabs">
+        <!-- Status tabs -->
+        <ul class="nav nav-tabs mb-3" id="statusTabs">
             <li class="nav-item">
                 <a class="nav-link active" id="tabAll" data-status="">All</a>
             </li>
@@ -39,6 +31,14 @@ $messagelist = get_message_list();
             </li>
         </ul>
 
+        <div class="card">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+            <h5 class="card-header mb-0">Message List</h5>
+            <div style="display: flex; margin-top: 15px; margin-right: 15px;">
+                <!-- <button type="button" id="tabAll" class="btn btn-primary" style="margin-right: 10px;" data-bs-toggle="modal" data-bs-target="#addModal">Add Message</button> -->
+                <!-- <button type="button" id="tabPublished" class="btn btn-primary">Download</button> -->
+            </div>
+        </div>
 
             <div class="table-responsive text-nowrap">
                 <table class="table table-striped" id="DataTable">
@@ -48,7 +48,6 @@ $messagelist = get_message_list();
                             <th>Name</th>
                             <th>Email</th>
                             <th>Reason</th>
-                            <th>Message</th>
                             <th>Date Added</th>
                             <th>Actions</th>
                         </tr>   
@@ -58,10 +57,9 @@ $messagelist = get_message_list();
                             <tr>
                                 <td width="5%"><?php echo  $messagelistval->message_id; ?></td>
                                 <td width="5%"><?php echo  $messagelistval->name; ?></td>
-                                <td width="85%"><?php echo  $messagelistval->email; ?></td>
-                                <td width="85%"><?php echo  $messagelistval->reason; ?></td>
-                                <td width="85%"><?php echo  $messagelistval->message; ?></td>
-                                <td width="85%"><?php echo  $messagelistval->date_added; ?></td>
+                                <td width="45%"><?php echo  $messagelistval->email; ?></td>
+                                <td width="10%"><?php echo  $messagelistval->reason; ?></td>
+                                <td width="10%"><?php echo  $messagelistval->date_added; ?></td>
                                 <td width="10%">
                                     <button type="button" class="btn btn-outline-success" onclick="updateModal(<?php echo $messagelistval->message_id; ?>)">View</button>
                                     <button type="button" class="btn btn-outline-danger" onclick="archiveMessage(<?php echo $messagelistval->message_id; ?>, '<?php echo $messagelistval->email; ?>', '<?php echo $messagelistval->message; ?>')">Archive</button>
