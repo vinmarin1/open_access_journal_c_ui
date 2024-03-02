@@ -619,9 +619,6 @@ document.addEventListener('DOMContentLoaded', function () {
           keywordsValidation.style.display = 'none';
       }
 
-    checkValidations();
-});
-
 
   editor2.addEventListener('input', function () {
       const referenceText = editor2.value.trim();
@@ -635,7 +632,7 @@ document.addEventListener('DOMContentLoaded', function () {
       checkValidations();
   });
 });
-
+})
 
 
 function openFilename(index) {
@@ -723,11 +720,6 @@ setupFileInput('file_name3', 'file3UpdatePreview');
 
 document.getElementById('update-cont-2').addEventListener('click', function(event) {
 
-  const articleButton = document.getElementById('article-tab');
-  articleButton.click();
-
-});
-
   const input5f1 = document.getElementById('input5f1').value;
   const input7 = document.getElementById('input7').value;
   const input6 = document.getElementById('input6').value;
@@ -774,6 +766,7 @@ document.getElementById('update-cont-2').addEventListener('click', function(even
   });
 
 });
+
 
 document.getElementById('update-cont-3').addEventListener('click', function(event){
 
