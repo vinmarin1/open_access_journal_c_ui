@@ -1,19 +1,21 @@
 <?php
-include 'dbcon.php';
-require '../../vendor/autoload.php';
+require 'dbcon.php';
+require '../../../vendor/autoload.php';
+
+$options = array(
+    'cluster' => 'ap1',
+    'useTLS' => true
+);
+$pusher = new Pusher\Pusher(
+    'cabcad916f55a998eaf5',
+    '0aef8b4d2da6760f5726',
+    '1764683',
+    $options
+);
 
 function addNotification($article_id, $author_id, $title, $message)
 {
-    $options = array(
-        'cluster' => 'ap1',
-        'useTLS' => true
-    );
-    $pusher = new Pusher\Pusher(
-        'cabcad916f55a998eaf5',
-        '0aef8b4d2da6760f5726',
-        '1764683',
-        $options
-    );
+    global $pusher; // Access the $pusher variable from the global scope
 
     $data['message'] = 'hello world';
     $pusher->trigger('my-channel', 'my-event', $data);
