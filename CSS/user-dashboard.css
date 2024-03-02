@@ -303,8 +303,8 @@ label {
     margin-left: 5px;
 }
 #saveButton {
-    background-color: white;
-    color: black;
+    background-color: #2ECC71;
+    color: white;
     /* color: white; */
     border: none;
     /* padding: 10px 20px; */
@@ -331,7 +331,7 @@ label {
 }
 
 #cancelBtn {
-    background-color: white;
+    background-color: #F2F3F4;
     border: none;
     color: black;
     /* padding: 10px 20px; */
@@ -964,7 +964,7 @@ label {
 
 #credit-history-container h3 {
     font-family: Arial, sans-serif !important;
-    font-size: 18px;
+    font-size: 25px;
     color: black;
     font-weight: bold;
 }

@@ -27,7 +27,8 @@ if (!function_exists('get_allarticle_list')) {
 }
 
 if (!function_exists('get_journal_list')) {
-    function get_journal_list($cid = null) {
+    function get_journal_list($cid = null)
+    {
         $pdo = connect_to_database();
 
         if ($pdo) {
@@ -59,7 +60,8 @@ if (!function_exists('get_journal_list')) {
 }
 
 if (!function_exists('get_article_list')) {
-    function get_article_list($cid) {
+    function get_article_list($cid)
+    {
         $pdo = connect_to_database();
 
         if ($pdo) {
@@ -83,7 +85,8 @@ if (!function_exists('get_article_list')) {
 }
 
 if (!function_exists('get_contributor_list')) {
-    function get_contributor_list() {
+    function get_contributor_list()
+    {
         $pdo = connect_to_database();
 
         if ($pdo) {
@@ -106,7 +109,8 @@ if (!function_exists('get_contributor_list')) {
 }
 
 if (!function_exists('get_journal_detail')) {
-    function get_journal_detail($cid) {
+    function get_journal_detail($cid)
+    {
         $pdo = connect_to_database();
 
         if ($pdo) {
@@ -128,5 +132,3 @@ if (!function_exists('get_journal_detail')) {
         return false;
     }
 }
-
-?>

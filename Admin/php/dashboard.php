@@ -143,14 +143,6 @@ include 'function/dashboard_functions.php';
 
             <div class="container">
                 <div class="chart-container" style="margin-top: -10px;">
-                    <select id="yearDropdown">
-                        <?php
-                        foreach ($availableYears as $year) {
-                            $selected = ($year == $selectedYear) ? 'selected' : '';
-                            echo "<option value='$year' $selected>$year</option>";
-                        }
-                        ?>
-                    </select>
                     <div class="chart-title">Article Engagement Based On Journal Type</div>
                     <canvas id="lineChart1"></canvas>
                     <div id="conditionalDiv" style="display: none;">Conditional Content</div>
@@ -264,23 +256,7 @@ include 'function/dashboard_functions.php';
         ]
     };
 
-    // Years for the dropdown list
-    var years = ['2023', '2024', '2025'];
 
-    // Populate the dropdown list with the selected year
-    var dropdown = document.getElementById('yearDropdown');
-    for (var i = 0; i < years.length; i++) {
-        var option = document.createElement('option');
-        option.value = years[i];
-        option.text = years[i];
-
-        // Set the selected attribute for the current year
-        if (years[i] == <?php echo $selectedYear; ?>) {
-            option.selected = true;
-        }
-
-        dropdown.add(option);
-    }
 
     // Data for the line chart
 

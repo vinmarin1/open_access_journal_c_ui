@@ -171,20 +171,50 @@
             <br>
         </div>
 
-        <div class="ab-qoaj-right">
-          <div class="text1">
-            <h4>1,243</h4>
-            <p>Articles published</p>
-          </div>
-          <div class="divider-line-2"></div>
-          <div class="text1">
-            <h4>89</h4>
-            <p>Total Contribution</p>
+        <?php
+// SQL query to count published articles
+$sql = "SELECT COUNT(*) AS published_articles_count FROM article WHERE status = 1";
+
+// Execute the query using the database_run function
+$published_articles_count = database_run($sql);
+
+// Check if count was retrieved successfully
+if ($published_articles_count !== false) {
+    // Display the count wherever needed in your HTML
+    echo "<div class='ab-qoaj-right'>
+            <div class='text1'>
+              <h4>{$published_articles_count[0]->published_articles_count}</h4>
+              <p>Articles published</p>
+            </div>";
+} else {
+    // Handle the case where the count retrieval failed
+    echo "Failed to retrieve published articles count.";
+}
+?>
+<?php
+// SQL query to count total users
+$sql_users = "SELECT COUNT(*) AS total_users FROM author WHERE status = 1";
+
+// Execute the query using the database_run function
+$total_users = database_run($sql_users);
+
+// Check if count was retrieved successfully
+if ($total_users !== false) {
+    // Display the count wherever needed in your HTML
+    echo "<div class='divider-line-2'></div>
+          <div class='text1'>
+            <h4>{$total_users[0]->total_users}</h4>
+            <p>Total Users</p>
           </div>
         </div>
       </div>
+    </div>";
+} else {
+    // Handle the case where the count retrieval failed
+    echo "Failed to retrieve total users count.";
+}
+?>
 
-    </div>
 
     <div class="fluid-container">
       <section id="features-container">

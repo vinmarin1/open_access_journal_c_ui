@@ -6,6 +6,11 @@ function getQueryParam(name) {
 document.addEventListener("DOMContentLoaded", function() {
     generateArticlesBasedOnIssues(currentPage); 
     generateIssue();
+
+    if (isLoggedIn) {
+        // If the user is logged in, proceed with generating articles
+        generateArticlesBasedOnIssues(currentPage);
+    }
 });
 let currentPage=1
 
@@ -52,43 +57,55 @@ async function generateArticlesBasedOnIssues(page) {
     const articles = data
     const articlesByIssue = document.querySelector("#articles-by-issue")
     articlesByIssue.innerHTML=""
-    articlesByIssue.innerHTML = articles.map((article, index) => `
-    <!-- Article Container -->
-    <a class="article-container" href="../PHP/article-details.php?articleId=${article.article_id}">
-        <!-- Article Content -->
-        <div class="article-content">
-            <h6>${article.title} </h6>
-            <p>${article.abstract.slice(0, 150)}...</p>
-        </div>
-        <!-- Article Stats -->
-        <div class="article-stats">
-            <div class="download-buttons">
-                <button class="download-pdf-button" data-article-index="${article.article_id}" data-article-file="${article.file_name}">Download PDF</button>
+    articlesByIssue.innerHTML = articles.map((article, index) => {
+        // Construct the HTML for the article container
+        let html = `
+        <!-- Article Container -->
+        <a class="article-container" href="../PHP/article-details.php?articleId=${article.article_id}">
+            <!-- Article Content -->
+            <div class="article-content">
+                <h6>${article.title}</h6>
+                <p>${article.abstract.slice(0, 150)}...</p>
             </div>
-            <hr>
-            <div class="stats-container">
-                <div class="view-download">
-                    <p class="stats-value" style="color: #0858a4;">${article.total_reads}</p>
-                    <p class="stats-label" style="color: #959595;">VIEWS</p>
+            <!-- Article Stats -->
+            <div class="article-stats">
+                <div class="download-buttons">`;
+    
+        // Check if the user is logged in
+        if (isLoggedIn) {
+            // If logged in, include the download button
+            html += `<button class="download-pdf-button" data-article-index="${article.article_id}" data-article-file="${article.file_name}">Download PDF</button>`;
+        }
+    
+        html += `</div>
+                <hr>
+                <div class="stats-container">
+                    <div class="view-download">
+                        <p class="stats-value" style="color: #0858a4;">${article.total_reads}</p>
+                        <p class="stats-label" style="color: #959595;">VIEWS</p>
+                    </div>
+                    <div class="view-download">
+                        <p class="stats-value" style="color: #0858a4;">${article.total_downloads}</p>
+                        <p class="stats-label" style="color: #959595;">DOWNLOADS</p>
+                    </div>
+                    <div class="view-download">
+                        <p class="stats-value" style="color: #0858a4;">${article.total_citations}</p>
+                        <p class="stats-label" style="color: #959595;">CITATIONS</p>
+                    </div>
                 </div>
-                <div class="view-download">
-                    <p class="stats-value" style="color: #0858a4;">${article.total_downloads}</p>
-                    <p class="stats-label" style="color: #959595;">DOWNLOADS</p>
-                </div>
-                <div class="view-download">
-                    <p class="stats-value" style="color: #0858a4;">${article.total_citations}</p>
-                    <p class="stats-label" style="color: #959595;">CITATIONS</p>
+                <br>
+                <div class="download-buttons">
+                    <!--<button><i class="ri-double-quotes-r"></i>Citations</button>
+                    <button><i class="ri-share-fill"></i>Share</button>
+                    <button><i class="ri-heart-fill"></i>Heart</button> -->
                 </div>
             </div>
-            <br>
-            <div class="download-buttons">
-                <!--<button><i class="ri-double-quotes-r"></i>Citations</button>
-                <button><i class="ri-share-fill"></i>Share</button>
-                <button><i class="ri-heart-fill"></i>Heart</button> -->
-            </div>
-        </div>
-    </a>`
-).join('');
+        </a>`;
+        
+        // Return the constructed HTML for this article
+        return html;
+    }).join('');
+    
 
 // Add event listeners to download buttons
 document.querySelectorAll('.download-pdf-button').forEach(button => {

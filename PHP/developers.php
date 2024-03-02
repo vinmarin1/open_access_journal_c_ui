@@ -144,7 +144,7 @@
     <div class="row">
         <div class="col-md-1" style="margin-left:-80px"> <!------ blank space -------> </div>
             <div class="col-md-10">
-                <h3>DESIGNER</h3>
+                <h3>DESIGNERS</h3>
             </div>
         </div>
     </div>
@@ -396,7 +396,7 @@
             <div class="mt-2 mb-2 members-content text-center">
                 <img src="../images/dela-cruz.png" alt="" class="img-fluid">
                 <div class="description" >
-                    <p class="mt-2" style="font-size:medium;">ALBERT T. DELA CRUZ</p>
+                    <p class="mt-2" style="font-size:medium;">JOHN ALBERT T. DELA CRUZ</p>
                     <p style="font-weight:normal; font-size: small;">SYSTEM ANALYST</p>
                     <p style="font-weight:normal; font-size: smaller;  ">System Analyst with a focus on QA,  specializes in evaluating and enhancing system requirements to ensure quality assurance throughout the project lifecycle.</p>
                 </div>
@@ -444,7 +444,7 @@
     <div class="row">
         <div class="col-md-1" style="margin-left:-80px"> <!------ blank space -------> </div>
             <div class="col-md-10">
-                <h3 style="color: #115272;">DOCUMENTATION/RESEARCHER</h3>
+                <h3 style="color: #115272;">DOCUMENTATIONS/RESEARCHERS</h3>
             </div>
         </div>
     </div>

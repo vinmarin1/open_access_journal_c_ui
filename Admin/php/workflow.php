@@ -82,7 +82,7 @@ table {
 
     <!-- Content wrapper -->
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h5 class="py-3 mb-4"><?php echo $article_data[0]->article_id; ?> / <?php echo $article_data[0]->title; ?></h5>
+        <h5 class="py-3 mb-4"><a href="../php/submissionlist.php?cid=<?php echo $article_data[0]->journal_id; ?>"><span class="text-muted fw-light">Submission /</span></a><?php echo $article_data[0]->article_id; ?> / <?php echo $article_data[0]->title; ?></h5>
 
             <div class="row">
                 <div class="col-xl-12">
@@ -1369,11 +1369,15 @@ table {
                         badgeElement.textContent = similarArticlesCount;
 
                         const badgeContainer = document.getElementById('badgeContainer');
-                        badgeContainer.appendChild(badgeElement);
-                        document.querySelector('.duplicateButton').classList.remove('d-none');
-                    } else {
-                        document.querySelector('.duplicateButton').classList.add('d-none');
-                    }
+                        if (badgeContainer) {
+                            badgeContainer.appendChild(badgeElement);
+                        }
+
+                        const duplicateButton = document.querySelector('.duplicateButton');
+                        if (duplicateButton) {
+                            duplicateButton.classList.remove('d-none');
+                        }
+                    } 
 
                     if (data.flagged) {
                         $('#DuplicateModal').modal('show');
@@ -1431,8 +1435,11 @@ table {
                         });
                     }
                 } catch (error) {
-                    console.error('Error fetching data:', error);
-                    document.getElementById('apiData').innerText = 'Error fetching data';
+                console.error('Error fetching data:', error);
+                const apiDataElement = document.getElementById('apiData');
+                    if (apiDataElement) {
+                        apiDataElement.innerText = 'Error fetching data';
+                    }
                 }
             }
 
@@ -1543,8 +1550,11 @@ table {
                     });
                 }
             } catch (error) {
-                console.error('Error fetching data:', error);
-                document.getElementById('apiData').innerText = 'Error fetching data';
+            console.error('Error fetching data:', error);
+            const apiDataElement = document.getElementById('apiData');
+                if (apiDataElement) {
+                    apiDataElement.innerText = 'Error fetching data';
+                }
             }
         }
 
@@ -1600,7 +1610,7 @@ table {
                 theme: 'snow'
             });
                 
-            var abstractContent = '<?php echo addslashes($article_data[0]->abstract); ?>';
+            var abstractContent = <?php echo json_encode($article_data[0]->abstract); ?>;
             var referenceContent = '<?php echo addslashes($article_data[0]->references); ?>';
             var emailContent = <?php echo json_encode($reviewer_email[0]->content); ?>;
             var title = <?php echo json_encode($article_data[0]->title); ?>;

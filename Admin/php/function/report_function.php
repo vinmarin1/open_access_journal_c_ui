@@ -309,15 +309,24 @@ if (!function_exists('get_report_list')) {
                     LIMIT 5;";
                                 
             $results = execute_query($sql);
+    
+            if (!empty($results)) {
                 $data['top5contributorslist'] = $results;
                 return $data;
-            if ($results !== false) {
-        
             } else {
-                return array(); 
+                $randomNames = getRandomNamesFromPastContributors();
+                $data['top5contributorslist'] = $randomNames;
+                return $data;
             }
         }
     }
+    
+    function getRandomNamesFromPastContributors() {
+        $sql = "SELECT firstname, lastname,0 AS email_count FROM contributors ORDER BY RAND() LIMIT 5";
+        $randomNames = execute_query($sql);
+        
+        return $randomNames;
+    }    
 
     if (!function_exists('get_contributorsgraph')) {
         function get_contributorsgraph() {

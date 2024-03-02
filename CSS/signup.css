@@ -50,10 +50,10 @@ input[type="text"], input[type="email"], input[type="number"], input[type="date"
 input[type="submit"]{
     height: 35px;
     width: 99%;
-    color: #D93939;
+    color: white;
     border: none;
     border: 1px solid;
-    background-color: white;
+    background-color: #0858a4;
     display: block;
     margin-bottom: 20px;
 
@@ -71,11 +71,7 @@ input[type="submit"]{
 
 
 input[type="submit"]:hover{
-    color: #D93939;
-    border: none;
-    border: 1px solid;
-    background-color: white;
-    height: 35px;
+    opacity:0.5;
     
 }
 
@@ -124,18 +120,18 @@ input[type="submit"]:hover{
 .progress-bar-success{
     background-color: #02b502 !important;
 }
-.login-btn{
+/* .login-btn{
     width: 180px !important;
     background-image: linear-gradient(to right, #f6086e , #ff133a) !important;
     font-size: 18px;
     color: #fff;
     margin: 0 auto 5px;
     padding: 8px 0; 
-}
-.login-btn:hover{
+} */
+/* .login-btn:hover{
     background-image: linear-gradient(to right, rgba(255, 0, 111, 0.8) , rgba(247, 2, 43, 0.8)) !important;
     color: #fff !important;
-}
+} */
 .fa-eye{
     color: #022255;
     cursor: pointer;

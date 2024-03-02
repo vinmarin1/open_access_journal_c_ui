@@ -58,7 +58,7 @@ document.getElementById('form').addEventListener('submit', function(event) {
     const form = document.getElementById('form');
     const email = document.getElementById('email').value;
     const fname = document.getElementById('fname').value;
-    const mdname = document.getElementById('mdname').value;
+    // const mdname = document.getElementById('mdname').value;
     const lname = document.getElementById('lname').value;
     const password = document.getElementById('password').value;
     const orcid = document.getElementById('orcid').value;
@@ -158,6 +158,7 @@ async function isOrcid(orcid) {
 }
 
 
+
 if (!isValidEmail(email)) {
     document.getElementById('spanEmailValidation').style.display = 'inline-block';
     hasError = true;
@@ -168,21 +169,15 @@ if (fname.length < 2) {
     hasError = true;
 }
 
-if (mdname.length < 2) {
-    document.getElementById('spanMdValidation').style.display = 'inline-block';
-    hasError = true;
-}
+// if (mdname.length < 2) {
+//     document.getElementById('spanMdValidation').style.display = 'inline-block';
+//     hasError = true;
+// }
 
 if (lname.length < 2) {
     document.getElementById('spanLnValidation').style.display = 'inline-block';
     hasError = true;
 }
-(async () => {
-    if (!await isOrcid(orcid)) {
-        document.getElementById('spanOrcidValidation').style.display = 'inline-block';
-        hasError = true;
-    }
-})();
 
 
 
@@ -201,23 +196,35 @@ if (!privacyPolicy.checked) {
     });
     return;
 }
+(async () => {
+    console.log('Starting validation...');
+    if (!await isOrcid(orcid)) {
+        console.log('ORCID is not valid. Halting execution.');
+        document.getElementById('spanOrcidValidation').style.display = 'inline-block';
+        Swal.fire({
+            icon: "info",
+            text: "ORCID is not valid"
+        });
+        hasError = true;
+        return; 
+    }
 
-if (hasError) {
+if(!captchaSolved){
+    Swal.fire({
+        icon: "error",
+        text: "Please answer captcha "
+    });
+}
+else if (hasError) {
     // Validation failed, do not proceed with registration
     // Optionally, you can display a general validation error message
     Swal.fire({
         icon: "error",
         text: "Please correct the validation errors before submitting the form."
     });
-} else 
-if(!captchaSolved){
-    Swal.fire({
-        icon: "error",
-        text: "Please answer captcha "
-    });
-}else {
+} else {
     // Validation passed, proceed with registration
-
+    console.log(hasError,"haserrorr2")
     const xhr = new XMLHttpRequest();
     xhr.open('POST', '../PHP/signup-function.php', true);
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -242,12 +249,12 @@ if(!captchaSolved){
     xhr.send('email=' + encodeURIComponent(email) +
         '&orcid=' + encodeURIComponent(orcid) +
         '&fname=' + encodeURIComponent(fname) +
-        '&mdname=' + encodeURIComponent(mdname) +
+        // '&mdname=' + encodeURIComponent(mdname) +
         '&lname=' + encodeURIComponent(lname) +
         '&password=' + encodeURIComponent(password) +
         '&privacyPolicy=' + encodeURIComponent(privacyPolicy));
 }
-
+})();
     // const xhr = new XMLHttpRequest();
     // xhr.open('POST', '../PHP/signup-function.php', true);
     // xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -291,9 +298,9 @@ document.getElementById('fname').addEventListener('input', function() {
     fname.style.border = '1px solid';
 });
 
-document.getElementById('mdname').addEventListener('input', function() {
-    document.getElementById('span3').style.display = 'none';
-});
+// document.getElementById('mdname').addEventListener('input', function() {
+//     document.getElementById('span3').style.display = 'none';
+// });
 
 document.getElementById('lname').addEventListener('input', function() {
     document.getElementById('span4').style.display = 'none';
@@ -364,12 +371,12 @@ document.getElementById('fname').addEventListener('blur', function() {
     };
 });
 
-document.getElementById('mdname').addEventListener('blur', function() {
-    const mdname = document.getElementById('mdname').value;
-    if(mdname === ""){
-        document.getElementById('span3').style.display = 'inline-block';
-    };
-});
+// document.getElementById('mdname').addEventListener('blur', function() {
+//     const mdname = document.getElementById('mdname').value;
+//     if(mdname === ""){
+//         document.getElementById('span3').style.display = 'inline-block';
+//     };
+// });
 
 document.getElementById('lname').addEventListener('blur', function() {
     const lname = document.getElementById('lname').value;

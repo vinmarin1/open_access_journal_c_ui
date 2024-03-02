@@ -1,4 +1,7 @@
-
+#submit-form {
+color:  #444444 ;
+text-align: justify !important;
+}
 #form{
     width: 80%;
     height: auto;
@@ -8,12 +11,18 @@
     margin-bottom: 10px;
 }
 
+.checkItem {
+    display: flex;
+    align-items: start;
+    gap: 2;
+}
+
 #privacy-tab, #article-tab, #file-tab, #contributors-tab, #comment-tab,#review-tab{
     border: none;
-    font-size: 12px;
+    font-size: 14px;
     color: #0858a4;
     margin-right: 5px;
-    width: 121px;
+    min-width: 121px;
     border-bottom-color: none;
     margin-bottom: 0px;
 }
@@ -29,8 +38,8 @@
 }
 
 #myTab{
-    border-bottom: 20px #0858a4 solid;
-    padding-top: 50px;
+    border-bottom: 10px #0858a4 solid;
+    padding-top: 24px;
     padding-left: 10px;
 
   
@@ -43,6 +52,7 @@
 
 #sub-1, #sub-2, #sub-3, #sub-4, #sub-5{
     font-weight: normal;
+    width: 88%;
 }
 
 .form-floating, #form-floating-3{
@@ -54,7 +64,7 @@
 
 .form-floating-2{
     display: none;
-    width: 300px;
+    width: 100%;
     max-width: 350px;
     min-width: auto;
     float: right;
@@ -66,59 +76,61 @@
 }
 
 #duplication-title, .checker-titles, #flaggedT{
-    color: #0858a4;
-    font-family: Arial, Helvetica, sans-serif;
+    color: #285581;
+    font-family: Arial, Helvetica, sans-serif !important;
     font-weight: bold;
 }
 
 #flagged{
     margin-bottom: 10px;
     display: none;
+    font-weight: bold;
 }
 
 
-.duplicated-article, .journal-type-container, #flagged{
-    border: 1px #999999 solid;
+.duplicated-article, .journal-type-container{
+    border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color);
     width: auto;
     height: auto;
     border-radius: 5px;
-    padding-top: 10px;
-    padding-left: 10px;
-    font-family: 'Times New Roman', Times, serif;
+    padding: 10px;
+    /* font-family: 'Times New Roman', Times, serif; */
 }
 
 .suggestion-title{
-    margin-top: 20px;
-    color: #0858a4;
-    font-family: 'Times New Roman', Times, serif;
+    /* margin-top: 20px; */
+    /* color: #285581; */
+    /* font-family: 'Times New Roman', Times, serif; */
     width: 95%;
-    
+    font-size: 14px;
+    font-size: 14px;
+    margin-top: 8px;
     
    
 }
 
 #label-title, #label-result{
-    text-align: center;
+    text-align: left;
     color:#115272;
-    font-family: 'Times New Roman', Times, serif;
+    /* font-family: 'Times New Roman', Times, serif; */
   
 }
 
 #result-duplication, #result-duplication2{
     text-align: left;
     color:#115272;
-    font-family: 'Times New Roman', Times, serif;
+    /* font-family: 'Times New Roman', Times, serif; */
 }
 
 #similar-title{
     height: auto;
     overflow-x: auto;
     overflow-y: auto;
-    font-size: 11px;
-    font-weight: bold;
-    color:#0858a4;
-    margin-bottom: 20px;
-    font-family: 'Times New Roman', Times, serif;
+    font-size: 14px;
+    /* font-weight: bold; */
+    /* color:#0858a4; */
+    /* margin-bottom: 20px; */
+    /* font-family: 'Times New Roman', Times, serif; */
 }
 #similar-abstract{
     height: auto;
@@ -153,11 +165,11 @@
 }
 
 
-#title-1, #title-2, #title-3,#sub-1, #sub-2, #sub-3, #sub-4, #sub-5{
+#title-1, #title-2, #title-3,#sub-1, #sub-2, #sub-5{
     /* margin-left: 40px; */
-    color: #0858a4;
+    color: #285581;
     font-family: Arial, Helvetica, sans-serif;
-    width: 80%;
+    /* width: 80%; */
 }
 
 #line-1, #line-2{
@@ -174,8 +186,9 @@
 } */
 
 .descript-1 p, .descript-2 p{
-    font-size: 11px;
-    /* width: 750px; */
+    font-size: 14px;
+    width: 88%;
+    text-align: justify;
     display: inline-block;
     margin-left: 10px;
     
@@ -189,19 +202,19 @@
 }
 
 #title-4{
-    color: #0858a4;
+    color: #285581;
     font-weight: bold;
     display: block;
 }
 
 #sub-6{
-    color: #0858a4;
+    color: #285581;
     font-weight: normal;
     display: block;
 }
  #sub-7, #sub-8{
     margin-left: 40px;
-    color: #0858a4;
+    color: #285581;
     font-family: Arial, Helvetica, sans-serif;
     width: 350px;
     margin-top: 20px;
@@ -210,7 +223,7 @@
 #vl{
     display: inline-block;
     height: 200px;
-    border-left:  2px solid #0858a4;
+    border-left:  2px solid #285581;
     width: auto;
     margin-left: 20px;
     margin-right: 40px;
@@ -221,14 +234,14 @@
     display: inline-block;
     width: 100%;
    
-    margin-top: 40px;
+    /* margin-top: 40px; */
 }
 
 #sub-9, #sub-10{
     
     font-weight: bold;
-    color: #0858a4;
-    font-family: Arial, Helvetica, sans-serif;
+    color: #285581;
+    font-family: Arial, Helvetica, sans-serif !important;
 }
 
 #title{
@@ -236,7 +249,7 @@
 }
 
 #title, #keywords{
-    font-size: 11px;
+    /* font-size: 11px; */
 
 }
 
@@ -254,17 +267,17 @@
 #sub-11, #sub-12{
    
     font-weight: bold;
-    color: #0858a4;
-    font-family: Arial, Helvetica, sans-serif;
+    color: #285581;
+    font-family: Arial, Helvetica, sans-serif !important;
 }
 
 
 
 #editor, #editor2, #editor3{
-   height: 200px;
+   height: 220px;
    width: 100%;
    resize: none;
-   font-size: 12px;
+   font-size: 14px;
  
 }
 
@@ -300,7 +313,7 @@
 
 #title-6, #title-7, #title-8, #title-9, #title-15,#sub-13, #sub-14 , #sub-15,  #sub-16,  #sub-17,  #sub-18,  #sub-19,  #sub-20, #sub-21, #sub-22, #sub-23, #sub-24, #sub-25, #selectRoleLabel, #selectRoleLabelUpdate{
     
-    color: #0858a4;
+    color: #285581;
     font-family: Arial, Helvetica, sans-serif;
     width: 100%;
   
@@ -309,13 +322,13 @@
 #title-9f{
     margin-top: 40px;
     margin-left: 40px;
-    color: #0858a4;
+    color: #285581;
 }
 
 #title-9f, #sub-16f, #sub-17f{
     
     margin-left: 40px;
-    color: #0858a4;
+    color: #285581;
 }
 
 
@@ -439,7 +452,7 @@
     color: white;
     border: none;
     border-radius: 5px;
-    font-size: 12px;
+    font-size: 14px;
     float: right;
     
 }
@@ -516,7 +529,7 @@
 }
 
 #sub-26,  #sub-28, #sub-29{
-    color: #0858a4;
+    color: #285581;
     text-align: left;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
@@ -528,7 +541,7 @@
     font-weight: bold;
     margin-left: -20px;
     text-align: left;
-    color: #0858a4;
+    color: #285581;
     margin-bottom: 10px;
     margin-top: 20px;
     width: 100%;
@@ -537,7 +550,7 @@
 
  #sub-30, #sub-31, #sub-32, #sub-33, #sub-34{
     text-align: left;
-    color: #0858a4;
+    color: #285581;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: normal;
     margin-bottom: 10px;
@@ -603,7 +616,7 @@
 
 
 #title-11, #title-12{
-    color:#0858a4;
+    color:#285581;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 18px;
@@ -617,7 +630,7 @@
 
 #title-9, #title-10,  #title-14, #title-15{
     text-align: left;
-    color: #0858a4;
+    color: #285581;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 18px;
@@ -666,7 +679,7 @@
     height: 25px;
     margin-right: 20px;
     font-weight: normal;
-    font-size: 12px;
+    font-size: 14px;
     width: 100px;
     border-radius: 10px;
     float: right;
@@ -677,7 +690,7 @@
   #update-cont-3{
     height: 25px;
     font-weight: normal;
-    font-size: 12px;
+    font-size: 14px;
     width: 100px;
     border-radius: 10px;
     display: block;
@@ -687,7 +700,7 @@
   #update-cont-4{
     height: 25px;
     font-weight: normal;
-    font-size: 12px;
+    font-size: 14px;
     width: 100px;
     border-radius: 10px;
     display: block;
@@ -765,7 +778,7 @@
 #previewTitlelabel, #previewAbstractlabel, #previewKeywordlabel, #referenceAbstractlabel, #updatePreviewFile1, #updatePreviewFile2, #updatePreviewFile3{
     font-family: Arial, Helvetica, sans-serif;
     text-align: left;
-    color: #0858a4;
+    color: #285581;
     margin-bottom: 5px;
     margin-left: 5px;
 
