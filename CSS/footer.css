@@ -16,6 +16,9 @@ body{
     background-color: #0858A4;
     bottom:0;
     width: 100%;
+    min-height: 80px;
+    align-items: center;
+    padding-left:4em;
 }
 
 
