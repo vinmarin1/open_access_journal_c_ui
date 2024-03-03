@@ -270,8 +270,9 @@ $expertise = $_SESSION['expertise'];
 													foreach ($defaultResult as $row) {
 														echo '<li style="margin-top: 10px;">' . 
 														$row->first_name . ' ' . $row->middle_name . ' ' . $row->last_name . ' - Published Articles: ' . $row->article_count .
-														'<a style="padding-left: 5px; color: blue; text-decoration: underline; cursor: pointer" title="Support this author by giving them some of your charisma">SUPPORT</a>' . 
+														'<a onclick="onclickSupport()" style="padding-left: 5px; color: blue; text-decoration: underline; cursor: pointer" title="Support this author by giving them some of your charisma">SUPPORT</a>' . 
 														'</li>';
+													
 													
 
 													}
@@ -585,7 +586,7 @@ $expertise = $_SESSION['expertise'];
 														$orc_id = $user->orc_id;
 													
 														echo '<input type="text"  id="orcid" name="orcid" class="other-text-box" pattern="\d{4}-\d{4}-\d{4}-\d{4}" placeholder="(e.g., xxxx-xxxx-xxxx-xxxx)"
-														value="' . $orc_id . '" disabled>';
+														value="' . $orc_id . '" readonly>';
 													
 														
 										
@@ -759,10 +760,25 @@ $expertise = $_SESSION['expertise'];
 
 							echo  $totalPoints;
 						} 
-					?><i id="heartIcon" class="fa-solid fa-heart" style="color: red; margin-left: 5px" title="Community Heart, for more info click it."></i>
+					?>
 					
 
 					
+
+					</div>
+					<div class="supportPoints" style="font-weight: bold; margin-top: -15px; margin-bottom: 10px">Support Points:
+					
+					<?php
+					$sqlPoints = "SELECT points FROM support_points WHERE user_id = $id";
+
+					$result = database_run($sqlPoints);
+
+					if ($result !== false) {
+						$row = $result[0];
+						$totalPoints = $row->points;
+						echo $totalPoints;
+					}
+					?>
 
 					</div>
 					<button class="btn  btn-md text-white" id="btn1" onclick="window.location.href='author-dashboard.php'">Manage Articles</button>

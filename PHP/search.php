@@ -25,10 +25,14 @@ if (isset($_POST['searchData'])) {
     if ($result) {
         foreach ($result as $row) {
             echo '<li style="margin-top: 10px; margin-left: -10px">' . $row->first_name . ' ' . $row->middle_name . ' ' . $row->last_name . ' - Published Articles: ' . $row->article_count .
-            '<a style="padding-left: 5px; color: blue; text-decoration: underline; cursor: pointer" title="Support this author by giving them some of your charisma">SUPPORT</a>' .  '</li>';
+            '<a onclick="onclickSupport()" style="padding-left: 5px; color: blue; text-decoration: underline; cursor: pointer" title="Support this author by giving them some of your charisma">SUPPORT</a>' .  '</li>';
+            
+         
         }
     } else {
         echo '<li>No results found</li>';
     }
 }
 ?>
+
+!
