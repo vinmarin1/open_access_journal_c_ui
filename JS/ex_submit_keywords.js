@@ -2,11 +2,17 @@ const keywordInput = document.querySelector('#keywords');
 const keywordsDisplay = document.querySelector('#display-keywords');
 const keywordBtn = document.querySelector('#keyword-btn');
 const keywordsPreview = document.getElementById('input6');
-
+const keywordsValidation = document.getElementById('keywords-validation');
 let keywordArray = []; 
 
 function generateKeywords(keywordInputValue){
-    
+    const wordCount = keywordArray.length;
+    if (wordCount >= 5) {
+        keywordsValidation.style.display = 'block';
+    }
+    else {
+        keywordsValidation.style.display = 'none';
+    }
     keywordArray.push(keywordInputValue); 
     keywordsPreview.value = keywordArray.join(',');
     console.log(keywordsPreview.value);
@@ -19,6 +25,12 @@ function generateKeywords(keywordInputValue){
     deleteIcon.classList.add('delete-icon');
     deleteIcon.addEventListener('click', function() {
         span.remove();
+        if (wordCount > 5) {
+            keywordsValidation.style.display = 'block';
+        }
+        else {
+            keywordsValidation.style.display = 'none';
+        }
         keywordArray = keywordArray.filter(keyword => keyword !== keywordInputValue);
     });
 

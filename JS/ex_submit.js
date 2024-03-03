@@ -618,6 +618,7 @@ document.addEventListener('DOMContentLoaded', function () {
       } else {
           keywordsValidation.style.display = 'none';
       }
+    })
 
 
   editor2.addEventListener('input', function () {
@@ -632,7 +633,6 @@ document.addEventListener('DOMContentLoaded', function () {
       checkValidations();
   });
 });
-})
 
 
 function openFilename(index) {
