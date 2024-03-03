@@ -11,8 +11,8 @@
 <body>
   <div class="foot" id="footer-container">
     <div class="container-fluid">
-      <div class="row">
-        <div class="col-md-3 d-flex align-items-center gap-3">
+      <div class="row qcu-title">
+        <div class="col-md-4 d-flex align-items-center gap-3">
             <img class="img-logo" src="../images/qcu-logo.webp" alt="">
             <div class="logotitle-wrapper">
                 <div class="logotitle d-flex flex-column gap-1">
@@ -21,8 +21,8 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6"></div>
-        <div class="col-md-3 copyright text-md-right text-center">
+        <div class="col-md-4"></div>
+        <div class="col-md-4 copyright text-md-right text-center">
             <p class="text-md-right text-center">Content on this site is licensed under a Creative Commons <a href="https://creativecommons.org/licenses/by-sa/4.0/">Attribution-<br>ShareAlike 4.0 International (CC BY-SA 4.0) license.</a></p>
         </div>
       </div>
