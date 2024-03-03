@@ -34,6 +34,7 @@ require 'dbcon.php';
           <ul class="dropdown-menu">
           <li><a class="dropdown-item" style="color: black" href="general-info.php">General Information</a></li>
           <li><a class="dropdown-item" style="color: black" href="developers.php">The Developers</a></li>
+          <li><a class="dropdown-item" style="color: black" href="contact-us.php">Contact us</a></li>
           </ul>
         </li>
         <li class="nav-item dropdown">

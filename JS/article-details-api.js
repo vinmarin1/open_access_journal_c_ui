@@ -105,7 +105,7 @@ function renderArticleDetails(data) {
               <!-- This is a Blank space -->
           </div>
 
-          <div class="abstract col-sm-7">
+          <div class="abstract col-sm-7 p-4">
             <div class="d-flex flex-wrap gap-1 align-items-center">
               <button class="btn btn-md" id="read-btn">Read Full Article</button>
               <div class="alert alert-light mt-4 small py-2" role="alert" id="login-redirect">
@@ -131,7 +131,7 @@ function renderArticleDetails(data) {
               </button>
             </div>
               <h4>Abstract</h4>
-              <p class="mb-4 pb-4">${item.abstract}</p>
+              <p class="mb-4">${item.abstract}</p>
               <br/>
               
               <iframe

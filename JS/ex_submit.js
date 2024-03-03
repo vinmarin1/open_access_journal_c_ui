@@ -336,10 +336,10 @@ document.addEventListener('DOMContentLoaded', function(){
       fileTab.disabled = true;
   });
   
-  keywords.addEventListener('input', function() {
-      checkArticleClicked = false;
-      fileTab.disabled = true;
-  });
+  // keywords.addEventListener('input', function() {
+  //     checkArticleClicked = false;
+  //     fileTab.disabled = true;
+  // });
 
   editor2.addEventListener('input', function() {
     checkArticleClicked = false;
@@ -353,12 +353,12 @@ document.addEventListener('DOMContentLoaded', function(){
       const abstractWordCount = abstractValue.split(/\s+/).length; 
       const keywordsValue = keywords.value.trim(); 
   
-      if (titleValue === '' || abstract.value === '' || keywordsValue === '' || reference.value === '') {
+      if (titleValue === '' || abstract.value === '' || keywordArray.length==0 || reference.value === '') {
           Swal.fire({
               icon: 'warning',
               text: 'You have to give all the article details before proceeding'
           });
-      } else if (titleWordCount < 5 || abstractWordCount < 10 || !keywordsValue.includes(',') || keywordsValue === ',') {
+      } else if (titleWordCount < 5 || abstractWordCount < 10 ||  keywordArray.length==0) {
           Swal.fire({
               icon: 'warning',
               text: 'Kindly correct the article details by the said validation'
@@ -499,11 +499,13 @@ document.getElementById('editor').addEventListener('input' , function(event){
 
 document.getElementById('keywords').addEventListener('input' , function(event){
   const keywords = document.getElementById('keywords').value;
-  const keywordsPreview = document.getElementById('input6');
+  // const keywordsPreview = document.getElementById('input6');
 
 
-  keywordsPreview.value = keywords;
-
+  // keywordsPreview.value = keywordArray.join(',');
+//   console.log(keywordArray)
+//   console.log(keywordArray.join(','));
+// console.log(keywordsPreview.value,"df")
 
 });
 
@@ -557,7 +559,8 @@ document.addEventListener('DOMContentLoaded', function () {
           referenceValidation.style.display === 'none' &&
           titleInput.value.trim() !== '' &&
           editor.value.trim() !== '' &&
-          keywords.value.trim() !== '' &&
+          // keywords.value.trim() !== '' &&
+          keywordArray.length !=0 &&
           editor2.value.trim() !== ''
       ) {
           formFloating.style.width = '60%';
@@ -608,17 +611,14 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   keywords.addEventListener('blur', function () {
-    const words = keywords.value.trim().split(",");
-    const nonEmptyWords = words.filter(word => word.trim() !== ''); 
-
-    if (nonEmptyWords.length < 3) {
-        keywordsValidation.style.display = 'block';
-    } else {
-        keywordsValidation.style.display = 'none';
-    }
-
-    checkValidations();
-});
+      // const wordCount = keywords.value.trim().split(",").length;
+      const wordCount = keywordArray.length;
+      if (wordCount > 5) {
+          keywordsValidation.style.display = 'block';
+      } else {
+          keywordsValidation.style.display = 'none';
+      }
+    })
 
 
   editor2.addEventListener('input', function () {
@@ -633,7 +633,6 @@ document.addEventListener('DOMContentLoaded', function () {
       checkValidations();
   });
 });
-
 
 
 function openFilename(index) {
@@ -838,7 +837,7 @@ const filePreview3 = document.getElementById('input9g');
 
 const submitBtn = document.getElementById('submit');
 
-if (title.value === '' ||abstract.value === '' || keywords.value === '' || reference.value === '' || file_name.value === '' || file_name2.value === '' || file_name3.value === '' || titlePreview.value === '' || abstractPreview.value === '' || keywordsPreview.value === '' || referencePreview.value === ''|| filePreview.value === '' || filePreview2.value === '' || filePreview3.value === ''  ) {
+if (title.value === '' ||abstract.value === '' || keywordArray.length == 0 || reference.value === '' || file_name.value === '' || file_name2.value === '' || file_name3.value === '' || titlePreview.value === '' || abstractPreview.value === '' || keywordsPreview.value === '' || referencePreview.value === ''|| filePreview.value === '' || filePreview2.value === '' || filePreview3.value === ''  ) {
  
   submitBtn.type = 'button';
 
@@ -849,9 +848,9 @@ if (title.value === '' ||abstract.value === '' || keywords.value === '' || refer
 
   return;
 } else {
- 
   var formData = new FormData(form);
-
+  keywords.value = keywordArray.join(',');
+  
   $('#contributorTable tbody tr').each(function (index, row) {
     var coAuthorCheckbox = $(row).find('input[name="contributor_type_coauthor[]"]');
     var primaryContactCheckbox = $(row).find('input[name="contributor_type_primarycontact[]"]');

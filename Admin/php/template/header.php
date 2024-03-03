@@ -329,4 +329,14 @@ $journal = get_journal_list();
           }
 
           window.addEventListener('load', updateNotificationCount);
+          // Pusher.logToConsole = true;
+
+          // var pusher = new Pusher('cabcad916f55a998eaf5', {
+          //   cluster: 'ap1'
+          // });
+
+          // var channel = pusher.subscribe('my-channel');
+          // channel.bind('my-event', function(data) {
+          //   alert(JSON.stringify(data));
+          // });
         </script>

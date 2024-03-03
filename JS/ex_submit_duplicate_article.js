@@ -1,4 +1,4 @@
-document.getElementById('check-duplication').addEventListener('click', function() {
+document.getElementById('check-duplication').addEventListener('click', async function() {
     const title = document.getElementById('title').value;
     const abstract = document.getElementById('abstract').value;
     const labelTitle = document.getElementById('label-title');
@@ -15,8 +15,9 @@ document.getElementById('check-duplication').addEventListener('click', function(
     labelTitle.style.color = '#0858a4';
     labelResult.style.color = '#0858a4';
     similarTitle.style.color = '#115272';
-
-    fetch('https://web-production-cecc.up.railway.app/api/check/duplication', {
+    nextBtn.disabled= true;
+    
+    await fetch('https://web-production-cecc.up.railway.app/api/check/duplication', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -62,10 +63,12 @@ document.getElementById('check-duplication').addEventListener('click', function(
         }
         else if (data.flagged == true ){
             document.getElementById('similar-title').innerHTML = data.similar_articles[0].title;
+            const titleScore = (data.similar_articles[0].score.title * 100).toFixed(2);
+            const overviewScore = (data.similar_articles[0].score.overview * 100).toFixed(2);
             const articleId = data.similar_articles[0].article_id;
             similarTitle.setAttribute('data-article-id', articleId);
-            labelDuplication.innerHTML = 'Title: ' + (data.similar_articles[0].score.title * 100).toFixed(2) + '%';
-            labelDuplicationAb.innerHTML = 'Abstract: ' + (data.similar_articles[0].score.overview * 100).toFixed(2) + '%';
+            labelDuplication.innerHTML = titleScore + '%';
+            labelDuplicationAb.innerHTML = overviewScore + '%';
             labelDuplication.style.display = 'block';
             labelDuplicationAb.style.display = 'block';
             Swal.fire({
@@ -88,6 +91,18 @@ document.getElementById('check-duplication').addEventListener('click', function(
             flaggedT.classList.remove('text-success');
             flaggedT.innerHTML = '(Duplicate)';
             
+
+            
+            if (titleScore >= 75) {
+                labelDuplication.classList.add('text-danger');
+            } else {
+                labelDuplication.classList.remove('text-danger');
+            }
+            if (overviewScore >= 50) {
+                labelDuplicationAb.classList.add('text-danger');
+            } else {
+                labelDuplicationAb.classList.remove('text-danger');
+            }
             nextBtn.disabled = true;
 
             Swal.fire({

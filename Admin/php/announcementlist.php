@@ -14,9 +14,28 @@ $announcementlist = get_announcement_list();
     <div class="container-xxl flex-grow-1 container-p-y">
         <h4 class="py-3 mb-4"><span class="text-muted fw-light"></span>Announcement</h4>
 
+        <!-- Status tabs -->
+        <ul class="nav nav-tabs mb-3" id="statusTabs">
+            <li class="nav-item">
+                <a class="nav-link active" id="tabAll" data-status="">All</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="tabAnnouncement" data-status="Announcement">Announcement</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="tabNews" data-status="News">News</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="tabCallforpapers" data-status="Call for papers">Call for papers</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="tabOthers" data-status="Others">Others</a>
+            </li>
+        </ul>
+
         <div class="card">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-            <h5 class="card-header mb-0">Announcement</h5>
+            <h5 class="card-header mb-0">Announcement List</h5>
             <div style="display: flex; margin-top: 15px; margin-right: 15px;">
                 <button type="button" id="tabAll" class="btn btn-primary" style="margin-right: 10px;" data-bs-toggle="modal" data-bs-target="#addModal">Add Announcement</button>
                 <!-- <button type="button" id="tabPublished" class="btn btn-primary">Download</button> -->
@@ -70,7 +89,17 @@ $announcementlist = get_announcement_list();
             "ordering": true,
             "searching": true,
         });
-    });
+        $('#statusTabs a').on('click', function (e) {
+                e.preventDefault();
+
+                $('#statusTabs a').removeClass('active');
+
+                $(this).addClass('active');
+
+                var statusValue = $(this).data('status');
+                dataTable.column(1).search(statusValue).draw();
+            });
+        });
 
     function addRecord() {
         var form = document.getElementById('addModalForm');
@@ -226,7 +255,7 @@ $announcementlist = get_announcement_list();
                         <div class="col-md-12 mb-2">
                             <label for="xannoucementtype" class="form-label">Annoucement Type</label>
                             <select id="announcementtype" class="form-select">
-                                <option value="Annoucement">Annoucement</option>
+                                <option value="Annoucement">Announcement</option>
                                 <option value="News">News</option>
                                 <option value="Call for papers">Call for papers</option>
                                 <option value="Others">Others</option>
@@ -242,13 +271,13 @@ $announcementlist = get_announcement_list();
                     <div class="row mb-2">
                         <div class="col-md-12 mb-2">
                             <label for="xannouncement_description" class="form-label">Description</label>
-                            <input type="text" id="announcement_description" class="form-control" placeholder="description" />
+                            <textarea class="form-control" id="announcement_description" rows="9"></textarea>
                         </div>
                     </div>
                     <div class="row mb-2">
                         <div class="col-md-12 mb-2">
                             <label for="xannouncement" class="form-label">Announcement</label>
-                            <input type="text" id="announcement" class="form-control" placeholder="announcement" />
+                            <textarea class="form-control" id="announcement" rows="9"></textarea>
                         </div>
                     </div>
                     <div class="row mb-2">
@@ -286,13 +315,13 @@ $announcementlist = get_announcement_list();
                     <div class="row mb-2">
                         <div class="col-md-12 mb-2">
                             <label for="xannouncement_description" class="form-label">Announcement Description</label>
-                            <input type="text" id="xannouncement_description" class="form-control" placeholder="announcement_description" />
+                            <textarea class="form-control" id="xannouncement_description" rows="9"></textarea>
                         </div>
                     </div>
                     <div class="row mb-2">
                         <div class="col-md-12 mb-2">
                             <label for="announcement" class="form-label">Announcement</label>
-                            <input type="text" id="xannouncement" class="form-control" placeholder="announcement" />
+                            <textarea class="form-control" id="xannouncement" rows="9"></textarea>
                         </div>
                     </div>
                 </div>

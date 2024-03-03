@@ -15,9 +15,25 @@ $messagelist = get_message_list();
    <div class="container-xxl flex-grow-1 container-p-y">
         <h4 class="py-3 mb-4"><span class="text-muted fw-light"></span> Message</h4>
 
+        <!-- Status tabs -->
+        <ul class="nav nav-tabs mb-3" id="statusTabs">
+            <li class="nav-item">
+                <a class="nav-link active" id="tabAll" data-status="">All</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="tabQuestion" data-status="Question">Question</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="tabSuggestion" data-status="Suggestion">Suggestion</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="tabOthers" data-status="Others">Others</a>
+            </li>
+        </ul>
+
         <div class="card">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
-            <h5 class="card-header mb-0">Message</h5>
+            <h5 class="card-header mb-0">Message List</h5>
             <div style="display: flex; margin-top: 15px; margin-right: 15px;">
                 <!-- <button type="button" id="tabAll" class="btn btn-primary" style="margin-right: 10px;" data-bs-toggle="modal" data-bs-target="#addModal">Add Message</button> -->
                 <!-- <button type="button" id="tabPublished" class="btn btn-primary">Download</button> -->
@@ -29,22 +45,24 @@ $messagelist = get_message_list();
                     <thead>
                         <tr>
                             <th>ID</th>
+                            <th>Name</th>
                             <th>Email</th>
                             <th>Reason</th>
-                            <th>Message</th>
+                            <th>Date Added</th>
                             <th>Actions</th>
-                        </tr>
+                        </tr>   
                     </thead>
                     <tbody>
                         <?php foreach ($messagelist as $messagelistval): ?>
                             <tr>
                                 <td width="5%"><?php echo  $messagelistval->message_id; ?></td>
-                                <td width="85%"><?php echo  $messagelistval->email; ?></td>
-                                <td width="85%"><?php echo  $messagelistval->reason; ?></td>
-                                <td width="85%"><?php echo  $messagelistval->message; ?></td>
+                                <td width="5%"><?php echo  $messagelistval->name; ?></td>
+                                <td width="45%"><?php echo  $messagelistval->email; ?></td>
+                                <td width="10%"><?php echo  $messagelistval->reason; ?></td>
+                                <td width="10%"><?php echo  $messagelistval->date_added; ?></td>
                                 <td width="10%">
-                                    <button type="button" class="btn btn-outline-success" onclick="updateModal(<?php echo $faqslistval->id; ?>)">Update</button>
-                                    <button type="button" class="btn btn-outline-danger" onclick="archiveFaqs(<?php echo $faqslistval->id; ?>, '<?php echo $faqslistval->question; ?>', '<?php echo $faqslistval->answer; ?>')">Archive</button>
+                                    <button type="button" class="btn btn-outline-success" onclick="updateModal(<?php echo $messagelistval->message_id; ?>)">View</button>
+                                    <button type="button" class="btn btn-outline-danger" onclick="archiveMessage(<?php echo $messagelistval->message_id; ?>, '<?php echo $messagelistval->email; ?>', '<?php echo $messagelistval->message; ?>')">Archive</button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -70,10 +88,148 @@ $messagelist = get_message_list();
             "ordering": true,
             "searching": true,
         });
-    });
 
+            $('#statusTabs a').on('click', function (e) {
+                e.preventDefault();
+
+                $('#statusTabs a').removeClass('active');
+
+                $(this).addClass('active');
+
+                var statusValue = $(this).data('status');
+                dataTable.column(3).search(statusValue).draw();
+            });
+        });
+
+        
+    function updateModal(message_id) {
+        $.ajax({
+            type: 'POST',
+            url: '../php/function/message_function.php',
+            data: { action: 'fetch', message_id: message_id },
+            dataType: 'json',
+            success: function (response) {
+                console.log('Response from server:', response);
+
+                if (response.status === true && response.data.length > 0) {
+                    const messageData = response.data[0];
+                    console.log('Message Data:', messageData);
+
+                    $('#xmessage_id').val(messageData.message_id);
+                    $('#xname').val(messageData.name);
+                    $('#xemail').val(messageData.email);
+                    $('#xreason').val(messageData.reason);
+                    $('#xmessage').val(messageData.message);
+                   
+
+                    $('#updateModal').modal('show');
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log('AJAX Error:', textStatus, errorThrown);
+                console.log('Error fetching message data');
+            }
+        });
+    }
+    
+    function archiveMessage(message_id, email, message) {
+        $('#archiveModal').modal('show');
+        $('#archiveModalTitle').text('Archive Message');
+        $('#messageInfo').html('<strong>Email:</strong> ' + email + ' <br><strong>Message:</strong> ' + message + '<br><strong>ID:</strong> ' + message_id);
+
+        $('#archiveModalSave').off().on('click', function () {
+            $('#sloading').toggle();
+            $.ajax({
+                url: "../php/function/faqs_function.php",
+                method: "POST",
+                data: { action: "archive", message_id: message_id },
+                success: function (data) {
+                    var response = JSON.parse(data);
+
+                    if (response.status) {
+                        $('#sloading').toggle();
+                        $('#archiveModalMessage').text('Message archived successfully');
+                    } else {
+                        $('#archiveModalMessage').text('Failed to archive Message');
+                    }
+                        $('#archiveModal').modal('hide');
+                        location.reload();
+                },
+                error: function (xhr, status, error) {
+                    console.error("Ajax request failed:", error);
+                    $('#archiveModalMessage').text('Failed to archive message');
+                    $('#archiveModal').modal('hide');
+                    location.reload();
+                }
+            });
+        });
+    }
 </script>
 
+
+         <!-- Update Modal -->
+         <div class="modal fade" id="updateModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel3">Message</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                <div class="row mb-2">
+                        <div class="col-md-12 mb-2">
+                            <input type="hidden" id="xmessage_id" class="form-control"/>
+                            <label for="xname" class="form-label">Name</label>
+                            <input type="text" id="xname" class="form-control" placeholder="Name" />
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-12 mb-2">
+                            <input type="hidden" id="xmessage_id" class="form-control"/>
+                            <label for="xemail" class="form-label">Email</label>
+                            <input type="text" id="xemail" class="form-control" placeholder="Email" />
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-12 mb-2">
+                            <label for="xreason" class="form-label">Reason</label>
+                            <input type="text" id="xreason" class="form-control" placeholder="Reason" />
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-12 mb-2">
+                            <label for="xmessage" class="form-label">Message</label>
+                            <textarea class="form-control" id="xmessage" rows="9"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Archive Modal -->
+<div class="modal fade" id="archiveModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="archiveModalTitle">Archive Message</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <h5 class="modal-title" id="modalToggleLabel">Are you sure you want to archive this Message?</h5>
+                        <p id="messageInfo"></p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="archiveModalSave">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>

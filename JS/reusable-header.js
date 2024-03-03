@@ -6,10 +6,9 @@ function reusableFiles(url, targetId){
         })
         .catch(error => console.error('Error loading' + url + ': ', error));
     
-  }
+    }
 
-  reusableFiles('../PHP/header.php', 'header-container');
-  reusableFiles('../PHP/navbar.php', 'navigation-menus-container');
-  reusableFiles('../PHP/footer.php', 'footer-container"');
-  
+reusableFiles('../PHP/header.php', 'header-container');
+reusableFiles('../PHP/navbar.php', 'navigation-menus-container');
+reusableFiles('../PHP/footer.php', 'footer');
 

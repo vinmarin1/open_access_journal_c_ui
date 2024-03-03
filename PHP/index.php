@@ -308,7 +308,7 @@ if ($total_users !== false) {
             </a>
           </div>
 
-          <div class="col-11 col-sm-6 col-lg-4">
+          <div class="col-11 col-sm-6 col-lg-4 mb-4">
             <div class="badge p-3 mb-4">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32">
             	<path fill="white" d="M25 4.03c-.765 0-1.517.3-2.094.876L13 14.78l-.22.22l-.06.313l-.69 3.5l-.31 1.468l1.467-.31l3.5-.69l.313-.06l.22-.22l9.874-9.906A2.968 2.968 0 0 0 25 4.032zm0 1.94c.235 0 .464.12.688.343c.446.446.446.928 0 1.375L16 17.374l-1.72.344l.345-1.72l9.688-9.688c.223-.223.452-.343.687-.343zM4 8v20h20V14.812l-2 2V26H6V10h9.188l2-2z" />
@@ -347,7 +347,7 @@ if ($total_users !== false) {
                 }
               ?>
           </div>
-          <div class="col-11 col-sm-6 col-lg-4">
+          <div class="col-11 col-sm-6 col-lg-4 mb-4">
             <div class="badge p-3 mb-4">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
             	<g fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
@@ -486,8 +486,7 @@ if ($total_users !== false) {
   </div>
 
 
-  <div class="footer" id="footer">
-  </div>
+  <?php require 'footer.php' ?>
 
   <script>
     const sessionId = "<?php echo $author_id; ?>";

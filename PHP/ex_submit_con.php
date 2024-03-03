@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     $privacy = $_POST['check'];
     $title = $_POST['title'];
     $abstract = $_POST['abstract'];
-    $keywords = $_POST['keywords'];
+    $keywords = $_POST['input6'];
     $reference = $_POST['reference'];
     $category = $_POST['journal-type'];
     $comment = $_POST['notes'];
@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     $content = "-";
     $authorAdditionalRole = $_POST['authorPcontactValue'];
  
-
+    // print_r($keywords);exit;
 
     
     
