@@ -140,7 +140,7 @@ $messagelist = get_message_list();
         $('#archiveModalSave').off().on('click', function () {
             $('#sloading').toggle();
             $.ajax({
-                url: "../php/function/faqs_function.php",
+                url: "../php/function/message_function.php",
                 method: "POST",
                 data: { action: "archive", message_id: message_id },
                 success: function (data) {
