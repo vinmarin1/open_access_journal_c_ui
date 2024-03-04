@@ -362,7 +362,7 @@ $copyedited_files = get_copyedited_files($aid);
         var emailContent = <?php echo json_encode($email_content[0]->content); ?>;
         var title = <?php echo json_encode($article_data[0]->title); ?>;
         var articleid = <?php echo json_encode($article_data[0]->article_id); ?>;
-        var url = "https://qcuj.online/PHP/login.php?url=https://qcuj.online/PHP/review-process.php?id=" + articleid;
+        var url = "https://qcuj.online/PHP/login.php?url=https://qcuj.online/PHP/submitted-article.php?id=" + articleid;
         var decisionText = "We have reached a decision regarding your submission to";
         var urlText = "Submission URL:";
 

@@ -1615,29 +1615,46 @@ table {
             var emailContent = <?php echo json_encode($reviewer_email[0]->content); ?>;
             var title = <?php echo json_encode($article_data[0]->title); ?>;
             var abstract = <?php echo json_encode($article_data[0]->abstract); ?>;
+            var articleid = <?php echo json_encode($article_data[0]->article_id); ?>;
+            var url = "https://qcuj.online/PHP/login.php?url=https://qcuj.online/PHP/review-process.php?id=" + articleid;
 
             quillThree.clipboard.dangerouslyPasteHTML(abstractContent + '\n\n' + referenceContent);
             quill.clipboard.dangerouslyPasteHTML(abstractContent);
             quillTwo.clipboard.dangerouslyPasteHTML(referenceContent);
 
+            var currentDate = new Date();
+            currentDate.setDate(currentDate.getDate() + 2);
+            var oneWeekAdvance = new Date(currentDate);
+            oneWeekAdvance.setDate(oneWeekAdvance.getDate() + 7);
+            var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            var formattedDate = months[oneWeekAdvance.getMonth()] + " " + oneWeekAdvance.getDate() + ", " + oneWeekAdvance.getFullYear();
+
             var decisionText = "I believe that you would serve as an excellent reviewer of the manuscript,";
             var decisionText1 = "Title";
             var decisionText2 = "Abstract";
+            var decisionText3 = "The review itself is due on" + formattedDate;
+            var urlText = "Submission URL:";
 
             if (emailContent.trim() !== '') {
                 var delta = JSON.parse(emailContent);
 
                 var reviewDelta = { insert: ' "' + title + '", ' };
                 var titleDelta = { insert: '"' + title + '"\n' };
-                var abstractDelta = { insert: '' + abstract + '\n' };   
+                var abstractDelta = { insert: '' + abstract + '\n' };  
+                var dueDelta = { insert: ' ' + formattedDate + '\n' };  
+                var urlDelta = { insert: ' ' + url + '\n' }; 
 
                 var decisionIndex = delta.ops.findIndex(op => op.insert.includes(decisionText));
                 var decisionIndex1 = delta.ops.findIndex(op => op.insert.includes(decisionText1));
                 var decisionIndex2 = delta.ops.findIndex(op => op.insert.includes(decisionText2));
+                var decisionIndex3 = delta.ops.findIndex(op => op.insert.includes(decisionText3));
+                var urlIndex = delta.ops.findIndex(op => op.insert.includes(urlText));
 
                 delta.ops.splice(decisionIndex + 1, 0, reviewDelta);
                 delta.ops.splice(decisionIndex1 + 2, 0, titleDelta);
                 delta.ops.splice(decisionIndex2 + 3, 0, abstractDelta);
+                delta.ops.splice(decisionIndex3 + 5, 0, dueDelta);
+                delta.ops.splice(urlIndex + 3, 0, urlDelta);
 
                 quillThree.setContents(delta);
             } else {
