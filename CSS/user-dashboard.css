@@ -138,11 +138,11 @@ body {
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    cursor: pointer;
-    transition: opacity 0.3s ease;
+    /* cursor: pointer;
+    transition: opacity 0.3s ease; */
 }
 
-.profile-pic:hover {
+/* .profile-pic:hover {
     opacity: 0.8;
 }
 
@@ -164,39 +164,53 @@ body {
 
 .edit-icon span {
     
-    color: #fff; /* Adjust icon color */
+    color: #fff;
+} */
+.button-container {
+    margin-top: 5px;
+    display: flex;
+    justify-content: center;
 }
-
 .profile-info {
     width: 50%;
     margin-top: 10px;
 
 }
-
-.popup-form {
+.popup-overlay {
     display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+    z-index: 998; /* Ensure the overlay is behind the popup form */
+    display: none; /* Initially hidden */
+}
+.popup-form {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
+    z-index: 999; /* Ensure the popup form is above the overlay */
     width: 70%;
     max-width: 1000px;
-    
+    margin-bottom: 20px;
+    margin-top: 20px;
     overflow: hidden; /* Hide any content that exceeds the container */
 }
 
 .popup-form .form-content {
-    max-height: 600px; /* Adjust the value based on your design */
+    max-height: 500px; /* Adjust the value based on your design */
     overflow-y: auto; /* Enable scrolling if the content exceeds the height */
 }
 
 
 .form-header {
     display: flex;
-    /* justify-content: space-between; */
+    justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #ccc;
     background-color: #004e98;
@@ -289,6 +303,8 @@ label {
     border: 1px black solid;
     height: 200px;
     margin-top: 20px;
+    overflow-y: auto;
+    padding: 5px;
 }
 .keyword, .getExpertise {
     display: inline-block;
@@ -302,19 +318,18 @@ label {
     cursor: pointer;
     margin-left: 5px;
 }
+.edit-profile-btn {
+    display: flex;
+    flex-wrap: wrap; /* Allow buttons to wrap on small screens */
+}
 #saveButton {
     background-color: #2ECC71;
     color: white;
-    /* color: white; */
     border: none;
-    /* padding: 10px 20px; */
     font-size: 16px;
-    /* margin: 10px 20px 40px; */
     border-radius: 50px;
     cursor: pointer;
     width: 100px;
-    margin-left: 650px;
- 
 }
 
 #editBtn {
@@ -334,15 +349,10 @@ label {
     background-color: #F2F3F4;
     border: none;
     color: black;
-    /* padding: 10px 20px; */
     font-size: 16px;
-    /* margin: 10px 20px 40px; */
     border-radius: 50px;
     cursor: pointer;
     width: 100px;
-    float: right;
-    margin-left: 10px;
-  
 }
 
 .row {
@@ -486,7 +496,29 @@ label {
     z-index: 999
 
 }
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    z-index: 1000;
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
 
+.modal-content {
+    width: 90%; /* Adjust the width as needed */
+    max-width: 400px; /* Set a maximum width if necessary */
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    margin-left: auto;
+    margin-right: auto;
+}
 @media (max-width: 768px) {
     .profile-container {
         flex-wrap: wrap;
@@ -516,12 +548,44 @@ label {
     #btn1{
     text-align: center;
     }
-    .popup-form {
-        width: 90%; /* Adjust the width for smaller screens */
+    .popup-form{
+        width: 90%;
+    }
+    .popup-form, .form-content {
+        
+        height: 600px; /* Adjust the width for smaller screens */
+        max-height: 100%;
     }
 
     .form-content {
         padding: 10px; /* Adjust padding for better aesthetics */
+    }
+    .modal-content {
+        width: 70%; /* Adjust the width for larger screens */
+        max-width: 400px;
+    }
+    .row-form{
+        display: block;
+    }
+    .text-box, .other-text-box, .date-box, .dropdown-box, .bio-textarea {
+        width: 100%; /* Make text boxes full width on small screens */
+        
+    }
+    .edit-profile-btn {
+        justify-content: center; /* Center buttons on small screens */
+    }
+    #cancelBtn, #saveButton {
+        width: auto; /* Let buttons adjust their width based on content */
+        margin: 5px; /* Add margin between buttons */
+    }
+    #expertise{
+        width: 100%;
+    }
+    #addExpertiseButton{
+        width: 100%;
+        margin: 0;
+        margin-top: 10px;
+        
     }
 }
 
@@ -628,6 +692,7 @@ label {
 #info-container {
     flex: 1;
     margin-left: 20px;
+    width: 100%;
 
 }
 
@@ -655,7 +720,8 @@ label {
 .bio-container,
 .expertise-container {
     margin-top: 0px;
-
+    word-wrap: break-word; /* Break long words */
+    overflow-wrap: break-word; /* Handle overflow within words */
 }
 @media screen and (max-width: 768px) {
     /* Apply styles for screens up to 768 pixels wide */
@@ -1091,6 +1157,7 @@ td {
     height: 10vh;
     overflow-y: auto;
     overflow-x: hidden;
+    text-align: justify;
 }
 
 .article .h6::-webkit-scrollbar {
@@ -1102,6 +1169,7 @@ td {
     opacity: 0.6;
     font-size: 12px;
     width: 100%;
+    text-align: justify;
 }
 
 .author{
@@ -1252,7 +1320,7 @@ td {
     gap: 20px;
 }
 
-.continue-reading-view-downloads {
+.continue-reading-view-downloads, .continue-reading-view-download {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1379,6 +1447,10 @@ color: #115272;
 
     .continue-reading-article-container {
         width: 100%;
+        flex-direction: column; /* Stack elements vertically on small screens */
+        align-items: center;
+        margin-top: 5px;
+        border-bottom: 1px solid #ccc;
     }
 
     .continue-reading-container {
@@ -1391,6 +1463,21 @@ color: #115272;
     .featured-updates-container {
         width: 100%;
     }
+    .continue-reading-article-details{
+        width: auto;
+    }
+    .continue-reading-article-stats {
+        width: 100%; /* Make stats container full width on small screens */
+        margin-left: 0; /* Remove left margin on small screens */
+    }
+    .continue-reading-stats-container {
+        align-items: center; /* Center stats horizontally on small screens */
+        justify-content: center; /* Center stats vertically on small screens */
+    }
+    .continue-reading-article-details h6,
+    .continue-reading-article-details p {
+    text-align: justify; /* Justify the text */
+}
 }
 
 
