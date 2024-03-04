@@ -424,4 +424,34 @@ function cancelUpdate() {
   imageModal.style.display = 'none';
 }
 
+function onclickSupport() {
+  Swal.fire({
+      icon: 'question',
+      text: 'Support this author?',
+      showCancelButton: true,
+      showConfirmButton: true,
+  }).then((result) => {
+      if (result.isConfirmed) {
+         
+          $('#exampleModal').modal('hide');
+          location.reload();
+          document.getElementById('loadingOverlay').style.display = 'block';
 
+          $.ajax({
+              type: 'POST',
+              url: '../PHP/deduct_points.php', 
+              data: { points: 2 },
+              success: function(response) {
+              
+                  console.log(response);
+                  document.getElementById('loadingOverlay').style.display = 'none';
+                 
+              },
+              error: function(error) {
+                
+                  console.error(error);
+              }
+          });
+      }
+  });
+}

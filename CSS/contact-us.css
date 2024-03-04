@@ -40,7 +40,7 @@
 
 .facebook a , .number a, .gmail a , .location a{
     text-decoration: none;
-    font-size: large;
+    font-size: medium;
     margin-left: 10px;
     color: white;
 }

@@ -40,7 +40,7 @@
                     <input class="input form-control" type="text" id="name" name="name">
 
                     <label for="reasons">Reasons:</label>
-                    <select  name="reasons" id="reasons">
+                    <select class="input form-control"  name="reasons" id="reasons">
                         <option value="volvo">Question</option>
                         <option value="saab">Suggestion</option>
                         <option value="opel">Others</option>
@@ -65,22 +65,22 @@
                 </div>
 
                 <div class="col-md-12 mb-4 facebook">
-                    <span><i onclick="window.location.href='https://www.facebook.com/QCUREPL'" class="fa-brands fa-facebook-f" style="font-size:25px; color: white"></i></span>
+                    <span><i onclick="window.location.href='https://www.facebook.com/QCUREPL'" class="fa-brands fa-facebook-f" style="font-size:20px; color: white"></i></span>
                     <span><a href="https://www.facebook.com/QCUREPL">https://www.facebook.com/QCUREPL</a></span>
                 </div>
 
                 <div class="col-md-12 mb-4 number">
-                    <span><i class="fa-solid fa-phone" style="font-size:25px; color: white"></i></span>
+                    <span><i class="fa-solid fa-phone" style="font-size:20px; color: white"></i></span>
                     <span><a href="#">645-6133</a></span>
                 </div>
 
                 <div class="col-md-12 mb-4 gmail">
-                    <span><i onclick="window.location.href='' " class="fa-regular fa-envelope" style="font-size:25px; color: white"></i></span>
+                    <span><i onclick="window.location.href='' " class="fa-regular fa-envelope" style="font-size:20px; color: white"></i></span>
                     <span><a href="mailto:repl@qcu.edu.ph">repl@qcu.edu.ph</a></span>
                 </div>
 
                 <div class="col-md-12 mb-4 location">
-                    <span><i onclick="window.location.href='https://maps.google.com/?q=673+Quirino+Highway,+San+Bartolome,+Novaliches+1116+Quezon+City,+Philippines' " class="fa-solid fa-location-dot" style="font-size:25px; color: white"></i></span>
+                    <span><i onclick="window.location.href='https://maps.google.com/?q=673+Quirino+Highway,+San+Bartolome,+Novaliches+1116+Quezon+City,+Philippines' " class="fa-solid fa-location-dot" style="font-size:20px; color: white"></i></span>
                     <span><a href="https://maps.google.com/?q=673+Quirino+Highway,+San+Bartolome,+Novaliches+1116+Quezon+City,+Philippines">673 Quirino Highway, San Bartolome, Novaliches 1116 Quezon City, Philippines</a></span>
                 </div>
 
