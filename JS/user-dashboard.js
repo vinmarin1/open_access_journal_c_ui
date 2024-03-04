@@ -427,7 +427,7 @@ imageModal.style.display = 'none';
 function onclickSupport() {
 Swal.fire({
     icon: 'question',
-    text: 'Support this author?',
+    text: 'Make your profile private?',
     showCancelButton: true,
     showConfirmButton: true,
 }).then((result) => {

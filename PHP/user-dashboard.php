@@ -217,81 +217,11 @@ $expertise = $_SESSION['expertise'];
 									<!-- <label id="supportIcon" style="cursor: pointer; color: green"><span style="padding-right: 5px; font-size: 12px; font-family: Arial, Helvetica, sans-serif;
 									">Support</span><i class="fa-solid fa-hand-holding-heart"></i></label> -->
 
-									<button type="button" id="editIcon" class="btn btn-primary btn-sm" style="width: 100px">Edit<i class="fa-solid fa-pen-to-square"  style="margin-left: 5px"></i></button>
+									<button type="button" id="editIcon" class="btn btn-success btn-sm" style="width: 100px">Edit<i class="fa-solid fa-pen-to-square"  style="margin-left: 5px"></i></button>
 									<br>
-									<!-- <button type="button" id="supportIcon" class="btn btn-success btn-sm mt-2" style="width: 100px">Support<i class="fa-solid fa-hand-holding-heart" style="margin-left: 5px"></i></button>
-									<br> -->
-									
+						
 								
-									<button type="button" id="supportIcon" class="btn btn-success btn-sm mt-2" style="width: 100px" data-bs-toggle="modal" data-bs-target="#exampleModal">
-									Support <i class="fa-solid fa-hand-holding-heart" style="margin-left: 5px"></i>
-									</button>
-
-							
-									<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-									<div class="modal-dialog">
-										<div class="modal-content">
-										<div class="modal-header">
-											<p class="modal-title fs-5 h4" id="exampleModalLabel" style="font-family: Arial, Helvetica, sans-serif; font-weight: bold">Support Author</p>
-											<br>
-											
-
-											<!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
-										</div>
-										<div class="modal-body">
-										<div class="container mt-4">
-											<p class="h5 mb-2">TOP AUTHOR BASE ON PUBLISHED ARTICLES</p>
-											<div class="input-group mb-3" id="userContainer">
-												<input type="text" class="form-control" id="searchUser" placeholder="Search">
-												<div class="input-group-append">
-													<span class="input-group-text"><i class="fas fa-search"></i></span>
-												</div>
-												
-												
-											
-											</div>
-											<ul id="userList" style="list-style-type: none; font-size: 13px;">
-												<?php
-												$defaultSql = "SELECT author.author_id, 
-																	author.first_name, 
-																	author.middle_name, 
-																	author.last_name,
-																	COUNT(article.article_id) AS article_count
-															FROM author
-															LEFT JOIN article ON author.author_id = article.author_id
-															WHERE article.status = 1
-															GROUP BY author.author_id
-															ORDER BY article_count DESC
-															LIMIT 5";
-
-												$defaultResult = database_run($defaultSql);
-
-												if ($defaultResult) {
-													foreach ($defaultResult as $row) {
-														echo '<li style="margin-top: 10px;">' . 
-														$row->first_name . ' ' . $row->middle_name . ' ' . $row->last_name . ' - Published Articles: ' . $row->article_count .
-														'<a onclick="onclickSupport()" style="padding-left: 5px; color: blue; text-decoration: underline; cursor: pointer" title="Support this author by giving them some of your charisma">SUPPORT</a>' . 
-														'</li>';
-													
-													
-
-													}
-												} else {
-													echo '<li>No default results found</li>';
-												}
-												?>
-											</ul>
-
-										</div>
-
-										</div>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-											<!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-										</div>
-										</div>
-									</div>
-									</div>
+									
 
 									
 								
