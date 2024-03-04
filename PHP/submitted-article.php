@@ -394,7 +394,19 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
         <div class="review-rubrics">
           
             <div class="action-button" style="padding-left: 40px">
-                <button type="button" class="btn btn-primary btn-md" id="edit-submission">Edit Submission</button>
+                <?php
+
+                    $sqlSelectedArticle = "SELECT article_id FROM article WHERE article_id = :article_id AND status = 4";
+
+                    $sqlRun = database_run($sqlSelectedArticle, array('article_id' => $articleId));
+
+                    if($sqlRun){
+                       echo '  <button type="button" class="btn btn-primary btn-md" id="edit-submission">Edit Submission</button>';
+                    }else{
+                        echo '';
+                    }
+                ?>
+                <!-- <button type="button" class="btn btn-primary btn-md" id="edit-submission">Edit Submission</button> -->
                 <button type="submit" class="btn btn-primary btn-md" id="submit-submission" onclick="submitData()" disabled>Submit</button>
                 <button type="button" class="btn btn-secondary btn-md" id="cancel-submission">Cancel Submission</button>
             </div>

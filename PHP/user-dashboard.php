@@ -127,12 +127,8 @@ $expertise = $_SESSION['expertise'];
 
 								echo '<div>';
 								echo '<img src="' . htmlspecialchars($profilePic) . '" alt="Profile Picture" class="profile-pic" id="profileImage">';
-								// echo '<input type="file" accept="image/*" style="display:none" id="fileInput" name="fileInput">';
-								// echo '<div class="change-profile-text">Change Profile</div>';
-								// echo '<div class="edit-icon" onclick="openFileInput()"> <span>&#9998;</span>Change Profile </div>';
-								echo '<div class="button-container"><button type="button" class="btn btn-secondary btn-sm" onclick="openFileInput()" style="margin-left: auto; margin-right: auto;"><i class="fa-solid fa-camera"></i></button></div>';
-								echo '</div>';
-								echo '<input type="file" accept="image/*" style="display:none" id="fileInput" name="fileInput" >';
+								echo '<input type="file" accept="image/*" style="display:none" id="fileInput" name="fileInput">';
+								echo '<button type="button" class="btn btn-secondary btn-sm" onclick="openFileInput()" style="margin-left: 15px"><i class="fa-solid fa-camera"></i></button>';
 								echo '</div>';
 							} else {
 								echo "User not found.";
@@ -146,7 +142,7 @@ $expertise = $_SESSION['expertise'];
 
 					<!-- Modal for Image Preview and Confirmation -->
 					<div id="imageModal" class="modal" style="display:none">
-						<div class="modal-content mt-3">
+						<div class="modal-content mt-3" style="width: 30%; height: 55%; margin-left: auto; margin-right: auto;">
 							<p class="h6 mt-2" style="text-align: center; magin: 0; border-bottom: 1px gray solid">Change Profile Picture</p>
 							
 							<img class="img-fluid mt-4" src="" alt="Selected Image" id="selectedImagePreview" style="height: 50%; width: 50%; border-radius: 60%; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; margin-left: auto; margin-right: auto">
@@ -331,14 +327,12 @@ $expertise = $_SESSION['expertise'];
 						</div>
 					</div>
 					    <!-- Popup Form -->
-				<div class="popup-overlay" id="editForm">
-					<div class="popup-form">
+				
+					<div class="popup-form" id="editForm">
 						<div class="form-header">
 							<span>Edit Profile</span>
-							<div class="edit-profile-btn">
 							<button type="button" class="btn btn-outline-light" id="saveButton">Save</button>
 							<button type="button" class="btn btn-outline-light" id="cancelBtn">Cancel</button>
-							</div>
 							<!-- <span class="close-icon" id="closeIcon">&times;</span> -->
 						</div>
 						<form id="form" method="POST" action="update-user.php">		
@@ -748,7 +742,7 @@ $expertise = $_SESSION['expertise'];
 								<!-- <button type="submit" class="btn btn-primary btn-md" id="saveButton" value="Save" disabled>Save</button> -->
 							</div>
 						</form>
-					</div></div>
+					</div>
 				</form>
 					<div class="balance-points">Community Heart:&nbsp;
 					<?php
@@ -1332,14 +1326,14 @@ $expertise = $_SESSION['expertise'];
 									}elseif (count($result) >= 3 && count($resultReviewed) >= 3 && count($resultDonation) === 2) {
 										
 										echo '<div class="badge-box" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
-										echo '<div class="badge-box" style="background-image: url(\'../images/third_review_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
 										echo '<div class="badge-box" style="background-image: url(\'../images/second_donation_badges.png\');"></div>';
 
 
 									}elseif (count($result) === 2 && count($resultReviewed) >= 3 && count($resultDonation) >= 3) {
 										
 										echo '<div class="badge-box" style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
-										echo '<div class="badge-box" style="background-image: url(\'../images/third_review_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
 										echo '<div class="badge-box" style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
 
 
@@ -1350,10 +1344,26 @@ $expertise = $_SESSION['expertise'];
 										echo '<div class="badge-box" style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
 
 
+									}elseif (count($result) === 2 && count($resultReviewed) >= 3 && count($resultDonation) === 2) {
+										
+										echo '<div class="badge-box" style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
+									
+										echo '<div class="badge-box" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/second_donation_badges.png\');"></div>';
+
+
+									}elseif (count($result) === 2 && count($resultReviewed) === 2 && count($resultDonation) >= 3) {
+										
+										echo '<div class="badge-box" style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
+									
+										echo '<div class="badge-box" style="background-image: url(\'../images/second_review_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
+
+
 									}elseif (count($result) >= 3 && count($resultReviewed) >= 3 && count($resultDonation) >= 3) {
 										
 										echo '<div class="badge-box" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
-										echo '<div class="badge-box" style="background-image: url(\'../images/third_review_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
 										echo '<div class="badge-box" style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
 
 
@@ -1361,7 +1371,7 @@ $expertise = $_SESSION['expertise'];
 										
 										echo 'Something went wrong. Please be patiend we will fixed it in no time';
 									}
-								}elseif($result && !$resultReviewed && !$resultDonation){
+								}elseif($result){
 									if (count($result) === 1) {
 										
 										echo '<div class="badge-box" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
@@ -1375,7 +1385,7 @@ $expertise = $_SESSION['expertise'];
 										echo '<div class="badge-box" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
 
 									}
-								} elseif(!$result && $resultReviewed && !$resultDonation){
+								} elseif($resultReviewed){
 									if (count($resultReviewed) === 1) {
 										
 										echo '<div class="badge-box" style="background-image: url(\'../images/first_review_badges.png\');"></div>';
@@ -1386,10 +1396,10 @@ $expertise = $_SESSION['expertise'];
 
 									}elseif(count($resultReviewed) >= 3) {
 										
-										echo '<div class="badge-box" style="background-image: url(\'../images/third_review_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
 
 									}
-								}elseif(!$result && !$resultReviewed && $resultDonation){
+								}elseif($resultDonation){
 									if (count($resultDonation) === 1) {
 										
 										echo '<div class="badge-box" style="background-image: url(\'../images/first_donation_badges.png\');"></div>';
@@ -1403,7 +1413,7 @@ $expertise = $_SESSION['expertise'];
 										echo '<div class="badge-box" style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
 
 									}
-								}elseif($result && $resultReviewed && !$resultDonation){
+								}elseif($result && $resultReviewed){
 									if (count($result) === 1 && count($resultReviewed) === 1) {
 										
 										echo '<div class="badge-box" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
@@ -1417,10 +1427,10 @@ $expertise = $_SESSION['expertise'];
 									}if (count($result) === 3 && count($resultReviewed) === 3) {
 										
 										echo '<div class="badge-box" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
-										echo '<div class="badge-box" style="background-image: url(\'../images/third_review_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
 
 									}
-								}elseif(!$result && $resultReviewed && $resultDonation){
+								}elseif($resultReviewed && $resultDonation){
 									if (count($resultReviewed) === 1 && count($resultDonation) === 1) {
 										
 									
@@ -1434,11 +1444,11 @@ $expertise = $_SESSION['expertise'];
 
 									}if (count($resultReviewed) === 3 && count($resultDonation) === 3) {
 																
-										echo '<div class="badge-box" style="background-image: url(\'../images/third_review_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
 										echo '<div class="badge-box" style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
 
 									}
-								}elseif($result && !$resultReviewed && $resultDonation){
+								}elseif($result && $resultDonation){
 									if (count($result) === 1 && count($resultDonation) === 1) {
 										
 									
@@ -2263,8 +2273,28 @@ function downloadCertificatePublished() {
 }
 
 
+$(document).ready(function () {
+        $('#searchUser').on('input', function () {
+            var searchData = $(this).val();
+            if (searchData.length > 0) {
+                $.ajax({
+                    type: 'POST',
+                    url: '../PHP/search.php',
+                    data: {searchData: searchData},
+                    success: function (response) {
+                        $('#userList').html(response);
+                    }
+                });
+            } else {
+                $('#userList').empty();
+            }
+        });
+    });
+
+
 </script>
 
 </body>
 
 </html>
+
