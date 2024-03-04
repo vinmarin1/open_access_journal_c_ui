@@ -821,6 +821,59 @@ text-align: justify !important;
     #title-1, #sub-1{
         width: 100%;
     }
+    .table-input, .contributors-container, .comment-container{
+        padding-left: 0;
+    }
+    #privacy-tab-pane {
+        padding: 1em;
+        text-align: justify;
+    }
+    .table-input h6{
+        text-align: justify;
+    }
+    #table-file {
+        width: 100%;
+        overflow: hidden;
+        table-layout: fixed;
+    }
+    /* Add ellipses to long file names */
+    #fileName1,
+    #fileName2,
+    #fileName3 {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 150px; /* Adjust the maximum width as needed */
+    }
+
+    .table-responsive-sm {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+        width: 100%;
+        display: block;
+    }
+
+    #contributorTable {
+        width: max-content;
+    }
+
+    #contributorTable th,
+    #contributorTable td {
+        white-space: nowrap;
+    }
+
+    #contributorTable input[type="text"],
+    #contributorTable input[type="checkbox"] {
+        width: 100%;
+    }
+
+    .file-content-container {
+        width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
     /* .descript-1, .descript-2{
         margin-left: 0;
     } */

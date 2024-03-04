@@ -127,8 +127,11 @@ $expertise = $_SESSION['expertise'];
 
 								echo '<div>';
 								echo '<img src="' . htmlspecialchars($profilePic) . '" alt="Profile Picture" class="profile-pic" id="profileImage">';
-								echo '<input type="file" accept="image/*" style="display:none" id="fileInput" name="fileInput">';
-								echo '<button type="button" class="btn btn-secondary btn-sm" onclick="openFileInput()" style="margin-left: 15px"><i class="fa-solid fa-camera"></i></button>';
+								// echo '<input type="file" accept="image/*" style="display:none" id="fileInput" name="fileInput">';
+								// echo '<div class="change-profile-text">Change Profile</div>';
+								// echo '<div class="edit-icon" onclick="openFileInput()"> <span>&#9998;</span>Change Profile </div>';
+								echo '<div class="button-container"><button type="button" class="btn btn-secondary btn-sm" onclick="openFileInput()" style="margin-left: auto; margin-right: auto;"><i class="fa-solid fa-camera"></i></button></div>';
+								echo '<input type="file" accept="image/*" style="display:none" id="fileInput" name="fileInput" >';
 								echo '</div>';
 							} else {
 								echo "User not found.";
@@ -257,8 +260,8 @@ $expertise = $_SESSION['expertise'];
 						</div>
 					</div>
 					    <!-- Popup Form -->
-				
-					<div class="popup-form" id="editForm">
+				<div class="popup-overlay" id="editForm">
+					<div class="popup-form">
 						<div class="form-header">
 							<span>Edit Profile</span>
 							<button type="button" class="btn btn-outline-light" id="saveButton">Save</button>
@@ -672,7 +675,7 @@ $expertise = $_SESSION['expertise'];
 								<!-- <button type="submit" class="btn btn-primary btn-md" id="saveButton" value="Save" disabled>Save</button> -->
 							</div>
 						</form>
-					</div>
+					</div></div>
 				</form>
 					<div class="balance-points">Community Heart:&nbsp;
 					<?php

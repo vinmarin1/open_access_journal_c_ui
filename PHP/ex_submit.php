@@ -324,8 +324,8 @@
       <button type="button" id="deleteCont" class="btn btn-danger btn-sm" onclick="deleteData()">Delete Data</button>
       <!-- <button type="button" class="btn btn-primary btn-sm" onclick="saveData()">Save Data</button> -->
     </div>
-
-  <table class="table table-striped" id="contributorTable" >
+  <div class="table-responsive-sm">
+    <table class="table table-striped" id="contributorTable" >
             <thead>
                 <tr>
                     <th style=" background-color: #0858a4; color: white; bold; font-size: 12px; font-weight: normal">Email</th>
@@ -351,6 +351,7 @@
               
             </tbody>
         </table>
+  </div>
 
   <button type="button" class="btn btn-primary btn-sm" id="next4" >Next</button>
   <button type="button" class="btn btn-secondary btn-sm" id="prev4">Prev</button>
