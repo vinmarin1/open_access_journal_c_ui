@@ -55,7 +55,7 @@ if (!empty($_GET)) {
             $title = 'Send Donation';
             $description = $payer_name . ' Send Donation PHP ' . $amount;
 
-            $sql3 = "INSERT INTO `notification`(`author_id`, `title`, `description`) VALUES (?, ?, ?)";
+            $sql3 = "INSERT INTO `notification`(`author_id`, `title`, `description`, 1) VALUES (?, ?, ?, ?)";
 
             $result3 = database_run($sql3, array($author_id, $title, $description), true);
 
