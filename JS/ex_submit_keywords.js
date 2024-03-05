@@ -43,14 +43,16 @@ function generateKeywords(keywordInputValue){
 function displayKeywords(event){
     let keywordInputValue = keywordInput.value;
     
-    if ((event.key === "Enter" || event.keyCode == 13) && keywordInputValue !== "") {
+    if ((event.key === "Enter" || event.keyCode == 13) && keywordInputValue.trim() !== "") {
       generateKeywords(keywordInputValue)
     }
 }
 function displayKeywordsByClick(event){
     event.preventDefault();
     let keywordInputValue = keywordInput.value;
-    generateKeywords(keywordInputValue);
+    if (keywordInputValue.trim() != ""){
+        generateKeywords(keywordInputValue);
+    }
 }
 
 keywordInput.addEventListener("keydown", displayKeywords); 
