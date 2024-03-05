@@ -48,7 +48,16 @@ $journal = get_journal_list();
   <script src="../assets/js/config.js"></script>
   <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
 </head>
+<style>
+.dropdown-menu {
+    max-width: 100%;
+    overflow-x: hidden;
+}
 
+.notification-description {
+    white-space: pre-wrap;
+}
+</style>
 <body>
   <!-- Layout wrapper -->
   <div class="layout-wrapper layout-content-navbar">
@@ -241,12 +250,15 @@ $journal = get_journal_list();
             <!-- /Search -->
 
             <ul class="navbar-nav flex-row align-items-center ms-auto">
-              <li class="nav-item lh-1 me-3">
-                <a class="bell-icon" href="#" data-toggle="tooltip" data-placement="bottom" title="Notification" aria-label="Notification" style="position: relative;">
+            <li class="nav-item lh-1 me-3">
+              <a class="bell-icon" href="#" data-toggle="tooltip" data-placement="bottom" href="javascript:void(0);" data-bs-toggle="dropdown" title="Notification" aria-label="Notification" style="position: relative;">
                   <i class="menu-icon tf-icons bx bx-bell" style="position: relative;"></i>
                   <span id="notification-count" class="badge bg-danger rounded-circle" style="position: absolute; top: -8px; right: -2px;"></span>
-                </a>
-              </li>
+              </a>
+              <ul id="notification-list" class="dropdown-menu dropdown-menu-end" style="max-height: 600px; overflow-y: auto; width: 40%;">
+              </ul>
+          </li>
+
               <!-- User -->
               <li class="nav-item navbar-dropdown dropdown-user dropdown">
                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
@@ -301,42 +313,75 @@ $journal = get_journal_list();
             </ul>
           </div>
         </nav>
-        <script>
-          Pusher.logToConsole = true;
+<script>
+var pusher = new Pusher('cabcad916f55a998eaf5', {
+  cluster: 'ap1'
+});
+var channel = pusher.subscribe('my-channel');
 
-          var pusher = new Pusher('cabcad916f55a998eaf5', {
-            cluster: 'ap1'
-          });
+channel.bind('my-event', function(data) {
+  updateNotifications(data);
+});
 
-          var channel = pusher.subscribe('my-channel');
-          channel.bind('my-event', function(data) {
-            updateNotificationCount();
-          });
+function updateNotifications(data) {
+    document.getElementById('notification-count').textContent = data.count;
 
-          function updateNotificationCount() {
-            var xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function() {
-              if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 200) {
-                  document.getElementById('notification-count').textContent = xhr.responseText;
-                } else {
-                  console.error('Failed to fetch notification count:', xhr.statusText);
-                }
-              }
-            };
-            xhr.open('GET', 'function/get_notification_count.php', true);
-            xhr.send();
-          }
+    var notificationList = document.getElementById('notification-list');
+    notificationList.innerHTML = '';
 
-          window.addEventListener('load', updateNotificationCount);
-          // Pusher.logToConsole = true;
+    var headerItem = document.createElement('li');
+    headerItem.innerHTML = `
+        <a class="dropdown-item">Notification</a>
+    `;
+    notificationList.appendChild(headerItem);
 
-          // var pusher = new Pusher('cabcad916f55a998eaf5', {
-          //   cluster: 'ap1'
-          // });
+    data.data.slice(0, 5).forEach(notification => {
+        var listItem = document.createElement('li');
+        
+        var chunks = [];
+        for (var i = 0; i < notification.description.length; i += 65) {
+            chunks.push(notification.description.substr(i, 65));
+        }
+        var formattedDescription = chunks.join('<br>');
 
-          // var channel = pusher.subscribe('my-channel');
-          // channel.bind('my-event', function(data) {
-          //   alert(JSON.stringify(data));
-          // });
-        </script>
+        listItem.innerHTML = `
+            <a class="dropdown-item" href="#">
+                <div class="d-flex">
+                    <div class="flex-grow-1">
+                        <span class="align-middle">${notification.title}</span>
+                        <br>
+                        <span class="notification-description">${formattedDescription}</span>
+                    </div>
+                </div>
+            </a>
+            <div class="dropdown-divider"></div>
+        `;
+        notificationList.appendChild(listItem);
+    });
+
+    if (data.data.length > 5) {
+        var seeAllItem = document.createElement('li');
+        seeAllItem.innerHTML = `
+            <a class="dropdown-item text-center" href="#">See All</a>
+        `;
+        notificationList.appendChild(seeAllItem);
+    }
+}
+
+window.addEventListener('load', function() {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                var data = JSON.parse(xhr.responseText);
+                updateNotifications(data);
+            } else {
+                console.error('Failed to fetch notification data:', xhr.statusText);
+            }
+        }
+    };
+    xhr.open('GET', 'function/get_notification_count.php', true);
+    xhr.send();
+});
+
+</script>
