@@ -54,10 +54,13 @@ if (!empty($_GET)) {
 
             $title = 'Send Donation';
             $description = $payer_name . ' Send Donation PHP ' . $amount;
+            date_default_timezone_set('Asia/Manila');
+            $created = date('Y-m-d H:i:s');
+            $admin = 1;
 
-            $sql3 = "INSERT INTO `notification`(`author_id`, `title`, `description`, 1) VALUES (?, ?, ?, ?)";
+            $sql3 = "INSERT INTO `notification`(`author_id`, `title`, `description`, 1, created) VALUES (?, ?, ?, ?, ?)";
 
-            $result3 = database_run($sql3, array($author_id, $title, $description), true);
+            $result3 = database_run($sql3, array($author_id, $title, $description, $admin, $created), true);
 
             header('Location: donation.php?payer_firstname=' . urlencode($payer_firstname) . '&payer_lastname=' . urlencode($payer_lastname) . '&payer_email=' . urlencode($payer_email) . '&amount=' . urlencode($amount));
             exit();

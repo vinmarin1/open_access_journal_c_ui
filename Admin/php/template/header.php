@@ -343,14 +343,28 @@ function updateNotifications(data) {
             chunks.push(notification.description.substr(i, 65));
         }
         var formattedDescription = chunks.join('<br>');
+        var currentTime = new Date();
+
+        var notificationTime = new Date(notification.created);
+        var timeDifference = Math.abs(currentTime - notificationTime);
+        var timeAgo;
+        if (timeDifference < 60000) {
+            timeAgo = Math.floor(timeDifference / 1000) + ' seconds ago';
+        } else if (timeDifference < 3600000) { 
+            timeAgo = Math.floor(timeDifference / 60000) + ' minutes ago';
+        } else {
+            timeAgo = Math.floor(timeDifference / 3600000) + ' hours ago';
+        }
 
         listItem.innerHTML = `
             <a class="dropdown-item" href="#">
                 <div class="d-flex">
                     <div class="flex-grow-1">
-                        <span class="align-middle">${notification.title}</span>
+                        <span class="align-middle"><b>${notification.title}</b></span>
                         <br>
                         <span class="notification-description">${formattedDescription}</span>
+                        <br>
+                        <span class="align-middle">${timeAgo}</span>
                     </div>
                 </div>
             </a>

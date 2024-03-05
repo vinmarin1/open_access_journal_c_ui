@@ -169,14 +169,17 @@ function addNotification($article_id, $author_id, $title, $message)
         $options
     );
 
+    date_default_timezone_set('Asia/Manila');
+    $created = date('Y-m-d H:i:s');
+    $admin = 0;
     $data['message'] = 'hello world';
     $pusher->trigger('my-channel', 'my-event', $data);
 
     $description = $article_id . ' - ' . $title . ', ' . $message;
 
-    $query = "INSERT INTO notification (article_id, author_id, title, description) VALUES (?, ?, ?, ?)";
+    $query = "INSERT INTO notification (article_id, author_id, title, description, admin, created) VALUES (?, ?, ?, ?, ?, ?)";
 
-    $result = execute_query($query, [$article_id, $author_id, $message, $description], true);
+    $result = execute_query($query, [$article_id, $author_id, $message, $description, $admin, $created], true);
 
     if ($result !== false) {
         echo json_encode(['status' => true, 'message' => 'Record added successfully']);
