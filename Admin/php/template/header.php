@@ -249,7 +249,7 @@ $journal = get_journal_list();
                       <i class="menu-icon tf-icons bx bx-bell" style="position: relative;"></i>
                       <span id="notification-count" class="badge bg-danger rounded-circle" style="position: absolute; top: -8px; right: -2px;"></span>
                   </a>
-                  <ul id="notification-list" class="dropdown-menu dropdown-menu-end" style="max-height: 600px;">
+                  <ul id="notification-list" class="dropdown-menu dropdown-menu-end" style="max-height: 620px;">
                   </ul>
               </li>
 
@@ -314,7 +314,19 @@ var pusher = new Pusher('cabcad916f55a998eaf5', {
 var channel = pusher.subscribe('my-channel');
 
 channel.bind('my-event', function(data) {
-  updateNotifications(data);
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                var newData = JSON.parse(xhr.responseText);
+                updateNotifications(newData);
+            } else {
+                console.error('Failed to fetch notification data:', xhr.statusText);
+            }
+        }
+    };
+    xhr.open('GET', 'function/get_notification_count.php', true);
+    xhr.send();
 });
 
 function updateNotifications(data) {
@@ -329,52 +341,56 @@ function updateNotifications(data) {
     `;
     notificationList.appendChild(headerItem);
 
-    data.data.slice(0, 5).forEach(notification => {
-        var listItem = document.createElement('li');
-        
-        var chunks = [];
-        for (var i = 0; i < notification.description.length; i += 70) {
-            chunks.push(notification.description.substr(i, 70));
-        }
-        var formattedDescription = chunks.join('<br>');
-        var currentTime = new Date();
+    if (data.data && data.data.length) { // Check if data.data is not null and has length
+        data.data.slice(0, 5).forEach(notification => {
+            var listItem = document.createElement('li');
+            
+            var chunks = [];
+            for (var i = 0; i < notification.description.length; i += 70) {
+                chunks.push(notification.description.substr(i, 70));
+            }
+            var formattedDescription = chunks.join('<br>');
+            var currentTime = new Date();
 
-        var notificationTime = new Date(notification.created);
-        var timeDifference = Math.abs(currentTime - notificationTime);
-        var timeAgo;
-        if (timeDifference < 60000) {
-            timeAgo = Math.floor(timeDifference / 1000) + ' seconds ago';
-        } else if (timeDifference < 3600000) { 
-            timeAgo = Math.floor(timeDifference / 60000) + ' minutes ago';
-        } else {
-            timeAgo = Math.floor(timeDifference / 3600000) + ' hours ago';
-        }
+            var notificationTime = new Date(notification.created);
+            var timeDifference = Math.abs(currentTime - notificationTime);
+            var timeAgo;
+            if (timeDifference < 60000) {
+                timeAgo = Math.floor(timeDifference / 1000) + ' seconds ago';
+            } else if (timeDifference < 3600000) { 
+                timeAgo = Math.floor(timeDifference / 60000) + ' minutes ago';
+            } else {
+                timeAgo = Math.floor(timeDifference / 3600000) + ' hours ago';
+            }
 
-        listItem.innerHTML = `
-        <li>
-            <a class="dropdown-item" href="#">
-                <div class="d-flex">
-                    <div class="flex-grow-1">
-                        <span class="align-middle"><b>${notification.title}</b></span>
-                        <br>
-                        <span class="notification-description" style="word-wrap: break-word; max-width: 100%;">${formattedDescription}</span>
-                        <br>
-                        <span class="align-middle">${timeAgo}</span>
+            listItem.innerHTML = `
+            <li>
+                <a class="dropdown-item" href="#">
+                    <div class="d-flex">
+                        <div class="flex-grow-1">
+                            <span class="align-middle"><b>${notification.title}</b></span>
+                            <br>
+                            <span class="notification-description" style="word-wrap: break-word; max-width: 100%;">${formattedDescription}</span>
+                            <br>
+                            <span class="align-middle">${timeAgo}</span>
+                        </div>
                     </div>
-                </div>
-            </a>
-        </li>
-        <div class="dropdown-divider"></div>
-    `;
-        notificationList.appendChild(listItem);
-    });
-
-    if (data.data.length > 5) {
-        var seeAllItem = document.createElement('li');
-        seeAllItem.innerHTML = `
-            <a class="dropdown-item text-center" href="#">See All</a>
+                </a>
+            </li>
+            <div class="dropdown-divider"></div>
         `;
-        notificationList.appendChild(seeAllItem);
+            notificationList.appendChild(listItem);
+        });
+
+        if (data.data.length > 5) {
+            var seeAllItem = document.createElement('li');
+            seeAllItem.innerHTML = `
+                <a class="dropdown-item text-center" href="#">See All</a>
+            `;
+            notificationList.appendChild(seeAllItem);
+        }
+    } else {
+        console.error('No notification data available or data is invalid.');
     }
 }
 

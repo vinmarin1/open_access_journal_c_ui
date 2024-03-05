@@ -22,9 +22,9 @@
 			$recipient = $vars['email'];
 			send_mail($recipient, $subject, $message);
 		} else {
-			$url = $_SESSION['USER']->url;
-			if (!empty($url)) {
-				header("Location: " . $url);
+			$urli = $_SESSION['USER']->urli;
+			if (!empty($urli)) {
+				header("Location: " . $urli);
 				die;
 			} else {
 				header("Location: ../PHP/index.php");
@@ -47,8 +47,7 @@
 				if ($row->expires > $time) {
 					$author_id = $_SESSION['USER']->author_id;
 					$admin_id = $_SESSION['USER']->admin_id;
-					$url = $_SESSION['USER']->url;
-					print_r($url);exit;
+					$urli = $_SESSION['USER']->urli;
 	
 					// Update the email_verified field for the author
 					$query_author = "UPDATE author SET email_verified = email WHERE author_id = :author_id LIMIT 1";
@@ -62,9 +61,9 @@
 	
 					if (check_verified()) {
 						$_SESSION['LOGGED_IN'] = true;
-							$url = $_SESSION['USER']->url;
-						if (!empty($url)) {
-							header("Location: " . $url);
+							$urli = $_SESSION['USER']->urli;
+						if (!empty($urli)) {
+							header("Location: " . $urli);
 							die;
 						} else {
 							header("Location: ../PHP/index.php");
