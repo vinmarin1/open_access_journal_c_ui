@@ -49,14 +49,8 @@ $journal = get_journal_list();
   <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
 </head>
 <style>
-.dropdown-menu {
-    max-width: 100%;
-    overflow-x: hidden;
-}
 
-.notification-description {
-    white-space: pre-wrap;
-}
+
 </style>
 <body>
   <!-- Layout wrapper -->
@@ -250,14 +244,14 @@ $journal = get_journal_list();
             <!-- /Search -->
 
             <ul class="navbar-nav flex-row align-items-center ms-auto">
-            <li class="nav-item lh-1 me-3">
-              <a class="bell-icon" href="#" data-toggle="tooltip" data-placement="bottom" href="javascript:void(0);" data-bs-toggle="dropdown" title="Notification" aria-label="Notification" style="position: relative;">
-                  <i class="menu-icon tf-icons bx bx-bell" style="position: relative;"></i>
-                  <span id="notification-count" class="badge bg-danger rounded-circle" style="position: absolute; top: -8px; right: -2px;"></span>
-              </a>
-              <ul id="notification-list" class="dropdown-menu dropdown-menu-end" style="max-height: 600px; overflow-y: auto; width: 40%;">
-              </ul>
-          </li>
+              <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                  <a class="bell-icon" href="#" data-toggle="tooltip" data-placement="bottom" href="javascript:void(0);" data-bs-toggle="dropdown" title="Notification" aria-label="Notification" style="position: relative; margin-right: 10px;">
+                      <i class="menu-icon tf-icons bx bx-bell" style="position: relative;"></i>
+                      <span id="notification-count" class="badge bg-danger rounded-circle" style="position: absolute; top: -8px; right: -2px;"></span>
+                  </a>
+                  <ul id="notification-list" class="dropdown-menu dropdown-menu-end" style="max-height: 600px;">
+                  </ul>
+              </li>
 
               <!-- User -->
               <li class="nav-item navbar-dropdown dropdown-user dropdown">
@@ -339,8 +333,8 @@ function updateNotifications(data) {
         var listItem = document.createElement('li');
         
         var chunks = [];
-        for (var i = 0; i < notification.description.length; i += 65) {
-            chunks.push(notification.description.substr(i, 65));
+        for (var i = 0; i < notification.description.length; i += 70) {
+            chunks.push(notification.description.substr(i, 70));
         }
         var formattedDescription = chunks.join('<br>');
         var currentTime = new Date();
@@ -357,19 +351,21 @@ function updateNotifications(data) {
         }
 
         listItem.innerHTML = `
+        <li>
             <a class="dropdown-item" href="#">
                 <div class="d-flex">
                     <div class="flex-grow-1">
                         <span class="align-middle"><b>${notification.title}</b></span>
                         <br>
-                        <span class="notification-description">${formattedDescription}</span>
+                        <span class="notification-description" style="word-wrap: break-word; max-width: 100%;">${formattedDescription}</span>
                         <br>
                         <span class="align-middle">${timeAgo}</span>
                     </div>
                 </div>
             </a>
-            <div class="dropdown-divider"></div>
-        `;
+        </li>
+        <div class="dropdown-divider"></div>
+    `;
         notificationList.appendChild(listItem);
     });
 
