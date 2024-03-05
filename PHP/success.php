@@ -58,7 +58,7 @@ if (!empty($_GET)) {
             $created = date('Y-m-d H:i:s');
             $admin = 1;
 
-            $sql3 = "INSERT INTO `notification`(`author_id`, `title`, `description`, 1, created) VALUES (?, ?, ?, ?, ?)";
+            $sql3 = "INSERT INTO `notification`(`author_id`, `title`, `description`, admin, created) VALUES (?, ?, ?, ?, ?)";
 
             $result3 = database_run($sql3, array($author_id, $title, $description, $admin, $created), true);
 
