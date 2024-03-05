@@ -3,9 +3,35 @@ include 'function/redirect.php';
 include 'function/report_function.php';
 
 $yearval = isset($_GET['y']) ? $_GET['y'] : date('Y');
-$monthval = isset($_GET['m']) ? $_GET['m'] : date('m');
 
-$counterlist = get_counter_list($monthval, $yearval);
+$counterlist = get_counter_list($yearval);
+$totalreport = get_totalreportforgraph($yearval);
+$seriesData = [
+    'read' => ['name' => 'read', 'data' => array_fill(0, 12, 0)],
+    'downloaded' => ['name' => 'downloaded', 'data' => array_fill(0, 12, 0)]
+];
+
+foreach ($totalreport['totalreportforgraph'] as $totalreport) {
+    $month = intval(substr($totalreport->month, -1));
+    $total_read = intval($totalreport->total_read);
+    $total_download = intval($totalreport->total_download);
+
+    if ($month >= 1 && $month <= 12) {
+        $seriesData['read']['data'][$month - 1] += $total_read; 
+        $seriesData['downloaded']['data'][$month - 1] += $total_download; 
+    }
+}
+
+foreach ($seriesData as &$data) {
+    foreach ($data['data'] as &$value) {
+        if ($value < 0) {
+            $value = abs($value);
+        }
+    }
+}
+
+$seriesData = array_values($seriesData);
+$seriesString = json_encode($seriesData);
 ?>  
 <!DOCTYPE html>
 <html lang="en">
@@ -37,9 +63,9 @@ $counterlist = get_counter_list($monthval, $yearval);
         </h4>
 
         <div class="row mb-2">
-            <div class="col-md-6 mb-2">
+            <div class="col-md-12 mb-2">
                 <form id="reportForm">
-                    <select class="form-select" onchange="doset(this.value, monthval.value)" name="yearval" id="yearval">
+                    <select class="form-select" onchange="doset(this.value)" name="yearval" id="yearval">
                         <option value="<?php echo date('Y'); ?>"><?php echo date('Y'); ?></option>
                         <?php
                         $yr = date('Y');
@@ -54,36 +80,20 @@ $counterlist = get_counter_list($monthval, $yearval);
                         ?>
                     </select>
                 </div>
-                <div class="col-md-6 mb-2">
-                    <select class="form-select" onchange="doset(yearval.value, this.value)" name="monthval" id="monthval">
-                        <?php
-                        $months = [
-                            '01' => 'January',
-                            '02' => 'February',
-                            '03' => 'March',
-                            '04' => 'April',
-                            '05' => 'May',
-                            '06' => 'June',
-                            '07' => 'July',
-                            '08' => 'August',
-                            '09' => 'September',
-                            '10' => 'October',
-                            '11' => 'November',
-                            '12' => 'December',
-                        ];
-
-                        foreach ($months as $key => $value) {
-                            ?>
-                            <option value="<?php echo $key; ?>" <?php if ($_GET['m'] == $key) { echo "selected"; } ?>>
-                                <?php echo $value; ?>
-                            </option>
-                            <?php
-                        }
-                        ?>
-                    </select>
-                </div>
             </form>
         </div>
+
+        <div class="col-12 mb-4">
+            <div class="card">
+                <div class="row row-bordered g-0">
+                    <div class="col-md-12">
+                        <h5 class="card-header m-0 me-2 pb-3">Donation</h5>
+                        <div id="totalRevenueChart" class="px-2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="card">
             <div class="table-responsive text-nowrap" id="nopadding">
                 <table class="table table-striped" id="DataTable">
@@ -132,9 +142,9 @@ $counterlist = get_counter_list($monthval, $yearval);
             });
         });
 
-        function doset(yearval, monthval) {
+        function doset(yearval) {
             $('#sloading').show();
-            var url = "totalarticlecounter.php?m=" + monthval + '&y=' + yearval;
+            var url = "totalreport.php?y=" + yearval;
 
             window.location.href = url;
         }
@@ -151,13 +161,275 @@ $counterlist = get_counter_list($monthval, $yearval);
             XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
  
             var yearval = <?php echo json_encode($yearval); ?>;
-            var monthval = <?php echo json_encode($monthval); ?>;
-            var monthName = '<?php echo date('F', mktime(0, 0, 0, $monthval, 1)); ?>';
 
-            var filename = 'ArticleCounter' + yearval + '_' + monthName + '.xlsx';
+            var filename = 'ArticleCounter' + yearval + '.xlsx';
             XLSX.writeFile(wb, filename);
         }
 
+        (function() {
+            let cardColor, headingColor, axisColor, shadeColor, borderColor;
+
+            cardColor = config.colors.cardColor;
+            headingColor = config.colors.headingColor;
+            axisColor = config.colors.axisColor;
+            borderColor = config.colors.borderColor;
+            var seriesData = <?php echo $seriesString; ?>;
+            console.log(seriesData);
+
+            // Total Revenue Report Chart - Bar Chart
+            // --------------------------------------------------------------------
+            const totalRevenueChartEl = document.querySelector('#totalRevenueChart'),
+                totalRevenueChartOptions = {
+                    series: seriesData,
+                    chart: {
+                        height: 300,
+                        stacked: true,
+                        type: 'bar',
+                        toolbar: {
+                            show: false
+                        }
+                    },
+                    plotOptions: {
+                        bar: {
+                            horizontal: false,
+                            columnWidth: '33%',
+                            borderRadius: 12,
+                            startingShape: 'rounded',
+                            endingShape: 'rounded'
+                        }
+                    },
+                    colors: [config.colors.primary, config.colors.info],
+                    dataLabels: {
+                        enabled: false
+                    },
+                    stroke: {
+                        curve: 'smooth',
+                        width: 6,
+                        lineCap: 'round',
+                        colors: [cardColor]
+                    },
+                    legend: {
+                        show: true,
+                        horizontalAlign: 'left',
+                        position: 'top',
+                        markers: {
+                            height: 8,
+                            width: 8,
+                            radius: 12,
+                            offsetX: -3
+                        },
+                        labels: {
+                            colors: axisColor
+                        },
+                        itemMargin: {
+                            horizontal: 10
+                        }
+                    },
+                    grid: {
+                        borderColor: borderColor,
+                        padding: {
+                            top: 0,
+                            bottom: -8,
+                            left: 20,
+                            right: 20
+                        }
+                    },
+                    xaxis: {
+                        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Noc', 'Dec'],
+                        labels: {
+                            style: {
+                                fontSize: '13px',
+                                colors: axisColor
+                            }
+                        },
+                        axisTicks: {
+                            show: false
+                        },
+                        axisBorder: {
+                            show: false
+                        }
+                    },
+                    yaxis: {
+                        labels: {
+                            style: {
+                                fontSize: '13px',
+                                colors: axisColor
+                            }
+                        }
+                    },
+                    responsive: [{
+                            breakpoint: 1700,
+                            options: {
+                                plotOptions: {
+                                    bar: {
+                                        borderRadius: 10,
+                                        columnWidth: '32%'
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            breakpoint: 1580,
+                            options: {
+                                plotOptions: {
+                                    bar: {
+                                        borderRadius: 10,
+                                        columnWidth: '35%'
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            breakpoint: 1440,
+                            options: {
+                                plotOptions: {
+                                    bar: {
+                                        borderRadius: 10,
+                                        columnWidth: '42%'
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            breakpoint: 1300,
+                            options: {
+                                plotOptions: {
+                                    bar: {
+                                        borderRadius: 10,
+                                        columnWidth: '48%'
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            breakpoint: 1200,
+                            options: {
+                                plotOptions: {
+                                    bar: {
+                                        borderRadius: 10,
+                                        columnWidth: '40%'
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            breakpoint: 1040,
+                            options: {
+                                plotOptions: {
+                                    bar: {
+                                        borderRadius: 11,
+                                        columnWidth: '48%'
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            breakpoint: 991,
+                            options: {
+                                plotOptions: {
+                                    bar: {
+                                        borderRadius: 10,
+                                        columnWidth: '30%'
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            breakpoint: 840,
+                            options: {
+                                plotOptions: {
+                                    bar: {
+                                        borderRadius: 10,
+                                        columnWidth: '35%'
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            breakpoint: 768,
+                            options: {
+                                plotOptions: {
+                                    bar: {
+                                        borderRadius: 10,
+                                        columnWidth: '28%'
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            breakpoint: 640,
+                            options: {
+                                plotOptions: {
+                                    bar: {
+                                        borderRadius: 10,
+                                        columnWidth: '32%'
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            breakpoint: 576,
+                            options: {
+                                plotOptions: {
+                                    bar: {
+                                        borderRadius: 10,
+                                        columnWidth: '37%'
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            breakpoint: 480,
+                            options: {
+                                plotOptions: {
+                                    bar: {
+                                        borderRadius: 10,
+                                        columnWidth: '45%'
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            breakpoint: 420,
+                            options: {
+                                plotOptions: {
+                                    bar: {
+                                        borderRadius: 10,
+                                        columnWidth: '52%'
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            breakpoint: 380,
+                            options: {
+                                plotOptions: {
+                                    bar: {
+                                        borderRadius: 10,
+                                        columnWidth: '60%'
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    states: {
+                        hover: {
+                            filter: {
+                                type: 'none'
+                            }
+                        },
+                        active: {
+                            filter: {
+                                type: 'none'
+                            }
+                        }
+                    }
+                };
+            if (typeof totalRevenueChartEl !== undefined && totalRevenueChartEl !== null) {
+                const totalRevenueChart = new ApexCharts(totalRevenueChartEl, totalRevenueChartOptions);
+                totalRevenueChart.render();
+            }
+        })();
     </script>
 </body>
 </html>
