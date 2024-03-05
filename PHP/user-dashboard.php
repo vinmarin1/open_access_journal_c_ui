@@ -199,7 +199,17 @@ $expertise = $_SESSION['expertise'];
 
 
 
-										echo "<p style='color: #004e98'>". round($percentageCompletion, 2) . "% complete</p>";
+										echo "
+										<p>PROFILE COMPLETENESS
+										<span style='color: #004e98'> ". round($percentageCompletion, 2) . "% </span>
+										</p>
+										<div class=''>
+										  <div class='progress-bar progress-bar-striped' role='progressbar'  style='width: ".round($percentageCompletion, 2)."%' aria-valuenow='".round($percentageCompletion, 2)."' aria-valuemin='0'></div>
+										</div>
+										<hr/>
+										
+										
+										";
 									} else {
 										echo "User not found.";
 									}
@@ -211,7 +221,7 @@ $expertise = $_SESSION['expertise'];
 
 							</h1>
 								<!-- <i class="ri-edit-box-line" id="editIcon" style="color: green solid"></i> -->
-								<div class="other-action">
+								<div class="other-action d-flex gap-1">
 <!-- 									
 									<label id="editIcon" style="cursor: pointer; color: green"><span style="padding-right: 5px; font-size: 12px; font-family: Arial, Helvetica, sans-serif;
 									">Edit</span><i class="fa-solid fa-pen-to-square" style="color: green"></i></label>
@@ -219,8 +229,9 @@ $expertise = $_SESSION['expertise'];
 
 									<!-- <label id="supportIcon" style="cursor: pointer; color: green"><span style="padding-right: 5px; font-size: 12px; font-family: Arial, Helvetica, sans-serif;
 									">Support</span><i class="fa-solid fa-hand-holding-heart"></i></label> -->
-
-									<button type="button" id="editIcon" class="btn btn-success btn-sm" style="width: 100px">Edit<i class="fa-solid fa-pen-to-square"  style="margin-left: 5px"></i></button>
+									<button class="btn  btn-sm text-white" id="btn1" onclick="window.location.href='author-dashboard.php'">My Articles</button>
+									
+									<button type="button" id="editIcon" class="btn btn-secondary btn-sm" style="width: 100px">Edit<i class="fa-solid fa-pen-to-square"  style="margin-left: 5px"></i></button>
 									<br>
 						
 								
@@ -714,7 +725,6 @@ $expertise = $_SESSION['expertise'];
 					?>
 
 					</div>
-					<button class="btn  btn-md text-white" id="btn1" onclick="window.location.href='author-dashboard.php'">Manage Articles</button>
 					
 
 					<!-- <div class="profile-badge">
