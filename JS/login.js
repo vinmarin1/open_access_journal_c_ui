@@ -190,7 +190,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
         // Retrieve the URL parameter
         const urlParams = new URLSearchParams(window.location.search);
-        const url = urlParams.get('url');
+        const urli = urlParams.get('urli');
     
         // Click event for the login button
         $('#login-button').on('click', function() {
@@ -226,7 +226,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     data: {
                         email: email,
                         password: password,
-                        url: url, // Pass the retrieved URL parameter to the server
+                        urli: urli, // Pass the retrieved URL parameter to the server
                     },
                     success: function(response) {
                         var data = JSON.parse(response);
@@ -241,7 +241,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                     action: "check_verified",
                                     email: email,
                                     password: password,
-                                    url: url, // Pass the URL parameter to the server
+                                    urli: urli, // Pass the URL parameter to the server
                                 },
                                 success: function (verifiedResponse) {
                                     if (verifiedResponse === "true") {
