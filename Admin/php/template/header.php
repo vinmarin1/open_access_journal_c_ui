@@ -48,10 +48,6 @@ $journal = get_journal_list();
   <script src="../assets/js/config.js"></script>
   <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
 </head>
-<style>
-
-
-</style>
 <body>
   <!-- Layout wrapper -->
   <div class="layout-wrapper layout-content-navbar">
@@ -364,7 +360,7 @@ function updateNotifications(data) {
             }
 
             listItem.innerHTML = `
-            <li>
+              <li style="background-color: ${notification.read == 1 ? '#d9dee3 !important' : 'white !important'};">
                 <a class="dropdown-item" href="#">
                     <div class="d-flex">
                         <div class="flex-grow-1">
@@ -376,16 +372,17 @@ function updateNotifications(data) {
                         </div>
                     </div>
                 </a>
-            </li>
-            <div class="dropdown-divider"></div>
-        `;
+              </li>
+              <div class="dropdown-divider" style="background-color: #d9dee3 !important;"></div>
+          `;
+
             notificationList.appendChild(listItem);
         });
 
         if (data.data.length > 5) {
             var seeAllItem = document.createElement('li');
             seeAllItem.innerHTML = `
-                <a class="dropdown-item text-center" href="#">See All</a>
+                <a class="dropdown-item text-center" href="notification.php">See All</a>
             `;
             notificationList.appendChild(seeAllItem);
         }
