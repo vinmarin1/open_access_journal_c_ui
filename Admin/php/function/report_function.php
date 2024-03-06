@@ -202,8 +202,7 @@ if (!function_exists('get_report_list')) {
     }
 
     if (!function_exists('get_counter_list')) {
-        function get_counter_list($month, $year) {
-            $month = $_GET["m"] ?? date('m');
+        function get_counter_list($year) {
             $year = $_GET["y"] ?? date('Y');
 
             $sql = "SELECT 
@@ -232,13 +231,13 @@ if (!function_exists('get_report_list')) {
             FROM 
                 article a 
             LEFT JOIN 
-                logs l ON a.article_id = l.article_id AND MONTH(l.date) = ? AND YEAR(l.date) = ?
+                logs l ON a.article_id = l.article_id AND YEAR(l.date) = ?
             WHERE 
                 a.status = 1
             GROUP BY 
                 a.article_id;";
                     
-            $results = execute_query($sql, [$month, $year]);
+            $results = execute_query($sql, [$year]);
 
             $data = array();
 
@@ -468,6 +467,44 @@ if (!function_exists('get_report_list')) {
     
             if ($results !== false) {
                 $data['reviewersforgraph'] = $results;
+                return $data;
+            } else {
+                return array('status' => true, 'data' => []);
+            }
+        }
+    }
+
+    if (!function_exists('get_totalreportforgraph')) {
+        function get_totalreportforgraph($year) {
+            $year = $_GET["y"] ?? date('Y');
+
+            $sql = "SELECT 
+                    years.year_number,
+                    CONCAT('Month ', months.month_number) AS month,
+                    COALESCE(SUM(CASE WHEN logs.type = 'read' THEN 1 ELSE 0 END), 0) AS total_read,
+                    COALESCE(SUM(CASE WHEN logs.type = 'download' THEN 1 ELSE 0 END), 0) AS total_download
+                FROM (
+                    SELECT 1 AS month_number UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 
+                    UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 
+                    UNION SELECT 9 UNION SELECT 10 UNION SELECT 11 UNION SELECT 12
+                ) AS months
+                CROSS JOIN (
+                    SELECT DISTINCT YEAR(date) AS year_number FROM logs WHERE YEAR(date) = ?
+                ) AS years
+                LEFT JOIN logs ON months.month_number = MONTH(logs.date) AND years.year_number = YEAR(logs.date)
+                GROUP BY years.year_number, months.month_number
+                ORDER BY years.year_number, months.month_number;
+
+                ";
+                            
+
+            $results = execute_query($sql, [$year]);
+
+    
+            $data = array();
+    
+            if ($results !== false) {
+                $data['totalreportforgraph'] = $results;
                 return $data;
             } else {
                 return array('status' => true, 'data' => []);

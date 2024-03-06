@@ -60,6 +60,7 @@ $incomplete_articles = get_article_list($cid);
                             <th>Article ID</th>
                             <th>Article</th>
                             <th>Status</th>
+                            <th>Added</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -110,11 +111,18 @@ $incomplete_articles = get_article_list($cid);
                                         $statusClass = 'label-secondary';
                                     }
                                     ?>
-
-                                <td width="15%">
+                                    
+                                <td width="10%">
                                     <span class="badge bg-<?php echo $statusClass; ?> me-1">
                                         <?php echo $statusLabel; ?>
                                     </span>
+                                </td>
+                                <td width="5%">
+                                <?php
+                                    $date_added = $all_articlesval->date_added;
+                                    $formatted_date = date("F d, Y", strtotime($date_added));
+                                    echo $formatted_date;
+                                    ?>
                                 </td>
                                 <td width="5%">                         
                                     <a href="javascript:void(0);" onclick="viewWorkflow(<?php echo $incomplete_articlesval->article_id; ?>, '<?php echo $incomplete_articlesval->workflow; ?>')" class="btn btn-outline-dark">View</a>
