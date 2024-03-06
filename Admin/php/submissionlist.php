@@ -119,7 +119,7 @@ $incomplete_articles = get_article_list($cid);
                                 </td>
                                 <td width="5%">
                                 <?php
-                                    $date_added = $all_articlesval->date_added;
+                                    $date_added = $incomplete_articlesval->date_added;
                                     $formatted_date = date("F d, Y", strtotime($date_added));
                                     echo $formatted_date;
                                     ?>

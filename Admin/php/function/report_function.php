@@ -1,28 +1,52 @@
 <?php
 include 'dbcon.php';
 
-if (!function_exists('get_report_list')) {
-    function get_report_list() {
-        $pdo = connect_to_database();
+    if (!function_exists('get_report_list')) {
+        function get_report_list() {
+            $pdo = connect_to_database();
 
-        if ($pdo) {
-            try {
-                $query = "SELECT * FROM reports";
-                $stmt = $pdo->prepare($query);
-                $stmt->execute();
+            if ($pdo) {
+                try {
+                    $query = "SELECT * FROM reports";
+                    $stmt = $pdo->prepare($query);
+                    $stmt->execute();
 
-                $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+                    $result = $stmt->fetchAll(PDO::FETCH_OBJ);
 
-                return $result;
-            } catch (PDOException $e) {
-                echo "Error: " . $e->getMessage();
-                return false;
+                    return $result;
+                } catch (PDOException $e) {
+                    echo "Error: " . $e->getMessage();
+                    return false;
+                }
             }
-        }
 
-        return false;
+            return false;
+        }
     }
-}
+
+    if (!function_exists('get_notification_list')) {
+        function get_notification_list() {
+            $pdo = connect_to_database();
+    
+            if ($pdo) {
+                try {
+                    $query = "SELECT * FROM notification WHERE admin = 1 ORDER BY id DESC";
+                    $stmt = $pdo->prepare($query);
+                    $stmt->execute();
+    
+                    $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+    
+                    return $result;
+                } catch (PDOException $e) {
+                    echo "Error: " . $e->getMessage();
+                    return false;
+                }
+            }
+    
+            return false;
+        }
+    }
+    
 
     if (!function_exists('get_archive_article_list')) {
         function get_archive_article_list($month, $year) {
