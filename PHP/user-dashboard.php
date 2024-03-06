@@ -164,7 +164,7 @@ $expertise = $_SESSION['expertise'];
 						</div>-->
 							<!-- User Info -->
 						<div class="user-info">
-							<div class="info-header">
+							<div class="info-header d-flex flex-column flex-sm-row">
 							<h1>
 							<?php
 							if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
