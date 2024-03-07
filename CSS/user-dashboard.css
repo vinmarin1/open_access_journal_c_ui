@@ -331,6 +331,7 @@ label {
     border-radius: 50px;
     cursor: pointer;
     width: 100px;
+    margin-right: 10px;
 }
 
 #editBtn {
