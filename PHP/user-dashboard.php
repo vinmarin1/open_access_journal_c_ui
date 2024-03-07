@@ -149,8 +149,8 @@ $expertise = $_SESSION['expertise'];
 							
 							<img class="img-fluid mt-4" src="" alt="Selected Image" id="selectedImagePreview" style="height: 50%; width: 50%; border-radius: 60%; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; margin-left: auto; margin-right: auto">
 							<div class="btn-change mt-5" style="width: 100%">
-							<button type="button" class="btn btn-success btn-sm" style="width: 95%; display: block; margin-left: 10px;" onclick="saveProfile()">Save</button>
-							<button type="button" class="btn btn-secondary btn-sm mt-1" style="width: 95%; display: block; margin-left: 10px" onclick="cancelUpdate()">Cancel</button>
+							<button type="button" class="btn btn-success btn-sm" style="width: 95%; display: block; margin-left: 10px; margin-right: 5px" onclick="saveProfile()">Save</button>
+							<button type="button" class="btn btn-secondary btn-sm mt-1" style="width: 95%; display: block; margin-left: 20px" onclick="cancelUpdate()">Cancel</button>
 							</div>
 							
 						</div>
@@ -724,9 +724,9 @@ $expertise = $_SESSION['expertise'];
 							$mode = $user->public_private_profile;
 							
 							if($mode === '0'){
-								echo '<button class="btn btn-outline-primary btn-sm mt-2" id="changeModeBtn1">Private Profile</button>';
+								echo '<button class="btn btn-outline-primary btn-sm mt-2" id="changeModeBtn1">Public Profile</button>';
 							}else{
-								echo '<button class="btn btn-outline-primary btn-sm mt-2" id="changeModeBtn2">Public Profile</button>';
+								echo '<button class="btn btn-outline-primary btn-sm mt-2" id="changeModeBtn2">Private Profile</button>';
 							}
 
 							
@@ -1597,7 +1597,7 @@ $expertise = $_SESSION['expertise'];
 
 						$result = database_run($sql);
 
-						$sqlSelectProfile = "SELECT first_name, middle_name, last_name, birth_date, gender, marital_status, orc_id, afiliations, position, field_of_expertise FROM author WHERE author_id = :author_id";
+						$sqlSelectProfile = "SELECT first_name, middle_name, last_name, birth_date, gender, marital_status, orc_id, afiliations, position, field_of_expertise, country FROM author WHERE author_id = :author_id";
 
 						$resultProfile = database_run($sqlSelectProfile, array(':author_id' => $id));
 
@@ -1623,7 +1623,7 @@ $expertise = $_SESSION['expertise'];
 								$userProfile = $resultProfile[0];
 	  
 								// Check for the presence of all required fields
-								$requiredFields = ['first_name', 'middle_name', 'last_name', 'birth_date', 'gender', 'marital_status', 'orc_id', 'afiliations', 'position', 'field_of_expertise'];
+								$requiredFields = ['first_name', 'middle_name', 'last_name', 'birth_date', 'gender', 'marital_status', 'orc_id', 'afiliations', 'position', 'field_of_expertise', 'country'];
 	  
 								$profileComplete = true;
 								foreach ($requiredFields as $field) {
@@ -1635,7 +1635,7 @@ $expertise = $_SESSION['expertise'];
 								if ($profileComplete) {
 									echo "<p>You don't have published article yet, want to published article? Click here <a href='ex_submit.php'>Submit an Article</a></p>"; 
 							  } else {
-								echo "<p>You don't have published article yet, want to published article? Click here <a href='#' id='link'>Submit Article</a></p>"; 
+								echo "<p>You don't have published article yet, want to published article? Click here <a href='#' id='link'>Submit an Article</a></p>"; 
 								  echo "<script>
 										  document.getElementById('link').addEventListener('click', function(event){
 											  Swal.fire({
@@ -1933,31 +1933,7 @@ $expertise = $_SESSION['expertise'];
 	
 	<script>
 
-document.getElementById('changeModeBtn1').addEventListener('click', function (event) {
-    Swal.fire({
-        icon: 'question',
-        text: 'Switch to private mode?',
-        showCancelButton: true,
-        showConfirmButton: true
-    }).then((result) => {
-        if (result.isConfirmed) {
-            var xhr = new XMLHttpRequest();
 
-            xhr.open('POST', '../PHP/private_account.php', true);
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    alert('Account mode changed to Private Successfully');
-                    window.location.href='../PHP/user-dashboard.php';
-                }
-            };
-
-            xhr.send();
-        }
-    });
-});		
-	
 
 function saveProfile() {
   const fileInput = document.getElementById('fileInput');
@@ -2302,6 +2278,30 @@ $(document).ready(function () {
         });
     });
 
+	document.getElementById('changeModeBtn1').addEventListener('click', function (event) {
+    Swal.fire({
+        icon: 'question',
+        text: 'Switch to private profile?',
+        showCancelButton: true,
+        showConfirmButton: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('POST', '../PHP/private_account.php', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    alert('You are now in private profile');
+                    window.location.href='../PHP/user-dashboard.php';
+                }
+            };
+
+            xhr.send();
+        }
+    });
+});		
 	
 
 </script>
