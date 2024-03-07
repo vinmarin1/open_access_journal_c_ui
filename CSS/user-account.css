@@ -1,0 +1,85 @@
+body{
+    overflow: hidden;
+}
+#sidebar{
+    width: 25%;
+    height: 85vh;
+    background-color: white;
+    position: fixed;
+
+}
+
+.nav-items-header{
+    margin-left: 50px;
+    margin-bottom: 20px;
+}
+
+.nav-items{
+    margin-left: 38px;
+  
+}
+
+li a i{
+    margin-right: 10px;
+}
+
+.nav-items a{
+    font-size: 20px;
+    color: #285581;
+    font-weight: bold;
+}
+
+#main-content{
+    width: 80%;
+    background-color: white;
+    height: 83vh;
+    
+}
+
+#profileTitle, #accountTitle, #securityTitle{
+    width: 100%;
+    padding-left: 60px;
+    margin-top: 100px;
+    font-size: 20px;
+    font-weight: normal;
+}
+
+#accountSubTitle, #securitySubTitle{
+    width: 100%;
+    padding-left: 60px;
+    font-size: 15px;
+    font-weight: normal;
+}
+
+#accountDescript, #accountDescriptAdds{
+    margin-left: 20px;
+    font-size: 15px;
+}
+
+#accountDescriptAdds{
+    margin-top: 0px;
+ 
+}
+
+#profile-details-container,#account-content-container, #security-content-container{
+    width: 70%;
+    height: 40vh;
+    border-radius: 10px;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin-left: 60px;
+    margin-top: 10px;
+}
+
+#account-content-container{
+    height: 35vh;
+}
+
+#profile-container, #security-container{
+    display: none;
+}
+
+#changeModeBtn1, #changeModeBtn2{
+    margin-left: 25px;
+}
+

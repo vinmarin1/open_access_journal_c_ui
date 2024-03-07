@@ -41,8 +41,7 @@ $expertise = $_SESSION['expertise'];
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<?php include('./meta.php'); ?>
   <title>QCU PUBLICATION | USER DASHBOARD</title>
   <link rel="stylesheet" href="../CSS/user-dashboard.css">
   <link rel="stylesheet" href="../CSS/index.css">
@@ -710,22 +709,34 @@ $expertise = $_SESSION['expertise'];
 					
 
 					</div>
-					<div class="supportPoints" style="font-weight: bold; margin-top: -15px; margin-bottom: 10px">Support Points:
-					
 					<?php
-					$sqlPoints = "SELECT points FROM support_points WHERE user_id = $id";
+						if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+						$sqlMode = "SELECT public_private_profile FROM author WHERE author_id = :author_id";
+						
+						$result = database_run($sqlMode, array(':author_id' => $id));
 
-					$result = database_run($sqlPoints);
+						if ($result) {
+							
+							if (count($result) > 0) {
+							$user = $result[0];
+							$mode = $user->public_private_profile;
+							
+							if($mode === '0'){
+								echo '<button class="btn btn-outline-primary btn-sm mt-2" id="changeModeBtn1">Private Profile</button>';
+							}else{
+								echo '<button class="btn btn-outline-primary btn-sm mt-2" id="changeModeBtn2">Public Profile</button>';
+							}
 
-					if ($result !== false) {
-						$row = $result[0];
-						$totalPoints = $row->points;
-						echo $totalPoints;
-					}
+							
+							} else {
+							echo "Something went wrong";
+							}
+						} else {
+							echo "Something went wrong";
+						}
+						}
 					?>
-
-					</div>
-					
+         
 
 					<!-- <div class="profile-badge">
 						<p class="recent-badges">Recent Badges</p>
@@ -1886,9 +1897,35 @@ $expertise = $_SESSION['expertise'];
 	<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <script src="../JS/reusable-header.js"></script>
     <script src="../JS/user-dashboard.js"></script>
+	<script src="../JS/user-account.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 	
 	<script>
+
+document.getElementById('changeModeBtn1').addEventListener('click', function (event) {
+    Swal.fire({
+        icon: 'question',
+        text: 'Switch to private mode?',
+        showCancelButton: true,
+        showConfirmButton: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('POST', '../PHP/private_account.php', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    alert('Account mode changed to Private Successfully');
+                    window.location.href='../PHP/user-dashboard.php';
+                }
+            };
+
+            xhr.send();
+        }
+    });
+});		
 	
 
 function saveProfile() {
@@ -2234,6 +2271,7 @@ $(document).ready(function () {
         });
     });
 
+	
 
 </script>
 
