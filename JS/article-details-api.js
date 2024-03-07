@@ -354,7 +354,7 @@ function renderArticleDetails(data) {
           Swal.fire({
             html: `
             <h4 style="color: #0858a4; font-family: font-family: Arial, Helvetica, sans-serif">Download Started. Your download will start shortly. </h4>
-            <p style="font-size: 16px;">If it doesn\'t start automatically, <a href="#">click here</a>.</p>'
+            <p style="font-size: 16px;">If it doesn\'t start automatically, <a href="${fileUrl}">click here</a>.</p>'
 
             `,
             icon: 'success',
@@ -374,7 +374,7 @@ function renderArticleDetails(data) {
       epubBtn.addEventListener("click", () => {
         try{
           Swal.fire({
-            html: '<h4 style="color: #0858a4; font-family: font-family: Arial, Helvetica, sans-serif">Successfully downloaded.</h4>',
+            html: '<h4 style="color: #0858a4; font-family: font-family: Arial, Helvetica, sans-serif">Download Started. Your download will start shortly.</h4>',
             icon: 'success',
           })
           var fileExtension = item.file_name.split('.').pop();
