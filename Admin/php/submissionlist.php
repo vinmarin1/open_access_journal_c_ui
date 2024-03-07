@@ -35,6 +35,9 @@ $incomplete_articles = get_article_list($cid);
                 <a class="nav-link active" id="tabAll" data-status="">All</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" id="tabReject" data-status="Reject">Reject</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" id="tabPending" data-status="Pending">Pending</a>
             </li>
             <li class="nav-item">
@@ -48,6 +51,9 @@ $incomplete_articles = get_article_list($cid);
             </li>
             <li class="nav-item">
                 <a class="nav-link" id="tabPublished" data-status="Published">Published</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="tabArchived" data-status="Archived">Archived</a>
             </li>
         </ul>
 

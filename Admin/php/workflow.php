@@ -470,18 +470,21 @@ table {
                                                                                         }
                                                                                     }
                                                                                     if ($matchingReviewer) { ?>
-                                                                                        <td width="75%"><?php echo $matchingReviewer->last_name . ', ' . $matchingReviewer->first_name; ?></td>
+                                                                                        <td width="84%"><?php echo $matchingReviewer->last_name . ', ' . $matchingReviewer->first_name; ?></td>
+                                                                                        <td width="3%">
+                                                                                            <?php echo ($article_reviewerval->comment_accessible == 1) ? '<span style="color: green;">Accept</span>' : ''; ?>
+                                                                                        </td>
                                                                                         <td colspan="3" style="text-align: right;">
                                                                                             <?php if ((strpos($article_reviewerval->round, 'Round 1') !== false) && ($article_reviewerval->answer != 0)): ?>
-                                                                                                <a href="javascript:void(0);" onclick="viewReviewerAnswer(<?php echo $article_reviewerval->author_id; ?>,'<?php echo $article_data[0]->article_id; ?>','<?php echo $matchingReviewer->last_name . ', ' . $matchingReviewer->first_name; ?>','Round 1')" class="btn btn-outline-dark Round1" style="margin-right: 10px;">Answer</a>
+                                                                                                <a href="javascript:void(0);" onclick="viewReviewerAnswer(<?php echo $article_reviewerval->reviewer_assigned_id ; ?>,<?php echo $article_reviewerval->comment_accessible ; ?>,<?php echo $article_reviewerval->author_id; ?>,'<?php echo $article_data[0]->article_id; ?>','<?php echo $matchingReviewer->last_name . ', ' . $matchingReviewer->first_name; ?>','Round 1')" class="btn btn-outline-dark Round1" style="margin-right: 10px;">Answer</a>
                                                                                             <?php endif; ?>
 
                                                                                             <?php if ((strpos($article_reviewerval->round, 'Round 2') !== false) && ($article_reviewerval->answer != 0)): ?>
-                                                                                                <a href="javascript:void(0);" onclick="viewReviewerAnswer(<?php echo $article_reviewerval->author_id; ?>,'<?php echo $article_data[0]->article_id; ?>','<?php echo $matchingReviewer->last_name . ', ' . $matchingReviewer->first_name; ?>','Round 2')" class="btn btn-outline-dark Round2" style="margin-right: 10px;">Answer</a>
+                                                                                                <a href="javascript:void(0);" onclick="viewReviewerAnswer(<?php echo $article_reviewerval->reviewer_assigned_id ; ?>,<?php echo $article_reviewerval->comment_accessible ; ?>,<?php echo $article_reviewerval->author_id; ?>,'<?php echo $article_data[0]->article_id; ?>','<?php echo $matchingReviewer->last_name . ', ' . $matchingReviewer->first_name; ?>','Round 2')" class="btn btn-outline-dark Round2" style="margin-right: 10px;">Answer</a>
                                                                                             <?php endif; ?>
 
                                                                                             <?php if ((strpos($article_reviewerval->round, 'Round 3') !== false) && ($article_reviewerval->answer != 0)): ?>
-                                                                                                <a href="javascript:void(0);" onclick="viewReviewerAnswer(<?php echo $article_reviewerval->author_id; ?>,'<?php echo $article_data[0]->article_id; ?>','<?php echo $matchingReviewer->last_name . ', ' . $matchingReviewer->first_name; ?>','Round 3')" class="btn btn-outline-dark Round3" style="margin-right: 10px;">Answer</a>
+                                                                                                <a href="javascript:void(0);" onclick="viewReviewerAnswer(<?php echo $article_reviewerval->reviewer_assigned_id ; ?>,<?php echo $article_reviewerval->comment_accessible ; ?>,<?php echo $article_reviewerval->author_id; ?>,'<?php echo $article_data[0]->article_id; ?>','<?php echo $matchingReviewer->last_name . ', ' . $matchingReviewer->first_name; ?>','Round 3')" class="btn btn-outline-dark Round3" style="margin-right: 10px;">Answer</a>
                                                                                             <?php endif; ?>
                                                                                         </td>
                                                                                     </tr>
@@ -1794,7 +1797,9 @@ table {
             };
         }
 
-        function viewReviewerAnswer(ReviewerId, ArticleId,ReviewName, Round) {
+        function viewReviewerAnswer(assignedId, accessible, ReviewerId, ArticleId, ReviewName, Round) {
+            var assignedId = assignedId;
+            var accessible = accessible;
             $.ajax({
                 type: 'POST',
                 url: '../php/function/wf_modal_function.php',
@@ -1802,6 +1807,13 @@ table {
                 dataType: 'json',
                 success: function (response) {
                     document.getElementById('roundInfo').innerText = 'Reviewer '+ ReviewName + ' ' + Round + ' Answer';
+                    document.getElementById('reviewer_assigned_id').value = assignedId;
+                    document.getElementById('accessible').value = accessible;
+                    if (accessible == 1) {
+                        document.getElementById('acceptButton').style.display = 'none';
+                    } else {
+                        document.getElementById('acceptButton').style.display = 'block';
+                    }
                     if (response.status === true && response.data.length > 0) {
                         const answerData = response.data;
                         $('#DataTableAnswer tbody').empty();
@@ -1810,8 +1822,7 @@ table {
                             $('#DataTableAnswer tbody').append('<tr><td width="50%"><div style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">' + 
                             answer.reviewer_questionnaire + '</div><div style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Answer: ' + 
                             answer.answer + '</div></td></tr>');
-
-                        }
+                        }   
                         $('#addReviewerAnswerModal').modal('show');
                     } else {
                         $('#DataTableAnswer tbody').empty();
