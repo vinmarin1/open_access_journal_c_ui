@@ -274,8 +274,10 @@ $expertise = $_SESSION['expertise'];
 					<div class="popup-form">
 						<div class="form-header">
 							<span>Edit Profile</span>
-							<button type="button" class="btn btn-outline-light" id="saveButton">Save</button>
-							<button type="button" class="btn btn-outline-light" id="cancelBtn">Cancel</button>
+							<div class="edit-profile-btn">
+								<button type="button" class="btn btn-outline-light" id="saveButton">Save</button>
+								<button type="button" class="btn btn-outline-light" id="cancelBtn">Cancel</button>
+							</div>
 							<!-- <span class="close-icon" id="closeIcon">&times;</span> -->
 						</div>
 						<form id="form" method="POST" action="update-user.php">		
