@@ -236,7 +236,7 @@ $expertise = $_SESSION['expertise'];
 									">Support</span><i class="fa-solid fa-hand-holding-heart"></i></label> -->
 									<button class="btn  btn-sm text-white" id="btn1" onclick="window.location.href='author-dashboard.php'">My Articles</button>
 									
-									<button type="button" id="editIcon" class="btn btn-success btn-sm" style="width: 100px">Edit<i class="fa-solid fa-pen-to-square"  style="margin-left: 5px"></i></button>
+									<button type="button" id="editIcon" class="btn btn-secondary btn-sm" style="width: 100px">Edit<i class="fa-solid fa-pen-to-square"  style="margin-left: 5px"></i></button>
 									<br>
 						
 								
