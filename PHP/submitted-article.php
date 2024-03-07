@@ -306,7 +306,13 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
             <div class="table-header">Reviewer Comments</div>
             <div class="discussion-container">
                 <?php
-                    $sqlReviewComments = "SELECT reviewer_assigned.comment FROM reviewer_assigned JOIN article ON reviewer_assigned.article_id = article.article_id WHERE reviewer_assigned.answer = 1 AND reviewer_assigned.accept = 1 AND reviewer_assigned.comment_accessible = 1 AND reviewer_assigned.article_id = $articleId";
+                    $sqlReviewComments = "SELECT reviewer_assigned.comment, reviewer_assigned.decision 
+                                        FROM reviewer_assigned 
+                                        JOIN article ON reviewer_assigned.article_id = article.article_id 
+                                        WHERE reviewer_assigned.answer = 1 
+                                            AND reviewer_assigned.accept = 1 
+                                            AND reviewer_assigned.comment_accessible = 1 
+                                            AND reviewer_assigned.article_id = $articleId";
 
                     $sqlRun = database_run($sqlReviewComments);
 
@@ -319,29 +325,30 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 
                             foreach ($result as $row) {
                                 $comment = $row->comment;
+                                $decision = $row->decision;
 
-                            
-                                $reviewerComments[$reviewerAlias][] = $comment;
+                                // Append comment and decision to the reviewer's array
+                                $reviewerComments[$reviewerAlias]['comment'] = $comment;
+                                $reviewerComments[$reviewerAlias]['decision'] = $decision;
 
-                        
+                                // Increment reviewer alias for the next comment
                                 $reviewerAlias = getNextReviewerAlias($reviewerAlias);
                             }
 
-                    
-                            foreach ($reviewerComments as $reviewerAlias => $comments) {
-                                $commentString = implode(', ', $comments);
-                                echo '<p>' . $reviewerAlias . ': ' . $commentString . '</p>';
+                            // Display the comments with reviewer aliases
+                            foreach ($reviewerComments as $reviewerAlias => $reviewerData) {
+                                echo '<p>' . $reviewerAlias . ' comment: ' . $reviewerData['comment'] . '</p>';
+                                echo '<p class="style="margin-top: 0px">' . $reviewerAlias . ' decision: ' . $reviewerData['decision'] . '</p>';
                             }
                         }
                     }
 
-
                     function getNextReviewerAlias($currentAlias)
                     {
-
                         return ++$currentAlias;
                     }
                 ?>
+
 
 
 

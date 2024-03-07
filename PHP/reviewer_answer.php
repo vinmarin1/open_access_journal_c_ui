@@ -36,19 +36,22 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
   
     
 
-    $sqlUpdate = "UPDATE reviewer_assigned SET answer = :answer, accept = :accept, comment = :comment WHERE author_id = :user_id AND article_id = :article_id";
+    $sqlUpdate = "UPDATE reviewer_assigned SET answer = :answer, accept = :accept, comment = :comment, decision = :decision WHERE author_id = :user_id AND article_id = :article_id ORDER BY date_issued DESC LIMIT 1";
 
-    $sqlUpdateParams = array(
+
+    $lastAnswer = end($answers); 
+
+    $paramsUpdate = array(
     'answer' => 1,
     'accept' => 1,
     'comment' => $ansOrig,
+    'decision' => $lastAnswer, 
     'user_id' => $user_id,
     'article_id' => $article_id
     );
 
-    database_run($sqlUpdate, $sqlUpdateParams);
-
-    
+    database_run($sqlUpdate, $paramsUpdate);
+        
     $sqlLogs = "INSERT INTO logs_article (`article_id`, `user_id`, `fromuser`, `type`) VALUES (:article_id, :user_id, :fromuser, :type)";
 
     $sqlLogsParams = array(
