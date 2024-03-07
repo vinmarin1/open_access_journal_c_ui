@@ -56,8 +56,40 @@ include 'dbcon.php';
             updateProductionCopyeditedUnCheckedFiles();
             updateProductionUnCheckedFiles();
             break;
+      case 'updateaccessible':
+            acceptReviewerAnswer();
+            break;
         default:
     }
+
+    function acceptReviewerAnswer() { 
+        $reviewer_assigned_id = $_POST['reviewer_assigned_id'];
+    
+        $comment_accessible = 1; // Assign constant value to a variable
+    
+        $query = "UPDATE reviewer_assigned 
+                    SET comment_accessible = :comment_accessible
+                    WHERE reviewer_assigned_id  = :reviewer_assigned_id";
+    
+        $pdo = connect_to_database();
+    
+        $stm = $pdo->prepare($query);
+    
+        // Bind variables by reference
+        $stm->bindParam(':reviewer_assigned_id', $reviewer_assigned_id, PDO::PARAM_INT);
+        $stm->bindParam(':comment_accessible', $comment_accessible, PDO::PARAM_INT); // Use variable instead of constant
+    
+        $check = $stm->execute();
+    
+        header('Content-Type: application/json');
+    
+        if ($check !== false) {
+            echo json_encode(['status' => true, 'message' => 'Reviewer answer accepted successfully!']);
+        } else {
+            echo json_encode(['status' => false, 'message' => 'Failed to accept review']);
+        }
+        exit;
+    }    
 
     function updateSubmissionFiles() {
         $uploadPath = "../../../Files/submitted-article/";

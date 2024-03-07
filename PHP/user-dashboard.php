@@ -42,8 +42,7 @@ $expertise = $_SESSION['expertise'];
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<?php include('./meta.php'); ?>
   <title>QCU PUBLICATION | USER DASHBOARD</title>
   <link rel="stylesheet" href="../CSS/user-dashboard.css">
   <link rel="stylesheet" href="../CSS/index.css">
@@ -151,7 +150,7 @@ $expertise = $_SESSION['expertise'];
 							
 							<img class="img-fluid mt-4" src="" alt="Selected Image" id="selectedImagePreview" style="height: 50%; width: 50%; border-radius: 60%; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; margin-left: auto; margin-right: auto">
 							<div class="btn-change mt-5" style="width: 100%">
-							<button type="button" class="btn btn-success btn-sm" style="width: 95%; display: block; margin-left: 10px;" onclick="saveProfile()">Save</button>
+							<button type="button" class="btn btn-success btn-sm" style="width: 95%; display: block; margin-left: 10px; margin-right: 5px" onclick="saveProfile()">Save</button>
 							<button type="button" class="btn btn-secondary btn-sm mt-1" style="width: 95%; display: block; margin-left: 10px" onclick="cancelUpdate()">Cancel</button>
 							</div>
 							
@@ -237,7 +236,7 @@ $expertise = $_SESSION['expertise'];
 									">Support</span><i class="fa-solid fa-hand-holding-heart"></i></label> -->
 									<button class="btn  btn-sm text-white" id="btn1" onclick="window.location.href='author-dashboard.php'">My Articles</button>
 									
-									<button type="button" id="editIcon" class="btn btn-secondary btn-sm" style="width: 100px">Edit<i class="fa-solid fa-pen-to-square"  style="margin-left: 5px"></i></button>
+									<button type="button" id="editIcon" class="btn btn-success btn-sm" style="width: 100px">Edit<i class="fa-solid fa-pen-to-square"  style="margin-left: 5px"></i></button>
 									<br>
 						
 								
@@ -281,8 +280,10 @@ $expertise = $_SESSION['expertise'];
 					<div class="popup-form">
 						<div class="form-header">
 							<span>Edit Profile</span>
-							<button type="button" class="btn btn-outline-light" id="saveButton">Save</button>
-							<button type="button" class="btn btn-outline-light" id="cancelBtn">Cancel</button>
+							<div class="edit-profile-btn">
+								<button type="button" class="btn btn-outline-light" id="saveButton">Save</button>
+								<button type="button" class="btn btn-outline-light" id="cancelBtn">Cancel</button>
+							</div>
 							<!-- <span class="close-icon" id="closeIcon">&times;</span> -->
 						</div>
 						<form id="form" method="POST" action="update-user.php">		
@@ -716,22 +717,34 @@ $expertise = $_SESSION['expertise'];
 					
 
 					</div>
-					<div class="supportPoints" style="font-weight: bold; margin-top: -15px; margin-bottom: 10px">Support Points:
-					
 					<?php
-					$sqlPoints = "SELECT points FROM support_points WHERE user_id = $id";
+						if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+						$sqlMode = "SELECT public_private_profile FROM author WHERE author_id = :author_id";
+						
+						$result = database_run($sqlMode, array(':author_id' => $id));
 
-					$result = database_run($sqlPoints);
+						if ($result) {
+							
+							if (count($result) > 0) {
+							$user = $result[0];
+							$mode = $user->public_private_profile;
+							
+							if($mode === '0'){
+								echo '<button class="btn btn-outline-primary btn-sm mt-2" id="changeModeBtn1">Public Profile</button>';
+							}else{
+								echo '<button class="btn btn-outline-primary btn-sm mt-2" id="changeModeBtn2">Private Profile</button>';
+							}
 
-					if ($result !== false) {
-						$row = $result[0];
-						$totalPoints = $row->points;
-						echo $totalPoints;
-					}
+							
+							} else {
+							echo "Something went wrong";
+							}
+						} else {
+							echo "Something went wrong";
+						}
+						}
 					?>
-
-					</div>
-					
+         
 
 					<!-- <div class="profile-badge">
 						<p class="recent-badges">Recent Badges</p>
@@ -1368,17 +1381,46 @@ $expertise = $_SESSION['expertise'];
 										echo '<div class="badge-box" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
 										echo '<div class="badge-box" style="background-image: url(\'../images/first_review_badges.png\');"></div>';
 
-									}if (count($result) === 2 && count($resultReviewed) === 2) {
+									}
+									if (count($result) === 2 && count($resultReviewed) === 2) {
 										
-										echo '<div class="badge-box" style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
 										echo '<div class="badge-box" style="background-image: url(\'../images/second_review_badges.png\');"></div>';
 
-									}if (count($result) === 3 && count($resultReviewed) === 3) {
+									}
+									if (count($result) === 3 && count($resultReviewed) === 3) {
 										
 										echo '<div class="badge-box" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
 										echo '<div class="badge-box" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
 
 									}
+
+									if (count($result) === 2 && count($resultReviewed) === 1) {
+										
+										echo '<div class="badge-box" style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/first_review_badges.png\');"></div>';
+
+									}
+									if (count($result) === 3 && count($resultReviewed) === 1) {
+										
+										echo '<div class="badge-box" style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/first_review_badges.png\');"></div>';
+
+									}
+									if (count($result) === 1 && count($resultReviewed) === 2) {
+										
+										echo '<div class="badge-box" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/second_review_badges.png\');"></div>';
+
+									}
+									if (count($result) === 1 && count($resultReviewed) === 3) {
+										
+										echo '<div class="badge-box" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
+
+									}
+									
+									
 								}elseif($resultReviewed && $resultDonation){
 									if (count($resultReviewed) === 1 && count($resultDonation) === 1) {
 										
@@ -1561,7 +1603,7 @@ $expertise = $_SESSION['expertise'];
 
 						$result = database_run($sql);
 
-						$sqlSelectProfile = "SELECT first_name, middle_name, last_name, birth_date, gender, marital_status, orc_id, afiliations, position, field_of_expertise FROM author WHERE author_id = :author_id";
+						$sqlSelectProfile = "SELECT first_name, middle_name, last_name, birth_date, gender, marital_status, orc_id, afiliations, position, field_of_expertise, country FROM author WHERE author_id = :author_id";
 
 						$resultProfile = database_run($sqlSelectProfile, array(':author_id' => $id));
 
@@ -1587,7 +1629,7 @@ $expertise = $_SESSION['expertise'];
 								$userProfile = $resultProfile[0];
 	  
 								// Check for the presence of all required fields
-								$requiredFields = ['first_name', 'middle_name', 'last_name', 'birth_date', 'gender', 'marital_status', 'orc_id', 'afiliations', 'position', 'field_of_expertise'];
+								$requiredFields = ['first_name', 'middle_name', 'last_name', 'birth_date', 'gender', 'marital_status', 'orc_id', 'afiliations', 'position', 'field_of_expertise', 'country'];
 	  
 								$profileComplete = true;
 								foreach ($requiredFields as $field) {
@@ -1599,7 +1641,7 @@ $expertise = $_SESSION['expertise'];
 								if ($profileComplete) {
 									echo "<p>You don't have published article yet, want to published article? Click here <a href='ex_submit.php'>Submit an Article</a></p>"; 
 							  } else {
-								echo "<p>You don't have published article yet, want to published article? Click here <a href='#' id='link'>Submit Article</a></p>"; 
+								echo "<p>You don't have published article yet, want to published article? Click here <a href='#' id='link'>Submit an Article</a></p>"; 
 								  echo "<script>
 										  document.getElementById('link').addEventListener('click', function(event){
 											  Swal.fire({
@@ -1892,10 +1934,12 @@ $expertise = $_SESSION['expertise'];
 	<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <script src="../JS/reusable-header.js"></script>
     <script src="../JS/user-dashboard.js"></script>
+	<script src="../JS/user-account.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 	
 	<script>
-	
+
+
 
 function saveProfile() {
   const fileInput = document.getElementById('fileInput');
@@ -2240,6 +2284,31 @@ $(document).ready(function () {
         });
     });
 
+	document.getElementById('changeModeBtn1').addEventListener('click', function (event) {
+    Swal.fire({
+        icon: 'question',
+        text: 'Switch to private profile?',
+        showCancelButton: true,
+        showConfirmButton: true
+    }).then((result) => {
+        if (result.isConfirmed) {
+            var xhr = new XMLHttpRequest();
+
+            xhr.open('POST', '../PHP/private_account.php', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    alert('You are now in private profile');
+                    window.location.href='../PHP/user-dashboard.php';
+                }
+            };
+
+            xhr.send();
+        }
+    });
+});		
+	
 
 </script>
 

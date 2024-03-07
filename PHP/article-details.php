@@ -6,8 +6,7 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <?php include('./meta.php'); ?>
 
   <title>QCU PUBLICATION | ARTICLE DETAILS</title>
   <meta property="og:title" content="QCU PUBLICATION | ARTICLE DETAILS">

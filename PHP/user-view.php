@@ -1,3 +1,19 @@
+<?php
+require 'dbcon.php';
+session_start();
+
+
+if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
+	header('Location: ./login.php');
+	exit();
+  }
+
+  $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +34,23 @@
     <div class="content-over">
         <div class="cover-content">
             <p>Dashboard / Author</p>
-            <h2>You're in Kyle's Profile</h2>
+            <h2>
+                You're in 
+                <?php 
+               
+                $result = database_run("SELECT first_name FROM author WHERE orc_id = :orc_id", array('orc_id' => $orcid));
+                
+                if ($result !== false && !empty($result)) {
+                    $first_name = $result[0]->first_name;
+                    echo "$first_name's Profile";
+                } else {
+                    echo "";
+                }
+                ?>
+            </h2>
+
+            
+    
         </div>
     </div>
     <div class="main">
@@ -26,7 +58,24 @@
 			<div class="profile-container">
 				<div class="profile-sidebar">
 					<!-- Profile Image -->
-					<img src="../images/profile.jpg" alt="Profile Picture" class="profile-pic">
+					
+                    <?php
+                    
+
+                    
+                    $sqlGetProfilePic = "SELECT profile_pic FROM author WHERE orc_id = :orc_id";
+                    $params = array(':orc_id' => $orcid);
+                    $result = database_run($sqlGetProfilePic, $params);
+                    
+                    if ($result !== false && !empty($result[0]->profile_pic)) {
+                        $profilePicPath = $result[0]->profile_pic;
+                    
+                        echo '<img src="' . $profilePicPath . '" alt="Profile Picture">';
+                    } else {
+                        
+                        echo '<img src="../images/profile.jpg" alt="Profile Picture" class="profile-pic">';
+                    }
+                    ?>
 				</div>
 				<div class="profile-info">
 					<div class="row">
@@ -35,8 +84,32 @@
 						</div>-->
 							<!-- User Info -->
 						<div class="user-info">
-							<h1>Kyle Angeline David</h1>
-							<p class="role">Author</p>
+							<h1>
+                                <?php 
+                
+                                    $result = database_run("SELECT first_name FROM author WHERE orc_id = :orc_id", array('orc_id' => $orcid));
+                                    
+                                    if ($result !== false && !empty($result)) {
+                                        $first_name = $result[0]->first_name;
+                                        echo "$first_name's Profile";
+                                    } else {
+                                        echo "Profile not found.";
+                                    }
+                                ?>
+                            </h1>
+							<p class="role">
+                            <?php 
+               
+                                $result = database_run("SELECT role FROM author WHERE orc_id = :orc_id", array('orc_id' => $orcid));
+                                
+                                if ($result !== false && !empty($result)) {
+                                    $role = $result[0]->role;
+                                    echo $role;
+                                } else {
+                                    echo "";
+                                }
+                            ?>
+                            </p>
 							<!-- <p class="subscription">You're subscribed to Package plan</p> -->
 						</div>
 					</div>
@@ -56,11 +129,72 @@
 				<div class="profile-main">
 					<!-- Detailed Info -->
 					<div class="details">
-						<p><span class="label">Position:</span> Student  </p>
-						<p><span class="label">Gender:</span> Female   </p>
-						<p><span class="label">Birthday:</span> 10/24/2002</p>
-						<p><span class="label">Country:</span> Philippines</p>
-						<p><span class="label">ORCID:</span> 048469754</p>
+						<p><span class="label">Position:</span>
+                            <?php 
+                
+                                $result = database_run("SELECT position FROM author WHERE orc_id = :orc_id", array('orc_id' => $orcid));
+                                
+                                if ($result !== false && !empty($result)) {
+                                    $position = $result[0]->position;
+                                    echo $position;
+                                } else {
+                                    echo "";
+                                }
+                            ?>
+                        </p>
+						<p><span class="label">Gender:</span>
+                        <?php 
+                
+                            $result = database_run("SELECT gender FROM author WHERE orc_id = :orc_id", array('orc_id' => $orcid));
+                            
+                            if ($result !== false && !empty($result)) {
+                                $gender = $result[0]->gender;
+                                echo $gender;
+                            } else {
+                                echo "";
+                            }
+                        ?>
+                                
+                        </p>
+						<p><span class="label">Birthday:</span>
+                        <?php 
+                
+                            $result = database_run("SELECT birth_date FROM author WHERE orc_id = :orc_id", array('orc_id' => $orcid));
+                            
+                            if ($result !== false && !empty($result)) {
+                                $birth_date = $result[0]->birth_date;
+                                echo $birth_date;
+                            } else {
+                                echo "";
+                            }
+                        ?>
+                        </p>
+						<p><span class="label">Country:</span>
+                        <?php 
+                
+                            $result = database_run("SELECT country FROM author WHERE orc_id = :orc_id", array('orc_id' => $orcid));
+                            
+                            if ($result !== false && !empty($result)) {
+                                $country = $result[0]->country;
+                                echo $country;
+                            } else {
+                                echo "";
+                            }
+                        ?>
+                        </p>
+						<p><span class="label">ORCID:</span>
+                        <?php 
+                
+                            $result = database_run("SELECT orc_id FROM author WHERE orc_id = :orc_id", array('orc_id' => $orcid));
+                            
+                            if ($result !== false && !empty($result)) {
+                                $orc_id = $result[0]->orc_id;
+                                echo $orc_id;
+                            } else {
+                                echo "";
+                            }
+                        ?>
+                        </p>
 					</div>
 				</div>
 			</div>
@@ -76,9 +210,55 @@
 			<div id="About" class="tabcontent" style="display: block;">
 				<div id="about-container">
 					<div id="logrecord-container">
-						<div class="log-box">Joined December 1, 2023</div>
-						<div class="log-box">Author since December 11, 2023</div>
-						<div class="log-box">Reviewer since December 19, 2023</div>
+						<div class="log-box">Joined in community since
+                        <?php
+                        $result = database_run("SELECT date_added FROM author WHERE orc_id = :orc_id", array('orc_id' => $orcid));
+
+                        if ($result !== false && !empty($result)) {
+                            $date_added = $result[0]->date_added;
+
+                            $formattedDate = date("F j, Y", strtotime($date_added));
+                            
+                            echo $formattedDate;
+                        } else {
+                            echo "error";
+                        }
+                        ?>
+
+                        </div>
+						<div class="log-box">
+                        <?php
+                            $result = database_run("SELECT MIN(article.date_added) AS oldest_date FROM article JOIN author ON article.author_id = author.author_id WHERE author.orc_id = :orc_id", array('orc_id' => $orcid));
+
+                            if ($result !== false && !empty($result)) {
+                                $oldestDate = $result[0]->oldest_date;
+
+                            
+                                $formattedDate = date("F j, Y", strtotime($oldestDate));
+                                
+                                echo "Author since: $formattedDate";
+                            } else {
+                                echo "This author has not submitted any article yet";
+                            }
+                        ?>
+
+                        </div>
+						<div class="log-box">
+                        <?php
+                            $result = database_run("SELECT MIN(date_issued) AS oldest_date FROM reviewer_assigned JOIN author ON reviewer_assigned.author_id = author.author_id WHERE author.orc_id = :orc_id", array('orc_id' => $orcid));
+
+                            if ($result !== false && !empty($result) && !empty($result[0]->oldest_date)) {
+                                $oldestDate = $result[0]->oldest_date;
+
+                                $formattedDate = date("F j, Y", strtotime($oldestDate));
+                                
+                                echo "Reviewer since:  $formattedDate ";
+                            } else {
+                                echo 'This author has not reviewed any article yet';
+                            }
+                        ?>
+
+                        </div>
 					</div>
 					<div id="info-container">
 						<div class="info-box">
@@ -86,7 +266,17 @@
 								<h3>Bio </h3>
 								<hr>
 								<p>
-								“Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet”
+                                <?php 
+                
+                                    $result = database_run("SELECT bio FROM author WHERE orc_id = :orc_id", array('orc_id' => $orcid));
+                                    
+                                    if ($result !== false && !empty($result)) {
+                                        $bio = $result[0]->bio;
+                                        echo $bio;
+                                    } else {
+                                        echo "error";
+                                    }
+                                ?>
 								</p>
 							</div>
 						</div>
@@ -95,7 +285,17 @@
 								<h3>Expertise </h3>
 								<hr>
 								<p>
-								“Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur."
+                                <?php 
+                
+                                    $result = database_run("SELECT field_of_expertise FROM author WHERE orc_id = :orc_id", array('orc_id' => $orcid));
+                                    
+                                    if ($result !== false && !empty($result)) {
+                                        $field_of_expertise = $result[0]->field_of_expertise;
+                                        echo $field_of_expertise;
+                                    } else {
+                                        echo "error";
+                                    }
+                                ?>  
 								</p>
 							</div>
 						</div>
