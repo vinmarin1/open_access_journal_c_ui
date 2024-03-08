@@ -264,21 +264,21 @@ include 'function/dashboard_functions.php';
         labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'Novemeber', 'December'],
         datasets: [{
                 label: 'QCU',
-                data: <?php echo  json_encode(array_column($qcuResult, 'count')); ?>,
+                data: <?php echo  json_encode(array_column($qcuResult, 'qcu_count')); ?>,
                 borderColor: '#0074cc',
                 borderWidth: 1,
                 fill: false
             },
             {
                 label: 'FACULTY',
-                data: <?php echo json_encode(array_column($facultyResult, 'count')); ?>,
+                data: <?php echo json_encode(array_column($facultyResult, 'faculty_count')); ?>,
                 borderColor: '#ff7f00',
                 borderWidth: 1,
                 fill: false
             },
             {
                 label: 'OTHERS',
-                data: <?php echo json_encode(array_column($othersResult, 'count')); ?>,
+                data: <?php echo json_encode(array_column($othersResult, 'others_count')); ?>,
                 borderColor: '#ff0000',
                 borderWidth: 1,
                 fill: false
