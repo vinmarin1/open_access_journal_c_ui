@@ -565,8 +565,12 @@ $expertise = $_SESSION['expertise'];
 														$user = $result[0];
 														$afiliations = $user->afiliations;
 													
-														echo '<input type="text" id="affiliation" name="affiliation" class="other-text-box"
-														value="' . $afiliations . '" >';
+														echo '<input type="text" list="universityList" id="affiliation" name="affiliation" class="other-text-box"
+														value="' . $afiliations . '" >
+														<datalist id="universityList">
+        
+														</datalist>
+														';
 													
 														
 										
@@ -2312,7 +2316,7 @@ $(document).ready(function () {
 
 </script><div class="footer" id="footer">
 </div>
-
+<script src="../JS/user-dashboard-universities.js"></script>  
 </body>
 
 </html>
