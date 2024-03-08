@@ -261,7 +261,7 @@ $faqslist = get_faqs_list();
                     <div class="row mb-2">
                         <div class="col-md-12 mb-2">
                             <label for="xcategory" class="form-label">Category</label>
-                            <select id="announcementtype" class="form-select">
+                            <select id="category"  class="form-select">
                                 <option value="SUBMITTING ARTICLES">SUBMITTING ARTICLES</option>
                                 <option value="GENERAL QUESTIONS">GENERAL QUESTIONS</option>
                                 <option value="OTHERS">OTHERS</option>
