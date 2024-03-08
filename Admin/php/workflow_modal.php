@@ -406,6 +406,8 @@ $issuelist = get_issues_list($journal_id);
                 <div class="modal-body">
                     <div class="row mb-2">
                         <div class="col-md-12 mb-2" id="dynamic-column">
+                        <input type="hidden" id="reviewer_assigned_id" class="form-control"/>
+                        <input type="hidden" id="accessible" class="form-control"/>
                             <div class="table-responsive text-nowrap">
                                 <table class="table table-striped" id="DataTableAnswer">
                                     <thead>
@@ -425,7 +427,7 @@ $issuelist = get_issues_list($journal_id);
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Accept</button>
+                    <button type="button" class="btn btn-primary" id="acceptButton" data-bs-dismiss="modal" onclick="acceptReviewerAnswer()">Accept</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -1834,6 +1836,34 @@ function updateProductionUncheckedFiles() {
         }
     });
 }
+
+function acceptReviewerAnswer() {
+    $('#sloading').toggle();
+    var assignedId = $('#reviewer_assigned_id').val();
+
+
+    var formData = new FormData();
+    formData.append('reviewer_assigned_id', assignedId);
+    formData.append('action', 'updateaccessible');
+
+    $.ajax({
+        url: "../php/function/wf_modal_function.php",
+        type: "POST",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (response) {
+            $('#sloading').toggle();
+            console.log(response);
+            alert("Reviewer answer accepted successfully!");
+            location.reload();
+        },
+        error: function (xhr, status, error) {
+            console.error(xhr, status, error);
+        }
+    });
+}
+
 
 </script>
 
