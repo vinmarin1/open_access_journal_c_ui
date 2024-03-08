@@ -87,11 +87,11 @@
       <div class="recommendation-article">
         <h4>Recently Published Articles</h4>
         <div class="container-fluid p-2 d-flex flex-column flex-xl-row justify-content-center">
-          <div id="recently-added" class="articles-container p-2 col-sm-12 col-xl-7">
+          <div id="recently-added" class="articles-container p-2 col-sm-12 col-xl-6">
             <!-- fetch popular articles using api -->
           </div>
           <div class="divider "></div>
-          <div class="col-sm-12 col-xl-4 d-flex flex-column gap-2" id="most-popular-container">
+          <div class="col-sm-12 col-xl-5 d-flex flex-column gap-2" id="most-popular-container">
             <h6 class="text-lg mb-2">
               <select
                 class="form-select"
@@ -161,10 +161,14 @@
     <div class="fluid-container mb-3 qoaj">
       <div class="About-container">
         <div class="ab-qoaj-left d-flex flex-column align-items-center align-items-sm-start gap-1">
+        <div class="d-flex gap-4 align-items-center">
+          <img src="../images/qcuj.png" style="width:6em; height:6em" alt="" />
+          <img src="../images/qcu-logo.webp" style="width:5em; height:5em" alt="" />
+        </div>
           <h4 class="mb-3">About QCUJ</h2>
-            <p class="description">Say goodbye to research submission struggles! Open Access Journal System for QCU (OAJS QCU) is your new best friend, making sharing your work simple and quick. Think of it as a smooth online portal where you can easily submit your research for expert review. </p>
-            <p class="description"><a href="https://qcu.edu.ph/" class="text-white">Quezon City University (QCU)</a>, recognized by the Commission on Higher Education (CHED), holds dear the values of cultivating a vibrant research culture and disseminating new knowledge for the betterment of society. Understanding that the impact of research hinges on its accessibility and publication, QCU has established the QCU Journals as a platform for its researchers to share their valuable findings and contributions.</p>
-            <p class="description">This website is powered by an artificial intelligence and machine learning to improve the user experience. All articles are freely available to download and read, without any paywalls or restrictions.</p>
+            <p class="description">Say goodbye to research submission struggles! Quezon City University Journals (QCUJ) is a smooth online portal where you can easily submit your research for expert review. </p>
+            <p class="description"><a href="https://qcu.edu.ph/" class="text-white">Quezon City University (QCU)</a>, recognized by the Commission on Higher Education (CHED), holds dear the values of cultivating a vibrant research culture and disseminating new knowledge for the betterment of society. Understanding that the impact of research accessibility, QCU has established the QCU Journals as a platform for its researchers to share their valuable findings and contributions.</p>
+            <p class="description">This website is enhanced by an artificial intelligence and machine learning  designed for QCUJto improve the user experience. All articles are freely available to download and read, without any paywalls or restrictions.</p>
 
             <br>
             <button style="background-color: #E56F1F; max-width:20em;" class="btn btn-md mt-1 w-100">See Features</button>
