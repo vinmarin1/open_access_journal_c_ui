@@ -291,11 +291,10 @@ if ($result2 !== false) {
 // Assuming you have a function execute_query() for executing SQL queries
 
 // Fetch data from the author table for QCU
-$qcuQuery = "SELECT MONTH(date_added) AS month, COUNT(*) AS count
-             FROM author
-             WHERE position = 'QCU'
-             GROUP BY MONTH(date_added)
-             ORDER BY MONTH(date_added)";
+        $qcuQuery = "SELECT MONTH(date_added) as month, 
+        COUNT(CASE WHEN position = 'QCU' THEN 1 END) as qcu_count 
+        FROM author
+        GROUP BY month";
 $qcuResult = execute_query($qcuQuery);
 
 // Check if the query was successful
@@ -313,11 +312,10 @@ if ($qcuResult !== false) {
 
 <?php
 // Fetch data from the author table for FACULTY
-$facultyQuery = "SELECT MONTH(date_added) AS month, COUNT(*) AS count
-                 FROM author
-                 WHERE position = 'FACULTY'
-                 GROUP BY MONTH(date_added)
-                 ORDER BY MONTH(date_added)";
+    $facultyQuery = "SELECT MONTH(date_added) as month, 
+    COUNT(CASE WHEN position = 'FACULTY' THEN 1 END) as faculty_count 
+    FROM author
+    GROUP BY month";
 $facultyResult = execute_query($facultyQuery);
 
 // Check if the query was successful
@@ -335,11 +333,10 @@ if ($facultyResult !== false) {
 
 <?php
 // Fetch data from the author table for OTHERS
-$othersQuery = "SELECT MONTH(date_added) AS month, COUNT(*) AS count
-                FROM author
-                WHERE position = 'OTHERS'
-                GROUP BY MONTH(date_added)
-                ORDER BY MONTH(date_added)";
+        $othersQuery = "SELECT MONTH(date_added) as month, 
+        COUNT(CASE WHEN position = 'OTHERS' THEN 1 END) as others_count 
+        FROM author
+        GROUP BY month ";
 $othersResult = execute_query($othersQuery);
 
 // Check if the query was successful
