@@ -43,33 +43,54 @@ $notificationlist = get_notification_list();
                         </tr>
                     </thead>
                     <tbody>
+                    <?php
+                        foreach (array_reverse($notificationlist) as $notification) {
+                            $readClass = ($notification->read == 1) ? 'read' : 'unread';
+                            $currentMonth = date('n');
+                            $currentYear = date('Y');
+                            $hrefworkflow = "workflow.php?aid=" . $notification->article_id;
+                            $hrefdonation = "donationreportmtd.php?m=" . $currentMonth . "&y=" . $currentYear;
+                        ?>
+
+                        <tr class="<?php echo $readClass; ?>" data-toggle="modal" data-target="">
+                            <td style="display:none;"><?php echo $notification->id; ?><br> </td>
+                            <td width="100%">
+                                <?php echo $notification->title; ?><br>
+                                <?php echo $notification->description; ?><br>
+                                <span class="time-ago-<?php echo $notification->id; ?>"></span>
+                                <script>
+                                    var currentTime = new Date().getTime();
+                                    var notificationTime = new Date("<?php echo $notification->created; ?>").getTime();
+                                    var timeDifference = currentTime - notificationTime;
+                                    var timeAgo;
+
+                                    if (timeDifference < 60000) {
+                                        timeAgo = Math.floor(timeDifference / 1000) + ' seconds ago';
+                                    } else if (timeDifference < 3600000) { 
+                                        timeAgo = Math.floor(timeDifference / 60000) + ' minutes ago';
+                                    } else if (timeDifference < 86400000) {
+                                        timeAgo = Math.floor(timeDifference / 3600000) + ' hours ago';
+                                    } else {
+                                        timeAgo = Math.floor(timeDifference / 86400000) + ' days ago';
+                                    }
+
+                                    document.querySelector('.time-ago-<?php echo $notification->id; ?>').textContent = timeAgo;
+                                </script>
+                            </td>
+                        </tr>
+
+                        <script>
+                            // Add click event listener to each table row to redirect to the appropriate page
+                            document.querySelector('.time-ago-<?php echo $notification->id; ?>').closest('tr').addEventListener('click', function() {
+                                var title = '<?php echo $notification->title; ?>';
+                                var href = (title === 'Send Donation') ? '<?php echo $hrefdonation; ?>' : '<?php echo $hrefworkflow; ?>';
+                                window.location.href = href;
+                            });
+                        </script>
+
                         <?php
-                            foreach (array_reverse($notificationlist) as $notification) {
-                                $readClass = ($notification->read == 1) ? 'read' : 'unread';
-                                ?>
-                                <tr class="<?php echo $readClass; ?>" data-toggle="modal" data-target="">
-                                <td style="display:none;"><?php echo $notification->id; ?><br> </td>
-                                    <td width="100%">
-                                        <?php echo $notification->title; ?><br>
-                                        <?php echo $notification->description; ?><br>
-                                        <span class="time-ago-<?php echo $notification->id; ?>"></span>
-                                        <script>
-                                            var timeDifference = new Date().getTime() - new Date("<?php echo $notification->created; ?>").getTime();
-                                            var timeAgo;
-                                            if (timeDifference < 60000) {
-                                                timeAgo = Math.floor(timeDifference / 1000) + ' seconds ago';
-                                            } else if (timeDifference < 3600000) { 
-                                                timeAgo = Math.floor(timeDifference / 60000) + ' minutes ago';
-                                            } else {
-                                                timeAgo = Math.floor(timeDifference / 3600000) + ' hours ago';
-                                            }
-                                            document.querySelector('.time-ago-<?php echo $notification->id; ?>').textContent = timeAgo;
-                                        </script>
-                                    </td>
-                                </tr>
-                                <?php
-                            }
-                            ?>
+                        }
+                        ?>
                     </tbody>
                 </table>
             </div>

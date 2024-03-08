@@ -41,7 +41,7 @@ $journallist = get_journal_list($journal_id);
                         </div>
                         <div class="col-md-8">
                             <div class="card-body">
-                                <h5 class="card-title">All Journal</h5>
+                                <h5 class="card-title">All Journals</h5>
                                 <p class="card-text">All journals consist of three distinct peer-reviewed publications: QCU Gavel, focusing on social sciences; QCU Lamp, dedicated to education; and QCU Star, centered around science and technology.</p>
                                 <p class="card-text"><small class="text-muted">Last updated</small></p>
                                 <a href="javascript:void(0);" onclick="viewAllSubmissionList()" class="btn btn-primary">View</a>
