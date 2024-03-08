@@ -5,29 +5,9 @@ body {
     /* Or use the exact background color from your design */
 }
 
-.content-over {
-    position: relative;
-    width: 100%;
-    max-height: 20em;
-    background-image: url(../images/qcu-bg.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    padding: 2em 8%;
-    display: inline-flex;
-    flex-direction: column;
 
-}
 
-.content-over::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(53, 68, 74, 0.7);
-}
+
 .content-over p, .content-over h2 {
     color: white; 
     position: relative;
@@ -54,9 +34,7 @@ body {
 
 .main-profile {
     background-color: white;
-    padding: 20px;
     border: 1px solid white;
-    margin: 0px 40px 5px 40px;
     box-shadow: 0 5px 5px -4px rgba(0, 0, 0, 0.5);
 }
 
@@ -150,9 +128,7 @@ body {
 
 }
 
-.details {
-    
-}
+
 
 .details p {
     font-size: .9rem;
@@ -172,6 +148,8 @@ body {
     font-size: .9rem;
     color: #666;
     margin-bottom: .25rem;
+    
+
 }
 .badge-box {
     width: 65px;
@@ -215,8 +193,7 @@ body {
 .tab {
     font-family: Arial, sans-serif;
     overflow: hidden;
-    margin-left: 60px;
-
+    margin-left: -100px;
 }
 
 /* Style the buttons inside the tab */
@@ -253,8 +230,8 @@ body {
 .tabcontent {
     display: none;
     padding: 6px 12px;
-
     border-top: 1px solid #CCCCCC;
+    margin-left: -80px;
 
 }
 
@@ -283,6 +260,7 @@ body {
 
     .tabcontent {
         padding: 10px; /* Adjust padding for smaller screens */
+
     }
 
 }
@@ -290,7 +268,7 @@ body {
 #about-container {
     display: flex;
     flex-wrap: wrap;
-    margin: 20px;
+    margin-left: 80px;
 
 }
 
@@ -300,20 +278,25 @@ body {
     height: auto;
     margin-top: 3px;
     text-align: center;
+    margin-left: -100px;
 }
 
 .log-box {
     border: 1px solid #CCCCCC;
     margin-top: 5px;
     padding: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
     color: #285581;
+    margin: 10px;
+    
 
 }
 
 #info-container {
     flex: 1;
-    margin-left: 20px;
+    margin-left: 0px;
+    margin: 0px;
+    margin-top: 12px;
 
 }
 
@@ -335,7 +318,7 @@ body {
     margin-left: 20px;
     margin-bottom: 20px;
     border: 1px solid #CCCCCC;
-    padding: 30px;
+    padding: 7px;
     box-sizing: border-box;
 
 }
@@ -442,6 +425,8 @@ th {
     
     background-color: #fff;
 }
+
+
 /* Media Queries for Responsive Design */
 
 @media (max-width: 768px) {

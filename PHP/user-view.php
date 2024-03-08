@@ -20,6 +20,7 @@ if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
     <?php include('./meta.php'); ?>
     <title>QCU PUBLICATION | AUTHOR PROFILE</title>
     <link rel="stylesheet" href="../CSS/user-view.css">
+    <link rel="stylesheet" href="../CSS/index.css">
 </head>
 <body>
     <div class="header-container" id="header-container">
@@ -53,7 +54,7 @@ if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
     
         </div>
     </div>
-    <div class="main">
+    <section class="main">
         <div class="main-profile">
 			<div class="profile-container">
 				<div class="profile-sidebar">
@@ -263,7 +264,7 @@ if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
 					<div id="info-container">
 						<div class="info-box">
 							<div class="bio-container">
-								<h3>Bio </h3>
+								<p>Bio </p>
 								<hr>
 								<p>
                                 <?php 
@@ -282,7 +283,7 @@ if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
 						</div>
 						<div class="info-box">
 							<div class="expertise-container">
-								<h3>Expertise </h3>
+								<p>Expertise </p>
 								<hr>
 								<p>
                                 <?php 
