@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../CSS/contact-us.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 
 <body>
@@ -27,32 +28,77 @@
     <div class="row mt-4">
         <div class="col-md-2"><!-------BLANK SPACE-------></div>
         <div class="col-md-3 ">
-            <div class="row">
-                <div class="col-md-12">
-                    <h2 style="color: #285581;" >Contact Us</h2>
-                    <p style="color: #959595;" >Feel free to contact us any time. We will get back to you as soon as we can.</p>
-                </div>
-                <div class="col-md-12 fill-info">
-                    <label  for="email">Email:</label>
-                    <input class="input form-control" type="text" id="email" name="email">
+            <form id="contactForm" method="POST" action="../PHP/contact-backend.php">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 style="color: #285581;" >Contact Us</h2>
+                        <p style="color: #959595;" >Feel free to contact us any time. We will get back to you as soon as we can.</p>
+                    </div>
+                    
+                    <div class="col-md-12 fill-info">
+                        <label  for="email">Email:</label>
 
-                    <label for="name">Name:</label>
-                    <input class="input form-control" type="text" id="name" name="name">
+                        <?php
+                        if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+                            // Assuming $id is defined somewhere
+                            $id = $_SESSION['id']; // Assuming you have the author_id in your session
+                            
+                            // Assuming your database_run function is defined and works correctly
+                            $sqlSelectEmail = "SELECT email FROM author WHERE author_id = :author_id";
+                            $result = database_run($sqlSelectEmail, array(':author_id' => $id));
 
-                    <label for="reasons">Reasons:</label>
-                    <select class="input form-control"  name="reasons" id="reasons">
-                        <option value="volvo">Question</option>
-                        <option value="saab">Suggestion</option>
-                        <option value="opel">Others</option>
-                    </select>
+                            if ($result) {
+                                if (count($result) > 0) {
+                                    $user = $result[0];
+                                    $email = $user->email;
+                                    // Display the email input field with the retrieved email
+                                    echo '<input type="text" id="email" name="email" class="input form-control" value="' . $email . '" required>';
+                                } else {
+                                    echo "User not found.";
+                                }
+                            } else {
+                                echo "Unable to fetch user info.";
+                            }
+                        } else 
+                            echo '<input class="input form-control" type="text" id="email" name="email" required>'
+                        
+                        ?>
+                        <label for="name">Name:</label>
+                        <input class="input form-control" type="text" id="name" name="name" required>
 
-                    <label for="message">Message:</label>
-                    <textarea class="input form-control" id="message" name="message" rows="4" ></textarea>
+                        <label for="reason">Reasons:</label>
+                        <select class="input form-control"  name="reason" id="reason" required>
+                            <option value="Question">Question</option>
+                            <option value="Suggestion">Suggestion</option>
+                            <option value="Others">Others</option>
+                        </select>
+
+                        <label for="message">Message:</label>
+                        <textarea class="input form-control" id="message" name="message" rows="4" required></textarea>
+                    </div>
+                    
+                    <div class="col-md-12 mt-3 mb-2 btn-info text-center">
+                        <button type="submit" class="btn btn-md" id="btn1">Submit</button>
+                    </div>
+
+                    <script>
+                        document.getElementById("contactForm").addEventListener("submit", function(event) {
+                            event.preventDefault();
+                            
+                            Swal.fire({
+                                title: 'Submitted!',
+                                text: 'Your message has been submitted.',
+                                icon: 'success',
+                                confirmButtonText: 'OK'
+                            });
+                                                        
+                            setTimeout(function() {
+                                document.getElementById("contactForm").submit();
+                            }, 3000); // Adjust the timeout as needed
+                        });
+                    </script>
                 </div>
-                <div class="col-md-12 mt-3 mb-2 btn-info text-center">
-                    <button class="btn btn-md" id="btn1" onclick="window.location.href='browse-articles.php'">Browse articles</button>
-                </div>
-            </div>
+            </form>
         </div>
 
         <div class="col-md-1"><!-------BLANK SPACE-------></div>
