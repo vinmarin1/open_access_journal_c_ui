@@ -4,6 +4,7 @@
     <?php include('./meta.php'); ?>
     <title>QCU PUBLICATION | AUTHOR PROFILE</title>
     <link rel="stylesheet" href="../CSS/user-view.css">
+    <link rel="stylesheet" href="../CSS/index.css">
 </head>
 <body>
     <div class="header-container" id="header-container">
@@ -21,7 +22,7 @@
             <h2>You're in Kyle's Profile</h2>
         </div>
     </div>
-    <div class="main">
+    <section class="main">
         <div class="main-profile">
 			<div class="profile-container">
 				<div class="profile-sidebar">
@@ -83,19 +84,19 @@
 					<div id="info-container">
 						<div class="info-box">
 							<div class="bio-container">
-								<h3>Bio </h3>
+								<p>Bio </p>
 								<hr>
 								<p>
-								“Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet”
+								
 								</p>
 							</div>
 						</div>
 						<div class="info-box">
 							<div class="expertise-container">
-								<h3>Expertise </h3>
+								<p>Expertise </p>
 								<hr>
 								<p>
-								“Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur."
+								
 								</p>
 							</div>
 						</div>
