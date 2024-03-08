@@ -526,12 +526,11 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 <img src="../images/Registration.png" alt="" class="img-reg">
             </div>
             <div class="s-2">
-                <h3>Manage Contributions</h3>
+            <h3>Manage Contributions</h3>
                 <ol type="1">
                     <li>Click the menu at the top right where you can read your name.</li>
                     <li>Click My Contributions to proceed to the next step.</li>
                 </ol>
-                <img src="../images/Submission.png" alt="" class="img-sub">
             </div>
             <div class="s-2">
                 <h3>Select Article</h3>
@@ -540,7 +539,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     <li>Click the ‘All Reviews’ to see the list of Articles and their status.</li>
                     <li>You can also click the notification bell to see the pending Article that needed to review.</li>
                 </ol>
-                <img src="../images/step1.png" alt="" class="img-reg">
+                <img src="../images/select-article.png" alt="" class="img-reg">
             </div>
             <div class="s-2">
                 <h3>Article Preview</h3>
@@ -548,7 +547,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     <li>You can read the content of this Article through this page. </li>
                     <li>After you click the article, You can decide if you will accept to review or decline.</li>
                 </ol>
-                <img src="../images/step2.png" alt="" class="img-reg">
+      
             </div>
             <div class="s-2">
                 <h3>Review Steps and Guidelines</h3>
@@ -557,7 +556,8 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     <li>Read the following Rules and Guidelines by reviewing this Article.</li>
                     <li>After they read the Rules and Guidelines, The Reviewer may proceed on the checkbox below before they click the “next” button.</li>
                 </ol>
-                <img src="../images/step3.png" alt="" class="img-reg">
+                <img src="../images/step3a.png" alt="" class="img-reg">
+                <img src="../images/step3b.png" alt="" class="img-reg">
             </div>
             <div class="s-2">
                 <h3>Review Form</h3>
@@ -567,26 +567,12 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     <li>There is also a textbox beside of the Questions where the Reviewer can leave a comment.</li>
                     <li>Below of these Questionnaire, The Reviewer can click the ‘Submit’ Button if they are done.</li>
                 </ol>
-                <img src="../images/step4.png" alt="" class="img-reg">
+                <img src="../images/step4a.png" alt="" class="img-reg">
+                <img src="../images/step4b.png" alt="" class="img-reg">
+                <img src="../images/step4c.png" alt="" class="img-reg">
             </div>
             <div class="s-2">
-                <h3>Step 5: Notes</h3>
-                <p>Provide the following details to help our editorial team manage your submission.</p>
-                <ol type="1">
-                    <li>Just click the space below and write the notes that you want to tell in our Editorial team.</li>
-                    <li>After you write your notes you can proceed to the next step by clicking the ‘next’ button.</li>
-                </ol>
-                <img src="../images/step5.png" alt="" class="img-reg">
-            </div>
-            <div class="s-2">
-                <h3>Step 6: Preview</h3>
-                <p>Provide the following details to help our editorial team manage your submission.</p>
-                <ol type="1">
-                    <li>Review the information you have entered before you complete your submission. You can change
-                        any of the details displayed here by clicking the edit button at the top of each section.</li>
-                    <li>When you are done, you can click the ‘Submit’ button below.</li>
-                </ol>
-                <img src="../images/step6.png" alt="" class="img-reg">
+                <h3>Article View as Reviewer</h3>
             </div>
         </div>
 </div>

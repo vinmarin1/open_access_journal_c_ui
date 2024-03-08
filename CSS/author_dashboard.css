@@ -122,6 +122,8 @@
 }
 
 .stat-card {
+  width: 200px; /* Set the width */
+  height: 90px; /* Set the height */
   background: #f7f9ff;
   border-radius: 15px;
   /* Rounded corners as per your image */
@@ -256,6 +258,7 @@ padding: 8px 40px; */
   color: #004e98;
   width: 18em;
   border-bottom: 3px solid #004e98;
+  font-weight: bold;
 
 }
 
@@ -379,4 +382,31 @@ hr {
   /* color: white; */
 }
 
+@media screen and (max-width: 768px) {
+  .content-over {
+    padding: 2em 5%; /* Adjust padding for smaller screens */
+  }
+
+  .row {
+    padding: 10px; /* Adjust padding for smaller screens */
+  }
+
+  .tabs {
+    width: 100%; /* Allow tabs to shrink to fit content */
+  }
+  .tab{
+    border-radius: 0;
+    width: 100%;
+  }
+  .tab.active{
+    width: 100%;
+  }
+  #btn3D, #btn3 {
+    padding: 8px 20px;
+    margin-bottom: 10px;
+  }
+  .stat-card{
+    width: 100%;
+  }
+}
 

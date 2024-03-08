@@ -1,6 +1,6 @@
 <?php
 include 'dbcon.php';
-// require '../../vendor/autoload.php';
+require 'vendor/autoload.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -156,27 +156,30 @@ function sendEmail()
     }
 }
 
-function addNotification($articleid, $author_id, $title, $message)
+function addNotification($article_id, $author_id, $title, $message)
 {
-    // $options = array(
-    //     'cluster' => 'ap1',
-    //     'useTLS' => true
-    // );
-    // $pusher = new Pusher\Pusher(
-    //     'cabcad916f55a998eaf5',
-    //     '0aef8b4d2da6760f5726',
-    //     '1764683',
-    //     $options
-    // );
+    $options = array(
+        'cluster' => 'ap1',
+        'useTLS' => true
+    );
+    $pusher = new Pusher\Pusher(
+        'cabcad916f55a998eaf5',
+        '0aef8b4d2da6760f5726',
+        '1764683',
+        $options
+    );
 
-    // $data['message'] = 'hello world';
-    // $pusher->trigger('my-channel', 'my-event', $data);
+    date_default_timezone_set('Asia/Manila');
+    $created = date('Y-m-d H:i:s');
+    $admin = 0;
+    $data['message'] = 'hello world';
+    $pusher->trigger('my-channel', 'my-event', $data);
 
-    $description = $articleid . ' - ' . $title . ', ' . $message;
+    $description = $article_id . ' - ' . $title . ', ' . $message;
 
-    $query = "INSERT INTO notification (article_id, author_id, title, description) VALUES (?, ?, ?, ?)";
+    $query = "INSERT INTO notification (article_id, author_id, title, description, admin, created) VALUES (?, ?, ?, ?, ?, ?)";
 
-    $result = execute_query($query, [$articleid, $author_id, $message, $description], true);
+    $result = execute_query($query, [$article_id, $author_id, $message, $description, $admin, $created], true);
 
     if ($result !== false) {
         echo json_encode(['status' => true, 'message' => 'Record added successfully']);
@@ -184,7 +187,6 @@ function addNotification($articleid, $author_id, $title, $message)
         echo json_encode(['status' => false, 'message' => 'Failed to add record']);
     }
 }
-
 
 function addUserPointsReviewer($article_id)
 {

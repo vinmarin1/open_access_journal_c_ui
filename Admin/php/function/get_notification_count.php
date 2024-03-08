@@ -1,30 +1,40 @@
 <?php
 include 'dbcon.php';
 
-if (!function_exists('get_notification_count')) {
-    function get_notification_count()
+if (!function_exists('get_notification_data')) {
+    function get_notification_data()
     {
         $pdo = connect_to_database();
 
         if ($pdo) {
             try {
-                $query = "SELECT COUNT(id) AS notification_count FROM notification";
+                // Select all fields from the notification table, ordered by ID
+                $query = "SELECT * FROM notification WHERE admin = 1 ORDER BY id DESC";
                 $stmt = $pdo->prepare($query);
                 $stmt->execute();
 
-                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                // Fetch all notification data
+                $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-                return $result['notification_count']; // Return only the count value
+                $count = count($data);
+
+                return array(
+                    'count' => $count,
+                    'data' => $data
+                );
             } catch (PDOException $e) {
                 echo "Error: " . $e->getMessage();
                 return false;
             }
+        } else {
+            echo "Error: Database connection failed.";
+            return false;
         }
-
-        return false;
     }
 }
 
-$notification_count = get_notification_count();
+$notification_data = get_notification_data();
 
-echo $notification_count;
+echo json_encode($notification_data);
+
+?>

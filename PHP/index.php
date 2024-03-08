@@ -87,11 +87,11 @@
       <div class="recommendation-article">
         <h4>Recently Published Articles</h4>
         <div class="container-fluid p-2 d-flex flex-column flex-xl-row justify-content-center">
-          <div id="recently-added" class="articles-container p-2 col-sm-12 col-xl-7">
+          <div id="recently-added" class="articles-container p-2 col-sm-12 col-xl-6">
             <!-- fetch popular articles using api -->
           </div>
           <div class="divider "></div>
-          <div class="col-sm-12 col-xl-4 d-flex flex-column gap-2" id="most-popular-container">
+          <div class="col-sm-12 col-xl-5 d-flex flex-column gap-2" id="most-popular-container">
             <h6 class="text-lg mb-2">
               <select
                 class="form-select"
@@ -161,10 +161,14 @@
     <div class="fluid-container mb-3 qoaj">
       <div class="About-container">
         <div class="ab-qoaj-left d-flex flex-column align-items-center align-items-sm-start gap-1">
+        <div class="d-flex gap-4 align-items-center">
+          <img src="../images/qcuj.png" style="width:6em; height:6em" alt="" />
+          <img src="../images/qcu-logo.webp" style="width:5em; height:5em" alt="" />
+        </div>
           <h4 class="mb-3">About QCUJ</h2>
-            <p class="description">Say goodbye to research submission struggles! Open Access Journal System for QCU (OAJS QCU) is your new best friend, making sharing your work simple and quick. Think of it as a smooth online portal where you can easily submit your research for expert review. </p>
-            <p class="description"><a href="https://qcu.edu.ph/" class="text-white">Quezon City University (QCU)</a>, recognized by the Commission on Higher Education (CHED), holds dear the values of cultivating a vibrant research culture and disseminating new knowledge for the betterment of society. Understanding that the impact of research hinges on its accessibility and publication, QCU has established the QCU Journals as a platform for its researchers to share their valuable findings and contributions.</p>
-            <p class="description">This website is powered by an artificial intelligence and machine learning to improve the user experience. All articles are freely available to download and read, without any paywalls or restrictions.</p>
+            <p class="description">Say goodbye to research submission struggles! Quezon City University Journals (QCUJ) is a smooth online portal where you can easily submit your research for expert review. </p>
+            <p class="description"><a href="https://qcu.edu.ph/" class="text-white">Quezon City University (QCU)</a>, recognized by the Commission on Higher Education (CHED), holds dear the values of cultivating a vibrant research culture and disseminating new knowledge for the betterment of society. Understanding that the impact of research accessibility, QCU has established the QCU Journals as a platform for its researchers to share their valuable findings and contributions.</p>
+            <p class="description">This website is enhanced by an artificial intelligence and machine learning  designed for QCUJto improve the user experience. All articles are freely available to download and read, without any paywalls or restrictions.</p>
 
             <br>
             <button style="background-color: #E56F1F; max-width:20em;" class="btn btn-md mt-1 w-100">See Features</button>
@@ -308,7 +312,7 @@ if ($total_users !== false) {
             </a>
           </div>
 
-          <div class="col-11 col-sm-6 col-lg-4">
+          <div class="col-11 col-sm-6 col-lg-4 mb-4">
             <div class="badge p-3 mb-4">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32">
             	<path fill="white" d="M25 4.03c-.765 0-1.517.3-2.094.876L13 14.78l-.22.22l-.06.313l-.69 3.5l-.31 1.468l1.467-.31l3.5-.69l.313-.06l.22-.22l9.874-9.906A2.968 2.968 0 0 0 25 4.032zm0 1.94c.235 0 .464.12.688.343c.446.446.446.928 0 1.375L16 17.374l-1.72.344l.345-1.72l9.688-9.688c.223-.223.452-.343.687-.343zM4 8v20h20V14.812l-2 2V26H6V10h9.188l2-2z" />
@@ -347,7 +351,7 @@ if ($total_users !== false) {
                 }
               ?>
           </div>
-          <div class="col-11 col-sm-6 col-lg-4">
+          <div class="col-11 col-sm-6 col-lg-4 mb-4">
             <div class="badge p-3 mb-4">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
             	<g fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
@@ -487,6 +491,7 @@ if ($total_users !== false) {
 
 
   <div class="footer" id="footer">
+
   </div>
 
   <script>

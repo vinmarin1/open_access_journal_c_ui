@@ -37,6 +37,9 @@ $all_articles = get_allarticle_list();
                 <a class="nav-link active" id="tabAll" data-status="">All</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" id="tabReject" data-status="Reject">Reject</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" id="tabPending" data-status="Pending">Pending</a>
             </li>
             <li class="nav-item">
@@ -51,6 +54,9 @@ $all_articles = get_allarticle_list();
             <li class="nav-item">
                 <a class="nav-link" id="tabPublished" data-status="Published">Published</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" id="tabArchived" data-status="Archived">Archived</a>
+            </li>
         </ul>
 
         <!-- Table with Status filter -->
@@ -63,6 +69,7 @@ $all_articles = get_allarticle_list();
                             <th>Journal</th>
                             <th>Article</th>
                             <th>Status</th>
+                            <th>Added</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -124,10 +131,17 @@ $all_articles = get_allarticle_list();
                                     }
                                     ?>
 
-                                <td width="15%">
+                                <td width="10%">
                                     <span class="badge bg-<?php echo $statusClass; ?> me-1">
                                         <?php echo $statusLabel; ?>
                                     </span>
+                                </td>
+                                <td width="5%">
+                                <?php
+                                    $date_added = $all_articlesval->date_added;
+                                    $formatted_date = date("F d, Y", strtotime($date_added));
+                                    echo $formatted_date;
+                                    ?>
                                 </td>
                                 <td width="5%">                         
                                     <a href="javascript:void(0);" onclick="viewWorkflow(<?php echo $all_articlesval->article_id; ?>, '<?php echo $all_articlesval->workflow; ?>')" class="btn btn-outline-dark">View</a>

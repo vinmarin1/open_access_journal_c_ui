@@ -8,14 +8,17 @@
 
 <!DOCTYPE html>
 <html>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<head>
+<?php include('./meta.php'); ?>
 <title>Submit Article</title>
 <link href="../CSS/ex_submit.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
+
+</head>
 
 <body>
 
@@ -160,14 +163,14 @@
        
         <!-- <h5 id="duplication-title">Checking of Details</h5> -->
         <div class="duplicated-article">
-          <h6 class="checker-titles">Duplication Checker <span id="flaggedT"></span></h6>
+          <h6 class="checker-titles">Originality Checker <span id="flaggedT"></span></h6>
           <div id="flagged">
           
           </div>
           <h6></h6>
           <!-- <label id="label-title">Article: </label> -->
           <p id="label-title" class="d-none">Article:</p>
-          <div id="similar-title" onclick="openArticleDetails()"></div>
+          <div id="similar-title" class="text-muted" onclick="openArticleDetails()"></div>
 
          
         
@@ -175,9 +178,9 @@
         
           <!-- <label  id="label-result">Result: </label> -->
           <p id="label-result"class="d-none">Result:</p>
-          <div class="d-flex gap-2">
-            <div id="result-duplication" style="color: #115272"></div>
-            <div id="result-duplication2" style="color: #115272"></div>
+          <div class="d-flex gap-2 text-muted">
+            Title: <div id="result-duplication" style="color: #115272">...</div>
+            Abstract: <div id="result-duplication2" style="color: #115272">...</div>
           </div>
          
         </div>
@@ -185,7 +188,6 @@
         <div class="journal-type-container">
           <h6 class="checker-titles">Journal Classification</h6>
           <select class="form-select" name="journal-type" id="journal-type">
-         
             <option value="1" id="gavel">The Gavel</option>
             <option value="2" id="lamp">The Lamp</option>
             <option value="3" id="star">The Star</option>
@@ -207,10 +209,19 @@
 
     <div class="input-details-2 mt-3 w-100 w-sm-50" id="form-floating-3">
 
-    <h6 id="sub-10">Keywords <p id="keywords-validation" style="color: red; display: none; font-size: 10px">Minimum of 3 keywords separated by comma*</p></h6>
-      <input class="form-control artcl" type="text" id="keywords" name="keywords">
-      
-
+    <h6 id="sub-10">Keywords <p id="keywords-validation" style="color: red; display: none; font-size: 10px">Maximum of 5 keywords*</p></h6>
+      <div class="d-flex flex-column flex-sm-row gap-2" style="min-height: 30px">
+        <div id="display-keywords" class="d-flex flex-wrap gap-2">
+          <span class="border px-2 py-1 rounded">...</span>
+        </div>
+        <div class="d-flex gap-1">
+          <input class="form-control artcl" type="text" list="keywordList" id="keywords" name="keywords" placeholder="type and enter">
+          <button class="btn btn-white border" id="keyword-btn" >+</button>
+        </div>
+      </div>
+      <datalist id="keywordList">
+        
+      </datalist>
       
       <h6 class="sub-12 mt-5 artcl" id="sub-12">Reference <p id="reference-validation" style="color: red; display: none; font-size: 10px">Reference is required*</p></h6>
 
@@ -316,8 +327,8 @@
       <button type="button" id="deleteCont" class="btn btn-danger btn-sm" onclick="deleteData()">Delete Data</button>
       <!-- <button type="button" class="btn btn-primary btn-sm" onclick="saveData()">Save Data</button> -->
     </div>
-
-  <table class="table table-striped" id="contributorTable" >
+  <div class="table-responsive-sm">
+    <table class="table table-striped" id="contributorTable" >
             <thead>
                 <tr>
                     <th style=" background-color: #0858a4; color: white; bold; font-size: 12px; font-weight: normal">Email</th>
@@ -343,6 +354,7 @@
               
             </tbody>
         </table>
+  </div>
 
   <button type="button" class="btn btn-primary btn-sm" id="next4" >Next</button>
   <button type="button" class="btn btn-secondary btn-sm" id="prev4">Prev</button>
@@ -375,7 +387,7 @@
   Once you complete your submission, a member of our editorial team will be assigned to review it. Please ensure the details you have entered here are as accurate as possible.</h6>
 
   <div class="article-info-container">
-    <div class="article-header">
+    <div class="article-header d-flex justify-content-between">
       <h5 class="title10" id="title-10f">Details</h5>
       <button type="button" class="btn btn-outline-light btn-sm" id="update-cont-2">View</button>
     </div>
@@ -388,7 +400,7 @@
       <textarea class="form-control" name="input7" id="input7" cols="30" rows="10" readonly></textarea>
 
       <label id="sub-27">Keywords: </label><br>
-      <input type="text" class="form-control" id="input6" readonly><br>
+      <input type="text" class="form-control" id="input6" name="input6" readonly><br>
     
       <label id="sub-29">Reference: </label><br>
       <!-- <input type="text" class="form-control" id="input8" readonly><br> -->
@@ -398,7 +410,7 @@
   
     <div class="file-container">
       <h5 class="title11" id="title-11">Files: </h5>
-      <div class="file-header-container">
+      <div class="file-header-container d-flex justify-content-between">
         <h5 class="title1f" id="title1f">File Name</h5>
         <button type="button" class="btn btn-outline-light btn-sm" id="update-cont-3">View</button>
     
@@ -482,6 +494,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="../JS/reusable-header.js"></script>
+<script src="../JS/ex_submit_keywords.js"></script>  
 <script src="../JS/ex_submit.js"></script>  
 <script src="../JS/ex_submit_duplicate_article.js"></script>
 <script src="../JS/ex_submit_journal_type.js"></script>

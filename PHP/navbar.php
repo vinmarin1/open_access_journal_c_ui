@@ -34,6 +34,7 @@ require 'dbcon.php';
           <ul class="dropdown-menu">
           <li><a class="dropdown-item" style="color: black" href="general-info.php">General Information</a></li>
           <li><a class="dropdown-item" style="color: black" href="developers.php">The Developers</a></li>
+          <li><a class="dropdown-item" style="color: black" href="contact-us.php">Contact us</a></li>
           </ul>
         </li>
         <li class="nav-item dropdown">
@@ -179,6 +180,7 @@ require 'dbcon.php';
                           <li><a href="user-dashboard.php" class="dropdown-item" style="color: black;">My Profile</a></li>
                           <li><a href="author-dashboard.php" class="dropdown-item" style="color: black;">My Contributions</a></li>
                           <li><a class="dropdown-item" href="../PHP/logout.php" style="color: black;">Log-out</a></li> 
+
                       </ul>
                   </li>
               </div>';

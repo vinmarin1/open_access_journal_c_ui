@@ -35,6 +35,9 @@ $incomplete_articles = get_article_list($cid);
                 <a class="nav-link active" id="tabAll" data-status="">All</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" id="tabReject" data-status="Reject">Reject</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" id="tabPending" data-status="Pending">Pending</a>
             </li>
             <li class="nav-item">
@@ -49,6 +52,9 @@ $incomplete_articles = get_article_list($cid);
             <li class="nav-item">
                 <a class="nav-link" id="tabPublished" data-status="Published">Published</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" id="tabArchived" data-status="Archived">Archived</a>
+            </li>
         </ul>
 
         <!-- Table with Status filter -->
@@ -60,6 +66,7 @@ $incomplete_articles = get_article_list($cid);
                             <th>Article ID</th>
                             <th>Article</th>
                             <th>Status</th>
+                            <th>Added</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -110,11 +117,18 @@ $incomplete_articles = get_article_list($cid);
                                         $statusClass = 'label-secondary';
                                     }
                                     ?>
-
-                                <td width="15%">
+                                    
+                                <td width="10%">
                                     <span class="badge bg-<?php echo $statusClass; ?> me-1">
                                         <?php echo $statusLabel; ?>
                                     </span>
+                                </td>
+                                <td width="5%">
+                                <?php
+                                    $date_added = $incomplete_articlesval->date_added;
+                                    $formatted_date = date("F d, Y", strtotime($date_added));
+                                    echo $formatted_date;
+                                    ?>
                                 </td>
                                 <td width="5%">                         
                                     <a href="javascript:void(0);" onclick="viewWorkflow(<?php echo $incomplete_articlesval->article_id; ?>, '<?php echo $incomplete_articlesval->workflow; ?>')" class="btn btn-outline-dark">View</a>

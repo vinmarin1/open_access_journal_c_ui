@@ -36,6 +36,7 @@ function login($data)
     if (empty($errors)) {
         $arr['email'] = $data['email'];
         $password = hash('sha256', $data['password']);
+        $urli = $data['urli'];
 
         $query_author = "SELECT * FROM author WHERE email = :email AND status = 1 LIMIT 1";
         $row_author = database_run($query_author, $arr);
@@ -66,6 +67,7 @@ function login($data)
                 $_SESSION['date_added'] = $row_author->date_added;
                 $_SESSION['affix'] = $row_author->affix;
                 $_SESSION['expertise'] = $row_author->field_of_expertise;
+                $_SESSION['USER']->urli = $urli;
                 $_SESSION['LOGGED_IN'] = true;
             } else {
                 $errors[] = "Wrong email or password";

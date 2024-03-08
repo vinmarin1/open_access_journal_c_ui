@@ -35,30 +35,30 @@ document.addEventListener('DOMContentLoaded', function(event) {
     });
 });
 
-document.getElementById('form').addEventListener('submit', function(event) {
+// document.getElementById('form').addEventListener('submit', function(event) {
    
   
-    const loadingOverlay = document.getElementById('loadingOverlay');
-    const inputs = this.querySelectorAll('input');
+//     const loadingOverlay = document.getElementById('loadingOverlay');
+//     const inputs = this.querySelectorAll('input');
 
 
-    let isEmpty = false;
+//     let isEmpty = false;
 
-    inputs.forEach(input => {
-        if (input.value.trim() === '') {
-            isEmpty = true;
-        }
-    });
+//     inputs.forEach(input => {
+//         if (input.value.trim() === '') {
+//             isEmpty = true;
+//         }
+//     });
 
   
-    if (!isEmpty) {
-        this.submit();
-        loadingOverlay.style.display = "block";
-    } else {
+//     if (!isEmpty) {
+//         this.submit();
+//         loadingOverlay.style.display = "block";
+//     } else {
        
-        event.preventDefault();
-    }
-});
+//         event.preventDefault();
+//     }
+// });
 
 
 
@@ -251,4 +251,3 @@ function hideLogs() {
     hideLogsBtn.style.display = 'none';
 }
 
- 

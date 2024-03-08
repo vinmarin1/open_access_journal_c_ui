@@ -19,26 +19,38 @@ async function fetchData() {
 
     console.log('API Response:', data);
 
-    // Assuming 'data.recommendations' is an array
     const articlesContainer = document.querySelector('#recommendations');
     const historyContainer = document.querySelector('#history');
-    
-
-    data.recommendations.forEach(item => {
-      const articleDiv = document.createElement('div');
-      articleDiv.classList.add('article');
-      articleDiv.addEventListener('click', () => navigateToArticle(item.article_id));
-      articleDiv.innerHTML = `
-        <p class="h6" id="title">${item.title}</p>
-        <div class="article-info">
-          <p class="info" id="category">${item.journal || 'No Journal'}</p>
-        </div>
-        <p class="article-content" id="abstract">${item.abstract.slice(0,120)}...</p>
-        <button class="btn btn-primary btn-md btn-article" style="border: 2px #0858a4 solid; background-color: transparent; border-radius: 20px; color: #0858a4; width: 100%;">Read Article</button>
+    if (data.recommendations) {
+      data.recommendations.forEach(item => {
+        const articleDiv = document.createElement('div');
+        articleDiv.classList.add('article');
+        articleDiv.addEventListener('click', () => navigateToArticle(item.article_id));
+        articleDiv.innerHTML = `
+          <p class="h6" id="title">${item.title}</p>
+          <div class="article-info">
+            <p class="info" id="category">${item.journal || 'No Journal'}</p>
+          </div>
+          <p class="article-content" id="abstract">${item.abstract.slice(0,120)}...</p>
+          <button class="btn btn-primary btn-md btn-article" style="border: 2px #0858a4 solid; background-color: transparent; border-radius: 20px; color: #0858a4; width: 100%;">Read Article</button>
+        `;
+  
+        articlesContainer.appendChild(articleDiv);
+      })
+    } else {
+      const articlesContainer = document.querySelector('#recommendations');
+      articlesContainer.classList.remove('articles-container');
+      articlesContainer.style.padding = '1em 8%'; 
+      articlesContainer.innerHTML = `
+        <p class="w-100" id="title">
+          <span style="color:#0858a4; font-size:20px;">QCUJ has recently launched a new recommendation system </span> 
+          aimed at simplifying personalized content discovery for its users.This system, developed by QCUJ's dedicated team, utilizes user interaction history to provide tailored recommendations
+        </p>
+        <p>Explore more articles to enhance your recommendations further!</p>
+        <button id="browse-btn" class="btn btn-primary btn-md btn-article" style="border: 2px #0858a4 solid; background-color: transparent; border-radius: 20px; color: #0858a4; width: 16em;">Read Articles</button>
       `;
-
-      articlesContainer.appendChild(articleDiv);
-    });
+      articlesContainer.addEventListener('click', () => window.location.href = `../PHP/browse-articles.php`);
+    }
 
     data.history.splice(0,2).forEach(item => {
       const articleDiv = document.createElement('div');
@@ -51,9 +63,10 @@ async function fetchData() {
 
       historyContainer.appendChild(articleDiv);
     });
+  
 
   } catch (error) {
     console.error('Error fetching data:', error);
-    // You can handle errors or display a message as needed
+ 
   }
 }

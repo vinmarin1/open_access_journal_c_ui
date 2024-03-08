@@ -38,7 +38,7 @@
         die("connection is not available");
     }
 
-    $sql = "SELECT * FROM announcement WHERE announcementtype = 'Annoucement' AND status = 1 ORDER BY date_added DESC LIMIT 3";
+    $sql = "SELECT * FROM announcement WHERE announcementtype = 'Announcement' AND status = 1 ORDER BY date_added DESC LIMIT 3";
     $result = mysqli_query($conn, $sql);
     $announcementCount = mysqli_num_rows($result);
 
@@ -156,7 +156,7 @@
         die("connection is not available");
     }
 
-    $sql = "SELECT * FROM announcement WHERE announcementtype = 'Annoucement' AND status = 1 ORDER BY date_added DESC LIMIT 3";
+    $sql = "SELECT * FROM announcement WHERE announcementtype = 'Announcement' AND status = 1 ORDER BY date_added DESC LIMIT 3";
 $result = mysqli_query($conn, $sql);
 $announcementCount = mysqli_num_rows($result);
 

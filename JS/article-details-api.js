@@ -105,7 +105,7 @@ function renderArticleDetails(data) {
               <!-- This is a Blank space -->
           </div>
 
-          <div class="abstract col-sm-7">
+          <div class="abstract col-sm-7 p-4">
             <div class="d-flex flex-wrap gap-1 align-items-center">
               <button class="btn btn-md" id="read-btn">Read Full Article</button>
               <div class="alert alert-light mt-4 small py-2" role="alert" id="login-redirect">
@@ -131,7 +131,7 @@ function renderArticleDetails(data) {
               </button>
             </div>
               <h4>Abstract</h4>
-              <p class="mb-4 pb-4">${item.abstract}</p>
+              <p class="mb-4">${item.abstract}</p>
               <br/>
               
               <iframe
@@ -354,7 +354,7 @@ function renderArticleDetails(data) {
           Swal.fire({
             html: `
             <h4 style="color: #0858a4; font-family: font-family: Arial, Helvetica, sans-serif">Download Started. Your download will start shortly. </h4>
-            <p style="font-size: 16px;">If it doesn\'t start automatically, <a href="#">click here</a>.</p>'
+            <p style="font-size: 16px;">If it doesn\'t start automatically, <a href="${fileUrl}">click here</a>.</p>'
 
             `,
             icon: 'success',
@@ -374,7 +374,7 @@ function renderArticleDetails(data) {
       epubBtn.addEventListener("click", () => {
         try{
           Swal.fire({
-            html: '<h4 style="color: #0858a4; font-family: font-family: Arial, Helvetica, sans-serif">Successfully downloaded.</h4>',
+            html: '<h4 style="color: #0858a4; font-family: font-family: Arial, Helvetica, sans-serif">Download Started. Your download will start shortly.</h4>',
             icon: 'success',
           })
           var fileExtension = item.file_name.split('.').pop();

@@ -6,27 +6,30 @@
 
 	// $errors = array();
 
-	if($_SERVER['REQUEST_METHOD'] == "GET" ){
-		if(!check_verified()){
-
-			//send email
+	if ($_SERVER['REQUEST_METHOD'] == "GET") {
+		if (!check_verified()) {
+			// User is not verified, send verification email
 			$_SESSION['LOGGED_IN'] = false;
 			$vars['code'] =  rand(10000,99999);
-
-			//save to database
 			$vars['expires'] = (time() + (24 * 3));
 			$vars['email'] = $_SESSION['USER']->email;
 
-			$query = "insert into verify (code,expires,email) values (:code,:expires,:email)";
-			database_run($query,$vars);
-	
-			$message = "your code is " . $vars['code'];
-			$subject = "Email verification";
+			$query = "INSERT INTO verify (code, expires, email) VALUES (:code, :expires, :email)";
+			database_run($query, $vars);
+
+			$message = "Your verification code is " . $vars['code'];
+			$subject = "Email Verification";
 			$recipient = $vars['email'];
-			send_mail($recipient,$subject,$message);
-		}else {
-			header("Location: ../PHP/index.php"); // User is already verified
-			die;
+			send_mail($recipient, $subject, $message);
+		} else {
+			$urli = $_SESSION['USER']->urli;
+			if (!empty($urli)) {
+				header("Location: " . $urli);
+				die;
+			} else {
+				header("Location: ../PHP/index.php");
+				die;
+			}
 		}
 	}
 
@@ -44,6 +47,7 @@
 				if ($row->expires > $time) {
 					$author_id = $_SESSION['USER']->author_id;
 					$admin_id = $_SESSION['USER']->admin_id;
+					$urli = $_SESSION['USER']->urli;
 	
 					// Update the email_verified field for the author
 					$query_author = "UPDATE author SET email_verified = email WHERE author_id = :author_id LIMIT 1";
@@ -57,9 +61,14 @@
 	
 					if (check_verified()) {
 						$_SESSION['LOGGED_IN'] = true;
-						header("Location: ../PHP/index.php");
-						
-						die;
+							$urli = $_SESSION['USER']->urli;
+						if (!empty($urli)) {
+							header("Location: " . $urli);
+							die;
+						} else {
+							header("Location: ../PHP/index.php");
+							die;
+						}
 					} elseif (check_admin_verified()) {
 						header("Location: ../PHP/index.php");
 						die;
