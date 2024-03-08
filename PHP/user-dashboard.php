@@ -209,7 +209,7 @@ $expertise = $_SESSION['expertise'];
 											</dfn>
 										</p>
 										<div class=''>
-										  <div class='progress-bar progress-bar-striped' role='progressbar'  style='width: ".round($percentageCompletion, 2)."%' aria-valuenow='".round($percentageCompletion, 2)."' aria-valuemin='0'></div>
+										  <div class='progress-bar progress-bar-striped bg-primary' role='progressbar'  style='width: ".round($percentageCompletion, 2)."%; height:3px;' aria-valuenow='".round($percentageCompletion, 2)."' aria-valuemin='0'></div>
 										</div>
 										<hr/>
 										
