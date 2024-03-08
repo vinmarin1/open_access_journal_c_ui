@@ -9,11 +9,11 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php include('./meta.php'); ?>
-    <title>QCU PUBLICATION | Review</title>
-    <link rel="stylesheet" href="../CSS/review-process.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<?php include('./meta.php'); ?>
+<title>QCU PUBLICATION | Review</title>
+<link rel="stylesheet" href="../CSS/review-process.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
@@ -254,21 +254,31 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                                 <tr>
                                     <td id="fileName1">
                                     <?php
-                                    $sqlFileName = "SELECT article_files.file_name, article.title FROM article_files JOIN article ON article_files.article_id = article.article_id JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id WHERE article_files.file_type = 'File with no author name' AND article.status = 4 AND reviewer_assigned.author_id = :author_id AND article.article_id = :article_id";
+                                        $sqlFileName = "SELECT article_files.file_name, article.title 
+                                                        FROM article_files 
+                                                        JOIN article ON article_files.article_id = article.article_id 
+                                                        JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id 
+                                                        WHERE article_files.file_type = 'File with no author name' 
+                                                        AND article.status = 4 
+                                                        AND reviewer_assigned.author_id = :author_id 
+                                                        AND article.article_id = :article_id
+                                                        ORDER BY reviewer_assigned.date_issued DESC
+                                                        LIMIT 1";
 
-                                    $result = database_run($sqlFileName, array('author_id' => $userId, 'article_id' => $articleId));
+                                        $result = database_run($sqlFileName, array('author_id' => $userId, 'article_id' => $articleId));
 
-                                    if ($result !== false) {
-                                        foreach ($result as $row) {
-                                            $fileName = $row->file_name;
-                                            $filePath = '../Files/submitted-article/' . $fileName;
+                                        if ($result !== false) {
+                                            foreach ($result as $row) {
+                                                $fileName = $row->file_name;
+                                                $filePath = '../Files/submitted-article/' . $fileName;
 
-                                            echo "<a href='download.php?file=$filePath' download>$fileName</a><br>";
+                                                echo "<a href='download.php?file=$filePath' download>$fileName</a><br>";
+                                            }
+                                        } else {
+                                            echo "Can't find the file or it has been put in the archive";
                                         }
-                                    } else {
-                                        echo "Can't find the file or it has been put in the archive";
-                                    }
                                     ?>
+
 
                                     </td>
                                     <td id="fileType1">
@@ -316,74 +326,8 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                 <div class="col-md-4">
                     <!-- This is a Blank space -->
                     <div class="table-container">
-                        <h5>Comments</h5>
-                        <?php
-                    $userId = $_SESSION['id'];    
-
-                    $sqlDiscussion = "SELECT * FROM discussion WHERE article_id = $articleId";
-                    $resultDiscussion = database_run($sqlDiscussion);
-
-                    if ($resultDiscussion !== false) {
-                        foreach ($resultDiscussion as $rowDiscussion) {
-                            // Output discussion button with a unique ID
-                            echo '<button type="button" class="btn btn-secondary btn-sm" style="width: 430px; margin-top: 5px; margin-left: -5px" onclick="toggleDiscussion(' . $rowDiscussion->discussion_id . ')">' . $rowDiscussion->discussion_type . '</button>';
-
-                            // Output discussion messages container with a unique ID and initially hide it
-                            echo '<div id="discussion' . $rowDiscussion->discussion_id . '" style="display:none; width: 100%; height: auto; border: none; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; backround-color: #0066cc; margin-left: 10px">';
-
-                            // Fetch discussion messages and sender names for the selected discussion
-                            $discussionId = $rowDiscussion->discussion_id;
-                            $sqlMessages = "SELECT discussion_message.userId, discussion_message.message, discussion_message.fromuser FROM discussion_message
-                                            WHERE discussion_message.discussion_id = $discussionId";
-
-                            $resultMessages = database_run($sqlMessages);
-
-                            if ($resultMessages !== false) {
-                                foreach ($resultMessages as $rowMessage) {
-                                    echo '<div>';
-                                    
-                                    // Check if the message is from the current user
-                                    if ($rowMessage->userId == $userId) {
-                                        // Apply different style for the current user's message (right side)
-                                        echo '<p style="font-weight: lighter; display: block; margin-left: 5px; background-color: #ECF0F1; color: black; width: 50%; margin-left: auto; border-radius: 30px 30px 0 0; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">' . $rowMessage->message . '</p>';
-                                    } else {
-                                        // Apply style for other users' messages (left side)
-                                        echo '<p style="font-weight: lighter; display: block; margin-top:5px; margin-left: 5px">' . $rowMessage->fromuser .'</p>';
-                                        echo '<p style="font-weight: lighter; display: block; margin-top:5px; margin-left: 5px">'. 'Subject: ' . $rowDiscussion->subject . '</p>';
-                                        echo '<p style="font-weight: lighter; display: block; margin-left: 5px; background-color: #ECF0F1; color: black; width: 50%; border-radius: 30px 30px 0 0; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">' . $rowMessage->message . '</p>';
-                                    }
-
-                                    echo '</div>';
-                                }
-                            } else {
-                                echo '<p class="dmessageNtFound">Discussion messages not found</p>';
-                            }
-
-                            echo '<style>
-                                        
-                                #reply-message::-webkit-scrollbar {
-                                    display: none;
-                                }
-                            </style>';
-
-                            echo '<div style="position: relative; margin-top: 10px; border: 1px solid #ccc; padding: 10px; border-radius: 5px; ">';
-
-                            // Textarea with a specific max-width, height, and disabled resize
-                            // Inside your loop
-                            echo '<textarea class="form-control" name="reply-message" id="reply-message-' . $discussionId . '" cols="10" rows="4" style="resize: none; max-width: 100%; height: 10vh; overflow-y: auto; padding-right: 80px;"></textarea>';
-
-                            // Reply button inside the textarea, positioned at the lower-right bottom
-                            echo '<button type="button" onclick="sendReply(' . $discussionId . ', ' . $articleId . ')" style="position: absolute; bottom: 15px; right: 15px; padding: 5px; background-color: #0066cc; color: #fff; border: none; border-radius: 3px; cursor: pointer;">Reply</button>';
-                            echo '</hr>';
-                            echo '</div>';
-                            
-                            echo '</div>';
-                            
-                        }
-                    } else {
-                        echo '<p class="dmessageNtFound">No discussion for this article yet</p>';
-                    }
-                ?>
+                       
+                  
            
                     </div>
                 </div>
@@ -475,7 +419,16 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                         <li> Consult Reviewer Guidelines below. </li>
                         <li> Click on file names to download and review (on screen or by printing) the files associated with this submission. Submission Manuscript 
                         <?php
-                            $sqlFileName = "SELECT article_files.file_name, article.title FROM article_files JOIN article ON article_files.article_id = article.article_id JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id WHERE article_files.file_type = 'File with no author name' AND article.status = 4 AND reviewer_assigned.author_id = :author_id AND article.article_id = :article_id";
+                            $sqlFileName = "SELECT article_files.file_name, article.title 
+                                            FROM article_files 
+                                            JOIN article ON article_files.article_id = article.article_id 
+                                            JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id 
+                                            WHERE article_files.file_type = 'File with no author name' 
+                                            AND article.status = 4 
+                                            AND reviewer_assigned.author_id = :author_id 
+                                            AND article.article_id = :article_id
+                                            ORDER BY reviewer_assigned.date_issued DESC
+                                            LIMIT 1";
 
                             $result = database_run($sqlFileName, array('author_id' => $userId, 'article_id' => $articleId));
 
@@ -489,7 +442,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                             } else {
                                 echo "Can't find the file or it has been put in the archive";
                             }
-                            ?>     
+                        ?>  
                         Supplementary File(s) None </li>
                         <li> Click on icon to fill in the review form. Review Form Comment </li>
                         <li> In addition, you can upload files for the editor and/or author to consult. Uploaded files None </li>
@@ -807,7 +760,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                         </div> -->
 
                         <div class="btn-final">
-                            <button type="submit" id="btnSubmit" class="btn tbn-primary btn-md" >Submit</button>
+                            <button type="button" id="btnSubmit" class="btn tbn-primary btn-md" >Submit</button>
                             <button type="button" id="btnCancel" class="btn tbn-primary btn-md" onclick="prevStep()" >Cancel</button>
                         </div>
                     </div>
@@ -879,6 +832,26 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 
             // Send the request with articleId
             xhr.send('article_id=' + articleId);
+        }
+    });
+});
+
+document.getElementById('btnSubmit').addEventListener('click', function(event){
+    const form =  document.getElementById('form');
+    const loadingOverlay = document.getElementById('loadingOverlay');
+
+    Swal.fire({
+        icon: 'question',
+        title: 'Submit it now?',
+        text: 'you won\'t be able to revert it after submitting',
+        showCancelButton: true,
+        showConfirmButton: true,
+    }).then((result) => {
+        if (result.isConfirmed) {
+           
+            form.submit();
+            loadingOverlay.style.display = "block";
+        
         }
     });
 });

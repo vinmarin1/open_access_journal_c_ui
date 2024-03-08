@@ -333,7 +333,7 @@ document.getElementById('saveButton').addEventListener('click', function(event){
   event.preventDefault();
   Swal.fire({
       title: 'Do you want to make this changes?',
-      icon: 'warning',
+      icon: 'question',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
@@ -455,4 +455,16 @@ Swal.fire({
     }
 });
 }
+
+
+
+
+
+
+
+
+
+
+
+
 

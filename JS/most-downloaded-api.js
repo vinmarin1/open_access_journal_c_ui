@@ -45,8 +45,8 @@ async function fetchData() {
       articleDiv.classList.add('item');
       articleDiv.addEventListener('click', () => navigateToArticle(item.article_id));
       articleDiv.innerHTML = `
-      <div id="most-popular-container" class="d-flex flex-column flex-md-row">
-      <span class="title" title="${item.title}">${item.title.slice(0, 83)}...</span>
+      <div id="most-popular-container" class="w-100 d-flex flex-column flex-xl-row">
+      <span class="title" title="${item.title}">${item.title.slice(0, 90)}...</span>
       <div class="center-container">
         <ul class=" d-flex gap-2">
           <li class="d-flex flex-column"><span class="total">${item.total_reads}</span>views</li>

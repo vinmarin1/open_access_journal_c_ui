@@ -180,6 +180,7 @@ require 'dbcon.php';
                           <li><a href="user-dashboard.php" class="dropdown-item" style="color: black;">My Profile</a></li>
                           <li><a href="author-dashboard.php" class="dropdown-item" style="color: black;">My Contributions</a></li>
                           <li><a class="dropdown-item" href="../PHP/logout.php" style="color: black;">Log-out</a></li> 
+
                       </ul>
                   </li>
               </div>';
