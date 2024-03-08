@@ -2314,7 +2314,8 @@ $(document).ready(function () {
 });		
 	
 
-</script>
+</script><div class="footer" id="footer">
+</div>
 <script src="../JS/user-dashboard-universities.js"></script>  
 </body>
 

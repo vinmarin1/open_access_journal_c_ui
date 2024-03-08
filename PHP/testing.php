@@ -26,8 +26,13 @@
         <button class="btn tbn-primary btn-md" id="btn2">As Reviewer</button>
         <button class="btn tbn-primary btn-md" id="btn2">As Reviewer</button>
     </div>
-
 </div> 
+
+
+<form method="POST" action="contact-backend.php">
+    <input type="text" name="name"> 
+    <button type="submit" > Submit</button>
+</form>
 
 
 
