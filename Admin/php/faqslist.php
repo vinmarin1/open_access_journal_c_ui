@@ -15,6 +15,22 @@ $faqslist = get_faqs_list();
    <div class="container-xxl flex-grow-1 container-p-y">
         <h4 class="py-3 mb-4"><span class="text-muted fw-light"></span> FAQS</h4>
 
+         <!-- Status tabs -->
+         <ul class="nav nav-tabs mb-3" id="statusTabs">
+            <li class="nav-item">
+                <a class="nav-link active" id="tabAll" data-status="">All</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="tabSUBMITTINGARTICLES" data-status="SUBMITTING ARTICLES">SUBMITTING ATICLES</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="tabGENERALQUESTIONS" data-status="GENERAL QUESTIONS">GERERAL QUESTIONS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="tabOTHERS" data-status="OTHERS">OTHERS</a>
+            </li>
+        </ul>
+
         <div class="card">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
             <h5 class="card-header mb-0">FAQS</h5>
@@ -68,7 +84,17 @@ $faqslist = get_faqs_list();
             "ordering": true,
             "searching": true,
         });
-    });
+        $('#statusTabs a').on('click', function (e) {
+                e.preventDefault();
+
+                $('#statusTabs a').removeClass('active');
+
+                $(this).addClass('active');
+
+                var statusValue = $(this).data('status');
+                dataTable.column(2).search(statusValue).draw();
+            });
+        });
 
     function addRecord() {
         var form = document.getElementById('addModalForm');
@@ -235,7 +261,11 @@ $faqslist = get_faqs_list();
                     <div class="row mb-2">
                         <div class="col-md-12 mb-2">
                             <label for="xcategory" class="form-label">Category</label>
-                            <input type="text" id="category" class="form-control" placeholder="Category" />
+                            <select id="announcementtype" class="form-select">
+                                <option value="Annoucement">SUBMITTING ARTICLES</option>
+                                <option value="News">GENERAL QUESTIONS</option>
+                                <option value="Others">OTHERS</option>
+                            </select>
                         </div>
                     </div>
                     <div class="row mb-2">
