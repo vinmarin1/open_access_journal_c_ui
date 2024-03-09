@@ -1,7 +1,11 @@
 <?php
-session_start();
-
 require 'dbcon.php';
+session_start();
+if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
+	header('Location: ./login.php');
+	exit();
+  }
+
 $userId = $_SESSION['id'];
 $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 ?>
@@ -9,9 +13,8 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 
 <!DOCTYPE html>
 <html>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Submitted Article</title>
+<?php include('./meta.php'); ?>
+<title>QCU PUBLICATION | Submitted Article</title>
 <link href="../CSS/submitted-article.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -37,27 +40,29 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
         <input type="text" value="<?php echo $articleId ?>" id="getArticleId" name="getArticleId" style="display: none">
         <p id="title" name="title">
             <?php 
-                $sqlReviewraticle = "SELECT title FROM article WHERE article_id =:article_id AND author_id =:author_id";
+            $sqlReviewraticle = "SELECT title FROM article WHERE article_id =:article_id AND author_id =:author_id";
 
-                $result = database_run($sqlReviewraticle, array('author_id' => $userId,
-                        'article_id' => $articleId));
+            $result = database_run($sqlReviewraticle, array('author_id' => $userId, 'article_id' => $articleId));
 
-                if ($result !== false) {
-                    foreach ($result as $row) {
-                        echo $row->title;
-                    }
-                } else {
-                    echo "No articles found."; 
+            if ($result !== false) {
+                foreach ($result as $row) {
+                    echo $row->title;
                 }
+            } else {
+                echo "No articles found."; 
+            }
             ?>
         </p>
+        <input type="text" id="titleInput" name="titleInput" style="display: none">
+     
+       
 
     </div>
 </div>
 <div class="row1">
     <div class="abstract">
     <!-- Abstract content goes here -->
-        <div class="abstract-title">Abstract <span id="abstract-validation" style="color: red">The minimum word for abstract is 10 and maximum of 250 words</span></div>
+        <div class="abstract-title">Abstract <span id="abstract-validation" style="color: red">The minimum word for abstract is 10 and maximum of 300 words</span></div>
         <div class="abstract-content">
             <p id="display-abstract" name="display-abstract">
                 <?php 
@@ -75,6 +80,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                     }
                 ?>
             </p>
+            <input type="text" id="abstract" name="abstract" style="display: none">
         </div>
     </div>
     <div class="column1">
@@ -258,7 +264,14 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                 <tbody id="fileList">
                     <tr>
                     <td id="fileName1"></td>
-                    <td id="fileType1">File with no author</td>
+                    <td id="fileType1">
+                    <select class="form-control" name="selectRevisionFileType" id="selectRevisionFileType">
+                            <option value="" disabled selected>Select a File Type</option>
+                            <option value="File with author name">File with author name</option>
+                            <option value="File with no author name">File with no author name</option>
+                            <option value="Title Page">Title Page</option>
+                    </select>
+                    </td>
                     <td>
                         <button type="button" class="btn btn-primary btn-sm" style="margin-right: 5px" id="addFileName" onclick="openFilename(1)">Add File</button>
                         <button type="button" class="btn btn-danger btn-sm" id="deleteFileName" onclick="deleteFilename(1)">Delete</button>
@@ -371,7 +384,8 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                     }
                 ?>
                 <!-- <button type="button" class="btn btn-primary btn-md" id="edit-submission">Edit Submission</button> -->
-                <button type="submit" class="btn btn-primary btn-md" id="submit-submission" onclick="submitData()" disabled>Submit</button>
+                <button type="button" class="btn btn-primary btn-md" id="submit-submission">Submit Revision</button>
+                <!-- <button type="button" class="btn btn-success btn-md" id="submitRevision">Submit Revision</button> -->
                 <button type="button" class="btn btn-secondary btn-md" id="cancel-submission">Cancel Submission</button>
             </div>
         </div>

@@ -1,15 +1,46 @@
+var titleElement = document.getElementById('title');
+var titleInputElement = document.getElementById('titleInput');
+
+
+titleInputElement.value = titleElement.innerText;
+
+titleElement.addEventListener('input', function() {
+    titleInputElement.value = titleElement.innerText;
+});
+
+
+var abstractElement = document.getElementById('display-abstract');
+var abstractInput = document.getElementById('abstract');
+
+
+abstractInput.value = abstractElement.innerText;
+
+abstractElement.addEventListener('input', function() {
+    abstractInput.value = abstractElement.innerText;
+});
+
 function openFilename(index) {
-    var input = document.getElementById('file_name' + (index === 1 ? '' : index));
-    input.click();
-  
-    input.addEventListener('change', function() {
+  var input = document.getElementById('file_name' + (index === 1 ? '' : index));
+  input.click();
+
+  input.addEventListener('change', function() {
       var fileName = input.files[0].name;
-     
+      var fileSize = input.files[0].size; // Size in bytes
+
+      // Check if the file size is greater than 1.5 MB
+      if (fileSize > 1.5 * 1024 * 1024) { // Convert MB to bytes
+          Swal.fire({
+            icon: 'warning',
+            text: 'Please select a file 1.5 mb or less'
+          });
+          input.value = ''; // Clear the selected file
+          document.getElementById('fileName' + index).innerText = ''; // Clear the displayed file name
+          return;
+      }
+
       document.getElementById('fileName' + index).innerText = fileName;
-     
-    });
-  }
-  
+  });
+}
   function deleteFilename(index) {
     // Get the file input associated with the row
     var fileInput = document.getElementById('file_name' + (index === 1 ? '' : index));
@@ -99,81 +130,130 @@ function hideLoader() {
 
 
 
-document.addEventListener('DOMContentLoaded', function () {
-  const titleValidation = document.getElementById('title-validation');
-  const titleParagraph = document.getElementById('title');
-  const abstractValidation = document.getElementById('abstract-validation');
-  const abstractParagraph = document.getElementById('display-abstract');
-  const submitButton = document.getElementById('submit-submission');
+// document.addEventListener('DOMContentLoaded', function () {
+//   const titleValidation = document.getElementById('title-validation');
+//   const titleParagraph = document.getElementById('title');
+//   const abstractValidation = document.getElementById('abstract-validation');
+//   const abstractParagraph = document.getElementById('display-abstract');
+//   const submitButton = document.getElementById('submit-submission');
+//   const form = document.getElementById('form');
 
-  function validateTitle() {
-    const wordsTitle = titleParagraph.innerText.split(/\s+/);
-    const wordCountTitle = wordsTitle.length;
+//   function validateTitle() {
+//     const wordsTitle = titleParagraph.innerText.split(/\s+/);
+//     const wordCountTitle = wordsTitle.length;
 
-    if (wordCountTitle < 5 || wordCountTitle > 100) {
-      titleValidation.style.display = 'inline-block';
-      return false;
+//     if (wordCountTitle < 5 || wordCountTitle > 100) {
+//       titleValidation.style.display = 'inline-block';
+//       return false;
+//     } else {
+//       titleValidation.style.display = 'none';
+//       return true;
+//     }
+//   }
+
+//   function validateAbstract() {
+//     const wordsAbstract = abstractParagraph.innerText.split(/\s+/);
+//     const wordCountAbstract = wordsAbstract.length;
+
+//     if (wordCountAbstract <10 || wordCountAbstract > 250) {
+//       abstractValidation.style.display = 'inline-block';
+//       return false;
+//     } else {
+//       abstractValidation.style.display = 'none';
+//       return true;
+
+//     }
+//   }
+
+//   function updateSubmitButtonState() {
+//     const isTitleValid = validateTitle();
+//     const isAbstractValid = validateAbstract();
+
+//     submitButton.disabled = !(isTitleValid && isAbstractValid);
+//   }
+
+//   // Add event listeners
+//   titleParagraph.addEventListener('input', updateSubmitButtonState);
+//   abstractParagraph.addEventListener('input', updateSubmitButtonState);
+// });
+
+
+document.getElementById('submit-submission').addEventListener('click', function(event){
+  const form = document.getElementById('form');
+  const file = document.getElementById('file_name');
+  const titleInput = document.getElementById('titleInput');
+  const abstract = document.getElementById('abstract');
+  const titleValidationSpan = document.getElementById('title-validation');
+  const abstractValidationSpan = document.getElementById('abstract-validation');
+  const fileTypeSelect = document.getElementById('selectRevisionFileType');
+
+  if (file.value === '') {
+    Swal.fire({
+      icon: 'warning',
+      text: 'File is required!'
+    });
+  } else {
+    const titleWords = titleInput.value.split(/\s+/).filter(word => word.length > 0).length;
+    const abstractWords = abstract.value.split(/\s+/).filter(word => word.length > 0).length;
+
+    if (titleWords < 5 || titleWords > 100) {
+      titleValidationSpan.style.display = 'block';
     } else {
-      titleValidation.style.display = 'none';
-      return true;
+      titleValidationSpan.style.display = 'none';
+    }
+
+    if (abstractWords < 10 || abstractWords > 300) {
+      abstractValidationSpan.style.display = 'block';
+    } else {
+      abstractValidationSpan.style.display = 'none';
+    }
+
+    if (titleWords < 5 || titleWords > 100 || abstractWords < 10 || abstractWords > 300) {
+      Swal.fire({
+        icon: 'warning',
+        text: 'Please correct your Title or Abstract based on requirements'
+      });
+    } else if (fileTypeSelect.value === '') {
+      Swal.fire({
+        icon: 'warning',
+        text: 'Please select a file type'
+      });
+    } else {
+      showLoader();
+      form.submit(); 
     }
   }
-
-  function validateAbstract() {
-    const wordsAbstract = abstractParagraph.innerText.split(/\s+/);
-    const wordCountAbstract = wordsAbstract.length;
-
-    if (wordCountAbstract <10 || wordCountAbstract > 250) {
-      abstractValidation.style.display = 'inline-block';
-      return false;
-    } else {
-      abstractValidation.style.display = 'none';
-      return true;
-    }
-  }
-
-  function updateSubmitButtonState() {
-    const isTitleValid = validateTitle();
-    const isAbstractValid = validateAbstract();
-
-    submitButton.disabled = !(isTitleValid && isAbstractValid);
-  }
-
-  // Add event listeners
-  titleParagraph.addEventListener('input', updateSubmitButtonState);
-  abstractParagraph.addEventListener('input', updateSubmitButtonState);
 });
 
 
-
-function submitData() {
-  // Get data from <p> elements
-  var title = document.getElementById('title').innerText;
-  var abstract = document.getElementById('display-abstract').innerText;
-  var articleId = document.getElementById('getArticleId').value; // Assuming you have an input field for articleId
-  showLoader();
-  setTimeout(function () {
-    window.location.href = '../PHP/submitted-article.php?id=' + articleId;
-  }, 1000);
-  // Use AJAX to send data to the server
-  var xhr = new XMLHttpRequest();
-  xhr.open('POST', 'revise.php', true);
-  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-  xhr.onreadystatechange = function () {
-      if (xhr.readyState === 4 && xhr.status === 200) {
+// function submitData() {
+//   // Get data from <p> elements
+//   var title = document.getElementById('title').innerText;
+//   var abstract = document.getElementById('display-abstract').innerText;
+//   var articleId = document.getElementById('getArticleId').value; // Assuming you have an input field for articleId
+//   showLoader();
+//   setTimeout(function () {
+//     window.location.href = '../PHP/submitted-article.php?id=' + articleId;
+//   }, 1000);
+//   // Use AJAX to send data to the server
+//   var xhr = new XMLHttpRequest();
+//   xhr.open('POST', 'revise.php', true);
+//   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+//   xhr.onreadystatechange = function () {
+//       if (xhr.readyState === 4 && xhr.status === 200) {
           
-          console.log(xhr.responseText);
+//           console.log(xhr.responseText);
 
-         // Redirect after the AJAX request is complete
-         window.location.href = '../PHP/submitted-article.php?id=' + articleId;
-      }
-  };
+//          // Redirect after the AJAX request is complete
+//          window.location.href = '../PHP/submitted-article.php?id=' + articleId;
+//       }
+//   };
 
-  var data = 'title=' + encodeURIComponent(title) + '&abstract=' + encodeURIComponent(abstract) + '&getArticleId=' + encodeURIComponent(articleId);
-  xhr.send(data);
+//   var data = 'title=' + encodeURIComponent(title) + '&abstract=' + encodeURIComponent(abstract) + '&getArticleId=' + encodeURIComponent(articleId);
+//   xhr.send(data);
  
   
-}
+// }
 
 
 function toggleDiscussion(discussionId) {

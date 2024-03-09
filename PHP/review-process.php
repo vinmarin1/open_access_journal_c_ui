@@ -1,7 +1,12 @@
 <?php
+require 'dbcon.php';
 session_start();
 
-require 'dbcon.php';
+if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
+	header('Location: ./login.php');
+	exit();
+  }
+  
 $userId = $_SESSION['id'];
 $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 ?>
@@ -837,8 +842,24 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 });
 
 document.getElementById('btnSubmit').addEventListener('click', function(event){
-    const form =  document.getElementById('form');
+    const form = document.getElementById('form');
     const loadingOverlay = document.getElementById('loadingOverlay');
+    
+    // Check if all radio buttons are selected
+    const radioGroups = document.querySelectorAll('input[type="radio"]:required');
+    let allRadioButtonsSelected = true;
+
+    radioGroups.forEach(function(radioGroup) {
+        if (!document.querySelector('input[name="' + radioGroup.name + '"]:checked')) {
+            allRadioButtonsSelected = false;
+        }
+    });
+
+    if (!allRadioButtonsSelected) {
+        // Alert the user if not all radio buttons are selected
+        alert('All fields are required');
+        return;
+    }
 
     Swal.fire({
         icon: 'question',
@@ -848,13 +869,12 @@ document.getElementById('btnSubmit').addEventListener('click', function(event){
         showConfirmButton: true,
     }).then((result) => {
         if (result.isConfirmed) {
-           
             form.submit();
             loadingOverlay.style.display = "block";
-        
         }
     });
 });
+
 
     </script>
 </body>

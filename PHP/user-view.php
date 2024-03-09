@@ -71,10 +71,10 @@ if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
                     if ($result !== false && !empty($result[0]->profile_pic)) {
                         $profilePicPath = $result[0]->profile_pic;
                     
-                        echo '<img src="' . $profilePicPath . '" alt="Profile Picture">';
+                        echo '<img src="' . $profilePicPath . '" alt="Profile Picture" style="width: 150px; height: 150px">';
                     } else {
                         
-                        echo '<img src="../images/profile.jpg" alt="Profile Picture" class="profile-pic">';
+                        echo '<img src="../images/profile.jpg" alt="Profile Picture" class="profile-pic" style="width: 150px; height: 150px">';
                     }
                     ?>
 				</div>

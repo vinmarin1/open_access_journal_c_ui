@@ -295,12 +295,23 @@ ul li span {
   min-width: 200px; /* Set a minimum width */
 }
 
-#submit-submission {
+#submit-submission{
  
   margin-bottom: 10px;
   font-size: 14px;
   background-color: #285581;
   color: white;
+  border-radius: 20px;
+  width: 100%; /* Set the width to 50% of its container */
+  max-width: 400px; /* Set a maximum width */
+  min-width: 200px; /* Set a minimum width */
+  display: none;
+}
+
+#submitRevision{
+ 
+  margin-bottom: 10px;
+  font-size: 14px;
   border-radius: 20px;
   width: 100%; /* Set the width to 50% of its container */
   max-width: 400px; /* Set a maximum width */
