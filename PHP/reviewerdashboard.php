@@ -235,7 +235,7 @@ if(isset($_GET['author_id'])) {
 						</div>
 					</div>
 					    <!-- Popup Form -->
-				
+<!-- 				
 					<div class="popup-form" id="editForm">
 						<div class="form-header">
 							<span>Edit Profile</span>
@@ -650,7 +650,8 @@ if(isset($_GET['author_id'])) {
 								<!-- <button type="submit" class="btn btn-primary btn-md" id="saveButton" value="Save" disabled>Save</button> -->
 							</div>
 						</form>
-					</div>
+					</div> -->
+
 				</form>
 					<div class="balance-points">Community Heart:&nbsp;
 					<?php
