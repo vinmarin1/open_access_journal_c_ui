@@ -337,71 +337,100 @@ function updateNotifications(data) {
     `;
     notificationList.appendChild(headerItem);
 
-      if (data.data && data.data.length) { // Check if data.data is not null and has length
-      data.data.slice(0, 5).forEach(notification => {
-          var listItem = document.createElement('li');
-          
-          var chunks = [];
-          for (var i = 0; i < notification.description.length; i += 50) {
-              chunks.push(notification.description.substr(i, 50));
-          }
-          var formattedDescription = chunks.join('<br>');
-          var currentTime = new Date();
+    if (data.data && data.data.length) {
+        data.data.slice(0, 5).forEach(notification => {
+            var listItem = document.createElement('li');
 
-          var notificationTime = new Date(notification.created);
-          notificationTime.setHours(notificationTime.getHours() + 8);
+            var chunks = [];
+            for (var i = 0; i < notification.description.length; i += 50) {
+                chunks.push(notification.description.substr(i, 50));
+            }
+            var formattedDescription = chunks.join('<br>');
+            var currentTime = new Date();
 
-          var timeDifference = Math.abs(currentTime - notificationTime);
-          var timeAgo;
+            var notificationTime = new Date(notification.created);
+            notificationTime.setHours(notificationTime.getHours() + 8);
 
-          if (timeDifference < 60000) {
-              timeAgo = Math.floor(timeDifference / 1000) + ' seconds ago';
-          } else if (timeDifference < 3600000) { 
-              timeAgo = Math.floor(timeDifference / 60000) + ' minutes ago';
-          } else if (timeDifference < 86400000) {
-              timeAgo = Math.floor(timeDifference / 3600000) + ' hours ago';
-          } else {
-              timeAgo = Math.floor(timeDifference / 86400000) + ' days ago';
-          }
+            var timeDifference = Math.abs(currentTime - notificationTime);
+            var timeAgo;
 
-          var article_id = notification.article_id;
-          var currentMonth = '<?php echo date('n'); ?>';
-          var currentYear = '<?php echo date('Y'); ?>';
+            if (timeDifference < 60000) {
+                timeAgo = Math.floor(timeDifference / 1000) + ' seconds ago';
+            } else if (timeDifference < 3600000) {
+                timeAgo = Math.floor(timeDifference / 60000) + ' minutes ago';
+            } else if (timeDifference < 86400000) {
+                timeAgo = Math.floor(timeDifference / 3600000) + ' hours ago';
+            } else {
+                timeAgo = Math.floor(timeDifference / 86400000) + ' days ago';
+            }
 
-          var donationHref = "donationreportmtd.php?m=" + currentMonth + "&y=" + currentYear;
-          var articleHref = "workflow.php?aid=" + article_id;
+            var article_id = notification.article_id;
+            var id = notification.id;
+            var currentMonth = '<?php echo date('n'); ?>';
+            var currentYear = '<?php echo date('Y'); ?>';
 
-          listItem.innerHTML = `
-              <li style="background-color: ${notification.read == 1 ? '#d9dee3 !important' : 'white !important'};">
-                  <a href="${notification.title === 'Send Donation' ? donationHref : articleHref}" class="dropdown-item">
-                      <div class="d-flex">
-                          <div class="flex-grow-1">
-                              <span class="align-middle"><b>${notification.title}</b></span>
-                              <br>
-                              <span class="notification-description" style="word-wrap: break-word; max-width: 100%;">${formattedDescription}</span>
-                              <br>
-                              <span class="align-middle">${timeAgo}</span>
-                          </div>
-                      </div>
-                  </a>
-              </li>
-              <div class="dropdown-divider" style="background-color: #d9dee3 !important;"></div>
-          `;
-          
-          notificationList.appendChild(listItem);
-      });
+            var donationHref = "donationreportmtd.php?m=" + currentMonth + "&y=" + currentYear;
+            var articleHref = "workflow.php?aid=" + article_id;
 
-      if (data.data.length > 5) {
-          var seeAllItem = document.createElement('li');
-          seeAllItem.innerHTML = `
-              <a class="dropdown-item text-center" href="notification.php">See All</a>
-          `;
-          notificationList.appendChild(seeAllItem);
-      }
-  } else {
-      console.error('No notification data available or data is invalid.');
-  }
+            listItem.innerHTML = `
+                <li style="background-color: ${notification.read == 1 ? '#d9dee3 !important' : 'white !important'};">
+                    <a href="${notification.title === 'Send Donation' ? donationHref : articleHref}" class="dropdown-item notification-link">
+                        <div class="d-flex">
+                            <div class="flex-grow-1">
+                                <span class="align-middle"><b>${notification.title}</b></span>
+                                <br>
+                                <span class="notification-description" style="word-wrap: break-word; max-width: 100%;">${formattedDescription}</span>
+                                <br>
+                                <span class="align-middle">${timeAgo}</span>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                <div class="dropdown-divider" style="background-color: #d9dee3 !important;"></div>
+            `;
 
+            notificationList.appendChild(listItem);
+
+            // Event listener for notification link click
+            var notificationLink = listItem.querySelector('.notification-link');
+            notificationLink.addEventListener('click', function(event) {
+                event.preventDefault();
+                var href = notificationLink.href;
+                window.location.href = href;
+            });
+
+            // Event listener for notification row click
+            listItem.addEventListener('click', function() {
+                $.ajax({
+                    type: 'POST',
+                    url: 'function/update_notification.php',
+                    data: { id: id },
+                    dataType: 'json',
+                    success: function(response) {
+                        if (response.status) {
+                            console.log(response.message);
+                            // Optionally update UI to reflect status change
+                        } else {
+                            console.error(response.message);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('AJAX error: ' + status + ' - ' + error);
+                    }
+                });
+            });
+        });
+
+        if (data.data.length > 5) {
+            var seeAllItem = document.createElement('li');
+            seeAllItem.innerHTML = `
+                <a class="dropdown-item text-center" href="notification.php">See All</a>
+            `;
+            notificationList.appendChild(seeAllItem);
+        }
+    } else {
+        console.error('No notification data available or data is invalid.');
+    }
 }
 
 window.addEventListener('load', function() {

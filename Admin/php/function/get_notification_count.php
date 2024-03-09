@@ -8,15 +8,18 @@ if (!function_exists('get_notification_data')) {
 
         if ($pdo) {
             try {
-                // Select all fields from the notification table, ordered by ID
-                $query = "SELECT * FROM notification WHERE admin = 1 ORDER BY id DESC";
-                $stmt = $pdo->prepare($query);
+                // Count query
+                $countQuery = "SELECT COUNT(*) as count FROM notification WHERE admin = 1 AND `read` = 1";
+                $countStmt = $pdo->prepare($countQuery);
+                $countStmt->execute();
+                $countResult = $countStmt->fetch(PDO::FETCH_ASSOC);
+                $count = $countResult['count'];
+
+                // Data query
+                $dataQuery = "SELECT * FROM notification WHERE admin = 1 ORDER BY id DESC";
+                $stmt = $pdo->prepare($dataQuery);
                 $stmt->execute();
-
-                // Fetch all notification data
                 $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-                $count = count($data);
 
                 return array(
                     'count' => $count,
@@ -36,5 +39,4 @@ if (!function_exists('get_notification_data')) {
 $notification_data = get_notification_data();
 
 echo json_encode($notification_data);
-
 ?>

@@ -52,7 +52,7 @@ $notificationlist = get_notification_list();
                             $hrefdonation = "donationreportmtd.php?m=" . $currentMonth . "&y=" . $currentYear;
                         ?>
 
-                        <tr class="<?php echo $readClass; ?>" data-toggle="modal" data-target="">
+                        <tr class="<?php echo $readClass; ?>" data-toggle="modal" data-target="" data-id="<?php echo $notification->id; ?>">
                             <td style="display:none;"><?php echo $notification->id; ?><br> </td>
                             <td width="100%">
                                 <?php echo $notification->title; ?><br>
@@ -80,17 +80,32 @@ $notificationlist = get_notification_list();
                         </tr>
 
                         <script>
-                            // Add click event listener to each table row to redirect to the appropriate page
                             document.querySelector('.time-ago-<?php echo $notification->id; ?>').closest('tr').addEventListener('click', function() {
+                                var id = <?php echo $notification->id; ?>;
                                 var title = '<?php echo $notification->title; ?>';
                                 var href = (title === 'Send Donation') ? '<?php echo $hrefdonation; ?>' : '<?php echo $hrefworkflow; ?>';
                                 window.location.href = href;
+                                
+                                $.ajax({
+                                    type: 'POST',
+                                    url: 'function/update_notification.php',
+                                    data: { id: id },
+                                    dataType: 'json',
+                                    success: function(response) {
+                                        if (response.status) {
+                                            console.log(response.message);
+
+                                        } else {
+                                            console.error(response.message);
+                                        }
+                                    },
+                                    error: function(xhr, status, error) {
+                                        console.error('AJAX error: ' + status + ' - ' + error);
+                                    }
+                                });
                             });
                         </script>
-
-                        <?php
-                        }
-                        ?>
+                        <?php } ?>
                     </tbody>
                 </table>
             </div>
