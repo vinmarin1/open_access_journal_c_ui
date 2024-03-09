@@ -74,6 +74,7 @@ $notificationlist = get_notification_list();
                                         timeAgo = Math.floor(timeDifference / 86400000) + ' days ago';
                                     }
 
+                                    // Assuming you have an element with class 'time-ago-<?php echo $notification->id; ?>'
                                     document.querySelector('.time-ago-<?php echo $notification->id; ?>').textContent = timeAgo;
                                 </script>
                             </td>
