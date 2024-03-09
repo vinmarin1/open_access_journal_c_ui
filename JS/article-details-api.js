@@ -76,6 +76,33 @@ function renderArticleDetails(data) {
         </div>
        `;
       }
+    }else if (item.contributors == null){
+      for (const contributors of item.author.split(",")) {
+        contributorsHTML += `
+        <div id="popup-link" class="d-flex">
+          <a href="#" class="text-muted">${contributors} </a>
+          <div class="popup-form">
+            <div class="container-fluid">
+              <div class="row">
+                <!-- <div class="col-md-2">
+                  <img src="../images/profile.jpg" alt="Profile Picture" class="profile-pic">
+                </div> -->
+                <div class="col-md-10 col-12 prof-info">
+                  <!-- Content for the second column -->
+                  <p class="!font-bold">${contributors}</p>
+                  <a class="btn btn-primary btn-md" id="seeMore-btn" href="./user-view.php?orcid=${contributors}">View Profile</a>
+                  <a href="https://orcid.org/${contributors}">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512">
+                    <path fill="#a7cf36" d="M294.75 188.19h-45.92V342h47.47c67.62 0 83.12-51.34 83.12-76.91c0-41.64-26.54-76.9-84.67-76.9M256 8C119 8 8 119 8 256s111 248 248 248s248-111 248-248S393 8 256 8m-80.79 360.76h-29.84v-207.5h29.84zm-14.92-231.14a19.57 19.57 0 1 1 19.57-19.57a19.64 19.64 0 0 1-19.57 19.57M300 369h-81V161.26h80.6c76.73 0 110.44 54.83 110.44 103.85C410 318.39 368.38 369 300 369" />
+                  </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+       `;
+      }
     }
 
 
@@ -335,10 +362,11 @@ function renderArticleDetails(data) {
       downloadBtn.addEventListener("click", () => {
         try{
           let fileExtension = item.file_name.split('.').pop();
+          let fileUrl = `https://qcuj.online/Files/final-file/${encodeURIComponent(item.file_name)}`;
+          
           if (fileExtension === "docx") {
             createCloudConvertJob(item.file_name,"docx", "pdf");
           }else if (fileExtension === "pdf") {
-            let fileUrl = `https://qcuj.online/Files/final-file/${encodeURIComponent(item.file_name)}`;
             let link = document.createElement("a");
             link.setAttribute("href", fileUrl);
             link.setAttribute("download", "");
@@ -360,6 +388,7 @@ function renderArticleDetails(data) {
             icon: 'success',
           })
         }catch(error){
+        console.log(error,"---------")
           Swal.fire({
             html: '<h4 style="color: #0858a4; font-family: font-family: Arial, Helvetica, sans-serif">Failed to download. No file available</h4>',
             icon: 'warning',
