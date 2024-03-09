@@ -80,7 +80,7 @@ $seriesString = json_encode($series);
                 <div class="card h-100">
                     <div class="card-header d-flex align-items-center justify-content-between pb-0">
                         <div class="card-title mb-0">
-                            <h5 class="m-0 me-2">Top 5 Reviewer of the Month</h5>
+                            <h5 class="m-0 me-2">The top 5 reviewer for <span id="currentMonth"></span></h5>
                         </div>
                             </div>
                         <div class="card-body">
@@ -157,6 +157,18 @@ $seriesString = json_encode($series);
 
     <!-- DataTables initialization script -->
     <script>
+        var currentDate = new Date();
+
+        var monthNames = [
+            "January", "February", "March",
+            "April", "May", "June", "July",
+            "August", "September", "October",
+            "November", "December"
+        ];
+
+        var currentMonth = monthNames[currentDate.getMonth()];
+        document.getElementById("currentMonth").textContent = currentMonth;
+
         $(document).ready(function () {
             $('#DataTable').DataTable({
                 "order": [[3, "desc"]] 

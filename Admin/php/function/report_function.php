@@ -205,6 +205,38 @@ include 'dbcon.php';
         }
     }
 
+    if (!function_exists('get_top5donators_list')) {
+        function get_top5donators_list() {
+            $firstDayOfMonth = date('Y-m-01');
+            $lastDayOfMonth = date('Y-m-t');
+            
+            $sql = "SELECT 
+                    donator_name,
+                    donator_email,
+                    SUM(amount) AS total_amount
+                FROM 
+                    donation 
+                WHERE 
+                    created_at BETWEEN '{$firstDayOfMonth}' AND '{$lastDayOfMonth}'
+                GROUP BY 
+                    donator_name, donator_email
+                ORDER BY 
+                    total_amount DESC
+                LIMIT 5;";
+                                
+            $results = execute_query($sql);
+    
+            if (!empty($results)) {
+                $data['top5donatorslist'] = $results;
+                return $data;
+            } else {
+                $randomNames = getRandomNamesFromPastContributors();
+                $data['top5donatorslist'] = $randomNames;
+                return $data;
+            }
+        }
+    }
+
     if (!function_exists('get_published_article_total')) {
         function get_published_article_total($month, $year) {
             $month = $_GET["m"] ?? date('m');
@@ -431,7 +463,7 @@ include 'dbcon.php';
             
             $sql = "SELECT 
                         a.author_id,
-                        COALESCE(COUNT(ra.author_id), 0) AS count_reviewed,
+                        COUNT(ra.author_id) AS count_reviewed,
                         a.first_name,
                         a.last_name,
                         a.email
@@ -443,9 +475,12 @@ include 'dbcon.php';
                         a.status = 1
                     GROUP BY 
                         a.author_id, a.first_name, a.last_name, a.email
+                    HAVING 
+                        count_reviewed > 0  -- Include only authors who have been reviewed at least once
                     ORDER BY 
                         count_reviewed DESC
-                    LIMIT 5;";
+                    LIMIT 5;
+                    ";
             
             $results = execute_query($sql);
     
