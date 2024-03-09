@@ -245,7 +245,7 @@ $journal = get_journal_list();
                       <i class="menu-icon tf-icons bx bx-bell" style="position: relative;"></i>
                       <span id="notification-count" class="badge bg-danger rounded-circle" style="position: absolute; top: -8px; right: -2px;"></span>
                   </a>
-                  <ul id="notification-list" class="dropdown-menu dropdown-menu-end" style="max-height: 620px;">
+                  <ul id="notification-list" class="dropdown-menu dropdown-menu-end">
                   </ul>
               </li>
 
@@ -337,58 +337,71 @@ function updateNotifications(data) {
     `;
     notificationList.appendChild(headerItem);
 
-    if (data.data && data.data.length) { // Check if data.data is not null and has length
-        data.data.slice(0, 5).forEach(notification => {
-            var listItem = document.createElement('li');
-            
-            var chunks = [];
-            for (var i = 0; i < notification.description.length; i += 70) {
-                chunks.push(notification.description.substr(i, 70));
-            }
-            var formattedDescription = chunks.join('<br>');
-            var currentTime = new Date();
+      if (data.data && data.data.length) { // Check if data.data is not null and has length
+      data.data.slice(0, 5).forEach(notification => {
+          var listItem = document.createElement('li');
+          
+          var chunks = [];
+          for (var i = 0; i < notification.description.length; i += 50) {
+              chunks.push(notification.description.substr(i, 50));
+          }
+          var formattedDescription = chunks.join('<br>');
+          var currentTime = new Date();
 
-            var notificationTime = new Date(notification.created);
-            var timeDifference = Math.abs(currentTime - notificationTime);
-            var timeAgo;
-            if (timeDifference < 60000) {
-                timeAgo = Math.floor(timeDifference / 1000) + ' seconds ago';
-            } else if (timeDifference < 3600000) { 
-                timeAgo = Math.floor(timeDifference / 60000) + ' minutes ago';
-            } else {
-                timeAgo = Math.floor(timeDifference / 3600000) + ' hours ago';
-            }
+          var notificationTime = new Date(notification.created);
+          notificationTime.setHours(notificationTime.getHours() + 8);
 
-            listItem.innerHTML = `
+          var timeDifference = Math.abs(currentTime - notificationTime);
+          var timeAgo;
+
+          if (timeDifference < 60000) {
+              timeAgo = Math.floor(timeDifference / 1000) + ' seconds ago';
+          } else if (timeDifference < 3600000) { 
+              timeAgo = Math.floor(timeDifference / 60000) + ' minutes ago';
+          } else if (timeDifference < 86400000) {
+              timeAgo = Math.floor(timeDifference / 3600000) + ' hours ago';
+          } else {
+              timeAgo = Math.floor(timeDifference / 86400000) + ' days ago';
+          }
+
+          var article_id = notification.article_id;
+          var currentMonth = '<?php echo date('n'); ?>';
+          var currentYear = '<?php echo date('Y'); ?>';
+
+          var donationHref = "donationreportmtd.php?m=" + currentMonth + "&y=" + currentYear;
+          var articleHref = "workflow.php?aid=" + article_id;
+
+          listItem.innerHTML = `
               <li style="background-color: ${notification.read == 1 ? '#d9dee3 !important' : 'white !important'};">
-                <a class="dropdown-item" href="#">
-                    <div class="d-flex">
-                        <div class="flex-grow-1">
-                            <span class="align-middle"><b>${notification.title}</b></span>
-                            <br>
-                            <span class="notification-description" style="word-wrap: break-word; max-width: 100%;">${formattedDescription}</span>
-                            <br>
-                            <span class="align-middle">${timeAgo}</span>
-                        </div>
-                    </div>
-                </a>
+                  <a href="${notification.title === 'Send Donation' ? donationHref : articleHref}" class="dropdown-item">
+                      <div class="d-flex">
+                          <div class="flex-grow-1">
+                              <span class="align-middle"><b>${notification.title}</b></span>
+                              <br>
+                              <span class="notification-description" style="word-wrap: break-word; max-width: 100%;">${formattedDescription}</span>
+                              <br>
+                              <span class="align-middle">${timeAgo}</span>
+                          </div>
+                      </div>
+                  </a>
               </li>
               <div class="dropdown-divider" style="background-color: #d9dee3 !important;"></div>
           `;
+          
+          notificationList.appendChild(listItem);
+      });
 
-            notificationList.appendChild(listItem);
-        });
+      if (data.data.length > 5) {
+          var seeAllItem = document.createElement('li');
+          seeAllItem.innerHTML = `
+              <a class="dropdown-item text-center" href="notification.php">See All</a>
+          `;
+          notificationList.appendChild(seeAllItem);
+      }
+  } else {
+      console.error('No notification data available or data is invalid.');
+  }
 
-        if (data.data.length > 5) {
-            var seeAllItem = document.createElement('li');
-            seeAllItem.innerHTML = `
-                <a class="dropdown-item text-center" href="notification.php">See All</a>
-            `;
-            notificationList.appendChild(seeAllItem);
-        }
-    } else {
-        console.error('No notification data available or data is invalid.');
-    }
 }
 
 window.addEventListener('load', function() {
