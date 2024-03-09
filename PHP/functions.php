@@ -87,6 +87,7 @@ function login($data)
                     $_SESSION['first_name'] = $row_admin->first_name;
                     $_SESSION['last_name'] = $row_admin->last_name;
                     $_SESSION['middle_name'] = $row_admin->middle_name;
+                    $_SESSION['USER']->urli = $urli;
                     $_SESSION['LOGGED_IN'] = true;
                 } else {
                     $errors[] = "Wrong email or password";
