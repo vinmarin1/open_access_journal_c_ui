@@ -1579,6 +1579,7 @@ function updateCopyeditedFiles() {
 }
 
 function uploadCopyeditedFiles() {
+    $('#sloading').toggle();
     var copyeditedFiletype = $('#copyeditedfiletype').val();
     var copyeditedFile = $('#copyeditedfile')[0].files[0];
 
@@ -1714,6 +1715,7 @@ function updateProductionFiles() {
 }
 
 function uploadProductionFiles() {
+    $('#sloading').toggle();
     var productionfileFiletype = $('#productionfiletype').val();
     var productionfileFile = $('#productionfile')[0].files[0];
 
