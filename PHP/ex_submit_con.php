@@ -151,8 +151,25 @@ function handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $
         }
     }
     
+    $title = 'Submit Article';
+    $description = $lastName.', '.$firstName . ' Submit Article, ' . $title;
+    date_default_timezone_set('Asia/Manila');
+    $created = date('Y-m-d H:i:s');
+    $admin = 1;
 
+    $sqlNotification = "INSERT INTO notification (`author_id`, `article_id`, `title`, `description`, admin, created) 
+    VALUES (:author_id, :article_id, :title, :description, :admin, :created)";
 
+    $paramsNotification = array(
+        'author_id' => $author_id,
+        'article_id' => $lastInsertedArticleId,
+        'title' => $title,
+        'description' => $description,
+        'admin' => $admin,
+        'created' => $created,
+    );
+
+    database_run($sqlNotification, $paramsNotification);
 
     
     $sqlAuthor = "INSERT INTO contributors (article_id, contributor_type, firstname, lastname, publicname, orcid, email) 
@@ -169,8 +186,6 @@ function handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $
     );
 
     database_run($sqlAuthor, $paramsAuthor);
-
-
 
     foreach ($firstNameC as $key => $firstName) {
         $contributorType = array();
