@@ -346,10 +346,14 @@ function updateNotifications(data) {
                 chunks.push(notification.description.substr(i, 50));
             }
             var formattedDescription = chunks.join('<br>');
-            var currentTime = new Date();
-
             var notificationTime = new Date(notification.created);
-            notificationTime.setHours(notificationTime.getHours() + 8);
+
+            var currentTime = new Date();
+            var options = {
+              timeZone: 'Asia/Manila',
+              hour12: false
+            };
+            var currentTimeManila = currentTime.toLocaleString('en-US', options);
 
             var timeDifference = Math.abs(currentTime - notificationTime);
             var timeAgo;

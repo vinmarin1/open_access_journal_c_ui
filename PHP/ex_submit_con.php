@@ -152,7 +152,7 @@ function handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $
     }
     
     $title1 = 'Submit Article';
-    $description = $lastName.', '.$firstName . ' Submit Article, ' . $title;
+    $description = $lastName.', '.$firstName . ' - Submit Article, ' . $title;
     date_default_timezone_set('Asia/Manila');
     $created = date('Y-m-d H:i:s');
     $admin = 1;
