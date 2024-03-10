@@ -579,26 +579,38 @@ if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
 						<p><span class="label">Position:</span>
                             <?php 
                 
-                                $result = database_run("SELECT position FROM author WHERE orc_id = :orc_id", array('orc_id' => $orcid));
+                                $result = database_run("SELECT position, public_private_profile  FROM author WHERE orc_id = :orc_id", array('orc_id' => $orcid));
+
+                              
                                 
                                 if ($result !== false && !empty($result)) {
                                     $position = $result[0]->position;
-                                    echo $position;
+                                    $positionStats = $result[0]->public_private_profile ;
+                                    if ($positionStats == 0){
+                                        echo $position;
+                                    }else{
+                                        echo '';
+                                    }
                                 } else {
-                                    echo "";
+                                    echo '';
                                 }
                             ?>
                         </p>
 						<p><span class="label">Gender:</span>
                         <?php 
                 
-                            $result = database_run("SELECT gender FROM author WHERE orc_id = :orc_id", array('orc_id' => $orcid));
+                            $result = database_run("SELECT gender, public_private_profile FROM author WHERE orc_id = :orc_id", array('orc_id' => $orcid));
                             
                             if ($result !== false && !empty($result)) {
                                 $gender = $result[0]->gender;
-                                echo $gender;
+                                $genderStats = $result[0]->public_private_profile ;
+                                if ($genderStats == 0){
+                                    echo $gender;
+                                }else{
+                                    echo '';
+                                }
                             } else {
-                                echo "";
+                                echo '';
                             }
                         ?>
                                 
@@ -606,39 +618,54 @@ if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
 						<p><span class="label">Birthday:</span>
                         <?php 
                 
-                            $result = database_run("SELECT birth_date FROM author WHERE orc_id = :orc_id", array('orc_id' => $orcid));
+                            $result = database_run("SELECT birth_date, public_private_profile FROM author WHERE orc_id = :orc_id", array('orc_id' => $orcid));
                             
                             if ($result !== false && !empty($result)) {
-                                $birth_date = $result[0]->birth_date;
-                                echo $birth_date;
+                                $birthday = $result[0]->birth_date;
+                                $birthStats = $result[0]->public_private_profile ;
+                                if ($birthStats == 0){
+                                    echo $birthday;
+                                }else{
+                                    echo '';
+                                }
                             } else {
-                                echo "";
+                                echo '';
                             }
                         ?>
                         </p>
 						<p><span class="label">Country:</span>
                         <?php 
                 
-                            $result = database_run("SELECT country FROM author WHERE orc_id = :orc_id", array('orc_id' => $orcid));
+                            $result = database_run("SELECT country, public_private_profile FROM author WHERE orc_id = :orc_id", array('orc_id' => $orcid));
                             
                             if ($result !== false && !empty($result)) {
                                 $country = $result[0]->country;
-                                echo $country;
+                                $countryStats = $result[0]->public_private_profile ;
+                                if ($countryStats == 0){
+                                    echo $country;
+                                }else{
+                                    echo '';
+                                }
                             } else {
-                                echo "";
+                                echo '';
                             }
                         ?>
                         </p>
 						<p><span class="label">ORCID:</span>
                         <?php 
                 
-                            $result = database_run("SELECT orc_id FROM author WHERE orc_id = :orc_id", array('orc_id' => $orcid));
+                            $result = database_run("SELECT orc_id, public_private_profile FROM author WHERE orc_id = :orc_id", array('orc_id' => $orcid));
                             
                             if ($result !== false && !empty($result)) {
                                 $orc_id = $result[0]->orc_id;
-                                echo $orc_id;
+                                $orcidId_Stats = $result[0]->public_private_profile ;
+                                if ($orcidId_Stats == 0){
+                                    echo $orc_id;
+                                }else{
+                                    echo '';
+                                }
                             } else {
-                                echo "";
+                                echo '';
                             }
                         ?>
                         </p>
@@ -657,7 +684,7 @@ if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
 			<div id="About" class="tabcontent" style="display: block;">
 				<div id="about-container">
 					<div id="logrecord-container">
-						<div class="log-box">Joined in community since
+						<div class="log-box">Joined in community since:
                         <?php
                         $result = database_run("SELECT date_added FROM author WHERE orc_id = :orc_id", array('orc_id' => $orcid));
 
@@ -715,13 +742,18 @@ if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
 								<p>
                                 <?php 
                 
-                                    $result = database_run("SELECT bio FROM author WHERE orc_id = :orc_id", array('orc_id' => $orcid));
+                                    $result = database_run("SELECT bio, public_private_profile  FROM author WHERE orc_id = :orc_id", array('orc_id' => $orcid));
                                     
                                     if ($result !== false && !empty($result)) {
                                         $bio = $result[0]->bio;
-                                        echo $bio;
+                                        $bioStats = $result[0]->public_private_profile ;
+                                        if ($bioStats == 0){
+                                            echo $bio;
+                                        }else{
+                                            echo '';
+                                        }
                                     } else {
-                                        echo "";
+                                        echo '';
                                     }
                                 ?>
 								</p>
@@ -734,13 +766,18 @@ if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
 								<p>
                                 <?php 
                 
-                                    $result = database_run("SELECT field_of_expertise FROM author WHERE orc_id = :orc_id", array('orc_id' => $orcid));
-                                    
+                                    $result = database_run("SELECT field_of_expertise, public_private_profile FROM author WHERE orc_id = :orc_id", array('orc_id' => $orcid));
+
                                     if ($result !== false && !empty($result)) {
                                         $field_of_expertise = $result[0]->field_of_expertise;
-                                        echo $field_of_expertise;
+                                        $expertiseStats = $result[0]->public_private_profile ;
+                                        if ($expertiseStats == 0){
+                                            echo $field_of_expertise;
+                                        }else{
+                                            echo '';
+                                        }
                                     } else {
-                                        echo "";
+                                        echo '';
                                     }
                                 ?>  
 								</p>
