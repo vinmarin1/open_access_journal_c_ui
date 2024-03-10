@@ -258,7 +258,7 @@ if(isset($_GET['author_id'])) {
 					
 
 					</div>
-					<button class="btn  btn-md text-white" id="btn1" onclick="window.location.href='author-dashboard.php'">Manage Articles</button>
+					<!-- <button class="btn  btn-md text-white" id="btn1" onclick="window.location.href='author-dashboard.php'">Manage Articles</button> -->
 					
 
 					<!-- <div class="profile-badge">
