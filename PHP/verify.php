@@ -22,6 +22,7 @@
 			$recipient = $vars['email'];
 			send_mail($recipient, $subject, $message);
 		} else {
+			$_SESSION['LOGGED_IN'] = true;
 			$urli = $_SESSION['USER']->urli;
 			if (!empty($urli)) {
 				header("Location: " . $urli);
@@ -70,8 +71,15 @@
 							die;
 						}
 					} elseif (check_admin_verified()) {
-						header("Location: ../PHP/index.php");
-						die;
+						$_SESSION['LOGGED_IN'] = true;
+							$urli = $_SESSION['USER']->urli;
+							if (!empty($urli)) {
+								header("Location: " . $urli);
+								die;
+							} else {
+								header("Location: ../PHP/index.php");
+								die;
+							}
 					} else {
 						echo "Code expired";
 					}
