@@ -7,6 +7,7 @@ $monthval = isset($_GET['m']) ? $_GET['m'] : date('m');
 
 $donationlist = get_donation_list($monthval, $yearval);
 $donationreport = get_donationforgraph();
+$top5donatorslist = get_top5donators_list();
 $seriesData = [];
 
 foreach ($donationreport['donationforgraph'] as $donation) {
@@ -69,16 +70,54 @@ $seriesString = json_encode($series);
             </span>
         </h4>
 
-        <div class="col-12 mb-4">
-            <div class="card">
-                <div class="row row-bordered g-0">
-                    <div class="col-md-12">
-                        <h5 class="card-header m-0 me-2 pb-3">Donation</h5>
-                        <div id="totalRevenueChart" class="px-2"></div>
+        <div class="row mb-2">
+            <div class="col-8 mb-4">
+                <div class="card">
+                    <div class="row row-bordered g-0">
+                        <div class="col-md-12">
+                            <h5 class="card-header m-0 me-2 pb-3">Donation</h5>
+                            <div id="totalRevenueChart" class="px-2"></div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+            <div class="col-md-4 mb-4" id="nomargin">
+                <div class="card h-100">
+                    <div class="card-header d-flex align-items-center justify-content-between pb-0">
+                        <div class="card-title mb-0">
+                            <h5 class="m-0 me-2">The top 5 donators for <span id="currentMonth"></span></h5>
+                        </div>
+                            </div>
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                            </div>
+                            <?php
+                            if (isset($top5donatorslist['top5donatorslist']) && count($top5donatorslist['top5donatorslist']) > 0) {
+                                    foreach ($top5donatorslist['top5donatorslist'] as $top5donatorslistval) {
+                                        ?>
+                        <ul class="p-0 m-0">
+                            <li class="d-flex mb-3 pb-1">
+                                <div class="avatar flex-shrink-0 me-3">
+                                    <span class="avatar-initial rounded bg-label-primary"><i class="bx bx-mobile-alt"></i></span>
+                                </div>
+                                <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                    <div class="">
+                                    <h6 class="mb-0"><?php echo $top5donatorslistval->donator_name; ?></h6>
+                                    </div>
+                                    <div class="user-progress">
+                                    <small class="fw-semibold">₱ <?php echo $top5donatorslistval->total_amount; ?></small>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <?php
+                                    }
+                                }
+                                ?>
+                    </div>
+                </div>
+            </div>  
+        </div>  
 
         <div class="row mb-2">
             <div class="col-md-6 mb-2">
@@ -176,6 +215,18 @@ $seriesString = json_encode($series);
 
     <!-- DataTables initialization script -->
     <script>
+        var currentDate = new Date();
+
+        var monthNames = [
+            "January", "February", "March",
+            "April", "May", "June", "July",
+            "August", "September", "October",
+            "November", "December"
+        ];
+
+        var currentMonth = monthNames[currentDate.getMonth()];
+        document.getElementById("currentMonth").textContent = currentMonth;
+
         $(document).ready(function() {
             $('#DataTable').DataTable({});
         });
