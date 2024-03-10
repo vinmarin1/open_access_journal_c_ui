@@ -676,7 +676,7 @@ if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
         <section class="expertise">
 			<!-- Expertise info here -->
 			<div class="tab">
-				<button class="tablinks" onclick="openTab(event, 'About')" id="defaultOpen">About</button>
+				<button class="tablinks active" onclick="openTab(event, 'About')" id="defaultOpen">About</button>
 				<button class="tablinks" onclick="openTab(event, 'PublishedArticles')">Published Articles</button>
 			</div>
 
@@ -819,7 +819,7 @@ if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
                                     <th>Title</th>
                                     <th>Publish Date</th>
                                     <th>Journal</th>
-                                    <th><center>Action</center></th>
+                                    <!-- <th><center>Action</center></th> -->
                                     
                                 </tr>
                             </thead>
@@ -828,18 +828,75 @@ if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
                                     <td colspan="6">No records found</td>
                                 </tr>
                                 <tr>
-                                    <td style="color: #285581">Blockchain Beyond Cryptocurrency: Transforming...</td>
-                                    <td>May 31, 2015</td>
-                                    <td>The Star</td>
-                                    <td><center>...</center></td>
+                                <?php 
+                                    $sqlTitle = "SELECT article.title, article.article_id, article.publication_date, author.orc_id, author.public_private_profile FROM article JOIN author ON article.author_id = author.author_id WHERE author.orc_id = :orc_id AND article.status = 1";
+                                    $result = database_run($sqlTitle, array('orc_id' => $orcid));
+
+                                    if ($result !== false && !empty($result)) {
+                                        echo '<td>'; 
+
+                                        foreach ($result as $row) {
+                                            $displayTitle = $row->title;
+                                            $articleId = $row->article_id;
+                                            echo '<a href="../PHP/article-details.php?articleId=' . $articleId . '">' . $displayTitle .'</a><br>';
+
+                                        }
+
+                                        echo '</td>'; 
+                                    } else {
+                                        echo ''; 
+                                    }
+                                ?>
+                                <?php 
+                                    $sqlTitle = "SELECT article.title, article.article_id, article.publication_date, author.orc_id, author.public_private_profile FROM article JOIN author ON article.author_id = author.author_id WHERE author.orc_id = :orc_id AND article.status = 1";
+                                    $result = database_run($sqlTitle, array('orc_id' => $orcid));
+
+                                    if ($result !== false && !empty($result)) {
+                                        echo '<td>'; 
+
+                                        foreach ($result as $row) {
+                                            $publicationDate = new DateTime($row->publication_date);
+                                            $formattedDate = $publicationDate->format('F j, Y');
+                                            echo $formattedDate;
+                                        }
+
+                                        echo '</td>'; 
+                                    } else {
+                                        echo ''; 
+                                    }
+                                ?>
+
+
+                                <?php 
+                                    $sqlTitle = "SELECT journal.journal, article.title FROM journal JOIN article ON journal.journal_id = article.journal_id JOIN author ON article.author_id = author.author_id WHERE article.status = 1 AND author.orc_id = :orc_id;";
+                                    $result = database_run($sqlTitle, array('orc_id' => $orcid));
+
+                                    if ($result !== false && !empty($result)) {
+                                        echo '<td>'; 
+
+                                        foreach ($result as $row) {
+                                            $displayJournal = $row->journal;
+                                            echo $displayJournal;
+                                        }
+
+                                        echo '</td>'; 
+                                    } else {
+                                        echo ''; 
+                                    }
+                                ?>
+                                
+
+                                    <!-- <td></td> display the publication_date of each title -->
+                                    <!-- <td>The Star</td> -->
+                                    <!-- <td><center>...</center></td> -->
                                 </tr>
-                                <tr>
+                                <!-- <tr>
                                     <td style="color: #285581">Industries with Distributed Ledger Technology</td>
                                     <td>October 24, 2018</td>
                                     <td>The Star</td>
                                     <td><center>...</center></td>
                                     
-                                </tr>
+                                </tr> -->
                             </tbody>
                         </table>
                     </div>
