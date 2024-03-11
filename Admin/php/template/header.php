@@ -73,13 +73,24 @@ $journal = get_journal_list();
         <ul class="menu-inner py-1">
           <li class="menu-header small text-uppercase"><span class="menu-header-text">Main</span></li>
           <!-- Dashboards -->
+          <?php
+          if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+            $journal_id = isset($_SESSION['journal_id']) ? ($_SESSION['journal_id']) : '';
 
-          <li class="menu-item">
-            <a href="dashboard.php" class="menu-link">
-              <i class="menu-icon tf-icons bx bxs-dashboard"></i>
-              <div data-i18n="Boxicons">Dashboard</div>
-            </a>
-          </li>
+            if (empty($journal_id) && $journal_id !== NULL) {
+          ?>
+
+            <li class="menu-item">
+              <a href="dashboard.php" class="menu-link">
+                <i class="menu-icon tf-icons bx bxs-dashboard"></i>
+                <div data-i18n="Boxicons">Dashboard</div>
+              </a>
+            </li>
+
+          <?php
+            }
+          }
+          ?>
 
           <li class="menu-item">
             <a href="journalview.php" class="menu-link <?php if (basename($_SERVER['PHP_SELF']) == 'allsubmissionlist.php') echo 'active'; ?>">

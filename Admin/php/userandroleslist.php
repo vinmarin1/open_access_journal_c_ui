@@ -51,8 +51,8 @@ $journallist = get_journal_list();
                                 <td width="50%"><?php echo $userlistval->last_name; ?>, <?php echo $userlistval->first_name; ?></td>
                                 <td width="50%"><?php echo $userlistval->email; ?></td>
                                 <td width="10%">
-                                    <button type="button" class="btn btn-success" onclick="updateModal(<?php echo $userlistval->author_id; ?>)"><i class="bx bx-edit-alt"></i></button>
-                                    <button type="button" class="btn btn-danger" onclick="archiveUser(<?php echo $userlistval->author_id; ?>, '<?php echo $userlistval->first_name; ?>', '<?php echo $userlistval->last_name; ?>')"><i class="bx bx-trash"></i></button>
+                                    <button type="button" class="btn btn-success" title="Update" onclick="updateModal(<?php echo $userlistval->author_id; ?>)"><i class="bx bx-edit-alt"></i></button>
+                                    <button type="button" class="btn btn-danger" title="Delete" onclick="archiveUser(<?php echo $userlistval->author_id; ?>, '<?php echo $userlistval->first_name; ?>', '<?php echo $userlistval->last_name; ?>')"><i class="bx bx-trash"></i></button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -259,6 +259,8 @@ $journallist = get_journal_list();
             first_name: $('#xfirst_name').val(),
             middle_name: $('#xmiddle_name').val(),
             last_name: $('#xlast_name').val(),
+            role: $('#xrole').val(),
+            journal_id: $('#xjournal_id').val(),
             email: $('#xemail').val(),
             phone_number: $('#xphone_number').val(),
             gender: $('#xgender').val(),
@@ -430,6 +432,20 @@ $journallist = get_journal_list();
             } else {
 
                 $('#journalDropdown').hide();
+            }
+        });
+    });
+
+    $(document).ready(function() {
+        $('#xrole').change(function() {
+            var selectedRole = $(this).val();
+
+            if (selectedRole === "Admin") {
+
+                $('#journalDropdown1').show();
+            } else {
+
+                $('#journalDropdown1').hide();
             }
         });
     });
@@ -608,7 +624,7 @@ $journallist = get_journal_list();
                                 <?php endforeach; ?>
                             </select>
                         </div>
-                        <div class="col-md-6 mb-2" id="journalDropdown" style="display: none;">
+                        <div class="col-md-6 mb-2" id="journalDropdown1" style="display: none;">
                             <label for="xjournal" class="form-label">Journal</label>
                             <select id="xjournal_id" class="form-select">
                                 <option value="Null">Select Journal</option>

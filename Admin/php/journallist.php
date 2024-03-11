@@ -45,8 +45,8 @@ $journallist = get_journal_list($journal_id);
                                 <td width="5%"><?php echo $journallistval->journal_id; ?></td>
                                 <td width="85%"><?php echo $journallistval->journal; ?></td>
                                 <td width="10%">
-                                    <button type="button" class="btn btn-success" onclick="updateModal(<?php echo $journallistval->journal_id; ?>)"><i class="bx bx-edit-alt"></i></button>
-                                    <button type="button" class="btn btn-danger" onclick="archiveJournal(<?php echo $journallistval->journal_id; ?>, '<?php echo $journallistval->journal; ?>', '<?php echo $journallistval->journal_title; ?>')"><i class="bx bx-trash"></i></button>
+                                    <button type="button" class="btn btn-success" title="Update" onclick="updateModal(<?php echo $journallistval->journal_id; ?>)"><i class="bx bx-edit-alt"></i></button>
+                                    <button type="button" class="btn btn-danger" title="Delete" onclick="archiveJournal(<?php echo $journallistval->journal_id; ?>, '<?php echo $journallistval->journal; ?>', '<?php echo $journallistval->journal_title; ?>')"><i class="bx bx-trash"></i></button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

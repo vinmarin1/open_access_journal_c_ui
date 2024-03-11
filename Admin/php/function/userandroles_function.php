@@ -159,7 +159,7 @@ if (!function_exists('get_journal_list')) {
         $updatedData = $_POST['updated_data'];
     
         $query = "UPDATE author 
-                    SET first_name = ?, middle_name = ?, last_name = ?, email = ?, 
+                    SET first_name = ?, middle_name = ?, last_name = ?, email = ?, role = ?, journal_id = ?,
                         phone_number = ?, gender = ?, birth_date = ?, orc_id = ?, 
                         url_orc_id = ?, school_name = ?, field_of_expertise = ? 
                     WHERE author_id = ?";
@@ -172,6 +172,8 @@ if (!function_exists('get_journal_list')) {
             $updatedData['middle_name'],
             $updatedData['last_name'],
             $updatedData['email'],
+            $updatedData['role'],
+            $updatedData['journal_id'],
             $updatedData['phone_number'],
             $updatedData['gender'],
             $updatedData['dob'],
