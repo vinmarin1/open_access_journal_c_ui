@@ -63,16 +63,8 @@ function renderArticleDetails(data) {
                 </div>
               </div>
            
-              ${
-                contributors.split("->")[2].includes("Primary Contact")
-                  ? `<a class="btn btn-primary btn-md" id="seeMore-btn" href="mailto:${
-                      contributors.split("->")[3]
-                    }">Contact</a>`
-                  : ""
-              }
-                <a class="btn btn-primary btn-md" id="seeMore-btn" href="./user-view.php?orcid=${
-                  contributors.split("->")[1]
-                }">View Profile</a>
+              ${contributors.split("->")[2].includes("Primary Contact") ? `<a class="btn btn-primary btn-md" id="seeMore-btn" href="mailto:${contributors.split("->")[3]}">Contact</a>` : ''}
+                <a class="btn btn-primary btn-md" id="seeMore-btn" href="./user-view.php?orcid=${contributors.split("->")[1]}">View Profile</a>
                 <a href="https://orcid.org/${contributors.split("->")[1]}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" viewBox="0 0 512 512">
                 	<path fill="#a7cf36" d="M294.75 188.19h-45.92V342h47.47c67.62 0 83.12-51.34 83.12-76.91c0-41.64-26.54-76.9-84.67-76.9M256 8C119 8 8 119 8 256s111 248 248 248s248-111 248-248S393 8 256 8m-80.79 360.76h-29.84v-207.5h29.84zm-14.92-231.14a19.57 19.57 0 1 1 19.57-19.57a19.64 19.64 0 0 1-19.57 19.57M300 369h-81V161.26h80.6c76.73 0 110.44 54.83 110.44 103.85C410 318.39 368.38 369 300 369" />
@@ -84,7 +76,7 @@ function renderArticleDetails(data) {
         </div>
        `;
       }
-    } else if (item.contributors == null) {
+    }else if (item.contributors == null){
       for (const contributors of item.author.split(",")) {
         contributorsHTML += `
         <div id="popup-link" class="d-flex">
@@ -113,6 +105,7 @@ function renderArticleDetails(data) {
       }
     }
 
+
     articleElement.innerHTML = `
     
       <div class="content-over">
@@ -126,11 +119,7 @@ function renderArticleDetails(data) {
                 </div>
                 <div class="volume">
                     <p style= "font-size: small; color: gray" >Journal Issue and Volume</p>
-                    <p href="./all-issues??issue=${
-                      item.issues_id
-                    }"><a class="text-muted" href="./all-issues.php?issue=${
-      item.issues_id
-    }">${item.issue_title}</a></p>
+                    <p href="./all-issues??issue=${item.issues_id}"><a class="text-muted" href="./all-issues.php?issue=${item.issues_id}">${item.issue_title}</a></p>
                 </div>
             </div>
         </div>
@@ -173,9 +162,7 @@ function renderArticleDetails(data) {
               <br/>
               
               <iframe
-                  src="https://qcuj.online/Files/final-file/${encodeURIComponent(
-                    item.file_name
-                  )}"
+                  src="https://qcuj.online/Files/final-file/${encodeURIComponent(item.file_name)}"
                   width="100%"
                   height="800px"
                   loading="lazy"
@@ -192,15 +179,11 @@ function renderArticleDetails(data) {
                       <p style="font-size:small; margin-left: 5px" >VIEWS</p>
                   </div>
                   <div class="downloads">
-                      <p style="font-size:large; text-align: center;">${
-                        item.total_downloads
-                      }</p>
+                      <p style="font-size:large; text-align: center;">${item.total_downloads}</p>
                       <p style="font-size:small; margin-left: 5px" >DOWNLOADS</p>
                   </div>
                   <div class="citations">
-                      <p style="font-size:large; text-align: center;">${
-                        item.total_citations
-                      }</p>
+                      <p style="font-size:large; text-align: center;">${item.total_citations}</p>
                       <p style="font-size:small; margin-left: 5px" >CITATIONS</p>
                   </div>
               </div>
@@ -221,24 +204,18 @@ function renderArticleDetails(data) {
                   <div>
                   <h4>Share with:</h4>
 
-                  <a  class="share-btn" href="https://www.facebook.com/sharer/sharer.php?u=https://qcuj.online/PHP/article-details.php?articleId=${
-                    item.article_id
-                  }" target="_blank">
+                  <a  class="share-btn" href="https://www.facebook.com/sharer/sharer.php?u=https://qcuj.online/PHP/article-details.php?articleId=${item.article_id}" target="_blank">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256">
                       <path fill="#1877f2" d="M256 128C256 57.308 198.692 0 128 0C57.308 0 0 57.308 0 128c0 63.888 46.808 116.843 108 126.445V165H75.5v-37H108V99.8c0-32.08 19.11-49.8 48.348-49.8C170.352 50 185 52.5 185 52.5V84h-16.14C152.959 84 148 93.867 148 103.99V128h35.5l-5.675 37H148v89.445c61.192-9.602 108-62.556 108-126.445" />
                       <path fill="#fff" d="m177.825 165l5.675-37H148v-24.01C148 93.866 152.959 84 168.86 84H185V52.5S170.352 50 156.347 50C127.11 50 108 67.72 108 99.8V128H75.5v37H108v89.445A128.959 128.959 0 0 0 128 256a128.9 128.9 0 0 0 20-1.555V165z" />
                     </svg>
                   </a>
-                  <a  class="share-btn"  href="http://www.linkedin.com/shareArticle?mini=true&url=https://qcuj.online/PHP/article-details.php?articleId=${
-                    item.article_id
-                  }" target="_blank">
+                  <a  class="share-btn"  href="http://www.linkedin.com/shareArticle?mini=true&url=https://qcuj.online/PHP/article-details.php?articleId=${item.article_id}" target="_blank">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256">
                       <path fill="#0a66c2" d="M218.123 218.127h-37.931v-59.403c0-14.165-.253-32.4-19.728-32.4c-19.756 0-22.779 15.434-22.779 31.369v60.43h-37.93V95.967h36.413v16.694h.51a39.907 39.907 0 0 1 35.928-19.733c38.445 0 45.533 25.288 45.533 58.186zM56.955 79.27c-12.157.002-22.014-9.852-22.016-22.009c-.002-12.157 9.851-22.014 22.008-22.016c12.157-.003 22.014 9.851 22.016 22.008A22.013 22.013 0 0 1 56.955 79.27m18.966 138.858H37.95V95.967h37.97zM237.033.018H18.89C8.58-.098.125 8.161-.001 18.471v219.053c.122 10.315 8.576 18.582 18.89 18.474h218.144c10.336.128 18.823-8.139 18.966-18.474V18.454c-.147-10.33-8.635-18.588-18.966-18.453" />
                     </svg>
                   </a>
-                  <a  class="share-btn"  href="http://www.linkedin.com/shareArticle?mini=true&url=https://qcuj.online/PHP/article-details.php?articleId=${
-                    item.article_id
-                  }" target="_blank">
+                  <a  class="share-btn"  href="http://www.linkedin.com/shareArticle?mini=true&url=https://qcuj.online/PHP/article-details.php?articleId=${item.article_id}" target="_blank">
                    Copy link
                   </a>
                 
@@ -257,80 +234,46 @@ function renderArticleDetails(data) {
     `;
     function formatContributors(authors) {
       if (authors != null) {
-        return authors
-          .split(";")
-          .map((author, index, array) =>
-            index === array.length - 1 && array.length > 1
-              ? `& ${author}`
-              : author
-          )
-          .join(", ");
+          return authors
+              .split(";")
+              .map((author, index, array) => (index === array.length - 1 && array.length > 1 ? `& ${author}` : author))
+              .join(", ");
       }
       return "";
     }
-
+  
     let contributors_full = formatContributors(item.contributors_B);
     let contributors_initial = formatContributors(item.contributors_B);
-
+    
+    
     const citationSelect = document.querySelector("select");
     citationSelect.addEventListener("change", function () {
       const selectedCitation = citationSelect.value;
-
+     
       citationContent.innerHTML = `   
         <ul>
           <li> 
             <h4 class="small"><b>${selectedCitation} Citation</b></h4>
             <p>
               ${
-                item.contributors != null
-                  ? selectedCitation === "APA"
-                    ? `${contributors_full} (${
-                        item.publication_date.split(" ")[3]
-                      }). ${item.title}. ${item.journal}, ${
-                        item.volume.split(" ")[1]
-                      }(1). https://openaccessjournalcui-production.up.railway.app/PHP/article-details.php?articleId=${
-                        item.article_id
-                      }`
-                    : selectedCitation === "MLA"
-                    ? `${contributors_initial}. "${item.title}." ${
-                        item.journal
-                      }, ${item.publication_date.split(" ")[3]}, ${
-                        item.volume.split(" ")[1]
-                      }(1).`
-                    : selectedCitation === "Chicago"
-                    ? `${contributors_initial}. "${item.title}." ${
-                        item.journal
-                      } ${item.volume.split(" ")[1]}, no. 1 (${
-                        item.publication_date.split(" ")[3]
-                      }).  https://openaccessjournalcui-production.up.railway.app/PHP/article-details.php?articleId=${
-                        item.article_id
-                      }`
-                    : `${item.contributors_A.split(";").join(", ")}. ${
-                        item.title
-                      }. ${item.journal}.` +
-                      ` https://openaccessjournalcui-production.up.railway.app/PHP/article-details.php?articleId=${item.article_id}`
-                  : selectedCitation === "APA"
-                  ? `${item.title}(${item.publication_date.split(" ")[3]}). ${
-                      item.journal
-                    }, ${
-                      item.volume.split(" ")[1]
-                    }(1). https://openaccessjournalcui-production.up.railway.app/PHP/article-details.php?articleId=${
-                      item.article_id
-                    }`
+                item.contributors != null ?
+                  selectedCitation === "APA"
+                    ? `${contributors_full} (${item.publication_date.split(" ")[3]}). ${item.title}. ${item.journal}, ${item.volume.split(" ")[1]}(1). https://openaccessjournalcui-production.up.railway.app/PHP/article-details.php?articleId=${item.article_id}`
                   : selectedCitation === "MLA"
-                  ? `"${item.title}." ${item.journal}, ${
-                      item.publication_date.split(" ")[3]
-                    }, ${item.volume.split(" ")[1]}(1).`
+                    ? `${contributors_initial}. "${item.title}." ${item.journal}, ${item.publication_date.split(" ")[3]}, ${item.volume.split(" ")[1]}(1).`
                   : selectedCitation === "Chicago"
-                  ? `${contributors_initial}. "${item.title}." ${
-                      item.journal
-                    } ${item.volume.split(" ")[1]}, no. 1 (${
-                      item.publication_date.split(" ")[3]
-                    }).  https://openaccessjournalcui-production.up.railway.app/PHP/article-details.php?articleId=${
-                      item.article_id
-                    }`
-                  : `${item.title}. ${item.journal}.` +
-                    ` https://openaccessjournalcui-production.up.railway.app/PHP/article-details.php?articleId=${item.article_id}`
+                    ? `${contributors_initial}. "${item.title}." ${item.journal} ${item.volume.split(" ")[1]}, no. 1 (${item.publication_date.split(" ")[3]}).  https://openaccessjournalcui-production.up.railway.app/PHP/article-details.php?articleId=${item.article_id}`
+                  : `${item.contributors_A.split(";").join(", ")}. ${item.title}. ${item.journal}.`
+                    + ` https://openaccessjournalcui-production.up.railway.app/PHP/article-details.php?articleId=${item.article_id}`
+                : 
+                  selectedCitation === "APA"
+                      ? `${item.title}(${item.publication_date.split(" ")[3]}). ${item.journal}, ${item.volume.split(" ")[1]}(1). https://openaccessjournalcui-production.up.railway.app/PHP/article-details.php?articleId=${item.article_id}`
+                  : selectedCitation === "MLA"
+                      ? `"${item.title}." ${item.journal}, ${item.publication_date.split(" ")[3]}, ${item.volume.split(" ")[1]}(1).`
+                  : selectedCitation === "Chicago"
+                      ? `${contributors_initial}. "${item.title}." ${item.journal} ${item.volume.split(" ")[1]}, no. 1 (${item.publication_date.split(" ")[3]}).  https://openaccessjournalcui-production.up.railway.app/PHP/article-details.php?articleId=${item.article_id}`
+                  : `${item.title}. ${item.journal}.`
+                      + ` https://openaccessjournalcui-production.up.railway.app/PHP/article-details.php?articleId=${item.article_id}`
               }
             </p>
           </li>
@@ -344,61 +287,46 @@ function renderArticleDetails(data) {
         <li> 
           <h4 class="small"><b>${initialSelectedCitation} Citation</b></h4>
           <p class="cited" id="cited">
-          ${
-            item.contributors != null
-              ? `${contributors_full} (${
-                  item.publication_date.split(" ")[3]
-                }). ${item.title}. ${item.journal}, ${
-                  item.volume.split(" ")[1]
-                }(1). https://openaccessjournalcui-production.up.railway.app/PHP/article-details.php?articleId=${
-                  item.article_id
-                }`
-              : `${item.title}(${item.publication_date.split(" ")[3]}).${
-                  item.journal
-                }, ${
-                  item.volume.split(" ")[1]
-                }(1). https://openaccessjournalcui-production.up.railway.app/PHP/article-details.php?articleId=${
-                  item.article_id
-                }`
+          ${item.contributors != null ? 
+            `${contributors_full} (${item.publication_date.split(" ")[3]}). ${item.title}. ${item.journal}, ${item.volume.split(" ")[1]}(1). https://openaccessjournalcui-production.up.railway.app/PHP/article-details.php?articleId=${item.article_id}`
+            : 
+            `${item.title}(${item.publication_date.split(" ")[3]}).${item.journal}, ${item.volume.split(" ")[1]}(1). https://openaccessjournalcui-production.up.railway.app/PHP/article-details.php?articleId=${item.article_id}`
+
           }
           </p>
         </li>
       </ul>
     `;
 
-    const copyBtn = document.getElementById("copy-btn");
-    const inlineBtn = document.getElementById("inline-btn");
+    const copyBtn = document.getElementById("copy-btn")
+    const inlineBtn = document.getElementById("inline-btn")
 
-    copyBtn.addEventListener("click", () => {
-      navigator.clipboard.writeText(
-        citationContent.querySelector("p").innerHTML
-      );
-      handleDownloadLog(item.article_id, "citation");
+    copyBtn.addEventListener("click",()=> {
+      navigator.clipboard.writeText(citationContent.querySelector("p").innerHTML);
+      handleDownloadLog(item.article_id,"citation");
       Swal.fire({
         html: '<h4 style="color: #0858a4; font-family: font-family: Arial, Helvetica, sans-serif">Successfully copied reference in your clipboard.</h4>',
-        icon: "success",
-      });
-    });
-
-    if (inlineBtn) {
-      inlineBtn.addEventListener("click", () => {
-        navigator.clipboard.writeText(
-          citationContent.querySelector("p").innerHTML
-        );
-        handleDownloadLog(item.article_id, "citation");
-        Swal.fire({
-          html: '<h4 style="color: #0858a4; font-family: font-family: Arial, Helvetica, sans-serif">Successfully copied reference in your clipboard.</4>',
-          icon: "success",
-        });
-      });
-    }
-
+        icon: 'success',
+      })
+    })
+    
+    if (inlineBtn){
+    inlineBtn.addEventListener("click",()=> {
+      navigator.clipboard.writeText(citationContent.querySelector("p").innerHTML);
+      handleDownloadLog(item.article_id,"citation");
+      Swal.fire({
+        html: '<h4 style="color: #0858a4; font-family: font-family: Arial, Helvetica, sans-serif">Successfully copied reference in your clipboard.</4>',
+        icon: 'success',
+      })
+    })}
+ 
     const readBtn = articleElement.querySelector(`#read-btn`);
 
     const downloadBtn = articleElement.querySelector(`#download-btn`);
     const epubBtn = articleElement.querySelector(`#epub-btn`);
     const citeBtn = articleElement.querySelector(`#cite-btn`);
     const loginRedirect = articleElement.querySelector(`#login-redirect`);
+    // const viewFullArticle = articleElement.querySelector(`#btn1`);
 
     if (active) {
       downloadBtn.style.display = "inline-block";
@@ -410,34 +338,35 @@ function renderArticleDetails(data) {
       epubBtn.style.display = "none";
       readBtn.style.display = "none";
       loginRedirect.style.display = "inline-block";
-
+      
       readBtn.addEventListener("click", () => {
         window.location.href = "../php/login.php";
       });
       downloadBtn.addEventListener("click", () => {
-        window.location.href = "../PHP/login.php";
+          window.location.href = "../PHP/login.php";
       });
       epubBtn.addEventListener("click", () => {
         window.location.href = "../PHP/login.php";
       });
+  
+
     }
     if (readBtn) {
-      readBtn.addEventListener("click", () => {
-        document.querySelector("iframe").classList.remove("d-none");
-      });
-    }
-
+    readBtn.addEventListener("click", () => {
+      document.querySelector("iframe").classList.remove("d-none")
+    });
+  }
+    
+  
     if (downloadBtn) {
       downloadBtn.addEventListener("click", () => {
-        try {
-          let fileExtension = item.file_name.split(".").pop();
-          let fileUrl = `https://qcuj.online/Files/final-file/${encodeURIComponent(
-            item.file_name
-          )}`;
-
+        try{
+          let fileExtension = item.file_name.split('.').pop();
+          let fileUrl = `https://qcuj.online/Files/final-file/${encodeURIComponent(item.file_name)}`;
+          
           if (fileExtension === "docx") {
-            createCloudConvertJob(item.file_name, "docx", "pdf");
-          } else if (fileExtension === "pdf") {
+            createCloudConvertJob(item.file_name,"docx", "pdf");
+          }else if (fileExtension === "pdf") {
             let link = document.createElement("a");
             link.setAttribute("href", fileUrl);
             link.setAttribute("download", "");
@@ -446,8 +375,8 @@ function renderArticleDetails(data) {
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
-          } else {
-            createCloudConvertJob(item.file_name, fileExtension, "pdf");
+          }else{
+            createCloudConvertJob(item.file_name, fileExtension, "pdf")
           }
           handleDownloadLog(item.article_id, "download");
           Swal.fire({
@@ -456,38 +385,41 @@ function renderArticleDetails(data) {
             <p style="font-size: 16px;">If it doesn\'t start automatically, <a href="${fileUrl}">click here</a>.</p>'
 
             `,
-            icon: "success",
-          });
-        } catch (error) {
-          console.log(error, "---------");
+            icon: 'success',
+          })
+        }catch(error){
+        console.log(error,"---------")
           Swal.fire({
             html: '<h4 style="color: #0858a4; font-family: font-family: Arial, Helvetica, sans-serif">Failed to download. No file available</h4>',
-            icon: "warning",
-          });
+            icon: 'warning',
+          })
         }
-      });
+
+       
+        
+    });
     }
     if (epubBtn) {
       epubBtn.addEventListener("click", () => {
-        try {
+        try{
           Swal.fire({
             html: '<h4 style="color: #0858a4; font-family: font-family: Arial, Helvetica, sans-serif">Download Started. Your download will start shortly.</h4>',
-            icon: "success",
-          });
-          var fileExtension = item.file_name.split(".").pop();
-          createCloudConvertJob(item.file_name, fileExtension, "epub");
-          handleDownloadLog(item.article_id, "download");
-        } catch (error) {
+            icon: 'success',
+          })
+          var fileExtension = item.file_name.split('.').pop();
+          createCloudConvertJob(item.file_name, fileExtension, "epub")
+          handleDownloadLog(item.article_id,"download");
+        }catch(error){
           Swal.fire({
             html: '<h4 style="color: #0858a4; font-family: font-family: Arial, Helvetica, sans-serif">Failed to download. No article file available.</h4>',
-            icon: "warning",
-          });
+            icon: 'warning',
+          })
         }
       });
     }
     if (citeBtn) {
       citeBtn.addEventListener("click", () => {
-        toggleCiteModal();
+        toggleCiteModal()
       });
     }
     articleContainer.appendChild(articleElement);
@@ -501,10 +433,10 @@ function navigateToArticle(articleId) {
 async function renderRecommended(data) {
   const container = document.querySelector(".recommendation-article");
   const articleContainer = document.getElementById("similar-articles");
-
-  if (data.length < 1) {
-    container.classList.add("d-none");
-    console.log("hello");
+  
+  if (data.length < 1){
+    container.classList.add("d-none")
+    console.log("hello")
   }
   await data.forEach((article) => {
     const articleElement = document.createElement("div");
@@ -527,13 +459,15 @@ async function renderRecommended(data) {
   });
 }
 
-const closeBtn = document.getElementById("closeCiteModal");
+
+
+const closeBtn = document.getElementById("closeCiteModal")
 closeBtn.addEventListener("click", () => {
-  toggleCiteModal();
-});
+  toggleCiteModal()
+})
 
 function toggleCiteModal() {
-  const citationElement = document.getElementById("citation-container");
+  const citationElement = document.getElementById("citation-container")
 
   const isModalVisible = citationElement.classList.contains("d-none");
 
@@ -545,3 +479,4 @@ function toggleCiteModal() {
     citationElement.classList.add("d-none");
   }
 }
+
