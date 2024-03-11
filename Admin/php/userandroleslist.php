@@ -741,13 +741,13 @@ $journallist = get_journal_list();
                 <div class="modal-body">
                     <!-- <div class="row mb-2">
                         <div class="col-md-12 mb-2">
-                            <input type="hidden" id="xroleid" class="form-control"/>
                             <label for="xrole" class="form-label">Role</label>
                             <input type="text" id="xrole" class="form-control" placeholder="Role" required/>
                         </div>
                     </div> -->
                     <div class="row mb-2">
                         <div class="col-md-12 mb-2">
+                            <input type="hidden" id="xroleid" class="form-control"/>
                             <label for="xrole_name" class="form-label">Role Name</label>
                             <input type="text" id="xrole_name" class="form-control" placeholder="Role Name" required/>
                         </div>
