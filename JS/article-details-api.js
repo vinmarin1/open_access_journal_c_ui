@@ -58,7 +58,7 @@ function renderArticleDetails(data) {
                 </div> -->
                 <div class="col-md-10 col-12 prof-info">
                   <!-- Content for the second column -->
-                  <p class="!font-bold">${contributors.split("->")[0]}</p>
+                  <h5 class="!font-bold">${contributors.split("->")[0]}</h5>
                   <span class="text-xs">${contributors.split("->")[2]}</span>
                 </div>
               </div>
