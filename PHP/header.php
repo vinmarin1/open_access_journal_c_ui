@@ -11,8 +11,7 @@
     <div class="d-none d-sm-flex gap-2 header" id="header-container">
         <img class="img-logo" src="../images/qcu-logo.webp" alt="">
         <div class="logotitle d-flex flex-column gap-1">
-          <a href="https://qcu.edu.ph/" style="text-decoration:none">QUEZON CITY UNIVERSITY</a>
-          <span>OPEN ACCESS JOURNAL</span>
+          <a href="https://qcu.edu.ph/" style="text-decoration:none">QUEZON CITY UNIVERSITY JOURNALS</a>
         </div>
     </div>
 
