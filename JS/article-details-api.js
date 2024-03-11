@@ -122,7 +122,7 @@ function renderArticleDetails(data) {
             <div class="after-title">
                 <div class="authors" >
                     <p style= "font-size: small; color: gray" >Author/s</p>
-                    <div class="d-flex gap-1">${contributorsHTML}</div>
+                    <div class="d-flex flex-wrap gap-1">${contributorsHTML}</div>
                 </div>
                 <div class="volume">
                     <p style= "font-size: small; color: gray" >Journal Issue and Volume</p>
