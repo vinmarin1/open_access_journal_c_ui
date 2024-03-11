@@ -90,8 +90,8 @@ $answer_list= get_answer_list();
                                 <?php } ?>
                                 </td>
                                 <td width="10%">
-                                    <button type="button" class="btn btn-outline-success" onclick="updateModal(<?php echo $answer_listval->reviewer_questionnaire_id; ?>)"><i class="bx bx-edit-alt"></i></button>
-                                    <button type="button" class="btn btn-outline-danger" onclick="archiveJournal(<?php echo $answer_listval->reviewer_questionnaire_id; ?>, '<?php echo $answer_listval->question; ?>')"><i class="bx bx-trash"></i></button>
+                                    <button type="button" class="btn btn-success" onclick="updateModal(<?php echo $answer_listval->reviewer_questionnaire_id; ?>)"><i class="bx bx-edit-alt"></i></button>
+                                    <button type="button" class="btn btn-danger" onclick="archiveJournal(<?php echo $answer_listval->reviewer_questionnaire_id; ?>, '<?php echo $answer_listval->question; ?>')"><i class="bx bx-trash"></i></button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

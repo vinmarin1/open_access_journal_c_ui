@@ -475,7 +475,7 @@ table {
                                                                                     if ($matchingReviewer) { ?>
                                                                                         <td width="84%"><?php echo $matchingReviewer->last_name . ', ' . $matchingReviewer->first_name; ?></td>
                                                                                         <td width="3%">
-                                                                                            <?php echo ($article_reviewerval->comment_accessible == 1) ? '<span style="color: green;">Accept</span>' : ''; ?>
+                                                                                            <?php echo ($article_reviewerval->comment_accessible == 1) ? '<span style="color: green;">Accepted</span>' : ''; ?>
                                                                                         </td>
                                                                                         <td colspan="3" style="text-align: right;">
                                                                                             <?php if ((strpos($article_reviewerval->round, 'Round 1') !== false) && ($article_reviewerval->answer != 0)): ?>
@@ -1175,17 +1175,29 @@ table {
                                                     <td width="5">
                                                         <?php echo $userlistval->author_id; ?>
                                                     </td>
-                                                    <td width="85%">
+                                                    <td width="80%">
                                                         <a href="javascript:void(0);" onclick="openPageCentered('../../PHP/reviewerdashboard.php?author_id=<?php echo $userlistval->author_id; ?>')">
-                                                            <?php echo $userlistval->author_id . '-'; ?>
                                                             <?php echo $userlistval->last_name . ', '; ?> 
-                                                            <?php echo $userlistval->first_name . ' '; ?> 
-                                                        </a>
+                                                            <?php echo $userlistval->first_name . ' '; ?>
+                                                        </a><br>
+                                                        <?php 
+                                                            $expertise = $userlistval->field_of_expertise;
+                                                            $affiliation = $userlistval->afiliations;
+
+                                                            $maxLength = 30;
+
+                                                            if(strlen($expertise) > $maxLength) {
+                                                                $expertise = substr($expertise, 0, $maxLength) . '...';
+                                                            }
+
+                                                            if(strlen($affiliation) > $maxLength) {
+                                                                $affiliation = substr($affiliation, 0, $maxLength) . '...';
+                                                            }
+
+                                                            echo 'Expertise: ' . $expertise . '<br>';
+                                                            echo 'Affiliation: ' . $affiliation;
+                                                        ?>
                                                         <div id="details_<?php echo $userlistval->author_id; ?>" style="display: none;">
-                                                            <br>
-                                                            <?php echo 'Expertise: ' . $userlistval->field_of_expertise; ?> 
-                                                            <br>
-                                                            <?php echo 'Role: ' . $userlistval->role; ?> 
                                                             <br>
                                                             <?php echo "Reviews completed: " . $totalAcceptCount; ?> 
                                                             <br>
