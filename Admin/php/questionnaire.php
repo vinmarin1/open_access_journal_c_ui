@@ -21,7 +21,7 @@ $answer_list= get_answer_list();
             </div>
 
             <div class="table-responsive text-nowrap">
-                <table class="table table" id="DataTable">
+                <table class="table table" id="DataTable1">
                     <thead>
                         <tr>
                             <th>Question Type</th>
@@ -63,7 +63,7 @@ $answer_list= get_answer_list();
             </div>
 
             <div class="table-responsive text-nowrap">
-                <table class="table table-striped" id="DataTable1">
+                <table class="table table-striped" id="DataTable">
                     <thead>
                         <tr>
                             <th>Question ID</th>
@@ -90,8 +90,8 @@ $answer_list= get_answer_list();
                                 <?php } ?>
                                 </td>
                                 <td width="10%">
-                                    <button type="button" class="btn btn-outline-success" onclick="updateModal(<?php echo $answer_listval->reviewer_questionnaire_id; ?>)">Update</button>
-                                    <button type="button" class="btn btn-outline-danger" onclick="archiveJournal(<?php echo $answer_listval->reviewer_questionnaire_id; ?>, '<?php echo $answer_listval->question; ?>')">Archive</button>
+                                    <button type="button" class="btn btn-outline-success" onclick="updateModal(<?php echo $answer_listval->reviewer_questionnaire_id; ?>)"><i class="bx bx-edit-alt"></i></button>
+                                    <button type="button" class="btn btn-outline-danger" onclick="archiveJournal(<?php echo $answer_listval->reviewer_questionnaire_id; ?>, '<?php echo $answer_listval->question; ?>')"><i class="bx bx-trash"></i></button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -130,19 +130,10 @@ $answer_list= get_answer_list();
 
     $(document).ready(function() {
         var dataTable = $('#DataTable').DataTable({
-            "paging": false,
-            "ordering": false,
-            "searching": false,
-            "info": false 
-        });
-    });
-
-    $(document).ready(function() {
-        var dataTable = $('#DataTable1').DataTable({
-            "paging": false,
+            "paging": true,
             "ordering": true,
-            "searching": false,
-            "info": false 
+            "searching": true,
+            "info": true 
         });
     });
 

@@ -62,8 +62,8 @@ $announcementlist = get_announcement_list();
                                     <td width="10%"><?php echo  $announcementlistval->announcement; ?></td>
                                     <td width="10%"><?php echo  $announcementlistval->upload_image; ?></td>
                                     <td width="10%">
-                                <button type="button" class="btn btn-outline-success" onclick="updateModal(<?php echo $announcementlistval->announcement_id; ?>)">Update</button>
-                                <button type="button" class="btn btn-outline-danger" onclick="archiveAnnouncement(<?php echo $announcementlistval->announcement_id; ?>, '<?php echo $announcementlistval->title; ?>', '<?php echo $announcementlistval->announcement_description; ?>')">Archive</button>
+                                    <button type="button" class="btn btn-success" onclick="updateModal(<?php echo $announcementlistval->announcement_id; ?>)"><i class="bx bx-edit-alt"></i></button>
+                                    <button type="button" class="btn btn-danger" onclick="archiveAnnouncement(<?php echo $announcementlistval->announcement_id; ?>, '<?php echo $announcementlistval->title; ?>', '<?php echo $announcementlistval->announcement_description; ?>')"><i class="bx bx-trash"></i></button>
                                   </td>
                             </tr>
                         <?php endforeach; ?>

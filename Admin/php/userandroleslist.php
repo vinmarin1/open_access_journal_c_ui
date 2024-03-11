@@ -51,8 +51,8 @@ $journallist = get_journal_list();
                                 <td width="50%"><?php echo $userlistval->last_name; ?>, <?php echo $userlistval->first_name; ?></td>
                                 <td width="50%"><?php echo $userlistval->email; ?></td>
                                 <td width="10%">
-                                    <button type="button" class="btn btn-outline-success" onclick="updateModal(<?php echo $userlistval->author_id; ?>)">Update</button>
-                                    <button type="button" class="btn btn-outline-danger" onclick="archiveUser(<?php echo $userlistval->author_id; ?>, '<?php echo $userlistval->first_name; ?>', '<?php echo $userlistval->last_name; ?>')">Archive</button>
+                                    <button type="button" class="btn btn-success" onclick="updateModal(<?php echo $userlistval->author_id; ?>)"><i class="bx bx-edit-alt"></i></button>
+                                    <button type="button" class="btn btn-danger" onclick="archiveUser(<?php echo $userlistval->author_id; ?>, '<?php echo $userlistval->first_name; ?>', '<?php echo $userlistval->last_name; ?>')"><i class="bx bx-trash"></i></button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -86,8 +86,8 @@ $journallist = get_journal_list();
                                 <td width="35%"><?php echo $rolelistval->role; ?></td>
                                 <td width="50%"><?php echo $rolelistval->role_name; ?></td>
                                 <td width="10%">
-                                    <button type="button" class="btn btn-outline-success" onclick="updateModalRole('<?php echo $rolelistval->admin_role_id; ?>')">Update</button>
-                                    <button type="button" class="btn btn-outline-danger" onclick="archiveRole(<?php echo $rolelistval->admin_role_id; ?>, '<?php echo $rolelistval->role; ?>', '<?php echo $rolelistval->role_name; ?>')">Archive</button>
+                                    <button type="button" class="btn btn-success" onclick="updateModalRole('<?php echo $rolelistval->admin_role_id; ?>')"><i class="bx bx-edit-alt"></i></button>
+                                    <button type="button" class="btn btn-danger" onclick="archiveRole(<?php echo $rolelistval->admin_role_id; ?>, '<?php echo $rolelistval->role; ?>', '<?php echo $rolelistval->role_name; ?>')"><i class="bx bx-trash"></i></button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
