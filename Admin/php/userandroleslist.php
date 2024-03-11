@@ -75,7 +75,6 @@ $journallist = get_journal_list();
                         <tr>
                             <th>ID</th>
                             <th>Role</th>
-                            <th>Title</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -83,8 +82,7 @@ $journallist = get_journal_list();
                         <?php foreach ($rolelist as $rolelistval): ?>
                             <tr>
                                 <td width="5%"><?php echo $rolelistval->admin_role_id; ?></td>
-                                <td width="35%"><?php echo $rolelistval->role; ?></td>
-                                <td width="50%"><?php echo $rolelistval->role_name; ?></td>
+                                <td width="85%"><?php echo $rolelistval->role_name; ?></td>
                                 <td width="10%">
                                     <button type="button" class="btn btn-success" onclick="updateModalRole('<?php echo $rolelistval->admin_role_id; ?>')"><i class="bx bx-edit-alt"></i></button>
                                     <button type="button" class="btn btn-danger" onclick="archiveRole(<?php echo $rolelistval->admin_role_id; ?>, '<?php echo $rolelistval->role; ?>', '<?php echo $rolelistval->role_name; ?>')"><i class="bx bx-trash"></i></button>
@@ -344,7 +342,7 @@ $journallist = get_journal_list();
                     console.log('Role Data:', roleData);
 
                     $('#xroleid').val(roleData.admin_role_id);
-                    $('#xrole').val(roleData.role);
+                    // $('#xrolex').val(roleData.role);
                     $('#xrole_name').val(roleData.role_name);
                     $('#updateRoleModal').modal('show');
                 }
@@ -362,7 +360,6 @@ $journallist = get_journal_list();
         
         var roleId = $('#xroleid').val();
         var updatedRoleData = {
-            role: $('#xrole').val(),
             role_name: $('#xrole_name').val(),
         };
 
@@ -617,7 +614,7 @@ $journallist = get_journal_list();
                     <div class="row mb-2">
                         <div class="col-md-6 mb-2">
                             <label for="xrole" class="form-label">Role</label>
-                            <select id="xrole" class="form-select">
+                            <select id="xrolex" class="form-select">
                                 <option value="Null">Select Role</option>
                                 <?php foreach ($rolelist as $role): ?>
                                     <option value="<?php echo $role->role; ?>"><?php echo $role->role_name; ?></option>
@@ -742,13 +739,13 @@ $journallist = get_journal_list();
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="row mb-2">
+                    <!-- <div class="row mb-2">
                         <div class="col-md-12 mb-2">
                             <input type="hidden" id="xroleid" class="form-control"/>
                             <label for="xrole" class="form-label">Role</label>
                             <input type="text" id="xrole" class="form-control" placeholder="Role" required/>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="row mb-2">
                         <div class="col-md-12 mb-2">
                             <label for="xrole_name" class="form-label">Role Name</label>
