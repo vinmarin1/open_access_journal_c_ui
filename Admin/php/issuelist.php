@@ -204,7 +204,7 @@ $journallist = get_journal_list();
     
     function archiveIssue(id, volume, title) {
         $('#archiveModal').modal('show');
-        $('#archiveModalTitle').text('Archive Issue');
+        $('#archiveModalTitle').text('Delete Issue');
         $('#issuesInfo').html('<strong>volume:</strong> ' + volume + ' <br><strong>Title:</strong> ' + title + '<br><strong>ID:</strong> ' + id);
 
         $('#archiveModalSave').off().on('click', function () {

@@ -204,7 +204,7 @@ $faqslist = get_faqs_list();
     
     function archiveFaqs(id, question, answer) {
         $('#archiveModal').modal('show');
-        $('#archiveModalTitle').text('Archive FAQS');
+        $('#archiveModalTitle').text('Delete FAQS');
         $('#faqsInfo').html('<strong>Question:</strong> ' + question + ' <br><strong>Answer:</strong> ' + answer + '<br><strong>ID:</strong> ' + id);
 
         $('#archiveModalSave').off().on('click', function () {
