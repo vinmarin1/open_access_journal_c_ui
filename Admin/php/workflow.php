@@ -1404,6 +1404,7 @@ table {
                         const articleSelectedElement = document.createElement('div');
                         articleSelectedElement.innerHTML = `
                             <h5>Selected Article</h5><p><b>Article ID: </b>${data.selected_article.article_id}</p>
+                            <p><b>Contributors: </b>${data.selected_article.contributors}</p>
                             <div class="card accordion-item mb-4">
                                 <h2 class="accordion-header" id="headingSelected">
                                     <button type="button" class="accordion-button" data-bs-toggle="collapse" data-bs-target="#accordionSelected" aria-expanded="true" aria-controls="accordionSelected">${data.selected_article.title}</button>
@@ -1427,6 +1428,11 @@ table {
                                     </div>
                                     <div class="col-md-6 text-end">
                                         <a href="javascript:void(0);" onclick="viewArticle(${article.article_id})" class="btn btn-sm btn-dark">View More</a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 text-start">
+                                        <p><b>Contributors: </b>${article.contributors}</p>
                                     </div>
                                 </div>
                                 <div class="card accordion-item mb-4">
