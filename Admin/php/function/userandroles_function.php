@@ -225,15 +225,12 @@ if (!function_exists('get_journal_list')) {
         $roleId = $_POST['role_id'];
         $updatedRoleData = $_POST['updated_roledata'];
 
-        $query = "UPDATE admin_role 
-                SET role = ?, role_name = ?
-                WHERE admin_role_id = ?";
+        $query = "UPDATE admin_role SET role_name = ? WHERE admin_role_id = ?";
         
         $pdo = connect_to_database();
     
         $stm = $pdo->prepare($query);
         $check = $stm->execute([
-            $updatedRoleData['role'],
             $updatedRoleData['role_name'],
             $roleId
         ]);
