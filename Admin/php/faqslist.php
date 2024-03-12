@@ -57,8 +57,8 @@ $faqslist = get_faqs_list();
                                 <td width="85%"><?php echo  $faqslistval->question; ?></td>
                                 <td width="85%"><?php echo  $faqslistval->category; ?></td>
                                 <td width="10%">
-                                    <button type="button" class="btn btn-success" onclick="updateModal(<?php echo $faqslistval->id; ?>)"><i class="bx bx-edit-alt"></i></button>
-                                    <button type="button" class="btn btn-danger" onclick="archiveFaqs(<?php echo $faqslistval->id; ?>, '<?php echo $faqslistval->question; ?>', '<?php echo $faqslistval->answer; ?>')"><i class="bx bx-trash"></i></button>
+                                    <button type="button" class="btn btn-success" title="Update" onclick="updateModal(<?php echo $faqslistval->id; ?>)"><i class="bx bx-edit-alt"></i></button>
+                                    <button type="button" class="btn btn-danger" title="Delete" onclick="archiveFaqs(<?php echo $faqslistval->id; ?>, '<?php echo $faqslistval->question; ?>', '<?php echo $faqslistval->answer; ?>')"><i class="bx bx-trash"></i></button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

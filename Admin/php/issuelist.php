@@ -47,9 +47,9 @@ $journallist = get_journal_list();
                                 <td width="5%"><?php echo  $issueslistval->year; ?></td>
                                 <td width="65%"><?php echo  $issueslistval->title; ?></td>
                                 <td width="5%">
-                                    <button type="button" class="btn btn-success" onclick="updateModal(<?php echo $issueslistval->issues_id; ?>)"><i class="bx bx-edit-alt"></i></button>
-                                    <button type="button" class="btn btn-danger" onclick="archiveIssue(<?php echo $issueslistval->issues_id; ?>, '<?php echo $issueslistval->volume; ?>', '<?php echo $issueslistval->title; ?>')"><i class="bx bx-trash"></i></button>
-                                    <button type="button" class="btn btn-info" onclick="viewAllArticle(<?php echo $issueslistval->issues_id; ?>)"><i class="bx bx-list-ol"></i></button>
+                                    <button type="button" class="btn btn-success" title="Update" onclick="updateModal(<?php echo $issueslistval->issues_id; ?>)"><i class="bx bx-edit-alt"></i></button>
+                                    <button type="button" class="btn btn-danger" title="Delete" onclick="archiveIssue(<?php echo $issueslistval->issues_id; ?>, '<?php echo $issueslistval->volume; ?>', '<?php echo $issueslistval->title; ?>')"><i class="bx bx-trash"></i></button>
+                                    <button type="button" class="btn btn-info" title="Article List" onclick="viewAllArticle(<?php echo $issueslistval->issues_id; ?>)"><i class="bx bx-list-ol"></i></button>
                                   </td>
                             </tr>
                         <?php endforeach; ?>
