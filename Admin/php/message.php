@@ -57,12 +57,12 @@ $messagelist = get_message_list();
                             <tr>
                                 <td width="5%"><?php echo  $messagelistval->message_id; ?></td>
                                 <td width="5%"><?php echo  $messagelistval->name; ?></td>
-                                <td width="45%"><?php echo  $messagelistval->email; ?></td>
+                                <td width="50%"><?php echo  $messagelistval->email; ?></td>
                                 <td width="10%"><?php echo  $messagelistval->reason; ?></td>
                                 <td width="10%"><?php echo  $messagelistval->date_added; ?></td>
-                                <td width="10%">
-                                    <button type="button" class="btn btn-outline-success" onclick="updateModal(<?php echo $messagelistval->message_id; ?>)">View</button>
-                                    <button type="button" class="btn btn-outline-danger" onclick="archiveMessage(<?php echo $messagelistval->message_id; ?>, '<?php echo $messagelistval->email; ?>', '<?php echo $messagelistval->message; ?>')">Archive</button>
+                                <td width="5%">
+                                    <button type="button" class="btn btn-primary" onclick="updateModal(<?php echo $messagelistval->message_id; ?>)"><i class="bx bx-window-open"></i></button>
+                                    <button type="button" class="btn btn-danger" onclick="archiveMessage(<?php echo $messagelistval->message_id; ?>, '<?php echo $messagelistval->email; ?>', '<?php echo $messagelistval->message; ?>')"><i class="bx bx-trash"></i></button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

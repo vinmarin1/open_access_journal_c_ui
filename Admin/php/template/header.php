@@ -16,7 +16,8 @@ $journal = get_journal_list();
   <meta name="description" content="" />
 
   <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="../../images/qcu-logo.webp" />
+  <!-- <link rel="icon" type="image/x-icon" href="../assets/img/qculogo.png" />
+  <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" /> -->
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -75,14 +76,14 @@ $journal = get_journal_list();
 
           <li class="menu-item">
             <a href="dashboard.php" class="menu-link">
-              <i class="menu-icon tf-icons bx bx-detail"></i>
+              <i class="menu-icon tf-icons bx bxs-dashboard"></i>
               <div data-i18n="Boxicons">Dashboard</div>
             </a>
           </li>
 
           <li class="menu-item">
             <a href="journalview.php" class="menu-link <?php if (basename($_SERVER['PHP_SELF']) == 'allsubmissionlist.php') echo 'active'; ?>">
-              <i class="menu-icon tf-icons bx bx-detail"></i>
+              <i class="menu-icon tf-icons bx bx-windows"></i>
               <div data-i18n="Boxicons">Submission</div>
             </a>
           </li>
@@ -97,28 +98,28 @@ $journal = get_journal_list();
               <li class="menu-header small text-uppercase"><span class="menu-header-text">Secondary</span></li>
               <li class="menu-item">
                 <a href="announcementlist.php" class="menu-link">
-                  <i class="menu-icon tf-icons bx bx-detail"></i>
+                  <i class="menu-icon tf-icons bx bx-microphone"></i>
                   <div data-i18n="Boxicons">Announcement</div>
                 </a>
               </li>
 
               <li class="menu-item">
                 <a href="issuelist.php" class="menu-link">
-                  <i class="menu-icon tf-icons bx bx-detail"></i>
+                  <i class="menu-icon tf-icons bx bx-list-plus"></i>
                   <div data-i18n="Boxicons">Issue</div>
                 </a>
               </li>
 
               <li class="menu-item">
                 <a href="faqslist.php" class="menu-link">
-                  <i class="menu-icon tf-icons bx bx-detail"></i>
+                  <i class="menu-icon tf-icons bx bx-message-check"></i>
                   <div data-i18n="Boxicons">FAQS</div>
                 </a>
               </li>
 
               <li class="menu-item">
                 <a href="message.php" class="menu-link">
-                  <i class="menu-icon tf-icons bx bx-detail"></i>
+                  <i class="menu-icon tf-icons bx bxs-message-alt-check"></i>
                   <div data-i18n="Boxicons">Message</div>
                 </a>
               </li>
@@ -134,7 +135,7 @@ $journal = get_journal_list();
           <!-- Tables -->
           <li class="menu-item">
             <a href="journallist.php" class="menu-link">
-              <i class="menu-icon tf-icons bx bx-table"></i>
+              <i class="menu-icon tf-icons bx bxs-detail"></i>
               <div data-i18n="Tables">Journal</div>
             </a>
           </li>
@@ -148,14 +149,14 @@ $journal = get_journal_list();
 
               <li class="menu-item">
                 <a href="userandroleslist.php" class="menu-link">
-                  <i class="menu-icon tf-icons bx bx-table"></i>
+                  <i class="menu-icon tf-icons bx bx-user-circle"></i>
                   <div data-i18n="Tables">User & Roles</div>
                 </a>
               </li>
 
               <li class="menu-item">
                 <a href="questionnaire.php" class="menu-link">
-                  <i class="menu-icon tf-icons bx bx-table"></i>
+                  <i class="menu-icon tf-icons bx bx-list-minus"></i>
                   <div data-i18n="Tables">Questionnaire</div>
                 </a>
               </li>
@@ -165,7 +166,7 @@ $journal = get_journal_list();
               <!-- Tables -->
               <li class="menu-item">
                 <a href="reportlist.php" class="menu-link">
-                  <i class="menu-icon tf-icons bx bx-table"></i>
+                  <i class="menu-icon tf-icons bx bxs-report"></i>
                   <div data-i18n="Tables">Reports</div>
                 </a>
               </li>
