@@ -203,6 +203,7 @@ $journallist = get_journal_list();
                     console.error("Ajax request failed:", error);
                     $('#archiveModalMessage').text('Failed to archive user');
                     $('#archiveModal').modal('hide');
+                    $('#sloading').toggle();
                     location.reload();
                 }
             });
@@ -280,7 +281,6 @@ $journallist = get_journal_list();
             dataType: 'json',
             success: function (response) {
                 console.log('Update Response:', response);
-
                 if (response.status === true) {
                     $('#sloading').toggle();
                     alert("Record updated successfully");
@@ -289,6 +289,8 @@ $journallist = get_journal_list();
                 } else {
                     console.error('Error updating user data:', response.message);
                     alert("Failed to update record. Please try again.");
+                    $('#sloading').toggle();
+                    location.reload();
                 }
             },
         });
@@ -383,6 +385,8 @@ $journallist = get_journal_list();
                 } else {
                     console.error('Error updating user data:', response.message);
                     alert("Failed to update record. Please try again.");
+                    location.reload();
+                    $('#sloading').toggle();
                 }
             },
         });
@@ -414,6 +418,8 @@ $journallist = get_journal_list();
                     console.error("Ajax request failed:", error);
                     $('#archiveRoleModalMessage').text('Failed to archive role');
                     $('#archiveRoleModal').modal('hide');
+                    location.reload();
+                    $('#sloading').toggle();
                 }
             });
         });
@@ -434,7 +440,7 @@ $journallist = get_journal_list();
     });
 
     $(document).ready(function() {
-        $('#xrole').change(function() {
+        $('#xrolex').change(function() {
             var selectedRole = $(this).val();
 
             if (selectedRole === "Admin") {

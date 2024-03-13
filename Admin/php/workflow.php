@@ -192,7 +192,7 @@ table {
                                                                 </div>
                                                             <?php else: ?>
                                                                 <a href="javascript:void(0);" onclick="sendForReview()" class="btn btn-primary btn-lg btn-block mb-2" style="width: 100%;">Send for Review</a>
-                                                                <button type="button" class="btn btn-outline-primary btn-lg btn-block mb-2" style="width: 100%;">Accept and Skip Review</button>
+                                                                <a href="javascript:void(0);" onclick="sendForCopyediting()" class="btn btn-outline-primary btn-lg btn-block mb-2" style="width: 100%;">Accept and Skip Review</a>
                                                                 <!-- <a href="javascript:void(0);" onclick="sendForDecline()" class="btn btn-outline-danger btn-lg btn-block" style="width: 100%;">Decline Submission</a> -->
                                                             <?php endif; ?>
                                                         </div>
