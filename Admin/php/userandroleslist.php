@@ -225,7 +225,7 @@ $journallist = get_journal_list();
 
                     $('#xauthorid').val(userData.author_id);
                     $('#xjournal_id').val(userData.journal_id);
-                    $('#xrole').val(userData.role);
+                    $('#xrolex').val(userData.role);
                     $('#xpassword').val(userData.password);
                     $('#xfirst_name').val(userData.first_name);
                     $('#xmiddle_name').val(userData.middle_name);
@@ -240,6 +240,12 @@ $journallist = get_journal_list();
                     $('#xfield_expertise').val(userData.field_of_expertise);
 
                     $('#updateModal').modal('show');
+
+                    if (userData.role === "Admin") {
+                        $('#journalDropdown1').show();
+                    } else {
+                        $('#journalDropdown1').hide();
+                    }
                 }
             },
             error: function (jqXHR, textStatus, errorThrown) {
@@ -258,7 +264,7 @@ $journallist = get_journal_list();
             first_name: $('#xfirst_name').val(),
             middle_name: $('#xmiddle_name').val(),
             last_name: $('#xlast_name').val(),
-            role: $('#xrole').val(),
+            role: $('#xrolex').val(),
             journal_id: $('#xjournal_id').val(),
             email: $('#xemail').val(),
             phone_number: $('#xphone_number').val(),
@@ -430,10 +436,8 @@ $journallist = get_journal_list();
             var selectedRole = $(this).val();
 
             if (selectedRole === "Admin") {
-
                 $('#journalDropdown').show();
             } else {
-
                 $('#journalDropdown').hide();
             }
         });
@@ -444,13 +448,12 @@ $journallist = get_journal_list();
             var selectedRole = $(this).val();
 
             if (selectedRole === "Admin") {
-
                 $('#journalDropdown1').show();
             } else {
-
                 $('#journalDropdown1').hide();
             }
         });
+
     });
     </script>
 

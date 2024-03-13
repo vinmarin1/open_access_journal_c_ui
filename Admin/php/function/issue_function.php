@@ -197,7 +197,7 @@ if (!function_exists('get_issues_list')) {
                 {
                     $id = $_POST['id'];
             
-                    $query = "UPDATE issues  SET status = 0 WHERE id = ?";
+                    $query = "UPDATE issues  SET status = 0 WHERE issues_id = ?";
                     $result = execute_query($query, [$id]);
                 
                     echo json_encode(['status' => $result !== false, 'message' => $result !== false ? 'Issues archived successfully' : 'Failed to archive issue']);

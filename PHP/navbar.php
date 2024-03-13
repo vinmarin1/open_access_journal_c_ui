@@ -168,14 +168,18 @@ require 'dbcon.php';
                       '. $userName .'
                   </a>
                   <li class="dropdown" style="list-style-type: none;">
-                      <ul class="dropdown-menu" style="width: 200px; margin-left: -120px; margin-top: 20px">
+                      <ul class="dropdown-menu" style="width: 230px; margin-left: -120px; margin-top: 20px">
                           ';
-          if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-              if (isset($_SESSION['role']) && $_SESSION['role'] === 'Admin') {
-                  echo '<li><a href="../Admin/php/journalview.php" class="dropdown-item" style="color: black;">Admin Dashboard</a></li>';
-              }
-          }
-          echo '
+                      if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+                          if (isset($_SESSION['role']) && $_SESSION['role'] === 'Admin') {
+                            if (!isset($_SESSION['journal_id']) || $_SESSION['journal_id'] === null || $_SESSION['journal_id'] == 0) {
+                                echo '<li><a href="../Admin/php/submissionlist.php" class="dropdown-item" style="color: black;">Admin Submission</a></li>';
+                            } else {
+                                echo '<li><a href="../Admin/php/submissionlist.php" class="dropdown-item" style="color: black;">Editor in Chief Submission</a></li>';
+                            }
+                        }                                        
+                      }
+                      echo '
                           <li><a href="user-dashboard.php" class="dropdown-item" style="color: black;">My Profile</a></li>
                           <li><a href="author-dashboard.php" class="dropdown-item" style="color: black;">My Contributions</a></li>
                           <li><a class="dropdown-item" href="../PHP/logout.php" style="color: black;">Log-out</a></li> 
