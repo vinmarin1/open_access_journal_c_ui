@@ -86,7 +86,7 @@ $seriesString = json_encode($series);
                 <div class="card h-100">
                     <div class="card-header d-flex align-items-center justify-content-between pb-0">
                         <div class="card-title mb-0">
-                            <h5 class="m-0 me-2">The top 5 donor for <span id="currentMonth"></span></h5>
+                            <h5 class="m-0 me-2">The top 5 donors for <span id="currentMonth"></span></h5>
                         </div>
                             </div>
                         <div class="card-body">
