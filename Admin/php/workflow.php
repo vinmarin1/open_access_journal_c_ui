@@ -1402,9 +1402,14 @@ table {
 
                         const articleSelectedListContainer = document.getElementById('Selectedarticle');
                         const articleSelectedElement = document.createElement('div');
+
+                        const contributors = data.selected_article.contributors;
+                        const trimmedContributors = contributors.split('->')[0];
+
                         articleSelectedElement.innerHTML = `
-                            <h5>Selected Article</h5><p><b>Article ID: </b>${data.selected_article.article_id}</p>
-                            <p><b>Contributors: </b>${data.selected_article.contributors}</p>
+                            <h5>Selected Article</h5>
+                            <p><b>Article ID: </b>${data.selected_article.article_id}</p>
+                            <p><b>Contributors: </b>${trimmedContributors}</p>
                             <div class="card accordion-item mb-4">
                                 <h2 class="accordion-header" id="headingSelected">
                                     <button type="button" class="accordion-button" data-bs-toggle="collapse" data-bs-target="#accordionSelected" aria-expanded="true" aria-controls="accordionSelected">${data.selected_article.title}</button>
@@ -1415,11 +1420,15 @@ table {
                             </div>`;
 
                         articleSelectedListContainer.appendChild(articleSelectedElement);
-
-                        // Display similar articles
                         const articleListContainer = document.getElementById('SimilararticleLits');
                         data.similar_articles.forEach((article, index) => {
                             const articleElement = document.createElement('div');
+
+                            let trimmedContributors = '';
+
+                            if (article.contributors) {
+                                trimmedContributors = article.contributors.split('->')[0];
+                            }
                             articleElement.innerHTML = `
                                 <h5>Similar Article</h5>
                                 <div class="row">
@@ -1432,7 +1441,7 @@ table {
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 text-start">
-                                        <p><b>Contributors: </b>${article.contributors}</p>
+                                        <p><b>Contributors: </b>${trimmedContributors}</p>
                                     </div>
                                 </div>
                                 <div class="card accordion-item mb-4">
@@ -1523,8 +1532,14 @@ table {
                     // Display selected article
                     const articleSelectedListContainer = document.getElementById('Selectedarticle2');
                     const articleSelectedElement = document.createElement('div');
-                    articleSelectedElement.innerHTML = `
-                        <h5>Selected Article</h5><p><b>Article ID: </b>${data.selected_article.article_id}</p>
+                    
+                    const contributors = data.selected_article.contributors;
+                    const trimmedContributors = contributors.split('->')[0];
+
+                        articleSelectedElement.innerHTML = `
+                            <h5>Selected Article</h5>
+                            <p><b>Article ID: </b>${data.selected_article.article_id}</p>
+                            <p><b>Contributors: </b>${trimmedContributors}</p>
                         <div class="card accordion-item mb-4">
                             <h2 class="accordion-header" id="headingSelected">
                                 <button type="button" class="accordion-button" data-bs-toggle="collapse" data-bs-target="#accordionSelected" aria-expanded="true" aria-controls="accordionSelected">${data.selected_article.title}</button>
@@ -1540,6 +1555,11 @@ table {
                     const articleListContainer = document.getElementById('SimilararticleLits2');
                     data.similar_articles.forEach((article, index) => {
                         const articleElement = document.createElement('div');
+                        let trimmedContributors = '';
+
+                        if (article.contributors) {
+                            trimmedContributors = article.contributors.split('->')[0];
+                        }
                         articleElement.innerHTML = `
                             <h5>Similar Article</h5>
                             <div class="row">
@@ -1548,6 +1568,11 @@ table {
                                 </div>
                                 <div class="col-md-6 text-end">
                                     <a href="javascript:void(0);" onclick="viewArticle(${article.article_id})" class="btn btn-sm btn-dark">View More</a>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 text-start">
+                                    <p><b>Contributors: </b>${trimmedContributors}</p>
                                 </div>
                             </div>
                             <div class="card accordion-item mb-4">
