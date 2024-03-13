@@ -208,7 +208,7 @@ $announcementlist = get_announcement_list();
     
     function archiveAnnouncement(announcement_id, title, announcement_description) {
         $('#archiveModal').modal('show');
-        $('#archiveModalTitle').text('Archive Announcement');
+        $('#archiveModalTitle').text('Delete Announcement');
         $('#announcementInfo').html('<strong>title:</strong> ' + title + ' <br><strong>announcement_description:</strong> ' + announcement_description + '<br><strong>ID:</strong> ' + announcement_id);
 
         $('#archiveModalSave').off().on('click', function () {

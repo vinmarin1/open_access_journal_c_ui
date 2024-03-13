@@ -178,7 +178,7 @@ $journallist = get_journal_list();
 
     function archiveUser(authorId, firstName, lastName) {
         $('#archiveModal').modal('show');
-        $('#archiveModalTitle').text('Archive User');
+        $('#archiveModalTitle').text('Delete User');
         $('#userInfo').html('<strong>Name:</strong> ' + lastName + ', ' + firstName + '<br><strong>ID:</strong> ' + authorId);
 
         $('#archiveModalSave').off().on('click', function () {
@@ -390,7 +390,7 @@ $journallist = get_journal_list();
 
     function archiveRole(roleId, role, role_name) {
         $('#archiveRoleModal').modal('show');
-        $('#archiveModalTitle').text('Archive Role');
+        $('#archiveModalTitle').text('Delete Role');
         $('#roleInfo').html('<strong>Role:</strong> ' + role + ' <br><strong>Role_Name:</strong> ' + role_name + ' <br><strong>ID:</strong> ' + roleId);
 
         $('#archiveRoleModalSave').off().on('click', function () {

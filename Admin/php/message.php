@@ -134,7 +134,7 @@ $messagelist = get_message_list();
     
     function archiveMessage(message_id, email, message) {
         $('#archiveModal').modal('show');
-        $('#archiveModalTitle').text('Archive Message');
+        $('#archiveModalTitle').text('Delete Message');
         $('#messageInfo').html('<strong>Email:</strong> ' + email + ' <br><strong>Message:</strong> ' + message + '<br><strong>ID:</strong> ' + message_id);
 
         $('#archiveModalSave').off().on('click', function () {
