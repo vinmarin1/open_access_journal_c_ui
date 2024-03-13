@@ -680,12 +680,12 @@ $journallist = get_journal_list();
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="archiveModalTitle">Archive User</h5>
+                    <h5 class="modal-title" id="archiveModalTitle">Delete User</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <h5 class="modal-title" id="modalToggleLabel">Are you sure you want to archive this user?</h5>
+                        <h5 class="modal-title" id="modalToggleLabel">Are you sure you want to delete this user?</h5>
                         <p id="userInfo"></p>
                     </div>
                 </div>
@@ -767,12 +767,12 @@ $journallist = get_journal_list();
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="archiveModalTitle">Archive Role</h5>
+                    <h5 class="modal-title" id="archiveModalTitle">Delete Role</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <h5 class="modal-title" id="modalToggleLabel">Are you sure you want to archive this role?</h5>
+                        <h5 class="modal-title" id="modalToggleLabel">Are you sure you want to delete this role?</h5>
                         <p id="roleInfo"></p>
                     </div>
                 </div>
