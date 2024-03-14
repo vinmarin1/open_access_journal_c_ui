@@ -26,7 +26,7 @@ $journallist = get_journal_list($journal_id);
                 <div style="display: flex; margin-top: 15px; margin-right: 15px;">
                 <?php if(empty($journal_id) && $journal_id !== NULL) { ?>
                     <button type="button" id="tabAll" class="btn btn-primary" style="margin-right: 10px;" data-bs-toggle="modal" data-bs-target="#addModal">Add Journal</button>
-                    <?php } ?>
+                <?php } ?>
                 </div>
             </div>
 
