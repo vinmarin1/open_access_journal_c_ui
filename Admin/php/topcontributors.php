@@ -64,7 +64,7 @@ $seriesString = json_encode($series);
         </h4>
 
                 <!-- Order Statistics -->
-                <div class="row mb-2">
+        <div class="row mb-2">
             <div class="col-md-8 mb-3">
                 <div class="card">
                     <div class="row row-bordered g-0">

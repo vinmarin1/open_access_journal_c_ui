@@ -71,7 +71,7 @@ $seriesString = json_encode($series);
         </h4>
 
         <div class="row mb-2">
-            <div class="col-8 mb-4">
+            <div class="col-md-8 mb-3">
                 <div class="card">
                     <div class="row row-bordered g-0">
                         <div class="col-md-12">
@@ -81,7 +81,8 @@ $seriesString = json_encode($series);
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 mb-4" id="nomargin">
+
+            <div class="col-md-4 mb-3" id="nomargin">
                 <div class="card h-100">
                     <div class="card-header d-flex align-items-center justify-content-between pb-0">
                         <div class="card-title mb-0">
