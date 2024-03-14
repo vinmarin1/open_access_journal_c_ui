@@ -2,7 +2,11 @@
 include 'function/redirect.php';
 include 'function/issue_function.php';
 
-$issueslist = get_issues_list();
+if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
+    $journal_id = isset($_SESSION['journal_id']) ? ($_SESSION['journal_id']) : '';
+}
+
+$issueslist = get_issues_list($journal_id);
 $journallist = get_journal_list();
 ?>
 
@@ -20,7 +24,9 @@ $journallist = get_journal_list();
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
             <h5 class="card-header mb-0">Issues</h5>
             <div style="display: flex; margin-top: 15px; margin-right: 15px;">
+            <?php if(empty($journal_id) && $journal_id !== NULL) { ?>
                 <button type="button" id="tabAll" class="btn btn-primary" style="margin-right: 10px;" data-bs-toggle="modal" data-bs-target="#addModal">Add Issue</button>
+            <?php } ?>
                 <!-- <button type="button" id="tabPublished" class="btn btn-primary">Download</button> -->
             </div>
         </div>
@@ -48,7 +54,9 @@ $journallist = get_journal_list();
                                 <td width="65%"><?php echo  $issueslistval->title; ?></td>
                                 <td width="5%">
                                     <button type="button" class="btn btn-success" title="Update" onclick="updateModal(<?php echo $issueslistval->issues_id; ?>)"><i class="bx bx-edit-alt"></i></button>
+                                <?php if(empty($journal_id) && $journal_id !== NULL) { ?>
                                     <button type="button" class="btn btn-danger" title="Delete" onclick="archiveIssue(<?php echo $issueslistval->issues_id; ?>, '<?php echo $issueslistval->volume; ?>', '<?php echo $issueslistval->title; ?>')"><i class="bx bx-trash"></i></button>
+                                <?php } ?>
                                     <button type="button" class="btn btn-info" title="Article List" onclick="viewAllArticle(<?php echo $issueslistval->issues_id; ?>)"><i class="bx bx-list-ol"></i></button>
                                   </td>
                             </tr>
