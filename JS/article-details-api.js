@@ -58,7 +58,7 @@ function renderArticleDetails(data) {
                 </div> -->
                 <div class="col-md-10 col-12 prof-info">
                   <!-- Content for the second column -->
-                  <p class="!font-bold">${contributors.split("->")[0]}</p>
+                  <h5 class="!font-bold">${contributors.split("->")[0]}</h5>
                   <span class="text-xs">${contributors.split("->")[2]}</span>
                 </div>
               </div>
@@ -115,7 +115,7 @@ function renderArticleDetails(data) {
             <div class="after-title">
                 <div class="authors" >
                     <p style= "font-size: small; color: gray" >Author/s</p>
-                    <div class="d-flex gap-1">${contributorsHTML}</div>
+                    <div class="d-flex flex-wrap gap-1">${contributorsHTML}</div>
                 </div>
                 <div class="volume">
                     <p style= "font-size: small; color: gray" >Journal Issue and Volume</p>
