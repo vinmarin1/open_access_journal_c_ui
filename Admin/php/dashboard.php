@@ -158,11 +158,33 @@ include 'function/dashboard_functions.php';
 
             <div class="container">
                 <div class="chart-container"  style="margin-top: -5px;">
+                    <div class="chart-title">Submit Article Based on User Demographics</div>
+                    <canvas id="lineChart4"></canvas>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="chart-container"  style="margin-top: -5px;">
                     <div class="chart-title">Donations</div>
                     <canvas id="lineChart3"></canvas>
                 </div>
             </div>
             
+            <div class="container">
+                <div class="chart-container" >
+                    <div class="chart-title">User Demog Graphics Base on Gender</div>
+                    <canvas id="barChart2"></canvas>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="chart-container" >
+                    <div class="chart-title">User Demog Graphics Base on Age</div>
+                    <canvas id="barChart3"></canvas>
+                </div>
+            </div>
+
+
             <div class="container">
                 <div class="chart-container" >
                     <div class="chart-title">Article Submission Per Quarter</div>
@@ -263,8 +285,8 @@ include 'function/dashboard_functions.php';
     var lineChartData2 = {
         labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'Novemeber', 'December'],
         datasets: [{
-                label: 'QCU',
-                data: <?php echo  json_encode(array_column($qcuResult, 'qcu_count')); ?>,
+                label: 'STUDENT',
+                data: <?php echo  json_encode(array_column($qcuResult, 'student_count')); ?>,
                 borderColor: '#0074cc',
                 borderWidth: 1,
                 fill: false
@@ -300,9 +322,36 @@ include 'function/dashboard_functions.php';
             fill: false
         }]
     };
+   
+    var lineChartData4 = {
+    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+    datasets: [{
+            label: 'STUDENT',
+            data: <?php echo json_encode(array_column($studentResult1, 'student_count')); ?>,
+            borderColor: '#0074cc',
+            borderWidth: 1,
+            fill: false
+        },
+        {
+            label: 'FACULTY',
+            data: <?php echo json_encode(array_column($facultyResult1, 'faculty_count')); ?>,
+            borderColor: '#ff7f00',
+            borderWidth: 1,
+            fill: false
+        },
+        {
+            label: 'OTHERS',
+            data: <?php echo json_encode(array_column($othersResult1, 'others_count')); ?>,
+            borderColor: '#ff0000',
+            borderWidth: 1,
+            fill: false
+        },
+    ]
+};
 
 
-    // Data for the bar chart
+
+    // Data for the bar chart 1 Submission per Quarter
     var barChartData = {
         labels: ['1st', '2nd', '3rd', '4th'],
         datasets: [{
@@ -328,6 +377,54 @@ include 'function/dashboard_functions.php';
             }
         ]
     };
+
+    // Data for the bar chart 1 User demog graphics base on gender
+    var barChartData2 = {
+    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+    datasets: [{
+        label: 'Male',
+        data: <?php echo json_encode(array_column($maleResult, 'male_count')); ?>,
+        backgroundColor: '#0074cc', // First color
+        borderColor: 'rgba(75, 192, 192, 1)',
+        borderWidth: 1
+    },
+    {
+        label: 'Female',
+        data: <?php echo json_encode(array_column($femaleResult, 'female_count')); ?>,
+        backgroundColor: '#ff7f00', // Second color
+        borderColor: 'rgba(255, 99, 132, 1)',
+        borderWidth: 1
+    }]
+};
+
+
+ // Data for the bar chart 3 User demog graphics base on age
+ var barChartData3 = {
+    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+    datasets: [{
+        label: '10-25',
+        data: <?php echo json_encode(array_column($Ageresult1, 'count_age_10_to_25')); ?>,
+        backgroundColor: '#0074cc', // First color
+        borderColor: 'rgba(75, 192, 192, 1)',
+        borderWidth: 1
+    },
+    {
+        label: '26-40',
+        data: <?php echo json_encode(array_column($Ageresult2, 'count_age_26_to_40')); ?>,
+        backgroundColor: '#ff7f00', // Second color
+        borderColor: 'rgba(255, 99, 132, 1)',
+        borderWidth: 1
+    },
+    {
+        label: '41-80',
+        data: <?php echo json_encode(array_column($Ageresult3, 'count_age_41_to_80')); ?>,
+        backgroundColor: '#ff0000', // Third color
+        borderColor: 'rgba(255, 99, 132, 1)',
+        borderWidth: 1
+    }]
+};
+
+
 
     // Data for Doughnut Chart 1
     var doughnutChartData1 = {
@@ -392,7 +489,10 @@ include 'function/dashboard_functions.php';
     createLineChart('lineChart1', lineChartData1);
     createLineChart('lineChart2', lineChartData2);
     createLineChart('lineChart3', lineChartData3);
+    createLineChart('lineChart4', lineChartData4);
     createBarChart('barChart', barChartData);
+    createBarChart('barChart2', barChartData2);
+    createBarChart('barChart3', barChartData3);
     createDoughnutChart('doughnutChart1', doughnutChartData1);
     createDoughnutChart('doughnutChart2', doughnutChartData2);
     createDoughnutChart('doughnutChart3', doughnutChartData3);
