@@ -1,24 +1,26 @@
 .content-over {
     position: relative;
     width: 100%;
-    height: 30vh;
+    height: 9em;
+    max-height: 20em;
     background-image: url(../images/qcu-bg.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
-    padding-top: 70px;
-    padding-left: 150px;
-    
+    /* padding-top: 70px; */
+    padding: 2em 8%;
+    display: inline-flex;
+    flex-direction: column;
 }
 
 .content-over::before {
-content: "";
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background-color: rgba(53, 68, 74, 0.7);
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(53, 68, 74, 0.7);
 }
 
 .content-over p, .content-over h2 {
@@ -26,7 +28,6 @@ color: white;
 position: relative;
 z-index: 1; 
 display: block;
-
 }
 
 .content-over h2{
@@ -67,16 +68,16 @@ p{
     width: 90%;
 }
 
-.announce-text p {
-    overflow: auto; /* or scroll if you want a scrollbar */
-    max-height: 200px; /* adjust the height as needed */
+/* .announce-text p {
+    overflow: auto; 
+    max-height: 200px; 
 } 
 
 .announce-text p::-webkit-scrollbar{
-    width: 0; /* Remove scrollbar width */
-    height: 0; /* Remove scrollbar height */
-    visibility: hidden; /* Hide scrollbar */
-}
+    width: 0; 
+    height: 0; 
+    visibility: hidden; 
+} */
 
 .announce-text h2 {
     font-family: Arial, Helvetica, sans-serif;

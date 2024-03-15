@@ -64,7 +64,33 @@
                         
                         ?>
                         <label for="name">Name:</label>
-                        <input class="input form-control" type="text" id="name" name="name" required>
+
+                        <?php
+                        if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+                            $sqlSelectName = "SELECT first_name, last_name FROM author WHERE author_id = :author_id";
+                            $result = database_run($sqlSelectName, array(':author_id' => $id));
+
+                            if ($result) {
+                                
+                                if (count($result) > 0) {
+                                    $user = $result[0];
+                                    $firstName = $user->first_name;
+                                    $lastname = $user->last_name;
+                                
+                                    echo '<input class="input form-control" type="text" id="name" name="name" value="' . $firstName . " " .$lastname .'" required>';
+
+                    
+                                } else {
+                                    echo "User not found.";
+                                }
+                            } else {
+                                echo "Unable to fetch user info.";
+                            }
+                        } else 
+                            echo '<input class="input form-control" type="text" id="name" name="name" required>'
+                        ?>
+
+                        
 
                         <label for="reason">Reasons:</label>
                         <select class="input form-control"  name="reason" id="reason" required>

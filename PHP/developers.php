@@ -71,8 +71,8 @@
                     <img src="../images/baylon.png" alt="" class="img-fluid">
                     <div class="description" >  
                         <p class="mt-2" style="font-size:medium;">ELOISA MARIE M. BAYLON</p>
-                        <p style="font-weight:normal; font-size: small;">PROJECT MANAGER</p>
-                        <p style="font-weight:normal; font-size: smaller;  ">Leading the team, plays a crucial role in guiding the development process, contributing not only to project documentation but also lending a hand to the developers, including efforts in the UI team.</p>
+                        <p style="font-weight:normal; font-size: medium;">PROJECT MANAGER</p>
+                        <!-- <p style="font-weight:normal; font-size: mediumer;  ">Leading the team, plays a crucial role in guiding the development process, contributing not only to project documentation but also lending a hand to the developers, including efforts in the UI team.</p> -->
                     </div>
 
                     <div class="row soc-links ">
@@ -94,8 +94,8 @@
                 <img src="../images/pangilinan.png" alt="" class="img-fluid">
                 <div class="description" >
                     <p class="mt-2" style="font-size:medium; ">KIMBERLY B. PANGILINAN</p>
-                    <p style="font-weight:normal; font-size: small; ">HEAD PROGRAMMER</p>
-                    <p style="font-weight:normal; font-size: smaller;">Leading the development team, played a key role in our capstone project, contributing to the impressive recommendation system. She serves as a UI Designer and is both a back-end and front-end developer, with a focus on machine learning</p>
+                    <p style="font-weight:normal; font-size: medium; ">HEAD PROGRAMMER</p>
+                    <!-- <p style="font-weight:normal; font-size: mediumer;">Leading the development team, played a key role in our capstone project, contributing to the impressive recommendation system. She serves as a UI Designer and is both a back-end and front-end developer, with a focus on machine learning</p> -->
                 </div>
 
                 <div class="row soc-links" >
@@ -119,8 +119,8 @@
                 <img src="../images/pingol.png" alt="" class="img-fluid">
                 <div class="description" >
                     <p class="mt-2" style="font-size:medium;">EAN B. PINGOL</p>
-                    <p style="font-weight:normal; font-size: small;">HEAD RESEARCHER</p>
-                    <p style="font-weight:normal; font-size: smaller;  ">Leading documentation and research for our capstone project, ensures everything is well-documented and contributes valuable insights. Also actively involved in Quality Assurance to ensure alignment with documents.</p>
+                    <p style="font-weight:normal; font-size: medium;">HEAD RESEARCHER</p>
+                    <!-- <p style="font-weight:normal; font-size: mediumer;  ">Leading documentation and research for our capstone project, ensures everything is well-documented and contributes valuable insights. Also actively involved in Quality Assurance to ensure alignment with documents.</p> -->
                 </div>
 
                 <div class="row soc-links">
@@ -155,8 +155,8 @@
                 <img src="../images/elyana.png" alt="" class="img-fluid">
                 <div class="description" >
                     <p class="mt-2" style="font-size:medium;">ELYANA D. ESPAÑOLA </p>
-                    <p style="font-weight:normal; font-size: small; ">HEAD UI/UX DESIGNER</p>
-                    <p style="font-weight:normal; font-size: smaller;  ">Leads the team in creating visually appealing and user-friendly interfaces, ensuring alignment with project goals and user needs. plays a key role in shaping design strategy and enhancing the overall user experience.</p>
+                    <p style="font-weight:normal; font-size: medium; ">HEAD UI/UX DESIGNER</p>
+                    <!-- <p style="font-weight:normal; font-size: mediumer;  ">Leads the team in creating visually appealing and user-friendly interfaces, ensuring alignment with project goals and user needs. plays a key role in shaping design strategy and enhancing the overall user experience.</p> -->
                 </div>
 
                 <div class="row soc-links " >
@@ -179,8 +179,8 @@
                 <img src="../images/jacob.png" alt="" class="img-fluid">
                 <div class="description" >
                     <p class="mt-2" style="font-size:medium;">CLAIRE KAYE S. JACOB</p>
-                    <p style="font-weight:normal; font-size: small;">UI/UX DESIGNER</p>
-                    <p style="font-weight:normal; font-size: smaller; ">User Side UI/UX Designer,  focuses on creating visually appealing and user-friendly interfaces, contributing to an enhanced overall  user experience.</p>
+                    <p style="font-weight:normal; font-size: medium;">UI/UX DESIGNER</p>
+                    <!-- <p style="font-weight:normal; font-size: mediumer; ">User Side UI/UX Designer,  focuses on creating visually appealing and user-friendly interfaces, contributing to an enhanced overall  user experience.</p> -->
                 </div>
 
                 <div class="row soc-links" >
@@ -203,8 +203,8 @@
                 <img src="../images/david.png" alt="" class="img-fluid">
                 <div class="description" >
                     <p class="mt-2" style="font-size:medium;">KYLE ANGELINE O. DAVID</p>
-                    <p style="font-weight:normal; font-size: small;  ">UI/UX DESIGNER</p>
-                    <p style="font-weight:normal; font-size: smaller;  ">Admin Side UI/UX Designer, contributes on creating intuitive and efficient interfaces tailored for administrative tasks, ensuring a seamless and effective experience for system administrators.</p>
+                    <p style="font-weight:normal; font-size: medium;  ">UI/UX DESIGNER</p>
+                    <!-- <p style="font-weight:normal; font-size: mediumer;  ">Admin Side UI/UX Designer, contributes on creating intuitive and efficient interfaces tailored for administrative tasks, ensuring a seamless and effective experience for system administrators.</p> -->
                 </div>
 
                 <div class="row soc-links" >
@@ -226,12 +226,12 @@
                 <img src="../images/monsenabre.png" alt="" class="img-fluid">
                 <div class="description" >
                     <p class="mt-2" style="font-size:medium">ARNEL MOSENABRE</p>
-                    <p style="font-weight:normal; font-size: small;">DATABASE  DESIGNER</p>
-                    <p style="font-weight:normal; font-size: smaller; "> Organizes and optimizes data for our projects.
-                    Also contributing as a back-end programmer for administrative tasks.</p>
+                    <p style="font-weight:normal; font-size: medium;">DATABASE  DESIGNER</p>
+                    <!-- <p style="font-weight:normal; font-size: mediumer; "> Organizes and optimizes data for our projects.
+                    Also contributing as a back-end programmer for administrative tasks.</p> -->
                 </div>
 
-                <div class="row soc-links mt-4" style="padding-top: 12px;">
+                <div class="row soc-links">
                     <div class="col-md-2 col-2"></div>
                     <div class="col-md-2 col-2"><a href="https://www.facebook.com/ArnelMosenabre5?mibextid=ZbWKwL"><i class="fab fa-facebook-f" style="color: blue;"></i></a></div>
 
@@ -264,8 +264,8 @@
                 <img src="../images/avila.png" alt="" class="img-fluid">
                 <div class="description" >
                     <p class="mt-2" style="font-size:medium;">MON CEDRIC O. AVILA </p>
-                    <p style="font-weight:normal; font-size: small;">BACK-END PROGRAMMER</p>
-                    <p style="font-weight:normal; font-size: smaller; ">Programmed the entire admin side of the system, ensuring seamless functionality, and also designed the front end for a complete and cohesive administrative system.</p>
+                    <p style="font-weight:normal; font-size: medium;">BACK-END PROGRAMMER</p>
+                    <!-- <p style="font-weight:normal; font-size: mediumer; ">Programmed the entire admin side of the system, ensuring seamless functionality, and also designed the front end for a complete and cohesive administrative system.</p> -->
                 </div>
 
                 <div class="row soc-links" >
@@ -288,8 +288,8 @@
                 <img src="../images/gozo.png" alt="" class="img-fluid">
                 <div class="description" >
                     <p class="mt-2" style="font-size:medium;">MARVIN O. GOZO</p>
-                    <p style="font-weight:normal; font-size: small;  ">BACK-END PROGRAMMER</p>
-                    <p style="font-weight:normal; font-size: smaller;   ">Managed user-side programming, playing roles in both front-end and back-end development.Managed user-side programming, playing roles in both front-end and back-end development.</p>
+                    <p style="font-weight:normal; font-size: medium;  ">BACK-END PROGRAMMER</p>
+                    <!-- <p style="font-weight:normal; font-size: mediumer;   ">Managed user-side programming, playing roles in both front-end and back-end development.Managed user-side programming, playing roles in both front-end and back-end development.</p> -->
                 </div>
 
                 <div class="row soc-links" >
@@ -311,9 +311,9 @@
             <div class="mt-2 mb-2 members-content text-center">
                 <img src="../images/heraldo.png" alt="" class="img-fluid">
                 <div class="description" >
-                    <p class="mt-2" style="font-size:medium;">STEPHEN ZION S. HERALDO</p>
-                    <p style="font-weight:normal; font-size: small;">FRONT-END PROGRAMMER</p>
-                    <p style="font-weight:normal; font-size: smaller;  ">handles front-end programming for the user side, ensuring a user-friendly experience, also contributes to the back-end for comprehensive system functionality.</p>
+                    <p class="mt-2" style="font-size:medium;">STEPHEN ZION HERALDO</p>
+                    <p style="font-weight:normal; font-size: medium;">FRONT-END PROGRAMMER</p>
+                    <!-- <p style="font-weight:normal; font-size: mediumer;  ">handles front-end programming for the user side, ensuring a user-friendly experience, also contributes to the back-end for comprehensive system functionality.</p> -->
                 </div>
 
                 <div class="row soc-links" >
@@ -335,8 +335,8 @@
                 <img src="../images/sanchez.png" alt="" class="img-fluid">
                 <div class="description" >
                     <p class="mt-2" style="font-size:medium;">DHARREN PAUL SANCHEZ</p>
-                    <p style="font-weight:normal; font-size: small;">FRONT-END PROGRAMMER</p>
-                    <p style="font-weight:normal; font-size: smaller;  ">handles front-end programming for the user side, ensuring a user-friendly experience, also contributes to the back-end for comprehensive system functionality.</p>
+                    <p style="font-weight:normal; font-size: medium;">FRONT-END PROGRAMMER</p>
+                    <!-- <p style="font-weight:normal; font-size: mediumer;  ">handles front-end programming for the user side, ensuring a user-friendly experience, also contributes to the back-end for comprehensive system functionality.</p> -->
                 </div>
 
                 <div class="row soc-links" >
@@ -373,8 +373,8 @@
                 <img src="../images/de-jesus.png" alt="" class="img-fluid">
                 <div class="description" >
                     <p class="mt-2" style="font-size:medium;">JUSTIN DANIEL C. DE JESUS</p>
-                    <p style="font-weight:normal; font-size: small; ">HEAD SYSTEM ANALYST</p>
-                    <p style="font-weight:normal; font-size: smaller;  ">Leads in assessing and optimizing system requirements. Plays a key role in ensuring effective communication between stakeholders and the development team for successful project outcomes.</p>
+                    <p style="font-weight:normal; font-size: medium; ">HEAD SYSTEM ANALYST</p>
+                    <!-- <p style="font-weight:normal; font-size: mediumer;  ">Leads in assessing and optimizing system requirements. Plays a key role in ensuring effective communication between stakeholders and the development team for successful project outcomes.</p> -->
                 </div>
 
                 <div class="row soc-links" >
@@ -397,11 +397,11 @@
                 <img src="../images/dela-cruz.png" alt="" class="img-fluid">
                 <div class="description" >
                     <p class="mt-2" style="font-size:medium;">JOHN ALBERT T. DELA CRUZ</p>
-                    <p style="font-weight:normal; font-size: small;">SYSTEM ANALYST</p>
-                    <p style="font-weight:normal; font-size: smaller;  ">System Analyst with a focus on QA,  specializes in evaluating and enhancing system requirements to ensure quality assurance throughout the project lifecycle.</p>
+                    <p style="font-weight:normal; font-size: medium;">SYSTEM ANALYST</p>
+                    <!-- <p style="font-weight:normal; font-size: mediumer;  ">System Analyst with a focus on QA,  specializes in evaluating and enhancing system requirements to ensure quality assurance throughout the project lifecycle.</p> -->
                 </div>
 
-                <div class="row soc-links mt-4" style="padding-top: 15px;" >
+                <div class="row soc-links ">
                 <div class="col-md-2 col-2"></div>
                     <div class="col-md-2 col-2"><a href="https://www.facebook.com/jobertomapagmahal"><i class="fab fa-facebook-f" style="color: blue;"></i></a></div>
 
@@ -421,11 +421,11 @@
                 <img src="../images/jacinto.png" alt="" class="img-fluid">
                 <div class="description" >
                     <p class="mt-2" style="font-size:medium;">FATIMA C. JACINTO</p>
-                    <p style="font-weight:normal; font-size: small;">SYSTEM ANALYST</p>
-                    <p style="font-weight:normal; font-size: smaller;  ">System Analyst with a focus on QA,  specializes in evaluating and enhancing system requirements to ensure quality assurance throughout the project lifecycle.</p>
+                    <p style="font-weight:normal; font-size: medium;">SYSTEM ANALYST</p>
+                    <!-- <p style="font-weight:normal; font-size: mediumer;  ">System Analyst with a focus on QA,  specializes in evaluating and enhancing system requirements to ensure quality assurance throughout the project lifecycle.</p> -->
                 </div>
 
-                <div class="row soc-links mt-4" style="padding-top: 15px;" >
+                <div class="row soc-links " style="padding-top: 15px;" >
                 <div class="col-md-2 col-2"></div>
                     <div class="col-md-2 col-2"><a href="https://www.facebook.com/jfatima30"><i class="fab fa-facebook-f" style="color: blue;"></i></a></div>
 
@@ -455,8 +455,8 @@
                 <img src="../images/noel.png" alt="" class="img-fluid">
                 <div class="description" >
                     <p class="mt-2" style="font-size:medium;">MARICAR D. NOEL </p>
-                    <p style="font-weight:normal; font-size: small;">TECHNICAL WRITER/RESEARCHER</p>
-                    <p style="font-weight:normal; font-size: smaller;  ">Highly skilled and stands out as an exceptional technical writer and researcher, investing significant effort in elevating the documentation team's contributions.</p>
+                    <p style="font-weight:normal; font-size: medium;">TECHNICAL WRITER/RESEARCHER</p>
+                    <!-- <p style="font-weight:normal; font-size: mediumer;  ">Highly skilled and stands out as an exceptional technical writer and researcher, investing significant effort in elevating the documentation team's contributions.</p> -->
                 </div>
 
                 <div class="row soc-links" >
@@ -479,8 +479,8 @@
                 <img src="../images/agustin.png" alt="" class="img-fluid">
                 <div class="description" >
                     <p class="mt-2" style="font-size:medium;">DAPHINE A. AGUSTIN</p>
-                    <p style="font-weight:normal; font-size: small;">TECHNICAL WRITER/RESEARCHER</p>
-                    <p style="font-weight:normal; font-size: smaller; ">Highly skilled and stands out as an exceptional technical writer and researcher, investing significant effort in elevating the documentation team's contributions.</p>
+                    <p style="font-weight:normal; font-size: medium;">TECHNICAL WRITER/RESEARCHER</p>
+                    <!-- <p style="font-weight:normal; font-size: mediumer; ">Highly skilled and stands out as an exceptional technical writer and researcher, investing significant effort in elevating the documentation team's contributions.</p> -->
                 </div>
 
                 <div class="row soc-links" >
@@ -503,8 +503,8 @@
                 <img src="../images/narisma.png" alt="" class="img-fluid">
                 <div class="description" >
                     <p class="mt-2" style="font-size:medium;">QUENIE ELAIZA P. NARISMA</p>
-                    <p style="font-weight:normal; font-size: small; ">TECHNICAL WRITER/RESEARCHER</p>
-                    <p style="font-weight:normal; font-size: smaller;  ">Excels as a technical writer and researcher with a focus on literature reviews (RRL) and diagram creation. Dependable member of the documentation team, consistently delivering exceptional work.</p>
+                    <p style="font-weight:normal; font-size: medium; ">TECHNICAL WRITER/RESEARCHER</p>
+                    <!-- <p style="font-weight:normal; font-size: mediumer;  ">Excels as a technical writer and researcher with a focus on literature reviews (RRL) and diagram creation. Dependable member of the documentation team, consistently delivering exceptional work.</p> -->
                 </div>
 
                 <div class="row soc-links" >
@@ -526,8 +526,8 @@
                 <img src="../images/lamberte.png" alt="" class="img-fluid">
                 <div class="description" >
                     <p class="mt-2" style="font-size:medium;">JOHNCEL C. LAMBERTE</p>
-                    <p style="font-weight:normal; font-size: small; ">TECHNICAL WRITER/RESEARCHER</p>
-                    <p style="font-weight:normal; font-size: smaller;  ">Serves as a technical writer and researcher.  Contributes to creating detailed technical documentation while also conducting research to enhance project understanding and content accuracy.</p>
+                    <p style="font-weight:normal; font-size: medium; ">TECHNICAL WRITER/RESEARCHER</p>
+                    <!-- <p style="font-weight:normal; font-size: mediumer;  ">Serves as a technical writer and researcher.  Contributes to creating detailed technical documentation while also conducting research to enhance project understanding and content accuracy.</p> -->
                 </div>
 
                 <div class="row soc-links" >
@@ -553,8 +553,8 @@
                 <img src="../images/nalam.png" alt="" class="img-fluid">
                 <div class="description" >
                     <p class="mt-2" style="font-size:medium;">JUSTIN NEIL P. NALAM </p>
-                    <p style="font-weight:normal; font-size: small;">TECHNICAL WRITER/RESEARCHER</p>
-                    <p style="font-weight:normal; font-size: smaller;  ">Contributes essential support in transcribing documents. As a technical writer and researcher, enhances the clarity and accuracy of our project documentation.</p>
+                    <p style="font-weight:normal; font-size: medium;">TECHNICAL WRITER/RESEARCHER</p>
+                    <!-- <p style="font-weight:normal; font-size: mediumer;  ">Contributes essential support in transcribing documents. As a technical writer and researcher, enhances the clarity and accuracy of our project documentation.</p> -->
                 </div>
 
                 <div class="row soc-links" >
@@ -577,8 +577,8 @@
                 <img src="../images/ayag.png" alt="" class="img-fluid">
                 <div class="description" >
                     <p class="mt-2" style="font-size:medium;">RICHMONDE M. AYAG</p>
-                    <p style="font-weight:normal; font-size: small;">TECHNICAL WRITER/RESEARCHER</p>
-                    <p style="font-weight:normal; font-size: smaller;  ">Serves as a technical writer and researcher.  Contributes to creating detailed technical documentation while also conducting research to enhance project understanding and content accuracy.</p>
+                    <p style="font-weight:normal; font-size: medium;">TECHNICAL WRITER/RESEARCHER</p>
+                    <!-- <p style="font-weight:normal; font-size: mediumer;  ">Serves as a technical writer and researcher.  Contributes to creating detailed technical documentation while also conducting research to enhance project understanding and content accuracy.</p> -->
                 </div>
 
                 <div class="row soc-links" >
@@ -601,11 +601,11 @@
                 <img src="../images/malazarte.png" alt="" class="img-fluid">
                 <div class="description" >
                     <p class="mt-2" style="font-size: 13px;">MASTERSON KURT MALAZARTE</p>
-                    <p style="font-weight:normal; font-size: small;  ">TECHNICAL WRITER/RESEARCHER</p>
-                    <p style="font-weight:normal; font-size:smaller; ">Serves as a technical writer and researcher.  Contributes to creating detailed technical documentation while also conducting research to enhance project understanding and content accuracy.</p>
+                    <p style="font-weight:normal; font-size: medium;  ">TECHNICAL WRITER/RESEARCHER</p>
+                    <!-- <p style="font-weight:normal; font-size:mediumer; ">Serves as a technical writer and researcher.  Contributes to creating detailed technical documentation while also conducting research to enhance project understanding and content accuracy.</p> -->
                 </div>
 
-                <div class="row soc-links mt-3" style="padding-top: 4px"  >
+                <div class="row soc-links " style="padding-top: 4px"  >
                 <div class="col-md-2 col-2"></div>
                     <div class="col-md-2 col-2"><a href="https://www.facebook.com/kurtmalazarte.17"><i class="fab fa-facebook-f" style="color: blue;"></i></a></div>
 
@@ -624,8 +624,8 @@
                 <img src="../images/cuagon.png" alt="" class="img-fluid">
                 <div class="description" >
                     <p class="mt-2" style="font-size:medium;">REVEAN G. CUAGON</p>
-                    <p style="font-weight:normal; font-size: small;">TECHNICAL WRITER/RESEARCHER</p>
-                    <p style="font-weight:normal; font-size: smaller;  ">Serves as a technical writer and researcher.  Contributes to creating detailed technical documentation while also conducting research to enhance project understanding and content accuracy.</p>
+                    <p style="font-weight:normal; font-size: medium;">TECHNICAL WRITER/RESEARCHER</p>
+                    <!-- <p style="font-weight:normal; font-size: mediumer;  ">Serves as a technical writer and researcher.  Contributes to creating detailed technical documentation while also conducting research to enhance project understanding and content accuracy.</p> -->
                 </div>
 
                 <div class="row soc-links" >
@@ -646,13 +646,13 @@
     <div class="row">
         
 
-        <div class="col-md-3 mb-2 d-flex align-items-center justify-content-center">
+        <div class="col-md-3 mb-3 d-flex align-items-center justify-content-center">
             <div class="mt-2  members-content text-center">
                 <img src="../images/delos-reyes.png" alt="" class="img-fluid">
                 <div class="description" >
                     <p class="mt-2" style="font-size: 14px;">ERIC JOHNES A. DELOS REYES </p>
-                    <p style="font-weight:normal; font-size: small;">TECHNICAL WRITER/RESEARCHER</p>
-                    <p style="font-weight:normal; font-size: smaller;  ">Serves as a technical writer and researcher.  Contributes to creating detailed technical documentation while also conducting research to enhance project understanding and content accuracy.</p>
+                    <p style="font-weight:normal; font-size: medium;">TECHNICAL WRITER/RESEARCHER</p>
+                    <!-- <p style="font-weight:normal; font-size: mediumer;  ">Serves as a technical writer and researcher.  Contributes to creating detailed technical documentation while also conducting research to enhance project understanding and content accuracy.</p> -->
                 </div>
 
                 <div class="row soc-links" >
@@ -670,13 +670,13 @@
 
 
         
-        <div class="col-md-3 mb-2 d-flex align-items-center justify-content-center">
+        <div class="col-md-3 mb-3 d-flex align-items-center justify-content-center">
             <div class="mt-2  members-content text-center">
                 <img src="../images/gutierrez.png" alt="" class="img-fluid">
                 <div class="description" >
                     <p class="mt-2" style="font-size:medium;">DYLAN D. GUTIERREZ</p>
-                    <p style="font-weight:normal; font-size: small;">TECHNICAL WRITER/RESEARCHER</p>
-                    <p style="font-weight:normal; font-size: smaller; ">Serves as a technical writer and researcher.  Contributes to creating detailed technical documentation while also conducting research to enhance project understanding and content accuracy.</p>
+                    <p style="font-weight:normal; font-size: medium;">TECHNICAL WRITER/RESEARCHER</p>
+                    <!-- <p style="font-weight:normal; font-size: mediumer; ">Serves as a technical writer and researcher.  Contributes to creating detailed technical documentation while also conducting research to enhance project understanding and content accuracy.</p> -->
                 </div>
 
                 <div class="row soc-links" >
