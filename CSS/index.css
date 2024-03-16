@@ -101,7 +101,7 @@ a {
 }
 
 .recommendation-article h4 {
-  color: #0858a4;
+  color: var(--main, #0858A4);
   font-family: Arial, Helvetica, sans-serif;
   width: 85%;
 }
@@ -153,7 +153,7 @@ a {
 
 .article .h6 {
   font-family: Arial, Helvetica, sans-serif;
-  color: #0858a4;
+  color: var(--main, #0858A4);
   width: auto;
 
 }
@@ -175,7 +175,7 @@ a {
 } */
 
 .author {
-  color: #0858a4;
+  color: var(--main, #0858A4);
   font-size: 12px;
   display: block;
 }
@@ -199,10 +199,10 @@ a {
 }
 
 .btn-article:hover {
-  border: 2px #0858a4 solid;
+  border: 2px var(--main, #0858A4) solid;
   background-color: transparent;
   border-radius: 20px;
-  color: #0858a4;
+  color: var(--main, #0858A4);
   opacity: 0.8;
 
 }
@@ -231,7 +231,7 @@ a {
 }
 
 #most-popular-container span {
-  color: #0858a4;
+  color: var(--main, #0858A4);
   font-family: Arial, Helvetica, sans-serif;
 
 }

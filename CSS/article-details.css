@@ -19,7 +19,7 @@
 
 .content-over h3,
 .content-over p {
-  color: #0858a4;
+  color: var(--main, #0858A4);
   position: relative;
   z-index: 1;
   display: block;
@@ -65,14 +65,14 @@
 .abstract h4 {
   padding-top: 20px;
   font-family: Arial, Helvetica, sans-serif;
-  color: #0858a4;
+  color: var(--main, #0858A4);
 }
 
 .abstract button {
   color: white;
   position: relative;
   z-index: 1;
-  background-color: #0858a4;
+  background-color: var(--main, #0858A4);
   border-radius: 20px;
   margin-top: 20px;
   padding: 0.5em 1.5em;
@@ -82,16 +82,16 @@
   color: white;
   position: relative;
   z-index: 1;
-  background-color: #0858a4;
+  background-color: var(--main, #0858A4);
   border-radius: 20px;
   margin-top: 20px;
   opacity: 0.8;
 }
 
 #btn2 {
-  border: 2px #0858a4 solid;
+  border: 2px var(--main, #0858A4) solid;
   background-color: transparent;
-  color: #0858a4;
+  color: var(--main, #0858A4);
 }
 
 .btn {
@@ -106,7 +106,7 @@
 }
 
 .articles-info p {
-  color: #0858a4;
+  color: var(--main, #0858A4);
   margin: 0;
 }
 .views-dl {
@@ -133,7 +133,7 @@
 }
 
 .article-pub h4 {
-  color: #0858a4;
+  color: var(--main, #0858A4);
   font-family: Arial, Helvetica, sans-serif;
   margin-top: 30px;
 }
@@ -143,8 +143,8 @@
 }
 
 .article-pub a {
-  color: #0858a4;
-  border: 1px #0858a4 solid;
+  color: var(--main, #0858A4);
+  border: 1px var(--main, #0858A4) solid;
   border-radius: 10px;
   text-decoration: none;
   padding: 3px 13px !important;
@@ -174,7 +174,7 @@
 }
 
 .recommendation-article h4 {
-  color: #0858a4;
+  color: var(--main, #0858A4);
   font-family: Arial, Helvetica, sans-serif;
   width: 85%;
 }
@@ -240,7 +240,7 @@
 
 .article .h6 {
   font-family: Arial, Helvetica, sans-serif;
-  color: #0858a4;
+  color: var(--main, #0858A4);
   width: auto;
 }
 
@@ -251,7 +251,7 @@
 }
 
 .author {
-  color: #0858a4;
+  color: var(--main, #0858A4);
   font-size: 12px;
   display: block;
 }
@@ -262,10 +262,10 @@
 }
 
 .btn-article:hover {
-  border: 2px #0858a4 solid;
+  border: 2px var(--main, #0858A4) solid;
   background-color: transparent;
   border-radius: 20px;
-  color: #0858a4;
+  color: var(--main, #0858A4);
   opacity: 0.8;
 }
 
@@ -274,13 +274,13 @@
 #cite-btn,
 #copy-btn {
   background-color: white;
-  color: #0858a4;
-  border-color: #0858a4;
+  color: var(--main, #0858A4);
+  border-color: var(--main, #0858A4);
 }
 
 .share-btn {
   background-color: white;
-  color: #0858a4;
+  color: var(--main, #0858A4);
   border: none !important;
   outline: none;
   text-decoration: none;
@@ -332,7 +332,7 @@
 .cite-btn {
   /* outline: none;
     border: none;
-    background-color: #0858a4;
+    background-color: var(--main, #0858A4);
     border-radius: 20px;
     padding:0.5em 1.5em;
     color: white; */
@@ -440,7 +440,7 @@
 .xp-label {
   font-weight: bold;
   margin-top: 5px;
-  color: #0858a4;
+  color: var(--main, #0858A4);
 }
 
 .progress-bar {
@@ -454,7 +454,7 @@
 
 .progress {
   height: 100%;
-  background-color: #0858a4 !important;
+  background-color: var(--main, #0858A4) !important;
   /* Progress color */
   border-radius: 20px;
   z-index: 999;
@@ -482,8 +482,8 @@
 
 #seeMore-btn {
   background-color: white;
-  color: #0858a4;
-  border-color: #0858a4;
+  color: var(--main, #0858A4);
+  border-color: var(--main, #0858A4);
   border-radius: 20px;
 }
 
@@ -491,6 +491,6 @@
   color: white;
   position: relative;
   z-index: 1;
-  background-color: #0858a4;
+  background-color: var(--main, #0858A4);
   opacity: 0.8;
 }

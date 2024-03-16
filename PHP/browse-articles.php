@@ -61,7 +61,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
     <div class="main-container container-fluid">
         <div class="row w-100">
         <div class="sidebar col-lg-3 col-md-12">
-            <h4 style="color: #0858a4;"><b><span id="total"></span></b></h4>
+            <h4 style="color: var(--main, #0858A4);"><b><span id="total"></span></b></h4>
             <hr style="border-top: 1px solid #ccc; margin: 10px 0;"> 
             <!-- Filters Here -->
             <div class="journal-preview flex-row flex-lg-column">
@@ -87,7 +87,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
             <hr style="border-top: 1px solid #ccc; margin: 10px 0;"> <!-- Add a horizontal line -->
      
             <div class="filters">
-                <h4 class="btn collapsed p-0" style="color: #0858a4;" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFilters" aria-expanded="false" aria-controls="collapseFilters">
+                <h4 class="btn collapsed p-0" style="color: var(--main, #0858A4);" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFilters" aria-expanded="false" aria-controls="collapseFilters">
                     Filter search results
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="7" viewBox="0 0 16 7"><path fill="currentColor" d="M8 6.5a.47.47 0 0 1-.35-.15l-4.5-4.5c-.2-.2-.2-.51 0-.71c.2-.2.51-.2.71 0l4.15 4.15l4.14-4.14c.2-.2.51-.2.71 0c.2.2.2.51 0 .71l-4.5 4.5c-.1.1-.23.15-.35.15Z"/></svg>
                 </h4>
@@ -112,7 +112,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
             <!-- Article 1 -->
             <div class="sort-container d-flex gap-2">
                 <div class="sort-header">
-                    <span class="sort-by-text" style="color: #0858a4;">Sort by</span>
+                    <span class="sort-by-text" style="color: var(--main, #0858A4);">Sort by</span>
                     <span class="sort-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                             viewBox="0 0 20 20">
                             <path fill="#e6e6e6" d="M11 7H1l5 7zm-2 7h10l-5-7z" /></svg></span>

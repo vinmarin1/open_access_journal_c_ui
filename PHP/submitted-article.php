@@ -256,9 +256,9 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
             <table class="table table-hover" id="table-file">
                 <thead>
                     <tr>
-                    <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">File Name</th>
-                    <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">File Type</th>
-                    <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">Action</th>
+                    <th scope="col" style="background-color: var(--main, #0858A4); color: white; font-weight: normal;">File Name</th>
+                    <th scope="col" style="background-color: var(--main, #0858A4); color: white; font-weight: normal;">File Type</th>
+                    <th scope="col" style="background-color: var(--main, #0858A4); color: white; font-weight: normal;">Action</th>
                     </tr>
                 </thead>
                 <tbody id="fileList">
@@ -298,8 +298,8 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                                     echo '<li style="list-style-type: none; 
                                                     margin-right: 5px;
                                                     width: auto;
-                                                    color: #0858a4;
-                                                    border: 1px solid #0858a4;
+                                                    color: var(--main, #0858A4);
+                                                    border: 1px solid var(--main, #0858A4);
                                                     border-radius: 10px;
                                                     background-color: white;
                                                     font-size: 12px;

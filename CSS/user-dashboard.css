@@ -966,13 +966,13 @@ label {
     background-color: #fff;
 }
 .badge-popup .badge-box:hover {
-    border-color: #0858a4; /* Change this to the desired border color */
+    border-color: var(--main, #0858A4); /* Change this to the desired border color */
 }
 #see-more {
-    border: 2px #0858a4 solid;
+    border: 2px var(--main, #0858A4) solid;
     background-color: transparent;
     border-radius: 20px;
-    color: #0858a4;
+    color: var(--main, #0858A4);
     width: 50%;
     margin-top: 10px;
     cursor: pointer;
@@ -981,7 +981,7 @@ label {
 
 /* Optional: Add hover effect */
 /*#see-more:hover {
-    background-color: #0858a4;
+    background-color: var(--main, #0858A4);
     color: #fff;
 }*/
 

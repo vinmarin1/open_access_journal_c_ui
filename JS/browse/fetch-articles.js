@@ -91,7 +91,7 @@ async function fetchData(input, dates,sort) {
             }
             articleDiv.innerHTML = `
             <div class="article-details">
-              <h6 style="color: #0858a4;"><strong>${item.title} - (${
+              <h6 style="color: var(--main, #0858A4);"><strong>${item.title} - (${
                 
                 new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric' }).format(new Date(item.publication_date))
               })</strong></h6>
@@ -108,19 +108,19 @@ async function fetchData(input, dates,sort) {
           <div class="article-stats">
             <div class="stats-container">
                 <div class="view-download">
-                    <p class="stats-value" style="color: #0858a4;">${
+                    <p class="stats-value" style="color: var(--main, #0858A4);">${
                       item.total_reads
                     }</p>
                     <p class="stats-label" style="color: #959595;">VIEWS</p>
                 </div>
                 <div class="view-download">
-                    <p class="stats-value" style="color: #0858a4;">${
+                    <p class="stats-value" style="color: var(--main, #0858A4);">${
                       item.total_downloads
                     }</p>
                     <p class="stats-label" style="color: #959595;">DOWNLOADS</p>
                 </div>
                 <div class="view-download">
-                <p class="stats-value" style="color: #0858a4;">${
+                <p class="stats-value" style="color: var(--main, #0858A4);">${
                   item.total_citations
                 }</p>
                 <p class="stats-label" style="color: #959595;">CITATIONS</p>
@@ -128,7 +128,7 @@ async function fetchData(input, dates,sort) {
             </div>
             <hr style="border-top: 1px solid #ccc; margin: 10px 0;"> <!-- Add a horizontal line -->
             <div class="published-info">
-                <h6 class="publish-label" style="color: #0858a4;"><strong>Published in The ${
+                <h6 class="publish-label" style="color: var(--main, #0858A4);"><strong>Published in The ${
                   item.journal
                 }</strong></h6>
                 <p class="authors d-flex flex-wrap gap-1" style="color: #959595;width:20em">${contributorsHTML}</p>

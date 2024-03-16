@@ -20,7 +20,7 @@ text-align: justify !important;
 #privacy-tab, #article-tab, #file-tab, #contributors-tab, #comment-tab,#review-tab{
     border: none;
     font-size: 14px;
-    color: #0858a4;
+    color: var(--main, #0858A4);
     margin-right: 5px;
     min-width: 121px;
     border-bottom-color: none;
@@ -28,7 +28,7 @@ text-align: justify !important;
 }
 
 #privacy-tab:focus, #article-tab:focus, #file-tab:focus, #contributors-tab:focus, #comment-tab:focus,#review-tab:focus{
-    background-color: #0858a4;
+    background-color: var(--main, #0858A4);
     color: white;
     border: none;
 }
@@ -38,7 +38,7 @@ text-align: justify !important;
 }
 
 #myTab{
-    border-bottom: 10px #0858a4 solid;
+    border-bottom: 10px var(--main, #0858A4) solid;
     padding-top: 24px;
     padding-left: 10px;
 
@@ -128,7 +128,7 @@ text-align: justify !important;
     overflow-y: auto;
     font-size: 14px;
     /* font-weight: bold; */
-    /* color:#0858a4; */
+    /* color:var(--main, #0858A4); */
     /* margin-bottom: 20px; */
     /* font-family: 'Times New Roman', Times, serif; */
 }
@@ -158,7 +158,7 @@ text-align: justify !important;
 
 #check-duplication, #btn-okay{
     width: 100%;
-    background-color: #0858a4;
+    background-color: var(--main, #0858A4);
     color: white;
     margin-top: 10px;
     border-radius: 10px;
@@ -173,7 +173,7 @@ text-align: justify !important;
 }
 
 #line-1, #line-2{
-    border: 1px #0858a4 solid;
+    border: 1px var(--main, #0858A4) solid;
     width: 100%;
     margin-top: 40px;
     margin-left: auto;
@@ -249,7 +249,7 @@ text-align: justify !important;
 }
 
 .keyTag:focus , .keyTag:active, .keyTag:hover {
-    background-color: #0858a4 !important;
+    background-color: var(--main, #0858A4) !important;
     cursor: pointer;
 }
 
@@ -296,11 +296,11 @@ text-align: justify !important;
 
 #swal-d, #swal-d-2, #swal-d-3{
     height: 2px;
-    background-color: #0858a4;
+    background-color: var(--main, #0858A4);
 }
 
 #article-unique{
-    color: #0858a4;
+    color: var(--main, #0858A4);
     font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -333,7 +333,7 @@ text-align: justify !important;
 #contributor-btn , #upload-btn{
     margin-top: 40px;
     float: right;
-    background-color: #0858a4;
+    background-color: var(--main, #0858A4);
     color: white;
     margin-bottom: 20px;
 }
@@ -441,7 +441,7 @@ text-align: justify !important;
 
 
 #confirmBtn, #update-cont, #btn-article-update{
-    background-color: #0858a4;
+    background-color: var(--main, #0858A4);
     height: 35px;
     width: auto;
     color: white;
@@ -468,7 +468,7 @@ text-align: justify !important;
 .article-header{
     width: 100%;
     display: flex;
-    background-color: #0858a4;
+    background-color: var(--main, #0858A4);
     height: 40px;
     padding-top: 8px;
     padding-left: 20px;
@@ -484,7 +484,7 @@ text-align: justify !important;
 .file-header-container{
     width: 100%;
     display: flex;
-    background-color: #0858a4;
+    background-color: var(--main, #0858A4);
     height: 40px;
     padding-top: 8px;
     padding-left: 20px;
@@ -498,7 +498,7 @@ text-align: justify !important;
 .cont-header-container{
     width: 100%;
     display: flex;
-    background-color: #0858a4;
+    background-color: var(--main, #0858A4);
     height: 40px;
     padding-top: 8px;
     padding-left: 20px;
@@ -575,7 +575,7 @@ text-align: justify !important;
 
 
 #newFile, #newFilef, #newFileg{
-    background-color: #0858a4;
+    background-color: var(--main, #0858A4);
     color: white;
     width: auto;
     display: inline-block;
@@ -655,7 +655,7 @@ text-align: justify !important;
 }
 
 #addCont, #deleteCont{
-    background-color: #0858a4;
+    background-color: var(--main, #0858A4);
     border: none;
     border-color: none;
    
@@ -749,19 +749,19 @@ text-align: justify !important;
 }
 
 #submit{
-    background-color: #0858a4;
+    background-color: var(--main, #0858A4);
     color: white;
 }
 
 
 #next, #next1, #next3, #next4, #next5{
-    background-color: #0858a4;
+    background-color: var(--main, #0858A4);
 }
 
 
 #update-article-title, #updatePreviewFileTitle{
     font-weight: bold;
-    color:#0858a4;
+    color:var(--main, #0858A4);
     text-align: left;
     margin-bottom: -20px;
 }
@@ -798,13 +798,13 @@ text-align: justify !important;
 
 #btnSelectFile1, #btnSelectFile2, #btnSelectFile3{
     display: inline-block;
-    background-color: #0858a4;
+    background-color: var(--main, #0858A4);
     
 }
 
 
 #btnPreview_Update{
-    background-color: #0858a4;
+    background-color: var(--main, #0858A4);
     color: white;
     float: right;
     margin-right: 15px;

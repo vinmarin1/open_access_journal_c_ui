@@ -12,8 +12,8 @@ document.getElementById('check-duplication').addEventListener('click', async fun
     const flaggedT = document.getElementById('flaggedT');
     const labelDuplicationAb = document.getElementById('result-duplication2');
 
-    labelTitle.style.color = '#0858a4';
-    labelResult.style.color = '#0858a4';
+    labelTitle.style.color = 'var(--main, #0858A4)';
+    labelResult.style.color = 'var(--main, #0858A4)';
     similarTitle.style.color = '#115272';
     nextBtn.disabled= true;
     
@@ -50,9 +50,9 @@ document.getElementById('check-duplication').addEventListener('click', async fun
             journalType.style.display = 'block';
             labelTitle.style.textAlign = 'left';
             labelResult.style.textAlign = 'left';
-            labelResult.style.color = '#0858a4';       
+            labelResult.style.color = 'var(--main, #0858A4)';       
             similarTitle.style.textAlign = 'left';
-            similarTitle.style.color = '#0858a4';
+            similarTitle.style.color = 'var(--main, #0858A4)';
             flagged.style.display = 'block';
             flaggedT.classList.remove('text-danger');
             flaggedT.classList.add('text-success');
@@ -81,11 +81,11 @@ document.getElementById('check-duplication').addEventListener('click', async fun
             journalType.style.display = 'block';
             labelTitle.style.textAlign = 'left';
             labelResult.style.textAlign = 'left';
-            labelResult.style.color = '#0858a4';    
+            labelResult.style.color = 'var(--main, #0858A4)';    
             labelDuplication.style.textAlign = 'left';
-            labelDuplication.style.color = '##0858a4';
+            labelDuplication.style.color = '#var(--main, #0858A4)';
             similarTitle.style.textAlign = 'left';
-            similarTitle.style.color = '#0858a4';
+            similarTitle.style.color = 'var(--main, #0858A4)';
             flagged.style.display = 'block';
             flaggedT.classList.add('text-danger');
             flaggedT.classList.remove('text-success');
@@ -124,9 +124,9 @@ document.getElementById('check-duplication').addEventListener('click', async fun
             journalType.style.display = 'block';
             labelTitle.style.textAlign = 'left';
             labelResult.style.textAlign = 'left';
-            labelResult.style.color = '#0858a4';       
+            labelResult.style.color = 'var(--main, #0858A4)';       
             similarTitle.style.textAlign = 'left';
-            similarTitle.style.color = '#0858a4';
+            similarTitle.style.color = 'var(--main, #0858A4)';
             flagged.style.display = 'block';
             flaggedT.innerHTML = '(Unique)';
             flaggedT.classList.remove('text-danger');

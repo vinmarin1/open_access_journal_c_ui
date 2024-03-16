@@ -20,12 +20,13 @@
 </head>
 
 <body>
-    <div class="text-white" style="background-color:#0858a4; padding: 2em 6%;">
+    <div class="text-white" style="background-color:var(--main, #0858A4); padding: 2em 6%;">
         <div class="row">
             <div class="col-12 col-md-7 d-flex flex-column gap-4">
                 <div class="d-flex gap-2 justify-content-center justify-content-md-start">
-                    <img class="img-logo" src="../images/qcu-logo.webp" alt="">
-                    <div class=" d-flex flex-column gap-1">
+                    <img src="../images/qcuj.png" style="width:6em; height:6em" alt="" />
+                    <img style="width:5em; height:5em"  src="../images/qcu-logo.webp" alt="">
+                    <div class=" d-none d-lg-flex flex-column gap-1">
                         <h4>QUEZON CITY UNIVERSITY JOURNALS</h4>
                         <a href="https://qcu.edu.ph/" class="text-decoration-none text-white">Quezon City University, Philippines</a>
                     </div>

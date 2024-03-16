@@ -119,7 +119,7 @@ p{
     max-width: 70%;
 }
 .article-content h6{
-    color: #0858a4;
+    color: var(--main, #0858A4);
     cursor: pointer;
 }
 .article-content p{
@@ -140,10 +140,10 @@ p{
         }
 
         .download-buttons button {
-            border: 2px #0858a4 solid;
+            border: 2px var(--main, #0858A4) solid;
             background-color: transparent;
 			border-radius: 20px;
-            color: #0858a4;
+            color: var(--main, #0858A4);
             cursor: pointer;
 			padding: 5px 10px 5px 10px;
 			display: inline-block;

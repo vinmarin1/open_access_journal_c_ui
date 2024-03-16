@@ -27,7 +27,7 @@ background-color: rgba(53, 68, 74, 0.7);
 
 .container-fluid h2{
     font-family: Arial, Helvetica, sans-serif;
-    color: #0858a4 ;
+    color: var(--main, #0858A4) ;
     text-align: center  ;
 }
 .container-fluid p{
@@ -44,7 +44,7 @@ img{
 
 .helps h3{
     font-family: Arial, Helvetica, sans-serif;
-    color: #0858a4 ;
+    color: var(--main, #0858A4) ;
 }
 
 .helps img{

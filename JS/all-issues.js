@@ -81,15 +81,15 @@ async function generateArticlesBasedOnIssues(page) {
                 <hr>
                 <div class="stats-container">
                     <div class="view-download">
-                        <p class="stats-value" style="color: #0858a4;">${article.total_reads}</p>
+                        <p class="stats-value" style="color: var(--main, #0858A4);">${article.total_reads}</p>
                         <p class="stats-label" style="color: #959595;">VIEWS</p>
                     </div>
                     <div class="view-download">
-                        <p class="stats-value" style="color: #0858a4;">${article.total_downloads}</p>
+                        <p class="stats-value" style="color: var(--main, #0858A4);">${article.total_downloads}</p>
                         <p class="stats-label" style="color: #959595;">DOWNLOADS</p>
                     </div>
                     <div class="view-download">
-                        <p class="stats-value" style="color: #0858a4;">${article.total_citations}</p>
+                        <p class="stats-value" style="color: var(--main, #0858A4);">${article.total_citations}</p>
                         <p class="stats-label" style="color: #959595;">CITATIONS</p>
                     </div>
                 </div>
