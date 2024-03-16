@@ -1,4 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&family=Judson:ital,wght@0,400;0,700;1,400&display=swap');
+
+:root {
+    --main: #0858a4;
+    --secondary: #E56F1F;
+    /* --main-headings: #004e98; */
+}
 * {
     font-family: 'Inter', sans-serif;
     box-sizing: border-box;
@@ -42,25 +48,25 @@ h4 {
     font-weight: bold;
     font-size: 20px;
     font-family: 'Times New Roman';
-    color: #004e98;
+    color: var(--main);
     padding-top: -5px;
     
   }
 
 
 .header a:hover{
-    color: #004e98;
+    color: var(--main);
     cursor: auto;
 }
 
 .header a:focus{
-    color: #004e98;
+    color: var(--main);
 }
 
 .header span{
     font-family: Arial, Helvetica, sans-serif;
     display: block;
     font-size: 15px;
-    color: #004e98;
+    color: var(--main);
 }
 

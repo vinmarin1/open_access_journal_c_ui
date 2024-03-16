@@ -92,7 +92,7 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
                 <span id="countDown" style="color: red"></span>
                 <!-- <input class="btn btn-outline-danger btn-sm" type="button" value="Register" id="register-button" onclick="window.location.href= '../PHP/signup.php';"> -->
                 <button class="btn btn-outline-primary btn-sm" type="button" value="Register" id="register-button" onclick="window.location.href= '../PHP/signup.php';">Register</button>
-                <a id="forgotPasswordLink" style="color: #0858a4; text-decoration: underline; cursor: pointer  ">Forgot Password?
+                <a id="forgotPasswordLink" style="color: var(--main, #0858A4); text-decoration: underline; cursor: pointer  ">Forgot Password?
                     <div class="spinner-border spinner-border-sm" role="status" id="spinner" style="display: none">
                         <span class="visually-hidden"></span>
                     </div>

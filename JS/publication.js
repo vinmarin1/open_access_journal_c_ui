@@ -37,7 +37,7 @@ function generateJournals(data) {
                         </div>
                     </div>
 
-                    <hr style="height: 2px; background-color: #0858a4; width: 100%">
+                    <hr style="height: 2px; background-color: var(--main, #0858A4); width: 100%">
 
                 </div>
             </div>

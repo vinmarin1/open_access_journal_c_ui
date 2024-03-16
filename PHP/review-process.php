@@ -158,8 +158,8 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                                 
                             </p>
                         </div>
-                        <hr style="height: 2px; background-color: #0858a4; width: 100%">
-                        <h4 style="color: #0858a4; font-family: Arial, Helvetica, sans-serif;" >Submitted in the 
+                        <hr style="height: 2px; background-color: var(--main, #0858A4); width: 100%">
+                        <h4 style="color: var(--main, #0858A4); font-family: Arial, Helvetica, sans-serif;" >Submitted in the 
                         <?php
                             $sqlJournal = "SELECT journal.journal, article.title FROM journal JOIN article ON journal.journal_id = article.journal_id JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id AND article.status = 4
                             AND reviewer_assigned.author_id = :author_id AND article.article_id = :article_id";
@@ -251,8 +251,8 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                         <table class="table table-hover" id="table-file" style="border-collapse: separate; border-spacing: 10px 10px 10px 10px;">
                             <thead>
                                 <tr>
-                                <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">File</th>
-                                <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">Date</th>
+                                <th scope="col" style="background-color: var(--main, #0858A4); color: white; font-weight: normal;">File</th>
+                                <th scope="col" style="background-color: var(--main, #0858A4); color: white; font-weight: normal;">Date</th>
                                 </tr>
                             </thead>
                             <tbody id="fileList">
@@ -313,8 +313,8 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                             <table class="table table-hover" id="table-file" style="border-collapse: separate; border-spacing: 10px 10px 10px 10px;">
                                 <thead>
                                     <tr>
-                                    <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">File</th>
-                                    <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">ORCID</th>
+                                    <th scope="col" style="background-color: var(--main, #0858A4); color: white; font-weight: normal;">File</th>
+                                    <th scope="col" style="background-color: var(--main, #0858A4); color: white; font-weight: normal;">ORCID</th>
                                     </tr>
                                 </thead>
                                 <tbody id="fileList">
@@ -363,8 +363,8 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                                         echo '<li style="list-style-type: none; 
                                                         margin-right: 5px;
                                                         width: auto;
-                                                        color: #0858a4;
-                                                        border: 1px solid #0858a4;
+                                                        color: var(--main, #0858A4);
+                                                        border: 1px solid var(--main, #0858A4);
                                                         border-radius: 10px;
                                                         background-color: white;
                                                         font-size: 12px;">' . trim($keyword) . '</li>';
@@ -418,7 +418,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                 <div class="col-md-8 rev-guide" style="padding-top:20px;">
                     <h4>Review Steps</h4>
 
-                    <hr style="height: 2px; background-color: #0858a4; width: 100%">
+                    <hr style="height: 2px; background-color: var(--main, #0858A4); width: 100%">
 
                     <ol>
                         <li> Consult Reviewer Guidelines below. </li>
@@ -456,7 +456,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 
 
                     <h4>Review Guidelines</h4>
-                    <hr style="height: 2px; background-color: #0858a4; width: 100%">
+                    <hr style="height: 2px; background-color: var(--main, #0858A4); width: 100%">
                     <div class="guidelines">
                         <p>
                         The International Journal of Learning, Teaching and Educational Research values the role of reviewers in the peer-review process that enables us to publish high-quality materials in a timely way.
@@ -491,7 +491,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                     </div>
                     <div class="form-check">
                         <input type="checkbox" id="checkBox" name="checkBox" value="1" >
-                        <label for="checkBox" style="color: #0858a4;" >I have read and will follow the steps and Guidelines of reviewing this assign Article.</label><br>
+                        <label for="checkBox" style="color: var(--main, #0858A4);" >I have read and will follow the steps and Guidelines of reviewing this assign Article.</label><br>
                     </div>
 
                     <div class="btn-action">
@@ -529,7 +529,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 
 
                 <div class="col-md-10" style="padding-top:20px;">
-                    <h5 style="background-color:#0858a4; color: white; padding:10px;" >Research Article Review Form</h5>
+                    <h5 style="background-color:var(--main, #0858A4); color: white; padding:10px;" >Research Article Review Form</h5>
                     <div class="contents">
                         <div class="row">
                             <div class="col-md-5 firstContent">
@@ -548,7 +548,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                                 if ($result) {
                                     foreach ($result as $row) {
                                         $question = htmlspecialchars($row->question);
-                                        echo '<li class="list-group-item mt-4" style="list-style: none; font-family: &quot;Times New Roman&quot;, Times, serif; color: #0858a4; font-size: 20px;">' . $question . '</li>';
+                                        echo '<li class="list-group-item mt-4" style="list-style: none; font-family: &quot;Times New Roman&quot;, Times, serif; color: var(--main, #0858A4); font-size: 20px;">' . $question . '</li>';
 
                                         // Split the choices using commas
                                         $choices = explode(',', $row->answer);
@@ -737,7 +737,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 
                         </div>
 
-                        <hr style="height: 2px; background-color: #0858a4; width: 100%;">
+                        <hr style="height: 2px; background-color: var(--main, #0858A4); width: 100%;">
 
                         <!-- <div class="decisions">
                             <h5>Decision:</h5>

@@ -163,7 +163,7 @@ function renderArticleDetails(data) {
                   </div>
               </div>
 
-              <hr style="height: 2px; background-color: #0858a4; width: 80%">
+              <hr style="height: 2px; background-color: var(--main, #0858A4); width: 80%">
 
               <div class="article-pub">
                   <h4>Published in ${item.journal}</h4>
@@ -263,7 +263,7 @@ function renderArticleDetails(data) {
       navigator.clipboard.writeText(citationContent.querySelector("p").innerHTML);
       handleDownloadLog(item.article_id,"citation");
       Swal.fire({
-        html: '<h4 style="color: #0858a4; font-family: font-family: Arial, Helvetica, sans-serif">Successfully copied reference in your clipboard.</h4>',
+        html: '<h4 style="color: var(--main, #0858A4); font-family: font-family: Arial, Helvetica, sans-serif">Successfully copied reference in your clipboard.</h4>',
         icon: 'success',
       })
     })
@@ -273,7 +273,7 @@ function renderArticleDetails(data) {
       navigator.clipboard.writeText(citationContent.querySelector("p").innerHTML);
       handleDownloadLog(item.article_id,"citation");
       Swal.fire({
-        html: '<h4 style="color: #0858a4; font-family: font-family: Arial, Helvetica, sans-serif">Successfully copied reference in your clipboard.</4>',
+        html: '<h4 style="color: var(--main, #0858A4); font-family: font-family: Arial, Helvetica, sans-serif">Successfully copied reference in your clipboard.</4>',
         icon: 'success',
       })
     })}
@@ -338,7 +338,7 @@ function renderArticleDetails(data) {
           handleDownloadLog(item.article_id, "download");
           Swal.fire({
             html: `
-            <h4 style="color: #0858a4; font-family: font-family: Arial, Helvetica, sans-serif">Download Started. Your download will start shortly. </h4>
+            <h4 style="color: var(--main, #0858A4); font-family: font-family: Arial, Helvetica, sans-serif">Download Started. Your download will start shortly. </h4>
             <p style="font-size: 16px;">If it doesn\'t start automatically, <a href="#">click here</a>.</p>'
 
             `,
@@ -346,7 +346,7 @@ function renderArticleDetails(data) {
           })
         }catch(error){
           Swal.fire({
-            html: '<h4 style="color: #0858a4; font-family: font-family: Arial, Helvetica, sans-serif">Failed to download. No file available</h4>',
+            html: '<h4 style="color: var(--main, #0858A4); font-family: font-family: Arial, Helvetica, sans-serif">Failed to download. No file available</h4>',
             icon: 'warning',
           })
         }
@@ -359,7 +359,7 @@ function renderArticleDetails(data) {
       epubBtn.addEventListener("click", () => {
         try{
           Swal.fire({
-            html: '<h4 style="color: #0858a4; font-family: font-family: Arial, Helvetica, sans-serif">Successfully downloaded.</h4>',
+            html: '<h4 style="color: var(--main, #0858A4); font-family: font-family: Arial, Helvetica, sans-serif">Successfully downloaded.</h4>',
             icon: 'success',
           })
           var fileExtension = item.file_name.split('.').pop();
@@ -367,7 +367,7 @@ function renderArticleDetails(data) {
           handleDownloadLog(item.article_id,"download");
         }catch(error){
           Swal.fire({
-            html: '<h4 style="color: #0858a4; font-family: font-family: Arial, Helvetica, sans-serif">Failed to download. No article file available.</h4>',
+            html: '<h4 style="color: var(--main, #0858A4); font-family: font-family: Arial, Helvetica, sans-serif">Failed to download. No article file available.</h4>',
             icon: 'warning',
           })
         }
@@ -405,7 +405,7 @@ async function renderRecommended(data) {
       </div>
       <p class="author">By ${article.author}</p>
       <p class="article-content h-25 ">${article.abstract.slice(0, 80)}</p>
-      <button class="btn btn-primary btn-md btn-article" style="border: 2px #0858a4 solid; background-color: transparent; border-radius: 20px; color: #0858a4; width: 100%;">Read Article</button>
+      <button class="btn btn-primary btn-md btn-article" style="border: 2px var(--main, #0858A4) solid; background-color: transparent; border-radius: 20px; color: var(--main, #0858A4); width: 100%;">Read Article</button>
     `;
     articleElement.addEventListener("click", () =>
       navigateToArticle(article.article_id)

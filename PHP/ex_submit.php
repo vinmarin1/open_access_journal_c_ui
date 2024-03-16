@@ -137,7 +137,7 @@
   <div class="article-details">
     <div class="details py-2">
       <p class="h6 pt-3 " id="title-4">Article Details</p>
-      <p class="h6" id="sub-6" style="#0858a4">Please provide the following details to help us manage your submission in our system.</p>
+      <p class="h6" id="sub-6" style="var(--main, #0858A4)">Please provide the following details to help us manage your submission in our system.</p>
     </div>
     <div class="input-details d-flex flex-column-reverse gap-3 flex-sm-row">
       
@@ -265,9 +265,9 @@
 <table class="table table-hover" id="table-file">
   <thead>
     <tr>
-      <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">File Name</th>
-      <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">File Type</th>
-      <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">Action</th>
+      <th scope="col" style="background-color: var(--main, #0858A4); color: white; font-weight: normal;">File Name</th>
+      <th scope="col" style="background-color: var(--main, #0858A4); color: white; font-weight: normal;">File Type</th>
+      <th scope="col" style="background-color: var(--main, #0858A4); color: white; font-weight: normal;">Action</th>
     </tr>
   </thead>
   <tbody id="fileList">
@@ -331,13 +331,13 @@
     <table class="table table-striped" id="contributorTable" >
             <thead>
                 <tr>
-                    <th style=" background-color: #0858a4; color: white; bold; font-size: 12px; font-weight: normal">Email</th>
-                    <th style=" background-color: #0858a4; color: white; font-size: 12px; font-weight: normal">First Name</th>
-                    <th style=" background-color: #0858a4; color: white; bold; font-size: 12px; font-weight: normal">Last Name</th>
-                    <th style=" background-color: #0858a4; color: white; bold; font-size: 12px; font-weight: normal">Public Name</th>
-                    <th style=" background-color: #0858a4; color: white; bold; font-size: 12px; font-weight: normal">ORCID</th>
-                    <th id="cont-col" style=" background-color: #0858a4; color: white; old; font-size: 12px; font-weight: normal; width: 350px">Contributor Type</th>
-                    <th style=" background-color: #0858a4; color: white; width: 30px; bold; font-size: 12px; font-weight: normal">Action</th>
+                    <th style=" background-color: var(--main, #0858A4); color: white; bold; font-size: 12px; font-weight: normal">Email</th>
+                    <th style=" background-color: var(--main, #0858A4); color: white; font-size: 12px; font-weight: normal">First Name</th>
+                    <th style=" background-color: var(--main, #0858A4); color: white; bold; font-size: 12px; font-weight: normal">Last Name</th>
+                    <th style=" background-color: var(--main, #0858A4); color: white; bold; font-size: 12px; font-weight: normal">Public Name</th>
+                    <th style=" background-color: var(--main, #0858A4); color: white; bold; font-size: 12px; font-weight: normal">ORCID</th>
+                    <th id="cont-col" style=" background-color: var(--main, #0858A4); color: white; old; font-size: 12px; font-weight: normal; width: 350px">Contributor Type</th>
+                    <th style=" background-color: var(--main, #0858A4); color: white; width: 30px; bold; font-size: 12px; font-weight: normal">Action</th>
                 </tr>
                <tr>
                 <th><input type="text" style="width: 118px" value="<?php echo $email ?>"  disabled></th>
@@ -435,14 +435,14 @@
           <thead>
             <tr >
         
-              <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">First Name</th>
-              <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">Last Name</th>
-              <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">Public Name</th>
-              <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">ORCID</th>
-              <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">EMAIL</th>
-              <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">CO-AUTHOR</th>
-              <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">PRIMARY CONTACT</th>
-              <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal; ">Action</th>
+              <th scope="col" style="background-color: var(--main, #0858A4); color: white; font-weight: normal;">First Name</th>
+              <th scope="col" style="background-color: var(--main, #0858A4); color: white; font-weight: normal;">Last Name</th>
+              <th scope="col" style="background-color: var(--main, #0858A4); color: white; font-weight: normal;">Public Name</th>
+              <th scope="col" style="background-color: var(--main, #0858A4); color: white; font-weight: normal;">ORCID</th>
+              <th scope="col" style="background-color: var(--main, #0858A4); color: white; font-weight: normal;">EMAIL</th>
+              <th scope="col" style="background-color: var(--main, #0858A4); color: white; font-weight: normal;">CO-AUTHOR</th>
+              <th scope="col" style="background-color: var(--main, #0858A4); color: white; font-weight: normal;">PRIMARY CONTACT</th>
+              <th scope="col" style="background-color: var(--main, #0858A4); color: white; font-weight: normal; ">Action</th>
             </tr>
           </thead>
           <tbody>
