@@ -199,6 +199,9 @@ border-radius: 8px;
 padding:2em 0;
 }
 @media only screen and (max-width: 768px) {
+  h2{
+  font-size:1.5em !important;
+  }
   .recommendation-article{
     padding:2%;
   }
@@ -322,7 +325,7 @@ opacity: 0.8;
 
 }
 .badge {
-  background-color: var(--main, #0858A4) !important;
+  background-color: #DFEFFF !important;
 }
 .qoaj {
 background-color: var(--main, #0858A4);
@@ -353,10 +356,12 @@ padding: 2em 8%;
 
 .total-summary {
   padding:1em  2em;
+  text-align: center;
   
 }
 .total-summary span {
   font-size: 2.5em;
+
   color: var(--main, #0858A4);
 }
 .ab-qoaj-left {
