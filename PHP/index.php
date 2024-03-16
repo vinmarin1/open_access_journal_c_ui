@@ -211,7 +211,7 @@
         </div>
         <div class='ab-qoaj-right'>
           <img src="../images/qcuj.png" style="width:16em; height:16em" alt="" />
-          <img src="../images/qcu-logo.webp" style="width:11em; height:11em" alt="" />
+          <img class="d-none d-md-flex" src="../images/qcu-logo.webp" style="width:11em; height:11em" alt="" />
         </div>
       </div>
       <div class="vision-container" style="background-color:#ffff;">
@@ -291,12 +291,12 @@
           <h2 class="">What We Offer</h2>
           <p class=" text-center text-muted "> These are some of the QCUJ features you'll enjoy </p>
             </div>
-        <div class="row gap-2 gy-8 gx-md-8 gy-lg-2 gx-xxl-5 justify-content-between">
-          <div style="width: 26em" class="mb-4 border rounded p-4 d-flex flex-column justify-content-between">
+        <div class="row gap-2 gy-8 gx-md-8 gy-lg-2 gx-xxl-5 justify-content-center justify-sm-content-between">
+          <div style="width: 22em" class="mb-4 border rounded p-4 d-flex flex-column justify-content-between">
             <div>
               <div class="badge p-3 mb-4">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-              	<path fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0-14 0m18 11l-6-6" />
+              	<path fill="none" stroke="var(--main)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0-14 0m18 11l-6-6" />
               </svg>
               </div>
             </div>
@@ -313,11 +313,11 @@
             </a>
           </div>
 
-          <div style="width: 26em" class="mb-4 border rounded p-4 d-flex flex-column justify-content-between">
+          <div style="width: 22em" class="mb-4 border rounded p-4 d-flex flex-column justify-content-between">
             <div>
               <div class="badge p-3 mb-4">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32">
-              	<path fill="white" d="M25 4.03c-.765 0-1.517.3-2.094.876L13 14.78l-.22.22l-.06.313l-.69 3.5l-.31 1.468l1.467-.31l3.5-.69l.313-.06l.22-.22l9.874-9.906A2.968 2.968 0 0 0 25 4.032zm0 1.94c.235 0 .464.12.688.343c.446.446.446.928 0 1.375L16 17.374l-1.72.344l.345-1.72l9.688-9.688c.223-.223.452-.343.687-.343zM4 8v20h20V14.812l-2 2V26H6V10h9.188l2-2z" />
+              	<path fill="var(--main)" d="M25 4.03c-.765 0-1.517.3-2.094.876L13 14.78l-.22.22l-.06.313l-.69 3.5l-.31 1.468l1.467-.31l3.5-.69l.313-.06l.22-.22l9.874-9.906A2.968 2.968 0 0 0 25 4.032zm0 1.94c.235 0 .464.12.688.343c.446.446.446.928 0 1.375L16 17.374l-1.72.344l.345-1.72l9.688-9.688c.223-.223.452-.343.687-.343zM4 8v20h20V14.812l-2 2V26H6V10h9.188l2-2z" />
               </svg>
               </div>
             </div>
@@ -354,11 +354,11 @@
                 }
               ?>
           </div>
-          <div style="width: 26em" class="mb-4 border rounded p-4 d-flex flex-column justify-content-between">
+          <div style="width: 22em" class="mb-4 border rounded p-4 d-flex flex-column justify-content-between">
             <div>
               <div class="badge p-3 mb-4">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-              	<g fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+              	<g fill="none" stroke="var(--main)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
               		<rect width="14" height="20" x="5" y="2" rx="2" ry="2" />
               		<path d="M12.667 8L10 12h4l-2.667 4" />
               	</g>
