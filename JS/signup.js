@@ -61,11 +61,11 @@ document.getElementById('form').addEventListener('submit', function(event) {
     // const mdname = document.getElementById('mdname').value;
     const lname = document.getElementById('lname').value;
     const password = document.getElementById('password').value;
-    const orcid = document.getElementById('orcid').value;
+    // const orcid = document.getElementById('orcid').value;
     
     const emailBorder = document.getElementById('email');
     const fnameBorder = document.getElementById('fname');
-    const orcidBorder = document.getElementById('orcid');
+    // const orcidBorder = document.getElementById('orcid');
     const lnameBorder = document.getElementById('lname');
     const passwordBorder = document.getElementById('password');
 
@@ -74,7 +74,7 @@ document.getElementById('form').addEventListener('submit', function(event) {
     const span3 = document.getElementById('span3');
     const span4 = document.getElementById('span4');
     const span5 = document.getElementById('span5');
-    const orcidVlalidation = document.getElementById('orcidVlalidation');
+    // const orcidVlalidation = document.getElementById('orcidVlalidation');
 
     // span1.style.display = 'none';
     // span2.style.display = 'none';
@@ -92,11 +92,11 @@ document.getElementById('form').addEventListener('submit', function(event) {
         
     }
 
-    if (orcid === "") {
-        // orcidVlalidation.style.display = 'inline-block';
-        hasError = true;
-        orcidBorder.style.border = '1px solid red';
-    }
+    // if (orcid === "") {
+    //     // orcidVlalidation.style.display = 'inline-block';
+    //     hasError = true;
+    //     orcidBorder.style.border = '1px solid red';
+    // }
 
     if (fname === "") {
         // span2.style.display = 'inline-block';
@@ -145,17 +145,17 @@ function isValidPassword(password) {
     return uppercaseRegex.test(password) && specialCharRegex.test(password) && numberRegex.test(password) && password.length <= 50;
 }
 
-async function isOrcid(orcid) {
-    // Check if orcid is existing or not but orcid is still optional
-    const response = await fetch(`https://pub.orcid.org/v3.0/${orcid}`);
-    if (orcid != "" && response.status != 200) {
-        return false; 
+// async function isOrcid(orcid) {
+//     // Check if orcid is existing or not but orcid is still optional
+//     const response = await fetch(`https://pub.orcid.org/v3.0/${orcid}`);
+//     if (orcid != "" && response.status != 200) {
+//         return false; 
    
 
-    }
-    return true; 
+//     }
+//     return true; 
    
-}
+// }
 
 
 
@@ -198,16 +198,16 @@ if (!privacyPolicy.checked) {
 }
 (async () => {
     console.log('Starting validation...');
-    if (!await isOrcid(orcid)) {
-        console.log('ORCID is not valid. Halting execution.');
-        document.getElementById('spanOrcidValidation').style.display = 'inline-block';
-        Swal.fire({
-            icon: "info",
-            text: "ORCID is not valid"
-        });
-        hasError = true;
-        return; 
-    }
+    // if (!await isOrcid(orcid)) {
+    //     console.log('ORCID is not valid. Halting execution.');
+    //     document.getElementById('spanOrcidValidation').style.display = 'inline-block';
+    //     Swal.fire({
+    //         icon: "info",
+    //         text: "ORCID is not valid"
+    //     });
+    //     hasError = true;
+    //     return; 
+    // }
 
 if(!captchaSolved){
     Swal.fire({
@@ -247,7 +247,7 @@ else if (hasError) {
         }
     };
     xhr.send('email=' + encodeURIComponent(email) +
-        '&orcid=' + encodeURIComponent(orcid) +
+        // '&orcid=' + encodeURIComponent(orcid) +
         '&fname=' + encodeURIComponent(fname) +
         // '&mdname=' + encodeURIComponent(mdname) +
         '&lname=' + encodeURIComponent(lname) +
@@ -314,21 +314,21 @@ document.getElementById('password').addEventListener('input', function() {
     password.style.border = '1px solid';
 });
 
-document.getElementById('orcid').addEventListener('input', function() {
-    document.getElementById('orcidVlalidation').style.display = 'none';
-    const orcid = document.getElementById('orcid');
-    orcid.style.border = '1px solid';
-});
+// document.getElementById('orcid').addEventListener('input', function() {
+//     document.getElementById('orcidVlalidation').style.display = 'none';
+//     const orcid = document.getElementById('orcid');
+//     orcid.style.border = '1px solid';
+// });
 
 
 
-async function isOrcid(orcid) {
-    const response = await fetch(`https://pub.orcid.org/v3.0/${orcid}`);
-    if (response.status != 200) {
-            return false; 
-    }
-    return true; 
-}
+// async function isOrcid(orcid) {
+//     const response = await fetch(`https://pub.orcid.org/v3.0/${orcid}`);
+//     if (response.status != 200) {
+//             return false; 
+//     }
+//     return true; 
+// }
 
 document.getElementById('email').addEventListener('blur', function() {
     const email = document.getElementById('email').value;
@@ -338,31 +338,31 @@ document.getElementById('email').addEventListener('blur', function() {
    
 });
 
-document.getElementById('orcid').addEventListener('blur', function() {
-    const orcid = document.getElementById('orcid').value;
-    if(orcid === ""){
-        document.getElementById('orcidVlalidation').style.display = 'inline-block';
-    }
+// document.getElementById('orcid').addEventListener('blur', function() {
+//     const orcid = document.getElementById('orcid').value;
+//     if(orcid === ""){
+//         document.getElementById('orcidVlalidation').style.display = 'inline-block';
+//     }
    
-});
+// });
 
 
 
-document.getElementById('orcid').addEventListener('blur', function() {
-    const orcid = document.getElementById('orcid').value;
+// document.getElementById('orcid').addEventListener('blur', function() {
+//     const orcid = document.getElementById('orcid').value;
    
-    (async () => {
-        // if there's an input there's a need to validate the orcid
-        if (orcid != "" && !await isOrcid(orcid)) {
-            document.getElementById('spanOrcidValidation').style.display = 'inline-block';
+//     (async () => {
+//         // if there's an input there's a need to validate the orcid
+//         if (orcid != "" && !await isOrcid(orcid)) {
+//             document.getElementById('spanOrcidValidation').style.display = 'inline-block';
          
-            hasError = true;
-        }else{
-            document.getElementById('spanOrcidValidation').style.display = 'none';
-        }
-    })();
+//             hasError = true;
+//         }else{
+//             document.getElementById('spanOrcidValidation').style.display = 'none';
+//         }
+//     })();
    
-});
+// });
 
 document.getElementById('fname').addEventListener('blur', function() {
     const fname = document.getElementById('fname').value;
@@ -395,5 +395,3 @@ document.getElementById('password').addEventListener('focus', function(){
     document.getElementById('popover-password').classList.remove('d-none');
     document.getElementById('show-pass').classList.remove('d-none');
 })
-
-

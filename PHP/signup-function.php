@@ -18,21 +18,21 @@ function checkEmailExist($data) {
     return $errors;
 }
 
-function checkOrcid($data) {
-    $errors = array();
+// function checkOrcid($data) {
+//     $errors = array();
 
-    $checkOrcid = database_run("SELECT * FROM author WHERE orc_id = :orc_id LIMIT 1", ['orc_id' => $data['orcid']]);
+//     $checkOrcid = database_run("SELECT * FROM author WHERE orc_id = :orc_id LIMIT 1", ['orc_id' => $data['orcid']]);
     
-    if (!empty($checkOrcid)) {
-        $errors[] = "The ORCID already exists";
-    }
+//     if (!empty($checkOrcid)) {
+//         $errors[] = "The ORCID already exists";
+//     }
 
-    return $errors;
-}
+//     return $errors;
+// }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
-    $orcid = $_POST['orcid'];
+    // $orcid = $_POST['orcid'];
     $fname = $_POST['fname'];
     // $mdname = $_POST['mdname'];
     $password = $_POST['password'];
@@ -41,25 +41,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $privacyPolicy = $_POST['privacyPolicy'];
 
     $emailErrors = checkEmailExist($_POST);
-    $orcidErrors = checkOrcid($_POST);
+    // $orcidErrors = checkOrcid($_POST);
 
-    if (!empty($emailErrors) && !empty($orcidErrors)) {
-        echo json_encode(['success' => false, 'message' => implode(', ', $emailErrors) . ', ' . implode(', ', $orcidErrors)]);
-    } elseif (!empty($emailErrors)) {
+    if (!empty($emailErrors)) {
         echo json_encode(['success' => false, 'message' => implode(', ', $emailErrors)]);
-    } elseif (!empty($orcidErrors)) {
-        echo json_encode(['success' => false, 'message' => implode(', ', $orcidErrors)]);
-    } else {
+    }else {
         // Your insertion code here
-        $sql = "INSERT INTO author (`first_name`, `last_name`, `email`, `orc_id`, `password`, `privacyAgreement`, `role`, `status`)
-            VALUES (:first_name, :last_name, :email, :orc_id, :password, :privacyAgreement, :role, :status)";
+        $sql = "INSERT INTO author (`first_name`, `last_name`, `email`, `password`, `privacyAgreement`, `role`, `status`)
+            VALUES (:first_name, :last_name, :email, :password, :privacyAgreement, :role, :status)";
 
         $params = [
             'first_name' => $fname,
             // 'middle_name' => $lname,
             'last_name' => $lname,
             'email' => $email,
-            'orc_id' => $orcid,
+            // 'orc_id' => $orcid,
             'password' => $hashedPassword,
             'privacyAgreement' => $privacyPolicy,
             'role' => 'Author',
