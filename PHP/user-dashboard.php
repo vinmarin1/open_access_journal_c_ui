@@ -2116,6 +2116,8 @@ document.getElementById('cancelBtn').addEventListener('click', function(event){
 
 
 
+
+
 document.addEventListener('DOMContentLoaded', function () {
     // Attach click event listener to all elements with class 'view-button'
     var viewButtons = document.querySelectorAll('.view-button');

@@ -332,6 +332,7 @@ document.getElementById('bio').addEventListener('input', function(event){
 document.getElementById('saveButton').addEventListener('click', function(event){
   event.preventDefault();
   const orcid = document.getElementById('orcid').value;
+  const cancelBtn = document.getElementById('cancelBtn');
 
   // Regular expression to match the ORCID format "xxxx-xxxx-xxxx-xxxx"
   const orcidPattern = /^\d{4}-\d{4}-\d{4}-\d{4}$/;
@@ -355,7 +356,8 @@ document.getElementById('saveButton').addEventListener('click', function(event){
                   }).then((result) => {
                       if(result.isConfirmed){
                         document.getElementById('editForm').style.display = 'none';
-                        document.getElementById('orcid').value = ''; // Reset the value of the input field
+                        cancelBtn.click();
+                        // document.getElementById('orcid').value = ''; // Reset the value of the input field
                       }
                   });
               } else {
@@ -377,7 +379,8 @@ document.getElementById('saveButton').addEventListener('click', function(event){
                               }).then((result) => {
                                   if (result.isConfirmed) {
                                       document.getElementById('editForm').style.display = 'none';
-                                      document.getElementById('orcid').value = ''; // Reset the value of the input field
+                                      cancelBtn.click();
+                                      // document.getElementById('orcid').value = ''; // Reset the value of the input field
                                   }
                               });
                           }
