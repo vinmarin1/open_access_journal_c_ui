@@ -120,7 +120,21 @@ if ($comparisonlist) {
                     <div class="col-lg-9 col-md-12">
                         <div class="card mb-4">
                             <div class="card-body">
-                                <h5 class="card-title mb-2">Journal Submission</h5>
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h5 class="card-title mb-2">Journal Submission</h5>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="dropdown" style="margin-right: -10px;">
+                                            <button class="btn p-0" type="button" id="cardOpt1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="bx bx-dots-vertical-rounded"></i>
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="cardOpt1">
+                                                <a class="dropdown-item" href="javascript:void(0);">View More</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <canvas id="myChart" width="400" height="100"></canvas>
                             </div>
                         </div>
@@ -133,8 +147,16 @@ if ($comparisonlist) {
                                         <span class="fw-semibold d-block mb-1">Active Users</span>
                                         <h3 class="card-title mb-2"><?php echo isset($usercount[0]->user_count) ? $usercount[0]->user_count : '0'; ?></h3>
                                     </div>
-                                    <div class="avatar flex-shrink-0" style="width:30%; height:30%;">
+                                    <div class="avatar flex-shrink-0" style="width:25%; height:25%; margin-left:30px;">
                                         <img src="../assets/img/icons/unicons/users-alt.svg" alt="chart success" class="rounded" />
+                                    </div>
+                                    <div class="dropdown" style="margin-right: -10px;">
+                                        <button class="btn p-0" type="button" id="cardOpt1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="bx bx-dots-vertical-rounded"></i>
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="cardOpt1">
+                                            <a class="dropdown-item" href="javascript:void(0);">View More</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -146,8 +168,16 @@ if ($comparisonlist) {
                                         <span class="fw-semibold d-block mb-1">Published Articles</span>
                                         <h3 class="card-title mb-2"><?php echo isset($publishedcount[0]->article_count) ? $publishedcount[0]->article_count : '0'; ?></h3>
                                     </div>
-                                    <div class="avatar flex-shrink-0" style="width:30%; height:30%;">
+                                    <div class="avatar flex-shrink-0" style="width:25%; height:25%;">
                                         <img src="../assets/img/icons/unicons/document-layout-left.svg" alt="chart success" class="rounded" />
+                                    </div>
+                                    <div class="dropdown" style="margin-right: -10px;">
+                                        <button class="btn p-0" type="button" id="cardOpt1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="bx bx-dots-vertical-rounded"></i>
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="cardOpt1">
+                                            <a class="dropdown-item" href="">View More</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -160,7 +190,21 @@ if ($comparisonlist) {
                     <div class="col-lg-9 col-md-12">
                         <div class="card mb-4">
                             <div class="card-body">
-                                <h5 class="card-title mb-2">Submission Comparison</h5>
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h5 class="card-title mb-2">Submission Comparison</h5>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="dropdown" style="margin-right: -10px;">
+                                            <button class="btn p-0" type="button" id="cardOpt1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="bx bx-dots-vertical-rounded"></i>
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="cardOpt1">
+                                                <a class="dropdown-item" href="javascript:void(0);">View More</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <canvas id="myChart2" width="400" height="100"></canvas>
                             </div>
                         </div>
@@ -173,8 +217,16 @@ if ($comparisonlist) {
                                         <span class="fw-semibold d-block mb-1">Users Engagement</span>
                                         <h3 class="card-title mb-2"><?php echo isset($engagementcount[0]->engagement_count) ? $engagementcount[0]->engagement_count : '0'; ?></h3>
                                     </div>
-                                    <div class="avatar flex-shrink-0" style="width:30%; height:30%;">
+                                    <div class="avatar flex-shrink-0" style="width:25%; height:25%;">
                                         <img src="../assets/img/icons/unicons/book-reader.svg" alt="chart success" class="rounded" />
+                                    </div>
+                                    <div class="dropdown" style="margin-right: -10px;">
+                                        <button class="btn p-0" type="button" id="cardOpt1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="bx bx-dots-vertical-rounded"></i>
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="cardOpt1">
+                                            <a class="dropdown-item" href="totalreport.php?y=<?php echo date('Y'); ?>">View More</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -186,8 +238,16 @@ if ($comparisonlist) {
                                         <span class="fw-semibold d-block mb-1">Ongoing Articles</span>
                                         <h3 class="card-title mb-2"><?php echo isset($ongoingcount[0]->article_count) ? $ongoingcount[0]->article_count : '0'; ?></h3>
                                     </div>
-                                    <div class="avatar flex-shrink-0" style="width:30%; height:30%;">
+                                    <div class="avatar flex-shrink-0" style="width:25%; height:25%; margin-left:30px;">
                                         <img src="../assets/img/icons/unicons/monitor-heart-rate.svg" alt="chart success" class="rounded" />
+                                    </div>
+                                    <div class="dropdown" style="margin-right: -10px;">
+                                        <button class="btn p-0" type="button" id="cardOpt1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="bx bx-dots-vertical-rounded"></i>
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="cardOpt1">
+                                            <a class="dropdown-item" href="javascript:void(0);">View More</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
