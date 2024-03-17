@@ -223,7 +223,7 @@
         
       </datalist>
       
-      <h6 class="sub-12 mt-5 artcl" id="sub-12">Reference <p id="reference-validation" style="color: red; display: none; font-size: 10px">Reference is required*</p></h6>
+      <h6 class="sub-12 mt-5 artcl" id="sub-12">Reference <p id="reference-validation" style="color: red; display: none; font-size: 10px;">Reference is required*</p></h6>
 
       <!-- <div id="editor2">
     
@@ -371,7 +371,7 @@
     <div id="editor4" style="display: none"></div>
 
     </div>
-    <textarea class="form-control" name="editor3" id="editor3" cols="30" rows="10" style="width: 93%; height: auto; margin-left: auto;  margin-right: auto "></textarea>
+    <textarea class="form-control" name="editor3" id="editor3" cols="30" rows="10" style="width: 93%; height: auto; margin-left: auto;  margin-right: auto; margin-bottom: 10px; "></textarea>
     <input class="form-control" type="text" id="notes" name="notes" style="display: none; ">
   
   <button type="button" class="btn btn-primary btn-sm" id="next5" >Next</button>
@@ -415,7 +415,7 @@
         <button type="button" class="btn btn-outline-light btn-sm" id="update-cont-3">View</button>
     
       </div>
-      <div class="file-content-container mt-3">
+      <div class="file-content-container mt-3 mb-2">
         <input type="text" class="form-control" id="input9" readonly>
         <input type="text" class="form-control" id="input9f" readonly>
         <input type="text" class="form-control" id="input9g" readonly>
