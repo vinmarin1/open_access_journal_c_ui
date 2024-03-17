@@ -1501,6 +1501,8 @@ $expertise = $_SESSION['expertise'];
 
 									<?php
 										$sqlAchievements = "
+										
+
 											(SELECT 'Published an Article' as action_engage, article.title, article.journal_id,NULL as status, user_points.date, user_points.point_earned
 											FROM user_points
 											JOIN article ON user_points.article_id = article.article_id
@@ -1528,11 +1530,12 @@ $expertise = $_SESSION['expertise'];
 											JOIN reviewer_assigned ON user_points.user_id = reviewer_assigned.author_id
 											JOIN article ON reviewer_assigned.article_id = article.article_id
 											WHERE reviewer_assigned.accept = 1 AND reviewer_assigned.answer = 1 AND user_points.action_engage = 'Reviewed an Article' AND user_points.user_id = :author_id)
-											
+
 											ORDER BY date DESC
 										";
 
-										$result = database_run($sqlAchievements, array('author_id' => $id, 'user_id' => $id));
+										
+										$result = database_run($sqlAchievements,array('author_id' => $id, 'user_id' => $id));
 
 										if ($result !== false) {
 											foreach ($result as $row) {

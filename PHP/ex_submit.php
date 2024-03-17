@@ -323,8 +323,8 @@
   ?>
   
   <div class="btn-container">
-      <button type="button" id="addCont" class="btn btn-success btn-sm" onclick="addRow()">Add Contributor</button>
-      <button type="button" id="deleteCont" class="btn btn-danger btn-sm" onclick="deleteData()">Delete Data</button>
+      <button type="button" id="addCont" class="btn btn-primary btn-sm" onclick="addRow()">Add Contributor</button>
+      <button type="button" id="deleteCont" class="btn btn-danger btn-sm" onclick="deleteData()">Delete Contributor</button>
       <!-- <button type="button" class="btn btn-primary btn-sm" onclick="saveData()">Save Data</button> -->
     </div>
   <div class="table-responsive-sm">
