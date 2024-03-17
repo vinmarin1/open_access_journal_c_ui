@@ -1837,7 +1837,7 @@ $expertise = $_SESSION['expertise'];
 
 <div class="container-fluid mt-5" id="certContainerHead" style="display: none">
     <div class="cert-container d-flex justify-content-center align-items-center">
-        <img class="img-fluid" id="cert1" src="../images/Bg-cert" alt="cert">
+        <img class="img-fluid" id="cert1" src="Bg-cert" alt="cert">
 		<div class="cert-category">
 			<p class="h2" id="category"></p>
 			<p class="h6" id="awardee">This Certificate is Awarded to</p>
@@ -1854,7 +1854,7 @@ $expertise = $_SESSION['expertise'];
 
 <div class="container-fluid mt-5" id="certPublishedHead" style="display: none">
     <div class="cert-container d-flex justify-content-center align-items-center">
-        <img class="img-fluid" id="cert2" src="../images/author-cert.jpg" alt="cert" style="width: 800px;
+        <img class="img-fluid" id="cert2" src="author-cert.jpg" alt="cert" style="width: 800px;
 		height: 500px;
 		">
 		<div class="cert-category-published" style="position: absolute;">
