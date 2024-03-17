@@ -331,6 +331,11 @@ document.getElementById('bio').addEventListener('input', function(event){
 
 document.getElementById('saveButton').addEventListener('click', function(event){
   event.preventDefault();
+  const orcid = document.getElementById('orcid').value;
+
+  // Regular expression to match the ORCID format "xxxx-xxxx-xxxx-xxxx"
+  const orcidPattern = /^\d{4}-\d{4}-\d{4}-\d{4}$/;
+
   Swal.fire({
       title: 'Do you want to make this changes?',
       icon: 'question',
@@ -340,12 +345,56 @@ document.getElementById('saveButton').addEventListener('click', function(event){
       confirmButtonText: 'Yes, make changes!'
   }).then((result) => {
       if (result.isConfirmed) {
-          document.getElementById('form').submit();
-          document.getElementById('loadingOverlay').style.display = 'block';
-          document.getElementById('editForm').style.display = 'none';
+          if (orcid) {
+              // Check if ORCID is not formatted correctly
+              if (!orcidPattern.test(orcid)) {
+                  Swal.fire({
+                      icon: 'error',
+                      title: 'Oops...',
+                      text: 'ORCID invalid'
+                  }).then((result) => {
+                      if(result.isConfirmed){
+                        document.getElementById('editForm').style.display = 'none';
+                        document.getElementById('orcid').value = ''; // Reset the value of the input field
+                      }
+                  });
+              } else {
+                  const xhr = new XMLHttpRequest();
+                  xhr.open('POST', '../PHP/orcid.php');
+                  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                  xhr.onload = function() {
+                      if (xhr.status === 200) {
+                          const response = JSON.parse(xhr.responseText);
+                          if (response.success) {
+                              document.getElementById('form').submit();
+                              document.getElementById('loadingOverlay').style.display = 'block';
+                              document.getElementById('editForm').style.display = 'none';
+                          } else {
+                              Swal.fire({
+                                  icon: 'error',
+                                  title: 'Oops...',
+                                  text: response.message
+                              }).then((result) => {
+                                  if (result.isConfirmed) {
+                                      document.getElementById('editForm').style.display = 'none';
+                                      document.getElementById('orcid').value = ''; // Reset the value of the input field
+                                  }
+                              });
+                          }
+                      }
+                  };
+                  xhr.send('orcid=' + encodeURIComponent(orcid));
+              }
+          } else {
+              // If ORCID is not provided, submit the form
+              document.getElementById('form').submit();
+              document.getElementById('loadingOverlay').style.display = 'block';
+              document.getElementById('editForm').style.display = 'none';
+          }
       }
   });
 });
+
 
 
 

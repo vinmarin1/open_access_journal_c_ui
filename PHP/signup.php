@@ -21,11 +21,11 @@
            <label for="email">Email:</label><span id="span1">*</span><span id="spanEmailValidation" style="display: none; color: red; font-size: 11px">Invalid email</span>
            <input type="email" class="input form-control" name="email"  id="email">
         </div>
-        <div class="input-field">
+        <!-- <div class="input-field">
             <label for="orcid">ORCID:</label> <span id="orcidVlalidation">*</span><span class="text-muted" style="font-size:12px; font-weight:bold;" id="span6">  </span><span id="spanOrcidValidation" style="display: none; color: red; font-size: 11px">Orcid invalid</span>
             <span class="d-block text-muted" style="font-size:12px">If you do not have an ORCID, <a class="text-reset" href="https://orcid.org/register">register here</a></span>
            <input type="text" class="input form-control" name="orcid"  id="orcid" placeholder="Example: xxxx-xxxx-xxxx-xxxx">
-        </div>
+        </div> -->
 
        <div class="input-field ">
            <label for="fname">First Name:</label><span id="span2">*</span></span><span id="spanFnameValidation" style="display: none; color: red; font-size: 11px">First name should be at least 2 characters</span>
@@ -150,4 +150,4 @@
 <script src="../JS/password.js"></script>
 
 </body>
-</html>
+</html>x
