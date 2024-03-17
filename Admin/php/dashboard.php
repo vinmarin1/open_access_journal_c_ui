@@ -7,6 +7,11 @@ $usercount = get_usercount();
 $publishedcount = get_publishedcount();
 $engagementcount = get_engagementcount();
 $ongoingcount = get_ongoingcount();
+$userdemographicslist = get_userdemographics();
+$donationamount = get_donationamount();
+$top5contributorslist = get_top5contributors_list();
+$top5reviewerlist = get_top5reviewer_list();
+$top5downloadedlist = get_top5downloadedlist();
 
 if ($submissionlist) {
     $datasets = [];
@@ -109,9 +114,104 @@ if ($comparisonlist) {
     $datasets_json2 = '[]';
 }
 
+// User Demographics
+$ageGroups = ['1-17', '18-24', '25-34', '35-44', '44+'];
+$data = array_fill_keys($ageGroups, 0);
+foreach ($userdemographicslist as $row) {
+    $ageGroup = $row->age_group;
+    $count = $row->count; 
+    $data[$ageGroup] = $count;
+}
+
+$barData = [];
+
+foreach ($ageGroups as $ageGroup) {
+    $barData[] = $data[$ageGroup];
+}
+
+$colors = [
+    '#004e98',
+    '#8592a3',
+    '#71dd37',
+    '#03c3ec',
+    '#ffab00',
+    '#ff3e1d',
+    '#233446'
+];
+
+shuffle($colors);
+
+$barChartData1 = [
+    'datasets' => [],
+    'labels' => $ageGroups,
+];
+
+foreach ($ageGroups as $index => $ageGroup) {
+    $barChartData1['datasets'][] = [
+        'label' => $ageGroup,
+        'data' => [], 
+        'backgroundColor' => $colors[$index], 
+        'borderColor' => 'rgba(255, 99, 132, 1)',
+        'borderWidth' => 1
+    ];
+    
+    foreach ($userdemographicslist as $row) {
+        if ($row->age_group === $ageGroup) {
+            $barChartData1['datasets'][$index]['data'][] = $row->count;
+        } else {
+            $barChartData1['datasets'][$index]['data'][] = 0; 
+        }
+    }
+}
+
+$barChartData1Json = json_encode($barChartData1);
+
+$donationamount = get_donationamount();
+
+$dates = [];
+$amounts = [];
+
+foreach ($donationamount as $donation) {
+    $date = substr($donation['month'], 6, 3);
+    $dates[] = $date;
+    $amounts[] = $donation['total_donation'];
+}
+
+$donationData = [];
+foreach ($dates as $index => $date) {
+    $donationData[] = [
+        'date' => $date,
+        'amount' => $amounts[$index]
+    ];
+}
+
+$donationDataJson = json_encode($donationData);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
+<style>
+#myChart {
+    width: 100% !important;
+    height: 100% !important;
+    max-height: 200px !important;
+}
+#myChart2 {
+    width: 100% !important;
+    height: 100% !important;
+    max-height: 200px !important;
+}
+#myChart3 {
+    width: 100% !important;
+    height: 100% !important;
+    max-height: 200px !important;
+}
+#donationChart {
+    width: 100% !important;
+    height: 100% !important;
+    max-height: 200px !important;
+}
+</style>
     <body>
 
         <?php include 'template/header.php'; ?>
@@ -135,7 +235,7 @@ if ($comparisonlist) {
                                         </div>
                                     </div>
                                 </div>
-                                <canvas id="myChart" width="400" height="100"></canvas>
+                                <canvas id="myChart"></canvas>
                             </div>
                         </div>
                     </div>
@@ -194,7 +294,7 @@ if ($comparisonlist) {
                                     <div class="col">
                                         <h5 class="card-title mb-2">Submission Comparison</h5>
                                     </div>
-                                    <div class="col-auto">
+                                    <!-- <div class="col-auto">
                                         <div class="dropdown" style="margin-right: -10px;">
                                             <button class="btn p-0" type="button" id="cardOpt1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <i class="bx bx-dots-vertical-rounded"></i>
@@ -203,9 +303,9 @@ if ($comparisonlist) {
                                                 <a class="dropdown-item" href="javascript:void(0);">View More</a>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
-                                <canvas id="myChart2" width="400" height="100"></canvas>
+                                <canvas id="myChart2"></canvas>
                             </div>
                         </div>
                     </div>
@@ -225,7 +325,7 @@ if ($comparisonlist) {
                                             <i class="bx bx-dots-vertical-rounded"></i>
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="cardOpt1">
-                                            <a class="dropdown-item" href="totalreport.php?y=<?php echo date('Y'); ?>">View More</a>
+                                            <a class="dropdown-item" href="totalreport.php?y=<?php echo date('Y'); ?>" target="_blank">View More</a>
                                         </div>
                                     </div>
                                 </div>
@@ -255,6 +355,212 @@ if ($comparisonlist) {
                     </div>
                 </div>
 
+                <div class="row">
+                    <div class="col-lg-6 col-md-12">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h5 class="card-title mb-2">User Demographics</h5>
+                                    </div>
+                                    <!-- <div class="col-auto">
+                                        <div class="dropdown" style="margin-right: -10px;">
+                                            <button class="btn p-0" type="button" id="cardOpt1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="bx bx-dots-vertical-rounded"></i>
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="cardOpt1">
+                                                <a class="dropdown-item" href="javascript:void(0);">View More</a>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                </div>
+                                <canvas id="myChart3"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h5 class="card-title mb-2">Donation</h5>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="dropdown" style="margin-right: -10px;">
+                                            <button class="btn p-0" type="button" id="cardOpt1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="bx bx-dots-vertical-rounded"></i>
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="cardOpt1">
+                                                <a class="dropdown-item" href="donationreportmtd.php?m=<?php echo date('n'); ?>&y=<?php echo date('Y'); ?>" target="_blank">View More</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <canvas id="donationChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-3 col-md-12">
+                        <div class="card mb-4">
+                            <div class="card-header d-flex align-items-center justify-content-between pb-0">
+                                <div class="card-title mb-0">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <h6 class="m-0 me-2 mb-2">The top 5 contributors for <br><span id="currentMonth"></span></h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="dropdown">
+                                        <button class="btn p-0" type="button" id="cardOpt1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="bx bx-dots-vertical-rounded"></i>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt1">
+                                            <a class="dropdown-item" href="topcontributors.php">View More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                </div>
+                                <?php
+                                    if (isset($top5contributorslist['top5contributorslist']) && count($top5contributorslist['top5contributorslist']) > 0) {
+                                        foreach ($top5contributorslist['top5contributorslist'] as $top5contributorslistval) {
+                                ?>
+                                <ul class="p-0 m-0">
+                                    <li class="d-flex mb-3 pb-1">
+                                        <div class="avatar flex-shrink-0 me-3">
+                                            <span class="avatar-initial rounded bg-label-primary"><i class="bx bx-user"></i></span>
+                                        </div>
+                                        <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                            <div class="">
+                                            <h6 class="mb-0"><?php echo $top5contributorslistval->lastname; ?>, <?php echo $top5contributorslistval->firstname; ?></h6>
+                                            </div>
+                                            <div class="user-progress">
+                                            <small class="fw-semibold"><?php echo $top5contributorslistval->email_count; ?></small>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <?php
+                                    }
+                                }
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-12">
+                        <div class="card mb-4">
+                            <div class="card-header d-flex align-items-center justify-content-between pb-0">
+                                <div class="card-title mb-0">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <h6 class="m-0 me-2 mb-2">The top 5 reviewer for <br><span id="currentMonth1"></span></h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="dropdown">
+                                        <button class="btn p-0" type="button" id="cardOpt2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="bx bx-dots-vertical-rounded"></i>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt2">
+                                            <a class="dropdown-item" href="topreviewer.php">View More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                </div>
+                                <?php
+                                    if (isset($top5reviewerlist['top5reviewerlist']) && count($top5reviewerlist['top5reviewerlist']) > 0) {
+                                            foreach ($top5reviewerlist['top5reviewerlist'] as $top5reviewerlistval) {
+                                ?>
+                                    <ul class="p-0 m-0">
+                                        <li class="d-flex mb-3 pb-1">
+                                            <div class="avatar flex-shrink-0 me-3">
+                                                <span class="avatar-initial rounded bg-label-primary"><i class="bx bx-user"></i></span>
+                                            </div>
+                                            <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                                <div class="">
+                                                <h6 class="mb-0"><?php echo $top5reviewerlistval->last_name; ?>, <?php echo $top5reviewerlistval->first_name; ?></h6>
+                                                </div>
+                                                <div class="user-progress">
+                                                <small class="fw-semibold"><?php echo $top5reviewerlistval->count_reviewed; ?></small>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                <?php
+                                    }
+                                }
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-12">
+                        <div class="card mb-4">
+                            <div class="card-header d-flex align-items-center justify-content-between pb-0">
+                                <div class="card-title mb-0">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <h6 class="m-0 me-2">The top 5 downloaded article for <br><span id="currentMonth2"></span></h6>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="dropdown">
+                                        <button class="btn p-0" type="button" id="cardOpt1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="bx bx-dots-vertical-rounded"></i>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt1">
+                                            <a class="dropdown-item" href="javascript:void(0);">View More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                </div>
+                                <?php
+                                    if (isset($top5downloadedlist['top5downloadedlist']) && count($top5downloadedlist['top5downloadedlist']) > 0) {
+                                        foreach ($top5downloadedlist['top5downloadedlist'] as $top5downloadedlistval) {
+                                            $shortTitle = strlen($top5downloadedlistval->title) > 60 ? substr($top5downloadedlistval->title, 0, 60) . '...' : $top5downloadedlistval->title;
+                                            $escapedTitle = htmlspecialchars($top5downloadedlistval->title);
+                                            $articleID = $top5downloadedlistval->title;
+                                            $titleHtml = "<a href='workflow.php?aid=$articleID' target='_blank' title='$escapedTitle'>$shortTitle</a>";
+                                    ?>
+                                            <ul class="p-0 m-0">
+                                                <li class="d-flex mb-3 pb-1">
+                                                    <div class="avatar flex-shrink-0 me-3">
+                                                        <span class="avatar-initial rounded bg-label-primary"><i class="bx bx-book"></i></span>
+                                                    </div>
+                                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                                        <div class="">
+                                                            <h6 class="mb-0"><?php echo $titleHtml; ?></h6>
+                                                        </div>
+                                                        <div class="user-progress">
+                                                            <small class="fw-semibold"><?php echo $top5downloadedlistval->download_count; ?></small>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 </div>
             </div>
         </div>
@@ -264,6 +570,20 @@ if ($comparisonlist) {
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
+    var currentDate = new Date();
+
+    var monthNames = [
+        "January", "February", "March",
+        "April", "May", "June", "July",
+        "August", "September", "October",
+        "November", "December"
+    ];
+
+    var currentMonth = monthNames[currentDate.getMonth()];
+    document.getElementById("currentMonth").textContent = currentMonth;
+    document.getElementById("currentMonth1").textContent = currentMonth;
+    document.getElementById("currentMonth2").textContent = currentMonth;
+    
     var data1 = <?php echo $datasets_json1; ?>;
     const barChartData = {
         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
@@ -307,5 +627,65 @@ if ($comparisonlist) {
         type: 'line',
         data: lineChartData,
         options: lineChartOptions
+    });
+</script>
+<script>
+var data3 = <?php echo $barChartData1Json; ?>;
+const barChartData1 = {
+    labels: data3.labels,
+    datasets: data3.datasets
+};
+
+const barChartOptions1 = {
+    indexAxis: 'y',
+    scales: {
+        x: {
+            stacked: true,
+            beginAtZero: true,
+        },
+        y: {
+            stacked: true,
+            beginAtZero: true,
+        }
+    }
+};
+
+const barCtx1 = document.getElementById('myChart3').getContext('2d');
+
+const barChart1 = new Chart(barCtx1, {
+    type: 'bar',
+    data: barChartData1,
+    options: barChartOptions1
+});
+</script>
+<script>
+// Parse the donation data from PHP
+    const donationData = <?php echo $donationDataJson; ?>;
+
+    // Extract dates and amounts from the donation data
+    const dates = donationData.map(donation => donation.date);
+    const amounts = donationData.map(donation => donation.amount);
+
+    // Create a new Chart instance
+    const ctx = document.getElementById('donationChart').getContext('2d');
+    const donationChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: dates,
+            datasets: [{
+                label: 'Donation Amount',
+                data: amounts,
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
     });
 </script>
