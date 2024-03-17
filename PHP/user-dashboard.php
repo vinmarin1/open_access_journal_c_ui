@@ -1840,7 +1840,10 @@ $expertise = $_SESSION['expertise'];
 
 <div class="container-fluid mt-5" id="certContainerHead" style="display: none">
     <div class="cert-container d-flex justify-content-center align-items-center">
-        <img class="img-fluid" id="cert1" src="../images/Bg-cert" alt="cert">
+		<?php 
+			echo '<img class="img-fluid" id="cert1" src="../images/Bg-cert.jpg" alt="cert">'
+		?>
+        
 		<div class="cert-category">
 			<p class="h2" id="category"></p>
 			<p class="h6" id="awardee">This Certificate is Awarded to</p>
@@ -1854,6 +1857,8 @@ $expertise = $_SESSION['expertise'];
 		</div>
     </div>
 </div>
+
+
 
 <div class="container-fluid mt-5" id="certPublishedHead" style="display: none">
     <div class="cert-container d-flex justify-content-center align-items-center">
