@@ -557,8 +557,13 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                                         foreach ($choices as $choice) {
                                             $uniqueId = htmlspecialchars(trim($choice)) . '_' . uniqid(); // Create a unique ID for each radio button
                                             echo '<input type="radio" name="answers[' . $question . ']" value="' . htmlspecialchars(trim($choice)) . '" id="' . $uniqueId . '" required>';
-                                            echo '<label for="' . $uniqueId . '" style="font-size: small; color: gray;">' . htmlspecialchars(trim($choice)) . '</label><br>';
+                                            echo '<label for="' . $uniqueId . '" style="font-size: small; color: gray; padding-left: 5px;">' . htmlspecialchars(trim($choice)) . '</label><br>';
                                         }
+                                        
+                                        echo '<div class="form-floating mt-2">';
+                                        echo '<textarea class="form-control" name="comments[' . $question . ']" id="floatingTextarea" style="height: 150px; font-size: small; color: gray; width: 300px;"></textarea>';
+                                        echo '<label for="floatingTextarea">Additional comment</label>';
+                                        echo '</div>';
                                     }
                                 } else {
                                     echo 'The questionnaire has not been updated yet';
@@ -725,9 +730,9 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 
                             <div class="col-md-6 comments">
                             <!-- Content for the right half of the screen -->
-                            <h4>Additional comment for the following lines: Originality, <br> Literature Review, Evaluation.</h4>                    
+                            <!-- <h4>Additional comment for the following lines: Originality, <br> Literature Review, Evaluation.</h4>                    
                                 <textarea id="ansOrig" name="ansOrig" class="form-control" rows="8"></textarea>
-                            <br>
+                            <br> -->
                             <!-- <h5>Reference:</h5>
                                 <textarea id="ansRef" name="ansRef" class="form-control" rows="5" required></textarea>
                             <br>
@@ -857,7 +862,10 @@ document.getElementById('btnSubmit').addEventListener('click', function(event){
 
     if (!allRadioButtonsSelected) {
         // Alert the user if not all radio buttons are selected
-        alert('All fields are required');
+        Swal.fire({
+            icon: 'warning',
+            text: 'All fields are required!'
+        })
         return;
     }
 
