@@ -90,7 +90,7 @@ $reportlist = get_report_list();
             var currentYear = currentDate.getFullYear();
 
             action = '../php/' + action + '?y=' + currentYear;
-        } if (action === 'topcontributors.php' || action === 'topreviewer.php') {
+        } if (action === 'topcontributors.php' || action === 'topreviewer.php' || action === 'journalreport.php') {
             action = '../php/' + action;
         }
         window.location.href = action;
