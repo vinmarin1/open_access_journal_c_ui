@@ -5,6 +5,9 @@ if (!function_exists('connect_to_database')) {
         $string = "mysql:host=srv1158.hstgr.io;dbname=u944705315_qcuj2024";
         $con = new PDO($string, 'u944705315_qcuj2024', 'Qcujournal1234.');
 
+        // $string = "mysql:host=localhost;dbname=journal";
+        // $con = new PDO($string, 'root', '');
+
         if (!$con) {
             return false;
         }
