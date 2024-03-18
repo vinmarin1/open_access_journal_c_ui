@@ -45,7 +45,7 @@ text-align: justify !important;
   
 }
 
-#title-1, #title-2, #title-3{
+#title-1, #title-2, #title-3 , #title-8, #title-9f{
     font-weight: bold;
 
 }
@@ -201,6 +201,11 @@ text-align: justify !important;
     display: inline-block;
 }
 
+.details p , .input-details p, .input-details h6 , .input-details-2 p , .input-details-2 p{
+    font-family: Arial, Helvetica, sans-serif;font-family: Arial, Helvetica, sans-serif;
+}
+
+
 #title-4{
     color: #285581;
     font-weight: bold;
@@ -307,11 +312,9 @@ text-align: justify !important;
 
 
 #title-6, #title-7, #title-8, #title-9, #title-15,#sub-13, #sub-14 , #sub-15,  #sub-16,  #sub-17,  #sub-18,  #sub-19,  #sub-20, #sub-21, #sub-22, #sub-23, #sub-24, #sub-25, #selectRoleLabel, #selectRoleLabelUpdate{
-    
     color: #285581;
     font-family: Arial, Helvetica, sans-serif;
     width: 100%;
-  
 }
 
 #title-9f{

@@ -29,10 +29,30 @@
 </div> 
 
 
-<form method="POST" action="contact-backend.php">
-    <input type="text" name="name"> 
-    <button type="submit" > Submit</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Outline on Side Only</title>
+<style>
+    .outline-side {
+        width: 200px;
+        height: 100px;
+        background-color: #f0f0f0;
+        border-right: 2px solid blue; /* Example of applying outline only to the right side */
+        /* You can change 'border-right' to 'border-left', 'border-top', or 'border-bottom' for different sides */
+    }
+</style>
+</head>
+<body>
+
+<div class="outline-side">
+    This is a box with outline only on the right side.
+</div>
+
+</body>
+</html>
 
 
 

@@ -56,6 +56,9 @@
 
   <div class="tab-pane fade show active" id="privacy-tab-pane" role="tabpanel" aria-labelledby="privacy-tab" tabindex="0">
 
+  <p class="h6" id="title-1">Step 1. Starting the Submission</p>
+  <p class="h6" id="sub-1">Ensure to follow the instructions correctly to meet the Requirements of the Checklist. This step is Crucial to Ensure Your Submission is Accepted without Issues.</p>
+  <hr id="line-1">
   <p class="h6" id="title-1">Submission Checklist</p>
   <p class="h6" id="sub-1">Indicate that this submission is ready to be considered by this journal by checking off the following (comments to the editor can be added below).</p>
  
@@ -136,6 +139,9 @@
   
   <div class="article-details">
     <div class="details py-2">
+      <p class="h6" id="title-1">Step 2. Entering Article Information</p>
+      <p class="h6" id="sub-1">Begin by providing key details about your Article, including the Title, Abstract, Keywords and Reference. This initial step establishes the foundation for the submission process, ensuring all necessary information is accurately provided.</p>
+      <hr id="line-1">
       <p class="h6 pt-3 " id="title-4">Article Details</p>
       <p class="h6" id="sub-6" style="var(--main, #0858A4)">Please provide the following details to help us manage your submission in our system.</p>
     </div>
@@ -252,7 +258,9 @@
   <div class="tab-pane fade" id="file-tab-pane" role="tabpanel" aria-labelledby="file-tab" tabindex="0">
 
   <div class="table-input">
-
+  <p class="h6" id="title-1">Step 3. Uploading Files</p>
+  <p class="h6" id="sub-1"> Ensure all files, including the main article file and any additional materials, are properly labeled and attached to aid in the review process.</p>
+  <hr id="line-1">
   <h5 class="title6 mt-5" id="title-6">Upload Files</h5>
   <h6 class="sub13 mt-3" id="sub-13">Provide any files our editorial team may need to evaluate your submission. In addition to the main work, you may wish to submit data sets, conflict of interest statements, or other supplementary files if these will be helpful for our editors.</h6>
 
@@ -265,31 +273,31 @@
 <table class="table table-hover" id="table-file">
   <thead>
     <tr>
-      <th scope="col" style="background-color: var(--main, #0858A4); color: white; font-weight: normal;">File Name</th>
-      <th scope="col" style="background-color: var(--main, #0858A4); color: white; font-weight: normal;">File Type</th>
-      <th scope="col" style="background-color: var(--main, #0858A4); color: white; font-weight: normal;">Action</th>
+      <th scope="col" style="background-color: var(--main, #0858A4); border-right: 1px solid #3979b6; color: white; font-weight: normal; font-family: Arial, Helvetica, sans-serif;">File Name</th>
+      <th scope="col" style="background-color: var(--main, #0858A4); border-right: 1px solid #3979b6; color: white; font-weight: normal; font-family: Arial, Helvetica, sans-serif;">File Type</th>
+      <th scope="col" style="background-color: var(--main, #0858A4); border-right: 1px solid #3979b6; color: white; font-weight: normal; font-family: Arial, Helvetica, sans-serif;">Action</th>
     </tr>
   </thead>
   <tbody id="fileList">
     <tr>
-      <td id="fileName1"></td>
-      <td id="fileType1">File with author name</td>
+      <td id="fileName1" style="font-family: Arial, Helvetica, sans-serif;"></td>
+      <td id="fileType1" style="font-family: Arial, Helvetica, sans-serif;">File with author name</td>
       <td>
         <button type="button" class="btn btn-primary btn-sm" style="margin-right: 5px" id="addFileName" onclick="openFilename(1)">Add File</button>
         <button type="button" class="btn btn-danger btn-sm" id="deleteFileName" onclick="deleteFilename(1)">Delete</button>
       </td>
     </tr>
     <tr>
-      <td id="fileName2"></td>
-      <td id="fileType2">File with no author name</td>
+      <td id="fileName2" style="font-family: Arial, Helvetica, sans-serif;"></td>
+      <td id="fileType2" style="font-family: Arial, Helvetica, sans-serif;">File with no author name</td>
       <td>
         <button type="button" class="btn btn-primary btn-sm" style="margin-right: 5px" id="addFileName2" onclick="openFilename(2)">Add File</button>
         <button type="button" class="btn btn-danger btn-sm" id="deleteFileName2" onclick="deleteFilename(2)">Delete</button>
       </td>
     </tr>
     <tr>
-      <td id="fileName3"></td>
-      <td id="fileType3">Title Page</td>
+      <td id="fileName3" style="font-family: Arial, Helvetica, sans-serif;"></td>
+      <td id="fileType3" style="font-family: Arial, Helvetica, sans-serif;">Title Page</td>
       <td>
         <button type="button" class="btn btn-primary btn-sm" style="margin-right: 5px" id="addFileName3" onclick="openFilename(3)">Add File</button>
         <button type="button" class="btn btn-danger btn-sm" id="deleteFileName3" onclick="deleteFilename(3)">Delete</button>
@@ -308,9 +316,9 @@
   <div class="tab-pane fade" id="contributors-tab-pane" role="tabpanel" aria-labelledby="contributors-tab" tabindex="0">
   
   <div class="contributors-container">
-
-
- 
+    <p class="h6" id="title-1">Step 4. Adding Contributors</p>
+    <p class="h6" id="sub-1"> In the "Add Contributor" section, input comprehensive details for each contributor involved in the submission. Include their Full names, Email addresses.</p>
+    <hr id="line-1">
   <h5 class="title7 mt-5" id="title-7">Add Contributors</h5>
   <h6 class="sub14 mt-3" id="sub-14">Add details for all of the contributors to this submission. Contributors added here will be sent an email confirmation of the submission, as well as a copy of all editorial decisions recorded against this submission.</h6>
 
@@ -331,13 +339,13 @@
     <table class="table table-striped" id="contributorTable" >
             <thead>
                 <tr>
-                    <th style=" background-color: var(--main, #0858A4); color: white; bold; font-size: 12px; font-weight: normal">Email</th>
-                    <th style=" background-color: var(--main, #0858A4); color: white; font-size: 12px; font-weight: normal">First Name</th>
-                    <th style=" background-color: var(--main, #0858A4); color: white; bold; font-size: 12px; font-weight: normal">Last Name</th>
-                    <th style=" background-color: var(--main, #0858A4); color: white; bold; font-size: 12px; font-weight: normal">Public Name</th>
-                    <th style=" background-color: var(--main, #0858A4); color: white; bold; font-size: 12px; font-weight: normal">ORCID</th>
-                    <th id="cont-col" style=" background-color: var(--main, #0858A4); color: white; old; font-size: 12px; font-weight: normal; width: 350px">Contributor Type</th>
-                    <th style=" background-color: var(--main, #0858A4); color: white; width: 30px; bold; font-size: 12px; font-weight: normal">Action</th>
+                    <th style="background-color: var(--main, #0858A4); border-right: 1px solid #3979b6; color: white; bold; font-size: 12px; font-weight: normal">Email</th>
+                    <th style="background-color: var(--main, #0858A4); border-right: 1px solid #3979b6; color: white; font-size: 12px; font-weight: normal">First Name</th>
+                    <th style="background-color: var(--main, #0858A4); border-right: 1px solid #3979b6; color: white; bold; font-size: 12px; font-weight: normal">Last Name</th>
+                    <th style="background-color: var(--main, #0858A4); border-right: 1px solid #3979b6; color: white; bold; font-size: 12px; font-weight: normal">Public Name</th>
+                    <th style="background-color: var(--main, #0858A4); border-right: 1px solid #3979b6; color: white; bold; font-size: 12px; font-weight: normal">ORCID</th>
+                    <th id="cont-col" style="background-color: var(--main, #0858A4); border-right: 1px solid #3979b6; color: white; old; font-size: 12px; font-weight: normal; width: 350px">Contributor Type</th>
+                    <th style="background-color: var(--main, #0858A4); border-right: 1px solid #3979b6; color: white; width: 30px; bold; font-size: 12px; font-weight: normal">Action</th>
                 </tr>
                <tr>
                 <th><input type="text" style="width: 118px" value="<?php echo $email ?>"  disabled></th>
@@ -365,7 +373,9 @@
 
   <div class="tab-pane fade" id="comment-tab-pane" role="tabpanel" aria-labelledby="comment-tab" tabindex="0">
     <div class="comment-container mt-5">
-
+    <p class="h6" id="title-1">Step 5. Providing Author Notes</p>
+    <p class="h6" id="sub-1"> Remember to include any relevant details related to the journal in the provided section.</p>
+    <hr id="line-1">
     <h5 class="title8" id="title-8">Author Notes</h5>
     <h6 class="sub15" id="sub-15">Please provide the following details to help our editorial team manage your submission.</h6>
     <div id="editor4" style="display: none"></div>
@@ -380,7 +390,9 @@
   </div>
 
   <div class="tab-pane fade" id="review-tab-pane" role="tabpanel" aria-labelledby="review-tab" tabindex="0">
-
+  <p class="title9" id="title-9f">Step 6. Review and Submit</p>
+  <p class="sub16" id="sub-16f"> Before finalizing your submission, carefully review all the entered information. You can make changes by clicking the edit button at the top of each section if needed. Once you're satisfied with the details, submit your work. </p>
+  <hr id="line-1">
   <h5 class="title9" id="title-9f">Review and Submit</h5>
   <h6 class="sub16" id="sub-16f">Review the information you have entered before you complete your submission. You can change any of the details displayed here by clicking the edit button at the top of each section.</h6>
   <h6 class="sub17" id="sub-17f">
