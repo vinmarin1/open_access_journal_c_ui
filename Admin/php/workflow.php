@@ -450,7 +450,7 @@ table {
                                                                         <tr>
                                                                             <th colspan="4"><h6>Reviewers</h6></th>
                                                                             <th colspan="3" style="text-align: right;">
-                                                                                <button type="button" class="btn btn-dark" id="uploadButton" style="width: 150px;" data-bs-toggle="modal" data-bs-target="#addReviewerModal">Add Reviewers</button>
+                                                                                <button type="button" class="btn btn-dark" id="addReviewer" style="width: 150px;" data-bs-toggle="modal">Add Reviewers</button>
                                                                             </th>
                                                                         </tr>
                                                                     </thead>
@@ -1102,133 +1102,37 @@ table {
 
 <!-- Add Reviewer Modal -->
 <div class="modal fade" id="addReviewerModal" tabindex="-1" aria-hidden="true">
-    <form id="addModalForm">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel3">Assign Reviewer</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row mb-2">
-                        <div class="col-md-12">
-                            <div class="table-responsive text-nowrap">
-                                <table class="table table-striped" id="DataTableReviewer">
-                                    <thead>
-                                        <tr>
-                                            <th colspan="3">
-                                                <h5 class="card-header">Locate a Reviewer</h5>
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    <?php if (empty($authorlist)): ?>
-                                        <tr>
-                                            <td colspan="3" class="text-center">No Items</td>
-                                        </tr>
-                                    <?php else: ?>
-                                        <?php foreach ($authorlist as $userlistval): ?>
-                                            <?php
-                                            $hideRow = false; 
-                                            if ($article_data[0]->author_id == $userlistval->author_id) {
-                                                $hideRow = true;
-                                            } else {
-                                                foreach ($article_reviewer_check as $reviewer) {
-                                                    if ($reviewer->round == $article_data[0]->round && $reviewer->author_id == $userlistval->author_id) {
-                                                        $hideRow = true;
-                                                        break; 
-                                                    }
-                                                }
-                                            }
-
-                                            // Check if the email exists in $article_contributors
-                                            foreach ($article_contributors as $contributor) {
-                                                if ($contributor->email == $userlistval->email) {
-                                                    $hideRow = true;
-                                                    break;
-                                                }
-                                            }
-
-                                            $totalAcceptCount = 0;
-                                            foreach ($article_reviewer_accept as $reviewertotalaccept) {
-                                                if ($reviewertotalaccept->author_id == $userlistval->author_id) {
-                                                    $totalAcceptCount++;
-                                                }
-                                            }
-
-                                            $totalDeclineCount = 0;
-                                            foreach ($article_reviewer_notcomplete as $reviewertotalnotcomplete) {
-                                                if ($reviewertotalnotcomplete->author_id == $userlistval->author_id) {
-                                                    $totalDeclineCount++;
-                                                }
-                                            }
-
-                                            $totalOngoingCount = 0;
-                                            foreach ($article_reviewer_ongoing as $reviewertotalongoing) {
-                                                if ($reviewertotalongoing->author_id == $userlistval->author_id) {
-                                                    $totalOngoingCount++;
-                                                }
-                                            }
-                                            ?>
-                                            <?php if (!$hideRow): ?>
-                                                <tr>
-                                                    <td width="5">
-                                                        <?php echo $userlistval->author_id; ?>
-                                                    </td>
-                                                    <td width="80%">
-                                                        <a href="javascript:void(0);" onclick="openPageCentered('../../PHP/reviewerdashboard.php?author_id=<?php echo $userlistval->author_id; ?>')">
-                                                            <?php echo $userlistval->last_name . ', '; ?> 
-                                                            <?php echo $userlistval->first_name . ' '; ?>
-                                                        </a><br>
-                                                        <?php 
-                                                            $expertise = $userlistval->field_of_expertise;
-                                                            $affiliation = $userlistval->afiliations;
-
-                                                            $maxLength = 30;
-
-                                                            if(strlen($expertise) > $maxLength) {
-                                                                $expertise = substr($expertise, 0, $maxLength) . '...';
-                                                            }
-
-                                                            if(strlen($affiliation) > $maxLength) {
-                                                                $affiliation = substr($affiliation, 0, $maxLength) . '...';
-                                                            }
-
-                                                            echo 'Expertise: ' . $expertise . '<br>';
-                                                            echo 'Affiliation: ' . $affiliation;
-                                                        ?>
-                                                        <div id="details_<?php echo $userlistval->author_id; ?>" style="display: none;">
-                                                            <br>
-                                                            <?php echo "Reviews completed: " . $totalAcceptCount; ?> 
-                                                            <br>
-                                                            <?php echo "Reviews ongoing: " . $totalOngoingCount; ?> 
-                                                            <br>
-                                                            <?php echo "Reviews not completed: " . $totalDeclineCount; ?> 
-                                                        </div>
-                                                    </td>
-                                                    <td width="15%">
-                                                        <button type="button" class="btn btn-outline-dark" id="uploadButton" style="width: 160px;" onclick="selectReviewer(<?php echo $userlistval->author_id; ?>, '<?php echo $userlistval->first_name; ?>', '<?php echo $userlistval->last_name; ?>', '<?php echo $userlistval->email_verified; ?>')" data-bs-toggle="modal">Select Reviewer</button>
-                                                        <button type="button" class="btn btn-outline-dark" style="width: 20px;" onclick="toggleDetails('details_<?php echo $userlistval->author_id; ?>', this)">
-                                                            <span class="arrow-icon">&#x25BC;</span>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            <?php endif; ?>
-                                        <?php endforeach; ?>
-                                    <?php endif; ?>
-                                    </tbody>
-                                    <tfoot>
-                                        <th colspan="3" style="text-align: right;">
-                                        </th>
-                                    </tfoot>
-                                </table>
-                            </div>
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel3">Assign Reviewer</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row mb-2">
+                    <div class="col-md-12">
+                        <div class="table-responsive text-nowrap">
+                            <table class="table table-striped" id="DataTableReviewer">
+                                <thead>
+                                    <tr>
+                                        <th colspan="3">Sort by best reviewers for this article based on their affiliations and expertise</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Author ID</th>
+                                        <th>Author</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="reviewersTableBody">
+                                    <!-- Reviewer rows will be dynamically added here -->
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </form>
+    </div>
 </div>
 
 <!-- Assign Reviewer Modal -->
@@ -1606,20 +1510,6 @@ table {
                 }
             }
         }
-
-        $(document).ready(function() {
-            dataTable = $('#DataTableReviewer').DataTable({
-                "paging": false,
-                "ordering": false,
-                "searching": true,
-                "info": false,
-                "columns": [
-                    null,
-                    null,
-                    null
-                ]
-            });
-        });
 
         function viewArticle(articleId) {
             $('#sloading').show();
@@ -2030,6 +1920,90 @@ table {
             
             $('#addIssueModal').modal('show');
         }
+
+    </script>
+    <script>
+    $(document).ready(function () {
+        const uploadButton = $('#addReviewer');
+        const articleID = <?php echo $article_data[0]->article_id; ?>;
+
+        uploadButton.on('click', async function () {
+            $('#sloading').toggle();
+            try {
+                const response = await fetch('https://web-production-cecc.up.railway.app//api/check/reviewers', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        id: articleID
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                console.log('API Response:', data);
+
+                if (!Array.isArray(data.sorted_reviewers)) {
+                    console.error('Sorted reviewers is not an array:', data.sorted_reviewers);
+                    return;
+                }
+
+                const tbody = $('#reviewersTableBody');
+                tbody.empty();
+
+                data.sorted_reviewers.forEach(item => {
+                    const row = $('<tr>');
+                    const affiliation = item.afiliations && item.afiliations.length > 30 ? item.afiliations.substring(0, 30) + '...' : item.afiliations;
+                    const expertise = item.field_of_expertise && item.field_of_expertise.length > 30 ? item.field_of_expertise.substring(0, 30) + '...' : item.field_of_expertise;
+                    
+                    row.html(`
+                        <td width="5%">${item.author_id}</td>
+                        <td width="80%">
+                            <a href="javascript:void(0);" onclick="openPageCentered('../../PHP/reviewerdashboard.php?author_id=${item.author_id}')">${item.last_name}, ${item.first_name}</a><br>
+                            Afiliations: ${affiliation}<br>
+                            Expertise: ${expertise}
+                            <div id="details_${item.author_id}" style="display: none;">
+                                <br>
+                                Reviews completed: ${item.total_success}<br>
+                                Reviews ongoing: ${item.ongoing}<br>
+                                Reviews not completed: ${item.decline}<br>
+                            </div>
+                        </td>
+                        <td width="15%">
+                            <button type="button" class="btn btn-outline-dark" style="width: 160px;" onclick="selectReviewer(${item.author_id}, '${item.first_name}', '${item.last_name}', '${item.email_verified}')" data-bs-toggle="modal">Select Reviewer</button>
+                            <button type="button" class="btn btn-outline-dark" style="width: 20px;" onclick="toggleDetails('details_${item.author_id}', this)">
+                                <span class="arrow-icon">&#x25BC;</span>
+                            </button>
+                        </td>
+                    `);
+
+                    tbody.append(row);
+                });
+
+
+                if ($.fn.DataTable.isDataTable('#DataTableReviewer')) {
+                    $('#DataTableReviewer').DataTable().destroy();
+                }
+                $('#DataTableReviewer').DataTable({
+                    "paging": false,
+                    "ordering": false,
+                    "searching": true,
+                    "info": false
+                });
+
+                var myModal = new bootstrap.Modal($('#addReviewerModal'));
+                $('#sloading').toggle();
+                myModal.show();
+
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+    });
 
     </script>
 </body>
