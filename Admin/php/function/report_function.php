@@ -582,7 +582,7 @@ include 'dbcon.php';
                         `journal` AS j";
     
             if ($journal_id != null) {
-                $sql .= " LEFT JOIN `article` AS a ON a.`journal_id` = ?";
+                $sql .= " LEFT JOIN `article` AS a ON a.`journal_id` = j.`journal_id` WHERE a.`journal_id` = ?";
             } else {
                 $sql .= " LEFT JOIN `article` AS a ON j.`journal_id` = a.`journal_id`";
             }
@@ -600,7 +600,7 @@ include 'dbcon.php';
                 return array('status' => true, 'data' => []);
             }
         }
-    }
+    }    
 
     if (!function_exists('get_journal_data1')) {
         function get_journal_data1($journal_id) {
@@ -624,7 +624,7 @@ include 'dbcon.php';
     
             $sql .= " GROUP BY j.`journal_id`";
     
-            $results = execute_query($sql, [$journal_id]);
+            $results = execute_query($sql, [$journal_id, $current_year]);
     
             $data = array();
     
