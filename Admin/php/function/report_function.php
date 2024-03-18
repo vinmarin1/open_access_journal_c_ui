@@ -2,7 +2,7 @@
 include 'dbcon.php';
 
     if (!function_exists('get_report_list')) {
-        function get_report_list() {
+        function get_report_list($journal_id = null) {
             $pdo = connect_to_database();
 
             if ($pdo) {
@@ -11,8 +11,16 @@ include 'dbcon.php';
                     $stmt = $pdo->prepare($query);
                     $stmt->execute();
 
+                    if (!empty($journal_id)) {
+                        $query .= " WHERE admin = 0";
+                    }
+    
+                    $stmt = $pdo->prepare($query);
+    
+                    $stmt->execute();
+    
                     $result = $stmt->fetchAll(PDO::FETCH_OBJ);
-
+                    
                     return $result;
                 } catch (PDOException $e) {
                     echo "Error: " . $e->getMessage();
@@ -582,12 +590,17 @@ include 'dbcon.php';
                         `journal` AS j";
     
             if (!empty($journal_id)) {
-                $sql .= " LEFT JOIN `article` AS a ON a.`journal_id` = ?";
+                $sql .= " LEFT JOIN `article` AS a ON j.`journal_id` = a.`journal_id`";
             } else {
                 $sql .= " LEFT JOIN `article` AS a ON j.`journal_id` = a.`journal_id`";
             }
     
-            $sql .= " GROUP BY j.`journal_id`";
+            if (!empty($journal_id)) {
+                $sql .= " WHERE j.`journal_id` = ?";
+                $sql .= " GROUP BY j.`journal_id`";
+            } else {
+                $sql .= " GROUP BY j.`journal_id`";
+            }
     
             if (!empty($journal_id)) {
                 $results = execute_query($sql, [$journal_id]);
@@ -608,7 +621,6 @@ include 'dbcon.php';
     
     if (!function_exists('get_journal_data1')) {
         function get_journal_data1($journal_id, $current_year) {
-    
             $sql = "SELECT 
                         j.*,
                         COUNT(CASE WHEN a.`status` = 1 THEN 1 END) AS published_count,
@@ -618,21 +630,25 @@ include 'dbcon.php';
                         `journal` AS j";
     
             if (!empty($journal_id)) {
-                $sql .= " LEFT JOIN `article` AS a ON a.`journal_id` = ?";
+                $sql .= " LEFT JOIN `article` AS a ON j.`journal_id` = a.`journal_id` AND YEAR(a.`date_added`) = ?";
             } else {
                 $sql .= " LEFT JOIN `article` AS a ON j.`journal_id` = a.`journal_id`";
             }
-    
-            $sql .= " WHERE YEAR(a.`date_added`) = ?";
-    
-            $sql .= " GROUP BY j.`journal_id`";
-    
-            if (!empty($journal_id)) {
-                $results = execute_query($sql, [$journal_id, $current_year]);
-            } else {
-                $results = execute_query($sql, [$current_year]);
-            }
 
+            if (!empty($journal_id)) {
+                $sql .= " WHERE j.`journal_id` = ?";
+                $sql .= " GROUP BY j.`journal_id`";
+            } else {
+                $sql .= " GROUP BY j.`journal_id`";
+            }
+    
+            $params = [$current_year];
+            if (!empty($journal_id)) {
+                $params[] = $journal_id;
+            }
+    
+            $results = execute_query($sql, $params);
+    
             $data = array();
     
             if ($results !== false) {
@@ -643,6 +659,4 @@ include 'dbcon.php';
             }
         }
     }
-    
-    
 ?>
