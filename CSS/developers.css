@@ -65,7 +65,7 @@ color: var(--main) !important;
 
 
 .leaders-content , .members-content{
-    background-color: #FFFFFF;
+    background-color: var(--gray);
     width: 20%;
     border-radius: 4px;
     height: 100%;

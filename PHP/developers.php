@@ -20,7 +20,7 @@
 
 <nav class="navigation-menus-container" id="navigation-menus-container">
 </nav>
-<body style="background-color: #E5F5FF;" >
+<body>
     
 
 <div class="main-content" id="home">
