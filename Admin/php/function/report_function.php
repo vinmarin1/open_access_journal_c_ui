@@ -642,12 +642,11 @@ include 'dbcon.php';
                 $sql .= " GROUP BY j.`journal_id`";
             }
     
-            $params = [$current_year];
             if (!empty($journal_id)) {
-                $params[] = $journal_id;
+                $results = execute_query($sql, [$journal_id, $current_year]);
+            } else {
+                $results = execute_query($sql, [$current_year]);
             }
-    
-            $results = execute_query($sql, $params);
     
             $data = array();
     
