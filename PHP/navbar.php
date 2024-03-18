@@ -173,9 +173,9 @@ require 'dbcon.php';
                       if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
                           if (isset($_SESSION['role']) && $_SESSION['role'] === 'Admin') {
                             if (!isset($_SESSION['journal_id']) || $_SESSION['journal_id'] === null || $_SESSION['journal_id'] == 0) {
-                                echo '<li><a href="../Admin/php/submissionlist.php" class="dropdown-item" style="color: black;">Admin Submission</a></li>';
+                                echo '<li><a href="../Admin/php/dashboard.php" class="dropdown-item" style="color: black;">Admin Dashboard</a></li>';
                             } else {
-                                echo '<li><a href="../Admin/php/submissionlist.php" class="dropdown-item" style="color: black;">Editor in Chief Submission</a></li>';
+                                echo '<li><a href="../Admin/php/editordashboard.php" class="dropdown-item" style="color: black;">Editor in Chief Dashboard</a></li>';
                             }
                         }                                        
                       }

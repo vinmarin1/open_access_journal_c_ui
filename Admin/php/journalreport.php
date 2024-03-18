@@ -9,7 +9,7 @@ if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
 $current_year = date('Y');
 
 $contributor = get_contributor_list();
-$all_articles = get_allarticle_list();
+$all_articles = get_allarticle_list($journal_id);
 $journal_list = get_journal_list($journal_id);
 $journaldata = get_journal_data($journal_id);
 $journaldata1 = get_journal_data1($journal_id, $current_year);
@@ -41,7 +41,6 @@ foreach ($journaldata1['journaldata1'] as $journal) {
 }
 
 $combinedDataJson1 = json_encode($combinedData1);
-
 
 $categories = [];
 

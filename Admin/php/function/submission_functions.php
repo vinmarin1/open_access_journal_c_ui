@@ -3,20 +3,30 @@ include 'dbcon.php';
 
 // Check if the function is not already defined
 if (!function_exists('get_allarticle_list')) {
-    function get_allarticle_list()
+    function get_allarticle_list($journal_id = null)
     {
         $pdo = connect_to_database();
 
         if ($pdo) {
             try {
                 $query = "SELECT * FROM article";
-                $stmt = $pdo->query($query);
+
+                if (!empty($journal_id)) {
+                    $query .= " WHERE journal_id = :journal_id";
+                }
+
+                $stmt = $pdo->prepare($query);
+
+                if (!empty($journal_id)) {
+                    $stmt->bindParam(':journal_id', $journal_id, PDO::PARAM_INT);
+                }
+
+                $stmt->execute();
 
                 $result = $stmt->fetchAll(PDO::FETCH_OBJ);
-
+                
                 return $result;
             } catch (PDOException $e) {
-
                 echo "Error: " . $e->getMessage();
                 return false;
             }
