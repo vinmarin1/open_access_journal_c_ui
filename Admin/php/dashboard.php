@@ -230,7 +230,7 @@ $donationDataJson = json_encode($donationData);
                                                 <i class="bx bx-dots-vertical-rounded"></i>
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="cardOpt1">
-                                                <a class="dropdown-item" href="javascript:void(0);">View More</a>
+                                                <a class="dropdown-item" href="journalreport.php" target="_blank">View More</a>
                                             </div>
                                         </div>
                                     </div>
@@ -276,7 +276,7 @@ $donationDataJson = json_encode($donationData);
                                             <i class="bx bx-dots-vertical-rounded"></i>
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="cardOpt1">
-                                            <a class="dropdown-item" href="">View More</a>
+                                            <a class="dropdown-item" href="totalpublished.php?m=<?php echo date('n'); ?>&y=<?php echo date('Y'); ?>" target="_blank">View More</a>
                                         </div>
                                     </div>
                                 </div>
@@ -294,16 +294,16 @@ $donationDataJson = json_encode($donationData);
                                     <div class="col">
                                         <h5 class="card-title mb-2">Submission Comparison</h5>
                                     </div>
-                                    <!-- <div class="col-auto">
+                                    <div class="col-auto">
                                         <div class="dropdown" style="margin-right: -10px;">
                                             <button class="btn p-0" type="button" id="cardOpt1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <i class="bx bx-dots-vertical-rounded"></i>
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="cardOpt1">
-                                                <a class="dropdown-item" href="javascript:void(0);">View More</a>
+                                                <a class="dropdown-item" href="journalreport.php" target="_blank">View More</a>
                                             </div>
                                         </div>
-                                    </div> -->
+                                    </div>
                                 </div>
                                 <canvas id="myChart2"></canvas>
                             </div>
@@ -419,7 +419,7 @@ $donationDataJson = json_encode($donationData);
                                             <i class="bx bx-dots-vertical-rounded"></i>
                                         </button>
                                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt1">
-                                            <a class="dropdown-item" href="topcontributors.php">View More</a>
+                                            <a class="dropdown-item" href="topcontributors.php" target="_blank">View More</a>
                                         </div>
                                     </div>
                                 </div>
@@ -470,7 +470,7 @@ $donationDataJson = json_encode($donationData);
                                             <i class="bx bx-dots-vertical-rounded"></i>
                                         </button>
                                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt2">
-                                            <a class="dropdown-item" href="topreviewer.php">View More</a>
+                                            <a class="dropdown-item" href="topreviewer.php" target="_blank">View More</a>
                                         </div>
                                     </div>
                                 </div>
