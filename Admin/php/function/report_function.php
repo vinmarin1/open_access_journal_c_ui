@@ -632,18 +632,17 @@ include 'dbcon.php';
             if (!empty($journal_id)) {
                 $sql .= " LEFT JOIN `article` AS a ON j.`journal_id` = a.`journal_id` AND YEAR(a.`date_added`) = ?";
             } else {
-                $sql .= " LEFT JOIN `article` AS a ON j.`journal_id` = a.`journal_id`";
-            }
-
-            if (!empty($journal_id)) {
-                $sql .= " WHERE j.`journal_id` = ?";
-                $sql .= " GROUP BY j.`journal_id`";
-            } else {
-                $sql .= " GROUP BY j.`journal_id`";
+                $sql .= " LEFT JOIN `article` AS a ON j.`journal_id` = a.`journal_id` AND YEAR(a.`date_added`) = ?";
             }
     
             if (!empty($journal_id)) {
-                $results = execute_query($sql, [$journal_id, $current_year]);
+                $sql .= " WHERE j.`journal_id` = ?";
+            }
+    
+            $sql .= " GROUP BY j.`journal_id`";
+    
+            if (!empty($journal_id)) {
+                $results = execute_query($sql, [$current_year, $journal_id]);
             } else {
                 $results = execute_query($sql, [$current_year]);
             }
@@ -658,4 +657,5 @@ include 'dbcon.php';
             }
         }
     }
+    
 ?>
