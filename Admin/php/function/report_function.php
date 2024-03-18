@@ -570,6 +570,72 @@ include 'dbcon.php';
             }
         }
     }
-    
 
+    if (!function_exists('get_journal_data')) {
+        function get_journal_data($journal_id) {
+            $sql = "SELECT 
+                        j.*,
+                        COUNT(CASE WHEN a.`status` = 1 THEN 1 END) AS published_count,
+                        COUNT(CASE WHEN a.`status` BETWEEN 2 AND 5 THEN 1 END) AS ongoing_count,
+                        COUNT(CASE WHEN a.`status` = 6 THEN 1 END) AS reject_count
+                    FROM 
+                        `journal` AS j";
+    
+            if ($journal_id != null) {
+                $sql .= " LEFT JOIN `article` AS a ON a.`journal_id` = ?";
+            } else {
+                $sql .= " LEFT JOIN `article` AS a ON j.`journal_id` = a.`journal_id`";
+            }
+    
+            $sql .= " GROUP BY j.`journal_id`";
+    
+            $results = execute_query($sql, [$journal_id]);
+    
+            $data = array();
+    
+            if ($results !== false) {
+                $data['journaldata'] = $results;
+                return $data;
+            } else {
+                return array('status' => true, 'data' => []);
+            }
+        }
+    }
+
+    if (!function_exists('get_journal_data1')) {
+        function get_journal_data1($journal_id) {
+            $current_year = date('Y');
+    
+            $sql = "SELECT 
+                        j.*,
+                        COUNT(CASE WHEN a.`status` = 1 THEN 1 END) AS published_count,
+                        COUNT(CASE WHEN a.`status` BETWEEN 2 AND 5 THEN 1 END) AS ongoing_count,
+                        COUNT(CASE WHEN a.`status` = 6 THEN 1 END) AS reject_count
+                    FROM 
+                        `journal` AS j";
+    
+            if ($journal_id != null) {
+                $sql .= " LEFT JOIN `article` AS a ON a.`journal_id` = ?";
+            } else {
+                $sql .= " LEFT JOIN `article` AS a ON j.`journal_id` = a.`journal_id`";
+            }
+    
+            $sql .= " WHERE YEAR(a.`date_added`) = $current_year";
+    
+            $sql .= " GROUP BY j.`journal_id`";
+    
+            $results = execute_query($sql, [$journal_id]);
+    
+            $data = array();
+    
+            if ($results !== false) {
+                $data['journaldata1'] = $results;
+                return $data;
+            } else {
+                return array('status' => false, 'data' => []);
+            }
+        }
+    }
+    
+    
 ?>

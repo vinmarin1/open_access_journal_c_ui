@@ -1610,7 +1610,9 @@ table {
         $(document).ready(function() {
             dataTable = $('#DataTableReviewer').DataTable({
                 "paging": false,
-                "ordering": true,
+                "ordering": false,
+                "searching": true,
+                "info": false,
                 "columns": [
                     null,
                     null,
