@@ -581,15 +581,19 @@ include 'dbcon.php';
                     FROM 
                         `journal` AS j";
     
-            if ($journal_id != null) {
-                $sql .= " LEFT JOIN `article` AS a ON a.`journal_id` = j.`journal_id` WHERE a.`journal_id` = ?";
+            if (!empty($journal_id)) {
+                $sql .= " LEFT JOIN `article` AS a ON a.`journal_id` = ?";
             } else {
                 $sql .= " LEFT JOIN `article` AS a ON j.`journal_id` = a.`journal_id`";
             }
     
             $sql .= " GROUP BY j.`journal_id`";
     
-            $results = execute_query($sql, [$journal_id]);
+            if (!empty($journal_id)) {
+                $results = execute_query($sql, [$journal_id]);
+            } else {
+                $results = execute_query($sql);
+            }
     
             $data = array();
     
@@ -600,11 +604,10 @@ include 'dbcon.php';
                 return array('status' => true, 'data' => []);
             }
         }
-    }    
-
+    }
+    
     if (!function_exists('get_journal_data1')) {
-        function get_journal_data1($journal_id) {
-            $current_year = date('Y');
+        function get_journal_data1($journal_id, $current_year) {
     
             $sql = "SELECT 
                         j.*,
@@ -614,18 +617,22 @@ include 'dbcon.php';
                     FROM 
                         `journal` AS j";
     
-            if ($journal_id != null) {
+            if (!empty($journal_id)) {
                 $sql .= " LEFT JOIN `article` AS a ON a.`journal_id` = ?";
             } else {
                 $sql .= " LEFT JOIN `article` AS a ON j.`journal_id` = a.`journal_id`";
             }
     
-            $sql .= " WHERE YEAR(a.`date_added`) = $current_year";
+            $sql .= " WHERE YEAR(a.`date_added`) = ?";
     
             $sql .= " GROUP BY j.`journal_id`";
     
-            $results = execute_query($sql, [$journal_id, $current_year]);
-    
+            if (!empty($journal_id)) {
+                $results = execute_query($sql, [$journal_id, $current_year]);
+            } else {
+                $results = execute_query($sql, [$current_year]);
+            }
+
             $data = array();
     
             if ($results !== false) {

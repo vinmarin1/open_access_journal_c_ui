@@ -6,12 +6,13 @@ include 'function/submission_functions.php';
 if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
     $journal_id = isset($_SESSION['journal_id']) ? ($_SESSION['journal_id']) : '';
 }
+$current_year = date('Y');
 
 $contributor = get_contributor_list();
 $all_articles = get_allarticle_list();
 $journal_list = get_journal_list($journal_id);
 $journaldata = get_journal_data($journal_id);
-$journaldata1 = get_journal_data1($journal_id);
+$journaldata1 = get_journal_data1($journal_id, $current_year);
 
 $combinedData = [
     ['name' => 'Published', 'data' => []],
