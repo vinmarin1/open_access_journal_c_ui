@@ -13,7 +13,7 @@ $faqslist = get_faqs_list();
 
    <!-- Content wrapper -->
    <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="py-3 mb-4"><span class="text-muted fw-light"></span> FAQS</h4>
+        <h4 class="py-3 mb-4"><span class="text-muted fw-light">Secondary / </span> FAQS</h4>
 
          <!-- Status tabs -->
          <ul class="nav nav-tabs mb-3" id="statusTabs">
