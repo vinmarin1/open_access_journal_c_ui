@@ -74,6 +74,9 @@ table {
   border: 1px solid #000;
   border-collapse: collapse;
 }
+.top5-reviewer {
+    font-weight: bold; 
+}
 </style>
 
 <body>
@@ -1112,10 +1115,10 @@ table {
                 <div class="row mb-2">
                     <div class="col-md-12">
                         <div class="table-responsive text-nowrap">
-                            <table class="table table-striped" id="DataTableReviewer">
+                            <table class="table table-striped mb-4" id="DataTableTop5" style="width:100%;">
                                 <thead>
                                     <tr>
-                                        <th colspan="3">Sort by best reviewers for this article based on their affiliations and expertise</th>
+                                        <th colspan="3">Top 5 Suggested Reviewers</th>
                                     </tr>
                                     <tr>
                                         <th>Author ID</th>
@@ -1124,7 +1127,20 @@ table {
                                     </tr>
                                 </thead>
                                 <tbody id="reviewersTableBody">
-                                    <!-- Reviewer rows will be dynamically added here -->
+                                </tbody>
+                            </table>
+                            <table class="table table-striped" id="DataTableOther"  style="width:100%;">
+                                <thead>
+                                    <tr>
+                                        <th colspan="3">Other Reviewers</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Author ID</th>
+                                        <th>Author</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="reviewersTableBody1">
                                 </tbody>
                             </table>
                         </div>
@@ -1952,14 +1968,17 @@ table {
                     return;
                 }
 
-                const tbody = $('#reviewersTableBody');
-                tbody.empty();
+                const tbodyTop5 = $('#reviewersTableBody');
+                const tbodyOther = $('#reviewersTableBody1');
+                tbodyTop5.empty();
+                tbodyOther.empty();
 
+                let isTop5 = true;
                 data.sorted_reviewers.forEach(item => {
                     const row = $('<tr>');
                     const affiliation = item.afiliations && item.afiliations.length > 30 ? item.afiliations.substring(0, 30) + '...' : item.afiliations;
                     const expertise = item.field_of_expertise && item.field_of_expertise.length > 30 ? item.field_of_expertise.substring(0, 30) + '...' : item.field_of_expertise;
-                    
+
                     row.html(`
                         <td width="5%">${item.author_id}</td>
                         <td width="80%">
@@ -1981,14 +2000,32 @@ table {
                         </td>
                     `);
 
-                    tbody.append(row);
+                    if (isTop5) {
+                        row.addClass('top5-reviewer');
+                        tbodyTop5.append(row);
+                        if (tbodyTop5.children().length >= 5) {
+                            isTop5 = false;
+                        }
+                    } else {
+                        tbodyOther.append(row);
+                    }
                 });
 
-
-                if ($.fn.DataTable.isDataTable('#DataTableReviewer')) {
-                    $('#DataTableReviewer').DataTable().destroy();
+                if ($.fn.DataTable.isDataTable('#DataTableTop5')) {
+                    $('#DataTableTop5').DataTable().destroy();
                 }
-                $('#DataTableReviewer').DataTable({
+                if ($.fn.DataTable.isDataTable('#DataTableOther')) {
+                    $('#DataTableOther').DataTable().destroy();
+                }
+
+                $('#DataTableTop5').DataTable({
+                    "paging": false,
+                    "ordering": false,
+                    "searching": false,
+                    "info": false
+                });
+
+                $('#DataTableOther').DataTable({
                     "paging": false,
                     "ordering": false,
                     "searching": true,
