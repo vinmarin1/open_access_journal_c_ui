@@ -25,6 +25,7 @@ text-align: justify !important;
     min-width: 121px;
     border-bottom-color: none;
     margin-bottom: 0px;
+    padding:10px ;
 }
 
 #privacy-tab:focus, #article-tab:focus, #file-tab:focus, #contributors-tab:focus, #comment-tab:focus,#review-tab:focus{
@@ -33,7 +34,7 @@ text-align: justify !important;
     border: none;
 }
 
-#privacy-tab-pane {    
+#privacy-tab-pane, .article-details, .table-input, .contributors-container, .comment-container, #review-tab-pane {    
     padding:2em;
 }
 
@@ -46,7 +47,7 @@ text-align: justify !important;
 }
 
 #title-1, #title-2, #title-3 , #title-8, #title-9f{
-    font-weight: bold;
+    
 
 }
 
@@ -77,7 +78,7 @@ text-align: justify !important;
 
 #duplication-title, .checker-titles, #flaggedT{
     color: #285581;
-    font-family: Arial, Helvetica, sans-serif !important;
+    font-family: sans-serif !important;
     font-weight: bold;
 }
 
@@ -168,7 +169,7 @@ text-align: justify !important;
 #title-1, #title-2, #title-3,#sub-1, #sub-2, #sub-5{
     /* margin-left: 40px; */
     color: #285581;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Inter';
     /* width: 80%; */
 }
 
@@ -202,7 +203,7 @@ text-align: justify !important;
 }
 
 .details p , .input-details p, .input-details h6 , .input-details-2 p , .input-details-2 p{
-    font-family: Arial, Helvetica, sans-serif;font-family: Arial, Helvetica, sans-serif;
+    font-family: sans-serif;
 }
 
 
@@ -220,7 +221,7 @@ text-align: justify !important;
  #sub-7, #sub-8{
     margin-left: 40px;
     color: #285581;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: sans-serif;
     width: 350px;
     margin-top: 20px;
 }
@@ -242,11 +243,11 @@ text-align: justify !important;
     /* margin-top: 40px; */
 }
 
-#sub-9, #sub-10{
-    
+#sub-9, #sub-10, #sub-11, #sub-12{
     font-weight: bold;
     color: #285581;
-    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: large;
+    font-family:  'Judson', sans-serif !important;
 }
 
 #title{
@@ -264,12 +265,6 @@ text-align: justify !important;
     height: auto;
 }
 
-#sub-11, #sub-12{
-   
-    font-weight: bold;
-    color: #285581;
-    font-family: Arial, Helvetica, sans-serif !important;
-}
 
 
 
@@ -286,14 +281,13 @@ text-align: justify !important;
 .table-input, .contributors-container, .comment-container{
     max-width: 100%;
     min-width: auto;
-    padding-left: 40px;
 }
 
 
 
-#title-6, #title-7{
+/* #title-6, #title-7{
     font-weight: bold;
-}
+} */
 
 
 
@@ -306,19 +300,18 @@ text-align: justify !important;
 
 #article-unique{
     color: var(--main, #0858A4);
-    font-family: Arial, Helvetica, sans-serif;
+    font-family:  sans-serif;
 }
 
 
 
 #title-6, #title-7, #title-8, #title-9, #title-15,#sub-13, #sub-14 , #sub-15,  #sub-16,  #sub-17,  #sub-18,  #sub-19,  #sub-20, #sub-21, #sub-22, #sub-23, #sub-24, #sub-25, #selectRoleLabel, #selectRoleLabelUpdate{
     color: #285581;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family:'Inter' sans-serif;
     width: 100%;
 }
 
 #title-9f{
-    margin-top: 40px;
     margin-left: 40px;
     color: #285581;
 }
@@ -356,11 +349,6 @@ text-align: justify !important;
     width: 50%;
     display: inline-block;
 }
-
-#sub-15{
-    margin-bottom: 40px;
-}
-
 
 
  #sub-16, #sub-17, #sub-20, #sub-21{
@@ -510,7 +498,7 @@ text-align: justify !important;
 
 .contHead{
     color: white;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family:  sans-serif;
   
 }
 
@@ -529,7 +517,7 @@ text-align: justify !important;
 #sub-26,  #sub-28, #sub-29{
     color: #285581;
     text-align: left;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family:  sans-serif;
     font-weight: bold;
     margin-bottom: 5px;
     margin-left: -20px;
@@ -549,7 +537,7 @@ text-align: justify !important;
  #sub-30, #sub-31, #sub-32, #sub-33, #sub-34{
     text-align: left;
     color: #285581;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family:  sans-serif;
     font-weight: normal;
     margin-bottom: 10px;
     margin-top: 20px;
@@ -616,7 +604,7 @@ text-align: justify !important;
 #title-11, #title-12{
     color:#285581;
     font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family:  sans-serif;
     font-size: 18px;
  
 }
@@ -630,7 +618,7 @@ text-align: justify !important;
     text-align: left;
     color: #285581;
     font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family:  sans-serif;
     font-size: 18px;
     
 }
@@ -774,7 +762,7 @@ text-align: justify !important;
 }
 
 #previewTitlelabel, #previewAbstractlabel, #previewKeywordlabel, #referenceAbstractlabel, #updatePreviewFile1, #updatePreviewFile2, #updatePreviewFile3{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: sans-serif;
     text-align: left;
     color: #285581;
     margin-bottom: 5px;
@@ -822,7 +810,6 @@ text-align: justify !important;
 
 .tab-content{
     border: 1px solid #ccc;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 0 0 8px 8px ;
     padding: 20px;
     padding-bottom: 40px;
