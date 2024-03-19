@@ -24,8 +24,7 @@ if ($submissionlist) {
         '#71dd37',
         '#03c3ec',
         '#ffab00',
-        '#ff3e1d',
-        '#233446' 
+        '#ff3e1d'
     ];
 
     shuffle($colors);
@@ -135,8 +134,7 @@ $colors = [
     '#71dd37',
     '#03c3ec',
     '#ffab00',
-    '#ff3e1d',
-    '#233446'
+    '#ff3e1d'
 ];
 
 shuffle($colors);
