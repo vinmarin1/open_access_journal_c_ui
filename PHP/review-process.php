@@ -535,7 +535,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                             <div class="col-md-5 firstContent">
 
                             <!-- Content for the left half of the screen -->
-                                <h4>Note: </h4>
+                                <h4 class="mt-4">Note: </h4>
                                 <p>Denotes Required Field</p>
 
                                 <h5>Paper Length:</h5>
