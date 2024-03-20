@@ -143,6 +143,15 @@ table {
                                             </li>
                                         </ul>
                                             <div class="tab-content">
+                                                <?php if ($article_data[0]->status == 6): ?>
+                                                <div class="tab-pane fade show active" id="navs-top-submission" role="tabpanel">
+                                                    <div class="row">
+                                                        <div class="alert alert-white" role="alert">
+                                                            <p>Submission rejected.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <?php else: ?>
                                                 <div class="tab-pane fade show active" id="navs-top-submission" role="tabpanel">
                                                     <div class="row">
                                                         <div class="col-md-9" id="dynamic-column">
@@ -274,6 +283,7 @@ table {
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <?php endif; ?>
 <!-- Review -->
                                                 <?php if ($article_data[0]->status >= 5 && $article_data[0]->status != 11): ?>
                                                 <div class="tab-pane fade" id="navs-top-review" role="tabpanel">
