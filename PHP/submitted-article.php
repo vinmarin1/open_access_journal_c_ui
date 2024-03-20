@@ -93,33 +93,34 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
             </p>
             <p class="keywords-title">Keywords</p>
             <div class="keywords">
-            <?php
-                $sqlKeyword = "SELECT keyword FROM article WHERE article_id = :article_id AND author_id = :author_id";
-                
-                $result = database_run($sqlKeyword, array('author_id' => $userId,
-                'article_id' => $articleId));
+                <?php
+                    $sqlKeyword = "SELECT keyword FROM article WHERE article_id = :article_id AND author_id = :author_id";
+                    
+                    $result = database_run($sqlKeyword, array('author_id' => $userId,
+                    'article_id' => $articleId));
 
-                if ($result !== false) {
-                    foreach ($result as $row) {
-                        $keywords = explode(',', $row->keyword);
-                        foreach ($keywords as $keyword) {
-                            echo '<li style="list-style-type: none; 
-                                            margin-right: 5px;
-                                            width: auto;
-                                            color: var(--main, #0858A4);
-                                            border: 2px solid var(--main, #0858A4);
-                                            border-radius: 10px;
-                                            background-color: white;
-                                            font-size: 15px;
-                                            display: inline-block">' . trim($keyword) . '</li>';
+                    if ($result !== false) {
+                        foreach ($result as $row) {
+                            $keywords = explode(',', $row->keyword);
+                            foreach ($keywords as $keyword) {
+                                echo '<li style="list-style-type: none; 
+                                                margin-right: 5px;
+                                                width: auto;
+                                                color: var(--main, #0858A4);
+                                                border: 2px solid var(--main, #0858A4);
+                                                border-radius: 10px;
+                                                background-color: white;
+                                                font-size: 15px;
+                                                display: inline-block">' . trim($keyword) . '</li>';
+                            }
+                            
                         }
-                        
+                    } else {
+                        echo "No keywords for this article";
                     }
-                } else {
-                    echo "No keywords for this article";
-                }
-            ?>
-        </div>
+                ?>
+             </div>
+           
 
 
 
@@ -151,6 +152,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
             <div class="table-header">Reviewer Comments</div>
             <hr style="height: 2px solid;">
             <div class="discussion-container">
+          
                 <?php
                     $sqlReviewComments = "SELECT reviewer_assigned.comment, reviewer_assigned.decision 
                                         FROM reviewer_assigned 
@@ -173,15 +175,15 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                                 $comment = $row->comment;
                                 $decision = $row->decision;
 
-                                // Append comment and decision to the reviewer's array
+                            
                                 $reviewerComments[$reviewerAlias]['comment'] = $comment;
                                 $reviewerComments[$reviewerAlias]['decision'] = $decision;
 
-                                // Increment reviewer alias for the next comment
+                            
                                 $reviewerAlias = getNextReviewerAlias($reviewerAlias);
                             }
 
-                            // Display the comments with reviewer aliases
+                           
                             foreach ($reviewerComments as $reviewerAlias => $reviewerData) {
                                 echo '<p>' . $reviewerAlias . ' comment: ' . $reviewerData['comment'] . '</p>';
                                 echo '<p class="style="margin-top: 0px">' . $reviewerAlias . ' decision: ' . $reviewerData['decision'] . '</p>';
@@ -200,6 +202,68 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 
 
             </div>
+            <div class="logs-container">
+               <!-- Button trigger modal -->
+               <button type="button" class="btn btn-primary" id="log-btn" data-bs-toggle="modal" data-bs-target="#modal-dialog-centered">
+                    View Logs
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="modal-dialog-centered" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header" style="border-bottom: none">
+                                <p class="logs-title">Recent Logs</p>
+                                <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+                            </div>
+                            <hr style="margin-top: -20px; width: 90%; border: 1px solid black; margin-left: auto; margin-right: auto">
+                          
+                            <div style="width: 90%; margin-left: auto; margin-right: auto; overflow-x: auto; height: 300px;">
+                                <table class="table table-borderless">
+                                    <thead class="table-secondary">
+                                        <tr>
+                                            <th>Logs</th>
+                                            <th></th>
+                                            <th>Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                            $sqlDisplayLogs = "SELECT logs_article.article_id, logs_article.type, DATE(logs_article.date) as date FROM logs_article JOIN article ON logs_article.article_id = article.article_id WHERE logs_article.user_id = :userId AND logs_article.article_id = :article_id";
+
+                                            $params = array(
+                                                'userId' => $userId,
+                                                'article_id' => $articleId
+                                            );
+
+                                            $sqlRun = database_run($sqlDisplayLogs, $params);
+
+                                            if ($sqlRun !== false) {
+                                                foreach ($sqlRun as $row) {
+                                                    echo '<tr>';
+                                                    echo '<td>' . $row->type . '</td>';
+                                                    echo '<td></td>';
+                                                    echo '<td>' . $row->date . '</td>';
+                                                    echo '</tr>';
+                                                }
+                                            } else {
+                                                echo '<tr><td colspan="2">Something went wrong</td></tr>';
+                                            }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+                        
+                            <div class="modal-footer" style="border-top: none;">
+                                <button type="button" id="back-btn" class="btn btn-secondary" data-bs-dismiss="modal">Back</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+             </div>
         </div>
 
 

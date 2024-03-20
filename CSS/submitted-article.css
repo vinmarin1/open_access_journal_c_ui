@@ -454,3 +454,30 @@ ul li span {
 }
 
 
+#log-btn {
+  background-color: #0858A4;
+  color: white;
+  font-family: "Judson", serif;
+  font-weight: 400;
+  font-style: normal;
+  border-radius: 20px;
+  position: absolute;
+  width: 28%; 
+}
+
+
+.logs-title{
+  color: #285581;
+  font-size: 25px;
+  font-family: "Judson", serif;
+  font-weight: bold;
+  font-style: normal;
+  margin-left: 10px;
+}
+
+#back-btn{
+  background-color: #EAEAEA;
+  color: #285581;
+  width: 40%;
+  border-radius: 15px;
+}
