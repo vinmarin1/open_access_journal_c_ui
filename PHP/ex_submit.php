@@ -107,13 +107,13 @@
 
   <h3 class="form-heading">Copyright Notice</h3>
   <p class="form-sub-heading">Authors who publish with this journal also agree to the following terms: </p>
-  <p class="h6 " id="sub-3">Authors are able to enter into separate, additional contractual arrangements for the non-exclusive distribution of the journal's published version of the work (e.g., post it to an institutional repository or publish it in a book), with an acknowledgement of its initial publication in this journal.</p>
-  <p class="h6 " id="sub-4">Authors are permitted and encouraged to post their work online (e.g., in institutional repositories or on their website) as this can lead to productive exchanges, as well as earlier and greater citation of published work.</p>
+  <p>Authors are able to enter into separate, additional contractual arrangements for the non-exclusive distribution of the journal's published version of the work (e.g., post it to an institutional repository or publish it in a book), with an acknowledgement of its initial publication in this journal.</p>
+  <p>Authors are permitted and encouraged to post their work online (e.g., in institutional repositories or on their website) as this can lead to productive exchanges, as well as earlier and greater citation of published work.</p>
 
   <hr class="divider">
 
   <h3 class="form-heading" >Journal's Privacy Statement</h3>
-  <p class="h6" id="sub-5">The names and email addresses entered in this journal site will be used exclusively for the stated purposes of this journal and will not be made available for any other purpose or to any other party</p>
+  <p class="form-sub-heading">The names and email addresses entered in this journal site will be used exclusively for the stated purposes of this journal and will not be made available for any other purpose or to any other party</p>
 
   <div class="descript-2 pt-3">
 
@@ -128,8 +128,9 @@
 </div>
 
 </div>
-<button type="button" class="btn btn-primary btn-sm" id="next1" >Next</button>
-
+<div class="d-flex gap-1 w-100 justify-content-end ">
+  <button type="button" class="btn btn-primary btn-sm" id="next1" >Next</button>
+</div>
   </div>
   <div class="tab-pane fade" id="article-tab-pane" role="tabpanel" aria-labelledby="article-tab" tabindex="0">
     <div class="article-details">
@@ -219,8 +220,11 @@
           <input class="form-control" type="text" id="reference"  name="reference" style="display: none;">
         </div>
       </div>
-      <button type="button" class="btn btn-primary btn-sm mt-4" id="next" >Next</button>
-      <button type="button" class="btn btn-secondary btn-sm mt-4" id="prev">Prev</button>
+      <div class="d-flex gap-1 w-100 justify-content-end ">
+        <button type="button" class="btn btn-secondary btn-sm mt-4" id="prev">Prev</button>
+        <button type="button" class="btn btn-primary btn-sm mt-4" id="next" >Next</button>
+      </div>
+    
     </div>
   </div>
 
@@ -271,12 +275,12 @@
     </tr>
   </tbody>
 </table>
-
+    <div class="d-flex gap-1 w-100 justify-content-end mt-5">
+        <button type="button" class="btn btn-secondary btn-sm" id="prev3">Prev</button>
+        <button type="button" class="btn btn-primary btn-sm" id="next3" >Next</button>
+    </div>
   </div>
- 
-  <button type="button" class="btn btn-primary btn-sm" id="next3" >Next</button>
 
-  <button type="button" class="btn btn-secondary btn-sm" id="prev3">Prev</button>
   </div>
 
   <div class="tab-pane fade" id="contributors-tab-pane" role="tabpanel" aria-labelledby="contributors-tab" tabindex="0">
@@ -325,11 +329,12 @@
               
             </tbody>
         </table>
+        <div class="d-flex gap-1 w-100 justify-content-end mt-5">
+          <button type="button" class="btn btn-secondary btn-sm" id="prev4">Prev</button>
+          <button type="button" class="btn btn-primary btn-sm" id="next4" >Next</button>
+        </div>
   </div>
 
-  <button type="button" class="btn btn-primary btn-sm" id="next4" >Next</button>
-  <button type="button" class="btn btn-secondary btn-sm" id="prev4">Prev</button>
-  
   </div>
 
   </div>
@@ -343,10 +348,11 @@
     </div>
     <textarea class="form-control" name="editor3" id="editor3" cols="30" rows="10" style="width: 94%; height: auto; margin-left: auto;  margin-right: auto; margin-bottom: 10px; "></textarea>
     <input class="form-control" type="text" id="notes" name="notes" style="display: none; ">
-  
-  <button type="button" class="btn btn-primary btn-sm" id="next5" >Next</button>
-  <button type="button" class="btn btn-secondary btn-sm" id="prev5">Prev</button>
-
+    <div class="d-flex gap-1 w-100 justify-content-end mt-5">
+      <button type="button" class="btn btn-secondary btn-sm" id="prev5">Prev</button>
+      <button type="button" class="btn btn-primary btn-sm" id="next5" >Next</button>
+      
+    </div>
   </div>
 
   <div class="tab-pane fade" id="review-tab-pane" role="tabpanel" aria-labelledby="review-tab" tabindex="0">
@@ -435,10 +441,11 @@
    
 
   </div>
- 
-  <button type="button" class="btn btn-success btn-sm" id="submit" onclick="saveData()" >Submit</button>
+  <div class="d-flex gap-1 w-100 justify-content-end mt-5">
   <button type="button" class="btn btn-secondary btn-sm" id="prevReview">Prev</button>
+  <button type="button" class="btn btn-success btn-sm" id="submit" onclick="saveData()" >Submit</button>
   
+  </div>
   </div>
 
 </div>
