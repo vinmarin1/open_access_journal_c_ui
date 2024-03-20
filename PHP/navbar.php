@@ -38,7 +38,7 @@ require 'dbcon.php';
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link" role="button" href="publication.php">
-            QCU Journals
+            Journals
           </a>
         </li>
         <li class="nav-item">
