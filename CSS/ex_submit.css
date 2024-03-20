@@ -7,19 +7,19 @@ text-align: justify !important;
     background-color: white;
 }
 h2 {
-    color: var(--main) !important;
+    color: var(--form-heading,#285581) !important;
     font-size: 24px !important;
 }
 
 .main-sub {
-    color: var(--main) !important;
+    color: var(--form-heading,#285581) !important;
     font-size: 16px ;
     font-family: Inter;
     
 }
 
 .form-heading, .form-sub-heading{
-    color: var(--main);
+    color: var(--form-heading,#285581);
     font-family: Inter, sans-serif !important;
     max-width: 700px !important;
 }
@@ -27,6 +27,7 @@ h2 {
 .form-heading {
     font-size: 18px;
     font-weight: 500;
+    text-align: start;
 }
 
 .form-sub-heading, .form-label {
@@ -58,6 +59,7 @@ th{
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 10px;
+    min-width: 325px;
 }
 
 .checkItem {
@@ -100,11 +102,11 @@ th{
     font-size: 18px;
 
 } */
-
+/* 
 #sub-1, #sub-2, #sub-3, #sub-4, #sub-5{
     font-weight: normal;
     width: 88%;
-}
+} */
 
 .form-floating, #form-floating-3{
     display: inline-block;
@@ -324,7 +326,7 @@ th{
 }
 
 
-
+/* 
 #title-6, #title-7, #title-8, #title-9, #title-15,#sub-13, #sub-14 , #sub-15,  #sub-16,  #sub-17,  #sub-18,  #sub-19,  #sub-20, #sub-21, #sub-22, #sub-23, #sub-24, #sub-25, #selectRoleLabel, #selectRoleLabelUpdate{
     color: #285581;
     font-family:'Inter' sans-serif;
@@ -340,7 +342,7 @@ th{
     
     margin-left: 40px;
     color: #285581;
-}
+} */
 
 
 
@@ -746,12 +748,12 @@ th{
 
 
 #prev, #prev2, #prev3, #prev4, #prev5, #prevReview, #next, #next1, #next3, #next4, #next5, #submit, #check-d{
-    float: right;
-    margin-left: 10px;
+    /* float: right; */
+    /* margin-left: 10px; */
     width: 120px;
     height: 30px;
     /* margin-top: 40px; */
-    margin-bottom: 40px;
+    /* margin-bottom: 40px; */
    
 }
 
@@ -828,7 +830,7 @@ th{
     border: 1px solid #e9e9e9;
     border-radius: 0 0 8px 8px ;
     padding: 20px;
-    padding-bottom: 60px;
+    /* padding-bottom: 60px; */
     margin-bottom: 4em;
 }
 
@@ -840,8 +842,12 @@ th{
         padding-left: 0;
     }
     #privacy-tab-pane {
-        padding: 1em;
+        /* padding: 1em; */
         text-align: justify;
+    }
+    .tab-content {
+        padding: 1em;
+        /* text-align: justify; */
     }
     .table-input h6{
         text-align: justify;
