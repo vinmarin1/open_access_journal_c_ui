@@ -609,7 +609,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const wordCount = text === "" ? 0 : text.match(/\b(?![\(\)\[\]\{\}]+)\S+\b/g).length;
     document.querySelector("#total-words-abstract").innerHTML = `${wordCount} / 300 words`;
   });
-
+  document.querySelector('#keyword-btn').addEventListener('click', function(){
+    checkValidations();
+  
+  })
   keywords.addEventListener('blur', function () {
       // const wordCount = keywords.value.trim().split(",").length;
       const wordCount = keywordArray.length;
@@ -618,6 +621,7 @@ document.addEventListener('DOMContentLoaded', function () {
       } else {
           keywordsValidation.style.display = 'none';
       }
+      checkValidations();
     })
 
 
