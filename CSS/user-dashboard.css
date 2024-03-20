@@ -113,6 +113,11 @@ body {
     flex: 1;
 }
 
+.popup-form .form-content {
+    max-height: 500px; 
+    overflow-y: auto; 
+}
+
 .form-header {
     display: flex;
     justify-content: space-between;
@@ -802,7 +807,7 @@ label {
 }
 
 #badges-container {
-    border: 1px solid #ffffff;
+    border: 1px solid #e0e0e0;
     border-radius: 8px;
     padding: 0px 15px 20px 15px;
     margin-right: 10px;
