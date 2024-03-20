@@ -1037,7 +1037,7 @@ table {
                                                                     </div>
                                                                     <div class="mb-3">
                                                                         <label for="defaultFormControlInput2" class="form-label">Keywords</label>
-                                                                        <input type="text" class="form-control" id="keyword" placeholder="Keywords" aria-describedby="defaultFormControlHelp" />
+                                                                        <input type="text" class="form-control" id="keyword" placeholder="Keywords" value="<?php echo $article_data[0]->keyword; ?>" aria-describedby="defaultFormControlHelp" />
                                                                     </div>   
                                                                     <div class="mb-3">
                                                                         <label for="defaultFormControlInput3" class="form-label">Abstract</label>
