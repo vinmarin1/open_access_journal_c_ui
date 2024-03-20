@@ -895,12 +895,13 @@ label {
     padding: 20px;
     overflow-y: auto;
     border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-top: 20px;
 }
 
 .credit-container {
-    border: 1px solid #e0e0e0;
-    border-radius: 10px;
+    /* border: 1px solid #e0e0e0;
+    border-radius: 10px; */
     padding: 20px;
 }
 
@@ -915,7 +916,7 @@ label {
 }
 
 .header-achievements h3 {
-    font-size: 24px;
+    /* font-size: 24px; */
     color: #285581;
     margin: 0;
 }
@@ -966,7 +967,7 @@ label {
 }
 
 .table-container {
-    overflow-x: auto;
+    
 }
 
 .table-container table {
@@ -983,12 +984,15 @@ label {
 .table-container th {
     background-color: #f2f2f2;
     font-weight: bold;
+    color: #333;
 }
 
 .table-container tbody tr:nth-child(even) {
     background-color: #f9f9f9;
 }
-
+#achievements-table tbody tr:hover {
+    background-color: #f2f2f2;
+}
 .view-button {
     padding: 8px 20px;
     border: 2px solid #285581;

@@ -1531,7 +1531,17 @@ $expertise = $_SESSION['expertise'];
 							</div>
 							<div class="table-container">
 								<table>
-									<tbody>
+									
+										<thead>
+											<tr>
+												<th>Details</th>
+												<th>Journal</th>
+												<th>Date</th>
+												<th>Reward</th>
+												<th></th>
+											</tr>
+										</thead>
+										<tbody>
 
 
 									<?php
