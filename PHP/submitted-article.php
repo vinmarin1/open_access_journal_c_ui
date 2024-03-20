@@ -151,16 +151,27 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
         <div class="comments-container">
             <div class="table-header">Reviewer Comments</div>
             <hr style="height: 2px solid;">
-            <div class="discussion-container">
-          
+            <div class="discussion-container" style="height: 200px; overflow-y: auto;">
                 <?php
-                    $sqlReviewComments = "SELECT reviewer_assigned.comment, reviewer_assigned.decision 
-                                        FROM reviewer_assigned 
-                                        JOIN article ON reviewer_assigned.article_id = article.article_id 
-                                        WHERE reviewer_assigned.answer = 1 
-                                            AND reviewer_assigned.accept = 1 
-                                            AND reviewer_assigned.comment_accessible = 1 
-                                            AND reviewer_assigned.article_id = $articleId";
+                    $sqlReviewComments = "SELECT 
+                                                reviewer_assigned.author_id,
+                                                MAX(reviewer_assigned.comment) AS comment,
+                                                MAX(reviewer_assigned.decision) AS decision,
+                                                MAX(reviewer_answer.reviewer_questionnaire) AS reviewer_questionnaire,
+                                                MAX(reviewer_answer.comments) AS reviewer_comments
+                                        FROM 
+                                                reviewer_assigned 
+                                        JOIN 
+                                                reviewer_answer 
+                                        ON 
+                                                reviewer_assigned.author_id = reviewer_answer.author_id 
+                                        WHERE 
+                                                reviewer_assigned.answer = 1 
+                                                AND reviewer_assigned.accept = 1 
+                                                AND reviewer_assigned.comment_accessible = 1 
+                                                AND reviewer_assigned.article_id = $articleId
+                                        GROUP BY 
+                                                reviewer_assigned.author_id";
 
                     $sqlRun = database_run($sqlReviewComments);
 
@@ -168,35 +179,28 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                         $result = $sqlRun;
 
                         if (!empty($result)) {
-                            $reviewerComments = array();
-                            $reviewerAlias = 'Reviewer A';
+                            $reviewerAliases = array();
+                            $nextAlias = 'A';
 
                             foreach ($result as $row) {
-                                $comment = $row->comment;
-                                $decision = $row->decision;
-
-                            
-                                $reviewerComments[$reviewerAlias]['comment'] = $comment;
-                                $reviewerComments[$reviewerAlias]['decision'] = $decision;
-
-                            
-                                $reviewerAlias = getNextReviewerAlias($reviewerAlias);
+                                $reviewerAliases[] = '<a href="#" class="reviewer-alias">Reviewer ' . $nextAlias . '</a>';
+                                $nextAlias = getNextReviewerAlias($nextAlias);
                             }
 
-                           
-                            foreach ($reviewerComments as $reviewerAlias => $reviewerData) {
-                                echo '<p>' . $reviewerAlias . ' comment: ' . $reviewerData['comment'] . '</p>';
-                                echo '<p class="style="margin-top: 0px">' . $reviewerAlias . ' decision: ' . $reviewerData['decision'] . '</p>';
+                            foreach ($reviewerAliases as $alias) {
+                                echo $alias;
                             }
                         }
                     }
 
                     function getNextReviewerAlias($currentAlias)
                     {
-                        return ++$currentAlias;
+                        return chr(ord($currentAlias) + 1);
                     }
                 ?>
 
+
+         
 
 
 

@@ -481,3 +481,13 @@ ul li span {
   width: 40%;
   border-radius: 15px;
 }
+
+.reviewer-alias{
+  font-family: "Judson", serif;
+  font-weight: 400;
+  font-style: normal;
+  display: block;
+  margin-bottom: 10px;
+  text-decoration: none;
+  color: #3498db;
+}
