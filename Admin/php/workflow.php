@@ -478,7 +478,17 @@ table {
                                                                                     if ($matchingReviewer) { ?>
                                                                                         <td width="84%"><?php echo $matchingReviewer->last_name . ', ' . $matchingReviewer->first_name; ?></td>
                                                                                         <td width="3%">
-                                                                                            <?php echo ($article_reviewerval->comment_accessible == 1) ? '<span style="color: green;">Accepted</span>' : ''; ?>
+                                                                                        <?php
+                                                                                            date_default_timezone_set('Asia/Manila');
+                                                                                            $date = date('Y-m-d');
+                                                                                            if ($article_reviewerval->comment_accessible == 1) {
+                                                                                                echo '<span style="color: green;">Accepted</span>';
+                                                                                            } else if ($article_reviewerval->accept == 2) {
+                                                                                                echo '<span style="color: red;">Reject</span>';
+                                                                                            } else if ($article_reviewerval->deadline <= $date && $article_reviewerval->accept == 0) {
+                                                                                                echo '<span style="color: orange;">Incomplete</span>';
+                                                                                            }
+                                                                                            ?>
                                                                                         </td>
                                                                                         <td colspan="3" style="text-align: right;">
                                                                                             <?php if ((strpos($article_reviewerval->round, 'Round 1') !== false) && ($article_reviewerval->answer != 0)): ?>
@@ -1115,10 +1125,10 @@ table {
                 <div class="row mb-2">
                     <div class="col-md-12">
                         <div class="table-responsive text-nowrap">
-                            <table class="table table-striped mb-4" id="DataTableTop5" style="width:100%;">
+                            <table class="table table-striped mb-4" id="DataTableSuggeted" style="width:100%;">
                                 <thead>
                                     <tr>
-                                        <th colspan="3">Top 5 Suggested Reviewers</th>
+                                        <th colspan="3">Suggested Reviewers</th>
                                     </tr>
                                     <tr>
                                         <th>Author ID</th>
@@ -1968,12 +1978,11 @@ table {
                     return;
                 }
 
-                const tbodyTop5 = $('#reviewersTableBody');
+                const tbodySuggested = $('#reviewersTableBody');
                 const tbodyOther = $('#reviewersTableBody1');
-                tbodyTop5.empty();
+                tbodySuggested.empty();
                 tbodyOther.empty();
 
-                let isTop5 = true;
                 data.sorted_reviewers.forEach(item => {
                     const row = $('<tr>');
                     const affiliation = item.afiliations && item.afiliations.length > 30 ? item.afiliations.substring(0, 30) + '...' : item.afiliations;
@@ -2000,28 +2009,24 @@ table {
                         </td>
                     `);
 
-                    if (isTop5) {
-                        row.addClass('top5-reviewer');
-                        tbodyTop5.append(row);
-                        if (tbodyTop5.children().length >= 5) {
-                            isTop5 = false;
-                        }
+                    if (item.score === 0) {
+                        tbodyOther.append(row); 
                     } else {
-                        tbodyOther.append(row);
+                        tbodySuggested.append(row);
                     }
                 });
 
-                if ($.fn.DataTable.isDataTable('#DataTableTop5')) {
-                    $('#DataTableTop5').DataTable().destroy();
+                if ($.fn.DataTable.isDataTable('#DataTableSuggeted')) {
+                    $('#DataTableSuggeted').DataTable().destroy();
                 }
                 if ($.fn.DataTable.isDataTable('#DataTableOther')) {
                     $('#DataTableOther').DataTable().destroy();
                 }
 
-                $('#DataTableTop5').DataTable({
+                $('#DataTableSuggeted').DataTable({
                     "paging": false,
                     "ordering": false,
-                    "searching": false,
+                    "searching": true,
                     "info": false
                 });
 
