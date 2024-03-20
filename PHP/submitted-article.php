@@ -229,7 +229,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                                     </thead>
                                     <tbody>
                                         <?php
-                                            $sqlDisplayLogs = "SELECT logs_article.article_id, logs_article.type, DATE(logs_article.date) as date FROM logs_article JOIN article ON logs_article.article_id = article.article_id WHERE logs_article.user_id = :userId AND logs_article.article_id = :article_id";
+                                            $sqlDisplayLogs = "SELECT logs_article.article_id, logs_article.type, DATE(logs_article.date) as date FROM logs_article JOIN article ON logs_article.article_id = article.article_id WHERE logs_article.user_id = :userId AND logs_article.article_id = :article_id ORDER BY logs_article.date DESC";
 
                                             $params = array(
                                                 'userId' => $userId,
@@ -250,6 +250,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                                                 echo '<tr><td colspan="2">Something went wrong</td></tr>';
                                             }
                                         ?>
+
                                     </tbody>
                                 </table>
                             </div>
