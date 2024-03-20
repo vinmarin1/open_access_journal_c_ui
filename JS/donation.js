@@ -18,7 +18,7 @@ function showTab(n) {
     x[currentTab].style.display = "block";
 
     if (currentTab == (x.length - 1)) {
-        document.getElementById("donateBtn").innerHTML = "<img src='../images/payLogo.png' alt='Logo' class='payLogo'>";
+        // document.getElementById("donateBtn").innerHTML = "<img src='../images/payLogo.png' alt='Logo' class='payLogo'>";
         document.getElementById("donateBtn").disabled = true;        
     } else {
         document.getElementById("donateBtn").innerHTML = "DONATE";

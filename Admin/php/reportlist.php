@@ -2,7 +2,11 @@
 include 'function/redirect.php';
 include 'function/report_function.php';
 
-$reportlist = get_report_list();
+if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
+    $journal_id = isset($_SESSION['journal_id']) ? ($_SESSION['journal_id']) : '';
+}
+
+$reportlist = get_report_list($journal_id);
 ?>
 
 <!DOCTYPE html>
@@ -90,7 +94,7 @@ $reportlist = get_report_list();
             var currentYear = currentDate.getFullYear();
 
             action = '../php/' + action + '?y=' + currentYear;
-        } if (action === 'topcontributors.php' || action === 'topreviewer.php') {
+        } if (action === 'topcontributors.php' || action === 'topreviewer.php' || action === 'journalreport.php') {
             action = '../php/' + action;
         }
         window.location.href = action;

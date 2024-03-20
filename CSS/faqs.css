@@ -329,8 +329,8 @@ table th, table td {
     font-size: 12px;
     background-color: transparent;
     border-radius: 20px;
-    color: #0858a4;
-    border: 2px#0858a4 solid;
+    color: var(--main, #0858A4);
+    border: 2pxvar(--main, #0858A4) solid;
 }
 
 #btn1{

@@ -6,6 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $user_id = $_SESSION['id'];
     $email = $_SESSION['email'];
     $answers = $_POST['answers'];
+    $comments = $_POST['comments']; // Retrieve comments
     $article_id = $_POST['getId'];  // Retrieve the article ID
     $firstName = $_SESSION['first_name'];
     $lastName = $_SESSION['last_name'];
@@ -13,27 +14,26 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $userName = $lastName . ' , ' . $firstName .  '  ' . $middle_name;
     $getRound = $_POST['getRound'];
     $ansOrig = $_POST['ansOrig'];
-    // $ansRef = $_POST['ansRef'];
-    // $ansLang = $_POST['ansLang'];
-
-    $sqlReviewerAnswer = "INSERT INTO reviewer_answer (`article_id`, `author_id`, `reviewer_questionnaire`, `answer`, `round`)
-        VALUES (:article_id, :author_id, :reviewer_questionnaire, :answer, :round)";
-
+    
+    $sqlReviewerAnswer = "INSERT INTO reviewer_answer (`article_id`, `author_id`, `reviewer_questionnaire`, `answer`, `comments`, `round`)
+        VALUES (:article_id, :author_id, :reviewer_questionnaire, :answer, :comment, :round)";
+    
     foreach ($answers as $question => $answer) {
+        // Retrieve comment for the current question, if it exists
+        $comment = isset($comments[$question]) ? $comments[$question] : '';
+        
         $paramsAnswer = array(
             'article_id' => $article_id,
             'author_id' => $user_id,
             'reviewer_questionnaire' => $question,
             'answer' => $answer,
-            // 'comment' => $ansOrig,
-            // 'reference' => $ansRef,
-            // 'languages' => $ansLang,
+            'comment' => $comment, // Include comment in parameters
             'round' => $getRound
         );
-
+    
         database_run($sqlReviewerAnswer, $paramsAnswer);
     }
-  
+    
     
 
     $sqlUpdate = "UPDATE reviewer_assigned SET answer = :answer, accept = :accept, comment = :comment, decision = :decision WHERE author_id = :user_id AND article_id = :article_id ORDER BY date_issued DESC LIMIT 1";

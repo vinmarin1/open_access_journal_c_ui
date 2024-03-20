@@ -53,7 +53,7 @@ input[type="submit"]{
     color: white;
     border: none;
     border: 1px solid;
-    background-color: #0858a4;
+    background-color: var(--main, #0858A4);
     display: block;
     margin-bottom: 20px;
 
@@ -86,7 +86,7 @@ input[type="submit"]:hover{
 }
 
 #privacyStatement{
-    color: #0858a4;
+    color: var(--main, #0858A4);
     width: 95%;
 }
 

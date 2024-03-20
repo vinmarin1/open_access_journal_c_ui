@@ -134,7 +134,7 @@ if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
                         $sqlDonation = "SELECT user_points.action_engage FROM user_points JOIN author ON user_points.user_id = author.author_id WHERE author.orc_id = :orc_id AND user_points.action_engage = 'Donation'";
                         $resultDonation = database_run($sqlDonation, array(':orc_id' => $orcid));
 
-                        if($result && $sqlReviewed && $sqlDonation){
+                        if($result && $resultReviewed && $resultDonation){
                             if(count($result) === 1 && count($resultReviewed) === 1 && count($resultDonation) === 1){
                                 echo '<div class="profile-badge">';
                                 echo '<p class="recent-badges">Badges</p>';

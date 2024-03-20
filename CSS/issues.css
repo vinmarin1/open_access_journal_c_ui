@@ -54,11 +54,11 @@ p{
 
 .journal-title h3{
     font-family: Arial, Helvetica, sans-serif;
-    color: #0858a4;
+    color: var(--main, #0858A4);
 }
 
 .pic-border{
-    border: 1px #0858a4 solid;
+    border: 1px var(--main, #0858A4) solid;
     height: 100%;
     width: 100%;
 }
@@ -80,7 +80,7 @@ p{
 
 .journal-details h5{
     font-family: Arial, Helvetica, sans-serif;
-    color: #0858a4;
+    color: var(--main, #0858A4);
 }
 @media only screen and (max-width: 768px) {
     /* Adjustments for smaller screens */
@@ -121,14 +121,14 @@ p{
 }
 .container h3 {
     margin-bottom: 20px;
-    color: #0858a4;
+    color: var(--main, #0858A4);
 }
 
 .header-title {
     font-size: 20px;
     font-weight: bold;
     margin-bottom: 10px;
-    background-color: #0858a4;
+    background-color: var(--main, #0858A4);
     color: white;
     padding: 5px 5px 5px 15px;
 }
@@ -149,10 +149,10 @@ p{
     
 }
 #see-more {
-    border: 2px #0858a4 solid;
+    border: 2px var(--main, #0858A4) solid;
     background-color: transparent;
     border-radius: 20px;
-    color: #0858a4;
+    color: var(--main, #0858A4);
     margin-top: 10px;
     cursor: pointer;
     position: absolute;

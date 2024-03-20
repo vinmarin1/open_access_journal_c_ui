@@ -106,9 +106,9 @@ $seriesString = json_encode($series);
                             </li>
                         </ul>
                         <?php
-                                    }
-                                }
-                                ?>
+                            }
+                        }
+                        ?>
                     </div>
                 </div>
             </div>  

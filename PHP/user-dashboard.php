@@ -509,8 +509,8 @@ $expertise = $_SESSION['expertise'];
 														$user = $result[0];
 														$orc_id = $user->orc_id;
 													
-														echo '<input type="text"  id="orcid" name="orcid" class="text-box" pattern="\d{4}-\d{4}-\d{4}-\d{4}" placeholder="(e.g., xxxx-xxxx-xxxx-xxxx)"
-														value="' . $orc_id . '" readonly>';
+														echo '<input type="text"  id="orcid" name="orcid" class="other-text-box" pattern="\d{4}-\d{4}-\d{4}-\d{4}" placeholder="(e.g., xxxx-xxxx-xxxx-xxxx)"
+														value="' . $orc_id . '">';
 													
 														
 										
@@ -1199,277 +1199,249 @@ $expertise = $_SESSION['expertise'];
 								$resultDonation = database_run($sqlDonation, array(':user_id' => $id));
 
 
-								if ($result && $resultReviewed && $resultDonation) {
-									if (count($result) === 1 && count($resultReviewed) === 1 && count($resultDonation) === 1) {
-										
+								if($result && $resultReviewed && $resultDonation){
+									if(count($result) === 1 && count($resultReviewed) === 1 && $resultDonation === 1){
 										echo '<div class="badge-box" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
 										echo '<div class="badge-box" style="background-image: url(\'../images/first_review_badges.png\');"></div>';
 										echo '<div class="badge-box" style="background-image: url(\'../images/first_donation_badges.png\');"></div>';
-
-
-									}elseif (count($result) === 2 && count($resultReviewed) === 1 && count($resultDonation) === 1) {
-										
+									}elseif(count($result) === 2 && count($resultReviewed) === 1 && count($resultDonation) === 1){
 										echo '<div class="badge-box" style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
 										echo '<div class="badge-box" style="background-image: url(\'../images/first_review_badges.png\');"></div>';
 										echo '<div class="badge-box" style="background-image: url(\'../images/first_donation_badges.png\');"></div>';
-										
-
-
-									}elseif (count($result) === 1 && count($resultReviewed) === 2 && count($resultDonation) === 1) {
-										
-										echo '<div class="badge-box" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
-										echo '<div class="badge-box" style="background-image: url(\'../images/second_review_badges.png\');"></div>';
-										echo '<div class="badge-box" style="background-image: url(\'../images/first_donation_badges.png\');"></div>';
-										
-
-
-									}elseif (count($result) === 1 && count($resultReviewed) === 1 && count($resultDonation) === 2) {
-										
-										echo '<div class="badge-box" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
-										echo '<div class="badge-box" style="background-image: url(\'../images/first_review_badges.png\');"></div>';
-										echo '<div class="badge-box" style="background-image: url(\'../images/second_donation_badges.png\');"></div>';
-										
-
-
-									}elseif (count($result) === 2 && count($resultReviewed) === 2 && count($resultDonation) === 1) {
-										
+									}elseif(count($result) === 2 && count($resultReviewed) === 2 && count($resultDonation) === 1){
 										echo '<div class="badge-box" style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
 										echo '<div class="badge-box" style="background-image: url(\'../images/second_review_badges.png\');"></div>';
 										echo '<div class="badge-box" style="background-image: url(\'../images/first_donation_badges.png\');"></div>';
-										
-
-
-									}elseif (count($result) === 1 && count($resultReviewed) === 2 && count($resultDonation) === 2) {
-										
-										echo '<div class="badge-box" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
-										echo '<div class="badge-box" style="background-image: url(\'../images/second_review_badges.png\');"></div>';
-										echo '<div class="badge-box" style="background-image: url(\'../images/second_donation_badges.png\');"></div>';
-										
-
-
-									}elseif (count($result) === 2 && count($resultReviewed) === 1 && count($resultDonation) === 2) {
-										
+									}elseif(count($result) === 2 && count($resultReviewed) === 1 && count($resultDonation) === 2){
 										echo '<div class="badge-box" style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
 										echo '<div class="badge-box" style="background-image: url(\'../images/first_review_badges.png\');"></div>';
 										echo '<div class="badge-box" style="background-image: url(\'../images/second_donation_badges.png\');"></div>';
-
-
-									}elseif (count($result) === 2 && count($resultReviewed) === 2 && count($resultDonation) === 2) {
-										
+									}elseif(count($result) === 2 && count($resultReviewed) === 2 && count($resultDonation) === 2){
 										echo '<div class="badge-box" style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
 										echo '<div class="badge-box" style="background-image: url(\'../images/second_review_badges.png\');"></div>';
 										echo '<div class="badge-box" style="background-image: url(\'../images/second_donation_badges.png\');"></div>';
-
-
-									}elseif (count($result) >= 3 && count($resultReviewed) === 1 && count($resultDonation) === 1) {
-										
+									}elseif(count($result) === 3 && count($resultReviewed) === 1 && count($resultDonation) === 1){
 										echo '<div class="badge-box" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
 										echo '<div class="badge-box" style="background-image: url(\'../images/first_review_badges.png\');"></div>';
 										echo '<div class="badge-box" style="background-image: url(\'../images/first_donation_badges.png\');"></div>';
-
-
-									}elseif (count($result) >= 3 && count($resultReviewed) >= 3 && count($resultDonation) === 1) {
-										
+									}elseif(count($result) >= 3 && count($resultReviewed) === 2 && count($resultDonation) === 1){
 										echo '<div class="badge-box" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
-										echo '<div class="badge-box" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/second_review_badges.png\');"></div>';
 										echo '<div class="badge-box" style="background-image: url(\'../images/first_donation_badges.png\');"></div>';
-
-
-									}elseif (count($result) === 1 && count($resultReviewed) >= 3 && count($resultDonation) >= 3) {
-										
-										echo '<div class="badge-box" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
+									}elseif(count($result) >= 3 && count($resultReviewed) === 1 && count($resultDonation) === 2){
 										echo '<div class="badge-box" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
-										echo '<div class="badge-box" style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
-
-
-									}elseif (count($result) >= 3 && count($resultReviewed) === 1 && count($resultDonation) >= 3) {
-										
+										echo '<div class="badge-box" style="background-image: url(\'../images/first_review_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/second_donation_badges.png\');"></div>';
+									}elseif(count($result) >= 3 && count($resultReviewed) === 2 && count($resultDonation) === 2){
+										echo '<div class="badge-box" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/second_review_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/second_donation_badges.png\');"></div>';
+									}elseif(count($result) >= 3 && count($resultReviewed) >= 3 && count($resultDonation) === 1){
+										echo '<div class="badge-box" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/first_donation_badges.png\');"></div>';
+									}elseif(count($result) >= 3 && count($resultReviewed) === 1 && count($resultDonation) >= 3){
 										echo '<div class="badge-box" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
 										echo '<div class="badge-box" style="background-image: url(\'../images/first_review_badges.png\');"></div>';
 										echo '<div class="badge-box" style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
-
-
-									}elseif (count($result) >= 3 && count($resultReviewed) === 2 && count($resultDonation) === 2) {
-										
-										echo '<div class="badge-box" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
-										echo '<div class="badge-box" style="background-image: url(\'../images/second_review_badges.png\');"></div>';
-										echo '<div class="badge-box" style="background-image: url(\'../images/second_donation_badges.png\');"></div>';
-
-
-									}elseif (count($result) >= 3 && count($resultReviewed) >= 3 && count($resultDonation) === 2) {
-										
+									}elseif(count($result) >= 3 && count($resultReviewed) >= 3 && count($resultDonation) === 2){
 										echo '<div class="badge-box" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
 										echo '<div class="badge-box" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
 										echo '<div class="badge-box" style="background-image: url(\'../images/second_donation_badges.png\');"></div>';
-
-
-									}elseif (count($result) === 2 && count($resultReviewed) >= 3 && count($resultDonation) >= 3) {
-										
-										echo '<div class="badge-box" style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
-										echo '<div class="badge-box" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
-										echo '<div class="badge-box" style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
-
-
-									}elseif (count($result) >= 3 && count($resultReviewed) === 2 && count($resultDonation) >= 3) {
-										
+									}elseif(count($result) >= 3 && count($resultReviewed) === 2 && count($resultDonation) >= 3){
 										echo '<div class="badge-box" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
-										echo '<div class="badge-box" style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
-										echo '<div class="badge-box" style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
-
-
-									}elseif (count($result) === 2 && count($resultReviewed) >= 3 && count($resultDonation) === 2) {
-										
-										echo '<div class="badge-box" style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
-									
-										echo '<div class="badge-box" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
-										echo '<div class="badge-box" style="background-image: url(\'../images/second_donation_badges.png\');"></div>';
-
-
-									}elseif (count($result) === 2 && count($resultReviewed) === 2 && count($resultDonation) >= 3) {
-										
-										echo '<div class="badge-box" style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
-									
 										echo '<div class="badge-box" style="background-image: url(\'../images/second_review_badges.png\');"></div>';
 										echo '<div class="badge-box" style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
-
-
-									}elseif (count($result) >= 3 && count($resultReviewed) >= 3 && count($resultDonation) >= 3) {
-										
-										echo '<div class="badge-box" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
-										echo '<div class="badge-box" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
-										echo '<div class="badge-box" style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
-
-
-									} else{
-										
-										echo 'Something went wrong. Please be patiend we will fixed it in no time';
-									}
-								}elseif($result){
-									if (count($result) === 1) {
-										
+									}elseif(count($result) === 1 && count($resultReviewed) === 2 && count($resultDonation) === 1){
 										echo '<div class="badge-box" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
-
-									}elseif(count($result) === 2) {
-										
-										echo '<div class="badge-box" style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
-
-									}elseif(count($result) >= 3) {
-										
-										echo '<div class="badge-box" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
-
-									}
-								} elseif($resultReviewed){
-									if (count($resultReviewed) === 1) {
-										
-										echo '<div class="badge-box" style="background-image: url(\'../images/first_review_badges.png\');"></div>';
-
-									}elseif(count($resultReviewed) === 2) {
-										
-										echo '<div class="badge-box" style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
-
-									}elseif(count($resultReviewed) >= 3) {
-										
+										echo '<div class="badge-box" style="background-image: url(\'../images/second_review_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/first_donation_badges.png\');"></div>';
+									}elseif(count($result) === 1 && count($resultReviewed) === 2 && count($resultDonation) === 2){
+										echo '<div class="badge-box" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/second_review_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/second_donation_badges.png\');"></div>';
+									}elseif(count($result) === 1 && count($resultReviewed) >= 3 && count($resultDonation) === 1){
+										echo '<div class="badge-box" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
 										echo '<div class="badge-box" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
-
-									}
-								}elseif($resultDonation){
-									if (count($resultDonation) === 1) {
-										
 										echo '<div class="badge-box" style="background-image: url(\'../images/first_donation_badges.png\');"></div>';
-
-									}if (count($resultDonation) === 2) {
-										
+									}elseif(count($result) === 1 && count($resultReviewed) >= 3 && count($resultDonation) === 2){
+										echo '<div class="badge-box" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/second_donation_badges.png\');"></div>';
+									}elseif(count($result) === 2 && count($resultReviewed) >= 3 && count($resultDonation) === 1){
+										echo '<div class="badge-box" style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
 										echo '<div class="badge-box" style="background-image: url(\'../images/first_donation_badges.png\');"></div>';
-
-									}if (count($resultDonation) >= 3) {
-										
+									}elseif(count($result) === 2 && count($resultReviewed) >= 3 && count($resultDonation) === 2){
+										echo '<div class="badge-box" style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/second_donation_badges.png\');"></div>';
+									}elseif(count($result) === 2 && count($resultReviewed) >= 3 && count($resultDonation) === 1){
+										echo '<div class="badge-box" style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/first_donation_badges.png\');"></div>';
+									}elseif(count($result) >= 3 && count($resultReviewed) >= 3 && count($resultDonation) === 1){
+										echo '<div class="badge-box" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/first_donation_badges.png\');"></div>';
+									}elseif(count($result) >= 3 && count($resultReviewed) >= 3 && count($resultDonation) === 2){
+										echo '<div class="badge-box" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/second_donation_badges.png\');"></div>';
+									}elseif(count($result) === 1 && count($resultReviewed) >= 3 && count($resultDonation) === 2){
+										echo '<div class="badge-box" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/second_donation_badges.png\');"></div>';
+									}elseif(count($result) === 1 && count($resultReviewed) >= 3 && count($resultDonation) === 2){
+										echo '<div class="badge-box" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/second_donation_badges.png\');"></div>';
+									}elseif(count($result) === 1 && count($resultReviewed) >= 3 && count($resultDonation) === 3){
+										echo '<div class="badge-box" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
 										echo '<div class="badge-box" style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
-
+									}elseif(count($result) === 2 && count($resultReviewed) >= 3 && count($resultDonation) >= 3){
+										echo '<div class="badge-box" style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
+									}elseif(count($result) === 1 && count($resultReviewed) === 1 && count($resultDonation) === 2){
+										echo '<div class="badge-box" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/first_review_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/second_donation_badges.png\');"></div>';
+									}elseif(count($result) === 2 && count($resultReviewed) === 1 && count($resultDonation) === 2){
+										echo '<div class="badge-box" style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/first_review_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/second_donation_badges.png\');"></div>';
+									}elseif(count($result) === 1 && count($resultReviewed) === 2 && count($resultDonation) === 2){
+										echo '<div class="badge-box" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/second_review_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/second_donation_badges.png\');"></div>';
+									}elseif(count($result) === 1 && count($resultReviewed) === 1 && count($resultDonation) >= 3){
+										echo '<div class="badge-box" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/first_review_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
+									}elseif(count($result) === 1 && count($resultReviewed) === 2 && count($resultDonation) >= 3){
+										echo '<div class="badge-box" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/second_review_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
+									}elseif(count($result) === 2 && count($resultReviewed) === 1 && count($resultDonation) >= 3){
+										echo '<div class="badge-box" style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/first_review_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
+									}elseif(count($result) === 2 && count($resultReviewed) === 2 && count($resultDonation) >= 3){
+										echo '<div class="badge-box" style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/second_review_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
+									}elseif(count($result) === 1 && count($resultReviewed) >= 3 && count($resultDonation) >= 3){
+										echo '<div class="badge-box" style="background-image: url(\'../images/first_publication_badges.png.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
+									}elseif(count($result) === 2 && count($resultReviewed) >= 3 && count($resultDonation) >= 3){
+										echo '<div class="badge-box" style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
+									}elseif(count($result) >= 3 && count($resultReviewed) === 1 && count($resultDonation) >= 3){
+										echo '<div class="badge-box" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/first_review_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
+									}elseif(count($result) >= 3 && count($resultReviewed) === 2 && count($resultDonation) >= 3){
+										echo '<div class="badge-box" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/second_review_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
+									}elseif(count($result) >= 3 && count($resultReviewed) >= 3 && count($resultDonation) >= 3){
+										echo '<div class="badge-box" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
 									}
 								}elseif($result && $resultReviewed){
-									if (count($result) === 1 && count($resultReviewed) === 1) {
-										
+									if(count($result) === 1 && count($resultReviewed) === 1){
 										echo '<div class="badge-box" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
 										echo '<div class="badge-box" style="background-image: url(\'../images/first_review_badges.png\');"></div>';
-
-									}
-									if (count($result) === 2 && count($resultReviewed) === 2) {
-										
-										echo '<div class="badge-box" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
-										echo '<div class="badge-box" style="background-image: url(\'../images/second_review_badges.png\');"></div>';
-
-									}
-									if (count($result) === 3 && count($resultReviewed) === 3) {
-										
-										echo '<div class="badge-box" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
-										echo '<div class="badge-box" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
-
-									}
-
-									if (count($result) === 2 && count($resultReviewed) === 1) {
-										
+									}elseif(count($result) === 2 && count($resultReviewed) === 1){
 										echo '<div class="badge-box" style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
 										echo '<div class="badge-box" style="background-image: url(\'../images/first_review_badges.png\');"></div>';
-
-									}
-									if (count($result) === 3 && count($resultReviewed) === 1) {
-										
-										echo '<div class="badge-box" style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
-										echo '<div class="badge-box" style="background-image: url(\'../images/first_review_badges.png\');"></div>';
-
-									}
-									if (count($result) === 1 && count($resultReviewed) === 2) {
-										
+									}elseif(count($result) === 1 && count($resultReviewed) === 2){
 										echo '<div class="badge-box" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
 										echo '<div class="badge-box" style="background-image: url(\'../images/second_review_badges.png\');"></div>';
-
-									}
-									if (count($result) === 1 && count($resultReviewed) === 3) {
-										
+									}elseif(count($result) === 2 && count($resultReviewed) === 2){
+										echo '<div class="badge-box" style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/second_review_badges.png\');"></div>';
+									}elseif(count($result) >= 3 && count($resultReviewed) === 1){
+										echo '<div class="badge-box" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/first_review_badges.png\');"></div>';
+									}elseif(count($result) >= 3 && count($resultReviewed) === 2){
+										echo '<div class="badge-box" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/second_review_badges.png\');"></div>';
+									}elseif(count($result) === 1 && count($resultReviewed) >= 3){
 										echo '<div class="badge-box" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
 										echo '<div class="badge-box" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
-
+									}elseif(count($result) === 2 && count($resultReviewed) >= 3){
+										echo '<div class="badge-box" style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
+									}elseif(count($result) >= 3 && count($resultReviewed) >= 3){
+										echo '<div class="badge-box" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
 									}
-									
-									
 								}elseif($resultReviewed && $resultDonation){
-									if (count($resultReviewed) === 1 && count($resultDonation) === 1) {
-										
-									
+									if(count($resultReviewed) === 1 && count($resultDonation) === 1){
 										echo '<div class="badge-box" style="background-image: url(\'../images/first_review_badges.png\');"></div>';
+									echo '<div class="badge-box" style="background-image: url(\'../images/first_donation_badges.png\');"></div>';
+									}elseif(count($resultReviewed) === 2 && count($resultDonation) === 1){
+										echo '<div class="badge-box" style="background-image: url(\'../images/second_review_badges.png\');"></div>';
 										echo '<div class="badge-box" style="background-image: url(\'../images/first_donation_badges.png\');"></div>';
-
-									}if (count($resultReviewed) === 2 && count($resultDonation) === 2) {
-										
+									}elseif(count($resultReviewed) === 1 && count($resultDonation) === 2){
+										echo '<div class="badge-box" style="background-image: url(\'../images/first_review_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/second_donation_badges.png\');"></div>';
+									}elseif(count($resultReviewed) === 2 && count($resultDonation) === 2){
 										echo '<div class="badge-box" style="background-image: url(\'../images/second_review_badges.png\');"></div>';
 										echo '<div class="badge-box" style="background-image: url(\'../images/second_donation_badges.png\');"></div>';
-
-									}if (count($resultReviewed) === 3 && count($resultDonation) === 3) {
-																
+									}elseif(count($resultReviewed) >= 3 && count($resultDonation) === 1){
+										echo '<div class="badge-box" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/first_donation_badges.png\');"></div>';
+									}elseif(count($resultReviewed) >= 3 && count($resultDonation) === 2){
+										echo '<div class="badge-box" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/second_donation_badges.png\');"></div>';
+									}elseif(count($resultReviewed) === 1 && count($resultDonation) >= 3){
+										echo '<div class="badge-box" style="background-image: url(\'../images/first_review_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
+									}elseif(count($resultReviewed) === 2 && count($resultDonation) >= 3){
+										echo '<div class="badge-box" style="background-image: url(\'../images/second_review_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
+									}elseif(count($resultReviewed) >= 3 && count($resultDonation) >= 3){
 										echo '<div class="badge-box" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
 										echo '<div class="badge-box" style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
-
 									}
 								}elseif($result && $resultDonation){
-									if (count($result) === 1 && count($resultDonation) === 1) {
-										
-									
-										echo '<div class="badge-box" style="background-image: url(\'../images/first_review_badges.png\');"></div>';
+									if(count($result) === 1 && count($resultDonation) === 1){
+										echo '<div class="badge-box" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
 										echo '<div class="badge-box" style="background-image: url(\'../images/first_donation_badges.png\');"></div>';
-
-									}if (count($result) === 2 && count($resultDonation) === 2) {
-										
+									}elseif(count($result) === 2 && count($resultDonation) === 1){
+										echo '<div class="badge-box" style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/first_donation_badges.png\');"></div>';
+									}elseif(count($result) === 1 && count($resultDonation) === 2){
+										echo '<div class="badge-box" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/second_donation_badges.png\');"></div>';
+									}elseif(count($result) === 2 && count($resultDonation) === 2){
 										echo '<div class="badge-box" style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
 										echo '<div class="badge-box" style="background-image: url(\'../images/second_donation_badges.png\');"></div>';
-
-									}if (count($result) === 3 && count($resultDonation) === 3) {
-																
+									}elseif(count($result) >= 3 && count($resultDonation) === 1){
+										echo '<div class="badge-box" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/first_donation_badges.png\');"></div>';
+									}elseif(count($result) >= 3 && count($resultDonation) === 2){
+										echo '<div class="badge-box" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/second_donation_badges.png\');"></div>';
+									}elseif(count($result) === 1 && count($resultDonation) >= 3){
+										echo '<div class="badge-box" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
+									}elseif(count($result) === 2 && count($resultDonation) >= 3){
+										echo '<div class="badge-box" style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
+										echo '<div class="badge-box" style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
+									}elseif(count($result) >= 3 && count($resultDonation) >= 3){
 										echo '<div class="badge-box" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
 										echo '<div class="badge-box" style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
-
 									}
-								}else {
-									echo "You have no badges yet";
+								}else{
+									echo 'You have ni badge yet';
 								}
 							}
 							?>
@@ -1509,7 +1481,7 @@ $expertise = $_SESSION['expertise'];
 							</div>
 							<div class="sort-container d-flex flex-column gap-2">
 								<!-- <div class="sort-header">
-									<span class="sort-by-text" style="color: #0858a4;">Sort by</span>
+									<span class="sort-by-text" style="color: var(--main, #0858A4);">Sort by</span>
 									<span class="sort-icon">
 										<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
 											<path fill="#e6e6e6" d="M11 7H1l5 7zm-2 7h10l-5-7z" />
@@ -1546,6 +1518,8 @@ $expertise = $_SESSION['expertise'];
 
 									<?php
 										$sqlAchievements = "
+										
+
 											(SELECT 'Published an Article' as action_engage, article.title, article.journal_id,NULL as status, user_points.date, user_points.point_earned
 											FROM user_points
 											JOIN article ON user_points.article_id = article.article_id
@@ -1573,11 +1547,12 @@ $expertise = $_SESSION['expertise'];
 											JOIN reviewer_assigned ON user_points.user_id = reviewer_assigned.author_id
 											JOIN article ON reviewer_assigned.article_id = article.article_id
 											WHERE reviewer_assigned.accept = 1 AND reviewer_assigned.answer = 1 AND user_points.action_engage = 'Reviewed an Article' AND user_points.user_id = :author_id)
-											
+
 											ORDER BY date DESC
 										";
 
-										$result = database_run($sqlAchievements, array('author_id' => $id, 'user_id' => $id));
+										
+										$result = database_run($sqlAchievements,array('author_id' => $id, 'user_id' => $id));
 
 										if ($result !== false) {
 											foreach ($result as $row) {
@@ -1624,7 +1599,7 @@ $expertise = $_SESSION['expertise'];
 
 						$result = database_run($sql);
 
-						$sqlSelectProfile = "SELECT first_name, middle_name, last_name, birth_date, gender, marital_status, orc_id, afiliations, position, field_of_expertise, country FROM author WHERE author_id = :author_id";
+						$sqlSelectProfile = "SELECT first_name, last_name, birth_date, gender, marital_status, orc_id, afiliations, position, field_of_expertise, country FROM author WHERE author_id = :author_id";
 
 						$resultProfile = database_run($sqlSelectProfile, array(':author_id' => $id));
 
@@ -1650,7 +1625,7 @@ $expertise = $_SESSION['expertise'];
 								$userProfile = $resultProfile[0];
 	  
 								// Check for the presence of all required fields
-								$requiredFields = ['first_name', 'middle_name', 'last_name', 'birth_date', 'gender', 'marital_status', 'orc_id', 'afiliations', 'position', 'field_of_expertise', 'country'];
+								$requiredFields = ['first_name', 'last_name', 'birth_date', 'gender', 'marital_status', 'orc_id', 'afiliations', 'position', 'field_of_expertise', 'country'];
 	  
 								$profileComplete = true;
 								foreach ($requiredFields as $field) {
@@ -1884,7 +1859,10 @@ $expertise = $_SESSION['expertise'];
 
 <div class="container-fluid mt-5" id="certContainerHead" style="display: none">
     <div class="cert-container d-flex justify-content-center align-items-center">
-        <img class="img-fluid" id="cert1" src="../images/Bg-cert" alt="cert">
+		<?php 
+			echo '<img class="img-fluid" id="cert1" src="../images/Bg-cert.jpg" alt="cert">'
+		?>
+        
 		<div class="cert-category">
 			<p class="h2" id="category"></p>
 			<p class="h6" id="awardee">This Certificate is Awarded to</p>
@@ -1898,6 +1876,8 @@ $expertise = $_SESSION['expertise'];
 		</div>
     </div>
 </div>
+
+
 
 <div class="container-fluid mt-5" id="certPublishedHead" style="display: none">
     <div class="cert-container d-flex justify-content-center align-items-center">
@@ -2158,6 +2138,8 @@ document.getElementById('cancelBtn').addEventListener('click', function(event){
 
 
 
+
+
 document.addEventListener('DOMContentLoaded', function () {
     // Attach click event listener to all elements with class 'view-button'
     var viewButtons = document.querySelectorAll('.view-button');
@@ -2338,4 +2320,3 @@ $(document).ready(function () {
 </body>
 
 </html>
-

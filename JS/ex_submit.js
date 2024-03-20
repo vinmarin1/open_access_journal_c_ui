@@ -72,13 +72,13 @@ function checkDuplication() {
 //   function updateStyles() {
 //     tabButtons.forEach(function (btn, i) {
 //       if (i === selectedTabIndex) {
-//         btn.style.backgroundColor = "#0858a4";
+//         btn.style.backgroundColor = "var(--main, #0858A4)";
 //         btn.style.color = "white";
 //         btn.style.border = "none";
 //       } else {
 //         btn.style.backgroundColor = "white";
 //         btn.style.border = "none";
-//         btn.style.color = "#0858a4";
+//         btn.style.color = "var(--main, #0858A4)";
 //       }
 //     });
 //   }
@@ -95,7 +95,7 @@ function checkDuplication() {
 //       if (inputFields.value === '' || tabButtons[selectedTabIndex + 1].disabled) {
      
 //         Swal.fire({
-//           html: '<h4 style="color: #0858a4; font-family: font-family: Arial, Helvetica, sans-serif">Please read and check the guidelines to proceed</4>',
+//           html: '<h4 style="color: var(--main, #0858A4); font-family: font-family: Arial, Helvetica, sans-serif">Please read and check the guidelines to proceed</4>',
 //           icon: 'warning',
 //         })
 //       }
@@ -137,7 +137,7 @@ function checkDuplication() {
 
 //     // Set initial styles and button visibility for the first button
 //     if (index === 0) {
-//       button.style.backgroundColor = "#0858a4";
+//       button.style.backgroundColor = "var(--main, #0858A4)";
 //       button.style.color = "white";
 //       updateButtonVisibility(index);
 //     }
@@ -209,103 +209,103 @@ document.addEventListener('DOMContentLoaded', function(){
 
  
   
-  privacyTab.style.backgroundColor ='#0858a4';
+  privacyTab.style.backgroundColor ='var(--main, #0858A4)';
   privacyTab.style.color ='white';
 
   privacyTab.addEventListener('click', function(event){
-    privacyTab.style.backgroundColor = '#0858a4';
+    privacyTab.style.backgroundColor = 'var(--main, #0858A4)';
     privacyTab.style.color = 'white';
 
     articleTab.style.backgroundColor = 'white';
-    articleTab.style.color = '#0858a4';
+    articleTab.style.color = 'var(--main, #0858A4)';
     fileTab.style.backgroundColor = 'white';
-    fileTab.style.color = '#0858a4';
+    fileTab.style.color = 'var(--main, #0858A4)';
     contTab.style.backgroundColor = 'white';
-    contTab.style.color = '#0858a4';
+    contTab.style.color = 'var(--main, #0858A4)';
     commentTab.style.backgroundColor = 'white';
-    commentTab.style.color = '#0858a4';
+    commentTab.style.color = 'var(--main, #0858A4)';
     reviewTab.style.backgroundColor = 'white';
-    reviewTab.style.color = '#0858a4';
+    reviewTab.style.color = 'var(--main, #0858A4)';
 
   });
 
   articleTab.addEventListener('click', function(event){
     privacyTab.style.backgroundColor = 'white';
-    privacyTab.style.color = '#0858a4';
-    articleTab.style.backgroundColor = '#0858a4';
+    privacyTab.style.color = 'var(--main, #0858A4)';
+    articleTab.style.backgroundColor = 'var(--main, #0858A4)';
     articleTab.style.color = 'white';
     fileTab.style.backgroundColor = 'white';
-    fileTab.style.color = '#0858a4';
+    fileTab.style.color = 'var(--main, #0858A4)';
     contTab.style.backgroundColor = 'white';
-    contTab.style.color = '#0858a4';
+    contTab.style.color = 'var(--main, #0858A4)';
     commentTab.style.backgroundColor = 'white';
-    commentTab.style.color = '#0858a4';
+    commentTab.style.color = 'var(--main, #0858A4)';
     reviewTab.style.backgroundColor = 'white';
-    reviewTab.style.color = '#0858a4';
+    reviewTab.style.color = 'var(--main, #0858A4)';
 
   });
 
   fileTab.addEventListener('click', function(event){
     privacyTab.style.backgroundColor = 'white';
-    privacyTab.style.color = '#0858a4';
+    privacyTab.style.color = 'var(--main, #0858A4)';
     articleTab.style.backgroundColor = 'white';
-    articleTab.style.color = '#0858a4';
-    fileTab.style.backgroundColor = '#0858a4';
+    articleTab.style.color = 'var(--main, #0858A4)';
+    fileTab.style.backgroundColor = 'var(--main, #0858A4)';
     fileTab.style.color = 'white';
     contTab.style.backgroundColor = 'white';
-    contTab.style.color = '#0858a4';
+    contTab.style.color = 'var(--main, #0858A4)';
     commentTab.style.backgroundColor = 'white';
-    commentTab.style.color = '#0858a4';
+    commentTab.style.color = 'var(--main, #0858A4)';
     reviewTab.style.backgroundColor = 'white';
-    reviewTab.style.color = '#0858a4';
+    reviewTab.style.color = 'var(--main, #0858A4)';
 
   });
 
   contTab.addEventListener('click', function(event){
     privacyTab.style.backgroundColor = 'white';
-    privacyTab.style.color = '#0858a4';
+    privacyTab.style.color = 'var(--main, #0858A4)';
     articleTab.style.backgroundColor = 'white';
-    articleTab.style.color = '#0858a4';
+    articleTab.style.color = 'var(--main, #0858A4)';
     fileTab.style.backgroundColor = 'white';
-    fileTab.style.color = '#0858a4';
-    contTab.style.backgroundColor = '#0858a4';
+    fileTab.style.color = 'var(--main, #0858A4)';
+    contTab.style.backgroundColor = 'var(--main, #0858A4)';
     contTab.style.color = 'white';
     commentTab.style.backgroundColor = 'white';
-    commentTab.style.color = '#0858a4';
+    commentTab.style.color = 'var(--main, #0858A4)';
     reviewTab.style.backgroundColor = 'white';
-    reviewTab.style.color = '#0858a4';
+    reviewTab.style.color = 'var(--main, #0858A4)';
 
   });
 
   commentTab.addEventListener('click', function(event){
     privacyTab.style.backgroundColor = 'white';
-    privacyTab.style.color = '#0858a4';
+    privacyTab.style.color = 'var(--main, #0858A4)';
     articleTab.style.backgroundColor = 'white';
-    articleTab.style.color = '#0858a4';
+    articleTab.style.color = 'var(--main, #0858A4)';
     fileTab.style.backgroundColor = 'white';
-    fileTab.style.color = '#0858a4';
+    fileTab.style.color = 'var(--main, #0858A4)';
     contTab.style.backgroundColor = 'white';
-    contTab.style.color = '#0858a4';
-    commentTab.style.backgroundColor = '#0858a4';
+    contTab.style.color = 'var(--main, #0858A4)';
+    commentTab.style.backgroundColor = 'var(--main, #0858A4)';
     commentTab.style.color = 'white';
     reviewTab.style.backgroundColor = 'white';
-    reviewTab.style.color = '#0858a4';
+    reviewTab.style.color = 'var(--main, #0858A4)';
 
   });
 
 
   reviewTab.addEventListener('click', function(event){
     privacyTab.style.backgroundColor = 'white';
-    privacyTab.style.color = '#0858a4';
+    privacyTab.style.color = 'var(--main, #0858A4)';
     articleTab.style.backgroundColor = 'white';
-    articleTab.style.color = '#0858a4';
+    articleTab.style.color = 'var(--main, #0858A4)';
     fileTab.style.backgroundColor = 'white';
-    fileTab.style.color = '#0858a4';
+    fileTab.style.color = 'var(--main, #0858A4)';
     contTab.style.backgroundColor = 'white';
-    contTab.style.color = '#0858a4';
+    contTab.style.color = 'var(--main, #0858A4)';
     commentTab.style.backgroundColor = 'white';
-    commentTab.style.color = '#0858a4';
-    reviewTab.style.backgroundColor = '#0858a4';
+    commentTab.style.color = 'var(--main, #0858A4)';
+    reviewTab.style.backgroundColor = 'var(--main, #0858A4)';
     reviewTab.style.color = 'white';
 
   });
@@ -609,7 +609,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const wordCount = text === "" ? 0 : text.match(/\b(?![\(\)\[\]\{\}]+)\S+\b/g).length;
     document.querySelector("#total-words-abstract").innerHTML = `${wordCount} / 300 words`;
   });
-
+  document.querySelector('#keyword-btn').addEventListener('click', function(){
+    checkValidations();
+  
+  })
   keywords.addEventListener('blur', function () {
       // const wordCount = keywords.value.trim().split(",").length;
       const wordCount = keywordArray.length;
@@ -618,6 +621,7 @@ document.addEventListener('DOMContentLoaded', function () {
       } else {
           keywordsValidation.style.display = 'none';
       }
+      checkValidations();
     })
 
 

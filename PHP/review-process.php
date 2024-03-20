@@ -158,8 +158,8 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                                 
                             </p>
                         </div>
-                        <hr style="height: 2px; background-color: #0858a4; width: 100%">
-                        <h4 style="color: #0858a4; font-family: Arial, Helvetica, sans-serif;" >Submitted in the 
+                        <hr style="height: 2px; background-color: var(--main, #0858A4); width: 100%">
+                        <h4 style="color: var(--main, #0858A4); font-family: Arial, Helvetica, sans-serif;" >Submitted in the 
                         <?php
                             $sqlJournal = "SELECT journal.journal, article.title FROM journal JOIN article ON journal.journal_id = article.journal_id JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id AND article.status = 4
                             AND reviewer_assigned.author_id = :author_id AND article.article_id = :article_id";
@@ -251,8 +251,8 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                         <table class="table table-hover" id="table-file" style="border-collapse: separate; border-spacing: 10px 10px 10px 10px;">
                             <thead>
                                 <tr>
-                                <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">File</th>
-                                <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">Date</th>
+                                <th scope="col" style="background-color: var(--main, #0858A4); color: white; font-weight: normal;">File</th>
+                                <th scope="col" style="background-color: var(--main, #0858A4); color: white; font-weight: normal;">Date</th>
                                 </tr>
                             </thead>
                             <tbody id="fileList">
@@ -313,8 +313,8 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                             <table class="table table-hover" id="table-file" style="border-collapse: separate; border-spacing: 10px 10px 10px 10px;">
                                 <thead>
                                     <tr>
-                                    <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">File</th>
-                                    <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">ORCID</th>
+                                    <th scope="col" style="background-color: var(--main, #0858A4); color: white; font-weight: normal;">File</th>
+                                    <th scope="col" style="background-color: var(--main, #0858A4); color: white; font-weight: normal;">ORCID</th>
                                     </tr>
                                 </thead>
                                 <tbody id="fileList">
@@ -363,8 +363,8 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                                         echo '<li style="list-style-type: none; 
                                                         margin-right: 5px;
                                                         width: auto;
-                                                        color: #0858a4;
-                                                        border: 1px solid #0858a4;
+                                                        color: var(--main, #0858A4);
+                                                        border: 1px solid var(--main, #0858A4);
                                                         border-radius: 10px;
                                                         background-color: white;
                                                         font-size: 12px;">' . trim($keyword) . '</li>';
@@ -418,7 +418,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                 <div class="col-md-8 rev-guide" style="padding-top:20px;">
                     <h4>Review Steps</h4>
 
-                    <hr style="height: 2px; background-color: #0858a4; width: 100%">
+                    <hr style="height: 2px; background-color: var(--main, #0858A4); width: 100%">
 
                     <ol>
                         <li> Consult Reviewer Guidelines below. </li>
@@ -456,7 +456,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 
 
                     <h4>Review Guidelines</h4>
-                    <hr style="height: 2px; background-color: #0858a4; width: 100%">
+                    <hr style="height: 2px; background-color: var(--main, #0858A4); width: 100%">
                     <div class="guidelines">
                         <p>
                         The International Journal of Learning, Teaching and Educational Research values the role of reviewers in the peer-review process that enables us to publish high-quality materials in a timely way.
@@ -491,7 +491,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                     </div>
                     <div class="form-check">
                         <input type="checkbox" id="checkBox" name="checkBox" value="1" >
-                        <label for="checkBox" style="color: #0858a4;" >I have read and will follow the steps and Guidelines of reviewing this assign Article.</label><br>
+                        <label for="checkBox" style="color: var(--main, #0858A4);" >I have read and will follow the steps and Guidelines of reviewing this assign Article.</label><br>
                     </div>
 
                     <div class="btn-action">
@@ -529,13 +529,13 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 
 
                 <div class="col-md-10" style="padding-top:20px;">
-                    <h5 style="background-color:#0858a4; color: white; padding:10px;" >Research Article Review Form</h5>
+                    <h5 style="background-color:var(--main, #0858A4); color: white; padding:10px;" >Research Article Review Form</h5>
                     <div class="contents">
                         <div class="row">
                             <div class="col-md-5 firstContent">
 
                             <!-- Content for the left half of the screen -->
-                                <h4>Note: </h4>
+                                <h4 class="mt-4">Note: </h4>
                                 <p>Denotes Required Field</p>
 
                                 <h5>Paper Length:</h5>
@@ -548,7 +548,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                                 if ($result) {
                                     foreach ($result as $row) {
                                         $question = htmlspecialchars($row->question);
-                                        echo '<li class="list-group-item mt-4" style="list-style: none; font-family: &quot;Times New Roman&quot;, Times, serif; color: #0858a4; font-size: 20px;">' . $question . '</li>';
+                                        echo '<li class="list-group-item mt-4" style="list-style: none; font-family: &quot;Times New Roman&quot;, Times, serif; color: var(--main, #0858A4); font-size: 20px;">' . $question . '</li>';
 
                                         // Split the choices using commas
                                         $choices = explode(',', $row->answer);
@@ -557,8 +557,13 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                                         foreach ($choices as $choice) {
                                             $uniqueId = htmlspecialchars(trim($choice)) . '_' . uniqid(); // Create a unique ID for each radio button
                                             echo '<input type="radio" name="answers[' . $question . ']" value="' . htmlspecialchars(trim($choice)) . '" id="' . $uniqueId . '" required>';
-                                            echo '<label for="' . $uniqueId . '" style="font-size: small; color: gray;">' . htmlspecialchars(trim($choice)) . '</label><br>';
+                                            echo '<label for="' . $uniqueId . '" style="font-size: small; color: gray; padding-left: 5px;">' . htmlspecialchars(trim($choice)) . '</label><br>';
                                         }
+                                        
+                                        echo '<div class="form-floating mt-2">';
+                                        echo '<textarea class="form-control" name="comments[' . $question . ']" id="floatingTextarea" style="height: 150px; font-size: small; color: gray; width: 300px;"></textarea>';
+                                        echo '<label for="floatingTextarea">Additional comment</label>';
+                                        echo '</div>';
                                     }
                                 } else {
                                     echo 'The questionnaire has not been updated yet';
@@ -725,9 +730,9 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 
                             <div class="col-md-6 comments">
                             <!-- Content for the right half of the screen -->
-                            <h4>Additional comment for the following lines: Originality, <br> Literature Review, Evaluation.</h4>                    
+                            <!-- <h4>Additional comment for the following lines: Originality, <br> Literature Review, Evaluation.</h4>                    
                                 <textarea id="ansOrig" name="ansOrig" class="form-control" rows="8"></textarea>
-                            <br>
+                            <br> -->
                             <!-- <h5>Reference:</h5>
                                 <textarea id="ansRef" name="ansRef" class="form-control" rows="5" required></textarea>
                             <br>
@@ -737,7 +742,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 
                         </div>
 
-                        <hr style="height: 2px; background-color: #0858a4; width: 100%;">
+                        <hr style="height: 2px; background-color: var(--main, #0858A4); width: 100%;">
 
                         <!-- <div class="decisions">
                             <h5>Decision:</h5>
@@ -857,7 +862,10 @@ document.getElementById('btnSubmit').addEventListener('click', function(event){
 
     if (!allRadioButtonsSelected) {
         // Alert the user if not all radio buttons are selected
-        alert('All fields are required');
+        Swal.fire({
+            icon: 'warning',
+            text: 'All fields are required!'
+        })
         return;
     }
 

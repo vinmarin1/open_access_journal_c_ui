@@ -2,7 +2,7 @@
 include 'dbcon.php';
 
     if (!function_exists('get_report_list')) {
-        function get_report_list() {
+        function get_report_list($journal_id = null) {
             $pdo = connect_to_database();
 
             if ($pdo) {
@@ -11,8 +11,16 @@ include 'dbcon.php';
                     $stmt = $pdo->prepare($query);
                     $stmt->execute();
 
+                    if (!empty($journal_id)) {
+                        $query .= " WHERE admin = 0";
+                    }
+    
+                    $stmt = $pdo->prepare($query);
+    
+                    $stmt->execute();
+    
                     $result = $stmt->fetchAll(PDO::FETCH_OBJ);
-
+                    
                     return $result;
                 } catch (PDOException $e) {
                     echo "Error: " . $e->getMessage();
@@ -570,6 +578,84 @@ include 'dbcon.php';
             }
         }
     }
-    
 
+    if (!function_exists('get_journal_data')) {
+        function get_journal_data($journal_id) {
+            $sql = "SELECT 
+                        j.*,
+                        COUNT(CASE WHEN a.`status` = 1 THEN 1 END) AS published_count,
+                        COUNT(CASE WHEN a.`status` BETWEEN 2 AND 5 THEN 1 END) AS ongoing_count,
+                        COUNT(CASE WHEN a.`status` = 6 THEN 1 END) AS reject_count
+                    FROM 
+                        `journal` AS j";
+    
+            if (!empty($journal_id)) {
+                $sql .= " LEFT JOIN `article` AS a ON j.`journal_id` = a.`journal_id`";
+            } else {
+                $sql .= " LEFT JOIN `article` AS a ON j.`journal_id` = a.`journal_id`";
+            }
+    
+            if (!empty($journal_id)) {
+                $sql .= " WHERE j.`journal_id` = ?";
+                $sql .= " GROUP BY j.`journal_id`";
+            } else {
+                $sql .= " GROUP BY j.`journal_id`";
+            }
+    
+            if (!empty($journal_id)) {
+                $results = execute_query($sql, [$journal_id]);
+            } else {
+                $results = execute_query($sql);
+            }
+    
+            $data = array();
+    
+            if ($results !== false) {
+                $data['journaldata'] = $results;
+                return $data;
+            } else {
+                return array('status' => true, 'data' => []);
+            }
+        }
+    }
+    
+    if (!function_exists('get_journal_data1')) {
+        function get_journal_data1($journal_id, $current_year) {
+            $sql = "SELECT 
+                        j.*,
+                        COUNT(CASE WHEN a.`status` = 1 THEN 1 END) AS published_count,
+                        COUNT(CASE WHEN a.`status` BETWEEN 2 AND 5 THEN 1 END) AS ongoing_count,
+                        COUNT(CASE WHEN a.`status` = 6 THEN 1 END) AS reject_count
+                    FROM 
+                        `journal` AS j";
+    
+            if (!empty($journal_id)) {
+                $sql .= " LEFT JOIN `article` AS a ON j.`journal_id` = a.`journal_id` AND YEAR(a.`date_added`) = ?";
+            } else {
+                $sql .= " LEFT JOIN `article` AS a ON j.`journal_id` = a.`journal_id` AND YEAR(a.`date_added`) = ?";
+            }
+    
+            if (!empty($journal_id)) {
+                $sql .= " WHERE j.`journal_id` = ?";
+            }
+    
+            $sql .= " GROUP BY j.`journal_id`";
+    
+            if (!empty($journal_id)) {
+                $results = execute_query($sql, [$current_year, $journal_id]);
+            } else {
+                $results = execute_query($sql, [$current_year]);
+            }
+    
+            $data = array();
+    
+            if ($results !== false) {
+                $data['journaldata1'] = $results;
+                return $data;
+            } else {
+                return array('status' => false, 'data' => []);
+            }
+        }
+    }
+    
 ?>

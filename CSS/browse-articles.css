@@ -129,12 +129,12 @@
     margin-right: 5px;
     border-radius: 4px;
     font-size: 0.875em;
-    color: #0858a4;
+    color: var(--main, #0858A4);
     margin-bottom: 5px;
 }
 
 .article-details h6 {
-    color: #0858a4;
+    color: var(--main, #0858A4);
 }
 
 .tags {
@@ -272,12 +272,12 @@
         border: 1px solid #ccc;
         margin: 0 5px;
         border-radius: 4px;
-        color: #0858a4;
+        color: var(--main, #0858A4);
         cursor: pointer;
     }
 
     .pagination a.active {
-        background-color: #0858a4;
+        background-color: var(--main, #0858A4);
         color: #fff;
     }
 }
@@ -314,7 +314,7 @@
   .journal-preview ul li h3 {
     font-size: 16px ;
     text-decoration: none;
-    color: #0858a4; 
+    color: var(--main, #0858A4); 
     font-weight: 600;
     font-family: 'Inter', sans-serif !important;
   }
@@ -335,11 +335,11 @@
   }
 
   #selected-filters span {
-    border:1px solid #0858a4;
+    border:1px solid var(--main, #0858A4);
     padding: 0.5em;
     font-size: 12px;
     border-radius: 2em;
-    color: #0858a4;
+    color: var(--main, #0858A4);
     display: flex;
     gap: 1;
   }

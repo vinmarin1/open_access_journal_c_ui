@@ -18,7 +18,7 @@ $journallist = get_journal_list();
 
     <!-- Content wrapper -->
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="py-3 mb-4"><span class="text-muted fw-light"></span> Issues</h4>
+        <h4 class="py-3 mb-4"><span class="text-muted fw-light">Secondary / </span> Issues</h4>
 
         <div class="card">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">

@@ -1,19 +1,21 @@
-.main-content{
-    width: 100%;
-    height: auto;
-    margin-bottom: 50px;
+h2 {
+text-align: center;
+}
+
+h3 {
+color: var(--main) !important;
 }
 .content-over {
     position: relative;
     width: 100%;
-    /* height: 10em; */
+    height: 9em;
     max-height:20em;
     background-image: url(../images/qcu-bg.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
-    /* padding-top: 70px; */
-    padding: 4em 8%;
+
+    padding: 2em 8%;
     display: inline-flex;
     flex-direction: column;
 }
@@ -39,10 +41,6 @@
     font-weight: 500 !important;
 }
 
-.second-container{
-    background-color: #004e98;
-}
-
 .dev-team{
     background-color: #E5F5FF;
 }
@@ -56,67 +54,45 @@
     font-size: small;
 }
 
-
 .leaders-content , .members-content{
-    background-color: #FFFFFF;
-    width: 30vh;
-    border-radius: 15px;
-    height: 97%;
+    background-color: var(--gray);
+    width: 20%;
+    border-radius: 4px;
+    height: 100%;
+    padding:16px 0px;
 }
-
 
 .leaders-content img , .members-content img{
-    height: 28vh;
-    width: auto;
-    border-radius: 15px;
-    padding: 10px;
+    width: 80%;
+    border-radius: 3px;
 }
 
-.leaders-content p , .members-content p{
+.leaders-content span , .members-content span{
     font-size: larger; 
     font-weight: bold; 
     color:#115272;
 }
 
-
 .description{
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-top:4px;
+    padding-left: 8px;
+    padding-right: 8px;
 }
 
 .description p {
-    overflow: auto; /* or scroll if you want a scrollbar */
-    max-height: 100px; /* adjust the height as needed */
+    font-family: Arial, Helvetica, sans-serif;
+    max-height: 200px; 
 }
-.description p::-webkit-scrollbar {
-    width: 0; /* Remove scrollbar width */
-    height: 0; /* Remove scrollbar height */
-    visibility: hidden; /* Hide scrollbar */
-}
-
 
 .soc-links{
     font-size:large;
-    padding-bottom: 5px;
     display: flex;
     flex-direction: row ;
 }
 
-
-
-
-
-
-/* Media query for mobile view */
 @media screen and (max-width: 767px) {
     .leaders-content, .members-content {
-        width: 80%; /* Adjust width for mobile view */
-        margin: 0 auto; /* Center the content horizontally */
+        width: 80%; 
+        margin: 0 auto; 
     }
 }
-
-
-
-
-
-

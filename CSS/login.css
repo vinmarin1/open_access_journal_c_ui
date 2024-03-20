@@ -63,7 +63,7 @@
 }
 
 #login-button{
-    background-color: #0858a4;
+    background-color: var(--main, #0858A4);
 }
 .features {
     size: 10px;
@@ -96,9 +96,9 @@ button:hover {
 #register-button{
     margin-top: 10px;
     border: none;
-    border: 1px #0858a4 solid;
+    border: 1px var(--main, #0858A4) solid;
     background-color: white;
-    color: #0858a4;
+    color: var(--main, #0858A4);
 }
 @media only screen and (min-width: 600px) {
     /* Apply styles for screens wider than 600px */

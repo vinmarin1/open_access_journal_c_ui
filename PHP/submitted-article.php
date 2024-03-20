@@ -20,6 +20,9 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Judson:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
 <body>
 
@@ -66,26 +69,67 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
         <div class="abstract-content">
             <p id="display-abstract" name="display-abstract">
                 <?php 
-                    $sqlReviewraticle = "SELECT abstract FROM article WHERE article_id =:article_id AND author_id =:author_id";
+                    $sqlReviewraticle = "SELECT abstract FROM article WHERE article_id = :article_id AND author_id = :author_id";
 
-                    $result = database_run($sqlReviewraticle, array('author_id' => $userId,
-                            'article_id' => $articleId));
+                    $result = database_run($sqlReviewraticle, array(
+                        'author_id' => $userId,
+                        'article_id' => $articleId
+                    ));
 
                     if ($result !== false) {
                         foreach ($result as $row) {
-                            echo $row->abstract;
+                            // Split the abstract into sentences
+                            $sentences = preg_split('/(?<=[.?!])\s+/', $row->abstract, -1, PREG_SPLIT_NO_EMPTY);
+                            
+                            // Output each sentence with the first letter wrapped in a span for styling
+                            foreach ($sentences as $sentence) {
+                                echo '<span class="first-letter">' . substr($sentence, 0, 1) . '</span>' . substr($sentence, 1) . ' ';
+                            }
                         }
                     } else {
                         echo "No articles found."; 
                     }
                 ?>
             </p>
+            <p class="keywords-title">Keywords</p>
+            <div class="keywords">
+                <?php
+                    $sqlKeyword = "SELECT keyword FROM article WHERE article_id = :article_id AND author_id = :author_id";
+                    
+                    $result = database_run($sqlKeyword, array('author_id' => $userId,
+                    'article_id' => $articleId));
+
+                    if ($result !== false) {
+                        foreach ($result as $row) {
+                            $keywords = explode(',', $row->keyword);
+                            foreach ($keywords as $keyword) {
+                                echo '<li style="list-style-type: none; 
+                                                margin-right: 5px;
+                                                width: auto;
+                                                color: var(--main, #0858A4);
+                                                border: 2px solid var(--main, #0858A4);
+                                                border-radius: 10px;
+                                                background-color: white;
+                                                font-size: 15px;
+                                                display: inline-block">' . trim($keyword) . '</li>';
+                            }
+                            
+                        }
+                    } else {
+                        echo "No keywords for this article";
+                    }
+                ?>
+             </div>
+           
+
+
+
             <input type="text" id="abstract" name="abstract" style="display: none">
         </div>
     </div>
     <div class="column1">
 
-        <div class="status">
+        <!-- <div class="status">
         <p id="display-status">
             <?php
 
@@ -103,83 +147,132 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                 }
             ?>
         </p>
-        </div>
+        </div> -->
+        <div class="comments-container">
+            <div class="table-header">Reviewer Comments</div>
+            <hr style="height: 2px solid;">
+            <div class="discussion-container" style="height: 200px; overflow-y: auto;">
+                <?php
+                    $sqlReviewComments = "SELECT 
+                                                reviewer_assigned.author_id,
+                                                MAX(reviewer_assigned.comment) AS comment,
+                                                MAX(reviewer_assigned.decision) AS decision,
+                                                MAX(reviewer_answer.reviewer_questionnaire) AS reviewer_questionnaire,
+                                                MAX(reviewer_answer.comments) AS reviewer_comments
+                                        FROM 
+                                                reviewer_assigned 
+                                        JOIN 
+                                                reviewer_answer 
+                                        ON 
+                                                reviewer_assigned.author_id = reviewer_answer.author_id 
+                                        WHERE 
+                                                reviewer_assigned.answer = 1 
+                                                AND reviewer_assigned.accept = 1 
+                                                AND reviewer_assigned.comment_accessible = 1 
+                                                AND reviewer_assigned.article_id = $articleId
+                                        GROUP BY 
+                                                reviewer_assigned.author_id";
 
-        <div class="submit-details">
-            <!-- Submission details like dates and IDs goes here -->
-            <div class="submit-section">
-                <div class="submit-section-title"><p id="display-submittedOn">
-                    <?php
+                    $sqlRun = database_run($sqlReviewComments);
 
-                        $sqlStatus = "SELECT journal.journal FROM journal JOIN article ON journal.journal_id = article.journal_id WHERE article.author_id = :author_id AND article.article_id = :article_id";
+                    if ($sqlRun) {
+                        $result = $sqlRun;
 
-                        $result = database_run($sqlStatus, array('author_id' => $userId,
-                        'article_id' => $articleId));
+                        if (!empty($result)) {
+                            $reviewerAliases = array();
+                            $nextAlias = 'A';
 
-                        if ($result !== false) {
-                        foreach ($result as $row) {
-                        echo $row->journal;
-                        }
-                        } else {
-                        echo "No journal for this article"; 
-                        }
-                    ?>
-                </p></div>
-            </div>
-        <div class="logs-date-container">
-            <div class="logs">
-                <div class="logs-title">Logs</div> <!-- Logs title -->
-                <div class="log-entry mt-4" id="logEntries">
-                    <?php
-                        $sqlLogs = "SELECT logs_article.type FROM logs_article JOIN article ON logs_article.article_id = article.article_id WHERE logs_article.article_id = :article_id";
-                        $sqlRunLogs = database_run($sqlLogs, array('article_id' => $articleId));
-
-                        if ($sqlRunLogs !== false){
-                            $count = 0;
-                            foreach ($sqlRunLogs as $logsRow){
-                                if ($count < 5) {
-                                    echo '<p style="display: block">' . $logsRow->type . '</p>';
-                                } else {
-                                    echo '<p style="display: none">' . $logsRow->type . '</p>';
-                                }
-                                $count++;
+                            foreach ($result as $row) {
+                                $reviewerAliases[] = '<a href="#" class="reviewer-alias">Reviewer ' . $nextAlias . '</a>';
+                                $nextAlias = getNextReviewerAlias($nextAlias);
                             }
-                        } else {
-                            echo 'no logs for this article';
+
+                            foreach ($reviewerAliases as $alias) {
+                                echo $alias;
+                            }
                         }
-                    ?>
+                    }
+
+                    function getNextReviewerAlias($currentAlias)
+                    {
+                        return chr(ord($currentAlias) + 1);
+                    }
+                ?>
+
+
+         
+
+
+
+
+            </div>
+            <div class="logs-container">
+               <!-- Button trigger modal -->
+               <button type="button" class="btn btn-primary" id="log-btn" data-bs-toggle="modal" data-bs-target="#modal-dialog-centered">
+                    View Logs
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="modal-dialog-centered" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header" style="border-bottom: none">
+                                <p class="logs-title">Recent Logs</p>
+                                <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+                            </div>
+                            <hr style="margin-top: -20px; width: 90%; border: 1px solid black; margin-left: auto; margin-right: auto">
+                          
+                            <div style="width: 90%; margin-left: auto; margin-right: auto; overflow-x: auto; height: 300px;">
+                                <table class="table table-borderless">
+                                    <thead class="table-secondary">
+                                        <tr>
+                                            <th>Logs</th>
+                                            <th></th>
+                                            <th>Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                            $sqlDisplayLogs = "SELECT logs_article.article_id, logs_article.type, DATE(logs_article.date) as date FROM logs_article JOIN article ON logs_article.article_id = article.article_id WHERE logs_article.user_id = :userId AND logs_article.article_id = :article_id ORDER BY logs_article.date DESC";
+
+                                            $params = array(
+                                                'userId' => $userId,
+                                                'article_id' => $articleId
+                                            );
+
+                                            $sqlRun = database_run($sqlDisplayLogs, $params);
+
+                                            if ($sqlRun !== false) {
+                                                foreach ($sqlRun as $row) {
+                                                    echo '<tr>';
+                                                    echo '<td>' . $row->type . '</td>';
+                                                    echo '<td></td>';
+                                                    echo '<td>' . $row->date . '</td>';
+                                                    echo '</tr>';
+                                                }
+                                            } else {
+                                                echo '<tr><td colspan="2">Something went wrong</td></tr>';
+                                            }
+                                        ?>
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+                        
+                            <div class="modal-footer" style="border-top: none;">
+                                <button type="button" id="back-btn" class="btn btn-secondary" data-bs-dismiss="modal">Back</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-            </div>
-
-            <div class="dates">
-                <div class="dates-title">Date</div>
-                <div class="date" id="logDates">
-                    <?php
-                        $sqlLogsDate = "SELECT logs_article.date FROM logs_article JOIN article ON logs_article.article_id = article.article_id WHERE logs_article.article_id = :article_id";
-                        $sqlDateParams = database_run($sqlLogsDate, array('article_id' => $articleId));
-
-                        if ($sqlDateParams !== false){
-                            $count = 0;
-                            foreach ($sqlDateParams as $logsDate){
-                                if ($count < 5) {
-                                    echo '<p style="display: block">' . $logsDate->date . '</p>';
-                                } else {
-                                    echo '<p style="display: none">' . $logsDate->date . '</p>';
-                                }
-                                $count++;
-                            }
-                        } else {
-                            echo 'no logs for this article';
-                        }
-                    ?>
-                </div>
-            </div>
+             </div>
         </div>
-        <div class="btn-group mb-3">
-            <button type="button" class="btn btn-outline-primary btn-sm" onclick="viewAllLogs()" id="viewLogsBtn">View All Logs</button>
-            <button type="button" class="btn btn-outline-primary btn-sm" onclick="hideLogs()" id="hideLogsBtn" style="display: none">Hide Logs</button>
-        </div>
+
+
+    
        
 
         </div>
@@ -191,13 +284,15 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
         <div class="retrtiveFileDownload">
 
         </div>
+        
+        
         <div class="files-submitted">
             <div class="table-header" id="table">Files Submitted</div>
             <table>
                 <thead>
                     <tr>
-                        <th>File</th>
-                        <th>Date</th>
+                        <th style="background-color: #F5F5F9; color: black">File</th>
+                        <th style="background-color: #F5F5F9; color: black">Date</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -256,9 +351,9 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
             <table class="table table-hover" id="table-file">
                 <thead>
                     <tr>
-                    <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">File Name</th>
-                    <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">File Type</th>
-                    <th scope="col" style="background-color: #0858a4; color: white; font-weight: normal;">Action</th>
+                    <th scope="col" style="background-color: #F5F5F9; color: black">File Name</th>
+                    <th scope="col" style="background-color: #F5F5F9; color: black">File Type</th>
+                    <th scope="col" style="background-color: #F5F5F9; color: black">Action</th>
                     </tr>
                 </thead>
                 <tbody id="fileList">
@@ -279,12 +374,15 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                     </tr>
                 </tbody>
             </table>
+   
+           
         </div>
+      
         
         <div class="files-submitted">
             <div class="table-header"></div>
         
-                <div class="keywords">
+                <!-- <div class="keywords">
                     <?php
                         $sqlKeyword = "SELECT keyword FROM article WHERE article_id = :article_id AND author_id = :author_id";
                         
@@ -298,8 +396,8 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                                     echo '<li style="list-style-type: none; 
                                                     margin-right: 5px;
                                                     width: auto;
-                                                    color: #0858a4;
-                                                    border: 1px solid #0858a4;
+                                                    color: var(--main, #0858A4);
+                                                    border: 1px solid var(--main, #0858A4);
                                                     border-radius: 10px;
                                                     background-color: white;
                                                     font-size: 12px;
@@ -311,66 +409,47 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                             echo "No keywords for this article";
                         }
                     ?>
-                </div>
+                </div> -->
             </div>
         </div>
-    <div class="main3" >
-        <div class="comments-container" style="padding-left: 50px">
-            <div class="table-header">Reviewer Comments</div>
-            <div class="discussion-container">
-                <?php
-                    $sqlReviewComments = "SELECT reviewer_assigned.comment, reviewer_assigned.decision 
-                                        FROM reviewer_assigned 
-                                        JOIN article ON reviewer_assigned.article_id = article.article_id 
-                                        WHERE reviewer_assigned.answer = 1 
-                                            AND reviewer_assigned.accept = 1 
-                                            AND reviewer_assigned.comment_accessible = 1 
-                                            AND reviewer_assigned.article_id = $articleId";
+    <div class="main3">
+        <table class="table table-light" style="width: 100%">
+            <thead>
+                <tr>
+                    <th scope="col" style="background-color: #F5F5F9; color: black">Status</th>
+                    <th scope="col" style="background-color: #F5F5F9; color: black"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <?php
 
-                    $sqlRun = database_run($sqlReviewComments);
+                        $sqlStatus = "SELECT article_status.status FROM article_status JOIN article ON article_status.status_id = article.status WHERE article.author_id = :author_id AND article.article_id = :article_id";
 
-                    if ($sqlRun) {
-                        $result = $sqlRun;
+                        $result = database_run($sqlStatus, array('author_id' => $userId,
+                        'article_id' => $articleId));
 
-                        if (!empty($result)) {
-                            $reviewerComments = array();
-                            $reviewerAlias = 'Reviewer A';
-
-                            foreach ($result as $row) {
-                                $comment = $row->comment;
-                                $decision = $row->decision;
-
-                                // Append comment and decision to the reviewer's array
-                                $reviewerComments[$reviewerAlias]['comment'] = $comment;
-                                $reviewerComments[$reviewerAlias]['decision'] = $decision;
-
-                                // Increment reviewer alias for the next comment
-                                $reviewerAlias = getNextReviewerAlias($reviewerAlias);
-                            }
-
-                            // Display the comments with reviewer aliases
-                            foreach ($reviewerComments as $reviewerAlias => $reviewerData) {
-                                echo '<p>' . $reviewerAlias . ' comment: ' . $reviewerData['comment'] . '</p>';
-                                echo '<p class="style="margin-top: 0px">' . $reviewerAlias . ' decision: ' . $reviewerData['decision'] . '</p>';
-                            }
+                        if ($result !== false) {
+                        foreach ($result as $row) {
+                            echo '<td>' . $row->status . '<td>';
+                            // echo $row->status;
                         }
-                    }
-
-                    function getNextReviewerAlias($currentAlias)
-                    {
-                        return ++$currentAlias;
-                    }
-                ?>
-
-
+                        } else {
+                        echo "No status for this article"; 
+                        }
+                    ?>
+                </tr>
+            </tbody>
+        </table>
 
 
 
-            </div>
-        </div>
-        <div class="review-rubrics">
-          
-            <div class="action-button" style="padding-left: 40px">
+    </div>
+    </div>
+
+    <div class="main4">
+        <div class="action-button">
+            <div class="edit-btn-container">
                 <?php
 
                     $sqlSelectedArticle = "SELECT article_id FROM article WHERE article_id = :article_id AND status = 4";
@@ -378,18 +457,26 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                     $sqlRun = database_run($sqlSelectedArticle, array('article_id' => $articleId));
 
                     if($sqlRun){
-                       echo '  <button type="button" class="btn btn-primary btn-md" id="edit-submission">Edit Submission</button>';
+                        echo '  <button type="button" class="btn btn-primary btn-md" id="edit-submission">Edit Submission</button>';
                     }else{
                         echo '';
                     }
                 ?>
-                <!-- <button type="button" class="btn btn-primary btn-md" id="edit-submission">Edit Submission</button> -->
-                <button type="button" class="btn btn-primary btn-md" id="submit-submission">Submit Revision</button>
-                <!-- <button type="button" class="btn btn-success btn-md" id="submitRevision">Submit Revision</button> -->
-                <button type="button" class="btn btn-secondary btn-md" id="cancel-submission">Cancel Submission</button>
             </div>
+            <div class="btn-option">
+                <button type="button" class="btn btn-secondary btn-md" id="cancel-submission">Cancel Submission</button>
+                <button type="button" class="btn btn-primary btn-md" id="submit-submission">Submit Revision</button>
+                    
+            </div>
+            
+           
+        
+           
         </div>
+        
     </div>
+   
+    
     <div id="loadingOverlay">
         <div id="loadingSpinner"></div>
     </div>

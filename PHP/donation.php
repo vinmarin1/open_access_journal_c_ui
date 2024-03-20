@@ -55,7 +55,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     <h2>How your donation helps</h2>
                     <div class="row mb-4 mt-5">
                         <div class="col-md-5">
-                            <img src="../images/donate.png" alt="donate.png">
+                            <img src="../images/accessibility.png" alt="donate.png">
                         </div>
                         <div class="col-md-6">
                             <h3>Accessibility</h3>
@@ -65,7 +65,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
 
                     <div class="row mb-4">
                         <div class="col-md-5">
-                            <img src="../images/donate.png" alt="donate.png">
+                            <img src="../images/quality-content.jfif" alt="quality-content.png">
                         </div>
                         <div class="col-md-6">
                             <h3>Quality Content</h3>
@@ -75,7 +75,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
 
                     <div class="row mb-4">
                         <div class="col-md-5">
-                            <img src="../images/donate.png" alt="donate.png">
+                            <img src="../images/gobal-reach.jpeg" alt="donate.png">
                         </div>
                         <div class="col-md-6">
                             <h3>Global Reach</h3>

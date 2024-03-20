@@ -53,7 +53,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
             <div class="">
                 <!-- <div class=" d-flex gap-2">
                     <div class="sort-header">
-                        <span class="sort-by-text" style="color: #0858a4;">Sort by</span>
+                        <span class="sort-by-text" style="color: var(--main, #0858A4);">Sort by</span>
                         <span class="sort-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                 viewBox="0 0 20 20">
                                 <path fill="#e6e6e6" d="M11 7H1l5 7zm-2 7h10l-5-7z" /></svg></span>

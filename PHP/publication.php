@@ -21,12 +21,12 @@
 <div class="main-container">
     <div class="content-over">
         <div class="cover-content">
-            <p>Home / QCU Journals</p>
-            <h2>QCU Journals</h2>
+            <p>Home / Journals</p>
+            <h2 class="text-center">All Journals</h2>
         </div>
     </div>
     
-    <section id="journals">
+    <section id="journals" class="d-flex flex-column gap-3">
     </section>
   
 </div>
