@@ -74,16 +74,15 @@ img{
     font-size: 35px;
     position: relative;
     cursor: pointer;
-    z-index: 1; /* Ensure the text is above the line */
+    z-index: 1; 
 }
 
 .step.active {
     opacity: 1;
-    background-color: #45D700; /* Change the background color to green */
-    color: white; /* Change the text color to white */
+    background-color: #45D700; 
+    color: white; 
 }
 
-/* Mark the steps that are finished and valid: */
 .step.finish {
     background-color: #3EC100;
 }
@@ -115,8 +114,6 @@ img{
     border-color: green !important;
 }
 
-
-
 .custAmount button , .donate button{
     color: black; 
     background-color: transparent;
@@ -127,7 +124,6 @@ img{
     border: 1px solid gray;
     font-family: Arial, Helvetica, sans-serif;
 }
-
 
 .donate button:hover{
     color: white; 
@@ -156,7 +152,6 @@ img{
     z-index: 1000;
 }
 
-/* Styles for the overlay background when the popup is active */
 #overlay {
     display: none;
     position: fixed;
@@ -177,11 +172,9 @@ img{
     border: 1px solid gray;
 }
 
-
-
 .emailDonate label::before{
     content: "*";
-    color: red; /* Style the asterisk */
+    color: red;
 }
 
 .blank{
@@ -199,6 +192,3 @@ img{
 .paysLogo{
     width: 200px;
 }
-
-
-

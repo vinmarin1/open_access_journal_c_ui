@@ -16,17 +16,15 @@
     z-index: 1;
     background-color: #285581;
     border-radius: 20px;
-    /* margin-top: 20px; */
     padding: 0.5em 1em;
 }
-  
+
 .btn-info button:hover {
     color: white;
     position: relative;
     z-index: 1;
     background-color: #E56F1F;
     border-radius: 20px;
-    /* margin-top: 20px; */
     opacity: 0.8;
 }
 
@@ -50,4 +48,3 @@ iframe{
     height: 32vh;
     padding: 10px;
 }
-
