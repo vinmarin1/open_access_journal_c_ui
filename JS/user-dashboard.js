@@ -1,3 +1,9 @@
+$(document).ready(function() {
+  $("#editIcon").click(function() {
+      $("#editForm").fadeIn(); // Fade in the popup-overlay div
+  });
+});
+
 function openTab(evt, tabName) {
   // Declare all variables
   var i, tabcontent, tablinks;
@@ -174,8 +180,13 @@ document.getElementById('expertiseData').value = getExpertiseData();
 //add keyword
 document.getElementById('addExpertiseButton').addEventListener('click', function() {
 // Get the input value
-var inputValue = document.getElementById('fieldofexpertise').value;
+var inputValue = document.getElementById('fieldofexpertise').value.trim();
 
+    // Check if the input is empty or contains only spaces
+    if (inputValue === "") {
+      return; // Exit function if empty or spaces
+  }
+  
 // Create a new keyword element
 var keywordElement = document.createElement('div');
 keywordElement.className = 'keyword';

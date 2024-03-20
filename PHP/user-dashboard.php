@@ -64,44 +64,8 @@ $expertise = $_SESSION['expertise'];
 	</nav>
 
 
-    <div class="content-over">
-		<div class="cover-content">
-			<h3>Hello,
-			<?php
-			if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-				$sqlSelectName = "SELECT first_name, middle_name, last_name FROM author WHERE author_id = :author_id";
-			
-				$result = database_run($sqlSelectName, array(':author_id' => $id));
-
-				if ($result) {
-					
-					if (count($result) > 0) {
-						$user = $result[0];
-						$firstName = $user->first_name;
-						$middleName = $user->middle_name;
-						$lastName = $user->last_name;
-
-						echo "$firstName $middleName $lastName";
-					} else {
-						echo "User not found.";
-					}
-				} else {
-					echo "Unable to fetch user info.";
-				}
-			}
-			?>
-			</h3>
-			<h4 id="liveData">
-			
-			</h4>
-		</div>
-		<!-- <div>
-			<button class="btn tbn-primary btn-md" id="btn1" onclick="window.location.href='user-dashboard.php'">My Profile</button>
-			<button class="btn tbn-primary btn-md" id="btn2" onclick="window.location.href='author-dashboard.php'">Manage Articles</button>
-		</div> -->
-    </div>
-    <div class="main">
-		<section >
+<div class="main">
+    <div class="main-profile">
 			<div class="profile-container">
 				<div class="profile-sidebar">
 			
@@ -125,13 +89,15 @@ $expertise = $_SESSION['expertise'];
 								}
 
 
-								echo '<div>';
+								echo '<div class="profile-pic-container">';
 								echo '<img src="' . htmlspecialchars($profilePic) . '" alt="Profile Picture" class="profile-pic" id="profileImage">';
+								echo '<input type="file" accept="image/*" style="display:none" id="fileInput" name="fileInput" >';
 								// echo '<input type="file" accept="image/*" style="display:none" id="fileInput" name="fileInput">';
 								// echo '<div class="change-profile-text">Change Profile</div>';
 								// echo '<div class="edit-icon" onclick="openFileInput()"> <span>&#9998;</span>Change Profile </div>';
+								
 								echo '<div class="button-container"><button type="button" class="btn btn-secondary btn-sm" onclick="openFileInput()" style="margin-left: auto; margin-right: auto;"><i class="fa-solid fa-camera"></i></button></div>';
-								echo '<input type="file" accept="image/*" style="display:none" id="fileInput" name="fileInput" >';
+								
 								echo '</div>';
 							} else {
 								echo "User not found.";
@@ -234,7 +200,7 @@ $expertise = $_SESSION['expertise'];
 
 									<!-- <label id="supportIcon" style="cursor: pointer; color: green"><span style="padding-right: 5px; font-size: 12px; font-family: Arial, Helvetica, sans-serif;
 									">Support</span><i class="fa-solid fa-hand-holding-heart"></i></label> -->
-									<button class="btn  btn-sm text-white" id="btn1" onclick="window.location.href='author-dashboard.php'">My Articles</button>
+									<!-- <button class="btn  btn-sm text-white" id="btn1" onclick="window.location.href='author-dashboard.php'">My Articles</button> -->
 									
 									<button type="button" id="editIcon" class="btn btn-success btn-sm" style="width: 100px">Edit<i class="fa-solid fa-pen-to-square"  style="margin-left: 5px"></i></button>
 									<br>
@@ -279,12 +245,12 @@ $expertise = $_SESSION['expertise'];
 				<div class="popup-overlay" id="editForm">
 					<div class="popup-form">
 						<div class="form-header">
-							<span>Edit Profile</span>
-							<div class="edit-profile-btn">
+							<h4>Edit Profile</h4>
+							<!-- <div class="edit-profile-btn">
 								<button type="button" class="btn btn-outline-light" id="saveButton">Save</button>
 								<button type="button" class="btn btn-outline-light" id="cancelBtn">Cancel</button>
-							</div>
-							<!-- <span class="close-icon" id="closeIcon">&times;</span> -->
+							</div> -->
+							<span class="close-icon" id="closeIcon">&times;</span>
 						</div>
 						<form id="form" method="POST" action="update-user.php">		
 							<div class="form-content">
@@ -304,7 +270,8 @@ $expertise = $_SESSION['expertise'];
 									<hr>
 									<div class="row-form">
 										<div class="form-row">
-											<label for="firstName">First Name: <span class="requiredFilled" style="color: red">*</span></label>
+											<label for="firstName">First Name:</label>
+											<!-- <label for="firstName">First Name: <span class="requiredFilled" style="color: red">*</span></label> -->
 											<?php
 											if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 												$sqlSelectName = "SELECT first_name FROM author WHERE author_id = :author_id";
@@ -317,7 +284,7 @@ $expertise = $_SESSION['expertise'];
 														$user = $result[0];
 														$firstName = $user->first_name;
 													
-														echo '<input type="text" id="firstName" name="firstName" class="text-box" value="' . $firstName . '" >';
+														echo '<input type="text" id="firstName" name="firstName" class="text-box" value="' . $firstName . '" required>';
 
 										
 													} else {
@@ -360,7 +327,8 @@ $expertise = $_SESSION['expertise'];
 										
 										</div>
 										<div class="form-row">
-											<label for="lastName">Last Name: <span class="requiredFilled" style="color: red">*</span></label>
+											<label for="lastName">Last Name:</label>
+											<!-- <label for="lastName">Last Name: <span class="requiredFilled" style="color: red">*</span></label> -->
 											<?php
 											if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 												$sqlSelectName = "SELECT last_name FROM author WHERE author_id = :author_id";
@@ -374,7 +342,7 @@ $expertise = $_SESSION['expertise'];
 														$last_name = $user->last_name;
 													
 														echo '<input type="text" id="lastName" name="lastName" class="text-box"
-														value="' . $last_name . '" >';
+														value="' . $last_name . '" required>';
 													
 														
 										
@@ -419,7 +387,8 @@ $expertise = $_SESSION['expertise'];
 											
 										</div>
 										<div class="form-row">
-											<label for="birthdate">Birth Date: <span class="requiredFilled" style="color: red">*</span></label>
+											<label for="birthdate">Birth Date:</label>
+											<!-- <label for="birthdate">Birth Date: <span class="requiredFilled" style="color: red">*</span></label> -->
 										
 											<?php
 												if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
@@ -433,7 +402,7 @@ $expertise = $_SESSION['expertise'];
 															$birth_date = $user->birth_date;
 
 															// Output the selected option based on the user's gender
-															echo '<input type="date" id="birthdate" name="birthdate" class="date-box" value="' . $birth_date . '" >';
+															echo '<input type="date" id="birthdate" name="birthdate" class="date-box" value="' . $birth_date . '" required>';
 
 														} else {
 															echo "User not found.";
@@ -445,8 +414,9 @@ $expertise = $_SESSION['expertise'];
 												?>
 										</div>
 										<div class="form-row">
-											<label for="gender">Gender: <span class="requiredFilled" style="color: red">*</span></label>
-											<select id="gender" name="gender" class="dropdown-box" >
+										<label for="gender">Gender:</label>
+											<!-- <label for="gender">Gender: <span class="requiredFilled" style="color: red">*</span></label> -->
+											<select id="gender" name="gender" class="dropdown-box" required>
 												<?php
 												if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 													$sqlSelectName = "SELECT gender FROM author WHERE author_id = :author_id";
@@ -474,8 +444,9 @@ $expertise = $_SESSION['expertise'];
 
 										</div>
 										<div class="form-row">
-											<label for="status">Status: <span class="requiredFilled" style="color: red">*</span></label>
-											<select id="status" name="status" class="dropdown-box" >
+										<label for="status">Status:</label>
+											<!-- <label for="status">Status: <span class="requiredFilled" style="color: red">*</span></label> -->
+											<select id="status" name="status" class="dropdown-box" required>
 											
 												<?php
 												if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
@@ -505,8 +476,9 @@ $expertise = $_SESSION['expertise'];
 											</select>
 										</div>
 										<div class="form-row">
-											<label for="country">Country: <span class="requiredFilled" style="color: red">*</span></label>
-											<select id="country" name="country" class="dropdown-box" >
+										<label for="country">Country:</label>
+											<!-- <label for="country">Country: <span class="requiredFilled" style="color: red">*</span></label> -->
+											<select id="country" name="country" class="dropdown-box" required>
 											</select>
 										</div>
 									</div>
@@ -523,7 +495,8 @@ $expertise = $_SESSION['expertise'];
 											<input type="email" id="email" name="email" class="other-text-box" value="<?php echo $email ?>" >
 										</div> -->
 										<div class="form-row">
-											<label for="orcid">ORCID: <span class="requiredFilled" style="color: red">*</span></label>
+										<label for="orcid">ORCID:</label>
+											<!-- <label for="orcid">ORCID: <span class="requiredFilled" style="color: red">*</span></label> -->
 											<?php
 											if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 												$sqlSelectName = "SELECT orc_id FROM author WHERE author_id = :author_id";
@@ -536,7 +509,7 @@ $expertise = $_SESSION['expertise'];
 														$user = $result[0];
 														$orc_id = $user->orc_id;
 													
-														echo '<input type="text"  id="orcid" name="orcid" class="other-text-box" pattern="\d{4}-\d{4}-\d{4}-\d{4}" placeholder="(e.g., xxxx-xxxx-xxxx-xxxx)"
+														echo '<input type="text"  id="orcid" name="orcid" class="text-box" pattern="\d{4}-\d{4}-\d{4}-\d{4}" placeholder="(e.g., xxxx-xxxx-xxxx-xxxx)"
 														value="' . $orc_id . '" readonly>';
 													
 														
@@ -552,7 +525,8 @@ $expertise = $_SESSION['expertise'];
 										
 										</div>
 										<div class="form-row">
-											<label for="affiliation">Affiliation: <span class="requiredFilled" style="color: red">*</span></label>
+											<label for="affiliation">Affiliation:</label>
+											<!-- <label for="affiliation">Affiliation: <span class="requiredFilled" style="color: red">*</span></label> -->
 											<?php
 											if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 												$sqlSelectName = "SELECT afiliations FROM author WHERE author_id = :author_id";
@@ -565,7 +539,7 @@ $expertise = $_SESSION['expertise'];
 														$user = $result[0];
 														$afiliations = $user->afiliations;
 													
-														echo '<input type="text" list="universityList" id="affiliation" name="affiliation" class="other-text-box"
+														echo '<input type="text" list="universityList" id="affiliation" name="affiliation" class="text-box"
 														value="' . $afiliations . '" >
 														<datalist id="universityList">
         
@@ -585,7 +559,8 @@ $expertise = $_SESSION['expertise'];
 											
 										</div>
 										<div class="form-row">
-											<label for="position">Position: <span class="requiredFilled" style="color: red">*</span></label>
+										<label for="position">Position:</label>
+											<!-- <label for="position">Position: <span class="requiredFilled" style="color: red">*</span></label> -->
 											<?php
 											if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 												$sqlSelectName = "SELECT position FROM author WHERE author_id = :author_id";
@@ -598,8 +573,8 @@ $expertise = $_SESSION['expertise'];
 														$user = $result[0];
 														$position = $user->position;
 													
-														echo '<input type="text" id="position" name="position" class="other-text-box"
-														value="' . $position . '" >';
+														echo '<input type="text" id="position" name="position" class="text-box"
+														value="' . $position . '" required>';
 													
 														
 										
@@ -619,8 +594,9 @@ $expertise = $_SESSION['expertise'];
 
 								<!-- About me -->
 								<div class="form-section">
-									<h4>About me</h4>
+									<h5>About Me</h5>
 									<hr>
+									<div class="form-row">
 									<label for="bio">Bio: (Optional)</label>
 										<?php
 										if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
@@ -633,7 +609,7 @@ $expertise = $_SESSION['expertise'];
 													$user = $result[0];
 													$bio = $user->bio;
 
-													echo '<textarea id="bio" name="bio" class="bio-textarea" placeholder="Enter your bio" >' . $bio . '</textarea>';
+													echo '<textarea id="bio" name="bio" class="bio-textarea" placeholder="Tell us about yourself" >' . $bio . '</textarea>';
 												} else {
 													echo "User not found.";
 												}
@@ -643,12 +619,15 @@ $expertise = $_SESSION['expertise'];
 										}
 										?>
 
-									
-									<br><br><br>
-									<label for="fieldofexpertise">Field of Expertise: <span class="requiredFilled" style="color: red">*</span></label>
+									</div>
+									<!-- <br><br><br> -->
+									<div class="form-row">
+									<label for="fieldofexpertise">Field of Expertise:</label>
+									<!-- <label for="fieldofexpertise">Field of Expertise: <span class="requiredFilled" style="color: red">*</span></label> -->
 									<div>
 										<input type="text" id="fieldofexpertise" name="fieldofexpertise" class="text-box">
-										<button class="btn tbn-primary btn-md" type="button" id="addExpertiseButton">Add</button>
+										<button class="btn btn-primary" type="button" id="addExpertiseButton">Add</button>
+									</div>
 									</div>
 									<div id="keywordContainer">
 
@@ -667,7 +646,7 @@ $expertise = $_SESSION['expertise'];
 															$expertiseArray = explode(', ', $field_of_expertise);
 												
 															foreach ($expertiseArray as $expertiseItem) {
-																echo '<span class="keyword" contenteditable="true" id="expertise" name="expertise">' . htmlspecialchars($expertiseItem) . '</span>';
+																echo '<div class="keyword" id="expertise" name="expertise"><span>' . htmlspecialchars($expertiseItem) . '</span><span class="close-btn">x</span></div>';
 															}
 														}
 													} else {
@@ -683,8 +662,10 @@ $expertise = $_SESSION['expertise'];
 									<input type="hidden" id="expertiseData" name="expertiseData" value="">
 
 								</div>
-								
-
+								<!-- <div class="form-buttons">
+									<button type="submit" class="btn btn-primary" id="saveButton">Save</button>
+									<button type="button" class="btn btn-secondary" id="cancelBtn">Cancel</button>
+								</div> -->
 								<!-- <button type="button" class="btn btn-success btn-md" id="editBtn">Edit
 									<span class="spinner-border spinner-border-sm" aria-hidden="true" style="display: none"></span>
 								</button>
@@ -696,10 +677,15 @@ $expertise = $_SESSION['expertise'];
 								<!-- <input type="submit" class="btn btn-primary btn-md" id="saveButton" value="Save" disabled> -->
 								<!-- <button type="submit" class="btn btn-primary btn-md" id="saveButton" value="Save" disabled>Save</button> -->
 							</div>
+							<div class="form-buttons">
+								<button type="submit" class="btn btn-primary" id="saveButton">Save</button>
+								<button type="button" class="btn btn-secondary" id="cancelBtn">Cancel</button>
+							</div>
 						</form>
-					</div></div>
-				</form>
-					<div class="balance-points">Community Heart:&nbsp;
+					</div>
+				</div>
+				<!-- </form> -->
+					<div class="balance-points"><span class="heart-icon">❤️</span>&nbsp;
 					<?php
 						$sqlPoints = "SELECT point_earned FROM user_points WHERE user_id = $id";
 
@@ -716,10 +702,6 @@ $expertise = $_SESSION['expertise'];
 							echo  $totalPoints;
 						} 
 					?>
-					
-
-					
-
 					</div>
 					<?php
 						if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
@@ -913,13 +895,14 @@ $expertise = $_SESSION['expertise'];
 				<button class="tablinks" onclick="openTab(event, 'About')" id="defaultOpen">About</button>
 				<button class="tablinks" onclick="openTab(event, 'Contributions')">Contributions</button>
 				<button class="tablinks" onclick="openTab(event, 'Rewards')">Rewards</button>
+				<button class="tablinks" onclick="openTab(event, 'Articles')">Articles</button>
 			</div>
 
 
 			<div id="About" class="tabcontent" style="display: block;">
 				<div id="about-container">
 					<div id="logrecord-container">
-						<div class="log-box">Join In Community Since
+						<div class="log-box"><h3>Join In Community Since:</h3>
 						<?php
 						if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 							$sqlSelectName = "SELECT date_added FROM author WHERE author_id = :author_id";
@@ -958,7 +941,7 @@ $expertise = $_SESSION['expertise'];
 
 										$formatted_date_added = date('F j, Y', strtotime($date_added));
 
-										echo 'Author Since: ' . $formatted_date_added;
+										echo '<h3>Author Since:</h3> ' . $formatted_date_added;
 									} else {
 										echo "You did not submit any articles yet.";
 									}
@@ -969,37 +952,29 @@ $expertise = $_SESSION['expertise'];
 							?>
 
 						</div>
-						<div class="log-box"> 
+						<div class="log-box">
+						<h3>Reviewer Since: </h3> 
 							
-
 						<?php 
-                        $sqlStartReviewDate = "SELECT date_issued FROM reviewer_assigned WHERE author_id = $id ORDER BY date_issued ASC LIMIT 1 " ;
-
-                        $result = database_run($sqlStartReviewDate);
-
-                        if ($result !== false) {
-                            foreach ($result as $row) {
-
-							$dateIssued = new DateTime($row->date_issued);
-							$formattedDate = $dateIssued->format('F j, Y');
-
-							echo '<p>Reviewer Since: ' . $formattedDate . '</p>';
-
-
-                            }
-                        } else {
-                            echo "You are not reviewer Yet"; 
-                        }
-                        ?>
-
-
+							$sqlStartReviewDate = "SELECT date_issued FROM reviewer_assigned WHERE author_id = $id ORDER BY date_issued ASC LIMIT 1 ";
+							$result = database_run($sqlStartReviewDate);
+							if ($result !== false) {
+								foreach ($result as $row) {
+									$dateIssued = new DateTime($row->date_issued);
+									$formattedDate = $dateIssued->format('F j, Y');
+									echo "<p class='date'>$formattedDate</p>";
+								}
+							} else {
+								echo "<p class='not-found'>You are not a reviewer yet.</p>"; 
+							}
+						?>
 							
 						</div>
 					</div>
 					<div id="info-container">
 						<div class="info-box">
-							<div class="bio-container">
-								<span>Bio </span>
+							<!-- <div class="bio-container"> -->
+								<h3>Bio </h3>
 								<!-- <hr> -->
 								<p>
 								<?php
@@ -1008,11 +983,11 @@ $expertise = $_SESSION['expertise'];
 									}
 								?>
 								</p>
-							</div>
+							<!-- </div> -->
 						</div>
 						<div class="info-box">
-							<div class="expertise-container">
-								<span>Expertise </span>
+							<!-- <div class="expertise-container"> -->
+								<h3>Expertise </h3>
 								<!-- <hr> -->
 								<p>
 								<?php
@@ -1021,8 +996,40 @@ $expertise = $_SESSION['expertise'];
 									}
 								?>
 								</p>
-							</div>
+							<!-- </div> -->
 						</div>
+					</div>
+				</div>
+			</div>
+			<div id="Articles" class="tabcontent" style="display: block;">
+				<div class="articletable-container">
+					<h2 class="article-heading">Published Articles</h2>
+					<div class="table-container">
+						<table class="article-table">
+							<thead>
+								<tr>
+									<th>Title</th>
+									<th>Date</th>
+									<th>Views</th>
+									<th>Hearts</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Article 1</td>
+									<td>March 18, 2024</td>
+									<td>150</td>
+									<td>80</td>
+								</tr>
+								<tr>
+									<td>Article 2</td>
+									<td>March 15, 2024</td>
+									<td>120</td>
+									<td>65</td>
+								</tr>
+								<!-- Add more rows as needed -->
+							</tbody>
+						</table>
 					</div>
 				</div>
 			</div>
@@ -1154,13 +1161,13 @@ $expertise = $_SESSION['expertise'];
 						</div> 				
 					</div>
 					<div class="vertical-line"></div>
-						<div id="graph-container">
-							<h3>Contributions Graph</h3>
-							<canvas id="articlesChart" width="400" height="120"></canvas>
-						</div>
+					<div id="graph-container">
+						<h3>Contributions Graph</h3>
+						<canvas id="articlesChart" width="400" height="120"></canvas>
 					</div>
 				</div>
 			</div>
+			
 
 			<div id="Rewards" class="tabcontent">
 				<div id="rewards-container">
@@ -1496,7 +1503,7 @@ $expertise = $_SESSION['expertise'];
 					</div>
 					<div id="credit-history-container">
 						<div class="credit-container">
-							<div class="header-container">
+							<div class="header-achievements">
 								<h3>Achievements</h3>
 								
 							</div>
@@ -1643,7 +1650,9 @@ $expertise = $_SESSION['expertise'];
 									}
 								}
 								if ($profileComplete) {
-									echo "<p>You don't have published article yet, want to published article? Click here <a href='ex_submit.php'>Submit an Article</a></p>"; 
+									echo "<div class='no-article-message'>
+											<p>You don't have published article yet, want to published article? Click here <a href='ex_submit.php'>Submit an Article</a></p>
+										</div>"; 
 							  } else {
 								echo "<p>You don't have published article yet, want to published article? Click here <a href='#' id='link'>Submit an Article</a></p>"; 
 								  echo "<script>
@@ -2313,7 +2322,6 @@ $(document).ready(function () {
     });
 });		
 	
-
 </script><div class="footer" id="footer">
 </div>
 <script src="../JS/user-dashboard-universities.js"></script>  

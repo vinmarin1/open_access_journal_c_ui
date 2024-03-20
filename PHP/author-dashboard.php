@@ -52,6 +52,34 @@ $id = $_SESSION['id'];
     <div class="main">
       <div class="">
         <div class="articles-section">
+        <div class="row ">
+            <!-- Graph placeholder -->
+        
+          <!-- <div class="graph-section">
+            <h3>Published Articles Engagement</h3>
+            <canvas id="articlesChart" width="400" height="120"></canvas>
+          </div> -->
+          <div class="d-flex flex-wrap gap-4">
+            <!-- Top row cards -->
+            <div class="stat-card top-card ">
+              <h2>Total Views</h2>
+              <p>98 <span class="increase">+11%</span></p>
+            </div>
+            <div class="stat-card top-card">
+              <h2>Total Downloads</h2>
+              <p>98 <span class="increase">+11%</span></p>
+            </div>
+            <div class="stat-card top-card">
+              <h2>Total Views</h2>
+              <p>98 <span class="increase">+11%</span></p>
+            </div>
+            <div class="stat-card top-card">
+              <h2>Total Downloads</h2>
+              <p>98 <span class="increase">+11%</span></p>
+            </div>
+          </div>
+
+        </div>
         <?php
         if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
             $sqlSelectProfile = "SELECT first_name, middle_name, last_name, birth_date, gender, marital_status, orc_id, afiliations, position, field_of_expertise FROM author WHERE author_id = :author_id";
@@ -365,7 +393,7 @@ $id = $_SESSION['id'];
                            
                          $statusInfo = isset($journalStatusReviewer[$rowReviewer->status]) ? $journalStatusReviewer[$rowReviewer->status] : array('text' => '', 'color' => '', 'borderColor' => '');
                         echo '<td><center><span class="badge badge-pill" style="background-color: ' . $statusInfo['color'] . '; border: 1px solid ' . $statusInfo['borderColor'] . ';">' . $statusInfo['text'] . '</span></center></td>';
-                        echo '<td><center>...</center></td>';
+                        // echo '<td><center>...</center></td>';
                         echo '</tr>';
 
                           
@@ -551,34 +579,7 @@ $id = $_SESSION['id'];
           </div>
         </div>
 
-        <div class="row ">
-            <!-- Graph placeholder -->
-        
-          <!-- <div class="graph-section">
-            <h3>Published Articles Engagement</h3>
-            <canvas id="articlesChart" width="400" height="120"></canvas>
-          </div> -->
-          <div class="d-flex flex-wrap gap-4">
-            <!-- Top row cards -->
-            <div class="stat-card top-card ">
-              <h2>Total Views</h2>
-              <p>98 <span class="increase">+11%</span></p>
-            </div>
-            <div class="stat-card top-card">
-              <h2>Total Downloads</h2>
-              <p>98 <span class="increase">+11%</span></p>
-            </div>
-            <div class="stat-card top-card">
-              <h2>Total Views</h2>
-              <p>98 <span class="increase">+11%</span></p>
-            </div>
-            <div class="stat-card top-card">
-              <h2>Total Downloads</h2>
-              <p>98 <span class="increase">+11%</span></p>
-            </div>
-          </div>
 
-        </div>
 
       </div>
     </div>
