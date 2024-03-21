@@ -302,6 +302,23 @@ th {
 
 }
 
+@media only screen and (max-width: 768px) {
+  table {
+    overflow-x: auto;
+    display: block;
+  }
+
+  th,
+  td {
+    white-space: nowrap;
+    min-width: 120px; /* Adjust as needed */
+  }
+
+  th:first-child,
+  td:first-child {
+    min-width: 60px; /* Adjust as needed */
+  }
+}
 .status-label {
   display: inline-block;
   border-radius: 25px;
