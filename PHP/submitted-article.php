@@ -174,7 +174,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                                 if (!isset($reviewersData[$reviewerId])) {
                                     $reviewerCount++;
                                     $reviewersData[$reviewerId] = array(
-                                        'alias' => 'Reviewer ' . chr(64 + $reviewerCount), 
+                                        'alias' => 'Reviewer ' . chr(64 + $reviewerCount), // Convert number to alphabet
                                         'questionnaire' => $reviewerQuestionnaire,
                                         'comments' => $reviewerComments
                                     );
@@ -184,10 +184,8 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                             }
 
                             foreach ($reviewersData as $reviewerId => $reviewer) {
-                                $reviewerAlias = '<p class="reviewer-alias" data-reviewer-id="' . $reviewerId . '" data-questionnaire="' . $reviewer['questionnaire'] . '" data-comments="' . $reviewer['comments'] . '">' . $reviewer['alias'] . '</p>';
-                                $reviewerAliases[] = $reviewerAlias;
+                                $reviewerAliases[] = '<p class="reviewer-alias" data-reviewer-id="' . $reviewerId . '">' . $reviewer['alias'] . '</p>';
                             }
-                            
 
                             foreach ($reviewerAliases as $alias) {
                                 echo $alias;
@@ -198,9 +196,21 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                     }
                 ?>
 
-
-
             </div>
+
+            <div id="reviewerModal" class="modal">
+            <div class="modal-content mt-5">
+                <div class="modal-header">
+                    <p class="reviewerCommentsTitle">Reviewer Comments</p>
+                    <span class="close">&times;</span>
+                </div>
+                <div class="mt-4 reviewerComments" id="reviewerDetails">
+                <!-- Details will be dynamically populated here -->
+                </div>
+            </div>
+            </div>
+
+
 
 
 
@@ -500,7 +510,73 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 <script src="../JS/reusable-header.js"></script>
 <script src="../JS/submitted-article.js"></script>
+<script>
+    // Get the modal
+var modal = document.getElementById("reviewerModal");
 
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// Function to open modal
+function openModal() {
+  modal.style.display = "block";
+}
+
+// Function to close modal
+function closeModal() {
+  modal.style.display = "none";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  closeModal();
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    closeModal();
+  }
+}
+
+// Function to fetch reviewer details and populate modal
+function fetchReviewerDetails(reviewerId, articleId) {
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState == XMLHttpRequest.DONE) {
+      if (xhr.status == 200) {
+        var reviewerDetails = JSON.parse(xhr.responseText);
+        displayReviewerDetails(reviewerDetails);
+        openModal();
+      } else {
+        console.error("Error fetching reviewer details: " + xhr.status);
+      }
+    }
+  };
+  xhr.open("GET", "../PHP/fetch_reviewer_details.php?reviewer_id=" + reviewerId + "&article_id=" + articleId, true);
+  xhr.send();
+}
+
+// Function to display reviewer details in the modal
+function displayReviewerDetails(details) {
+  var detailsHTML = "";
+  details.forEach(function(detail) {
+    detailsHTML += "<p class='questionnaires'>Question: " + detail.questionnaire + "</p>";
+    detailsHTML += "<p class='commentsR'>Comments: " + detail.comments + "</p>";
+  });
+  document.getElementById("reviewerDetails").innerHTML = detailsHTML;
+}
+
+// Add event listener to reviewer aliases
+var reviewerAliases = document.getElementsByClassName("reviewer-alias");
+for (var i = 0; i < reviewerAliases.length; i++) {
+  reviewerAliases[i].addEventListener("click", function() {
+    var reviewerId = this.getAttribute("data-reviewer-id");
+    fetchReviewerDetails(reviewerId, <?php echo $articleId; ?>);
+  });
+}
+
+</script>
 
 </body>
 </html>
