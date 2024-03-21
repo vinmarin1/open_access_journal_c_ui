@@ -5,7 +5,12 @@ if (isset($_GET['reviewer_id']) && isset($_GET['article_id'])) {
     $authorId = $_GET['reviewer_id'];
     $articleId = $_GET['article_id'];
     
-    $sql = "SELECT reviewer_questionnaire, comments FROM reviewer_answer WHERE author_id = :authorId AND article_id = :article_id and comments IS NOT NULL";
+    $sql = "SELECT reviewer_questionnaire, comments 
+    FROM reviewer_answer 
+    WHERE author_id = :authorId 
+    AND article_id = :article_id 
+    AND (comments IS NOT NULL AND comments <> '')";
+
     $params = array(':authorId' => $authorId, ':article_id' => $articleId);
     
     $sqlRun = database_run($sql, $params);
