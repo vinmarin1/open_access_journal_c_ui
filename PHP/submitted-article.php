@@ -200,12 +200,10 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                 ?>
 
 
-         
-
-
-
-
             </div>
+
+            
+
             <div class="logs-container">
                <!-- Button trigger modal -->
                <button type="button" class="btn btn-primary" id="log-btn" data-bs-toggle="modal" data-bs-target="#modal-dialog-centered">

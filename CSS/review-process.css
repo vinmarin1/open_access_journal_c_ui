@@ -236,14 +236,12 @@
     margin-bottom: 20px;
 }
 
-.firstContent, .decisions{
+.decisions{
     margin-left: 40px;
 }   
 
 
 .decisions h5,
-.firstContent h4,
-.firstContent h5, 
 .comments h5,
 .comments h4{
     font-family: Arial, Helvetica, sans-serif;
@@ -252,14 +250,12 @@
 
 
 .decisions h5::after,
-.firstContent h4::after,
-.firstContent h5::after,
 .comments h5::after{
     content: "*";
     color: red; /* Style the asterisk */
 }
 
-.firstContent label, .decisions label{
+.decisions label{
     font-size: small;
     color: gray;
 }
@@ -356,3 +352,60 @@
 
 
 
+#reviewFormTitle{
+    font-family: "Judson", serif;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 25px;
+    color: #0858A4;
+    width: 100%;
+    margin-left: 40px;
+    
+  }
+  
+  #title2{
+    font-family: "Judson", serif;
+    color: #0858A4;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
+    width: 100%;
+    margin-top: -15px;
+    margin-left: 40px;
+    
+  }
+
+ .col-md-9{
+    margin-left: auto;
+    margin-right: auto;
+ }
+
+.firstContent{
+    width: 100%;
+  
+}
+
+.questionsContainer{
+    width: 100%;
+}
+
+.questionsAnswer{
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.custom-radio {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #555;
+    border-radius: 0; /* Ensure square shape */
+    outline: none;
+}
+
+.custom-radio:checked {
+    background-color: #555;
+}
