@@ -152,49 +152,64 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
             <div class="table-header">Reviewer Comments</div>
             <hr style="height: 2px solid;">
             <div class="discussion-container" style="height: 200px; overflow-y: auto;">
-                <?php
-                    $sqlReviewComments = "SELECT reviewer_assigned.author_id, reviewer_assigned.article_id, reviewer_answer.reviewer_questionnaire, reviewer_answer.comments FROM reviewer_assigned LEFT JOIN reviewer_answer ON reviewer_assigned.author_id = reviewer_answer.author_id WHERE reviewer_assigned.article_id = :article_id AND reviewer_assigned.accept = 1 AND reviewer_assigned.answer = 1 AND reviewer_assigned.comment_accessible = 1";
+            <?php
+$sqlReviewComments = "SELECT reviewer_assigned.author_id, 
+                            reviewer_assigned.article_id, 
+                            reviewer_answer.reviewer_questionnaire, 
+                            reviewer_answer.comments 
+                     FROM reviewer_assigned 
+                     LEFT JOIN reviewer_answer 
+                     ON reviewer_assigned.author_id = reviewer_answer.author_id 
+                     WHERE reviewer_assigned.article_id = :article_id 
+                        AND reviewer_assigned.accept = 1 
+                        AND reviewer_assigned.answer = 1 
+                        AND reviewer_assigned.comment_accessible = 1 
+                        AND reviewer_answer.comments <> ''"; // Filter out reviewers with empty comments
 
-                    $params = array('article_id' => $articleId);
-                    $sqlRun = database_run($sqlReviewComments, $params);
+$params = array('article_id' => $articleId);
+$sqlRun = database_run($sqlReviewComments, $params);
 
-                    if ($sqlRun) {
-                        $result = $sqlRun;
+if ($sqlRun) {
+    $result = $sqlRun;
 
-                        if (!empty($result)) {
-                            $reviewerAliases = array();
-                            $reviewersData = array();
-                            $reviewerCount = 0;
+    if (!empty($result)) {
+        $reviewerAliases = array();
+        $reviewersData = array();
+        $reviewerCount = 0;
 
-                            foreach ($result as $row) {
-                                $reviewerId = $row->author_id;
-                                $reviewerQuestionnaire = $row->reviewer_questionnaire;
-                                $reviewerComments = $row->comments;
+        foreach ($result as $row) {
+            $reviewerId = $row->author_id;
+            $reviewerQuestionnaire = $row->reviewer_questionnaire;
+            $reviewerComments = $row->comments;
 
-                                if (!isset($reviewersData[$reviewerId])) {
-                                    $reviewerCount++;
-                                    $reviewersData[$reviewerId] = array(
-                                        'alias' => 'Reviewer ' . chr(64 + $reviewerCount), // Convert number to alphabet
-                                        'questionnaire' => $reviewerQuestionnaire,
-                                        'comments' => $reviewerComments
-                                    );
-                                } else {
-                                    $reviewersData[$reviewerId]['comments'] .= "<br>" . $reviewerComments;
-                                }
-                            }
+            if (!isset($reviewersData[$reviewerId])) {
+                // Check if comments are not empty before adding the reviewer
+                if (!empty($reviewerComments)) {
+                    $reviewerCount++;
+                    $reviewersData[$reviewerId] = array(
+                        'alias' => 'Reviewer ' . chr(64 + $reviewerCount), // Convert number to alphabet
+                        'questionnaire' => $reviewerQuestionnaire,
+                        'comments' => $reviewerComments
+                    );
+                }
+            } else {
+                $reviewersData[$reviewerId]['comments'] .= "<br>" . $reviewerComments;
+            }
+        }
 
-                            foreach ($reviewersData as $reviewerId => $reviewer) {
-                                $reviewerAliases[] = '<p class="reviewer-alias" data-reviewer-id="' . $reviewerId . '">' . $reviewer['alias'] . '</p>';
-                            }
+        foreach ($reviewersData as $reviewerId => $reviewer) {
+            $reviewerAliases[] = '<p class="reviewer-alias" data-reviewer-id="' . $reviewerId . '">' . $reviewer['alias'] . '</p>';
+        }
 
-                            foreach ($reviewerAliases as $alias) {
-                                echo $alias;
-                            }
-                        } else {
-                            echo "No Comments";
-                        }
-                    }
-                ?>
+        foreach ($reviewerAliases as $alias) {
+            echo $alias;
+        }
+    } else {
+        echo "No Comments";
+    }
+}
+?>
+
 
             </div>
 
