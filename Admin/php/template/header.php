@@ -287,7 +287,7 @@ $journal = get_journal_list();
             <ul class="navbar-nav flex-row align-items-center ms-auto">
               <li class="nav-item navbar-dropdown dropdown-user dropdown">
                   <a class="bell-icon" href="#" data-toggle="tooltip" data-placement="bottom" href="javascript:void(0);" data-bs-toggle="dropdown" title="Notification" aria-label="Notification" style="position: relative; margin-right: 10px;">
-                      <i class="menu-icon tf-icons bx bx-bell" style="position: relative;"></i>
+                      <i class="menu-icon tf-icons bx bx-bell" style="position: relative; color: black;"></i>
                       <span id="notification-count" class="badge bg-danger rounded-circle" style="position: absolute; top: -8px; right: -2px;"></span>
                   </a>
                   <ul id="notification-list" class="dropdown-menu dropdown-menu-end">
