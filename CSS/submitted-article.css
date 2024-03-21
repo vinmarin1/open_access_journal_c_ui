@@ -7,11 +7,17 @@ body {
     background: #f0f0f0;
   }
 
-  #title{
+  #title, #getArticleId, #abstract{
     font-family: "Judson", serif;
     font-weight: 400;
     font-style: normal;
+    padding-left: 5px;
+    width: 85%;
+    height: auto;
+
   }
+
+
 
   .keywords-title{
     font-family: "Judson", serif;
@@ -26,6 +32,8 @@ body {
     font-family: "Judson", serif;
     font-weight: 400;
     font-style: normal;
+    padding-left: 5px;
+    width: auto;
 
   }
 
@@ -490,5 +498,9 @@ ul li span {
   margin-bottom: 10px;
   text-decoration: none;
   color: #3498db;
+}
+
+.reviewer-alias:hover{
+  cursor: pointer;
 }
 
