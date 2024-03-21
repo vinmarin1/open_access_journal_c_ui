@@ -344,7 +344,7 @@ foreach ($journal_list as $journal) {
                             endingShape: 'rounded'
                         }
                     },
-                    colors: ['#71dd37', '#ffab00', '#FF5733'],
+                    colors: ['#71dd37', '#ffab00', '#ff3e1d'],
                     dataLabels: {
                         enabled: false
                     },
@@ -464,7 +464,7 @@ foreach ($journal_list as $journal) {
                             endingShape: 'rounded'
                         }
                     },
-                    colors: ['#71dd37', '#ffab00', '#FF5733'],
+                    colors: ['#71dd37', '#ffab00', '#ff3e1d'],
                     dataLabels: {
                         enabled: false
                     },
