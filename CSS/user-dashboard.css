@@ -123,9 +123,9 @@ body {
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #ccc;
-    background-color: #738678;
+    background-color: var(--gray);
     width: 100%;
-    color: white;
+    color: #0858a4;
     font-weight: bold;
     padding: 0px 15px 0px 15px;
     height: 80px;
@@ -134,7 +134,6 @@ body {
 .close-icon {
     cursor: pointer;
     font-size: 30px;
-    color: white !important;
 }
 
 .form-section {
