@@ -80,7 +80,7 @@ foreach ($journal_list as $journal) {
         </h4>
 
         <div class="row mb-2">
-            <div class="col-6 mb-4">
+            <div class="col-lg-6 col-md-12 mb-4">
                 <div class="card">
                     <div class="row row-bordered g-0">
                         <div class="col-md-12">
@@ -91,7 +91,7 @@ foreach ($journal_list as $journal) {
                 </div>
             </div>
 
-            <div class="col-6 mb-4">
+            <div class="col-lg-6 col-md-12 mb-4">
                 <div class="card">
                     <div class="row row-bordered g-0">
                         <div class="col-md-12">

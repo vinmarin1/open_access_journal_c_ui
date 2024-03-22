@@ -15,6 +15,7 @@
 }
 
 .app-brand-text.demo {
+    color: white;
   font-size: 1.2rem;
   letter-spacing: -0.5px;
 }

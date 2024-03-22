@@ -49,6 +49,11 @@ $journal = get_journal_list();
   <script src="../assets/js/config.js"></script>
   <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
 </head>
+<style>
+#text{
+  color: white;
+}
+</style>
 <body>
   <!-- Layout wrapper -->
   <div class="layout-wrapper layout-content-navbar">
@@ -71,7 +76,7 @@ $journal = get_journal_list();
 
         <div class="menu-inner-shadow"></div>
         <ul class="menu-inner py-1">
-          <li class="menu-header small text-uppercase"><span class="menu-header-text">Main</span></li>
+          <li class="menu-header small text-uppercase" id="text"><span class="menu-header-text" id="text">Main</span></li>
           <!-- Dashboards -->
           <?php
           if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
@@ -83,7 +88,7 @@ $journal = get_journal_list();
             <li class="menu-item">
               <a href="dashboard.php" class="menu-link">
                 <i class="menu-icon tf-icons bx bxs-dashboard"></i>
-                <div data-i18n="Boxicons">Dashboard</div>
+                <div data-i18n="Boxicons" id="text">Dashboard</div>
               </a>
             </li>
 
@@ -101,7 +106,7 @@ $journal = get_journal_list();
           <li class="menu-item">
             <a href="editordashboard.php" class="menu-link">
               <i class="menu-icon tf-icons bx bxs-dashboard"></i>
-              <div data-i18n="Boxicons">Dashboard</div>
+              <div data-i18n="Boxicons" id="text">Dashboard</div>
             </a>
           </li>
 
@@ -113,11 +118,11 @@ $journal = get_journal_list();
           <li class="menu-item">
             <a href="journalview.php" class="menu-link <?php if (basename($_SERVER['PHP_SELF']) == 'allsubmissionlist.php') echo 'active'; ?>">
               <i class="menu-icon tf-icons bx bx-windows"></i>
-              <div data-i18n="Boxicons">Submission</div>
+              <div data-i18n="Boxicons" id="text">Submission</div>
             </a>
           </li>
 
-          <li class="menu-header small text-uppercase"><span class="menu-header-text">Secondary</span></li>
+          <li class="menu-header small text-uppercase" id="text"><span class="menu-header-text" id="text">Secondary</span></li>
           
           <?php
           if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
@@ -128,7 +133,7 @@ $journal = get_journal_list();
               <li class="menu-item">
                 <a href="announcementlist.php" class="menu-link">
                   <i class="menu-icon tf-icons bx bx-microphone"></i>
-                  <div data-i18n="Boxicons">Announcement</div>
+                  <div data-i18n="Boxicons" id="text">Announcement</div>
                 </a>
               </li>
 
@@ -139,7 +144,7 @@ $journal = get_journal_list();
               <li class="menu-item">
                 <a href="issuelist.php" class="menu-link">
                   <i class="menu-icon tf-icons bx bx-list-plus"></i>
-                  <div data-i18n="Boxicons">Issue</div>
+                  <div data-i18n="Boxicons" id="text">Issue</div>
                 </a>
               </li>
 
@@ -153,14 +158,14 @@ $journal = get_journal_list();
               <li class="menu-item">
                 <a href="faqslist.php" class="menu-link">
                   <i class="menu-icon tf-icons bx bx-message-check"></i>
-                  <div data-i18n="Boxicons">FAQS</div>
+                  <div data-i18n="Boxicons" id="text">FAQS</div>
                 </a>
               </li>
 
               <li class="menu-item">
                 <a href="message.php" class="menu-link">
                   <i class="menu-icon tf-icons bx bxs-message-alt-check"></i>
-                  <div data-i18n="Boxicons">Message</div>
+                  <div data-i18n="Boxicons" id="text">Message</div>
                 </a>
               </li>
 
@@ -171,12 +176,12 @@ $journal = get_journal_list();
           ?>
 
           <!-- Forms & Tables -->
-          <li class="menu-header small text-uppercase"><span class="menu-header-text">Settings</span></li>
+          <li class="menu-header small text-uppercase" id="text"><span class="menu-header-text" id="text">Settings</span></li>
           <!-- Tables -->
           <li class="menu-item">
             <a href="journallist.php" class="menu-link">
               <i class="menu-icon tf-icons bx bxs-detail"></i>
-              <div data-i18n="Tables">Journal</div>
+              <div data-i18n="Tables" id="text">Journal</div>
             </a>
           </li>
 
@@ -190,14 +195,14 @@ $journal = get_journal_list();
               <li class="menu-item">
                 <a href="userandroleslist.php" class="menu-link">
                   <i class="menu-icon tf-icons bx bx-user-circle"></i>
-                  <div data-i18n="Tables">User & Roles</div>
+                  <div data-i18n="Tables" id="text">User & Roles</div>
                 </a>
               </li>
 
               <li class="menu-item">
                 <a href="questionnaire.php" class="menu-link">
                   <i class="menu-icon tf-icons bx bx-list-minus"></i>
-                  <div data-i18n="Tables">Questionnaire</div>
+                  <div data-i18n="Tables" id="text">Questionnaire</div>
                 </a>
               </li>
 
@@ -206,12 +211,12 @@ $journal = get_journal_list();
           }
           ?>
               <!-- Reports -->
-              <li class="menu-header small text-uppercase"><span class="menu-header-text">OTHERS</span></li>
+              <li class="menu-header small text-uppercase" id="text"><span class="menu-header-text" id="text">OTHERS</span></li>
               <!-- Tables -->
               <li class="menu-item">
                 <a href="reportlist.php" class="menu-link">
                   <i class="menu-icon tf-icons bx bxs-report"></i>
-                  <div data-i18n="Tables">Reports</div>
+                  <div data-i18n="Tables" id="text">Reports</div>
                 </a>
               </li>
 
@@ -292,18 +297,40 @@ $journal = get_journal_list();
               <!-- User -->
               <li class="nav-item navbar-dropdown dropdown-user dropdown">
                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
-                  <div class="avatar avatar-online">
-                    <img src="../assets/img/profile.jpg" alt class="w-px-40 h-auto rounded-circle" />
-                  </div>
+                <?php
+                  if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) { 
+                      $profile_pic = isset($_SESSION['profile_pic']) ? $_SESSION['profile_pic'] : '';
+                      if (!empty($profile_pic)) {
+                          echo '<div class="avatar avatar-online">
+                                    <img src="' . $profile_pic . '" alt="" class="w-px-40 h-auto rounded-circle" />
+                                </div>';
+                      } else {
+                          echo '<div class="avatar avatar-online">
+                                    <img src="../assets/img/profile.jpg" alt="" class="w-px-40 h-auto rounded-circle" />
+                                </div>';
+                      }
+                  }
+                  ?>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
                   <li>
                     <a class="dropdown-item" href="#">
                       <div class="d-flex">
                         <div class="flex-shrink-0 me-3">
-                          <div class="avatar avatar-online">
-                            <img src="../assets/img/profile.jpg" alt class="w-px-40 h-auto rounded-circle" />
-                          </div>
+                        <?php
+                          if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) { 
+                              $profile_pic = isset($_SESSION['profile_pic']) ? $_SESSION['profile_pic'] : '';
+                              if (!empty($profile_pic)) {
+                                  echo '<div class="avatar avatar-online">
+                                            <img src="' . $profile_pic . '" alt="" class="w-px-40 h-auto rounded-circle" />
+                                        </div>';
+                              } else {
+                                  echo '<div class="avatar avatar-online">
+                                            <img src="../assets/img/profile.jpg" alt="" class="w-px-40 h-auto rounded-circle" />
+                                        </div>';
+                              }
+                          }
+                          ?>
                         </div>
                         <div class="flex-grow-1">
                           <?php

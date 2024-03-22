@@ -67,6 +67,7 @@ function login($data)
                 $_SESSION['date_added'] = $row_author->date_added;
                 $_SESSION['affix'] = $row_author->affix;
                 $_SESSION['expertise'] = $row_author->field_of_expertise;
+                $_SESSION['profile_pic'] = $row_author->profile_pic;
                 $_SESSION['USER']->urli = $urli;
                 $_SESSION['LOGGED_IN'] = true;
             } else {
@@ -87,6 +88,7 @@ function login($data)
                     $_SESSION['first_name'] = $row_admin->first_name;
                     $_SESSION['last_name'] = $row_admin->last_name;
                     $_SESSION['middle_name'] = $row_admin->middle_name;
+                    $_SESSION['profile_pic'] = $row_admin->profile_pic;
                     $_SESSION['USER']->urli = $urli;
                     $_SESSION['LOGGED_IN'] = true;
                 } else {

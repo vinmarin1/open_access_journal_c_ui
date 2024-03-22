@@ -525,8 +525,7 @@ include 'dbcon.php';
                     reviewer_assigned
             ) AS ra ON months.month_number = ra.donation_month AND years.year_number = ra.donation_year
             GROUP BY years.year_number, months.month_number
-            ORDER BY years.year_number, months.month_number;
-                ";
+            ORDER BY years.year_number, months.month_number;";
                             
             $results = execute_query($sql);
     
@@ -560,11 +559,8 @@ include 'dbcon.php';
                 ) AS years
                 LEFT JOIN logs ON months.month_number = MONTH(logs.date) AND years.year_number = YEAR(logs.date)
                 GROUP BY years.year_number, months.month_number
-                ORDER BY years.year_number, months.month_number;
-
-                ";
-                            
-
+                ORDER BY years.year_number, months.month_number;";
+      
             $results = execute_query($sql, [$year]);
 
     
@@ -657,5 +653,68 @@ include 'dbcon.php';
             }
         }
     }
+
+    if (!function_exists('get_userlist_data')) {
+        function get_userlist_data() {
+
+            $sql = "SELECT * FROM author WHERE `status` = 1 ORDER BY author_id DESC";
+
+            $results = execute_query($sql);
+
+            $data = array();
+
+            if ($results !== false) {
+                $data['userlist'] = $results;
+                return $data;
+            } else {
+                return array('status' => true, 'data' => []);
+            }
+        }
+    }
+
+    if (!function_exists('get_user_data')) {
+        function get_user_data() {
+            $sql = "SELECT 
+                        SUM(CASE WHEN `gender` = 'Female' THEN 1 ELSE 0 END) AS FemaleCount,
+                        SUM(CASE WHEN `gender` = 'Male' THEN 1 ELSE 0 END) AS MaleCount,
+                        SUM(CASE WHEN `gender` IS NULL OR `gender` = '' THEN 1 ELSE 0 END) AS Others
+                    FROM 
+                        `author` WHERE status = 1";
     
+            $results = execute_query($sql);
+    
+            $data = array();
+    
+            if ($results !== false) {
+                $data = $results[0];
+            } else {
+                $data['status'] = false;
+                $data['data'] = [];
+            }
+            return $data;
+        }
+    }
+
+    if (!function_exists('get_user_data1')) {
+        function get_user_data1() {
+            $sql = "SELECT 
+                        SUM(CASE WHEN `position` = 'FACULTY' OR `position` = 'Faculty' THEN 1 ELSE 0 END) AS Faculty,
+                        SUM(CASE WHEN `position` = 'STUDENT' OR `position` = 'Student' THEN 1 ELSE 0 END) AS Student,
+                        SUM(CASE WHEN `position` IS NULL OR `position` = '' THEN 1 ELSE 0 END) AS Others
+                    FROM 
+                        `author` WHERE status = 1";
+    
+            $results = execute_query($sql);
+    
+            $data = array();
+    
+            if ($results !== false) {
+                $data = $results[0];
+            } else {
+                $data['status'] = false;
+                $data['data'] = [];
+            }
+            return $data;
+        }
+    }
 ?>

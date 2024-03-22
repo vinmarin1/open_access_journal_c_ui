@@ -142,3 +142,28 @@ if (!function_exists('get_journal_detail')) {
         return false;
     }
 }
+
+if (!function_exists('get_journal_detail')) {
+    function get_journal_detail($cid)
+    {
+        $pdo = connect_to_database();
+
+        if ($pdo) {
+            try {
+                $query = "SELECT * FROM journal WHERE journal_id = :cid";
+                $stmt = $pdo->prepare($query);
+                $stmt->bindParam(':cid', $cid, PDO::PARAM_INT);
+                $stmt->execute();
+
+                $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+                return $result;
+            } catch (PDOException $e) {
+                echo "Error: " . $e->getMessage();
+                return false;
+            }
+        }
+
+        return false;
+    }
+}
