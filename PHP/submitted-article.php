@@ -152,60 +152,85 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
             <div class="table-header">Reviewer Comments</div>
             <hr style="height: 2px solid;">
             <div class="discussion-container" style="height: 200px; overflow-y: auto;">
-                <?php
-                    $sqlReviewComments = "SELECT 
-                                                reviewer_assigned.author_id,
-                                                MAX(reviewer_assigned.comment) AS comment,
-                                                MAX(reviewer_assigned.decision) AS decision,
-                                                MAX(reviewer_answer.reviewer_questionnaire) AS reviewer_questionnaire,
-                                                MAX(reviewer_answer.comments) AS reviewer_comments
-                                        FROM 
-                                                reviewer_assigned 
-                                        JOIN 
-                                                reviewer_answer 
-                                        ON 
-                                                reviewer_assigned.author_id = reviewer_answer.author_id 
-                                        WHERE 
-                                                reviewer_assigned.answer = 1 
-                                                AND reviewer_assigned.accept = 1 
-                                                AND reviewer_assigned.comment_accessible = 1 
-                                                AND reviewer_assigned.article_id = $articleId
-                                        GROUP BY 
-                                                reviewer_assigned.author_id";
+            <?php
+$sqlReviewComments = "SELECT reviewer_assigned.author_id, 
+                            reviewer_assigned.article_id, 
+                            reviewer_answer.reviewer_questionnaire, 
+                            reviewer_answer.comments 
+                     FROM reviewer_assigned 
+                     LEFT JOIN reviewer_answer 
+                     ON reviewer_assigned.author_id = reviewer_answer.author_id 
+                     WHERE reviewer_assigned.article_id = :article_id 
+                        AND reviewer_assigned.accept = 1 
+                        AND reviewer_assigned.answer = 1 
+                        AND reviewer_assigned.comment_accessible = 1 
+                        AND reviewer_answer.comments <> ''"; // Filter out reviewers with empty comments
 
-                    $sqlRun = database_run($sqlReviewComments);
+$params = array('article_id' => $articleId);
+$sqlRun = database_run($sqlReviewComments, $params);
 
-                    if ($sqlRun) {
-                        $result = $sqlRun;
+if ($sqlRun) {
+    $result = $sqlRun;
 
-                        if (!empty($result)) {
-                            $reviewerAliases = array();
-                            $nextAlias = 'A';
+    if (!empty($result)) {
+        $reviewerAliases = array();
+        $reviewersData = array();
+        $reviewerCount = 0;
 
-                            foreach ($result as $row) {
-                                $reviewerAliases[] = '<a href="#" class="reviewer-alias">Reviewer ' . $nextAlias . '</a>';
-                                $nextAlias = getNextReviewerAlias($nextAlias);
-                            }
+        foreach ($result as $row) {
+            $reviewerId = $row->author_id;
+            $reviewerQuestionnaire = $row->reviewer_questionnaire;
+            $reviewerComments = $row->comments;
 
-                            foreach ($reviewerAliases as $alias) {
-                                echo $alias;
-                            }
-                        }
-                    }
+            if (!isset($reviewersData[$reviewerId])) {
+                // Check if comments are not empty before adding the reviewer
+                if (!empty($reviewerComments)) {
+                    $reviewerCount++;
+                    $reviewersData[$reviewerId] = array(
+                        'alias' => 'Reviewer ' . chr(64 + $reviewerCount), // Convert number to alphabet
+                        'questionnaire' => $reviewerQuestionnaire,
+                        'comments' => $reviewerComments
+                    );
+                }
+            } else {
+                $reviewersData[$reviewerId]['comments'] .= "<br>" . $reviewerComments;
+            }
+        }
 
-                    function getNextReviewerAlias($currentAlias)
-                    {
-                        return chr(ord($currentAlias) + 1);
-                    }
-                ?>
+        foreach ($reviewersData as $reviewerId => $reviewer) {
+            $reviewerAliases[] = '<p class="reviewer-alias" data-reviewer-id="' . $reviewerId . '">' . $reviewer['alias'] . '</p>';
+        }
 
-
-         
-
-
+        foreach ($reviewerAliases as $alias) {
+            echo $alias;
+        }
+    } else {
+        echo "No Comments";
+    }
+}
+?>
 
 
             </div>
+
+            <div id="reviewerModal" class="modal">
+            <div class="modal-content mt-5">
+                <div class="modal-header">
+                    <p class="reviewerCommentsTitle">Reviewer Comments</p>
+                    <span class="close">&times;</span>
+                </div>
+                <div class="mt-4 reviewerComments" id="reviewerDetails">
+                <!-- Details will be dynamically populated here -->
+                </div>
+            </div>
+            </div>
+
+
+
+
+
+            
+
             <div class="logs-container">
                <!-- Button trigger modal -->
                <button type="button" class="btn btn-primary" id="log-btn" data-bs-toggle="modal" data-bs-target="#modal-dialog-centered">
@@ -500,7 +525,73 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 <script src="../JS/reusable-header.js"></script>
 <script src="../JS/submitted-article.js"></script>
+<script>
+    // Get the modal
+var modal = document.getElementById("reviewerModal");
 
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// Function to open modal
+function openModal() {
+  modal.style.display = "block";
+}
+
+// Function to close modal
+function closeModal() {
+  modal.style.display = "none";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  closeModal();
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    closeModal();
+  }
+}
+
+// Function to fetch reviewer details and populate modal
+function fetchReviewerDetails(reviewerId, articleId) {
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState == XMLHttpRequest.DONE) {
+      if (xhr.status == 200) {
+        var reviewerDetails = JSON.parse(xhr.responseText);
+        displayReviewerDetails(reviewerDetails);
+        openModal();
+      } else {
+        console.error("Error fetching reviewer details: " + xhr.status);
+      }
+    }
+  };
+  xhr.open("GET", "../PHP/fetch_reviewer_details.php?reviewer_id=" + reviewerId + "&article_id=" + articleId, true);
+  xhr.send();
+}
+
+// Function to display reviewer details in the modal
+function displayReviewerDetails(details) {
+  var detailsHTML = "";
+  details.forEach(function(detail) {
+    detailsHTML += "<p class='questionnaires'>Question: " + detail.questionnaire + "</p>";
+    detailsHTML += "<p class='commentsR'>Comments: " + detail.comments + "</p>";
+  });
+  document.getElementById("reviewerDetails").innerHTML = detailsHTML;
+}
+
+// Add event listener to reviewer aliases
+var reviewerAliases = document.getElementsByClassName("reviewer-alias");
+for (var i = 0; i < reviewerAliases.length; i++) {
+  reviewerAliases[i].addEventListener("click", function() {
+    var reviewerId = this.getAttribute("data-reviewer-id");
+    fetchReviewerDetails(reviewerId, <?php echo $articleId; ?>);
+  });
+}
+
+</script>
 
 </body>
 </html>

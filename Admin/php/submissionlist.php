@@ -21,6 +21,16 @@ $incomplete_articles = get_article_list($cid);
 
 <!DOCTYPE html>
 <html lang="en">
+<style>
+    .nav-link.active {
+        color: white !important;
+        background-color: #007bff;
+    }
+
+    .nav-link:not(.active) {
+        color: gray;
+    }
+</style>
 <body>
     <!-- Include header -->
     <?php include 'template/header.php'; ?>
@@ -131,7 +141,7 @@ $incomplete_articles = get_article_list($cid);
                                     ?>
                                 </td>
                                 <td width="5%">                         
-                                    <a href="javascript:void(0);" onclick="viewWorkflow(<?php echo $incomplete_articlesval->article_id; ?>, '<?php echo $incomplete_articlesval->workflow; ?>')" class="btn btn-outline-dark">View</a>
+                                    <a href="javascript:void(0);" onclick="viewWorkflow(<?php echo $incomplete_articlesval->article_id; ?>, '<?php echo $incomplete_articlesval->workflow; ?>')" class="btn btn-primary">View</a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

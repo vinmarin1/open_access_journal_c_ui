@@ -875,7 +875,11 @@ label {
 }
 
 .badge-popup .badge-box:hover {
+<<<<<<< HEAD
     border-color: var(--main, #0858A4); /* Change this to the desired border color */
+=======
+    border-color: #0858a4; /* Change this to the desired border color */
+>>>>>>> d970573e5f595b741a86a26c9654ae04b1ce99a6
 }
 
 #see-more {
@@ -891,7 +895,7 @@ label {
 
 /* Optional: Add hover effect */
 /*#see-more:hover {
-    background-color: var(--main, #0858A4);
+    background-color: #0858a4;
     color: #fff;
 }*/
 

@@ -3341,8 +3341,8 @@ fieldset:disabled .btn {
   --bs-nav-tabs-border-color: #fff;
   --bs-nav-tabs-border-radius: var(--bs-border-radius);
   --bs-nav-tabs-link-hover-border-color: rgba(67, 89, 113, 0.1);
-  --bs-nav-tabs-link-active-color: #697a8d;
-  --bs-nav-tabs-link-active-bg: #fff;
+  --bs-nav-tabs-link-active-color: #fff;
+  --bs-nav-tabs-link-active-bg: #004e98;
   --bs-nav-tabs-link-active-border-color: #fff;
   border-bottom: var(--bs-nav-tabs-border-width) solid var(--bs-nav-tabs-border-color);
 }
@@ -8563,7 +8563,8 @@ button:focus-visible {
   border-left: 1px solid #fff;
 }
 .nav-align-top .nav-tabs .nav-link.active {
-  box-shadow: 0 2px 6px 0 rgba(67, 89, 113, 0.12);
+  background-color: #004e98;
+  color: white;
 }
 
 .nav-align-right {
@@ -16759,6 +16760,7 @@ body {
   display: flex;
 }
 .menu .app-brand {
+  background-color: #004e98;
   width: 100%;
 }
 .menu .ps__thumb-y,
@@ -16780,6 +16782,7 @@ body {
 }
 
 .menu-inner {
+  background-color: #004e98;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -16789,6 +16792,7 @@ body {
 }
 
 .menu-inner-shadow {
+  color: #004e98;
   display: none;
   position: absolute;
   top: 4.225rem;
@@ -16798,6 +16802,7 @@ body {
   z-index: 2;
 }
 html:not(.layout-menu-fixed) .menu-inner-shadow {
+  color: #004e98;
   display: none !important;
 }
 
@@ -16826,6 +16831,7 @@ html:not(.layout-menu-fixed) .menu-inner-shadow {
 }
 
 .menu-icon {
+  color: white;
   flex-grow: 0;
   flex-shrink: 0;
   margin-right: 0.5rem;
@@ -17507,6 +17513,7 @@ html:not(.layout-footer-fixed) .content-wrapper {
 }
 
 .app-brand-text {
+  color: white;
   flex-shrink: 0;
   opacity: 1;
   transition: opacity 0.15s ease-in-out;

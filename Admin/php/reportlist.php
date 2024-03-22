@@ -38,7 +38,7 @@ $reportlist = get_report_list($journal_id);
                                 <td width="10%"><?php echo $reportlistval->report_id; ?></td>
                                 <td width="85%"><?php echo $reportlistval->title; ?></td>
                                 <td width="5%">
-                                    <button type="button" class="btn btn-outline-dark" onclick="viewReport('<?php echo $reportlistval->action; ?>')">
+                                    <button type="button" class="btn btn-primary" onclick="viewReport('<?php echo $reportlistval->action; ?>')">
                                         View
                                     </button>
                                 </td>
@@ -94,7 +94,7 @@ $reportlist = get_report_list($journal_id);
             var currentYear = currentDate.getFullYear();
 
             action = '../php/' + action + '?y=' + currentYear;
-        } if (action === 'topcontributors.php' || action === 'topreviewer.php' || action === 'journalreport.php') {
+        } if (action === 'topcontributors.php' || action === 'topreviewer.php' || action === 'journalreport.php' || action === 'userreport.php') {
             action = '../php/' + action;
         }
         window.location.href = action;

@@ -71,9 +71,9 @@ function openFilename(index) {
        
 
         titleElement.contentEditable = true;
-        titleElement.style.border = '1px red solid';
+        titleElement.style.border = '1px black solid';
         abstract.contentEditable = true;
-        abstract.style.border = '1px red solid';
+        abstract.style.border = '1px black solid';
         reviseFile.style.display = 'block';
         cancelbtn.style.display = 'block';
         submitBtn.style.display = 'block';
@@ -219,8 +219,18 @@ document.getElementById('submit-submission').addEventListener('click', function(
         text: 'Please select a file type'
       });
     } else {
-      showLoader();
-      form.submit(); 
+      Swal.fire({
+        icon: 'question',
+        text: 'Submit Revision?',
+        showCancelButton: true,
+        confirmButtonText: 'Yes',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          showLoader();
+          form.submit();
+        }
+      });
+      
     }
   }
 });

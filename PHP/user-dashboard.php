@@ -510,8 +510,14 @@ $expertise = $_SESSION['expertise'];
 														$orc_id = $user->orc_id;
 													
 														echo '<input type="text"  id="orcid" name="orcid" class="other-text-box" pattern="\d{4}-\d{4}-\d{4}-\d{4}" placeholder="(e.g., xxxx-xxxx-xxxx-xxxx)"
+<<<<<<< HEAD
 														value="' . $orc_id . '">';
+=======
+														value="' . $orc_id . '" readonly>';
+>>>>>>> d970573e5f595b741a86a26c9654ae04b1ce99a6
 													
+													
+
 														
 										
 													} else {

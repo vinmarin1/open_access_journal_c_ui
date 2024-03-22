@@ -64,6 +64,14 @@ foreach ($journal_list as $journal) {
     #totalPublished {
         color: #566A7F !important;
     }
+    .nav-link.active {
+        color: white !important;
+        background-color: #007bff;
+    }
+
+    .nav-link:not(.active) {
+        color: gray;
+    }
 </style>
 <body>
     <?php include 'template/header.php'; ?>
@@ -80,7 +88,7 @@ foreach ($journal_list as $journal) {
         </h4>
 
         <div class="row mb-2">
-            <div class="col-6 mb-4">
+            <div class="col-lg-6 col-md-12 mb-4">
                 <div class="card">
                     <div class="row row-bordered g-0">
                         <div class="col-md-12">
@@ -91,7 +99,7 @@ foreach ($journal_list as $journal) {
                 </div>
             </div>
 
-            <div class="col-6 mb-4">
+            <div class="col-lg-6 col-md-12 mb-4">
                 <div class="card">
                     <div class="row row-bordered g-0">
                         <div class="col-md-12">
@@ -336,7 +344,7 @@ foreach ($journal_list as $journal) {
                             endingShape: 'rounded'
                         }
                     },
-                    colors: ['#71dd37', '#ffab00', '#FF5733'],
+                    colors: ['#71dd37', '#ffab00', '#ff3e1d'],
                     dataLabels: {
                         enabled: false
                     },
@@ -456,7 +464,7 @@ foreach ($journal_list as $journal) {
                             endingShape: 'rounded'
                         }
                     },
-                    colors: ['#71dd37', '#ffab00', '#FF5733'],
+                    colors: ['#71dd37', '#ffab00', '#ff3e1d'],
                     dataLabels: {
                         enabled: false
                     },

@@ -528,53 +528,77 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 
 
 
-                <div class="col-md-10" style="padding-top:20px;">
-                    <h5 style="background-color:var(--main, #0858A4); color: white; padding:10px;" >Research Article Review Form</h5>
+                <div class="col-md-9" style="padding-top:20px;">
+                    <!-- <h5 style="background-color:var(--main, #0858A4); color: white; padding:10px;" >Research Article Review Form</h5> -->
                     <div class="contents">
                         <div class="row">
-                            <div class="col-md-5 firstContent">
+                            <div class="firstContent">
+
+                                <p class="mt-3 reviewFormTitle" id="reviewFormTitle">Research Review Form</p>
+
+                                <p id="title2">
+                                    <?php 
+                                        $sqlReviewraticle = "SELECT article.title 
+                                                            FROM article 
+                                                            JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id 
+                                                            WHERE article.status = 4
+                                                            AND reviewer_assigned.author_id = :author_id AND article.article_id = :article_id ORDER BY reviewer_assigned.date_issued DESC
+                                                            LIMIT 1";
+
+                                        $result = database_run($sqlReviewraticle, array('author_id' => $userId,
+                                            'article_id' => $articleId));
+
+                                        if ($result !== false) {
+                                            foreach ($result as $row) {
+                                                echo $row->title;
+                                            }
+                                        } else {
+                                            echo "No title for this article."; 
+                                        }
+                                    ?>
+                                </p>
 
                             <!-- Content for the left half of the screen -->
-                                <h4 class="mt-4">Note: </h4>
-                                <p>Denotes Required Field</p>
+                                <!-- <h4 class="mt-4">Note: </h4> -->
+                                
 
-                                <h5>Paper Length:</h5>
+                                <!-- <h5>Paper Length:</h5> -->
+                                <div class="questionsContainer mt-4">
+                                    <div class="questionsAnswer">
+                                    <?php
+                                        $sqlQuestionnaire = "SELECT question, answer FROM reviewer_questionnaire";
+                                        $result = database_run($sqlQuestionnaire);
 
-                                <div>
-                                <?php
-                                $sqlQuestionnaire = "SELECT question, answer FROM reviewer_questionnaire";
-                                $result = database_run($sqlQuestionnaire);
+                                        if ($result) {
+                                            foreach ($result as $row) {
+                                                $question = htmlspecialchars($row->question);
+                                                echo '<li class="list-group-item mt-5" style="list-style: none; padding-left: 5px; color: white; background-color: #588297; font-size: 20px; font-family: \'Judson\', serif;">' . $question . '</li>';
 
-                                if ($result) {
-                                    foreach ($result as $row) {
-                                        $question = htmlspecialchars($row->question);
-                                        echo '<li class="list-group-item mt-4" style="list-style: none; font-family: &quot;Times New Roman&quot;, Times, serif; color: var(--main, #0858A4); font-size: 20px;">' . $question . '</li>';
+                                                // Split the choices using commas
+                                                $choices = explode(',', $row->answer);
 
-                                        // Split the choices using commas
-                                        $choices = explode(',', $row->answer);
-
-                                        // Display each choice as a radio button
-                                        foreach ($choices as $choice) {
-                                            $uniqueId = htmlspecialchars(trim($choice)) . '_' . uniqid(); // Create a unique ID for each radio button
-                                            echo '<input type="radio" name="answers[' . $question . ']" value="' . htmlspecialchars(trim($choice)) . '" id="' . $uniqueId . '" required>';
-                                            echo '<label for="' . $uniqueId . '" style="font-size: small; color: gray; padding-left: 5px;">' . htmlspecialchars(trim($choice)) . '</label><br>';
+                                                // Display each choice as a radio button
+                                                foreach ($choices as $choice) {
+                                                    $uniqueId = htmlspecialchars(trim($choice)) . '_' . uniqid(); // Create a unique ID for each radio button
+                                                    echo '<input type="radio" name="answers[' . $question . ']" value="' . htmlspecialchars(trim($choice)) . '" id="' . $uniqueId . '" required class="custom-radio" style="margin-left: 10px; margin-top: 10px; display: inline-block">';
+                                                    echo '<label for="' . $uniqueId . '" style="font-size: small; color: gray; padding-left: 5px;">' . htmlspecialchars(trim($choice)) . '</label><br>';
+                                                }
+                                                
+                                                echo '<div class="form-floating mt-2">';
+                                                echo '<textarea class="form-control" name="comments[' . $question . ']" id="floatingTextarea" style="height: 150px; font-size: small; color: gray; width: 100%;"></textarea>';
+                                                echo '<label for="floatingTextarea">Additional comment</label>';
+                                                echo '</div>';
+                                            }
+                                        } else {
+                                            echo 'The questionnaire has not been updated yet';
                                         }
-                                        
-                                        echo '<div class="form-floating mt-2">';
-                                        echo '<textarea class="form-control" name="comments[' . $question . ']" id="floatingTextarea" style="height: 150px; font-size: small; color: gray; width: 300px;"></textarea>';
-                                        echo '<label for="floatingTextarea">Additional comment</label>';
-                                        echo '</div>';
-                                    }
-                                } else {
-                                    echo 'The questionnaire has not been updated yet';
-                                }
-                                ?>
+                                        ?>
 
 
-
-
-                                  
+                                    </div>
                                 </div>
+
+
 
                                 <!-- <div>
                                     <input type="radio" name="paperLength" value="quiteShort" id="quiteShort">
@@ -728,17 +752,6 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 
 
 
-                            <div class="col-md-6 comments">
-                            <!-- Content for the right half of the screen -->
-                            <!-- <h4>Additional comment for the following lines: Originality, <br> Literature Review, Evaluation.</h4>                    
-                                <textarea id="ansOrig" name="ansOrig" class="form-control" rows="8"></textarea>
-                            <br> -->
-                            <!-- <h5>Reference:</h5>
-                                <textarea id="ansRef" name="ansRef" class="form-control" rows="5" required></textarea>
-                            <br>
-                                <h5>Languages:</h5>
-                            <textarea id="ansLang" name="ansLang" class="form-control" rows="5" required></textarea>
-                            </div> -->
 
                         </div>
 
