@@ -11,9 +11,9 @@ function generateJournals(data) {
         return `
             <div class="container-fluid border rounded p-4" id="journal">
                 <div class="col-md-2 me-5 col-12 journal-title">
-                    <h3>${journal.journal_title}</h3>
+                    <h5 style="font-size:1.4em">${journal.journal_title}</h5>
                     <div class="pic-border">
-                        <img class="img-fluid" src="../Files/journal-image/${journal.image}" alt="" style="height: 260px; width:180px; background-color: #999995;">
+                        <img class="img-fluid" src="../Files/journal-image/${journal.image}" alt="" style="height: 260px; width:180px;">
                     </div>
                     <div class="d-flex flex-column py-4">
                         <a href="issues.php?journal_id=${journal.journal_id}">View Issues</a>
