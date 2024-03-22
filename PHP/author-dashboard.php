@@ -31,23 +31,14 @@ $id = $_SESSION['id'];
   <div class="main-container">
     <div class="content-over">
       <div class="cover-content">
-        <h3>Hello,
-          <?php
-        if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
-            $firstName = isset($_SESSION['first_name']) ? ucfirst($_SESSION['first_name']) : '';
-            $middleName = isset($_SESSION['middle_name']) ? ' ' . ucfirst($_SESSION['middle_name']) : '';
-            $lastName = isset($_SESSION['last_name']) ? ' ' . ucfirst($_SESSION['last_name']) : '';
-          
-            echo $firstName . $middleName . $lastName;
-        }
-        ?>
-        </h3>
+        <p>Home / My Contributions</p>
+        <h2 class="text-center">My Contributions</h2>
       </div>
-      <div>
+      <!-- <div>
         <button class="btn tbn-primary btn-md" id="btn1" onclick="window.location.href='author-dashboard.php'">My
           Contributions</button>
         <button class="btn tbn-primary btn-md" id="btn2" onclick="window.location.href='user-dashboard.php'">Edit/View Profile</button>
-      </div>
+      </div> -->
     </div>
     <div class="main">
       <div class="">

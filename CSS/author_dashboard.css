@@ -21,6 +21,12 @@
   height: 100%;
   background-color: rgba(53, 68, 74, 0.7);
 }
+.content-over p, .content-over h2 {
+  color: white; 
+  position: relative;
+  z-index: 1; 
+  display: block;
+  }
 
 .content-over h3 {
   font-size: 24px !important;
