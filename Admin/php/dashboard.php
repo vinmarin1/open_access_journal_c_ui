@@ -19,8 +19,6 @@ if ($submissionlist) {
     $months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
     $colors = [
-        '#004e98',
-        '#8592a3',
         '#71dd37',
         '#03c3ec',
         '#ffab00',
@@ -129,12 +127,11 @@ foreach ($ageGroups as $ageGroup) {
 }
 
 $colors = [
-    '#004e98',
-    '#8592a3',
     '#71dd37',
     '#03c3ec',
     '#ffab00',
-    '#ff3e1d'
+    '#ff3e1d',
+    '#8592a3'
 ];
 
 shuffle($colors);
