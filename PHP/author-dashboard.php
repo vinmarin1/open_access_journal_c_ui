@@ -59,8 +59,7 @@ $id = $_SESSION['id'];
             <h3>Published Articles Engagement</h3>
             <canvas id="articlesChart" width="400" height="120"></canvas>
           </div> -->
-          <div class="d-flex flex-wrap gap-4">
-            <!-- Top row cards -->
+          <!-- <div class="d-flex flex-wrap gap-4">
             <div class="stat-card top-card ">
               <h2>Total Views</h2>
               <p>98 <span class="increase">+11%</span></p>
@@ -77,7 +76,7 @@ $id = $_SESSION['id'];
               <h2>Total Downloads</h2>
               <p>98 <span class="increase">+11%</span></p>
             </div>
-          </div>
+          </div> -->
 
         </div>
         <?php
@@ -363,7 +362,7 @@ $id = $_SESSION['id'];
                                   <th>Title</th>
                                   <th>Journal</th>
                                   <th>Date Issued</th>
-                                  <th>Status</th>
+                                  <th style="text-align: center;">Status</th>
                                  
                                
                               </tr>';
@@ -482,7 +481,7 @@ $id = $_SESSION['id'];
                                   <th>Title</th>
                                   <th>Journal</th>
                                   <th>Date Issued</th>
-                                  <th>Status</th>
+                                  <th style="text-align: center;">Status</th>
                                   <th>Invitation</th>
                                 
                               
