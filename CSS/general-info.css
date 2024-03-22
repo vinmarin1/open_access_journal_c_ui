@@ -1,11 +1,11 @@
-h1 {
-    font-size:3em !important;
-    text-align: center;
-}
 h2 {
     text-align: center;
-    font-size: 2em !important;
 }
+
+h3 {
+    text-align: center;
+    /* font-size: 1.4em !important; */
+} 
 
 .content-over {
     position: relative;
@@ -31,7 +31,7 @@ h2 {
     background-color: rgba(53, 68, 74, 0.7);
 }
 
-.content-over p, .content-over h1 {
+.content-over p, .content-over h2 {
     color: white; 
     position: relative;
     z-index: 1; 

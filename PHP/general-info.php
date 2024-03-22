@@ -27,7 +27,7 @@
     <div class="content-over">
         <div class="cover-content">
             <p>Home / About Us / General Information</p>
-            <h1>About Us</h1>
+            <h2>About Us</h2>
         </div>
     </div> 
     
@@ -52,7 +52,7 @@
 
 
 <section>
-<h2>OUR STORY</h2>
+<h3>OUR STORY</h3>
 </section>
 
 <div class="container-fluid">
@@ -155,7 +155,7 @@
     </div>
 
     <section>
-       <h2  >EXECUTIVE OFFICIALS</h2>
+       <h3  >EXECUTIVE OFFICIALS</h3>
     </section>
 
     <section class="d-flex justify-content-center flex-wrap gap-3">
