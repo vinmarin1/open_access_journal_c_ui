@@ -36,30 +36,30 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
     <div class="step active" id="step1">
         <div class="main-container">
             <div class="content-over">
-                <div class="cover-content">
+                <div class="cover-content" style=" position: relative; width: 100%; background-size: cover; background-repeat: no-repeat;background-image: url('../images/background-spot.svg'); padding: 2em 1vw;">
                    
                     <p> Dashboard / Reviewer / Submitted Articles </p>
-                    <h3> 
-                        <?php 
-                        $sqlReviewraticle = "SELECT article.title 
-                                            FROM article 
-                                            JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id 
-                                            WHERE article.status = 4
-                                            AND reviewer_assigned.author_id = :author_id AND article.article_id = :article_id ORDER BY reviewer_assigned.date_issued DESC
-                                            LIMIT 1";
+                        <p id="dTitle"> 
+                            <?php 
+                            $sqlReviewraticle = "SELECT article.title 
+                                                FROM article 
+                                                JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id 
+                                                WHERE article.status = 4
+                                                AND reviewer_assigned.author_id = :author_id AND article.article_id = :article_id ORDER BY reviewer_assigned.date_issued DESC
+                                                LIMIT 1";
 
-                        $result = database_run($sqlReviewraticle, array('author_id' => $userId,
-                              'article_id' => $articleId));
+                            $result = database_run($sqlReviewraticle, array('author_id' => $userId,
+                                'article_id' => $articleId));
 
-                        if ($result !== false) {
-                            foreach ($result as $row) {
-                                echo $row->title;
+                            if ($result !== false) {
+                                foreach ($result as $row) {
+                                    echo $row->title;
+                                }
+                            } else {
+                                echo "No title for this article."; 
                             }
-                        } else {
-                            echo "No title for this article."; 
-                        }
-                        ?>
-                </h3>
+                            ?>
+                        </p>
 
 
                 </div>
@@ -105,28 +105,65 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 
                     ?>
 
-                    <h4>Abstract</h4>
-                        <p>
-                        <?php 
-                        $sqlReviewraticle = "SELECT article.abstract 
-                                            FROM article 
-                                            JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id 
-                                            WHERE article.status = 4
-                                            AND reviewer_assigned.author_id = :author_id AND article.article_id = :article_id ORDER BY reviewer_assigned.date_issued DESC
-                                            LIMIT 1";
+                <!-- <p id="dAbstractTitle">Abstract</p>
+                <p id="dAbstract">
+                <?php 
+                $sqlReviewraticle = "SELECT article.abstract 
+                                    FROM article 
+                                    JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id 
+                                    WHERE article.status = 4
+                                    AND reviewer_assigned.author_id = :author_id AND article.article_id = :article_id ORDER BY reviewer_assigned.date_issued DESC
+                                    LIMIT 1";
 
-                        $result = database_run($sqlReviewraticle, array('author_id' => $userId,
-                              'article_id' => $articleId));
+                $result = database_run($sqlReviewraticle, array('author_id' => $userId,
+                                'article_id' => $articleId));
 
-                        if ($result !== false) {
-                            foreach ($result as $row) {
-                                echo $row->abstract;
-                            }
-                        } else {
-                            echo "No abstract for this article."; 
+                if ($result !== false) {
+                    foreach ($result as $row) {
+                   
+                        $sentences = preg_split('/(?<=[.?!])\s+/', $row->abstract, -1, PREG_SPLIT_NO_EMPTY);
+                        
+                     
+                        foreach ($sentences as $sentence) {
+                            echo '<span class="first-letter">' . substr($sentence, 0, 1) . '</span>' . substr($sentence, 1) . ' ';
                         }
-                        ?>
-                        </p>
+                    }
+                } else {
+                    echo "No abstract for this article."; 
+                }
+                ?>
+                </p> -->
+
+                    <p id="dAbstractTitle">Abstract</p>
+                    <p id="dAbstract">
+                    <?php 
+                    $sqlReviewraticle = "SELECT article.abstract 
+                                        FROM article 
+                                        JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id 
+                                        WHERE article.status = 4
+                                        AND reviewer_assigned.author_id = :author_id AND article.article_id = :article_id ORDER BY reviewer_assigned.date_issued DESC
+                                        LIMIT 1";
+
+                    $result = database_run($sqlReviewraticle, array('author_id' => $userId,
+                                    'article_id' => $articleId));
+
+                    if ($result !== false) {
+                        foreach ($result as $row) {
+                            // Split the abstract into sentences
+                            $sentences = preg_split('/(?<=[.?!])\s+/', $row->abstract, -1, PREG_SPLIT_NO_EMPTY);
+                            
+                            // Output each sentence with the first letter wrapped in a span for styling
+                            foreach ($sentences as $sentence) {
+                                echo '<span class="first-letter">' . substr($sentence, 0, 1) . '</span>' . substr($sentence, 1) . ' ';
+                            }
+                        }
+                    } else {
+                        echo "No abstract for this article."; 
+                    }
+                    ?>
+                    </p>
+
+
                 </div>
 
                 <div class="col-md-4">
@@ -159,7 +196,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                             </p>
                         </div>
                         <hr style="height: 2px; background-color: var(--main, #0858A4); width: 100%">
-                        <h4 style="color: var(--main, #0858A4); font-family: Arial, Helvetica, sans-serif;" >Submitted in the 
+                        <p style="color: var(--main, #0858A4); font-family: 'Judson', serif; font-weight: 400; font-style: normal; font-size: 30px;" >Submitted in the 
                         <?php
                             $sqlJournal = "SELECT journal.journal, article.title FROM journal JOIN article ON journal.journal_id = article.journal_id JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id AND article.status = 4
                             AND reviewer_assigned.author_id = :author_id AND article.article_id = :article_id";
@@ -175,10 +212,10 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                             echo "No status for this article"; 
                             }
                         ?>
-                        </h4>
+                        </p>
                         </div>
             <div class="logs-date">
-                <p id="logsTitle" style="color: black; font-weight: bold;">Logs</p>
+                <p id="logsTitle" style="color: black; font-family: 'Judson', serif; font-weight: bold; font-style: normal;">Logs</p>
             
                 <div class="log-entry mt-4" id="logEntries">
                     <?php
@@ -208,7 +245,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
             </div>
 
             <div class="date">
-                <p style="color: black; font-weight: bold;">Date</p>
+                <p style="color: black; font-family: 'Judson', serif; font-weight: bold; font-style: normal;">Date</p>
                 <div class="log-date" id="logDates">
                     <?php
                         $sqlLogsDate = "SELECT logs_article.date FROM logs_article JOIN article ON logs_article.article_id = article.article_id WHERE logs_article.article_id = :article_id";
@@ -247,12 +284,13 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 
                 <div class="col-md-6">
                     <div class="table-container">
-                        <h5>Files Submitted</h5>
+                        <!-- <h5>Files Submitted</h5> -->
+                        <p id="fileSTitle">Files Submitted</p>
                         <table class="table table-hover" id="table-file" style="border-collapse: separate; border-spacing: 10px 10px 10px 10px;">
                             <thead>
                                 <tr>
-                                <th scope="col" style="background-color: var(--main, #0858A4); color: white; font-weight: normal;">File</th>
-                                <th scope="col" style="background-color: var(--main, #0858A4); color: white; font-weight: normal;">Date</th>
+                                <th scope="col" style="background-color: #F5F5F9; color: black;   font-family: 'Judson', serif; font-weight: bold; font-style: normal;">File</th>
+                                <th scope="col" style="background-color: #F5F5F9; color: black;   font-family: 'Judson', serif; font-weight: bold; font-style: normal;">Date</th>
                                 </tr>
                             </thead>
                             <tbody id="fileList">
@@ -347,7 +385,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                 <div class="col-md-6">
 
                     <div class="keywords">
-                        <p style="margin-top: 20px; margin-bottom: 10px; color: #959595 ">Keywords</p>
+                        <p style="margin-top: 20px; margin-bottom: 10px; color: #285581;  font-family: 'Judson', serif; font-weight: 400; font-style: normal; font-size: 30px; ">Keywords</p>
                         <div class="keyword1">
                         <ul style="display: flex;">
                             <?php
@@ -400,7 +438,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 
         <div class="main-container">
             <div class="content-over">
-                <div class="cover-content">
+                <div class="cover-content" style=" position: relative; width: 100%; background-size: cover; background-repeat: no-repeat;background-image: url('../images/background-spot.svg'); padding: 2em 1vw;">
                     <p> Dashboard / Reviewer / Submitted Articles / Steps and Guideline</p>
                     <h3> Review Form Response </h3>
                 </div>
@@ -512,7 +550,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 
         <div class="main-container">
             <div class="content-over">
-                <div class="cover-content">
+                <div class="cover-content" style=" position: relative; width: 100%; background-size: cover; background-repeat: no-repeat;background-image: url('../images/background-spot.svg'); padding: 2em 1vw;">
                     <p> Dashboard / Reviewer / Submitted Articles / Steps and Guideline / Review Form</p>
                     <h3> Review Form Response </h3>
                 </div>

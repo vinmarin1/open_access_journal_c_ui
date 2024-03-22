@@ -57,12 +57,18 @@ body {
     
   }
   .article-title {
-    background: linear-gradient(to right, #FFFFFF, #39A9D9);
-    padding: 20px; /* Or as needed for spacing */
-    font-size: 20px; /* Adjust as needed */
-    color: #285581; /* Assuming a dark grey text color */
-    line-height: 1.6; /* Adjust line height for better readability */
-  }
+    position: relative;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url("../images/background-spot.svg");
+    padding: 2em 1vw;
+    font-size: 20px;
+    color: #285581;
+    line-height: 1.6;
+    height: 30vh;
+}
+
   .main-title{
     margin-left: 5%;
     margin-right: 25%;
@@ -529,7 +535,7 @@ ul li span {
 .modal-header {
   position: relative; /* Ensure proper positioning of close button */
   
-}
+} 
 
 .close {
   color: #aaa;
