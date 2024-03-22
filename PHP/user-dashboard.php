@@ -901,7 +901,7 @@ $expertise = $_SESSION['expertise'];
 			</div>
 
 
-			<div id="About" class="tabcontent" style="display: block;">
+			<div id="About" class="tabcontent">
 				<div id="about-container">
 					<div id="logrecord-container">
 						<div class="log-box"><h3>Join In Community Since:</h3>
