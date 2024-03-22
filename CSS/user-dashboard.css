@@ -1077,7 +1077,7 @@ label {
 }
 
 .published-articles {
-    display: none;
+    display: block;
 }
 
 .recommendation-article {
@@ -1259,7 +1259,7 @@ label {
 }
 
 .published-articles {
-    display: none;
+    display: block;
 }
 
 .recommendation-article {

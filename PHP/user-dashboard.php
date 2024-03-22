@@ -897,7 +897,7 @@ $expertise = $_SESSION['expertise'];
 				<button class="tablinks" onclick="openTab(event, 'About')" id="defaultOpen">About</button>
 				<button class="tablinks" onclick="openTab(event, 'Contributions')">Contributions</button>
 				<button class="tablinks" onclick="openTab(event, 'Rewards')">Rewards</button>
-				<button class="tablinks" onclick="openTab(event, 'Articles')">Articles</button>
+				<!-- <button class="tablinks" onclick="openTab(event, 'Articles')">Articles</button> -->
 			</div>
 
 
