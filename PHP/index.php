@@ -384,7 +384,7 @@
 
     </div>
     <section id="procedure-container">
-      <header>
+      <header class="text-center">
         <h2>How to Publish an Article</h2>
         <span>Follow this step and publish your research</span>
       </header>
@@ -483,7 +483,7 @@
       </div>
     </section>
     <section id="faqs-container">
-      <header>
+      <header class="text-center">
         <h2>Frequently Asked Questions</h2>
         <span>For a comprehensive list, visit our dedicated <a href="./faqs.php">FAQ page.</a></span>
       </header>

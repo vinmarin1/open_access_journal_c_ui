@@ -124,7 +124,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                                     <div class="row amountBtn mt-4">
                                         <div class="col-md-4 col-6">
                                             <button type="button" onclick="selectAmount(100)">
-                                                <h3>PHP 100 </h3>
+                                                <h5>PHP 100 </h5>
                                                 <span style="color:red; font-size:25px">&hearts;</span>
                                                 <span style="margin-left:10px">2</span>
 
@@ -133,7 +133,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
 
                                         <div class="col-md-4 col-6">
                                             <button type="button" onclick="selectAmount(200)">
-                                                <h3>PHP 200</h3>
+                                                <h5>PHP 200</h5>
                                                 <span style="color:red; font-size:25px">&hearts;</span>
                                                 <span style="margin-left:10px">4</span>
                                             </button>
@@ -141,7 +141,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
 
                                         <div class="col-md-4 col-6  mt-md-0 mt-4">
                                             <button type="button" onclick="selectAmount(300)">
-                                                <h3>PHP 300</h3>
+                                                <h5>PHP 300</h5>
                                                 <span style="color:red; font-size:25px">&hearts;</span>
                                                 <span style="margin-left:10px">6</span>
                                             </button>
@@ -149,7 +149,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
 
                                         <div class="col-md-4 col-6 mt-4">
                                             <button type="button" onclick="selectAmount(500)">
-                                                <h3>PHP 500</h3>
+                                                <h5>PHP 500</h5>
                                                 <span style="color:red; font-size:25px">&hearts;</span>
                                                 <span style="margin-left:10px">10</span>
                                             </button>
@@ -157,7 +157,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
 
                                         <div class="col-md-4 col-6 mt-4">
                                             <button type="button" onclick="selectAmount(1000)">
-                                                <h3>PHP 1000</h3>
+                                                <h5>PHP 1000</h5>
                                                 <span style="color:red; font-size:25px">&hearts;</span>
                                                 <span style="margin-left:10px">20</span>
                                             </button>
@@ -165,7 +165,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
 
                                         <div class="col-md-4 col-6 mt-4">
                                             <button type="button" onclick="selectAmount(2000)">
-                                                <h3>PHP 2000</h3>
+                                                <h5>PHP 2000</h5>
                                                 <span style="color:red; font-size:25px">&hearts;</span>
                                                 <span style="margin-left:10px">40</span>
                                             </button>
@@ -175,7 +175,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                                     <div class="row custAmount mt-5">
                                         <div class="col-md-12">
                                             <button type="button" onclick="togglePopup()">
-                                                <h3> + Custom Amount</h3>
+                                                <h5> + Custom Amount</h5>
                                             </button>
                                         </div>
                                     </div>

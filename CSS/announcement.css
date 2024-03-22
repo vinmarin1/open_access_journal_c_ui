@@ -30,12 +30,12 @@ display: block;
 }
 
 .content-over h2{
-font-family: Arial, Helvetica, sans-serif;
+/* font-family: Arial, Helvetica, sans-serif; */
 margin-top: 20px;
 }
 
 p{
-    font-family: Arial, Helvetica, sans-serif;
+    /* font-family: Arial, Helvetica, sans-serif; */
     white-space: pre-line;
 }
 .border-joy img{
@@ -66,7 +66,7 @@ p{
 }
 
 .announce-text h4 {
-    font-family: Arial, Helvetica, sans-serif;
+    /* font-family: Arial, Helvetica, sans-serif; */
     color: var(--main, #0858A4);
 }
 
@@ -81,7 +81,7 @@ p{
 }
 
 .announce-text-2 h2 {
-    font-family: Arial, Helvetica, sans-serif;
+    /* font-family: Arial, Helvetica, sans-serif; */
     color: var(--main, #0858A4);
 }
 
@@ -90,7 +90,7 @@ p{
     margin-top: 100px;
 }
 .featured h2{
-    font-family: Arial, Helvetica, sans-serif;
+    /* font-family: Arial, Helvetica, sans-serif; */
     color: var(--main, #0858A4);
 }
 .example-featured {
@@ -132,7 +132,7 @@ background-color: var(--main, #0858A4);
 
 .watch-vid h2{
 color: white;
-font-family: Arial, Helvetica, sans-serif;
+/* font-family: Arial, Helvetica, sans-serif; */
 margin-left: 95px;
 display: flex;
 padding-top: 30px;
