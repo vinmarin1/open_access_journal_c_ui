@@ -10,6 +10,16 @@ $all_articles = get_allarticle_list();
 
 <!DOCTYPE html>
 <html lang="en">
+<style>
+    .nav-link.active {
+        color: white !important;
+        background-color: #;
+    }
+
+    .nav-link:not(.active) {
+        color: gray;
+    }
+</style>
 <body>
     <!-- Include header -->
     <?php include 'template/header.php'; ?>
@@ -144,7 +154,7 @@ $all_articles = get_allarticle_list();
                                     ?>
                                 </td>
                                 <td width="5%">                         
-                                    <a href="javascript:void(0);" onclick="viewWorkflow(<?php echo $all_articlesval->article_id; ?>, '<?php echo $all_articlesval->workflow; ?>')" class="btn btn-outline-dark">View</a>
+                                    <a href="javascript:void(0);" onclick="viewWorkflow(<?php echo $all_articlesval->article_id; ?>, '<?php echo $all_articlesval->workflow; ?>')" class="btn btn-primary">View</a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

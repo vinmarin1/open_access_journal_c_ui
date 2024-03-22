@@ -64,6 +64,14 @@ foreach ($journal_list as $journal) {
     #totalPublished {
         color: #566A7F !important;
     }
+    .nav-link.active {
+        color: white !important;
+        background-color: #007bff;
+    }
+
+    .nav-link:not(.active) {
+        color: gray;
+    }
 </style>
 <body>
     <?php include 'template/header.php'; ?>

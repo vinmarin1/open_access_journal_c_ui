@@ -7,6 +7,16 @@ $faqslist = get_faqs_list();
 
 <!DOCTYPE html>
 <html lang="en">
+<style>
+    .nav-link.active {
+        color: white !important;
+        background-color: #007bff;
+    }
+
+    .nav-link:not(.active) {
+        color: gray;
+    }
+</style>
 <body>
     <!-- Include header -->
     <?php include 'template/header.php'; ?>
