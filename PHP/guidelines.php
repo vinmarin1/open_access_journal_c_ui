@@ -36,7 +36,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
     <main class="d-flex flex-column-reverse flex-md-row gap-2">
         <aside class="">
         <div class="menu" id="for-contributors-menu">
-            <h3>For Contributors</h3>
+            <!-- <h3>For Contributors</h3> -->
             <ul id="for-contributors">
                 <li class="faq-toggle" id="author-guidelines" data-target="author-guidelines">Author Guidelines</li>
                 <li class="faq-toggle" data-target="article-submission">Article Submission</li>

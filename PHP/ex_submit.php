@@ -329,11 +329,11 @@
               
             </tbody>
         </table>
-        <div class="d-flex gap-1 w-100 justify-content-end mt-5">
-          <button type="button" class="btn btn-secondary btn-sm" id="prev4">Prev</button>
-          <button type="button" class="btn btn-primary btn-sm" id="next4" >Next</button>
-        </div>
-  </div>
+      </div>
+      <div class="d-flex gap-1 w-100 justify-content-end mt-5">
+        <button type="button" class="btn btn-secondary btn-sm" id="prev4">Prev</button>
+        <button type="button" class="btn btn-primary btn-sm" id="next4" >Next</button>
+      </div>
 
   </div>
 

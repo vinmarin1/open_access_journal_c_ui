@@ -6,21 +6,17 @@ text-align: justify !important;
 .tab-content {
     background-color: white;
 }
-h2 {
+
+h2,.main-sub ,.form-heading, .form-sub-heading, .form-label{
     color: var(--form-heading,#285581) !important;
-    font-size: 24px !important;
 }
 
 .main-sub {
-    color: var(--form-heading,#285581) !important;
     font-size: 16px ;
-    font-family: Inter;
-    
 }
 
-.form-heading, .form-sub-heading{
-    color: var(--form-heading,#285581);
-    font-family: Inter, sans-serif !important;
+.form-heading, .form-sub-heading, .form-label{
+    font-family: Raleway, sans-serif !important;
     max-width: 700px !important;
 }
 
@@ -33,10 +29,7 @@ h2 {
 .form-sub-heading, .form-label {
     font-size: 16px;
 }
-.form-label {
-    color: var(--form-heading);
-    font-family: Inter, sans-serif !important;
-}
+
 .form-heading, .form-label {
     font-weight: 600;
 }
@@ -59,7 +52,7 @@ th{
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 10px;
-    min-width: 325px;
+    min-width: 360px;
 }
 
 .checkItem {
