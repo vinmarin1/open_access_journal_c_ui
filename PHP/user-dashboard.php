@@ -1003,7 +1003,7 @@ $expertise = $_SESSION['expertise'];
 					</div>
 				</div>
 			</div>
-			<div id="Articles" class="tabcontent" style="display: block;">
+			<div id="Articles" class="tabcontent" style="display: none;">
 				<div class="articletable-container">
 					<h2 class="article-heading">Published Articles</h2>
 					<div class="table-container">

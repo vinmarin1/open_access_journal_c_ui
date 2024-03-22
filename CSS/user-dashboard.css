@@ -1561,13 +1561,19 @@ label {
     max-height: 300px;
     overflow-y: auto; 
 }
-
+.cert-container{
+    width: 100%;
+}
 #cert1 {
     width: 800px;
     height: 500px;
 }
+.cert-category{
+    position: absolute;
+}
 
 #category {
+    margin-top: 25px;
     font-weight: bold;
     text-align: center;
     font-style: italic;
