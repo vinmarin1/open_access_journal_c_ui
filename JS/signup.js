@@ -1,4 +1,4 @@
-const privacyPolicy = document.getElementById('privacyPolicy');
+// const privacyPolicy = document.getElementById('privacyPolicy');
 const modalBody = document.querySelector('.modal-body');
 
 let hasScrolledToBottom = false;
@@ -11,7 +11,7 @@ function isScrolledToBottom() {
 function handleScroll() {
   if (isScrolledToBottom() && !hasScrolledToBottom) {
 
-    privacyPolicy.removeAttribute('disabled');
+    // privacyPolicy.removeAttribute('disabled');
     hasScrolledToBottom = true;
   }
 }
@@ -23,25 +23,26 @@ modalBody.addEventListener('scroll', handleScroll);
 $('#exampleModal').on('shown.bs.modal', function () {
   handleScroll();
 });
+let agree = false
 
 document.addEventListener('DOMContentLoaded', function() {
-   
-    var privacyPolicyCheckbox = document.getElementById('privacyPolicy');
+    // var privacyPolicyCheckbox = document.getElementById('privacyPolicy');
     var agreeButton = document.getElementById('btn-agree');
     var closeButton = document.querySelector('.modal-content .btn-close');
  
-    privacyPolicyCheckbox.addEventListener('change', function() {
+    // privacyPolicyCheckbox.addEventListener('change', function() {
     
-        if (privacyPolicyCheckbox.checked) {
+    //     if (privacyPolicyCheckbox.checked) {
           
-            agreeButton.removeAttribute('disabled');
-        } else {
+    //         agreeButton.removeAttribute('disabled');
+    //     } else {
             
-            agreeButton.setAttribute('disabled', 'disabled');
-        }
-    });
+    //         agreeButton.setAttribute('disabled', 'disabled');
+    //     }
+    // });
 
     agreeButton.addEventListener('click', function() {
+        agree = true
         // Trigger a click on the close button
         closeButton.click();
     });
@@ -188,7 +189,7 @@ if (!isValidPassword(password)) {
 
 
 
-if (!privacyPolicy.checked) {
+if (!agree) {
     hasError = true;
     Swal.fire({
         icon: "info",
@@ -252,7 +253,7 @@ else if (hasError) {
         // '&mdname=' + encodeURIComponent(mdname) +
         '&lname=' + encodeURIComponent(lname) +
         '&password=' + encodeURIComponent(password) +
-        '&privacyPolicy=' + encodeURIComponent(privacyPolicy));
+        '&privacyPolicy=' + encodeURIComponent(true));
 }
 })();
     // const xhr = new XMLHttpRequest();
@@ -288,14 +289,14 @@ else if (hasError) {
 
 document.getElementById('email').addEventListener('input', function() {
     const email = document.getElementById('email');
-    email.style.border = '1px solid';
+    // email.style.border = '1px solid';
     document.getElementById('span1').style.display = 'none';
 });
 
 document.getElementById('fname').addEventListener('input', function() {
     document.getElementById('span2').style.display = 'none';
     const fname = document.getElementById('fname');
-    fname.style.border = '1px solid';
+    // fname.style.border = '1px solid';
 });
 
 // document.getElementById('mdname').addEventListener('input', function() {
@@ -305,13 +306,13 @@ document.getElementById('fname').addEventListener('input', function() {
 document.getElementById('lname').addEventListener('input', function() {
     document.getElementById('span4').style.display = 'none';
     const lname = document.getElementById('lname');
-    lname.style.border = '1px solid';
+    // lname.style.border = '1px solid';
 });
 
 document.getElementById('password').addEventListener('input', function() {
     document.getElementById('span5').style.display = 'none';
     const password = document.getElementById('password');
-    password.style.border = '1px solid';
+    // password.style.border = '1px solid';
 });
 
 // document.getElementById('orcid').addEventListener('input', function() {
