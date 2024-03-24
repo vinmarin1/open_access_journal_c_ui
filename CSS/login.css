@@ -94,11 +94,11 @@ button:hover {
     filter: brightness(20%);
 }
 #register-button{
-    margin-top: 10px;
+    /* margin-top: 10px;
     border: none;
     border: 1px var(--main, #0858A4) solid;
     background-color: white;
-    color: var(--main, #0858A4);
+    color: var(--main, #0858A4); */
 }
 @media only screen and (min-width: 600px) {
     /* Apply styles for screens wider than 600px */

@@ -51,7 +51,7 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
         </div>
         <div class="form-container">
             <form method="post" id="form" class="bg-white">
-                <p class="h4" id="login-label" style="color:rgb(33, 33, 33); font-family: Arial, Helvetica, sans-serif; font-weight:bold">Log in and Access your Account</p>
+                <p class="h4" id="login-label" style="color:rgb(33, 33, 33);  font-weight:bold">Log in and Access your Account</p>
                 <div class="input-field ">
                 <label for="email">Email:</label>
                 <input type="email" class="input form-control text-xs" name="email"  id="email" placeholder="Enter your email">
@@ -91,12 +91,13 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
                 </button>
                 <span id="countDown" style="color: red"></span>
                 <!-- <input class="btn btn-outline-danger btn-sm" type="button" value="Register" id="register-button" onclick="window.location.href= '../PHP/signup.php';"> -->
-                <button class="btn btn-outline-primary btn-sm" type="button" value="Register" id="register-button" onclick="window.location.href= '../PHP/signup.php';">Register</button>
                 <a id="forgotPasswordLink" style="color: var(--main, #0858A4); text-decoration: underline; cursor: pointer  ">Forgot Password?
                     <div class="spinner-border spinner-border-sm" role="status" id="spinner" style="display: none">
                         <span class="visually-hidden"></span>
                     </div>
                 </a>
+                <button class="btn btn-link-primary btn-sm " type="button" value="Register" id="register-button" onclick="window.location.href= '../PHP/signup.php';">New to QCUJ? Register</button>
+                
             </form>
             
         </div>

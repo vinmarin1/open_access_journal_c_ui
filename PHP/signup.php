@@ -14,9 +14,13 @@
 <?php include 'navbar.php' ?>
 
 <div class="form-container">
-	
+<img src="../images/qcu-bg.jpg" class="image-cover">
+    <!-- <div> -->
+    <!-- <h2>Welcome to QCUJ</h2> -->
+    <!-- <img src="../images/qcu-bg.jpg"/>
+    </div> -->
     <form method="POST" id="form" action="signup-function.php">
-       <p class="h5 my-3">Create your QCUJ Account</p>
+       <p class="h5 my-3" style="font-weight:bold">Create your QCUJ Account</p>
        <div class="input-field">
            <label for="email">Email:</label><span id="span1">*</span><span id="spanEmailValidation" style="display: none; color: red; font-size: 11px">Invalid email</span>
            <input type="email" class="input form-control" name="email"  id="email">
@@ -91,12 +95,13 @@
        <div id="h-captcha-container"
             class="h-captcha"
             data-sitekey="540dedd9-f0b7-412d-a713-1c4e383ee944"
-         >
+        >
         </div>
       <div class="fluid-container" id="footer-form">
  
-      <button type="button" class="btn btn-outline-primary btn-sm" id="privacyBtn"  data-bs-toggle="modal" data-bs-target="#exampleModal">Check Privacy</button>
+      <button type="button" class="btn btn-outline-primary btn-sm" id="privacyBtn"  data-bs-toggle="modal" data-bs-target="#exampleModal">Agree to Terms & Privacy</button>
       <input type="submit" value="Register" class="btn btn-primary btn-sm" id="signUpBtn">
+      <button type="button" class="btn btn-link-primary btn-sm" style="width:100%" onclick="window.location.href= '../PHP/login.php';">Already have an account? Login</button>
 
       </div>
 
@@ -127,8 +132,8 @@
             </div>
             <div class="modal-footer">
           
-              <input type="checkbox" class="form-check" name="privacyPolicy" name="privacyPolicy" id="privacyPolicy" value="1" disabled>
-              <button type="button"  class="btn btn-primary btn-sm" id="btn-agree" disabled>I Agree</button>
+              <!-- <input type="checkbox" class="form-check" name="privacyPolicy" name="privacyPolicy" id="privacyPolicy" value="1" disabled> -->
+              <button type="button"  class="btn btn-primary btn-sm" id="btn-agree">I Agree</button>
               <!-- <p id="privacyStatement" style="font-size: 15px">I've read and agree with the terms and privacy of the website.</p> -->
             </div>
           </div>
@@ -150,4 +155,4 @@
 <script src="../JS/password.js"></script>
 
 </body>
-</html>x
+</html>
