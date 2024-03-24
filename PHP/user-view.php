@@ -791,15 +791,60 @@ if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
                     <div class="stats-main">
                         <div class="stats-container">
                             <div class="stat">
-                                <div class="stats-values">15</div>
+                                <div class="stats-values">
+                                    <?php
+                                        $sql = "SELECT logs.article_id, logs.date, logs.type FROM logs JOIN article ON logs.article_id = article.article_id JOIN author ON article.author_id = author.author_id WHERE author.orc_id = :orc_id AND logs.type = 'read'";
+                                        $params = array('orc_id' => $orcid);
+                                        $sqlRun = database_run($sql, $params);
+
+                                        if($sqlRun != false){
+                                           echo (count($sqlRun));
+                                        }else{
+                                            echo '0';
+                                        }
+                                    
+
+                                    
+                                    ?>
+                                </div>
                                 <div class="stats-labels">Views</div>
                             </div>
                             <div class="stat">
-                                <div class="stats-values">58</div>
+                                <div class="stats-values">
+                                    <?php
+                                            $sql = "SELECT logs.article_id, logs.date, logs.type FROM logs JOIN article ON logs.article_id = article.article_id JOIN author ON article.author_id = author.author_id WHERE author.orc_id = :orc_id AND logs.type = 'download'";
+                                            $params = array('orc_id' => $orcid);
+                                            $sqlRun = database_run($sql, $params);
+
+                                            if($sqlRun != false){
+                                            echo (count($sqlRun));
+                                            }else{
+                                                echo '0';
+                                            }
+                                        
+
+                                        
+                                    ?>
+                                </div>
                                 <div class="stats-labels">Downloads</div>
                             </div>
                             <div class="stat">
-                                <div class="stats-values">24</div>
+                                <div class="stats-values">
+                                    <?php
+                                        $sql = "SELECT logs.article_id, logs.date, logs.type FROM logs JOIN article ON logs.article_id = article.article_id JOIN author ON article.author_id = author.author_id WHERE author.orc_id = :orc_id AND logs.type = 'citation'";
+                                        $params = array('orc_id' => $orcid);
+                                        $sqlRun = database_run($sql, $params);
+
+                                        if($sqlRun != false){
+                                        echo (count($sqlRun));
+                                        }else{
+                                            echo '0';
+                                        }
+                                            
+
+                                            
+                                    ?>
+                                </div>
                                 <div class="stats-labels">Citations</div>
                             </div>
                             <div class="stat">
