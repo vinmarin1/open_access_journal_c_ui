@@ -166,11 +166,12 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 
                 </div>
 
-                <div class="col-md-4">
-                    <!-- This is a Blank space -->
 
-                    <div>
-                        <div class="status">
+                <div class="col-md-1"><!-- This is a Blank space --></div>
+
+                <div class="col-md-4">
+                    <div style="padding-right: 50px;" >
+                        <div class="status" >
                             <p>
                             <?php
                             $sqlStatus = "SELECT article_status.status, article.title 
@@ -214,61 +215,63 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                         ?>
                         </p>
                         </div>
-            <div class="logs-date">
-                <p id="logsTitle" style="color: black; font-family: 'Judson', serif; font-weight: bold; font-style: normal;">Logs</p>
-            
-                <div class="log-entry mt-4" id="logEntries">
-                    <?php
-                        $sqlLogs = "SELECT logs_article.type FROM logs_article JOIN article ON logs_article.article_id = article.article_id WHERE logs_article.article_id = :article_id";
-
-                        $sqlRunLogs = database_run($sqlLogs, array('article_id' => $articleId));
-
-                        if ($sqlRunLogs !== false){
-                            $count = 0;
-                            foreach ($sqlRunLogs as $logsRow){
-                                if ($count < 5) {
-                                    echo '<p class="logsArticle" style="display: block">' . $logsRow->type . '</p>';
-                                } else {
-                                    echo '<p class="logsArticle" style="display: none">' . $logsRow->type . '</p>';
-                                }
-                                $count++;
-                            }
-                        } else {
-                            echo 'no logs for this article';
-                        }
-                    ?>
-                </div>
+            <div class="row">
+                <div class="col-md-4 col-6 logs-date">
+                    <p id="logsTitle" style="color: black; font-family: 'Judson', serif; font-weight: bold; font-style: normal;">Logs</p>
                 
-               
+                    <div class="log-entry mt-4" id="logEntries">
+                        <?php
+                            $sqlLogs = "SELECT logs_article.type FROM logs_article JOIN article ON logs_article.article_id = article.article_id WHERE logs_article.article_id = :article_id";
 
-              
-            </div>
+                            $sqlRunLogs = database_run($sqlLogs, array('article_id' => $articleId));
 
-            <div class="date">
-                <p style="color: black; font-family: 'Judson', serif; font-weight: bold; font-style: normal;">Date</p>
-                <div class="log-date" id="logDates">
-                    <?php
-                        $sqlLogsDate = "SELECT logs_article.date FROM logs_article JOIN article ON logs_article.article_id = article.article_id WHERE logs_article.article_id = :article_id";
-
-                        $sqlDateParams = database_run($sqlLogsDate, array('article_id' => $articleId));
-
-                        if ($sqlDateParams !== false){
-                            $count = 0;
-                            foreach ($sqlDateParams as $logsDate){
-                                if ($count < 5) {
-                                    echo '<p style="display: block">' . $logsDate->date . '</p>';
-                                } else {
-                                    echo '<p style="display: none">' . $logsDate->date . '</p>';
+                            if ($sqlRunLogs !== false){
+                                $count = 0;
+                                foreach ($sqlRunLogs as $logsRow){
+                                    if ($count < 5) {
+                                        echo '<p class="logsArticle" style="display: block">' . $logsRow->type . '</p>';
+                                    } else {
+                                        echo '<p class="logsArticle" style="display: none">' . $logsRow->type . '</p>';
+                                    }
+                                    $count++;
                                 }
-                                $count++;
+                            } else {
+                                echo 'no logs for this article';
                             }
-                        } else {
-                            echo 'no logs for this article';
-                        }
-                    ?>
+                        ?>
+                    </div>
+                    
+                
+
+                
+                </div>
+
+                <div class="col-md-4 col-6 date">
+                    <p style="color: black; font-family: 'Judson', serif; font-weight: bold; font-style: normal;">Date</p>
+                    <div class="log-date" id="logDates">
+                        <?php
+                            $sqlLogsDate = "SELECT logs_article.date FROM logs_article JOIN article ON logs_article.article_id = article.article_id WHERE logs_article.article_id = :article_id";
+
+                            $sqlDateParams = database_run($sqlLogsDate, array('article_id' => $articleId));
+
+                            if ($sqlDateParams !== false){
+                                $count = 0;
+                                foreach ($sqlDateParams as $logsDate){
+                                    if ($count < 5) {
+                                        echo '<p style="display: block;">' . $logsDate->date . '</p>';
+                                    } else {
+                                        echo '<p style="display: none">' . $logsDate->date . '</p>';
+                                    }
+                                    $count++;
+                                }
+                            } else {
+                                echo 'no logs for this article';
+                            }
+                        ?>
+                    </div>
                 </div>
             </div>
-            <div class="btn-group mt-4">
+            <div class="col-md-8 btn-groups mt-4">
             <button type="button" class="btn btn-outline-primary btn-sm"  onclick="viewAllLogs()" id="viewLogsBtn" style="width: 430px; margin-left: -5px;">View All Logs</button>
                 <button type="button" class="btn btn-outline-primary btn-sm"  onclick="hideLogs()" id="hideLogsBtn" style="display: none; width: 430px; margin-left: -5px;">Hide Logs</button>
             </div>
@@ -289,8 +292,8 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                         <table class="table table-hover" id="table-file" style="border-collapse: separate; border-spacing: 10px 10px 10px 10px;">
                             <thead>
                                 <tr>
-                                <th scope="col" style="background-color: #F5F5F9; color: black;   font-family: 'Judson', serif; font-weight: bold; font-style: normal;">File</th>
-                                <th scope="col" style="background-color: #F5F5F9; color: black;   font-family: 'Judson', serif; font-weight: bold; font-style: normal;">Date</th>
+                                <th scope="col" style="background-color: #F5F5F9; color: black;   font-family: 'Judson', serif; font-weight: bold; font-style: normal; font-size: large; ">File</th>
+                                <th scope="col" style="background-color: #F5F5F9; color: black;   font-family: 'Judson', serif; font-weight: bold; font-style: normal; font-size: large; ">Date</th>
                                 </tr>
                             </thead>
                             <tbody id="fileList">
@@ -420,12 +423,12 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 
 
                 </div>
-
-                <div class="col-md-5">
+                <div class="col-md-1"><!-- This is a Blank space --></div>
+                <div class="col-md-4" style="padding:0;">
                     <!-- This is a Blank space -->
                     <div class="btn">
-                        <button type="button" class="btn tbn-primary btn-md nextBtn" id="acceptBtn"  onclick="nextStep()" style="width: 430px; margin-left: -15px" >Accept</button>
-                        <button type="button"  id="btnReject" class="btn tbn-primary btn-md" onclick="rejectInvitation('<?php echo $articleId; ?>')" style="width: 430px; margin-left: -15px">Decline</button>
+                        <button type="button" class="btn tbn-primary btn-md nextBtn" id="acceptBtn"  onclick="nextStep()" >Accept</button>
+                        <button type="button"  id="btnReject" class="btn tbn-primary btn-md" onclick="rejectInvitation('<?php echo $articleId; ?>')">Decline</button>
 
                     </div>
                 </div>
@@ -529,7 +532,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                     </div>
                     <div class="form-check">
                         <input type="checkbox" id="checkBox" name="checkBox" value="1" >
-                        <label for="checkBox" style="color: var(--main, #0858A4);" >I have read and will follow the steps and Guidelines of reviewing this assign Article.</label><br>
+                        <label for="checkBox" style="color: var(--main, #0858A4); font-family: 'Judson', serif; font-size: 16px; " >I have read and will follow the steps and Guidelines of reviewing this assign Article.</label><br>
                     </div>
 
                     <div class="btn-action">
@@ -560,18 +563,18 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-1">
+                <div class="col-md-2">
                     <!-- This is a Blank space -->
                 </div>
 
 
 
-                <div class="col-md-9" style="padding-top:20px;">
+                <div class="col-md-8 col-12" style="padding-top:20px;">
                     <!-- <h5 style="background-color:var(--main, #0858A4); color: white; padding:10px;" >Research Article Review Form</h5> -->
                     <div class="contents">
                         <div class="row">
                             <div class="firstContent">
-
+                                <div class="col-md-12">
                                 <p class="mt-3 reviewFormTitle" id="reviewFormTitle">Research Review Form</p>
 
                                 <p id="title2">
@@ -595,6 +598,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                                         }
                                     ?>
                                 </p>
+                                </div>
 
                             <!-- Content for the left half of the screen -->
                                 <!-- <h4 class="mt-4">Note: </h4> -->
@@ -610,7 +614,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                                         if ($result) {
                                             foreach ($result as $row) {
                                                 $question = htmlspecialchars($row->question);
-                                                echo '<li class="list-group-item mt-5" style="list-style: none; padding-left: 5px; color: white; background-color: #588297; font-size: 20px; font-family: \'Judson\', serif;">' . $question . '</li>';
+                                                echo '<li class="list-group-item mt-5" style="list-style: none; padding-left: 5px; color: white; background-color: var(--main, #0858A4);; font-size: 20px; font-family: \'Judson\', serif;">' . $question . '</li>';
 
                                                 // Split the choices using commas
                                                 $choices = explode(',', $row->answer);
@@ -619,7 +623,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                                                 foreach ($choices as $choice) {
                                                     $uniqueId = htmlspecialchars(trim($choice)) . '_' . uniqid(); // Create a unique ID for each radio button
                                                     echo '<input type="radio" name="answers[' . $question . ']" value="' . htmlspecialchars(trim($choice)) . '" id="' . $uniqueId . '" required class="custom-radio" style="margin-left: 10px; margin-top: 10px; display: inline-block">';
-                                                    echo '<label for="' . $uniqueId . '" style="font-size: small; color: gray; padding-left: 5px;">' . htmlspecialchars(trim($choice)) . '</label><br>';
+                                                    echo '<label for="' . $uniqueId . '" style="font-size: small; color: gray; padding-left: 5px; font-family: \'Judson\', serif; ">' . htmlspecialchars(trim($choice)) . '</label><br>';
                                                 }
                                                 
                                                 echo '<div class="form-floating mt-2">';

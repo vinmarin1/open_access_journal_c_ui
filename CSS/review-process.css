@@ -34,7 +34,7 @@
 }
 
 .first-letter {
-    font-family: 'Times New Roman', Times, serif;
+    font-family: "Judson", serif;
     font-size: 1.5em; /* Adjust this value as needed */
     font-weight: bold;
     font-style: italic;
@@ -43,9 +43,10 @@
 
 
 #dAbstract{
-    font-family: "Judson", serif;
+    font-family: 'Judson', serif;
     font-weight: 400;
     font-style: normal;
+    font-size: larger;
 }
 
 .content-over::before {
@@ -67,7 +68,7 @@
 
 .content-over h3{
     font-weight: 500 !important;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Judson", serif;
     margin-top: 20px;
 }
 
@@ -90,7 +91,7 @@
 }
 
 .abstract h4{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Judson", serif;
     color:var(--main, #0858A4); 
 }
 
@@ -129,8 +130,8 @@
 }
 
 .logs-date, .date{
-    display:inline-flex;
-    flex-direction: column;
+    /* display:inline-flex;
+    flex-direction: column; */
     width: 40%;
 }
 
@@ -149,6 +150,10 @@
 .logs-date a{
     color: var(--main, #0858A4);
     text-decoration: none;
+}
+
+.logs-date, .date{
+    font-family: 'Judson', serif;
 }
 
 .keywords .btn{
@@ -180,15 +185,19 @@
     display: block;
 }
 
-
+.rev-guide ol, .rev-guide li {
+    font-family: "Judson", serif;
+    font-size: 18px;
+}
 
 .rev-guide h4{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Judson", serif;
     color:var(--main, #0858A4); 
     font-weight: bold;
 }
 
 .rev-guide ol {
+    
     list-style: none;
     counter-reset: my-counter;
     padding-bottom: 30px;
@@ -210,7 +219,9 @@
 
 }
 
-
+.btn-groups, .btn, .btn button{
+    width: 100%;
+}
 
 
 .logs-date,
@@ -246,6 +257,8 @@
 }
 
 .guidelines p{
+    font-family: "Judson", serif;
+    font-size: 18px;
     text-align: justify; 
     width: 94%; 
     margin: 0 auto; 
@@ -275,7 +288,7 @@
 .decisions h5,
 .comments h5,
 .comments h4{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Judson", serif;
     color: var(--main, #0858A4); 
 }
 
@@ -297,9 +310,9 @@
 
 
 
-.btn{
+/* .btn{
     margin-left: 10px;
-}
+} */
 
 .btn button , .btn-action button, .btn-final button{
     display: block;
@@ -389,7 +402,7 @@
     font-style: normal;
     font-size: 25px;
     color: #0858A4;
-    width: 100%;
+    width: 90%;
     margin-left: 40px;
     
   }
@@ -400,7 +413,7 @@
     font-weight: 400;
     font-style: normal;
     font-size: 20px;
-    width: 100%;
+    width: 90%;
     margin-top: -15px;
     margin-left: 40px;
     
