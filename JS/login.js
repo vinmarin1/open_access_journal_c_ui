@@ -257,12 +257,25 @@ document.addEventListener('DOMContentLoaded', function() {
                                 },
                             });
                         } else {
+                            
                             $('#login-spinner').hide();
                             $('#logging-in-text').hide();
                             $('#login-text').show();
                             $('#register-button').prop('disabled', false);
                             failedAttempts++;
                             if (failedAttempts >= 3) {
+                                $.ajax({
+                                    type: "POST",
+                                    url: "attemp_login_email.php",
+                                    data: { email: $('#email').val() }, 
+                                    success: function (response) {
+                                        console.log("Email sent successfully");
+                                    },
+                                    error: function (error) {
+                                        console.error("Error sending email");
+                                    }
+                                });
+                                
                                 var remainingSeconds = 60;
                                 disableLoginTimer = setInterval(function () {
                                     var countDownValue = Math.ceil(remainingSeconds);
@@ -270,17 +283,17 @@ document.addEventListener('DOMContentLoaded', function() {
                                     $('#email').prop('disabled', true);
                                     $('#password').prop('disabled', true);
                                     $('#login-button').prop('disabled', true);
-                                    $.ajax({
-                                        type: "POST",
-                                        url: "attemp_login_email.php",
-                                        data: { email: $('#email').val() }, 
-                                        success: function (response) {
-                                            console.log("Email sent successfully");
-                                        },
-                                        error: function (error) {
-                                            console.error("Error sending email");
-                                        }
-                                    });
+                                    // $.ajax({
+                                    //     type: "POST",
+                                    //     url: "attemp_login_email.php",
+                                    //     data: { email: $('#email').val() }, 
+                                    //     success: function (response) {
+                                    //         console.log("Email sent successfully");
+                                    //     },
+                                    //     error: function (error) {
+                                    //         console.error("Error sending email");
+                                    //     }
+                                    // });
                                     if (remainingSeconds <= 0) {
                                         clearInterval(disableLoginTimer);
                                         $('#countDown').text('');
