@@ -172,7 +172,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     }
-
     $(document).ready(function() {
         const spinner = document.getElementById('spinner');
         const forgotPasswordLink = document.getElementById('forgotPasswordLink');
@@ -193,8 +192,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const urli = urlParams.get('urli');
     
         $('#login-button').on('click', function() {
-            $('#login-text').hide();
-            $('#login-spinner').show();
+            $('#login-text').show();
+            $('#login-spinner').hide();
             $('#register-button').prop('disabled', true);
         });
     
@@ -234,7 +233,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             $('#login-spinner').hide();
                             $('#login-text').show();
                             startCountdown(advancedAttempt.remainingSeconds);
-                            countdownActive = true;
+                            countdownActive = true; // Set countdown as active
     
                             function startCountdown(remainingSeconds) {
                                 var countdownInterval = setInterval(function() {
@@ -251,7 +250,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 }, 1000);
                             }
                         } else {
-                            if (!countdownActive) { // Check if countdown is not active
+                            if (!countdownActive) {
                                 $.ajax({
                                     type: "POST",
                                     url: "../PHP/functions.php",
@@ -289,38 +288,41 @@ document.addEventListener('DOMContentLoaded', function() {
                                                 },
                                             });
                                         } else {
-                                            // Handle failed login attempt
                                             failedAttempts++;
+                                            $('#login-spinner').hide();
+                                            $('#login-text').show();
                                             if (failedAttempts >= 3) {
-                                                $.ajax({
-                                                    type: "POST",
-                                                    url: "attemp_login_email.php",
-                                                    data: { email: $('#email').val() }, 
-                                                    success: function (response) {
-                                                        console.log("Email sent successfully");
-                                                    },
-                                                    error: function (error) {
-                                                        console.error("Error sending email");
-                                                    }
-                                                });
-                                                
-                                                var remainingSeconds = 60;
-                                                disableLoginTimer = setInterval(function () {
-                                                    var countDownValue = Math.ceil(remainingSeconds);
-                                                    $('#countDown').text('Account disabled. Try again in ' + countDownValue + ' seconds');
-                                                    $('#email').prop('disabled', true);
-                                                    $('#password').prop('disabled', true);
-                                                    $('#login-button').prop('disabled', true);
-                                                    if (remainingSeconds <= 0) {
-                                                        clearInterval(disableLoginTimer);
-                                                        $('#countDown').text('');
-                                                        $('#email').prop('disabled', false);
-                                                        $('#password').prop('disabled', false);
+                                                if (!countdownActive) {
+                                                    $.ajax({
+                                                        type: "POST",
+                                                        url: "attemp_login_email.php",
+                                                        data: { email: $('#email').val() }, 
+                                                        success: function (response) {
+                                                            console.log("Email sent successfully");
+                                                        },
+                                                        error: function (error) {
+                                                            console.error("Error sending email");
+                                                        }
+                                                    });
+                                                    
+                                                    var remainingSeconds = 60;
+                                                    disableLoginTimer = setInterval(function () {
+                                                        var countDownValue = Math.ceil(remainingSeconds);
+                                                        $('#countDown').text('Account disabled. Try again in ' + countDownValue + ' seconds');
+                                                        $('#email').prop('disabled', true);
+                                                        $('#password').prop('disabled', true);
                                                         $('#login-button').prop('disabled', true);
-                                                        failedAttempts = 0; 
-                                                    }
-                                                    remainingSeconds--;
-                                                }, 1000);
+                                                        if (remainingSeconds <= 0) {
+                                                            clearInterval(disableLoginTimer);
+                                                            $('#countDown').text('');
+                                                            $('#email').prop('disabled', false);
+                                                            $('#password').prop('disabled', false);
+                                                            $('#login-button').prop('disabled', true);
+                                                            failedAttempts = 0; 
+                                                        }
+                                                        remainingSeconds--;
+                                                    }, 1000);
+                                                }
                                             }
                                             Swal.fire({
                                                 icon: "error",
@@ -336,7 +338,6 @@ document.addEventListener('DOMContentLoaded', function() {
                                     }
                                 });
                             } else {
-                                // Countdown is active, do not attempt login
                                 console.log("Countdown is active, login attempt skipped.");
                             }
                         }
@@ -345,4 +346,3 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-    
