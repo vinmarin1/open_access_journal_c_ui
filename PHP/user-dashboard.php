@@ -1070,7 +1070,7 @@ $expertise = $_SESSION['expertise'];
 										if ($result !== false && isset($result[0]->total_articles)) {
 											$totalArticles = $result[0]->total_articles;
 
-											$percentageIncrease = ($totalArticles / $totalContribution) * .100;
+											$percentageIncrease = ($totalArticles / $totalContribution) * 100;
 
 											echo round($percentageIncrease, 2) . "%";
 										} else {
@@ -1109,7 +1109,7 @@ $expertise = $_SESSION['expertise'];
 								if ($result !== false && isset($result[0]->total_reviewed)) {
 									$totalArticles = $result[0]->total_reviewed;
 
-									$percentageIncrease = .100;
+									$percentageIncrease = 100;
 
 								
 									$increasedCount = $totalArticles * (1 + ($percentageIncrease / 100));
@@ -1149,7 +1149,7 @@ $expertise = $_SESSION['expertise'];
 								if ($result !== false && isset($result[0]->total_articles)) {
 									$totalArticles = $result[0]->total_articles;
 
-									$percentageIncrease = .100;
+									$percentageIncrease = 100;
 
 								
 									$increasedCount = $totalArticles * (1 + ($percentageIncrease / 100));
@@ -1165,11 +1165,47 @@ $expertise = $_SESSION['expertise'];
 						</div> 				
 					</div>
 					<div class="vertical-line"></div>
-					<div id="graph-container">
-						<h3>Contributions Graph</h3>
-						<canvas id="articlesChart" width="400" height="120"></canvas>
+						<div id="graph-container">
+							<h3>Contributions Graph</h3>
+								<?php
+									$sqlViews = "SELECT MONTH(logs.date) AS month, COUNT(*) AS views
+									FROM logs
+									RIGHT JOIN article ON logs.article_id = article.article_id
+									WHERE article.author_id = :author_id AND logs.type = 'read'
+									GROUP BY MONTH(logs.date)";
+						
+									$sqlDownloads = "SELECT MONTH(logs.date) AS month, COUNT(*) AS downloads
+													FROM logs
+													RIGHT JOIN article ON logs.article_id = article.article_id
+													WHERE article.author_id = :author_id AND logs.type = 'download'
+													GROUP BY MONTH(logs.date)";
+									
+									$params = array('author_id' => $id);
+									
+									// Fetch views data
+									$viewsData = database_run($sqlViews, $params);
+									
+									// Fetch downloads data
+									$downloadsData = database_run($sqlDownloads, $params);
+									
+									// Initialize arrays to hold views and downloads data for all months
+									$allMonthsData = array_fill(1, 12, 0); // Fill array with zeros for all 12 months
+									$allDownloadsData = array_fill(1, 12, 0); // Fill array with zeros for all 12 months
+									
+									// Populate fetched data into respective arrays
+									foreach ($viewsData as $monthData) {
+										$allMonthsData[$monthData->month] = $monthData->views;
+									}
+									
+									foreach ($downloadsData as $monthData) {
+										$allDownloadsData[$monthData->month] = $monthData->downloads;
+									}
+						
+								?>
+
+							<canvas id="articlesChart" width="400" height="120"></canvas>
+						</div>
 					</div>
-				</div>
 			</div>
 			
 
@@ -2317,6 +2353,41 @@ $(document).ready(function () {
         }
     });
 });		
+
+window.onload = function() {
+    var ctx = document.getElementById('articlesChart').getContext('2d');
+    var chart = new Chart(ctx, {
+        type: 'bar', // Change to 'bar' for bar graph
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
+            datasets: [{
+                label: 'Views',
+                backgroundColor: 'rgba(10, 51, 91, 0.7)', // Increased alpha value
+                borderColor: '#0056b3',
+                data: <?php echo json_encode(array_values($allMonthsData)); ?>,
+            },
+            {
+                label: 'Downloads',
+                backgroundColor: 'rgba(229, 111, 31, 0.7)', // Increased alpha value
+                borderColor: '#E56F1F',
+                data: <?php echo json_encode(array_values($allDownloadsData)); ?>,
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            legend: {
+                labels: {
+                    usePointStyle: true
+                }
+            }
+        }
+    });
+};
+
 	
 </script><div class="footer" id="footer">
 </div>
