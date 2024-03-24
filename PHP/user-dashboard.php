@@ -1044,42 +1044,43 @@ $expertise = $_SESSION['expertise'];
 							<div class="stat-card top-card">
 								<h2>Total Contributions</h2>
 								<p>
-								<?php 
-									$sqlCountAritcle = "SELECT COUNT(*) as total_articles FROM article WHERE author_id = $id" ;
+									<?php 
+									$sqlTotalContribution = "SELECT SUM(total_count) AS total_contribution FROM (
+											SELECT COUNT(*) AS total_count FROM reviewer_assigned WHERE author_id = :author_id AND answer = 1
+											UNION ALL SELECT COUNT(*) AS total_count FROM article WHERE author_id = :author_id) AS counts
+									";
 
-									$result = database_run($sqlCountAritcle);
+									$params = array('author_id' => $id);
+									$result = database_run($sqlTotalContribution, $params);
 
-									if ($result !== false && isset($result[0]->total_articles)) {
-										$totalArticles = $result[0]->total_articles;
-										echo $totalArticles;
+									if ($result !== false && isset($result[0]->total_contribution)) {
+										$totalContribution = $result[0]->total_contribution;
+										echo $totalContribution;
 									} else {
-										echo "You are not a reviewer yet"; 
+										echo '0'; 
 									}
-								?>
+									?>
+
+									<span class="increase">
+										<?php 
+										$sqlCountArticle = "SELECT COUNT(*) as total_articles FROM article WHERE author_id = $id" ;
+
+										$result = database_run($sqlCountArticle);
+
+										if ($result !== false && isset($result[0]->total_articles)) {
+											$totalArticles = $result[0]->total_articles;
+
+											$percentageIncrease = ($totalArticles / $totalContribution) * .100;
+
+											echo round($percentageIncrease, 2) . "%";
+										} else {
+											echo "0"; 
+										}
+										?>
+									</span>
+								</p>
 
 
-
-								<span class="increase">
-								<?php 
-								$sqlCountAritcle = "SELECT COUNT(*) as total_articles FROM article WHERE author_id = $id" ;
-
-								$result = database_run($sqlCountAritcle);
-
-								if ($result !== false && isset($result[0]->total_articles)) {
-									$totalArticles = $result[0]->total_articles;
-
-									$percentageIncrease = 11;
-
-								
-									$increasedCount = $totalArticles * (1 + ($percentageIncrease / 100));
-
-									echo $percentageIncrease .''. "%";
-								} else {
-									echo "You are not a reviewer yet"; 
-								}
-							?>
-
-								</span></p>
 							</div>
 						</div>
 						<div class="stats-section">
@@ -1095,7 +1096,7 @@ $expertise = $_SESSION['expertise'];
 										$totalArticles = $result[0]->total_reviewed;
 										echo $totalArticles;
 									} else {
-										echo "You are not a reviewer yet"; 
+										echo "0"; 
 									}
 								?>	
 								<span class="increase">
@@ -1108,14 +1109,14 @@ $expertise = $_SESSION['expertise'];
 								if ($result !== false && isset($result[0]->total_reviewed)) {
 									$totalArticles = $result[0]->total_reviewed;
 
-									$percentageIncrease = 11;
+									$percentageIncrease = .100;
 
 								
 									$increasedCount = $totalArticles * (1 + ($percentageIncrease / 100));
 
 									echo $percentageIncrease .''. "%";
 								} else {
-									echo "You are not a reviewer yet"; 
+									echo "0"; 
 								}
 								?>
 								
@@ -1135,7 +1136,7 @@ $expertise = $_SESSION['expertise'];
 										$totalArticles = $result[0]->total_articles;
 										echo $totalArticles;
 									} else {
-										echo "You are not a reviewer yet"; 
+										echo "0"; 
 									}
 								?>
 	
@@ -1148,17 +1149,18 @@ $expertise = $_SESSION['expertise'];
 								if ($result !== false && isset($result[0]->total_articles)) {
 									$totalArticles = $result[0]->total_articles;
 
-									$percentageIncrease = 11;
+									$percentageIncrease = .100;
 
 								
 									$increasedCount = $totalArticles * (1 + ($percentageIncrease / 100));
 
 									echo $percentageIncrease .''. "%";
 								} else {
-									echo "You are not a reviewer yet"; 
+									echo "0"; 
 								}
 								?>
 								</span></p>
+				
 							</div>
 						</div> 				
 					</div>
