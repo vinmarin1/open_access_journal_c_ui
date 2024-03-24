@@ -192,7 +192,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const urli = urlParams.get('urli');
     
         $('#login-button').on('click', function() {
-            $('#login-text').show();
+            $('#login-text').hide();
             $('#login-spinner').hide();
             $('#register-button').prop('disabled', true);
         });
