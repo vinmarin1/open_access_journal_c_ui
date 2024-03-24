@@ -333,7 +333,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                             width: 350,
                                             height: true,
                                         });
-                                    }
+                                    }                                    
                                 }
                             });
                         }
