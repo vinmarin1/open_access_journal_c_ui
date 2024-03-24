@@ -10,6 +10,14 @@ password.addEventListener("keyup", function(){
     let pass = document.getElementById("password").value;
     checkStrength(pass);
 });
+password.addEventListener("input", function(){
+    let pass = document.getElementById("password").value;
+    checkStrength(pass);
+});
+document.addEventListener('DOMContentLoaded',function(){
+let pass = document.getElementById("password").value;
+
+checkStrength(pass)})
 
 function toggle(){
     if(state){
