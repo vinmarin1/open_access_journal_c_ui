@@ -32,16 +32,14 @@ function check_advanced_login_attempt($email)
 
     if ($result) {
         $row = $result[0];
-        
         date_default_timezone_set('Asia/Manila');
-        $currentTime = time();
-
-        $storedTime = strtotime($row->date);
-
-        $differenceInSeconds = $storedTime - $currentTime;
-
+        $currentTime = date('H:i:s');
+        $storedTime = date('H:i:s', strtotime($row->date));
+        
+        $differenceInSeconds = strtotime($storedTime) - strtotime($currentTime);
+        
         $advancedAttempt = $differenceInSeconds > 0;
-
+        
         return json_encode(array("advanced" => $advancedAttempt, "remainingSeconds" => $differenceInSeconds));
     } else {
         return json_encode(array("error" => "No login attempt record found for the email."));
