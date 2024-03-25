@@ -65,6 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         try {
             database_run($sql, $params, true);
             echo json_encode(['success' => true, 'message' => 'Registration successful!']);
+            close_connection(); 
         } catch (PDOException $e) {
             echo json_encode(['success' => false, 'message' => 'Database error: ' . $e->getMessage()]);
         } catch (Exception $e) {
