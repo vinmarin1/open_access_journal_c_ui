@@ -18,15 +18,18 @@ function database_run($query, $vars = array(), $isInsert = false)
     if ($check) {
       
         if ($isInsert) {
-            return $con->lastInsertId();
+            $lastInsertId = $con->lastInsertId();
+            $con = null; 
+            return $lastInsertId;
         }
 
         $data = $stm->fetchAll(PDO::FETCH_OBJ);
+        $con = null;
 
         if (count($data) > 0) {
             return $data;
         }
     }
-
+    $con = null;
     return false;
 }
