@@ -175,6 +175,8 @@
 @media screen and (max-width: 1024px) {
     .main-container {
         flex-direction: column;
+        width: 100% !important;
+        align-items: center;
 
     }
 
@@ -197,6 +199,9 @@
 
     .authors {
         font-style: italic;
+        display: flex;
+        flex-wrap: wrap;
+        width: auto !important;
     }
 }
 

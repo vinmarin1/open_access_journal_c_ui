@@ -60,6 +60,11 @@ require 'dbcon.php';
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
       </form> -->
     <!-- Login Dropdown -->
+    <div class="cta btn btn-outline-light rounded-pill" style="background-color: none !important">
+      <a class="" role="button" href="browse-articles.php">
+        Browse Articles
+      </a>
+    </div>
     <?php
     if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
         echo '
@@ -189,6 +194,7 @@ require 'dbcon.php';
               </div>';
       }
       ?>
+      
 </nav>
 <!-- 
 <div class="container-fluid" style="postion: absolute; z-index: 999; width: 100% height: auto">
