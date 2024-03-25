@@ -21,6 +21,12 @@
 nav .navbar-nav #navlogin:hover {
   background-color: transparent !important;
 }
+
+.cta:hover {
+ background-color: var(--secondary) !important;
+ border-color:var(--secondary) !important;
+ /* background-color: rgba(237, 246, 246, 0.493) !important; */
+}
 /* Notification button */
 #notification-button,
 #points-button {
