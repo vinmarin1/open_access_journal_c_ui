@@ -6,77 +6,74 @@
     <title>Footer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .links a {
-            color:white;
-            margin: 5px;
-            text-decoration: none;
-            font-size: 15px;
-            margin: 0 20px 10px 0;
-            font-family: Arial, Helvetica, sans-serif;
-            font-weight: normal;
-        }
-    </style>
+    <link rel="stylesheet" href="../CSS/footer.css">
 </head>
 
 <body>
-    <div class="text-white" style="background-color:var(--main, #0858A4); padding: 2em 6%;">
+    <footer class="site-footer mt-5">
+      <div class="container">
         <div class="row">
-            <div class="col-12 col-md-7 d-flex flex-column gap-4">
-                <div class="d-flex gap-2 justify-content-center justify-content-md-start">
-                    <img src="../images/qcuj.png" style="width:6em; height:6em" alt="" />
-                    <img style="width:5em; height:5em"  src="../images/qcu-logo.webp" alt="">
-                    <div class=" d-none d-lg-flex flex-column gap-1">
-                        <h4>QUEZON CITY UNIVERSITY JOURNALS</h4>
-                        <a href="https://qcu.edu.ph/" class="text-decoration-none text-white">Quezon City University, Philippines</a>
-                    </div>
-                </div>
-                <div class="links">
-                    <ul class="list-unstyled d-flex flex-wrap gap-2 justify-content-center justify-content-md-start">
-                        <li><a href="index.php">Home</a></li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink1"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                About Us
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink1">
-                                <li><a class="dropdown-item" style="color: black" href="general-info.php">General
-                                        Information</a></li>
-                                <li><a class="dropdown-item" style="color: black" href="developers.php">The
-                                        Developers</a></li>
-                                <li><a class="dropdown-item" style="color: black" href="contact-us.php">Contact Us</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><a href="publication.php">QCU Journals</a></li>
+          <div class="col-sm-12 col-md-5">
+            <h6>About</h6>
+            <p class="text-justify">QCUJ web application is an open access journal platform for Quezon City University, facilitating the submission and publication process. Leveraging machine learning, it offers personalized recommendations and streamlines procedures for enhanced user experience </p>
+          </div>
 
-                        <li><a href="announcement.php">Announcements</a></li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink2"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Guidelines
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink2">
-                                <li><a class="dropdown-item" style="color: black" href="./guidelines.php">For
-                                        Contributors</a></li>
-                                <li><a class="dropdown-item" style="color: black" href="./faqs.php">Frequently Asked
-                                        Question</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="donation.php">Donation</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-12 col-md-5 d-flex flex-column justify-content-center justify-content-md-start text-center text-md-start">
-                <span>Content on this site is licensed under a Creative Commons </span>
-                <span class="mb-2 d-none d-sm-flex">Attribution-ShareAlike 4.0 International <a class="text-center text-white"
-                        href="https://creativecommons.org/licenses/by-sa/4.0/">(CC BY-SA 4.0) </a>license.
-                </span>
-                <span>@QCUJ  <?php echo date("Y"); ?></span>
-            </div>
+          <div class="col-xs-6 col-md-2">
+            <h6>Categories</h6>
+            <ul class="footer-links">
+              <li><a href="issues.php?journal_id=1">The Gavel</a></li>
+              <li><a href="issues.php?journal_id=2">The Lamp</a></li>
+              <li><a href="issues.php?journal_id=3">The Star</a></li>
+              <li><a href="publication.php">All Publications</a></li>
+            </ul>
+          </div>
+
+          <div class="col-xs-6 col-md-2">
+            <h6>Quick Links</h6>
+            <ul class="footer-links">
+              <li><a href="/">Home</a></li>
+              <li><a href="general-info.php">About QCUJ</a></li>
+              <li><a href="announcement.php">Announcements</a></li>
+              <li><a href="donation.php">Donation</a></li>
+              <li><a href="browse-articles.php">Browse articles</a></li>
+            </ul>
+          </div>
+          <div class="col-xs-6 col-md-2">
+            <h6>Guidelines</h6>
+            <ul class="footer-links">
+              <li><a href="faqs.php">Frequently Asked Questions</a></li>
+              <li><a href="guidelines.php#templates-for-author">Templates</a></li>
+              <li><a href="guidelines.php#author-guidelines">Author Guidelines</a></li>
+              <li><a href="guidelines.php#become-a-reviewer">Become a Reviewer</a></li>
+              <li><a href="guidelines.php#publication-policy">Publication Policy</a></li>
+            </ul>
+          </div>
         </div>
-    </div>
-    
+        <hr>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 col-sm-6 col-xs-12 d-flex gap-2">
+            <img src="../images/qcuj.png" style="width:3em; height:3em" alt="" class="d-none d-sm-flex"/>
+            <img style="width:2.7em; height:2.7em"  src="../images/qcu-logo.webp" alt="" class="d-none d-sm-flex">
+            <p class="copyright-text">Content on this site is licensed under a Creative Commons &copy; <?php echo date("Y"); ?> 
+            All Rights Reserved by <a href="#">QCUJ</a>.
+            </p>
+          </div>
+
+          <div class="col-md-4 col-sm-6 col-xs-12">
+            <ul class="social-icons">
+              <li><a class="facebook" href="https://www.facebook.com/QCUREPL" target="blank">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 50 50">
+                	<path fill="currentColor" d="M26 20v-3c0-1.3.3-2 2.4-2H31v-5h-4c-5 0-7 3.3-7 7v3h-4v5h4v15h6V25h4.4l.6-5z" />
+                </svg></a>
+              </li>
+            
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
 </body>
 
 </html>
