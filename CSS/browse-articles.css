@@ -112,6 +112,9 @@
 .articles:hover {
     background-color: rgba(239, 242, 248, 0.456);
 }
+.articles:hover h6:first-child  {
+    color: rgba(18, 97, 255, 0.899) !important;
+}
 .article-details {
     flex: 3;
     color: #454545;

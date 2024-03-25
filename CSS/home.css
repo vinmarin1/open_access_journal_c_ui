@@ -258,6 +258,10 @@ box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.025);
 .article:hover{
   background-color: rgba(239, 242, 248, 0.617);
 }
+.article:hover #title{
+  color: rgba(18, 97, 255, 0.899);
+}
+
 
 .article .h6{
 font-size: 18px;
@@ -636,6 +640,12 @@ padding: 2em 8%;
   background-color: rgba(239, 242, 248, 0.617);
   cursor: pointer;
 }
+
+#most-popular-container #most-popular div:hover .title {
+  color: rgba(18, 97, 255, 0.899);
+
+}
+
 #most-popular-container .total {
   font-size: 18px;
   font-weight: 700;
