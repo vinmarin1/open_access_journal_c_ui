@@ -233,7 +233,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             $('#login-spinner').hide();
                             $('#login-text').show();
                             startCountdown(advancedAttempt.remainingSeconds);
-
+    
                             function startCountdown(remainingSeconds) {
                                 var countdownInterval = setInterval(function() {
                                     $('#countDown').text('Your Account still disabled. Try again in ' + remainingSeconds + ' seconds');
@@ -287,10 +287,6 @@ document.addEventListener('DOMContentLoaded', function() {
                                         });
                                     } else {
                                         // Handle failed login attempt
-                                        $('#login-spinner').hide();
-                                        $('#logging-in-text').hide();
-                                        $('#login-text').show();
-                                        $('#register-button').prop('disabled', false);
                                         failedAttempts++;
                                         if (failedAttempts >= 3) {
                                             $.ajax({
