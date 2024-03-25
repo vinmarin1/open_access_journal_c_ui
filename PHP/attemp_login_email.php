@@ -12,14 +12,18 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
     send_mail($recepient, $subject, $emailMessage);
     date_default_timezone_set('Asia/Manila');
-    $currentDateTime = date('Y-m-d H:i:s');
-    $advanceDateTime = date('Y-m-d H:i:s', strtotime($currentDateTime) + 60);
+        
+    $currentDateTime = new DateTime();
+
+    $currentDateTime->add(new DateInterval('PT60S'));
+    
+    $advanceDateTimeStr = $currentDateTime->format('Y-m-d H:i:s');
 
     $sql = "INSERT INTO login_attempt (`email`, `attempt`, `date`) VALUES (:email, :attempt, :date)";
     $params = array(
         'email' => $email,
         'attempt' => 3,
-        'date' => $advanceDateTime 
+        'date' => $advanceDateTimeStr 
     );
 
     database_run($sql, $params);
