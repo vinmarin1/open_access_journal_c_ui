@@ -5,19 +5,46 @@ ini_set('session.cookie_lifetime', 60 * 60 * 24 * 7);
 
 session_start();
 
-
-
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
-    $data = $_POST;
+    $action = isset($_POST['action']) ? $_POST['action'] : '';
 
-    $errors = login($data);
+    if ($action === 'check_advanced_login_attempt') {
+        $data = $_POST;
 
-    if (empty($errors)) {
-        // Login successful
-        echo json_encode(array("success" => "Login successful"));
+        echo check_advanced_login_attempt($data['email']);
     } else {
-        // Login failed, send error messages
-        echo json_encode(array("error" => implode("<br>", $errors)));
+        $data = $_POST;
+        $errors = login($data);
+
+        if (empty($errors)) {
+            echo json_encode(array("success" => "Login successful"));
+        } else {
+            echo json_encode(array("error" => implode("<br>", $errors)));
+        }
+    }
+}
+
+function check_advanced_login_attempt($email)
+{
+    $query = "SELECT `id`, `email`, `attempt`, `date` FROM `login_attempt` WHERE `email` = :email ORDER BY `date` DESC LIMIT 1";
+    $params = array(":email" => $email);
+    $result = database_run($query, $params);
+
+    if ($result) {
+        $row = $result[0];
+        
+        date_default_timezone_set('Asia/Manila');
+        $currentTime = time();
+
+        $storedTime = strtotime($row->date);
+
+        $differenceInSeconds = $storedTime - $currentTime;
+
+        $advancedAttempt = $differenceInSeconds > 0;
+
+        return json_encode(array("advanced" => $advancedAttempt, "remainingSeconds" => $differenceInSeconds));
+    } else {
+        return json_encode(array("error" => "No login attempt record found for the email."));
     }
 }
 
