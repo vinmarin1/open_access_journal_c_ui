@@ -27,27 +27,24 @@
     </div> -->
 
     <section id="journals">
-        <div class="container-fluid pub-container mb-3" id="journal">
+        <div class="pub-container mb-3" id="journal">
             <div class="journal-title">
                 <h3 id="journal_title">
                 </h3>
             </div>
             <div class="journal-details">
-                <h5>About</h5>
                 <p style="text-align: justify;" id="journal_details">
                 </p>
             </div>
-            <hr style="height: 2px; background-color: var(--main, #0858A4); width: 100%">
+            <hr style="height: 1px; background-color: var(--main, #0858A4); width: 100%">
         </div>
         <div id="issues-per-year-container" class="container">
-            <h3>All Issues</h3>
             <div id="skeleton-container" class="d-flex">
                 <div></div>
                 <div></div>
                 <div></div>
             </div>
             <div class="all-issues">
-            
             </div>
         </div>
    

@@ -31,7 +31,7 @@
             <form id="contactForm" method="POST" action="../PHP/contact-backend.php">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2 style="color: #285581;" >Contact Us</h2>
+                        <h2 >Contact Us</h2>
                         <p style="color: #959595;" >Feel free to contact us any time. We will get back to you as soon as we can.</p>
                     </div>
                     
@@ -136,23 +136,23 @@
                     <hr style="height: 2px; background-color: #959595; width: 100%">
                 </div>
 
-                <div class="col-md-12 mb-4 facebook">
-                    <span><i onclick="window.location.href='https://www.facebook.com/QCUREPL'" class="fa-brands fa-facebook-f" style="font-size:20px; color: white"></i></span>
+                <div class="col-md-12 mb-3 facebook">
+                    <span><i onclick="window.location.href='https://www.facebook.com/QCUREPL'" class="fa-brands fa-facebook-f" style="font-size:14px; color: white"></i></span>
                     <span><a href="https://www.facebook.com/QCUREPL">https://www.facebook.com/QCUREPL</a></span>
                 </div>
 
-                <div class="col-md-12 mb-4 number">
-                    <span><i class="fa-solid fa-phone" style="font-size:20px; color: white"></i></span>
+                <div class="col-md-12 mb-3 number">
+                    <span><i class="fa-solid fa-phone" style="font-size:14px; color: white"></i></span>
                     <span><a href="#">645-6133</a></span>
                 </div>
 
-                <div class="col-md-12 mb-4 gmail">
-                    <span><i onclick="window.location.href='' " class="fa-regular fa-envelope" style="font-size:20px; color: white"></i></span>
+                <div class="col-md-12 mb-3 gmail">
+                    <span><i onclick="window.location.href='' " class="fa-regular fa-envelope" style="font-size:14px; color: white"></i></span>
                     <span><a href="mailto:repl@qcu.edu.ph">repl@qcu.edu.ph</a></span>
                 </div>
 
-                <div class="col-md-12 mb-4 location">
-                    <span><i onclick="window.location.href='https://maps.google.com/?q=673+Quirino+Highway,+San+Bartolome,+Novaliches+1116+Quezon+City,+Philippines' " class="fa-solid fa-location-dot" style="font-size:20px; color: white"></i></span>
+                <div class="col-md-12 mb-3 location">
+                    <span><i onclick="window.location.href='https://maps.google.com/?q=673+Quirino+Highway,+San+Bartolome,+Novaliches+1116+Quezon+City,+Philippines' " class="fa-solid fa-location-dot" style="font-size:14px; color: white"></i></span>
                     <span><a href="https://maps.google.com/?q=673+Quirino+Highway,+San+Bartolome,+Novaliches+1116+Quezon+City,+Philippines">673 Quirino Highway, San Bartolome, Novaliches 1116 Quezon City, Philippines</a></span>
                 </div>
 

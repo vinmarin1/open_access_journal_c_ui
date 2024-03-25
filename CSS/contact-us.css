@@ -1,7 +1,7 @@
 .fill-info label{
     margin-top: 10px;
     display: block;
-    color: #285581;
+    color: var(--form-heading);
 }
 
 .fill-info input , .fill-info select , .fill-info textarea {
@@ -14,7 +14,7 @@
     color: white;
     position: relative;
     z-index: 1;
-    background-color: #285581;
+    background-color: var(--main);
     border-radius: 20px;
     padding: 0.5em 1em;
 }
@@ -29,7 +29,8 @@
 }
 
 .contact-info{
-    background-color: #285581;
+    background-color: var(--form-heading);
+    padding:0 16px;
 }
 
 .contact-info i{
