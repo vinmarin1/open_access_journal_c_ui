@@ -15,7 +15,7 @@
         <div class="row">
           <div class="col-sm-12 col-md-5">
             <h6>About</h6>
-            <p class="text-justify">QCUJ web application is an open access journal platform for Quezon City University, facilitating the submission and publication process. Leveraging machine learning, it offers personalized recommendations and streamlines procedures for enhanced user experience </p>
+            <p class="text-justify">QCUJ is an open access journal platform for Quezon City University, facilitating the submission and publication process. </p>
           </div>
 
           <div class="col-xs-6 col-md-2">
