@@ -1597,7 +1597,9 @@ table {
 
             quillThree.clipboard.dangerouslyPasteHTML(abstractContent + '\n\n' + referenceContent);
             quill.clipboard.dangerouslyPasteHTML(abstractContent);
-            quillTwo.clipboard.dangerouslyPasteHTML(referenceContent);
+            var contentWithNewlines = referenceContent.replace(/\\n/g, '\n');
+            var contentWithLineBreaks = contentWithNewlines.replace(/\n/g, '<br>');
+            quillTwo.clipboard.dangerouslyPasteHTML(contentWithLineBreaks);
 
             var currentDate = new Date();
             currentDate.setDate(currentDate.getDate() + 2);
