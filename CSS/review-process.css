@@ -19,14 +19,14 @@
 
 
 #dTitle{
-    font-family: "Judson", serif;
+    font-family: 'Raleway', sans-serif;
     font-weight: bold;
     font-style: normal;
     font-size: 30px;
 }
 
 #dAbstractTitle, #fileSTitle{
-    font-family: "Judson", serif;
+    font-family: 'Raleway', sans-serif;
     font-weight: 400;
     font-style: normal;
     font-size: 30px;
@@ -34,7 +34,7 @@
 }
 
 .first-letter {
-    font-family: "Judson", serif;
+    font-family: 'Raleway', sans-serif;
     font-size: 1.5em; /* Adjust this value as needed */
     font-weight: bold;
     font-style: italic;
@@ -43,7 +43,7 @@
 
 
 #dAbstract{
-    font-family: 'Judson', serif;
+    font-family: 'Raleway', sans-serif;
     font-weight: 400;
     font-style: normal;
     font-size: larger;
@@ -68,7 +68,7 @@
 
 .content-over h3{
     font-weight: 500 !important;
-    font-family: "Judson", serif;
+    font-family: 'Raleway', sans-serif;
     margin-top: 20px;
 }
 
@@ -91,7 +91,7 @@
 }
 
 .abstract h4{
-    font-family: "Judson", serif;
+    font-family: 'Raleway', sans-serif;
     color:var(--main, #0858A4); 
 }
 
@@ -153,7 +153,7 @@
 }
 
 .logs-date, .date{
-    font-family: 'Judson', serif;
+    font-family: 'Raleway', sans-serif;
 }
 
 .keywords .btn{
@@ -186,12 +186,12 @@
 }
 
 .rev-guide ol, .rev-guide li {
-    font-family: "Judson", serif;
+    font-family: 'Raleway', sans-serif;
     font-size: 18px;
 }
 
 .rev-guide h4{
-    font-family: "Judson", serif;
+    font-family: 'Raleway', sans-serif;
     color:var(--main, #0858A4); 
     font-weight: bold;
 }
@@ -219,7 +219,7 @@
 
 }
 
-.btn-groups, .btn, .btn button{
+.btn-groups button, .btn button{
     width: 100%;
 }
 
@@ -257,7 +257,7 @@
 }
 
 .guidelines p{
-    font-family: "Judson", serif;
+    font-family: 'Raleway', sans-serif;
     font-size: 18px;
     text-align: justify; 
     width: 94%; 
@@ -288,7 +288,7 @@
 .decisions h5,
 .comments h5,
 .comments h4{
-    font-family: "Judson", serif;
+    font-family: 'Raleway', sans-serif;
     color: var(--main, #0858A4); 
 }
 
@@ -397,7 +397,7 @@
 
 
 #reviewFormTitle{
-    font-family: "Judson", serif;
+    font-family: 'Raleway', sans-serif;
     font-weight: bold;
     font-style: normal;
     font-size: 25px;
@@ -408,7 +408,7 @@
   }
   
   #title2{
-    font-family: "Judson", serif;
+    font-family: 'Raleway', sans-serif;
     color: #0858A4;
     font-weight: 400;
     font-style: normal;

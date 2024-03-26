@@ -272,8 +272,8 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                 </div>
             </div>
             <div class="col-md-8 btn-groups mt-4">
-            <button type="button" class="btn btn-outline-primary btn-sm"  onclick="viewAllLogs()" id="viewLogsBtn" style="width: 430px; margin-left: -5px;">View All Logs</button>
-                <button type="button" class="btn btn-outline-primary btn-sm"  onclick="hideLogs()" id="hideLogsBtn" style="display: none; width: 430px; margin-left: -5px;">Hide Logs</button>
+            <button type="button" class="btn btn-outline-primary btn-sm"  onclick="viewAllLogs()" id="viewLogsBtn">View All Logs</button>
+                <button type="button" class="btn btn-outline-primary btn-sm"  onclick="hideLogs()" id="hideLogsBtn" style="display: none;">Hide Logs</button>
             </div>
 
                 </div>
@@ -388,7 +388,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                 <div class="col-md-6">
 
                     <div class="keywords">
-                        <p style="margin-top: 20px; margin-bottom: 10px; color: #285581;  font-family: 'Judson', serif; font-weight: 400; font-style: normal; font-size: 30px; ">Keywords</p>
+                        <p style="margin-top: 20px; margin-bottom: 10px; color: #285581;  font-family: 'Raleway', sans-serif; font-weight: 400; font-style: normal; font-size: 30px; ">Keywords</p>
                         <div class="keyword1">
                         <ul style="display: flex;">
                             <?php
@@ -532,7 +532,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                     </div>
                     <div class="form-check">
                         <input type="checkbox" id="checkBox" name="checkBox" value="1" >
-                        <label for="checkBox" style="color: var(--main, #0858A4); font-family: 'Judson', serif; font-size: 16px; " >I have read and will follow the steps and Guidelines of reviewing this assign Article.</label><br>
+                        <label for="checkBox" style="color: var(--main, #0858A4); font-family: 'Raleway', sans-serif; font-size: 16px; " >I have read and will follow the steps and Guidelines of reviewing this assign Article.</label><br>
                     </div>
 
                     <div class="btn-action">
@@ -614,7 +614,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                                         if ($result) {
                                             foreach ($result as $row) {
                                                 $question = htmlspecialchars($row->question);
-                                                echo '<li class="list-group-item mt-5" style="list-style: none; padding-left: 5px; color: white; background-color: var(--main, #0858A4);; font-size: 20px; font-family: \'Judson\', serif;">' . $question . '</li>';
+                                                echo '<li class="list-group-item mt-5" style="list-style: none; padding-left: 5px; color: white; background-color: var(--main, #0858A4);; font-size: 20px; font-family: \'Raleway\', sans-serif;">' . $question . '</li>';
 
                                                 // Split the choices using commas
                                                 $choices = explode(',', $row->answer);
@@ -623,7 +623,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                                                 foreach ($choices as $choice) {
                                                     $uniqueId = htmlspecialchars(trim($choice)) . '_' . uniqid(); // Create a unique ID for each radio button
                                                     echo '<input type="radio" name="answers[' . $question . ']" value="' . htmlspecialchars(trim($choice)) . '" id="' . $uniqueId . '" required class="custom-radio" style="margin-left: 10px; margin-top: 10px; display: inline-block">';
-                                                    echo '<label for="' . $uniqueId . '" style="font-size: small; color: gray; padding-left: 5px; font-family: \'Judson\', serif; ">' . htmlspecialchars(trim($choice)) . '</label><br>';
+                                                    echo '<label for="' . $uniqueId . '" style="font-size: small; color: gray; padding-left: 5px; font-family: \'Raleway\', sans-serif; ">' . htmlspecialchars(trim($choice)) . '</label><br>';
                                                 }
                                                 
                                                 echo '<div class="form-floating mt-2">';
