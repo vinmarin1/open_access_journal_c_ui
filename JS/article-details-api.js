@@ -63,7 +63,7 @@ function renderArticleDetails(data) {
 
     let referencesHTML = "";
     for (const ref of referencesArray) {
-      referencesHTML += `<p>${ref}</p><br/>`;
+      referencesHTML += `<p>${ref}</p>`;
     }
     let contributorsHTML = "";
     if (item.contributors != null) {
@@ -182,7 +182,7 @@ function renderArticleDetails(data) {
               <p class="mb-4">${item.abstract}</p>
               <br/>
               <h4>References</h4>
-              <p class="mb-4">${referencesHTML}h</p>
+              <p class="mb-4">${referencesHTML}</p>
               <iframe
                   src="https://qcuj.online/Files/final-file/${encodeURIComponent(item.file_name)}"
                   width="100%"
