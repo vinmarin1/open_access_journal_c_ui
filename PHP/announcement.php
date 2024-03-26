@@ -30,7 +30,7 @@
 
 <div class="container-fluid">
     <?php
-    $hostname = "srv1158.hstgr.io"; 
+    $hostname = "srv1320.hstgr.io"; 
     $dbuser = "u944705315_qcuj2024";
     $dbpass = "Qcujournal1234.";
     $dbName = "u944705315_qcuj2024";
@@ -192,7 +192,7 @@
 
 <div class="container-fluid">
 <?php
-        $hostname = "srv1158.hstgr.io"; 
+        $hostname = "srv1320.hstgr.io"; 
         $dbuser = "u944705315_qcuj2024";
         $dbpass = "Qcujournal1234.";
         $dbName = "u944705315_qcuj2024";
