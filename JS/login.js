@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function login() {
         const email = $("#email").val().trim();
         const password = $("#password").val().trim();
-    
+       
         if (email === "" || password === "") {
             Swal.fire({
                 icon: "warning",
@@ -192,9 +192,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const urli = urlParams.get('urli');
     
         $('#login-button').on('click', function() {
-            $('#login-text').hide();
-            $('#login-spinner').hide();
-            $('#register-button').prop('disabled', true);
+            $('#login-text').show();
+            $('#login-spinner').show();
+            // $('#register-button').prop('disabled', true);
         });
     
         $("#form").on("submit", function(event) {
@@ -263,7 +263,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                         var data = JSON.parse(response);
                                         if (data.success) {
                                             $('#logging-in-text').text('Logging in...');
-                                            $('#logging-in-text').show();
+                                            $('#logging-in-text').hide();
                                             $('#login-spinner').show();
                                             $.ajax({
                                                 type: "POST",
@@ -279,11 +279,10 @@ document.addEventListener('DOMContentLoaded', function() {
                                                         window.location.href = "../PHP/author-dashboard.php";
                                                     } else {
                                                         window.location.href = "../PHP/verify.php";
-                                                        setTimeout(function() {
-                                                            $('#logging-in-text').hide();
-                                                            $('#login-spinner').hide();
-                                                            $('#login-text').show();
-                                                        }, 5000); 
+                                                            $('#logging-in-text').show();
+                                                            $('#login-spinner').show();
+                                                            $('#login-text').hide();
+                                                 
                                                     }
                                                 },
                                             });

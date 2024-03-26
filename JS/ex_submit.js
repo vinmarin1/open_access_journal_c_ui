@@ -1,7 +1,7 @@
 document.addEventListener('keydown', function(event) {
-  if (event.key === 'Enter') {
-      event.preventDefault();
-  }
+  // if (event.key === 'Enter') {
+  //     event.preventDefault();
+  // }
 });
 
 function checkDuplication() {
@@ -197,7 +197,7 @@ document.addEventListener('DOMContentLoaded', function(){
   const abstract = document.getElementById('abstract');
   const keywords = document.getElementById('keywords');
   const reference = document.getElementById('reference');
-
+  
 
   articleTab.disabled = true;
   fileTab.disabled = true;
@@ -516,7 +516,7 @@ document.getElementById('editor2').addEventListener('input' , function(event){
   
 
   referencePreview.value = editor2;
-  reference.value = editor2;
+  reference.value = editor2.split("\n").join("\\n");
 
 });
 

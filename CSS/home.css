@@ -205,6 +205,9 @@ padding:2em 0;
   .recommendation-article{
     padding:2%;
   }
+  .content-over{
+    padding:4%;
+  }
   .articles-container{
     width: 90%;
     gap:30px;
@@ -791,7 +794,7 @@ h4, h2 {
   color: white;
   padding: 1em;
   border-radius: 100%;
-  width: 4em;
+  min-width: 4em;
   height: 4em;
   display: grid;
   place-items: center;
