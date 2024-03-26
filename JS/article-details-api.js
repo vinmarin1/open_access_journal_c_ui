@@ -59,6 +59,12 @@ function renderArticleDetails(data) {
       keywordsHTML += `<a>${keyword.trim()}</a>`;
     }
 
+    const referencesArray = item.references.split("\\n");
+
+    let referencesHTML = "";
+    for (const ref of referencesArray) {
+      referencesHTML += `<p>${ref}</p><br/>`;
+    }
     let contributorsHTML = "";
     if (item.contributors != null) {
       for (const contributors of item.contributors.split(";")) {
@@ -175,7 +181,8 @@ function renderArticleDetails(data) {
               <h4>Abstract</h4>
               <p class="mb-4">${item.abstract}</p>
               <br/>
-              
+              <h4>References</h4>
+              <p class="mb-4">${referencesHTML}h</p>
               <iframe
                   src="https://qcuj.online/Files/final-file/${encodeURIComponent(item.file_name)}"
                   width="100%"

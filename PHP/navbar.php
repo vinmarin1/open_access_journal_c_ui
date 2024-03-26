@@ -6,6 +6,7 @@ require 'dbcon.php';
 
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,8 +17,8 @@ require 'dbcon.php';
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg p-0" id="navbar-container" >
-  <div class="container-fluid p-1">
+<nav class="navbar navbar-expand-xl" style="padding:4px 3%" id="navbar-container" >
+  <div class="container-fluid">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="background-color: white; font-size:10px;">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -60,11 +61,12 @@ require 'dbcon.php';
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
       </form> -->
     <!-- Login Dropdown -->
-    <div class="cta btn btn-outline-light rounded-pill" style="background-color: none !important">
+    <div class="cta btn btn-outline-light rounded-pill mx-2" style="background-color: none !important">
       <a class="" role="button" href="browse-articles.php">
         Browse Articles
       </a>
     </div>
+   
     <?php
     if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
         echo '
@@ -246,6 +248,7 @@ require 'dbcon.php';
       <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" ></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
       <script src="../JS/navbar.js"></script>
 </body>
 </html>
