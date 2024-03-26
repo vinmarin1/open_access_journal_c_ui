@@ -71,7 +71,7 @@ $notificationlist = get_notification_list();
                                     } else if (timeDifference < 86400000) {
                                         timeAgo = Math.floor(timeDifference / 3600000) + ' hours ago';
                                     } else {
-                                        timeAgo = Math.floor(timeDifference / 86400000) + ' days ago';
+                                        timeAgo = Math.floor(timeDifference / 86400000) + (timeDifference < 172800000 ? ' day ago' : ' days ago');
                                     }
 
                                     // Assuming you have an element with class 'time-ago-<?php echo $notification->id; ?>'
