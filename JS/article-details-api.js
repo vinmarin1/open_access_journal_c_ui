@@ -125,7 +125,7 @@ function renderArticleDetails(data) {
        `;
       }
     }
-
+    let heartColor = "currentColor"
 
     articleElement.innerHTML = `
     
@@ -154,7 +154,8 @@ function renderArticleDetails(data) {
           </div>
 
           <div class="abstract col-sm-7 p-4">
-            <div class="d-flex flex-wrap gap-1 align-items-center">
+            <div class="d-flex flex-wrap gap-1 align-items-center justify-content-between">
+              <div>
               <button class="btn btn-md" id="read-btn">Read Full Article</button>
               <div class="alert alert-light mt-4 small py-2" role="alert" id="login-redirect">
                 You are not logged in. To download and read full article, please <a href="./login.php" class="alert-link">login</a>
@@ -177,6 +178,14 @@ function renderArticleDetails(data) {
                 </svg>
                 Cite
               </button>
+              </div>
+              <button class="btn" id="support-btn">
+                <div>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256"><path fill="${item.isSupported != 0 ? 'red': 'currentColor'}" d="M178 32c-20.65 0-38.73 8.88-50 23.89C116.73 40.88 98.65 32 78 32a62.07 62.07 0 0 0-62 62c0 70 103.79 126.66 108.21 129a8 8 0 0 0 7.58 0C136.21 220.66 240 164 240 94a62.07 62.07 0 0 0-62-62m-50 174.8C109.74 196.16 32 147.69 32 94a46.06 46.06 0 0 1 46-46c19.45 0 35.78 10.36 42.6 27a8 8 0 0 0 14.8 0c6.82-16.67 23.15-27 42.6-27a46.06 46.06 0 0 1 46 46c0 53.61-77.76 102.15-96 112.8"/></svg>
+                  <span id="total_support">${item.total_support}</span>
+                </div>
+              </button>
+            
             </div>
               <h4>Abstract</h4>
               <p class="mb-4">${item.abstract}</p>
@@ -241,14 +250,8 @@ function renderArticleDetails(data) {
                    Copy link
                   </a> -->
                 
-                  <!--
-                  <button class="btn" id="donate-btn">
-                    <h4>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256"><path fill="currentColor" d="M178 32c-20.65 0-38.73 8.88-50 23.89C116.73 40.88 98.65 32 78 32a62.07 62.07 0 0 0-62 62c0 70 103.79 126.66 108.21 129a8 8 0 0 0 7.58 0C136.21 220.66 240 164 240 94a62.07 62.07 0 0 0-62-62m-50 174.8C109.74 196.16 32 147.69 32 94a46.06 46.06 0 0 1 46-46c19.45 0 35.78 10.36 42.6 27a8 8 0 0 0 14.8 0c6.82-16.67 23.15-27 42.6-27a46.06 46.06 0 0 1 46 46c0 53.61-77.76 102.15-96 112.8"/></svg>
-                      Heart
-                    </h4>
-                  </button>-->
-                  
+                
+
               </div>
           </div>
           </div>
@@ -374,6 +377,8 @@ function renderArticleDetails(data) {
     const epubBtn = articleElement.querySelector(`#epub-btn`);
     const citeBtn = articleElement.querySelector(`#cite-btn`);
     const loginRedirect = articleElement.querySelector(`#login-redirect`);
+    const supportBtn = articleElement.querySelector(`#support-btn`);
+    const support =  articleElement.querySelector(`#total_support`)
     // const viewFullArticle = articleElement.querySelector(`#btn1`);
 
     if (active) {
@@ -399,12 +404,33 @@ function renderArticleDetails(data) {
   
 
     }
+    if (supportBtn) {
+      supportBtn.addEventListener("click", async () => {
+        if (item.isSupported == 0){
+          support.innerHTML = item.total_support + 1
+          const svgElement = document.querySelector("#support-btn svg path");
+          svgElement.setAttribute("fill", "red");
+          const response = await fetch(
+            "https://web-production-cecc.up.railway.app/api/articles/logs/support",
+            {
+              method: "POST",
+              body: JSON.stringify({
+                author_id: sessionId,
+                article_id: parseInt(articleId),
+              }),
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          );
+        }
+      });
+    }
     if (readBtn) {
-    readBtn.addEventListener("click", () => {
-      document.querySelector("iframe").classList.remove("d-none")
-    });
-  }
-    
+      readBtn.addEventListener("click", () => {
+        document.querySelector("iframe").classList.remove("d-none")
+      });
+    }
   
     if (downloadBtn) {
       downloadBtn.addEventListener("click", () => {
