@@ -1574,6 +1574,10 @@ label {
 
 .cert-rev-details{
     position: absolute;
+    height: 23vh;
+    margin-top: 80px;
+    /* text-align: left; */
+    margin-right: 40px;
 }
 
 #iss1{
@@ -1601,13 +1605,12 @@ label {
 }
 
 #awardeeName {
-    text-align: center;
+    text-align: left;
     font-family: 'Dancing Script', cursive;
     font-weight: normal;
     font-style: italic;
     font-size: 25px;
-    margin-top: 120px;
-    margin-left: -300px;
+    /* margin-top: 125px; */
     color: #00123D;
 }
 
@@ -1624,7 +1627,7 @@ label {
 
 .publishdate{
     top: 0;
-    margin-left: 90px;
+    margin-left: 110px;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     color: #00123D;
 }
@@ -1635,13 +1638,16 @@ label {
     left: -100px;
 }
 .pubInfo{
-    margin-top: 30px;
+    margin-top: 60px;
+    height: 23vh;
+    display: block;
 }
 #categoryPublished{
     color: #00123D;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-weight: bold;
     font-style: italic;
+    margin-top: 30px;
 }
 
 #engagement {
@@ -1660,7 +1666,8 @@ label {
     font-size: 20px;
     padding-top: 35px;
     color: #00123D;
-    margin-left: -100px;
+    /* margin-left: -100px; */
+    text-align: left;
 }
 
 section {

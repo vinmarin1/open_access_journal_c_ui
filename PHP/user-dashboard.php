@@ -1606,11 +1606,13 @@ $expertise = $_SESSION['expertise'];
 												echo '<td>' . $row->action_engage .'</td>';
 												echo '<td>' . $journalMapping[$row->journal_id] .'</td>';
 												echo '<td style="display: none">' . $row->title .'</td>';
-												$formattedDateTime = date('F j, Y g:i:s A', strtotime($row->date));
-												echo '<td>' . $formattedDateTime . '</td>';
+												$formattedDate = date('F j, Y', strtotime($row->date)); // Formatting without time
+												echo '<td>' . $formattedDate . '</td>';
 												echo '<td style="color: green;">You earned ' . $row->point_earned . ' Community Heart</td>';
-												echo '<td><button type="button" class="view-button" onclick="updateEngagementTitle(\'' . htmlspecialchars($row->title) . '\', \'' . $journalMapping[$row->journal_id] . '\')">View</button></td>';
+												echo '<td><button type="button" class="view-button" onclick="updateEngagementTitle(\'' . htmlspecialchars($row->title) . '\', \'' . $journalMapping[$row->journal_id] . '\', \'' . $formattedDate . '\')">View</button></td>';
 												echo '</tr>';
+
+												
 											}
 										}else{
 											echo '<p style="margin-left: 50px; padding-top: 20px">You have no Achievements yet</p>';
@@ -1909,15 +1911,15 @@ $expertise = $_SESSION['expertise'];
 			<!-- <p class="h6" id="awardee">This Certificate is Awarded to</p> -->
 		</div>
 		<div class="cert-rev-details">
-		<p class="h1" id="awardeeName">
-				<?php 
-				echo $first_name . ' ' . $middle_name . ' ' . $last_name	
-				?>
-			</p>
-			<!-- <p class="h6" id="engagement">For participating in the peer review process for the article titled:</p> -->
-			<p class="h3" id="engagementTitle"></p>
-			<p class="revDate" id="revDate">March 10 , 2024</p>
-		</div>
+			<p class="h1" id="awardeeName">
+					<?php 
+					echo $first_name . ' ' . $middle_name . ' ' . $last_name	
+					?>
+				</p>
+				<!-- <p class="h6" id="engagement">For participating in the peer review process for the article titled:</p> -->
+				<p class="h3" id="engagementTitle"></p>
+				<p class="revDate" id="revDate"></p>
+			</div>
     </div>
 </div>
 
@@ -1970,7 +1972,7 @@ $expertise = $_SESSION['expertise'];
 					line-height: 20px;
 					text-align: left;
 					color: #00123D;"></p>
-				<p class="publishdate">March 10 , 2024</p>
+				<p class="publishdate" id="publishdate"></p>
 			</div>
 			
 		</div>
@@ -2273,9 +2275,11 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-function updateEngagementTitle(title, journalId) {
+function updateEngagementTitle(title, journalId, formattedDateTime) {
     document.getElementById("engagementTitle").innerHTML = title;
     document.getElementById("category").innerHTML = 'Journal of ' + journalId;
+	document.getElementById("publishdate").innerHTML = formattedDateTime;
+	document.getElementById("revDate").innerHTML = formattedDateTime;
 
 	document.getElementById("engagementTitlePublished").innerHTML = title;
     document.getElementById("categoryPublished").innerHTML = 'Journal of ' + journalId;
