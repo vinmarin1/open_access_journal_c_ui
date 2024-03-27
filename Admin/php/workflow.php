@@ -490,7 +490,7 @@ table {
                                                                                         <td width="3%">
                                                                                         <?php
                                                                                             date_default_timezone_set('Asia/Manila');
-                                                                                            $date = date('Y-m-d');
+                                                                                            $date = date('Y-m-d');  
                                                                                             if ($article_reviewerval->comment_accessible == 1) {
                                                                                                 echo '<span style="color: green;">Accepted</span>';
                                                                                             } else if ($article_reviewerval->accept == 2) {
@@ -709,7 +709,7 @@ table {
                                                                                     <tr>
                                                                                         <td width="5%"><?php echo $allcopyedited_filesval->final_files_id; ?></td>
                                                                                         <td width="65%">
-                                                                                            <a href="../../../Files/-article/<?php echo ($allcopyedited_filesval->file_name); ?>" download>
+                                                                                            <a href="../../../Files/final-file/<?php echo ($allcopyedited_filesval->file_name); ?>" download>
                                                                                                 <?php echo $allcopyedited_filesval->file_name; ?>
                                                                                             </a>
                                                                                         </td>
