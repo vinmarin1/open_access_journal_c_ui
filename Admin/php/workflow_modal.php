@@ -1579,7 +1579,6 @@ function updateCopyeditedFiles() {
 }
 
 function uploadCopyeditedFiles() {
-    $('#sloading').toggle();
     var copyeditedFiletype = $('#copyeditedfiletype').val();
     var copyeditedFile = $('#copyeditedfile')[0].files[0];
 
@@ -1715,7 +1714,6 @@ function updateProductionFiles() {
 }
 
 function uploadProductionFiles() {
-    $('#sloading').toggle();
     var productionfileFiletype = $('#productionfiletype').val();
     var productionfileFile = $('#productionfile')[0].files[0];
 
@@ -1746,7 +1744,6 @@ function uploadProductionFiles() {
 }
 
 function updateProductionCheckedFiles() {
-    $('#sloading').toggle();
     var checkedCheckboxes1 = $('.production-checkbox:checked');
     var checkedCheckboxes2 = $('.copyedited-checkbox:checked');
 
@@ -1793,7 +1790,6 @@ function updateProductionCheckedFiles() {
 }
 
 function updateProductionUncheckedFiles() {
-    $('#sloading').toggle();
     var uncheckedCheckboxes1 = $('.production-checkbox:not(:checked)');
     var uncheckedCheckboxes2 = $('.copyedited-checkbox:not(:checked)');
 
