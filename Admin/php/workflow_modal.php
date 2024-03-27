@@ -1596,9 +1596,10 @@ function uploadCopyeditedFiles() {
         processData: false,
         contentType: false,
         success: function (response) {
-            $('#sloading').toggle();
+            console.log('Upload file successfully.');
             console.log(response);
             location.reload();
+            $('#sloading').toggle();
         },
         error: function (xhr, status, error) {
             console.error(xhr, status, error);
@@ -1636,8 +1637,8 @@ function updateCopyeditedCheckedFiles() {
         success: function(response) {
             console.log('Checked checkboxes data sent successfully.');
             console.log(response);
-            $('#sloading').toggle();
             location.reload();
+            $('#sloading').toggle();
         },
         error: function(error) {
             console.error('Error sending checked checkboxes data:', error);
@@ -1733,9 +1734,10 @@ function uploadProductionFiles() {
         processData: false,
         contentType: false,
         success: function (response) {
-            $('#sloading').toggle();
+            console.log('Upload file successfully.');
             console.log(response);
             location.reload();
+            $('#sloading').toggle();
         },
         error: function (xhr, status, error) {
             console.error(xhr, status, error);
