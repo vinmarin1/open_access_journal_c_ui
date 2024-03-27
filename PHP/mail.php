@@ -16,12 +16,12 @@ function send_mail($recipient,$subject,$message)
   $mail->SMTPSecure = "tls";
   $mail->Port       = 587;
   $mail->Host       = "smtp.gmail.com";
-  $mail->Username   = "gozo.marvin23@gmail.com";
-  $mail->Password   = "diogfjxfdkfbffpo";
+  $mail->Username   = "qcujournal@gmail.com";
+  $mail->Password   = "txtprxrytyqmloth";
 
   $mail->IsHTML(true);
   $mail->AddAddress($recipient, "esteemed customer");
-  $mail->SetFrom("gozo.marvin23@gmail.com", "QCU TIMES PUBLICATION");
+  $mail->SetFrom("qcujournal@gmail.com", "QCU TIMES PUBLICATION");
   //$mail->AddReplyTo("reply-to-email", "reply-to-name");
   //$mail->AddCC("cc-recipient-email", "cc-recipient-name");
   $mail->Subject = $subject;
