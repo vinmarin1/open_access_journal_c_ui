@@ -1407,9 +1407,9 @@ function updateFileSubmission() {
     }
 
     if (submissionFile) {
-        if (submissionFile.size >= 1.5 * 1024 * 1024) { 
+        if (submissionFile.size >= 5 * 1024 * 1024) { 
             $('#sloading').toggle();
-            alert("File size exceeds the limit of 1.5 MB. Please upload a smaller file.");
+            alert("File size exceeds the limit of 5 MB. Please upload a smaller file.");
             return;
         }
     }
@@ -1450,9 +1450,9 @@ function addDiscussion() {
     var submissionFile = $('#submissionfilexx')[0].files[0];
 
     if (submissionFile) {
-        if (submissionFile.size >= 1.5 * 1024 * 1024) { 
+        if (submissionFile.size >= 5 * 1024 * 1024) { 
             $('#sloading').toggle();
-            alert("File size exceeds the limit of 1.5 MB. Please upload a smaller file.");
+            alert("File size exceeds the limit of 5 MB. Please upload a smaller file.");
             return;
         }
     }
@@ -1492,9 +1492,9 @@ function replyDiscussion() {
     var submissionFile = $('#submissionfilexxx')[0].files[0];
     
     if (submissionFile) {
-        if (submissionFile.size >= 1.5 * 1024 * 1024) { 
+        if (submissionFile.size >= 5 * 1024 * 1024) { 
             $('#sloading').toggle();
-            alert("File size exceeds the limit of 1.5 MB. Please upload a smaller file.");
+            alert("File size exceeds the limit of 5 MB. Please upload a smaller file.");
             return;
         }
     }
@@ -1530,9 +1530,9 @@ function addRevisionFile() {
     var revisionFile = $('#revisionfile')[0].files[0];
 
     if (revisionFile) {
-        if (revisionFile.size >= 1.5 * 1024 * 1024) { 
+        if (revisionFile.size >= 5 * 1024 * 1024) { 
             $('#sloading').toggle();
-            alert("File size exceeds the limit of 1.5 MB. Please upload a smaller file.");
+            alert("File size exceeds the limit of 5 MB. Please upload a smaller file.");
             return;
         }
     }
@@ -1568,11 +1568,11 @@ function updateCopyeditedFiles() {
     if (!copyeditedFile) {
         updateCopyeditedCheckedFiles();
         updateCopyeditedUncheckedFiles();
-    } else if (copyeditedFile.size <= 1.5 * 1024 * 1024) {
+    } else if (copyeditedFile.size <= 5 * 1024 * 1024) {
         uploadCopyeditedFiles();
     } else {
         $('#sloading').toggle();
-        alert("File size exceeds the limit of 1.5 MB. Please upload a smaller file.");
+        alert("File size exceeds the limit of 5 MB. Please upload a smaller file.");
         return;
     }
 
@@ -1704,11 +1704,11 @@ function updateProductionFiles() {
     if (!productionfile) {
         updateProductionCheckedFiles();
         updateProductionUncheckedFiles();
-    } else if (productionfile.size <= 1.5 * 1024 * 1024) {
+    } else if (productionfile.size <= 5 * 1024 * 1024) {
         uploadProductionFiles();
     } else {
         $('#sloading').toggle();
-        alert("File size exceeds the limit of 1.5 MB. Please upload a smaller file.");
+        alert("File size exceeds the limit of 5 MB. Please upload a smaller file.");
         return;
     }
 
