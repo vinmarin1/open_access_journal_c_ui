@@ -1569,6 +1569,7 @@ function updateCopyeditedFiles() {
         updateCopyeditedCheckedFiles();
         updateCopyeditedUncheckedFiles();
     } else if (copyeditedFile.size <= 5 * 1024 * 1024) {
+        $('#sloading').toggle();
         uploadCopyeditedFiles();
     } else {
         $('#sloading').toggle();
@@ -1705,6 +1706,7 @@ function updateProductionFiles() {
         updateProductionCheckedFiles();
         updateProductionUncheckedFiles();
     } else if (productionfile.size <= 5 * 1024 * 1024) {
+        $('#sloading').toggle();
         uploadProductionFiles();
     } else {
         $('#sloading').toggle();
