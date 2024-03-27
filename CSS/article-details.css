@@ -4,7 +4,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-image: url("../images/background-spot.svg");
-  padding: 2em 10vw;
+  padding: 2em 8%;
 }
 
 .content-over::before {
@@ -74,7 +74,7 @@
   z-index: 1;
   background-color: var(--main, #0858A4);
   border-radius: 20px;
-  margin-top: 20px;
+  /* margin-top: 20px; */
   padding: 0.5em 1.5em;
 }
 
@@ -84,7 +84,7 @@
   z-index: 1;
   background-color: var(--main, #0858A4);
   border-radius: 20px;
-  margin-top: 20px;
+  /* margin-top: 20px; */
   opacity: 0.8;
 }
 

@@ -59,11 +59,14 @@ function renderArticleDetails(data) {
       keywordsHTML += `<a>${keyword.trim()}</a>`;
     }
 
-    const referencesArray = item.references.split("\\n");
+    const referencesArray = item.references.trim().split("\\n");
 
     let referencesHTML = "";
     for (const ref of referencesArray) {
-      referencesHTML += `<p>${ref}</p>`;
+      if (ref != ""){
+        referencesHTML += `<li style="text-align:justify">${ref}</li>`;
+      
+      }
     }
     let contributorsHTML = "";
     if (item.contributors != null) {
@@ -125,7 +128,6 @@ function renderArticleDetails(data) {
        `;
       }
     }
-    let heartColor = "currentColor"
 
     articleElement.innerHTML = `
     
@@ -146,20 +148,15 @@ function renderArticleDetails(data) {
         </div>
       </div>
 
-      <div class="container-fluid">
-      <div class="row gap-4">
-      
-          <div class="col-md-1">
-              <!-- This is a Blank space -->
-          </div>
-
-          <div class="abstract col-sm-7 p-4">
-            <div class="d-flex flex-wrap gap-1 align-items-center justify-content-between">
-              <div>
+      <section style="padding:1em 8%;" class="d-flex flex-column flex-md-row justify-content-between gap-5">
+          <div class="abstract w-100">
+            <div class="alert alert-light small py-2" role="alert" id="login-redirect">
+              You are not logged in. To heart, download and read full article, please <a href="./login.php" class="alert-link">login</a>
+            </div>
+            <div class="d-flex gap-1 align-items-center justify-content-between">
+              <div class="d-flex flex-wrap gap-1">
               <button class="btn btn-md" id="read-btn">Read Full Article</button>
-              <div class="alert alert-light mt-4 small py-2" role="alert" id="login-redirect">
-                You are not logged in. To download and read full article, please <a href="./login.php" class="alert-link">login</a>
-              </div>
+   
               <button class="btn tbn-primary btn-md" id="download-btn"> 
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                   <path fill="currentColor" d="m12 16l-5-5l1.4-1.45l2.6 2.6V4h2v8.15l2.6-2.6L17 11zm-6 4q-.825 0-1.412-.587T4 18v-3h2v3h12v-3h2v3q0 .825-.587 1.413T18 20z" />
@@ -181,7 +178,9 @@ function renderArticleDetails(data) {
               </div>
               <button class="btn" id="support-btn">
                 <div>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256"><path fill="${item.isSupported != 0 ? 'red': 'currentColor'}" d="M178 32c-20.65 0-38.73 8.88-50 23.89C116.73 40.88 98.65 32 78 32a62.07 62.07 0 0 0-62 62c0 70 103.79 126.66 108.21 129a8 8 0 0 0 7.58 0C136.21 220.66 240 164 240 94a62.07 62.07 0 0 0-62-62m-50 174.8C109.74 196.16 32 147.69 32 94a46.06 46.06 0 0 1 46-46c19.45 0 35.78 10.36 42.6 27a8 8 0 0 0 14.8 0c6.82-16.67 23.15-27 42.6-27a46.06 46.06 0 0 1 46 46c0 53.61-77.76 102.15-96 112.8"/></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 16 16">
+                  	<path fill="${item.isSupported != 0 ? 'red': '#a8b3b3'}" d="M14.88 4.78a3.489 3.489 0 0 0-.37-.9a3.24 3.24 0 0 0-.6-.79a3.78 3.78 0 0 0-1.21-.81a3.74 3.74 0 0 0-2.84 0a4 4 0 0 0-1.16.75l-.05.06l-.65.65l-.65-.65l-.05-.06a4 4 0 0 0-1.16-.75a3.74 3.74 0 0 0-2.84 0a3.78 3.78 0 0 0-1.21.81a3.55 3.55 0 0 0-.97 1.69a3.75 3.75 0 0 0-.12 1c0 .318.04.634.12.94a4 4 0 0 0 .36.89a3.8 3.8 0 0 0 .61.79L8 14.31l5.91-5.91c.237-.232.44-.498.6-.79A3.578 3.578 0 0 0 15 5.78a3.747 3.747 0 0 0-.12-1" />
+                  </svg>
                   <span id="total_support">${item.total_support}</span>
                 </div>
               </button>
@@ -191,7 +190,7 @@ function renderArticleDetails(data) {
               <p class="mb-4">${item.abstract}</p>
               <br/>
               <h4>References</h4>
-              <p class="mb-4">${referencesHTML}</p>
+              <ul class="mb-4 ml-4" style="list-style-type: square;">${referencesHTML}</ul>
               <iframe
                   src="https://qcuj.online/Files/final-file/${encodeURIComponent(item.file_name)}"
                   width="100%"
@@ -254,8 +253,7 @@ function renderArticleDetails(data) {
 
               </div>
           </div>
-          </div>
-      </div>
+      </section>
     `;
 
     function formatContributors(authors) {
@@ -385,8 +383,97 @@ function renderArticleDetails(data) {
       downloadBtn.style.display = "inline-block";
       epubBtn.style.display = "inline-block";
       readBtn.style.display = "inline-block";
+      // supportBtn.style.display = "inline-block";
       loginRedirect.style.display = "none";
+      if (supportBtn) {
+        supportBtn.addEventListener("click", async () => {
+          if (item.isSupported == 0){
+            support.innerHTML = item.total_support + 1
+            const svgElement = document.querySelector("#support-btn svg path");
+            svgElement.setAttribute("fill", "red");
+            const response = await fetch(
+              "https://web-production-cecc.up.railway.app/api/articles/logs/support",
+              {
+                method: "POST",
+                body: JSON.stringify({
+                  author_id: sessionId,
+                  article_id: parseInt(articleId),
+                }),
+                headers: {
+                  "Content-Type": "application/json",
+                },
+              }
+            );
+          }
+        });
+      }
+      if (readBtn) {
+        readBtn.addEventListener("click", () => {
+          document.querySelector("iframe").classList.remove("d-none")
+        });
+      }
+    
+      if (downloadBtn) {
+        downloadBtn.addEventListener("click", () => {
+          try{
+            let fileExtension = item.file_name.split('.').pop();
+            let fileUrl = `https://qcuj.online/Files/final-file/${encodeURIComponent(item.file_name)}`;
+            
+            if (fileExtension === "docx") {
+              createCloudConvertJob(item.file_name,"docx", "pdf");
+            }else if (fileExtension === "pdf") {
+              let link = document.createElement("a");
+              link.setAttribute("href", fileUrl);
+              link.setAttribute("download", "");
+              link.style.display = "none";
+              link.setAttribute("target", "_blank");
+              document.body.appendChild(link);
+              link.click();
+              document.body.removeChild(link);
+            }else{
+              createCloudConvertJob(item.file_name, fileExtension, "pdf")
+            }
+            handleDownloadLog(item.article_id, "download");
+            Swal.fire({
+              html: `
+              <h4 style="color: var(--main, #0858A4); font-family: font-family: Arial, Helvetica, sans-serif">Download Started. Your download will start shortly. </h4>
+              <p style="font-size: 16px;">If it doesn\'t start automatically, <a href="${fileUrl}">click here</a>.</p>'
+  
+              `,
+              icon: 'success',
+            })
+          }catch(error){
+          console.log(error,"---------")
+            Swal.fire({
+              html: '<h4 style="color: var(--main, #0858A4); font-family: font-family: Arial, Helvetica, sans-serif">Failed to download. No file available</h4>',
+              icon: 'warning',
+            })
+          }
+  
+         
+          
+      });
+      }
+      if (epubBtn) {
+        epubBtn.addEventListener("click", () => {
+          try{
+            Swal.fire({
+              html: '<h4 style="color: var(--main, #0858A4); font-family: font-family: Arial, Helvetica, sans-serif">Download Started. Your download will start shortly.</h4>',
+              icon: 'success',
+            })
+            var fileExtension = item.file_name.split('.').pop();
+            createCloudConvertJob(item.file_name, fileExtension, "epub")
+            handleDownloadLog(item.article_id,"download");
+          }catch(error){
+            Swal.fire({
+              html: '<h4 style="color: var(--main, #0858A4); font-family: font-family: Arial, Helvetica, sans-serif">Failed to download. No article file available.</h4>',
+              icon: 'warning',
+            })
+          }
+        });
+      }
     } else {
+      // supportBtn.style.display = "none";
       downloadBtn.style.display = "none";
       epubBtn.style.display = "none";
       readBtn.style.display = "none";
@@ -401,96 +488,12 @@ function renderArticleDetails(data) {
       epubBtn.addEventListener("click", () => {
         window.location.href = "../PHP/login.php";
       });
-  
+      supportBtn.addEventListener("click", () => {
+        // window.location.href = "../PHP/login.php";
+      });
 
     }
-    if (supportBtn) {
-      supportBtn.addEventListener("click", async () => {
-        if (item.isSupported == 0){
-          support.innerHTML = item.total_support + 1
-          const svgElement = document.querySelector("#support-btn svg path");
-          svgElement.setAttribute("fill", "red");
-          const response = await fetch(
-            "https://web-production-cecc.up.railway.app/api/articles/logs/support",
-            {
-              method: "POST",
-              body: JSON.stringify({
-                author_id: sessionId,
-                article_id: parseInt(articleId),
-              }),
-              headers: {
-                "Content-Type": "application/json",
-              },
-            }
-          );
-        }
-      });
-    }
-    if (readBtn) {
-      readBtn.addEventListener("click", () => {
-        document.querySelector("iframe").classList.remove("d-none")
-      });
-    }
-  
-    if (downloadBtn) {
-      downloadBtn.addEventListener("click", () => {
-        try{
-          let fileExtension = item.file_name.split('.').pop();
-          let fileUrl = `https://qcuj.online/Files/final-file/${encodeURIComponent(item.file_name)}`;
-          
-          if (fileExtension === "docx") {
-            createCloudConvertJob(item.file_name,"docx", "pdf");
-          }else if (fileExtension === "pdf") {
-            let link = document.createElement("a");
-            link.setAttribute("href", fileUrl);
-            link.setAttribute("download", "");
-            link.style.display = "none";
-            link.setAttribute("target", "_blank");
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-          }else{
-            createCloudConvertJob(item.file_name, fileExtension, "pdf")
-          }
-          handleDownloadLog(item.article_id, "download");
-          Swal.fire({
-            html: `
-            <h4 style="color: var(--main, #0858A4); font-family: font-family: Arial, Helvetica, sans-serif">Download Started. Your download will start shortly. </h4>
-            <p style="font-size: 16px;">If it doesn\'t start automatically, <a href="${fileUrl}">click here</a>.</p>'
-
-            `,
-            icon: 'success',
-          })
-        }catch(error){
-        console.log(error,"---------")
-          Swal.fire({
-            html: '<h4 style="color: var(--main, #0858A4); font-family: font-family: Arial, Helvetica, sans-serif">Failed to download. No file available</h4>',
-            icon: 'warning',
-          })
-        }
-
-       
-        
-    });
-    }
-    if (epubBtn) {
-      epubBtn.addEventListener("click", () => {
-        try{
-          Swal.fire({
-            html: '<h4 style="color: var(--main, #0858A4); font-family: font-family: Arial, Helvetica, sans-serif">Download Started. Your download will start shortly.</h4>',
-            icon: 'success',
-          })
-          var fileExtension = item.file_name.split('.').pop();
-          createCloudConvertJob(item.file_name, fileExtension, "epub")
-          handleDownloadLog(item.article_id,"download");
-        }catch(error){
-          Swal.fire({
-            html: '<h4 style="color: var(--main, #0858A4); font-family: font-family: Arial, Helvetica, sans-serif">Failed to download. No article file available.</h4>',
-            icon: 'warning',
-          })
-        }
-      });
-    }
+   
     if (citeBtn) {
       citeBtn.addEventListener("click", () => {
         toggleCiteModal()

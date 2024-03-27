@@ -30,7 +30,6 @@
   <nav class="navigation-menus-container" id="navigation-menus-container">
     <!-- navigation menus will be display here by fetching reusable files -->
   </nav>
-
   <div class="main-container" id="article_details">
   </div>
   <div id="citation-container" class="d-none">
