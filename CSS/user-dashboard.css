@@ -1572,11 +1572,26 @@ label {
     position: absolute;
 }
 
+.cert-rev-details{
+    position: absolute;
+}
+
+#iss1{
+    text-align: left;
+    margin-left: -365px;
+}
+
 #category {
-    margin-top: 25px;
+    top: 0px;
+    left: 5px;
     font-weight: bold;
-    text-align: center;
+    text-align: left;
     font-style: italic;
+    margin-top: -180px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin-left: -370px;
+    margin-top: -240px;
+    color: #00123D;
 }
 
 #awardee {
@@ -1588,9 +1603,45 @@ label {
 #awardeeName {
     text-align: center;
     font-family: 'Dancing Script', cursive;
+    font-weight: normal;
+    font-style: italic;
+    font-size: 25px;
+    margin-top: 120px;
+    margin-left: -300px;
+    color: #00123D;
+}
+
+#revDate{
+    color: #00123D; 
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; 
+    text-align: left; 
+    margin-left: 50px;
+}
+
+.iss2{
+    top: 0;
+}
+
+.publishdate{
+    top: 0;
+    margin-left: 90px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: #00123D;
+}
+
+.articlePubInfo {
+    position: absolute;
+    top: -175px;
+    left: -100px;
+}
+.pubInfo{
+    margin-top: 30px;
+}
+#categoryPublished{
+    color: #00123D;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-weight: bold;
     font-style: italic;
-    font-size: 50px;
 }
 
 #engagement {
@@ -1600,11 +1651,16 @@ label {
 }
 
 #engagementTitle {
-    font-weight: bold;
+    font-weight: normal;
     text-align: center;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     font-style: italic;
-    width: 720px;
+    width: 550px;
+    line-height: 25px;
+    font-size: 20px;
+    padding-top: 35px;
+    color: #00123D;
+    margin-left: -100px;
 }
 
 section {
@@ -1710,3 +1766,4 @@ dfn:hover::after {
 dfn:hover::before {
     top: 20px;
 }
+

@@ -1167,41 +1167,41 @@ $expertise = $_SESSION['expertise'];
 					<div class="vertical-line"></div>
 						<div id="graph-container">
 							<h3>Contributions Graph</h3>
-								<?php
-									$sqlViews = "SELECT MONTH(logs.date) AS month, COUNT(*) AS views
-									FROM logs
-									RIGHT JOIN article ON logs.article_id = article.article_id
-									WHERE article.author_id = :author_id AND logs.type = 'read'
-									GROUP BY MONTH(logs.date)";
-						
-									$sqlDownloads = "SELECT MONTH(logs.date) AS month, COUNT(*) AS downloads
-													FROM logs
-													RIGHT JOIN article ON logs.article_id = article.article_id
-													WHERE article.author_id = :author_id AND logs.type = 'download'
-													GROUP BY MONTH(logs.date)";
-									
-									$params = array('author_id' => $id);
-									
-									// Fetch views data
-									$viewsData = database_run($sqlViews, $params);
-									
-									// Fetch downloads data
-									$downloadsData = database_run($sqlDownloads, $params);
-									
-									// Initialize arrays to hold views and downloads data for all months
-									$allMonthsData = array_fill(1, 12, 0); // Fill array with zeros for all 12 months
-									$allDownloadsData = array_fill(1, 12, 0); // Fill array with zeros for all 12 months
-									
-									// Populate fetched data into respective arrays
-									foreach ($viewsData as $monthData) {
-										$allMonthsData[$monthData->month] = $monthData->views;
-									}
-									
-									foreach ($downloadsData as $monthData) {
-										$allDownloadsData[$monthData->month] = $monthData->downloads;
-									}
-						
-								?>
+							<?php
+							$sqlViews = "SELECT MONTH(logs.date) AS month, COUNT(*) AS views
+										FROM logs
+										RIGHT JOIN article ON logs.article_id = article.article_id
+										WHERE article.author_id = :author_id AND logs.type = 'read'
+										GROUP BY MONTH(logs.date)";
+
+							$sqlDownloads = "SELECT MONTH(logs.date) AS month, COUNT(*) AS downloads
+											FROM logs
+											RIGHT JOIN article ON logs.article_id = article.article_id
+											WHERE article.author_id = :author_id AND logs.type = 'download'
+											GROUP BY MONTH(logs.date)";
+
+							$params = array('author_id' => $id);
+
+							$viewsData = database_run($sqlViews, $params);
+							$downloadsData = database_run($sqlDownloads, $params);
+
+							// Initialize data arrays with default values
+							$allMonthsData = array_fill(1, 12, 0);
+							$allDownloadsData = array_fill(1, 12, 0);
+
+							// Populate fetched data into respective arrays
+							if ($viewsData !== false) {
+								foreach ($viewsData as $monthData) {
+									$allMonthsData[$monthData->month] = $monthData->views;
+								}
+							}
+
+							if ($downloadsData !== false) {
+								foreach ($downloadsData as $monthData) {
+									$allDownloadsData[$monthData->month] = $monthData->downloads;
+								}
+							}
+							?>
 
 							<canvas id="articlesChart" width="400" height="120"></canvas>
 						</div>
@@ -1897,64 +1897,82 @@ $expertise = $_SESSION['expertise'];
 	</div>
 
 
-<div class="container-fluid mt-5" id="certContainerHead" style="display: none">
+	<div class="container-fluid mt-5" id="certContainerHead" style="display: none">
     <div class="cert-container d-flex justify-content-center align-items-center">
 		<?php 
-			echo '<img class="img-fluid" id="cert1" src="../images/Bg-cert.jpg" alt="cert">'
+			echo '<img class="img-fluid" id="cert1" src="../images/cert-reviewer.jpg" alt="cert">'
 		?>
         
 		<div class="cert-category">
 			<p class="h2" id="category"></p>
-			<p class="h6" id="awardee">This Certificate is Awarded to</p>
-			<p class="h1" id="awardeeName">
+			<p class="issn" id="iss1">ISSN 3027-9852</p>
+			<!-- <p class="h6" id="awardee">This Certificate is Awarded to</p> -->
+		</div>
+		<div class="cert-rev-details">
+		<p class="h1" id="awardeeName">
 				<?php 
 				echo $first_name . ' ' . $middle_name . ' ' . $last_name	
 				?>
 			</p>
-			<p class="h6" id="engagement">For participating in the peer review process for the article titled:</p>
+			<!-- <p class="h6" id="engagement">For participating in the peer review process for the article titled:</p> -->
 			<p class="h3" id="engagementTitle"></p>
+			<p class="revDate" id="revDate">March 10 , 2024</p>
 		</div>
     </div>
 </div>
 
 
 
+
 <div class="container-fluid mt-5" id="certPublishedHead" style="display: none">
     <div class="cert-container d-flex justify-content-center align-items-center">
-        <img class="img-fluid" id="cert2" src="../images/author-cert.jpg" alt="cert" style="width: 800px;
+        <img class="img-fluid" id="cert2" src="../images/cert_publication.jpg" alt="cert" style="width: 800px;
 		height: 500px;
 		">
 		<div class="cert-category-published" style="position: absolute;">
-			<p class="h2" id="categoryPublished" style="  
-			font-weight: bold;
-			text-align: center;
-			font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-			font-style: italic;"></p>
-			<p class="h6" id="awardeePublished" style="
+			
+			<div class="articlePubInfo">
+				<p class="h2" id="categoryPublished" style=""></p>
+				<p class="issn" id="iss2">ISSN 3027-9852</p>
+			</div>
+			
+			<!-- <p class="h6" id="awardeePublished" style="
 			font-family: 'Times New Roman', Times, serif;
 			font-weight: bold;
 			margin-left: 80px;
-			margin-top: 25px;">This Certificate is Awarded to</p>
-			<p class="h1" id="awardeeNamePublished" style="    
-			text-align: center;
-			font-family: 'Dancing Script', cursive;
-			font-weight: bold;
-			font-style: italic;
-			font-size: 50px;">
-				<?php 
-				echo $first_name . ' ' . $middle_name . ' ' . $last_name	
-				?>
-			</p>
-			<p class="h6" id="engagementPublished" style="    
-			font-family: 'Times New Roman', Times, serif;
-			font-weight: bold;
-			margin-left: 80px;">For successfully publishing the article titled:</p>
-			<p class="h3" id="engagementTitlePublished" style="
-			font-weight: bold;
-			text-align: center;
-			font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-			font-style: italic;
-			width: 720px;"></p>
+			margin-top: 25px;">This Certificate is Awarded to</p> -->
+			<div class="pubInfo">
+				<p class="h1" id="awardeeNamePublished" style="    
+				    text-align: left;
+					font-family: 'Dancing Script', cursive;
+					font-weight: 400;
+					font-style: italic;
+					font-size: 25px;
+					margin-top: 20px;
+					margin-left: 0px;
+					color: #00123D;">
+					<?php 
+					echo $first_name . ' ' . $middle_name . ' ' . $last_name	
+					?>
+				</p>
+				<!-- <p class="h6" id="engagementPublished" style="    
+				font-family: 'Times New Roman', Times, serif;
+				font-weight: bold;
+				margin-left: 80px;">For successfully publishing the article titled:</p> -->
+				<p class="h3" id="engagementTitlePublished" style="
+					font-weight: normal;
+					text-align: center;
+					font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+					font-style: italic;
+					width: 550px;
+					font-size: 20px;
+					margin-top: 30px;
+					line-height: 20px;
+					text-align: left;
+					color: #00123D;"></p>
+				<p class="publishdate">March 10 , 2024</p>
+			</div>
+			
 		</div>
     </div>
 </div>
@@ -2223,7 +2241,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     imageAlt: "Custom image",
                     didClose: function () {
                         reviewerCert.style.display = 'none';
-						authorCert.style.display = 'block';
+						authorCert.style.display = 'none';
                     }
                 });
             } else if (actionEngage === 'Published an Article') {
@@ -2235,7 +2253,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     imageAlt: "Custom image",
                     didClose: function () {
                         reviewerCert.style.display = 'none';
-						authorCert.style.display = 'block';
+						authorCert.style.display = 'none';
                     }
                 });
             } else if (actionEngage === 'Reviewed an Article') {

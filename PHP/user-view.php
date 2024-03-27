@@ -793,7 +793,13 @@ if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
                             <div class="stat">
                                 <div class="stats-values">
                                     <?php
-                                        $sql = "SELECT logs.article_id, logs.date, logs.type FROM logs JOIN article ON logs.article_id = article.article_id JOIN author ON article.author_id = author.author_id WHERE author.orc_id = :orc_id AND logs.type = 'read'";
+                                        $sql = "SELECT logs.article_id, logs.date, logs.type 
+                                        FROM logs 
+                                        JOIN article ON logs.article_id = article.article_id 
+                                        JOIN author ON article.author_id = author.author_id 
+                                        WHERE author.orc_id = :orc_id
+                                        AND logs.type = 'read';
+                                        ";
                                         $params = array('orc_id' => $orcid);
                                         $sqlRun = database_run($sql, $params);
 
@@ -812,7 +818,13 @@ if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
                             <div class="stat">
                                 <div class="stats-values">
                                     <?php
-                                            $sql = "SELECT logs.article_id, logs.date, logs.type FROM logs JOIN article ON logs.article_id = article.article_id JOIN author ON article.author_id = author.author_id WHERE author.orc_id = :orc_id AND logs.type = 'download'";
+                                            $sql = "SELECT logs.article_id, logs.date, logs.type 
+                                            FROM logs 
+                                            JOIN article ON logs.article_id = article.article_id 
+                                            JOIN author ON article.author_id = author.author_id 
+                                            WHERE author.orc_id = :orc_id
+                                            AND logs.type = 'download';
+                                            ";
                                             $params = array('orc_id' => $orcid);
                                             $sqlRun = database_run($sql, $params);
 
@@ -831,7 +843,14 @@ if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
                             <div class="stat">
                                 <div class="stats-values">
                                     <?php
-                                        $sql = "SELECT logs.article_id, logs.date, logs.type FROM logs JOIN article ON logs.article_id = article.article_id JOIN author ON article.author_id = author.author_id WHERE author.orc_id = :orc_id AND logs.type = 'citation'";
+                                        $sql = "SELECT logs.article_id, logs.date, logs.type 
+                                        FROM logs 
+                                        JOIN article ON logs.article_id = article.article_id 
+                                        JOIN author ON article.author_id = author.author_id 
+                                        WHERE author.orc_id = :orc_id
+                                        AND logs.type = 'citation';
+                                        ";
+                    
                                         $params = array('orc_id' => $orcid);
                                         $sqlRun = database_run($sql, $params);
 
