@@ -387,24 +387,31 @@ function renderArticleDetails(data) {
       loginRedirect.style.display = "none";
       if (supportBtn) {
         supportBtn.addEventListener("click", async () => {
-          if (item.isSupported == 0){
-            support.innerHTML = item.total_support + 1
-            const svgElement = document.querySelector("#support-btn svg path");
+          const svgElement = document.querySelector("#support-btn svg path");
+          const currentColor = svgElement.getAttribute("fill");
+          const currentTotal = parseInt(support.innerHTML)
+          if (currentColor != "red"){
             svgElement.setAttribute("fill", "red");
-            const response = await fetch(
-              "https://web-production-cecc.up.railway.app/api/articles/logs/support",
-              {
-                method: "POST",
-                body: JSON.stringify({
-                  author_id: sessionId,
-                  article_id: parseInt(articleId),
-                }),
-                headers: {
-                  "Content-Type": "application/json",
-                },
-              }
-            );
+            support.innerHTML = currentTotal + 1
+          
+          } else {
+            svgElement.setAttribute("fill", "#a8b3b3");
+            support.innerHTML = currentTotal - 1
           }
+          const response = await fetch(
+            "https://web-production-cecc.up.railway.app/api/articles/logs/support",
+            {
+              method: "POST",
+              body: JSON.stringify({
+                author_id: sessionId,
+                article_id: parseInt(articleId),
+              }),
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          );
+          
         });
       }
       if (readBtn) {
