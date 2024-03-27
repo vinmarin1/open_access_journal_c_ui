@@ -28,46 +28,90 @@
 </div>
 
 
-<div class="container-fluid">
+    <div class="container-fluid">
     <?php
-    $hostname = "srv1320.hstgr.io"; 
-    $dbuser = "u944705315_qcuj2024";
-    $dbpass = "Qcujournal1234.";
-    $dbName = "u944705315_qcuj2024";
-    $conn = mysqli_connect($hostname, $dbuser, $dbpass, $dbName);
-    if (!$conn) {
-        die("connection is not available");
-    }
+        include("dbcon.php");
+        $sql = "SELECT * FROM announcement WHERE announcementtype = 'Call for Papers' AND status = 1 ORDER BY date_added DESC LIMIT 1";
+        $announcementData = database_run($sql);
+        
+        if ($announcementData) {
 
-    // Fetch the call for papers announcement
-    $sql = "SELECT * FROM announcement WHERE announcementtype = 'Call for Papers' AND status = 1 ORDER BY date_added DESC LIMIT 1";
-    $result = mysqli_query($conn, $sql);
-    if ($row = mysqli_fetch_array($result)) {
-        // Generate HTML for the call for papers announcement
-        $announcementId = $row["announcement_id"];
-        $title = $row["title"];
-        $announcement = $row["announcement"];
-        $img = $row["upload_image"];
-        // <img src='../Files/announcement-image/$img' alt='#' class='img-fluid'>
-        // HTML structure for the call for papers announcement 
-        $callForPapersHTML = "<section class='row'>
+            $announcement = $announcementData[0];
+            $announcementId = $announcement->announcement_id;
+            $title = $announcement->title;
+            $announcementText = $announcement->announcement;
+            $img = $announcement->upload_image;
+            $imgSrc = "../Files/announcement-image/$img";
+
+            $callForPapersHTML = "<section class='row'>
                                     <div class='col-md-12 order-md-2'>
-                                        <img src='../Files/announcement-image/$img' alt='#' class='w-100'>
+                                        <img src='$imgSrc' alt='#' class='w-100'>
                                     </div>
                                     <div class='col-md-12 order-md-1'>
                                         <div class='announce-text' style='text-align:justify'>
                                             <h4>$title</h4>
                                             <br>
-                                            <p>$announcement</p>
+                                            <p>$announcementText</p>
                                         </div>
                                     </div>
                                 </section>";
+        
+            echo $callForPapersHTML;
+        }
+        ?>
+        </div>
+        
+        <div class="container-fluid">
+            <?php
+                $sql = "SELECT * FROM announcement WHERE status = 1 AND announcementtype != 'Call for Papers'";
+                $result = database_run($sql);
 
-        // Echo the HTML for the call for papers announcement
-        echo $callForPapersHTML;
-    }
-    ?>     
+                if ($result !== false && !empty($result)) {
+                    if (count($result) > 0) {
+                        foreach ($result as $row) {
+                            $title = $row->title;
+                            $announcement = $row->announcement;
+                            $img = $row->upload_image;
+                            $dateAdded = $row->date_added;
+
+                            echo "<section class='row'>
+                                    <div class='col-md-5 border'>
+                                        <div class='announcement-pic text-center'>
+                                            <img src='../Files/announcement-image/$img' alt='#!' class='img-fluid'>
+                                        </div>
+                                    </div>
+                                    <div class='col-md-7 policy border p-4' id='policy-top'>
+                                        <h4>$title</h4>
+                                        <p>$announcement</p>
+                                        <div class='qcu-date-container'>
+                                            <p class='qcu-name'>QCU</p>
+                                            <p class='qcu-date'>$dateAdded</p>
+                                        </div>
+                                    </div>
+                                </section>";
+                        }
+                    } else {
+                        echo "No announcements available.";
+                    }
+                } else {
+                    echo "Error retrieving announcements.";
+                }
+                ?>
+        </div>
+    </div>
+
+
+<div class="footer" id="footer">
+    <!-- footer will be display here by fetching reusable files -->
 </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <script src="../JS/reusable-header.js"></script>
+</body>
+</html>
+
 
 <!-- 
 <div class="container-fluid">
@@ -189,61 +233,3 @@
 <div class="watch-vid">
 
 </div> -->
-
-<div class="container-fluid">
-<?php
-        $hostname = "srv1320.hstgr.io"; 
-        $dbuser = "u944705315_qcuj2024";
-        $dbpass = "Qcujournal1234.";
-        $dbName = "u944705315_qcuj2024";
-        $conn = mysqli_connect($hostname, $dbuser, $dbpass, $dbName);
-        if (!$conn) {
-            die("connection is not available");
-        }
-
-
-        $sql = "SELECT * FROM announcement WHERE status =  1 and announcementtype != 'Call for Papers'";
-        $result = mysqli_query($conn,$sql);
-        while ($row=mysqli_fetch_array($result)) {
-            $announcementId = $row["announcement_id"];
-            $type = $row["announcementtype"];
-            $title = $row["title"];
-            $description = $row["announcement_description"];
-            $announcement = $row["announcement"];
-            $img = $row["upload_image"];
-            $dateAdded = $row["date_added"];
-            // $dateExpired = $row["expired_date"];
-
-        echo " <section class='row'>
-        <div class='col-md-5 border'>
-            <div class='announcement-pic text-center'>
-                <img src='../Files/announcement-image/$img' alt='#!' class='img-fluid'>
-            </div>
-        </div>
-        <div class='col-md-7 policy border p-4' id='policy-top'>
-        <h4>$title</h4>
-            <p>$announcement</p>
-            <div class='qcu-date-container'>
-                <p class='qcu-name'>QCU</p>
-                <p class='qcu-date'>$dateAdded</p>
-            </div>
-        </div>
-    </section>
-        ";
-        }
-        ?>
-</div>
-
-
-
-
-<div class="footer" id="footer">
-    <!-- footer will be display here by fetching reusable files -->
-</div>
-
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" ></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-    <script src="../JS/reusable-header.js"></script>
-</body>
-</html>
