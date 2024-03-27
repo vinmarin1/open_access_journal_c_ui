@@ -52,12 +52,9 @@ async function fetchData() {
           <li class="d-flex flex-column"><span class="total">${item.total_reads}</span>views</li>
           <li class="d-flex flex-column"><span class="total">${item.total_downloads}</span>downloads</li>
           <li class="d-flex flex-column"><span class="total">${item.total_citations}</span>citations</li>
+          <li class="d-flex flex-column"><span class="total">${item.total_support}</span>hearts</li>
         </ul>
       </div><div>
-
-    
-      
-    
       `;
 
       articlesContainer.appendChild(articleDiv);

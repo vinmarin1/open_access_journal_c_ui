@@ -89,7 +89,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                             <ol start="1" type="1">
                                 <li>Click the 'Donate' Button: Select your donation amount and complete the simple and secure payment process.</li>
                                 <li>Earn Hearts: For every amount donated, you earn a heart. Watch your impact grow with each contribution.</li>
-                                <li>Choose Articles to Support: Navigate to our articles and allocate your hearts to the research that resonates with you.</li>
+                                <!-- <li>Choose Articles to Support: Navigate to our articles and allocate your hearts to the research that resonates with you.</li> -->
                             </ol>
                         </div>
                     </div>
