@@ -277,7 +277,10 @@
   color: var(--main, #0858A4);
   border-color: var(--main, #0858A4);
 }
-
+#support-btn {
+  background-color: white;
+  color: var(--main, #0858A4);
+}
 .share-btn {
   background-color: white;
   color: var(--main, #0858A4);
