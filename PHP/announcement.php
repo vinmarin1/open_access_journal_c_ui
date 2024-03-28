@@ -117,9 +117,9 @@
 <div class="container-fluid">
 <?php
 //     $hostname = "srv1158.hstgr.io"; 
-//     $dbuser = "u944705315_qcuj2024";
+//     $dbuser = "u944705315_pahina2024";
 //     $dbpass = "Qcujournal1234.";
-//     $dbName = "u944705315_qcuj2024";
+//     $dbName = "u944705315_pahina2024";
 //     $conn = mysqli_connect($hostname, $dbuser, $dbpass, $dbName);
 //     if (!$conn) {
 //         die("connection is not available");
