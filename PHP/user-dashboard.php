@@ -1,5 +1,5 @@
 <?php 
-require_once 'dbcon.php';
+require 'dbcon.php';
 session_start();
 
 if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
@@ -687,7 +687,7 @@ $expertise = $_SESSION['expertise'];
 					</div>
 				</div>
 				<!-- </form> -->
-					<div class="balance-points"><span class="heart-icon">❤️</span>&nbsp;
+					<div class="balance-points"><i class="fa-solid fa-fire" style="color: orange"></i>&nbsp;
 					<?php
 						$sqlPoints = "SELECT point_earned FROM user_points WHERE user_id = $id";
 
@@ -702,8 +702,29 @@ $expertise = $_SESSION['expertise'];
 							}
 
 							echo  $totalPoints;
-						} 
+						}else{
+							echo '0';
+						}
 					?>
+					<br>
+					</div><div class="totalLikes"><i class="fa-solid fa-heart" style="color: red"></i>&nbsp;
+					<?php
+					$sqlPoints = "SELECT author.author_id, author.first_name, article.article_id, article.title, logs.article_id, logs.type 
+								FROM author 
+								JOIN article ON author.author_id = article.author_id 
+								JOIN logs ON article.article_id = logs.article_id 
+								WHERE author.author_id = $id AND logs.type = 'support'";
+
+					$result = database_run($sqlPoints);
+
+					if ($result !== false) {
+						$totalPoints = count($result);
+						echo $totalPoints;
+					} else {
+						echo '0';
+					}
+					?>
+
 					</div>
 					<?php
 						if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
@@ -1907,7 +1928,7 @@ $expertise = $_SESSION['expertise'];
         
 		<div class="cert-category">
 			<p class="h2" id="category"></p>
-			<p class="issn" id="iss1">ISSN 3027-9852</p>
+			<p class="issn" id="iss1"></p>
 			<!-- <p class="h6" id="awardee">This Certificate is Awarded to</p> -->
 		</div>
 		<div class="cert-rev-details">
@@ -1935,7 +1956,7 @@ $expertise = $_SESSION['expertise'];
 			
 			<div class="articlePubInfo">
 				<p class="h2" id="categoryPublished" style=""></p>
-				<p class="issn" id="iss2">ISSN 3027-9852</p>
+				<p class="issn" id="iss2"></p>
 			</div>
 			
 			<!-- <p class="h6" id="awardeePublished" style="
@@ -2276,6 +2297,8 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function updateEngagementTitle(title, journalId, formattedDateTime) {
+	const iss1 = document.getElementById('iss1');
+	const iss2 = document.getElementById('iss2');
     document.getElementById("engagementTitle").innerHTML = title;
     document.getElementById("category").innerHTML = 'Journal of ' + journalId;
 	document.getElementById("publishdate").innerHTML = formattedDateTime;
@@ -2283,7 +2306,26 @@ function updateEngagementTitle(title, journalId, formattedDateTime) {
 
 	document.getElementById("engagementTitlePublished").innerHTML = title;
     document.getElementById("categoryPublished").innerHTML = 'Journal of ' + journalId;
+	
+	if (document.getElementById("category").innerHTML === 'Journal of The Gavel') {
+		iss1.innerHTML = 'ISSN 3027-9895';
+	} else if (document.getElementById("category").innerHTML === 'Journal of The Lamp') {
+		iss1.innerHTML = 'ISSN 2984-8369';
+	} else if (document.getElementById("category").innerHTML === 'Journal of The Star') {
+		iss1.innerHTML = 'ISSN 3027-9895';
+	}
+
+	if (document.getElementById("categoryPublished").innerHTML === 'Journal of The Gavel') {
+		iss2.innerHTML = 'ISSN 3027-9895';
+	} else if (document.getElementById("categoryPublished").innerHTML === 'Journal of The Lamp') {
+		iss2.innerHTML = 'ISSN 2984-8369';
+	} else if (document.getElementById("categoryPublished").innerHTML === 'Journal of The Star') {
+		iss2.innerHTML = 'ISSN 3027-9895';
+	}	
 }
+
+
+
 
 
 function downloadCertificate() {
