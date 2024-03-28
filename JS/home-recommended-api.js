@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', fetchData);
+document.addEventListener('DOMContentLoaded', sessionId!=0 ? fetchData: null);
 function navigateToArticle(articleId){
   window.location.href = `../PHP/article-details.php?articleId=${articleId}`;
 }

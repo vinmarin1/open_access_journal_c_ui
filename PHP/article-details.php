@@ -69,18 +69,6 @@
     </div>
   </div>
 
-
-  <div class="fluid-container">
-        <div class="recommendation-article bg-white">
-            <h4>Top Picks for <?php echo date('F '); ?></h4>
-          
-                <div id="popular-monthly" class="articles-container ">
-                    <!-- fetch popular articles using api -->
-                </div>
-              
-        </div>
-    </div>
-
   <?php
     if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true ){  
       echo '
@@ -109,10 +97,9 @@
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="../JS/reusable-header.js"></script>
   <script src="../JS/home-recommended-api.js"></script>
-  <script src="../JS/home-monthly-api.js"></script>
   <script src="../JS/cloudConvert.js"></script>
   <script src="../JS/article-details-api.js"></script>
 </body>

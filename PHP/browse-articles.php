@@ -157,23 +157,6 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
             </nav>
         </div></div>
     </div>
-
-    <div class="fluid-container">
-        <div class="recommendation-article">
-            <h4>Tailored for You: Recommended Articles Based on Your Interactions</h4>
-            <div id="recommendations" class="articles-container">
-            </div>
-        </div>
-    </div>
-    </div>
-    <div class="fluid-container">
-        <div class="recommendation-article">
-            <h4>Discover our Most Popular Article </h4>
-            <div id="all-popular-articles" class="articles-container">
-            </div>
-        </div>
-    </div>
-    </div>
     <div class="fluid-container">
         <div class="recommendation-article">
             <h4>Top Picks for <?php echo date('F '); ?></h4>
@@ -204,8 +187,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../JS/reusable-header.js"></script>
-    <script src="../JS/home-recommended-api.js"></script>
-    <script src="../JS/most-popular-api.js"></script>
+    <!-- <script src="../JS/most-popular-api.js"></script> -->
     <script src="../JS/home-monthly-api.js"></script>
     <?php include '../JS/browse/browse.php'; ?>
 
