@@ -1,5 +1,5 @@
 <?php
-include 'dbcon.php';
+require_once 'dbcon.php';
 
 function update_notification() {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {

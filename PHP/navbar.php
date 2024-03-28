@@ -1,7 +1,7 @@
 <?php 
 
 session_start();
-require 'dbcon.php';
+require_once 'dbcon.php';
 
 
 

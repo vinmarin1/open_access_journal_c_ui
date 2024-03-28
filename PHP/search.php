@@ -1,5 +1,5 @@
 <?php
-require 'dbcon.php';
+require_once 'dbcon.php';
 
 if (isset($_POST['searchData'])) {
     $searchData = $_POST['searchData'];

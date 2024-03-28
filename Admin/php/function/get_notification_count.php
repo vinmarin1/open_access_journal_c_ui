@@ -1,5 +1,5 @@
 <?php
-include 'dbcon.php';
+require_once 'dbcon.php';
 
 if (!function_exists('get_notification_data')) {
     function get_notification_data()

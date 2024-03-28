@@ -1,6 +1,6 @@
 <?php
 
-require 'dbcon.php';
+require_once 'dbcon.php';
 
 header('Content-Type: application/json');
 

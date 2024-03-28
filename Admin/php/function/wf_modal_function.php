@@ -1,5 +1,5 @@
 <?php
-include 'dbcon.php';
+require_once 'dbcon.php';
 
     $action = isset($_POST['action']) ? $_POST['action'] : '';
 

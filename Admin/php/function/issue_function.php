@@ -1,6 +1,6 @@
 <?php
 
-include 'dbcon.php';
+require_once 'dbcon.php';
 
 // Check if the function is not already defined
 if (!function_exists('get_article_list')) {
