@@ -1,5 +1,5 @@
 <?php
-include 'dbcon.php';
+require_once 'dbcon.php';
 require 'vendor/autoload.php';
 
 use PHPMailer\PHPMailer\PHPMailer;

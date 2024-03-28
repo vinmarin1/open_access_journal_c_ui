@@ -1,5 +1,5 @@
 <?php
-require 'dbcon.php';
+require_once 'dbcon.php';
 require 'mail.php';
 
 date_default_timezone_set('Asia/Manila');

@@ -1,5 +1,5 @@
 <?php
-require 'dbcon.php';
+require_once 'dbcon.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = $_POST['id'];

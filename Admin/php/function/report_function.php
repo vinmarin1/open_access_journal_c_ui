@@ -1,5 +1,5 @@
 <?php
-include 'dbcon.php';
+require_once 'dbcon.php';
 
     if (!function_exists('get_report_list')) {
         function get_report_list($journal_id = null) {

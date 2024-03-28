@@ -1,5 +1,5 @@
 <?php
-include 'dbcon.php';
+require_once 'dbcon.php';
     function get_user_list()
     {
         $pdo = connect_to_database();

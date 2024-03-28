@@ -1,5 +1,5 @@
 <?php
-require 'dbcon.php';
+require_once 'dbcon.php';
 require 'mail.php';
 session_start();
 

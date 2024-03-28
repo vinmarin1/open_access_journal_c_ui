@@ -1,5 +1,5 @@
 <?php 
-require 'dbcon.php';
+require_once 'dbcon.php';
 session_start();
 
 if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {

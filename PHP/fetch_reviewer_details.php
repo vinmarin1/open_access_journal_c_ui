@@ -1,5 +1,5 @@
 <?php
-require 'dbcon.php';
+require_once 'dbcon.php';
 
 if (isset($_GET['reviewer_id']) && isset($_GET['article_id'])) {
     $authorId = $_GET['reviewer_id'];
