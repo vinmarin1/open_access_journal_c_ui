@@ -14,7 +14,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 <!DOCTYPE html>
 <html>
 <?php include('./meta.php'); ?>
-<title>QCU PUBLICATION | Submitted Article</title>
+<title>Pahina | Submitted Article</title>
 <link href="../CSS/submitted-article.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
