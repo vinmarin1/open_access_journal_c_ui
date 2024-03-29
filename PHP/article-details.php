@@ -8,8 +8,8 @@
 <head>
   <?php include('./meta.php'); ?>
 
-  <title>QCU PUBLICATION | ARTICLE DETAILS</title>
-  <meta property="og:title" content="QCU PUBLICATION | ARTICLE DETAILS">
+  <title>Pahina | ARTICLE DETAILS</title>
+  <meta property="og:title" content="Pahina | ARTICLE DETAILS">
   <meta property="og:description" content="Explore groundbreaking research at QCU with this in-depth article. Gain insights into innovative studies, findings, and academic contributions that shape the intellectual landscape. Stay informed about the latest discoveries in various fields presented in this comprehensive QCU research article. #QCUResearch #AcademicExcellence">
   <meta property="og:image" content="https://www.google.com/url?sa=i&url=https%3A%2F%2Fqcu.edu.ph%2F&psig=AOvVaw1F8jT0VsKUyfOBiTvO5pDV&ust=1706257892464000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCMDRto6Q-IMDFQAAAAAdAAAAABAE">
   <meta property="og:url" content="https://openaccessjournalcui-production.up.railway.app/PHP/index.php">

@@ -18,7 +18,7 @@ if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
 <html lang="en">
 <head>
     <?php include('./meta.php'); ?>
-    <title>QCU PUBLICATION | AUTHOR PROFILE</title>
+    <title>Pahina | AUTHOR PROFILE</title>
     <link rel="stylesheet" href="../CSS/user-view.css">
     <link rel="stylesheet" href="../CSS/index.css">
 </head>

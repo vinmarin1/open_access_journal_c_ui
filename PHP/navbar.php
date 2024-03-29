@@ -53,19 +53,19 @@ require_once 'dbcon.php';
             <li><a class="dropdown-item" style="color: black" href="./guidelines.php">For Contributors</a></li>
             <li><a class="dropdown-item" style="color: black" href="./faqs.php">Frequently Asked Questions</a></li>
           </ul>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" href="donation.php">Donation</a>
-        </li>
+        </li> -->
       </ul>
       <!-- <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
       </form> -->
     <!-- Login Dropdown -->
-    <div class="cta btn btn-outline-light rounded-pill mx-2" style="background-color: none !important">
+    <!-- <div class="cta btn btn-outline-light rounded-pill mx-2" style="background-color: none !important">
       <a class="" role="button" href="browse-articles.php">
         Browse Articles
       </a>
-    </div>
+    </div> -->
    
     <?php
     if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {

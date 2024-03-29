@@ -43,7 +43,7 @@ $expertise = $_SESSION['expertise'];
 
 <head>
 <?php include('./meta.php'); ?>
-  <title>QCU PUBLICATION | USER DASHBOARD</title>
+  <title>Pahina | USER DASHBOARD</title>
   <link rel="stylesheet" href="../CSS/user-dashboard.css">
   <link rel="stylesheet" href="../CSS/index.css">
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"> -->

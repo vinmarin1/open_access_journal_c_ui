@@ -186,7 +186,7 @@
               <option value="2" id="lamp">The Lamp</option>
               <option value="3" id="star">The Star</option>
             </select>
-            <span class="suggestion-title text-muted">QCUJ can suggest journal based on your article</span>
+            <span class="suggestion-title text-muted">Pahina can suggest journal based on your article</span>
           </div>
           <button type="button" class="btn btn-primary btn-sm mt-2" id="check-duplication" onclick="checkDuplication()">
               <span id="check-text">Check</span>

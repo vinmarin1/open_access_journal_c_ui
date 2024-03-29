@@ -14,7 +14,7 @@ if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
 <html lang="en">
 <head>
   <?php include('./meta.php'); ?>
-    <title>QCU PUBLICATION | USER ACCOUNT SECURITY</title>
+    <title>Pahina | USER ACCOUNT SECURITY</title>
     <link href="../CSS/user-account.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">

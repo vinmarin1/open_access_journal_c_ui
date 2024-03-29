@@ -7,7 +7,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
 
 <head>
     <?php include('./meta.php'); ?>
-    <title>QCU PUBLICATION | FAQs</title>
+    <title>Pahina | FAQs</title>
     <link rel="stylesheet" href="../CSS/faqs.css">
     <link rel="stylesheet" href="../CSS/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -70,7 +70,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 <div class="category w-100">
                     <h5>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 15 15"><path fill="#e56f1f" fill-rule="evenodd" d="M.877 7.5a6.623 6.623 0 1 1 13.246 0a6.623 6.623 0 0 1-13.246 0M7.5 1.827a5.673 5.673 0 1 0 0 11.346a5.673 5.673 0 0 0 0-11.346m.75 8.673a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0m-2.2-4.25c0-.678.585-1.325 1.45-1.325s1.45.647 1.45 1.325c0 .491-.27.742-.736 1.025c-.051.032-.111.066-.176.104a5.28 5.28 0 0 0-.564.36c-.242.188-.524.493-.524.961a.55.55 0 0 0 1.1.004a.443.443 0 0 1 .1-.098c.102-.079.215-.144.366-.232c.078-.045.167-.097.27-.159c.534-.325 1.264-.861 1.264-1.965c0-1.322-1.115-2.425-2.55-2.425c-1.435 0-2.55 1.103-2.55 2.425a.55.55 0 0 0 1.1 0" clip-rule="evenodd"/></svg>
-                        Submitting to QCUJ
+                        Submitting to Pahina
                     </h5>
                     <div id="submissionQAs" class="faqs accordion accordion-flush w-100 d-flex flex-column gap-0" id="faqs">
                     
@@ -87,8 +87,8 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
         <div class="category w-100">
         <div class="s-1">
         <h3>Types of Publication</h3>
-            <p>Manuscript length is unrestricted in QCU Journals, as long as the material is concise and comprehensive. To ensure that the results can be replicated, all practical information must be provided.</p>
-            <p>Manuscripts should not have been previously published or considered for publication in another journal when submitted to QCU Journals. The following are the main article types:</p>
+            <p>Manuscript length is unrestricted in Pahina, as long as the material is concise and comprehensive. To ensure that the results can be replicated, all practical information must be provided.</p>
+            <p>Manuscripts should not have been previously published or considered for publication in another journal when submitted to Pahina. The following are the main article types:</p>
             <h4>Articles:</h4>
             <p>The journal accepts all original articles as long as they contain scientifically sound findings and provide important new information. The study’s quality and impact will be assessed during peer review.</p>
 
@@ -161,7 +161,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                         participating. The research protocol was approved by the QCU Research Ethics Board
                         (Project Identification Code), and the study followed the Declaration of Helsinki.”</li>
             </ul>
-                <p>Manuscripts submitted for consideration in QCU Journals must follow the “IMRaD” format is
+                <p>Manuscripts submitted for consideration in Pahina must follow the “IMRaD” format is
                     divided into four main sections: <b>I</b>ntroduction, <b>M</b>ethod, <b>R</b>esults, and <b>D</b>iscussion.</p>
                 <ul type="circle" style="margin-left:50px;">
                     <li><strong>Title: Short and to-the-point. Titles are often used in information
@@ -419,13 +419,13 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
         </div>
         <div class="category w-100">
             <div class="s-1">
-                <p>Welcome to our Publication Tutorial for Quezon City University Journal. This guide simplifies the process, 
+                <p>Welcome to our Publication Tutorial for Pahina. This guide simplifies the process, 
                 ensuring a smooth experience for all contributors. Let's make your publication journey hassle-free – get
                 started now! Begin your submission and share your insights with our scholarly community!</p>
             </div>
             <div class="s-2">
                 <h3>Registering with Open Access Journal</h3>
-                <p>Begin your publication journey by registering with Quezon City University Journal. Follow these simple steps
+                <p>Begin your publication journey by registering with Pahina. Follow these simple steps
                     to create your account:</p>
                 <ol type="1">
                     <li>Visit our journal website and click on the "Register" button.</li>
@@ -511,12 +511,12 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
         </div>
         <div class="category w-100">
             <div class="s-1">
-                <p>Welcome to our Publication Tutorial for Quezon City University Journal. This guide simplifies the process, ensuring a smooth experience for all contributors. Let's make your publication journey 
+                <p>Welcome to our Publication Tutorial for Pahina. This guide simplifies the process, ensuring a smooth experience for all contributors. Let's make your publication journey 
                     hassle-free – get started now! Begin your submission and share your insights with our scholarly community!</p>
             </div>
             <div class="s-2">
                 <h3>Registering with Open Access Journal</h3>
-                <p>Begin your publication journey by registering with Quezon City University Journal. Follow these simple steps
+                <p>Begin your publication journey by registering with Pahina. Follow these simple steps
                     to create your account:</p>
                 <ol type="1">
                     <li>Visit our journal website and click on the "Register" button.</li>
@@ -605,11 +605,11 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 <p>The editors of this journal use a rigorous peer-review system and adhere to strong ethical
                     values and standards to ensure that only high-quality research works are accepted.</p>
                 <p>Plagiarism, falsification, fabrication, unethical co-authorship practices, and other examples of
-                    research misconduct are taken extremely seriously by the editors of QCU Journals. They are
+                    research misconduct are taken extremely seriously by the editors of Pahina. They are
                     instructed to deal with a zero-tolerance approach in such circumstances.</p>
             </div>
             <div class="s-2">
-                <p>Researchers who wish to publish their articles or reviews in QCU Journals should abide by
+                <p>Researchers who wish to publish their articles or reviews in Pahina should abide by
                     the following:</p>
                 <ul>
                     <li>Any information in the manuscript that could be construed as a potential conflict of
@@ -647,7 +647,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 </ul>
                     <li>Our editors will investigate any claims of research misconduct in publication. Proper
                         steps will be considered to correct or retract the article if there is proof of misconduct.
-                        When publishing with the QCU Journals, authors are expected to follow the most
+                        When publishing with the Pahina, authors are expected to follow the most
                         acceptable ethical publication procedures.</li>
                 </ul>
             </div>
@@ -662,7 +662,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
             </div>
             <div class="s-2">
                 <h3>COPYRIGHT AND LICENSING</h3>
-                <p>The authors maintain copyright for all works published in the QCU journals. The articles are
+                <p>The authors maintain copyright for all works published in the Pahina. The articles are
                     published under the Creative Commons CC BY 4.0 license, allowing anybody to download
                     and read them for free. The article may also be reused and quoted as long as the original
                     published version is referenced. These terms provide the most widespread use and visibility
@@ -670,12 +670,12 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
             </div>
             <div class="s-2">
                 <h3>INSTITUTIONAL REPOSITORY</h3>
-                <p>All articles published in the QCU Journals will be archived in the institutional repository
+                <p>All articles published in the Pahina will be archived in the institutional repository
                     system and database of the Quezon City University.</p>
             </div>
             <div class="s-2">
                 <h3>DATA PRIVACY, INTELLECTUAL PROPERTY, AND ANTI-PIRACY</h3>
-                <p>All articles published in the QCU Journals should conform with the relevant rules, guidelines,
+                <p>All articles published in the Pahina should conform with the relevant rules, guidelines,
                     and policies indicated in the Philippines’ Data Privacy Act of 2012, the Cybercrime
                     Prevention Act of 2012, and the Intellectual Property Code.</p>
             </div>
