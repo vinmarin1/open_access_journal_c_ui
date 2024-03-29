@@ -422,9 +422,32 @@ ul li span {
 
 .table-header,
 .section-header {
-    margin-bottom: 10px;
-    font-weight: bold;
-    color: #285581;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #285581;
+  display: flex;
+  width: 100%;
+ 
+}
+
+#revComment, #artStats {
+  display: inline-block;
+  width: 50%;
+
+}
+
+
+#stats{
+  background-color: white;
+  border-color: #F40CA5;
+  border: 2px solid #F40CA5;
+  border-radius: 20px;
+  color: #F40CA5;
+  text-align: center;
+  width: 50%;
+  float: right;
+  height: 4vh;
+  margin-right: 40px;
 }
 
 
@@ -469,14 +492,15 @@ ul li span {
 
 
 #log-btn {
-  background-color: #0858A4;
-  color: white;
-  font-family: "Judson", serif;
-  font-weight: 400;
-  font-style: normal;
-  border-radius: 20px;
-  position: absolute;
-  width: 28%; 
+    /* background-color: #959595; */
+    /* color: white; */
+    font-family: "Judson", serif;
+    font-weight: 400;
+    font-style: normal;
+    border-radius: 20px;
+    /* position: absolute; */
+    border-color: 1px black;
+    width: 110px;
 }
 
 
