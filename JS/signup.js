@@ -237,7 +237,7 @@ else if (hasError) {
                     icon: "success",
                     text: response.message
                 }).then(function() {
-                    window.location.href = "../PHP/signup.php";
+                    window.location.href = "../PHP/login.php";
                 });
             } else {
                 Swal.fire({
