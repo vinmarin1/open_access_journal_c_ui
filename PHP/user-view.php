@@ -793,12 +793,7 @@ if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
                             <div class="stat">
                                 <div class="stats-values">
                                     <?php
-                                        $sql = "SELECT logs.article_id, logs.date, logs.type 
-                                        FROM logs 
-                                        JOIN article ON logs.article_id = article.article_id 
-                                        JOIN author ON article.author_id = author.author_id 
-                                        WHERE author.orc_id = :orc_id
-                                        AND logs.type = 'read';
+                                        $sql = "SELECT author.author_id, author.orc_id, article.article_id, logs.type FROM author JOIN article ON author.author_id = article.author_id JOIN logs ON article.article_id = logs.article_id WHERE author.orc_id = :orc_id AND logs.author_id = author.author_id AND logs.type = 'read';
                                         ";
                                         $params = array('orc_id' => $orcid);
                                         $sqlRun = database_run($sql, $params);
@@ -818,12 +813,7 @@ if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
                             <div class="stat">
                                 <div class="stats-values">
                                     <?php
-                                            $sql = "SELECT logs.article_id, logs.date, logs.type 
-                                            FROM logs 
-                                            JOIN article ON logs.article_id = article.article_id 
-                                            JOIN author ON article.author_id = author.author_id 
-                                            WHERE author.orc_id = :orc_id
-                                            AND logs.type = 'download';
+                                            $sql = "SELECT author.author_id, author.orc_id, article.article_id, logs.type FROM author JOIN article ON author.author_id = article.author_id JOIN logs ON article.article_id = logs.article_id WHERE author.orc_id = :orc_id AND logs.author_id = author.author_id AND logs.type = 'download';
                                             ";
                                             $params = array('orc_id' => $orcid);
                                             $sqlRun = database_run($sql, $params);
@@ -843,12 +833,8 @@ if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
                             <div class="stat">
                                 <div class="stats-values">
                                     <?php
-                                        $sql = "SELECT logs.article_id, logs.date, logs.type 
-                                        FROM logs 
-                                        JOIN article ON logs.article_id = article.article_id 
-                                        JOIN author ON article.author_id = author.author_id 
-                                        WHERE author.orc_id = :orc_id
-                                        AND logs.type = 'citation';
+
+                                        $sql = "SELECT author.author_id, author.orc_id, article.article_id, logs.type FROM author JOIN article ON author.author_id = article.author_id JOIN logs ON article.article_id = logs.article_id WHERE author.orc_id = :orc_id AND logs.author_id = author.author_id AND logs.type = 'citation';
                                         ";
                     
                                         $params = array('orc_id' => $orcid);
@@ -867,8 +853,26 @@ if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
                                 <div class="stats-labels">Citations</div>
                             </div>
                             <div class="stat">
-                                <div class="stats-values">89</div>
-                                <div class="stats-labels">Hearts</div>
+                                <div class="stats-values">
+                                <?php
+
+                                $sql = "SELECT author.author_id, author.orc_id, article.article_id, logs.type FROM author JOIN article ON author.author_id = article.author_id JOIN logs ON article.article_id = logs.article_id WHERE author.orc_id = :orc_id AND logs.author_id = author.author_id AND logs.type = 'support';
+                                ";
+
+                                $params = array('orc_id' => $orcid);
+                                $sqlRun = database_run($sql, $params);
+
+                                if($sqlRun != false){
+                                echo (count($sqlRun));
+                                }else{
+                                    echo '0';
+                                }
+                                    
+
+                                    
+                                ?>
+                                </div>
+                                <div class="stats-labels">Support</div>
                             </div>
                         </div>
                         <div class="stat search-container">

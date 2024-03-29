@@ -1575,7 +1575,7 @@ label {
 .cert-rev-details{
     position: absolute;
     height: 23vh;
-    margin-top: 80px;
+    margin-top: 110px;
     /* text-align: left; */
     margin-right: 40px;
 }
@@ -1634,12 +1634,12 @@ label {
 
 .articlePubInfo {
     position: absolute;
-    top: -175px;
+    top: -135px;
     left: -100px;
 }
 .pubInfo{
-    margin-top: 60px;
-    height: 23vh;
+    margin-top: 95px;
+    height: 24vh;
     display: block;
 }
 #categoryPublished{

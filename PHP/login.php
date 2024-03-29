@@ -5,7 +5,7 @@ $url = $_GET['url'] ?? '';
 
 if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
     if ($url !== '') {
-        header("Location: $url");
+        header("Location: index.php");
         exit;
     }
 } else {

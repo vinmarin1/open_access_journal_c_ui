@@ -81,15 +81,23 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                             // Split the abstract into sentences
                             $sentences = preg_split('/(?<=[.?!])\s+/', $row->abstract, -1, PREG_SPLIT_NO_EMPTY);
                             
-                            // Output each sentence with the first letter wrapped in a span for styling
-                            foreach ($sentences as $sentence) {
-                                echo '<span class="first-letter">' . substr($sentence, 0, 1) . '</span>' . substr($sentence, 1) . ' ';
+                            // Capitalize the first letter of the first sentence
+                            if (!empty($sentences)) {
+                                $first_sentence = $sentences[0];
+                                $first_sentence = ucfirst($first_sentence);
+                                echo '<span class="first-letter">' . $first_sentence . '</span>';
+                                
+                                // Output the rest of the sentences
+                                for ($i = 1; $i < count($sentences); $i++) {
+                                    echo $sentences[$i] . ' ';
+                                }
                             }
                         }
                     } else {
-                        echo "No articles found."; 
+                        echo "No abstract."; 
                     }
                 ?>
+
             </p>
             <p class="keywords-title">Keywords</p>
             <div class="keywords">
@@ -149,7 +157,31 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
         </p>
         </div> -->
         <div class="comments-container">
-            <div class="table-header">Reviewer Comments</div>
+            <div class="table-header">
+                <div id="revComment">
+                    <p>Reviewer Comments</p>    
+                </div>
+                <div id="artStats">
+                    <p id="stats">
+                        <?php
+                             $sqlStatus = "SELECT article_status.status FROM article_status JOIN article ON article_status.status_id = article.status WHERE article.author_id = :author_id AND article.article_id = :article_id";
+
+                             $result = database_run($sqlStatus, array('author_id' => $userId,
+                             'article_id' => $articleId));
+             
+                             if ($result !== false) {
+                             foreach ($result as $row) {
+                             echo $row->status;
+                             }
+                             } else {
+                             echo "Undefined Status"; 
+                             }
+                        ?>
+                    </p>
+                </div>
+              
+            
+            </div>
             <hr style="height: 2px solid;">
             <div class="discussion-container" style="height: 200px; overflow-y: auto;">
                 <?php
@@ -233,9 +265,9 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 
             <div class="logs-container">
                <!-- Button trigger modal -->
-               <button type="button" class="btn btn-primary" id="log-btn" data-bs-toggle="modal" data-bs-target="#modal-dialog-centered">
+               <!-- <button type="button" class="btn btn-primary" id="log-btn" data-bs-toggle="modal" data-bs-target="#modal-dialog-centered">
                     View Logs
-                </button>
+                </button> -->
 
                 <!-- Modal -->
                 <div class="modal fade" id="modal-dialog-centered" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -442,27 +474,37 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                 <tr>
                     <th scope="col" style="background-color: #F5F5F9; color: black">Status</th>
                     <th scope="col" style="background-color: #F5F5F9; color: black"></th>
+                    <th scope="col" style="background-color: #F5F5F9; color: black"></th>
+                    <th scope="col" style="background-color: #F5F5F9; color: black"> <button type="button" class="btn btn-secondary btn-sm" id="log-btn" data-bs-toggle="modal" data-bs-target="#modal-dialog-centered">
+                    View Logs
+                    </button>
+                    </th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <?php
+               
+                <?php
+                    $sqlDisplayLogs = "SELECT logs_article.article_id, logs_article.type, DATE(logs_article.date) as date FROM logs_article JOIN article ON logs_article.article_id = article.article_id WHERE logs_article.article_id = :article_id ORDER BY logs_article.date ASC LIMIT 1";
 
-                        $sqlStatus = "SELECT article_status.status FROM article_status JOIN article ON article_status.status_id = article.status WHERE article.author_id = :author_id AND article.article_id = :article_id";
+                    $params = array(
+                        'article_id' => $articleId
+                    );
 
-                        $result = database_run($sqlStatus, array('author_id' => $userId,
-                        'article_id' => $articleId));
+                    $sqlRun = database_run($sqlDisplayLogs, $params);
 
-                        if ($result !== false) {
-                        foreach ($result as $row) {
-                            echo '<td>' . $row->status . '<td>';
-                            // echo $row->status;
-                        }
-                        } else {
-                        echo "No status for this article"; 
-                        }
-                    ?>
-                </tr>
+                    if ($sqlRun !== false && count($sqlRun) > 0) {
+                        $row = $sqlRun[0]; // Fetch the first row
+                        echo '<tr>';
+                        echo '<td>' . $row->type . '</td>';
+                        echo '<td></td>';
+                        echo '<td></td>';
+                        echo '<td>' . $row->date . '</td>';
+                        echo '</tr>';
+                    } else {
+                        echo '<tr><td colspan="2">No logs found</td></tr>';
+                    }
+                ?>
+
             </tbody>
         </table>
 
