@@ -46,13 +46,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!empty($emailErrors)) {
         echo json_encode(['success' => false, 'message' => implode(', ', $emailErrors)]);
     }else {
-        // Your insertion code here
         $sql = "INSERT INTO author (`first_name`, `last_name`, `email`, `password`, `privacyAgreement`, `role`, `status`)
             VALUES (:first_name, :last_name, :email, :password, :privacyAgreement, :role, :status)";
 
         $params = [
             'first_name' => $fname,
-            // 'middle_name' => $lname,
             'last_name' => $lname,
             'email' => $email,
             // 'orc_id' => $orcid,
@@ -65,7 +63,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         try {
             database_run($sql, $params, true);
             echo json_encode(['success' => true, 'message' => 'Registration successful!']);
-            close_connection(); 
         } catch (PDOException $e) {
             echo json_encode(['success' => false, 'message' => 'Database error: ' . $e->getMessage()]);
         } catch (Exception $e) {

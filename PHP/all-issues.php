@@ -7,7 +7,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
 <html lang="en">
 <head>
     <?php include('./meta.php'); ?>
-    <title>QCU PUBLICATION | QCU JOURNALS</title>
+    <title>Pahina | Pahina</title>
     <link rel="stylesheet" href="../CSS/all-issues.css">
     <link rel="stylesheet" href="../CSS/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">

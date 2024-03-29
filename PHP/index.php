@@ -9,10 +9,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Welcome to QCU Journals, where you can find the latest articles, and updates on various topics. Explore our diverse collection now!">
-  <meta name="keywords" content="QCU Publication, Open access Journal, QCUJ">
+  <meta name="description" content="Welcome to Pahina, where you can find the latest articles, and updates on various topics. Explore our diverse collection now!">
+  <meta name="keywords" content="Pahina, Open access Journal, Pahina">
   <link rel="icon" type="image/png" href="../images/qcu-logo.webp">
-  <title>QCU PUBLICATION | HOME</title>
+  <title>Pahina | HOME</title>
   <link rel="stylesheet" href="../CSS/home.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -30,10 +30,10 @@
     <div class="content-over">
       <div class="cover-content">
         <div>
-        <p>Quezon City University’s Journals</p>
+        <p>Pahina Journals</p>
         <h2>Find or Submit Research Articles
         </h2>
-        <span class="max-w-75 d-md-flex d-none">Welcome to QCU Journals! Explore the latest research articles, delve into diverse topics, and stay updated with our dynamic content.</span>
+        <span class="max-w-75 d-md-flex d-none">Welcome to Pahina! Explore the latest research articles, delve into diverse topics, and stay updated with our dynamic content.</span>
         </div>
           <button class="btn  btn-md" id="btn1" onclick="window.location.href='browse-articles.php'">Browse
             articles</button>
@@ -141,7 +141,7 @@
                 <?php echo $announcement->announcement; ?>
               </p>
               <span onclick="window.location.href='./announcement.php?id=<?php echo $announcement->announcement_id; ?>'"
-                class="button">View Announcement</span>
+                class="button rounded-pill">View Announcement</span>
             </div>
           </div>
           <?php
@@ -171,12 +171,12 @@
     <div class="fluid-container mb-3 qoaj">
       <div class="About-container">
         <div class="ab-qoaj-left d-flex flex-column align-items-center align-items-sm-start gap-1">
-          <h2 class="mb-3 text-center w-100">About QCUJ</h2>
-            <p class="description">Say goodbye to research submission struggles! Quezon City University Journals (QCUJ) is
+          <h2 class="mb-3 text-center w-100">About Pahina</h2>
+            <p class="description">Say goodbye to research submission struggles! Pahina  is
               a smooth online portal where you can easily submit your research for expert review. </p>
-            <!-- <p class="description"><a href="https://qcu.edu.ph/" class="text-white">Quezon City University (QCU)</a>, recognized by the Commission on Higher Education (CHED), holds dear the values of cultivating a vibrant research culture and disseminating new knowledge for the betterment of society. Understanding that the impact of research accessibility, QCU has established the QCU Journals as a platform for its researchers to share their valuable findings and contributions.</p> -->
+            <!-- <p class="description"><a href="https://qcu.edu.ph/" class="text-white">Quezon City University (QCU)</a>, recognized by the Commission on Higher Education (CHED), holds dear the values of cultivating a vibrant research culture and disseminating new knowledge for the betterment of society. Understanding that the impact of research accessibility, QCU has established the Pahina as a platform for its researchers to share their valuable findings and contributions.</p> -->
             <p class="description">This website is enhanced by an artificial intelligence and machine learning designed
-              for QCUJto improve the user experience. All articles are freely available to download and read, without any
+              for Pahinato improve the user experience. All articles are freely available to download and read, without any
               paywalls or restrictions.</p>
   
             <!-- <br>
@@ -217,9 +217,9 @@
       </div>
       <div class="vision-container" style="background-color:#ffff;">
           <h2 class="">Our Vision</h2>
-          <p class="text-center text-muted ">Say goodbye to research submission struggles! Quezon City University Journals (QCUJ) is
+          <p class="text-center text-muted ">Say goodbye to research submission struggles! Pahina  is
             a smooth online portal <br/>where you can easily submit your research for expert review. </p>
-            <!-- <p class="description"><a href="https://qcu.edu.ph/" class="text-white">Quezon City University (QCU)</a>, recognized by the Commission on Higher Education (CHED), holds dear the values of cultivating a vibrant research culture and disseminating new knowledge for the betterment of society. Understanding that the impact of research accessibility, QCU has established the QCU Journals as a platform for its researchers to share their valuable findings and contributions.</p> -->
+            <!-- <p class="description"><a href="https://qcu.edu.ph/" class="text-white">Quezon City University (QCU)</a>, recognized by the Commission on Higher Education (CHED), holds dear the values of cultivating a vibrant research culture and disseminating new knowledge for the betterment of society. Understanding that the impact of research accessibility, QCU has established the Pahina as a platform for its researchers to share their valuable findings and contributions.</p> -->
          
             <br>
             <!-- <button style="background-color: #e56f1f; max-width:20em;" class="btn btn-md mt-1 w-100">See Features</button> -->
@@ -290,7 +290,7 @@
       <section id="features-container">
       <div class="text-center w-100">
           <h2 class="">What We Offer</h2>
-          <p class=" text-center text-muted "> These are some of the QCUJ features you'll enjoy </p>
+          <p class=" text-center text-muted "> These are some of the Pahina features you'll enjoy </p>
             </div>
         <div class="row gap-2 gy-8 gx-md-8 gy-lg-2 gx-xxl-5 justify-content-center justify-sm-content-between">
           <div style="width: 22em" class="mb-4 border rounded p-4 d-flex flex-column justify-content-between">
@@ -396,7 +396,7 @@
           </div>
           <h5 class="title">Submit Paper Online</h5>
           <div class="description">
-            <p>Step 1: Create an account on the QCU Journals platform. This is your account for managing submissions, tracking their progress, and staying informed. Make sure your manuscript adheres to the specific formatting and style guidelines of your chosen journal.</p>
+            <p>Step 1: Create an account on the Pahina platform. This is your account for managing submissions, tracking their progress, and staying informed. Make sure your manuscript adheres to the specific formatting and style guidelines of your chosen journal.</p>
           </div>
         </div>
         <div class="procedure">
@@ -423,7 +423,7 @@
           </div>
           <h5 class="title">Paper Published</h5>
           <div class="description">
-            <p>Step 4: After the copyediting stage, your paper undergoes a final review for formatting and compliance with journal guidelines. Upon final approval, your research will be published on the QCU Journals platform, becoming accessible to a global audience.</p>
+            <p>Step 4: After the copyediting stage, your paper undergoes a final review for formatting and compliance with journal guidelines. Upon final approval, your research will be published on the Pahina platform, becoming accessible to a global audience.</p>
           </div>
         </div>
       </div>

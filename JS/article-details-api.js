@@ -188,18 +188,19 @@ function renderArticleDetails(data) {
             </div>
               <h4>Abstract</h4>
               <p class="mb-4">${item.abstract}</p>
+              <iframe
+              src="https://qcuj.online/Files/final-file/${encodeURIComponent(item.file_name)}"
+              width="100%"
+              height="800px"
+              loading="lazy"
+              title="PDF-file"
+              class="d-none border my-2"
+              frameborder="0"
+              ></iframe>
               <br/>
               <h4>References</h4>
               <ul class="mb-4 ml-4" style="list-style-type: square;">${referencesHTML}</ul>
-              <iframe
-                  src="https://qcuj.online/Files/final-file/${encodeURIComponent(item.file_name)}"
-                  width="100%"
-                  height="800px"
-                  loading="lazy"
-                  title="PDF-file"
-                  class="d-none"
-                  frameborder="0"
-              ></iframe>
+            
           </div>
           
           <div class="col-lg-3 pt-4 pb-4">
@@ -393,6 +394,7 @@ function renderArticleDetails(data) {
           if (currentColor != "red"){
             svgElement.setAttribute("fill", "red");
             support.innerHTML = currentTotal + 1
+            
           
           } else {
             svgElement.setAttribute("fill", "#a8b3b3");
@@ -417,6 +419,7 @@ function renderArticleDetails(data) {
       if (readBtn) {
         readBtn.addEventListener("click", () => {
           document.querySelector("iframe").classList.remove("d-none")
+          document.querySelector("iframe").scrollIntoView({ behavior: "smooth" });
         });
       }
     

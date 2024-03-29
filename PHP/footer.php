@@ -15,7 +15,7 @@
         <div class="row">
           <div class="col-sm-12 col-md-5">
             <h6>About</h6>
-            <p class="text-justify">QCUJ is an open access journal platform for Quezon City University, facilitating the submission and publication process. </p>
+            <p class="text-justify">Pahina is an open access journal platform for Quezon City University, facilitating the submission and publication process. </p>
           </div>
 
           <div class="col-xs-6 col-md-2">
@@ -32,7 +32,7 @@
             <h6>Quick Links</h6>
             <ul class="footer-links">
               <li><a href="/">Home</a></li>
-              <li><a href="general-info.php">About QCUJ</a></li>
+              <li><a href="general-info.php">About Pahina</a></li>
               <li><a href="announcement.php">Announcements</a></li>
               <li><a href="donation.php">Donation</a></li>
               <li><a href="browse-articles.php">Browse articles</a></li>
@@ -57,7 +57,7 @@
             <img src="../images/qcuj.png" style="width:3em; height:3em" alt="" class="d-none d-sm-flex"/>
             <img style="width:2.7em; height:2.7em"  src="../images/qcu-logo.webp" alt="" class="d-none d-sm-flex">
             <p class="copyright-text">Content on this site is licensed under a Creative Commons &copy; <?php echo date("Y"); ?> 
-            All Rights Reserved by <a href="#">QCUJ</a>.
+            All Rights Reserved by <a href="#">Pahina</a>.
             </p>
           </div>
 

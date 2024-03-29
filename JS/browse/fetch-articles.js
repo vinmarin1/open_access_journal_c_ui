@@ -22,13 +22,16 @@ async function fetchData(input, dates,sort) {
     
     loading.classList.add("d-flex")
     
-  
-    if(await fetchJournal(journalId)==false && (journalId && journalId !="") ){
-      total.innerHTML = '0 searched article'
-      loading.classList.add("d-none") 
-      return  articlesContainer.innerHTML = input? `No match found for ${input }.` : "No match found";
-      
+    if (journalId && journalId.split(",").length ==1){
+      if(await fetchJournal(journalId)==false && (journalId && journalId !="") ){
+        total.innerHTML = '0 searched article'
+        loading.classList.add("d-none") 
+        journalPreview.classList.add("d-none")
+        return  articlesContainer.innerHTML = input? `No match found for ${input }.` : "No match found";
+        
+      }
     }
+
   
     // fetch articles
     try {
