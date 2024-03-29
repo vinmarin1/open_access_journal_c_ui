@@ -141,7 +141,7 @@
                 <?php echo $announcement->announcement; ?>
               </p>
               <span onclick="window.location.href='./announcement.php?id=<?php echo $announcement->announcement_id; ?>'"
-                class="button">View Announcement</span>
+                class="button rounded-pill">View Announcement</span>
             </div>
           </div>
           <?php

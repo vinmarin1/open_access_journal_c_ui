@@ -21,7 +21,7 @@ async function fetchData() {
 
     const articlesContainer = document.querySelector('#recommendations');
     const historyContainer = document.querySelector('#history');
-    if (data.recommendations) {
+    if (data.recommendations && data.recommendations.length > 0) {
       data.recommendations.forEach(item => {
         const articleDiv = document.createElement('div');
         articleDiv.classList.add('article');
