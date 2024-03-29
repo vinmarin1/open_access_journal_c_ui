@@ -7,11 +7,11 @@
     <title>Error</title>
 </head>
 
-<body>
+<body style="min-height:100vh">
     <div class="header-container" id="header-container">
         <!-- header will be display here by fetching reusable files -->
     </div>
-    <section style="padding:4em 8%; min-height:50vh">
+    <section style="padding:4em 8%; ">
         <h1>Oops! We encountered an issue.</h1>
         <p>Don't worry it's not your fault please come back in a few minutes:</p>
         <?php
