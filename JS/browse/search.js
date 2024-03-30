@@ -4,10 +4,7 @@ let selectedJournalsName = [];
 
 document.addEventListener( "DOMContentLoaded",
   fetchData().then(() => {
-  
     generateFilters();
-    // previewFilters();
-    // generateDatalist(articleData);
   })
 );
 
@@ -28,6 +25,7 @@ function updateSearchURL(searchInput){
   url.searchParams.set('search', searchInput); 
   history.replaceState(null, '', url.toString());
 }
+
 // Function to initialize checkboxes based on URL query parameter
 const initializeCheckboxes = () => {
   const urlParams = new URLSearchParams(window.location.search);
