@@ -7,7 +7,6 @@
 
 <head>
   <?php include('./meta.php'); ?>
-
   <title>Pahina | ARTICLE DETAILS</title>
   <meta property="og:title" content="Pahina | ARTICLE DETAILS">
   <meta property="og:description" content="Explore groundbreaking research at QCU with this in-depth article. Gain insights into innovative studies, findings, and academic contributions that shape the intellectual landscape. Stay informed about the latest discoveries in various fields presented in this comprehensive QCU research article. #QCUResearch #AcademicExcellence">
@@ -23,15 +22,15 @@
 
 <body>
 
-  <div class="header-container" id="header-container">
+  <header class="header-container" id="header-container">
     <!-- header will be display here by fetching reusable files -->
-  </div>
+  </header>
 
   <nav class="navigation-menus-container" id="navigation-menus-container">
     <!-- navigation menus will be display here by fetching reusable files -->
   </nav>
-  <div class="main-container" id="article_details">
-  </div>
+  <main class="main-container" id="article_details">
+  </main>
   <div id="citation-container" class="d-none">
     <div id="citations" class="d-flex flex-column justify-content-between w-50">
       <div class="citation-header d-flex justify-content-between">
@@ -88,9 +87,9 @@
   </div>
   </div>
 
-  <div class="footer" id="footer">
+  <footer class="footer" id="footer">
     <!-- footer will be display here by fetching reusable files -->
-  </div>
+  </footer>
   <script>
     const sessionId = "<?php echo $author_id; ?>";
   </script>

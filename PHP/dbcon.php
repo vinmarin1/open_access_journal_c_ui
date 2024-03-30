@@ -2,24 +2,21 @@
 
 function database_run($query, $vars = array(), $isInsert = false)
 {
-    $string = "mysql:host=srv1320.hstgr.io;dbname=u944705315_pahina2024";
+    $string = "mysql:host=localhost;dbname=u944705315_pahina2024";
 
     // $con = new PDO($string, 'u944705315_pahina2024', 'Qcujournal1234.');
-
-    // $string = "mysql:host=localhost;dbname=journal";
+    
     // $string = "mysql:host=srv1320.hstgr.io;dbname=journal";
-    // $con = new PDO($string, 'root', '');
-
+    // $con = new PDO($string, 'root', '')g;
 
     // if (!$con) {
     //     return false;
     // }
-
+    
     try {
         $con = new PDO($string, 'u944705315_pahina2024', 'Qcujournal1234.');
         $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
     } catch (PDOException $e) {
-        // If connection fails, redirect to error page
         header("Location: error.php?message=" . urlencode('Database connection failed: ' . $e->getMessage()));
         exit();
     }
@@ -44,5 +41,4 @@ function database_run($query, $vars = array(), $isInsert = false)
     }
     $con = null;
     return false;
-    
 }

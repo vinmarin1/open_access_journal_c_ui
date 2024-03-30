@@ -1,4 +1,9 @@
 async function fetchData(input, dates,sort) {
+  function updateSearchURL(searchInput){
+    let url = new URL(window.location.href);
+    url.searchParams.set('search', searchInput); 
+    history.replaceState(null, '', url.toString());
+  }
     // get journal params from url
     function getQueryParam(name) {
       const urlSearchParams = new URLSearchParams(window.location.search);
@@ -6,6 +11,7 @@ async function fetchData(input, dates,sort) {
     }
     
     const journalId = getQueryParam("journal");
+    const searchInputParams = getQueryParam("search")
     const journalPreview = document.querySelector(".journal-preview");
     journalPreview.classList.add("d-none")
     if (journalId && journalId.split(",").length ==1){
@@ -31,11 +37,8 @@ async function fetchData(input, dates,sort) {
         
       }
     }
-
-  
     // fetch articles
     try {
-  
       const response = await fetch(
         `https://web-production-cecc.up.railway.app/api/articles/?sort=${sort}`,
         {
@@ -46,10 +49,12 @@ async function fetchData(input, dates,sort) {
           body: JSON.stringify({
             journal: journalId && journalId!=null ? journalId : "",
             dates: dates,
-            input: typeof input == "string" ? input : "",
+            input: searchInputParams? searchInputParams: typeof input == "string" 
+                   ?  input : "",
           }),
         }
       );
+      
   
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
@@ -58,8 +63,6 @@ async function fetchData(input, dates,sort) {
       const data = await response.json();
   
      // display and render article items
-     
-    
       articleData = data.results
       function renderArticles(currentPage=0){
         articlesContainer.innerHTML = "";

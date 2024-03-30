@@ -143,8 +143,8 @@
 
     </form>
 </div>
-<script src="https://js.hcaptcha.com/1/api.js"></script>
 
+<script src="https://js.hcaptcha.com/1/api.js"></script>
 <script src="../JS/hcaptcha.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
