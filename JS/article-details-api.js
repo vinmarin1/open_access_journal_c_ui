@@ -29,22 +29,7 @@ async function fetchArticleDetails() {
     console.error("Error fetching data:", error);
   }
 }
-// function copyPageLink () {
-//   const url = `${window.location.href}`; 
-//   navigator.clipboard.writeText(url).then(() => {
-//       Swal.fire({
-//           html: '<h4 style="color: var(--main, #0858A4); font-family: Arial, Helvetica, sans-serif">Successfully copied the link to your clipboard.</h4>',
-//           icon: 'success'
-//       });
-//   })
-//   // .catch((error) => {
-//   //     console.error('Error copying text: ', error);
-//   //     Swal.fire({
-//   //         html: '<h4 style="color: var(--main, #0858A4); font-family: Arial, Helvetica, sans-serif">Failed to copy the link. Please try again.</h4>',
-//   //         icon: 'error'
-//   //     });
-//   // });
-// };
+
 function renderArticleDetails(data) {
   const articleContainer = document.getElementById("article_details");
   data.forEach((item) => {

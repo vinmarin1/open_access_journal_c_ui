@@ -19,14 +19,11 @@
 </head>
 
 <body>
-
-  <div class="header-container" id="header-container">
-  </div>
-
+  <header class="header-container" id="header-container">
+  </header>
   <nav class="navigation-menus-container" id="navigation-menus-container">
   </nav>
-
-  <div class="main-content" id="home">
+  <main class="main-content" id="home">
     <div class="content-over">
       <div class="cover-content">
         <div>
@@ -493,12 +490,10 @@
       </div>
       
     </section>
-  </div>
-
-
-  <div class="footer mt-3" id="footer">
-
-  </div>
+  </main>
+  
+  <footer class="footer mt-3" id="footer">
+  </footer>
 
   <script>
     const sessionId = "<?php echo $author_id; ?>";

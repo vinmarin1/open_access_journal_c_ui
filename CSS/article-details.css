@@ -52,7 +52,7 @@
 }
 
 .abstract {
-  /* padding-top: 40px; */
+  padding-top: 2em;
   display: inline-block;
   width: 60%;
 }
@@ -63,7 +63,7 @@
 }
 
 .abstract h4 {
-  padding-top: 20px;
+  padding-top: 50px;
   font-family: Arial, Helvetica, sans-serif;
   color: var(--main, #0858A4);
 }
