@@ -1,18 +1,35 @@
+<!-- don't remove the php code below, we can use it just in case :D -->
+<!-- <?php
+// session_start();
+
+// $url = $_GET['url'] ?? '';
+
+// if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+//     if ($url !== '') {
+//         header("Location: index.php");
+//         exit;
+//     }
+// } else {
+//     if ($url !== '') {
+//         header("Location: ./login.php?urli=$url");
+//         exit;
+//     }
+// }
+?> --> 
+<!-- don't remove the php code above, we can use it just in case :D -->
+
 <?php
 session_start();
 
-$url = $_GET['url'] ?? '';
-
-if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-    if ($url !== '') {
-        header("Location: index.php");
-        exit;
+if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
+    if (basename($_SERVER['PHP_SELF']) !== 'login.php') {
+        header("Location: login.php");
+        exit; 
     }
 } else {
-    if ($url !== '') {
-        header("Location: ./login.php?urli=$url");
-        exit;
-    }
+
+    header("Location: index.php");
+    exit; 
 }
 ?>
  <!DOCTYPE html>

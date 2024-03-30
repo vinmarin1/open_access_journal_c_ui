@@ -3,10 +3,10 @@ require_once 'dbcon.php';
 session_start();
 
 
-if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
-	header('Location: ./login.php');
-	exit();
-  }
+// if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
+// 	header('Location: ./login.php');
+// 	exit();
+//   }
 
   $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
 
