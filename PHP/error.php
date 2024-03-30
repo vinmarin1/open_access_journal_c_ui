@@ -9,7 +9,6 @@
 
 <body style="min-height:100vh">
     <div class="header-container" id="header-container">
-        <!-- header will be display here by fetching reusable files -->
     </div>
     <section style="padding:4em 8%; ">
         <h1>Oops! We encountered an issue.</h1>
@@ -20,7 +19,6 @@
                 $errorMessage = $_GET['message'];
                 echo "<p>Error Message: $errorMessage</p>";
             } else {
-                // If no error message is provided, display a generic error message
                header("Location: index.php");
             }
         ?>

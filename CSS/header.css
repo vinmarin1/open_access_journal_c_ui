@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&family=Judson:ital,wght@0,400;0,700;1,400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
 :root{
     --main: #0858a4;
     --secondary: #E56F1F;
@@ -7,11 +8,13 @@
     --form-heading: #285581;
     /* --main-headings: #004e98; */
 }
+
 * {
     font-family: 'Raleway', sans-serif;
     box-sizing: border-box;
     transition: 0.5s all ease;
 }
+
 h1, h2, h3, h4{
     font-family: "Libre Baskerville", serif !important;
     font-optical-sizing: auto;
@@ -20,10 +23,6 @@ h1, h2, h3, h4{
 h2 {
     font-size: 1.7em !important;
 }
-/* h4 {
-    font-size:14px;
-    font-weight: 600;
-} */
 
 .header{
     color: #004e98;
@@ -32,49 +31,51 @@ h2 {
     min-height: 60px;
     align-items: center;
     padding-left:4em;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5em 4%;
 }
 
   
 .img-logo{
     width: 30px;
-    /* height: 40px; */
-    /* margin-left: 20px;
-    margin-right: 10px;
-    margin-top: -30px; */
-  }
+}
 
+.header .logo {
+    display: flex;
+    align-items: baseline;
+}
 
-/* .logotitle{
-    height: 100%;
-    width: auto;
-    /* display: inline-block; */
-    /* padding-top: 5px; **/
+.header .links {
+    display: flex;
+    gap: 3em;
+    align-items: center;
+}
 
+.header .links .link{
+    display: flex;
+    gap: 2em;
+    align-items: center;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+}
 
-.header a{
+.header .links .link:hover {
+    color: var(--main) !important;
+}
+
+.header .logo a{
     font-weight: bold;
     font-size: 20px;
     font-family: "Libre Baskerville", serif;
-    color: var(--main);
-    padding-top: -5px;
-    
-  }
-
-
-.header a:hover{
-    color: var(--main);
-    cursor: auto;
+    color: var(--main);    
 }
 
-.header a:focus{
-    color: var(--main);
-}
 
-.header span{
-    /* font-family: Arial, Helvetica, sans-serif; */
-    display: block;
-    font-size: 15px;
-    color: var(--main);
+.header .logo a:hover{
+    color: var(--form-heading);
 }
 
 @media screen and (max-width: 1024px) {
