@@ -68,7 +68,7 @@
 
 .content-over h3{
     font-weight: 500 !important;
-    font-family: 'Raleway', sans-serif;
+    /* font-family: 'Raleway', sans-serif; */
     margin-top: 20px;
 }
 
@@ -91,7 +91,7 @@
 }
 
 .abstract h4{
-    font-family: 'Raleway', sans-serif;
+    /* font-family: 'Raleway', sans-serif; */
     color:var(--main, #0858A4); 
 }
 
@@ -191,7 +191,7 @@
 }
 
 .rev-guide h4{
-    font-family: 'Raleway', sans-serif;
+    /* font-family: 'Raleway', sans-serif; */
     color:var(--main, #0858A4); 
     font-weight: bold;
 }
