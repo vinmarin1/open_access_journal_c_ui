@@ -411,6 +411,7 @@ color: white;
   align-items: center;
   justify-content: center;
   width: auto;
+  gap: 2em;
   /* max-width: 350px; */
   
   }
