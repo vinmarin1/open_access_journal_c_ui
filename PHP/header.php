@@ -13,12 +13,13 @@
         <a href="donation.php" class="link text-muted">
           <span>SUPPORT US</span>
         </a>
-        <a href="browse-articles.php" class="link text-muted">
-          <span>BROWSE</span>
-        </a>
         <a href="ex_submit.php" class="link text-muted">
           <span>SUBMIT ARTICLE</span>
         </a>
+        <form action="search-articles.php" method="GET" class="form-inline d-flex gap-1" id="searchForm">
+          <input id="searchInput" name="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button type="submit" class="btn btn-outline-secondary my-2 my-sm-0">Search</button>
+        </form>
       </div>
   </div>
 </body>
