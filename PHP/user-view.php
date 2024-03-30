@@ -793,7 +793,7 @@ session_start();
                             <div class="stat">
                                 <div class="stats-values">
                                     <?php
-                                        $sql = "SELECT author.author_id, author.orc_id, article.article_id, logs.type FROM author JOIN article ON author.author_id = article.author_id JOIN logs ON article.article_id = logs.article_id WHERE author.orc_id = :orc_id AND logs.author_id = author.author_id AND logs.type = 'read';
+                                        $sql = "SELECT author.author_id, author.orc_id, logs.article_id, logs.type FROM author JOIN article ON author.author_id = article.author_id JOIN logs ON article.article_id = logs.article_id WHERE author.orc_id = :orc_id AND logs.type = 'read';
                                         ";
                                         $params = array('orc_id' => $orcid);
                                         $sqlRun = database_run($sql, $params);
@@ -813,7 +813,7 @@ session_start();
                             <div class="stat">
                                 <div class="stats-values">
                                     <?php
-                                            $sql = "SELECT author.author_id, author.orc_id, article.article_id, logs.type FROM author JOIN article ON author.author_id = article.author_id JOIN logs ON article.article_id = logs.article_id WHERE author.orc_id = :orc_id AND logs.author_id = author.author_id AND logs.type = 'download';
+                                            $sql = "SELECT author.author_id, author.orc_id, logs.article_id, logs.type FROM author JOIN article ON author.author_id = article.author_id JOIN logs ON article.article_id = logs.article_id WHERE author.orc_id = :orc_id AND logs.type = 'download';
                                             ";
                                             $params = array('orc_id' => $orcid);
                                             $sqlRun = database_run($sql, $params);
@@ -834,7 +834,7 @@ session_start();
                                 <div class="stats-values">
                                     <?php
 
-                                        $sql = "SELECT author.author_id, author.orc_id, article.article_id, logs.type FROM author JOIN article ON author.author_id = article.author_id JOIN logs ON article.article_id = logs.article_id WHERE author.orc_id = :orc_id AND logs.author_id = author.author_id AND logs.type = 'citation';
+                                        $sql = "SELECT author.author_id, author.orc_id, logs.article_id, logs.type FROM author JOIN article ON author.author_id = article.author_id JOIN logs ON article.article_id = logs.article_id WHERE author.orc_id = :orc_id AND logs.type = 'citation';
                                         ";
                     
                                         $params = array('orc_id' => $orcid);
@@ -856,7 +856,7 @@ session_start();
                                 <div class="stats-values">
                                 <?php
 
-                                $sql = "SELECT author.author_id, author.orc_id, article.article_id, logs.type FROM author JOIN article ON author.author_id = article.author_id JOIN logs ON article.article_id = logs.article_id WHERE author.orc_id = :orc_id AND logs.author_id = author.author_id AND logs.type = 'support';
+                                $sql = "SELECT author.author_id, author.orc_id, logs.article_id, logs.type FROM author JOIN article ON author.author_id = article.author_id JOIN logs ON article.article_id = logs.article_id WHERE author.orc_id = :orc_id AND logs.type = 'support';
                                 ";
 
                                 $params = array('orc_id' => $orcid);
