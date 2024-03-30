@@ -4,7 +4,6 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <?php include('./meta.php'); ?>
     <title>Pahina | BROWSE ARTICLES</title>
@@ -12,19 +11,12 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
     <link rel="stylesheet" href="../CSS/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
 </head>
-
 <body>
-
-    <div class="header-container" id="header-container">
-
-    </div>
-
+    <header class="header-container" id="header-container">
+    </header>
     <nav class="navigation-menus-container" id="navigation-menus-container">
-
     </nav>
-
     <div class="content-over">
         <div class="cover-content">
             <p>Home / Browse / Articles</p>
@@ -57,117 +49,110 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
             </div>
         </form>
     </div>
-
     <div class="main-container container-fluid">
         <div class="row w-100">
-        <div class="sidebar col-lg-3 col-md-12">
-            <h4 style="color: var(--main, #0858A4);"><b><span id="total"></span></b></h4>
-            <hr style="border-top: 1px solid #ccc; margin: 10px 0;"> 
-            <!-- Filters Here -->
-            <div class="journal-preview flex-row flex-lg-column">
-                <div>
-                <img />
-                <h2 class="journal"></h2>
-                </div>
-                <ul>
-                    <li class="issn">
-                        <h3>ISSN (online)</h3>
-                        <span></span>
-                    </li>
-                    <li class="date">
-                        <h3>Online Date Start</h3>
-                        <span></span>
-                    </li>
-                    <li class="info">
-                        <h3>Further Information</h3>
-                        <span></span>
-                    </li>
-                </ul>
-            </div>
-            <hr style="border-top: 1px solid #ccc; margin: 10px 0;"> <!-- Add a horizontal line -->
-     
-            <div class="filters">
-                <h4 class="btn collapsed p-0" style="color: var(--main, #0858A4);" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFilters" aria-expanded="false" aria-controls="collapseFilters">
-                    Filter search results
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="7" viewBox="0 0 16 7"><path fill="currentColor" d="M8 6.5a.47.47 0 0 1-.35-.15l-4.5-4.5c-.2-.2-.2-.51 0-.71c.2-.2.51-.2.71 0l4.15 4.15l4.14-4.14c.2-.2.51-.2.71 0c.2.2.2.51 0 .71l-4.5 4.5c-.1.1-.23.15-.35.15Z"/></svg>
-                </h4>
-                <!-- Journals, Year Published, etc. -->
-                <div class="collapse show" id="collapseFilters">
-                    <div class="checkbox-container">
-                        <h5 class="mb-2" style="color: #959595;"><b>JOURNALS</b></h5>
-                        <div id="journals-container" class="d-flex flex-row flex-lg-column flex-wrap gap-2">
-            
-                        </div>
+            <div class="sidebar col-lg-3 col-md-12">
+                <h4 style="color: var(--main, #0858A4);"><b><span id="total"></span></b></h4>
+                <hr style="border-top: 1px solid #ccc; margin: 10px 0;"> 
+                <!-- Filters Here -->
+                <div class="journal-preview flex-row flex-lg-column">
+                    <div>
+                    <img />
+                    <h2 class="journal"></h2>
                     </div>
-                    <div class="checkbox-container">
-                        <h5 class="mb-2" style="color: #959595;"><b>YEAR PUBLISHED</b></h5>
-                        <div id="years-container" class="d-flex flex-row flex-lg-column flex-wrap gap-2">
-                        </div>
-                    </div>
+                    <ul>
+                        <li class="issn">
+                            <h3>ISSN (online)</h3>
+                            <span></span>
+                        </li>
+                        <li class="date">
+                            <h3>Online Date Start</h3>
+                            <span></span>
+                        </li>
+                        <li class="info">
+                            <h3>Further Information</h3>
+                            <span></span>
+                        </li>
+                    </ul>
                 </div>
-            </div>
-          
-        </div>
-        <div class="articles-containers col-lg-9 col-md-12">
-            <!-- Article 1 -->
-            <div class="sort-container d-flex gap-2">
-                <div class="sort-header">
-                    <span class="sort-by-text" style="color: var(--main, #0858A4);">Sort by</span>
-                    <span class="sort-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                            viewBox="0 0 20 20">
-                            <path fill="#e6e6e6" d="M11 7H1l5 7zm-2 7h10l-5-7z" /></svg></span>
-                </div>
-                <div>
-                    <select id="sortby" name="sortby" class="sort-dropdown form-select form-select-sm px-8" >
-                        <option value="" hidden>Choose</option>
-                        <option value="title">Title</option>
-                        <!-- <option value="recently_added">Recently added</option> -->
-                        <option value="publication-date">Publication Date</option>
-                        <optgroup label="Popularity">
-                            <option value="popular">All</option>
-                            <option value="views">Views</option>
-                            <option value="downloads">Downloads</option>
-                            <option value="citations">Citations</option>
-                        </optgroup>
-
-                    </select>
-                </div>
-                <div id="selected-filters"></div>
+                <hr style="border-top: 1px solid #ccc; margin: 10px 0;"> <!-- Add a horizontal line -->
+         
+                <div class="filters">
+                    <h4 class="btn collapsed p-0" style="color: var(--main, #0858A4);" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFilters" aria-expanded="false" aria-controls="collapseFilters">
+                        Filter search results
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="7" viewBox="0 0 16 7"><path fill="currentColor" d="M8 6.5a.47.47 0 0 1-.35-.15l-4.5-4.5c-.2-.2-.2-.51 0-.71c.2-.2.51-.2.71 0l4.15 4.15l4.14-4.14c.2-.2.51-.2.71 0c.2.2.2.51 0 .71l-4.5 4.5c-.1.1-.23.15-.35.15Z"/></svg>
+                    </h4>
+                    <!-- Journals, Year Published, etc. -->
+                    <div class="collapse show" id="collapseFilters">
+                        <div class="checkbox-container">
+                            <h5 class="mb-2" style="color: #959595;"><b>JOURNALS</b></h5>
+                            <div id="journals-container" class="d-flex flex-row flex-lg-column flex-wrap gap-2">
                 
+                            </div>
+                        </div>
+                        <div class="checkbox-container">
+                            <h5 class="mb-2" style="color: #959595;"><b>YEAR PUBLISHED</b></h5>
+                            <div id="years-container" class="d-flex flex-row flex-lg-column flex-wrap gap-2">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              
             </div>
-            <div id="skeleton-container" class="">
-                <div></div>
-                <div></div>
+            <div class="articles-containers col-lg-9 col-md-12">
+                <!-- Article 1 -->
+                <div class="sort-container d-flex gap-2">
+                    <div class="sort-header">
+                        <span class="sort-by-text" style="color: var(--main, #0858A4);">Sort by</span>
+                        <span class="sort-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                                <path fill="#e6e6e6" d="M11 7H1l5 7zm-2 7h10l-5-7z" />
+                            </svg>
+                        </span>
+                    </div>
+                    <div>
+                        <select id="sortby" name="sortby" class="sort-dropdown form-select form-select-sm px-8" >
+                            <option value="" hidden>Choose</option>
+                            <option value="title">Title</option>
+                            <!-- <option value="recently_added">Recently added</option> -->
+                            <option value="publication-date">Publication Date</option>
+                            <optgroup label="Popularity">
+                                <option value="popular">All</option>
+                                <option value="views">Views</option>
+                                <option value="downloads">Downloads</option>
+                                <option value="citations">Citations</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div id="selected-filters"></div>
+                    
+                </div>
+                <div id="skeleton-container" class="">
+                    <div></div>
+                    <div></div>
+                </div>
+                <hr style="border-top: 1px solid #ccc; margin: 10px 0;"> <!-- Add a horizontal line -->
+                <div id="articles" class="d-flex flex-column gap-2 mb-4 w-100 p-0 m-0">
+                </div>
+                <nav aria-label="Page navigation d-flex justify-items-center align-items-center w-100">
+                    <ul class="pagination d-flex flex-wrap w-100" id="pagination-container">
+                        <!-- Display page numbers -->
+                        <li class="page-item"><a class="page-link" href="javascript:void(0);"
+                                onclick="changePage(0)">1</a></li>
+                        </li>
+                    </ul>
+                </nav>
             </div>
-            <hr style="border-top: 1px solid #ccc; margin: 10px 0;"> <!-- Add a horizontal line -->
-            <div id="articles" class="d-flex flex-column gap-2 mb-4 w-100 p-0 m-0">
-
-            </div>
-
-            <!-- Repeat for more articles -->
-            <!-- Pagination -->
-            <!-- Bootstrap Pagination -->
-            <nav aria-label="Page navigation d-flex justify-items-center align-items-center w-100">
-                <ul class="pagination d-flex flex-wrap w-100" id="pagination-container">
-                    <!-- Display page numbers -->
-                    <li class="page-item"><a class="page-link" href="javascript:void(0);"
-                            onclick="changePage(0)">1</a></li>
-                    </li>
-                </ul>
-            </nav>
-        </div></div>
+        </div>
     </div>
     <div class="fluid-container">
         <div class="recommendation-article">
             <h4>Top Picks for <?php echo date('F '); ?></h4>
-          
-                <div id="popular-monthly" class="articles-container ">
-                    <!-- fetch popular articles using api -->
-                </div>
-              
+            <div id="popular-monthly" class="articles-container ">
+                <!-- fetch popular articles using api -->
+            </div>
         </div>
     </div>
-
     </div>
 
     <div class="footer" id="footer">
