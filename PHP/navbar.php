@@ -53,9 +53,12 @@ require_once 'dbcon.php';
             <li><a class="dropdown-item" style="color: black" href="./guidelines.php">For Contributors</a></li>
             <li><a class="dropdown-item" style="color: black" href="./faqs.php">Frequently Asked Questions</a></li>
           </ul>
-          <!-- <li class="nav-item">
+          <li class="d-flex d-sm-none nav-item">
             <a class="nav-link" href="donation.php">Donation</a>
-        </li> -->
+          </li>
+          <li class="d-flex d-sm-none nav-item">
+            <a class="nav-link" href="browse-articles.php">Browse Articles</a>
+          </li>
       </ul>
       <!-- <form class="d-flex" role="search">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
