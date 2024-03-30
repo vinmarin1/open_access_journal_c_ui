@@ -5,6 +5,8 @@ session_start();
 if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
 	header('Location: ./login.php');
 	exit();
+  }elseif(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
+	header('Location: ./user-dashboard.php');
   }
 
 $id = $_SESSION['id'];
