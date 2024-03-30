@@ -15,23 +15,19 @@ async function fetchJournal(journal) {
   
     const data = await response.json();
     if(data.journalDetails==null){
-      return false
-  }else{
-    generateJournalPreview(data.journalDetails)
-    return true
-  }
-    
-    
+        return false
+    }else{
+      generateJournalPreview(data.journalDetails)
+      return true
+    }
   }
   
-  // function previewFilters(){
   
   // function to generate frontend of journal preview
   function generateJournalPreview(journal) {
     const journalPreview = document.querySelector(".journal-preview");
   
-     journalPreview.classList.add("d-flex")
-  
+    journalPreview.classList.add("d-flex")
     journalPreview.querySelector("img").src = `../Files/journal-image/${journal.image}`;
     journalPreview.querySelector("h2").innerHTML= journal.journal
     journalPreview.querySelector(".issn").querySelector("span").innerHTML = `2071-1050 (Online)`

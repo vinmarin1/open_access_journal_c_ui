@@ -14,11 +14,9 @@ function changePage(page) {
   if (currentPageItem) {
     currentPageItem.classList.add("active");
   }
-  let searchInputValue = document.getElementById("result").value;
-  let year = document.getElementById("year1").value;
+ 
   sortBySelected = sortBySelect.value;
 
-  // fetchData(searchInputValue, selectedYears,sortBySelected, page)
 }
 
 // generate pagination items button

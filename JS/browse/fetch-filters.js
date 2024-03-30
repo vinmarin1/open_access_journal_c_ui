@@ -1,15 +1,3 @@
-function previewFilters(){
-  const selectedFiltersContainer= document.querySelector("#selected-filters")
-  selectedFiltersContainer.innerHTML=""
-  let selectedFilters = selectedJournalsName.concat(selectedYears)
-  selectedFilters.forEach(journal => {
-    const journalElement = document.createElement("span");
-    journalElement.innerHTML =  journal;
-    selectedFiltersContainer.appendChild(journalElement);
-  });
-}
-  
-  
 // function to fetch and generate journal and year filters (dynamic)
 async function generateFilters() {
   const response = await fetch(
@@ -50,7 +38,6 @@ async function generateFilters() {
     yearCheckbox.addEventListener("change", () =>{
         updateSelectedYears(yearCheckbox, yearCheckbox.value);
         fetchData(searchInput.value, selectedYears, sortBySelected)
-        // previewFilters()
       }
     );
 
@@ -69,27 +56,6 @@ async function generateFilters() {
     
     const labelText = document.createTextNode(` ${journals[i].split("->")[1]}`);
     const labelButton = document.createElement("button")
-    // labelButton.innerHTML = ` <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 32 32"><path fill="none" stroke="var(--main, #0858A4)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M22 3h7v7m-1.5-5.5L20 12m-3-7H8a3 3 0 0 0-3 3v16a3 3 0 0 0 3 3h16a3 3 0 0 0 3-3v-9"/></svg>`
-
-    // labelButton.addEventListener('click', function() {
-    //   const journalId = journals[i].split(" ->")[0];
-    //   updateURL([journalId]);
-    
-    //   // Reset all checkboxes to unchecked
-    //   const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    //   checkboxes.forEach(checkbox => {
-    //     checkbox.checked = false;
-    //   });
-    
-    //   // Set the specific checkbox to checked
-    //   const checkbox = document.getElementById(`journal${journalId}`);
-    //     checkbox.checked = true;
-    //   selectedJournals=[journalId]
-    //   fetchData();
-    //   if (selectedJournals.length ==1){
-    //     fetchJournal(journalId)
-    //   }
-    // });
     
     journalItem.appendChild(journalCheckbox);
     journalItem.appendChild(labelText);
@@ -100,14 +66,11 @@ async function generateFilters() {
       updateURL(selectedJournals)
       fetchData(searchInput.value, selectedYears, sortBySelected)
       
-      // previewFilters()
-      
       }
     );
 
     journalsContainer.appendChild(journalItem);
   }
   initializeCheckboxes()
-  // previewFilters()
   
 }
