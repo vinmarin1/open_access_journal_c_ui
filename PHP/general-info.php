@@ -189,20 +189,20 @@
 
     <section class="d-flex flex-wrap justify-content-center gap-3">
             <div class="uniteam-content">
-                <img src="../images/Director.jpg" alt="" class="img-fluid">
-                <p class="mt-2">Angelito P. Baustista, Jr.</p>
-                <p style="font-weight:normal; font-size: medium; "> LPT, MA Comm - Director of Research Management Office</p>
-            </div>
-            <div class="uniteam-content">
-                <img src="../images/assistant.jpg" alt="" class="img-fluid">
-                <p class="mt-2">Bernard F. Gaya</p>
-                <p style="font-weight:normal; font-size: medium; "> Administrative support assistant
-                </p>
-            </div>
-            <div class="uniteam-content">
                 <img src="../images/Head-Publication.jpg" alt="" class="img-fluid">
                 <p class="mt-2">Candice Erika J. Rudi</p>
                 <p style="font-weight:normal; font-size: medium; ">Head of Publication</p>
+            </div>
+            <div class="uniteam-content">
+                <img src="../images/Director.jpg" alt="" class="img-fluid">
+                <p class="mt-2">Angelito P. Baustista, Jr.</p>
+                <p style="font-weight:normal; font-size: medium; ">  LPT, MA Comm - Director of Research Management Office
+                </p>
+            </div>
+            <div class="uniteam-content">
+                <img src="../images/assistant.jpg" alt="" class="img-fluid">
+                <p class="mt-2">Bernard F. Gaya </p>
+                <p style="font-weight:normal; font-size: medium; ">Administrative support assistant</p>
             </div>
     </section>
 
