@@ -292,7 +292,8 @@ require_once 'dbcon.php';
                 a.archive_date, 
                 COUNT(CASE WHEN l.type = 'read' THEN 1 END) AS read_count,
                 COUNT(CASE WHEN l.type = 'download' THEN 1 END) AS download_count,
-                COUNT(CASE WHEN l.type = 'citation' THEN 1 END) AS citation_count
+                COUNT(CASE WHEN l.type = 'citation' THEN 1 END) AS citation_count,
+                COUNT(CASE WHEN l.type = 'support' THEN 1 END) AS support_count
             FROM 
                 article a 
             LEFT JOIN 
@@ -550,7 +551,8 @@ require_once 'dbcon.php';
                     CONCAT('Month ', months.month_number) AS month,
                     COALESCE(SUM(CASE WHEN logs.type = 'read' THEN 1 ELSE 0 END), 0) AS total_read,
                     COALESCE(SUM(CASE WHEN logs.type = 'download' THEN 1 ELSE 0 END), 0) AS total_download,
-                    COALESCE(SUM(CASE WHEN logs.type = 'citation' THEN 1 ELSE 0 END), 0) AS total_citation
+                    COALESCE(SUM(CASE WHEN logs.type = 'citation' THEN 1 ELSE 0 END), 0) AS total_citation,
+                    COALESCE(SUM(CASE WHEN logs.type = 'support' THEN 1 ELSE 0 END), 0) AS total_support
                 FROM (
                     SELECT 1 AS month_number UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 
                     UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 
