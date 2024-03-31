@@ -1773,7 +1773,7 @@ table {
             };
         }
 
-        function viewReviewerAnswer(assignedId, accessible, ReviewerId, ArticleId, ReviewName, AuthorId, Round) {
+        function viewReviewerAnswer(assignedId, accessible, ReviewerId, ArticleId, AuthorId, ReviewName, Round) {
             var authorId = AuthorId;
             var articleId = ArticleId
             var assignedId = assignedId;

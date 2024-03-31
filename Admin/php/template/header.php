@@ -430,7 +430,7 @@ function updateNotifications(data) {
             } else if (timeDifference < 3600000) {
                 timeAgo = Math.floor(timeDifference / 60000) + ' minutes ago';
             } else if (timeDifference < 86400000) {
-                timeAgo = Math.floor(timeDifference / 3600000) + ' hours ago';
+                timeAgo = Math.floor(timeDifference / 3600000) + (Math.floor(timeDifference / 3600000) === 1 ? ' hour ago' : ' hours ago');
             } else {
                 timeAgo = Math.floor(timeDifference / 86400000) + (timeDifference < 172800000 ? ' day ago' : ' days ago');
             }
