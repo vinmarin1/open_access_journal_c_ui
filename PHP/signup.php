@@ -10,9 +10,11 @@
 </head>
 <body>
 
-<?php include 'header.php' ?>
-<?php include 'navbar.php' ?>
+<div class="header-container" id="header-container">
+</div>
 
+<nav class="navigation-menus-container"  id="navigation-menus-container">
+</nav>
 <div class="form-container">
 <img src="../images/qcu-bg.jpg" class="image-cover">
     <!-- <div> -->
@@ -146,13 +148,13 @@
 
 <script src="https://js.hcaptcha.com/1/api.js"></script>
 <script src="../JS/hcaptcha.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script src="../JS/signup.js"></script>
 <script src="../JS/password.js"></script>
-
+<script src="../JS/reusable-header.js"></script>
 </body>
 </html>
