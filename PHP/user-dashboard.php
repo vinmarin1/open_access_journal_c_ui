@@ -59,10 +59,6 @@ $expertise = $_SESSION['expertise'];
 		<!-- header will be display here by fetching reusable files -->
 	</div>
 
-	<nav class="navigation-menus-container" id="navigation-menus-container">
-		<!-- navigation menus will be display here by fetching reusable files -->
-	</nav>
-
 
 <div class="main">
     <div class="main-profile">
@@ -1075,43 +1071,35 @@ $expertise = $_SESSION['expertise'];
 					<div id="contribution-record-container">
 						<div class="stats-section">
 							<div class="stat-card top-card">
-								<h2>Total Contributions</h2>
-								<p>
-									<?php 
-									$sqlTotalContribution = "SELECT SUM(total_count) AS total_contribution FROM (
-											SELECT COUNT(*) AS total_count FROM reviewer_assigned WHERE author_id = :author_id AND answer = 1
-											UNION ALL SELECT COUNT(*) AS total_count FROM article WHERE author_id = :author_id) AS counts
-									";
+							<h2>Total Contributions</h2>
+							<p>
+								<?php 
+								$sqlTotalContribution = "SELECT * FROM user_points WHERE email = :email";
 
-									$params = array('author_id' => $id);
-									$result = database_run($sqlTotalContribution, $params);
+								$params = array('email' => $email);
+								$result = database_run($sqlTotalContribution, $params);
 
-									if ($result !== false && isset($result[0]->total_contribution)) {
-										$totalContribution = $result[0]->total_contribution;
-										echo $totalContribution;
+								if ($result !== false) {
+									$totalContributions = count($result);
+									echo $totalContributions;
+
+									// Fixed percentage increase
+									$percentageIncrease = 100;
+
+									// Check if total contributions are greater than 0 before calculating the increased count
+									if ($totalContributions > 0) {
+										$increasedCount = $totalContributions * (1 + ($percentageIncrease / 100));
 									} else {
-										echo '0'; 
+										$increasedCount = 0; // If there are no contributions yet, set the increased count to 0
 									}
-									?>
 
-									<span class="increase">
-										<?php 
-										$sqlCountArticle = "SELECT COUNT(*) as total_articles FROM article WHERE author_id = $id" ;
+									echo '<span class="increase">' . round($increasedCount, 2) . '%' . '</span>';
+								} else {
+									echo '0'; 
+								}
+								?>
+							</p>
 
-										$result = database_run($sqlCountArticle);
-
-										if ($result !== false && isset($result[0]->total_articles)) {
-											$totalArticles = $result[0]->total_articles;
-
-											$percentageIncrease = ($totalArticles / $totalContribution) * 100;
-
-											echo round($percentageIncrease, 2) . "%";
-										} else {
-											echo "0"; 
-										}
-										?>
-									</span>
-								</p>
 
 
 							</div>
@@ -1142,10 +1130,10 @@ $expertise = $_SESSION['expertise'];
 								if ($result !== false && isset($result[0]->total_reviewed)) {
 									$totalArticles = $result[0]->total_reviewed;
 
-									$percentageIncrease = 100;
+									$percentageIncrease = 0;
 
 								
-									$increasedCount = $totalArticles * (1 + ($percentageIncrease / 100));
+									$increasedCount = $totalArticles * (2 + ($percentageIncrease / 100));
 
 									echo $percentageIncrease .''. "%";
 								} else {
@@ -1182,10 +1170,10 @@ $expertise = $_SESSION['expertise'];
 								if ($result !== false && isset($result[0]->total_articles)) {
 									$totalArticles = $result[0]->total_articles;
 
-									$percentageIncrease = 100;
+									$percentageIncrease = 0;
 
 								
-									$increasedCount = $totalArticles * (1 + ($percentageIncrease / 100));
+									$increasedCount = $totalArticles * (2 + ($percentageIncrease / 100));
 
 									echo $percentageIncrease .''. "%";
 								} else {
