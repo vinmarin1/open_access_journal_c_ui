@@ -12,8 +12,8 @@ $seriesData = [];
 
 foreach ($donationreport['donationforgraph'] as $donation) {
     $year = $donation->year_number;
-    $month = intval(substr($donation->month, -1)); // Extract month number from "Month X"
-    $total_donation = intval($donation->total_donation); // Ensure total_donation is converted to an integer
+    $month = intval(substr($donation->month, -1)); 
+    $total_donation = intval($donation->total_donation);
 
     if (!isset($seriesData[$year])) {
         $seriesData[$year] = [
@@ -22,18 +22,15 @@ foreach ($donationreport['donationforgraph'] as $donation) {
         ];
     }
 
-    // Update the total donation for the corresponding month
     if ($month >= 1 && $month <= 12) {
-        $seriesData[$year]['data'][$month - 1] += $total_donation; // Accumulate total donations
+        $seriesData[$year]['data'][$month - 1] += $total_donation;
     }
 
-    // Ensure that negative total donation values are included correctly
     if ($total_donation < 0 && $month >= 1 && $month <= 12) {
         $seriesData[$year]['data'][$month - 1] = $total_donation;
     }
 }
 
-// Convert the associative array to a simple array
 $series = array_values($seriesData);
 $seriesString = json_encode($series);
 
