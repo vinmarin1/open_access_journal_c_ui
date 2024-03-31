@@ -19,14 +19,11 @@
 </head>
 
 <body>
-
-  <div class="header-container" id="header-container">
-  </div>
-
+  <header class="header-container" id="header-container">
+  </header>
   <nav class="navigation-menus-container" id="navigation-menus-container">
   </nav>
-
-  <div class="main-content" id="home">
+  <main class="main-content" id="home">
     <div class="content-over">
       <div class="cover-content">
         <div>
@@ -211,7 +208,7 @@
             </div> -->
         </div>
         <div class='ab-qoaj-right'>
-          <img src="../images/qcuj.png" style="width:16em; height:16em" alt="" />
+          <img src="../images/pahina.png" style="width:12em; height:14em" alt="" />
           <img class="d-none d-md-flex" src="../images/qcu-logo.webp" style="width:11em; height:11em" alt="" />
         </div>
       </div>
@@ -283,7 +280,7 @@
 
             </div>
         </div>
-          <!-- <img src="../images/qcuj.png" style="width:6em; height:6em" alt="" /> -->
+          <!-- <img src="../images/pahina-full.png" style="width:6em; height:6em" alt="" /> -->
     </div>
 
     <div class="fluid-container">
@@ -493,12 +490,10 @@
       </div>
       
     </section>
-  </div>
-
-
-  <div class="footer mt-3" id="footer">
-
-  </div>
+  </main>
+  
+  <footer class="footer mt-3" id="footer">
+  </footer>
 
   <script>
     const sessionId = "<?php echo $author_id; ?>";

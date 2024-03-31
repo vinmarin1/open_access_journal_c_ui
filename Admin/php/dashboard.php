@@ -250,7 +250,7 @@ $donationDataJson = json_encode($donationData);
                                             <i class="bx bx-dots-vertical-rounded"></i>
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="cardOpt1">
-                                            <a class="dropdown-item" href="javascript:void(0);">View More</a>
+                                            <a class="dropdown-item" href="userreport.php">View More</a>
                                         </div>
                                     </div>
                                 </div>
@@ -358,16 +358,16 @@ $donationDataJson = json_encode($donationData);
                                     <div class="col">
                                         <h5 class="card-title mb-2">User Demographics</h5>
                                     </div>
-                                    <!-- <div class="col-auto">
+                                    <div class="col-auto">
                                         <div class="dropdown" style="margin-right: -10px;">
                                             <button class="btn p-0" type="button" id="cardOpt1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <i class="bx bx-dots-vertical-rounded"></i>
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="cardOpt1">
-                                                <a class="dropdown-item" href="javascript:void(0);">View More</a>
+                                                <a class="dropdown-item" href="userreport.php">View More</a>
                                             </div>
                                         </div>
-                                    </div> -->
+                                    </div>
                                 </div>
                                 <canvas id="myChart3"></canvas>
                             </div>

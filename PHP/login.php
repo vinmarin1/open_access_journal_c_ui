@@ -1,18 +1,35 @@
+<!-- don't remove the php code below, we can use it just in case :D -->
+<!-- <?php
+// session_start();
+
+// $url = $_GET['url'] ?? '';
+
+// if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+//     if ($url !== '') {
+//         header("Location: index.php");
+//         exit;
+//     }
+// } else {
+//     if ($url !== '') {
+//         header("Location: ./login.php?urli=$url");
+//         exit;
+//     }
+// }
+?> --> 
+<!-- don't remove the php code above, we can use it just in case :D -->
+
 <?php
 session_start();
 
-$url = $_GET['url'] ?? '';
-
-if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-    if ($url !== '') {
-        header("Location: index.php");
-        exit;
+if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
+    if (basename($_SERVER['PHP_SELF']) !== 'login.php') {
+        header("Location: login.php");
+        exit; 
     }
 } else {
-    if ($url !== '') {
-        header("Location: ./login.php?urli=$url");
-        exit;
-    }
+
+    header("Location: index.php");
+    exit; 
 }
 ?>
  <!DOCTYPE html>
@@ -35,7 +52,7 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
         <div class="form-container d-none d-sm-flex" id="login-banner">
             <img src="../images/qcu-bg.jpg" class="image-cover">
             <div class="d-flex flex-column gap-4" style="width:75%">
-            <h2 class="font-weight-bold text-xl" style=" font-weight:600;"><span>Quezon City University <span >Journals</span></span> </h2>
+            <h2 class="font-weight-bold text-xl" style=" font-weight:600;"><span>Pahina <span >Journals</span></span> </h2>
             <span>Enjoy unrestricted access to all articles without logging in! For a tailored experience, exclusive features, and to stay updated with our latest content, log in now.</span>
             <div class="d-none d-md-flex gap-1 flex-wrap w-75">
                 <span class="features">Personalized recommendations</span> 

@@ -1,26 +1,31 @@
 body {
-    font-family: "Judson", serif;
+    font-family: 'Raleway', sans-serif;
     font-weight: 400;
     font-style: normal;
-    margin: 0;
-    padding: 0;
+    /* margin: 0;
+    padding: 0; */
     background: #f0f0f0;
   }
 
   #title, #getArticleId, #abstract{
-    font-family: "Judson", serif;
+    font-family: 'Raleway', sans-serif;
     font-weight: 400;
     font-style: normal;
     padding-left: 5px;
-    width: 85%;
+    width: 100%;
     height: auto;
-
   }
 
+#title{    
+  font-weight: bold;
+  font-style: normal;
+  font-size: 30px;
+  color: #0858A4;
+}
 
 
   .keywords-title{
-    font-family: "Judson", serif;
+    font-family: 'Raleway', sans-serif;
     font-weight: bold;
     font-style: normal;
     color:#285581;
@@ -29,7 +34,7 @@ body {
   }
 
   #display-abstract{
-    font-family: "Judson", serif;
+    font-family: 'Raleway', sans-serif;
     font-weight: 400;
     font-style: normal;
     padding-left: 5px;
@@ -38,17 +43,18 @@ body {
   }
 
   .first-letter {
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 1.5em; /* Adjust this value as needed */
-    font-weight: bold;
-    font-style: italic;
+    font-family: 'Raleway', sans-serif;
+    font-size: larger; /* Adjust this value as needed */
+    font-weight: 400;
+    font-style: normal;
     padding-left: 5px;
 }
 
   #abstract-title{
-    font-family: "Judson", serif;
+    font-family: 'Raleway', sans-serif;
     font-weight: 400;
-    font-style: bold;
+    font-style: Normal;
+    font-size: 30px;
   }
 .files-submitted-details, .contributors, .comments, .review-rubrics {
     background: #fff;
@@ -66,16 +72,17 @@ body {
     font-size: 20px;
     color: #285581;
     line-height: 1.6;
-    height: 30vh;
+    height: 20vh;
 }
 
   .main-title{
     margin-left: 5%;
-    margin-right: 25%;
+    /* margin-right: 25%; */
   }
   .breadcrumbs {
-    font-size: 12px; /* Smaller font size for breadcrumbs */
+    font-size: 18px; /* Smaller font size for breadcrumbs */
     margin-bottom: 10px; /* Space between breadcrumbs and title */
+    color: #0858A4;
   }
 
 
@@ -84,7 +91,7 @@ body {
     display: flex;
     margin-top: 4%;
     margin-bottom: 0px;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Raleway', sans-serif;
     margin-left: 6%;
     margin-right: 5%;
   }
@@ -94,10 +101,10 @@ body {
     background-color: #fff;
   }
   .abstract-title{
-    color: #285581;
-    font-weight: bold;
+    color: #0858A4;
+    font-weight: 400;
     margin-bottom: 10px;
-    font-size: large;
+    font-size: 30px;
   }
 
   .abstract {
@@ -105,7 +112,7 @@ body {
     height: auto;
     flex: 2;
     text-align: justify;
-    margin-right: 4%; /* Add some space between the two columns */
+    margin-right: 4%; 
   }
 
   .column1{
@@ -254,9 +261,8 @@ body {
 
   .row2 {
     display: flex;
-    justify-content: space-between;
     margin-top: 4%;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Raleway', sans-serif;
     margin-left: 4%;
     margin-right: 3%;
 }
@@ -269,7 +275,7 @@ body {
 
 .main3 {
     width: 30%;
-    padding-top: 30px;
+    padding-top:37px;
 }
 
 .main4 {
@@ -286,11 +292,12 @@ body {
 .files-submitted,
 .comments-container {
     flex: 1;
-    margin: 0 10px;
+    /* margin: 0 10px; */
     margin-bottom: 20px;
 }
 
 .files-submitted table,
+.main3 table,
 .comments-container table,
 .comments-container .section-body {
     border: 1px solid #dcdcdc;
@@ -299,6 +306,7 @@ body {
 }
 
 .files-submitted table,
+.main3 table,
 .comments-container table {
     width: 100%;
     border-collapse: collapse;
@@ -359,24 +367,27 @@ ul li span {
 
 .edit-btn-container{
   width: 100%;
- 
 }
 
 #edit-submission {
-  right: 40px;
+  right: 86px;
   position: absolute;
   margin-bottom: 10px;
   font-size: 14px;
   background-color: #285581;
   color: white;
   border-radius: 20px;
-  width: 28%; /* Set the width to 50% of its container */
+  width: 20%; /* Set the width to 50% of its container */
+}
 
-  
+@media screen and (max-width: 768px){
+  #edit-submission{
+    width: 95%;
+    right: 12px;
+  }
 }
 
 #submit-submission{
- 
   margin-bottom: 10px;
   font-size: 14px;
   background-color: #285581;
@@ -386,54 +397,58 @@ ul li span {
   max-width: 400px; /* Set a maximum width */
   min-width: 200px; /* Set a minimum width */
   display: none;
- 
 }
 
 #submitRevision{
- 
   margin-bottom: 10px;
   font-size: 14px;
   border-radius: 20px;
-  width: 100%; /* Set the width to 50% of its container */
+  width: 5%; /* Set the width to 50% of its container */
   max-width: 400px; /* Set a maximum width */
-  min-width: 200px; /* Set a minimum width */
+  min-width: 190px; /* Set a minimum width */
   display: none;
 }
 
 .btn-option{
   display: flex;
   padding-right: 25px;
+}
 
-  
+@media screen and (max-width: 768px){
+  .btn-option{
+    padding-right: 0;
+  }
 }
 
 #cancel-submission {
   background-color: #EAEAEA;
   margin-bottom: 10px;
-  margin-right: 5px;
+  margin-right: 3px;
   font-size: 14px;
   color:#285581;
   border-radius: 20px;
   width: 5%; /* Set the width to 50% of its container */
   max-width: 400px; /* Set a maximum width */
-  min-width: 200px; /* Set a minimum width */
+  min-width: 190px; /* Set a minimum width */
   display: none;
 }
 
 .table-header,
 .section-header {
+  font-family: 'Raleway', sans-serif;
   margin-bottom: 10px;
   font-weight: bold;
-  color: #285581;
+  color: #0858A4;
   display: flex;
   width: 100%;
- 
 }
 
 #revComment, #artStats {
   display: inline-block;
-  width: 50%;
+}
 
+#artStats{
+  width: 40%;
 }
 
 
@@ -444,10 +459,10 @@ ul li span {
   border-radius: 20px;
   color: #F40CA5;
   text-align: center;
-  width: 50%;
+  width: 70%;
   float: right;
   height: 4vh;
-  margin-right: 40px;
+  margin-right: 20px;
 }
 
 
@@ -494,7 +509,7 @@ ul li span {
 #log-btn {
     /* background-color: #959595; */
     /* color: white; */
-    font-family: "Judson", serif;
+    font-family: 'Raleway', sans-serif;
     font-weight: 400;
     font-style: normal;
     border-radius: 20px;
@@ -507,8 +522,8 @@ ul li span {
 .logs-title{
   color: #285581;
   font-size: 25px;
-  font-family: "Judson", serif;
-  font-weight: bold;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 400;
   font-style: normal;
   margin-left: 10px;
 }
@@ -521,7 +536,7 @@ ul li span {
 }
 
 .reviewer-alias{
-  font-family: "Judson", serif;
+  font-family: 'Raleway', sans-serif;
   font-weight: 400;
   font-style: normal;
   display: block;
@@ -580,7 +595,7 @@ ul li span {
 .reviewerCommentsTitle{
   color: #285581;
   font-size: 25px;
-  font-family: "Judson", serif;
+  font-family: 'Raleway', sans-serif;
   font-weight: bold;
 }
 
@@ -599,14 +614,14 @@ ul li span {
   color: white;
   background-color: #588297;
   color: white;
-  font-family: "Judson", serif;
+  font-family: 'Raleway', sans-serif;
   max-height: 100%; /* Ensure questionnaires and comments inherit the max height */
   overflow-y: auto; /* Enable vertical scrolling if content exceeds the height */
 }
 
 .commentsR{
   color: #285581;
-  font-family: "Judson", serif;
+  font-family: 'Raleway', sans-serif;
   font-weight: 400;
   margin-left: 20px;
   max-height: 100%; /* Ensure questionnaires and comments inherit the max height */

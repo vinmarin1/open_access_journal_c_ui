@@ -9,7 +9,8 @@ $totalreport = get_totalreportforgraph($yearval);
 $seriesData = [
     'read' => ['name' => 'read', 'data' => array_fill(0, 12, 0)],
     'downloaded' => ['name' => 'downloaded', 'data' => array_fill(0, 12, 0)],
-    'citation' => ['name' => 'citation', 'data' => array_fill(0, 12, 0)]
+    'citation' => ['name' => 'citation', 'data' => array_fill(0, 12, 0)],
+    'support' => ['name' => 'support', 'data' => array_fill(0, 12, 0)]
 ];
 
 foreach ($totalreport['totalreportforgraph'] as $totalreport) {
@@ -17,11 +18,13 @@ foreach ($totalreport['totalreportforgraph'] as $totalreport) {
     $total_read = intval($totalreport->total_read);
     $total_download = intval($totalreport->total_download);
     $total_citation = intval($totalreport->total_citation);
+    $total_support = intval($totalreport->total_support);
 
     if ($month >= 1 && $month <= 12) {
         $seriesData['read']['data'][$month - 1] += $total_read; 
         $seriesData['downloaded']['data'][$month - 1] += $total_download; 
         $seriesData['citation']['data'][$month - 1] += $total_citation; 
+        $seriesData['support']['data'][$month - 1] += $total_support; 
     }
 }
 
@@ -106,7 +109,8 @@ $seriesString = json_encode($seriesData);
                             <th>Title</th>
                             <th>Read</th>
                             <th>Download</th>
-                            <th>Citation </th>
+                            <th>Citation</th>
+                            <th>Support</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -116,10 +120,11 @@ $seriesString = json_encode($seriesData);
                                 ?>
                                 <tr data-toggle="modal" data-target="">
                                     <td width="5%"><?php echo $counterlistval->article_id; ?></td>
-                                    <td width="85%"><?php echo $counterlistval->title; ?></td>
+                                    <td width="75%"><?php echo $counterlistval->title; ?></td>
                                     <td width="5%"><?php echo $counterlistval->read_count; ?></td>
                                     <td width="5%"><?php echo $counterlistval->download_count; ?></td>
                                     <td width="5%"><?php echo $counterlistval->citation_count; ?></td>
+                                    <td width="5%"><?php echo $counterlistval->support_count; ?></td>
                                 </tr>
                                 <?php
                             }
@@ -182,14 +187,6 @@ $seriesString = json_encode($seriesData);
             var seriesData = <?php echo $seriesString; ?>;
             console.log(seriesData);
 
-            // var seriesColors = ['#71dd37', '#ffab00', '#ff3e1d'];
-
-            // seriesData.forEach(function(series, index) {
-            //     if (index < seriesColors.length) {
-            //         series.color = seriesColors[index];
-            //     }
-            // });
-
             // Total Revenue Report Chart - Bar Chart
             // --------------------------------------------------------------------
             const totalRevenueChartEl = document.querySelector('#totalRevenueChart'),
@@ -212,7 +209,7 @@ $seriesString = json_encode($seriesData);
                             endingShape: 'rounded'
                         }
                     },
-                    colors: ['#71dd37', '#ffab00', '#ff3e1d'],
+                    colors: ['#71dd37', '#ffab00', '#ff3e1d', '#004e98'],
                     dataLabels: {
                         enabled: false
                     },

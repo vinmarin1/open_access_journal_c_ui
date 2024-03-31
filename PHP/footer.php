@@ -1,16 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <?php include('./meta.php'); ?>
     <title>Footer</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../CSS/footer.css">
 </head>
-
 <body>
-    <footer class="site-footer mt-5">
+    <div class="site-footer mt-5">
       <div class="container">
         <div class="row">
           <div class="col-sm-12 col-md-5">
@@ -54,7 +49,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-8 col-sm-6 col-xs-12 d-flex gap-2">
-            <img src="../images/qcuj.png" style="width:3em; height:3em" alt="" class="d-none d-sm-flex"/>
+            <img src="../images/pahina.png" style="width:1.8em; height:2.6em" alt="" class="d-none d-sm-flex"/>
             <img style="width:2.7em; height:2.7em"  src="../images/qcu-logo.webp" alt="" class="d-none d-sm-flex">
             <p class="copyright-text">Content on this site is licensed under a Creative Commons &copy; <?php echo date("Y"); ?> 
             All Rights Reserved by <a href="#">Pahina</a>.
@@ -73,7 +68,7 @@
           </div>
         </div>
       </div>
-    </footer>
+    </div>
 </body>
 
 </html>

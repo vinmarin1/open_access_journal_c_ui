@@ -102,7 +102,7 @@ document.getElementById('cancel-submission').addEventListener('click', function 
         titleElement.style.border = 'none';
         abstract.contentEditable = false;
         abstract.style.border = 'none';
-        table.style.display = 'none';
+        // table.style.display = 'none';
         reviseFile.style.display = 'none';
         cancelbtn.style.display = 'none';
         submitBtn.style.display = 'none';

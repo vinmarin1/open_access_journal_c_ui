@@ -4,10 +4,7 @@ let selectedJournalsName = [];
 
 document.addEventListener( "DOMContentLoaded",
   fetchData().then(() => {
-  
     generateFilters();
-    // previewFilters();
-    // generateDatalist(articleData);
   })
 );
 
@@ -23,6 +20,12 @@ function updateURL(selectedJournals){
   url.searchParams.set('journal', selectedJournals); 
   history.replaceState(null, '', url.toString());
 }
+function updateSearchURL(searchInput){
+  let url = new URL(window.location.href);
+  url.searchParams.set('search', searchInput); 
+  history.replaceState(null, '', url.toString());
+}
+
 // Function to initialize checkboxes based on URL query parameter
 const initializeCheckboxes = () => {
   const urlParams = new URLSearchParams(window.location.search);
@@ -43,6 +46,7 @@ document.getElementById("search-form").addEventListener("submit", function (even
     event.preventDefault();
     let searchInputValue = document.getElementById("result").value;
     updateURL(selectedJournals)
+    updateSearchURL(searchInputValue)
     fetchData(searchInputValue, selectedYears, sortBySelected)
   });
 
@@ -57,7 +61,7 @@ searchInput.addEventListener("input", (event) => {
   debounceTimer = setTimeout(() => {
     let searchInputValue = searchInput.value;
     updateURL(selectedJournals);
-    
+    updateSearchURL(searchInputValue)
     fetchData(searchInputValue, selectedYears, sortBySelected)
   }, 2000); 
 });
