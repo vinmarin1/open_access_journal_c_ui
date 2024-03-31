@@ -407,6 +407,8 @@ $issuelist = get_issues_list($journal_id);
                     <div class="row mb-2">
                         <div class="col-md-12 mb-2" id="dynamic-column">
                         <input type="hidden" id="reviewer_assigned_id" class="form-control"/>
+                        <input type="hidden" id="author_id" class="form-control"/>
+                        <input type="hidden" id="article_id" class="form-control"/>
                         <input type="hidden" id="accessible" class="form-control"/>
                             <div class="table-responsive text-nowrap">
                                 <table class="table table-striped" id="DataTableAnswer">
@@ -1842,14 +1844,17 @@ function updateProductionUncheckedFiles() {
 function acceptReviewerAnswer() {
     $('#sloading').toggle();
     var assignedId = $('#reviewer_assigned_id').val();
-
-
+    var authorid = $('#author_id').val();
+    var articleid = $('#article_id').val();
+    
     var formData = new FormData();
     formData.append('reviewer_assigned_id', assignedId);
+    formData.append('author_id', authorid);
+    formData.append('article_id', articleid);
     formData.append('action', 'updateaccessible');
 
     $.ajax({
-        url: "../php/function/wf_modal_function.php",
+        url: "../php/function/email_function.php",
         type: "POST",
         data: formData,
         processData: false,
