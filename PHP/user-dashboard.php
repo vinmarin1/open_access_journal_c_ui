@@ -2351,7 +2351,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
             }else if (actionEngage === 'Primary Contact') {
                 Swal.fire({
-                    html: "<p style='font-weight: bold'>You got 1 Community heart because you are the Primary Contact to the article</p>" + "<p>Title: " + title + "</p>",
+                    html: "<p style='font-weight: bold'>You got 1 Community heart because you are the primary contact to the article</p>" + "<p>Title: " + title + "</p>",
                     imageUrl: "../images/qcu-bg.jpg",
                     imageWidth: 400,
                     imageHeight: 200,
