@@ -66,552 +66,121 @@ $expertise = $_SESSION['expertise'];
 
 <div class="main">
     <div class="main-profile">
-			<div class="profile-container">
-				<div class="profile-sidebar">
-			
-					<!-- <img src="../images/profile.jpg" alt="Profile Picture" class="profile-pic" id="profileImage">
-					<input type="file" accept="image/*" style="display:none" id="fileInput">
-					<button type="button" class="btn btn-secondary btn-sm"  onclick="openFileInput()"><i class="fa-solid fa-camera"></i></button> -->
-					<?php
-					if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-						$sqlSelectProfile = "SELECT profile_pic FROM author WHERE author_id = :author_id";
+		<div class="profile-container">
+			<div class="profile-sidebar">
+		
+				<!-- <img src="../images/profile.jpg" alt="Profile Picture" class="profile-pic" id="profileImage">
+				<input type="file" accept="image/*" style="display:none" id="fileInput">
+				<button type="button" class="btn btn-secondary btn-sm"  onclick="openFileInput()"><i class="fa-solid fa-camera"></i></button> -->
+				<?php
+				if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+					$sqlSelectProfile = "SELECT profile_pic FROM author WHERE author_id = :author_id";
 
-						$result = database_run($sqlSelectProfile, array(':author_id' => $id));
+					$result = database_run($sqlSelectProfile, array(':author_id' => $id));
 
-						if ($result) {
-							if (count($result) > 0) {
-								$user = $result[0];
-								$profilePic = $user->profile_pic;
+					if ($result) {
+						if (count($result) > 0) {
+							$user = $result[0];
+							$profilePic = $user->profile_pic;
 
-								
-								if (empty($profilePic)) {
-									$profilePic = "../images/profile.jpg";
-								}
-
-
-								echo '<div class="profile-pic-container">';
-								echo '<img src="' . htmlspecialchars($profilePic) . '" alt="Profile Picture" class="profile-pic" id="profileImage">';
-								echo '<input type="file" accept="image/*" style="display:none" id="fileInput" name="fileInput" >';
-								// echo '<input type="file" accept="image/*" style="display:none" id="fileInput" name="fileInput">';
-								// echo '<div class="change-profile-text">Change Profile</div>';
-								// echo '<div class="edit-icon" onclick="openFileInput()"> <span>&#9998;</span>Change Profile </div>';
-								
-								echo '<div class="button-container"><button type="button" class="btn btn-secondary btn-sm" onclick="openFileInput()" style="margin-left: auto; margin-right: auto;"><i class="fa-solid fa-camera"></i></button></div>';
-								
-								echo '</div>';
-							} else {
-								echo "User not found.";
+							
+							if (empty($profilePic)) {
+								$profilePic = "../images/profile.jpg";
 							}
+
+
+							echo '<div class="profile-pic-container">';
+							echo '<img src="' . htmlspecialchars($profilePic) . '" alt="Profile Picture" class="profile-pic" id="profileImage">';
+							echo '<input type="file" accept="image/*" style="display:none" id="fileInput" name="fileInput" >';
+							// echo '<input type="file" accept="image/*" style="display:none" id="fileInput" name="fileInput">';
+							// echo '<div class="change-profile-text">Change Profile</div>';
+							// echo '<div class="edit-icon" onclick="openFileInput()"> <span>&#9998;</span>Change Profile </div>';
+							
+							echo '<div class="button-container"><button type="button" class="btn btn-secondary btn-sm" onclick="openFileInput()" style="margin-left: auto; margin-right: auto;"><i class="fa-solid fa-camera"></i></button></div>';
+							
+							echo '</div>';
 						} else {
-							echo "Unable to fetch profile picture.";
+							echo "User not found.";
 						}
+					} else {
+						echo "Unable to fetch profile picture.";
 					}
-					?>
+				}
+				?>
 
 
-					<!-- Modal for Image Preview and Confirmation -->
-					<div id="imageModal" class="modal" style="display:none">
-						<div class="modal-content mt-3" style="width: 30%; height: 55%; margin-left: auto; margin-right: auto;">
-							<p class="h6 mt-2" style="text-align: center; magin: 0; border-bottom: 1px gray solid">Change Profile Picture</p>
-							
-							<img class="img-fluid mt-4" src="" alt="Selected Image" id="selectedImagePreview" style="height: 50%; width: 50%; border-radius: 60%; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; margin-left: auto; margin-right: auto">
-							<div class="btn-change mt-5" style="width: 100%">
-							<button type="button" class="btn btn-success btn-sm" style="width: 95%; display: block; margin-left: 10px; margin-right: 5px" onclick="saveProfile()">Save</button>
-							<button type="button" class="btn btn-secondary btn-sm mt-1" style="width: 95%; display: block; margin-left: 10px" onclick="cancelUpdate()">Cancel</button>
-							</div>
-							
+				<!-- Modal for Image Preview and Confirmation -->
+				<div id="imageModal" class="modal" style="display:none">
+					<div class="modal-content mt-3">
+						<p class="h6 mt-2" style="text-align: center; magin: 0; border-bottom: 1px gray solid">Change Profile Picture</p>
+						
+						<img class="img-fluid mt-4" src="" alt="Selected Image" id="selectedImagePreview">
+						<div class="btn-change mt-5" style="width: 100%">
+						<button type="button" class="btn btn-success btn-sm" style="width: 95%; display: block; margin-left: 10px; margin-right: 5px" onclick="saveProfile()">Save</button>
+						<button type="button" class="btn btn-secondary btn-sm mt-1" style="width: 95%; display: block; margin-left: 10px" onclick="cancelUpdate()">Cancel</button>
 						</div>
+						
 					</div>
 				</div>
-				<div class="profile-info">
-					<div class="row">
-						<!--<div class="points">
-							<p><span class="label">PHP:</span> 1.00 / Credit</p>
-						</div>-->
-							<!-- User Info -->
-						<div class="user-info">
-							<div class="info-header d-flex flex-column flex-sm-row">
-							<h1>
-							<?php
-							if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-								$sqlSelectName = "SELECT first_name, middle_name, last_name, affix, birth_date, gender, marital_status, country, orc_id, afiliations, position, bio, field_of_expertise FROM author WHERE author_id = :author_id";
-
-								$result = database_run($sqlSelectName, array(':author_id' => $id));
-
-								if ($result) {
-									if (count($result) > 0) {
-										$user = $result[0];
-										$firstName = $user->first_name;
-										$middleName = $user->middle_name;
-										$lastName = $user->last_name;
-										$affix = $user->affix;
-										$birthDate = $user->birth_date;
-										$gender = $user->gender;
-										$maritalStatus = $user->marital_status;
-										$country = $user->country;
-										$orcId = $user->orc_id;
-										$afiliations = $user->afiliations;
-										$position = $user->position;
-										$bio = $user->bio;
-										$field_of_expertise = $user->field_of_expertise;
-
-										$profileFields = array($firstName, $middleName, $lastName, $affix, $birthDate, $gender, $maritalStatus, $country, $orcId, $afiliations, $position, $bio, $field_of_expertise);
-										$completedFields = count(array_filter($profileFields, function($field) { return !empty($field); }));
-										$totalFields = count($profileFields);
-
-										$fullName = "$firstName $middleName $lastName";
-										$percentageCompletion = ($completedFields / $totalFields) * 100;
-										echo "$firstName $middleName $lastName";
-
-
-
-										echo "
-										<p>PROFILE COMPLETENESS
-											<span style='color: #004e98'> ". round($percentageCompletion, 2) . "% </span>
-											<dfn data-info='You must complete required fields in your profile to submit or review a paper'>
-												<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 32 32'>
-													<path fill='currentColor' d='M16 3C8.832 3 3 8.832 3 16s5.832 13 13 13s13-5.832 13-13S23.168 3 16 3m0 2c6.087 0 11 4.913 11 11s-4.913 11-11 11S5 22.087 5 16S9.913 5 16 5m-1 5v2h2v-2zm0 4v8h2v-8z'></path>
-												</svg>
-											</dfn>
-										</p>
-										<div class=''>
-										  <div class='progress-bar progress-bar-striped bg-primary' role='progressbar'  style='width: ".round($percentageCompletion, 2)."%; height:3px;' aria-valuenow='".round($percentageCompletion, 2)."' aria-valuemin='0'></div>
-										</div>
-										<hr/>
-										
-										
-										";
-									} else {
-										echo "User not found.";
-									}
-								} else {
-									echo "Unable to fetch user info.";
-								}
-							}
-							?>
-
-							</h1>
-								<!-- <i class="ri-edit-box-line" id="editIcon" style="color: green solid"></i> -->
-								<div class="other-action d-flex gap-1">
-<!-- 									
-									<label id="editIcon" style="cursor: pointer; color: green"><span style="padding-right: 5px; font-size: 12px; font-family: Arial, Helvetica, sans-serif;
-									">Edit</span><i class="fa-solid fa-pen-to-square" style="color: green"></i></label>
-									<br> -->
-
-									<!-- <label id="supportIcon" style="cursor: pointer; color: green"><span style="padding-right: 5px; font-size: 12px; font-family: Arial, Helvetica, sans-serif;
-									">Support</span><i class="fa-solid fa-hand-holding-heart"></i></label> -->
-									<!-- <button class="btn  btn-sm text-white" id="btn1" onclick="window.location.href='author-dashboard.php'">My Articles</button> -->
-									
-									<button type="button" id="editIcon" class="btn btn-success btn-sm" style="width: 100px">Edit<i class="fa-solid fa-pen-to-square"  style="margin-left: 5px"></i></button>
-									<br>
-						
-								
-									
-
-									
-								
-								</div>
-							
-
-							</div>
-							<p class="role">
-								<?php
-								if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-									$sqlSelectName = "SELECT role FROM author WHERE author_id = :author_id";
-								
-									$result = database_run($sqlSelectName, array(':author_id' => $id));
-
-									if ($result) {
-										
-										if (count($result) > 0) {
-											$user = $result[0];
-											$role = $user->role;
-											
-
-											echo "$role";
-										} else {
-											echo "Can't identify user role.";
-										}
-									} else {
-										echo "Unable to fetch user role.";
-									}
-								}
-								?>
-							</p>
-							<!-- <p class="subscription">You're subscribed to Package plan</p> -->
-						</div>
-					</div>
-					    <!-- Popup Form -->
-				<div class="popup-overlay" id="editForm">
-					<div class="popup-form">
-						<div class="form-header">
-							<h4>Edit Profile</h4>
-							<!-- <div class="edit-profile-btn">
-								<button type="button" class="btn btn-outline-light" id="saveButton">Save</button>
-								<button type="button" class="btn btn-outline-light" id="cancelBtn">Cancel</button>
-							</div> -->
-							<span class="close-icon" id="closeIcon">&times;</span>
-						</div>
-						<form id="form" method="POST" action="update-user.php">		
-							<div class="form-content">
-								<!-- <div class="edit-profile-pic">
-								
-								
-								
-									<img src="../images/capstone1.png" alt="Profile Picture" class="profile-pic" id="profileImage">
-									<button type="button" style="border: none" id="changeProfileBtn"><i class="fas fa-camera change-icon"></i></button>
-									<input type="file" id="selectProfile" style="display: none" accept="image/*">
-
-
-								</div> -->
-								<!-- Personal Information -->
-								<div class="form-section">
-									<h5>Personal Information</h5>
-									<hr>
-									<div class="row-form">
-										<div class="form-row">
-											<label for="firstName">First Name:</label>
-											<!-- <label for="firstName">First Name: <span class="requiredFilled" style="color: red">*</span></label> -->
-											<?php
-											if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-												$sqlSelectName = "SELECT first_name FROM author WHERE author_id = :author_id";
-											
-												$result = database_run($sqlSelectName, array(':author_id' => $id));
-
-												if ($result) {
-													
-													if (count($result) > 0) {
-														$user = $result[0];
-														$firstName = $user->first_name;
-													
-														echo '<input type="text" id="firstName" name="firstName" class="text-box" value="' . $firstName . '" required>';
-
-										
-													} else {
-														echo "User not found.";
-													}
-												} else {
-													echo "Unable to fetch user info.";
-												}
-											}
-											?>
-										
-										</div>
-										<div class="form-row">
-											<label for="middleName">Middle Name: (Optional)</label>
-											<?php
-											if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-												$sqlSelectName = "SELECT middle_name FROM author WHERE author_id = :author_id";
-											
-												$result = database_run($sqlSelectName, array(':author_id' => $id));
-
-												if ($result) {
-													
-													if (count($result) > 0) {
-														$user = $result[0];
-														$middle_name = $user->middle_name;
-													
-														echo '<input type="text" id="middleName" name="middleName" class="text-box"
-														value="' . $middle_name . '" >';
-													
-										
-													} else {
-														echo "User not found.";
-													}
-												} else {
-													echo "Unable to fetch user info.";
-												}
-											}
-											?>
-						
-										
-										</div>
-										<div class="form-row">
-											<label for="lastName">Last Name:</label>
-											<!-- <label for="lastName">Last Name: <span class="requiredFilled" style="color: red">*</span></label> -->
-											<?php
-											if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-												$sqlSelectName = "SELECT last_name FROM author WHERE author_id = :author_id";
-											
-												$result = database_run($sqlSelectName, array(':author_id' => $id));
-
-												if ($result) {
-													
-													if (count($result) > 0) {
-														$user = $result[0];
-														$last_name = $user->last_name;
-													
-														echo '<input type="text" id="lastName" name="lastName" class="text-box"
-														value="' . $last_name . '" required>';
-													
-														
-										
-													} else {
-														echo "User not found.";
-													}
-												} else {
-													echo "Unable to fetch user info.";
-												}
-											}
-											?>
-						
-											
-										</div>
-										<div class="form-row">
-											<label for="affix">Affix: (Optional)</label>
-											<?php
-											if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-												$sqlSelectName = "SELECT affix FROM author WHERE author_id = :author_id";
-											
-												$result = database_run($sqlSelectName, array(':author_id' => $id));
-
-												if ($result) {
-													
-													if (count($result) > 0) {
-														$user = $result[0];
-														$affix = $user->affix;
-													
-														echo '<input type="text" id="affix" name="affix" class="text-box"
-														value="' . $affix . '" >';
-													
-														
-										
-													} else {
-														echo "User not found.";
-													}
-												} else {
-													echo "Unable to fetch user info.";
-												}
-											}
-											?>
-											
-										</div>
-										<div class="form-row">
-											<label for="birthdate">Birth Date:</label>
-											<!-- <label for="birthdate">Birth Date: <span class="requiredFilled" style="color: red">*</span></label> -->
-										
-											<?php
-												if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-													$sqlSelectName = "SELECT birth_date FROM author WHERE author_id = :author_id";
-
-													$result = database_run($sqlSelectName, array(':author_id' => $id));
-
-													if ($result) {
-														if (count($result) > 0) {
-															$user = $result[0];
-															$birth_date = $user->birth_date;
-
-															// Output the selected option based on the user's gender
-															echo '<input type="date" id="birthdate" name="birthdate" class="date-box" value="' . $birth_date . '" required>';
-
-														} else {
-															echo "User not found.";
-														}
-													} else {
-														echo "Unable to fetch user info.";
-													}
-												}
-												?>
-										</div>
-										<div class="form-row">
-										<label for="gender">Gender:</label>
-											<!-- <label for="gender">Gender: <span class="requiredFilled" style="color: red">*</span></label> -->
-											<select id="gender" name="gender" class="dropdown-box" required>
-												<?php
-												if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-													$sqlSelectName = "SELECT gender FROM author WHERE author_id = :author_id";
-
-													$result = database_run($sqlSelectName, array(':author_id' => $id));
-
-													if ($result) {
-														if (count($result) > 0) {
-															$user = $result[0];
-															$gender = $user->gender;
-
-															// Output the selected option based on the user's gender
-															echo '<option value="' . $gender . '" selected>' . $gender . '</option>';
-														} else {
-															echo "User not found.";
-														}
-													} else {
-														echo "Unable to fetch user info.";
-													}
-												}
-												?>
-												<option value="Male">Male</option>
-												<option value="Female">Female</option>
-											</select>
-
-										</div>
-										<div class="form-row">
-										<label for="status">Status:</label>
-											<!-- <label for="status">Status: <span class="requiredFilled" style="color: red">*</span></label> -->
-											<select id="status" name="status" class="dropdown-box" required>
-											
-												<?php
-												if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-													$sqlSelectName = "SELECT marital_status FROM author WHERE author_id = :author_id";
-
-													$result = database_run($sqlSelectName, array(':author_id' => $id));
-
-													if ($result) {
-														if (count($result) > 0) {
-															$user = $result[0];
-															$marital_status = $user->marital_status;
-
-															// Output the selected option based on the user's gender
-															echo '<option value="' . $marital_status . '" selected>' . $marital_status . '</option>';
-														} else {
-															echo "User not found.";
-														}
-													} else {
-														echo "Unable to fetch user info.";
-													}
-												}
-												?>
-												<option value="Single">Single</option>
-												<option value="Married">Married</option>
-												<option value="Divorced">Divorced</option>
-												<option value="Widowed">Widowed</option>
-											</select>
-										</div>
-										<div class="form-row">
-										<label for="country">Country:</label>
-											<!-- <label for="country">Country: <span class="requiredFilled" style="color: red">*</span></label> -->
-											<select id="country" name="country" class="dropdown-box" required>
-											</select>
-										</div>
-									</div>
-									<!-- Add similar fields for Middle name, Last Name, Affix, Birth date, gender, status, country -->
-								</div>
-
-								<!-- Other Information -->
-								<div class="form-section">
-									<h5>Other Information</h5>
-									<hr>
-									<div class="row-form">
-										<!-- <div class="form-row">
-											<label for="email">E-mail:</label>
-											<input type="email" id="email" name="email" class="other-text-box" value="<?php echo $email ?>" >
-										</div> -->
-										<div class="form-row">
-										<label for="orcid">ORCID:</label>
-											<!-- <label for="orcid">ORCID: <span class="requiredFilled" style="color: red">*</span></label> -->
-											<?php
-											if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-												$sqlSelectName = "SELECT orc_id FROM author WHERE author_id = :author_id";
-											
-												$result = database_run($sqlSelectName, array(':author_id' => $id));
-
-												if ($result) {
-													
-													if (count($result) > 0) {
-														$user = $result[0];
-														$orc_id = $user->orc_id;
-													
-														echo '<input type="text"  id="orcid" name="orcid" class="other-text-box" pattern="\d{4}-\d{4}-\d{4}-\d{4}" placeholder="(e.g., xxxx-xxxx-xxxx-xxxx)"
-														value="' . $orc_id . '">';
-													
-													
-
-														
-										
-													} else {
-														echo "User not found.";
-													}
-												} else {
-													echo "Unable to fetch user info.";
-												}
-											}
-											?>
-										
-										</div>
-										<div class="form-row">
-											<label for="affiliation">Affiliation:</label>
-											<!-- <label for="affiliation">Affiliation: <span class="requiredFilled" style="color: red">*</span></label> -->
-											<?php
-											if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-												$sqlSelectName = "SELECT afiliations FROM author WHERE author_id = :author_id";
-											
-												$result = database_run($sqlSelectName, array(':author_id' => $id));
-
-												if ($result) {
-													
-													if (count($result) > 0) {
-														$user = $result[0];
-														$afiliations = $user->afiliations;
-													
-														echo '<input type="text" list="universityList" id="affiliation" name="affiliation" class="text-box"
-														value="' . $afiliations . '" >
-														<datalist id="universityList">
-        
-														</datalist>
-														';
-													
-														
-										
-													} else {
-														echo "User not found.";
-													}
-												} else {
-													echo "Unable to fetch user info.";
-												}
-											}
-											?>
-											
-										</div>
-										<div class="form-row">
-										<label for="position">Position:</label>
-											<!-- <label for="position">Position: <span class="requiredFilled" style="color: red">*</span></label> -->
-											<?php
-											if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-												$sqlSelectName = "SELECT position FROM author WHERE author_id = :author_id";
-											
-												$result = database_run($sqlSelectName, array(':author_id' => $id));
-
-												if ($result) {
-													
-													if (count($result) > 0) {
-														$user = $result[0];
-														$position = $user->position;
-													
-														echo '<input type="text" id="position" name="position" class="text-box"
-														value="' . $position . '" required>';
-													
-														
-										
-													} else {
-														echo "User not found.";
-													}
-												} else {
-													echo "Unable to fetch user info.";
-												}
-											}
-											?>
-										
-										</div>
-									</div>
-									<!-- Add similar fields for ORCID, Affiliation, Position -->
-								</div>
-
-								<!-- About me -->
-								<div class="form-section">
-									<h5>About Me</h5>
-									<hr>
-									<div class="form-row">
-									<label for="bio">Bio: (Optional)</label>
-										<?php
+			</div>
+			<div class="profile-info">
+				<div class="row">
+					<!--<div class="points">
+						<p><span class="label">PHP:</span> 1.00 / Credit</p>
+					</div>-->
+						<!-- User Info -->
+					<div class="user-info">
+						<div class="info-header ">
+								<h1>
+									<?php
 										if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-											$sqlSelectName = "SELECT bio FROM author WHERE author_id = :author_id";
+											$sqlSelectName = "SELECT first_name, middle_name, last_name, affix, birth_date, gender, marital_status, country, orc_id, afiliations, position, bio, field_of_expertise FROM author WHERE author_id = :author_id";
 
 											$result = database_run($sqlSelectName, array(':author_id' => $id));
 
 											if ($result) {
 												if (count($result) > 0) {
 													$user = $result[0];
+													$firstName = $user->first_name;
+													$middleName = $user->middle_name;
+													$lastName = $user->last_name;
+													$affix = $user->affix;
+													$birthDate = $user->birth_date;
+													$gender = $user->gender;
+													$maritalStatus = $user->marital_status;
+													$country = $user->country;
+													$orcId = $user->orc_id;
+													$afiliations = $user->afiliations;
+													$position = $user->position;
 													$bio = $user->bio;
+													$field_of_expertise = $user->field_of_expertise;
 
-													echo '<textarea id="bio" name="bio" class="bio-textarea" placeholder="Tell us about yourself" >' . $bio . '</textarea>';
+													$profileFields = array($firstName, $middleName, $lastName, $affix, $birthDate, $gender, $maritalStatus, $country, $orcId, $afiliations, $position, $bio, $field_of_expertise);
+													$completedFields = count(array_filter($profileFields, function($field) { return !empty($field); }));
+													$totalFields = count($profileFields);
+
+													$fullName = "$firstName $middleName $lastName";
+													$percentageCompletion = ($completedFields / $totalFields) * 100;
+													echo "$firstName $middleName $lastName";
+
+
+
+													echo "
+													<p>PROFILE COMPLETENESS
+														<span style='color: #004e98'> ". round($percentageCompletion, 2) . "% </span>
+														<dfn data-info='You must complete required fields in your profile to submit or review a paper'>
+															<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 32 32'>
+																<path fill='currentColor' d='M16 3C8.832 3 3 8.832 3 16s5.832 13 13 13s13-5.832 13-13S23.168 3 16 3m0 2c6.087 0 11 4.913 11 11s-4.913 11-11 11S5 22.087 5 16S9.913 5 16 5m-1 5v2h2v-2zm0 4v8h2v-8z'></path>
+															</svg>
+														</dfn>
+													</p>
+													<div class=''>
+													<div class='progress-bar progress-bar-striped bg-primary' role='progressbar'  style='width: ".round($percentageCompletion, 2)."%; height:3px;' aria-valuenow='".round($percentageCompletion, 2)."' aria-valuemin='0'></div>
+													</div>
+													<hr/>
+													
+													
+													";
 												} else {
 													echo "User not found.";
 												}
@@ -619,75 +188,57 @@ $expertise = $_SESSION['expertise'];
 												echo "Unable to fetch user info.";
 											}
 										}
-										?>
+									?>
+								</h1>
+							<!-- <i class="ri-edit-box-line" id="editIcon" style="color: green solid"></i> -->
+							<div class="other-action">
+								<!--<label id="editIcon" style="cursor: pointer; color: green"><span style="padding-right: 5px; font-size: 12px; font-family: Arial, Helvetica, sans-serif;
+								">Edit</span><i class="fa-solid fa-pen-to-square" style="color: green"></i></label>
+								<br> -->
 
-									</div>
-									<!-- <br><br><br> -->
-									<div class="form-row">
-									<label for="fieldofexpertise">Field of Expertise:</label>
-									<!-- <label for="fieldofexpertise">Field of Expertise: <span class="requiredFilled" style="color: red">*</span></label> -->
-									<div>
-										<input type="text" id="fieldofexpertise" name="fieldofexpertise" class="text-box">
-										<button class="btn btn-primary" type="button" id="addExpertiseButton">Add</button>
-									</div>
-									</div>
-									<div id="keywordContainer">
-
-										<?php
-											if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-												$sqlSelectName = "SELECT field_of_expertise FROM author WHERE author_id = :author_id";
-											
-												$result = database_run($sqlSelectName, array(':author_id' => $id));
-
-												if ($result) {
-													if (count($result) > 0) {
-														$user = $result[0];
-														$field_of_expertise = $user->field_of_expertise;
-												
-														if (!empty($field_of_expertise)) {
-															$expertiseArray = explode(', ', $field_of_expertise);
-												
-															foreach ($expertiseArray as $expertiseItem) {
-																echo '<div class="keyword" id="expertise" name="expertise"><span>' . htmlspecialchars($expertiseItem) . '</span><span class="close-btn">x</span></div>';
-															}
-														}
-													} else {
-														echo '';
-													}
-												}
-												 else {
-													echo "Unable to fetch user info.";
-												}
-											}
-											?>
-									</div>
-									<input type="hidden" id="expertiseData" name="expertiseData" value="">
-
-								</div>
-								<!-- <div class="form-buttons">
-									<button type="submit" class="btn btn-primary" id="saveButton">Save</button>
-									<button type="button" class="btn btn-secondary" id="cancelBtn">Cancel</button>
-								</div> -->
-								<!-- <button type="button" class="btn btn-success btn-md" id="editBtn">Edit
-									<span class="spinner-border spinner-border-sm" aria-hidden="true" style="display: none"></span>
-								</button>
-								<button type="button" class="btn btn-secondary btn-md" id="cancelBtn">Cancel
-									<span class="spinner-border spinner-border-sm" aria-hidden="true" style="display: none"></span>
-								</button> -->
+								<!-- <label id="supportIcon" style="cursor: pointer; color: green"><span style="padding-right: 5px; font-size: 12px; font-family: Arial, Helvetica, sans-serif;
+								">Support</span><i class="fa-solid fa-hand-holding-heart"></i></label> -->
+								<!-- <button class="btn  btn-sm text-white" id="btn1" onclick="window.location.href='author-dashboard.php'">My Articles</button> -->
+								
+								<button type="button" id="editIcon" class="btn btn-success btn-sm" style="width: 100px">Edit<i class="fa-solid fa-pen-to-square"  style="margin-left: 5px"></i></button>
+								<br>
+					
+							
+								
 
 								
-								<!-- <input type="submit" class="btn btn-primary btn-md" id="saveButton" value="Save" disabled> -->
-								<!-- <button type="submit" class="btn btn-primary btn-md" id="saveButton" value="Save" disabled>Save</button> -->
+							
 							</div>
-							<div class="form-buttons">
-								<button type="submit" class="btn btn-primary" id="saveButton">Save</button>
-								<button type="button" class="btn btn-secondary" id="cancelBtn">Cancel</button>
-							</div>
-						</form>
+						</div>
+						<p class="role">
+							<?php
+							if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+								$sqlSelectName = "SELECT role FROM author WHERE author_id = :author_id";
+							
+								$result = database_run($sqlSelectName, array(':author_id' => $id));
+
+								if ($result) {
+									
+									if (count($result) > 0) {
+										$user = $result[0];
+										$role = $user->role;
+										
+
+										echo "$role";
+									} else {
+										echo "Can't identify user role.";
+									}
+								} else {
+									echo "Unable to fetch user role.";
+								}
+							}
+							?>
+						</p>
+						<!-- <p class="subscription">You're subscribed to Package plan</p> -->
 					</div>
 				</div>
 				<!-- </form> -->
-					<div class="balance-points"><i class="fa-solid fa-fire" style="color: orange"></i>&nbsp;
+				<div class="balance-points"><i class="fa-solid fa-fire" style="color: orange"></i>&nbsp;
 					<?php
 						$sqlPoints = "SELECT point_earned FROM user_points WHERE user_id = $id";
 
@@ -707,240 +258,91 @@ $expertise = $_SESSION['expertise'];
 						}
 					?>
 					<br>
-					</div><div class="totalLikes"><i class="fa-solid fa-heart" style="color: red"></i>&nbsp;
+				</div>
+				<div class="totalLikes"><i class="fa-solid fa-heart" style="color: red"></i>&nbsp;
 					<?php
-					$sqlPoints = "SELECT author.author_id, author.first_name, article.article_id, article.title, logs.article_id, logs.type 
-								FROM author 
-								JOIN article ON author.author_id = article.author_id 
-								JOIN logs ON article.article_id = logs.article_id 
-								WHERE author.author_id = $id AND logs.type = 'support'";
+						$sqlPoints = "SELECT author.author_id, author.first_name, article.article_id, article.title, logs.article_id, logs.type 
+									FROM author 
+									JOIN article ON author.author_id = article.author_id 
+									JOIN logs ON article.article_id = logs.article_id 
+									WHERE author.author_id = $id AND logs.type = 'support'";
 
-					$result = database_run($sqlPoints);
+						$result = database_run($sqlPoints);
 
-					if ($result !== false) {
-						$totalPoints = count($result);
-						echo $totalPoints;
-					} else {
-						echo '0';
-					}
-					?>
-
-					</div>
-					<?php
-						if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-						$sqlMode = "SELECT public_private_profile FROM author WHERE author_id = :author_id";
-						
-						$result = database_run($sqlMode, array(':author_id' => $id));
-
-						if ($result) {
-							
-							if (count($result) > 0) {
-							$user = $result[0];
-							$mode = $user->public_private_profile;
-							
-							if($mode === '0'){
-								echo '<button class="btn btn-outline-primary btn-sm mt-2" id="changeModeBtn1">Public Profile</button>';
-							}else{
-								echo '<button class="btn btn-outline-primary btn-sm mt-2" id="changeModeBtn2">Private Profile</button>';
-							}
-
-							
-							} else {
-							echo "Something went wrong";
-							}
+						if ($result !== false) {
+							$totalPoints = count($result);
+							echo $totalPoints;
 						} else {
-							echo "Something went wrong";
-						}
+							echo '0';
 						}
 					?>
-         
 
-					<!-- <div class="profile-badge">
-						<p class="recent-badges">Recent Badges</p>
-						<div class="badge-box" style="background-image: url('../images/badge1.jpg');"></div>
-						<div class="badge-box" style="background-image: url('../images/badge2.jpg');"></div>
-						<div class="badge-box" style="background-image: url('../images/badge3.jpg');"></div>
-						<div class="badge-box" style="background-image: url('../images/badge2.jpg');"></div>
-						<div class="badge-box" style="background-image: url('../images/badge1.jpg');"></div>
-					</div> -->
 				</div>
-				<hr class="vertical-line">
-
-				<div class="profile-main">
-					<!-- Detailed Info -->
+				<?php
+					if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+					$sqlMode = "SELECT public_private_profile FROM author WHERE author_id = :author_id";
 					
-					<div class="details">
-						<div class="icon-container">
-							<i class="ri-eye-line" id="toggleIcon"></i>
-						</div>
-						<p><span class="label">Position:</span> <span id="positionLabel">
+					$result = database_run($sqlMode, array(':author_id' => $id));
+
+					if ($result) {
 						
-							<?php
-							if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-								$sqlSelectName = "SELECT position FROM author WHERE author_id = :author_id";
-							
-								$result = database_run($sqlSelectName, array(':author_id' => $id));
-
-								if ($result) {
-									
-									if (count($result) > 0) {
-										$user = $result[0];
-										$position = $user->position;
-									
-										echo $position;
-									
-										
+						if (count($result) > 0) {
+						$user = $result[0];
+						$mode = $user->public_private_profile;
 						
-									} else {
-										echo "User not found.";
-									}
-								} else {
-									echo "Unable to fetch user info.";
-								}
-							}
-							?>
-						</span></p>
-						<p><span class="label">Gender</span> <span id="genderLabel">
-						<?php
-							if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-								$sqlSelectName = "SELECT gender FROM author WHERE author_id = :author_id";
-							
-								$result = database_run($sqlSelectName, array(':author_id' => $id));
+						if($mode === '0'){
+							echo '<button class="btn btn-outline-primary btn-sm mt-2" id="changeModeBtn1">Public Profile</button>';
+						}else{
+							echo '<button class="btn btn-outline-primary btn-sm mt-2" id="changeModeBtn2">Private Profile</button>';
+						}
 
-								if ($result) {
-									
-									if (count($result) > 0) {
-										$user = $result[0];
-										$gender = $user->gender;
-									
-										echo $gender;
-									
-										
 						
-									} else {
-										echo "User not found.";
-									}
-								} else {
-									echo "Unable to fetch user info.";
-								}
-							}
-							?>
-						</span></p>
-						<p><span class="label">Birthday:</span> <span id="birthdayLabel">
-							<?php
-							if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-								$sqlSelectName = "SELECT birth_date FROM author WHERE author_id = :author_id";
+						} else {
+						echo "Something went wrong";
+						}
+					} else {
+						echo "Something went wrong";
+					}
+					}
+				?>
+		
 
-								$result = database_run($sqlSelectName, array(':author_id' => $id));
+				<!-- <div class="profile-badge">
+					<p class="recent-badges">Recent Badges</p>
+					<div class="badge-box" style="background-image: url('../images/badge1.jpg');"></div>
+					<div class="badge-box" style="background-image: url('../images/badge2.jpg');"></div>
+					<div class="badge-box" style="background-image: url('../images/badge3.jpg');"></div>
+					<div class="badge-box" style="background-image: url('../images/badge2.jpg');"></div>
+					<div class="badge-box" style="background-image: url('../images/badge1.jpg');"></div>
+				</div> -->
+			</div>
+			<hr class="vertical-line">
 
-								if ($result) {
-									if (count($result) > 0) {
-										$user = $result[0];
-										$birth_date = $user->birth_date;
-
-										if ($birth_date !== NULL) {
-										
-											$formatted_birth_date = date('F j, Y', strtotime($birth_date));
-											echo $formatted_birth_date;
-										} else {
-											echo ""; 
-										}
-									} else {
-										echo "User not found.";
-									}
-								} else {
-									echo "Unable to fetch user info.";
-								}
-							}
-							?>
-						</span></p>
-
-						<p><span class="label">Country:</span> <span id="countryLabel">
-						<?php
-							if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-								$sqlSelectName = "SELECT country FROM author WHERE author_id = :author_id";
-							
-								$result = database_run($sqlSelectName, array(':author_id' => $id));
-
-								if ($result) {
-									
-									if (count($result) > 0) {
-										$user = $result[0];
-										$country = $user->country;
-									
-										echo $country;
-									
-										
-						
-									} else {
-										echo "User not found.";
-									}
-								} else {
-									echo "Unable to fetch user info.";
-								}
-							}
-							?>
-						</span></p>
-						<p><span class="label">ORCID:</span> <span id="orcidLabel">
-							<?php
-							if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-								$sqlSelectName = "SELECT orc_id FROM author WHERE author_id = :author_id";
-							
-								$result = database_run($sqlSelectName, array(':author_id' => $id));
-
-								if ($result) {
-									
-									if (count($result) > 0) {
-										$user = $result[0];
-										$orc_id = $user->orc_id;
-									
-										echo $orc_id;
-									
-										
-						
-									} else {
-										echo "User not found.";
-									}
-								} else {
-									echo "Unable to fetch user info.";
-								}
-							}
-							?>
-						</span></p>
+			<div class="profile-main">
+				<!-- Detailed Info -->
+				
+				<div class="details">
+					<div class="icon-container">
+						<!-- <i class="ri-eye-line" id="toggleIcon"></i> -->
 					</div>
-				</div>
-			</div>
-			<!--   -->
-		</div>
-		<section class="expertise">
-			<!-- Expertise info here -->
-			<div class="tab">
-				<button class="tablinks" onclick="openTab(event, 'About')" id="defaultOpen">About</button>
-				<button class="tablinks" onclick="openTab(event, 'Contributions')">Contributions</button>
-				<button class="tablinks" onclick="openTab(event, 'Rewards')">Rewards</button>
-				<!-- <button class="tablinks" onclick="openTab(event, 'Articles')">Articles</button> -->
-			</div>
-
-
-			<div id="About" class="tabcontent">
-				<div id="about-container">
-					<div id="logrecord-container">
-						<div class="log-box"><h3>Join In Community Since:</h3>
+					<p><span class="label">Position:</span> <span id="positionLabel">
+					
 						<?php
 						if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-							$sqlSelectName = "SELECT date_added FROM author WHERE author_id = :author_id";
-
+							$sqlSelectName = "SELECT position FROM author WHERE author_id = :author_id";
+						
 							$result = database_run($sqlSelectName, array(':author_id' => $id));
 
 							if ($result) {
+								
 								if (count($result) > 0) {
 									$user = $result[0];
-									$date_added = $user->date_added;
-
-									// Format the date as a string (assuming $birth_date is in 'YYYY-MM-DD' format)
-									$formatted_date_addedd = date('F j, Y', strtotime($date_added));
-
-									echo $formatted_date_addedd;
+									$position = $user->position;
+								
+									echo $position;
+								
+									
+					
 								} else {
 									echo "User not found.";
 								}
@@ -949,9 +351,605 @@ $expertise = $_SESSION['expertise'];
 							}
 						}
 						?>
+					</span></p>
+					<p><span class="label">Gender</span> <span id="genderLabel">
+					<?php
+						if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+							$sqlSelectName = "SELECT gender FROM author WHERE author_id = :author_id";
+						
+							$result = database_run($sqlSelectName, array(':author_id' => $id));
+
+							if ($result) {
+								
+								if (count($result) > 0) {
+									$user = $result[0];
+									$gender = $user->gender;
+								
+									echo $gender;
+								
+									
+					
+								} else {
+									echo "User not found.";
+								}
+							} else {
+								echo "Unable to fetch user info.";
+							}
+						}
+						?>
+					</span></p>
+					<p><span class="label">Birthday:</span> <span id="birthdayLabel">
+						<?php
+						if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+							$sqlSelectName = "SELECT birth_date FROM author WHERE author_id = :author_id";
+
+							$result = database_run($sqlSelectName, array(':author_id' => $id));
+
+							if ($result) {
+								if (count($result) > 0) {
+									$user = $result[0];
+									$birth_date = $user->birth_date;
+
+									if ($birth_date !== NULL) {
+									
+										$formatted_birth_date = date('F j, Y', strtotime($birth_date));
+										echo $formatted_birth_date;
+									} else {
+										echo ""; 
+									}
+								} else {
+									echo "User not found.";
+								}
+							} else {
+								echo "Unable to fetch user info.";
+							}
+						}
+						?>
+					</span></p>
+
+					<p><span class="label">Country:</span> <span id="countryLabel">
+					<?php
+						if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+							$sqlSelectName = "SELECT country FROM author WHERE author_id = :author_id";
+						
+							$result = database_run($sqlSelectName, array(':author_id' => $id));
+
+							if ($result) {
+								
+								if (count($result) > 0) {
+									$user = $result[0];
+									$country = $user->country;
+								
+									echo $country;
+								
+									
+					
+								} else {
+									echo "User not found.";
+								}
+							} else {
+								echo "Unable to fetch user info.";
+							}
+						}
+						?>
+					</span></p>
+					<p><span class="label">ORCID:</span> <span id="orcidLabel">
+						<?php
+						if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+							$sqlSelectName = "SELECT orc_id FROM author WHERE author_id = :author_id";
+						
+							$result = database_run($sqlSelectName, array(':author_id' => $id));
+
+							if ($result) {
+								
+								if (count($result) > 0) {
+									$user = $result[0];
+									$orc_id = $user->orc_id;
+								
+									echo $orc_id;
+								
+									
+					
+								} else {
+									echo "User not found.";
+								}
+							} else {
+								echo "Unable to fetch user info.";
+							}
+						}
+						?>
+					</span></p>
+				</div>
+			</div>
+		</div>
+		<!--   -->
+	</div>
+	<!-- Popup Form -->
+	<div class="popup-overlay" id="editForm">
+		<div class="popup-form">
+			<div class="form-header">
+				<h4>Edit Profile</h4>
+				<!-- <div class="edit-profile-btn">
+					<button type="button" class="btn btn-outline-light" id="saveButton">Save</button>
+					<button type="button" class="btn btn-outline-light" id="cancelBtn">Cancel</button>
+				</div> -->
+				<span class="close-icon" id="closeIcon">&times;</span>
+			</div>
+			<form id="form" method="POST" action="update-user.php">		
+				<div class="form-content">
+					<!-- <div class="edit-profile-pic">
+					
+					
+					
+						<img src="../images/capstone1.png" alt="Profile Picture" class="profile-pic" id="profileImage">
+						<button type="button" style="border: none" id="changeProfileBtn"><i class="fas fa-camera change-icon"></i></button>
+						<input type="file" id="selectProfile" style="display: none" accept="image/*">
+
+
+					</div> -->
+					<!-- Personal Information -->
+					<div class="form-section">
+						<h5>Personal Information</h5>
+						<hr>
+						<div class="row-form">
+							<div class="form-row">
+								<label for="firstName">First Name:</label>
+								<!-- <label for="firstName">First Name: <span class="requiredFilled" style="color: red">*</span></label> -->
+								<?php
+								if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+									$sqlSelectName = "SELECT first_name FROM author WHERE author_id = :author_id";
+								
+									$result = database_run($sqlSelectName, array(':author_id' => $id));
+
+									if ($result) {
+										
+										if (count($result) > 0) {
+											$user = $result[0];
+											$firstName = $user->first_name;
+										
+											echo '<input type="text" id="firstName" name="firstName" class="text-box" value="' . $firstName . '" required>';
+
+							
+										} else {
+											echo "User not found.";
+										}
+									} else {
+										echo "Unable to fetch user info.";
+									}
+								}
+								?>
+							
+							</div>
+							<div class="form-row">
+								<label for="middleName">Middle Name: (Optional)</label>
+								<?php
+								if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+									$sqlSelectName = "SELECT middle_name FROM author WHERE author_id = :author_id";
+								
+									$result = database_run($sqlSelectName, array(':author_id' => $id));
+
+									if ($result) {
+										
+										if (count($result) > 0) {
+											$user = $result[0];
+											$middle_name = $user->middle_name;
+										
+											echo '<input type="text" id="middleName" name="middleName" class="text-box"
+											value="' . $middle_name . '" >';
+										
+							
+										} else {
+											echo "User not found.";
+										}
+									} else {
+										echo "Unable to fetch user info.";
+									}
+								}
+								?>
+			
+							
+							</div>
+							<div class="form-row">
+								<label for="lastName">Last Name:</label>
+								<!-- <label for="lastName">Last Name: <span class="requiredFilled" style="color: red">*</span></label> -->
+								<?php
+								if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+									$sqlSelectName = "SELECT last_name FROM author WHERE author_id = :author_id";
+								
+									$result = database_run($sqlSelectName, array(':author_id' => $id));
+
+									if ($result) {
+										
+										if (count($result) > 0) {
+											$user = $result[0];
+											$last_name = $user->last_name;
+										
+											echo '<input type="text" id="lastName" name="lastName" class="text-box"
+											value="' . $last_name . '" required>';
+										
+											
+							
+										} else {
+											echo "User not found.";
+										}
+									} else {
+										echo "Unable to fetch user info.";
+									}
+								}
+								?>
+			
+								
+							</div>
+							<div class="form-row">
+								<label for="affix">Affix: (Optional)</label>
+								<?php
+								if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+									$sqlSelectName = "SELECT affix FROM author WHERE author_id = :author_id";
+								
+									$result = database_run($sqlSelectName, array(':author_id' => $id));
+
+									if ($result) {
+										
+										if (count($result) > 0) {
+											$user = $result[0];
+											$affix = $user->affix;
+										
+											echo '<input type="text" id="affix" name="affix" class="text-box"
+											value="' . $affix . '" >';
+										
+											
+							
+										} else {
+											echo "User not found.";
+										}
+									} else {
+										echo "Unable to fetch user info.";
+									}
+								}
+								?>
+								
+							</div>
+							<div class="form-row">
+								<label for="birthdate">Birth Date:</label>
+								<!-- <label for="birthdate">Birth Date: <span class="requiredFilled" style="color: red">*</span></label> -->
+							
+								<?php
+									if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+										$sqlSelectName = "SELECT birth_date FROM author WHERE author_id = :author_id";
+
+										$result = database_run($sqlSelectName, array(':author_id' => $id));
+
+										if ($result) {
+											if (count($result) > 0) {
+												$user = $result[0];
+												$birth_date = $user->birth_date;
+
+												// Output the selected option based on the user's gender
+												echo '<input type="date" id="birthdate" name="birthdate" class="date-box" value="' . $birth_date . '" required>';
+
+											} else {
+												echo "User not found.";
+											}
+										} else {
+											echo "Unable to fetch user info.";
+										}
+									}
+									?>
+							</div>
+							<div class="form-row">
+							<label for="gender">Gender:</label>
+								<!-- <label for="gender">Gender: <span class="requiredFilled" style="color: red">*</span></label> -->
+								<select id="gender" name="gender" class="dropdown-box" required>
+									<?php
+									if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+										$sqlSelectName = "SELECT gender FROM author WHERE author_id = :author_id";
+
+										$result = database_run($sqlSelectName, array(':author_id' => $id));
+
+										if ($result) {
+											if (count($result) > 0) {
+												$user = $result[0];
+												$gender = $user->gender;
+
+												// Output the selected option based on the user's gender
+												echo '<option value="' . $gender . '" selected>' . $gender . '</option>';
+											} else {
+												echo "User not found.";
+											}
+										} else {
+											echo "Unable to fetch user info.";
+										}
+									}
+									?>
+									<option value="Male">Male</option>
+									<option value="Female">Female</option>
+								</select>
+
+							</div>
+							<div class="form-row">
+							<label for="status">Status:</label>
+								<!-- <label for="status">Status: <span class="requiredFilled" style="color: red">*</span></label> -->
+								<select id="status" name="status" class="dropdown-box" required>
+								
+									<?php
+									if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+										$sqlSelectName = "SELECT marital_status FROM author WHERE author_id = :author_id";
+
+										$result = database_run($sqlSelectName, array(':author_id' => $id));
+
+										if ($result) {
+											if (count($result) > 0) {
+												$user = $result[0];
+												$marital_status = $user->marital_status;
+
+												// Output the selected option based on the user's gender
+												echo '<option value="' . $marital_status . '" selected>' . $marital_status . '</option>';
+											} else {
+												echo "User not found.";
+											}
+										} else {
+											echo "Unable to fetch user info.";
+										}
+									}
+									?>
+									<option value="Single">Single</option>
+									<option value="Married">Married</option>
+									<option value="Divorced">Divorced</option>
+									<option value="Widowed">Widowed</option>
+								</select>
+							</div>
+							<div class="form-row">
+							<label for="country">Country:</label>
+								<!-- <label for="country">Country: <span class="requiredFilled" style="color: red">*</span></label> -->
+								<select id="country" name="country" class="dropdown-box" required>
+								</select>
+							</div>
 						</div>
-						<div class="log-box">
+						<!-- Add similar fields for Middle name, Last Name, Affix, Birth date, gender, status, country -->
+					</div>
+
+					<!-- Other Information -->
+					<div class="form-section">
+						<h5>Other Information</h5>
+						<hr>
+						<div class="row-form">
+							<!-- <div class="form-row">
+								<label for="email">E-mail:</label>
+								<input type="email" id="email" name="email" class="other-text-box" value="<?php echo $email ?>" >
+							</div> -->
+							<div class="form-row">
+							<label for="orcid">ORCID:</label>
+								<!-- <label for="orcid">ORCID: <span class="requiredFilled" style="color: red">*</span></label> -->
+								<?php
+								if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+									$sqlSelectName = "SELECT orc_id FROM author WHERE author_id = :author_id";
+								
+									$result = database_run($sqlSelectName, array(':author_id' => $id));
+
+									if ($result) {
+										
+										if (count($result) > 0) {
+											$user = $result[0];
+											$orc_id = $user->orc_id;
+										
+											echo '<input type="text"  id="orcid" name="orcid" class="other-text-box" pattern="\d{4}-\d{4}-\d{4}-\d{4}" placeholder="(e.g., xxxx-xxxx-xxxx-xxxx)"
+											value="' . $orc_id . '">';
+										
+										
+
+											
+							
+										} else {
+											echo "User not found.";
+										}
+									} else {
+										echo "Unable to fetch user info.";
+									}
+								}
+								?>
+							
+							</div>
+							<div class="form-row">
+								<label for="affiliation">Affiliation:</label>
+								<!-- <label for="affiliation">Affiliation: <span class="requiredFilled" style="color: red">*</span></label> -->
+								<?php
+								if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+									$sqlSelectName = "SELECT afiliations FROM author WHERE author_id = :author_id";
+								
+									$result = database_run($sqlSelectName, array(':author_id' => $id));
+
+									if ($result) {
+										
+										if (count($result) > 0) {
+											$user = $result[0];
+											$afiliations = $user->afiliations;
+										
+											echo '<input type="text" list="universityList" id="affiliation" name="affiliation" class="text-box"
+											value="' . $afiliations . '" >
+											<datalist id="universityList">
+
+											</datalist>
+											';
+										
+											
+							
+										} else {
+											echo "User not found.";
+										}
+									} else {
+										echo "Unable to fetch user info.";
+									}
+								}
+								?>
+								
+							</div>
+							<div class="form-row">
+							<label for="position">Position:</label>
+								<!-- <label for="position">Position: <span class="requiredFilled" style="color: red">*</span></label> -->
+								<?php
+								if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+									$sqlSelectName = "SELECT position FROM author WHERE author_id = :author_id";
+								
+									$result = database_run($sqlSelectName, array(':author_id' => $id));
+
+									if ($result) {
+										
+										if (count($result) > 0) {
+											$user = $result[0];
+											$position = $user->position;
+										
+											echo '<input type="text" id="position" name="position" class="text-box"
+											value="' . $position . '" required>';
+										
+											
+							
+										} else {
+											echo "User not found.";
+										}
+									} else {
+										echo "Unable to fetch user info.";
+									}
+								}
+								?>
+							
+							</div>
+						</div>
+						<!-- Add similar fields for ORCID, Affiliation, Position -->
+					</div>
+
+					<!-- About me -->
+					<div class="form-section">
+						<h5>About Me</h5>
+						<hr>
+						<div class="form-row">
+						<label for="bio">Bio: (Optional)</label>
 							<?php
+							if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+								$sqlSelectName = "SELECT bio FROM author WHERE author_id = :author_id";
+
+								$result = database_run($sqlSelectName, array(':author_id' => $id));
+
+								if ($result) {
+									if (count($result) > 0) {
+										$user = $result[0];
+										$bio = $user->bio;
+
+										echo '<textarea id="bio" name="bio" class="bio-textarea" placeholder="Tell us about yourself" >' . $bio . '</textarea>';
+									} else {
+										echo "User not found.";
+									}
+								} else {
+									echo "Unable to fetch user info.";
+								}
+							}
+							?>
+
+						</div>
+						<!-- <br><br><br> -->
+						<div class="form-row">
+						<label for="fieldofexpertise">Field of Expertise:</label>
+						<!-- <label for="fieldofexpertise">Field of Expertise: <span class="requiredFilled" style="color: red">*</span></label> -->
+						<div>
+							<input type="text" id="fieldofexpertise" name="fieldofexpertise" class="text-box">
+							<button class="btn btn-primary" type="button" id="addExpertiseButton">Add</button>
+						</div>
+						</div>
+						<div id="keywordContainer">
+
+							<?php
+								if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+									$sqlSelectName = "SELECT field_of_expertise FROM author WHERE author_id = :author_id";
+								
+									$result = database_run($sqlSelectName, array(':author_id' => $id));
+
+									if ($result) {
+										if (count($result) > 0) {
+											$user = $result[0];
+											$field_of_expertise = $user->field_of_expertise;
+									
+											if (!empty($field_of_expertise)) {
+												$expertiseArray = explode(', ', $field_of_expertise);
+									
+												foreach ($expertiseArray as $expertiseItem) {
+													echo '<div class="keyword" id="expertise" name="expertise"><span>' . htmlspecialchars($expertiseItem) . '</span><span class="close-btn">x</span></div>';
+												}
+											}
+										} else {
+											echo '';
+										}
+									}
+									else {
+										echo "Unable to fetch user info.";
+									}
+								}
+								?>
+						</div>
+						<input type="hidden" id="expertiseData" name="expertiseData" value="">
+
+					</div>
+					<!-- <div class="form-buttons">
+						<button type="submit" class="btn btn-primary" id="saveButton">Save</button>
+						<button type="button" class="btn btn-secondary" id="cancelBtn">Cancel</button>
+					</div> -->
+					<!-- <button type="button" class="btn btn-success btn-md" id="editBtn">Edit
+						<span class="spinner-border spinner-border-sm" aria-hidden="true" style="display: none"></span>
+					</button>
+					<button type="button" class="btn btn-secondary btn-md" id="cancelBtn">Cancel
+						<span class="spinner-border spinner-border-sm" aria-hidden="true" style="display: none"></span>
+					</button> -->
+
+					
+					<!-- <input type="submit" class="btn btn-primary btn-md" id="saveButton" value="Save" disabled> -->
+					<!-- <button type="submit" class="btn btn-primary btn-md" id="saveButton" value="Save" disabled>Save</button> -->
+				</div>
+				<div class="form-buttons">
+					<button type="submit" class="btn btn-primary" id="saveButton">Save</button>
+					<button type="button" class="btn btn-secondary" id="cancelBtn">Cancel</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	<section class="expertise">
+		<!-- Expertise info here -->
+		<div class="tab">
+			<button class="tablinks" onclick="openTab(event, 'About')" id="defaultOpen">About</button>
+			<!-- <button class="tablinks" onclick="openTab(event, 'Contributions')">Contributions</button>
+			<button class="tablinks" onclick="openTab(event, 'Rewards')">Rewards</button> -->
+			<button class="tablinks" onclick="openTab(event, 'Attainments')">Attainments</button>
+			<button class="tablinks" onclick="openTab(event, 'Publications')">Publications</button>
+		</div>
+
+
+		<div id="About" class="tabcontent">
+			<div id="about-container">
+				<div id="logrecord-container">
+					<div class="log-box"><h3>Join In Community Since:</h3>
+						<?php
+							if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+								$sqlSelectName = "SELECT date_added FROM author WHERE author_id = :author_id";
+
+								$result = database_run($sqlSelectName, array(':author_id' => $id));
+
+								if ($result) {
+									if (count($result) > 0) {
+										$user = $result[0];
+										$date_added = $user->date_added;
+
+										// Format the date as a string (assuming $birth_date is in 'YYYY-MM-DD' format)
+										$formatted_date_addedd = date('F j, Y', strtotime($date_added));
+
+										echo $formatted_date_addedd;
+									} else {
+										echo "User not found.";
+									}
+								} else {
+									echo "Unable to fetch user info.";
+								}
+							}
+						?>
+					</div>
+					<div class="log-box">
+						<?php
 							if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 								$sqlSelectName = "SELECT date_added FROM article WHERE author_id = :author_id ORDER BY date_added ASC LIMIT 1 ";
 
@@ -972,12 +970,11 @@ $expertise = $_SESSION['expertise'];
 									echo "You did not submit any articles yet.";
 								}
 							}
-							?>
-
-						</div>
-						<div class="log-box">
+						?>
+					</div>
+					<div class="log-box">
 						<h3>Reviewer Since: </h3> 
-							
+						
 						<?php 
 							$sqlStartReviewDate = "SELECT date_issued FROM reviewer_assigned WHERE author_id = $id ORDER BY date_issued ASC LIMIT 1 ";
 							$result = database_run($sqlStartReviewDate);
@@ -991,74 +988,75 @@ $expertise = $_SESSION['expertise'];
 								echo "<p class='not-found'>You are not a reviewer yet.</p>"; 
 							}
 						?>
-							
+						
+					</div>
+				</div>
+				<div id="info-container">
+					<div class="info-box">
+						<div class="bio-container">
+							<h3>Bio </h3>
+							<!-- <hr> -->
+							<p>
+							<?php
+								if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
+									echo $bio;
+								}
+							?>
+							</p>
 						</div>
 					</div>
-					<div id="info-container">
-						<div class="info-box">
-							<!-- <div class="bio-container"> -->
-								<h3>Bio </h3>
-								<!-- <hr> -->
-								<p>
-								<?php
-									if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
-										echo $bio;
-									}
-								?>
-								</p>
-							<!-- </div> -->
-						</div>
-						<div class="info-box">
-							<!-- <div class="expertise-container"> -->
-								<h3>Expertise </h3>
-								<!-- <hr> -->
-								<p>
-								<?php
-									if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
-										echo $expertise;
-									}
-								?>
-								</p>
-							<!-- </div> -->
+					<div class="info-box">
+						<div class="expertise-container">
+							<h3>Expertise </h3>
+							<!-- <hr> -->
+							<p>
+							<?php
+								if(isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true){
+									echo $expertise;
+								}
+							?>
+							</p>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div id="Articles" class="tabcontent" style="display: none;">
-				<div class="articletable-container">
-					<h2 class="article-heading">Published Articles</h2>
-					<div class="table-container">
-						<table class="article-table">
-							<thead>
-								<tr>
-									<th>Title</th>
-									<th>Date</th>
-									<th>Views</th>
-									<th>Hearts</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>Article 1</td>
-									<td>March 18, 2024</td>
-									<td>150</td>
-									<td>80</td>
-								</tr>
-								<tr>
-									<td>Article 2</td>
-									<td>March 15, 2024</td>
-									<td>120</td>
-									<td>65</td>
-								</tr>
-								<!-- Add more rows as needed -->
-							</tbody>
-						</table>
-					</div>
+		</div>
+		<div id="Publications" class="tabcontent">
+			<div class="publications-container">
+				<div class="header-achievements">
+					<h3>Publications</h3>
+				</div>
+				<div class="table-container">
+					<table class="publications-table">
+						<thead>
+							<tr>
+								<th>Title</th>
+								<th>Date</th>
+								<th>Views</th>
+								<th>Hearts</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Article 1</td>
+								<td>March 18, 2024</td>
+								<td>150</td>
+								<td>80</td>
+							</tr>
+							<tr>
+								<td>Article 2</td>
+								<td>March 15, 2024</td>
+								<td>120</td>
+								<td>65</td>
+							</tr>
+							<!-- Add more rows as needed -->
+						</tbody>
+					</table>
 				</div>
 			</div>
-
-
-			<div id="Contributions" class="tabcontent">
+		</div>
+		<div id="Attainments" class="tabcontent">
+			<div id="attainments-container">
 				<div id="contribution-container">
 					<div id="contribution-record-container">
 						<div class="stats-section">
@@ -1160,7 +1158,7 @@ $expertise = $_SESSION['expertise'];
 										echo "0"; 
 									}
 								?>
-	
+
 								<span class="increase">
 								<?php 
 								$sqlCountAritcle = "SELECT COUNT(*) as total_articles FROM article WHERE author_id = $id" ;
@@ -1186,9 +1184,9 @@ $expertise = $_SESSION['expertise'];
 						</div> 				
 					</div>
 					<div class="vertical-line"></div>
-						<div id="graph-container">
-							<h3>Contributions Graph</h3>
-							<?php
+					<div id="graph-container">
+						<h3>Contributions Graph</h3>
+						<?php
 							$sqlViews = "SELECT MONTH(logs.date) AS month, COUNT(*) AS views
 										FROM logs
 										RIGHT JOIN article ON logs.article_id = article.article_id
@@ -1222,18 +1220,16 @@ $expertise = $_SESSION['expertise'];
 									$allDownloadsData[$monthData->month] = $monthData->downloads;
 								}
 							}
-							?>
+						?>
 
-							<canvas id="articlesChart" width="400" height="120"></canvas>
-						</div>
+						<canvas id="articlesChart" width="400" height="120"></canvas>
 					</div>
-			</div>
-			
-
-			<div id="Rewards" class="tabcontent">
+				</div>
 				<div id="rewards-container">
 					<div id="badges-container">
-						<h3>Badges</h3>
+						<div class="header-badges">
+							<h3>Badges</h3>
+						</div>
 						<div class="badge-box-container">
 							<div class="xp-container">
 								<!-- XP Bar -->
@@ -1250,7 +1246,7 @@ $expertise = $_SESSION['expertise'];
 								$sqlSelectName = "SELECT title FROM article WHERE author_id = :author_id";
 
 								$result = database_run($sqlSelectName, array(':author_id' => $id));
- 
+
 								$sqlReviewed = "SELECT article_id FROM reviewer_assigned WHERE author_id = :author_id AND accept = 1 AND answer = 1";
 
 								$resultReviewed = database_run($sqlReviewed, array(':author_id' => $id));
@@ -1502,7 +1498,7 @@ $expertise = $_SESSION['expertise'];
 										echo '<div class="badge-box" style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
 									}
 								}else{
-									echo 'You have ni badge yet';
+									echo '<center><strong>You have no badge yet</strong></center>';
 								}
 							}
 							?>
@@ -1538,7 +1534,6 @@ $expertise = $_SESSION['expertise'];
 						<div class="credit-container">
 							<div class="header-achievements">
 								<h3>Achievements</h3>
-								
 							</div>
 							<div class="sort-container d-flex flex-column gap-2">
 								<!-- <div class="sort-header">
@@ -1563,83 +1558,79 @@ $expertise = $_SESSION['expertise'];
 								</div> -->
 							</div>
 							<div class="table-container">
-								<table>
-									
-										<thead>
-											<tr>
-												<th>Details</th>
-												<th>Journal</th>
-												<th>Date</th>
-												<th>Reward</th>
-												<th></th>
-											</tr>
-										</thead>
-										<tbody>
-
-
-									<?php
-										$sqlAchievements = "
-										
-
-											(SELECT 'Published an Article' as action_engage, article.title, article.journal_id,NULL as status, user_points.date, user_points.point_earned
-											FROM user_points
-											JOIN article ON user_points.article_id = article.article_id
-											WHERE user_points.action_engage = 'Published an Article' AND user_points.user_id = :user_id AND article.status = 1)
+								<table class="achievements-table">
+									<thead>
+										<tr>
+											<th>Details</th>
+											<th>Journal</th>
+											<th>Date</th>
+											<th>Reward</th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody>
+										<?php
+											$sqlAchievements = "
 											
-											UNION
-											
-											(SELECT 'Reviewed Article Published' as action_engage, article.title, article.journal_id, NULL as status, user_points.date, user_points.point_earned
-											FROM user_points
-											JOIN reviewer_assigned ON user_points.user_id = reviewer_assigned.author_id
-											JOIN article ON reviewer_assigned.article_id = article.article_id
-											WHERE article.status = 1 AND reviewer_assigned.accept = 1 AND reviewer_assigned.answer = 1 AND user_points.action_engage = 'Reviewed Article Published' AND user_points.user_id = :author_id)
-											
-											UNION
-											
-											(SELECT 'Submitted an Article' as action_engage, article.title, article.journal_id, NULL as status, user_points.date, user_points.point_earned
-											FROM user_points
-											JOIN article ON user_points.article_id = article.article_id
-											WHERE user_points.action_engage = 'Submitted an Article' AND user_points.user_id = :user_id)
-											
-											UNION
-											
-											(SELECT 'Reviewed an Article' as action_engage, article.title, article.journal_id, NULL as status, user_points.date, user_points.point_earned
-											FROM user_points
-											JOIN reviewer_assigned ON user_points.user_id = reviewer_assigned.author_id
-											JOIN article ON reviewer_assigned.article_id = article.article_id
-											WHERE reviewer_assigned.accept = 1 AND reviewer_assigned.answer = 1 AND user_points.action_engage = 'Reviewed an Article' AND user_points.user_id = :author_id)
 
-											ORDER BY date DESC
-										";
-
-										
-										$result = database_run($sqlAchievements,array('author_id' => $id, 'user_id' => $id));
-
-										if ($result !== false) {
-											foreach ($result as $row) {
-												$journalMapping = [
-													'1' => 'The Gavel',
-													'2' => 'The Lamp',
-													'3' => 'The Star',
-												];
-										
-												echo '<tr>';
-												echo '<td>' . $row->action_engage .'</td>';
-												echo '<td>' . $journalMapping[$row->journal_id] .'</td>';
-												echo '<td style="display: none">' . $row->title .'</td>';
-												$formattedDate = date('F j, Y', strtotime($row->date)); // Formatting without time
-												echo '<td>' . $formattedDate . '</td>';
-												echo '<td style="color: green;">You earned ' . $row->point_earned . ' Community Heart</td>';
-												echo '<td><button type="button" class="view-button" onclick="updateEngagementTitle(\'' . htmlspecialchars($row->title) . '\', \'' . $journalMapping[$row->journal_id] . '\', \'' . $formattedDate . '\')">View</button></td>';
-												echo '</tr>';
-
+												(SELECT 'Published an Article' as action_engage, article.title, article.journal_id,NULL as status, user_points.date, user_points.point_earned
+												FROM user_points
+												JOIN article ON user_points.article_id = article.article_id
+												WHERE user_points.action_engage = 'Published an Article' AND user_points.user_id = :user_id AND article.status = 1)
 												
-											}
-										}else{
-											echo '<p style="margin-left: 50px; padding-top: 20px">You have no Achievements yet</p>';
-										}
-										?>
+												UNION
+												
+												(SELECT 'Reviewed Article Published' as action_engage, article.title, article.journal_id, NULL as status, user_points.date, user_points.point_earned
+												FROM user_points
+												JOIN reviewer_assigned ON user_points.user_id = reviewer_assigned.author_id
+												JOIN article ON reviewer_assigned.article_id = article.article_id
+												WHERE article.status = 1 AND reviewer_assigned.accept = 1 AND reviewer_assigned.answer = 1 AND user_points.action_engage = 'Reviewed Article Published' AND user_points.user_id = :author_id)
+												
+												UNION
+												
+												(SELECT 'Submitted an Article' as action_engage, article.title, article.journal_id, NULL as status, user_points.date, user_points.point_earned
+												FROM user_points
+												JOIN article ON user_points.article_id = article.article_id
+												WHERE user_points.action_engage = 'Submitted an Article' AND user_points.user_id = :user_id)
+												
+												UNION
+												
+												(SELECT 'Reviewed an Article' as action_engage, article.title, article.journal_id, NULL as status, user_points.date, user_points.point_earned
+												FROM user_points
+												JOIN reviewer_assigned ON user_points.user_id = reviewer_assigned.author_id
+												JOIN article ON reviewer_assigned.article_id = article.article_id
+												WHERE reviewer_assigned.accept = 1 AND reviewer_assigned.answer = 1 AND user_points.action_engage = 'Reviewed an Article' AND user_points.user_id = :author_id)
 
+												ORDER BY date DESC
+											";
+
+											
+											$result = database_run($sqlAchievements,array('author_id' => $id, 'user_id' => $id));
+
+											if ($result !== false) {
+												foreach ($result as $row) {
+													$journalMapping = [
+														'1' => 'The Gavel',
+														'2' => 'The Lamp',
+														'3' => 'The Star',
+													];
+											
+													echo '<tr>';
+													echo '<td>' . $row->action_engage .'</td>';
+													echo '<td>' . $journalMapping[$row->journal_id] .'</td>';
+													echo '<td style="display: none">' . $row->title .'</td>';
+													$formattedDate = date('F j, Y', strtotime($row->date)); // Formatting without time
+													echo '<td>' . $formattedDate . '</td>';
+													echo '<td style="color: green;">You earned ' . $row->point_earned . ' Community Heart</td>';
+													echo '<td><button type="button" class="view-button" onclick="updateEngagementTitle(\'' . htmlspecialchars($row->title) . '\', \'' . $journalMapping[$row->journal_id] . '\', \'' . $formattedDate . '\')">View</button></td>';
+													echo '</tr>';
+
+													
+												}
+											}else{
+												echo '<p style="margin-left: 50px; padding-top: 20px">You have no Achievements yet</p>';
+											}
+										?>
 									</tbody>
 								</table>
 							</div>
@@ -1647,280 +1638,281 @@ $expertise = $_SESSION['expertise'];
 					</div>
 				</div>
 			</div>
-		</section>
-		<section class="published-articles">
-            <!-- <div class="fluid-container"> -->
-                <div>
-                	<h4>Your Published Articles</h4>
-					<div class="articles-container">
-						
-					<?php 
-						$sql = "SELECT article.article_id, article.title, article.author, article.abstract, journal.journal 
-								FROM article 
-								JOIN journal ON journal.journal_id = article.journal_id 
-								WHERE article.author_id = $id AND article.status = 1";
+		</div>
+	</section>
+	<section class="published-articles">
+		<!-- <div class="fluid-container"> -->
+			<div>
+				<h4>Your Published Articles</h4>
+				<div class="articles-container">
+					
+				<?php 
+					$sql = "SELECT article.article_id, article.title, article.author, article.abstract, journal.journal 
+							FROM article 
+							JOIN journal ON journal.journal_id = article.journal_id 
+							WHERE article.author_id = $id AND article.status = 1";
 
-						$result = database_run($sql);
+					$result = database_run($sql);
 
-						$sqlSelectProfile = "SELECT first_name, last_name, birth_date, gender, marital_status, orc_id, afiliations, position, field_of_expertise, country FROM author WHERE author_id = :author_id";
+					$sqlSelectProfile = "SELECT first_name, last_name, birth_date, gender, marital_status, orc_id, afiliations, position, field_of_expertise, country FROM author WHERE author_id = :author_id";
 
-						$resultProfile = database_run($sqlSelectProfile, array(':author_id' => $id));
+					$resultProfile = database_run($sqlSelectProfile, array(':author_id' => $id));
 
-						if ($result !== false) {
-							foreach ($result as $row) {
-								echo '<div class="article" data-article-id="' . $row->article_id . '">';
-								echo '<p class="h6">' . $row->title . '</p>';
-								echo '<div class="article-info">';
-								echo '<p class="info" style="display="inline-block; width: auto">' . $row->journal . '</p>';
-								echo '<span class="views" style="display="inline-block; width: auto"> 143</span>';
-								echo '<p class="author">' .$row->author .  '</p>';
-								echo '<p class="article-content">' . $row->abstract .'</p>';
-								echo '</div>';
-								echo '<button type="button" class="btn btn-primary btn-md btn-article" onclick="openArticleInNewTab(' . $row->article_id . ')" style=" border: 2px #115272 solid;
-									background-color: transparent;
-									border-radius: 20px;
-									color: #115272;
-									width: 100%;">Read Article</button>';
-								echo '</div>';
-							}
-						}elseif ($resultProfile) {
-							if (count($resultProfile) > 0) {
-								$userProfile = $resultProfile[0];
-	  
-								// Check for the presence of all required fields
-								$requiredFields = ['first_name', 'last_name', 'birth_date', 'gender', 'marital_status', 'orc_id', 'afiliations', 'position', 'field_of_expertise', 'country'];
-	  
-								$profileComplete = true;
-								foreach ($requiredFields as $field) {
-									if (empty($userProfile->$field)) {
-										$profileComplete = false;
-										break;
-									}
-								}
-								if ($profileComplete) {
-									echo "<div class='no-article-message'>
-											<p>You don't have published article yet, want to published article? Click here <a href='ex_submit.php'>Submit an Article</a></p>
-										</div>"; 
-							  } else {
-								echo "<p>You don't have published article yet, want to published article? Click here <a href='#' id='link'>Submit an Article</a></p>"; 
-								  echo "<script>
-										  document.getElementById('link').addEventListener('click', function(event){
-											  Swal.fire({
-												  icon: 'warning',
-												  text: 'Please complete the required data in your profile details before submitting a paper'
-											  });
-										  });
-										</script>";
-							  }                        
-							} else {
-								echo "User not found.";
-							}
+					if ($result !== false) {
+						foreach ($result as $row) {
+							echo '<div class="article" data-article-id="' . $row->article_id . '">';
+							echo '<p class="h6">' . $row->title . '</p>';
+							echo '<div class="article-info">';
+							echo '<p class="info" style="display="inline-block; width: auto">' . $row->journal . '</p>';
+							echo '<span class="views" style="display="inline-block; width: auto"> 143</span>';
+							echo '<p class="author">' .$row->author .  '</p>';
+							echo '<p class="article-content">' . $row->abstract .'</p>';
+							echo '</div>';
+							echo '<button type="button" class="btn btn-primary btn-md btn-article" onclick="openArticleInNewTab(' . $row->article_id . ')" style=" border: 2px #115272 solid;
+								background-color: transparent;
+								border-radius: 20px;
+								color: #115272;
+								width: 100%;">Read Article</button>';
+							echo '</div>';
 						}
-					?>
+					}elseif ($resultProfile) {
+						if (count($resultProfile) > 0) {
+							$userProfile = $resultProfile[0];
+	
+							// Check for the presence of all required fields
+							$requiredFields = ['first_name', 'last_name', 'birth_date', 'gender', 'marital_status', 'orc_id', 'afiliations', 'position', 'field_of_expertise', 'country'];
+	
+							$profileComplete = true;
+							foreach ($requiredFields as $field) {
+								if (empty($userProfile->$field)) {
+									$profileComplete = false;
+									break;
+								}
+							}
+							if ($profileComplete) {
+								echo "<div class='no-article-message'>
+										<p>You don't have published article yet, want to published article? Click here <a href='ex_submit.php'>Submit an Article</a></p>
+									</div>"; 
+							} else {
+							echo "<p>You don't have published article yet, want to published article? Click here <a href='#' id='link'>Submit an Article</a></p>"; 
+								echo "<script>
+										document.getElementById('link').addEventListener('click', function(event){
+											Swal.fire({
+												icon: 'warning',
+												text: 'Please complete the required data in your profile details before submitting a paper'
+											});
+										});
+									</script>";
+							}                        
+						} else {
+							echo "User not found.";
+						}
+					}
+				?>
 
-						<!-- <div class="article">
-							<p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
-							<div class="article-info">
-								<p class="info">THE LAMP</p>
-								<span class="views"></span>103 views
-							</div>
-							<p class="author">By Jane Delacruz</p>
-							<p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
-							<button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
-							background-color: transparent;
-							border-radius: 20px;
-							color: #115272;
-							width: 100%;">Read Article</button>
-						</div> -->
-
-						<!-- <div class="article">
-							<p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
-							<div class="article-info">
-								<p class="info">THE LAMP</p>
-								<span class="views"></span>103 views
-							</div>
-							<p class="author">By Jane Delacruz</p>
-							<p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
-							<button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
-							background-color: transparent;
-							border-radius: 20px;
-							color: #115272;
-							width: 100%;">Read Article</button>
+					<!-- <div class="article">
+						<p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
+						<div class="article-info">
+							<p class="info">THE LAMP</p>
+							<span class="views"></span>103 views
 						</div>
-						<div class="article">
-							<p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
-							<div class="article-info">
-								<p class="info">THE LAMP</p>
-								<span class="views"></span>103 views
-							</div>
-							<p class="author">By Jane Delacruz</p>
-							<p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
-							<button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
-							background-color: transparent;
-							border-radius: 20px;
-							color: #115272;
-							width: 100%;">Read Article</button>
-						</div>
+						<p class="author">By Jane Delacruz</p>
+						<p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
+						<button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
+						background-color: transparent;
+						border-radius: 20px;
+						color: #115272;
+						width: 100%;">Read Article</button>
+					</div> -->
 
-						<div class="article">
-							<p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
-							<div class="article-info">
-								<p class="info">THE LAMP</p>
-								<span class="views"></span>103 views
-							</div>
-							<p class="author">By Jane Delacruz</p>
-							<p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
-							<button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
-							background-color: transparent;
-							border-radius: 20px;
-							color: #115272;
-							width: 100%;">Read Article</button>
+					<!-- <div class="article">
+						<p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
+						<div class="article-info">
+							<p class="info">THE LAMP</p>
+							<span class="views"></span>103 views
 						</div>
-
-						<div class="article">
-							<p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
-							<div class="article-info">
-								<p class="info">THE LAMP</p>
-								<span class="views"></span>103 views
-							</div>
-							<p class="author">By Jane Delacruz</p>
-							<p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
-							<button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
-							background-color: transparent;
-							border-radius: 20px;
-							color: #115272;
-							width: 100%;">Read Article</button>
-						</div>
-
-						<div class="article">
-							<p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
-							<div class="article-info">
-								<p class="info">THE LAMP</p>
-								<span class="views"></span>103 views
-							</div>
-							<p class="author">By Jane Delacruz</p>
-							<p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
-							<button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
-							background-color: transparent;
-							border-radius: 20px;
-							color: #115272;
-							width: 100%;">Read Article</button>
-						</div> -->
+						<p class="author">By Jane Delacruz</p>
+						<p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
+						<button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
+						background-color: transparent;
+						border-radius: 20px;
+						color: #115272;
+						width: 100%;">Read Article</button>
 					</div>
-                <!-- </div> -->
-            </div>
-		</section>
-		<section>
-			<h4> Continue Reading</h4>
-			<div  id="articleDetailsContainer">
-				<!-- <div class="continue-reading-article-details">
-					<h6 class="historyTitle" style="color: #115272;"><strong>Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</strong></h6>
-					<p class="historyAbstract" style="color: #454545;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas. </p>
-					<div class="continue-reading-keywords">
-
+					<div class="article">
+						<p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
+						<div class="article-info">
+							<p class="info">THE LAMP</p>
+							<span class="views"></span>103 views
+						</div>
+						<p class="author">By Jane Delacruz</p>
+						<p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
+						<button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
+						background-color: transparent;
+						border-radius: 20px;
+						color: #115272;
+						width: 100%;">Read Article</button>
 					</div>
+
+					<div class="article">
+						<p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
+						<div class="article-info">
+							<p class="info">THE LAMP</p>
+							<span class="views"></span>103 views
+						</div>
+						<p class="author">By Jane Delacruz</p>
+						<p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
+						<button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
+						background-color: transparent;
+						border-radius: 20px;
+						color: #115272;
+						width: 100%;">Read Article</button>
+					</div>
+
+					<div class="article">
+						<p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
+						<div class="article-info">
+							<p class="info">THE LAMP</p>
+							<span class="views"></span>103 views
+						</div>
+						<p class="author">By Jane Delacruz</p>
+						<p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
+						<button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
+						background-color: transparent;
+						border-radius: 20px;
+						color: #115272;
+						width: 100%;">Read Article</button>
+					</div>
+
+					<div class="article">
+						<p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
+						<div class="article-info">
+							<p class="info">THE LAMP</p>
+							<span class="views"></span>103 views
+						</div>
+						<p class="author">By Jane Delacruz</p>
+						<p class="article-content">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas.</p>
+						<button class="btn btn-primary btn-md btn-article"  style=" border: 2px #115272 solid;
+						background-color: transparent;
+						border-radius: 20px;
+						color: #115272;
+						width: 100%;">Read Article</button>
+					</div> -->
 				</div>
-				<div class="continue-reading-article-stats">
-					<div class="continue-reading-stats-container">
-						<div class="continue-reading-view-download">
-							<p class="continue-reading-stats-values historyViews" style="color: #115272;">99</p>
-							<p class="continue-reading-stats-labels" style="color: #959595;">VIEWS</p>
-						</div>
-						<div class="continue-reading-view-downloads">
-							<p class="continue-reading-stats-values historyDownloads" style="color: #115272;">99</p>
-							<p class="continue-reading-stats-labels" style="color: #959595;">DOWNLOADS</p>
-						</div>
-					</div>
-					<hr style="border-top: 1px solid #ccc; margin: 10px 0;">
-					<div class="continue-reading-published-infos">
-						<h6 class="continue-reading-publish-labels historyJournal" style="color: #115272;"><strong>Published in The Gavel</strong></h6>
-						<p class="continue-reading-authors historyAuthor" style="color: #959595;">By Jane Delacruz</p>
-					</div>
-				</div> 
-				-->
-			</div>
-			
-			<!-- <div class="continue-reading-article-container">
-				<div class="continue-reading-article-details">
-					<h6 style="color: #115272;"><strong>Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</strong></h6>
-					<p style="color: #454545;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas. </p>
-					<div class="continue-reading-keywords">
+			<!-- </div> -->
+		</div>
+	</section>
+	<section>
+		<h4> Continue Reading</h4>
+		<div  id="articleDetailsContainer">
+			<!-- <div class="continue-reading-article-details">
+				<h6 class="historyTitle" style="color: #115272;"><strong>Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</strong></h6>
+				<p class="historyAbstract" style="color: #454545;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas. </p>
+				<div class="continue-reading-keywords">
 
-					</div>
-				</div>
-				<div class="continue-reading-article-stats">
-					<div class="continue-reading-stats-container">
-						<div class="continue-reading-view-download">
-							<p class="continue-reading-stats-values" style="color: #115272;">99</p>
-							<p class="continue-reading-stats-labels" style="color: #959595;">VIEWS</p>
-						</div>
-						<div class="continue-reading-view-downloads">
-							<p class="continue-reading-stats-values" style="color: #115272;">99</p>
-							<p class="continue-reading-stats-labels" style="color: #959595;">DOWNLOADS</p>
-						</div>
-					</div>
-					<hr style="border-top: 1px solid #ccc; margin: 10px 0;">
-					<div class="continue-reading-published-infos">
-						<h6 class="continue-reading-publish-labels" style="color: #115272;"><strong>Published in The Gavel</strong></h6>
-						<p class="continue-reading-authors" style="color: #959595;">By Jane Delacruz</p>
-					</div>
 				</div>
 			</div>
-			
-			<div class="continue-reading-article-container">
-				<div class="continue-reading-article-details">
-					<h6 style="color: #115272;"><strong>Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</strong></h6>
-					<p style="color: #454545;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas. </p>
-					<div class="continue-reading-keywords">
-
+			<div class="continue-reading-article-stats">
+				<div class="continue-reading-stats-container">
+					<div class="continue-reading-view-download">
+						<p class="continue-reading-stats-values historyViews" style="color: #115272;">99</p>
+						<p class="continue-reading-stats-labels" style="color: #959595;">VIEWS</p>
+					</div>
+					<div class="continue-reading-view-downloads">
+						<p class="continue-reading-stats-values historyDownloads" style="color: #115272;">99</p>
+						<p class="continue-reading-stats-labels" style="color: #959595;">DOWNLOADS</p>
 					</div>
 				</div>
-				<div class="continue-reading-article-stats">
-					<div class="continue-reading-stats-container">
-						<div class="continue-reading-view-download">
-							<p class="continue-reading-stats-values" style="color: #115272;">99</p>
-							<p class="continue-reading-stats-labels" style="color: #959595;">VIEWS</p>
-						</div>
-						<div class="continue-reading-view-downloads">
-							<p class="continue-reading-stats-values" style="color: #115272;">99</p>
-							<p class="continue-reading-stats-labels" style="color: #959595;">DOWNLOADS</p>
-						</div>
+				<hr style="border-top: 1px solid #ccc; margin: 10px 0;">
+				<div class="continue-reading-published-infos">
+					<h6 class="continue-reading-publish-labels historyJournal" style="color: #115272;"><strong>Published in The Gavel</strong></h6>
+					<p class="continue-reading-authors historyAuthor" style="color: #959595;">By Jane Delacruz</p>
+				</div>
+			</div> 
+			-->
+		</div>
+		
+		<!-- <div class="continue-reading-article-container">
+			<div class="continue-reading-article-details">
+				<h6 style="color: #115272;"><strong>Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</strong></h6>
+				<p style="color: #454545;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas. </p>
+				<div class="continue-reading-keywords">
+
+				</div>
+			</div>
+			<div class="continue-reading-article-stats">
+				<div class="continue-reading-stats-container">
+					<div class="continue-reading-view-download">
+						<p class="continue-reading-stats-values" style="color: #115272;">99</p>
+						<p class="continue-reading-stats-labels" style="color: #959595;">VIEWS</p>
 					</div>
-					<hr style="border-top: 1px solid #ccc; margin: 10px 0;">
-					<div class="continue-reading-published-infos">
-						<h6 class="continue-reading-publish-labels" style="color: #115272;"><strong>Published in The Gavel</strong></h6>
-						<p class="continue-reading-authors" style="color: #959595;">By Jane Delacruz</p>
+					<div class="continue-reading-view-downloads">
+						<p class="continue-reading-stats-values" style="color: #115272;">99</p>
+						<p class="continue-reading-stats-labels" style="color: #959595;">DOWNLOADS</p>
 					</div>
 				</div>
-			</div> -->
-		</section>
-			
-			
-			<!-- <div class="featured-updates-container">
-				<h2>Featured Updates</h2>
-				<div class="ex-featured">
-					<div class="example-featured">
-						<p><b>USaid.Gov</b><br>Through a USAID grant awarded to the Quezon City University, local government officials of Quezon City, youth council members, and leaders of local community organizations compl....</p>
-						<div class="img-featured mb-3">
-							<img src="../images/featured.png" alt="">
-							<a href="">USAID Trains Quezon City Barangay Leaders to Impro...</a>
-						</div>
-					</div>
+				<hr style="border-top: 1px solid #ccc; margin: 10px 0;">
+				<div class="continue-reading-published-infos">
+					<h6 class="continue-reading-publish-labels" style="color: #115272;"><strong>Published in The Gavel</strong></h6>
+					<p class="continue-reading-authors" style="color: #959595;">By Jane Delacruz</p>
+				</div>
+			</div>
+		</div>
+		
+		<div class="continue-reading-article-container">
+			<div class="continue-reading-article-details">
+				<h6 style="color: #115272;"><strong>Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</strong></h6>
+				<p style="color: #454545;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas. </p>
+				<div class="continue-reading-keywords">
 
-					<div class="example-featured">
-						<p><b>USaid.Gov</b><br>Through a USAID grant awarded to the Quezon City University, local government officials of Quezon City, youth council members, and leaders of local community organizations compl....</p>
-						<div class="img-featured mb-3">
-							<img src="../images/featured.png" alt="">
-							<a href="">USAID Trains Quezon City Barangay Leaders to Impro...</a>
-						</div>
+				</div>
+			</div>
+			<div class="continue-reading-article-stats">
+				<div class="continue-reading-stats-container">
+					<div class="continue-reading-view-download">
+						<p class="continue-reading-stats-values" style="color: #115272;">99</p>
+						<p class="continue-reading-stats-labels" style="color: #959595;">VIEWS</p>
+					</div>
+					<div class="continue-reading-view-downloads">
+						<p class="continue-reading-stats-values" style="color: #115272;">99</p>
+						<p class="continue-reading-stats-labels" style="color: #959595;">DOWNLOADS</p>
 					</div>
 				</div>
-				<button type="button" class="btn tbn-primary btn-md" id="show-more">Show more</button>
-			</div> -->
-	</div>
+				<hr style="border-top: 1px solid #ccc; margin: 10px 0;">
+				<div class="continue-reading-published-infos">
+					<h6 class="continue-reading-publish-labels" style="color: #115272;"><strong>Published in The Gavel</strong></h6>
+					<p class="continue-reading-authors" style="color: #959595;">By Jane Delacruz</p>
+				</div>
+			</div>
+		</div> -->
+	</section>
+		
+		
+		<!-- <div class="featured-updates-container">
+			<h2>Featured Updates</h2>
+			<div class="ex-featured">
+				<div class="example-featured">
+					<p><b>USaid.Gov</b><br>Through a USAID grant awarded to the Quezon City University, local government officials of Quezon City, youth council members, and leaders of local community organizations compl....</p>
+					<div class="img-featured mb-3">
+						<img src="../images/featured.png" alt="">
+						<a href="">USAID Trains Quezon City Barangay Leaders to Impro...</a>
+					</div>
+				</div>
+
+				<div class="example-featured">
+					<p><b>USaid.Gov</b><br>Through a USAID grant awarded to the Quezon City University, local government officials of Quezon City, youth council members, and leaders of local community organizations compl....</p>
+					<div class="img-featured mb-3">
+						<img src="../images/featured.png" alt="">
+						<a href="">USAID Trains Quezon City Barangay Leaders to Impro...</a>
+					</div>
+				</div>
+			</div>
+			<button type="button" class="btn tbn-primary btn-md" id="show-more">Show more</button>
+		</div> -->
+</div>
 
 
-	<div class="container-fluid mt-5" id="certContainerHead" style="display: none">
+<div class="container-fluid mt-5" id="certContainerHead" style="display: none">
     <div class="cert-container d-flex justify-content-center align-items-center">
 		<?php 
 			echo '<img class="img-fluid" id="cert1" src="../images/cert-reviewer.jpg" alt="cert">'
