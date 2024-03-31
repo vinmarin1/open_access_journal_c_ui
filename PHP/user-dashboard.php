@@ -1828,7 +1828,7 @@ $expertise = $_SESSION['expertise'];
 					<h6 class="continue-reading-publish-labels historyJournal" style="color: #115272;"><strong>Published in The Gavel</strong></h6>
 					<p class="continue-reading-authors historyAuthor" style="color: #959595;">By Jane Delacruz</p>
 				</div>
-			</div> 
+			</div> commit
 			-->
 		</div>
 		
