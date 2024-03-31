@@ -1839,3 +1839,7 @@ dfn:hover::before {
 #certContainerHead{
     margin-top: 80vh;
 }
+
+.totalLikes{
+    font-weight: bold;
+}

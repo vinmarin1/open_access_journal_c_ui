@@ -59,6 +59,10 @@ $expertise = $_SESSION['expertise'];
 		<!-- header will be display here by fetching reusable files -->
 	</div>
 
+	<nav class="navigation-menus-container" id="navigation-menus-container">
+            <!-- navigation menus will be display here by fetching reusable files -->
+    </nav>
+
 
 <div class="main">
     <div class="main-profile">
@@ -236,9 +240,10 @@ $expertise = $_SESSION['expertise'];
 				<!-- </form> -->
 				<div class="balance-points"><i class="fa-solid fa-fire" style="color: orange"></i>&nbsp;
 					<?php
-						$sqlPoints = "SELECT point_earned FROM user_points WHERE user_id = $id";
+						$sqlPoints = "SELECT point_earned FROM user_points WHERE email = :email";
 
-						$result = database_run($sqlPoints);
+
+						$result = database_run($sqlPoints, array('email' => $email));
 
 						if ($result !== false) {
 							$totalPoints = 0;
