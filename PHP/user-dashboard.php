@@ -916,7 +916,7 @@ $expertise = $_SESSION['expertise'];
 			<!-- <button class="tablinks" onclick="openTab(event, 'Contributions')">Contributions</button>
 			<button class="tablinks" onclick="openTab(event, 'Rewards')">Rewards</button> -->
 			<button class="tablinks" onclick="openTab(event, 'Attainments')">Attainments</button>
-			<button class="tablinks" onclick="openTab(event, 'Publications')">Publications</button>
+			<!-- <button class="tablinks" onclick="openTab(event, 'Publications')">Publications</button> -->
 		</div>
 
 
@@ -1032,24 +1032,38 @@ $expertise = $_SESSION['expertise'];
 							<tr>
 								<th>Title</th>
 								<th>Date</th>
-								<th>Views</th>
-								<th>Hearts</th>
+								<!-- <th>Status</th> -->
+								<!-- <th>Views</th>
+								<th>Support</th> -->
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>Article 1</td>
-								<td>March 18, 2024</td>
-								<td>150</td>
-								<td>80</td>
+							<tr>							
+								<?php 
+									$sqlTitle = "SELECT article.title, article.article_id, article.publication_date, author.author_id, author.public_private_profile FROM article JOIN author ON article.author_id = author.author_id WHERE author.author_id = :author_id AND article.status = 1";
+									$result = database_run($sqlTitle, array('author_id' => $id));
+
+									if ($result !== false && !empty($result)) {
+										
+
+										foreach ($result as $row) {
+											$displayTitle = $row->title;
+											$articleId = $row->article_id;
+											$date = $row->publication_date;
+											// $read = $row->read;
+											// $support = $row->support;
+											echo '<td><a href="../PHP/article-details.php?articleId=' . $articleId . '">' . $displayTitle . '</a></td>';
+											echo '<td>' . $date . '</td>';
+											
+
+										}
+
+										
+									} else {
+										echo ''; 
+									}
+								?>
 							</tr>
-							<tr>
-								<td>Article 2</td>
-								<td>March 15, 2024</td>
-								<td>120</td>
-								<td>65</td>
-							</tr>
-							<!-- Add more rows as needed -->
 						</tbody>
 					</table>
 				</div>
@@ -1601,11 +1615,25 @@ $expertise = $_SESSION['expertise'];
 												JOIN article ON reviewer_assigned.article_id = article.article_id
 												WHERE reviewer_assigned.accept = 1 AND reviewer_assigned.answer = 1 AND user_points.action_engage = 'Reviewed an Article' AND user_points.user_id = :author_id)
 
+												UNION
+									
+												(SELECT 'Co-Author' as action_engage, article.title, article.journal_id,NULL as status, user_points.date, user_points.point_earned
+												FROM user_points
+												JOIN article ON user_points.article_id = article.article_id
+												WHERE user_points.action_engage = 'Co-Author' AND article.status <= 6 AND user_points.email = :email)
+	
+												UNION
+										
+												(SELECT 'Primary Contact' as action_engage, article.title, article.journal_id,NULL as status, user_points.date, user_points.point_earned
+												FROM user_points
+												JOIN article ON user_points.article_id = article.article_id
+												WHERE user_points.action_engage = 'Primary Contact' AND article.status <= 6 AND user_points.email = :email)
+
 												ORDER BY date DESC
 											";
 
 											
-											$result = database_run($sqlAchievements,array('author_id' => $id, 'user_id' => $id));
+											$result = database_run($sqlAchievements,array('author_id' => $id, 'user_id' => $id, 'email' => $email));
 
 											if ($result !== false) {
 												foreach ($result as $row) {
@@ -1641,74 +1669,74 @@ $expertise = $_SESSION['expertise'];
 		</div>
 	</section>
 	<section class="published-articles">
-		<!-- <div class="fluid-container"> -->
+		<div class="fluid-container">
 			<div>
 				<h4>Your Published Articles</h4>
 				<div class="articles-container">
 					
-				<?php 
-					$sql = "SELECT article.article_id, article.title, article.author, article.abstract, journal.journal 
-							FROM article 
-							JOIN journal ON journal.journal_id = article.journal_id 
-							WHERE article.author_id = $id AND article.status = 1";
+					<?php 
+						$sql = "SELECT article.article_id, article.title, article.author, article.abstract, journal.journal 
+								FROM article 
+								JOIN journal ON journal.journal_id = article.journal_id 
+								WHERE article.author_id = $id AND article.status = 1";
 
-					$result = database_run($sql);
+						$result = database_run($sql);
 
-					$sqlSelectProfile = "SELECT first_name, last_name, birth_date, gender, marital_status, orc_id, afiliations, position, field_of_expertise, country FROM author WHERE author_id = :author_id";
+						$sqlSelectProfile = "SELECT first_name, last_name, birth_date, gender, marital_status, orc_id, afiliations, position, field_of_expertise, country FROM author WHERE author_id = :author_id";
 
-					$resultProfile = database_run($sqlSelectProfile, array(':author_id' => $id));
+						$resultProfile = database_run($sqlSelectProfile, array(':author_id' => $id));
 
-					if ($result !== false) {
-						foreach ($result as $row) {
-							echo '<div class="article" data-article-id="' . $row->article_id . '">';
-							echo '<p class="h6">' . $row->title . '</p>';
-							echo '<div class="article-info">';
-							echo '<p class="info" style="display="inline-block; width: auto">' . $row->journal . '</p>';
-							echo '<span class="views" style="display="inline-block; width: auto"> 143</span>';
-							echo '<p class="author">' .$row->author .  '</p>';
-							echo '<p class="article-content">' . $row->abstract .'</p>';
-							echo '</div>';
-							echo '<button type="button" class="btn btn-primary btn-md btn-article" onclick="openArticleInNewTab(' . $row->article_id . ')" style=" border: 2px #115272 solid;
-								background-color: transparent;
-								border-radius: 20px;
-								color: #115272;
-								width: 100%;">Read Article</button>';
-							echo '</div>';
-						}
-					}elseif ($resultProfile) {
-						if (count($resultProfile) > 0) {
-							$userProfile = $resultProfile[0];
-	
-							// Check for the presence of all required fields
-							$requiredFields = ['first_name', 'last_name', 'birth_date', 'gender', 'marital_status', 'orc_id', 'afiliations', 'position', 'field_of_expertise', 'country'];
-	
-							$profileComplete = true;
-							foreach ($requiredFields as $field) {
-								if (empty($userProfile->$field)) {
-									$profileComplete = false;
-									break;
-								}
+						if ($result !== false) {
+							foreach ($result as $row) {
+								echo '<div class="article" data-article-id="' . $row->article_id . '">';
+								echo '<p class="h6">' . $row->title . '</p>';
+								echo '<div class="article-info">';
+								echo '<p class="info" style="display="inline-block; width: auto">' . $row->journal . '</p>';
+								echo '<span class="views" style="display="inline-block; width: auto"> 143</span>';
+								echo '<p class="author">' .$row->author .  '</p>';
+								echo '<p class="article-content">' . $row->abstract .'</p>';
+								echo '</div>';
+								echo '<button type="button" class="btn btn-primary btn-md btn-article" onclick="openArticleInNewTab(' . $row->article_id . ')" style=" border: 2px #115272 solid;
+									background-color: transparent;
+									border-radius: 20px;
+									color: #115272;
+									width: 100%;">Read Article</button>';
+								echo '</div>';
 							}
-							if ($profileComplete) {
-								echo "<div class='no-article-message'>
-										<p>You don't have published article yet, want to published article? Click here <a href='ex_submit.php'>Submit an Article</a></p>
-									</div>"; 
-							} else {
-							echo "<p>You don't have published article yet, want to published article? Click here <a href='#' id='link'>Submit an Article</a></p>"; 
-								echo "<script>
-										document.getElementById('link').addEventListener('click', function(event){
-											Swal.fire({
-												icon: 'warning',
-												text: 'Please complete the required data in your profile details before submitting a paper'
+						}elseif ($resultProfile) {
+							if (count($resultProfile) > 0) {
+								$userProfile = $resultProfile[0];
+		
+								// Check for the presence of all required fields
+								$requiredFields = ['first_name', 'last_name', 'birth_date', 'gender', 'marital_status', 'orc_id', 'afiliations', 'position', 'field_of_expertise', 'country'];
+		
+								$profileComplete = true;
+								foreach ($requiredFields as $field) {
+									if (empty($userProfile->$field)) {
+										$profileComplete = false;
+										break;
+									}
+								}
+								if ($profileComplete) {
+									echo "<div class='no-article-message'>
+											<p>You don't have published article yet, want to published article? Click here <a href='ex_submit.php'>Submit an Article</a></p>
+										</div>"; 
+								} else {
+								echo "<p>You don't have published article yet, want to published article? Click here <a href='#' id='link'>Submit an Article</a></p>"; 
+									echo "<script>
+											document.getElementById('link').addEventListener('click', function(event){
+												Swal.fire({
+													icon: 'warning',
+													text: 'Please complete the required data in your profile details before submitting a paper'
+												});
 											});
-										});
-									</script>";
-							}                        
-						} else {
-							echo "User not found.";
+										</script>";
+								}                        
+							} else {
+								echo "User not found.";
+							}
 						}
-					}
-				?>
+					?>
 
 					<!-- <div class="article">
 						<p class="h6">Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</p>
@@ -1799,10 +1827,43 @@ $expertise = $_SESSION['expertise'];
 						width: 100%;">Read Article</button>
 					</div> -->
 				</div>
-			<!-- </div> -->
+				<div class="contibutedArticleContainer">
+					<h4>Article you contributed</h4>
+					<?php 
+						$sql = "SELECT user_points.email, user_points.action_engage, article.article_id, article.title, article.author, article.abstract, journal.journal FROM user_points JOIN article ON user_points.article_id = article.article_id JOIN journal ON journal.journal_id = article.journal_id WHERE user_points.email = :email AND (user_points.action_engage = 'Co-Author' OR user_points.action_engage = 'Primary Contact') AND article.status = 1;";
+
+						$result = database_run($sql, array('email' => $email));	
+
+						if ($result !== false) {
+							foreach ($result as $row) {
+								echo '<div class="article" data-article-id="' . $row->article_id . '">';
+								echo '<p class="h6">' . $row->title . '</p>';
+								echo '<div class="article-info">';
+								echo '<p class="info" style="display="inline-block; width: auto">' . $row->journal . '</p>';
+								echo '<span class="views" style="display="inline-block; width: auto"> 143</span>';
+								echo '<p class="author">' .$row->author .  '</p>';
+								echo '<p class="article-content">' . $row->abstract .'</p>';
+								echo '</div>';
+								echo '<button type="button" class="btn btn-primary btn-md btn-article" onclick="openArticleInNewTab(' . $row->article_id . ')" style=" border: 2px #115272 solid;
+									background-color: transparent;
+									border-radius: 20px;
+									color: #115272;
+									width: 100%;">Read Article</button>';
+								echo '</div>';
+							}
+						}else{
+							echo "<div class='no-article-message'>
+										<p>You have not contributed to any article yet</p>
+									</div>"; 
+						}
+						
+					?>
+				</div>
+			</div>
 		</div>
 	</section>
 	<section>
+		
 		<h4> Continue Reading</h4>
 		<div  id="articleDetailsContainer">
 			<!-- <div class="continue-reading-article-details">
@@ -1828,7 +1889,7 @@ $expertise = $_SESSION['expertise'];
 					<h6 class="continue-reading-publish-labels historyJournal" style="color: #115272;"><strong>Published in The Gavel</strong></h6>
 					<p class="continue-reading-authors historyAuthor" style="color: #959595;">By Jane Delacruz</p>
 				</div>
-			</div> commit
+			</div> 
 			-->
 		</div>
 		
@@ -2243,7 +2304,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     didClose: function () {
                         // This will be executed when the Swal modal is closed
                         reviewerCert.style.display = 'none';
-						authorCert.style.display = 'block';
+						authorCert.style.display = 'none';
 
                     }
                 });
@@ -2280,7 +2341,31 @@ document.addEventListener('DOMContentLoaded', function () {
                     imageAlt: "Custom image",
                     didClose: function () {
                         reviewerCert.style.display = 'none';
-						authorCert.style.display = 'block';
+						authorCert.style.display = 'none';
+                    }
+                });
+            }else if (actionEngage === 'Co-Author') {
+                Swal.fire({
+                    html: "<p style='font-weight: bold'>You got 1 Community heart because you contributed to the article</p>" + "<p>Title: " + title + "</p>",
+                    imageUrl: "../images/qcu-bg.jpg",
+                    imageWidth: 400,
+                    imageHeight: 200,
+                    imageAlt: "Custom image",
+                    didClose: function () {
+                        reviewerCert.style.display = 'none';
+						authorCert.style.display = 'none';
+                    }
+                });
+            }else if (actionEngage === 'Primary Contact') {
+                Swal.fire({
+                    html: "<p style='font-weight: bold'>You got 1 Community heart because you are the Primary Contact to the article</p>" + "<p>Title: " + title + "</p>",
+                    imageUrl: "../images/qcu-bg.jpg",
+                    imageWidth: 400,
+                    imageHeight: 200,
+                    imageAlt: "Custom image",
+                    didClose: function () {
+                        reviewerCert.style.display = 'none';
+						authorCert.style.display = 'none';
                     }
                 });
             }

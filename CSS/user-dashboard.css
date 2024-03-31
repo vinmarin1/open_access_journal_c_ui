@@ -1159,6 +1159,27 @@ label {
     background-color: transparent;
 }
 
+
+.contibutedArticleContainer {
+    width: auto !important;
+    height: auto;
+    border: none;
+    margin-left: auto;
+    margin-right: auto;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+
+.contibutedArticleContainer::-webkit-scrollbar {
+    width: 0.5em;
+    background-color: transparent;
+}
+
+.contibutedArticleContainer::-webkit-scrollbar-thumb {
+    background-color: transparent;
+}
+
 .no-article-message {
     padding: 20px;
     background-color: #f9f9f9;
@@ -1304,7 +1325,7 @@ label {
 }
 
 .published-articles {
-    display: none;
+    display: block;
 }
 
 .recommendation-article {
@@ -1815,3 +1836,6 @@ dfn:hover::before {
     top: 20px;
 }
 
+#certContainerHead{
+    margin-top: 80vh;
+}
