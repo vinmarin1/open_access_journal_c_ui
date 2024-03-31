@@ -241,30 +241,6 @@ if (!function_exists('get_reviewer_details')) {
     }
 }
 
-if (!function_exists('check_article_reviewer')) {
-    function check_article_reviewer($aid) {
-        $pdo = connect_to_database();
-
-        if ($pdo) {
-            try {
-                $query = "SELECT * FROM reviewer_assigned WHERE article_id = :aid";
-                $stmt = $pdo->prepare($query);
-                $stmt->bindParam(':aid', $aid, PDO::PARAM_INT);
-                $stmt->execute();
-
-                $result = $stmt->fetchAll(PDO::FETCH_OBJ);
-
-                return $result;
-            } catch (PDOException $e) {
-                echo "Error: " . $e->getMessage();
-                return false;
-            }
-        }
-
-        return false;
-    }
-}
-
 if (!function_exists('check_reviewer_accept')) {
     function check_reviewer_accept() {
         $pdo = connect_to_database();
@@ -582,3 +558,60 @@ if (!function_exists('check_article_articlefinalfile')) {
     }
 }
 
+if (!function_exists('check_article_reviewer')) {
+    function check_article_reviewer($aid) {
+        $pdo = connect_to_database();
+
+        if ($pdo) {
+            try {
+                $query = "SELECT 
+                            a1.*,
+                            (SELECT 
+                                COUNT(CASE WHEN ra.accept = 1 AND ra.answer = 1 THEN 1 END)
+                             FROM 
+                                reviewer_assigned ra
+                             WHERE 
+                                ra.author_id = a1.author_id) AS total_success,
+                            (SELECT 
+                                COUNT(CASE WHEN ra.deadline < CURDATE() THEN 1 END)
+                             FROM 
+                                reviewer_assigned ra
+                             WHERE 
+                                ra.author_id = a1.author_id) AS ongoing,
+                            (SELECT 
+                                COUNT(CASE WHEN ra.deadline > CURDATE() THEN 1 END)
+                             FROM 
+                                reviewer_assigned ra
+                             WHERE 
+                                ra.author_id = a1.author_id) AS decline
+                        FROM 
+                            author a1 
+                        LEFT JOIN 
+                            article a2 ON a1.author_id = a2.author_id AND a2.article_id = :aid
+                        LEFT JOIN 
+                            contributors c ON a1.email_verified COLLATE utf8mb4_unicode_ci = c.email COLLATE utf8mb4_unicode_ci AND c.article_id = :aid
+                        LEFT JOIN 
+                            reviewer_assigned ra2 ON a1.author_id = ra2.author_id AND ra2.article_id = :aid
+                        WHERE 
+                            a1.status = 1
+                            AND a1.author_id <> 1
+                            AND a2.article_id IS NULL
+                            AND c.email IS NULL
+                            AND (ra2.article_id IS NULL OR ra2.round <> a2.round)";
+
+                $stmt = $pdo->prepare($query);
+                $stmt->bindParam(':aid', $aid, PDO::PARAM_INT);
+                $stmt->execute();
+
+                $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+                return $result;
+            } catch (PDOException $e) {
+                echo "Error: " . $e->getMessage();
+                return false;
+            }
+        }
+
+        return false;
+    }
+}
