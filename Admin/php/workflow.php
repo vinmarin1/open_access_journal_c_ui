@@ -1990,12 +1990,18 @@ table {
                     return;
                 }
 
+                const articleReviewerIds = <?php echo json_encode(array_column($article_reviewer_check, 'author_id')); ?>;
+
                 const tbodySuggested = $('#reviewersTableBody');
                 const tbodyOther = $('#reviewersTableBody1');
                 tbodySuggested.empty();
                 tbodyOther.empty();
 
                 data.sorted_reviewers.forEach(item => {
+                    if (!articleReviewerIds.includes(item.author_id)) {
+                        return;
+                    }
+
                     const row = $('<tr>');
                     const affiliation = item.afiliations && item.afiliations.length > 30 ? item.afiliations.substring(0, 30) + '...' : item.afiliations;
                     const expertise = item.field_of_expertise && item.field_of_expertise.length > 30 ? item.field_of_expertise.substring(0, 30) + '...' : item.field_of_expertise;
@@ -2058,7 +2064,6 @@ table {
             }
         });
     });
-
     </script>
 </body>
 </html
