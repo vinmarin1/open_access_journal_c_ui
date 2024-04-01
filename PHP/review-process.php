@@ -68,12 +68,9 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 
 
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-1">
-                    <!-- This is a Blank space -->
-                </div>
-
-                <div class="col-md-6 abstract" style="padding-top:20px; height: auto"> 
+        <div class="row" style="padding: 2em 8%;" >
+            <div class="column" id="step1Content">
+                <div class="col-md-12 abstract" style="padding-top:20px; height: auto"> 
                
 
                     <?php
@@ -166,126 +163,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 
                 </div>
 
-
-                <div class="col-md-1"><!-- This is a Blank space --></div>
-
-                <div class="col-md-4">
-                    <div style="padding-right: 50px;" >
-                        <div class="status" >
-                            <p>
-                            <?php
-                            $sqlStatus = "SELECT article_status.status, article.title 
-                                        FROM article_status 
-                                        JOIN article ON article_status.status_id = article.status 
-                                        JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id AND article.status = 4
-                                        WHERE reviewer_assigned.author_id = :author_id AND article.article_id = :article_id
-                                        ORDER BY reviewer_assigned.date_issued DESC
-                                        LIMIT 1";
-
-                            $result = database_run($sqlStatus, array('author_id' => $userId, 'article_id' => $articleId));
-
-                            if ($result !== false) {
-                                foreach ($result as $row) {
-                                    echo $row->status;
-                                }
-                            } else {
-                                echo "No status for this article";
-                            }
-                            ?>
-
-                                
-                            </p>
-                        </div>
-                        <hr style="height: 1px; background-color: var(--main, #0858A4); width: 100%">
-                        <p style="color: var(--main, #0858A4); font-family: 'Judson', serif; font-weight: 400; font-style: normal; font-size: 30px;" >Submitted in the 
-                        <?php
-                            $sqlJournal = "SELECT journal.journal, article.title FROM journal JOIN article ON journal.journal_id = article.journal_id JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id AND article.status = 4
-                            AND reviewer_assigned.author_id = :author_id AND article.article_id = :article_id";
-
-                            $result = database_run($sqlJournal, array('author_id' => $userId,
-                                  'article_id' => $articleId));
-
-                            if ($result !== false) {
-                            foreach ($result as $row) {
-                            echo $row->journal;
-                            }
-                            } else {
-                            echo "No status for this article"; 
-                            }
-                        ?>
-                        </p>
-                        </div>
-            <div class="row">
-                <div class="col-md-4 col-6 logs-date">
-                    <p id="logsTitle" style="color: black; font-family: 'Judson', serif; font-weight: bold; font-style: normal;">Logs</p>
-                
-                    <div class="log-entry mt-4" id="logEntries">
-                        <?php
-                            $sqlLogs = "SELECT logs_article.type FROM logs_article JOIN article ON logs_article.article_id = article.article_id WHERE logs_article.article_id = :article_id";
-
-                            $sqlRunLogs = database_run($sqlLogs, array('article_id' => $articleId));
-
-                            if ($sqlRunLogs !== false){
-                                $count = 0;
-                                foreach ($sqlRunLogs as $logsRow){
-                                    if ($count < 5) {
-                                        echo '<p class="logsArticle" style="display: block">' . $logsRow->type . '</p>';
-                                    } else {
-                                        echo '<p class="logsArticle" style="display: none">' . $logsRow->type . '</p>';
-                                    }
-                                    $count++;
-                                }
-                            } else {
-                                echo 'no logs for this article';
-                            }
-                        ?>
-                    </div>
-                    
-                
-
-                
-                </div>
-
-                <div class="col-md-4 col-6 date">
-                    <p style="color: black; font-family: 'Judson', serif; font-weight: bold; font-style: normal;">Date</p>
-                    <div class="log-date" id="logDates">
-                        <?php
-                            $sqlLogsDate = "SELECT logs_article.date FROM logs_article JOIN article ON logs_article.article_id = article.article_id WHERE logs_article.article_id = :article_id";
-
-                            $sqlDateParams = database_run($sqlLogsDate, array('article_id' => $articleId));
-
-                            if ($sqlDateParams !== false){
-                                $count = 0;
-                                foreach ($sqlDateParams as $logsDate){
-                                    if ($count < 5) {
-                                        echo '<p style="display: block;">' . $logsDate->date . '</p>';
-                                    } else {
-                                        echo '<p style="display: none">' . $logsDate->date . '</p>';
-                                    }
-                                    $count++;
-                                }
-                            } else {
-                                echo 'no logs for this article';
-                            }
-                        ?>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-8 btn-groups mt-4">
-            <button type="button" class="btn btn-outline-primary btn-sm"  onclick="viewAllLogs()" id="viewLogsBtn">View All Logs</button>
-                <button type="button" class="btn btn-outline-primary btn-sm"  onclick="hideLogs()" id="hideLogsBtn" style="display: none;">Hide Logs</button>
-            </div>
-
-                </div>
-            </div>
-
-
-            <div class="row">
-                <div class="col-md-1">
-                    <!-- This is a Blank space -->
-                </div>
-
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="table-container">
                         <!-- <h5>Files Submitted</h5> -->
                         <p id="fileSTitle">Files Submitted</p>
@@ -369,6 +247,174 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                     </div>
                 </div>
 
+                <div class="col-md-12">
+
+                <div class="keywords">
+                    <p style="margin-top: 20px; margin-bottom: 10px; color: #285581;  font-family: 'Raleway', sans-serif; font-weight: 400; font-style: normal; font-size: 30px; ">Keywords</p>
+                    <div class="keyword1">
+                    <ul style="display: flex;">
+                        <?php
+                        $sqlKeyword = "SELECT article.keyword FROM article JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id AND article.status = 4 WHERE reviewer_assigned.author_id = :author_id AND article.article_id = :article_id";
+                        
+                        $result = database_run($sqlKeyword, array('author_id' => $userId,
+                        'article_id' => $articleId));
+
+                        if ($result !== false) {
+                            foreach ($result as $row) {
+                                $keywords = explode(',', $row->keyword);
+                                foreach ($keywords as $keyword) {
+                                    echo '<li style="list-style-type: none; 
+                                                    margin-right: 5px;
+                                                    width: auto;
+                                                    color: var(--main, #0858A4);
+                                                    border: 1px solid var(--main, #0858A4);
+                                                    border-radius: 10px;
+                                                    background-color: white;
+                                                    font-size: 12px;">' . trim($keyword) . '</li>';
+                                }
+                                
+                            }
+                        } else {
+                            echo "No keywords for this article";
+                        }
+                        ?>
+                    </ul>
+
+                    </div>
+                </div>
+
+
+                </div>
+            </div>
+
+                
+            <div class="column" id="step1Content2">
+                <div class="col-md-12">
+                        <div style="padding-right: 50px;" >
+                            <div class="status" >
+                                <p>
+                                <?php
+                                $sqlStatus = "SELECT article_status.status, article.title 
+                                            FROM article_status 
+                                            JOIN article ON article_status.status_id = article.status 
+                                            JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id AND article.status = 4
+                                            WHERE reviewer_assigned.author_id = :author_id AND article.article_id = :article_id
+                                            ORDER BY reviewer_assigned.date_issued DESC
+                                            LIMIT 1";
+
+                                $result = database_run($sqlStatus, array('author_id' => $userId, 'article_id' => $articleId));
+
+                                if ($result !== false) {
+                                    foreach ($result as $row) {
+                                        echo $row->status;
+                                    }
+                                } else {
+                                    echo "No status for this article";
+                                }
+                                ?>
+
+                                    
+                                </p>
+                            </div>
+                            <hr style="height: 1px; background-color: var(--main, #0858A4); width: 100%">
+                            <p style="color: var(--main, #0858A4); font-family: 'Judson', serif; font-weight: 400; font-style: normal; font-size: 30px;" >Submitted in the 
+                            <?php
+                                $sqlJournal = "SELECT journal.journal, article.title FROM journal JOIN article ON journal.journal_id = article.journal_id JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id AND article.status = 4
+                                AND reviewer_assigned.author_id = :author_id AND article.article_id = :article_id";
+
+                                $result = database_run($sqlJournal, array('author_id' => $userId,
+                                    'article_id' => $articleId));
+
+                                if ($result !== false) {
+                                foreach ($result as $row) {
+                                echo $row->journal;
+                                }
+                                } else {
+                                echo "No status for this article"; 
+                                }
+                            ?>
+                            </p>
+                            </div>
+                <div class="row">
+                    <div class="col-md-4 col-6 logs-date">
+                        <p id="logsTitle" style="color: black; font-family: 'Judson', serif; font-weight: bold; font-style: normal;">Logs</p>
+                    
+                        <div class="log-entry mt-4" id="logEntries">
+                            <?php
+                                $sqlLogs = "SELECT logs_article.type FROM logs_article JOIN article ON logs_article.article_id = article.article_id WHERE logs_article.article_id = :article_id";
+
+                                $sqlRunLogs = database_run($sqlLogs, array('article_id' => $articleId));
+
+                                if ($sqlRunLogs !== false){
+                                    $count = 0;
+                                    foreach ($sqlRunLogs as $logsRow){
+                                        if ($count < 5) {
+                                            echo '<p class="logsArticle" style="display: block">' . $logsRow->type . '</p>';
+                                        } else {
+                                            echo '<p class="logsArticle" style="display: none">' . $logsRow->type . '</p>';
+                                        }
+                                        $count++;
+                                    }
+                                } else {
+                                    echo 'no logs for this article';
+                                }
+                            ?>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 col-6 date">
+                        <p style="color: black; font-family: 'Judson', serif; font-weight: bold; font-style: normal;">Date</p>
+                        <div class="log-date" id="logDates">
+                            <?php
+                                $sqlLogsDate = "SELECT logs_article.date FROM logs_article JOIN article ON logs_article.article_id = article.article_id WHERE logs_article.article_id = :article_id";
+
+                                $sqlDateParams = database_run($sqlLogsDate, array('article_id' => $articleId));
+
+                                if ($sqlDateParams !== false){
+                                    $count = 0;
+                                    foreach ($sqlDateParams as $logsDate){
+                                        if ($count < 5) {
+                                            echo '<p style="display: block;">' . $logsDate->date . '</p>';
+                                        } else {
+                                            echo '<p style="display: none">' . $logsDate->date . '</p>';
+                                        }
+                                        $count++;
+                                    }
+                                } else {
+                                    echo 'no logs for this article';
+                                }
+                            ?>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-8 btn-groups mt-4">
+                    <button type="button" class="btn btn-outline-primary btn-sm"  onclick="viewAllLogs()" id="viewLogsBtn">View All Logs</button>
+                    <button type="button" class="btn btn-outline-primary btn-sm"  onclick="hideLogs()" id="hideLogsBtn" style="display: none;">Hide Logs</button>
+                </div>
+
+                </div>
+                <div class="col-md-4" style="padding:0;">
+                    <!-- This is a Blank space -->
+                    <div class="btn" id="step1button">
+                        <button type="button" class="btn tbn-primary btn-md nextBtn" id="acceptBtn"  onclick="nextStep()" >Accept</button>
+                        <button type="button"  id="btnReject" class="btn tbn-primary btn-md" onclick="rejectInvitation('<?php echo $articleId; ?>')">Decline</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+
+
+            <div class="row">
+                <div class="col-md-1">
+                    <!-- This is a Blank space -->
+                </div>
+
+
+
                 <div class="col-md-4">
                     <!-- This is a Blank space -->
                     <div class="table-container">
@@ -385,53 +431,8 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                     <!-- This is a Blank space -->
                 </div>
 
-                <div class="col-md-6">
-
-                    <div class="keywords">
-                        <p style="margin-top: 20px; margin-bottom: 10px; color: #285581;  font-family: 'Raleway', sans-serif; font-weight: 400; font-style: normal; font-size: 30px; ">Keywords</p>
-                        <div class="keyword1">
-                        <ul style="display: flex;">
-                            <?php
-                            $sqlKeyword = "SELECT article.keyword FROM article JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id AND article.status = 4 WHERE reviewer_assigned.author_id = :author_id AND article.article_id = :article_id";
-                            
-                            $result = database_run($sqlKeyword, array('author_id' => $userId,
-                            'article_id' => $articleId));
-
-                            if ($result !== false) {
-                                foreach ($result as $row) {
-                                    $keywords = explode(',', $row->keyword);
-                                    foreach ($keywords as $keyword) {
-                                        echo '<li style="list-style-type: none; 
-                                                        margin-right: 5px;
-                                                        width: auto;
-                                                        color: var(--main, #0858A4);
-                                                        border: 1px solid var(--main, #0858A4);
-                                                        border-radius: 10px;
-                                                        background-color: white;
-                                                        font-size: 12px;">' . trim($keyword) . '</li>';
-                                    }
-                                    
-                                }
-                            } else {
-                                echo "No keywords for this article";
-                            }
-                            ?>
-                        </ul>
-
-                        </div>
-                    </div>
-
-
-                </div>
                 <div class="col-md-1"><!-- This is a Blank space --></div>
-                <div class="col-md-4" style="padding:0;">
-                    <!-- This is a Blank space -->
-                    <div class="btn">
-                        <button type="button" class="btn tbn-primary btn-md nextBtn" id="acceptBtn"  onclick="nextStep()" >Accept</button>
-                        <button type="button"  id="btnReject" class="btn tbn-primary btn-md" onclick="rejectInvitation('<?php echo $articleId; ?>')">Decline</button>
 
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -612,7 +613,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                                         if ($result) {
                                             foreach ($result as $row) {
                                                 $question = htmlspecialchars($row->question);
-                                                echo '<li class="list-group-item mt-5" style="list-style: none; color: var(--main, #0858A4);  padding: 10px; font-size: 18px; font-family: \'Raleway\', sans-serif;">' . $question . '</li>';
+                                                echo '<li class="list-group-item mt-5" style="list-style: none; color: var(--main, #0858A4);  padding-bottom: 10px; font-size: 18px; font-family: \'Raleway\', sans-serif;">' . $question . '</li>';
 
                                                 // Split the choices using commas
                                                 $choices = explode(',', $row->answer);

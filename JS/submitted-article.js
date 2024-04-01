@@ -71,9 +71,9 @@ function openFilename(index) {
        
 
         titleElement.contentEditable = true;
-        titleElement.style.border = '1px black solid';
+        titleElement.style.border = '1px #DDDDDD solid';
         abstract.contentEditable = true;
-        abstract.style.border = '1px black solid';
+        abstract.style.border = '1px #DDDDDD solid';
         reviseFile.style.display = 'block';
         cancelbtn.style.display = 'block';
         submitBtn.style.display = 'block';
