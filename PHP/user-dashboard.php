@@ -1969,7 +1969,7 @@ $expertise = $_SESSION['expertise'];
 <div class="container-fluid mt-5" id="certContainerHead" style="display: none">
     <div class="cert-container d-flex justify-content-center align-items-center">
 		<?php 
-			echo '<img class="img-fluid" id="cert1" src="../images/cert-reviewer.jpg" alt="cert">'
+			echo '<img class="imgCert" id="cert1" src="../images/12.png" alt="cert">'
 		?>
         
 		<div class="cert-category">
@@ -1995,7 +1995,7 @@ $expertise = $_SESSION['expertise'];
 
 <div class="container-fluid mt-5" id="certPublishedHead" style="display: none">
     <div class="cert-container d-flex justify-content-center align-items-center">
-        <img class="img-fluid" id="cert2" src="../images/cert_publication.jpg" alt="cert" style="width: 800px;
+        <img class="imgCert" id="cert2" src="../images/11.png" alt="cert" style="width: 800px;
 		height: 500px;
 		">
 		<div class="cert-category-published" style="position: absolute;">
@@ -2011,15 +2011,7 @@ $expertise = $_SESSION['expertise'];
 			margin-left: 80px;
 			margin-top: 25px;">This Certificate is Awarded to</p> -->
 			<div class="pubInfo">
-				<p class="h1" id="awardeeNamePublished" style="    
-				    text-align: left;
-					font-family: 'Dancing Script', cursive;
-					font-weight: 400;
-					font-style: italic;
-					font-size: 25px;
-					margin-top: 20px;
-					margin-left: 0px;
-					color: #00123D;">
+				<p class="h1" id="awardeeNamePublished">
 					<?php 
 					echo $first_name . ' ' . $middle_name . ' ' . $last_name	
 					?>
@@ -2028,17 +2020,7 @@ $expertise = $_SESSION['expertise'];
 				font-family: 'Times New Roman', Times, serif;
 				font-weight: bold;
 				margin-left: 80px;">For successfully publishing the article titled:</p> -->
-				<p class="h3" id="engagementTitlePublished" style="
-					font-weight: normal;
-					text-align: center;
-					font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-					font-style: italic;
-					width: 550px;
-					font-size: 20px;
-					margin-top: 30px;
-					line-height: 20px;
-					text-align: left;
-					color: #00123D;"></p>
+				<p class="h3" id="engagementTitlePublished"></p>
 				<p class="publishdate" id="publishdate"></p>
 			</div>
 			
