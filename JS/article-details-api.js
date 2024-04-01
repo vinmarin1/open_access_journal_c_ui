@@ -41,7 +41,7 @@ function renderArticleDetails(data) {
 
     let keywordsHTML = "";
     for (const keyword of keywordsArray) {
-      keywordsHTML += `<a>${keyword.trim()}</a>`;
+      keywordsHTML += `<a href="browse-articles.php?search=${keyword.trim()}">${keyword.trim()}</a>`;
     }
 
     const referencesArray = item.references.trim().split("\\n");
