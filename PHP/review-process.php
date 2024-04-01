@@ -408,7 +408,7 @@ if ($result !== false && !empty($result)) {
                 </div>
 
 
-                <div class="col-md-8 btn-groups mt-4">
+                <div class="col-md-10 btn-groups mt-4">
                     <button type="button" class="btn btn-outline-primary btn-sm"  onclick="viewAllLogs()" id="viewLogsBtn">View All Logs</button>
                     <button type="button" class="btn btn-outline-primary btn-sm"  onclick="hideLogs()" id="hideLogsBtn" style="display: none;">Hide Logs</button>
                 </div>
