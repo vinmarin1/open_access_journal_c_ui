@@ -196,7 +196,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                                 
                             </p>
                         </div>
-                        <hr style="height: 2px; background-color: var(--main, #0858A4); width: 100%">
+                        <hr style="height: 1px; background-color: var(--main, #0858A4); width: 100%">
                         <p style="color: var(--main, #0858A4); font-family: 'Judson', serif; font-weight: 400; font-style: normal; font-size: 30px;" >Submitted in the 
                         <?php
                             $sqlJournal = "SELECT journal.journal, article.title FROM journal JOIN article ON journal.journal_id = article.journal_id JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id AND article.status = 4
@@ -456,10 +456,10 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                     <!-- This is a Blank space -->
                 </div>
 
-                <div class="col-md-8 rev-guide" style="padding-top:20px;">
+                <div class="col-md-8 rev-guide" style="padding-top:50px;">
                     <h4>Review Steps</h4>
 
-                    <hr style="height: 2px; background-color: var(--main, #0858A4); width: 100%">
+                    <hr style="height: 1px; background-color: var(--main, #0858A4); width: 100%">
 
                     <ol>
                         <li> Consult Reviewer Guidelines below. </li>
@@ -497,7 +497,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 
 
                     <h4>Review Guidelines</h4>
-                    <hr style="height: 2px; background-color: var(--main, #0858A4); width: 100%">
+                    <hr style="height: 1px; background-color: var(--main, #0858A4); width: 100%">
                     <div class="guidelines">
                         <p>
                         The International Journal of Learning, Teaching and Educational Research values the role of reviewers in the peer-review process that enables us to publish high-quality materials in a timely way.
@@ -562,21 +562,17 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 
 
         <div class="container-fluid">
-            <div class="row" style="background:#F5F5F9;">
+            <div class="row" style="background:var(--gray);">
                 <div class="col-md-2">
                     <!-- This is a Blank space -->
                 </div>
-
-
-
-                <div class="col-md-8 col-12" style="padding-top:20px;">
+                <div class="col-md-8 col-12" style="padding-top:50px;">
                     <!-- <h5 style="background-color:var(--main, #0858A4); color: white; padding:10px;" >Research Article Review Form</h5> -->
-                    <div class="contents border rounded p-3" style="background-color:white;">
+                    <div class="contents rounded p-5" style="background-color:white;">
                         <div class="row">
                             <div class="firstContent">
                                 <div class="col-md-12">
-                                <p class="mt-3 reviewFormTitle" id="reviewFormTitle">Research Review Form</p>
-
+                                <h4 class="reviewFormTitle" id="reviewFormTitle">Research Review Form</h4>
                                 <p id="title2">
                                     <?php 
                                         $sqlReviewraticle = "SELECT article.title 
@@ -600,7 +596,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                                 </p>
                                 </div>
 
-                                <hr style="height: 2px; background-color: #F5F5F9; width: 100%;">
+                                <hr style="height: 1px; background-color: #F5F5F9; width: 100%;">
 
                             <!-- Content for the left half of the screen -->
                                 <!-- <h4 class="mt-4">Note: </h4> -->
@@ -616,7 +612,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                                         if ($result) {
                                             foreach ($result as $row) {
                                                 $question = htmlspecialchars($row->question);
-                                                echo '<li class="list-group-item mt-5" style="list-style: none; color: var(--main, #0858A4);  padding: 10px; font-size: 20px; font-family: \'Raleway\', sans-serif;">' . $question . '</li>';
+                                                echo '<li class="list-group-item mt-5" style="list-style: none; color: var(--main, #0858A4);  padding: 10px; font-size: 18px; font-family: \'Raleway\', sans-serif;">' . $question . '</li>';
 
                                                 // Split the choices using commas
                                                 $choices = explode(',', $row->answer);
@@ -802,7 +798,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 
                         </div>
 
-                        <hr style="height: 2px; background-color: var(--main, #0858A4); width: 100%;">
+                        <hr style="height: 1px; background-color: var(--main, #0858A4); width: 100%;">
 
                         <!-- <div class="decisions">
                             <h5>Decision:</h5>
