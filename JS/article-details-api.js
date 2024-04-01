@@ -26,8 +26,21 @@ async function fetchArticleDetails() {
     renderArticleDetails(data.selected_article);
     renderRecommended(data.recommendations);
   } catch (error) {
+    renderNoArticleFound();
+    document.querySelector(".recommendation-article").classList.add("d-none"); // hide more like this
     console.error("Error fetching data:", error);
   }
+}
+function renderNoArticleFound() {
+  const articleContainer = document.getElementById("article_details");
+  articleContainer.innerHTML = `
+  <section class="not-found">
+    <span>Article ${articleId} does not exist</span>
+    <img class="svg-not-found" src="../images/not-found.gif"/>
+    <div class="text">
+      <p>Illustration by <a href="https://icons8.com/illustrations/author/lZpGtGw5182N">Elisabet Guba</a> from <a href="https://icons8.com/illustrations">Ouch!</a></p>
+    </div>
+  </section>`
 }
 
 function renderArticleDetails(data) {
@@ -120,6 +133,7 @@ function renderArticleDetails(data) {
         <div class="article-title">
             <p>${item.journal}</p>
             <h3>${item.title}</h3>
+            <p>${item.article_id}</p>
             <div class="after-title">
                 <div class="authors" >
                     <p style= "font-size: small; color: gray" >Author/s</p>

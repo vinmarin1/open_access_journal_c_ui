@@ -82,6 +82,18 @@
       </div>
     </div>
     ';
+    } 
+    else {
+     echo '
+     <div class="fluid-container">
+         <div class="recommendation-article">
+             <h4>Discover our Most Popular Article </h4>
+             <div id="all-popular-articles" class="articles-container">
+             </div>
+         </div>
+     </div>
+     </div>
+     ';
     }
   ?>
   </div>
@@ -101,6 +113,7 @@
   <script src="../JS/home-recommended-api.js"></script>
   <script src="../JS/cloudConvert.js"></script>
   <script src="../JS/article-details-api.js"></script>
+  <script src="../JS/most-popular-api.js"></script>
 </body>
 
 </html>
