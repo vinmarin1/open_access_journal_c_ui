@@ -41,7 +41,7 @@ $journallist = get_journal_list();
                 <h5 class="card-header mb-0">User List</h5>
                 <div style="display: flex; margin-top: 15px; margin-right: 15px;">
                     <button type="button" id="tabAll" class="btn btn-primary" style="margin-right: 10px;" data-bs-toggle="modal" data-bs-target="#addModal">Add User</button>
-                    <button type="button" id="tabPublished" class="btn btn-primary">Download</button>
+                    <!-- <button type="button" id="tabPublished" class="btn btn-primary">Download</button> -->
                 </div>
             </div>
             <div class="table-responsive text-nowrap">
@@ -62,7 +62,7 @@ $journallist = get_journal_list();
                                 <td width="50%"><?php echo $userlistval->email; ?></td>
                                 <td width="10%">
                                     <button type="button" class="btn btn-success" title="Update" onclick="updateModal(<?php echo $userlistval->author_id; ?>)"><i class="bx bx-edit-alt"></i></button>
-                                    <button type="button" class="btn btn-danger" title="Delete" onclick="archiveUser(<?php echo $userlistval->author_id; ?>, '<?php echo $userlistval->first_name; ?>', '<?php echo $userlistval->last_name; ?>')"><i class="bx bx-trash"></i></button>
+                                    <button type="button" class="btn btn-danger" title="Archive" onclick="archiveUser(<?php echo $userlistval->author_id; ?>, '<?php echo $userlistval->first_name; ?>', '<?php echo $userlistval->last_name; ?>')"><i class='bx bxs-archive-in' ></i></button>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -188,7 +188,7 @@ $journallist = get_journal_list();
 
     function archiveUser(authorId, firstName, lastName) {
         $('#archiveModal').modal('show');
-        $('#archiveModalTitle').text('Delete User');
+        $('#archiveModalTitle').text('Archive User');
         $('#userInfo').html('<strong>Name:</strong> ' + lastName + ', ' + firstName + '<br><strong>ID:</strong> ' + authorId);
 
         $('#archiveModalSave').off().on('click', function () {
@@ -699,12 +699,12 @@ $journallist = get_journal_list();
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="archiveModalTitle">Delete User</h5>
+                    <h5 class="modal-title" id="archiveModalTitle">Archive User</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <h5 class="modal-title" id="modalToggleLabel">Are you sure you want to delete this user?</h5>
+                        <h5 class="modal-title" id="modalToggleLabel">Are you sure you want to archive this user?</h5>
                         <p id="userInfo"></p>
                     </div>
                 </div>

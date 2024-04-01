@@ -220,6 +220,22 @@ $journal = get_journal_list();
                 </a>
               </li>
 
+            <?php
+            if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+              $journal_id = isset($_SESSION['journal_id']) ? ($_SESSION['journal_id']) : '';
+                if (empty($journal_id) && $journal_id !== NULL) {
+              ?>
+                  <li class="menu-item">
+                    <a href="archivelist.php" class="menu-link">
+                      <i class="menu-icon tf-icons bx bxs-archive"></i>
+                      <div data-i18n="Tables" id="text">Archived</div>
+                    </a>
+                  </li>
+            <?php
+                }
+              }
+            ?>
+
           <!-- Misc -->
           <!-- <li class="menu-header small text-uppercase"><span class="menu-header-text">Misc</span></li>
             <li class="menu-item">
@@ -322,11 +338,11 @@ $journal = get_journal_list();
                               $profile_pic = isset($_SESSION['profile_pic']) ? $_SESSION['profile_pic'] : '';
                               if (!empty($profile_pic)) {
                                   echo '<div class="avatar avatar-online">
-                                            <img src="../' . $profile_pic . '" alt="" class="w-px-40 h-auto rounded-circle" />
+                                            <img src="../' . $profile_pic . '" alt="" class="w-40 h-40 object-fit-cover rounded-circle" />
                                         </div>';
                               } else {
                                   echo '<div class="avatar avatar-online">
-                                            <img src="../assets/img/profile.jpg" alt="" class="w-px-40 h-auto rounded-circle" />
+                                            <img src="../assets/img/profile.jpg" alt="" class="w-40 h-40 object-fit-cover rounded-circle" />
                                         </div>';
                               }
                           }
