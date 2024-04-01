@@ -260,6 +260,22 @@ $expertise = $_SESSION['expertise'];
 					?>
 					<br>
 				</div>
+				<div class="hoverPoints">
+					<?php
+					$sql = "SELECT action_engage, SUM(point_earned) AS total_points FROM user_points WHERE email = :email GROUP BY action_engage";
+					$run = database_run($sql, array('email' => $email)); // Assuming $email is defined somewhere
+
+					if ($run !== false) {
+						foreach ($run as $row) {
+							$action = $row->action_engage;
+							$totalPoints = $row->total_points;
+							echo '<span class="pointsH">' . $action . ': ' . $totalPoints . '</span>';
+						}
+					}
+					?>
+
+				</div>
+
 				<div class="totalLikes"><i class="fa-solid fa-heart" style="color: red"></i>&nbsp;
 					<?php
 						$sqlPoints = "SELECT author.author_id, author.first_name, article.article_id, article.title, logs.article_id, logs.type 
@@ -2503,6 +2519,7 @@ window.onload = function() {
         }
     });
 };
+
 
 	
 </script><div class="footer" id="footer">

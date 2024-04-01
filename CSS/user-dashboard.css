@@ -1870,3 +1870,46 @@ dfn:hover::before {
 .totalLikes{
     font-weight: bold;
 }
+
+.hoverPoints{
+    display: none;
+    width: 10%;
+    border: 1px solid;
+    height: auto;
+    /* display: flex; */
+    align-content: center;
+    /* flex-wrap: wrap; */
+    padding-left: 15px;
+    /* justify-content: center; */
+    /* justify-items: center; */
+    position: absolute;
+    margin-top: -70px;
+    margin-left: 120px;
+    border-radius: 10px;
+    background-color: rgb(0 0 0 / 79%);
+}
+
+.balance-points:hover + .hoverPoints,
+.fa-fire:hover + .hoverPoints {
+    display: block;
+}
+
+.hoverPoints::before {
+    content: '';
+    position: absolute;
+    top: 32%;
+    right: 100%;
+    margin-top: -5px;
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-right: 5px solid rgb(0 0 0 / 79%);
+    border-bottom: 5px solid transparent;
+}
+
+.pointsH{
+    display: block;
+    font-family: arial;
+    font-size: 12px;
+    color: white;
+}
