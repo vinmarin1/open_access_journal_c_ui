@@ -295,6 +295,9 @@ $expertise = $_SESSION['expertise'];
 					?>
 
 				</div>
+				<div class="hoverSupport">
+					<span class="hoverS">Total Article Support</span>
+				</div>
 				<?php
 					if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 					$sqlMode = "SELECT public_private_profile FROM author WHERE author_id = :author_id";
