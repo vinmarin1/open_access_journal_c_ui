@@ -34,8 +34,8 @@ $journallist = get_journal_list($journal_id);
                 <table class="table table-striped" id="DataTable">
                     <thead>
                         <tr>
-                            <th>Article ID</th>
-                            <th>Article</th>
+                            <th>ID</th>
+                            <th>Name</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -47,7 +47,7 @@ $journallist = get_journal_list($journal_id);
                                 <td width="10%">
                                     <button type="button" class="btn btn-success" title="Update" onclick="updateModal(<?php echo $journallistval->journal_id; ?>)"><i class="bx bx-edit-alt"></i></button>
                                     <?php if(empty($journal_id) && $journal_id !== NULL) { ?>
-                                        <button type="button" class="btn btn-danger" title="Delete" onclick="archiveJournal(<?php echo $journallistval->journal_id; ?>, '<?php echo $journallistval->journal; ?>', '<?php echo $journallistval->journal_title; ?>')"><i class="bx bx-trash"></i></button>
+                                        <button type="button" class="btn btn-danger" title="Archive" onclick="archiveJournal(<?php echo $journallistval->journal_id; ?>, '<?php echo $journallistval->journal; ?>', '<?php echo $journallistval->journal_title; ?>')"><i class='bx bxs-archive-in' ></i></button>
                                     <?php } ?>
                                 </td>
                             </tr>
@@ -184,7 +184,7 @@ $journallist = get_journal_list($journal_id);
     
     function archiveJournal(journalId, journal, journal_title) {
         $('#archiveModal').modal('show');
-        $('#archiveModalTitle').text('Delete Journal');
+        $('#archiveModalTitle').text('Archive Journal');
         $('#journalInfo').html('<strong>Journal:</strong> ' + journal + ' <br><strong>Journal_Title:</strong> ' + journal_title + '<br><strong>ID:</strong> ' + journalId);
 
         $('#archiveModalSave').off().on('click', function () {
@@ -326,12 +326,12 @@ $journallist = get_journal_list($journal_id);
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="archiveModalTitle">Delete User</h5>
+                    <h5 class="modal-title" id="archiveModalTitle">Archive User</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <h5 class="modal-title" id="modalToggleLabel">Are you sure you want to delete this journal?</h5>
+                        <h5 class="modal-title" id="modalToggleLabel">Are you sure you want to archive this journal?</h5>
                         <p id="journalInfo"></p>
                     </div>
                 </div>
