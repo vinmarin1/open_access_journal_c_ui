@@ -57,13 +57,15 @@ body {
 }
 
 .profile-pic {
-    display: block;
+    /* display: block; */
     width: 150px;
     height: 150px;
     border-radius: 50%;
     object-fit: cover;
-    border: 1px solid black;
-    padding: 5px;
+    padding: 3px;
+    border: 1px solid transparent;
+	background: linear-gradient(45deg, #d4fbff, #0064ff, #0858a4);
+	background-clip: padding-box;
 }
 
 .button-container {

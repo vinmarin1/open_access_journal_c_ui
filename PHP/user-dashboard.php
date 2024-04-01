@@ -6,7 +6,6 @@ if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
 	header('Location: ./login.php');
   }
 
-
 $id = $_SESSION['id'];
 $email = $_SESSION['email'];
 $first_name = $_SESSION['first_name'];

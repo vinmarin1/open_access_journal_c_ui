@@ -32,7 +32,7 @@ session_start();
     </nav>
 
 
-    <div class="content-over">
+    <!-- <div class="content-over">
         <div class="cover-content">
             <p>Dashboard / Author</p>
             <h2>
@@ -53,8 +53,8 @@ session_start();
             
     
         </div>
-    </div>
-    <section class="main">
+    </div> -->
+    <div class="main">
         <div class="main-profile">
 			<div class="profile-container">
 				<div class="profile-sidebar">
