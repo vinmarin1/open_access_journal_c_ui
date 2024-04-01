@@ -695,7 +695,7 @@ function acceptReviewerAnswer() {
                     $mail->setFrom('qcujournal@gmail.com', 'QCU Journal');
                     $mail->addAddress($author_result['email']); 
                     $mail->Subject = 'Your article review is accepted';
-                    $mail->Body = 'Your article titled "'.$article_result['title'].'" has received a review and the answer is accepted.';
+                    $mail->Body = 'Your article titled "'.$article_result['title'].'" has received a review and the answer is accepted. We appreciate your contribution to the quality of work that we publish.';
                     $mail->isHTML(true); 
 
                     $mail->send();
