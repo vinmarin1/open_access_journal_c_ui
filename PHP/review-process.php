@@ -3,12 +3,31 @@ require_once 'dbcon.php';
 session_start();
 
 if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
-	header('Location: ./login.php');
-	exit();
-  }
-  
+    header('Location: ./login.php');
+    exit();
+}
+
 $userId = $_SESSION['id'];
 $articleId = isset($_GET['id']) ? $_GET['id'] : null;
+
+$sqlCheckArticle = "SELECT article.article_id, article.author_id, article.status 
+    FROM article 
+    JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id 
+    WHERE article.author_id = :author_id 
+    AND article.article_id = :article_id 
+    AND reviewer_assigned.accept = 1 
+    AND reviewer_assigned.answer = 1
+    ORDER BY reviewer_assigned.date_issued ASC
+    LIMIT 1";
+
+$params = array('author_id' => $userId, 'article_id' => $articleId);
+
+$result = database_run($sqlCheckArticle, $params);
+
+if ($result !== false && !empty($result)) {
+    header('Location: index.php');
+    exit();
+} 
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +55,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
     <div class="step active" id="step1">
         <div class="main-container">
             <div class="content-over">
-                <div class="cover-content" style=" position: relative; width: 100%; background-size: cover; background-repeat: no-repeat;background-image: url('../images/background-spot.svg'); padding: 2em 1vw;">
+                <div class="cover-content" style=" position: relative; width: 100%; background-size: cover; background-repeat: no-repeat;background-image: url('../images/background-spot.svg'); padding: 2em 8%;">
                    
                     <p> Dashboard / Reviewer / Submitted Articles </p>
                         <p id="dTitle"> 
@@ -196,7 +215,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                                 
                             </p>
                         </div>
-                        <hr style="height: 2px; background-color: var(--main, #0858A4); width: 100%">
+                        <hr style="height: 1px; background-color: var(--main, #0858A4); width: 100%">
                         <p style="color: var(--main, #0858A4); font-family: 'Judson', serif; font-weight: 400; font-style: normal; font-size: 30px;" >Submitted in the 
                         <?php
                             $sqlJournal = "SELECT journal.journal, article.title FROM journal JOIN article ON journal.journal_id = article.journal_id JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id AND article.status = 4
@@ -441,7 +460,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 
         <div class="main-container">
             <div class="content-over">
-                <div class="cover-content" style=" position: relative; width: 100%; background-size: cover; background-repeat: no-repeat;background-image: url('../images/background-spot.svg'); padding: 2em 1vw;">
+                <div class="cover-content" style=" position: relative; width: 100%; background-size: cover; background-repeat: no-repeat;background-image: url('../images/background-spot.svg'); padding: 2em 8%;">
                     <p> Dashboard / Reviewer / Submitted Articles / Steps and Guideline</p>
                     <h3> Review Form Response </h3>
                 </div>
@@ -456,10 +475,10 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                     <!-- This is a Blank space -->
                 </div>
 
-                <div class="col-md-8 rev-guide" style="padding-top:20px;">
+                <div class="col-md-8 rev-guide" style="padding-top:50px;">
                     <h4>Review Steps</h4>
 
-                    <hr style="height: 2px; background-color: var(--main, #0858A4); width: 100%">
+                    <hr style="height: 1px; background-color: var(--main, #0858A4); width: 100%">
 
                     <ol>
                         <li> Consult Reviewer Guidelines below. </li>
@@ -497,7 +516,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 
 
                     <h4>Review Guidelines</h4>
-                    <hr style="height: 2px; background-color: var(--main, #0858A4); width: 100%">
+                    <hr style="height: 1px; background-color: var(--main, #0858A4); width: 100%">
                     <div class="guidelines">
                         <p>
                         The International Journal of Learning, Teaching and Educational Research values the role of reviewers in the peer-review process that enables us to publish high-quality materials in a timely way.
@@ -553,7 +572,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 
         <div class="main-container">
             <div class="content-over">
-                <div class="cover-content" style=" position: relative; width: 100%; background-size: cover; background-repeat: no-repeat;background-image: url('../images/background-spot.svg'); padding: 2em 1vw;">
+                <div class="cover-content" style=" position: relative; width: 100%; background-size: cover; background-repeat: no-repeat;background-image: url('../images/background-spot.svg'); padding: 2em 8%;">
                     <p> Dashboard / Reviewer / Submitted Articles / Steps and Guideline / Review Form</p>
                     <h3> Review Form Response </h3>
                 </div>
@@ -562,21 +581,17 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 
 
         <div class="container-fluid">
-            <div class="row">
+            <div class="row" style="background:var(--gray);">
                 <div class="col-md-2">
                     <!-- This is a Blank space -->
                 </div>
-
-
-
-                <div class="col-md-8 col-12" style="padding-top:20px;">
+                <div class="col-md-8 col-12" style="padding-top:50px;">
                     <!-- <h5 style="background-color:var(--main, #0858A4); color: white; padding:10px;" >Research Article Review Form</h5> -->
-                    <div class="contents">
+                    <div class="contents rounded p-5" style="background-color:white;">
                         <div class="row">
                             <div class="firstContent">
                                 <div class="col-md-12">
-                                <p class="mt-3 reviewFormTitle" id="reviewFormTitle">Research Review Form</p>
-
+                                <h4 class="reviewFormTitle" id="reviewFormTitle">Research Review Form</h4>
                                 <p id="title2">
                                     <?php 
                                         $sqlReviewraticle = "SELECT article.title 
@@ -600,6 +615,8 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                                 </p>
                                 </div>
 
+                                <hr style="height: 1px; background-color: #F5F5F9; width: 100%;">
+
                             <!-- Content for the left half of the screen -->
                                 <!-- <h4 class="mt-4">Note: </h4> -->
                                 
@@ -614,21 +631,24 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                                         if ($result) {
                                             foreach ($result as $row) {
                                                 $question = htmlspecialchars($row->question);
-                                                echo '<li class="list-group-item mt-5" style="list-style: none; padding-left: 5px; color: white; background-color: var(--main, #0858A4);; font-size: 20px; font-family: \'Raleway\', sans-serif;">' . $question . '</li>';
+                                                echo '<li class="list-group-item mt-5" style="list-style: none; color: var(--main, #0858A4);  padding: 10px; font-size: 18px; font-family: \'Raleway\', sans-serif;">' . $question . '</li>';
 
                                                 // Split the choices using commas
                                                 $choices = explode(',', $row->answer);
-
+                                                
                                                 // Display each choice as a radio button
+                                                echo '<div class="d-flex gap-4 choices">';
                                                 foreach ($choices as $choice) {
                                                     $uniqueId = htmlspecialchars(trim($choice)) . '_' . uniqid(); // Create a unique ID for each radio button
-                                                    echo '<input type="radio" name="answers[' . $question . ']" value="' . htmlspecialchars(trim($choice)) . '" id="' . $uniqueId . '" required class="custom-radio" style="margin-left: 10px; margin-top: 10px; display: inline-block">';
-                                                    echo '<label for="' . $uniqueId . '" style="font-size: small; color: gray; padding-left: 5px; font-family: \'Raleway\', sans-serif; ">' . htmlspecialchars(trim($choice)) . '</label><br>';
+
+                                                    echo '<label for="' . $uniqueId . '" style="font-size: small; color: gray; font-family: \'Raleway\', sans-serif; "> 
+                                                    ' . htmlspecialchars(trim($choice)) . ' <input type="radio" name="answers[' . $question . ']" value="' . htmlspecialchars(trim($choice)) . '" id="' . $uniqueId . '" required class="custom-radio" style="margin-top: 10px; display: inline-block"></label><br>';
                                                 }
-                                                
-                                                echo '<div class="form-floating mt-2">';
-                                                echo '<textarea class="form-control" name="comments[' . $question . ']" id="floatingTextarea" style="height: 150px; font-size: small; color: gray; width: 100%;"></textarea>';
-                                                echo '<label for="floatingTextarea">Additional comment</label>';
+                                                echo'</div>';
+
+                                                echo '<div class="form-floating mt-2" style="padding:10px;" >';
+                                                echo '<textarea class="form-control" name="comments[' . $question . ']" id="floatingTextarea" style="height: 120px; font-size: small; color: gray; width: 100%;"></textarea>';
+                                                echo '<label for="floatingTextarea" style="margin:10px;">Additional comment</label>';
                                                 echo '</div>';
                                             }
                                         } else {
@@ -797,7 +817,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 
                         </div>
 
-                        <hr style="height: 2px; background-color: var(--main, #0858A4); width: 100%;">
+                        <hr style="height: 1px; background-color: var(--main, #0858A4); width: 100%;">
 
                         <!-- <div class="decisions">
                             <h5>Decision:</h5>

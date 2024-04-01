@@ -44,6 +44,9 @@ switch ($action) {
     case 'assign_reviewer':
         sendEmailAssignReviewer();
         break;
+    case 'updateaccessible':
+        acceptReviewerAnswer();
+        break;
 }
 
 function sendEmail()
@@ -643,4 +646,74 @@ function addLogs($articleid, $fromuser, $message)
         // echo json_encode(['status' => false, 'message' => 'Failed to add record', 'error' => $errorInfo]);
         echo json_encode(['status' => false, 'message' => 'Failed to add record', 'error']);
     }
+}
+
+function acceptReviewerAnswer() { 
+    $reviewer_assigned_id = $_POST['reviewer_assigned_id'];
+    $author_id = $_POST['author_id'];
+    $article_id = $_POST['article_id'];
+    $comment_accessible = 1;
+
+    $pdo = connect_to_database();
+
+    if ($pdo) {
+        try {
+            $update_query = "UPDATE reviewer_assigned 
+                            SET comment_accessible = :comment_accessible
+                            WHERE reviewer_assigned_id = :reviewer_assigned_id";
+
+            $update_stmt = $pdo->prepare($update_query);
+            $update_stmt->bindParam(':reviewer_assigned_id', $reviewer_assigned_id, PDO::PARAM_INT);
+            $update_stmt->bindParam(':comment_accessible', $comment_accessible, PDO::PARAM_INT);
+            $update_check = $update_stmt->execute();
+
+            if ($update_check !== false) {
+                $author_query = "SELECT email FROM author WHERE author_id = :author_id";
+                $author_stmt = $pdo->prepare($author_query);
+                $author_stmt->bindParam(':author_id', $author_id, PDO::PARAM_INT);
+                $author_stmt->execute();
+                $author_result = $author_stmt->fetch(PDO::FETCH_ASSOC);
+
+                $article_query = "SELECT title FROM article WHERE article_id = :article_id";
+                $article_stmt = $pdo->prepare($article_query);
+                $article_stmt->bindParam(':article_id', $article_id, PDO::PARAM_INT);
+                $article_stmt->execute();
+                $article_result = $article_stmt->fetch(PDO::FETCH_ASSOC);
+
+                if ($author_result && $article_result) {
+                    $mail = new PHPMailer(true);
+
+                    $mail->isSMTP();
+                    $mail->Host = 'smtp.gmail.com';
+                    $mail->SMTPAuth = true;
+                    $mail->Username = 'qcujournal@gmail.com';
+                    $mail->Password = 'txtprxrytyqmloth';
+                    $mail->SMTPSecure = 'ssl';
+                    $mail->Port = 465;
+
+
+                    $mail->setFrom('qcujournal@gmail.com', 'QCU Journal');
+                    $mail->addAddress($author_result['email']); 
+                    $mail->Subject = 'Your article review is accepted';
+                    $mail->Body = 'Your article titled "'.$article_result['title'].'" has received a review and the answer is accepted. We appreciate your contribution to the quality of work that we publish.';
+                    $mail->isHTML(true); 
+
+                    $mail->send();
+
+                    echo json_encode(['status' => true, 'message' => 'Reviewer answer accepted successfully! Email sent to the author.']);
+                } else {
+                    echo json_encode(['status' => false, 'message' => 'Author email or article title not found.']);
+                }
+            } else {
+                echo json_encode(['status' => false, 'message' => 'Failed to accept review']);
+            }
+        } catch (PDOException $e) {
+            echo json_encode(['status' => false, 'message' => 'Database error: ' . $e->getMessage()]);
+        } catch (Exception $e) {
+            echo json_encode(['status' => false, 'message' => 'Email error: ' . $mail->ErrorInfo]);
+        }
+    } else {
+        echo json_encode(['status' => false, 'message' => 'Database connection error']);
+    }
+    exit;
 }

@@ -1,9 +1,40 @@
 <?php
+  include 'dbcon.php';
   session_start();
   if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
     header('Location: ./login.php');
     exit();
   }
+
+  $id = $_SESSION['id'];
+  
+  $sqlSelectProfile = "SELECT first_name, last_name, birth_date, gender, marital_status, orc_id, afiliations, position, field_of_expertise, country FROM author WHERE author_id = :author_id";
+
+  $resultProfile = database_run($sqlSelectProfile, array(':author_id' => $id));
+
+  if($resultProfile){
+    if(count($resultProfile) > 0){
+      $userProfile = $resultProfile[0];
+
+      $requiredFields = ['first_name', 'last_name', 'birth_date', 'gender', 'marital_status', 'orc_id', 'afiliations', 'position', 'field_of_expertise', 'country'];
+
+      $profileComplete = true;
+      foreach ($requiredFields as $field) {
+        if (empty($userProfile->$field)) {
+          $profileComplete = false;
+          break;
+        }
+      }
+      if ($profileComplete === false) {
+        header('Location: ./user-dashboard.php');
+      }
+    }else{
+      echo 'ERROR, Please provide us your profile details';
+    }
+  }else{
+    echo 'Something Went Wrong';
+  }
+
 ?>
 
 <!DOCTYPE html>

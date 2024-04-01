@@ -366,9 +366,9 @@ document.getElementById('saveButton').addEventListener('click', function(event){
                       text: 'ORCID invalid'
                   }).then((result) => {
                       if(result.isConfirmed){
-                        document.getElementById('editForm').style.display = 'none';
-                        cancelBtn.click();
-                        // document.getElementById('orcid').value = ''; // Reset the value of the input field
+                        // document.getElementById('editForm').style.display = 'none';
+                        // cancelBtn.click();
+                       
                       }
                   });
               } else {
@@ -389,9 +389,10 @@ document.getElementById('saveButton').addEventListener('click', function(event){
                                   text: response.message
                               }).then((result) => {
                                   if (result.isConfirmed) {
-                                      document.getElementById('editForm').style.display = 'none';
-                                      cancelBtn.click();
-                                      // document.getElementById('orcid').value = ''; // Reset the value of the input field
+                                    //   document.getElementById('editForm').style.display = 'none';
+                                    //   cancelBtn.click();
+                                    // orcid = ''; 
+                                   
                                   }
                               });
                           }

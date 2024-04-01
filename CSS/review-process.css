@@ -1,15 +1,15 @@
-.main-content{
+/* .main-content{
     position: relative;
     width: 100%;
     background-size: cover;
     background-repeat: no-repeat;
     background-image: url("../images/background-spot.svg");
-    padding: 2em 1vw;
+    padding: 2em 8%;
     font-size: 20px;
     color: #285581;
     line-height: 1.6;
     /* height: 20vh; */
-}
+
 
 
 
@@ -182,7 +182,7 @@
 
 .rev-guide ol, .rev-guide li {
     font-family: 'Raleway', sans-serif;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .rev-guide h4{
@@ -201,7 +201,7 @@
 .rev-guide li {
     width: 100%;
     padding: 5px;
-    margin-bottom: 10px;
+    /* margin-bottom: 10px; */
     position: relative;
     padding-left: 1.7em;
 }
@@ -253,7 +253,7 @@
 
 .guidelines p{
     font-family: 'Raleway', sans-serif;
-    font-size: 18px;
+    font-size: 16px;
     text-align: justify; 
     width: 94%; 
     margin: 0 auto; 
@@ -270,8 +270,7 @@
 
 
 .contents{
-    border: gray 1px solid;
-    margin-top: -10px;
+    /* border: gray 1px solid; */
     margin-bottom: 20px;
 }
 
@@ -395,10 +394,10 @@
     font-family: 'Raleway', sans-serif;
     font-weight: bold;
     font-style: normal;
-    font-size: 25px;
+    font-size: 20px;
     color: #0858A4;
     width: 90%;
-    margin-left: 40px;
+    /* margin-left: 40px; */
     
   }
   
@@ -407,10 +406,10 @@
     color: #0858A4;
     font-weight: 400;
     font-style: normal;
-    font-size: 20px;
+    font-size: 16px;
     width: 90%;
-    margin-top: -15px;
-    margin-left: 40px;
+    /* margin-top: -15px; */
+    /* margin-left: 40px; */
     
   }
 
@@ -429,10 +428,16 @@
 }
 
 .questionsAnswer{
-    width: 60%;
+    /* width: 60%; */
     margin-left: auto;
     margin-right: auto;
 }
+
+/* .questionsAnswer label{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+} */
 
 .custom-radio {
     -webkit-appearance: none;
@@ -441,7 +446,7 @@
     width: 20px;
     height: 20px;
     border: 2px solid #555;
-    border-radius: 0; /* Ensure square shape */
+    border-radius: 100%; /* Ensure square shape */
     outline: none;
 }
 
@@ -484,3 +489,19 @@
     cursor: pointer;
 }
 
+.choices{
+    margin-left: 30px;
+}
+
+.choices label, .choices input{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media screen and (max-width: 768px){
+    .choices{
+        flex-direction: column;
+        margin-left: 0;
+    }
+}
