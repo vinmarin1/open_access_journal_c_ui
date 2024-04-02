@@ -57,7 +57,7 @@ body {
 }
 
 .profile-pic {
-    /* display: block; */
+    display: block;
     width: 150px;
     height: 150px;
     border-radius: 50%;
@@ -723,7 +723,8 @@ label {
 #contribution-record-container {
     width: 100%;
     max-width: 300px;
-    margin-top: 5px;
+    /* margin-top: 5px; */
+    padding-top: 10px;
 }
 
 .stats-section {
@@ -843,9 +844,9 @@ label {
 }
 
 #badges-container {
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    padding: 0px 15px 20px 15px;
+    /* border: 1px solid #e0e0e0; */
+    /* border-radius: 8px; */
+    /* padding: 0px 15px 20px 15px; */
     /* margin-right: 10px; */
     width: 100%;
     max-width: 100%;
@@ -855,7 +856,7 @@ label {
 
 #badges-container h3 {
     /* font-size: 25px; */
-    margin: 20px;
+    /* margin: 20px; */
     font-weight: bold;
     text-align: left;
 }
@@ -945,7 +946,8 @@ label {
 .credit-container {
     /* border: 1px solid #e0e0e0;
     border-radius: 10px; */
-    padding: 20px;
+    padding: 10px;
+    width: 100%;
 }
 .header-badges,
 .publications-achievements,
@@ -965,6 +967,7 @@ label {
     /* font-size: 24px; */
     color: #285581;
     margin: 0;
+    font-weight: bold;
 }
 
 .sort-container {
@@ -1002,7 +1005,9 @@ label {
     color: black;
     font-weight: bold;
     margin-bottom: 10px;
-    font-weight: bold
+    font-weight: bold;
+    width: max-content;
+    cursor: default;
 }
 
 .credit-history-row {
@@ -1013,7 +1018,7 @@ label {
 }
 
 .table-container {
-    max-height: 300px;
+    max-height: 400px;
     overflow-y: auto; 
     border: 1px solid #e0e0e0;
     border-radius: 8px;
@@ -1327,7 +1332,7 @@ label {
 }
 
 .published-articles {
-    display: block;
+    display: none;
 }
 
 .recommendation-article {
@@ -1871,23 +1876,22 @@ dfn:hover::before {
 
 .totalLikes{
     font-weight: bold;
+    margin-bottom: 5px;
+    width: max-content;
+    cursor: default;
 }
 
 .hoverPoints{
     display: none;
-    width: 10%;
+    /* width: 15%; */
     border: 1px solid;
     height: auto;
-    /* display: flex; */
     align-content: center;
-    /* flex-wrap: wrap; */
-    padding-left: 15px;
-    /* justify-content: center; */
-    /* justify-items: center; */
+    padding: 5px;
     position: absolute;
-    margin-top: -70px;
-    margin-left: 120px;
-    border-radius: 10px;
+    margin-top: -3%;
+    margin-left: 7%;
+    /* border-radius: 10px; */
     background-color: rgb(0 0 0 / 79%);
 }
 
@@ -1897,9 +1901,10 @@ dfn:hover::before {
 }
 
 .hoverPoints::before {
+    display: none;
     content: '';
     position: absolute;
-    top: 32%;
+    top: 50%;
     right: 100%;
     margin-top: -5px;
     width: 0;
@@ -1908,7 +1913,7 @@ dfn:hover::before {
     border-right: 5px solid rgb(0 0 0 / 79%);
     border-bottom: 5px solid transparent;
 }
-
+.hoverS,
 .pointsH{
     display: block;
     font-family: arial;
@@ -1918,19 +1923,22 @@ dfn:hover::before {
 
 .hoverSupport{
     display: none;
-    width: 12%;
+    height: auto;
+    /* width: 15%; */
     background-color: rgb(0 0 0 / 79%);
-    border-radius: 10px;
+    /* border-radius: 10px; */
     padding-left: 5px;
+    padding: 5px;
     position: absolute;
-    margin-left: 55px;
-    margin-top: -25px;
+    margin-top: -3%;
+    margin-left: 7%;
 }
 
 .hoverSupport::before {
+    display: none;
     content: '';
     position: absolute;
-    top: 52%;
+    top: 50%;
     right: 100%;
     margin-top: -5px;
     width: 0;
@@ -1938,16 +1946,9 @@ dfn:hover::before {
     border-top: 5px solid transparent;
     border-right: 5px solid rgb(0 0 0 / 79%);
     border-bottom: 5px solid transparent;
-    margin-left: 3px;
 }
 
 .totalLikes:hover + .hoverSupport,
 .fa-heart:hover + .hoverSupport {
     display: block;
-}
-
-
-
-.hoverS{
-    color: white;
 }

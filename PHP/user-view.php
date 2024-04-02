@@ -8,8 +8,7 @@ session_start();
 // 	exit();
 //   }
 
-  $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
-
+$orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
 
 
 ?>
@@ -19,8 +18,13 @@ session_start();
 <head>
     <?php include('./meta.php'); ?>
     <title>Pahina | AUTHOR PROFILE</title>
+    <link rel="stylesheet" href="../CSS/user-dashboard.css">
     <link rel="stylesheet" href="../CSS/user-view.css">
     <link rel="stylesheet" href="../CSS/index.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400&display=swap">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="header-container" id="header-container">
@@ -73,8 +77,9 @@ session_start();
                     
                         echo '<img src="' . $profilePicPath . '" alt="Profile Picture" style="width: 150px; height: 150px">';
                     } else {
-                        
-                        echo '<img src="../images/profile.jpg" alt="Profile Picture" class="profile-pic" style="width: 150px; height: 150px">';
+                        echo '<div class="profile-pic-container">';
+                        echo '<img src="../images/profile.jpg" alt="Profile Picture" class="profile-pic" id="profileImage">';
+                        echo '</div>';
                     }
                     ?>
 				</div>
@@ -576,7 +581,7 @@ session_start();
 				<div class="profile-main">
 					<!-- Detailed Info -->
 					<div class="details">
-						<p><span class="label">Position:</span>
+						<p><span class="label">Position:</span><span id="positionLabel">
                             <?php 
                 
                                 $result = database_run("SELECT position, public_private_profile  FROM author WHERE orc_id = :orc_id", array('orc_id' => $orcid));
@@ -595,8 +600,8 @@ session_start();
                                     echo '';
                                 }
                             ?>
-                        </p>
-						<p><span class="label">Gender:</span>
+                        </span></p>
+						<p><span class="label">Gender:</span> <span id="genderLabel">
                         <?php 
                 
                             $result = database_run("SELECT gender, public_private_profile FROM author WHERE orc_id = :orc_id", array('orc_id' => $orcid));
@@ -614,8 +619,8 @@ session_start();
                             }
                         ?>
                                 
-                        </p>
-						<p><span class="label">Birthday:</span>
+                        </span></p>
+						<p><span class="label">Birthday:</span> <span id="birthdayLabel">
                         <?php 
                 
                             $result = database_run("SELECT birth_date, public_private_profile FROM author WHERE orc_id = :orc_id", array('orc_id' => $orcid));
@@ -632,8 +637,8 @@ session_start();
                                 echo '';
                             }
                         ?>
-                        </p>
-						<p><span class="label">Country:</span>
+                        </span></p>
+						<p><span class="label">Country:</span> <span id="countryLabel">
                         <?php 
                 
                             $result = database_run("SELECT country, public_private_profile FROM author WHERE orc_id = :orc_id", array('orc_id' => $orcid));
@@ -650,8 +655,8 @@ session_start();
                                 echo '';
                             }
                         ?>
-                        </p>
-						<p><span class="label">ORCID:</span>
+                        </span></p>
+						<p><span class="label">ORCID:</span> <span id="orcidLabel">
                         <?php 
                 
                             $result = database_run("SELECT orc_id, public_private_profile FROM author WHERE orc_id = :orc_id", array('orc_id' => $orcid));
@@ -668,7 +673,7 @@ session_start();
                                 echo '';
                             }
                         ?>
-                        </p>
+                        </span></p>
 					</div>
 				</div>
 			</div>
@@ -676,69 +681,70 @@ session_start();
         <section class="expertise">
 			<!-- Expertise info here -->
 			<div class="tab">
-				<button class="tablinks active" onclick="openTab(event, 'About')" id="defaultOpen">About</button>
-				<button class="tablinks" onclick="openTab(event, 'PublishedArticles')">Published Articles</button>
+			    <button class="tablinks" onclick="openTab(event, 'About')" id="defaultOpen">About</button>
+				<button class="tablinks" onclick="openTab(event, 'Attainments')">Attainments</button>
+                <button class="tablinks" onclick="openTab(event, 'Publications')">Publications</button>
 			</div>
 
 
 			<div id="About" class="tabcontent" style="display: block;">
 				<div id="about-container">
 					<div id="logrecord-container">
-						<div class="log-box">Joined in community since:
-                        <?php
-                        $result = database_run("SELECT date_added FROM author WHERE orc_id = :orc_id", array('orc_id' => $orcid));
+						<div class="log-box"><h3>Join In Community Since:</h3>
+                            <?php
+                                $result = database_run("SELECT date_added FROM author WHERE orc_id = :orc_id", array('orc_id' => $orcid));
 
-                        if ($result !== false && !empty($result)) {
-                            $date_added = $result[0]->date_added;
+                                if ($result !== false && !empty($result)) {
+                                    $date_added = $result[0]->date_added;
 
-                            $formattedDate = date("F j, Y", strtotime($date_added));
-                            
-                            echo $formattedDate;
-                        } else {
-                            echo "";
-                        }
-                        ?>
-
-                        </div>
-						<div class="log-box">
-                        <?php
-                            $result = database_run("SELECT MIN(article.date_added) AS oldest_date FROM article JOIN author ON article.author_id = author.author_id WHERE author.orc_id = :orc_id", array('orc_id' => $orcid));
-
-                            if ($result !== false && !empty($result)) {
-                                $oldestDate = $result[0]->oldest_date;
-
-                            
-                                $formattedDate = date("F j, Y", strtotime($oldestDate));
-                                
-                                echo "Author since: $formattedDate";
-                            } else {
-                                echo "This author has not submitted any article yet";
-                            }
-                        ?>
+                                    $formattedDate = date("F j, Y", strtotime($date_added));
+                                    
+                                    echo $formattedDate;
+                                } else {
+                                    echo "";
+                                }
+                            ?>
 
                         </div>
 						<div class="log-box">
-                        <?php
-                            $result = database_run("SELECT MIN(date_issued) AS oldest_date FROM reviewer_assigned JOIN author ON reviewer_assigned.author_id = author.author_id WHERE author.orc_id = :orc_id", array('orc_id' => $orcid));
+                            <?php
+                                $result = database_run("SELECT MIN(article.date_added) AS oldest_date FROM article JOIN author ON article.author_id = author.author_id WHERE author.orc_id = :orc_id", array('orc_id' => $orcid));
 
-                            if ($result !== false && !empty($result) && !empty($result[0]->oldest_date)) {
-                                $oldestDate = $result[0]->oldest_date;
+                                if ($result !== false && !empty($result)) {
+                                    $oldestDate = $result[0]->oldest_date;
 
-                                $formattedDate = date("F j, Y", strtotime($oldestDate));
                                 
-                                echo "Reviewer since:  $formattedDate ";
-                            } else {
-                                echo 'This author has not reviewed any article yet';
-                            }
-                        ?>
+                                    $formattedDate = date("F j, Y", strtotime($oldestDate));
+                                    
+                                    echo "<h3>Author Since:</h3> $formattedDate";
+                                } else {
+                                    echo "This author has not submitted any article yet";
+                                }
+                            ?>
 
+                        </div>
+						<div class="log-box">
+                            <h3>Reviewer Since: </h3> 
+                            <?php
+                                $result = database_run("SELECT MIN(date_issued) AS oldest_date FROM reviewer_assigned JOIN author ON reviewer_assigned.author_id = author.author_id WHERE author.orc_id = :orc_id", array('orc_id' => $orcid));
+
+                                if ($result !== false && !empty($result) && !empty($result[0]->oldest_date)) {
+                                    $oldestDate = $result[0]->oldest_date;
+
+                                    $formattedDate = date("F j, Y", strtotime($oldestDate));
+                                    
+                                    echo "<p class='date'>$formattedDate</p>";
+                                } else {
+                                    echo 'This author has not reviewed any article yet';
+                                }
+                            ?>
                         </div>
 					</div>
 					<div id="info-container">
 						<div class="info-box">
 							<div class="bio-container">
-								<p>Bio </p>
-								<hr>
+                                <h3>Bio </h3>
+								<!-- <hr> -->
 								<p>
                                 <?php 
                 
@@ -761,8 +767,8 @@ session_start();
 						</div>
 						<div class="info-box">
 							<div class="expertise-container">
-								<p>Expertise </p>
-								<hr>
+                                <h3>Expertise </h3>
+								<!-- <hr> -->
 								<p>
                                 <?php 
                 
@@ -786,12 +792,58 @@ session_start();
 					</div>
 				</div>
 			</div>
-            <div id="PublishedArticles" class="tabcontent">
-                <div class="published-articles">
+            <div id="Publications" class="tabcontent">
+                <div class="publications-container">
+                    <div class="header-achievements">
+                        <h3>Published Articles</h3>
+                    </div>
+                    <div class="table-container">
+                        <table class="publications-table">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Date</th>
+                                    <th>Views</th>
+                                    <th>Support</th>
+                                    <th>Contributors</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>							
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="publications-container">
+                    <div class="header-achievements">
+                        <h3>Contributed Articles</h3>
+                    </div>
+                    <div class="table-container">
+                        <table class="publications-table">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Date</th>
+                                    <th>Views</th>
+                                    <th>Support</th>
+                                    <th>Contributors</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>							
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div id="PublishedArticles" class="tabcontent" display="none">
+                <div class="publications-articles">
                     <div class="stats-main">
-                        <div class="stats-container">
+                        <div class="publications-stats-container">
                             <div class="stat">
-                                <div class="stats-values">
+                                <div class="publications-stats-values">
                                     <?php
                                         $sql = "SELECT author.author_id, author.orc_id, logs.article_id, logs.type FROM author JOIN article ON author.author_id = article.author_id JOIN logs ON article.article_id = logs.article_id WHERE author.orc_id = :orc_id AND logs.type = 'read';
                                         ";
@@ -808,7 +860,7 @@ session_start();
                                     
                                     ?>
                                 </div>
-                                <div class="stats-labels">Views</div>
+                                <div class="publications-stats-labels">Views</div>
                             </div>
                             <div class="stat">
                                 <div class="stats-values">
@@ -880,7 +932,7 @@ session_start();
                         </div>
                     </div>
 
-                    <div class="table-container">
+                    <div class="publications-table-container">
                         <table>
                             <thead>
                                 <tr>
@@ -970,7 +1022,157 @@ session_start();
                     </div>
                 </div>
             </div>
+            <div id="Attainments" class="tabcontent">
+                <div id="attainments-container">
+                    <div id="contribution-container">
+                        <div id="contribution-record-container">
+                            <div id="badges-container">
+                                <div class="header-badges">
+                                    <h3>Badges</h3>
+                                </div>
+                                <div class="badge-box-container">
+                                    <div class="xp-container">
+                                        <!-- XP Bar -->
+                                        <!-- <div class="xp-bar">
+                                            <div class="progress-bar">
+                                                <div class="progress" style="width: 66.7%;"></div>
+                                            </div>
+                                            <span class="xp-label">8/12</span>
+                                        </div> -->
+                                        
+                                    </div>
 
+
+                                                
+                                    <!-- <div class="badge-box" style="background-image: url('../images/badge1.jpg');"></div>
+                                    <div class="badge-box" style="background-image: url('../images/badge2.jpg');"></div>
+                                    <div class="badge-box" style="background-image: url('../images/badge3.jpg');"></div>
+                                    <div class="badge-box" style="background-image: url('../images/badge3.jpg');"></div>
+                                    <div class="badge-box" style="background-image: url('../images/badge2.jpg');"></div>
+                                    <div class="badge-box" style="background-image: url('../images/badge1.jpg');"></div>
+                                    <div class="badge-box" style="background-image: url('../images/badge1.jpg');"></div>
+                                    <div class="badge-box" style="background-image: url('../images/badge2.jpg');"></div>
+                                    <div class="badge-box" style="background-image: url('../images/badge3.jpg');"></div>
+                                    <div class="badge-see-more"> -->
+                                        <!-- <button class="btn btn-primary btn-md btn-seemore" id="see-more">See more</button> -->
+                                    <!-- </div> -->
+                                </div>	
+                            </div>
+                            <div class="stats-section">
+                                <div class="stat-card top-card">
+                                <h2>Total Contributions</h2>
+                                <p>
+                                    <span class="increase"></span>
+                                </p>
+
+
+
+                                </div>
+                            </div>
+                            <div class="stats-section">
+                                <div class="stat-card top-card">
+                                    <h2>Total Reviewed</h2>
+                                    <p>
+                                    <span class="increase">
+                                    
+                                    </span></p>
+                                </div>
+                            </div> 
+                            <div class="stats-section">
+                                <div class="stat-card top-card">
+                                    <h2>Total Submissions</h2>
+                                    <p>
+                                    <span class="increase">
+                                    </span></p>
+                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="vertical-line"></div>
+                        <div class="credit-container">
+                            <div class="header-achievements">
+                                <h3>Achievements</h3>
+                            </div>
+                            <div class="sort-container d-flex flex-column gap-2">
+                                <!-- <div class="sort-header">
+                                    <span class="sort-by-text" style="color: var(--main, #0858A4);">Sort by</span>
+                                    <span class="sort-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                                            <path fill="#e6e6e6" d="M11 7H1l5 7zm-2 7h10l-5-7z" />
+                                        </svg>
+                                    </span>
+                                    <select id="sortby" name="sortby" class="sort-dropdown form-select form-select-sm px-8">
+                                        <option value="" hidden>Recently added</option>
+                                        <option value="title">Title</option>
+                                        <option value="recently_added">Recently added</option>
+                                        <option value="publication-date">Publication Date</option>
+                                        <optgroup label="Popularity">
+                                            <option value="popular">All</option>
+                                            <option value="views">Views</option>
+                                            <option value="downloads">Downloads</option>
+                                            <option value="citations">Citations</option>
+                                        </optgroup>
+                                    </select>
+                                </div> -->
+                            </div>
+                            <div class="table-container">
+                                <table class="achievements-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Details</th>
+                                            <th>Journal</th>
+                                            <th>Date</th>
+                                            <th>Reward</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- <div id="graph-container">
+                            <h3>Contributions Graph</h3>
+                            <?php
+                                $sqlViews = "SELECT MONTH(logs.date) AS month, COUNT(*) AS views
+                                            FROM logs
+                                            RIGHT JOIN article ON logs.article_id = article.article_id
+                                            WHERE article.author_id = :author_id AND logs.type = 'read'
+                                            GROUP BY MONTH(logs.date)";
+
+                                $sqlDownloads = "SELECT MONTH(logs.date) AS month, COUNT(*) AS downloads
+                                                FROM logs
+                                                RIGHT JOIN article ON logs.article_id = article.article_id
+                                                WHERE article.author_id = :author_id AND logs.type = 'download'
+                                                GROUP BY MONTH(logs.date)";
+
+                                $params = array('author_id' => $id);
+
+                                $viewsData = database_run($sqlViews, $params);
+                                $downloadsData = database_run($sqlDownloads, $params);
+
+                                // Initialize data arrays with default values
+                                $allMonthsData = array_fill(1, 12, 0);
+                                $allDownloadsData = array_fill(1, 12, 0);
+
+                                // Populate fetched data into respective arrays
+                                if ($viewsData !== false) {
+                                    foreach ($viewsData as $monthData) {
+                                        $allMonthsData[$monthData->month] = $monthData->views;
+                                    }
+                                }
+
+                                if ($downloadsData !== false) {
+                                    foreach ($downloadsData as $monthData) {
+                                        $allDownloadsData[$monthData->month] = $monthData->downloads;
+                                    }
+                                }
+                            ?>
+
+                            <canvas id="articlesChart" width="400" height="120"></canvas>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
             
 		</section>
     </div>
