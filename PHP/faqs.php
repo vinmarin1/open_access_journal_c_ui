@@ -33,20 +33,25 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
     </div>
 
     <main class="d-flex flex-column-reverse flex-md-row gap-2">
-    <aside class="">
-        <div class="menu" id="for-contributors-menu">
-            <!-- <h3 data-target="frequently-asked-questions">Frequently Asked Questions</h3> -->
-            <!-- <h3>For Contributors</h3> -->
-            <ul id="for-contributors">
-            <li class="faq-toggle" id="author-guidelines" data-target="author-guidelines">Author Guidelines</li>
-                <li class="faq-toggle" data-target="article-submission">Article Submission</li>
-                <li class="faq-toggle" data-target="peer-review-process">Peer-review Process</li>
-                <li class="faq-toggle" id="become-a-reviewer" data-target="become-a-reviewer">Become A Reviewer</li>
-                <li class="faq-toggle" data-target="tutorial-on-publication">Tutorial on Publication</li>
-                <li class="faq-toggle" data-target="tutorial-on-review">Tutorial on Review</li>
-                <li class="faq-toggle" data-target="templates-for-author">Templates for Author</li>
-                <li class="faq-toggle" data-target="publication-policy">Publication Policy</li>
-                <li class="faq-toggle" data-target="frequently-asked-questions">FAQs</li>
+        <aside class="">
+            <div class="menu" id="for-contributors-menu">
+                <!-- <h3 data-target="frequently-asked-questions">Frequently Asked Questions</h3> -->
+                <!-- <h3>For Contributors</h3> -->
+                <ul id="for-contributors">
+                    <li><b>Guidelines</b></li>
+                    <li class="faq-toggle" id="author-guidelines"><a href="guidelines.php#author-guidelines">Author Guidelines</a></li>
+                    <li class="faq-toggle"><a href="guidelines.php#templates-for-author">Templates for Author</a></li>
+                    <li class="faq-toggle"><a href="guidelines.php#publication-policy">Publication Policy</a></li>
+                    <li class="faq-toggle"><a href="guidelines.php#article-submission">Article Submission</a></li>
+                    <li class="faq-toggle"><a href="guidelines.php#peer-review-process">Peer-review Process</a></li>
+                    <li class="faq-toggle" id="become-a-reviewer"><a href="guidelines.php#become-a-reviewer">Become A Reviewer</a></li>
+                    <hr/>
+    
+                    <li><b>Tutorials</b></li>
+                    <li class="faq-toggle" data-target="tutorial-on-publication"><a href="tutorials.php#tutorial-on-publication">Tutorial on Publication</a></li>
+                    <li class="faq-toggle" data-target="tutorial-on-review"><a href="tutorials.php#tutorial-on-review">Tutorial on Review</a></li>
+                    <hr/>
+                    <!-- <li class="faq-toggle" data-target="frequently-asked-questions">FAQs</li> -->
                 </ul>
             </div>           
         </aside>
@@ -80,7 +85,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
             </div>
             
         </div>
-    <div class="main" id="author-guidelines-container" style="display: none;">
+    <!-- <div class="main" id="author-guidelines-container" style="display: none;">
         <div class="header">
         <h2>Author Guidelines</h2>
         </div>
@@ -680,7 +685,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     Prevention Act of 2012, and the Intellectual Property Code.</p>
             </div>
     </div>
-</div>
+</div> -->
     </main>
 
     <div class="footer" id="footer">

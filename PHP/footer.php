@@ -29,8 +29,9 @@
               <li><a href="/">Home</a></li>
               <li><a href="general-info.php">About Pahina</a></li>
               <li><a href="announcement.php">Announcements</a></li>
-              <li><a href="donation.php">Donation</a></li>
               <li><a href="browse-articles.php">Browse articles</a></li>
+              <li><a href="contact-us.php">Contact us</a></li>
+              
             </ul>
           </div>
           <div class="col-xs-6 col-md-2">

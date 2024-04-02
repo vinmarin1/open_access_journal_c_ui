@@ -8,12 +8,11 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pahina | GUIDELINES</title>
+    <title>Pahina | Guidelines</title>
     <link rel="stylesheet" href="../CSS/faqs.css">
     <link rel="stylesheet" href="../CSS/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
 </head>
 
 <body>
@@ -28,8 +27,8 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
 
     <div class="content-over">
         <div class="cover-content">
-            <p>Home / Guidelines / For Contributors</p>
-            <h1 id="guideline-title">Author Guidelines</h1>
+            <p>Home / Guidelines</p>
+            <h1>Guidelines</h1>
         </div>
     </div>
 
@@ -38,16 +37,21 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
         <div class="menu" id="for-contributors-menu">
             <!-- <h3>For Contributors</h3> -->
             <ul id="for-contributors">
-                <li class="faq-toggle" id="author-guidelines" data-target="author-guidelines">Author Guidelines</li>
-                <li class="faq-toggle" data-target="article-submission">Article Submission</li>
-                <li class="faq-toggle" data-target="peer-review-process">Peer-review Process</li>
-                <li class="faq-toggle" id="become-a-reviewer" data-target="become-a-reviewer">Become A Reviewer</li>
-                <li class="faq-toggle" data-target="tutorial-on-publication">Tutorial on Publication</li>
-                <li class="faq-toggle" data-target="tutorial-on-review">Tutorial on Review</li>
-                <li class="faq-toggle" data-target="templates-for-author">Templates for Author</li>
-                <li class="faq-toggle" data-target="publication-policy">Publication Policy</li>
-                <li class="faq-toggle" data-target="frequently-asked-questions">FAQs</li>
-                </ul>
+                <li><b>Guidelines</b></li>
+                <li class="faq-toggle" id="author-guidelines" data-target="author-guidelines"><a href="guidelines.php#author-guidelines">Author Guidelines</a></li>
+                <li class="faq-toggle" data-target="templates-for-author"><a href="guidelines.php#templates-for-author">Templates for Author</a></li>
+                <li class="faq-toggle" data-target="publication-policy"><a href="guidelines.php#publication-policy">Publication Policy</a></li>
+                <li class="faq-toggle" data-target="article-submission"><a href="guidelines.php#article-submission">Article Submission</a></li>
+                <li class="faq-toggle" data-target="peer-review-process"><a href="guidelines.php#peer-review-process">Peer-review Process</a></li>
+                <li class="faq-toggle" id="become-a-reviewer" data-target="become-a-reviewer"><a href="guidelines.php#become-a-reviewer">Become A Reviewer</a></li>
+                <hr/>
+
+                <li><b>Tutorials</b></li>
+                <li class="faq-toggle"><a href="tutorials.php#tutorial-on-publication">Tutorial on Publication</a></li>
+                <li class="faq-toggle"><a href="tutorials.php#tutorial-on-review">Tutorial on Review</a></li>
+                <hr/>
+                <a href="faqs.php"><li class="faq-toggle" data-target="frequently-asked-questions"><b>FAQs</b></li></a>
+            </ul>
             </div>           
         </aside>
     <div class="main" id="author-guidelines-container">
