@@ -1,14 +1,3 @@
-/* .main-content{
-    position: relative;
-    width: 100%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-image: url("../images/background-spot.svg");
-    padding: 2em 8%;
-    font-size: 20px;
-    color: #285581;
-    line-height: 1.6;
-    /* height: 20vh; */
 #dTitle{
     font-family: 'Raleway', sans-serif;
     font-weight: bold;
@@ -17,10 +6,10 @@
 }
 
 #dAbstractTitle, #fileSTitle{
-    font-family: 'Raleway', sans-serif;
+    /* font-family: 'Raleway', sans-serif; */
     font-weight: 400;
     font-style: normal;
-    font-size: 30px;
+    /* font-size: 30px; */
     color:#0858A4;    
 }
 
@@ -32,16 +21,13 @@
     padding-left: 5px;
 }
 
-#step1Content2 {
-    margin-left: 107px;
-}
 
 #step1Content{
-    width: 50%;
+    width: 65%;
 }
 
 #step1Content2 {
-    width: 40%;
+    width: 30%;
 }
 
 @media screen and (max-width: 767px){
@@ -59,15 +45,6 @@
     font-size: 18px;
 }
 
-/* .content-over::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #F9F9F9;
-} */
 
 .content-over p, .content-over h3 {
     color: var(--main, #0858A4); 
@@ -89,7 +66,7 @@
 }
 
 .abstract{
-    padding-top: 40px;
+    /* padding-top: 40px; */
     display: inline-block;
     width: 100%;
     margin-bottom: 50px;
@@ -112,7 +89,7 @@
     border-radius: 50px;
     padding: 5px;
     font-size: small;
-    margin-top: 20px;
+    /* margin-top: 20px; */
 }
 
 
@@ -162,9 +139,9 @@
     text-decoration: none;
 }
 
-.logs-date, .date{
+/* .logs-date, .date{
     font-family: 'Raleway', sans-serif;
-}
+} */
 
 .keywords .btn{
     display:flex ;
@@ -233,29 +210,24 @@
     width: 100%;
 }
 
-
-.logs-date,
-.date {
+#allLogs{
     height: 300px;
-    width: 195px;
+    /* width: 195px; */
     overflow-y: auto; 
     scrollbar-width: thin; /* Firefox */
     scrollbar-color: transparent transparent; /* Firefox */
 }
 
 /* Hide scrollbar for Chrome, Safari, and Edge */
-.logs-date::-webkit-scrollbar,
-.date::-webkit-scrollbar {
+#allLogs::-webkit-scrollbar {
     width: 0em;
 }
 
-.logs-date::-webkit-scrollbar-thumb,
-.date::-webkit-scrollbar-thumb {
+#allLogs::-webkit-scrollbar-thumb{
     background-color: transparent;
 }
 
-.logs-date::-webkit-scrollbar-track,
-.date::-webkit-scrollbar-track {
+#allLogs::-webkit-scrollbar-track{
     background-color: transparent;
 }
 
@@ -331,7 +303,7 @@
     background-color: var(--main, #0858A4);
     border-radius: 20px;
     margin-top: 20px;
-    width: 340px;
+    /* width: 340px; */
 }
 
 .btn-action button{
@@ -355,6 +327,7 @@
 
 #step1button{
     padding: 0;
+    width: 100%;
 }
 
 #btnReject , #btnCancel{

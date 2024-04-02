@@ -87,9 +87,9 @@ if ($result !== false && !empty($result)) {
 
 
         <div class="container-fluid">
-        <div class="row" style="padding: 2em 8%;" >
+        <div class="row justify-content-between" style="padding: 2em 8%;" >
             <div class="column" id="step1Content">
-                <div class="col-md-12 abstract" style="padding-top:20px; height: auto"> 
+                <div class="col-md-12 abstract" style="height: auto"> 
                
 
                     <?php
@@ -150,7 +150,7 @@ if ($result !== false && !empty($result)) {
                 ?>
                 </p> -->
 
-                    <p id="dAbstractTitle">Abstract</p>
+                    <h3 id="dAbstractTitle">Abstract</h3>
                     <p id="dAbstract">
                     <?php 
                     $sqlReviewraticle = "SELECT article.abstract 
@@ -185,7 +185,7 @@ if ($result !== false && !empty($result)) {
                 <div class="col-md-12">
                     <div class="table-container">
                         <!-- <h5>Files Submitted</h5> -->
-                        <p id="fileSTitle">Files Submitted</p>
+                        <h3 id="fileSTitle">Files Submitted</h3>
                         <table class="table table-hover" id="table-file" style="border-collapse: separate; border-spacing: 10px 10px 10px 10px;">
                             <thead>
                                 <tr>
@@ -269,7 +269,7 @@ if ($result !== false && !empty($result)) {
                 <div class="col-md-12">
 
                 <div class="keywords">
-                    <p style="margin-top: 20px; margin-bottom: 10px; color: #285581;  font-family: 'Raleway', sans-serif; font-weight: 400; font-style: normal; font-size: 30px; ">Keywords</p>
+                    <h3 style="margin-top: 20px; margin-bottom: 10px; color: #285581; font-weight: 400; font-style: normal; ">Keywords</h3>
                     <div class="keyword1">
                     <ul style="display: flex;">
                         <?php
@@ -289,6 +289,7 @@ if ($result !== false && !empty($result)) {
                                                     border: 1px solid var(--main, #0858A4);
                                                     border-radius: 10px;
                                                     background-color: white;
+                                                    padding:3px;
                                                     font-size: 12px;">' . trim($keyword) . '</li>';
                                 }
                                 
@@ -309,7 +310,28 @@ if ($result !== false && !empty($result)) {
                 
             <div class="column" id="step1Content2">
                 <div class="col-md-12">
-                        <div style="padding-right: 50px;" >
+                    <div>
+                        <div class="btn" id="step1button">
+                            <button type="button" class="btn tbn-primary btn-md nextBtn" id="acceptBtn"  onclick="nextStep()" >Accept</button>
+                            <button type="button"  id="btnReject" class="btn tbn-primary btn-md" onclick="rejectInvitation('<?php echo $articleId; ?>')">Decline</button>
+                        </div>
+                            <h3 style="color: var(--main, #0858A4); font-weight: 400; font-style: normal; padding-top: 30px;" >Submitted in the 
+                            <?php
+                                $sqlJournal = "SELECT journal.journal, article.title FROM journal JOIN article ON journal.journal_id = article.journal_id JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id AND article.status = 4
+                                AND reviewer_assigned.author_id = :author_id AND article.article_id = :article_id";
+
+                                $result = database_run($sqlJournal, array('author_id' => $userId,
+                                    'article_id' => $articleId));
+
+                                if ($result !== false) {
+                                foreach ($result as $row) {
+                                echo $row->journal;
+                                }
+                                } else {
+                                echo "No status for this article"; 
+                                }
+                            ?>
+                            </h3>
                             <div class="status" >
                                 <p>
                                 <?php
@@ -336,26 +358,9 @@ if ($result !== false && !empty($result)) {
                                 </p>
                             </div>
                             <hr style="height: 1px; background-color: var(--main, #0858A4); width: 100%">
-                            <p style="color: var(--main, #0858A4); font-family: 'Judson', serif; font-weight: 400; font-style: normal; font-size: 30px;" >Submitted in the 
-                            <?php
-                                $sqlJournal = "SELECT journal.journal, article.title FROM journal JOIN article ON journal.journal_id = article.journal_id JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id AND article.status = 4
-                                AND reviewer_assigned.author_id = :author_id AND article.article_id = :article_id";
-
-                                $result = database_run($sqlJournal, array('author_id' => $userId,
-                                    'article_id' => $articleId));
-
-                                if ($result !== false) {
-                                foreach ($result as $row) {
-                                echo $row->journal;
-                                }
-                                } else {
-                                echo "No status for this article"; 
-                                }
-                            ?>
-                            </p>
                             </div>
-                <div class="row">
-                    <div class="col-md-4 col-6 logs-date">
+                <div class="row" id="allLogs" >
+                    <div class="col-md-5 col-6 logs-date">
                         <p id="logsTitle" style="color: black; font-family: 'Judson', serif; font-weight: bold; font-style: normal;">Logs</p>
                     
                         <div class="log-entry mt-4" id="logEntries">
@@ -381,7 +386,7 @@ if ($result !== false && !empty($result)) {
                         </div>
                     </div>
 
-                    <div class="col-md-4 col-6 date">
+                    <div class="col-md-6 col-6 date">
                         <p style="color: black; font-family: 'Judson', serif; font-weight: bold; font-style: normal;">Date</p>
                         <div class="log-date" id="logDates">
                             <?php
@@ -408,7 +413,7 @@ if ($result !== false && !empty($result)) {
                 </div>
 
 
-                <div class="col-md-10 btn-group mt-4">
+                <div class="col-md-12 col-12 btn-group mt-4">
                     <button type="button" class="btn btn-outline-primary btn-sm"  onclick="viewAllLogs()" id="viewLogsBtn">View All Logs</button>
                     <button type="button" class="btn btn-outline-primary btn-sm"  onclick="hideLogs()" id="hideLogsBtn" style="display: none;">Hide Logs</button>
                 </div>
@@ -416,11 +421,7 @@ if ($result !== false && !empty($result)) {
                 </div>
                 <div class="col-md-4" style="padding:0;">
                     <!-- This is a Blank space -->
-                    <div class="btn" id="step1button">
-                        <button type="button" class="btn tbn-primary btn-md nextBtn" id="acceptBtn"  onclick="nextStep()" >Accept</button>
-                        <button type="button"  id="btnReject" class="btn tbn-primary btn-md" onclick="rejectInvitation('<?php echo $articleId; ?>')">Decline</button>
-
-                    </div>
+                    
                 </div>
             </div>
         </div>
