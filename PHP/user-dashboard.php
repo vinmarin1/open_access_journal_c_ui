@@ -1055,11 +1055,39 @@ $expertise = $_SESSION['expertise'];
 								<th>Date</th>
 								<th>Views</th>
 								<th>Support</th>
-								<th>Contributors</th>
+						
 							</tr>
 						</thead>
 						<tbody>
-							<tr>							
+							<tr>	
+								<?php 
+									$sqlSelect = "SELECT a.article_id, a.title, a.date, COUNT(CASE WHEN l.type = 'read' THEN 1 END) AS read_count, 
+									COUNT(CASE WHEN l.type = 'support' THEN 1 END) AS support_count FROM article a
+									LEFT JOIN logs l ON a.article_id = l.article_id LEFT JOIN author au ON a.author_id = au.author_id
+									WHERE a.status = 1 AND au.orc_id = :orc_id GROUP BY a.article_id, a.title, a.date
+									ORDER BY a.date ASC";
+
+									$params = array('orc_id' => $orc_id);
+									$sqlRun = database_run($sqlSelect, $params);
+
+									if ($sqlRun) {
+										foreach ($sqlRun as $row) {
+											$title = $row->title;
+											$date = $row->date;
+											$read = $row->read_count; 
+											$support = $row->support_count; 
+											echo '<td><a href="../PHP/article-details.php?articleId=' . $row->article_id . '">' . $title . '</a></td>';
+											echo '<td>' . $date . '</td>';
+											echo '<td>' . $read . '</td>';
+											echo '<td>' . $support . '</td>';
+										}
+									} else {
+										echo '';
+									}
+
+								
+								?>
+
 							</tr>
 						</tbody>
 					</table>
@@ -1077,11 +1105,31 @@ $expertise = $_SESSION['expertise'];
 								<th>Date</th>
 								<th>Views</th>
 								<th>Support</th>
-								<th>Contributors</th>
+								
 							</tr>
 						</thead>
 						<tbody>
-							<tr>							
+							<tr>	
+								<?php
+									$sql = "SELECT user_points.email, user_points.action_engage, article.article_id, article.title, article.date, article.author, article.abstract, journal.journal, COUNT(CASE WHEN logs.type = 'read' THEN 1 END) AS read_count, COUNT(CASE WHEN logs.type = 'support' THEN 1 END) AS support_count FROM user_points JOIN article ON user_points.article_id = article.article_id JOIN journal ON journal.journal_id = article.journal_id LEFT JOIN logs ON article.article_id = logs.article_id WHERE user_points.email = :email
+									AND (user_points.action_engage = 'Co-Author' OR user_points.action_engage = 'Primary Contact') AND article.status = 1 GROUP BY article.article_id";
+									$result = database_run($sql, array('email' => $email));  
+
+									if($result) {
+										foreach($result as $row) {
+											$title = $row->title;
+											$date = $row->date;
+											$read = $row->read_count; 
+											$support = $row->support_count;
+										
+											echo '<td><a href="../PHP/article-details.php?articleId=' . $row->article_id . '">' . $title . '</a></td>';
+											echo '<td>' . $date . '</td>';
+											echo '<td>' . $read . '</td>';
+											echo '<td>' . $support . '</td>';
+										}
+									}
+								?>
+
 							</tr>
 						</tbody>
 					</table>
