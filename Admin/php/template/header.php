@@ -338,11 +338,11 @@ $journal = get_journal_list();
                               $profile_pic = isset($_SESSION['profile_pic']) ? $_SESSION['profile_pic'] : '';
                               if (!empty($profile_pic)) {
                                   echo '<div class="avatar avatar-online">
-                                            <img src="../' . $profile_pic . '" alt="" class="w-px-40 h-auto rounded-circle" />
+                                            <img src="../' . $profile_pic . '" alt="" class="w-40 h-40 object-fit-cover rounded-circle" />
                                         </div>';
                               } else {
                                   echo '<div class="avatar avatar-online">
-                                            <img src="../assets/img/profile.jpg" alt="" class="w-px-40 h-auto rounded-circle" />
+                                            <img src="../assets/img/profile.jpg" alt="" class="w-40 h-40 object-fit-cover rounded-circle" />
                                         </div>';
                               }
                           }
