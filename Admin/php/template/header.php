@@ -13,12 +13,11 @@ $journal = get_journal_list();
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
   <title>ADMIN | Pahina</title>
 
-  <meta name="description" content="" />
+  <!-- <meta name="description" content="" /> -->
 
   <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="../assets/img/qculogo.png" />
-  <!-- <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" /> -->
-
+  <link rel="icon" type="image/png" href="../assets/img/pahina.png">
+  
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -66,7 +65,7 @@ $journal = get_journal_list();
             <span class="app-brand-logo demo">
               <img src="../assets/img/qculogo.png" alt="QCULogo" class="w-100" />
             </span>
-            <span class="app-brand-text demo menu-text fw-bold ms-2">QCU Journal</span>
+            <span class="app-brand-text demo menu-text fw-bold ms-2">Pahina Journal</span>
           </a>
 
           <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">

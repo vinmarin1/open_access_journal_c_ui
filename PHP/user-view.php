@@ -805,11 +805,39 @@ $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
                                     <th>Date</th>
                                     <th>Views</th>
                                     <th>Support</th>
-                                    <th>Contributors</th>
+                                  
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>							
+                                <tr>
+                                    
+                                <?php 
+									$sqlSelect = "SELECT a.article_id, a.title, a.date, COUNT(CASE WHEN l.type = 'read' THEN 1 END) AS read_count, 
+									COUNT(CASE WHEN l.type = 'support' THEN 1 END) AS support_count FROM article a
+									LEFT JOIN logs l ON a.article_id = l.article_id LEFT JOIN author au ON a.author_id = au.author_id
+									WHERE a.status = 1 AND au.orc_id = :orc_id GROUP BY a.article_id, a.title, a.date
+									ORDER BY a.date ASC";
+
+									$params = array('orc_id' => $orc_id);
+									$sqlRun = database_run($sqlSelect, $params);
+
+									if ($sqlRun) {
+										foreach ($sqlRun as $row) {
+											$title = $row->title;
+											$date = $row->date;
+											$read = $row->read_count; 
+											$support = $row->support_count; 
+											echo '<td><a href="../PHP/article-details.php?articleId=' . $row->article_id . '">' . $title . '</a></td>';
+											echo '<td>' . $date . '</td>';
+											echo '<td>' . $read . '</td>';
+											echo '<td>' . $support . '</td>';
+										}
+									} else {
+										echo '';
+									}
+
+								
+								?>
                                 </tr>
                             </tbody>
                         </table>
@@ -827,11 +855,15 @@ $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
                                     <th>Date</th>
                                     <th>Views</th>
                                     <th>Support</th>
-                                    <th>Contributors</th>
+                                   
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>							
+                                <tr>
+                                    <?php
+
+                                    ?>
+		
                                 </tr>
                             </tbody>
                         </table>
@@ -1062,7 +1094,36 @@ $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
                                 <div class="stat-card top-card">
                                 <h2>Total Contributions</h2>
                                 <p>
-                                    <span class="increase"></span>
+                                    <?php 
+                                    $sqlTotalContribution = "SELECT user_points.user_id, user_points.email, author.orc_id 
+                                    FROM user_points 
+                                    JOIN author ON user_points.user_id = author.author_id 
+                                    WHERE author.orc_id = :orc_id 
+                                    AND (user_points.action_engage = 'Reviewed an Article' OR user_points.action_engage = 'Submitted an Article')";
+
+
+                                    $params = array('orc_id' => $orc_id);
+                                    $result = database_run($sqlTotalContribution, $params);
+
+                                    if ($result !== false) {
+                                        $totalContributions = count($result);
+                                        echo $totalContributions;
+
+                                        // Fixed percentage increase
+                                        $percentageIncrease = 100;
+
+                                        // Check if total contributions are greater than 0 before calculating the increased count
+                                        if ($totalContributions > 0) {
+                                            $increasedCount = $totalContributions * (1 + ($percentageIncrease / 100));
+                                        } else {
+                                            $increasedCount = 0; // If there are no contributions yet, set the increased count to 0
+                                        }
+
+                                        echo '<span class="increase">' . round($increasedCount, 2) . '%' . '</span>';
+                                    } else {
+                                        echo '0'; 
+                                    }
+                                    ?>
                                 </p>
 
 
@@ -1073,18 +1134,65 @@ $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
                                 <div class="stat-card top-card">
                                     <h2>Total Reviewed</h2>
                                     <p>
-                                    <span class="increase">
-                                    
-                                    </span></p>
+                                        <?php 
+                                        $sqlTotalContribution = "SELECT user_points.user_id,  user_points.email, author.orc_id FROM user_points JOIN author ON user_points.user_id = author.author_id WHERE author.orc_id = :orc_id AND user_points.action_engage = 'Reviewed an Article'";
+
+                                        $params = array('orc_id' => $orc_id);
+                                        $result = database_run($sqlTotalContribution, $params);
+
+                                        if ($result !== false) {
+                                            $totalContributions = count($result);
+                                            echo $totalContributions;
+
+                                            // Fixed percentage increase
+                                            $percentageIncrease = 100;
+
+                                            // Check if total contributions are greater than 0 before calculating the increased count
+                                            if ($totalContributions > 0) {
+                                                $increasedCount = $totalContributions * (1 + ($percentageIncrease / 100));
+                                            } else {
+                                                $increasedCount = 0; // If there are no contributions yet, set the increased count to 0
+                                            }
+
+                                            echo '<span class="increase">' . round($increasedCount, 2) . '%' . '</span>';
+                                        } else {
+                                            echo '0'; 
+                                        }
+                                        ?>
+                                    </p>
                                 </div>
                             </div> 
                             <div class="stats-section">
                                 <div class="stat-card top-card">
                                     <h2>Total Submissions</h2>
                                     <p>
-                                    <span class="increase">
-                                    </span></p>
-                    
+                                        <?php 
+                                            $sqlTotalContribution = "SELECT user_points.user_id,  user_points.email, author.orc_id FROM user_points JOIN author ON user_points.user_id = author.author_id WHERE author.orc_id = :orc_id AND user_points.action_engage = 'Submitted an Article' ";
+
+                                            $params = array('orc_id' => $orc_id);
+                                            $result = database_run($sqlTotalContribution, $params);
+
+                                            if ($result !== false) {
+                                                $totalContributions = count($result);
+                                                echo $totalContributions;
+
+                                                // Fixed percentage increase
+                                                $percentageIncrease = 100;
+
+                                                // Check if total contributions are greater than 0 before calculating the increased count
+                                                if ($totalContributions > 0) {
+                                                    $increasedCount = $totalContributions * (1 + ($percentageIncrease / 100));
+                                                } else {
+                                                    $increasedCount = 0; // If there are no contributions yet, set the increased count to 0
+                                                }
+
+                                                echo '<span class="increase">' . round($increasedCount, 2) . '%' . '</span>';
+                                            } else {
+                                                echo '0'; 
+                                            }
+                                            ?>
+                                    </p>
+                                        
                                 </div>
                             </div>
                         </div>
@@ -1126,6 +1234,85 @@ $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <tr>
+                                            <?php
+
+                                                $sqlAchievements = "
+                                                                                        
+
+                                                (SELECT 'Published an Article' as action_engage, article.title, article.journal_id,NULL as status, user_points.date, user_points.point_earned
+                                                FROM user_points
+                                                JOIN article ON user_points.article_id = article.article_id JOIN author ON user_points.user_id = author.author_id
+                                                WHERE user_points.action_engage = 'Published an Article' AND article.status = 1 AND author.orc_id = :orc_id)
+
+                                                UNION
+
+                                                (SELECT 'Reviewed Article Published' as action_engage, article.title, article.journal_id, NULL as status, user_points.date, user_points.point_earned
+                                                FROM user_points
+                                                JOIN reviewer_assigned ON user_points.user_id = reviewer_assigned.author_id
+                                                JOIN article ON reviewer_assigned.article_id = article.article_id JOIN author ON user_points.user_id = author.author_id
+                                                WHERE article.status = 1 AND reviewer_assigned.accept = 1 AND reviewer_assigned.answer = 1 AND user_points.action_engage = 'Reviewed Article Published' AND author.orc_id = :orc_id )
+
+                                                UNION
+
+                                                (SELECT 'Submitted an Article' as action_engage, article.title, article.journal_id, NULL as status, user_points.date, user_points.point_earned
+                                                FROM user_points
+                                                JOIN article ON user_points.article_id = article.article_id JOIN author ON user_points.user_id = author.author_id
+                                                WHERE user_points.action_engage = 'Submitted an Article' AND author.orc_id = :orc_id)
+
+                                                UNION
+
+                                                (SELECT 'Reviewed an Article' as action_engage, article.title, article.journal_id, NULL as status, user_points.date, user_points.point_earned
+                                                FROM user_points
+                                                JOIN reviewer_assigned ON user_points.user_id = reviewer_assigned.author_id
+                                                JOIN article ON reviewer_assigned.article_id = article.article_id JOIN author ON user_points.user_id = author.author_id
+                                                WHERE reviewer_assigned.accept = 1 AND reviewer_assigned.answer = 1 AND user_points.action_engage = 'Reviewed an Article' AND author.orc_id = :orc_id)
+
+                                                UNION
+
+                                                (SELECT 'Co-Author' as action_engage, article.title, article.journal_id,NULL as status, user_points.date, user_points.point_earned
+                                                FROM user_points
+                                                JOIN article ON user_points.article_id = article.article_id JOIN author ON user_points.user_id = author.author_id
+                                                WHERE user_points.action_engage = 'Co-Author' AND article.status <= 6 AND author.orc_id = :orc_id)
+
+                                                UNION
+
+                                                (SELECT 'Primary Contact' as action_engage, article.title, article.journal_id,NULL as status, user_points.date, user_points.point_earned
+                                                FROM user_points
+                                                JOIN article ON user_points.article_id = article.article_id JOIN author ON user_points.user_id = author.author_id
+                                                WHERE user_points.action_engage = 'Primary Contact' AND article.status <= 6 AND author.orc_id = :orc_id)
+
+                                                ORDER BY date DESC
+                                                ";
+
+
+                                                $result = database_run($sqlAchievements,array('orc_id' => $orcid));
+
+                                                if ($result !== false) {
+                                                foreach ($result as $row) {
+                                                    $journalMapping = [
+                                                        '1' => 'The Gavel',
+                                                        '2' => 'The Lamp',
+                                                        '3' => 'The Star',
+                                                    ];
+
+                                                    echo '<tr>';
+                                                    echo '<td>' . $row->action_engage .'</td>';
+                                                    echo '<td>' . $journalMapping[$row->journal_id] .'</td>';
+                                                    echo '<td style="display: none">' . $row->title .'</td>';
+                                                    $formattedDate = date('F j, Y', strtotime($row->date)); // Formatting without time
+                                                    echo '<td>' . $formattedDate . '</td>';
+                                                    echo '<td style="color: green;"> Earned ' . $row->point_earned . ' Community Heart</td>';
+                                                    echo '</tr>';
+
+                                                    
+                                                }
+                                                }else{
+                                                echo '<p style="margin-left: 50px; padding-top: 20px">You have no Achievements yet</p>';
+                                                }
+
+                                            ?>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
