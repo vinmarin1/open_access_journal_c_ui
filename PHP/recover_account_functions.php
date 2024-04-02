@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $_SESSION['userEmail'] = $email;
     $recipient = $email;
     $subject = 'Reset password link';
-    $emailMessage = 'Here\'s the reset link for your account <a href="https://www.qcuj.online/PHP/recover_account.php?step=3">Click here</a>';
+    $emailMessage = 'Here\'s the reset link for your account <a href="http://localhost/open_access_journal_c_ui/PHP/recover_account.php?step=3">Click here</a>';
 
     
     send_mail($recipient, $subject, $emailMessage);

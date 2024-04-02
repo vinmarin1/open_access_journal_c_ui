@@ -139,28 +139,39 @@ document.getElementById('changePasswordBtn').addEventListener('click', function 
     const finalStepForm = document.getElementById('finalStepForm');
     const spinnerSpinner2 = document.getElementById('spinnerSpinner2');
     const changePasswordBtn = document.getElementById('changePasswordBtn');
-
+    
+    event.preventDefault(); // Prevent the default click behavior
+    
     const storedEmail = '<?php echo isset($_SESSION['userEmail']) ? $_SESSION['userEmail'] : "" ?>';
+
+    const hasUppercase = /[A-Z]/.test(password.value);
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password.value);
+    const hasNumber = /\d/.test(password.value);
 
     if (password.value === '' && confirmPassword.value === '') {
         Swal.fire({
             icon: 'warning',
             text: 'Please provide a password'
         });
-    } else if (password.value === '') {
+    } else if (password.value.length < 4) {
         Swal.fire({
             icon: 'warning',
-            text: 'Please provide a password to recover your account'
+            text: 'Password must be at least 4 characters long'
         });
     } else if (confirmPassword.value === '') {
         Swal.fire({
             icon: 'warning',
             text: 'Confirm your password'
         });
-    } else if (!(password.value === confirmPassword.value)) {
+    } else if (password.value !== confirmPassword.value) {
         Swal.fire({
             icon: 'warning',
-            text: 'Password does not match'
+            text: 'Passwords do not match'
+        });
+    } else if (!(hasUppercase && hasSpecialChar && hasNumber)) {
+        Swal.fire({
+            icon: 'warning',
+            text: 'Password must contain at least one uppercase letter, one special character, and one number'
         });
     } else {
         spinnerSpinner2.style.display = 'block';
@@ -168,13 +179,15 @@ document.getElementById('changePasswordBtn').addEventListener('click', function 
         $.ajax({
             type: "POST",
             url: "../PHP/reset_pass.php",
-            data: { email: storedEmail, password: password.value }, // Use password.value to get the actual password
+            data: { email: storedEmail, password: password.value },
             success: function (response) {
-                alert('Successfully change your password');
+                alert('Successfully changed your password');
                 firstStepForm.style.display = 'none';
                 secondStepForm.style.display = 'none';
                 thirdStepForm.style.display = 'none';
                 finalStepForm.style.display = 'block';
+                thirdStepForm.submit();
+  		window.location.href='../PHP/login.php';
             },
             error: function (xhr, status, error) {
                 console.error(xhr.responseText);
@@ -187,6 +200,7 @@ document.getElementById('changePasswordBtn').addEventListener('click', function 
         });
     }
 });
+
 
     </script>
 </body>

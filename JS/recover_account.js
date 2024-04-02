@@ -51,44 +51,44 @@ function validateEmail() {
 
 
 
-document.getElementById('password').addEventListener('input', function (event) {
-    const passwordInput = event.target.value;
-    const passValidation = document.getElementById('PassValidation');
+// document.getElementById('password').addEventListener('input', function (event) {
+//     const passwordInput = event.target.value;
+//     const passValidation = document.getElementById('PassValidation');
 
-    const hasUppercase = /[A-Z]/.test(passwordInput);
-    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(passwordInput);
-    const hasNumber = /\d/.test(passwordInput);
+//     const hasUppercase = /[A-Z]/.test(passwordInput);
+//     const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(passwordInput);
+//     const hasNumber = /\d/.test(passwordInput);
 
-    if (passwordInput === '') {
-        passValidation.style.display = 'block';
-        passValidation.innerHTML = 'Password must not be empty';
-    } else if (!(hasUppercase && hasSpecialChar && hasNumber)) {
-        passValidation.style.display = 'block';
-        passValidation.innerHTML = 'Password must contain 1 Uppercase, 1 Special Character, and 1 Number';
-    } else {
+//     if (passwordInput === '') {
+//         passValidation.style.display = 'block';
+//         passValidation.innerHTML = 'Password must not be empty';
+//     } else if (!(hasUppercase && hasSpecialChar && hasNumber)) {
+//         passValidation.style.display = 'block';
+//         passValidation.innerHTML = 'Password must contain 1 Uppercase, 1 Special Character, and 1 Number';
+//     } else {
      
-        passValidation.style.display = 'none';
-    }
-});
+//         passValidation.style.display = 'none';
+//     }
+// });
 
 
-document.getElementById('confirmPassword').addEventListener('input', function (event) {
-    const newPasswordInput = event.target.value;
-    const newPassValidation = document.getElementById('newPassValidation');
+// document.getElementById('confirmPassword').addEventListener('input', function (event) {
+//     const newPasswordInput = event.target.value;
+//     const newPassValidation = document.getElementById('newPassValidation');
 
-    const hasUppercase = /[A-Z]/.test(newPasswordInput);
-    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(newPasswordInput);
-    const hasNumber = /\d/.test(newPasswordInput);
+//     const hasUppercase = /[A-Z]/.test(newPasswordInput);
+//     const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(newPasswordInput);
+//     const hasNumber = /\d/.test(newPasswordInput);
 
-    if (newPasswordInput === '') {
-        newPassValidation.style.display = 'block';
-        newPassValidation.innerHTML = 'Password must not be empty';
-    } else if (!(hasUppercase && hasSpecialChar && hasNumber)) {
-        newPassValidation.style.display = 'block';
-        newPassValidation.innerHTML = 'Password must contain 1 Uppercase, 1 Special Character, and 1 Number';
-    } else {
+//     if (newPasswordInput === '') {
+//         newPassValidation.style.display = 'block';
+//         newPassValidation.innerHTML = 'Password must not be empty';
+//     } else if (!(hasUppercase && hasSpecialChar && hasNumber)) {
+//         newPassValidation.style.display = 'block';
+//         newPassValidation.innerHTML = 'Password must contain 1 Uppercase, 1 Special Character, and 1 Number';
+//     } else {
      
-        newPassValidation.style.display = 'none';
-    }
-});
+//         newPassValidation.style.display = 'none';
+//     }
+// });
 

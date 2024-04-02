@@ -519,38 +519,38 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 
             </tbody>
         </table>
+        <div class="main4">
+            <div class="action-button">
+                <div class="edit-btn-container">
+                    <?php
 
+                        $sqlSelectedArticle = "SELECT article_id FROM article WHERE article_id = :article_id AND status = 4";
+
+                        $sqlRun = database_run($sqlSelectedArticle, array('article_id' => $articleId));
+
+                        if($sqlRun){
+                            echo '  <button type="button" class="btn btn-primary btn-md" id="edit-submission">Edit Submission</button>';
+                        }else{
+                            echo '';
+                        }
+                    ?>
+                </div>
+                <div class="btn-option">
+                    <button type="button" class="btn btn-secondary btn-md" id="cancel-submission">Cancel Submission</button>
+                    <button type="button" class="btn btn-primary btn-md" id="submit-submission">Submit Revision</button>
+                        
+                </div>
+            </div>
+            
+            
+            
+        </div>
 
 
         </div>
     </div>
 
-    <div class="main4">
-        <div class="action-button">
-            <div class="edit-btn-container">
-                <?php
-
-                    $sqlSelectedArticle = "SELECT article_id FROM article WHERE article_id = :article_id AND status = 4";
-
-                    $sqlRun = database_run($sqlSelectedArticle, array('article_id' => $articleId));
-
-                    if($sqlRun){
-                        echo '  <button type="button" class="btn btn-primary btn-md" id="edit-submission">Edit Submission</button>';
-                    }else{
-                        echo '';
-                    }
-                ?>
-            </div>
-            <div class="btn-option">
-                <button type="button" class="btn btn-secondary btn-md" id="cancel-submission">Cancel Submission</button>
-                <button type="button" class="btn btn-primary btn-md" id="submit-submission">Submit Revision</button>
-                    
-            </div>
-</div>
-           
-        
-           
-        </div>
+   
         
 </div>
    

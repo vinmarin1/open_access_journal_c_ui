@@ -21,6 +21,7 @@ body {
   font-style: normal;
   font-size: 30px;
   color: #0858A4;
+  border-radius: 10px;
 }
 
 
@@ -39,7 +40,7 @@ body {
     font-style: normal;
     padding-left: 5px;
     width: auto;
-
+    border-radius: 10px;
   }
 
   .first-letter {
@@ -68,17 +69,12 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-image: url("../images/background-spot.svg");
-    padding: 2em 1vw;
+    padding: 2em 8%;
     font-size: 20px;
     color: #285581;
     line-height: 1.6;
-    height: 20vh;
 }
 
-  .main-title{
-    margin-left: 5%;
-    /* margin-right: 25%; */
-  }
   .breadcrumbs {
     font-size: 18px; /* Smaller font size for breadcrumbs */
     margin-bottom: 10px; /* Space between breadcrumbs and title */
@@ -369,23 +365,28 @@ ul li span {
   width: 100%;
 }
 
+
 #edit-submission {
   right: 86px;
-  position: absolute;
+  /* position: absolute; */
   margin-bottom: 10px;
   font-size: 14px;
   background-color: #285581;
   color: white;
   border-radius: 20px;
-  width: 20%; /* Set the width to 50% of its container */
+  width: 100%;
 }
 
 @media screen and (max-width: 768px){
   #edit-submission{
-    width: 95%;
+    width: 100%;
     right: 12px;
   }
+  .btn-option {
+    padding-right: 0;
+  }
 }
+
 
 #submit-submission{
   margin-bottom: 10px;
@@ -395,7 +396,7 @@ ul li span {
   border-radius: 20px;
   width: 5%; /* Set the width to 50% of its container */
   max-width: 400px; /* Set a maximum width */
-  min-width: 200px; /* Set a minimum width */
+  min-width: 150px; /* Set a minimum width */
   display: none;
 }
 
@@ -411,13 +412,6 @@ ul li span {
 
 .btn-option{
   display: flex;
-  padding-right: 25px;
-}
-
-@media screen and (max-width: 768px){
-  .btn-option{
-    padding-right: 0;
-  }
 }
 
 #cancel-submission {
@@ -429,7 +423,7 @@ ul li span {
   border-radius: 20px;
   width: 5%; /* Set the width to 50% of its container */
   max-width: 400px; /* Set a maximum width */
-  min-width: 190px; /* Set a minimum width */
+  min-width: 150px; /* Set a minimum width */
   display: none;
 }
 
