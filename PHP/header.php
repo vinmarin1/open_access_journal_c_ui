@@ -19,8 +19,8 @@
           <span class="d-none d-md-flex">SUBMIT ARTICLE</span>
         </a>
         <form action="search-articles.php" method="GET" class="form-inline d-flex gap-1" id="searchForm">
-          <input id="searchInput" name="search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button type="submit" class="btn btn-outline-secondary my-2 my-sm-0">Search</button>
+          <input id="searchInput" name="search" class="form-control mr-sm-2" type="search" placeholder="Search articles..." aria-label="Search">
+          <!-- <button type="submit" class="btn btn-outline-secondary my-2 my-sm-0">Search</button> -->
         </form>
       </div>
   </div>
