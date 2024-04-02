@@ -34,7 +34,7 @@ require_once 'dbcon.php';
           <ul class="dropdown-menu">
           <li><a class="dropdown-item" style="color: black" href="general-info.php">General Information</a></li>
           <li><a class="dropdown-item" style="color: black" href="developers.php">The Developers</a></li>
-          <li><a class="dropdown-item" style="color: black" href="contact-us.php">Contact us</a></li>
+          <!-- <li><a class="dropdown-item" style="color: black" href="contact-us.php">Contact us</a></li> -->
           </ul>
         </li>
         <li class="nav-item dropdown">
@@ -50,7 +50,9 @@ require_once 'dbcon.php';
             Guidelines
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" style="color: black" href="./guidelines.php">For Contributors</a></li>
+            <li><a class="dropdown-item" style="color: black" href="./tutorials.php">Tutorials for Contributors</a></li>
+            <li><a class="dropdown-item" style="color: black" href="./guidelines.php#templates-for-author">Templates for Author</a></li>
+            <li><a class="dropdown-item" style="color: black" href="./guidelines.php">Guidelines and Policy</a></li>
             <li><a class="dropdown-item" style="color: black" href="./faqs.php">Frequently Asked Questions</a></li>
           </ul>
           <li class="d-flex d-sm-none nav-item">
@@ -59,16 +61,10 @@ require_once 'dbcon.php';
           <li class="d-flex d-sm-none nav-item">
             <a class="nav-link" href="browse-articles.php">Browse Articles</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact-us.php">Contact Us</a>
+          </li>
       </ul>
-      <!-- <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-      </form> -->
-    <!-- Login Dropdown -->
-    <!-- <div class="cta btn btn-outline-light rounded-pill mx-2" style="background-color: none !important">
-      <a class="" role="button" href="browse-articles.php">
-        Browse Articles
-      </a>
-    </div> -->
    
     <?php
     if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
