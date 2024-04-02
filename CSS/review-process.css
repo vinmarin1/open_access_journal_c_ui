@@ -85,9 +85,9 @@
 
 .status p {
     display: inline-block;
-    border: 1px solid gray; 
+    border: 1px solid var(--main); 
     border-radius: 50px;
-    padding: 5px;
+    padding: 0.5em 2em;
     font-size: small;
     /* margin-top: 20px; */
 }
@@ -490,6 +490,9 @@
     align-items: center;
 }
 
+h4 {
+    color: var(--main) !important;
+}
 @media screen and (max-width: 767px){
     .choices{
         display: flex;

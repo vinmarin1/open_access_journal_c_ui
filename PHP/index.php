@@ -230,7 +230,8 @@
                 $rounded = round($total[0]->total / 10) * 10;
                 echo "
                 <div class='total-summary'>
-                  <span>{$rounded}+</span>
+                  <span class='count'>{$rounded}+</span>
+                  <span>+</span>
                   <p>Articles published</p>
                 </div>";
               }
@@ -243,7 +244,8 @@
                 echo "
                 <div class='divider-line-2 d-lg-flex d-none'></div>
                   <div class='total-summary'>
-                    <span>{$rounded}+</span>
+                    <span class='count'>{$rounded}+</span>
+                    <span>+</span>
                     <p>Total Users</p>
                   </div>
                 ";
@@ -257,7 +259,8 @@
                   echo "
                   <div class='divider-line-2 d-lg-flex d-none'></div>
                     <div class='total-summary'>
-                      <span>{$rounded}+</span>
+                      <span class='count'>{$rounded}</span>
+                      <span>+</span>
                       <p>Total Article Views</p>
                     </div>
                   ";
@@ -271,7 +274,8 @@
                   echo "
                   <div class='divider-line-2 d-lg-flex d-none'></div>
                   <div class='total-summary'>
-                      <span>{$rounded}+</span>
+                      <span class='count'>{$rounded}+</span>
+                      <span>+</span>
                       <p>Total Downloads</p>
                   </div>
                   ";
@@ -497,6 +501,39 @@
 
   <script>
     const sessionId = "<?php echo $author_id; ?>";
+    window.addEventListener('scroll', function(e) {
+    function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+    if (window.pageYOffset >= (document.querySelector(".total-summary").offsetTop - window.innerHeight)) {
+        if (!document.querySelector(".total-summary").classList.contains("animated")) {
+            document.querySelectorAll('.count').forEach(function(element) {
+                var startCount = 0;
+                var endCount = parseInt(element.textContent);
+                var duration = 2000;
+                var startTime = null;
+
+                function step(timestamp) {
+                    if (!startTime) startTime = timestamp;
+                    var progress = timestamp - startTime;
+                    var percentage = Math.min(progress / duration, 1);
+                    element.textContent = numberWithCommas(Math.ceil(startCount + percentage * (endCount - startCount)));
+                    if (progress < duration) {
+                        window.requestAnimationFrame(step);
+                    }
+                }
+
+                window.requestAnimationFrame(step);
+            });
+
+            // Uncomment if necessary
+            // document.getElementById("triggered").classList.add("show");
+            document.querySelector(".total-summary").classList.add("animated");
+        }
+    }
+});
+
   </script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>

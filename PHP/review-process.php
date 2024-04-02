@@ -58,7 +58,7 @@ if ($result !== false && !empty($result)) {
                 <div class="cover-content" style=" position: relative; width: 100%; background-size: cover; background-repeat: no-repeat;background-image: url('../images/background-spot.svg'); padding: 2em 8%;">
                    
                     <p> Dashboard / Reviewer / Submitted Articles </p>
-                        <p id="dTitle"> 
+                        <h3> 
                             <?php 
                             $sqlReviewraticle = "SELECT article.title 
                                                 FROM article 
@@ -78,7 +78,7 @@ if ($result !== false && !empty($result)) {
                                 echo "No title for this article."; 
                             }
                             ?>
-                        </p>
+                        </h3>
 
 
                 </div>
@@ -121,36 +121,7 @@ if ($result !== false && !empty($result)) {
 
                     ?>
 
-                <!-- <p id="dAbstractTitle">Abstract</p>
-                <p id="dAbstract">
-                <?php 
-                $sqlReviewraticle = "SELECT article.abstract 
-                                    FROM article 
-                                    JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id 
-                                    WHERE article.status = 4
-                                    AND reviewer_assigned.author_id = :author_id AND article.article_id = :article_id ORDER BY reviewer_assigned.date_issued DESC
-                                    LIMIT 1";
-
-                $result = database_run($sqlReviewraticle, array('author_id' => $userId,
-                                'article_id' => $articleId));
-
-                if ($result !== false) {
-                    foreach ($result as $row) {
-                   
-                        $sentences = preg_split('/(?<=[.?!])\s+/', $row->abstract, -1, PREG_SPLIT_NO_EMPTY);
-                        
-                     
-                        foreach ($sentences as $sentence) {
-                            echo '<span class="first-letter">' . substr($sentence, 0, 1) . '</span>' . substr($sentence, 1) . ' ';
-                        }
-                    }
-                } else {
-                    echo "No abstract for this article."; 
-                }
-                ?>
-                </p> -->
-
-                    <h3 id="dAbstractTitle">Abstract</h3>
+                    <h4>Abstract</h4>
                     <p id="dAbstract">
                     <?php 
                     $sqlReviewraticle = "SELECT article.abstract 
@@ -185,7 +156,7 @@ if ($result !== false && !empty($result)) {
                 <div class="col-md-12">
                     <div class="table-container">
                         <!-- <h5>Files Submitted</h5> -->
-                        <h3 id="fileSTitle">Files Submitted</h3>
+                        <h4>Files Submitted</h4>
                         <table class="table table-hover" id="table-file" style="border-collapse: separate; border-spacing: 10px 10px 10px 10px;">
                             <thead>
                                 <tr>
@@ -269,9 +240,9 @@ if ($result !== false && !empty($result)) {
                 <div class="col-md-12">
 
                 <div class="keywords">
-                    <h3 style="margin-top: 20px; margin-bottom: 10px; color: #285581; font-weight: 400; font-style: normal; ">Keywords</h3>
+                    <h4 style="margin-top: 20px; margin-bottom: 10px;">Keywords</h4>
                     <div class="keyword1">
-                    <ul style="display: flex;">
+                    <ul style="display: flex;padding-left:0;">
                         <?php
                         $sqlKeyword = "SELECT article.keyword FROM article JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id AND article.status = 4 WHERE reviewer_assigned.author_id = :author_id AND article.article_id = :article_id";
                         
@@ -315,7 +286,7 @@ if ($result !== false && !empty($result)) {
                             <button type="button" class="btn tbn-primary btn-md nextBtn" id="acceptBtn"  onclick="nextStep()" >Accept</button>
                             <button type="button"  id="btnReject" class="btn tbn-primary btn-md" onclick="rejectInvitation('<?php echo $articleId; ?>')">Decline</button>
                         </div>
-                            <h3 style="color: var(--main, #0858A4); font-weight: 400; font-style: normal; padding-top: 30px;" >Submitted in the 
+                            <h4 style="padding-top: 30px;" >Submitted in the 
                             <?php
                                 $sqlJournal = "SELECT journal.journal, article.title FROM journal JOIN article ON journal.journal_id = article.journal_id JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id AND article.status = 4
                                 AND reviewer_assigned.author_id = :author_id AND article.article_id = :article_id";
@@ -331,7 +302,7 @@ if ($result !== false && !empty($result)) {
                                 echo "No status for this article"; 
                                 }
                             ?>
-                            </h3>
+                            </h4>
                             <div class="status" >
                                 <p>
                                 <?php
