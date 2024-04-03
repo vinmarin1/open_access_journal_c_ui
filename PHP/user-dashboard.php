@@ -2093,7 +2093,8 @@ $expertise = $_SESSION['expertise'];
 </div>
 
 
-<div class="container-fluid mt-5" id="certContainerHead" style="display: none">
+<div class="container-fluid mt-5" id="certContainerHead" style="display: none; align-items: center !important; width: 800px; margin-left: auto;
+margin-right: auto;">
     <div class="cert-container d-flex justify-content-center align-items-center">
 		<?php 
 			echo '<img class="imgCert" id="cert1" src="../images/12.png" alt="cert">'
@@ -2120,7 +2121,8 @@ $expertise = $_SESSION['expertise'];
 
 
 
-<div class="container-fluid mt-5" id="certPublishedHead" style="display: none">
+<div class="container-fluid mt-5" id="certPublishedHead" style="display: none; align-items: center !important; width: 800px; margin-left: auto;
+margin-right: auto;">
     <div class="cert-container d-flex justify-content-center align-items-center">
         <img class="imgCert" id="cert2" src="../images/11.png" alt="cert" style="width: 800px;
 		height: 500px;
