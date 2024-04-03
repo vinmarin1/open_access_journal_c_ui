@@ -175,37 +175,6 @@
             <p class="description">This website is enhanced by an artificial intelligence and machine learning designed
               for Pahinato improve the user experience. All articles are freely available to download and read, without any
               paywalls or restrictions.</p>
-  
-            <!-- <br>
-            <button style="background-color: #e56f1f; max-width:20em;" class="btn btn-md mt-1 w-100">See Features</button>
-            <br>
-            <div class="d-flex">
-              <?php
-              $sql = "SELECT COUNT(*) AS total FROM article WHERE status = 1";
-              $total = database_run($sql);
-
-              if ($total !== false) {
-                echo "
-                <div class='text1'>
-                  <h2>{$total[0]->total}</h2>
-                  <p>Articles published</p>
-                </div>";
-              }
-              ?>
-              <?php
-              $sql_users = "SELECT COUNT(*) AS total FROM author WHERE status = 1";
-              $total = database_run($sql_users);
-              if ($total !== false) {
-                echo "
-                <div class='divider-line-2 d-lg-flex d-none'></div>
-                  <div class='text1'>
-                    <h2>{$total[0]->total}</h2>
-                    <p>Total Users</p>
-                  </div>
-                ";
-              }
-              ?>
-            </div> -->
         </div>
         <div class='ab-qoaj-right'>
           <img src="../images/pahina.png" style="width:12em; height:14em" alt="" />
@@ -216,83 +185,53 @@
           <h2 class="">Our Vision</h2>
           <p class="text-center text-muted ">Say goodbye to research submission struggles! Pahina  is
             a smooth online portal <br/>where you can easily submit your research for expert review. </p>
-            <!-- <p class="description"><a href="https://qcu.edu.ph/" class="text-white">Quezon City University (QCU)</a>, recognized by the Commission on Higher Education (CHED), holds dear the values of cultivating a vibrant research culture and disseminating new knowledge for the betterment of society. Understanding that the impact of research accessibility, QCU has established the Pahina as a platform for its researchers to share their valuable findings and contributions.</p> -->
-         
             <br>
-            <!-- <button style="background-color: #e56f1f; max-width:20em;" class="btn btn-md mt-1 w-100">See Features</button> -->
             <br>
             <div class="d-flex flex-column flex-sm-row justify-content-center gap-4 flex-wrap py-3 my-3">
-              <?php
-              $sql = "SELECT COUNT(*) AS total FROM article WHERE status = 1";
-              $total = database_run($sql);
+            <?php
+              $sql = "
+              SELECT 'Articles published' AS label, COUNT(*) AS total
+              FROM article
+              WHERE status = 1
+              UNION ALL
+              SELECT 'Total Users' AS label, COUNT(*) AS total
+              FROM author
+              WHERE status = 1
+              UNION ALL
+              SELECT 'Total Article Views' AS label, COUNT(*) AS total
+              FROM logs
+              WHERE type = 'read'
+              UNION ALL
+              SELECT 'Total Downloads' AS label, COUNT(*) AS total
+              FROM logs
+              WHERE type = 'download'
+              ";
 
-              if ($total !== false) {
-                $rounded = round($total[0]->total / 10) * 10;
-                echo "
-                <div class='total-summary'>
-                  <span class='count'>{$rounded}+</span>
-                  <span>+</span>
-                  <p>Articles published</p>
-                </div>";
+              $results = database_run($sql);
+              if ($results !== false) {
+                  foreach ($results as $row) {
+                      $rounded = round($row->total / 10) * 10;
+                      echo "
+                      <div class='divider-line-2 d-lg-flex d-none'></div>
+                      <div class='total-summary'>
+                          <span class='count'>{$rounded}+</span>
+                          <span>+</span>
+                          <p>{$row->label}</p>
+                      </div>
+                      ";
+                  }
               }
-              ?>
-              <?php
-              $sql_users = "SELECT COUNT(*) AS total FROM author WHERE status = 1";
-              $total = database_run($sql_users);
-              if ($total !== false) {
-                $rounded = round($total[0]->total / 10) * 10;
-                echo "
-                <div class='divider-line-2 d-lg-flex d-none'></div>
-                  <div class='total-summary'>
-                    <span class='count'>{$rounded}+</span>
-                    <span>+</span>
-                    <p>Total Users</p>
-                  </div>
-                ";
-              }
-              ?>
-               <?php
-                $sql_views = "SELECT COUNT(*) AS total FROM logs WHERE type = 'read'";
-                $total = database_run($sql_views);
-                if ($total !== false) {
-                  $rounded = round($total[0]->total / 10) * 10;
-                  echo "
-                  <div class='divider-line-2 d-lg-flex d-none'></div>
-                    <div class='total-summary'>
-                      <span class='count'>{$rounded}</span>
-                      <span>+</span>
-                      <p>Total Article Views</p>
-                    </div>
-                  ";
-                }
-              ?>
-             <?php
-              $sql_downloads = "SELECT COUNT(*) AS total FROM logs WHERE type = 'download'";
-              $total = database_run($sql_downloads);
-              if ($total !== false) {
-                  $rounded = round($total[0]->total / 10) * 10;
-                  echo "
-                  <div class='divider-line-2 d-lg-flex d-none'></div>
-                  <div class='total-summary'>
-                      <span class='count'>{$rounded}+</span>
-                      <span>+</span>
-                      <p>Total Downloads</p>
-                  </div>
-                  ";
-              }
-              ?>
-
+            ?>
             </div>
         </div>
-          <!-- <img src="../images/pahina-full.png" style="width:6em; height:6em" alt="" /> -->
     </div>
 
     <div class="fluid-container">
       <section id="features-container">
-      <div class="text-center w-100">
-          <h2 class="">What We Offer</h2>
-          <p class=" text-center text-muted "> These are some of the Pahina features you'll enjoy </p>
-            </div>
+        <div class="text-center w-100">
+            <h2 class="">What We Offer</h2>
+            <p class=" text-center text-muted "> These are some of the Pahina features you'll enjoy </p>
+        </div>
         <div class="row gap-2 gy-8 gx-md-8 gy-lg-2 gx-xxl-5 justify-content-center justify-sm-content-between">
           <div style="width: 22em" class="mb-4 border rounded p-4 d-flex flex-column justify-content-between">
             <div>
@@ -388,21 +327,21 @@
     <section id="procedure-container">
       <header class="text-center">
         <h2>How to Publish an Article</h2>
-        <span>Follow this step and publish your research</span>
+        <span>Follow this step and publish your research. For more tutorials visit our  <a href="./tutorials.php">Tutorials page.</a></span>
       </header>
-      <div class="procedures flex-lg-row flex-column">
+      <div class="mt-2 procedures flex-lg-row flex-column">
         <div class="procedure ">
           <div class="icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="14" stroke-dashoffset="14" d="M6 19h12"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.5s" dur="0.4s" values="14;0"/></path><path stroke-dasharray="18" stroke-dashoffset="18" d="M12 15 h2 v-6 h2.5 L12 4.5M12 15 h-2 v-6 h-2.5 L12 4.5"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.4s" values="18;0"/></path></g></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="var(--secondary)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="14" stroke-dashoffset="14" d="M6 19h12"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.5s" dur="0.4s" values="14;0"/></path><path stroke-dasharray="18" stroke-dashoffset="18" d="M12 15 h2 v-6 h2.5 L12 4.5M12 15 h-2 v-6 h-2.5 L12 4.5"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.4s" values="18;0"/></path></g></svg>
           </div>
           <h5 class="title">Submit Paper Online</h5>
           <div class="description">
-            <p>Step 1: Create an account on the Pahina platform. This is your account for managing submissions, tracking their progress, and staying informed. Make sure your manuscript adheres to the specific formatting and style guidelines of your chosen journal.</p>
+            <p>Step 1: Create and update your account necessary detail. Here you can manage submissions, and track its progress. Make sure your manuscript adheres to the formatting and guidelines of your chosen journal.</p>
           </div>
         </div>
         <div class="procedure">
           <div class="icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="M6 15.8L7.143 17L10 14M6 8.8L7.143 10L10 7"/><path d="M13 9h5m-5 7h5m4-4c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12s0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464c.974.974 1.3 2.343 1.41 4.536"/></g></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="var(--secondary)" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="M6 15.8L7.143 17L10 14M6 8.8L7.143 10L10 7"/><path d="M13 9h5m-5 7h5m4-4c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12s0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464c.974.974 1.3 2.343 1.41 4.536"/></g></svg>
           </div>
           <h5 class="title">Peer Review Process</h5>
           <div class="description">
@@ -411,7 +350,7 @@
         </div>
         <div class="procedure">
           <div class="icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="M3 13.5a.5.5 0 0 1-.5-.5V3a.5.5 0 0 1 .5-.5h9.25a.75.75 0 0 0 0-1.5H3a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9.75a.75.75 0 0 0-1.5 0V13a.5.5 0 0 1-.5.5zm12.78-8.82a.75.75 0 0 0-1.06-1.06L9.162 9.177L7.289 7.241a.75.75 0 1 0-1.078 1.043l2.403 2.484a.75.75 0 0 0 1.07.01z" clip-rule="evenodd"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 16 16"><path fill="var(--secondary)" fill-rule="evenodd" d="M3 13.5a.5.5 0 0 1-.5-.5V3a.5.5 0 0 1 .5-.5h9.25a.75.75 0 0 0 0-1.5H3a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9.75a.75.75 0 0 0-1.5 0V13a.5.5 0 0 1-.5.5zm12.78-8.82a.75.75 0 0 0-1.06-1.06L9.162 9.177L7.289 7.241a.75.75 0 1 0-1.078 1.043l2.403 2.484a.75.75 0 0 0 1.07.01z" clip-rule="evenodd"/></svg>
           </div>
           <h5 class="title">Accepted Paper</h5>
           <div class="description">
@@ -420,16 +359,16 @@
         </div>
         <div class="procedure">
           <div class="icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 1024 1024"><path fill="currentColor" d="M688 312v-48c0-4.4-3.6-8-8-8H296c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h384c4.4 0 8-3.6 8-8m-392 88c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h184c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8zm376 116c-119.3 0-216 96.7-216 216s96.7 216 216 216s216-96.7 216-216s-96.7-216-216-216m107.5 323.5C750.8 868.2 712.6 884 672 884s-78.8-15.8-107.5-44.5C535.8 810.8 520 772.6 520 732s15.8-78.8 44.5-107.5C593.2 595.8 631.4 580 672 580s78.8 15.8 107.5 44.5C808.2 653.2 824 691.4 824 732s-15.8 78.8-44.5 107.5M761 656h-44.3c-2.6 0-5 1.2-6.5 3.3l-63.5 87.8l-23.1-31.9a7.92 7.92 0 0 0-6.5-3.3H573c-6.5 0-10.3 7.4-6.5 12.7l73.8 102.1c3.2 4.4 9.7 4.4 12.9 0l114.2-158c3.9-5.3.1-12.7-6.4-12.7M440 852H208V148h560v344c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8V108c0-17.7-14.3-32-32-32H168c-17.7 0-32 14.3-32 32v784c0 17.7 14.3 32 32 32h272c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 1024 1024"><path fill="var(--secondary)" d="M688 312v-48c0-4.4-3.6-8-8-8H296c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h384c4.4 0 8-3.6 8-8m-392 88c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h184c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8zm376 116c-119.3 0-216 96.7-216 216s96.7 216 216 216s216-96.7 216-216s-96.7-216-216-216m107.5 323.5C750.8 868.2 712.6 884 672 884s-78.8-15.8-107.5-44.5C535.8 810.8 520 772.6 520 732s15.8-78.8 44.5-107.5C593.2 595.8 631.4 580 672 580s78.8 15.8 107.5 44.5C808.2 653.2 824 691.4 824 732s-15.8 78.8-44.5 107.5M761 656h-44.3c-2.6 0-5 1.2-6.5 3.3l-63.5 87.8l-23.1-31.9a7.92 7.92 0 0 0-6.5-3.3H573c-6.5 0-10.3 7.4-6.5 12.7l73.8 102.1c3.2 4.4 9.7 4.4 12.9 0l114.2-158c3.9-5.3.1-12.7-6.4-12.7M440 852H208V148h560v344c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8V108c0-17.7-14.3-32-32-32H168c-17.7 0-32 14.3-32 32v784c0 17.7 14.3 32 32 32h272c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8"/></svg>
           </div>
           <h5 class="title">Paper Published</h5>
           <div class="description">
-            <p>Step 4: After the copyediting stage, your paper undergoes a final review for formatting and compliance with journal guidelines. Upon final approval, your research will be published on the Pahina platform, becoming accessible to a global audience.</p>
+            <p>Step 4: After the copyediting stage, your paper undergoes a final review for formatting and compliance with journal guidelines. Upon final approval, your research will be published on the Pahina.</p>
           </div>
         </div>
       </div>
     </section>
-    <section id="quick-links-container" class="">
+    <!-- <section class="d-none" id="quick-links-container" class="">
       <header>
         <h2>Quick Links</h2>
       </header>
@@ -483,7 +422,7 @@
           </div>
         </a>
       </div>
-    </section>
+    </section> -->
     <section id="faqs-container">
       <header class="text-center">
         <h2>Frequently Asked Questions</h2>

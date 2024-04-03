@@ -9,6 +9,10 @@
           <img class="img-logo" src="../images/pahina-full.png" alt="">
       </div>
       <div class="links">
+        <form action="search-articles.php" method="GET" class="form-inline d-flex gap-1" id="searchForm">
+          <input id="searchInput" name="search" class="form-control mr-sm-2" type="search" placeholder="Search articles..." aria-label="Search">
+          <!-- <button type="submit" class="btn btn-outline-secondary my-2 my-sm-0">Search</button> -->
+        </form>
         <a href="donation.php" class="link text-muted">
           <span class="d-none d-lg-flex">SUPPORT US</span>
           <svg  class="d-none d-md-flex d-lg-none" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
@@ -18,10 +22,6 @@
         <a href="ex_submit.php" class="link text-muted">
           <span class="d-none d-md-flex">SUBMIT ARTICLE</span>
         </a>
-        <form action="search-articles.php" method="GET" class="form-inline d-flex gap-1" id="searchForm">
-          <input id="searchInput" name="search" class="form-control mr-sm-2" type="search" placeholder="Search articles..." aria-label="Search">
-          <!-- <button type="submit" class="btn btn-outline-secondary my-2 my-sm-0">Search</button> -->
-        </form>
       </div>
   </div>
 </body>
