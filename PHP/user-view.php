@@ -861,10 +861,42 @@ $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
                             <tbody>
                                 <tr>
                                     <?php
+                                    $sql = "SELECT article.article_id, article.title, article.date, user_points.email, user_points.action_engage, 
+                                            COUNT(CASE WHEN logs.type = 'read' THEN 1 END) AS read_count, 
+                                            COUNT(CASE WHEN logs.type = 'support' THEN 1 END) AS support_count
+                                            FROM user_points 
+                                            JOIN contributors ON user_points.article_id = contributors.article_id 
+                                            JOIN article ON contributors.article_id = article.article_id 
+                                            LEFT JOIN logs ON article.article_id = logs.article_id
+                                            WHERE contributors.orcid = :orc_id
+                                            AND (user_points.action_engage = 'Co-Author' OR user_points.action_engage = 'Primary Contact') 
+                                            AND article.status = 1
+                                            GROUP BY article.article_id";
 
+                                    $result = database_run($sql, array('orc_id' => $orcid));  
+
+                                    if($result) {
+                                        foreach($result as $row) {
+                                            $article_id = $row->article_id;
+                                            $title = $row->title;
+                                            $date = $row->date;
+                                            $email = $row->email; 
+                                            $action_engage = $row->action_engage;
+                                            $read_count = $row->read_count;
+                                            $support_count = $row->support_count;
+                                            
+                                            echo '<tr>';
+                                            echo '<td><a href="../PHP/article-details.php?articleId=' . $row->article_id . '">' . $title . '</a></td>';
+                                            echo '<td>' . $date . '</td>';
+                                            echo '<td>' . $action_engage . '</td>';
+                                            echo '<td>' . $read_count . '</td>';
+                                            echo '<td>' . $support_count . '</td>';
+                                            echo '</tr>';
+                                        }
+                                    }
                                     ?>
-		
                                 </tr>
+
                             </tbody>
                         </table>
                     </div>
