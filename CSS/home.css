@@ -4,9 +4,6 @@
   scroll-behavior: smooth  !important;
 }
 
-/* h2 {
-  font-size: 2em !important;
-} */
 .main-content{
   width: 100%;
   height: auto;
@@ -15,12 +12,10 @@
   position: relative;
   width: 100%;
   height: 24em;
-  /* max-height:20em; */
   background-image: url(../images/qcu-bg.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  /* padding-top: 70px; */
   padding: 4em 8%;
   display: inline-flex;
   justify-content: center;
@@ -162,8 +157,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* flex-direction: column; */
-  margin-top: 10px; /* Adjust spacing between title and center-container */
+  margin-top: 10px; 
 }
 .recommendation-article{
   display: flex;
@@ -231,7 +225,7 @@ background-color: transparent;
 
 .articles-container::-webkit-scrollbar-thumb {
   background-color: #b8b7b7;
-  border-radius: 8px; /* Adjusted border radius */
+  border-radius: 8px; 
 }
 
 .articles-container-monthly::-webkit-scrollbar {
@@ -241,7 +235,7 @@ background-color: transparent;
 
 .articles-container-monthly::-webkit-scrollbar-thumb {
   background-color: #b8b7b7;
-  border-radius: 8px; /* Adjusted border radius */
+  border-radius: 8px; 
 }
 
 .article {
@@ -271,7 +265,7 @@ font-size: 18px;
 line-height: 24px;
 overflow: hidden;
 display: -webkit-box;
--webkit-line-clamp: 3; /* Limit the number of lines to display */
+-webkit-line-clamp: 3; 
 -webkit-box-orient: vertical;
 text-overflow: ellipsis;
 font-family: Arial, Helvetica, sans-serif;
@@ -339,10 +333,10 @@ background-color: var(--main, #0858A4);
 }
 
 .About-container, .recommendation-container {
-display: flex; /* Change to flex container */
+display: flex; 
 flex-wrap: wrap;
-justify-content: space-around; /* Center horizontally */
-align-items: center; /* Center vertically */
+justify-content: space-around; 
+align-items: center; 
 min-height: 70vh;
 max-height:auto;
 padding: 2em 8%;
@@ -350,8 +344,6 @@ padding: 2em 8%;
 
 .vision-container {
     display: flex;
-    /* flex-wrap: wrap; */
-    /* justify-content: space-around; */
     align-items: center;
     min-height: 70vh;
     max-height: auto;
@@ -372,13 +364,12 @@ padding: 2em 8%;
   color: var(--main, #0858A4);
 }
 .ab-qoaj-left {
-flex: 1; /* Take up available space */
+flex: 1; 
 min-width: 25em;
 
 }
 
 .ab-qoaj-left h2 {
-/* font-family: Arial, Helvetica, sans-serif; */
 color: white;
 margin-top: 20px;
 }
@@ -405,14 +396,13 @@ color: white;
 }
 
 .ab-qoaj-right {
-  flex: 1; /* Take up available space */
+  flex: 1;
   display:flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   width: auto;
   gap: 2em;
-  /* max-width: 350px; */
   
   }
   
@@ -429,7 +419,6 @@ color: white;
 .text1 {
 display: inline-block;
 margin: 0em 2em;
-/* margin-left: 30px; */
 }
 
 .divider-line-2 {
@@ -438,36 +427,28 @@ height: 7em;
 display: inline-block;
 }
 
-/* New CSS for responsive layout */
 
 @media (max-width: 767px) {
   .About-container {
     flex-direction: column;
-    /* Display in column layout */
     align-items: center;
     text-align: center;
     padding: 2em 5%;
-    /* Adjust padding for smaller screens */
   }
 
   .ab-qoaj-left,
   .ab-qoaj-right {
     flex: none;
-    /* Disable flex to allow natural width */
     width: 100%;
-    /* Set width to full for column layout */
     min-width: auto;
-    /* Reset min-width */
   }
 
   .ab-qoaj-left {
     margin-bottom: 1em;
-    /* Add spacing between left and right sections */
   }
 
   .ab-qoaj-left h4 {
     font-size: 1.5em;
-    /* Adjust font size for smaller screens */
   }
 }.image-container {
   position: relative;
@@ -517,7 +498,6 @@ display: inline-block;
 }
 
 .plans{
-  font-family: Arial, Helvetica, sans-serif;
   color: var(--main, #0858A4);
   text-align: center;
   margin-top: 70px;
@@ -526,12 +506,9 @@ display: inline-block;
 
 .plans-inside{
   width: 100%;
-  /* margin-left: 40px;
-  margin-right: 40px; */
 }
 
 .plans-inside h5{
-  /* font-family: Arial, Helvetica, sans-serif; */
   color: var(--main, #0858A4);
 }
 
@@ -553,12 +530,8 @@ border: 1px solid #F2F2F2;
 box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.025);
 width: 100%;
 max-width: 24em;
-/* height: 100%; */
 display: inline-block; 
 text-align: center; 
-/* margin: 0 140px 0 140px;  */
-/* box-shadow:gray 5px 10px 10px; */
- /* Add shadow to the border */
 }
 
 
@@ -578,7 +551,6 @@ font-size: 24px;
 
 .example-journal p{
 text-align: center;
-/* margin: 20px 20px 20px 20px; */
 text-align: justify;
 font-size: 16px;
 }
@@ -602,18 +574,13 @@ display: flex;
 flex-wrap: wrap;
 gap:2em;
 justify-content: center;
-/* justify-content: between; /* Center horizontally within the container */
-/* align-items: center; Center vertically within the container  */
 margin-top: 100px;
 margin-bottom: 80px;
 padding: 2em 8%;
-/* height: 700px; */
 }
 
 #most-popular-container{
-  /* box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.025); */
   display:flex;
-  /* flex-direction: column; */
   padding:8px;
   
 }
@@ -702,7 +669,7 @@ h4, h2 {
   display: flex;
   position: relative;
   flex-direction: column;
-  justify-content: flex-start; /* Align content at the top */
+  justify-content: center;
   align-items: center;
   gap: 13px; 
   padding: 2em;
@@ -714,12 +681,10 @@ h4, h2 {
 }
 
 .procedure .title {
-  margin-bottom: 10px; /* Add margin between title and description */
+  margin-bottom: 10px; 
 }
 
-.procedure .description {
-  margin-bottom: auto; /* Push the description to the top */
-}
+
 .procedure{
   /* width: 400px; */
   height: 300px;
@@ -728,16 +693,18 @@ h4, h2 {
 .procedure .icon {
   position: absolute;
   top: -1.5em;
-  background-color: #f8f8f8;
-  border: 2px solid var(--secondary, #E56F1F);
+  background-color: #f8e4d6;
   border-radius: 100%;
-  padding: 0.5em;
+  padding: 1em;
   font-weight: 700;
 }
 .procedure h4 {
   font-size: 20px;
 }
-
+#procedure-container a {
+  text-decoration: none;
+  font-weight: 600;
+}
 .procedure p {
   font-size: small;
 }
@@ -802,8 +769,6 @@ h4, h2 {
 }
 /* QUICK LINKS CSS END*/
 /* FAQS FREQUENTLY ASKED QUESTIONS CSS START*/
-
-
 
 #faqs-container h2 {
   text-align: center;
