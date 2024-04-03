@@ -1146,16 +1146,93 @@ $expertise = $_SESSION['expertise'];
 					<table class="publications-table">
 						<thead>
 							<tr>
-								<th>Title</th>
-								<th>Type</th>
+								<th>Details</th>
+								<th>Journal</th>
 								<th>Date</th>
-								
-								
+								<th></th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>	
+							<?php
+										$sqlAchievements = "
+										
 
+											(SELECT 'Published an Article' as action_engage, article.title, article.journal_id,NULL as status, user_points.date, user_points.point_earned
+											FROM user_points
+											JOIN article ON user_points.article_id = article.article_id
+											WHERE user_points.action_engage = 'Published an Article' AND user_points.user_id = :user_id AND article.status = 1)
+											
+											UNION
+											
+											(SELECT 'Reviewed Article Published' as action_engage, article.title, article.journal_id, NULL as status, user_points.date, user_points.point_earned
+											FROM user_points
+											JOIN reviewer_assigned ON user_points.user_id = reviewer_assigned.author_id
+											JOIN article ON reviewer_assigned.article_id = article.article_id
+											WHERE article.status = 1 AND reviewer_assigned.accept = 1 AND reviewer_assigned.answer = 1 AND user_points.action_engage = 'Reviewed Article Published' AND user_points.user_id = :author_id)
+											
+											UNION
+											
+											(SELECT 'Submitted an Article' as action_engage, article.title, article.journal_id, NULL as status, user_points.date, user_points.point_earned
+											FROM user_points
+											JOIN article ON user_points.article_id = article.article_id
+											WHERE user_points.action_engage = 'Submitted an Article' AND user_points.user_id = :user_id)
+											
+											UNION
+											
+											(SELECT 'Reviewed an Article' as action_engage, article.title, article.journal_id, NULL as status, user_points.date, user_points.point_earned
+											FROM user_points
+											JOIN reviewer_assigned ON user_points.user_id = reviewer_assigned.author_id
+											JOIN article ON reviewer_assigned.article_id = article.article_id
+											WHERE reviewer_assigned.accept = 1 AND reviewer_assigned.answer = 1 AND user_points.action_engage = 'Reviewed an Article' AND user_points.user_id = :author_id)
+
+											UNION
+								
+											(SELECT 'Co-Author' as action_engage, article.title, article.journal_id,NULL as status, user_points.date, user_points.point_earned
+											FROM user_points
+											JOIN article ON user_points.article_id = article.article_id
+											WHERE user_points.action_engage = 'Co-Author' AND article.status <= 6 AND user_points.email = :email)
+
+											UNION
+									
+											(SELECT 'Primary Contact' as action_engage, article.title, article.journal_id,NULL as status, user_points.date, user_points.point_earned
+											FROM user_points
+											JOIN article ON user_points.article_id = article.article_id
+											WHERE user_points.action_engage = 'Primary Contact' AND article.status <= 6 AND user_points.email = :email)
+
+											ORDER BY date DESC
+										";
+
+										
+										$result = database_run($sqlAchievements,array('author_id' => $id, 'user_id' => $id, 'email' => $email));
+
+										if ($result !== false) {
+											foreach ($result as $row) {
+												$journalMapping = [
+													'1' => 'The Gavel',
+													'2' => 'The Lamp',
+													'3' => 'The Star',
+												];
+										
+												// Check if the action is one of the desired actions
+												if ($row->action_engage === 'Published an Article' || $row->action_engage === 'Reviewed Article Published') {
+													echo '<tr>';
+													echo '<td>' . $row->action_engage .'</td>';
+													echo '<td>' . $journalMapping[$row->journal_id] .'</td>';
+													echo '<td style="display: none">' . $row->title .'</td>';
+													$formattedDate = date('F j, Y', strtotime($row->date)); // Formatting without time
+													echo '<td>' . $formattedDate . '</td>';
+													// echo '<td style="color: green;">You earned ' . $row->point_earned . ' Community Heart</td>';
+													echo '<td><button type="button" class="view-button" onclick="updateEngagementTitle(\'' . htmlspecialchars($row->title) . '\', \'' . $journalMapping[$row->journal_id] . '\', \'' . $formattedDate . '\')">View</button></td>';
+													echo '</tr>';
+	
+												}
+											}
+										} else {
+											echo '<p style="margin-left: 50px; padding-top: 20px">You have no Achievements yet</p>';
+										}
+										
+									?>
 
 							</tr>
 						</tbody>
@@ -2425,7 +2502,6 @@ function updateEngagementTitle(title, journalId, formattedDateTime) {
 		iss2.innerHTML = 'ISSN 3027-9895';
 	}	
 }
-
 
 
 
