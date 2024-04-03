@@ -54,7 +54,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
             </div>           
         </aside>
 
-        <div class="main" id="tutorial-on-publication-container" style="display: none;">
+        <div class="main" id="tutorial-on-publication-container" >
             <div class="header">
                 <h2>Tutorial on Publication</h2>
             </div>
@@ -77,10 +77,35 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     <img src="../images/Registration.png" alt="" class="img-reg">
                 </div>
                 <div class="s-2">
-                    <h3>Making a Submission</h3>
+                    <h3>Logging in to  Pahina website.</h3>
                     <p>After completing the registration, log in to your account.</p>
-                    <p>Once you are logged in, click on 'Be a Contributor' to begin the process of submitting your articles.</p>
-                    <img src="../images/Submission.png" alt="" class="img-sub">
+                    <ol type="1">
+                        <li> Write your Email.</li>
+                        <li>next is your password.</li>
+                        <li>If it’s your first time to login, You need to input the OTP code that has sent to your Gmail.</li>
+                        <li>When you are done just click ‘Verify’ to proceed.</li>
+                    </ol>
+                    <img src="../images/login.png" alt="" class="img-reg">
+                </div>
+                <div class="s-2">
+                    <h3>Complete your Personal Information.</h3>
+                    <p>The user must complete all the information before they can Publish or Submit a paper.</p>
+                    <ol type="1">
+                        <li> Go to your profile.</li>
+                        <li>Click then icon to edit your Information.</li>
+                        <li>Complete all the missing information about you.</li>
+                        <li>Click save if you are done.</li>
+                    </ol>
+                    <img src="../images/Profile.png" alt="" class="img-reg">
+                </div>
+                <div class="s-2">
+                    <h3>Submit a Paper</h3>
+                    <p>Begin your publication journey by click</p>
+                    <ol type="1">
+                        <li>Look for a button where you can read ‘Submit an Article’</li>
+                        <li>Click the Button to proceed.</li>
+                    </ol>
+                    <img src="../images/submit.png" alt="" class="img-reg">
                 </div>
                 <div class="s-2">
                     <h3>Step 1: Privacy</h3>
@@ -101,7 +126,9 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                         <li>Abstract - Summarize your article's key points briefly.</li>
                         <li>Keywords - List relevant keywords for searchability.</li>
                         <li>Reference - Provide a list of sources following the required citation style.</li>
-                        <li>After you fill all the necessary information for your article, click the ‘Next’ button and proceed to the next step.</li>
+                        <li>Originality Checker: This will automatically show up after you fill in all the needed information. This checker will make sure that this article is unique.</li>
+                        <li>Journal classification- this will determine what type of journal your article is in. It's either the lamp, the star, or the gavel.</li>
+                        <li>After you fill all the necessary information for your article, click the ‘Next’ button and proceed to the next step</li>
                     </ol>
                     <img src="../images/step2.png" alt="" class="img-reg">
                 </div>
@@ -143,6 +170,14 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                         <li>When you are done, you can click the ‘Submit’ button below.</li>
                     </ol>
                     <img src="../images/step6.png" alt="" class="img-reg">
+                </div>
+                <div class="s-2">
+                    <h3>Author’s view.</h3>
+                    <p>Author’s view of their Contributions.</p>
+                    <ol type="1">
+                        <li>Click ‘All Submissions’ to see your submitted article as well as its status, date, and which journal it was submitted to</li>
+                    </ol>
+                    <img src="../images/authorsview.png" alt="" class="img-reg">
                 </div>
             </div>
     	</div>
