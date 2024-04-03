@@ -534,7 +534,7 @@ async function renderRecommended(data) {
         <p class="info">${article.journal}</p>
       </div>
       <p class="author">By ${article.author}</p>
-      <p class="article-content h-25 ">${article.abstract.slice(0, 80)}</p>
+      <p class="article-content">${article.abstract.slice(0,180)}...</p>
       <button class="btn btn-primary btn-md btn-article" style="border: 2px var(--main, #0858A4) solid; background-color: transparent; border-radius: 20px; color: var(--main, #0858A4); width: 100%;">Read Article</button>
     `;
     articleElement.addEventListener("click", () =>

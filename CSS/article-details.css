@@ -113,23 +113,15 @@
   display: flex;
   gap: 2em;
 }
-.views {
-  display: grid;
-  place-items: center;
-  /* display: inline-block; */
-}
-
+.article .info, .article{
+  opacity: 0.7;
+  display: inline-block;
+  }
+.views,
+.citations,
 .downloads {
-  /* display: inline-block;
-    padding-left: 100px; */
   display: grid;
   place-items: center;
-}
-.citations {
-  display: grid;
-  place-items: center;
-  /* display: inline-block;
-    padding-left: 100px; */
 }
 
 .article-pub h4 {
@@ -228,8 +220,8 @@
 .articles-container-monthly::-webkit-scrollbar-thumb {
   background-color: transparent;
 }
-
 .article {
+  cursor: default;
   padding: 2em;
   width: 25%;
   min-width: 320px;
@@ -246,6 +238,13 @@
 }
 
 .article .h6 {
+  font-size: 18px;
+  line-height: 24px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; 
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
   font-family: Arial, Helvetica, sans-serif;
   color: var(--main, #0858A4);
   width: auto;
@@ -256,16 +255,18 @@
   font-size: 12px;
   width: 100%;
 }
-
 .author {
   color: var(--main, #0858A4);
   font-size: 12px;
-  display: block;
+  display: none;
 }
 
-.article-content {
+.article-content{
   color: black;
   font-size: 12px;
+  height: 100px !important;
+  /* overflow-y: auto;
+  overflow-x: hidden; */
 }
 
 .btn-article:hover {

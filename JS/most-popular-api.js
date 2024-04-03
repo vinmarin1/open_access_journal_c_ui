@@ -37,10 +37,10 @@ async function fetchData() {
         <p class="h6" id="title">${item.title}</p>
         <div class="article-info">
           <p class="info" id="category">${item.journal || 'No Journal'}</p>
-          <span class="views" id="views">${item.total_reads} Views</span>
+          <p class="article-views" id="views">${item.total_reads} Views</p>
         </div>
         <p class="author" id="author">${item.author}</p>
-        <p class="article-content" id="abstract">${item.abstract.slice(0,80)}...</p>
+        <p class="article-content" id="abstract">${item.abstract.slice(0,180)}...</p>
         <button class="btn btn-primary btn-md btn-article" style="border: 2px var(--main, #0858A4) solid; background-color: transparent; border-radius: 20px; color: var(--main, #0858A4); width: 100%;">Read Article</button>
       `;
 
