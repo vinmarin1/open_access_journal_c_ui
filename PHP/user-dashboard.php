@@ -938,6 +938,7 @@ $expertise = $_SESSION['expertise'];
 			<button class="tablinks" onclick="openTab(event, 'Rewards')">Rewards</button> -->
 			<button class="tablinks" onclick="openTab(event, 'Attainments')">Attainments</button>
 			<button class="tablinks" onclick="openTab(event, 'Publications')">Publications</button>
+			<button class="tablinks" onclick="openTab(event, 'Certificates')">Certificates</button>
 		</div>
 
 
@@ -1129,6 +1130,32 @@ $expertise = $_SESSION['expertise'];
 										}
 									}
 								?>
+
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div id="Certificates" class="tabcontent">
+			<div class="publications-container">
+				<div class="header-achievements">
+					<h3>Certificate Received</h3>
+				</div>
+				<div class="table-container">
+					<table class="publications-table">
+						<thead>
+							<tr>
+								<th>Title</th>
+								<th>Type</th>
+								<th>Date</th>
+								
+								
+							</tr>
+						</thead>
+						<tbody>
+							<tr>	
+
 
 							</tr>
 						</tbody>
