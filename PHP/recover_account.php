@@ -92,42 +92,41 @@ function checkQueryParameter() {
     const thirdStepForm = document.getElementById('thirdStepForm');
 
     if (step === '3') {
-        // Check if the link has been used by looking at the localStorage
-        const linkUsed = localStorage.getItem('resetLinkUsed');
+        const token = urlParams.get('token');
+        const storedToken = '<?php echo isset($_SESSION['resetToken']) ? $_SESSION['resetToken'] : "" ?>';
 
-        if (linkUsed === null) {
-            // If the link hasn't been used, proceed
-            const storedEmail = '<?php echo isset($_SESSION['userEmail']) ? $_SESSION['userEmail'] : "" ?>';
+        if (token && token === storedToken) {
+            const linkUsed = localStorage.getItem('resetLinkUsed_' + token);
 
-            if (storedEmail) {
-                // Display the stored email
-                alert('Updating account of: ' + storedEmail);
+            if (linkUsed === null) {
+                const storedEmail = '<?php echo isset($_SESSION['userEmail']) ? $_SESSION['userEmail'] : "" ?>';
+
+                if (storedEmail) {
+                    alert('Updating account of: ' + storedEmail);
+                } else {
+                    alert('Email not found');
+                }
+
+                thirdStepForm.style.display = 'block';
+                document.getElementById('firstStepForm').style.display = 'none';
+                document.getElementById('secondStepForm').style.display = 'none';
+
+                // Mark the link as used by setting a flag in localStorage
+                localStorage.setItem('resetLinkUsed_' + token, 'true');
             } else {
-                // Handle the case where the email is not found
-                alert('Email not found');
+                alert('Link expired. Please request a new link.');
+                window.location.href = '../PHP/login.php';
             }
-
-            thirdStepForm.style.display = 'block';
-            document.getElementById('firstStepForm').style.display = 'none';
-            document.getElementById('secondStepForm').style.display = 'none';
-
-            // Mark the link as used by setting a flag in localStorage
-            localStorage.setItem('resetLinkUsed', 'true');
         } else {
-            // Handle the case where the link has already been used
-            alert('Link expired. Please request a new link.');
-            resetLinkStatus(); // Reset the link status for a new link
-            window.location.href= '../PHP/login.php';
+            alert('Invalid or expired token.');
+            window.location.href = '../PHP/login.php';
         }
     }
 }
 
-function resetLinkStatus() {
-    // Reset the link status by removing the 'resetLinkUsed' flag from localStorage
-    localStorage.removeItem('resetLinkUsed');
-}
-
 window.addEventListener('load', checkQueryParameter);
+
+
 
 
 
