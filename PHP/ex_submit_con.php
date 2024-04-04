@@ -216,6 +216,28 @@ function handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $
 
         database_run($sqlCont, $paramsCont);
 
+        $sqlPoint = "INSERT INTO user_points(`email`, `action_engage`, `article_id`, `point_earned`) VALUES (:email, :action_engage, :article_id, :point_earned)";
+
+        $logsPoints = array(
+            'email' => $emailsC[$key],
+            'action_engage' => $contributorTypeString,
+            'article_id' => $lastInsertedArticleId,
+            'point_earned' => 1
+        );
+          
+        database_run($sqlPoint, $logsPoints);
+
+        
+
+        $emailContributor = $emailsC[$key];
+
+        $messageForCont = "<p>You've been included as a contributor for the Journal</p><br> <label style='display: inline-block;'>Title: </label> <p style='display: inline-block;'>$title</p> <br><label style='display: inline-block;'>Abstract: </label><p style='display: inline-block;'>$abstract</p>";
+    
+        $subjectContributor = "Review Journal";
+        $recipientContributor = $emailContributor;
+        send_mail($recipientContributor, $subjectContributor, $messageForCont);
+    
+
   
     }
 
