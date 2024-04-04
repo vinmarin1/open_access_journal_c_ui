@@ -77,7 +77,7 @@ $userlist = get_userarchived_list();
 
     function unarchiveUser(authorId, firstName, lastName) {
         $('#archiveModal').modal('show');
-        $('#archiveModalTitle').text('Unarchive User');
+        $('#archiveModalTitle').text('Retrieve User');
         $('#userInfo').html('<strong>Name:</strong> ' + lastName + ', ' + firstName + '<br><strong>ID:</strong> ' + authorId);
 
         $('#archiveModalSave').off().on('click', function () {
@@ -115,12 +115,12 @@ $userlist = get_userarchived_list();
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="archiveModalTitle">Unarchived User</h5>
+                    <h5 class="modal-title" id="archiveModalTitle">Retrieve User</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <h5 class="modal-title" id="modalToggleLabel">Are you sure you want to unarchived this user?</h5>
+                        <h5 class="modal-title" id="modalToggleLabel">Are you sure you want to retrieve this user?</h5>
                         <p id="userInfo"></p>
                     </div>
                 </div>

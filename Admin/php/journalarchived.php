@@ -65,7 +65,7 @@ $journallist = get_journalarchived_list();
     
     function unarchiveJournal(journalId, journal, journal_title) {
         $('#archiveModal').modal('show');
-        $('#archiveModalTitle').text('Unarchive Journal');
+        $('#archiveModalTitle').text('Retrieve Journal');
         $('#journalInfo').html('<strong>Journal:</strong> ' + journal + ' <br><strong>Journal_Title:</strong> ' + journal_title + '<br><strong>ID:</strong> ' + journalId);
 
         $('#archiveModalSave').off().on('click', function () {
@@ -103,12 +103,12 @@ $journallist = get_journalarchived_list();
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="archiveModalTitle">Unarchived User</h5>
+                    <h5 class="modal-title" id="archiveModalTitle">Retrieve User</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <h5 class="modal-title" id="modalToggleLabel">Are you sure you want to unarchived this journal?</h5>
+                        <h5 class="modal-title" id="modalToggleLabel">Are you sure you want to retrieve this journal?</h5>
                         <p id="journalInfo"></p>
                     </div>
                 </div>
