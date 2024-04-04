@@ -62,7 +62,7 @@
         <div class="mt-2 mb-2 leaders-content text-center">
             <img src="../images/baylon.png" alt="" class="img-fluid">
             <div class="description" >  
-                <span class="mt-2" style="font-size:medium;">ELOISA MARIE M. BAYLON</span>
+                <span class="mt-2" style="font-size:medium;">ELOISA MARIE BAYLON</span>
                 <p style="font-weight:normal; font-size: small;">PROJECT MANAGER</p>
                 <p style="font-weight:normal; font-size: small;  ">Leads the team, guiding the development process, and project documentation</p>
             </div>
@@ -86,6 +86,7 @@
                 <div class="col-md-2 col-2"><a href="https://www.linkedin.com/in/kimberlypangilinan/"><i class="fa-brands fa-linkedin" style="color: blue;"></a></i></div>
             </div>
         </div>
+
         <div class="mt-2 mb-2 leaders-content text-center">
             <img src="../images/pingol.png" alt="" class="img-fluid">
             <div class="description" >
@@ -105,6 +106,26 @@
                 <div class="col-md-2 col-2"><a href="https://www.linkedin.com/in/pingol-ean-v-2978402ab/"><i class="fa-brands fa-linkedin" style="color: blue;"></a></i></div>
             </div>
         </div>
+
+        <div class="mt-2 mb-2 leaders-content text-center">
+                <img src="../images/david.png" alt="" class="img-fluid">
+                <div class="description" >
+                    <span class="mt-2" style="font-size:medium;">KYLE ANGELINE O. DAVID</span>
+                    <p style="font-weight:normal; font-size: small;">HEAD TECHNICAL WRITER</p>
+                    <p style="font-weight:normal; font-size: small;  ">Leads documentation and research, ensures everything is well-documented</p>
+                </div>
+
+                <div class="d-flex flex-wrap gap-1 justify-content-center " >
+                 
+                    <div class="col-md-2 col-2"><a href="https://www.facebook.com/kyle.angeline.david/"><i class="fab fa-facebook-f" style="color: blue;"></i></a></div>
+
+                    <div class="col-md-2 col-2"><a href="mailto:kyleangeline.david2707@gmail.com"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M32 6v20c0 1.135-.865 2-2 2h-2V9.849l-12 8.62l-12-8.62V28H2c-1.135 0-2-.865-2-2V6c0-.568.214-1.068.573-1.422A1.973 1.973 0 0 1 2 4h.667L16 13.667L29.333 4H30c.568 0 1.068.214 1.427.578c.359.354.573.854.573 1.422"/></svg></a></div>
+
+                    <!-- <div class="col-md-2 col-2"><a href="https://www.instagram.com/elyxne/"><i class="fa-brands fa-instagram" style="color: blue;"></i></a></div> -->
+
+                    <div class="col-md-2 col-2"><a href="https://www.linkedin.com/in/kyleangelinedavid/"><i class="fa-brands fa-linkedin" style="color: blue;"></a></i></div>
+                </div>
+            </div>
     </section>
 
     <!-------------- Members-------------->
@@ -148,26 +169,6 @@
                     <div class="col-md-2 col-2"><a href="https://www.linkedin.com/in/jacob-claire-kaye-s-0781542a9/"><i class="fa-brands fa-linkedin" style="color: blue;"></i></a></div>
                 </div>
             </div>
-            <div class="mt-2 mb-2 members-content text-center">
-                <img src="../images/david.png" alt="" class="img-fluid">
-                <div class="description" >
-                    <span class="mt-2" style="font-size:medium;">KYLE ANGELINE O. DAVID</span>
-                    <p style="font-weight:normal; font-size: small;">UI/UX DESIGNER</p>
-                    <p style="font-weight:normal; font-size: small;  ">Contributes on creating intuitive interfaces and as a front-end developer</p>
-                </div>
-
-                <div class="d-flex flex-wrap gap-1 justify-content-center " >
-                 
-                    <div class="col-md-2 col-2"><a href="https://www.facebook.com/kyle.angeline.david/"><i class="fab fa-facebook-f" style="color: blue;"></i></a></div>
-
-                    <div class="col-md-2 col-2"><a href="mailto:kyleangeline.david2707@gmail.com"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 32 32"><path fill="currentColor" d="M32 6v20c0 1.135-.865 2-2 2h-2V9.849l-12 8.62l-12-8.62V28H2c-1.135 0-2-.865-2-2V6c0-.568.214-1.068.573-1.422A1.973 1.973 0 0 1 2 4h.667L16 13.667L29.333 4H30c.568 0 1.068.214 1.427.578c.359.354.573.854.573 1.422"/></svg></a></div>
-
-                    <!-- <div class="col-md-2 col-2"><a href="https://www.instagram.com/elyxne/"><i class="fa-brands fa-instagram" style="color: blue;"></i></a></div> -->
-
-                    <div class="col-md-2 col-2"><a href="https://www.linkedin.com/in/kyleangelinedavid/"><i class="fa-brands fa-linkedin" style="color: blue;"></a></i></div>
-                </div>
-            </div>
-
 
             <div class="mt-2 mb-2 members-content text-center">
                 <img src="../images/monsenabre.png" alt="" class="img-fluid">
