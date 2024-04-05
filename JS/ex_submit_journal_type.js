@@ -8,7 +8,7 @@ document.getElementById('check-duplication').addEventListener('click', async fun
     document.getElementById("checking-text").style.display = "inline"; 
     const abstract = document.getElementById('abstract').value;
     const title = document.getElementById('title').value;
-  
+    const journalInfo = document.getElementById("journal-info")
     const response = await fetch('https://web-production-cecc.up.railway.app/api/check/journal', {
         method: 'POST',
         headers: {
@@ -30,8 +30,7 @@ document.getElementById('check-duplication').addEventListener('click', async fun
         document.getElementById("check-text").style.display = "inline";
         document.getElementById("check-spinner").style.display = "none";
         document.getElementById("checking-text").style.display = "none";
-        document.getElementById("journal-error").innerHTML = "";
-       
+        journalInfo.innerHTML = "A match has been found. You may choose to follow this or select your preferred journal.";
         for (let i = 0; i < dropdown.options.length; i++) {
             if (dropdown.options[i].value === journalType) {
                 dropdown.options[i].selected = true;
@@ -41,7 +40,7 @@ document.getElementById('check-duplication').addEventListener('click', async fun
     } else {
         // Handle error here
         console.error('Error:', data.message);
-        document.getElementById("journal-error").innerHTML = data.message;
+        journalInfo.innerHTML = data.message;
         
     }
 
