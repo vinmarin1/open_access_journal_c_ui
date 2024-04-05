@@ -346,12 +346,35 @@
                     <th>Action</th>
                 </tr>
                <tr>
-                <td><input type="text" style="width: 100%; padding:4px 8px"  value="<?php echo $email ?>"  disabled></td>
+                
+                <?php
+                  $sql = "SELECT email, first_name, last_name, public_name, orc_id FROM author WHERE author_id = :author_id";
+                  $sqlRun = database_run($sql, array('author_id' => $id));
+                  if($sqlRun !== false){
+                      foreach($sqlRun as $row){
+                          $email = $row->email;
+                          $first_name = $row->first_name;
+                          $last_name = $row->last_name;
+                          $public_name = $row->public_name;
+                          $orc_id = $row->orc_id;
+                          echo '
+                              <td><input type="text" style="width: 100%; padding:4px 8px" value="'.$email.'" disabled></td>
+                              <td><input type="text" style="width: 118px; padding:4px 8px" value="'.$first_name.'" disabled></td>
+                              <td><input type="text" style="width: 118px; padding:4px 8px" value="'.$last_name.'" disabled></td>
+                              <td><input type="text" style="width: 118px; padding:4px 8px" value="'.$public_name.'" disabled></td>
+                              <td><input type="text" style="width: 118px; padding:4px 8px" value="'.$orc_id.'" disabled></td>
+                              <td><input type="checkbox" id="authorPcontact" class="-input"><input type="hidden" id="authorPcontactValue" name="authorPcontactValue" value=""><label style="font-weight: normal; font-size: 11px; margin-left: 10px;">Primary Contact</label></td>
+                          ';
+                      }
+                  }
+                  ?>
+
+                <!-- <td><input type="text" style="width: 100%; padding:4px 8px"  value="<?php echo $email ?>"  disabled></td>
                 <td><input type="text" style="width: 118px; padding:4px 8px" value="<?php echo $first_name ?>" disabled></td>
                 <td><input type="text" style="width: 118px; padding:4px 8px" value="<?php echo $last_name ?>" disabled></td>
                 <td><input type="text" style="width: 118px; padding:4px 8px"  value="<?php echo $public_name ?>" disabled></td>
                 <td><input type="text" style="width: 118px; padding:4px 8px" value="<?php echo $orc_id ?>"  disabled></td>
-                <td><input type="checkbox" id="authorPcontact" class="-input"><input type="hidden" id="authorPcontactValue" name="authorPcontactValue" value=""><label style="font-weight: normal; font-size: 11px; margin-left: 10px;">Primary Contact</label></td>
+                <td><input type="checkbox" id="authorPcontact" class="-input"><input type="hidden" id="authorPcontactValue" name="authorPcontactValue" value=""><label style="font-weight: normal; font-size: 11px; margin-left: 10px;">Primary Contact</label></td> -->
                 
                 
                </tr>
