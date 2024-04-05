@@ -31,6 +31,7 @@ document.getElementById('check-duplication').addEventListener('click', async fun
         document.getElementById("check-spinner").style.display = "none";
         document.getElementById("checking-text").style.display = "none";
         journalInfo.innerHTML = "A match has been found. You may choose to follow this or select your preferred journal.";
+        document.getElementById('journal-error').innerHTML = '';
         for (let i = 0; i < dropdown.options.length; i++) {
             if (dropdown.options[i].value === journalType) {
                 dropdown.options[i].selected = true;
@@ -40,7 +41,8 @@ document.getElementById('check-duplication').addEventListener('click', async fun
     } else {
         // Handle error here
         console.error('Error:', data.message);
-        journalInfo.innerHTML = data.message;
+        journalInfo.innerHTML = "";
+        document.getElementById('journal-error').innerHTML = data.message;
         
     }
 
