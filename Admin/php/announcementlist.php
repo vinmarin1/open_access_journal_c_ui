@@ -180,39 +180,48 @@ $announcementlist = get_announcement_list();
     }
 
     function saveChanges() {
-        $('#sloading').toggle();
+        $('#sloading').show();
         console.log('Save button clicked');
 
-            var announcement_id = $('#xannouncement_id').val();
-            var updatedData = {
+        var announcement_id = $('#xannouncement_id').val();
+        var updatedData = {
             title: $('#xtitle').val(),
             announcement_description: $('#xannouncement_description').val(),
             announcement: $('#xannouncement').val(),
-            expired_date: $('#xexpired_date').val(),
+            expired_date: $('#xexpired_date').val()
         };
+
+        var formData = new FormData();
+        formData.append('announcement_id', announcement_id);
+        formData.append('updated_data', JSON.stringify(updatedData));
+        formData.append('upload_image', $('#xupload_image')[0].files[0]);
 
         $.ajax({
             type: 'POST',
             url: '../php/function/announcement_function.php',
-            data: {
-                action: 'update',
-                announcement_id :announcement_id ,
-                updated_data: updatedData
-            },
+            data: formData,
+            contentType: false,
+            processData: false,
             dataType: 'json',
             success: function (response) {
                 console.log('Update Response:', response);
 
-                if (response.status === true) {
-                    $('#sloading').toggle();
+                if (response && response.status === true) {
+                    $('#sloading').hide();
                     alert("Record updated successfully");
                     $('#updateModal').modal('hide');
                     location.reload();  
                 } else {
-                    console.error('Error updating announcement data:', response.message);
+                    console.error('Error updating announcement data:', response);
                     alert("Failed to update record. Please try again.");
+                    $('#sloading').hide(); 
                 }
             },
+            error: function(xhr, status, error) {
+                console.error('AJAX Error:', error);
+                alert("AJAX request failed. Please try again.");
+                $('#sloading').hide(); 
+            }
         });
     }
     
@@ -332,6 +341,12 @@ $announcementlist = get_announcement_list();
                         <div class="col-md-12 mb-2">
                             <label for="announcement" class="form-label">Announcement</label>
                             <textarea class="form-control" id="xannouncement" rows="9"></textarea>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-12 mb-2" id="xUpload_image">
+                            <label for="formFileAddFiles" class="form-label">Upload Image</label>
+                            <input class="form-control" type="file" id="xupload_image" />
                         </div>
                     </div>
                 </div>
