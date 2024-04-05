@@ -666,7 +666,7 @@ require_once 'dbcon.php';
                     FROM 
                         author a
                     LEFT JOIN 
-                        donation d ON a.author_id = d.author_id AND d.status = 1
+                        donation d ON a.author_id = d.author_id AND a.status = 1
                     GROUP BY 
                         a.author_id";
     

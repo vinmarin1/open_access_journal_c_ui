@@ -129,7 +129,7 @@ $seriesString1 = json_encode($output_series1);
                                     <td width="30%"><?php echo $userlistval->field_of_expertise; ?></td>
                                     <td width="5%"><?php echo $userlistval->gender; ?></td>
                                     <td width="5%"><?php echo $userlistval->position; ?></td>
-                                    <td width="5%"><?php echo $userlistval->total_amount; ?></td> 
+                                    <td width="5%">₱<?php echo $userlistval->total_amount; ?></td> 
                                 </tr>
                                 <?php
                             }
