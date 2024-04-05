@@ -113,11 +113,25 @@ function addRecord()
            
 function updateAnnouncementData() {
     try {
+        if (!isset($_POST['announcement_id']) || !isset($_POST['updated_data']) || !isset($_FILES['upload_image'])) {
+            throw new Exception("Missing required fields.");
+        }
+
         $announcement_id = $_POST['announcement_id'];
         $updatedData = $_POST['updated_data'];
+        $uploadPath = "../../../Files/announcement-image/";
+
+        $files = $_FILES['upload_image'];
+        $file_name = basename($files["name"]);
+
+        $timestamp = time();
+        $hashedTimestamp = hash('sha256', (string)$timestamp);
+        $last12Hash = substr($hashedTimestamp, -12);
+        $imageFileType = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
+        $hashfilename = $last12Hash . '-' . $announcement_id . '.' . $imageFileType;
 
         $query = "UPDATE announcement 
-                    SET title = ?, announcement_description = ?, announcement = ? 
+                    SET title = ?, announcement_description = ?, announcement = ?, upload_image = hash filename
                     WHERE announcement_id = ?";
         
         $pdo = connect_to_database();
@@ -130,15 +144,24 @@ function updateAnnouncementData() {
             $announcement_id
         ]);
 
-        header('Content-Type: application/json');
+        $allowedFileTypes = array('jpg', 'jpeg', 'png', 'gif');
+        if (!in_array($imageFileType, $allowedFileTypes)) {
+            throw new Exception("Invalid file type ({$imageFileType})");
+        }
 
+        $upload_image = $uploadPath . $hashfilename;
+        if (!move_uploaded_file($files["tmp_name"], $upload_image)) {
+            throw new Exception('Failed to move uploaded file.');
+        }
+
+        header('Content-Type: application/json');
         if ($check !== false) {
             echo json_encode(['status' => true, 'message' => 'Announcement data updated successfully']);
         } else {
             echo json_encode(['status' => false, 'message' => 'Failed to update Announcement data']);
         }
-    } catch (PDOException $e) {
-        echo json_encode(['status' => false, 'message' => 'Database error: ' . $e->getMessage()]);
+    } catch (Exception $e) {
+        echo json_encode(['status' => false, 'message' => $e->getMessage()]);
     }
 }
 
