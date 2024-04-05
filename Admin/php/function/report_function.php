@@ -657,7 +657,7 @@ require_once 'dbcon.php';
             }
         }
     }
-    
+
     if (!function_exists('get_userlist_data')) {
         function get_userlist_data() {
             $sql = "SELECT 
@@ -675,12 +675,10 @@ require_once 'dbcon.php';
             $data = array();
     
             if ($results !== false) {
-                while ($row = mysqli_fetch_assoc($results)) {
-                    $data[] = $row;
-                }
+                $data['userlist'] = $results;
                 return $data;
             } else {
-                return array();
+                return array('status' => true, 'data' => []);
             }
         }
     }    
