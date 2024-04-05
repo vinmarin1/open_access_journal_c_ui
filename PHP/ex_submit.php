@@ -213,9 +213,25 @@
           <div class="journal-type-container">
             <h6 class="checker-titles">Journal Classification</h6>
             <select class="form-select" name="journal-type" id="journal-type">
-              <option value="1" id="gavel">The Gavel</option>
+              <?php
+                  $sqlJournal = "SELECT journal_id, journal FROM journal";
+                  $resultJournal = database_run($sqlJournal); 
+
+                  if ($resultJournal) {
+                      foreach ($resultJournal as $journal) {
+                          $journalId = $journal->journal_id;
+                          $journalName = $journal->journal;
+                          echo '<option value="' . $journalId . '">' . $journalName . '</option>';
+                      }
+                  } else {
+                      echo '<option value="1" id="gavel">The Gavel</option>';
+                      echo '<option value="2" id="lamp">The Lamp</option>';
+                      echo '<option value="3" id="star">The Star</option>';
+                  }
+              ?>
+              <!-- <option value="1" id="gavel">The Gavel</option>
               <option value="2" id="lamp">The Lamp</option>
-              <option value="3" id="star">The Star</option>
+              <option value="3" id="star">The Star</option> -->
             </select>
             <span id="journal-info" class="suggestion-title text-muted">Pahina can suggest journal based on your article</span>
             <span class="text-danger" id="journal-error"></span>
