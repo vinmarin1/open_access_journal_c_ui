@@ -12,6 +12,7 @@
   <meta name="description" content="Welcome to Pahina, where you can find the latest articles, and updates on various topics. Explore our diverse collection now!">
   <meta name="keywords" content="Pahina, Open access Journal, Pahina">
   <link rel="icon" type="image/png" href="../images/qcu-logo.webp">
+  <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
   <title>Pahina | HOME</title>
   <link rel="stylesheet" href="../CSS/home.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -495,6 +496,20 @@
   <footer class="footer mt-3" id="footer">
   </footer>
 
+  <script>
+  // Enable pusher logging - don't include this in production
+Pusher.logToConsole = true;
+
+var pusher = new Pusher('cabcad916f55a998eaf5', {
+  cluster: 'ap1'
+});
+
+var channel = pusher.subscribe('my-channel');
+channel.bind('my-event', function(data) {
+  alert(JSON.stringify(data));
+  console.log("Notif");
+});
+     </script>
   <script>
     const sessionId = "<?php echo $author_id; ?>";
   </script>
