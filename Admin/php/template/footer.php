@@ -38,7 +38,7 @@
             <script>
                 document.write(new Date().getFullYear());
             </script>
-            <a href="https://themeselection.com" target="_blank" class="footer-link fw-medium">QCU Journal</a>
+            <a href="https://themeselection.com" target="_blank" class="footer-link fw-medium">Pahina Journal</a>
         </div>
         <div class="d-none d-lg-inline-block">
             <!-- Add your footer links here -->
