@@ -658,23 +658,27 @@ require_once 'dbcon.php';
         }
     }
 
-    if (!function_exists('get_userlist_data')) {
-        function get_userlist_data() {
-
-            $sql = "SELECT * FROM author WHERE `status` = 1 ORDER BY author_id DESC";
-
+    if (!function_exists('get_total_donation_amount_per_author')) {
+        function get_total_donation_amount_per_author() {
+            $sql = "SELECT author_id, SUM(amount) AS total_amount
+                    FROM donation
+                    WHERE status = 1
+                    GROUP BY author_id";
+    
             $results = execute_query($sql);
-
+    
             $data = array();
-
+    
             if ($results !== false) {
-                $data['userlist'] = $results;
+                while ($row = mysqli_fetch_assoc($results)) {
+                    $data[$row['author_id']] = $row['total_amount'];
+                }
                 return $data;
             } else {
-                return array('status' => true, 'data' => []);
+                return array();
             }
         }
-    }
+    }    
 
     if (!function_exists('get_user_data')) {
         function get_user_data() {
