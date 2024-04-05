@@ -8,9 +8,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $_SESSION['userEmail'] = $email;
     $recipient = $email;
     $subject = 'Reset password link';
-    $emailMessage = 'Here\'s the reset link for your account <a href="https://www.qcuj.online/PHP/recover_account.php?step=3">Click here</a>';
 
-    
+    // Generate a random token
+    $token = bin2hex(random_bytes(32));
+
+    // Save token to session for verification later
+    $_SESSION['resetToken'] = $token;
+
+    // Construct reset link with token
+    $resetLink = 'https://www.qcuj.online/PHP/recover_account.php?step=3&token=' . $token;
+
+    $emailMessage = 'Here\'s the reset link for your account: <a href="' . $resetLink . '">Click here</a>';
+
     send_mail($recipient, $subject, $emailMessage);
 } else {
     echo "Can't find the email address";

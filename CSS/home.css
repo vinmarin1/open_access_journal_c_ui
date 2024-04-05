@@ -239,6 +239,7 @@ background-color: transparent;
 }
 
 .article {
+cursor: default;
 padding: 2em;
 width: 25%;
 min-width: 320px;

@@ -18,63 +18,64 @@ session_start();
 <?php require 'header.php' ?>
 
     <div class="container-fluid">
-        <div id="firstStep" class="firstStep">
-            <form id="firstStepForm">
-                <p class="h2 pt-5">Forgot password?</p><br>
-                <div class="emailContainer">
-                    <label for="email">Email Address</label>
-                    <input type="email" class="form-control mt-1" id="email" name="email">
-                    <button type="button" id="btnRequestLink" class="btn btn-primary btn-sm mt-3" onclick="validateEmail()">Request a reset link
-                        <div class="spinner-border spinner-border-sm" id="spinnerSpinner" role="status" style="display: none">
-                            <span class="visually-hidden" id="spinner">Loading...</span>
-                        </div>
-                    </button>
-                </div>  
-            </form>
+        <div class="row justify-content-center">
+            <div class="col-lg-4 col-md-8 col-sm-10">
+                <div id="firstStep" class="firstStep">
+                    <form id="firstStepForm">
+                        <p class="h2 pt-5">Forgot password?</p><br>
+                        <div class="emailContainer">
+                            <label for="email">Email Address</label>
+                            <input type="email" class="form-control mt-1" id="email" name="email">
+                            <button type="button" id="btnRequestLink" class="btn btn-primary btn-sm mt-3" onclick="validateEmail()">Request a reset link
+                                <div class="spinner-border spinner-border-sm" id="spinnerSpinner" role="status" style="display: none">
+                                    <span class="visually-hidden" id="spinner">Loading...</span>
+                                </div>
+                            </button>
+                        </div>  
+                    </form>
+                </div>
+
+                <div id="secondStep" class="secondStep">
+                    <form id="secondStepForm">
+                        <p class="h2 pt-5">Email sent</p>
+                        <p class="h6 pt-5">We sent an email to <span id="emailInputted"></span> with a link to reset your password</p>
+                    </form>
+                </div>
+
+                <div id="thirdStep">
+                    <form id="thirdStepForm">
+                        <p class="h2 pt-5">Change password</p>
+                        <div class="inputContainer">
+                            
+                        
+                            <label class="pt-4" for="password">New password</label>
+                            <span class="validationPassword" id="PassValidation" style="font-size: 10px; color: red; display: block; margin-left: 40px"></span>
+
+                            <input type="password" class="form-control mt-1" id="password" name="password">
+                            <label class="pt-4" for="confirmPassword">Confirm password</label>
+                            <span class="validationPassword" id="newPassValidation" style="font-size: 10px; color: red; display: block; margin-left: 40px" ></span>
+                            <input type="password" class="form-control mt-1" id="confirmPassword" name="confirmPassword">
+                            <button type="button" id="changePasswordBtn" class="btn btn-primary btn-sm mt-3">Change Password
+                                <div class="spinner-border spinner-border-sm" id="spinnerSpinner2" role="status" style="display: none">
+                                    <span class="visually-hidden" id="spinner2">Updating your password...</span>
+                                </div>
+                            </button>
+                        </div>  
+                    </form>
+                
+                </div>
+
+                <div id="finalStep">
+                    <form id="finalStepForm">
+                        <p class="h2 pt-4">Password changed</p>
+                        <p class="h6 pt-4">Your password has been successfuly changed.</p>
+                        <button type="button" class="btn btn-primary btn-sm mt-3" onclick="window.location.href='https://www.qcuj.online/PHP/login.php'">Log-in</button>
+
+                    </form>
+                
+                </div>
+            </div>
         </div>
-
-        <div id="secondStep" class="secondStep">
-            <form id="secondStepForm">
-                <p class="h2 pt-5">Email sent</p>
-                <p class="h6 pt-5">We sent an email to <span id="emailInputted"></span> with a link to reset your password</p>
-            </form>
-        </div>
-
-
-        <div id="thirdStep">
-            <form id="thirdStepForm">
-                <p class="h2 pt-5">Change password</p>
-                <div class="inputContainer">
-                    
-                 
-                    <label class="pt-4" for="password">New password</label>
-                    <span class="validationPassword" id="PassValidation" style="font-size: 10px; color: red; display: block; margin-left: 40px"></span>
-
-                    <input type="password" class="form-control mt-1" id="password" name="password">
-                    <label class="pt-4" for="confirmPassword">Confirm password</label>
-                    <span class="validationPassword" id="newPassValidation" style="font-size: 10px; color: red; display: block; margin-left: 40px" ></span>
-                    <input type="password" class="form-control mt-1" id="confirmPassword" name="confirmPassword">
-                    <button type="button" id="changePasswordBtn" class="btn btn-primary btn-sm mt-3">Change Password
-                        <div class="spinner-border spinner-border-sm" id="spinnerSpinner2" role="status" style="display: none">
-                            <span class="visually-hidden" id="spinner2">Updating your password...</span>
-                        </div>
-                    </button>
-                 </div>  
-            </form>
-          
-        </div>
-
-        <div id="finalStep">
-            <form id="finalStepForm">
-                <p class="h2 pt-4">Password changed</p>
-                <p class="h6 pt-4">Your password has been successfuly changed.</p>
-                <button type="button" class="btn btn-primary btn-sm mt-3" onclick="window.location.href='https://www.qcuj.online/PHP/login.php'">Log-in</button>
-
-            </form>
-          
-        </div>
-
-        
     </div>
 
 
@@ -92,42 +93,41 @@ function checkQueryParameter() {
     const thirdStepForm = document.getElementById('thirdStepForm');
 
     if (step === '3') {
-        // Check if the link has been used by looking at the localStorage
-        const linkUsed = localStorage.getItem('resetLinkUsed');
+        const token = urlParams.get('token');
+        const storedToken = '<?php echo isset($_SESSION['resetToken']) ? $_SESSION['resetToken'] : "" ?>';
 
-        if (linkUsed === null) {
-            // If the link hasn't been used, proceed
-            const storedEmail = '<?php echo isset($_SESSION['userEmail']) ? $_SESSION['userEmail'] : "" ?>';
+        if (token && token === storedToken) {
+            const linkUsed = localStorage.getItem('resetLinkUsed_' + token);
 
-            if (storedEmail) {
-                // Display the stored email
-                alert('Updating account of: ' + storedEmail);
+            if (linkUsed === null) {
+                const storedEmail = '<?php echo isset($_SESSION['userEmail']) ? $_SESSION['userEmail'] : "" ?>';
+
+                if (storedEmail) {
+                    alert('Updating account of: ' + storedEmail);
+                } else {
+                    alert('Email not found');
+                }
+
+                thirdStepForm.style.display = 'block';
+                document.getElementById('firstStepForm').style.display = 'none';
+                document.getElementById('secondStepForm').style.display = 'none';
+
+                // Mark the link as used by setting a flag in localStorage
+                localStorage.setItem('resetLinkUsed_' + token, 'true');
             } else {
-                // Handle the case where the email is not found
-                alert('Email not found');
+                alert('Link expired. Please request a new link.');
+                window.location.href = '../PHP/login.php';
             }
-
-            thirdStepForm.style.display = 'block';
-            document.getElementById('firstStepForm').style.display = 'none';
-            document.getElementById('secondStepForm').style.display = 'none';
-
-            // Mark the link as used by setting a flag in localStorage
-            localStorage.setItem('resetLinkUsed', 'true');
         } else {
-            // Handle the case where the link has already been used
-            alert('Link expired. Please request a new link.');
-            resetLinkStatus(); // Reset the link status for a new link
-            window.location.href= '../PHP/login.php';
+            alert('Invalid or expired token.');
+            window.location.href = '../PHP/login.php';
         }
     }
 }
 
-function resetLinkStatus() {
-    // Reset the link status by removing the 'resetLinkUsed' flag from localStorage
-    localStorage.removeItem('resetLinkUsed');
-}
-
 window.addEventListener('load', checkQueryParameter);
+
+
 
 
 

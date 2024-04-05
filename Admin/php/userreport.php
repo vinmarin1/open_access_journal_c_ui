@@ -113,6 +113,7 @@ $seriesString1 = json_encode($output_series1);
                             <th>Expertise</th>
                             <th>Gender</th>
                             <th>Position</th>
+                            <th>Donation</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -123,11 +124,12 @@ $seriesString1 = json_encode($output_series1);
                                 <tr data-toggle="modal" data-target="">
                                     <td width="5%"><?php echo $userlistval->author_id; ?></td>
                                     <td width="25%"><?php echo $userlistval->last_name; ?>, <?php echo $userlistval->first_name; ?></td>
-                                    <td width="15%"><?php echo $userlistval->email; ?></td>
+                                    <td width="10%"><?php echo $userlistval->email; ?></td>
                                     <td width="15%"><?php echo $userlistval->afiliations; ?></td>
                                     <td width="30%"><?php echo $userlistval->field_of_expertise; ?></td>
                                     <td width="5%"><?php echo $userlistval->gender; ?></td>
                                     <td width="5%"><?php echo $userlistval->position; ?></td>
+                                    <td width="5%">₱<?php echo $userlistval->total_amount; ?></td> 
                                 </tr>
                                 <?php
                             }

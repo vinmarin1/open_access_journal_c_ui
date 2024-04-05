@@ -46,7 +46,7 @@ async function fetchData() {
           <p class="info" id="category">${item.journal || 'No Journal'}</p>
           <p class="">${new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric' }).format(new Date(item.publication_date))}</p>
         </div>
-        <p class="article-content" id="abstract">${item.abstract.slice(0,100)}...</p>
+        <p class="article-content" id="abstract">${item.abstract.slice(0,180)}...</p>
         <button class="btn btn-primary btn-md btn-article" style="border: 2px var(--main, #0858A4) solid; background-color: transparent; border-radius: 20px; color: var(--main, #0858A4); width: 100%;">Read Article</button>
       `;
 

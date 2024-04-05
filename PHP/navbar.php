@@ -152,10 +152,19 @@ require_once 'dbcon.php';
         if ($sqlNotifRun !== false) {
             foreach ($sqlNotifRun as $notif) {
                 echo '
-                    <li style="padding:8px; list-style-type: none; font-size: 12px;">
+                    <li style="padding: 8px;
+                    list-style-type: none;
+                    font-size: 12px;
+                    display: block;">
                         <p class="d-flex flex-column ">You have been invited as Reviewer 
-                            <span>Title: </p>
-                            <a id="inviteMessage" style="text-decoration: none; color: gray; display: inline-block;" href="./review-process.php?id=' . $notif->article_id . '">' . $notif->title . '</a>
+                            <span style="font-weight: bold;
+                            margin-top: 15px;
+                            margin-bottom: -15px;">Title: </p>
+                            <a id="inviteMessage" style="    text-decoration: none;
+                            color: gray;
+                            display: block;
+                            border-bottom: 1px gray solid;
+                            padding-bottom: 5px;" href="./review-process.php?id=' . $notif->article_id . '">' . $notif->title . '</a>
                         </span>
                     </li>';
             }
