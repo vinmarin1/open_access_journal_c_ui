@@ -496,6 +496,9 @@ label {
         justify-content: center;
         align-items: center;
     }
+    .points-container{
+        flex-direction: column;
+    }
     .label {
         min-width: 100px;
     }
@@ -570,7 +573,7 @@ label {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.expertise h3 {
+.expertise h4 {
     margin-bottom: 10px;
     color: #333;
 }
@@ -854,7 +857,7 @@ label {
     position: relative;
 }
 
-#badges-container h3 {
+#badges-container h4 {
     /* font-size: 25px; */
     /* margin: 20px; */
     font-weight: bold;
@@ -961,9 +964,9 @@ label {
     margin-bottom: 20px;
 }
 
-.header-badges h3,
-.publications-achievements h3,
-.header-achievements h3 {
+.header-badges h4,
+.publications-achievements h4,
+.header-achievements h4 {
     /* font-size: 24px; */
     color: #285581;
     margin: 0;

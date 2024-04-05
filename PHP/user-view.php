@@ -795,7 +795,7 @@ $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
             <div id="Publications" class="tabcontent">
                 <div class="publications-container">
                     <div class="header-achievements">
-                        <h3>Published Articles</h3>
+                        <h4>Published Articles</h4>
                     </div>
                     <div class="table-container">
                         <table class="publications-table">
@@ -845,7 +845,7 @@ $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
                 </div>
                 <div class="publications-container">
                     <div class="header-achievements">
-                        <h3>Contributed Articles</h3>
+                        <h4>Contributed Articles</h4>
                     </div>
                     <div class="table-container">
                         <table class="publications-table">
@@ -1092,7 +1092,7 @@ $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
                         <div id="contribution-record-container">
                             <div id="badges-container">
                                 <div class="header-badges">
-                                    <h3>Badges</h3>
+                                    <h4>Badges</h4>
                                 </div>
                                 <div class="badge-box-container">
                                     <div class="xp-container">
@@ -1231,7 +1231,7 @@ $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
                         <div class="vertical-line"></div>
                         <div class="credit-container">
                             <div class="header-achievements">
-                                <h3>Achievements</h3>
+                                <h4>Achievements</h4>
                             </div>
                             <div class="sort-container d-flex flex-column gap-2">
                                 <!-- <div class="sort-header">
