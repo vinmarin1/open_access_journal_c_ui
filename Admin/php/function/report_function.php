@@ -657,13 +657,18 @@ require_once 'dbcon.php';
             }
         }
     }
-
-    if (!function_exists('get_total_donation_amount_per_author')) {
-        function get_total_donation_amount_per_author() {
-            $sql = "SELECT author_id, SUM(amount) AS total_amount
-                    FROM donation
-                    WHERE status = 1
-                    GROUP BY author_id";
+    
+    if (!function_exists('get_userlist_data')) {
+        function get_userlist_data() {
+            $sql = "SELECT 
+                        a.*, 
+                        COALESCE(SUM(d.amount), 0) AS total_amount
+                    FROM 
+                        author a
+                    LEFT JOIN 
+                        donation d ON a.author_id = d.author_id AND d.status = 1
+                    GROUP BY 
+                        a.author_id";
     
             $results = execute_query($sql);
     
@@ -671,7 +676,7 @@ require_once 'dbcon.php';
     
             if ($results !== false) {
                 while ($row = mysqli_fetch_assoc($results)) {
-                    $data[$row['author_id']] = $row['total_amount'];
+                    $data[] = $row;
                 }
                 return $data;
             } else {
@@ -679,7 +684,7 @@ require_once 'dbcon.php';
             }
         }
     }    
-
+    
     if (!function_exists('get_user_data')) {
         function get_user_data() {
             $sql = "SELECT 
