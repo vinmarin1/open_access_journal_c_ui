@@ -42,11 +42,6 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
     $email = $_SESSION['email'];
 
-    $message = "<p>You've been included as a contributor for the Journal</p><br> <label style='display: inline-block;'>Title: </label> <p style='display: inline-block;'>$title</p> <br><label style='display: inline-block;'>Abstract: </label><p style='display: inline-block;'>$abstract</p>";
-
-    $subject = "Review Journal";
-    $recipient = $email;
-    send_mail($recipient, $subject, $message);
 
 
 
@@ -227,7 +222,14 @@ function handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $
           
         database_run($sqlPoint, $logsPoints);
 
-        
+        $message = "<p>Thank you for submitting your paper to us. We are now processing it.</p><br> <label style='display: inline-block;'>Title: </label> <p style='display: inline-block;'>$title</p> <br><label style='display: inline-block;'>Abstract: </label><p style='display: inline-block;'>$abstract</p><br><p style='display: inline-block;'>To check your article status, <a href='https://www.qcuj.online/PHP/submitted-article.php?id=" . $lastInsertedArticleId . "'>click here</a></p>";
+
+
+        $subject = "Review Journal";
+        $recipient = $email;
+        send_mail($recipient, $subject, $message);
+    
+
 
         $emailContributor = $emailsC[$key];
 
