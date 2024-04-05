@@ -237,66 +237,67 @@ $expertise = $_SESSION['expertise'];
 					</div>
 				</div>
 				<!-- </form> -->
+				<div class="points-container d-flex">
+					<div class="balance-points p-1"><i class="fa-solid fa-fire" style="color: orange"></i>&nbsp;
+						<?php
+							$sqlPoints = "SELECT point_earned FROM user_points WHERE email = :email";
 
-				<div class="balance-points"><i class="fa-solid fa-fire" style="color: orange"></i>&nbsp;
-					<?php
-						$sqlPoints = "SELECT point_earned FROM user_points WHERE email = :email";
 
+							$result = database_run($sqlPoints, array('email' => $email));
 
-						$result = database_run($sqlPoints, array('email' => $email));
+							if ($result !== false) {
+								$totalPoints = 0;
 
-						if ($result !== false) {
-							$totalPoints = 0;
+								foreach ($result as $row) {
+									$points = $row->point_earned;
+									$totalPoints += $points;
+								}
 
-							foreach ($result as $row) {
-								$points = $row->point_earned;
-								$totalPoints += $points;
+								echo  $totalPoints;
+							}else{
+								echo '0';
 							}
+						?>
+						<br>
+					</div>
+					<div class="hoverPoints">
+						<?php
+						$sql = "SELECT action_engage, SUM(point_earned) AS total_points FROM user_points WHERE email = :email GROUP BY action_engage";
+						$run = database_run($sql, array('email' => $email)); // Assuming $email is defined somewhere
 
-							echo  $totalPoints;
-						}else{
-							echo '0';
+						if ($run !== false) {
+							foreach ($run as $row) {
+								$action = $row->action_engage;
+								$totalPoints = $row->total_points;
+								echo '<span class="pointsH">' . $action . ': ' . $totalPoints . '</span>';
+							}
 						}
-					?>
-					<br>
-				</div>
-				<div class="hoverPoints">
-					<?php
-					$sql = "SELECT action_engage, SUM(point_earned) AS total_points FROM user_points WHERE email = :email GROUP BY action_engage";
-					$run = database_run($sql, array('email' => $email)); // Assuming $email is defined somewhere
+						?>
 
-					if ($run !== false) {
-						foreach ($run as $row) {
-							$action = $row->action_engage;
-							$totalPoints = $row->total_points;
-							echo '<span class="pointsH">' . $action . ': ' . $totalPoints . '</span>';
-						}
-					}
-					?>
+					</div>
 
-				</div>
+					<div class="totalLikes p-1"><i class="fa-solid fa-heart" style="color: red"></i>&nbsp;
+						<?php
+							$sqlPoints = "SELECT author.author_id, author.first_name, article.article_id, article.title, logs.article_id, logs.type 
+										FROM author 
+										JOIN article ON author.author_id = article.author_id 
+										JOIN logs ON article.article_id = logs.article_id 
+										WHERE author.author_id = $id AND logs.type = 'support'";
 
-				<div class="totalLikes"><i class="fa-solid fa-heart" style="color: red"></i>&nbsp;
-					<?php
-						$sqlPoints = "SELECT author.author_id, author.first_name, article.article_id, article.title, logs.article_id, logs.type 
-									FROM author 
-									JOIN article ON author.author_id = article.author_id 
-									JOIN logs ON article.article_id = logs.article_id 
-									WHERE author.author_id = $id AND logs.type = 'support'";
+							$result = database_run($sqlPoints);
 
-						$result = database_run($sqlPoints);
+							if ($result !== false) {
+								$totalPoints = count($result);
+								echo $totalPoints;
+							} else {
+								echo '0';
+							}
+						?>
 
-						if ($result !== false) {
-							$totalPoints = count($result);
-							echo $totalPoints;
-						} else {
-							echo '0';
-						}
-					?>
-
-				</div>
-				<div class="hoverSupport">
-					<span class="hoverS">Total Article Support</span>
+					</div>
+					<div class="hoverSupport">
+						<span class="hoverS">Total Article Support</span>
+					</div>
 				</div>
 
 				<?php
@@ -1046,7 +1047,7 @@ $expertise = $_SESSION['expertise'];
 		<div id="Publications" class="tabcontent">
 			<div class="publications-container">
 				<div class="header-achievements">
-					<h3>Published Articles</h3>
+					<h4>Published Articles</h4>
 				</div>
 				<div class="table-container">
 					<table class="publications-table">
@@ -1096,7 +1097,7 @@ $expertise = $_SESSION['expertise'];
 			</div>
 			<div class="publications-container">
 				<div class="header-achievements">
-					<h3>Contributed Articles</h3>
+					<h4>Contributed Articles</h4>
 				</div>
 				<div class="table-container">
 					<table class="publications-table">
@@ -1140,7 +1141,7 @@ $expertise = $_SESSION['expertise'];
 		<div id="Certificates" class="tabcontent">
 			<div class="publications-container">
 				<div class="header-achievements">
-					<h3>Certificate Received</h3>
+					<h4>Certificate Received</h4>
 				</div>
 				<div class="table-container">
 					<table class="publications-table">
@@ -1246,7 +1247,7 @@ $expertise = $_SESSION['expertise'];
 					<div id="contribution-record-container">
 						<div id="badges-container">
 							<div class="header-badges">
-								<h3>Badges</h3>
+								<h4>Badges</h4>
 							</div>
 							<div class="badge-box-container">
 								<div class="xp-container">
@@ -1657,7 +1658,7 @@ $expertise = $_SESSION['expertise'];
 					<div class="vertical-line"></div>
 					<div class="credit-container">
 						<div class="header-achievements">
-							<h3>Achievements</h3>
+							<h4>Achievements</h4>
 						</div>
 						<div class="sort-container d-flex flex-column gap-2">
 							<!-- <div class="sort-header">
