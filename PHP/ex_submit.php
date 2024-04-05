@@ -218,6 +218,7 @@
               <option value="3" id="star">The Star</option>
             </select>
             <span class="suggestion-title text-muted">Pahina can suggest journal based on your article</span>
+            <span class="text-danger" id="journal-error"></span>
           </div>
           <button type="button" class="btn btn-primary btn-sm mt-2" id="check-duplication" onclick="checkDuplication()">
               <span id="check-text">Check</span>
