@@ -19,25 +19,33 @@ document.getElementById('check-duplication').addEventListener('click', async fun
             title:title
         }),
     });
-
-
+    
     const data = await response.json();
-
+    
+    if (response.ok) {
    
-    const journalType = data.journal_classification;
-    const dropdown = document.getElementById('journal-type');
-    document.getElementById("check-duplication").disabled = false;
-    document.getElementById("check-text").style.display = "inline";
-    document.getElementById("check-spinner").style.display = "none";
-    document.getElementById("checking-text").style.display = "none";
-
-   
-    for (let i = 0; i < dropdown.options.length; i++) {
-        if (dropdown.options[i].value === journalType) {
-            dropdown.options[i].selected = true;
-            break;
+        const journalType = data.journal_classification;
+        const dropdown = document.getElementById('journal-type');
+        document.getElementById("check-duplication").disabled = false;
+        document.getElementById("check-text").style.display = "inline";
+        document.getElementById("check-spinner").style.display = "none";
+        document.getElementById("checking-text").style.display = "none";
+        document.getElementById("journal-error").innerHTML = "";
+       
+        for (let i = 0; i < dropdown.options.length; i++) {
+            if (dropdown.options[i].value === journalType) {
+                dropdown.options[i].selected = true;
+                break;
+            }
         }
+    } else {
+        // Handle error here
+        console.error('Error:', data.message);
+        document.getElementById("journal-error").innerHTML = data.message;
+        
     }
+
+
 });
 
 
