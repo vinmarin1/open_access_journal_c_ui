@@ -71,7 +71,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
         </div>
         <div class="col-md-7 col-12 abstract mb-3 mt-5">
         <!-- Abstract content goes here -->
-            <div class="abstract-title">Abstract <span id="abstract-validation" style="color: red">The minimum word for abstract is 10 and maximum of 300 words</span></div>
+            <div class="abstract-title"><h3>Abstract</h3> <span id="abstract-validation" style="color: red">The minimum word for abstract is 10 and maximum of 300 words</span></div>
             <div class="abstract-content">
                 <p id="display-abstract" name="display-abstract">
                     <?php 
@@ -105,7 +105,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                     ?>
 
                 </p>
-                <p style="margin-top: 20px; margin-bottom: 10px; color: #285581;  font-family: 'Raleway', sans-serif; font-weight: 400; font-style: normal; font-size: 30px; ">Keywords</p>
+                <h3 style="margin-top: 20px; margin-bottom: 10px; color: #0858A4;font-style: normal;">Keywords</h3>
                 <div class="keywords">
                     <?php
                         $sqlKeyword = "SELECT keyword FROM article WHERE article_id = :article_id AND author_id = :author_id";
@@ -125,6 +125,7 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                                                     border-radius: 10px;
                                                     background-color: white;
                                                     font-size: 15px;
+                                                    padding:3px;
                                                     display: inline-block">' . trim($keyword) . '</li>';
                                 }
                                 

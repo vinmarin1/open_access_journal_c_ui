@@ -443,6 +443,7 @@ ul li span {
 
 #artStats{
   width: 40%;
+  margin-left: 10px;
 }
 
 
@@ -453,10 +454,10 @@ ul li span {
   border-radius: 20px;
   color: #F40CA5;
   text-align: center;
-  width: 70%;
+  width: 100%;
   float: right;
-  height: 4vh;
-  margin-right: 20px;
+  /* height: 4vh; */
+  /* margin-right: 20px; */
 }
 
 
