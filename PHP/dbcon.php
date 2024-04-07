@@ -1,14 +1,20 @@
 <?php
+$string = "mysql:host=srv1320.hstgr.io;dbname=u944705315_pahina2024";
+// $string = "mysql:host=localhost;dbname=u944705315_pahina2024";
+$username = 'u944705315_pahina2024';
+$password = 'Qcujournal1234.';
 
 function database_run($query, $vars = array(), $isInsert = false)
-{   
-    // $string = "mysql:host=srv1320.hstgr.io;dbname=u944705315_pahina2024";
-    $string = "mysql:host=localhost;dbname=u944705315_pahina2024";
-
-    $con = new PDO($string, 'u944705315_pahina2024', 'Qcujournal1234.');
-
-    if (!$con) {
-        return false;
+{
+    static $con = null; 
+    // Establish connection if not already established
+    if ($con === null) {
+        global $string, $username, $password;
+        try {
+            $con = new PDO($string, $username, $password);
+        } catch (PDOException $e) {
+            return false;
+        }
     }
 
     $stm = $con->prepare($query);
@@ -17,18 +23,15 @@ function database_run($query, $vars = array(), $isInsert = false)
     if ($check) {
         if ($isInsert) {
             $lastInsertId = $con->lastInsertId();
-            $con = null; 
             return $lastInsertId;
         }
 
         $data = $stm->fetchAll(PDO::FETCH_OBJ);
-        $con = null;
 
         if (count($data) > 0) {
             return $data;
         }
     }
-    
-    $con = null;
+
     return false;
 }
