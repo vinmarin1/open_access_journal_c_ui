@@ -113,56 +113,59 @@ function addRecord()
            
 function updateAnnouncementData() {
     try {
-        if (!isset($_POST['announcement_id']) || !isset($_POST['updated_data']) || !isset($_FILES['upload_image'])) {
+        if (!isset($_POST['announcement_id']) || 
+            !isset($_POST['title']) || 
+            !isset($_POST['announcement_description']) || 
+            !isset($_POST['announcement']) ||
+            !isset($_FILES['upload_image'])) {
             throw new Exception("Missing required fields.");
         }
 
         $announcement_id = $_POST['announcement_id'];
-        $updatedData = $_POST['updated_data'];
+        $title = $_POST['title'];
+        $announcement_description = $_POST['announcement_description'];
+        $announcement = $_POST['announcement'];
+        
         $uploadPath = "../../../Files/announcement-image/";
 
         $files = $_FILES['upload_image'];
         $file_name = basename($files["name"]);
-
+        
         $timestamp = time();
         $hashedTimestamp = hash('sha256', (string)$timestamp);
         $last12Hash = substr($hashedTimestamp, -12);
+
         $imageFileType = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
-        $hashfilename = $last12Hash . '-' . $announcement_id . '.' . $imageFileType;
-
-        $query = "UPDATE announcement 
-                    SET title = ?, announcement_description = ?, announcement = ?, upload_image = hash filename
-                    WHERE announcement_id = ?";
-        
-        $pdo = connect_to_database();
-
-        $stm = $pdo->prepare($query);
-        $check = $stm->execute([
-            $updatedData['title'],
-            $updatedData['announcement_description'],
-            $updatedData['announcement'],
-            $announcement_id
-        ]);
+        $hashfilename = $last12Hash . '-' . $title . '.' . $imageFileType;
 
         $allowedFileTypes = array('jpg', 'jpeg', 'png', 'gif');
+        
         if (!in_array($imageFileType, $allowedFileTypes)) {
             throw new Exception("Invalid file type ({$imageFileType})");
         }
 
         $upload_image = $uploadPath . $hashfilename;
+
         if (!move_uploaded_file($files["tmp_name"], $upload_image)) {
             throw new Exception('Failed to move uploaded file.');
         }
-
-        header('Content-Type: application/json');
-        if ($check !== false) {
-            echo json_encode(['status' => true, 'message' => 'Announcement data updated successfully']);
+    
+        $query = "UPDATE announcement 
+                    SET title = ?, announcement_description = ?, announcement = ?, upload_image = ?
+                    WHERE announcement_id = ?";
+    
+        $result = execute_query($query, [$title, $announcement_description, $announcement, $hashfilename, $announcement_id], true);
+    
+        if ($result !== true) {
+            echo json_encode(['status' => true, 'message' => 'Record updated successfully']);
         } else {
-            echo json_encode(['status' => false, 'message' => 'Failed to update Announcement data']);
+            throw new Exception('Failed to update record');
         }
     } catch (Exception $e) {
         echo json_encode(['status' => false, 'message' => $e->getMessage()]);
+        error_log($e->getMessage(), 0);
     }
+
 }
 
 function archiveAnnouncement() {
