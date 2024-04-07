@@ -180,51 +180,49 @@ $announcementlist = get_announcement_list();
     }
 
     function saveChanges() {
-        $('#sloading').show();
-        console.log('Save button clicked');
+        var form = document.getElementById('updateModalForm');
+        if (form) { 
+            var formData = new FormData();
+            formData.append('announcement_id', $('#xannouncement_id').val());
+            formData.append('title', $('#xtitle').val());
+            formData.append('announcement_description', $('#xannouncement_description').val());
+            formData.append('announcement', $('#xannouncement').val());
+            formData.append('upload_image', $('#xupload_image')[0].files[0]);
+            formData.append('action', 'update');
 
-        var announcement_id = $('#xannouncement_id').val();
-        var updatedData = {
-            title: $('#xtitle').val(),
-            announcement_description: $('#xannouncement_description').val(),
-            announcement: $('#xannouncement').val(),
-            expired_date: $('#xexpired_date').val()
-        };
-
-        var formData = new FormData();
-        formData.append('announcement_id', announcement_id);
-        formData.append('updated_data', JSON.stringify(updatedData));
-        formData.append('upload_image', $('#xupload_image')[0].files[0]);
-
-        $.ajax({
-            type: 'POST',
-            url: '../php/function/announcement_function.php',
-            data: formData,
-            contentType: false,
-            processData: false,
-            dataType: 'json',
-            success: function (response) {
-                console.log('Update Response:', response);
-
-                if (response && response.status === true) {
-                    $('#sloading').hide();
-                    alert("Record updated successfully");
-                    $('#updateModal').modal('hide');
-                    location.reload();  
-                } else {
-                    console.error('Error updating announcement data:', response);
-                    alert("Failed to update record. Please try again.");
-                    $('#sloading').hide(); 
-                }
-            },
-            error: function(xhr, status, error) {
-                console.error('AJAX Error:', error);
-                alert("AJAX request failed. Please try again.");
-                $('#sloading').hide(); 
+            if (form.checkValidity()) {
+                $('#sloading').show();
+                $.ajax({
+                    url: "../php/function/announcement_function.php",
+                    method: "POST",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (data) {
+                        var response = JSON.parse(data);
+                        $('#sloading').hide();
+                        if (response.status) {
+                            alert("Record updated successfully");
+                            $('#updateModal').modal('hide');
+                            location.reload();
+                        } else {
+                            alert('Failed to update record: ' + response.message);
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("AJAX request failed:", error);
+                        $('#sloading').hide();
+                        alert("Failed to update record. Please try again.");
+                    }
+                });
+            } else {
+                form.reportValidity();
             }
-        });
+        } else {
+            console.error("Form with ID 'updateModalForm' not found.");
+        }
     }
-    
+
     function archiveAnnouncement(announcement_id, title, announcement_description) {
         $('#archiveModal').modal('show');
         $('#archiveModalTitle').text('Delete Announcement');
@@ -267,7 +265,7 @@ $announcementlist = get_announcement_list();
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel3">Add Announcement</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-lxannoucementtypeabel="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="row mb-2">
@@ -317,6 +315,7 @@ $announcementlist = get_announcement_list();
 
      <!-- Update Modal -->
      <div class="modal fade" id="updateModal" tabindex="-1" aria-hidden="true">
+     <form id="updateModalForm">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -356,6 +355,7 @@ $announcementlist = get_announcement_list();
                 </div>
             </div>
         </div>
+        </form>
     </div>
 
     <!-- Archive Modal -->
