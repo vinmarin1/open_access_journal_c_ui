@@ -39,14 +39,19 @@ $journal = get_journal_list();
 
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  
   <!-- Quill CSS -->
   <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
   <!-- Quill JavaScript -->
   <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
   <!-- Helpers -->
   <script src="../assets/vendor/js/helpers.js"></script>
   <script src="../assets/js/config.js"></script>
   <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+
 </head>
 <style>
 #text{
