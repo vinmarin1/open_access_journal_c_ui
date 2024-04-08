@@ -484,6 +484,9 @@
   <script src="../JS/recently-added-api.js"></script>
   <script src="../JS/most-downloaded-api.js"></script>
   <script src="../JS/home-faqs.js"></script>
+  <script>
+    
+  </script>
 </body>
 
 </html>
