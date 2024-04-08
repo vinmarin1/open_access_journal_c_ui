@@ -85,7 +85,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                         <li>If it’s your first time to login, You need to input the OTP code that has sent to your Gmail.</li>
                         <li>When you are done just click ‘Verify’ to proceed.</li>
                     </ol>
-                    <img src="../images/login.png" alt="" class="img-reg">
+                    <img src="../images/Login.png" alt="" class="img-reg">
                 </div>
                 <div class="s-2">
                     <h3>Complete your Personal Information.</h3>
@@ -203,29 +203,33 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                         <img src="../images/Registration.png" alt="" class="img-reg">
                     </div>
                     <div class="s-2">
-                        <h3>Manage Contributions</h3>
-                        <ol type="1">
-                            <li>Click the menu at the top right where you can read your name.</li>
-                            <li>Click My Contributions to proceed to the next step.</li>
-                        </ol>
-                      
-                    </div>
+                    <h3>Logging in to  Pahina website.</h3>
+                    <p>After completing the registration, log in to your account.</p>
+                    <ol type="1">
+                        <li> Write your Email.</li>
+                        <li>next is your password.</li>
+                        <li>If it’s your first time to login, You need to input the OTP code that has sent to your Gmail.</li>
+                        <li>When you are done just click ‘Verify’ to proceed.</li>
+                    </ol>
+                    <img src="../images/Login.png" alt="" class="img-reg">
+                </div>
                     <div class="s-2">
                         <h3>Select Article</h3>
                         <p>In this page, You will see all your Submissions and All your reviews. You may proceed as a Reviewer.</p>
                         <ol type="1">
-                            <li>Click the ‘All Reviews’ to see the list of Articles and their status.</li>
-                            <li>You can also click the notification bell to see the pending Article that needed to review.</li>
+                            <li>Click the menu at the top right where you can read your name and then click My Contributions.</li>
+                            <li>Click the ‘All Invitation’ to see the list of Articles and their status.</li>
+                            <li>Select one Article that you want to review.</li>
                         </ol>
                         <img src="../images/select-article.png" alt="" class="img-reg">
                     </div>
                     <div class="s-2">
-                        <h3>Article Preview</h3>
+                        <h3>Review the Article</h3>
                         <ol type="1">
-                            <li>You can read the content of this Article through this page. </li>
-                            <li>After you click the article, You can decide if you will accept to review or decline.</li>
+                            <li>Decide if you're going to accept or decline the article. </li>
+                            <li>A message box will show up to ask if you will accept the invitation.</li>
                         </ol>
-              
+                        <img src="../images/review-article.png" alt="" class="img-reg">
                     </div>
                     <div class="s-2">
                         <h3>Review Steps and Guidelines</h3>
@@ -235,22 +239,25 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                             <li>After they read the Rules and Guidelines, The Reviewer may proceed on the checkbox below before they click the “next” button.</li>
                         </ol>
                         <img src="../images/step3a.png" alt="" class="img-reg">
-                        <img src="../images/step3b.png" alt="" class="img-reg">
                     </div>
                     <div class="s-2">
                         <h3>Review Form</h3>
-                        <p>The Reviewer are done to read the steps and Guidelines, They will now see the Review Form.</p>
+                        <p>The Reviewer are done to read the steps and Guidelines, They will now see the Review Form. The Reviewer should answer all the Questions.</p>
                         <ol type="1">
-                            <li>The Reviewer should answer all the Questions.</li>
-                            <li>There is also a textbox beside of the Questions where the Reviewer can leave a comment.</li>
+                            <li>There is also a textbox below of each questions where the Reviewer can leave a comment.</li>
                             <li>Below of these Questionnaire, The Reviewer can click the ‘Submit’ Button if they are done.</li>
+                            <li>A message box will show up and ask you ‘Submit it now?’.</li>
                         </ol>
                         <img src="../images/step4a.png" alt="" class="img-reg">
-                        <img src="../images/step4b.png" alt="" class="img-reg">
-                        <img src="../images/step4c.png" alt="" class="img-reg">
                     </div>
                     <div class="s-2">
-                        <h3>Article View as Reviewer</h3>
+                        <h3>Reviewed Article</h3>
+                        <p>This is the round 1 in reviewing an Article.</p>
+                        <ol type="1">
+                            <li>The Reviewer can view the status and Updates of their reviewed article.</li>
+    
+                        </ol>
+                        <img src="../images/reviewed-article.png" alt="" class="img-reg">
                     </div>
                 </div>
         </div>

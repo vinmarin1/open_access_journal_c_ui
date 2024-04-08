@@ -272,7 +272,7 @@ $announcementlist = get_announcement_list();
                         <div class="col-md-12 mb-2">
                             <label for="xannoucementtype" class="form-label">Annoucement Type</label>
                             <select id="announcementtype" class="form-select">
-                                <option value="Annoucement">Announcement</option>
+                                <option value="Announcement">Announcement</option>
                                 <option value="News">News</option>
                                 <option value="Call for papers">Call for papers</option>
                                 <option value="Others">Others</option>
