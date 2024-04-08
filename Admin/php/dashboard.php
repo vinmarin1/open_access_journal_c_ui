@@ -214,7 +214,7 @@ $donationDataJson = json_encode($donationData);
                 <div class="row">
                     <div class="col-lg-9 col-md-12">
                         <div class="card mb-4">
-                            <div class="card-body">
+                            <div class="card-body" id="cardBody1">
                                 <div class="row align-items-center">
                                     <div class="col">
                                         <h5 class="card-title mb-2">Journal Submission</h5>
@@ -226,11 +226,12 @@ $donationDataJson = json_encode($donationData);
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="cardOpt1">
                                                 <a class="dropdown-item" href="journalreport.php" target="_blank">View More</a>
+                                                <a href="#" class="download-chart-btn dropdown-item" data-chart="myChart">Download</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <canvas id="myChart"></canvas>
+                                <canvas id="myChart" class="chart-canvas"></canvas>
                             </div>
                         </div>
                     </div>
@@ -284,23 +285,24 @@ $donationDataJson = json_encode($donationData);
                 <div class="row">
                     <div class="col-lg-9 col-md-12">
                         <div class="card mb-4">
-                            <div class="card-body">
+                            <div class="card-body" id="cardBody2">
                                 <div class="row align-items-center">
                                     <div class="col">
                                         <h5 class="card-title mb-2">Submission Comparison</h5>
                                     </div>
                                     <div class="col-auto">
                                         <div class="dropdown" style="margin-right: -10px;">
-                                            <button class="btn p-0" type="button" id="cardOpt1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <button class="btn p-0" type="button" id="cardOpt2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <i class="bx bx-dots-vertical-rounded"></i>
                                             </button>
-                                            <div class="dropdown-menu" aria-labelledby="cardOpt1">
+                                            <div class="dropdown-menu" aria-labelledby="cardOpt2">
                                                 <a class="dropdown-item" href="journalreport.php" target="_blank">View More</a>
+                                                <a href="#" class="download-chart-btn dropdown-item" data-chart="myChart2">Download</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <canvas id="myChart2"></canvas>
+                                <canvas id="myChart2" class="chart-canvas"></canvas>
                             </div>
                         </div>
                     </div>
@@ -365,11 +367,12 @@ $donationDataJson = json_encode($donationData);
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="cardOpt1">
                                                 <a class="dropdown-item" href="userreport.php">View More</a>
+                                                <a href="#" class="download-chart-btn dropdown-item" data-chart="myChart3">Download</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <canvas id="myChart3"></canvas>
+                                <canvas id="myChart3" class="chart-canvas"></canvas>
                             </div>
                         </div>
                     </div>
@@ -387,11 +390,12 @@ $donationDataJson = json_encode($donationData);
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="cardOpt1">
                                                 <a class="dropdown-item" href="donationreportmtd.php?m=<?php echo date('n'); ?>&y=<?php echo date('Y'); ?>" target="_blank">View More</a>
+                                                <a href="#" class="download-chart-btn dropdown-item" data-chart="donationChart">Download</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <canvas id="donationChart"></canvas>
+                                <canvas id="donationChart" class="chart-canvas"></canvas>
                             </div>
                         </div>
                     </div>
@@ -564,6 +568,39 @@ $donationDataJson = json_encode($donationData);
     <?php include 'template/footer.php'; ?>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+    window.jsPDF = window.jspdf.jsPDF;
+
+    $('.download-chart-btn').click(function(event) {
+        var chartId = $(this).data('chart');
+        var canvas = $('#' + chartId)[0];
+
+
+        var canvasWidth = canvas.width;
+        var canvasHeight = canvas.height;
+
+        var cardTitle = $(this).closest('.card-body').find('.card-title').text().trim();
+        var pdf = new jsPDF('l', 'pt', [canvasWidth, canvasHeight]);
+
+        var titleCanvas = document.createElement('canvas');
+        titleCanvas.width = canvasWidth;
+        titleCanvas.height = 30; 
+        var titleCtx = titleCanvas.getContext('2d');
+        titleCtx.font = '18px Arial';
+        titleCtx.fillStyle = 'black';
+        titleCtx.textAlign = 'center';
+        titleCtx.fillText(cardTitle, canvasWidth / 2, 20); 
+
+        var titleImgData = titleCanvas.toDataURL('image/png');
+        pdf.addImage(titleImgData, 'PNG', 0, 0, canvasWidth, 30); 
+        var imgData = canvas.toDataURL('image/png');
+        pdf.addImage(imgData, 'PNG', 0, 30, canvasWidth, canvasHeight - 30);
+        pdf.save(cardTitle + '.pdf');
+    });
+});
+</script>
 <script>
     var currentDate = new Date();
 
@@ -654,14 +691,11 @@ const barChart1 = new Chart(barCtx1, {
 });
 </script>
 <script>
-// Parse the donation data from PHP
     const donationData = <?php echo $donationDataJson; ?>;
 
-    // Extract dates and amounts from the donation data
     const dates = donationData.map(donation => donation.date);
     const amounts = donationData.map(donation => donation.amount);
 
-    // Create a new Chart instance
     const ctx = document.getElementById('donationChart').getContext('2d');
     const donationChart = new Chart(ctx, {
         type: 'line',
