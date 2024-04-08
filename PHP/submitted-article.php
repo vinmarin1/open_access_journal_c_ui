@@ -75,36 +75,29 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
             <div class="abstract-content">
                 <p id="display-abstract" name="display-abstract">
                     <?php 
-                        $sqlReviewraticle = "SELECT abstract FROM article WHERE article_id = :article_id AND author_id = :author_id";
+                    $sqlReviewraticle = "SELECT abstract FROM article WHERE article_id = :article_id AND author_id = :author_id";
 
-                        $result = database_run($sqlReviewraticle, array(
-                            'author_id' => $userId,
-                            'article_id' => $articleId
-                        ));
+                    $result = database_run($sqlReviewraticle, array(
+                        'author_id' => $userId,
+                        'article_id' => $articleId
+                    ));
 
-                        if ($result !== false) {
-                            foreach ($result as $row) {
-                                // Split the abstract into sentences
-                                $sentences = preg_split('/(?<=[.?!])\s+/', $row->abstract, -1, PREG_SPLIT_NO_EMPTY);
-                                
-                                // Capitalize the first letter of the first sentence
-                                if (!empty($sentences)) {
-                                    $first_sentence = $sentences[0];
-                                    $first_sentence = ucfirst($first_sentence);
-                                    echo '<span class="first-letter">' . $first_sentence . '</span>';
-                                    
-                                    // Output the rest of the sentences
-                                    for ($i = 1; $i < count($sentences); $i++) {
-                                        echo $sentences[$i] . ' ';
-                                    }
-                                }
-                            }
-                        } else {
-                            echo "No abstract."; 
+                    if ($result !== false) {
+                        foreach ($result as $row) {
+                            // Get the first letter of the abstract
+                            $firstLetter = substr($row->abstract, 0, 1);
+                            // Get the rest of the abstract
+                            $restOfAbstract = substr($row->abstract, 1);
+                            
+                            // Output the first letter with span for styling
+                            echo '<span class="first-letter">' . $firstLetter . '</span>' . $restOfAbstract;
                         }
+                    } else {
+                        echo "No abstract."; 
+                    }
                     ?>
-
                 </p>
+
                 <h3 style="margin-top: 20px; margin-bottom: 10px; color: #0858A4;font-style: normal;">Keywords</h3>
                 <div class="keywords">
                     <?php

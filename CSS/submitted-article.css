@@ -45,9 +45,9 @@ body {
 
   .first-letter {
     font-family: 'Raleway', sans-serif;
-    font-size: larger; /* Adjust this value as needed */
-    font-weight: 400;
-    font-style: normal;
+    font-size: 1.5em; /* Adjust this value as needed */
+    font-weight: bold;
+    font-style: italic;
     padding-left: 5px;
 }
 
