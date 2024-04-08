@@ -82,35 +82,45 @@ channel.bind('my-event', function(data) {
           </li>
       </ul>
    
+    <?php
+    if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
+        echo '
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown" id="navlogin">
+                <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Log-in
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" id="login-register">
+                    <li><a class="dropdown-item" style="color: black" href="login.php" >Log-in</a></li>
+                    <li><a class="dropdown-item" style="color: black" href="signup.php">Register</a></li>
+                </ul>
+            </li>
+        </ul>
+        ';
+    }
+    ?>
+
+      </div>
+      </div>
+
       <?php
-// Check if the user is logged in
-if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
-    // Display login and register links
-    echo '
-    <ul class="navbar-nav ml-auto">
-        <li class="nav-item dropdown" id="navlogin">
-            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Log-in
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end" id="login-register">
-                <li><a class="dropdown-item" style="color: black" href="login.php">Log-in</a></li>
-                <li><a class="dropdown-item" style="color: black" href="signup.php">Register</a></li>
-            </ul>
-        </li>
-    </ul>';
-} else {
-    // User is logged in
-    $userName = ucfirst($_SESSION['first_name']);
+if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
     $author_id = $_SESSION['id'];
 
-    // Display notification bell
+    // Notification button and count
     echo '
     <div class="btn-group">
         <button type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" id="notification-button">
             <i class="fas fa-bell"></i>';
 
-    // Check for notification count
-    $sqlNotif = "SELECT article.article_id, article.title FROM article JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id WHERE reviewer_assigned.author_id = :author_id AND article.status = 4 AND reviewer_assigned.accept = 0 AND reviewer_assigned.answer = 0";
+    $sqlNotif = "SELECT article.article_id, article.title 
+                 FROM article 
+                 JOIN reviewer_assigned 
+                 ON article.article_id = reviewer_assigned.article_id 
+                 WHERE reviewer_assigned.author_id = :author_id 
+                 AND article.status = 4 
+                 AND reviewer_assigned.accept = 0 
+                 AND reviewer_assigned.answer = 0";
     $sqlNotifRun = database_run($sqlNotif, array(':author_id' => $author_id));
 
     if ($sqlNotifRun !== false) {
@@ -118,72 +128,71 @@ if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
         echo '<span id="notification-count" style="width: 10px; height: 10px; font-size: 5px; text-align: center; display: inline-block; line-height: 5px;">' . $notificationCount . '</span>';
     }
 
-    echo '</button>
-        <ul class="dropdown-menu" style="margin-left: -20px;">';
+    echo '
+        </button>
+        <ul class="dropdown-menu" style="margin-left: -20px">';
 
-    // Display notifications
+    // Notification items
     if ($sqlNotifRun !== false) {
         foreach ($sqlNotifRun as $notif) {
             echo '
-            <li style="padding: 8px; list-style-type: none; font-size: 12px; display: block;">
-                <p class="d-flex flex-column">You have been invited as Reviewer 
-                    <span style="font-weight: bold; margin-top: 15px; margin-bottom: -15px;">Title: </span>
-                    <a id="inviteMessage" style="text-decoration: none; color: gray; display: block; border-bottom: 1px gray solid; padding-bottom: 5px;" href="./review-process.php?id=' . $notif->article_id . '">' . $notif->title . '</a>
-                </p>
+            <li style="padding: 8px;
+                list-style-type: none;
+                font-size: 12px;
+                display: block;">
+                <p class="d-flex flex-column ">You have been invited as Reviewer 
+                    <span style="font-weight: bold;
+                        margin-top: 15px;
+                        margin-bottom: -15px;">Title: </p>
+                    <a id="inviteMessage" style="text-decoration: none;
+                        color: gray;
+                        display: block;
+                        border-bottom: 1px gray solid;
+                        padding-bottom: 5px;" href="./review-process.php?id=' . $notif->article_id . '">' . $notif->title . '</a>
+                </span>
             </li>';
         }
     } else {
-        echo '<p class="h6" style="color: gray; font-weight: normal; margin-left: 10px;">0 Notification</p>';
+        echo '<p class="h6" style="color: gray; font-weight: normal; margin-left: 10px" >0 Notification</p>';
     }
 
-    echo '</ul>
-    </div>';
-
-    // Display user profile and menu
+    // User profile dropdown
     $sqlUserName = "SELECT first_name FROM author WHERE author_id = :author_id";
     $sqlRunName = database_run($sqlUserName, array(':author_id' => $author_id));
 
     if ($sqlRunName !== false && isset($sqlRunName[0]->first_name)) {
         $userName = ucfirst($sqlRunName[0]->first_name);
-    } else {
-        // Handle case when user name is not found or database query fails
-        $userName = ''; // Set a default value or handle as needed
-    }
-
-    // Display user profile and menu
-    echo '
+        echo '
+        </ul>
+    </div>
     <div class="profile px-4">
         <a id="user-profile" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             ' . $userName . '
         </a>
         <li class="dropdown" style="list-style-type: none;">
-            <ul class="dropdown-menu" style="width: 230px; margin-left: -120px; margin-top: 20px;">';
+            <ul class="dropdown-menu" style="width: 230px; margin-left: -120px; margin-top: 20px">';
 
-    // Display different menu items based on user role
-    if ($_SESSION['LOGGED_IN'] === true) {
-        if (isset($_SESSION['role']) && $_SESSION['role'] === 'Admin') {
-            $dashboardLink = isset($_SESSION['journal_id']) && $_SESSION['journal_id'] !== null && $_SESSION['journal_id'] != 0 ?
-                '<a href="../Admin/php/editordashboard.php" class="dropdown-item" style="color: black;">Editor in Chief Dashboard</a>' :
-                '<a href="../Admin/php/dashboard.php" class="dropdown-item" style="color: black;">Admin Dashboard</a>';
-            echo $dashboardLink;
+        // User dashboard links based on role
+        if ($_SESSION['role'] === 'Admin') {
+            if (!isset($_SESSION['journal_id']) || $_SESSION['journal_id'] === null || $_SESSION['journal_id'] == 0) {
+                echo '<li><a href="../Admin/php/dashboard.php" class="dropdown-item" style="color: black;">Admin Dashboard</a></li>';
+            } else {
+                echo '<li><a href="../Admin/php/editordashboard.php" class="dropdown-item" style="color: black;">Editor in Chief Dashboard</a></li>';
+            }
         }
-    }
 
-    echo '
+        echo '
             <li><a href="user-dashboard.php" class="dropdown-item" style="color: black;">My Profile</a></li>
             <li><a href="author-dashboard.php" class="dropdown-item" style="color: black;">My Contributions</a></li>
             <li><a class="dropdown-item" href="../PHP/logout.php" style="color: black;">Log-out</a></li> 
-        </ul>
-    </li>
-    </ul>
+            </ul>
+        </li>
     </div>';
-
-   
+    }
 }
 ?>
 
 </nav>
-
 
 
 
