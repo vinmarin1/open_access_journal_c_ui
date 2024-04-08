@@ -246,9 +246,10 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                         <ol type="1">
                             <li>There is also a textbox below of each questions where the Reviewer can leave a comment.</li>
                             <li>Below of these Questionnaire, The Reviewer can click the ‘Submit’ Button if they are done.</li>
-                            <li>A message box will show up and ask you ‘Submit it now?’.</li>
+                            <li>A message box will show up and ask you ‘Submit it now?’. </li>
+                            
                         </ol>
-                        <img src="../images/step4a.png" alt="" class="img-reg">
+                        <img src="../images/step3z.jpg" alt="" class="img-reg">
                     </div>
                     <div class="s-2">
                         <h3>Reviewed Article</h3>
