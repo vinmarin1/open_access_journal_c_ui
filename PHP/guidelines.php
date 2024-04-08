@@ -37,7 +37,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
             <img width="40%" src="https://images.ctfassets.net/o78em1y1w4i4/1vcXhQnayIcmJ3eohoVpY2/1cf9432e053c5af60f170280daedefc4/story-male-manager-taking-notes-in-home-office.jpg?fm=webp&w=1080&q=75">
     </div>
 
-    <main class="d-flex flex-column-reverse flex-md-row gap-2">
+    <main class="d-flex flex-column-reverse flex-md-row-reverse gap-2">
         <aside class="">
         <div class="menu" id="for-contributors-menu">
             <!-- <h3>For Contributors</h3> -->
@@ -60,9 +60,6 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
             </div>           
         </aside>
     <div class="main" id="author-guidelines-container">
-        <div class="header">
-        <h2>Author Guidelines</h2>
-        </div>
         <div class="category w-100">
         <div class="s-1">
         <h3>Types of Publication</h3>
@@ -191,9 +188,6 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
         </div>
     </div>
 	<div class="main" id="article-submission-container" style="display: none;">
-        <div class="header">
-        <h2>Article Submission</h2>
-        </div>
         <div class="category w-100">
         <div class="s-1">
         <h3>Submission</h3>
@@ -319,9 +313,6 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
         </div>
     </div>
     <div class="main" id="peer-review-process-container" style="display: none;">
-        <div class="header">
-        <h2>Editorial Procedures and Peer-Review</h2>
-        </div>
         <div class="category w-100">
         <div class="s-2">
         <h3>Initial Check and Review</h3>
@@ -375,9 +366,6 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
         </div>
     </div>
     <div class="main" id="become-a-reviewer-container" style="display: none;">
-        <div class="header">
-        <h2>Become A Reviewer</h2>
-        </div>
         <div class="category w-100">
         <div class="s-1">
         <p>Becoming a reviewer for our open access journal is a rewarding opportunity. By joining us, you'll
@@ -394,9 +382,6 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
         </div>
 	</div>
     <div class="main" id="tutorial-on-publication-container" style="display: none;">
-        <div class="header">
-            <h2>Tutorial on Publication</h2>
-        </div>
         <div class="category w-100">
             <div class="s-1">
                 <p>Welcome to our Publication Tutorial for Pahina. This guide simplifies the process, 
@@ -486,9 +471,6 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
         </div>
 	</div>
 <div class="main" id="tutorial-on-review-container" style="display: none;">
-    <div class="header">
-            <h2>Tutorial on Review</h2>
-        </div>
         <div class="category w-100">
             <div class="s-1">
                 <p>Welcome to our Publication Tutorial for Pahina. This guide simplifies the process, ensuring a smooth experience for all contributors. Let's make your publication journey 
@@ -559,9 +541,6 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
         </div>
 </div>
 <div class="main" id="templates-for-author-container" style="display: none;">
-        <div class="header">
-            <h2>Templates for Author</h2>
-        </div>
         <div class="category w-100">
             <div class="s-1">
             <p>We have prepared a manuscript template to help authors when submitting their manuscript to one of our journals. 
@@ -577,12 +556,9 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
         </div>
 </div>
 <div class="main" id="publication-policy-container" style="display: none;">
-        <div class="header">
-            <h2>Publication Policy</h2>
-        </div>
         <div class="category w-100">
             <div class="s-1">
-                <h3>PUBLICATION ETHICS</h3>
+                <h3>Publication Ethics</h3>
                 <p>The editors of this journal use a rigorous peer-review system and adhere to strong ethical
                     values and standards to ensure that only high-quality research works are accepted.</p>
                 <p>Plagiarism, falsification, fabrication, unethical co-authorship practices, and other examples of
@@ -590,6 +566,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     instructed to deal with a zero-tolerance approach in such circumstances.</p>
             </div>
             <div class="s-2">
+                <h3>Publication Rules</h3>
                 <p>Researchers who wish to publish their articles or reviews in Pahina should abide by
                     the following:</p>
                 <ul>
@@ -633,7 +610,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 </ul>
             </div>
             <div class="s-2">
-                <h3>CITATION POLICY</h3>
+                <h3>Citation Policy</h3>
                 <p>Authors should ensure that information borrowed from other references is properly
                     referenced and obtained relevant permission from the original authors.</p>
                 <p>Self-citation of one’s work in excess should be avoided at all costs. Similarly, researchers
@@ -642,7 +619,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     quotation marks and accompanied by suitable citations.</p>
             </div>
             <div class="s-2">
-                <h3>COPYRIGHT AND LICENSING</h3>
+                <h3>Copyright and Licensing</h3>
                 <p>The authors maintain copyright for all works published in the Pahina. The articles are
                     published under the Creative Commons CC BY 4.0 license, allowing anybody to download
                     and read them for free. The article may also be reused and quoted as long as the original
@@ -650,48 +627,19 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     of the work while guaranteeing that the creators are appropriately credited.</p>
             </div>
             <div class="s-2">
-                <h3>INSTITUTIONAL REPOSITORY</h3>
+                <h3>Institutional Repository</h3>
                 <p>All articles published in the Pahina will be archived in the institutional repository
                     system and database of the Quezon City University.</p>
             </div>
             <div class="s-2">
-                <h3>DATA PRIVACY, INTELLECTUAL PROPERTY, AND ANTI-PIRACY</h3>
+                <h3>Data Privacy, Intellectual Property, and Anti-Piracy</h3>
                 <p>All articles published in the Pahina should conform with the relevant rules, guidelines,
                     and policies indicated in the Philippines’ Data Privacy Act of 2012, the Cybercrime
                     Prevention Act of 2012, and the Intellectual Property Code.</p>
             </div>
     </div>
 </div>
-<div class="main " id="frequently-asked-questions-container" style="display: none;"> 
-            <div class="header">
-                <h2>Frequently Asked Questions</h2>
-               <!-- <form action="" class="border" id="search-input">
-                    <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
-                    <button type="submit">Search</button>
-                </form>-->
-            </div>
-            <div class="content">
-                <div class="category w-100">
-                    <h3>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 15 15"><path fill="#e56f1f" fill-rule="evenodd" d="M.877 7.5a6.623 6.623 0 1 1 13.246 0a6.623 6.623 0 0 1-13.246 0M7.5 1.827a5.673 5.673 0 1 0 0 11.346a5.673 5.673 0 0 0 0-11.346m.75 8.673a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0m-2.2-4.25c0-.678.585-1.325 1.45-1.325s1.45.647 1.45 1.325c0 .491-.27.742-.736 1.025c-.051.032-.111.066-.176.104a5.28 5.28 0 0 0-.564.36c-.242.188-.524.493-.524.961a.55.55 0 0 0 1.1.004a.443.443 0 0 1 .1-.098c.102-.079.215-.144.366-.232c.078-.045.167-.097.27-.159c.534-.325 1.264-.861 1.264-1.965c0-1.322-1.115-2.425-2.55-2.425c-1.435 0-2.55 1.103-2.55 2.425a.55.55 0 0 0 1.1 0" clip-rule="evenodd"/></svg>
-                        General Questions
-                    </h3>
-                    <div id="generalQAs" class="faqs accordion accordion-flush w-100 d-flex flex-column gap-0" id="faqs">
-                    </div>
-                </div>
-                <div class="category w-100">
-                    <h3>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 15 15"><path fill="#e56f1f" fill-rule="evenodd" d="M.877 7.5a6.623 6.623 0 1 1 13.246 0a6.623 6.623 0 0 1-13.246 0M7.5 1.827a5.673 5.673 0 1 0 0 11.346a5.673 5.673 0 0 0 0-11.346m.75 8.673a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0m-2.2-4.25c0-.678.585-1.325 1.45-1.325s1.45.647 1.45 1.325c0 .491-.27.742-.736 1.025c-.051.032-.111.066-.176.104a5.28 5.28 0 0 0-.564.36c-.242.188-.524.493-.524.961a.55.55 0 0 0 1.1.004a.443.443 0 0 1 .1-.098c.102-.079.215-.144.366-.232c.078-.045.167-.097.27-.159c.534-.325 1.264-.861 1.264-1.965c0-1.322-1.115-2.425-2.55-2.425c-1.435 0-2.55 1.103-2.55 2.425a.55.55 0 0 0 1.1 0" clip-rule="evenodd"/></svg>
-                        Submitting to Pahina
-                    </h3>
-                    <div id="submissionQAs" class="faqs accordion accordion-flush w-100 d-flex flex-column gap-0" id="faqs">
-                    
-                    </div>
-                </div>
-               
-            </div>
-            
-        </div>
+
     </main>
 
     <div class="footer" id="footer">
