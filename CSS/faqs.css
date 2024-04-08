@@ -1,17 +1,45 @@
 
+#banner {
+	background-color: white;
+	padding: 2em 8%;
+	display: flex;
+	justify-content: space-between;
+}
+
+#banner .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#banner .body {
+    margin-bottom: 10em;
+}
+
+#banner button {
+    /* color: white; */
+    color: #E56F1F;
+    font-weight: 600;
+    /* border-radius: 20px; */
+    /* padding: 0.5em 1em; */
+  }
+  
+  
 main {
     padding: 0.5em 8%;
 }
 .main {
     flex: 4;
-    padding: 2%;
+    /* padding: 4em; */
+
 }
 aside a {
-    color: var(--form-heading) !important;
+    color: gray !important;
 }
 aside {
     flex: 1;
-    padding-top: 2%;
+    padding:2em;
+    background-color: var(--gray);
 }
 .main p, main li {
     text-align: justify;
@@ -256,7 +284,7 @@ aside {
 #tutorial-on-review-container h3,
 #templates-for-author-container h3,
 #publication-policy-container h3 {
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     font-size: 16px;
     font-weight: 700;
     margin-bottom: 1em;
@@ -278,12 +306,28 @@ aside {
 
 .s-1, .s-2 {
     margin-bottom: 2em;
+    padding:4em;
+    border: 0.8px solid var(--gray);
     
+}
+
+.s-1 h3, .s-2 h3 {
+    font-family: Raleway, sans-serif !important;
+    font-size:28px !important;
 }
 
 .s-1 p, .s-2 p {
     margin-bottom: 0.5rem;
     
+}
+
+.s-1 ul li , .s-2 ul li {
+    /* display:flex;
+    flex-direction: column;
+    gap:1em; */
+    padding:1em;
+    border-bottom: 1px solid var(--gray);
+    /* list-style: none; */
 }
 
 #author-guidelines-container h4,

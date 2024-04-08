@@ -131,7 +131,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-
 document.addEventListener('DOMContentLoaded', function () {
     var menuItems = document.querySelectorAll('.faq-toggle');
 
@@ -143,9 +142,22 @@ document.addEventListener('DOMContentLoaded', function () {
                                             return char.toUpperCase();
                                         });
             document.getElementById('guideline-title').textContent = formattedTarget;
+            document.getElementById('guideline-btn').textContent = formattedTarget;
         });
     });
+
+    // Check if there's a hash in the URL on page load
+    var hash = window.location.hash;
+    if (hash) {
+        var formattedTarget = hash.substr(1).replace(/-/g, ' ')
+                                              .replace(/\b\w/g, function(char) {
+                                                  return char.toUpperCase();
+                                              });
+        document.getElementById('guideline-title').textContent = formattedTarget;
+        document.getElementById('guideline-btn').textContent = formattedTarget;
+    }
 });
+
 
 function downloadFile(event) {
     
