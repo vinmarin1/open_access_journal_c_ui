@@ -25,11 +25,16 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
 
     </nav>
 
-    <div class="content-over">
-        <div class="cover-content">
-            <p>Home / Guidelines</p>
-            <h1>Guidelines</h1>
-        </div>
+    <div id="banner">
+            <div class="content">
+                <p>Home / Guidelines/ </p>
+                <div class="body">
+                    <h1 id="guideline-title"></h1>
+                    <span>Let us guide you in the best way to present, organize and describe your work</span><br/>
+                    <button class="btn p-0 mt-4">View more about <span id="guideline-btn"></span></button>
+                </div>
+            </div>
+            <img width="40%" src="https://images.ctfassets.net/o78em1y1w4i4/1vcXhQnayIcmJ3eohoVpY2/1cf9432e053c5af60f170280daedefc4/story-male-manager-taking-notes-in-home-office.jpg?fm=webp&w=1080&q=75">
     </div>
 
     <main class="d-flex flex-column-reverse flex-md-row gap-2">
