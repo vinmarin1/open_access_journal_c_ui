@@ -1,35 +1,28 @@
 <?php
-require_once 'dbcon.php';
+
+require_once 'dbcon.php'; 
 session_start();
-$author_id = $_SESSION['id'];
 
-if (!function_exists('get_notification_data')) {
-    function get_notification_data()
-    {
-        $pdo = connect_to_database();
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+ 
+    $author_id = $_SESSION['id'];
 
-        if ($pdo) {
-            try {
-                // Count query
-                $countQuery = "SELECT COUNT(*) as count FROM notification WHERE admin = 0 AND `read` = 0 AND author_id = $author_id";
-                $countStmt = $pdo->prepare($countQuery);
-                $countStmt->execute();
-                $countResult = $countStmt->fetch(PDO::FETCH_ASSOC);
-                $count = $countResult['count'];
+ 
+    $sql = "SELECT COUNT(*) AS notification_count FROM `notification` WHERE author_id = :author_id";
+    $params = array(':author_id' => $author_id);
+    $result = database_run($sql, $params); 
 
-                return array('count' => $count);
-            } catch (PDOException $e) {
-                echo "Error: " . $e->getMessage();
-                return false;
-            }
-        } else {
-            echo "Error: Database connection failed.";
-            return false;
-        }
+ 
+    if ($result !== false && !empty($result)) {
+        $count = $result[0]->notification_count;
+
+        echo json_encode($count);
+
+    } else {
+      
+        echo json_encode(0);
     }
+} else {
+    echo json_encode(array('error' => 'Invalid request method'));
 }
-
-$notification_data = get_notification_data();
-
-echo json_encode($notification_data);
 ?>

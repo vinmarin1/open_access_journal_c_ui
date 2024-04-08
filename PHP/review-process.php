@@ -136,19 +136,20 @@ if ($result !== false && !empty($result)) {
 
                     if ($result !== false) {
                         foreach ($result as $row) {
-                            // Split the abstract into sentences
-                            $sentences = preg_split('/(?<=[.?!])\s+/', $row->abstract, -1, PREG_SPLIT_NO_EMPTY);
+                        
+                            $firstLetter = substr($row->abstract, 0, 1);
+                            // Get the rest of the abstract
+                            $restOfAbstract = substr($row->abstract, 1);
                             
-                            // Output each sentence with the first letter wrapped in a span for styling
-                            foreach ($sentences as $sentence) {
-                                echo '<span class="first-letter">' . substr($sentence, 0, 1) . '</span>' . substr($sentence, 1) . ' ';
-                            }
+                            
+                            echo '<span class="first-letter">' . $firstLetter . '</span>' . $restOfAbstract;
                         }
                     } else {
                         echo "No abstract for this article."; 
                     }
                     ?>
                     </p>
+                        
 
 
                 </div>

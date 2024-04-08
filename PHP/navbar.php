@@ -15,24 +15,10 @@ require_once 'dbcon.php';
     <link rel="stylesheet" href="../CSS/navbar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+
 </head>
 <body>
-<script>
 
-// Enable pusher logging - don't include this in production
-Pusher.logToConsole = true;
-
-var pusher = new Pusher('cabcad916f55a998eaf5', {
-  cluster: 'ap1'
-});
-
-var channel = pusher.subscribe('my-channel');
-channel.bind('my-event', function(data) {
-  alert(JSON.stringify(data));
-  console.log("Notif");
-});
-</script>
 <nav class="navbar navbar-expand-xl" style="padding:4px 3%" id="navbar-container" >
   <div class="container-fluid">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="background-color: white; font-size:10px;">
@@ -203,6 +189,6 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="../JS/navbar.js"></script>
+<script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
 </body>
 </html>
-
