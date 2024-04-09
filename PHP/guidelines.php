@@ -123,12 +123,12 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     <li><a href="#types-of-publication">How to Become a Reviewer</a></li>
                 </ul>
                 <ul class="overview" id="templates-for-author-links" style="display: none;">
-                    <li><b>Overview</b></li>
-                    <li><a href="#types-of-publication">Types of Publication</a></li>
+                    <!-- <li><b>Overview</b></li> -->
+                    <!-- <li><a href="#types-of-publication">Types of Publication</a></li>
                     <li><a href="#accepted-file-formats">Accepted File Formats</a></li>
                     <li><a href="#formatting-requirements">Formatting Requirements</a></li>
                     <li><a href="#language-and-formatting">Language and Formatting</a></li>
-                    <li><a href="#other-pages">Other Pages</a></li>
+                    <li><a href="#other-pages">Other Pages</a></li> -->
                 </ul>
                 <ul class="overview" id="publication-policy-links" style="display: none;">
                     <li><b>Overview</b></li>

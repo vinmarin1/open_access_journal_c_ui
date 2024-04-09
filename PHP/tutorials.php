@@ -28,37 +28,37 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
     <div class="content-over">
         <div class="cover-content">
             <p>Home / Tutorials</p>
-            <h1>Tutorials</h1>
+            <!-- <h1 id="guideline-title">Tutorial on Publication</h1> -->
         </div>
     </div>
 
-    <main class="d-flex flex-column-reverse flex-md-row gap-2">
+    <main class="d-flex flex-column-reverse flex-md-row-reverse gap-2 py-4">
         <aside class="">
         <div class="menu" id="for-contributors-menu">
             <!-- <h3>For Contributors</h3> -->
             <ul id="for-contributors">
                 <li><b>Tutorials</b></li>
-                <li class="faq-toggle" data-target="tutorial-on-publication">Tutorial on Publication</li>
-                <li class="faq-toggle" data-target="tutorial-on-review">Tutorial on Review</li>
+                <li class="faq-toggle" data-target="tutorial-on-publication" ><a href="tutorials.php#tutorial-on-publication">Tutorial on Publication</a></li>
+                <li class="faq-toggle"  data-target="tutorial-on-review"><a href="tutorials.php#tutorial-on-review">Tutorial on Review</a></li>
                 <hr/>
                 <li><b>Guidelines</b></li>
-                <li class="faq-toggle" id="author-guidelines" data-target="author-guidelines"><a href="guidelines.php#author-guidelines">Author Guidelines</a></li>
-                <li class="faq-toggle" data-target="templates-for-author"><a href="guidelines.php#templates-for-author">Templates for Author</a></li>
-                <li class="faq-toggle" data-target="publication-policy"><a href="guidelines.php#publication-policy">Publication Policy</a></li>
-                <li class="faq-toggle" data-target="article-submission"><a href="guidelines.php#article-submission">Article Submission</a></li>
-                <li class="faq-toggle" data-target="peer-review-process"><a href="guidelines.php#peer-review-process">Peer-review Process</a></li>
-                <li class="faq-toggle" id="become-a-reviewer" data-target="become-a-reviewer"><a href="guidelines.php#become-a-reviewer">Become A Reviewer</a></li>
+                <li class="faq-toggle" id="author-guidelines" ><a href="guidelines.php#author-guidelines">Author Guidelines</a></li>
+                <li class="faq-toggle" ><a href="guidelines.php#templates-for-author">Templates for Author</a></li>
+                <li class="faq-toggle"><a href="guidelines.php#publication-policy">Publication Policy</a></li>
+                <li class="faq-toggle"><a href="guidelines.php#article-submission">Article Submission</a></li>
+                <li class="faq-toggle" ><a href="guidelines.php#peer-review-process">Peer-review Process</a></li>
+                <li class="faq-toggle" id="become-a-reviewer" ><a href="guidelines.php#become-a-reviewer">Become A Reviewer</a></li>
                 <hr/>
-                <a href="faqs.php"><li class="faq-toggle" data-target="frequently-asked-questions"><b>FAQs</b></li></a>
+                <a href="faqs.php"><li class="faq-toggle"><b>FAQs</b></li></a>
             </ul>
             </div>           
         </aside>
 
         <div class="main" id="tutorial-on-publication-container" >
-            <div class="header">
-                <h2>Tutorial on Publication</h2>
-            </div>
             <div class="category w-100">
+            <div class="mb-4">
+                <h2 style="font-size:32px !important">Tutorial on Publication</h2>
+            </div>
                 <div class="s-1">
                     <p>Welcome to our Publication Tutorial for Pahina. This guide simplifies the process, 
                     ensuring a smooth experience for all contributors. Let's make your publication journey hassle-free – get
@@ -182,10 +182,10 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
             </div>
     	</div>
         <div class="main" id="tutorial-on-review-container" style="display: none;">
-            <div class="header">
-                    <h2>Tutorial on Review</h2>
-                </div>
                 <div class="category w-100">
+                    <div class="mb-4">
+                        <h2 style="font-size:32px !important">Tutorial on Review</h2>
+                    </div>
                     <div class="s-1">
                         <p>Welcome to our Publication Tutorial for Pahina. This guide simplifies the process, ensuring a smooth experience for all contributors. Let's make your publication journey 
                             hassle-free – get started now! Begin your submission and share your insights with our scholarly community!</p>

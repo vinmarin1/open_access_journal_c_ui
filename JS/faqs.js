@@ -108,15 +108,22 @@ document.addEventListener('DOMContentLoaded', function () {
                 document.querySelectorAll('.main').forEach(function (container) {
                     container.style.display = 'none';
                 });
-                document.querySelectorAll('.banner').forEach(function (container) {
-                    container.style.display = 'none';
-                });
+                targetContainer.style.display = 'flex';
+            }
+            const targetLinks = document.getElementById(hash + '-links');
+            if (targetLinks) {
                 document.querySelectorAll('.overview').forEach(function (container) {
                     container.style.display = 'none';
                 });
                 
-                targetContainer.style.display = 'flex';
                 document.getElementById(hash + '-links').style.display = 'block';
+            }
+            const targetBanner = document.getElementById(hash + '-banner');
+            if (targetBanner) {
+                document.querySelectorAll('.banner').forEach(function (container) {
+                    container.style.display = 'none';
+                });
+                
                 document.getElementById(hash + '-banner').style.display = 'flex';
             }
         }
