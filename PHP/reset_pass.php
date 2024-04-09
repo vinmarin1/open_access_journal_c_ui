@@ -19,6 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         'password' => $hashedPassword
     );
     database_run($sqlUpdatePassword, $sqlArray);
+    header('Location: https://www.qcuj.online/PHP/logout.php');
 } else {
     echo "Failed to update your password";
 }

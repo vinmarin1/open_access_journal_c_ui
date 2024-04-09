@@ -76,14 +76,24 @@ $seriesString1 = json_encode($output_series1);
             </span>
         </h4>
 
-
         <div class="row mb-2">
             <div class="col-lg-6 col-md-12 mb-4">
                 <div class="card">
                     <div class="row row-bordered g-0">
-                        <div class="col-md-12">
+                        <div class="col-md-12 d-flex justify-content-between align-items-center">
                             <h5 class="card-header m-0 me-2 pb-3">User Gender</h5>
-                            <div id="totalRevenueChart" class="px-2"></div>
+                            <div class="dropdown">
+                                <button class="btn p-0" type="button" id="cardOpt1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="bx bx-dots-vertical-rounded"></i>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="cardOpt1">
+                                    <a href="#" class="download-chart-btn dropdown-item" data-chart="totalRevenueChart">Download</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12" style="width:100%;" id="totalRevenueChartDiv">
+                            <div id="totalRevenueChart">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -92,9 +102,20 @@ $seriesString1 = json_encode($output_series1);
             <div class="col-lg-6 col-md-12 mb-4">
                 <div class="card">
                     <div class="row row-bordered g-0">
-                        <div class="col-md-12">
+                        <div class="col-md-12 d-flex justify-content-between align-items-center">
                             <h5 class="card-header m-0 me-2 pb-3">User Position</h5>
-                            <div id="totalRevenueChart1" class="px-2"></div>
+                            <div class="dropdown">
+                                <button class="btn p-0" type="button" id="cardOpt1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="bx bx-dots-vertical-rounded"></i>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="cardOpt1">
+                                    <a href="#" class="download-chart-btn dropdown-item" data-chart="totalRevenueChart1">Download</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12" style="width:100%;" id="totalRevenueChart1Div">
+                            <div id="totalRevenueChart1">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -148,6 +169,43 @@ $seriesString1 = json_encode($output_series1);
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+
+    <script>
+        function generatePDF(chartContent, fileName) {
+            const opt = {
+                margin: 1,
+                filename: fileName + '.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+
+            html2pdf()
+                .set(opt)
+                .from(chartContent)
+                .save()
+                .then(() => {
+                });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const downloadBtns = document.querySelectorAll('.download-chart-btn');
+            downloadBtns.forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    const chartId = btn.getAttribute('data-chart');
+                    const chartContent = document.getElementById(chartId).innerHTML;
+                    const cardHeader = btn.closest('.card').querySelector('.card-header');
+                    if (cardHeader) {
+                        const headerText = cardHeader.textContent.trim();
+                        generatePDF(chartContent, headerText);
+                    } else {
+                        console.error('Card header not found.');
+                    }
+                });
+            });
+        });
+    </script>
 
     <!-- DataTables initialization script -->
     <script>
