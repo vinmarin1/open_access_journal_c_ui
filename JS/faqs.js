@@ -108,7 +108,16 @@ document.addEventListener('DOMContentLoaded', function () {
                 document.querySelectorAll('.main').forEach(function (container) {
                     container.style.display = 'none';
                 });
-                targetContainer.style.display = 'block';
+                document.querySelectorAll('.banner').forEach(function (container) {
+                    container.style.display = 'none';
+                });
+                document.querySelectorAll('.overview').forEach(function (container) {
+                    container.style.display = 'none';
+                });
+                
+                targetContainer.style.display = 'flex';
+                document.getElementById(hash + '-links').style.display = 'block';
+                document.getElementById(hash + '-banner').style.display = 'flex';
             }
         }
     }
@@ -122,7 +131,16 @@ document.addEventListener('DOMContentLoaded', function () {
             document.querySelectorAll('.main').forEach(function (container) {
                 container.style.display = 'none';
             });
-            document.getElementById(targetId + '-container').style.display = 'block';
+            document.querySelectorAll('.banner').forEach(function (container) {
+                container.style.display = 'none';
+            });
+            document.querySelectorAll('.overview').forEach(function (container) {
+                container.style.display = 'none';
+            });
+            document.querySelector("header").scrollIntoView({ behavior: "smooth" });
+            document.getElementById(targetId + '-container').style.display = 'flex';
+            document.getElementById(targetId + '-links').style.display = 'block';
+            document.getElementById(targetId + '-banner').style.display = 'flex';
         });
     });
     window.addEventListener('hashchange', function () {
@@ -131,32 +149,32 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-document.addEventListener('DOMContentLoaded', function () {
-    var menuItems = document.querySelectorAll('.faq-toggle');
+// document.addEventListener('DOMContentLoaded', function () {
+//     var menuItems = document.querySelectorAll('.faq-toggle');
 
-    menuItems.forEach(function (item) {
-        item.addEventListener('click', function () {
-            var target = this.getAttribute('data-target');
-            var formattedTarget = target.replace(/-/g, ' ')
-                                        .replace(/\b\w/g, function(char) {
-                                            return char.toUpperCase();
-                                        });
-            document.getElementById('guideline-title').textContent = formattedTarget;
-            document.getElementById('guideline-btn').textContent = formattedTarget;
-        });
-    });
+//     menuItems.forEach(function (item) {
+//         item.addEventListener('click', function () {
+//             var target = this.getAttribute('data-target');
+//             var formattedTarget = target.replace(/-/g, ' ')
+//                                         .replace(/\b\w/g, function(char) {
+//                                             return char.toUpperCase();
+//                                         });
+//             document.getElementById('guideline-title').textContent = formattedTarget;
+//             document.getElementById('guideline-btn').textContent = formattedTarget;
+//         });
+//     });
 
-    // Check if there's a hash in the URL on page load
-    var hash = window.location.hash;
-    if (hash) {
-        var formattedTarget = hash.substr(1).replace(/-/g, ' ')
-                                              .replace(/\b\w/g, function(char) {
-                                                  return char.toUpperCase();
-                                              });
-        document.getElementById('guideline-title').textContent = formattedTarget;
-        document.getElementById('guideline-btn').textContent = formattedTarget;
-    }
-});
+//     // Check if there's a hash in the URL on page load
+//     var hash = window.location.hash;
+//     if (hash) {
+//         var formattedTarget = hash.substr(1).replace(/-/g, ' ')
+//                                               .replace(/\b\w/g, function(char) {
+//                                                   return char.toUpperCase();
+//                                               });
+//         document.getElementById('guideline-title').textContent = formattedTarget;
+//         document.getElementById('guideline-btn').textContent = formattedTarget;
+//     }
+// });
 
 
 function downloadFile(event) {

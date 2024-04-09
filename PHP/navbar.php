@@ -49,12 +49,12 @@ require_once 'dbcon.php';
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="about.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Guidelines
+            Resources
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" style="color: black" href="./tutorials.php">Tutorials for Contributors</a></li>
+            <li><a class="dropdown-item" style="color: black" href="./guidelines.php">Guidelines and Policies</a></li>
             <li><a class="dropdown-item" style="color: black" href="./guidelines.php#templates-for-author">Templates for Author</a></li>
-            <li><a class="dropdown-item" style="color: black" href="./guidelines.php">Guidelines and Policy</a></li>
             <li><a class="dropdown-item" style="color: black" href="./faqs.php">Frequently Asked Questions</a></li>
           </ul>
           <li class="d-flex d-sm-none nav-item">
