@@ -640,6 +640,9 @@ h4, h2 {
 
 /* PUBLICATION PROCEDURE CSS START*/
 
+#procedure-container {
+  background: #F7FCFF;
+}
 
 #procedure-container header {
   display: flex;
