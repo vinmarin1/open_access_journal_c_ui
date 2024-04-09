@@ -89,9 +89,41 @@ require_once 'dbcon.php';
       </div>
       </div>
 
-      <?php
-if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-    $author_id = $_SESSION['id'];
+    <?php
+      if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+        $author_id = $_SESSION['id'];
+        $email = $_SESSION['email'];
+
+        $query = "SELECT verify.expires, author.email_verified FROM verify JOIN author ON verify.email = author.email WHERE author.email = :email ORDER BY verify.id DESC LIMIT 1";
+        $vars = array(':email' => $email);
+        $latest_verification = database_run($query, $vars);
+
+        if ($latest_verification && count($latest_verification) > 0) {
+            $latest_verification = $latest_verification[0];
+            $expiration_timestamp = $latest_verification->expires;
+            $current_timestamp = time();
+
+            
+            $expiration_date = date('Y-m-d H:i:s', $expiration_timestamp);
+            $current_date = date('Y-m-d H:i:s', $current_timestamp);
+         
+            // echo "Expiration Date: $expiration_date<br>";
+            // echo "Current Date: $current_date<br>";
+          
+
+            // Check if the code has expired and email_verified is not empty
+            if ($expiration_timestamp < $current_timestamp && !empty($latest_verification->email_verified)) {
+                // Reset email_verified for the user
+                $update_query = "UPDATE author SET email_verified = '' WHERE email = :email";
+                $update_vars = array(':email' => $email);
+                database_run($update_query, $update_vars);
+                session_destroy();
+                exit;
+            }
+        }
+
+
+   
 
     // Notification button and count
     echo '
@@ -170,7 +202,6 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
         echo '
             <li><a href="user-dashboard.php" class="dropdown-item" style="color: black;">My Profile</a></li>
             <li><a href="author-dashboard.php" class="dropdown-item" style="color: black;">My Contributions</a></li>
-            <li><a href="change_pass.php" class="dropdown-item" style="color: black;">Update Password</a></li>
             <li><a class="dropdown-item" href="../PHP/logout.php" style="color: black;">Log-out</a></li> 
             </ul>
         </li>

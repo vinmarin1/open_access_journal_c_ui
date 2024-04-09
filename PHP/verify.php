@@ -8,10 +8,19 @@
 
 	if ($_SERVER['REQUEST_METHOD'] == "GET") {
 		if (!check_verified()) {
+
+			$timezone = new DateTimeZone('Asia/Manila');
+			$current_time = new DateTime('now', $timezone);
+			// $current_time->add(new DateInterval('PT50S'));  // PT10S represents 10 seconds
+			$current_time->add(new DateInterval('P7D'));
+			$expiration_timestamp = $current_time->getTimestamp();
+			$vars['expires'] = $expiration_timestamp;
+			
+			
 			// User is not verified, send verification email
 			$_SESSION['LOGGED_IN'] = false;
 			$vars['code'] =  rand(10000,99999);
-			$vars['expires'] = (time() + (24 * 3));
+			// $vars['expires'] = (time() + (24 * 3));
 			$vars['email'] = $_SESSION['USER']->email;
 
 			$query = "INSERT INTO verify (code, expires, email) VALUES (:code, :expires, :email)";
