@@ -1,22 +1,26 @@
 
-#banner {
+.banner {
 	background-color: white;
 	padding: 2em 8%;
 	display: flex;
 	justify-content: space-between;
 }
 
-#banner .content {
+.banner .content {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
-
-#banner .body {
+.banner img {
+    width: 35vw;
+    height:80vh;
+    object-fit: cover;
+}
+.banner .body {
     margin-bottom: 10em;
 }
 
-#banner button {
+.banner button {
     /* color: white; */
     color: #E56F1F;
     font-weight: 600;
@@ -302,6 +306,10 @@ aside {
     font-size: 14px; 
     font-weight: 400 !important;
     margin-bottom: 1em;
+}
+.overview li {
+    /* color: var(--main); */
+    /* padding:2em; */
 }
 
 .s-1, .s-2 {

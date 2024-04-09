@@ -283,10 +283,10 @@ if ($result !== false && !empty($result)) {
             <div class="column" id="step1Content2">
                 <div class="col-md-12">
                     <div>
-                        <div class="btn" id="step1button">
+                        <!-- <div class="btn" id="step1button">
                             <button type="button" class="btn tbn-primary btn-md nextBtn" id="acceptBtn"  onclick="nextStep()" >Accept</button>
                             <button type="button"  id="btnReject" class="btn tbn-primary btn-md" onclick="rejectInvitation('<?php echo $articleId; ?>')">Decline</button>
-                        </div>
+                        </div> -->
                             <h4 style="padding-top: 30px;" >Submitted in the 
                             <?php
                                 $sqlJournal = "SELECT journal.journal, article.title FROM journal JOIN article ON journal.journal_id = article.journal_id JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id AND article.status = 4
@@ -389,7 +389,10 @@ if ($result !== false && !empty($result)) {
                     <button type="button" class="btn btn-outline-primary btn-sm"  onclick="viewAllLogs()" id="viewLogsBtn">View All Logs</button>
                     <button type="button" class="btn btn-outline-primary btn-sm"  onclick="hideLogs()" id="hideLogsBtn" style="display: none;">Hide Logs</button>
                 </div>
-
+                <div class="btn" id="step1button">
+                            <button type="button" class="btn tbn-primary btn-md nextBtn" id="acceptBtn"  onclick="nextStep()" >Accept</button>
+                            <button type="button"  id="btnReject" class="btn tbn-primary btn-md" onclick="rejectInvitation('<?php echo $articleId; ?>')">Decline</button>
+                        </div>
                 </div>
                 <div class="col-md-4" style="padding:0;">
                     <!-- This is a Blank space -->
