@@ -129,7 +129,22 @@ document.addEventListener('DOMContentLoaded', function () {
                 document.getElementById(hash + '-banner').style.display = 'flex';
             }
         } else{
+            document.querySelectorAll('.banner').forEach(function (container) {
+                container.style.display = 'none';
+            });
+            if(document.querySelector('#banner-main')){
+                document.querySelector('#banner-main').style.display = 'flex';
+            }
             document.querySelector('aside').style.display = 'none';
+            document.querySelectorAll('.main').forEach(function (container) {
+                container.style.display = 'none';
+            });
+            if( document.querySelector('#procedure-container')){
+                document.querySelector('#procedure-container').style.display = 'flex';
+            }
+            if( document.querySelector('#guidelines-links')){
+                document.querySelector('#guidelines-links').style.display = 'flex';
+            }
         }
     }
 
