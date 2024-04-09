@@ -103,7 +103,9 @@ document.addEventListener('DOMContentLoaded', function () {
     function showContainerFromHash() {
         var hash = window.location.hash.substring(1);
         if (hash) {
+            document.querySelector('aside').style.display = 'block';
             const targetContainer = document.getElementById(hash + '-container');
+         
             if (targetContainer) {
                 document.querySelectorAll('.main').forEach(function (container) {
                     container.style.display = 'none';
@@ -126,6 +128,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 
                 document.getElementById(hash + '-banner').style.display = 'flex';
             }
+        } else{
+            document.querySelector('aside').style.display = 'none';
         }
     }
 

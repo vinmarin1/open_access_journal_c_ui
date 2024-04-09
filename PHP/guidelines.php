@@ -25,16 +25,38 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
 
     </nav>
 <!-- Banners -->
-    <div class="banner" id="author-guidelines-banner">
-            <div class="content">
-                <p>Home / Guidelines/ </p>
-                <div class="body">
-                    <h1 id="guideline-title">Author Guidelines</h1>
-                    <span>Let us guide you in the best way to present, organize and describe your work</span><br/>
-                    <button class="btn p-0 mt-4">View more about Author Guidelines</button>
-                </div>
+    <div class="banner" >
+        <div class="content">
+            <p>Home / Guidelines </p>
+            <div class="body">
+                <h1 id="guideline-title">Guidelines</h1>
+                <span>Let us guide you in the best way to present, organize and describe your work</span><br/>
+                <span class="last">Last Updated: April 01, 2024</button>
             </div>
-            <img width="40%" src="../images/resources/Web Design On Computer Royalty-Free Stock Photo.jpg">
+        </div>
+        <div class="d-flex flex-wrap gap-1" style="max-width:80vh">
+        <img width="40%" src="../images/resources/Web Design On Computer Royalty-Free Stock Photo.jpg">
+            <!-- <div class="card-custom">Author Guidelines</div>
+            <div class="card-custom">Article Submission</div>
+            <div class="card-custom">Peer-review Process</div>
+            <div class="card-custom">Become a Reviewer</div>
+            <div class="card-custom">Templates for Author</div>
+            <div class="card-custom">Publication Policy</div>
+             -->
+             
+        </div>
+        
+    </div>
+    <div class="banner" id="author-guidelines-banner" style="display: none;">
+        <div class="content">
+            <p>Home / Guidelines/ </p>
+            <div class="body">
+                <h1 id="guideline-title">Author Guidelines</h1>
+                <span>Let us guide you in the best way to present, organize and describe your work</span><br/>
+                <span class="last">Last Updated: April 01, 2024</button>
+            </div>
+        </div>
+        <img width="40%" src="../images/resources/Web Design On Computer Royalty-Free Stock Photo.jpg">
     </div>
     <div class="banner" id="article-submission-banner"  style="display: none;">
             <div class="content">
@@ -42,7 +64,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 <div class="body">
                     <h1 id="guideline-title">Article Submission</h1>
                     <span>Let us guide you in the best way to present, organize and describe your work</span><br/>
-                    <button class="btn p-0 mt-4">View more about Article Submission</button>
+                    <span class="last">Last Updated: April 01, 2024</span>
                 </div>
             </div>
             <img width="40%" src="../images/resources/submit.png">
@@ -53,7 +75,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 <div class="body">
                     <h1 id="guideline-title">Peer Review Process</h1>
                     <span>Let us guide you in the best way to present, organize and describe your work</span><br/>
-                    <button class="btn p-0 mt-4">View more about our Peer Review Process</button>
+                    <span class="last">Last Updated: April 01, 2024</button>
                 </div>
             </div>
             <img width="40%" src="https://images.ctfassets.net/o78em1y1w4i4/1vcXhQnayIcmJ3eohoVpY2/1cf9432e053c5af60f170280daedefc4/story-male-manager-taking-notes-in-home-office.jpg?fm=webp&w=1080&q=75">
@@ -64,7 +86,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 <div class="body">
                     <h1 id="guideline-title">Become a Reviewer</h1>
                     <span>Let us guide you in the best way to present, organize and describe your work</span><br/>
-                    <button class="btn p-0 mt-4">View more about Becoming a Reviewer</button>
+                    <span class="last">Last Updated: April 01, 2024</button>
                 </div>
             </div>
             <img width="40%" src="https://images.ctfassets.net/o78em1y1w4i4/1vcXhQnayIcmJ3eohoVpY2/1cf9432e053c5af60f170280daedefc4/story-male-manager-taking-notes-in-home-office.jpg?fm=webp&w=1080&q=75">
@@ -75,7 +97,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 <div class="body">
                     <h1 id="guideline-title">Templates for Author</h1>
                     <span>Let us guide you in the best way to present, organize and describe your work</span><br/>
-                    <button class="btn p-0 mt-4">View our Templates for Author</button>
+                    <span class="last">Last Updated: April 01, 2024</button>
                 </div>
             </div>
             <img width="40%" src="../images/resources/435535444_1614341379393611_1210178581707210205_n.png">
@@ -86,7 +108,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 <div class="body">
                     <h1 id="guideline-title">Publication Policy</h1>
                     <span>Let us guide you in the best way to present, organize and describe your work</span><br/>
-                    <button class="btn p-0 mt-4">View our Publication Policies</button>
+                    <span class="last">Last Updated: April 01, 2024</button>
                 </div>
             </div>
             <img width="40%" src="../images/resources/pexels-pixabay-357514.jpg">
@@ -95,7 +117,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
     <main class="d-flex flex-column-reverse flex-md-row-reverse gap-2">
         <aside class="">
             <div class="menu" id="for-contributors-menu">
-                <ul class="overview" id="author-guidelines-links" >
+                <ul class="overview" id="author-guidelines-links" style="display: none;">
                     <li><b>Overview</b></li>
                     <li><a href="#types-of-publication">Types of Publication</a></li>
                     <li><a href="#accepted-file-formats">Accepted File Formats</a></li>
@@ -140,7 +162,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     <li><a href="#data-privacy">Data Privacy, and Others</a></li>
                 </ul>
                 <hr/>
-                <ul id="for-contributors">
+                <ul id="for-contributors" >
                     <li><b>Browse Pahina Resources</b></li>
                     <li>Guidelines</li>
                     <li class="faq-toggle" id="author-guidelines" data-target="author-guidelines"><a href="guidelines.php#author-guidelines">Author Guidelines</a></li>
@@ -159,7 +181,107 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 </ul>
             </div>           
         </aside>
-        <div class="main" id="author-guidelines-container"> 
+        <div class="main">
+            <div class="d-flex gap-2 flex-wrap">
+                <a href="#author-guidelines" data-target="author-guidelines" class="card-custom d-flex flex-column gap-4 p-4 flex-row align-items-start">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 512 512">
+                        	<path fill="none" stroke="var(--secondary)" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M384 224v184a40 40 0 0 1-40 40H104a40 40 0 0 1-40-40V168a40 40 0 0 1 40-40h167.48" />
+                        	<path fill="var(--secondary)" d="M459.94 53.25a16.06 16.06 0 0 0-23.22-.56L424.35 65a8 8 0 0 0 0 11.31l11.34 11.32a8 8 0 0 0 11.34 0l12.06-12c6.1-6.09 6.67-16.01.85-22.38M399.34 90L218.82 270.2a9 9 0 0 0-2.31 3.93L208.16 299a3.91 3.91 0 0 0 4.86 4.86l24.85-8.35a9 9 0 0 0 3.93-2.31L422 112.66a9 9 0 0 0 0-12.66l-9.95-10a9 9 0 0 0-12.71 0" />
+                        </svg>
+                    </div>
+                    <div class="d-flex w-100 flex-column">
+                        <div class="d-flex w-100 justify-content-between">
+                          <h5 class="mb-1">Author Guidelines</h5>
+                         
+                        </div>
+                    
+                        <small>Donec id elit non mi porta.</small>
+                    </div>
+                </a>
+                <a href="#article-submission" data-target="article-submission" class="card-custom d-flex flex-column gap-4 p-4 flex-row align-items-start">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 512 512">
+                        	<path fill="none" stroke="var(--secondary)" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M384 224v184a40 40 0 0 1-40 40H104a40 40 0 0 1-40-40V168a40 40 0 0 1 40-40h167.48" />
+                        	<path fill="var(--secondary)" d="M459.94 53.25a16.06 16.06 0 0 0-23.22-.56L424.35 65a8 8 0 0 0 0 11.31l11.34 11.32a8 8 0 0 0 11.34 0l12.06-12c6.1-6.09 6.67-16.01.85-22.38M399.34 90L218.82 270.2a9 9 0 0 0-2.31 3.93L208.16 299a3.91 3.91 0 0 0 4.86 4.86l24.85-8.35a9 9 0 0 0 3.93-2.31L422 112.66a9 9 0 0 0 0-12.66l-9.95-10a9 9 0 0 0-12.71 0" />
+                        </svg>
+                    </div>
+                    <div class="d-flex w-100 flex-column">
+                        <div class="d-flex w-100 justify-content-between">
+                          <h5 class="mb-1">Article Submission</h5>
+                         
+                        </div>
+                    
+                        <small>Donec id elit non mi porta.</small>
+                    </div>
+                </a>
+                <a href="#peer-review-process" data-target="peer-review-process" class="card-custom d-flex flex-column gap-4 p-4 flex-row align-items-start">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 512 512">
+                        	<path fill="none" stroke="var(--secondary)" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M384 224v184a40 40 0 0 1-40 40H104a40 40 0 0 1-40-40V168a40 40 0 0 1 40-40h167.48" />
+                        	<path fill="var(--secondary)" d="M459.94 53.25a16.06 16.06 0 0 0-23.22-.56L424.35 65a8 8 0 0 0 0 11.31l11.34 11.32a8 8 0 0 0 11.34 0l12.06-12c6.1-6.09 6.67-16.01.85-22.38M399.34 90L218.82 270.2a9 9 0 0 0-2.31 3.93L208.16 299a3.91 3.91 0 0 0 4.86 4.86l24.85-8.35a9 9 0 0 0 3.93-2.31L422 112.66a9 9 0 0 0 0-12.66l-9.95-10a9 9 0 0 0-12.71 0" />
+                        </svg>
+                    </div>
+                    <div class="d-flex w-100 flex-column">
+                        <div class="d-flex w-100 justify-content-between">
+                          <h5 class="mb-1">Peer Review Process</h5>
+                         
+                        </div>
+                    
+                        <small>Donec id elit non mi porta.</small>
+                    </div>
+                </a>
+                <a href="#templates-for-author" data-target="templates-for-author" class="card-custom d-flex flex-column gap-4 p-4 flex-row align-items-start">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 512 512">
+                        	<path fill="none" stroke="var(--secondary)" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M384 224v184a40 40 0 0 1-40 40H104a40 40 0 0 1-40-40V168a40 40 0 0 1 40-40h167.48" />
+                        	<path fill="var(--secondary)" d="M459.94 53.25a16.06 16.06 0 0 0-23.22-.56L424.35 65a8 8 0 0 0 0 11.31l11.34 11.32a8 8 0 0 0 11.34 0l12.06-12c6.1-6.09 6.67-16.01.85-22.38M399.34 90L218.82 270.2a9 9 0 0 0-2.31 3.93L208.16 299a3.91 3.91 0 0 0 4.86 4.86l24.85-8.35a9 9 0 0 0 3.93-2.31L422 112.66a9 9 0 0 0 0-12.66l-9.95-10a9 9 0 0 0-12.71 0" />
+                        </svg>
+                    </div>
+                    <div class="d-flex w-100 flex-column">
+                        <div class="d-flex w-100 justify-content-between">
+                          <h5 class="mb-1">Templates for Author</h5>
+                         
+                        </div>
+                    
+                        <small>Donec id elit non mi porta.</small>
+                    </div>
+                </a>
+                <a href="#publication-policy" data-target="publication-policy" class="card-custom d-flex flex-column gap-4 p-4 flex-row align-items-start">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 512 512">
+                        	<path fill="none" stroke="var(--secondary)" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M384 224v184a40 40 0 0 1-40 40H104a40 40 0 0 1-40-40V168a40 40 0 0 1 40-40h167.48" />
+                        	<path fill="var(--secondary)" d="M459.94 53.25a16.06 16.06 0 0 0-23.22-.56L424.35 65a8 8 0 0 0 0 11.31l11.34 11.32a8 8 0 0 0 11.34 0l12.06-12c6.1-6.09 6.67-16.01.85-22.38M399.34 90L218.82 270.2a9 9 0 0 0-2.31 3.93L208.16 299a3.91 3.91 0 0 0 4.86 4.86l24.85-8.35a9 9 0 0 0 3.93-2.31L422 112.66a9 9 0 0 0 0-12.66l-9.95-10a9 9 0 0 0-12.71 0" />
+                        </svg>
+                    </div>
+                    <div class="d-flex w-100 flex-column">
+                        <div class="d-flex w-100 justify-content-between">
+                          <h5 class="mb-1">Publication Policy</h5>
+                         
+                        </div>
+                    
+                        <small>Donec id elit non mi porta.</small>
+                    </div>
+                </a>
+                <a href="#become-a-reviewer" data-target="become-a-reviewer" class="card-custom d-flex flex-column gap-4 p-4 flex-row align-items-start">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 512 512">
+                        	<path fill="none" stroke="var(--secondary)" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M384 224v184a40 40 0 0 1-40 40H104a40 40 0 0 1-40-40V168a40 40 0 0 1 40-40h167.48" />
+                        	<path fill="var(--secondary)" d="M459.94 53.25a16.06 16.06 0 0 0-23.22-.56L424.35 65a8 8 0 0 0 0 11.31l11.34 11.32a8 8 0 0 0 11.34 0l12.06-12c6.1-6.09 6.67-16.01.85-22.38M399.34 90L218.82 270.2a9 9 0 0 0-2.31 3.93L208.16 299a3.91 3.91 0 0 0 4.86 4.86l24.85-8.35a9 9 0 0 0 3.93-2.31L422 112.66a9 9 0 0 0 0-12.66l-9.95-10a9 9 0 0 0-12.71 0" />
+                        </svg>
+                    </div>
+                    <div class="d-flex w-100 flex-column">
+                        <div class="d-flex w-100 justify-content-between">
+                          <h5 class="mb-1">Become a Reviewer</h5>
+                         
+                        </div>
+                    
+                        <small>Donec id elit non mi porta.</small>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="main" id="author-guidelines-container" style="display: none;"> 
             <div class="category w-100">
                 <div class="s-1" id="types-of-publication">
                 <h3>Types of Publication</h3>
