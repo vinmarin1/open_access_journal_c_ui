@@ -25,7 +25,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
 
     </nav>
 <!-- Banners -->
-    <div class="banner" >
+    <div class="banner" id="banner-main" >
         <div class="content">
             <p>Home / Guidelines </p>
             <div class="body">
@@ -181,7 +181,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 </ul>
             </div>           
         </aside>
-        <div class="main">
+        <div class="main" id="guidelines-links">
             <div class="d-flex gap-2 flex-wrap">
                 <a href="#author-guidelines" data-target="author-guidelines" class="card-custom d-flex flex-column gap-4 p-4 flex-row align-items-start">
                     <div class="icon">
