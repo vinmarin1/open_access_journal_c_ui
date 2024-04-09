@@ -1207,8 +1207,8 @@ label {
 .article {
     width: 25%;
     height: auto;
-    margin-right: 80px;
-    margin-bottom: 20px;
+    /* margin-right: 80px;
+    margin-bottom: 20px; */
     background-color: transparent;
     display: inline-block;
     white-space: normal; 
@@ -1389,8 +1389,8 @@ label {
 .article {
     width: 25%;
     height: auto;
-    margin-right: 80px;
-    margin-bottom: 20px;
+    /* margin-right: 80px;
+    margin-bottom: 20px; */
     background-color: transparent;
     display: inline-block;
     white-space: normal; 

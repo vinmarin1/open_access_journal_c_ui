@@ -1984,34 +1984,11 @@ $expertise = $_SESSION['expertise'];
 		</div>
 	</section>
 	<section>
-		
-		<h4> Continue Reading</h4>
-		<div  id="articleDetailsContainer">
-			<!-- <div class="continue-reading-article-details">
-				<h6 class="historyTitle" style="color: #115272;"><strong>Blockchain Beyond Cyptocurrency: Transforming Industries with Distributed Ledger Technology</strong></h6>
-				<p class="historyAbstract" style="color: #454545;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo sint facilis nihil possimus, illum ullam. Illo voluptatem totam repellendus voluptas. </p>
-				<div class="continue-reading-keywords">
-
-				</div>
-			</div>
-			<div class="continue-reading-article-stats">
-				<div class="continue-reading-stats-container">
-					<div class="continue-reading-view-download">
-						<p class="continue-reading-stats-values historyViews" style="color: #115272;">99</p>
-						<p class="continue-reading-stats-labels" style="color: #959595;">VIEWS</p>
-					</div>
-					<div class="continue-reading-view-downloads">
-						<p class="continue-reading-stats-values historyDownloads" style="color: #115272;">99</p>
-						<p class="continue-reading-stats-labels" style="color: #959595;">DOWNLOADS</p>
-					</div>
-				</div>
-				<hr style="border-top: 1px solid #ccc; margin: 10px 0;">
-				<div class="continue-reading-published-infos">
-					<h6 class="continue-reading-publish-labels historyJournal" style="color: #115272;"><strong>Published in The Gavel</strong></h6>
-					<p class="continue-reading-authors historyAuthor" style="color: #959595;">By Jane Delacruz</p>
-				</div>
-			</div> 
-			-->
+		<h4 class="mt-5">Most Engaged Articles</h4>
+		<div class="articles-container" id="articleDetailsContainer">
+		</div>
+		<h4 class="mt-5">Liked Articles</h4>
+		<div class="articles-container flex-wrap" style="max-height:80vh;overflow-y:scroll;" id="likesContainer">
 		</div>
 		
 		<!-- <div class="continue-reading-article-container">
@@ -2236,41 +2213,41 @@ function openArticleInNewTab(articleId) {
     .then(response => response.json())
     .then(data => {
       // Get the details of the first 3 articles from the history
-      const latestArticleDetails = data.history.slice(0, 3);
-
+      const latestArticleDetails = data.history;
+	  const likes = data.likes;
       // Update the container with the latest article details
       const articleDetailsContainer = document.getElementById('articleDetailsContainer');
       articleDetailsContainer.innerHTML = latestArticleDetails.map(article => {
         return `
-          <div class="continue-reading-article-container" data-article-id="${article.article_id}">
-            <div class="continue-reading-article-details">
+          <div class="article d-flex flex-column" style="justify-content:space-between; min-height:380px" data-article-id="${article.article_id}">
+            <div class="">
               <h6 class="historyTitle" style="color: #115272;"><strong>${article.title}</strong></h6>
-              <p class="historyAbstract" style="color: #454545;">${article.abstract.slice(0,150)}</p>
+              <p class="historyAbstract" style="color: #454545;">${article.abstract}</p>
               <div class="continue-reading-keywords"></div>
             </div>
-			<div class="continue-reading-article-stats">
-								<div class="continue-reading-stats-container">
-									<div class="continue-reading-view-download">
-										<p class="continue-reading-stats-values historyViews" style="color: #115272;">${article.user_interactions}</p>
-										<p class="continue-reading-stats-labels" style="color: #959595;">VIEWS</p>
-									</div>
-									<div class="continue-reading-view-downloads">
-										<p class="continue-reading-stats-values historyDownloads" style="color: #115272;">${article.user_interactions}</p>
-										<p class="continue-reading-stats-labels" style="color: #959595;">DOWNLOADS</p>
-									</div>
-								</div>
-								<hr style="border-top: 1px solid #ccc; margin: 10px 0;">
-								<div class="continue-reading-published-infos">
-									<h6 class="continue-reading-publish-labels historyJournal" style="color: #115272;"><strong>Published in ${article.journal}</strong></h6>
-									<p class="continue-reading-authors historyAuthor" style="color: #959595;">By ${article.author}</p>
-								</div>
-							</div>
+			<div>
+				<span style="border-radius: 100px;font-size: small;float: right;">Last Viewed: ${article.last_read.slice(0,22)}</span>
+				<span style="color:#0d7ff8;font-weight: bold;background: aliceblue;padding: 0.5em;border-radius: 100px;font-size: small;float: right;">Interacted ${article.user_interactions} times</span>
+			</div>
+          </div>
+        `;
+      }).join('');
+      
+	  const likesContainer = document.getElementById('likesContainer');
+      likesContainer.innerHTML = likes.map(article => {
+        return `
+          <div class="article d-flex flex-column" style="justify-content:space-between; min-height:140px; width:47%;" data-article-id="${article.article_id}">
+            <div class="">
+              <h6 class="historyTitle" style="color: #115272;"><strong>${article.title}</strong></h6>
+              <p class="historyAbstract" style="color: #454545;">${article.abstract.slice(0,100)}...</p>
+              <div class="continue-reading-keywords"></div>
+            </div>
           </div>
         `;
       }).join('');
 
       // Add click event listener to each article container
-      const articleContainers = document.querySelectorAll('.continue-reading-article-container');
+      const articleContainers = document.querySelectorAll('.article');
       articleContainers.forEach(container => {
         container.addEventListener('click', function() {
           const articleId = this.getAttribute('data-article-id');
