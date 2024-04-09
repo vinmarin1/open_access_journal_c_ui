@@ -38,8 +38,10 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
             <!-- <h3>For Contributors</h3> -->
             <ul id="for-contributors">
                 <li><b>Tutorials</b></li>
-                <li class="faq-toggle" data-target="tutorial-on-publication" ><a href="tutorials.php#tutorial-on-publication">Tutorial on Publication</a></li>
-                <li class="faq-toggle"  data-target="tutorial-on-review"><a href="tutorials.php#tutorial-on-review">Tutorial on Review</a></li>
+                <li class="faq-toggle"  data-target="tutorial-on-registration"><a href="tutorials.php#tutorial-on-registration">Be a Contributor</a></li>
+                <li class="faq-toggle" data-target="tutorial-on-publication" ><a href="tutorials.php#tutorial-on-publication">Submit a Paper</a></li>
+                <li class="faq-toggle"  data-target="tutorial-on-review"><a href="tutorials.php#tutorial-on-review">Become a Reviewer</a></li>
+                
                 <hr/>
                 <li><b>Guidelines</b></li>
                 <li class="faq-toggle" id="author-guidelines" ><a href="guidelines.php#author-guidelines">Author Guidelines</a></li>
@@ -57,46 +59,12 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
         <div class="main" id="tutorial-on-publication-container" >
             <div class="category w-100">
             <div class="mb-4">
-                <h2 style="font-size:32px !important">Tutorial on Publication</h2>
+                <h2 style="font-size:32px !important">Submit a Paper</h2>
             </div>
                 <div class="s-1">
                     <p>Welcome to our Publication Tutorial for Pahina. This guide simplifies the process, 
                     ensuring a smooth experience for all contributors. Let's make your publication journey hassle-free – get
                     started now! Begin your submission and share your insights with our scholarly community!</p>
-                </div>
-                <div class="s-2">
-                    <h3>Registering with Open Access Journal</h3>
-                    <p>Begin your publication journey by registering with Pahina. Follow these simple steps
-                        to create your account:</p>
-                    <ol type="1">
-                        <li>Visit our journal website and click on the "Register" button.</li>
-                        <li>Fill in the required information, including your name, email address, and a secure password.</li>
-                        <li>Read and agree to the terms and conditions.</li>
-                        <li>Click "Register" to complete the registration process.</li>
-                    </ol>
-                    <img src="../images/Registration.png" alt="" class="img-reg">
-                </div>
-                <div class="s-2">
-                    <h3>Logging in to  Pahina website.</h3>
-                    <p>After completing the registration, log in to your account.</p>
-                    <ol type="1">
-                        <li> Write your Email.</li>
-                        <li>next is your password.</li>
-                        <li>If it’s your first time to login, You need to input the OTP code that has sent to your Gmail.</li>
-                        <li>When you are done just click ‘Verify’ to proceed.</li>
-                    </ol>
-                    <img src="../images/Login.png" alt="" class="img-reg">
-                </div>
-                <div class="s-2">
-                    <h3>Complete your Personal Information.</h3>
-                    <p>The user must complete all the information before they can Publish or Submit a paper.</p>
-                    <ol type="1">
-                        <li> Go to your profile.</li>
-                        <li>Click then icon to edit your Information.</li>
-                        <li>Complete all the missing information about you.</li>
-                        <li>Click save if you are done.</li>
-                    </ol>
-                    <img src="../images/Profile.png" alt="" class="img-reg">
                 </div>
                 <div class="s-2">
                     <h3>Submit a Paper</h3>
@@ -184,7 +152,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
         <div class="main" id="tutorial-on-review-container" style="display: none;">
                 <div class="category w-100">
                     <div class="mb-4">
-                        <h2 style="font-size:32px !important">Tutorial on Review</h2>
+                        <h2 style="font-size:32px !important">Become a Reviewer</h2>
                     </div>
                     <div class="s-1">
                         <p>Welcome to our Publication Tutorial for Pahina. This guide simplifies the process, ensuring a smooth experience for all contributors. Let's make your publication journey 
@@ -262,7 +230,52 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     </div>
                 </div>
         </div>
-
+        <div class="main" id="tutorial-on-registration-container" style="display: none;">
+        <div class="category w-100">
+                    <div class="mb-4">
+                        <h2 style="font-size:32px !important">Become a Reviewer</h2>
+                    </div>
+                    <div class="s-1">
+                    <p>Welcome to our Publication Tutorial for Pahina. This guide simplifies the process, 
+                    ensuring a smooth experience for all contributors. Let's make your publication journey hassle-free – get
+                    started now! Begin your submission and share your insights with our scholarly community!</p>
+                </div>
+                <div class="s-2">
+                    <h3>Registering with Open Access Journal</h3>
+                    <p>Begin your publication journey by registering with Pahina. Follow these simple steps
+                        to create your account:</p>
+                    <ol type="1">
+                        <li>Visit our journal website and click on the "Register" button.</li>
+                        <li>Fill in the required information, including your name, email address, and a secure password.</li>
+                        <li>Read and agree to the terms and conditions.</li>
+                        <li>Click "Register" to complete the registration process.</li>
+                    </ol>
+                    <img src="../images/Registration.png" alt="" class="img-reg">
+                </div>
+                <div class="s-2">
+                    <h3>Logging in to  Pahina website.</h3>
+                    <p>After completing the registration, log in to your account.</p>
+                    <ol type="1">
+                        <li> Write your Email.</li>
+                        <li>next is your password.</li>
+                        <li>If it’s your first time to login, You need to input the OTP code that has sent to your Gmail.</li>
+                        <li>When you are done just click ‘Verify’ to proceed.</li>
+                    </ol>
+                    <img src="../images/Login.png" alt="" class="img-reg">
+                </div>
+                <div class="s-2">
+                    <h3>Complete your Personal Information.</h3>
+                    <p>The user must complete all the information before they can Publish or Submit a paper.</p>
+                    <ol type="1">
+                        <li> Go to your profile.</li>
+                        <li>Click then icon to edit your Information.</li>
+                        <li>Complete all the missing information about you.</li>
+                        <li>Click save if you are done.</li>
+                    </ol>
+                    <img src="../images/Profile.png" alt="" class="img-reg">
+                     </div>
+                </div>
+        </div>
     </main>
 
     <div class="footer" id="footer">
