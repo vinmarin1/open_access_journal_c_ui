@@ -165,12 +165,12 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 <ul id="for-contributors" >
                     <li><b>Browse Pahina Resources</b></li>
                     <li>Guidelines</li>
-                    <li class="faq-toggle" id="author-guidelines" data-target="author-guidelines"><a href="guidelines.php#author-guidelines">Author Guidelines</a></li>
+                    <li class="faq-toggle" data-target="author-guidelines"><a href="guidelines.php#author-guidelines">Author Guidelines</a></li>
                     <li class="faq-toggle" data-target="templates-for-author"><a href="guidelines.php#templates-for-author">Templates for Author</a></li>
                     <li class="faq-toggle" data-target="publication-policy"><a href="guidelines.php#publication-policy">Publication Policy</a></li>
                     <li class="faq-toggle" data-target="article-submission"><a href="guidelines.php#article-submission">Article Submission</a></li>
                     <li class="faq-toggle" data-target="peer-review-process"><a href="guidelines.php#peer-review-process">Peer-review Process</a></li>
-                    <li class="faq-toggle" id="become-a-reviewer" data-target="become-a-reviewer"><a href="guidelines.php#become-a-reviewer">Become A Reviewer</a></li>
+                    <li class="faq-toggle" data-target="become-a-reviewer"><a href="guidelines.php#become-a-reviewer">Become A Reviewer</a></li>
                     <br/>
     
                     <li>Tutorials</li>
@@ -287,18 +287,24 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 <h3>Types of Publication</h3>
                     <p>Manuscript length is unrestricted in Pahina, as long as the material is concise and comprehensive. To ensure that the results can be replicated, all practical information must be provided.</p>
                     <p>Manuscripts should not have been previously published or considered for publication in another journal when submitted to Pahina. The following are the main article types:</p>
-                    <h5>Articles:</h5>
-                    <p>The journal accepts all original articles as long as they contain scientifically sound findings and provide important new information. The study’s quality and impact will be assessed during peer review.</p>
+                    <ul>
+                        <li>
+                            <span>Articles:</span>
+                            <p>The journal accepts all original articles as long as they contain scientifically sound findings and provide important new information. The study’s quality and impact will be assessed during peer review.</p>
+                        </li>
+                    </ul>
+                   
                     <p>For other types of publication, visit <a href="https://qcu.edu.ph/research-extension-and-linkages/academic-research-guide/" target="blank">QCU Publications</a> </p>
                     <!-- <h5>Book, Literature, and Critical Reviews:</h5>
                     <p>These provide concise and accurate updates on the most recent developments in a specific field of study.</p> -->
                 </div>
                 <div class="s-2" id="accepted-file-formats">
                     <h3>Accepted File Formats</h3>
-                    <p>Authors must use either a Microsoft Word template in preparing their manuscripts. The time
+                    <p>Authors must use either a <span>Microsoft Word template </span>in preparing their manuscripts. The time
                         it takes to finish copy-editing and publish accepted articles will be greatly reduced if
                         researchers use the template file designed and distributed by the Editorial Board of each
                         QCU Journal.</p>
+                    <p>For Pahina templates, browse our <a href="#templates-for-author" target="blank">templates</a> </p>
                 </div>
                 <div class="s-2" id="formatting-requirements">
                     <h3>Formatting Requirements</h3>
@@ -529,7 +535,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     </table>
                 </div>
                 <div class="s-1" id="sample-credit-author-statement">
-                    <p><em>Sample CRediT author statement</em></p>
+                    <h3>CRediT author statement</h3>
                     <p><b>Dela Cruz:</b> Conceptualization, Methodology. <b>Bautista:</b> Data curation, Writing-Original draft
                             preparation. <b>Santos:</b> Visualization, Investigation. <b>Cruz:</b> Supervision. <b>Reyes:</b> Software,
                             Validation. <b>Jose:</b> Writing-Reviewing and Editing.</p>
@@ -613,9 +619,11 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     submitting the manuscript, please ensure that your paper is prepared using the QCU journal template. This will ensure 
                     fast processing and publication of your manuscript. Any script that does not meet the requirements under the guidelines 
                     for the author will not be processed or continued.</p>
-                    <li><a href='download.php?file=template-star.docx' onclick="downloadFile(event)">QCU Star - Journal of Science and Technology Article Template</a></li>
-                    <li><a href='download.php?file=template-lamp.docx' onclick="downloadFile(event)">QCU Lamp - Journal of Education Article Template</a></li>
-                    <li><a href='download.php?file=template-gavel.docx' onclick="downloadFile(event)">QCU Gavel - Journal of Social Sciences Article Template</a></li>
+                    <ul>
+                        <li><a href='download.php?file=template-star.docx' onclick="downloadFile(event)">QCU Star - Journal of Science and Technology Article Template</a></li>
+                        <li><a href='download.php?file=template-lamp.docx' onclick="downloadFile(event)">QCU Lamp - Journal of Education Article Template</a></li>
+                        <li><a href='download.php?file=template-gavel.docx' onclick="downloadFile(event)">QCU Gavel - Journal of Social Sciences Article Template</a></li>
+                    </ul>
                 </div>
                 
             </div>
@@ -635,58 +643,51 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     <p>Researchers who wish to publish their articles or reviews in Pahina should abide by
                         the following:</p>
                     <ul>
-                        <li>Any information in the manuscript that could be construed as a potential conflict of
-                            interest for the authors must be mentioned.</li>
-                        <li>Authors must truthfully describe the research results and provide an objective
-                            analysis and interpretation of the study’s significant findings.</li>
-                        <li>The data and methods employed in the study must be explained in sufficient detail in
-                            the publication for other researchers to repeat the work.</li>
-                        <li>It is not permitted to submit articles to multiple journals at the same time.</li>
-                        <li>It is not acceptable to republish anything that is not new or has been published in
-                            another language.</li>
-                        <li>If the authors discover errors or inconsistencies after their manuscript has been
-                            published, they must immediately notify the journal editors to take necessary action.</li>
-                    <ul type="circle">
-                        <li>An erratum must be published if serious errors could jeopardize the
-                            researchers’ work or reputation.</li>
-                        <li>If the findings are revealed to be incorrect, the researchers must sign a
-                            retraction describing the error and how it affected the manuscript and the
-                            study’s conclusions.</li>
-                    </ul>
-                        <li>Manuscripts submitted for publication in any QCU Journal should not contain any
-                            previously published information. If the researcher uses previously published figures
-                            or images, the researcher must seek the copyright holder’s permission to publish
-                            under the Creative Commons-BY license.</li>
-                    <ul type="circle">
-                        <li>Plagiarism, fabrication, falsification of data, manipulation of the image, and
-                            other forms of research misconduct are not tolerated.</li>
-                        <li>Plagiarism refers to the act of representing as one’s original work the creative
-                            works of another, without appropriate acknowledgment of the author or
-                            source, even the researcher’s work (The University of Melbourne, n.d.).</li>
-                        <li>The manuscript will be rejected if any research misconduct is discovered
-                            throughout the peer-review process.</li>
-                        <li>If any scientific misconduct is discovered after the manuscript has been
-                            published, the editorial board may issue a correction or retract the paper.</li>
-                    </ul>
-                        <li>Our editors will investigate any claims of research misconduct in publication. Proper
-                            steps will be considered to correct or retract the article if there is proof of misconduct.
-                            When publishing with the Pahina, authors are expected to follow the most
-                            acceptable ethical publication procedures.</li>
+                        <li><span>Conflict of interest disclosure:</span> Authors must disclose any potential conflicts of interest.</li>
+
+                        <li><span>Accurate reporting:</span> Authors must accurately report research results and provide objective analysis.</li>
+                            
+                        <li><span>Transparency in methods:</span> Authors should explain study methods in detail for reproducibility.</li>                            
+                        <li><span>Single journal submission:</span> Articles should not be submitted to multiple journals simultaneously.</li>
+                            
+                        <li><span>Originality requirement:</span> Republishing previously published content or work already available in another language is not permitted.</li>
+                            
+                        <li><span>Manuscript corrections:</span> Authors must promptly notify editors of any errors or inconsistencies post-publication for necessary action.</li>
+                        <ul>
+                            <li> An erratum must be published if serious errors could jeopardize the researchers’ work or reputation.</li>
+                            
+                            <li>If the findings are revealed to be incorrect, the researchers must sign a retraction describing the error and how it affected the manuscript and the study’s conclusions.</li>
+                        </ul>    
+                        <li><span>Content originality:</span> Manuscripts submitted to QCU Journals must be entirely original. Any reuse of previously published figures or images requires copyright holder's permission under the Creative Commons-BY license.</li>
+                        <ul>    
+                            <li>Plagiarism, fabrication, falsification of data, manipulation of the image, and other forms of research misconduct are not tolerated.</li>
+                            
+                            <li>Plagiarism refers to the act of representing as one’s original work the creative works of another, without appropriate acknowledgment of the author or source, even the researcher’s work (The University of Melbourne, n.d.).</li>
+                            
+                            <li>The manuscript will be rejected if any research misconduct is discovered throughout the peer-review process.</li>
+                            
+                            <li>If any scientific misconduct is discovered after the manuscript has been published, the editorial board may issue a correction or retract the paper.</li>
+                        </ul>    
+                        <li><span>Research misconduct:</span> Our editors promptly investigate research misconduct claims, taking corrective actions, including article retractions, when misconduct is confirmed. Authors publishing with Pahina must adhere to ethical publication standards.</li>
+                    
+                     
                     </ul>
                 </div>
                 <div class="s-2" id="citation-policy">
                     <h3>Citation Policy</h3>
-                    <p>Authors should ensure that information borrowed from other references is properly
-                        referenced and obtained relevant permission from the original authors.</p>
-                    <p>Self-citation of one’s work in excess should be avoided at all costs. Similarly, researchers
-                        should avoid citing their own, friends’, or peers’ publications first.</p>
-                    <p>Original wording obtained straight from the works of other scholars should be included in
-                        quotation marks and accompanied by suitable citations.</p>
+                    <ul>
+                        <li>Authors should ensure that information borrowed from other references is properly
+                            referenced and obtained relevant permission from the original authors.</li>
+                        <li>Self-citation of one’s work in excess should be avoided at all costs. Similarly, researchers
+                            should avoid citing their own, friends’, or peers’ publications first.</li>
+                        <li>Original wording obtained straight from the works of other scholars should be included in
+                            quotation marks and accompanied by suitable citations.</li>
+                    </ul>
                 </div>
                 <div class="s-2" id="copyright-licensing">
                     <h3>Copyright and Licensing</h3>
                     <p>The authors maintain copyright for all works published in the Pahina. The articles are
-                        published under the Creative Commons CC BY 4.0 license, allowing anybody to download
+                        published under the <span>Creative Commons CC BY 4.0 license</span>, allowing anybody to download
                         and read them for free. The article may also be reused and quoted as long as the original
                         published version is referenced. These terms provide the most widespread use and visibility
                         of the work while guaranteeing that the creators are appropriately credited.</p>
@@ -699,8 +700,8 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 <div class="s-2" id="data-privacy">
                     <h3>Data Privacy, Intellectual Property, and Anti-Piracy</h3>
                     <p>All articles published in the Pahina should conform with the relevant rules, guidelines,
-                        and policies indicated in the Philippines’ Data Privacy Act of 2012, the Cybercrime
-                        Prevention Act of 2012, and the Intellectual Property Code.</p>
+                        and policies indicated in the Philippines’ <span>Data Privacy Act of 2012, the Cybercrime
+                        Prevention Act of 2012</span>, and the <span>Intellectual Property Code.</span></p>
                 </div>
         </div>
         </div>

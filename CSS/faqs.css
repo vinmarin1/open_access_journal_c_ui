@@ -55,10 +55,20 @@ main {
 aside a {
     color: gray !important;
 }
+
+.s-2 span, .s-1 span {
+    /* color: var(--form-heading); */
+    font-weight: 600;
+}
+li::marker {
+    color: var(--secondary);
+    font-size:26px;
+}
 aside {
     flex: 1;
     padding:2em;
-    background-color: var(--gray);
+    background-color: rgb(252, 251, 254);
+    max-height: 800px;
 }
 .main p, main li {
     text-align: justify;
@@ -364,7 +374,10 @@ aside {
 #templates-for-author-container h4 {
     margin-bottom: 0.5rem;
 }
-
+th {
+    background-color: var(--gray);
+    color: var(--form-heading);
+}
 table {
     max-width: 100%;
     width: auto;
@@ -373,8 +386,8 @@ table {
 }
 
 table th, table td {
-    border: 1px solid black;
-    padding: 6px;
+    border: 1px solid var(--gray);
+    padding: 1.5em;
     /* padding-right: 20px; */
 }
 
