@@ -1,6 +1,7 @@
 <?php
 include 'function/redirect.php';
 include 'function/dashboard_function.php';
+
 $submissionlist = get_journalsubmission();  
 $comparisonlist = get_submissioncomparison();
 $usercount = get_usercount();
@@ -477,18 +478,18 @@ $donationDataJson = json_encode($donationData);
                                         <ul class="p-0 m-0">
                                             <li class="d-flex mb-3 pb-1">
                                                 <div class="avatar" style="margin-right: 10px;">
-                                                    <?php if (!empty($top5reviewerlistval->profile_pic)): ?>
-                                                        <img src="../<?php echo $top5reviewerlistval->profile_pic; ?>" alt="" class="rounded-circle" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%;";/>
+                                                    <?php if (!empty($top5contributorslistval->profile_pic)): ?>
+                                                        <img src="../<?php echo $top5contributorslistval->profile_pic; ?>" alt="" class="rounded-circle" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%;";/>
                                                     <?php else: ?>
                                                         <img src="https://qcuj.online/Files/uploaded-profile/no_profile.jpg" alt="" class="rounded-circle" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%;" />
                                                     <?php endif; ?>
                                                 </div>
                                                 <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                                                     <div class="">
-                                                        <h6 class="mb-0"><?php echo $top5reviewerlistval->last_name; ?>, <?php echo $top5reviewerlistval->first_name; ?></h6>
+                                                        <h6 class="mb-0"><?php echo $top5contributorslistval->last_name; ?>, <?php echo $top5contributorslistval->first_name; ?></h6>
                                                     </div>
                                                     <div class="user-progress">
-                                                        <small class="fw-semibold"><?php echo $top5reviewerlistval->count_reviewed; ?></small>
+                                                        <small class="fw-semibold"><?php echo $top5contributorslistval->count_reviewed; ?></small>
                                                     </div>
                                                 </div>
                                             </li>
