@@ -313,25 +313,28 @@ require_once 'dbcon.php';
             $lastDayOfMonth = date('Y-m-t');
             
             $sql = "SELECT 
-                        contributors_id, 
-                        article_id, 
-                        contributor_type, 
-                        firstname, 
-                        lastname, 
-                        publicname, 
-                        orcid, 
-                        email, 
-                        date_added,
-                        COUNT(*) AS email_count
-                    FROM 
-                        contributors
-                    WHERE 
-                        date_added BETWEEN '{$firstDayOfMonth}' AND '{$lastDayOfMonth}'
-                    GROUP BY 
-                        email
-                    ORDER BY 
-                        email_count DESC
-                    LIMIT 5;";
+                    c.contributors_id, 
+                    c.article_id, 
+                    c.contributor_type, 
+                    c.firstname, 
+                    c.lastname, 
+                    c.publicname, 
+                    c.orcid, 
+                    c.email, 
+                    c.date_added,
+                    COUNT(*) AS email_count,
+                    a.profile_pic
+                FROM 
+                    contributors c
+                LEFT JOIN 
+                    author a ON c.email = a.verified_email
+                WHERE 
+                    c.date_added BETWEEN '{$firstDayOfMonth}' AND '{$lastDayOfMonth}'
+                GROUP BY 
+                    c.email
+                ORDER BY 
+                    email_count DESC
+                LIMIT 5;";
                                 
             $results = execute_query($sql);
     
@@ -363,7 +366,8 @@ require_once 'dbcon.php';
                         COUNT(ra.author_id) AS count_reviewed,
                         a.first_name,
                         a.last_name,
-                        a.email
+                        a.email,
+                        a.profile_pic
                     FROM 
                         author a
                     LEFT JOIN 
