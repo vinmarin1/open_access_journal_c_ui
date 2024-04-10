@@ -61,40 +61,40 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
             <span>This will show you step by step tutorial for the process</span>
           </header>
           <div class="mt-2 procedures flex-lg-row flex-column">
-            <div class="procedure faq-toggle" data-target="tutorial-on-publication" >
-              <div class="icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="var(--secondary)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="14" stroke-dashoffset="14" d="M6 19h12"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.5s" dur="0.4s" values="14;0"/></path><path stroke-dasharray="18" stroke-dashoffset="18" d="M12 15 h2 v-6 h2.5 L12 4.5M12 15 h-2 v-6 h-2.5 L12 4.5"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.4s" values="18;0"/></path></g></svg>
-              </div>
-              <a href="#tutorial-on-publication">
-                  <h5 class="title">Submit a Paper</h5>
-                  <div class="description">
-                    <p class="text-muted">Step 1: Create and update your account necessary detail. Here you can manage submissions, and track its progress. Make sure your manuscript adheres to the formatting and guidelines of your chosen journal.</p>
-                  </div>
-              </a>
-            </div>
-            <div class="procedure faq-toggle"  data-target="tutorial-on-review">
-            
-              <div class="icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="var(--secondary)" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="M6 15.8L7.143 17L10 14M6 8.8L7.143 10L10 7"/><path d="M13 9h5m-5 7h5m4-4c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12s0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464c.974.974 1.3 2.343 1.41 4.536"/></g></svg>
-              </div>
-              <a href="#tutorial-on-review">
-              <h5 class="title">Review a Paper</h5>
-              <div class="description">
-                <p class="text-muted">Step 2: Your paper will be assigned to qualified experts in your field who will carefully assess your work based on criteria, providing valuable feedback and suggestions for improvement.</p>
-              </div>
-            </a>
-            </div>
-            <div class="procedure faq-toggle">
+          <div class="procedure " >
               <div class="icon">
               <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 16 16"><path fill="var(--secondary)" fill-rule="evenodd" d="M3 13.5a.5.5 0 0 1-.5-.5V3a.5.5 0 0 1 .5-.5h9.25a.75.75 0 0 0 0-1.5H3a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9.75a.75.75 0 0 0-1.5 0V13a.5.5 0 0 1-.5.5zm12.78-8.82a.75.75 0 0 0-1.06-1.06L9.162 9.177L7.289 7.241a.75.75 0 1 0-1.078 1.043l2.403 2.484a.75.75 0 0 0 1.07.01z" clip-rule="evenodd"/></svg>
               </div>
-              <a href="#tutorial-on-review">
+              <a class="faq-toggle" href="#tutorial-on-registration" data-target="tutorial-on-registration" >
               
               <h5 class="title">Be a Contributor</h5>
               <div class="description">
                 <p class="text-muted">Step 3: Before final publication, the journal's editorial team will strictly copyedit your accepted paper, ensuring and enhancing the overall clarity and conciseness of your writing.</p>
               </div>
             </a>  
+            </div>
+            <div class="procedure "  >
+              <div class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="var(--secondary)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="14" stroke-dashoffset="14" d="M6 19h12"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.5s" dur="0.4s" values="14;0"/></path><path stroke-dasharray="18" stroke-dashoffset="18" d="M12 15 h2 v-6 h2.5 L12 4.5M12 15 h-2 v-6 h-2.5 L12 4.5"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.4s" values="18;0"/></path></g></svg>
+              </div>
+              <a class="faq-toggle" href="#tutorial-on-publication" data-target="tutorial-on-publication">
+                  <h5 class="title">Submit a Paper</h5>
+                  <div class="description">
+                    <p class="text-muted">Step 1: Create and update your account necessary detail. Here you can manage submissions, and track its progress. Make sure your manuscript adheres to the formatting and guidelines of your chosen journal.</p>
+                  </div>
+              </a>
+            </div>
+            <div class="procedure "  >
+            
+              <div class="icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="var(--secondary)" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="M6 15.8L7.143 17L10 14M6 8.8L7.143 10L10 7"/><path d="M13 9h5m-5 7h5m4-4c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12s0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464c.974.974 1.3 2.343 1.41 4.536"/></g></svg>
+              </div>
+              <a class="faq-toggle" href="#tutorial-on-review" data-target="tutorial-on-review">
+              <h5 class="title">Review a Paper</h5>
+              <div class="description">
+                <p class="text-muted">Step 2: Your paper will be assigned to qualified experts in your field who will carefully assess your work based on criteria, providing valuable feedback and suggestions for improvement.</p>
+              </div>
+            </a>
             </div>
            
           </div>
@@ -107,7 +107,8 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 <div class="s-1">
                     <p>Welcome to our Publication Tutorial for Pahina. This guide simplifies the process, 
                     ensuring a smooth experience for all contributors. Let's make your publication journey hassle-free – get
-                    started now! Begin your submission and share your insights with our scholarly community!</p>
+                    started now! Begin your submission and share your insights with our scholarly community!</p> 
+                    <li>Before you submit a paper you must register first.  <a href="tutorials.php#tutorial-on-registration">Learn How to register</a></li> 
                 </div>
                 <div class="s-2">
                     <h3>Submit a Paper</h3>
@@ -200,30 +201,8 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     <div class="s-1">
                         <p>Welcome to our Publication Tutorial for Pahina. This guide simplifies the process, ensuring a smooth experience for all contributors. Let's make your publication journey 
                             hassle-free – get started now! Begin your submission and share your insights with our scholarly community!</p>
+                            <li>Before you can review, you must register first.  <a href="tutorials.php#tutorial-on-registration">Learn How to register</a></li> 
                     </div>
-                    <div class="s-2">
-                        <h3>Registering with Open Access Journal</h3>
-                        <p>Begin your publication journey by registering with Pahina. Follow these simple steps
-                            to create your account:</p>
-                        <ol type="1">
-                            <li>Visit our journal website and click on the "Register" button.</li>
-                            <li>Fill in the required information, including your name, email address, and a secure password.</li>
-                            <li>Read and agree to the terms and conditions.</li>
-                            <li>Click "Register" to complete the registration process.</li>
-                        </ol>
-                        <img src="../images/Registration.png" alt="" class="img-reg">
-                    </div>
-                    <div class="s-2">
-                    <h3>Logging in to  Pahina website.</h3>
-                    <p>After completing the registration, log in to your account.</p>
-                    <ol type="1">
-                        <li> Write your Email.</li>
-                        <li>next is your password.</li>
-                        <li>If it’s your first time to login, You need to input the OTP code that has sent to your Gmail.</li>
-                        <li>When you are done just click ‘Verify’ to proceed.</li>
-                    </ol>
-                    <img src="../images/Login.png" alt="" class="img-reg">
-                </div>
                     <div class="s-2">
                         <h3>Select Article</h3>
                         <p>In this page, You will see all your Submissions and All your reviews. You may proceed as a Reviewer.</p>
@@ -276,7 +255,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
         <div class="main" id="tutorial-on-registration-container" style="display: none;">
         <div class="category w-100">
                     <div class="mb-4">
-                        <h2 style="font-size:32px !important">Become a Reviewer</h2>
+                        <h2 style="font-size:32px !important">Be a Contributor</h2>
                     </div>
                     <div class="s-1">
                     <p>Welcome to our Publication Tutorial for Pahina. This guide simplifies the process, 
