@@ -342,19 +342,10 @@ require_once 'dbcon.php';
                 $data['top5contributorslist'] = $results;
                 return $data;
             } else {
-                $randomNames = getRandomNamesFromPastContributors();
-                $data['top5contributorslist'] = $randomNames;
-                return $data;
+                return array();
             }
         }
     }
-
-    function getRandomNamesFromPastContributors() {
-        $sql = "SELECT firstname, lastname,0 AS email_count FROM contributors ORDER BY RAND() LIMIT 5";
-        $randomNames = execute_query($sql);
-        
-        return $randomNames;
-    }    
 
     if (!function_exists('get_top5reviewer_list')) {
         function get_top5reviewer_list() {
