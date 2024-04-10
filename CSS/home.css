@@ -276,6 +276,8 @@ width: auto;
 }
 
 .article-info{
+display:flex;
+justify-content: space-between;
 opacity: 0.6;
 font-size: 12px;
 width: 100%;
@@ -298,9 +300,9 @@ display: block;
 
 .article-content{
 color: black;
-font-size: 12px;
-height: 100px;
-overflow-y: auto;
+font-size: 13px;
+height: 125px;
+overflow-y: hidden;
 overflow-x: hidden;
 }
 
