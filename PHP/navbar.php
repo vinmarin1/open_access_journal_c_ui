@@ -15,10 +15,24 @@ require_once 'dbcon.php';
     <link rel="stylesheet" href="../CSS/navbar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
 </head>
 <body>
+<script>
 
+// Enable pusher logging - don't include this in production
+Pusher.logToConsole = true;
+
+var pusher = new Pusher('cabcad916f55a998eaf5', {
+  cluster: 'ap1'
+});
+
+var channel = pusher.subscribe('my-channel');
+channel.bind('my-event', function(data) {
+  alert(JSON.stringify(data));
+  console.log("Notif");
+});
+</script>
 <nav class="navbar navbar-expand-xl" style="padding:4px 3%" id="navbar-container" >
   <div class="container-fluid">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="background-color: white; font-size:10px;">
@@ -49,12 +63,12 @@ require_once 'dbcon.php';
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="about.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Resources
+            Guidelines
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" style="color: black" href="./tutorials.php">Tutorials for Contributors</a></li>
-            <li><a class="dropdown-item" style="color: black" href="./guidelines.php">Guidelines and Policies</a></li>
             <li><a class="dropdown-item" style="color: black" href="./guidelines.php#templates-for-author">Templates for Author</a></li>
+            <li><a class="dropdown-item" style="color: black" href="./guidelines.php">Guidelines and Policy</a></li>
             <li><a class="dropdown-item" style="color: black" href="./faqs.php">Frequently Asked Questions</a></li>
           </ul>
           <li class="d-flex d-sm-none nav-item">
@@ -89,90 +103,91 @@ require_once 'dbcon.php';
       </div>
       </div>
 
-    <?php
-      if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-        $author_id = $_SESSION['id'];
-        $email = $_SESSION['email'];
+      <?php
+if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+$author_id = $_SESSION['id'];
 
-        $query = "SELECT verify.expires, author.email_verified FROM verify JOIN author ON verify.email = author.email WHERE author.email = :email ORDER BY verify.id DESC LIMIT 1";
-        $vars = array(':email' => $email);
-        $latest_verification = database_run($query, $vars);
-
-        if ($latest_verification && count($latest_verification) > 0) {
-            $latest_verification = $latest_verification[0];
-            $expiration_timestamp = $latest_verification->expires;
-            $current_timestamp = time();
-
-            
-            $expiration_date = date('Y-m-d H:i:s', $expiration_timestamp);
-            $current_date = date('Y-m-d H:i:s', $current_timestamp);
-         
-            // echo "Expiration Date: $expiration_date<br>";
-            // echo "Current Date: $current_date<br>";
-          
-
-            // Check if the code has expired and email_verified is not empty
-            if ($expiration_timestamp < $current_timestamp && !empty($latest_verification->email_verified)) {
-                // Reset email_verified for the user
-                $update_query = "UPDATE author SET email_verified = '' WHERE email = :email";
-                $update_vars = array(':email' => $email);
-                database_run($update_query, $update_vars);
-                session_destroy();
-                exit;
-            }
-        }
-
-
-   
-
-    // Notification button and count
-    echo '
-    <div class="btn-group">
-        <button type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" id="notification-button">
-            <i class="fas fa-bell"></i>';
-
-    $sqlNotif = "SELECT article.article_id, article.title 
-                 FROM article 
-                 JOIN reviewer_assigned 
-                 ON article.article_id = reviewer_assigned.article_id 
-                 WHERE reviewer_assigned.author_id = :author_id 
-                 AND article.status = 4 
-                 AND reviewer_assigned.accept = 0 
-                 AND reviewer_assigned.answer = 0";
-    $sqlNotifRun = database_run($sqlNotif, array(':author_id' => $author_id));
-
-    if ($sqlNotifRun !== false) {
-        $notificationCount = count($sqlNotifRun);
-        echo '<span id="notification-count" style="width: 10px; height: 10px; font-size: 5px; text-align: center; display: inline-block; line-height: 5px;">' . $notificationCount . '</span>';
-    }
-
-    echo '
-        </button>
-        <ul class="dropdown-menu" style="margin-left: -20px">';
-
-    // Notification items
-    if ($sqlNotifRun !== false) {
-        foreach ($sqlNotifRun as $notif) {
-            echo '
-            <li style="padding: 8px;
-                list-style-type: none;
-                font-size: 12px;
-                display: block;">
-                <p class="d-flex flex-column ">You have been invited as Reviewer 
-                    <span style="font-weight: bold;
-                        margin-top: 15px;
-                        margin-bottom: -15px;">Title: </p>
-                    <a id="inviteMessage" style="text-decoration: none;
-                        color: gray;
-                        display: block;
-                        border-bottom: 1px gray solid;
-                        padding-bottom: 5px;" href="./review-process.php?id=' . $notif->article_id . '">' . $notif->title . '</a>
-                </span>
-            </li>';
-        }
+// Define formatTimeElapsed function
+function formatTimeElapsed($timeElapsed) {
+    if ($timeElapsed < 60) {
+        return $timeElapsed . ' seconds ago';
+    } elseif ($timeElapsed < 3600) {
+        $minutes = floor($timeElapsed / 60);
+        return $minutes . ' minute' . ($minutes > 1 ? 's' : '') . ' ago';
+    } elseif ($timeElapsed < 86400) {
+        $hours = floor($timeElapsed / 3600);
+        return $hours . ' hour' . ($hours > 1 ? 's' : '') . ' ago';
     } else {
-        echo '<p class="h6" style="color: gray; font-weight: normal; margin-left: 10px" >0 Notification</p>';
+        $days = floor($timeElapsed / 86400);
+        return $days . ' day' . ($days > 1 ? 's' : '') . ' ago';
     }
+}
+
+// Notification button and count
+echo '
+<div class="btn-group">
+    <button type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" id="notification-button">
+        <i class="fas fa-bell"></i>';
+
+$sqlNotif = "SELECT n.`article_id`, n.`author_id`, n.`admin`, n.`title`, n.`status`, n.`read`, n.`description`, n.`created`, a.`author_id` AS `article_author_id`
+             FROM `notification` n
+             JOIN `article` a ON n.`article_id` = a.`article_id`
+             WHERE n.`author_id` = :author_id AND n.`read` = 1 AND n.`admin` = 0
+             ORDER BY n.`created` DESC";  // Order by created column in descending order
+$sqlNotifRun = database_run($sqlNotif, array(':author_id' => $author_id));
+
+if ($sqlNotifRun !== false) {
+    $notificationCount = count($sqlNotifRun);
+    echo '<span id="notification-count" style="width: 10px; height: 10px; font-size: 10px; text-align: center; display: inline-block; line-height: 5px;">' . $notificationCount . '</span>';
+} else {
+    echo '<span id="notification-count" style="display: none"></span>';
+}
+
+echo '
+    </button>
+    <ul class="dropdown-menu" style="margin-left: -140px;
+    overflow-y: auto;
+    width: 20em;
+    height: 26em;">';
+
+// Notification items
+if ($sqlNotifRun !== false) {
+    foreach ($sqlNotifRun as $notif) {
+        // Calculate time elapsed
+        $createdTimestamp = strtotime($notif->created);
+        $currentTime = time();
+        $timeElapsed = $currentTime - $createdTimestamp;
+        $elapsedText = formatTimeElapsed($timeElapsed); // Use the custom formatTimeElapsed function
+
+        // Determine the article link based on conditions
+        if ($notif->title === "Send to Review" && $notif->article_author_id !== $author_id) {
+            $articleLink = './review-process.php?id=' . $notif->article_id;
+        } else {
+            $articleLink = './submitted-article.php?id=' . $notif->article_id;
+        }
+
+        echo '
+        <li style="padding: 8px;
+            list-style-type: none;
+            font-size: 12px;
+            display: block;">
+            <p class="d-flex flex-column "> '  . $notif->title . '
+                <span style="
+                    margin-top: 15px;
+                    margin-bottom: -15px;
+                    font-weight: normal;">Title: </p>
+                <a id="inviteMessage" style="text-decoration: none;
+                    color: gray;
+                    display: block;
+                    padding-bottom: 5px;" href="' . $articleLink . '">' . $notif->description . '</a>
+                <span style="font-weight: bold;
+                    color: #004e98;">' . $elapsedText . '</span>
+            </li>';
+    }
+} else {
+    echo '<p class="h6" style="color: gray; font-weight: normal; margin-left: 10px" >0 Notification</p>';
+}
+
 
     // User profile dropdown
     $sqlUserName = "SELECT first_name FROM author WHERE author_id = :author_id";
@@ -221,7 +236,7 @@ require_once 'dbcon.php';
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="../JS/navbar.js"></script>
 <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+<script src="../JS/navbar.js"></script>
 </body>
 </html>

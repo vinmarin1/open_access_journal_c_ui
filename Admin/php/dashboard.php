@@ -1,6 +1,7 @@
 <?php
 include 'function/redirect.php';
 include 'function/dashboard_function.php';
+
 $submissionlist = get_journalsubmission();  
 $comparisonlist = get_submissioncomparison();
 $usercount = get_usercount();
@@ -212,7 +213,7 @@ $donationDataJson = json_encode($donationData);
         <?php include 'template/header.php'; ?>
             <div class="container-xxl flex-grow-1 container-p-y">
                 <div class="row">
-                    <div class="col-lg-9 col-md-12">
+                    <div class="col-lg-6 col-md-12">
                         <div class="card mb-4">
                             <div class="card-body" id="cardBody1">
                                 <div class="row align-items-center">
@@ -279,33 +280,6 @@ $donationDataJson = json_encode($donationData);
                             </div>
                         </div>
                     </div>
-                </div>
-
-                
-                <div class="row">
-                    <div class="col-lg-9 col-md-12">
-                        <div class="card mb-4">
-                            <div class="card-body" id="cardBody2">
-                                <div class="row align-items-center">
-                                    <div class="col">
-                                        <h5 class="card-title mb-2">Submission Comparison</h5>
-                                    </div>
-                                    <div class="col-auto">
-                                        <div class="dropdown" style="margin-right: -10px;">
-                                            <button class="btn p-0" type="button" id="cardOpt2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="bx bx-dots-vertical-rounded"></i>
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="cardOpt2">
-                                                <a class="dropdown-item" href="journalreport.php" target="_blank">View More</a>
-                                                <a href="#" class="download-chart-btn dropdown-item" data-chart="myChart2">Download</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <canvas id="myChart2" class="chart-canvas"></canvas>
-                            </div>
-                        </div>
-                    </div>
                     <div class="col-lg-3 col-md-6 mb-4">
                         <div class="card mb-4">
                             <div class="card-body">
@@ -351,9 +325,31 @@ $donationDataJson = json_encode($donationData);
                         </div>
                     </div>
                 </div>
+                
 
                 <div class="row">
                     <div class="col-lg-6 col-md-12">
+                        <div class="card mb-4">
+                            <div class="card-body" id="cardBody2"> 
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h5 class="card-title mb-2">Journal Comparison</h5>
+                                    </div>
+                                    <div class="col-auto">
+                                        <div class="dropdown" style="margin-right: -10px;">
+                                            <button class="btn p-0" type="button" id="cardOpt2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="bx bx-dots-vertical-rounded"></i>
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="cardOpt2">
+                                                <a class="dropdown-item" href="journalreport.php" target="_blank">View More</a>
+                                                <a href="#" class="download-chart-btn dropdown-item" data-chart="myChart2">Download</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <canvas id="myChart2" class="chart-canvas"></canvas>
+                            </div>
+                        </div>
                         <div class="card mb-4">
                             <div class="card-body">
                                 <div class="row align-items-center">
@@ -375,8 +371,6 @@ $donationDataJson = json_encode($donationData);
                                 <canvas id="myChart3" class="chart-canvas"></canvas>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12">
                         <div class="card mb-4">
                             <div class="card-body">
                                 <div class="row align-items-center">
@@ -399,127 +393,22 @@ $donationDataJson = json_encode($donationData);
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-3 col-md-12">
-                        <div class="card mb-4">
-                            <div class="card-header d-flex align-items-center justify-content-between pb-0">
-                                <div class="card-title mb-0">
-                                    <div class="row align-items-center">
-                                        <div class="col">
-                                            <h6 class="m-0 me-2 mb-2">The top 5 contributors for <br><span id="currentMonth"></span></h6>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <div class="dropdown">
-                                        <button class="btn p-0" type="button" id="cardOpt1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="bx bx-dots-vertical-rounded"></i>
-                                        </button>
-                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt1">
-                                            <a class="dropdown-item" href="topcontributors.php" target="_blank">View More</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                </div>
-                                <?php
-                                    if (isset($top5contributorslist['top5contributorslist']) && count($top5contributorslist['top5contributorslist']) > 0) {
-                                        foreach ($top5contributorslist['top5contributorslist'] as $top5contributorslistval) {
-                                ?>
-                                <ul class="p-0 m-0">
-                                    <li class="d-flex mb-3 pb-1">
-                                        <div class="avatar flex-shrink-0 me-3">
-                                            <span class="avatar-initial rounded bg-label-primary"><i class="bx bx-user"></i></span>
-                                        </div>
-                                        <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                            <div class="">
-                                            <h6 class="mb-0"><?php echo $top5contributorslistval->lastname; ?>, <?php echo $top5contributorslistval->firstname; ?></h6>
-                                            </div>
-                                            <div class="user-progress">
-                                            <small class="fw-semibold"><?php echo $top5contributorslistval->email_count; ?></small>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                                <?php
-                                    }
-                                }
-                                ?>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-md-12">
-                        <div class="card mb-4">
-                            <div class="card-header d-flex align-items-center justify-content-between pb-0">
-                                <div class="card-title mb-0">
-                                    <div class="row align-items-center">
-                                        <div class="col">
-                                            <h6 class="m-0 me-2 mb-2">The top 5 reviewer for <br><span id="currentMonth1"></span></h6>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <div class="dropdown">
-                                        <button class="btn p-0" type="button" id="cardOpt2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="bx bx-dots-vertical-rounded"></i>
-                                        </button>
-                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt2">
-                                            <a class="dropdown-item" href="topreviewer.php" target="_blank">View More</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                </div>
-                                <?php
-                                    if (isset($top5reviewerlist['top5reviewerlist']) && count($top5reviewerlist['top5reviewerlist']) > 0) {
-                                            foreach ($top5reviewerlist['top5reviewerlist'] as $top5reviewerlistval) {
-                                ?>
-                                    <ul class="p-0 m-0">
-                                        <li class="d-flex mb-3 pb-1">
-                                            <div class="avatar flex-shrink-0 me-3">
-                                                <span class="avatar-initial rounded bg-label-primary"><i class="bx bx-user"></i></span>
-                                            </div>
-                                            <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                                <div class="">
-                                                <h6 class="mb-0"><?php echo $top5reviewerlistval->last_name; ?>, <?php echo $top5reviewerlistval->first_name; ?></h6>
-                                                </div>
-                                                <div class="user-progress">
-                                                <small class="fw-semibold"><?php echo $top5reviewerlistval->count_reviewed; ?></small>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                <?php
-                                    }
-                                }
-                                ?>
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="col-lg-6 col-md-12">
                         <div class="card mb-4">
                             <div class="card-header d-flex align-items-center justify-content-between pb-0">
                                 <div class="card-title mb-0">
                                     <div class="row align-items-center">
                                         <div class="col">
-                                            <h6 class="m-0 me-2">The top 5 downloaded article for <br><span id="currentMonth2"></span></h6>
+                                            <h6 class="m-0 me-2">The top 5 downloaded articles for <br><span id="currentMonth2"></span></h6>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-auto">
                                     <div class="dropdown">
-                                        <button class="btn p-0" type="button" id="cardOpt1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <button class="btn p-0" type="button" id="cardOpt3" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="bx bx-dots-vertical-rounded"></i>
                                         </button>
-                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt1">
+                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
                                             <a class="dropdown-item" href="javascript:void(0);">View More</a>
                                         </div>
                                     </div>
@@ -531,9 +420,9 @@ $donationDataJson = json_encode($donationData);
                                 <?php
                                     if (isset($top5downloadedlist['top5downloadedlist']) && count($top5downloadedlist['top5downloadedlist']) > 0) {
                                         foreach ($top5downloadedlist['top5downloadedlist'] as $top5downloadedlistval) {
-                                            $shortTitle = strlen($top5downloadedlistval->title) > 60 ? substr($top5downloadedlistval->title, 0, 60) . '...' : $top5downloadedlistval->title;
+                                            $shortTitle = strlen($top5downloadedlistval->title) > 50 ? substr($top5downloadedlistval->title, 0, 50) . '...' : $top5downloadedlistval->title;
                                             $escapedTitle = htmlspecialchars($top5downloadedlistval->title);
-                                            $articleID = $top5downloadedlistval->title;
+                                            $articleID = $top5downloadedlistval->article_id;
                                             $titleHtml = "<a href='workflow.php?aid=$articleID' target='_blank' title='$escapedTitle'>$shortTitle</a>";
                                     ?>
                                             <ul class="p-0 m-0">
@@ -555,6 +444,116 @@ $donationDataJson = json_encode($donationData);
                                         }
                                     }
                                     ?>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-12">
+                                <div class="card mb-4">
+                                    <div class="card-header d-flex align-items-center justify-content-between pb-0">
+                                        <div class="card-title mb-0">
+                                            <div class="row align-items-center">
+                                                <div class="col">
+                                                    <h6 class="m-0 me-2 mb-2">The top 5 contributors for <br><span id="currentMonth"></span></h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <div class="dropdown">
+                                                <button class="btn p-0" type="button" id="cardOpt1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="bx bx-dots-vertical-rounded"></i>
+                                                </button>
+                                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt1">
+                                                    <a class="dropdown-item" href="topcontributors.php" target="_blank">View More</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                        </div>
+                                        <?php
+                                            if (isset($top5contributorslist['top5contributorslist']) && count($top5contributorslist['top5contributorslist']) > 0) {
+                                                foreach ($top5contributorslist['top5contributorslist'] as $top5contributorslistval) {
+                                        ?>
+                                        <ul class="p-0 m-0">
+                                            <li class="d-flex mb-3 pb-1">
+                                                <div class="avatar" style="margin-right: 10px;">
+                                                    <?php if (!empty($top5contributorslistval->profile_pic)): ?>
+                                                        <img src="../<?php echo $top5contributorslistval->profile_pic; ?>" alt="" class="rounded-circle" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%;" />
+                                                    <?php else: ?>
+                                                        <img src="https://qcuj.online/Files/uploaded-profile/no_profile.jpg" alt="" class="rounded-circle" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%;" />
+                                                    <?php endif; ?>
+                                                </div>
+                                                <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                                    <div class="">
+                                                        <h6 class="mb-0"><?php echo $top5contributorslistval->lastname; ?>, <?php echo $top5contributorslistval->firstname; ?></h6>
+                                                    </div>
+                                                    <div class="user-progress">
+                                                        <small class="fw-semibold"><?php echo $top5contributorslistval->email_count; ?></small>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-12">
+                                <div class="card mb-4">
+                                    <div class="card-header d-flex align-items-center justify-content-between pb-0">
+                                        <div class="card-title mb-0">
+                                            <div class="row align-items-center">
+                                                <div class="col">
+                                                    <h6 class="m-0 me-2 mb-2">The top 5 reviewer for <br><span id="currentMonth1"></span></h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <div class="dropdown">
+                                                <button class="btn p-0" type="button" id="cardOpt2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="bx bx-dots-vertical-rounded"></i>
+                                                </button>
+                                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt2">
+                                                    <a class="dropdown-item" href="topreviewer.php" target="_blank">View More</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                        </div>
+                                        <?php
+                                            if (isset($top5reviewerlist['top5reviewerlist']) && count($top5reviewerlist['top5reviewerlist']) > 0) {
+                                                    foreach ($top5reviewerlist['top5reviewerlist'] as $top5reviewerlistval) {
+                                        ?>
+                                            <ul class="p-0 m-0">
+                                                <li class="d-flex mb-3 pb-1">
+                                                    <div class="avatar" style="margin-right: 10px;">
+                                                        <?php if (!empty($top5reviewerlistval->profile_pic)): ?>
+                                                            <img src="../<?php echo $top5reviewerlistval->profile_pic; ?>" alt="" class="rounded-circle" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%;";/>
+                                                        <?php else: ?>
+                                                            <img src="https://qcuj.online/Files/uploaded-profile/no_profile.jpg" alt="" class="rounded-circle" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%;" />
+                                                        <?php endif; ?>
+                                                    </div>
+                                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                                        <div class="">
+                                                            <h6 class="mb-0"><?php echo $top5reviewerlistval->last_name; ?>, <?php echo $top5reviewerlistval->first_name; ?></h6>
+                                                        </div>
+                                                        <div class="user-progress">
+                                                            <small class="fw-semibold"><?php echo $top5reviewerlistval->count_reviewed; ?></small>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        <?php
+                                            }
+                                        }
+                                        ?>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -313,45 +313,42 @@ require_once 'dbcon.php';
             $lastDayOfMonth = date('Y-m-t');
             
             $sql = "SELECT 
-                        contributors_id, 
-                        article_id, 
-                        contributor_type, 
-                        firstname, 
-                        lastname, 
-                        publicname, 
-                        orcid, 
-                        email, 
-                        date_added,
-                        COUNT(*) AS email_count
+                        c.contributors_id, 
+                        c.article_id, 
+                        c.contributor_type, 
+                        c.firstname, 
+                        c.lastname, 
+                        c.publicname, 
+                        c.orcid, 
+                        c.email, 
+                        c.date_added,
+                        COUNT(*) AS email_count,
+                        a.profile_pic
                     FROM 
-                        contributors
+                        contributors c
+                    LEFT JOIN 
+                        author a ON c.email = a.email_verified COLLATE utf8mb4_unicode_ci
                     WHERE 
-                        date_added BETWEEN '{$firstDayOfMonth}' AND '{$lastDayOfMonth}'
+                        a.status = 1
+                        AND c.date_added BETWEEN '{$firstDayOfMonth}' AND '{$lastDayOfMonth}'
                     GROUP BY 
-                        email
+                        a.author_id, a.first_name, a.last_name, a.email
+                    HAVING 
+                        email_count > 0
                     ORDER BY 
                         email_count DESC
-                    LIMIT 5;";
-                                
+                    LIMIT 5";
+                
             $results = execute_query($sql);
     
-            if (!empty($results)) {
+            if ($results !== false) {
                 $data['top5contributorslist'] = $results;
                 return $data;
             } else {
-                $randomNames = getRandomNamesFromPastContributors();
-                $data['top5contributorslist'] = $randomNames;
-                return $data;
+                return array();
             }
         }
     }
-
-    function getRandomNamesFromPastContributors() {
-        $sql = "SELECT firstname, lastname,0 AS email_count FROM contributors ORDER BY RAND() LIMIT 5";
-        $randomNames = execute_query($sql);
-        
-        return $randomNames;
-    }    
 
     if (!function_exists('get_top5reviewer_list')) {
         function get_top5reviewer_list() {
@@ -363,7 +360,8 @@ require_once 'dbcon.php';
                         COUNT(ra.author_id) AS count_reviewed,
                         a.first_name,
                         a.last_name,
-                        a.email
+                        a.email,
+                        a.profile_pic
                     FROM 
                         author a
                     LEFT JOIN 
@@ -373,11 +371,10 @@ require_once 'dbcon.php';
                     GROUP BY 
                         a.author_id, a.first_name, a.last_name, a.email
                     HAVING 
-                        count_reviewed > 0  -- Include only authors who have been reviewed at least once
+                        count_reviewed > 0
                     ORDER BY 
                         count_reviewed DESC
-                    LIMIT 5;
-                    ";
+                    LIMIT 5;";
             
             $results = execute_query($sql);
     
