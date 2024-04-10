@@ -31,7 +31,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
             <div class="body">
                 <h1 id="guideline-title">Guidelines</h1>
                 <span>Let us guide you in the best way to present, organize and describe your work</span><br/>
-                <span class="last">Last Updated: April 01, 2024</button>
+                <span class="last">Last Updated: April 10, 2024</button>
             </div>
         </div>
         <div class="d-flex flex-wrap gap-1" style="max-width:80vh">
@@ -52,8 +52,8 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
             <p>Home / Guidelines/ </p>
             <div class="body">
                 <h1 id="guideline-title">Author Guidelines</h1>
-                <span>Let us guide you in the best way to present, organize and describe your work</span><br/>
-                <span class="last">Last Updated: April 01, 2024</button>
+                <span>Explore our author guidelines to ensure your submission meets all essential criteria for successful publication.</span><br/>
+                <span class="last">Last Updated: April 10, 2024</button>
             </div>
         </div>
         <img width="40%" src="../images/resources/Web Design On Computer Royalty-Free Stock Photo.jpg">
@@ -63,8 +63,8 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 <p>Home / Guidelines/ </p>
                 <div class="body">
                     <h1 id="guideline-title">Article Submission</h1>
-                    <span>Let us guide you in the best way to present, organize and describe your work</span><br/>
-                    <span class="last">Last Updated: April 01, 2024</span>
+                    <span>Enhance your submission's chances of acceptance by adhering to our guidelines and requirements</span><br/>
+                    <span class="last">Last Updated: April 10, 2024</span>
                 </div>
             </div>
             <img width="40%" src="../images/resources/submit.png">
@@ -74,8 +74,8 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 <p>Home / Guidelines/ </p>
                 <div class="body">
                     <h1 id="guideline-title">Peer Review Process</h1>
-                    <span>Let us guide you in the best way to present, organize and describe your work</span><br/>
-                    <span class="last">Last Updated: April 01, 2024</button>
+                    <span>Learn the peer-review process upholding the standards of scholarly integrity and academic excellence in our journal.</span><br/>
+                    <span class="last">Last Updated: April 10, 2024</button>
                 </div>
             </div>
             <img width="40%" src="https://images.ctfassets.net/o78em1y1w4i4/1vcXhQnayIcmJ3eohoVpY2/1cf9432e053c5af60f170280daedefc4/story-male-manager-taking-notes-in-home-office.jpg?fm=webp&w=1080&q=75">
@@ -85,8 +85,8 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 <p>Home / Guidelines/ </p>
                 <div class="body">
                     <h1 id="guideline-title">Become a Reviewer</h1>
-                    <span>Let us guide you in the best way to present, organize and describe your work</span><br/>
-                    <span class="last">Last Updated: April 01, 2024</button>
+                    <span>Contribute your expertise by joining our esteemed community of reviewers and help shape the course of academic research.</span><br/>
+                    <span class="last">Last Updated: April 10, 2024</button>
                 </div>
             </div>
             <img width="40%" src="https://images.ctfassets.net/o78em1y1w4i4/1vcXhQnayIcmJ3eohoVpY2/1cf9432e053c5af60f170280daedefc4/story-male-manager-taking-notes-in-home-office.jpg?fm=webp&w=1080&q=75">
@@ -96,8 +96,8 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 <p>Home / Guidelines/ </p>
                 <div class="body">
                     <h1 id="guideline-title">Templates for Author</h1>
-                    <span>Let us guide you in the best way to present, organize and describe your work</span><br/>
-                    <span class="last">Last Updated: April 01, 2024</button>
+                    <span> Streamline your writing process with our author templates, tailored for journal submissions.</span><br/>
+                    <span class="last">Last Updated: April 10, 2024</button>
                 </div>
             </div>
             <img width="40%" src="../images/resources/435535444_1614341379393611_1210178581707210205_n.png">
@@ -107,8 +107,8 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 <p>Home / Guidelines/ Publication Policy </p>
                 <div class="body">
                     <h1 id="guideline-title">Publication Policy</h1>
-                    <span>Let us guide you in the best way to present, organize and describe your work</span><br/>
-                    <span class="last">Last Updated: April 01, 2024</button>
+                    <span>Understand the principles guiding our publication decisions and ethical standards.</span><br/>
+                    <span class="last">Last Updated: April 10, 2024</button>
                 </div>
             </div>
             <img width="40%" src="../images/resources/pexels-pixabay-357514.jpg">
