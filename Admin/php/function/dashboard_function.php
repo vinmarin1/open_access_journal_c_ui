@@ -335,17 +335,37 @@ require_once 'dbcon.php';
                 ORDER BY 
                     email_count DESC
                 LIMIT 5;";
-                                
+                                        
             $results = execute_query($sql);
     
             if (!empty($results)) {
                 $data['top5contributorslist'] = $results;
                 return $data;
             } else {
-                return array();
+                $randomNames = getRandomNamesFromPastContributors();
+                $data['top5contributorslist'] = $randomNames;
+                return $data;
             }
         }
     }
+    
+    function getRandomNamesFromPastContributors() {
+        $sql = "SELECT 
+                    c.firstname, 
+                    c.lastname,
+                    a.profile_pic,
+                    COUNT(*) AS email_count
+                FROM 
+                    contributors c
+                LEFT JOIN 
+                    author a ON c.email = a.verified_email
+                ORDER BY 
+                    RAND() 
+                LIMIT 5";
+        $randomNames = execute_query($sql);
+        
+        return $randomNames;
+    }    
 
     if (!function_exists('get_top5reviewer_list')) {
         function get_top5reviewer_list() {
