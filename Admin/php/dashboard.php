@@ -420,7 +420,7 @@ $donationDataJson = json_encode($donationData);
                                 <?php
                                     if (isset($top5downloadedlist['top5downloadedlist']) && count($top5downloadedlist['top5downloadedlist']) > 0) {
                                         foreach ($top5downloadedlist['top5downloadedlist'] as $top5downloadedlistval) {
-                                            $shortTitle = strlen($top5downloadedlistval->title) > 60 ? substr($top5downloadedlistval->title, 0, 60) . '...' : $top5downloadedlistval->title;
+                                            $shortTitle = strlen($top5downloadedlistval->title) > 50 ? substr($top5downloadedlistval->title, 0, 50) . '...' : $top5downloadedlistval->title;
                                             $escapedTitle = htmlspecialchars($top5downloadedlistval->title);
                                             $articleID = $top5downloadedlistval->title;
                                             $titleHtml = "<a href='workflow.php?aid=$articleID' target='_blank' title='$escapedTitle'>$shortTitle</a>";
