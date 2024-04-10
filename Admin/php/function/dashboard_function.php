@@ -313,48 +313,42 @@ require_once 'dbcon.php';
             $lastDayOfMonth = date('Y-m-t');
             
             $sql = "SELECT 
-                    c.contributors_id, 
-                    c.article_id, 
-                    c.contributor_type, 
-                    c.firstname, 
-                    c.lastname, 
-                    c.publicname, 
-                    c.orcid, 
-                    c.email, 
-                    c.date_added,
-                    COUNT(*) AS email_count,
-                    a.profile_pic
-                FROM 
-                    contributors c
-                LEFT JOIN 
-                    author a ON c.email = a.email_verified COLLATE utf8mb4_unicode_ci
-                WHERE 
-                    c.date_added BETWEEN '{$firstDayOfMonth}' AND '{$lastDayOfMonth}'
-                GROUP BY 
-                    c.email
-                ORDER BY 
-                    email_count DESC
-                LIMIT 5;";
-                                
+                        c.contributors_id, 
+                        c.article_id, 
+                        c.contributor_type, 
+                        c.firstname, 
+                        c.lastname, 
+                        c.publicname, 
+                        c.orcid, 
+                        c.email, 
+                        c.date_added,
+                        COUNT(*) AS email_count,
+                        a.profile_pic
+                    FROM 
+                        contributors c
+                    LEFT JOIN 
+                        author a ON c.email = a.email_verified COLLATE utf8mb4_unicode_ci
+                    WHERE 
+                        a.status = 1
+                        AND c.date_added BETWEEN '{$firstDayOfMonth}' AND '{$lastDayOfMonth}'
+                    GROUP BY 
+                        a.author_id, a.first_name, a.last_name, a.email
+                    HAVING 
+                        email_count > 0
+                    ORDER BY 
+                        email_count DESC
+                    LIMIT 5";
+                
             $results = execute_query($sql);
     
-            if (!empty($results)) {
+            if ($results !== false) {
                 $data['top5contributorslist'] = $results;
                 return $data;
             } else {
-                $randomNames = getRandomNamesFromPastContributors();
-                $data['top5contributorslist'] = $randomNames;
-                return $data;
+                return array();
             }
         }
     }
-    
-    function getRandomNamesFromPastContributors() {
-        $sql = "SELECT firstname, lastname, 0 AS email_count, '' AS profile_pic FROM contributors ORDER BY RAND() LIMIT 5";
-        $randomNames = execute_query($sql);
-        
-        return $randomNames;
-    }    
 
     if (!function_exists('get_top5reviewer_list')) {
         function get_top5reviewer_list() {
