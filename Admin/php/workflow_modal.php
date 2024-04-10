@@ -25,6 +25,10 @@ $journal_id = $articledata[0]->journal_id;
 $issuelist = get_issues_list($journal_id);
 ?>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.4/mammoth.browser.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/vfs_fonts.js"></script>
+
 <!-- Add Discussion Modal -->
 <div class="modal fade" id="addDiscussionModal" tabindex="-1" aria-hidden="true">
     <form id="addModalForm1">
@@ -849,7 +853,7 @@ $issuelist = get_issues_list($journal_id);
                         <div class="row mb-2">
                             <div class="col-md-12 mb-2" id="divproductionfile">
                                 <label for="xproductionfile" class="form-label">Upload File</label>
-                                <input class="form-control" type="file" id="productionfile" accept=".pdf" />
+                                <input class="form-control" type="file" id="productionfile" accept=".pdf, .docx" />
                             </div>
                         </div>
                     <hr>
@@ -1726,27 +1730,53 @@ function uploadProductionFiles() {
     formData.append('article_id', articleId);
     formData.append('fromuser', fromuser);
     formData.append('productionfiletype', productionfileFiletype);
-    formData.append('productionfile', productionfileFile);
-    formData.append('action', 'uploadproductionfile');
 
-    console.log(productionfileFiletype);
-    console.log(productionfileFile);
-    $.ajax({
-        url: "../php/function/wf_modal_function.php",
-        type: "POST",
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function (response) {
-            console.log('Upload file successfully.');
-            console.log(response);
-            location.reload();
-            $('#sloading').toggle();
-        },
-        error: function (xhr, status, error) {
-            console.error(xhr, status, error);
-        }
-    });
+    var reader = new FileReader();
+    reader.onload = function(event) {
+        var arrayBuffer = event.target.result;
+        mammoth.convertToHtml({arrayBuffer: arrayBuffer})
+            .then(function(result){
+                var html = result.value;
+                var pdfDoc = {
+                    content: [{
+                        text: html,
+                        style: 'body'
+                    }],
+                    styles: {
+                        body: {
+                            fontSize: 12
+                        }
+                    }
+                };
+                
+                pdfMake.createPdf(pdfDoc).getBlob(function(blob) {
+                    console.log(blob);
+                    formData.append('productionfile', blob);
+                    formData.append('action', 'uploadproductionfile');
+
+                    $.ajax({
+                        url: "../php/function/wf_modal_function.php",
+                        type: "POST",
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        success: function (response) {
+                            console.log('Upload file successfully.');
+                            console.log(response);
+                            location.reload();
+                            $('#sloading').toggle();
+                        },
+                        error: function (xhr, status, error) {
+                            console.error(xhr, status, error);
+                        }
+                    });
+                });
+            })
+            .catch(function(err){
+                console.error(err);
+            });
+    };
+    reader.readAsArrayBuffer(productionfileFile);
 }
 
 function updateProductionCheckedFiles() {
@@ -1870,7 +1900,5 @@ function acceptReviewerAnswer() {
         }
     });
 }
-
-
 </script>
 
