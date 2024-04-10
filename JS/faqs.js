@@ -151,6 +151,7 @@ document.addEventListener('DOMContentLoaded', function () {
     showContainerFromHash();
 
     const faqToggles = document.querySelectorAll('.faq-toggle');
+    const scrollBtns = document.querySelectorAll('.last');
     faqToggles.forEach(function (toggle) {
         toggle.addEventListener('click', function () {
             var targetId = toggle.getAttribute('data-target');
@@ -169,6 +170,10 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById(targetId + '-banner').style.display = 'flex';
         });
     });
+    scrollBtns.forEach(function (toggle) {
+        toggle.addEventListener('click', function (){
+        document.querySelector("main").scrollIntoView({ behavior: "smooth" });
+    })});
     window.addEventListener('hashchange', function () {
         showContainerFromHash();
     });

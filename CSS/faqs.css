@@ -5,7 +5,10 @@
 	display: flex;
 	justify-content: space-between;
 }
-
+.banner h1{
+    font-size: 3em;
+    margin-bottom: 0.5em;
+}
 .banner .content {
     display: flex;
     flex-direction: column;
@@ -29,9 +32,11 @@
     color: #E56F1F;
     font-weight: 600;
     text-align: left;
-    padding: 6px 0;
+    padding: 12px 0;
+    cursor: pointer !important;
     /* border-radius: 20px; */
     /* padding: 0.5em 1em; */
+    
 }
   
 .card-custom {
