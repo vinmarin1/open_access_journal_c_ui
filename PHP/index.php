@@ -479,7 +479,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <!-- <script src="../JS/reusable-header.js"></script> -->
+  <script src="../JS/reusable-header.js"></script>
   <script src="../JS/home-recommended-api.js"></script>
   <script src="../JS/recently-added-api.js"></script>
   <script src="../JS/most-downloaded-api.js"></script>

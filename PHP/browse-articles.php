@@ -172,9 +172,49 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../JS/reusable-header.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script>
+    function includeNavbar() {
+    fetch('../PHP/navbar.php')
+        .then(response => response.text())
+        .then(data => {
+        document.getElementById('navigation-menus-container').innerHTML = data;
+        // Now that the content is loaded, you can attach event listeners or perform other operations as needed
+        // For example, you can attach the notification button click event listener here
+        attachNotificationButtonListener();
+        })
+        .catch(error => console.error('Error loading navbar.php:', error));
+    }
+
+    function attachNotificationButtonListener() {
+    $(document).on('click', '#notification-button', function () {
+        // Send AJAX request to mark notifications as read
+        $.ajax({
+        url: "../PHP/mark_notifications_read.php",
+        type: "POST",
+        data: { author_id: <?php echo $_SESSION['id']; ?> },
+        success: function (response) {
+            console.log("Notifications marked as read:", response);
+            // Update notification count on success
+            $("#notification-count").text("0");
+        },
+        error: function (xhr, status, error) {
+            console.error("Error marking notifications as read:", error);
+        }
+        });
+    });
+    }
+
+    // Call includeNavbar function to load navbar.php content
+    includeNavbar();
+
+
+    </script>
     <!-- <script src="../JS/most-popular-api.js"></script> -->
     <script src="../JS/home-monthly-api.js"></script>
     <?php include '../JS/browse/browse.php'; ?>
+
 
 </body>
 

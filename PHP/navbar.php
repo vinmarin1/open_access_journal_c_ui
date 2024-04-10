@@ -214,30 +214,6 @@ require_once 'dbcon.php';
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
 <script src="../JS/navbar.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script>
-$(document).ready(function () {
-    // Event delegation for notification button click
-    $(document).on('click', '#notification-button', function () {
-        // Send AJAX request to mark notifications as read
-        console.log('Notification button clicked');
-        $.ajax({
-            url: "../PHP/mark_notifications_read.php",
-            type: "POST",
-            data: { author_id: <?php echo $_SESSION['id']; ?> },
-            success: function (response) {
-                console.log("Notifications marked as read:", response);
-                // Update notification count on success
-                $("#notification-count").text("0");
-            },
-            error: function (xhr, status, error) {
-                console.error("Error marking notifications as read:", error);
-            }
-        });
-    });
-});
 
-
-</script>
 </body>
 </html>
