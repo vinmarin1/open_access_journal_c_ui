@@ -335,7 +335,7 @@ require_once 'dbcon.php';
                 ORDER BY 
                     email_count DESC
                 LIMIT 5;";
-                                        
+                                
             $results = execute_query($sql);
     
             if (!empty($results)) {
@@ -350,19 +350,7 @@ require_once 'dbcon.php';
     }
     
     function getRandomNamesFromPastContributors() {
-        $sql = "SELECT 
-                c.firstname, 
-                c.lastname,
-                a.profile_pic,
-                0 AS email_count
-            FROM 
-                contributors c
-            LEFT JOIN 
-                author a ON c.email = a.email_verified COLLATE utf8mb4_unicode_ci
-            ORDER BY 
-                RAND() 
-            LIMIT 5;";
-            
+        $sql = "SELECT firstname, lastname, 0 AS email_count, '' AS profile_pic FROM contributors ORDER BY RAND() LIMIT 5";
         $randomNames = execute_query($sql);
         
         return $randomNames;
