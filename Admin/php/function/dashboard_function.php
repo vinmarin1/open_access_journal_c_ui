@@ -327,7 +327,7 @@ require_once 'dbcon.php';
                 FROM 
                     contributors c
                 LEFT JOIN 
-                    author a ON c.email = a.verified_email
+                    author a ON c.email = a.email_verified COLLATE utf8mb4_unicode_ci
                 WHERE 
                     c.date_added BETWEEN '{$firstDayOfMonth}' AND '{$lastDayOfMonth}'
                 GROUP BY 
