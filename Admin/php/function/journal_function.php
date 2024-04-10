@@ -66,6 +66,7 @@ if (!function_exists('get_journal_list')) {
 
     function addRecord() {
         try {
+            $journalId = $_POST['journal_id'];
             $journal = $_POST['journal'];
             $journal_title = $_POST['journal_title'];
             $editorial = $_POST['editorial'];
@@ -114,33 +115,57 @@ if (!function_exists('get_journal_list')) {
     }    
     
     function updateJournalData() {
-        $journalId = $_POST['journal_id'];
-        $updatedData = $_POST['updated_data'];
+        try {
+            if (!isset($_POST['journal_id']) || 
+                !isset($_POST['journal']) || 
+                !isset($_POST['journal_title']) || 
+                !isset($_POST['editorial']) || 
+                !isset($_POST['description']) || 
+                !isset($_POST['subject_areas']) ||
+                !isset($_FILES['journalimage'])) {
+                throw new Exception("Missing required fields.");
+            }
     
-        $query = "UPDATE journal 
-                    SET journal = ?, journal_title = ?, editorial = ?, description = ?, subject_areas = ?
-                    WHERE journal_id = ?";
-        
-        $pdo = connect_to_database();
+            $journalId = $_POST['journal_id'];
+            $journal = $_POST['journal'];
+            $journal_title = $_POST['journal_title'];
+            $editorial = $_POST['editorial'];
+            $description = $_POST['description'];
+            $subject_areas = $_POST['subject_areas'];
+            $uploadPath = "../../../Files/journal-image/";
     
-        $stm = $pdo->prepare($query);   
-        $check = $stm->execute([
-            $updatedData['journal'],
-            $updatedData['journal_title'],
-            $updatedData['editorial'],
-            $updatedData['description'],
-            $updatedData['subject_areas'],
-            $journalId
+            $files = $_FILES['journalimage'];
+            $imageName = basename($files['name']);
 
-        ]);
+            $imageFileType = strtolower(pathinfo($imageName, PATHINFO_EXTENSION));
+            $journalimage = $uploadPath . $imageName;
+            
+            $allowedFileTypes = array('jpg', 'jpeg', 'png', 'gif');
+       
+            if (!in_array($imageFileType, $allowedFileTypes)) {
+                throw new Exception("Invalid file type ({$imageFileType})");
+            }
     
-        header('Content-Type: application/json');
-    
-        if ($check !== false) {
-            echo json_encode(['status' => true, 'message' => 'Journal data updated successfully']);
-        } else {
-            echo json_encode(['status' => false, 'message' => 'Failed to update journal data']);
+            if (!move_uploaded_file($files["tmp_name"], $journalimage)) {
+                throw new Exception('Failed to move uploaded file.');
+            }
+
+            $query = "UPDATE journal 
+            SET journal = ?, journal_title = ?, editorial = ?, description = ?, subject_areas = ?, image = ?
+            WHERE journal_id = ?";
+
+            $result = execute_query($query, [$journal, $journal_title, $editorial, $description, $subject_areas, $imageName, $journalId], true);
+        
+            if ($result !== true) {
+                echo json_encode(['status' => true, 'message' => 'Record updated successfully']);
+            } else {
+                throw new Exception('Failed to update record');
+            }
+        } catch (Exception $e) {
+            echo json_encode(['status' => false, 'message' => $e->getMessage()]);
+            error_log($e->getMessage(), 0);
         }
+    
     }
 
     function archiveJournal()
