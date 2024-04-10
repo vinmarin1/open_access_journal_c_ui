@@ -351,17 +351,18 @@ require_once 'dbcon.php';
     
     function getRandomNamesFromPastContributors() {
         $sql = "SELECT 
-                    c.firstname, 
-                    c.lastname,
-                    a.profile_pic,
-                    COUNT(*) AS email_count
-                FROM 
-                    contributors c
-                LEFT JOIN 
-                    author a ON c.email = a.verified_email
-                ORDER BY 
-                    RAND() 
-                LIMIT 5";
+                c.firstname, 
+                c.lastname,
+                a.profile_pic,
+                0 AS email_count
+            FROM 
+                contributors c
+            LEFT JOIN 
+                author a ON c.email = a.email_verified COLLATE utf8mb4_unicode_ci
+            ORDER BY 
+                RAND() 
+            LIMIT 5;";
+            
         $randomNames = execute_query($sql);
         
         return $randomNames;
