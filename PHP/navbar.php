@@ -1,3 +1,4 @@
+
 <?php 
 
 session_start();
@@ -10,29 +11,15 @@ require_once 'dbcon.php';
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php include('./meta.php'); ?>
-    <title>Navbars</title>
-    <link rel="stylesheet" href="../CSS/navbar.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+<?php include('./meta.php'); ?>
+<title>Navbars</title>
+<link rel="stylesheet" href="../CSS/navbar.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+   
 </head>
 <body>
-<script>
 
-// Enable pusher logging - don't include this in production
-Pusher.logToConsole = true;
-
-var pusher = new Pusher('cabcad916f55a998eaf5', {
-  cluster: 'ap1'
-});
-
-var channel = pusher.subscribe('my-channel');
-channel.bind('my-event', function(data) {
-  alert(JSON.stringify(data));
-  console.log("Notif");
-});
-</script>
 <nav class="navbar navbar-expand-xl" style="padding:4px 3%" id="navbar-container" >
   <div class="container-fluid">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="background-color: white; font-size:10px;">
@@ -103,127 +90,116 @@ channel.bind('my-event', function(data) {
       </div>
       </div>
 
-      <?php
-if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-$author_id = $_SESSION['id'];
+<?php
+  if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+    $author_id = $_SESSION['id'];
 
-// Define formatTimeElapsed function
-function formatTimeElapsed($timeElapsed) {
-    if ($timeElapsed < 60) {
-        return $timeElapsed . ' seconds ago';
-    } elseif ($timeElapsed < 3600) {
-        $minutes = floor($timeElapsed / 60);
-        return $minutes . ' minute' . ($minutes > 1 ? 's' : '') . ' ago';
-    } elseif ($timeElapsed < 86400) {
-        $hours = floor($timeElapsed / 3600);
-        return $hours . ' hour' . ($hours > 1 ? 's' : '') . ' ago';
-    } else {
-        $days = floor($timeElapsed / 86400);
-        return $days . ' day' . ($days > 1 ? 's' : '') . ' ago';
-    }
-}
-
-// Notification button and count
-echo '
-<div class="btn-group">
-    <button type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" id="notification-button">
-        <i class="fas fa-bell"></i>';
-
-$sqlNotif = "SELECT n.`article_id`, n.`author_id`, n.`admin`, n.`title`, n.`status`, n.`read`, n.`description`, n.`created`, a.`author_id` AS `article_author_id`
-             FROM `notification` n
-             JOIN `article` a ON n.`article_id` = a.`article_id`
-             WHERE n.`author_id` = :author_id AND n.`read` = 1 AND n.`admin` = 0
-             ORDER BY n.`created` DESC";  // Order by created column in descending order
-$sqlNotifRun = database_run($sqlNotif, array(':author_id' => $author_id));
-
-if ($sqlNotifRun !== false) {
-    $notificationCount = count($sqlNotifRun);
-    echo '<span id="notification-count" style="width: 10px; height: 10px; font-size: 10px; text-align: center; display: inline-block; line-height: 5px;">' . $notificationCount . '</span>';
-} else {
-    echo '<span id="notification-count" style="display: none"></span>';
-}
-
-echo '
-    </button>
-    <ul class="dropdown-menu" style="margin-left: -140px;
-    overflow-y: auto;
-    width: 20em;
-    height: 26em;">';
-
-// Notification items
-if ($sqlNotifRun !== false) {
-    foreach ($sqlNotifRun as $notif) {
-        // Calculate time elapsed
-        $createdTimestamp = strtotime($notif->created);
-        $currentTime = time();
-        $timeElapsed = $currentTime - $createdTimestamp;
-        $elapsedText = formatTimeElapsed($timeElapsed); // Use the custom formatTimeElapsed function
-
-        // Determine the article link based on conditions
-        if ($notif->title === "Send to Review" && $notif->article_author_id !== $author_id) {
-            $articleLink = './review-process.php?id=' . $notif->article_id;
+    // Define formatTimeElapsed function
+    function formatTimeElapsed($timeElapsed) {
+        if ($timeElapsed < 60) {
+            return $timeElapsed . ' seconds ago';
+        } elseif ($timeElapsed < 3600) {
+            $minutes = floor($timeElapsed / 60);
+            return $minutes . ' minute' . ($minutes > 1 ? 's' : '') . ' ago';
+        } elseif ($timeElapsed < 86400) {
+            $hours = floor($timeElapsed / 3600);
+            return $hours . ' hour' . ($hours > 1 ? 's' : '') . ' ago';
         } else {
-            $articleLink = './submitted-article.php?id=' . $notif->article_id;
+            $days = floor($timeElapsed / 86400);
+            return $days . ' day' . ($days > 1 ? 's' : '') . ' ago';
         }
-
-        echo '
-        <li style="padding: 8px;
-            list-style-type: none;
-            font-size: 12px;
-            display: block;">
-            <p class="d-flex flex-column "> '  . $notif->title . '
-                <span style="
-                    margin-top: 15px;
-                    margin-bottom: -15px;
-                    font-weight: normal;">Title: </p>
-                <a id="inviteMessage" style="text-decoration: none;
-                    color: gray;
-                    display: block;
-                    padding-bottom: 5px;" href="' . $articleLink . '">' . $notif->description . '</a>
-                <span style="font-weight: bold;
-                    color: #004e98;">' . $elapsedText . '</span>
-            </li>';
     }
-} else {
-    echo '<p class="h6" style="color: gray; font-weight: normal; margin-left: 10px" >0 Notification</p>';
-}
+    
+  // Notification button and count
+  echo '
+    <div class="btn-group">
+        <button type="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" id="notification-button">
+            <i class="fas fa-bell"></i>';
 
+    // SQL to count new notifications
+    $sqlCountNotif = "SELECT COUNT(*) AS notif_count FROM `notification` WHERE `author_id` = :author_id AND `read_user` = 0";
+    $paramsCount = array(':author_id' => $author_id);
+    $countResult = database_run($sqlCountNotif, $paramsCount);
 
-    // User profile dropdown
-    $sqlUserName = "SELECT first_name FROM author WHERE author_id = :author_id";
-    $sqlRunName = database_run($sqlUserName, array(':author_id' => $author_id));
+    if ($countResult !== false && isset($countResult[0]->notif_count)) {
+        $notificationCount = $countResult[0]->notif_count;
+        echo '<span id="notification-count" style="width: 10px; height: 10px; font-size: 10px; text-align: center; display: inline-block; line-height: 5px;">' . $notificationCount . '</span>';
+    } else {
+        echo '<span id="notification-count" style="display: none"></span>';
+    }
 
-    if ($sqlRunName !== false && isset($sqlRunName[0]->first_name)) {
-        $userName = ucfirst($sqlRunName[0]->first_name);
-        echo '
-        </ul>
-    </div>
-    <div class="profile px-4">
-        <a id="user-profile" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            ' . $userName . '
-        </a>
-        <li class="dropdown" style="list-style-type: none;">
-            <ul class="dropdown-menu" style="width: 230px; margin-left: -120px; margin-top: 20px">';
+    echo '
+        </button>
+        <ul class="dropdown-menu" style="margin-left: -140px; overflow-y: auto; width: 20em; height: 26em;">';
 
-        // User dashboard links based on role
-        if ($_SESSION['role'] === 'Admin') {
-            if (!isset($_SESSION['journal_id']) || $_SESSION['journal_id'] === null || $_SESSION['journal_id'] == 0) {
-                echo '<li><a href="../Admin/php/dashboard.php" class="dropdown-item" style="color: black;">Admin Dashboard</a></li>';
+    // SQL to fetch notification list
+    $sqlNotif = "SELECT * FROM `notification` WHERE `author_id` = :author_id ORDER BY `created` DESC";
+    $paramsNotif = array(':author_id' => $author_id);
+    $sqlNotifRun = database_run($sqlNotif, $paramsNotif);
+
+    // Notification items
+    if ($sqlNotifRun !== false) {
+        foreach ($sqlNotifRun as $notif) {
+            // Calculate time elapsed
+            $createdTimestamp = strtotime($notif->created);
+            $currentTime = time();
+            $timeElapsed = $currentTime - $createdTimestamp;
+            $elapsedText = formatTimeElapsed($timeElapsed); // Use the custom formatTimeElapsed function
+
+            // Determine the article link based on conditions
+            if ($notif->title === "Send to Review" && $notif->article_id !== $author_id) {
+                $articleLink = './review-process.php?id=' . $notif->article_id;
             } else {
-                echo '<li><a href="../Admin/php/editordashboard.php" class="dropdown-item" style="color: black;">Editor in Chief Dashboard</a></li>';
+                $articleLink = './submitted-article.php?id=' . $notif->article_id;
             }
-        }
 
-        echo '
-            <li><a href="user-dashboard.php" class="dropdown-item" style="color: black;">My Profile</a></li>
-            <li><a href="author-dashboard.php" class="dropdown-item" style="color: black;">My Contributions</a></li>
-            <li><a href="change_pass.php" class="dropdown-item" style="color: black;">Update Password</a></li>
-            <li><a class="dropdown-item" href="../PHP/logout.php" style="color: black;">Log-out</a></li> 
-            </ul>
-        </li>
-    </div>';
+            echo '
+            <li style="padding: 8px; list-style-type: none; font-size: 12px; display: block;">
+                <p class="d-flex flex-column "> '  . $notif->title . '
+                    <span style="margin-top: 15px; margin-bottom: -15px; font-weight: normal;">Title: </p>
+                    <a id="inviteMessage" style="text-decoration: none; color: gray; display: block; padding-bottom: 5px;" href="' . $articleLink . '">' . $notif->description . '</a>
+                    <span style="font-weight: bold; color: #004e98;">' . $elapsedText . '</span>
+            </li>';
+        }
+    } else {
+        echo '<p class="h6" style="color: gray; font-weight: normal; margin-left: 10px" >0 Notification</p>';
     }
-}
+
+        // User profile dropdown
+        $sqlUserName = "SELECT first_name FROM author WHERE author_id = :author_id";
+        $sqlRunName = database_run($sqlUserName, array(':author_id' => $author_id));
+
+        if ($sqlRunName !== false && isset($sqlRunName[0]->first_name)) {
+            $userName = ucfirst($sqlRunName[0]->first_name);
+            echo '
+            </ul>
+        </div>
+        <div class="profile px-4">
+            <a id="user-profile" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                ' . $userName . '
+            </a>
+            <li class="dropdown" style="list-style-type: none;">
+                <ul class="dropdown-menu" style="width: 230px; margin-left: -120px; margin-top: 20px">';
+
+            // User dashboard links based on role
+            if ($_SESSION['role'] === 'Admin') {
+                if (!isset($_SESSION['journal_id']) || $_SESSION['journal_id'] === null || $_SESSION['journal_id'] == 0) {
+                    echo '<li><a href="../Admin/php/dashboard.php" class="dropdown-item" style="color: black;">Admin Dashboard</a></li>';
+                } else {
+                    echo '<li><a href="../Admin/php/editordashboard.php" class="dropdown-item" style="color: black;">Editor in Chief Dashboard</a></li>';
+                }
+            }
+
+            echo '
+                <li><a href="user-dashboard.php" class="dropdown-item" style="color: black;">My Profile</a></li>
+                <li><a href="author-dashboard.php" class="dropdown-item" style="color: black;">My Contributions</a></li>
+                <li><a href="change_pass.php" class="dropdown-item" style="color: black;">Update Password</a></li>
+                <li><a class="dropdown-item" href="../PHP/logout.php" style="color: black;">Log-out</a></li> 
+                </ul>
+            </li>
+        </div>';
+        }
+    }
 ?>
 
 </nav>
@@ -238,5 +214,30 @@ if ($sqlNotifRun !== false) {
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
 <script src="../JS/navbar.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+$(document).ready(function () {
+    // Event delegation for notification button click
+    $(document).on('click', '#notification-button', function () {
+        // Send AJAX request to mark notifications as read
+        console.log('Notification button clicked');
+        $.ajax({
+            url: "../PHP/mark_notifications_read.php",
+            type: "POST",
+            data: { author_id: <?php echo $_SESSION['id']; ?> },
+            success: function (response) {
+                console.log("Notifications marked as read:", response);
+                // Update notification count on success
+                $("#notification-count").text("0");
+            },
+            error: function (xhr, status, error) {
+                console.error("Error marking notifications as read:", error);
+            }
+        });
+    });
+});
+
+
+</script>
 </body>
 </html>
