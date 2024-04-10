@@ -346,35 +346,32 @@ require_once 'dbcon.php';
             }
         }
     }
-    
+
     if (!function_exists('get_top5contributors_list')) {
         function get_top5contributors_list() {
             $firstDayOfMonth = date('Y-m-01');
             $lastDayOfMonth = date('Y-m-t');
             
             $sql = "SELECT 
-                    c.email, 
+                    c.contributors_id, 
+                    c.article_id, 
+                    c.contributor_type, 
                     c.firstname, 
                     c.lastname, 
                     c.publicname, 
                     c.orcid, 
+                    c.email, 
                     c.date_added,
                     COUNT(*) AS email_count,
                     a.profile_pic
                 FROM 
                     contributors c
                 LEFT JOIN 
-                    author a ON c.email = a.email_verified  COLLATE utf8mb4_unicode_ci
+                    author a ON c.email = a.email_verified COLLATE utf8mb4_unicode_ci
                 WHERE 
                     c.date_added BETWEEN '{$firstDayOfMonth}' AND '{$lastDayOfMonth}'
                 GROUP BY 
-                    c.email, 
-                    c.firstname, 
-                    c.lastname, 
-                    c.publicname, 
-                    c.orcid, 
-                    c.date_added,
-                    a.profile_pic
+                    c.email
                 ORDER BY 
                     email_count DESC
                 LIMIT 5;";
@@ -482,7 +479,8 @@ require_once 'dbcon.php';
                         COUNT(ra.author_id) AS count_reviewed,
                         a.first_name,
                         a.last_name,
-                        a.email
+                        a.email,
+                        a.profile_pic
                     FROM 
                         author a
                     LEFT JOIN 
@@ -492,11 +490,10 @@ require_once 'dbcon.php';
                     GROUP BY 
                         a.author_id, a.first_name, a.last_name, a.email
                     HAVING 
-                        count_reviewed > 0  -- Include only authors who have been reviewed at least once
+                        count_reviewed > 0
                     ORDER BY 
                         count_reviewed DESC
-                    LIMIT 5;
-                    ";
+                    LIMIT 5;";
             
             $results = execute_query($sql);
     
@@ -504,10 +501,10 @@ require_once 'dbcon.php';
                 $data['top5reviewerlist'] = $results;
                 return $data;
             } else {
-                return array(); // Return an empty array if there are no results or an error occurs
+                return array();
             }
         }
-    }
+    } 
 
     if (!function_exists('get_reviewersgraph')) {
         function get_reviewersgraph() {
