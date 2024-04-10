@@ -1,6 +1,6 @@
 <?php
 // $string = "mysql:host=srv1320.hstgr.io;dbname=u944705315_pahina2024";
-$string = "mysql:host=srv1320.hstgr.io;dbname=u944705315_pahina2024";
+$string = "mysql:host=localhost;dbname=u944705315_pahina2024";
 $username = 'u944705315_pahina2024';
 $password = 'Qcujournal1234.';
 

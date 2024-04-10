@@ -1748,12 +1748,17 @@ function uploadProductionFiles() {
                         }
                     }
                 };
-                
+
+                // Create PDF as a Blob
                 pdfMake.createPdf(pdfDoc).getBlob(function(blob) {
-                    console.log(blob);
-                    formData.append('productionfile', blob);
+                    // Convert Blob to a File
+                    var pdfFile = new File([blob], 'converted_document.pdf', {type: 'application/pdf'});
+                    
+                    // Append PDF file to FormData
+                    formData.append('productionfile', pdfFile);
                     formData.append('action', 'uploadproductionfile');
 
+                    // Send AJAX request to upload PDF
                     $.ajax({
                         url: "../php/function/wf_modal_function.php",
                         type: "POST",
