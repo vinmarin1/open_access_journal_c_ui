@@ -490,3 +490,22 @@ table th, table td {
   }
   
   /* PUBLICATION PROCEDURE CSS END*/
+  
+  @media only screen and (max-width: 480px) {
+    .card-custom {
+        min-width: 100% !important;
+    }
+    .banner {
+        flex-direction: column;
+    }
+    .banner .body {
+        padding: 3em 2em;
+    }
+    .banner img {
+        width: 100%;
+        height: 50vh;
+    }
+    .s-1, .s-2 {
+        padding: 1em;
+    }
+  }
