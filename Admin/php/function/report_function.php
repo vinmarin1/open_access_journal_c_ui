@@ -346,32 +346,38 @@ require_once 'dbcon.php';
             }
         }
     }
-
+    
     if (!function_exists('get_top5contributors_list')) {
         function get_top5contributors_list() {
             $firstDayOfMonth = date('Y-m-01');
             $lastDayOfMonth = date('Y-m-t');
             
             $sql = "SELECT 
-                        contributors_id, 
-                        article_id, 
-                        contributor_type, 
-                        firstname, 
-                        lastname, 
-                        publicname, 
-                        orcid, 
-                        email, 
-                        date_added,
-                        COUNT(*) AS email_count
-                    FROM 
-                        contributors
-                    WHERE 
-                        date_added BETWEEN '{$firstDayOfMonth}' AND '{$lastDayOfMonth}'
-                    GROUP BY 
-                        email
-                    ORDER BY 
-                        email_count DESC
-                    LIMIT 5;";
+                    c.email, 
+                    c.firstname, 
+                    c.lastname, 
+                    c.publicname, 
+                    c.orcid, 
+                    c.date_added,
+                    COUNT(*) AS email_count,
+                    a.profile_pic
+                FROM 
+                    contributors c
+                LEFT JOIN 
+                    author a ON c.email = a.email_verified  COLLATE utf8mb4_unicode_ci
+                WHERE 
+                    c.date_added BETWEEN '{$firstDayOfMonth}' AND '{$lastDayOfMonth}'
+                GROUP BY 
+                    c.email, 
+                    c.firstname, 
+                    c.lastname, 
+                    c.publicname, 
+                    c.orcid, 
+                    c.date_added,
+                    a.profile_pic
+                ORDER BY 
+                    email_count DESC
+                LIMIT 5;";
                                 
             $results = execute_query($sql);
     
@@ -387,7 +393,7 @@ require_once 'dbcon.php';
     }
     
     function getRandomNamesFromPastContributors() {
-        $sql = "SELECT firstname, lastname,0 AS email_count FROM contributors ORDER BY RAND() LIMIT 5";
+        $sql = "SELECT firstname, lastname, 0 AS email_count, '' AS profile_pic FROM contributors ORDER BY RAND() LIMIT 5";
         $randomNames = execute_query($sql);
         
         return $randomNames;
