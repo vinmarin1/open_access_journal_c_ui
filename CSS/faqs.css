@@ -278,7 +278,8 @@ aside {
 #tutorial-on-review-container h2,
 #templates-for-author-container h2,
 #publication-policy-container h2,
-#frequently-asked-questions-container h2 { 
+#frequently-asked-questions-container h2,
+#tutorial-on-registration-container h2 { 
     color: #285581;
     font-size: 24px;
     font-weight: 600; 
@@ -291,7 +292,8 @@ aside {
 #tutorial-on-publication-container h3,
 #tutorial-on-review-container h3, 
 #templates-for-author-container h3,
-#publication-policy-container h3{
+#publication-policy-container h3,
+#tutorial-on-registration-container h3{
     color: #285581;
     /* font-family: Inter !important; */
 }
@@ -302,7 +304,8 @@ aside {
 #tutorial-on-publication-container h3,
 #tutorial-on-review-container h3,
 #templates-for-author-container h3,
-#publication-policy-container h3 {
+#publication-policy-container h3,
+#tutorial-on-registration-container h3 {
     /* text-transform: uppercase; */
     font-size: 16px;
     font-weight: 700;
@@ -316,7 +319,8 @@ aside {
 #tutorial-on-publication-container,
 #tutorial-on-review-container,
 #templates-for-author-container,
-#publication-policy-container {
+#publication-policy-container,
+#tutorial-on-registration-container {
     /* font-family: Inter; */
     font-size: 14px; 
     font-weight: 400 !important;
