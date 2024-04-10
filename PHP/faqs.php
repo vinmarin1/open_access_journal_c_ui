@@ -32,46 +32,23 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
         </div>
     </div>
 
-    <main class="d-flex flex-column-reverse flex-md-row-reverse gap-2">
-        <aside class="">
-            <div class="menu" id="for-contributors-menu">
-                <!-- <h3 data-target="frequently-asked-questions">Frequently Asked Questions</h3> -->
-                <!-- <h3>For Contributors</h3> -->
-                <ul id="for-contributors">
-                    <li><b>Guidelines</b></li>
-                    <li class="faq-toggle" id="author-guidelines"><a href="guidelines.php#author-guidelines">Author Guidelines</a></li>
-                    <li class="faq-toggle"><a href="guidelines.php#templates-for-author">Templates for Author</a></li>
-                    <li class="faq-toggle"><a href="guidelines.php#publication-policy">Publication Policy</a></li>
-                    <li class="faq-toggle"><a href="guidelines.php#article-submission">Article Submission</a></li>
-                    <li class="faq-toggle"><a href="guidelines.php#peer-review-process">Peer-review Process</a></li>
-                    <li class="faq-toggle" id="become-a-reviewer"><a href="guidelines.php#become-a-reviewer">Become A Reviewer</a></li>
-                    <hr/>
-    
-                    <li><b>Tutorials</b></li>
-                    <li class="faq-toggle" ><a href="tutorials.php#tutorial-on-publication">Tutorial on Publication</a></li>
-                    <li class="faq-toggle"><a href="tutorials.php#tutorial-on-review">Tutorial on Review</a></li>
-                    <hr/>
-                    <!-- <li class="faq-toggle" data-target="frequently-asked-questions">FAQs</li> -->
-                </ul>
-            </div>           
-        </aside>
-        <div class="main " id="frequently-asked-questions-container"> 
-           
-            <div class="content my-3">
-           
-                <div class="category w-100">
-                    <h5>
+    <main class="d-flex gap-2">
+      
+        <div id="frequently-asked-questions-container" style="width:90%" class="mt-4"> 
+            <div class="content">
+                <div class="s-1 category w-100">
+                    <h3>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 15 15"><path fill="#e56f1f" fill-rule="evenodd" d="M.877 7.5a6.623 6.623 0 1 1 13.246 0a6.623 6.623 0 0 1-13.246 0M7.5 1.827a5.673 5.673 0 1 0 0 11.346a5.673 5.673 0 0 0 0-11.346m.75 8.673a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0m-2.2-4.25c0-.678.585-1.325 1.45-1.325s1.45.647 1.45 1.325c0 .491-.27.742-.736 1.025c-.051.032-.111.066-.176.104a5.28 5.28 0 0 0-.564.36c-.242.188-.524.493-.524.961a.55.55 0 0 0 1.1.004a.443.443 0 0 1 .1-.098c.102-.079.215-.144.366-.232c.078-.045.167-.097.27-.159c.534-.325 1.264-.861 1.264-1.965c0-1.322-1.115-2.425-2.55-2.425c-1.435 0-2.55 1.103-2.55 2.425a.55.55 0 0 0 1.1 0" clip-rule="evenodd"/></svg>
                         General Questions
-                    </h5>
+                    </h3>
                     <div id="generalQAs" class="faqs accordion accordion-flush w-100 d-flex flex-column gap-0" id="faqs">
                     </div>
                 </div>
-                <div class="category w-100">
-                    <h5>
+                <div class="s-1 category w-100">
+                    <h3>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 15 15"><path fill="#e56f1f" fill-rule="evenodd" d="M.877 7.5a6.623 6.623 0 1 1 13.246 0a6.623 6.623 0 0 1-13.246 0M7.5 1.827a5.673 5.673 0 1 0 0 11.346a5.673 5.673 0 0 0 0-11.346m.75 8.673a.75.75 0 1 1-1.5 0a.75.75 0 0 1 1.5 0m-2.2-4.25c0-.678.585-1.325 1.45-1.325s1.45.647 1.45 1.325c0 .491-.27.742-.736 1.025c-.051.032-.111.066-.176.104a5.28 5.28 0 0 0-.564.36c-.242.188-.524.493-.524.961a.55.55 0 0 0 1.1.004a.443.443 0 0 1 .1-.098c.102-.079.215-.144.366-.232c.078-.045.167-.097.27-.159c.534-.325 1.264-.861 1.264-1.965c0-1.322-1.115-2.425-2.55-2.425c-1.435 0-2.55 1.103-2.55 2.425a.55.55 0 0 0 1.1 0" clip-rule="evenodd"/></svg>
                         Submitting to Pahina
-                    </h5>
+                    </h3>
                     <div id="submissionQAs" class="faqs accordion accordion-flush w-100 d-flex flex-column gap-0" id="faqs">
                     
                     </div>

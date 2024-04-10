@@ -32,7 +32,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
         </div>
     </div>
 
-    <main class="d-flex flex-column-reverse flex-md-row-reverse gap-2 py-4">
+    <main class="d-flex flex-column-reverse flex-md-row-reverse gap-4 py-4">
         <aside class="">
         <div class="menu" id="for-contributors-menu">
             <!-- <h3>For Contributors</h3> -->
@@ -44,14 +44,14 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 
                 <hr/>
                 <li><b>Guidelines</b></li>
-                <li class="faq-toggle" id="author-guidelines" ><a href="guidelines.php#author-guidelines">Author Guidelines</a></li>
-                <li class="faq-toggle" ><a href="guidelines.php#templates-for-author">Templates for Author</a></li>
-                <li class="faq-toggle"><a href="guidelines.php#publication-policy">Publication Policy</a></li>
-                <li class="faq-toggle"><a href="guidelines.php#article-submission">Article Submission</a></li>
-                <li class="faq-toggle" ><a href="guidelines.php#peer-review-process">Peer-review Process</a></li>
-                <li class="faq-toggle" id="become-a-reviewer" ><a href="guidelines.php#become-a-reviewer">Become A Reviewer</a></li>
+                <li><a href="guidelines.php#author-guidelines">Author Guidelines</a></li>
+                <li><a href="guidelines.php#templates-for-author">Templates for Author</a></li>
+                <li><a href="guidelines.php#publication-policy">Publication Policy</a></li>
+                <li><a href="guidelines.php#article-submission">Article Submission</a></li>
+                <li><a href="guidelines.php#peer-review-process">Peer-review Process</a></li>
+                <li><a href="guidelines.php#become-a-reviewer">Become A Reviewer</a></li>
                 <hr/>
-                <a href="faqs.php"><li class="faq-toggle"><b>FAQs</b></li></a>
+                <a href="faqs.php"><li><b>FAQs</b></li></a>
             </ul>
             </div>           
         </aside>
@@ -105,10 +105,10 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 <h2 style="font-size:32px !important">Submit a Paper</h2>
             </div>
                 <div class="s-1">
-                    <p>Welcome to our Publication Tutorial for Pahina. This guide simplifies the process, 
-                    ensuring a smooth experience for all contributors. Let's make your publication journey hassle-free – get
-                    started now! Begin your submission and share your insights with our scholarly community!</p> 
-                    <li>Before you submit a paper you must register first.  <a href="tutorials.php#tutorial-on-registration">Learn How to register</a></li> 
+                    <p>At Pahina, we value your contributions and are dedicated to facilitating a smooth and rewarding publication journey. To assist you every step of the way, we've curated a comprehensive tutorial to provide clear guidance, ensuring that authors feel confident and empowered throughout their submission experience. Join us in sharing knowledge and advancing scholarship – submit your manuscript today and let's embark on this enriching journey together.</p> 
+                    <ul>
+                        <li>Before you submit a paper you must register first.  <a href="tutorials.php#tutorial-on-registration">Learn How to register</a></li> 
+                    </ul>
                 </div>
                 <div class="s-2">
                     <h3>Submit a Paper</h3>
@@ -201,7 +201,9 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     <div class="s-1">
                         <p>Welcome to our Publication Tutorial for Pahina. This guide simplifies the process, ensuring a smooth experience for all contributors. Let's make your publication journey 
                             hassle-free – get started now! Begin your submission and share your insights with our scholarly community!</p>
+                        <ul>
                             <li>Before you can review, you must register first.  <a href="tutorials.php#tutorial-on-registration">Learn How to register</a></li> 
+                        </ul>
                     </div>
                     <div class="s-2">
                         <h3>Select Article</h3>
@@ -258,9 +260,24 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                         <h2 style="font-size:32px !important">Be a Contributor</h2>
                     </div>
                     <div class="s-1">
-                    <p>Welcome to our Publication Tutorial for Pahina. This guide simplifies the process, 
-                    ensuring a smooth experience for all contributors. Let's make your publication journey hassle-free – get
-                    started now! Begin your submission and share your insights with our scholarly community!</p>
+                  
+                   
+                    <p>Become an integral part of Pahina's scholarly community by exploring various avenues for participation.Whether you're lending your expertise as a reviewer, sharing groundbreaking research as an author, supporting our mission through donations, or actively engaging in scholarly discourse, your efforts are recognized through our <b>contributions points system, badges, and certificates</b>.<br/> Join us in cultivating a culture of knowledge exchange and academic excellence, fostering inclusivity and collaboration across the global academic landscape. Together, let's elevate accessibility and impact within scholarly research through Pahina</p><br/>
+                    <div class="d-flex justify-content-center">
+                        <div class="d-flex flex-column justify-content-between text-center">
+                        <img width="200px" src="../images/thirdd_review_badges.png"/>
+                        <span>Review Badge</span>
+                        </div>
+                        <div class="d-flex flex-column justify-content-between text-center">
+                        <img width="200px" src="../images/third_publication_badges.png"/>
+                        <span>Publication Badge</span>
+                        </div>
+                        <div class="d-flex flex-column justify-content-between text-center">
+                        <img width="166px" src="../images/third_donation_badges.png"/>
+                        <span>Donation Badge</span>
+                        </div>
+                    </div>
+                    
                 </div>
                 <div class="s-2">
                     <h3>Registering with Open Access Journal</h3>

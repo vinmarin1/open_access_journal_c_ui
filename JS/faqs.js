@@ -68,7 +68,7 @@ async function generateQuestions() {
     generalQASContainer.innerHTML = data.faqs.filter(faq => faq.category === 'GENERAL QUESTIONS').map(faq => `
         <div class="faq accordion-item">
             <h4 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${faq.id}" aria-expanded="false" aria-controls="collapse${faq.id}">
+                <button class="accordion-button collapsed p-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${faq.id}" aria-expanded="false" aria-controls="collapse${faq.id}">
                     <span>${faq.question}</span>
                 </button>
             </h4>
@@ -85,7 +85,7 @@ async function generateQuestions() {
     submissionQASContainer.innerHTML = data.faqs.filter(faq => faq.category === 'SUBMITTING ARTICLES').map(faq => `
         <div class="faq accordion-item">
             <h4 class="accordion-header">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${faq.id}" aria-expanded="false" aria-controls="collapse${faq.id}">
+                <button class="accordion-button collapsed p-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${faq.id}" aria-expanded="false" aria-controls="collapse${faq.id}">
                     <span>${faq.question}</span>
                 </button>
             </h4>
