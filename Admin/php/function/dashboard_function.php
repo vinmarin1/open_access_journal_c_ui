@@ -377,11 +377,10 @@ require_once 'dbcon.php';
                     GROUP BY 
                         a.author_id, a.first_name, a.last_name, a.email
                     HAVING 
-                        count_reviewed > 0  -- Include only authors who have been reviewed at least once
+                        count_reviewed > 0
                     ORDER BY 
                         count_reviewed DESC
-                    LIMIT 5;
-                    ";
+                    LIMIT 5;";
             
             $results = execute_query($sql);
     
