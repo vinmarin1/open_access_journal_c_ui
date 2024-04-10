@@ -422,7 +422,7 @@ $donationDataJson = json_encode($donationData);
                                         foreach ($top5downloadedlist['top5downloadedlist'] as $top5downloadedlistval) {
                                             $shortTitle = strlen($top5downloadedlistval->title) > 50 ? substr($top5downloadedlistval->title, 0, 50) . '...' : $top5downloadedlistval->title;
                                             $escapedTitle = htmlspecialchars($top5downloadedlistval->title);
-                                            $articleID = $top5downloadedlistval->title;
+                                            $articleID = $top5downloadedlistval->article_id;
                                             $titleHtml = "<a href='workflow.php?aid=$articleID' target='_blank' title='$escapedTitle'>$shortTitle</a>";
                                     ?>
                                             <ul class="p-0 m-0">
