@@ -145,43 +145,51 @@ $journallist = get_journal_list($journal_id);
     }
 
     function saveChanges() {
-        $('#sloading').toggle();
-        console.log('Save button clicked');
-        
-        var journalId = $('#xjournalid').val();
-        var updatedData = {
-            journal: $('#xjournal').val(),
-            journal_title: $('#xjournal_title').val(),
-            editorial: $('#xeditorial').val(),
-            description: $('#xdescription').val(),
-            subject_areas: $('#xsubject_areas').val(),
-        };
+        var form = document.getElementById('updateModalForm');
+        if (form) { 
+            var formData = new FormData();
+            formData.append('journal_id', $('#xjournalid').val());
+            formData.append('journal', $('#xjournal').val());
+            formData.append('journal_title', $('#xjournal_title').val());
+            formData.append('editorial', $('#xeditorial').val());
+            formData.append('description', $('#xdescription').val());
+            formData.append('subject_areas', $('#xsubject_areas').val());
+            formData.append('journalimage', $('#xupload_image')[0].files[0]);
+            formData.append('action', 'update');
 
-        $.ajax({
-            type: 'POST',
-            url: '../php/function/journal_function.php',
-            data: {
-                action: 'update',
-                journal_id: journalId,
-                updated_data: updatedData
-            },
-            dataType: 'json',
-            success: function (response) {
-                console.log('Update Response:', response);
-
-                if (response.status === true) {
-                    $('#sloading').toggle();
-                    alert("Record updated successfully");
-                    $('#updateModal').modal('hide');
-                    location.reload();
-                } else {
-                    console.error('Error updating journal data:', response.message);
-                    alert("Failed to update record. Please try again.");
-                }
-            },
-        });
+            if (form.checkValidity()) {
+                $('#sloading').show();
+                $.ajax({
+                    url: "../php/function/journal_function.php",
+                    method: "POST",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (data) {
+                        var response = JSON.parse(data);
+                        $('#sloading').hide();
+                        if (response.status) {
+                            alert("Record updated successfully");
+                            $('#updateModal').modal('hide');
+                            location.reload();
+                        } else {
+                            alert('Failed to update record: ' + response.message);
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("AJAX request failed:", error);
+                        $('#sloading').hide();
+                        alert("Failed to update record. Please try again.");
+                    }
+                });
+            } else {
+                form.reportValidity();
+            }
+        } else {
+            console.error("Form with ID 'updateModalForm' not found.");
+        }
     }
-    
+
     function archiveJournal(journalId, journal, journal_title) {
         $('#archiveModal').modal('show');
         $('#archiveModalTitle').text('Archive Journal');
@@ -274,6 +282,7 @@ $journallist = get_journal_list($journal_id);
 
      <!-- Update Modal -->
      <div class="modal fade" id="updateModal" tabindex="-1" aria-hidden="true">
+     <form id="updateModalForm">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -306,12 +315,18 @@ $journallist = get_journal_list($journal_id);
                                 <textarea class="form-control" id="xdescription" rows="9"></textarea>
                             </div>
                         </div>
-                        <div class="row mb-2">
+                    <div class="row mb-2">
                         <div class="col-md-12">
                                 <label for="xsubject_areas" class="form-label">Subject Areas</label>
                                 <input type="text" id="xsubject_areas" class="form-control" placeholder="Subject Areas" />
                             </div>
                         </div>
+                    <div class="row mb-2">
+                    <div class="col-md-12 mb-2" id="xUpload_image">
+                            <label for="formFileAddFiles" class="form-label">Upload Image</label>
+                            <input class="form-control" type="file" id="xupload_image" />
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
@@ -319,6 +334,7 @@ $journallist = get_journal_list($journal_id);
                 </div>
             </div>
         </div>
+    </form>
     </div>
 
     <!-- Archive Modal -->
