@@ -40,10 +40,10 @@
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill="currentColor" fill-rule="evenodd" d="m8 8.707l3.646 3.647l.708-.707L8.707 8l3.647-3.646l-.707-.708L8 7.293L4.354 3.646l-.707.708L7.293 8l-3.646 3.646l.707.708z" clip-rule="evenodd"/></svg>
         </button>
       </div>
-      <select class="form-control">
+      <select class="form-control d-none">
         <option value="APA">APA citation</option>
-        <option value="MLA">MLA citation</option>
-        <option value="Chicago">Chicago citation</option>
+        <!-- <option value="MLA">MLA citation</option>
+        <option value="Chicago">Chicago citation</option> -->
       </select>
       <div class="" id="citation-content">
 
