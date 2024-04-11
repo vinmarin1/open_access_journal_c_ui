@@ -275,9 +275,29 @@ function renderArticleDetails(data) {
       
       return authorsArray;
     }
-    
+    function formatInlineContributors(authors) {
+      let authorsArray = authors ? authors.split(";") : null;
+          
+      if (!authorsArray) {
+        return "";
+      }
+          
+      if (authorsArray.length != 0 && authorsArray.length <= 2) {
+        authorsArray = authorsArray
+          .map((author, index, array) => (index === array.length - 1 && array.length > 1 ? `& ${author.trim().split(",")[0]}` : author.trim().split(",")[0]))
+          .join(", ");
+      } else if (authorsArray.length > 2) {
+        authorsArray = authorsArray
+          .map((author, index, array) => (index === 1 && array.length > 2 ? " et al." : index <= 1 ? author.trim().split(",")[0] : null))
+          .filter(author => author !== null)
+          .join(", ");
+      }
+          
+      return authorsArray;
+    }
     
     let contributors_full = formatContributors(item.contributors_A);
+    let contributors_lastname = formatInlineContributors(item.contributors_B);
     let contributors_initial = formatContributors(item.contributors_B);
     
     const citationSelect = document.querySelector("select");
@@ -310,6 +330,14 @@ function renderArticleDetails(data) {
                       + ` https://qcuj.online/PHP/article-details.php?articleId=${item.article_id}`
               }
             </p>
+            <span>
+            ${
+              item.contributors != null ?
+              `${contributors_lastname} (${item.publication_date.split(" ")[3]})`:
+              `"${item.title}" (${item.publication_date.split(" ")[3]})`
+              
+            }
+            </span>
           </li>
         </ul>
       `;
@@ -330,6 +358,17 @@ function renderArticleDetails(data) {
           }
           </p>
         </li>
+        <li>
+          <h4 class="small"><b>Inline Citation</b></h4>
+          <span class="cited" id="cited" style="font-family:Arial,sans-serif;">
+          ${
+            item.contributors != null ?
+            `(${contributors_lastname}, ${item.publication_date.split(" ")[3]})`:
+            `("${item.title}", ${item.publication_date.split(" ")[3]})`
+            
+          }
+          </span>
+        </li>
       </ul>
     `;
 
@@ -338,7 +377,7 @@ function renderArticleDetails(data) {
     const inlineBtn = document.getElementById("inline-btn")
     
     copyBtn.addEventListener("click",()=> {
-      navigator.clipboard.writeText(citationContent.querySelector("p").innerHTML);
+      navigator.clipboard.writeText(citationContent.querySelector("p").innerHTML.trim());
       handleDownloadLog(item.article_id,"citation");
       Swal.fire({
         html: '<h4 style="color: var(--main, #0858A4); font-family: font-family: Arial, Helvetica, sans-serif">Successfully copied reference in your clipboard.</h4>',
@@ -348,7 +387,7 @@ function renderArticleDetails(data) {
     
     if (inlineBtn){
     inlineBtn.addEventListener("click",()=> {
-      navigator.clipboard.writeText(citationContent.querySelector("p").innerHTML);
+      navigator.clipboard.writeText(citationContent.querySelector("span").innerHTML.trim());
       handleDownloadLog(item.article_id,"citation");
       Swal.fire({
         html: '<h4 style="color: var(--main, #0858A4); font-family: font-family: Arial, Helvetica, sans-serif">Successfully copied reference in your clipboard.</4>',
