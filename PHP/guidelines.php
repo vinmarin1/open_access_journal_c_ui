@@ -34,7 +34,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 <span class="last">View our Resources</span>
             </div>
         </div>
-        <div class="d-flex flex-wrap gap-1" style="max-width:80vh">
+        <div class="d-flex flex-wrap gap-1">
         <img width="40%" src="../images/resources/Web Design On Computer Royalty-Free Stock Photo.jpg">
             <!-- <div class="card-custom">Author Guidelines</div>
             <div class="card-custom">Article Submission</div>

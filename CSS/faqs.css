@@ -15,7 +15,8 @@
     justify-content: space-between;
 }
 .banner img {
-    width: 35vw;
+    width: 100%;
+    max-width: 700px;
     height:80vh;
     max-height:680px;
     object-fit: cover;
@@ -25,6 +26,7 @@
     display:flex;
     flex-direction: column;
     justify-content: center;
+    width:90%;
 }
 
 .banner .last {
