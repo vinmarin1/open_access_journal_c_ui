@@ -609,7 +609,7 @@ function sendEmailAssignReviewer()
         if ($mail->send()) {
             echo "Email sent to reviewer successfully.";
             assignReviewer($articleid, $reviewerid, $round);
-            addNotification($article_id, $reviewerid, $title, 'Assign for review');
+            addNotification($articleid, $reviewerid, $title, 'Assign for review');
         } else {
             echo 'Error sending email: ' . $mail->ErrorInfo;
         }
