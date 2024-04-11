@@ -133,7 +133,7 @@ require_once 'dbcon.php';
         <ul class="dropdown-menu" style="margin-left: -140px; overflow-y: auto; width: 20em; height: 26em;">';
 
     // SQL to fetch notification list
-    $sqlNotif = "SELECT * FROM `notification` WHERE `author_id` = :author_id ORDER BY `created` DESC";
+    $sqlNotif = "SELECT * FROM `notification` WHERE `author_id` = :author_id AND title NOT IN ('Send Donation', 'Submit Article') ORDER BY `created` DESC";
     $paramsNotif = array(':author_id' => $author_id);
     $sqlNotifRun = database_run($sqlNotif, $paramsNotif);
 
