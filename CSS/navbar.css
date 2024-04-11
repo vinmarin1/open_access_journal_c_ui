@@ -1,6 +1,7 @@
 /* Navbar container */
 #navbar-container {
   background-color: var(--main);
+  position: relative;
 }
 
 /* Navbar links */
@@ -132,6 +133,112 @@ nav .navbar-nav .nav-item:hover {
   /* padding-left: 50px; */
 }
 
+
+/* #notification-dropdown{
+  margin-left: -140px;
+  overflow-y: auto;
+  width: 20em;
+  height: 26em;
+}
+
+#notification-content{
+  padding: 8px;
+  list-style-type: none;
+  font-size: 12px;
+  display: block;
+} */
+#account-dropdown{
+  width: 230px;
+  margin-left: -120px;
+  margin-top: 20px
+}
+#notification-dropdown {
+  position: absolute;
+  margin-left: -300px;
+  top: 100%; 
+  right: 0; 
+  background-color: #fff; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+  padding: 10px;
+  min-width: 250px; 
+  max-width: calc(100vw - 20px); 
+  min-height: 30em; 
+  overflow-y: auto;
+  border-radius: 5px;
+  z-index: 1000;
+  transition: transform 0.3s ease; 
+}
+
+#notification-content {
+  padding: 12px 16px;
+  border-bottom: 1px solid #eee; 
+  transition: background-color 0.3s ease; 
+}
+
+#notification-content:last-child {
+  border-bottom: none; 
+}
+
+#notification-content p {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+#notification-content a {
+  text-decoration: none;
+  color: #333;
+  display: block;
+  margin-bottom: 5px;
+}
+
+#notification-content a:hover {
+  color: #007bff; /* Change color on hover */
+}
+
+#notification-content span {
+  font-weight: normal;
+  color: #999;
+  font-size: 12px;
+}
+
+
+#notification-content:hover {
+  background-color: #f5f5f5; 
+  cursor: pointer;
+  transition: background-color 0.3s ease; 
+}
+
+@media only screen and (max-width: 768px) {
+  #navbar-container .container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+#navbar-container .navbar-collapse {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.navbar-toggler {
+    background-color: white;
+    margin-right: 15px; 
+}
+  #notification-dropdown {
+    width: 100%; 
+    margin-left: 0; 
+    right: 0; 
+    left: 0; 
+    border-radius: 0; 
+    min-width: 21em;
+  }
+  #account-dropdown{
+    margin-left: -30px;
+  }
+  
+}
+
+
+
 @media (max-width: 1080px) {
   #navbarSupportedContent {
     padding-left: 0;
@@ -150,7 +257,17 @@ nav .navbar-nav .nav-item:hover {
   nav .dropdown-menu {
     width:100% !important;
   }
-  
+  #notification-dropdown {
+    width: 100%; 
+    margin-left: 0; 
+    right: 0; 
+    left: 0; 
+    border-radius: 0; 
+    min-width: 21em;
+  }
+  #account-dropdown{
+    margin-left: -0px;
+  }
 }
 /* #navbar-container{
     background-color: #004e98;

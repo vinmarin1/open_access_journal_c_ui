@@ -272,7 +272,7 @@ text-overflow: ellipsis;
 font-family: Arial, Helvetica, sans-serif;
 color: var(--main, #0858A4);
 width: auto;
-
+min-height: 70px;
 }
 
 .article-info{
