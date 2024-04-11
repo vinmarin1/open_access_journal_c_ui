@@ -69,7 +69,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
               
               <h5 class="title">Be a Contributor</h5>
               <div class="description">
-                <p class="text-muted">Step 3: Before final publication, the journal's editorial team will strictly copyedit your accepted paper, ensuring and enhancing the overall clarity and conciseness of your writing.</p>
+                <p class="text-muted"> Joining 'Pahina' as a contributor offers you a chance to showcase your expertise to a wider audience and engage with a vibrant community of readers. Your contributions will have a meaningful impact, fostering discussions and advancing knowledge in your field.</p>
               </div>
             </a>  
             </div>
@@ -80,7 +80,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
               <a class="faq-toggle" href="#tutorial-on-publication" data-target="tutorial-on-publication">
                   <h5 class="title">Submit a Paper</h5>
                   <div class="description">
-                    <p class="text-muted">Step 1: Create and update your account necessary detail. Here you can manage submissions, and track its progress. Make sure your manuscript adheres to the formatting and guidelines of your chosen journal.</p>
+                    <p class="text-muted">Submitting an article to 'Pahina' provides a unique opportunity to share your insights and expertise with a diverse audience. Your contribution will not only enrich our platform but also establish you as a thought leader in your field. Join us in shaping meaningful discussions and advancing knowledge by sharing your ideas with Pahina.</p>
                   </div>
               </a>
             </div>
@@ -92,7 +92,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
               <a class="faq-toggle" href="#tutorial-on-review" data-target="tutorial-on-review">
               <h5 class="title">Review a Paper</h5>
               <div class="description">
-                <p class="text-muted">Step 2: Your paper will be assigned to qualified experts in your field who will carefully assess your work based on criteria, providing valuable feedback and suggestions for improvement.</p>
+                <p class="text-muted">Your expertise is invaluable in ensuring the quality and integrity of articles on 'Pahina.' By reviewing submitted articles, you'll play a crucial role in shaping academic discourse and advancing knowledge within your field. Join us in upholding rigorous standards and contributing to the growth of our community by lending your expertise to the peer review process.</p>
               </div>
             </a>
             </div>
