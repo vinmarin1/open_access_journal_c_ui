@@ -86,7 +86,7 @@ async function fetchData(input, dates,sort) {
               }"> <u>${contributors.split("->")[0]} </u> </a>  `;
             }
           }else if (item.contributors == null){
-            contributorsHTML += `${item.author}`
+            contributorsHTML += ``
           }
           articleDiv.innerHTML = `
             <div class="article-details">
