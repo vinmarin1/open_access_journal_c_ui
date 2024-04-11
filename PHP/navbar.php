@@ -147,7 +147,7 @@ require_once 'dbcon.php';
             $elapsedText = formatTimeElapsed($timeElapsed); // Use the custom formatTimeElapsed function
 
             // Determine the article link based on conditions
-            if ($notif->title === "Send to Review" && $notif->article_id !== $author_id) {
+            if ($notif->title === "Assign for review" && $notif->article_id !== $author_id) {
                 $articleLink = './review-process.php?id=' . $notif->article_id;
             } else {
                 $articleLink = './submitted-article.php?id=' . $notif->article_id;
