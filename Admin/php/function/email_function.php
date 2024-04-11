@@ -601,6 +601,7 @@ function sendEmailAssignReviewer()
 
         $mail->Body = $body;
 
+        $title = $_POST['title'];
         $reviewerid = $_POST['reviewerid'];
         $articleid = $_POST['articleid'];
         $round = $_POST['round'];
@@ -608,6 +609,7 @@ function sendEmailAssignReviewer()
         if ($mail->send()) {
             echo "Email sent to reviewer successfully.";
             assignReviewer($articleid, $reviewerid, $round);
+            addNotification($article_id, $reviewerid, $title, 'Assign for review');
         } else {
             echo 'Error sending email: ' . $mail->ErrorInfo;
         }
