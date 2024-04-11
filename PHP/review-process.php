@@ -17,10 +17,13 @@ $params = array('author_id' => $userId, 'article_id' => $articleId);
 $result = database_run($sqlCheckArticle, $params);
 
 if ($result !== false && !empty($result)) {
-    header('Location: index.php');
-    exit();
+    // Escape the apostrophe in "You've" using a backslash (\)
+    echo "<script>alert('You\'ve answered this article already');</script>";
+    echo "<script>window.location.href = './index.php';</script>";
+    exit(); // Ensure script execution stops here
 } 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
