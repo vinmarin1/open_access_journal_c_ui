@@ -10,15 +10,7 @@ if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
 $userId = $_SESSION['id'];
 $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 
-$sqlCheckArticle = "SELECT article.article_id, article.author_id, article.status 
-    FROM article 
-    JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id 
-    WHERE article.author_id = :author_id 
-    AND article.article_id = :article_id 
-    AND reviewer_assigned.accept = 1 
-    AND reviewer_assigned.answer = 1
-    ORDER BY reviewer_assigned.date_issued ASC
-    LIMIT 1";
+$sqlCheckArticle = "SELECT reviewer_assigned.article_id, reviewer_assigned.author_id FROM reviewer_assigned JOIN article ON reviewer_assigned.article_id = article.article_id WHERE reviewer_assigned.author_id = :author_id AND reviewer_assigned.article_id = :article_id AND reviewer_assigned.answer = 1";
 
 $params = array('author_id' => $userId, 'article_id' => $articleId);
 
