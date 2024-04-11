@@ -26,11 +26,11 @@
   <main class="main-content" id="home">
     <div class="content-over">
       <div class="cover-content">
-        <div>
+        <div class="mb-3">
         <p>Pahina Journals</p>
-        <h2>Find or Submit Research Articles
+        <h2 class="mt-2" style="font-size:2.8em !important;">Find or Submit <br/>Research Articles
         </h2>
-        <span class="max-w-75 d-md-flex d-none">Welcome to Pahina! Explore the latest research articles, delve into diverse topics, and stay updated with our dynamic content.</span>
+        <span style="max-width:700px" class="max-w-75 d-md-flex d-none">Welcome to Pahina! Explore the latest research articles, delve into diverse topics, and stay updated with our dynamic content.</span>
         </div>
           <button class="btn  btn-md" id="btn1" onclick="window.location.href='browse-articles.php'">Browse
             articles</button>
