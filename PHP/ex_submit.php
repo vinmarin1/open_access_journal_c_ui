@@ -1,41 +1,44 @@
 <?php
-  include 'dbcon.php';
-  session_start();
-  if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
-    header('Location: ./login.php');
-    exit();
-  }
+include 'dbcon.php';
+session_start();
+if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
+  header('Location: ./login.php');
+  exit();
+}
 
-  $id = $_SESSION['id'];
-  
-  $sqlSelectProfile = "SELECT first_name, last_name, birth_date, gender, marital_status, orc_id, afiliations, position, field_of_expertise, country FROM author WHERE author_id = :author_id";
+$id = $_SESSION['id'];
 
-  $resultProfile = database_run($sqlSelectProfile, array(':author_id' => $id));
+$sqlSelectProfile = "SELECT first_name, last_name, birth_date, gender, marital_status, orc_id, afiliations, position, field_of_expertise, country FROM author WHERE author_id = :author_id";
 
-  if($resultProfile){
-    if(count($resultProfile) > 0){
-      $userProfile = $resultProfile[0];
+$resultProfile = database_run($sqlSelectProfile, array(':author_id' => $id));
 
-      $requiredFields = ['first_name', 'last_name', 'birth_date', 'gender', 'marital_status', 'orc_id', 'afiliations', 'position', 'field_of_expertise', 'country'];
+if ($resultProfile) {
+  if (count($resultProfile) > 0) {
+    $userProfile = $resultProfile[0];
 
-      $profileComplete = true;
-      foreach ($requiredFields as $field) {
-        if (empty($userProfile->$field)) {
-          $profileComplete = false;
-          break;
-        }
+    $requiredFields = ['first_name', 'last_name', 'birth_date', 'gender', 'marital_status', 'orc_id', 'afiliations', 'position', 'field_of_expertise', 'country'];
+
+    $profileComplete = true;
+    foreach ($requiredFields as $field) {
+      if (empty($userProfile->$field)) {
+        $profileComplete = false;
+        break;
       }
-      if ($profileComplete === false) {
-        header('Location: ./user-dashboard.php');
-      }
-    }else{
-      echo 'ERROR, Please provide us your profile details';
     }
-  }else{
-    echo 'Something Went Wrong';
+    if ($profileComplete === false) {
+      // Add JavaScript alert before redirecting
+      echo "<script>alert('Please complete your profile to submit an article.');</script>";
+      echo "<script>window.location.href = './user-dashboard.php';</script>";
+      exit(); // Ensure script execution stops here
+    }
+  } else {
+    echo 'ERROR, Please provide us your profile details';
   }
-
+} else {
+  echo 'Something Went Wrong';
+}
 ?>
+
 
 <!DOCTYPE html>
 <html>

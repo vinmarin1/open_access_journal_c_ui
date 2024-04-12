@@ -709,7 +709,7 @@ table {
                                                                                     <tr>
                                                                                         <td width="5%"><?php echo $allcopyedited_filesval->final_files_id; ?></td>
                                                                                         <td width="65%">
-                                                                                            <a href="../../../Files/final-file/<?php echo ($allcopyedited_filesval->file_name); ?>" download>
+                                                                                            <a href="#" onclick="convertAndDownload('<?php echo ($allcopyedited_filesval->file_name); ?>'); return false;">
                                                                                                 <?php echo $allcopyedited_filesval->file_name; ?>
                                                                                             </a>
                                                                                         </td>
@@ -859,7 +859,7 @@ table {
                                                                                     <tr>
                                                                                         <td width="5%"><?php echo $allcopyedited_filesval->final_files_id; ?></td>
                                                                                         <td width="65%">
-                                                                                            <a href="../../../Files/final-file/<?php echo ($allcopyedited_filesval->file_name); ?>" download>
+                                                                                            <a href="#" onclick="convertAndDownload('<?php echo ($allcopyedited_filesval->file_name); ?>'); return false;">
                                                                                                 <?php echo $allcopyedited_filesval->file_name; ?>
                                                                                             </a>
                                                                                         </td>
@@ -1284,6 +1284,147 @@ table {
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
 
+    <script>
+            $(document).ready(function() {
+        $('#downloadAllButton').click(function() {
+            <?php foreach ($submission_files as $submission_filesval): ?>
+                downloadFile('../../../Files/submitted-article/<?php echo ($submission_filesval->file_name); ?>');
+            <?php endforeach; ?>
+        });
+        $('#downloadAllButton1').click(function() {
+            <?php foreach ($submission_files as $submission_filesval): ?>
+                downloadFile('../../../Files/submitted-article/<?php echo ($submission_filesval->file_name); ?>');
+            <?php endforeach; ?>
+        });
+        $('#downloadAllButton2').click(function() {
+            <?php foreach ($revision_files as $revision_filesval): ?>
+                downloadFile('../../../Files/submitted-article/<?php echo ($revision_filesval->file_name); ?>');
+            <?php endforeach; ?>
+
+            <?php foreach ($submission_files as $submission_filesval): ?>
+                downloadFile('../../../Files/submitted-article/<?php echo ($submission_filesval->file_name); ?>');
+            <?php endforeach; ?>
+        });
+        $('#downloadAllButton3').click(function() {
+            <?php foreach ($allcopyedited_files as $allcopyedited_filesval): ?>
+                convertAndDownload('<?php echo $allcopyedited_filesval->file_name; ?>');
+            <?php endforeach; ?>
+
+            <?php foreach ($allproduction_files as $allproduction_filesval): ?>
+                downloadFile('../../../Files/final-file/<?php echo ($allproduction_filesval->file_name); ?>');
+            <?php endforeach; ?>
+        });
+
+    function downloadFile(fileUrl) {
+            var link = document.createElement('a');
+            link.href = fileUrl;
+            link.download = fileUrl.substr(fileUrl.lastIndexOf('/') + 1);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    });
+
+    function convertAndDownload(fileName) {
+        $('#sloading').toggle();
+        const fileExtension = fileName.split('.').pop().toLowerCase();
+        if (fileExtension === 'pdf') {
+            downloadFiles(fileName);
+        } else {
+            const inputFormat = fileExtension;
+            const outputFormat = 'pdf';
+            createCloudConvertJob(fileName, inputFormat, outputFormat);
+        }
+    }
+
+    function downloadFiles(fileName) {
+        const downloadUrl = `https://qcuj.online/Files/final-file/${encodeURIComponent(fileName)}`;
+
+        const link = document.createElement("a");
+        link.href = downloadUrl;
+        link.download = fileName;
+        link.setAttribute('target', '_blank');
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        $('#sloading').toggle();
+    }
+
+    function createCloudConvertJob(file, inputFormat,format) {
+        const apiKey =
+        "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMGUyMzRlMzU3NTI1NzEyZGM2ZDBhNmE5N2E1Nzc3MThmMjRmYjA0MTA1Mjg5NDBiMzZkY2M1ODljNzg1YjdmNmE1MTFkOGU5MmJmNzU1YzAiLCJpYXQiOjE3MTI4OTE5MTkuMzQ2MzAyLCJuYmYiOjE3MTI4OTE5MTkuMzQ2MzA0LCJleHAiOjQ4Njg1NjU1MTkuMzQxMzM3LCJzdWIiOiI2NzQ2NTgzMyIsInNjb3BlcyI6WyJ1c2VyLnJlYWQiLCJ1c2VyLndyaXRlIiwidGFzay5yZWFkIiwidGFzay53cml0ZSJdfQ.rU5HjL0atO5jZephpN2qOBwPK7MiJp217e8QZBqAfxvvULfWewdWQXU7drpr-0KCN0DJZ1U4QXGz3AfzWzohb5HAjoYVaRBw1NLe5w2CsKVCTDWwNf85wKTqxtkxgy_UwlQQip1T1SMDhrDsDapNi7VTT0LsXyHC9_Sq754y74J2AMRtnV0BRVkLEpOgW-piRyg-zArmclLpYcb7W8yVL5UF8M--D2fLonHrwYOpKMCA1rOxQ8RlIjk18dtG2NRUTh8xFtmONA0xzTVmbdWGd_3a9WCKzBUxTcsZ29r5j_69fTYGcB1g7OYGhJr3YaLyyEOE6Fwr6Y6TE9b0ScdsB8Jw7WN2v2mBJhNjjholRmdxadq1RZreIA0xvCPwYsIu--Qnykxc9-p5l3sqm7FS5vWDBFpO1ZWK_C8L4QrAneISgutNoRMatXfdTlnmOtGFI7wCYKOAMaKGs67Kp1bomeoKFHrdyM4077WLIn5NJFqYYDo2_OZnb1IVku9v62OlJnxk_6sxicq8-BCdK78WKhP7yI2cm-0uG-d63thS4vTqqHEbkjn-dI4zWBuG8Z5WjBtNmgY8HzkM3LxXZuO0gKxO3kMeTiDW7c5_UvllQKATXMjsYEs2cFQKqO2Szrsmr7FSIIHmxRsUrJ4Ln-6A3NeNluDS97WRRx-WUKfondo";
+    
+        const apiUrl = "https://api.cloudconvert.com/v2/jobs";
+        
+        const jsonData = {
+        tasks: {
+            "import-1": {
+            operation: "import/url",
+            url: `https://qcuj.online/Files/final-file/${encodeURIComponent(file)}`,
+            filename: file,
+            },
+            "task-1": {
+            operation: "convert",
+            input_format: inputFormat,
+            output_format: format,
+            engine: "calibre",
+            input: ["import-1"],
+            },
+            "export-1": {
+            operation: "export/url",
+            input: ["task-1"],
+            inline: true,
+            archive_multiple_files: true,
+            },
+        },
+        tag: "jobbuilder",
+        };
+    
+        fetch(apiUrl, {
+        method: "POST",
+        body: JSON.stringify(jsonData),
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${apiKey}`,
+        },
+        })
+        .then((response) => response.json())
+        .then((data) => {
+        
+            const downloadUrl = `https://sync.api.cloudconvert.com/v2/jobs/${data.data.id}?redirect=true`;
+    
+            fetch(downloadUrl, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${apiKey}`,
+            },
+            })
+            .then((response) => {
+                response.blob().then((blob) => {
+                console.log(window.URL.createObjectURL(blob));
+                const url = window.URL.createObjectURL(blob);
+    
+                const link = document.createElement("a");
+                link.href = url;
+                link.download = `${file}.${format}`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                });
+                $('#sloading').toggle();
+            })
+            .catch((error) => {
+                console.error("Error fetching file content:", error);
+                
+            });
+        })
+        .catch((error) => {
+            console.error("Error creating job:", error);
+            
+        });
+    }
+    </script>
     <script>
         function toggleDetails(detailsId, button) {
             var details = document.getElementById(detailsId);
@@ -1911,46 +2052,6 @@ table {
 
             window.open(url, '_blank', 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + width + ', height=' + height + ', top=' + top + ', left=' + left);
         }
-
-        $(document).ready(function() {
-        $('#downloadAllButton').click(function() {
-            <?php foreach ($submission_files as $submission_filesval): ?>
-                downloadFile('../../../Files/submitted-article/<?php echo ($submission_filesval->file_name); ?>');
-            <?php endforeach; ?>
-        });
-        $('#downloadAllButton1').click(function() {
-            <?php foreach ($submission_files as $submission_filesval): ?>
-                downloadFile('../../../Files/submitted-article/<?php echo ($submission_filesval->file_name); ?>');
-            <?php endforeach; ?>
-        });
-        $('#downloadAllButton2').click(function() {
-            <?php foreach ($revision_files as $revision_filesval): ?>
-                downloadFile('../../../Files/submitted-article/<?php echo ($revision_filesval->file_name); ?>');
-            <?php endforeach; ?>
-
-            <?php foreach ($submission_files as $submission_filesval): ?>
-                downloadFile('../../../Files/submitted-article/<?php echo ($submission_filesval->file_name); ?>');
-            <?php endforeach; ?>
-        });
-        $('#downloadButton3').click(function() {
-            <?php foreach ($allcopyedited_files as $allcopyedited_filesval): ?>
-                downloadFile('../../../Files/final-file/<?php echo ($allcopyedited_filesval->file_name); ?>');
-            <?php endforeach; ?>
-
-            <?php foreach ($allproduction_files as $allproduction_filesval): ?>
-                downloadFile('../../../Files/final-file/<?php echo ($allproduction_filesval->file_name); ?>');
-            <?php endforeach; ?>
-        });
-
-            function downloadFile(fileUrl) {
-                var link = document.createElement('a');
-                link.href = fileUrl;
-                link.download = fileUrl.substr(fileUrl.lastIndexOf('/') + 1);
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-            }
-        });
 
         function checkFinalFileSubmission() {
             <?php

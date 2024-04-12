@@ -20,7 +20,7 @@ require_once 'dbcon.php';
 </head>
 <body>
 
-<nav class="navbar navbar-expand-xl" style="padding:4px 3%" id="navbar-container" >
+<nav class="navbar navbar-expand-xl" style="padding:4px %" id="navbar-container" >
   <div class="container-fluid">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="background-color: white; font-size:10px;">
       <span class="navbar-toggler-icon"></span>
@@ -130,10 +130,10 @@ require_once 'dbcon.php';
 
     echo '
         </button>
-        <ul class="dropdown-menu" style="margin-left: -140px; overflow-y: auto; width: 20em; height: 26em;">';
+        <ul class="dropdown-menu" id="notification-dropdown">';
 
     // SQL to fetch notification list
-    $sqlNotif = "SELECT * FROM `notification` WHERE `author_id` = :author_id ORDER BY `created` DESC";
+    $sqlNotif = "SELECT * FROM `notification` WHERE `author_id` = :author_id AND title NOT IN ('Send Donation', 'Submit Article') ORDER BY `created` DESC";
     $paramsNotif = array(':author_id' => $author_id);
     $sqlNotifRun = database_run($sqlNotif, $paramsNotif);
 
@@ -154,11 +154,14 @@ require_once 'dbcon.php';
             }
 
             echo '
-            <li style="padding: 8px; list-style-type: none; font-size: 12px; display: block;">
-                <p class="d-flex flex-column "> '  . $notif->title . '
-                    <span style="margin-top: 15px; margin-bottom: -15px; font-weight: normal;">Title: </p>
-                    <a id="inviteMessage" style="text-decoration: none; color: gray; display: block; padding-bottom: 5px;" href="' . $articleLink . '">' . $notif->description . '</a>
-                    <span style="font-weight: bold; color: #004e98;">' . $elapsedText . '</span>
+            <li id="notification-content">
+              <div>
+                <p class="d-flex flex-column " style="font-weight: bold; margin-bottom: 5px;"> '  . $notif->title . '
+              <div>
+              <div>
+                <a id="inviteMessage" style="text-decoration: none; color: gray; display: block; padding-bottom: 5px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;" href="' . $articleLink . '">' . $notif->description . '</a>
+                <span style="font-weight: bold; color: #004e98;">' . $elapsedText . '</span>
+              </div>
             </li>';
         }
     } else {
@@ -179,7 +182,7 @@ require_once 'dbcon.php';
                 ' . $userName . '
             </a>
             <li class="dropdown" style="list-style-type: none;">
-                <ul class="dropdown-menu" style="width: 230px; margin-left: -120px; margin-top: 20px">';
+                <ul class="dropdown-menu" id="account-dropdown">';
 
             // User dashboard links based on role
             if ($_SESSION['role'] === 'Admin') {

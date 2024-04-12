@@ -676,7 +676,7 @@ $issuelist = get_issues_list($journal_id);
                                                     </td>
                                                         <td width="5%"><?php echo $allcopyedited_filesval->final_files_id; ?></td>
                                                     <td width="65%">
-                                                        <a href="../../../Files/final-file/<?php echo ($allcopyedited_filesval->file_name); ?>" download>
+                                                        <a href="#" onclick="convertAndDownload('<?php echo ($allcopyedited_filesval->file_name); ?>'); return false;">
                                                             <?php echo $allcopyedited_filesval->file_name; ?>
                                                         </a>
                                                     </td>
@@ -722,9 +722,9 @@ $issuelist = get_issues_list($journal_id);
                                                     <tr>
                                                         <td width="5%"><?php echo $allcopyedited_filesval->final_files_id; ?></td>
                                                         <td width="65%">
-                                                            <a href="../../../Files/final-file/<?php echo ($allcopyedited_filesval->file_name); ?>" download>
+                                                            <a href="#" onclick="convertAndDownload('<?php echo ($allcopyedited_filesval->file_name); ?>'); return false;">
                                                                 <?php echo $allcopyedited_filesval->file_name; ?>
-                                                            </a>
+                                                             </a>
                                                         </td>
                                                         <td width="25%"><?php echo $allcopyedited_filesval->file_type; ?></td>
                                                         <td width="5%"><span class="badge rounded-pill bg-label-warning">Copyedited</span></td>
@@ -853,7 +853,7 @@ $issuelist = get_issues_list($journal_id);
                         <div class="row mb-2">
                             <div class="col-md-12 mb-2" id="divproductionfile">
                                 <label for="xproductionfile" class="form-label">Upload File</label>
-                                <input class="form-control" type="file" id="productionfile" accept=".pdf, .docx" />
+                                <input class="form-control" type="file" id="productionfile" accept=".pdf" />
                             </div>
                         </div>
                     <hr>
@@ -884,9 +884,9 @@ $issuelist = get_issues_list($journal_id);
                                                     <td width="5%">
                                                         <input class="form-check-input copyedited-checkbox" type="checkbox" value="" id="defaultCheck1" data-finalcopyedited-files-id="<?php echo $allcopyedited_filesval->final_files_id; ?>" <?php echo $isReviewEqualToOne ? 'checked' : ''; ?> />
                                                     </td>
-                                                        <td width="5%"><?php echo $allcopyedited_filesval->final_files_id; ?></td>
+                                                    <td width="5%"><?php echo $allcopyedited_filesval->final_files_id; ?></td>
                                                     <td width="65%">
-                                                        <a href="../../../Files/final-file/<?php echo ($allcopyedited_filesval->file_name); ?>" download>
+                                                        <a href="#" onclick="convertAndDownload('<?php echo ($allcopyedited_filesval->file_name); ?>'); return false;">
                                                             <?php echo $allcopyedited_filesval->file_name; ?>
                                                         </a>
                                                     </td>
@@ -984,7 +984,7 @@ $issuelist = get_issues_list($journal_id);
                                                     <tr>
                                                         <td width="5%"><?php echo $allcopyedited_filesval->final_files_id; ?></td>
                                                         <td width="65%">
-                                                            <a href="../../../Files/final-file/<?php echo ($allcopyedited_filesval->file_name); ?>" download>
+                                                            <a href="#" onclick="convertAndDownload('<?php echo ($allcopyedited_filesval->file_name); ?>'); return false;">
                                                                 <?php echo $allcopyedited_filesval->file_name; ?>
                                                             </a>
                                                         </td>
