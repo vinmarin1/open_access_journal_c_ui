@@ -116,8 +116,7 @@ function updateAnnouncementData() {
         if (!isset($_POST['announcement_id']) || 
             !isset($_POST['title']) || 
             !isset($_POST['announcement_description']) || 
-            !isset($_POST['announcement']) ||
-            !isset($_FILES['upload_image'])) {
+            !isset($_POST['announcement'])) {
             throw new Exception("Missing required fields.");
         }
 
