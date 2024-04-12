@@ -7,7 +7,7 @@
 <body>
   <div class="d-none d-sm-flex header">
       <div class="logo">
-          <img class="img-logo" src="../images/pahina-full.png" alt="">
+          <img class="img-logo" src="../images/pahina-final.png" alt="">
       </div>
       <div class="links">
         <form action="search-articles.php" method="GET" class="form-inline d-flex gap-1" id="searchForm">
