@@ -853,7 +853,7 @@ $issuelist = get_issues_list($journal_id);
                         <div class="row mb-2">
                             <div class="col-md-12 mb-2" id="divproductionfile">
                                 <label for="xproductionfile" class="form-label">Upload File</label>
-                                <input class="form-control" type="file" id="productionfile" accept=".pdf, .docx" />
+                                <input class="form-control" type="file" id="productionfile" accept=".pdf" />
                             </div>
                         </div>
                     <hr>
