@@ -68,7 +68,7 @@ $(function() {
   $(document).ready(function() {
     setTimeout(function() {
       detection();
-    }, 2000);
+    }, 1500);
 
     $("[data-animate-in], [data-detect-viewport]").each(function() {
       var d = $(this).data("animate-in-delay") || 0;

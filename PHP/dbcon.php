@@ -2,9 +2,9 @@
 
 function database_run($query, $vars = array(), $isInsert = false)
 {
-    $string = "mysql:host=localhost;dbname=u944705315_pahina2024";
-
-    // $con = new PDO($string, 'u944705315_pahina2024', 'Qcujournal1234.');
+    // $string = "mysql:host=localhost;dbname=u944705315_pahina2024";
+    $string = "mysql:host=srv1320.hstgr.io;dbname=u944705315_pahina2024";
+    $con = new PDO($string, 'u944705315_pahina2024', 'Qcujournal1234.');
 
     // $string = "mysql:host=localhost;dbname=journal";
     // $string = "mysql:host=srv1320.hstgr.io;dbname=journal";
