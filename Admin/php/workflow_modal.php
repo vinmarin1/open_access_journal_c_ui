@@ -1730,58 +1730,25 @@ function uploadProductionFiles() {
     formData.append('article_id', articleId);
     formData.append('fromuser', fromuser);
     formData.append('productionfiletype', productionfileFiletype);
+    formData.append('productionfile', productionfileFile)
+    formData.append('action', 'uploadproductionfile');
 
-    var reader = new FileReader();
-    reader.onload = function(event) {
-        var arrayBuffer = event.target.result;
-        mammoth.convertToHtml({arrayBuffer: arrayBuffer})
-            .then(function(result){
-                var html = result.value;
-                var pdfDoc = {
-                    content: [{
-                        text: html,
-                        style: 'body'
-                    }],
-                    styles: {
-                        body: {
-                            fontSize: 12
-                        }
-                    }
-                };
-
-                // Create PDF as a Blob
-                pdfMake.createPdf(pdfDoc).getBlob(function(blob) {
-                    // Convert Blob to a File
-                    var pdfFile = new File([blob], 'converted_document.pdf', {type: 'application/pdf'});
-                    
-                    // Append PDF file to FormData
-                    formData.append('productionfile', pdfFile);
-                    formData.append('action', 'uploadproductionfile');
-
-                    // Send AJAX request to upload PDF
-                    $.ajax({
-                        url: "../php/function/wf_modal_function.php",
-                        type: "POST",
-                        data: formData,
-                        processData: false,
-                        contentType: false,
-                        success: function (response) {
-                            console.log('Upload file successfully.');
-                            console.log(response);
-                            location.reload();
-                            $('#sloading').toggle();
-                        },
-                        error: function (xhr, status, error) {
-                            console.error(xhr, status, error);
-                        }
-                    });
-                });
-            })
-            .catch(function(err){
-                console.error(err);
-            });
-    };
-    reader.readAsArrayBuffer(productionfileFile);
+    $.ajax({
+        url: "../php/function/wf_modal_function.php",
+        type: "POST",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (response) {
+            console.log('Upload file successfully.');
+            console.log(response);
+            location.reload();
+            $('#sloading').toggle();
+        },
+        error: function (xhr, status, error) {
+            console.error(xhr, status, error);
+        }
+    });
 }
 
 function updateProductionCheckedFiles() {
