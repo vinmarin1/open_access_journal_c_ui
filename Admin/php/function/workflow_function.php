@@ -540,7 +540,7 @@ if (!function_exists('check_article_articlefinalfile')) {
 
         if ($pdo) {
             try {
-                $query = "SELECT * FROM article_final_files WHERE article_id = :aid AND production = 1";
+                $query = "SELECT * FROM article_final_files WHERE article_id = :aid AND filefrom = 'Production' AND production = 1";
                 $stmt = $pdo->prepare($query);
                 $stmt->bindParam(':aid', $aid, PDO::PARAM_INT);
                 $stmt->execute();
