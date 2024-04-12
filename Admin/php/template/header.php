@@ -16,7 +16,7 @@ $journal = get_journal_list();
   <!-- <meta name="description" content="" /> -->
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="../assets/img/pahina-final.png">
+  <link rel="icon" type="image/png" href="../../images/pahina-full.png">
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -68,7 +68,7 @@ $journal = get_journal_list();
         <div class="app-brand demo">
           <a href="dashboard.php" class="app-brand-link">
             <span class="app-brand-logo demo">
-              <img src="../assets/img/qculogo.png" alt="QCULogo" class="w-100" />
+              <img src="../../images/pahina-final-light.png" alt="QCULogo" class="w-75" />
             </span>
             <span class="app-brand-text demo menu-text fw-bold ms-2">Pahina Journal</span>
           </a>
