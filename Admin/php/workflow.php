@@ -859,7 +859,7 @@ table {
                                                                                     <tr>
                                                                                         <td width="5%"><?php echo $allcopyedited_filesval->final_files_id; ?></td>
                                                                                         <td width="65%">
-                                                                                            <a href="../../../Files/final-file/<?php echo ($allcopyedited_filesval->file_name); ?>" download>
+                                                                                            <a href="#" onclick="convertAndDownload('<?php echo ($allcopyedited_filesval->file_name); ?>'); return false;">
                                                                                                 <?php echo $allcopyedited_filesval->file_name; ?>
                                                                                             </a>
                                                                                         </td>
@@ -1285,28 +1285,70 @@ table {
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
 
     <script>
-        function convertAndDownload(fileName) {
-            const fileExtension = fileName.split('.').pop().toLowerCase();
-            if (fileExtension === 'pdf') {
-                downloadFile(fileName);
-            } else {
-                const inputFormat = fileExtension;
-                const outputFormat = 'pdf';
-                createCloudConvertJob(fileName, inputFormat, outputFormat);
-            }
-        }
+            $(document).ready(function() {
+        $('#downloadAllButton').click(function() {
+            <?php foreach ($submission_files as $submission_filesval): ?>
+                downloadFile('../../../Files/submitted-article/<?php echo ($submission_filesval->file_name); ?>');
+            <?php endforeach; ?>
+        });
+        $('#downloadAllButton1').click(function() {
+            <?php foreach ($submission_files as $submission_filesval): ?>
+                downloadFile('../../../Files/submitted-article/<?php echo ($submission_filesval->file_name); ?>');
+            <?php endforeach; ?>
+        });
+        $('#downloadAllButton2').click(function() {
+            <?php foreach ($revision_files as $revision_filesval): ?>
+                downloadFile('../../../Files/submitted-article/<?php echo ($revision_filesval->file_name); ?>');
+            <?php endforeach; ?>
 
-        function downloadFile(fileName) {
-            const downloadUrl = `https://qcuj.online/Files/final-file/${encodeURIComponent(fileName)}`;
+            <?php foreach ($submission_files as $submission_filesval): ?>
+                downloadFile('../../../Files/submitted-article/<?php echo ($submission_filesval->file_name); ?>');
+            <?php endforeach; ?>
+        });
+        $('#downloadAllButton3').click(function() {
+            <?php foreach ($allcopyedited_files as $allcopyedited_filesval): ?>
+                convertAndDownload('<?php echo $allcopyedited_filesval->file_name; ?>');
+            <?php endforeach; ?>
 
-            const link = document.createElement("a");
-            link.href = downloadUrl;
-            link.download = fileName;
+            <?php foreach ($allproduction_files as $allproduction_filesval): ?>
+                downloadFile('../../../Files/final-file/<?php echo ($allproduction_filesval->file_name); ?>');
+            <?php endforeach; ?>
+        });
+
+    function downloadFile(fileUrl) {
+            var link = document.createElement('a');
+            link.href = fileUrl;
+            link.download = fileUrl.substr(fileUrl.lastIndexOf('/') + 1);
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
         }
+    });
 
+    function convertAndDownload(fileName) {
+        $('#sloading').toggle();
+        const fileExtension = fileName.split('.').pop().toLowerCase();
+        if (fileExtension === 'pdf') {
+            downloadFiles(fileName);
+        } else {
+            const inputFormat = fileExtension;
+            const outputFormat = 'pdf';
+            createCloudConvertJob(fileName, inputFormat, outputFormat);
+        }
+    }
+
+    function downloadFiles(fileName) {
+        const downloadUrl = `https://qcuj.online/Files/final-file/${encodeURIComponent(fileName)}`;
+
+        const link = document.createElement("a");
+        link.href = downloadUrl;
+        link.download = fileName;
+        link.setAttribute('target', '_blank');
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        $('#sloading').toggle();
+    }
 
     function createCloudConvertJob(file, inputFormat,format) {
         const apiKey =
@@ -1370,7 +1412,7 @@ table {
                 link.click();
                 document.body.removeChild(link);
                 });
-                
+                $('#sloading').toggle();
             })
             .catch((error) => {
                 console.error("Error fetching file content:", error);
@@ -2010,46 +2052,6 @@ table {
 
             window.open(url, '_blank', 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + width + ', height=' + height + ', top=' + top + ', left=' + left);
         }
-
-        $(document).ready(function() {
-        $('#downloadAllButton').click(function() {
-            <?php foreach ($submission_files as $submission_filesval): ?>
-                downloadFile('../../../Files/submitted-article/<?php echo ($submission_filesval->file_name); ?>');
-            <?php endforeach; ?>
-        });
-        $('#downloadAllButton1').click(function() {
-            <?php foreach ($submission_files as $submission_filesval): ?>
-                downloadFile('../../../Files/submitted-article/<?php echo ($submission_filesval->file_name); ?>');
-            <?php endforeach; ?>
-        });
-        $('#downloadAllButton2').click(function() {
-            <?php foreach ($revision_files as $revision_filesval): ?>
-                downloadFile('../../../Files/submitted-article/<?php echo ($revision_filesval->file_name); ?>');
-            <?php endforeach; ?>
-
-            <?php foreach ($submission_files as $submission_filesval): ?>
-                downloadFile('../../../Files/submitted-article/<?php echo ($submission_filesval->file_name); ?>');
-            <?php endforeach; ?>
-        });
-        $('#downloadButton3').click(function() {
-            <?php foreach ($allcopyedited_files as $allcopyedited_filesval): ?>
-                downloadFile('../../../Files/final-file/<?php echo ($allcopyedited_filesval->file_name); ?>');
-            <?php endforeach; ?>
-
-            <?php foreach ($allproduction_files as $allproduction_filesval): ?>
-                downloadFile('../../../Files/final-file/<?php echo ($allproduction_filesval->file_name); ?>');
-            <?php endforeach; ?>
-        });
-
-            function downloadFile(fileUrl) {
-                var link = document.createElement('a');
-                link.href = fileUrl;
-                link.download = fileUrl.substr(fileUrl.lastIndexOf('/') + 1);
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-            }
-        });
 
         function checkFinalFileSubmission() {
             <?php
