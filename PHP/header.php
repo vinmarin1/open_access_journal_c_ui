@@ -6,7 +6,7 @@
 </head>
 <body>
   <div class="d-none d-sm-flex header">
-      <div class="logo">
+      <div class="logo" onclick="window.location.href = 'index.php';" style="cursor:pointer;">
           <img class="img-logo" src="../images/pahina-final.png" alt="">
       </div>
       <div class="links">

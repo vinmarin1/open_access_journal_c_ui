@@ -50,8 +50,8 @@
       <div class="container">
         <div class="row">
           <div class="col-md-8 col-sm-6 col-xs-12 d-flex gap-2">
-            <img src="../images/pahina-final-light.png" style="height:2.7em" alt="" class="d-none d-sm-flex"/>
-            <img style="width:2.7em; height:2.7em"  src="../images/qcu-logo.webp" alt="" class="d-none d-sm-flex">
+            <img src="../images/pahina-final-light.png" style="height:2.7em" alt="" class="d-none d-sm-flex" onclick="window.location.href = 'index.php';"/>
+            <img style="width:2.7em; height:2.7em"  src="../images/qcu-logo.webp" alt="" class="d-none d-sm-flex" onclick="window.location.href = 'https://qcu.edu.ph';">
             <p class="copyright-text">Content on this site is licensed under a Creative Commons &copy; <?php echo date("Y"); ?> 
             All Rights Reserved by <a href="#">Pahina</a>.
             </p>
