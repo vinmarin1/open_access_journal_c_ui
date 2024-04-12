@@ -20,7 +20,7 @@ require_once 'dbcon.php';
 </head>
 <body>
 
-<nav class="navbar navbar-expand-xl" style="padding:4px %" id="navbar-container" >
+<nav class="navbar navbar-expand-xl" style="padding:4px 1%" id="navbar-container" >
   <div class="container-fluid">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="background-color: white; font-size:10px;">
       <span class="navbar-toggler-icon"></span>

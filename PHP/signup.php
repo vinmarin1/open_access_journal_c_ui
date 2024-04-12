@@ -21,7 +21,7 @@
     <!-- <h2>Welcome to Pahina</h2> -->
     <!-- <img src="../images/qcu-bg.jpg"/>
     </div> -->
-    <form method="POST" id="form" action="signup-function.php">
+    <form method="POST" id="form">
        <p class="h5 my-3" style="font-weight:bold">Create your Pahina Account</p>
        <div class="input-field">
            <label for="email">Email:</label><span id="span1">*</span><span id="spanEmailValidation" style="display: none; color: red; font-size: 11px">Invalid email</span>
