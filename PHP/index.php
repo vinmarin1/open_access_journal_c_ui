@@ -177,7 +177,7 @@
               paywalls or restrictions.</p>
         </div>
         <div class='ab-qoaj-right'>
-          <img src="../images/pahina.png" style="width:12em; height:14em" alt="" />
+          <img src="../images/pahina-final-light.png" style=" height:14em" alt="" />
           <img class="d-none d-md-flex" src="../images/qcu-logo.webp" style="width:11em; height:11em" alt="" />
         </div>
       </div>

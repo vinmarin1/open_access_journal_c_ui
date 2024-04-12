@@ -16,7 +16,7 @@ $journal = get_journal_list();
   <!-- <meta name="description" content="" /> -->
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="../assets/img/pahina.png">
+  <link rel="icon" type="image/png" href="../assets/img/pahina-final.png">
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
