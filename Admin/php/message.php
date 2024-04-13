@@ -97,6 +97,7 @@ $messagelist = get_message_list();
             "paging": true,
             "ordering": true,
             "searching": true,
+            "order": [[0, "desc"]] 
         });
 
             $('#statusTabs a').on('click', function (e) {

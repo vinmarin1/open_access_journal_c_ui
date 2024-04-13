@@ -540,7 +540,9 @@ $donationDataJson = json_encode($donationData);
                                                     </div>
                                                     <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                                                         <div class="">
-                                                            <h6 class="mb-0"><?php echo $top5reviewerlistval->last_name; ?>, <?php echo $top5reviewerlistval->first_name; ?></h6>
+                                                            <h6 class="mb-0"><?php echo $top5reviewerlistval->last_name; ?>, <?php echo $top5reviewerlistval->first_name; ?>
+                                                            <a href="javascript:void(0);" onclick="openPageCentered('../../PHP/reviewerdashboard.php?orc_id=<?php echo $top5reviewerlistval->orc_id; ?>')"><?php echo $top5reviewerlistval->last_name . ", " . $top5reviewerlistval->first_name; ?></a></h6>
+                                                          
                                                         </div>
                                                         <div class="user-progress">
                                                             <small class="fw-semibold"><?php echo $top5reviewerlistval->count_reviewed; ?></small>
