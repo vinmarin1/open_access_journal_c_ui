@@ -395,25 +395,8 @@ $journal = get_journal_list();
 var pusher = new Pusher('cabcad916f55a998eaf5', {
   cluster: 'ap1'
 });
+
 var channel = pusher.subscribe('my-channel');
-
-function playNotificationSound() {
-    var audioFile = '../../Files/notificationsound/notification.mp3';
-
-    var audio = new Audio();
-    if (audio.canPlayType && audio.canPlayType('audio/mpeg;').replace(/no/, '')) {
-        var notificationSound = new Audio(audioFile);
-        notificationSound.play()
-            .then(function() {
-                console.log('Notification sound played successfully.');
-            })
-            .catch(function(error) {
-                console.error('Failed to play notification sound:', error);
-            });
-    } else {
-        console.warn('Browser does not support playing the audio file.');
-    }
-}
 
 channel.bind('my-event', function(data) {
     function playYouTubeVideo() {
