@@ -397,14 +397,14 @@ var pusher = new Pusher('cabcad916f55a998eaf5', {
 });
 var channel = pusher.subscribe('my-channel');
 
-function playYouTubeVideo() {
-  var iframe = document.getElementById('youtube-player');
-  iframe.style.display = 'block';
-  iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
-}
-
 channel.bind('my-event', function(data) {
-  playYouTubeVideo();
+  
+  function playYouTubeVideo() {
+    var iframe = document.getElementById('youtube-player');
+    iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+  }
+
+  window.onload = playYouTubeVideo;
 
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
