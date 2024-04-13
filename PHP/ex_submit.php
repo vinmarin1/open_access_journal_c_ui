@@ -183,6 +183,13 @@ if ($resultProfile) {
           <input class="form-control artcl" type="text" id="abstract" name="abstract"  style="display: none;">
           <div class="d-flex flex-column">
           <span id="total-words-abstract" class="text-end w-full"></span>
+          <button type="button" class="btn btn-primary btn-sm mt-2" id="check-duplication" onclick="checkDuplication()">
+              <span id="check-text">Check Originality</span>
+              <div class="spinner-border spinner-border-sm" role="status" id="check-spinner" style="display: none;">
+                  <span class="visually-hidden">Loading...</span>
+              </div>
+              <span id="checking-text" style="display: none;">Checking...</span>
+          </button>
           </div>
   
         </div>
@@ -239,13 +246,6 @@ if ($resultProfile) {
             <span id="journal-info" class="suggestion-title text-muted">Pahina can suggest journal based on your article</span>
             <span class="text-danger" id="journal-error"></span>
           </div>
-          <button type="button" class="btn btn-primary btn-sm mt-2" id="check-duplication" onclick="checkDuplication()">
-              <span id="check-text">Check</span>
-              <div class="spinner-border spinner-border-sm" role="status" id="check-spinner" style="display: none;">
-                  <span class="visually-hidden">Loading...</span>
-              </div>
-              <span id="checking-text" style="display: none;">Checking...</span>
-          </button>
   
         
           <!-- <button type="button" class="btn btn-primary btn-sm" id="btn-okay">Okay</button> -->
@@ -294,35 +294,43 @@ if ($resultProfile) {
 <table class="table table-hover" id="table-file">
   <thead>
     <tr>
-      <th scope="col" >File Name</th>
       <th scope="col">File Type</th>
+      <th scope="col" >File Name</th>
       <th scope="col">Action</th>
     </tr>
   </thead>
   <tbody id="fileList">
     <tr>
+      <td id="fileType1" style="font-family: Arial, Helvetica, sans-serif; font-size: 18px;">File with author name
+      <button type="button" class="btn btn-primary btn-sm" style="margin-right: 5px; display: block;" id="addFileName" onclick="openFilename(1)">Add File</button>
+      </td>
       <td id="fileName1" style="font-family: Arial, Helvetica, sans-serif;"></td>
-      <td id="fileType1" style="font-family: Arial, Helvetica, sans-serif;">File with author name</td>
       <td>
-        <button type="button" class="btn btn-primary btn-sm" style="margin-right: 5px" id="addFileName" onclick="openFilename(1)">Add File</button>
         <button type="button" class="btn btn-danger btn-sm" id="deleteFileName" onclick="deleteFilename(1)">Delete</button>
       </td>
+
     </tr>
     <tr>
+      
+      <td id="fileType2" style="font-family: Arial, Helvetica, sans-serif; font-size: 18px;">File with no author name
+      <button type="button" class="btn btn-primary btn-sm" style="margin-right: 5px; display: block;" id="addFileName2" onclick="openFilename(2)">Add File</button>
+      </td>
       <td id="fileName2" style="font-family: Arial, Helvetica, sans-serif;"></td>
-      <td id="fileType2" style="font-family: Arial, Helvetica, sans-serif;">File with no author name</td>
       <td>
-        <button type="button" class="btn btn-primary btn-sm" style="margin-right: 5px" id="addFileName2" onclick="openFilename(2)">Add File</button>
         <button type="button" class="btn btn-danger btn-sm" id="deleteFileName2" onclick="deleteFilename(2)">Delete</button>
       </td>
+
     </tr>
     <tr>
+      
+      <td id="fileType3" style="font-family: Arial, Helvetica, sans-serif; font-size: 18px;">Title Page
+      <button type="button" class="btn btn-primary btn-sm" style="margin-right: 5px; display: block;" id="addFileName3" onclick="openFilename(3)">Add File</button>
+      </td>
       <td id="fileName3" style="font-family: Arial, Helvetica, sans-serif;"></td>
-      <td id="fileType3" style="font-family: Arial, Helvetica, sans-serif;">Title Page</td>
       <td>
-        <button type="button" class="btn btn-primary btn-sm" style="margin-right: 5px" id="addFileName3" onclick="openFilename(3)">Add File</button>
         <button type="button" class="btn btn-danger btn-sm" id="deleteFileName3" onclick="deleteFilename(3)">Delete</button>
       </td>
+      
     </tr>
   </tbody>
 </table>
@@ -348,11 +356,6 @@ if ($resultProfile) {
     $email = $_SESSION['email'];
   ?>
   <hr class="divider"/>
-  <div class="btn-container">
-      <button type="button" id="addCont" class="btn btn-primary btn-sm" onclick="addRow()">Add Contributor</button>
-      <button type="button" id="deleteCont" class="btn btn-danger btn-sm" onclick="deleteData()">Delete Contributor</button>
-      <!-- <button type="button" class="btn btn-primary btn-sm" onclick="saveData()">Save Data</button> -->
-    </div>
   <div class="table-responsive-sm">
     <table class="table table-striped" id="contributorTable" >
             <thead>
@@ -403,6 +406,12 @@ if ($resultProfile) {
               
             </tbody>
         </table>
+
+        <div class="btn-container">
+          <button type="button" id="addCont" class="btn btn-primary btn-sm" onclick="addRow()">Add Contributor</button>
+          <!-- <button type="button" id="deleteCont" class="btn btn-danger btn-sm" onclick="deleteData()">Delete Contributor</button> -->
+          <!-- <button type="button" class="btn btn-primary btn-sm" onclick="saveData()">Save Data</button> -->
+        </div>
       </div>
       <div class="d-flex gap-1 w-100 justify-content-end mt-5">
         <button type="button" class="btn btn-secondary btn-sm" id="prev4">Prev</button>
@@ -562,6 +571,25 @@ function includeNavbar() {
       attachNotificationButtonListener();
     })
     .catch(error => console.error('Error loading navbar.php:', error));
+}
+
+function attachNotificationButtonListener() {
+  $(document).on('click', '#notification-button', function () {
+    // Send AJAX request to mark notifications as read
+    $.ajax({
+      url: "../PHP/mark_notifications_read.php",
+      type: "POST",
+      data: { author_id: <?php echo $_SESSION['id']; ?> },
+      success: function (response) {
+        console.log("Notifications marked as read:", response);
+        // Update notification count on success
+        $("#notification-count").text("0");
+      },
+      error: function (xhr, status, error) {
+        console.error("Error marking notifications as read:", error);
+      }
+    });
+  });
 }
 
 function attachNotificationButtonListener() {

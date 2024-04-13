@@ -760,7 +760,8 @@ function addRow() {
       '</div>' +
       '</td>'
       +
-      '<td class="align-middle"><input class="form-check-input" type="checkbox" name="selectToDelete"></td>' +
+      '<td><button type="button" id="deleteCont" class="btn btn-danger btn-sm" onclick="deleteData()">-</button></td>' +
+      // '<td class="align-middle"><input class="form-check-input" type="checkbox" name="selectToDelete"></td>' +
       '</tr>';
 
   $('#contributorTable tbody').append(newRow);
