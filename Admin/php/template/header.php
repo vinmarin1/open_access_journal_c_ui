@@ -397,6 +397,9 @@ var pusher = new Pusher('cabcad916f55a998eaf5', {
 var channel = pusher.subscribe('my-channel');
 
 channel.bind('my-event', function(data) {
+    var notificationSound = new Audio('../../Files/notificationsound/notification.mp3');
+    notificationSound.play();
+
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
         if (xhr.readyState === XMLHttpRequest.DONE) {
