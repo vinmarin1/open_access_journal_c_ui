@@ -319,10 +319,10 @@ require_once 'dbcon.php';
                         c.firstname, 
                         c.lastname, 
                         c.publicname, 
-                        c.orcid, 
                         c.email, 
                         c.date_added,
                         COUNT(*) AS email_count,
+                        a.orc_id, 
                         a.profile_pic
                     FROM 
                         contributors c
@@ -361,6 +361,7 @@ require_once 'dbcon.php';
                         a.first_name,
                         a.last_name,
                         a.email,
+                        a.orc_id,
                         a.profile_pic
                     FROM 
                         author a
