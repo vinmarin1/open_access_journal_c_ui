@@ -2114,7 +2114,7 @@ table {
                     row.html(`
                         <td width="5%">${item.author_id}</td>
                         <td width="80%">
-                            <a href="javascript:void(0);" onclick="openPageCentered('../../PHP/reviewerdashboard.php?author_id=${item.author_id}')">${item.last_name}, ${item.first_name}</a><br>
+                            <a href="javascript:void(0);" onclick="openPageCentered('../../PHP/reviewerdashboard.php?orcid=${item.orc_id}')">${item.last_name}, ${item.first_name}</a><br>
                             Afiliations: ${affiliation}<br>
                             Expertise: ${expertise}
                             <div id="details_${item.author_id}" style="display: none;">
