@@ -389,7 +389,7 @@ $journal = get_journal_list();
             </ul>
           </div>
         </nav>
-        <iframe id="youtube-player" style="display: none;" src="https://www.youtube.com/embed/PZQ-7R3sFr0?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe id="youtube-player" style="display: none; width: 0%; height: 0%;" src="https://www.youtube.com/embed/PZQ-7R3sFr0?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
 
 <script>
 var pusher = new Pusher('cabcad916f55a998eaf5', {
