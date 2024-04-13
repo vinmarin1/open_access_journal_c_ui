@@ -27,15 +27,6 @@ $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="header-container" id="header-container">
-            <!-- header will be display here by fetching reusable files -->
-    </div>
-
-    <nav class="navigation-menus-container" id="navigation-menus-container">
-            <!-- navigation menus will be display here by fetching reusable files -->
-    </nav>
-
-
     <!-- <div class="content-over">
         <div class="cover-content">
             <p>Dashboard / Author</p>
