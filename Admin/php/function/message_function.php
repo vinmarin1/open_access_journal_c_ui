@@ -8,7 +8,7 @@ if (!function_exists('get_message_list')) {
 
         if ($pdo) {
             try {
-                $query = "SELECT * FROM message WHERE status = 1";
+                $query = "SELECT * FROM message WHERE status = 1 ORDER BY message_id DESC;";
                 $stmt = $pdo->query($query);
 
                 $result = $stmt->fetchAll(PDO::FETCH_OBJ);
