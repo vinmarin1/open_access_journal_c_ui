@@ -433,12 +433,24 @@
       
     </section>
   </main>
-  
+
+<!-- <audio id="myAudio">
+  <source src="../sound/iphone_sound.mp3" type="audio/mpeg">
+</audio>
+
+<button onclick="playAudio()">Play Audio</button> -->
+
+
+
   <footer class="footer mt-3" id="footer">
   </footer>
 
   
   <script>
+
+
+
+
 
     const sessionId = "<?php echo $author_id; ?>";
     window.addEventListener('scroll', function(e) {
@@ -498,14 +510,21 @@ function includeNavbar() {
       // Now that the content is loaded, you can attach event listeners or perform other operations as needed
       // For example, you can attach the notification button click event listener here
       attachNotificationButtonListener();
+      playAudio();
     })
     .catch(error => console.error('Error loading navbar.php:', error));
 }
+// function playAudio() {
+//   var x = document.getElementById("myAudio");
+//   x.play();
+// }
+
 
 function attachNotificationButtonListener() {
   $(document).on('click', '#notification-button', function () {
     $("#notification-count").text("0");
     $("#notification-count").hide();
+     
     // Send AJAX request to mark notifications as read
     $.ajax({
       url: "../PHP/mark_notifications_read.php",

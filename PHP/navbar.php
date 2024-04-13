@@ -125,6 +125,7 @@ require_once 'dbcon.php';
         $notificationCount = $countResult[0]->notif_count;
         if ($notificationCount > 0) {
             echo '<span id="notification-count" style="width: 10px; height: 10px; font-size: 10px; text-align: center; display: inline-block; line-height: 5px;">' . $notificationCount . '</span>';
+            
         } else {
             echo '<span id="notification-count" style="display: none"></span>';
         }
@@ -221,6 +222,7 @@ require_once 'dbcon.php';
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
 <script src="../JS/navbar.js"></script>
+
 
 </body>
 </html>
