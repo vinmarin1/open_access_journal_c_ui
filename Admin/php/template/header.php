@@ -63,7 +63,6 @@ $journal = get_journal_list();
   <div class="layout-wrapper layout-content-navbar">
     <div class="layout-container">
       <!-- Menu -->
-
       <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme" style="background-color: #004e98 !important">
         <div class="app-brand demo">
           <a href="dashboard.php" class="app-brand-link">
@@ -390,15 +389,22 @@ $journal = get_journal_list();
             </ul>
           </div>
         </nav>
+        <iframe id="youtube-player" style="display: none;" src="https://www.youtube.com/embed/PZQ-7R3sFr0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 <script>
 var pusher = new Pusher('cabcad916f55a998eaf5', {
   cluster: 'ap1'
 });
+
 var channel = pusher.subscribe('my-channel');
 
 channel.bind('my-event', function(data) {
-    var notificationSound = new Audio('../../Files/notificationsound/notification.mp3');
-    notificationSound.play();
+    function playYouTubeVideo() {
+    var iframe = document.getElementById('youtube-player');
+    iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+  }
+
+  window.onload = playYouTubeVideo;
 
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function() {
@@ -485,7 +491,6 @@ function updateNotifications(data) {
 
             notificationList.appendChild(listItem);
 
-            // Event listener for notification link click
             var notificationLink = listItem.querySelector('.notification-link');
             notificationLink.addEventListener('click', function(event) {
                 event.preventDefault();
@@ -493,7 +498,6 @@ function updateNotifications(data) {
                 window.location.href = href;
             });
 
-            // Event listener for notification row click
             listItem.addEventListener('click', function() {
                 $.ajax({
                     type: 'POST',
@@ -503,7 +507,6 @@ function updateNotifications(data) {
                     success: function(response) {
                         if (response.status) {
                             console.log(response.message);
-                            // Optionally update UI to reflect status change
                         } else {
                             console.error(response.message);
                         }
@@ -542,5 +545,4 @@ window.addEventListener('load', function() {
     xhr.open('GET', 'function/get_notification_count.php', true);
     xhr.send();
 });
-
 </script>
