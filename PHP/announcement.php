@@ -74,7 +74,7 @@
                             $img = $row->upload_image;
                             $dateAdded = $row->date_added;
 
-                            echo "<section class='row'>
+                            echo "<section data-animate-in='up' class='row'>
                                     <div class='col-md-5 border'>
                                         <div class='announcement-pic text-center'>
                                             <img src='../Files/announcement-image/$img' alt='#!' class='img-fluid'>
@@ -110,6 +110,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <script src="../JS/reusable-header.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="../JS/animate.js"></script>
     <script>
     function includeNavbar() {
     fetch('../PHP/navbar.php')

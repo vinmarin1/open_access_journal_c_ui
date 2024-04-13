@@ -116,8 +116,7 @@ function updateAnnouncementData() {
         if (!isset($_POST['announcement_id']) || 
             !isset($_POST['title']) || 
             !isset($_POST['announcement_description']) || 
-            !isset($_POST['announcement']) ||
-            !isset($_FILES['upload_image'])) {
+            !isset($_POST['announcement'])) {
             throw new Exception("Missing required fields.");
         }
 
@@ -128,33 +127,40 @@ function updateAnnouncementData() {
         
         $uploadPath = "../../../Files/announcement-image/";
 
-        $files = $_FILES['upload_image'];
-        $file_name = basename($files["name"]);
-        
-        $timestamp = time();
-        $hashedTimestamp = hash('sha256', (string)$timestamp);
-        $last12Hash = substr($hashedTimestamp, -12);
+        $hashfilename = ""; // Default empty value
 
-        $imageFileType = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
-        $hashfilename = $last12Hash . '-' . $title . '.' . $imageFileType;
+        if(isset($_FILES['upload_image']) && !empty($_FILES['upload_image']['name'])) {
+            $files = $_FILES['upload_image'];
+            $file_name = basename($files["name"]);
 
-        $allowedFileTypes = array('jpg', 'jpeg', 'png', 'gif');
-        
-        if (!in_array($imageFileType, $allowedFileTypes)) {
-            throw new Exception("Invalid file type ({$imageFileType})");
+            $timestamp = time();
+            $hashedTimestamp = hash('sha256', (string)$timestamp);
+            $last12Hash = substr($hashedTimestamp, -12);
+
+            $imageFileType = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
+            $hashfilename = $last12Hash . '-' . $title . '.' . $imageFileType;
+
+            $upload_image = $uploadPath . $hashfilename;
+
+            if (!move_uploaded_file($files["tmp_name"], $upload_image)) {
+                throw new Exception('Failed to move uploaded file.');
+            }
         }
 
-        $upload_image = $uploadPath . $hashfilename;
-
-        if (!move_uploaded_file($files["tmp_name"], $upload_image)) {
-            throw new Exception('Failed to move uploaded file.');
-        }
-    
         $query = "UPDATE announcement 
-                    SET title = ?, announcement_description = ?, announcement = ?, upload_image = ?
-                    WHERE announcement_id = ?";
-    
-        $result = execute_query($query, [$title, $announcement_description, $announcement, $hashfilename, $announcement_id], true);
+                    SET title = ?, announcement_description = ?, announcement = ?";
+        
+        // Only add upload_image to the query and parameters if hashfilename is not empty
+        $params = [$title, $announcement_description, $announcement];
+        if (!empty($hashfilename)) {
+            $query .= ", upload_image = ?";
+            $params[] = $hashfilename;
+        }
+        
+        $query .= " WHERE announcement_id = ?";
+        $params[] = $announcement_id;
+
+        $result = execute_query($query, $params, true);
     
         if ($result !== true) {
             echo json_encode(['status' => true, 'message' => 'Record updated successfully']);
@@ -165,7 +171,6 @@ function updateAnnouncementData() {
         echo json_encode(['status' => false, 'message' => $e->getMessage()]);
         error_log($e->getMessage(), 0);
     }
-
 }
 
 function archiveAnnouncement() {

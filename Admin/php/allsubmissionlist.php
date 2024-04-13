@@ -206,14 +206,12 @@ $all_articles = get_allarticle_list();
         });
 
         function viewWorkflow(articleId, workflow) {
-            $('#sloading').show(); // Show loading indicator
+            $('#sloading').show(); 
 
             setTimeout(function () {
-                // Redirect to the workflow page after 2 seconds
                 window.location.href = "../php/workflow.php?aid=" + articleId + workflow;
             }, 2000);
-
-            // Hide loading indicator when the page is fully loaded
+            
             window.onload = function () {
                 $('#sloading').hide();
             };
