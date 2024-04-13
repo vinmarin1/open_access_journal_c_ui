@@ -137,11 +137,11 @@ function updateAnnouncementData() {
         $imageFileType = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
         $hashfilename = $last12Hash . '-' . $title . '.' . $imageFileType;
 
-        $allowedFileTypes = array('jpg', 'jpeg', 'png', 'gif');
+        // $allowedFileTypes = array('jpg', 'jpeg', 'png', 'gif');
         
-        if (!in_array($imageFileType, $allowedFileTypes)) {
-            throw new Exception("Invalid file type ({$imageFileType})");
-        }
+        // if (!in_array($imageFileType, $allowedFileTypes)) {
+        //     throw new Exception("Invalid file type ({$imageFileType})");
+        // }
 
         $upload_image = $uploadPath . $hashfilename;
 
