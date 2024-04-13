@@ -389,36 +389,36 @@ $journal = get_journal_list();
             </ul>
           </div>
         </nav>
-        <iframe id="youtube-player" style="display: none;" src="https://www.youtube.com/embed/PZQ-7R3sFr0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe id="youtube-player" style="display: none;" src="https://www.youtube.com/embed/PZQ-7R3sFr0?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 <script>
 var pusher = new Pusher('cabcad916f55a998eaf5', {
   cluster: 'ap1'
 });
-
 var channel = pusher.subscribe('my-channel');
 
+function playYouTubeVideo() {
+  var iframe = document.getElementById('youtube-player');
+  iframe.style.display = 'block';
+  iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+}
+
 channel.bind('my-event', function(data) {
-    function playYouTubeVideo() {
-    var iframe = document.getElementById('youtube-player');
-    iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
-  }
+  playYouTubeVideo();
 
-  window.onload = playYouTubeVideo;
-
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-            if (xhr.status === 200) {
-                var newData = JSON.parse(xhr.responseText);
-                updateNotifications(newData);
-            } else {
-                console.error('Failed to fetch notification data:', xhr.statusText);
-            }
-        }
-    };
-    xhr.open('GET', 'function/get_notification_count.php', true);
-    xhr.send();
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      if (xhr.status === 200) {
+        var newData = JSON.parse(xhr.responseText);
+        updateNotifications(newData);
+      } else {
+        console.error('Failed to fetch notification data:', xhr.statusText);
+      }
+    }
+  };
+  xhr.open('GET', 'function/get_notification_count.php', true);
+  xhr.send();
 });
 
 function updateNotifications(data) {
@@ -531,18 +531,18 @@ function updateNotifications(data) {
 }
 
 window.addEventListener('load', function() {
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-            if (xhr.status === 200) {
-                var data = JSON.parse(xhr.responseText);
-                updateNotifications(data);
-            } else {
-                console.error('Failed to fetch notification data:', xhr.statusText);
-            }
-        }
-    };
-    xhr.open('GET', 'function/get_notification_count.php', true);
-    xhr.send();
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      if (xhr.status === 200) {
+        var data = JSON.parse(xhr.responseText);
+        updateNotifications(data);
+      } else {
+        console.error('Failed to fetch notification data:', xhr.statusText);
+      }
+    }
+  };
+  xhr.open('GET', 'function/get_notification_count.php', true);
+  xhr.send();
 });
 </script>
