@@ -93,7 +93,7 @@ h2 {
 
 [data-animate-in] {
     opacity: 0;
-    transition: transform 0.8s ease, opacity 0.8s ease
+    transition: transform 0.7s ease, opacity 0.7s ease
 }
 
 [data-animate-in="up"] {
