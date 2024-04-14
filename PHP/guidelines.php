@@ -170,9 +170,9 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 </ul>
             </div>           
         </aside>
-        <div class="main d-flex flex-column gap-3 my-5" id="guidelines-links">
+        <div class="main  flex-column gap-4 my-5" id="guidelines-links">
             <h4>List of Pahina Resources</h4>
-            <div class="d-flex gap-2 flex-wrap">
+            <div class="d-flex gap-3 flex-wrap">
                 <a href="#author-guidelines" data-target="author-guidelines" class="card-custom d-flex  gap-4 p-1 flex-row align-items-start">
                     <div class="icon">
                        <img class="img-fluid " src="../images/resources/1.png"/>
@@ -184,7 +184,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     
                         <small>Explore our author guidelines to ensure your submission meets all essential criteria for successful publication.</small>
                         <div class="mt-4">
-                            <span >Read more...</span>
+                            <span>Read more...</span>
                         </div>
                     </div>
                     
@@ -197,7 +197,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                         <div class="d-flex w-100 justify-content-between">
                           <h5 class="mb-1">Article Submission</h5>
                         </div>
-                        <small>Donec id elit non mi porta.</small>
+                        <small>Enhance your submission's chances of acceptance by adhering to our guidelines and requirements</small>
                         <div class="mt-4">
                             <span >Read more...</span>
                         </div>
@@ -211,7 +211,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                         <div class="d-flex w-100 justify-content-between">
                           <h5 class="mb-1">Peer Review Process</h5>
                         </div>
-                        <small>Donec id elit non mi porta.</small>
+                        <small>Learn the peer-review process upholding the standards of scholarly integrity and academic excellence in our journal.</small>
                         <div class="mt-4">
                             <span >Read more...</span>
                         </div>
@@ -225,7 +225,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                         <div class="d-flex w-100 justify-content-between">
                           <h5 class="mb-1">Templates for Author</h5>
                         </div>
-                        <small>Donec id elit non mi porta.</small>
+                        <small>Streamline your writing process with our author templates, tailored for journal submissions.</small>
                         <div class="mt-4">
                             <span >Read more...</span>
                         </div>
@@ -239,7 +239,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                         <div class="d-flex w-100 justify-content-between">
                           <h5 class="mb-1">Publication Policy</h5>
                         </div>
-                        <small>Donec id elit non mi porta.</small>
+                        <small>Understand the principles guiding our publication decisions and ethical standards.</small>
                         <div class="mt-4">
                             <span >Read more...</span>
                         </div>
@@ -253,7 +253,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                         <div class="d-flex w-100 justify-content-between">
                           <h5 class="mb-1">Become a Reviewer</h5>
                         </div>
-                        <small>Donec id elit non mi porta.</small>
+                        <small>Contribute your expertise by joining our esteemed community of reviewers and help shape the course of academic research.</small>
                         <div class="mt-4">
                             <span >Read more...</span>
                         </div>
