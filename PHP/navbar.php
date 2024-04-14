@@ -50,7 +50,7 @@ require_once 'dbcon.php';
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="about.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Guidelines
+            Resources
           </a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" style="color: black" href="./tutorials.php">Tutorials for Contributors</a></li>

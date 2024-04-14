@@ -5,6 +5,21 @@
 	display: flex;
 	justify-content: space-between;
 }
+
+#banner-main {
+    background-image: url("https://t3.ftcdn.net/jpg/03/05/84/16/360_F_305841668_SGCkYbDlZxkPPs8yO8wXywQMKeWpxG0F.jpg");
+    background-size: cover;
+    min-height: 60vh;
+}
+#banner-main .content,  #banner-main .body {
+    width: 100% !important;
+}
+
+#banner-main h1, #banner-main .last, #banner-main span {
+    text-align: center;
+
+}
+
 .banner h1{
     font-size: 3em;
     margin-bottom: 0.5em;
@@ -45,8 +60,19 @@
     padding:2em;
     border: 2px solid var(--gray);
     flex:1;
-    min-width: 400px;
+    min-width: 48%;
+    color: black;
 }
+
+.card-custom span {
+    color: var(--link);
+}
+.card-custom img {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+}
+
 .card-custom small {
     color: rgb(55, 55, 55) !important;
 }
