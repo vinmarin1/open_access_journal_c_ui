@@ -56,7 +56,11 @@ $notificationlist = get_notification_list();
                             <td style="display:none;"><?php echo $notification->id; ?><br> </td>
                             <td width="100%">
                                 <?php echo $notification->title; ?><br>
-                                <?php echo $notification->description; ?><br>
+                                <?php
+                                $description = $notification->description;
+                                $limitedTitle = strlen($description) > 170 ? substr($description, 0, 170) . '...' : $description;
+                                echo $limitedTitle;
+                            ?><br>
                                 <span class="time-ago-<?php echo $notification->id; ?>"></span>
                                 <script>
                                     var currentTime = new Date().getTime();
@@ -65,13 +69,17 @@ $notificationlist = get_notification_list();
                                     var timeAgo;
 
                                     if (timeDifference < 60000) {
-                                        timeAgo = Math.floor(timeDifference / 1000) + ' seconds ago';
-                                    } else if (timeDifference < 3600000) { 
-                                        timeAgo = Math.floor(timeDifference / 60000) + ' minutes ago';
+                                        const seconds = Math.floor(timeDifference / 1000);
+                                        timeAgo = seconds + (seconds === 1 ? ' second ago' : ' seconds ago');
+                                    } else if (timeDifference < 3600000) {
+                                        const minutes = Math.floor(timeDifference / 60000);
+                                        timeAgo = minutes + (minutes === 1 ? ' minute ago' : ' minutes ago');
                                     } else if (timeDifference < 86400000) {
-                                        timeAgo = Math.floor(timeDifference / 3600000) + (Math.floor(timeDifference / 3600000) === 1 ? ' hour ago' : ' hours ago');
+                                        const hours = Math.floor(timeDifference / 3600000);
+                                        timeAgo = hours + (hours === 1 ? ' hour ago' : ' hours ago');
                                     } else {
-                                        timeAgo = Math.floor(timeDifference / 86400000) + (timeDifference < 172800000 ? ' day ago' : ' days ago');
+                                        const days = Math.floor(timeDifference / 86400000);
+                                        timeAgo = days + (days === 1 ? ' day ago' : ' days ago');
                                     }
 
                                     // Assuming you have an element with class 'time-ago-<?php echo $notification->id; ?>'

@@ -540,6 +540,8 @@ document.addEventListener('DOMContentLoaded', function () {
   const editor = document.getElementById('editor');
   const keywords = document.getElementById('keywords');
   const editor2 = document.getElementById('editor2');
+  const checkDuplicaton = document.getElementById('check-duplication');
+  
 
   const titleValidation = document.getElementById('title-validation');
   const abstractValidation = document.getElementById('abstract-validation');
@@ -553,19 +555,20 @@ document.addEventListener('DOMContentLoaded', function () {
   function checkValidations() {
       // Check if all validations have passed and all inputs have a value
       if (
-          titleValidation.style.display === 'none' &&
-          abstractValidation.style.display === 'none' &&
-          keywordsValidation.style.display === 'none' &&
-          referenceValidation.style.display === 'none' &&
+          // titleValidation.style.display === 'none' &&
+          // abstractValidation.style.display === 'none' 
+          // keywordsValidation.style.display === 'none' &&
+          // referenceValidation.style.display === 'none' &&
           titleInput.value.trim() !== '' &&
-          editor.value.trim() !== '' &&
-          // keywords.value.trim() !== '' &&
-          keywordArray.length !=0 &&
-          editor2.value.trim() !== ''
+          editor.value.trim() !== '' 
+          // // keywords.value.trim() !== '' &&
+          // keywordArray.length !=0 &&
+          // editor2.value.trim() !== ''
       ) {
           formFloating.style.width = '60%';
           formFloating2.style.display = 'inline-block';
           formFloating3.style.width = '60%';
+          checkDuplicaton.style.display = 'block';
       } else {
           formFloating.style.width = '100%';
           formFloating2.style.display = 'none';
@@ -747,7 +750,7 @@ function addRow() {
       '<td><input class="form-control email-input" type="email" name="emailC[]" style="height: 30px;" ></td>' +
       '<td><input class="form-control" type="text" name="firstnameC[]" style="height: 30px;" ></td>' +
       '<td><input class="form-control" type="text" name="lastnameC[]" style="height: 30px;" ></td>' +
-      '<td><input class="form-control" type="text" name="publicnameC[]" style="height: 30px;"></td>' +
+      // '<td><input class="form-control" type="text" name="publicnameC[]" style="height: 30px;"></td>' +
       '<td><input class="form-control" type="text" name="orcidC[]" style="height: 30px;"></td>' +
       '<td class="align-middle">' +
       '<div class="form-check cAuthor" style="display: inline-block; margin-right: 10px">' +
@@ -760,7 +763,8 @@ function addRow() {
       '</div>' +
       '</td>'
       +
-      '<td class="align-middle"><input class="form-check-input" type="checkbox" name="selectToDelete"></td>' +
+      '<td><button type="button" class="btn btn-danger btn-sm deleteCont" onclick="deleteRow(this)">-</button></td>' +
+      // '<td class="align-middle"><input class="form-check-input" type="checkbox" name="selectToDelete"></td>' +
       '</tr>';
 
   $('#contributorTable tbody').append(newRow);
@@ -797,7 +801,7 @@ inputElement.addEventListener('input', function (event) {
                   // Update the current row with fetched data
                   currentRow.find('input[name="firstnameC[]"]').val(response.data.first_name);
                   currentRow.find('input[name="lastnameC[]"]').val(response.data.last_name);
-                  currentRow.find('input[name="publicnameC[]"]').val(response.data.public_name);
+                  // currentRow.find('input[name="publicnameC[]"]').val(response.data.public_name);
                   currentRow.find('input[name="orcidC[]"]').val(response.data.orc_id);
               } else {
                   // Handle the case where the email does not exist in the database
@@ -880,10 +884,14 @@ if (title.value === '' ||abstract.value === '' || keywordArray.length == 0 || re
 
 
 
-function deleteData() {
-// Iterate through each checkbox
-$('input[name="selectToDelete"]:checked').each(function() {
-    // Delete the corresponding row
-    $(this).closest('tr').remove();
-});
+// function deleteData() {
+// // Iterate through each checkbox
+// $('input[name="selectToDelete"]:checked').each(function() {
+//     // Delete the corresponding row
+//     $(this).closest('tr').remove();
+// });
+// }
+
+function deleteRow(button) {
+  $(button).closest('tr').remove(); // Remove the closest parent <tr> of the clicked button
 }

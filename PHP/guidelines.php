@@ -13,6 +13,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
     <link rel="stylesheet" href="../CSS/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../images/pahina-full.png">
 </head>
 
 <body>
@@ -27,91 +28,79 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
 <!-- Banners -->
     <div class="banner" id="banner-main" >
         <div class="content">
-            <p>Home / Guidelines </p>
+            <p><a href="index.php">Home</a> / Guidelines and Policies  </p>
             <div class="body">
-                <h1 id="guideline-title">Guidelines</h1>
-                <span>Let us guide you in the best way to present, organize and describe your work</span><br/>
+                <h1 id="guideline-title">Guidelines and Policies</h1>
+                <span>Let us guide you in the best way to present, organize and describe your worket us guide you in the best way to present, organize and describe your work</span><br/>
                 <span class="last">View our Resources</span>
             </div>
         </div>
-        <div class="d-flex flex-wrap gap-1">
-        <img width="40%" src="../images/resources/Web Design On Computer Royalty-Free Stock Photo.jpg">
-            <!-- <div class="card-custom">Author Guidelines</div>
-            <div class="card-custom">Article Submission</div>
-            <div class="card-custom">Peer-review Process</div>
-            <div class="card-custom">Become a Reviewer</div>
-            <div class="card-custom">Templates for Author</div>
-            <div class="card-custom">Publication Policy</div>
-             -->
-             
-        </div>
-        
     </div>
     <div class="banner" id="author-guidelines-banner" style="display: none;">
         <div class="content">
-            <p>Home / Guidelines/ </p>
+            <p><a href="index.php">Home</a> / <a href="#">Guidelines and Policies</a> / Author Guidelines </p>
             <div class="body">
                 <h1 id="guideline-title">Author Guidelines</h1>
                 <span>Explore our author guidelines to ensure your submission meets all essential criteria for successful publication.</span><br/>
                 <span class="last">Read more about our author guidelines</button>
             </div>
         </div>
-        <img width="40%" src="../images/resources/Web Design On Computer Royalty-Free Stock Photo.jpg">
+        <img width="40%" src="../images/resources/1.png">
     </div>
     <div class="banner" id="article-submission-banner"  style="display: none;">
             <div class="content">
-                <p>Home / Guidelines/ </p>
+                <p><a href="index.php">Home</a> / <a href="#">Guidelines and Policies</a> / Article Submission </p>
                 <div class="body">
                     <h1 id="guideline-title">Article Submission</h1>
                     <span>Enhance your submission's chances of acceptance by adhering to our guidelines and requirements</span><br/>
                     <span class="last">Read more about article submission</span>
                 </div>
             </div>
-            <img width="40%" src="../images/resources/submit.png">
+            <img width="40%" src="../images/resources/2.png">
     </div>
     <div class="banner" id="peer-review-process-banner" style="display: none;">
             <div class="content">
-                <p>Home / Guidelines/ </p>
+                <p><a href="index.php">Home</a> / <a href="#">Guidelines and Policies</a> / Peer Review Process </p>
                 <div class="body">
                     <h1 id="guideline-title">Peer Review Process</h1>
                     <span>Learn the peer-review process upholding the standards of scholarly integrity and academic excellence in our journal.</span><br/>
                     <span class="last">Read more about our Peer Review Process</button>
                 </div>
             </div>
-            <img width="40%" src="https://images.ctfassets.net/o78em1y1w4i4/1vcXhQnayIcmJ3eohoVpY2/1cf9432e053c5af60f170280daedefc4/story-male-manager-taking-notes-in-home-office.jpg?fm=webp&w=1080&q=75">
+            <img width="40%" src="../images/resources/3.png">
     </div>
     <div class="banner" id="become-a-reviewer-banner" style="display: none;">
             <div class="content">
-                <p>Home / Guidelines/ </p>
+            <p><a href="index.php">Home</a> / <a href="#">Guidelines and Policies</a> / Become a Reviewer </p>
                 <div class="body">
                     <h1 id="guideline-title">Become a Reviewer</h1>
                     <span>Contribute your expertise by joining our esteemed community of reviewers and help shape the course of academic research.</span><br/>
                     <span class="last">Read more about becoming a reviewer</button>
                 </div>
             </div>
-            <img width="40%" src="https://images.ctfassets.net/o78em1y1w4i4/1vcXhQnayIcmJ3eohoVpY2/1cf9432e053c5af60f170280daedefc4/story-male-manager-taking-notes-in-home-office.jpg?fm=webp&w=1080&q=75">
+            <img width="40%" src="../images/resources/6.png">
     </div>
     <div class="banner" id="templates-for-author-banner" style="display: none;">
             <div class="content">
-                <p>Home / Guidelines/ </p>
+                <p><a href="index.php">Home</a> / <a href="#">Guidelines and Policies</a> / Templates for Author</p>
                 <div class="body">
                     <h1 id="guideline-title">Templates for Author</h1>
                     <span> Streamline your writing process with our author templates, tailored for journal submissions.</span><br/>
                     <span class="last">View and download our templates</button>
                 </div>
             </div>
-            <img width="40%" src="../images/resources/435535444_1614341379393611_1210178581707210205_n.png">
+            <img width="40%" src="../images/resources/4.png">
     </div>
     <div class="banner" id="publication-policy-banner" style="display: none;">
             <div class="content">
-                <p>Home / Guidelines/ Publication Policy </p>
+                <p><a href="index.php">Home</a> / <a href="#">Guidelines and Policies</a> / Publication Policy </p>
                 <div class="body">
                     <h1 id="guideline-title">Publication Policy</h1>
                     <span>Understand the principles guiding our publication decisions and ethical standards.</span><br/>
                     <span class="last">Read our Publication Policies</button>
                 </div>
             </div>
-            <img width="40%" src="../images/resources/pexels-pixabay-357514.jpg">
+            <img width="40%" src="../images/resources/5.png">
     </div>
 <!-- End of banners -->
     <main class="d-flex flex-column-reverse flex-md-row-reverse gap-2">
@@ -163,8 +152,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 </ul>
                 <hr/>
                 <ul id="for-contributors" >
-                    <li><b>Browse Pahina Resources</b></li>
-                    <li>Guidelines</li>
+                    <a href="guidelines.php"><li><b>Browse Pahina Resources</b></li></a>
                     <li class="faq-toggle" data-target="author-guidelines"><a href="guidelines.php#author-guidelines">Author Guidelines</a></li>
                     <li class="faq-toggle" data-target="templates-for-author"><a href="guidelines.php#templates-for-author">Templates for Author</a></li>
                     <li class="faq-toggle" data-target="publication-policy"><a href="guidelines.php#publication-policy">Publication Policy</a></li>
@@ -173,110 +161,102 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     <li class="faq-toggle" data-target="become-a-reviewer"><a href="guidelines.php#become-a-reviewer">Become A Reviewer</a></li>
                     <br/>
     
-                    <li>Tutorials</li>
+                    <a href="tutorials.php"><li><b>Browse Tutorials</b></li></a>
                     <li class="faq-toggle"><a href="tutorials.php#tutorial-on-publication">Tutorial on Publication</a></li>
                     <li class="faq-toggle"><a href="tutorials.php#tutorial-on-review">Tutorial on Review</a></li>
+                    <li class="faq-toggle"><a href="tutorials.php#tutorial-on-registration">How to be a Contributor</a></li>
                     <br/>
-                    <a href="faqs.php"><li class="faq-toggle" data-target="frequently-asked-questions">FAQs</li></a>
+                    <a href="faqs.php"><li class="faq-toggle" data-target="frequently-asked-questions"><b>Browse FAQs</b></li></a>
                 </ul>
             </div>           
         </aside>
-        <div class="main" id="guidelines-links">
-            <div class="d-flex gap-2 flex-wrap">
-                <a href="#author-guidelines" data-target="author-guidelines" class="card-custom d-flex flex-column gap-4 p-4 flex-row align-items-start">
+        <div class="main  flex-column gap-4 my-5" id="guidelines-links">
+            <h4>List of Pahina Resources</h4>
+            <div data-animate-in="up" class="d-flex gap-3 flex-wrap">
+                <a  href="#author-guidelines" data-target="author-guidelines" class="card-custom d-flex flex-column flex-sm-row gap-4 p-1 flex-row align-items-start">
                     <div class="icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 512 512">
-                        	<path fill="none" stroke="var(--secondary)" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M384 224v184a40 40 0 0 1-40 40H104a40 40 0 0 1-40-40V168a40 40 0 0 1 40-40h167.48" />
-                        	<path fill="var(--secondary)" d="M459.94 53.25a16.06 16.06 0 0 0-23.22-.56L424.35 65a8 8 0 0 0 0 11.31l11.34 11.32a8 8 0 0 0 11.34 0l12.06-12c6.1-6.09 6.67-16.01.85-22.38M399.34 90L218.82 270.2a9 9 0 0 0-2.31 3.93L208.16 299a3.91 3.91 0 0 0 4.86 4.86l24.85-8.35a9 9 0 0 0 3.93-2.31L422 112.66a9 9 0 0 0 0-12.66l-9.95-10a9 9 0 0 0-12.71 0" />
-                        </svg>
+                       <img class="img-fluid " src="../images/resources/1.png"/>
                     </div>
-                    <div class="d-flex w-100 flex-column">
+                    <div class="d-flex w-100 flex-column p-3">
                         <div class="d-flex w-100 justify-content-between">
                           <h5 class="mb-1">Author Guidelines</h5>
-                         
                         </div>
                     
-                        <small>Donec id elit non mi porta.</small>
+                        <small>Explore our author guidelines to ensure your submission meets all essential criteria for successful publication.</small>
+                        <div class="mt-4">
+                            <span>Read more...</span>
+                        </div>
                     </div>
+                    
                 </a>
-                <a href="#article-submission" data-target="article-submission" class="card-custom d-flex flex-column gap-4 p-4 flex-row align-items-start">
+                <a  href="#article-submission" data-target="article-submission" class="card-custom d-flex flex-column flex-sm-row gap-4 p-1 flex-row align-items-start">
                     <div class="icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 512 512">
-                        	<path fill="none" stroke="var(--secondary)" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M384 224v184a40 40 0 0 1-40 40H104a40 40 0 0 1-40-40V168a40 40 0 0 1 40-40h167.48" />
-                        	<path fill="var(--secondary)" d="M459.94 53.25a16.06 16.06 0 0 0-23.22-.56L424.35 65a8 8 0 0 0 0 11.31l11.34 11.32a8 8 0 0 0 11.34 0l12.06-12c6.1-6.09 6.67-16.01.85-22.38M399.34 90L218.82 270.2a9 9 0 0 0-2.31 3.93L208.16 299a3.91 3.91 0 0 0 4.86 4.86l24.85-8.35a9 9 0 0 0 3.93-2.31L422 112.66a9 9 0 0 0 0-12.66l-9.95-10a9 9 0 0 0-12.71 0" />
-                        </svg>
+                        <img class="img-fluid " src="../images/resources/2.png"/>
                     </div>
-                    <div class="d-flex w-100 flex-column">
+                    <div class="d-flex w-100 flex-column p-3">
                         <div class="d-flex w-100 justify-content-between">
                           <h5 class="mb-1">Article Submission</h5>
-                         
                         </div>
-                    
-                        <small>Donec id elit non mi porta.</small>
+                        <small>Enhance your submission's chances of acceptance by adhering to our guidelines and requirements</small>
+                        <div class="mt-4">
+                            <span >Read more...</span>
+                        </div>
                     </div>
                 </a>
-                <a href="#peer-review-process" data-target="peer-review-process" class="card-custom d-flex flex-column gap-4 p-4 flex-row align-items-start">
+                <a  href="#peer-review-process" data-target="peer-review-process" class="card-custom d-flex flex-column flex-sm-row gap-4 p-1 flex-row align-items-start">
                     <div class="icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 512 512">
-                        	<path fill="none" stroke="var(--secondary)" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M384 224v184a40 40 0 0 1-40 40H104a40 40 0 0 1-40-40V168a40 40 0 0 1 40-40h167.48" />
-                        	<path fill="var(--secondary)" d="M459.94 53.25a16.06 16.06 0 0 0-23.22-.56L424.35 65a8 8 0 0 0 0 11.31l11.34 11.32a8 8 0 0 0 11.34 0l12.06-12c6.1-6.09 6.67-16.01.85-22.38M399.34 90L218.82 270.2a9 9 0 0 0-2.31 3.93L208.16 299a3.91 3.91 0 0 0 4.86 4.86l24.85-8.35a9 9 0 0 0 3.93-2.31L422 112.66a9 9 0 0 0 0-12.66l-9.95-10a9 9 0 0 0-12.71 0" />
-                        </svg>
+                        <img class="img-fluid " src="../images/resources/3.png"/>
                     </div>
-                    <div class="d-flex w-100 flex-column">
+                    <div class="d-flex w-100 flex-column p-3">
                         <div class="d-flex w-100 justify-content-between">
                           <h5 class="mb-1">Peer Review Process</h5>
-                         
                         </div>
-                    
-                        <small>Donec id elit non mi porta.</small>
+                        <small>Learn the peer-review process upholding the standards of scholarly integrity and academic excellence in our journal.</small>
+                        <div class="mt-4">
+                            <span >Read more...</span>
+                        </div>
                     </div>
                 </a>
-                <a href="#templates-for-author" data-target="templates-for-author" class="card-custom d-flex flex-column gap-4 p-4 flex-row align-items-start">
+                <a  href="#templates-for-author" data-target="templates-for-author" class="card-custom d-flex flex-column flex-sm-row gap-4 p-1 flex-row align-items-start">
                     <div class="icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 512 512">
-                        	<path fill="none" stroke="var(--secondary)" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M384 224v184a40 40 0 0 1-40 40H104a40 40 0 0 1-40-40V168a40 40 0 0 1 40-40h167.48" />
-                        	<path fill="var(--secondary)" d="M459.94 53.25a16.06 16.06 0 0 0-23.22-.56L424.35 65a8 8 0 0 0 0 11.31l11.34 11.32a8 8 0 0 0 11.34 0l12.06-12c6.1-6.09 6.67-16.01.85-22.38M399.34 90L218.82 270.2a9 9 0 0 0-2.31 3.93L208.16 299a3.91 3.91 0 0 0 4.86 4.86l24.85-8.35a9 9 0 0 0 3.93-2.31L422 112.66a9 9 0 0 0 0-12.66l-9.95-10a9 9 0 0 0-12.71 0" />
-                        </svg>
+                        <img class="img-fluid " src="../images/resources/4.png"/> 
                     </div>
-                    <div class="d-flex w-100 flex-column">
+                    <div class="d-flex w-100 flex-column p-3">
                         <div class="d-flex w-100 justify-content-between">
                           <h5 class="mb-1">Templates for Author</h5>
-                         
                         </div>
-                    
-                        <small>Donec id elit non mi porta.</small>
+                        <small>Streamline your writing process with our author templates, tailored for journal submissions.</small>
+                        <div class="mt-4">
+                            <span >Read more...</span>
+                        </div>
                     </div>
                 </a>
-                <a href="#publication-policy" data-target="publication-policy" class="card-custom d-flex flex-column gap-4 p-4 flex-row align-items-start">
+                <a  href="#publication-policy" data-target="publication-policy" class="card-custom d-flex flex-column flex-sm-row gap-4 p-1 flex-row align-items-start">
                     <div class="icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 512 512">
-                        	<path fill="none" stroke="var(--secondary)" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M384 224v184a40 40 0 0 1-40 40H104a40 40 0 0 1-40-40V168a40 40 0 0 1 40-40h167.48" />
-                        	<path fill="var(--secondary)" d="M459.94 53.25a16.06 16.06 0 0 0-23.22-.56L424.35 65a8 8 0 0 0 0 11.31l11.34 11.32a8 8 0 0 0 11.34 0l12.06-12c6.1-6.09 6.67-16.01.85-22.38M399.34 90L218.82 270.2a9 9 0 0 0-2.31 3.93L208.16 299a3.91 3.91 0 0 0 4.86 4.86l24.85-8.35a9 9 0 0 0 3.93-2.31L422 112.66a9 9 0 0 0 0-12.66l-9.95-10a9 9 0 0 0-12.71 0" />
-                        </svg>
+                        <img class="img-fluid " src="../images/resources/5.png"/>
                     </div>
-                    <div class="d-flex w-100 flex-column">
+                    <div class="d-flex w-100 flex-column p-3">
                         <div class="d-flex w-100 justify-content-between">
                           <h5 class="mb-1">Publication Policy</h5>
-                         
                         </div>
-                    
-                        <small>Donec id elit non mi porta.</small>
+                        <small>Understand the principles guiding our publication decisions and ethical standards.</small>
+                        <div class="mt-4">
+                            <span >Read more...</span>
+                        </div>
                     </div>
                 </a>
-                <a href="#become-a-reviewer" data-target="become-a-reviewer" class="card-custom d-flex flex-column gap-4 p-4 flex-row align-items-start">
+                <a  href="#become-a-reviewer" data-target="become-a-reviewer" class="card-custom d-flex flex-column flex-sm-row gap-4 p-1 flex-row align-items-start">
                     <div class="icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 512 512">
-                        	<path fill="none" stroke="var(--secondary)" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M384 224v184a40 40 0 0 1-40 40H104a40 40 0 0 1-40-40V168a40 40 0 0 1 40-40h167.48" />
-                        	<path fill="var(--secondary)" d="M459.94 53.25a16.06 16.06 0 0 0-23.22-.56L424.35 65a8 8 0 0 0 0 11.31l11.34 11.32a8 8 0 0 0 11.34 0l12.06-12c6.1-6.09 6.67-16.01.85-22.38M399.34 90L218.82 270.2a9 9 0 0 0-2.31 3.93L208.16 299a3.91 3.91 0 0 0 4.86 4.86l24.85-8.35a9 9 0 0 0 3.93-2.31L422 112.66a9 9 0 0 0 0-12.66l-9.95-10a9 9 0 0 0-12.71 0" />
-                        </svg>
+                        <img class="img-fluid " src="../images/resources/6.png"/>
                     </div>
-                    <div class="d-flex w-100 flex-column">
+                    <div class="d-flex w-100 flex-column p-3">
                         <div class="d-flex w-100 justify-content-between">
                           <h5 class="mb-1">Become a Reviewer</h5>
-                         
                         </div>
-                    
-                        <small>Donec id elit non mi porta.</small>
+                        <small>Contribute your expertise by joining our esteemed community of reviewers and help shape the course of academic research.</small>
+                        <div class="mt-4">
+                            <span >Read more...</span>
+                        </div>
                     </div>
                 </a>
             </div>
@@ -725,6 +705,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
 
     <script src="../JS/faqs.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="../JS/animate.js"></script>
 <script>
 function includeNavbar() {
   fetch('../PHP/navbar.php')
@@ -740,6 +721,8 @@ function includeNavbar() {
 
 function attachNotificationButtonListener() {
   $(document).on('click', '#notification-button', function () {
+    $("#notification-count").text("0");
+    $("#notification-count").hide();
     // Send AJAX request to mark notifications as read
     $.ajax({
       url: "../PHP/mark_notifications_read.php",
@@ -748,7 +731,9 @@ function attachNotificationButtonListener() {
       success: function (response) {
         console.log("Notifications marked as read:", response);
         // Update notification count on success
-        $("#notification-count").text("0");
+        // $("#notification-count").text("0");
+        // $("#notification-count").hide();
+
       },
       error: function (xhr, status, error) {
         console.error("Error marking notifications as read:", error);

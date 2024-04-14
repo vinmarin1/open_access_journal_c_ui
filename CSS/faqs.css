@@ -5,6 +5,21 @@
 	display: flex;
 	justify-content: space-between;
 }
+
+#banner-main {
+    background-image: url("https://t3.ftcdn.net/jpg/03/05/84/16/360_F_305841668_SGCkYbDlZxkPPs8yO8wXywQMKeWpxG0F.jpg");
+    background-size: cover;
+    min-height: 60vh;
+}
+#banner-main .content,  #banner-main .body {
+    width: 100% !important;
+}
+
+#banner-main h1, #banner-main .last, #banner-main span {
+    text-align: center;
+
+}
+
 .banner h1{
     font-size: 3em;
     margin-bottom: 0.5em;
@@ -16,9 +31,9 @@
 }
 .banner img {
     width: 100%;
-    max-width: 700px;
-    height:80vh;
-    max-height:680px;
+    max-width: 500px;
+    height:auto;
+    /* max-height:680px; */
     object-fit: cover;
 }
 .banner .body {
@@ -45,7 +60,31 @@
     padding:2em;
     border: 2px solid var(--gray);
     flex:1;
-    min-width: 400px;
+    min-width: 48%;
+    color: black;
+    border-radius: 4px;
+}
+
+.card-custom span {
+    color: var(--link);
+}
+.card-custom .icon {
+    width:60%;
+}
+.card-custom img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-custom:hover span {
+    /* border: var(--link); */
+    /* background-color: var(--gray); */
+    font-weight: bold;
+}
+
+.card-custom:hover {
+    background-color: #e3eef9;
 }
 .card-custom small {
     color: rgb(55, 55, 55) !important;
@@ -583,6 +622,9 @@ table th, table td {
     .card-custom {
         min-width: 100% !important;
     }
+    .card-custom .icon {
+        width:100%;
+    }
     .banner {
         flex-direction: column;
     }
@@ -591,7 +633,7 @@ table th, table td {
     }
     .banner img {
         width: 100%;
-        height: 50vh;
+        height: auto;
     }
     .s-1, .s-2 {
         padding: 1em;

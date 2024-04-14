@@ -193,7 +193,10 @@ function includeNavbar() {
 }
 
 function attachNotificationButtonListener() {
+    function attachNotificationButtonListener() {
   $(document).on('click', '#notification-button', function () {
+    $("#notification-count").text("0");
+    $("#notification-count").hide();
     // Send AJAX request to mark notifications as read
     $.ajax({
       url: "../PHP/mark_notifications_read.php",
@@ -202,7 +205,9 @@ function attachNotificationButtonListener() {
       success: function (response) {
         console.log("Notifications marked as read:", response);
         // Update notification count on success
-        $("#notification-count").text("0");
+        // $("#notification-count").text("0");
+        // $("#notification-count").hide();
+
       },
       error: function (xhr, status, error) {
         console.error("Error marking notifications as read:", error);

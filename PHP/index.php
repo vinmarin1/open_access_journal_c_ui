@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Welcome to Pahina, where you can find the latest articles, and updates on various topics. Explore our diverse collection now!">
   <meta name="keywords" content="Pahina, Open access Journal, Pahina">
-  <link rel="icon" type="image/png" href="../images/qcu-logo.webp">
+  <link rel="icon" type="image/png" href="../images/pahina-full.png">
   <title>Pahina | HOME</title>
   <link rel="stylesheet" href="../CSS/home.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -413,12 +413,24 @@
       
     </section>
   </main>
-  
+
+<!-- <audio id="myAudio">
+  <source src="../sound/iphone_sound.mp3" type="audio/mpeg">
+</audio>
+
+<button onclick="playAudio()">Play Audio</button> -->
+
+
+
   <footer class="footer mt-3" id="footer">
   </footer>
 
   
   <script>
+
+
+
+
 
     const sessionId = "<?php echo $author_id; ?>";
     window.addEventListener('scroll', function(e) {
@@ -478,12 +490,21 @@ function includeNavbar() {
       // Now that the content is loaded, you can attach event listeners or perform other operations as needed
       // For example, you can attach the notification button click event listener here
       attachNotificationButtonListener();
+      playAudio();
     })
     .catch(error => console.error('Error loading navbar.php:', error));
 }
+// function playAudio() {
+//   var x = document.getElementById("myAudio");
+//   x.play();
+// }
+
 
 function attachNotificationButtonListener() {
   $(document).on('click', '#notification-button', function () {
+    $("#notification-count").text("0");
+    $("#notification-count").hide();
+     
     // Send AJAX request to mark notifications as read
     $.ajax({
       url: "../PHP/mark_notifications_read.php",
@@ -492,7 +513,9 @@ function attachNotificationButtonListener() {
       success: function (response) {
         console.log("Notifications marked as read:", response);
         // Update notification count on success
-        $("#notification-count").text("0");
+        // $("#notification-count").text("0");
+        // $("#notification-count").hide();
+
       },
       error: function (xhr, status, error) {
         console.error("Error marking notifications as read:", error);

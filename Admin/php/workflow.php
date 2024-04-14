@@ -1940,9 +1940,14 @@ table {
                         $('#DataTableAnswer tbody').empty();
 
                         for (const answer of answerData) {
+                            let commentSection = ''; 
+                            if (answer.comments && answer.comments.trim() !== '') { 
+                                commentSection = '<div style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Comment: ' + answer.comments + '</div>'; // Append the comment section
+                            }
+                            
                             $('#DataTableAnswer tbody').append('<tr><td width="50%"><div style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">' + 
                             answer.reviewer_questionnaire + '</div><div style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Answer: ' + 
-                            answer.answer + '</div></td></tr>');
+                            answer.answer + '</div>' + commentSection + '</td></tr>');
                         }   
                         $('#addReviewerAnswerModal').modal('show');
                     } else {
@@ -2114,7 +2119,7 @@ table {
                     row.html(`
                         <td width="5%">${item.author_id}</td>
                         <td width="80%">
-                            <a href="javascript:void(0);" onclick="openPageCentered('../../PHP/reviewerdashboard.php?orcid=${item.orc_id}')">${item.last_name}, ${item.first_name}</a><br>
+                            <a href="javascript:void(0);" onclick="openPageCentered('../../PHP/userdashboard.php?orcid=${item.orc_id}')">${item.last_name}, ${item.first_name}</a><br>
                             Afiliations: ${affiliation}<br>
                             Expertise: ${expertise}
                             <div id="details_${item.author_id}" style="display: none;">

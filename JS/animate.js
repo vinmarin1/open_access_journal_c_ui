@@ -50,7 +50,7 @@ $(function() {
     clearTimeout(debounceTimeout);
     debounceTimeout = setTimeout(function() {
       detection();
-    }, 50); // Adjust debounce timeout as needed
+    }, 50); 
   }
 
   w.on("scroll", handleScroll);
@@ -62,13 +62,13 @@ $(function() {
   function throttleResize(callback) {
     var resizeTimeout;
     clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(callback, 100); // Adjust throttle timeout as needed
+    resizeTimeout = setTimeout(callback, 80); 
   }
 
   $(document).ready(function() {
     setTimeout(function() {
       detection();
-    }, 1500);
+    }, 1000);
 
     $("[data-animate-in], [data-detect-viewport]").each(function() {
       var d = $(this).data("animate-in-delay") || 0;

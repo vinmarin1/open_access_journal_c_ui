@@ -55,11 +55,18 @@ th{
     min-width: 360px;
 }
 
-.checkItem {
+.checkItem  {
     display: flex;
     align-items: start;
     gap: 2;
 }
+
+input.my-checkbox{
+    height: 17px;
+    width: 17px;
+    margin-top: 3px;
+}
+
 
 #privacy-tab, #article-tab, #file-tab, #contributors-tab, #comment-tab,#review-tab{
     border: none;
@@ -203,11 +210,12 @@ th{
 
 
 #check-duplication, #btn-okay{
-    width: 100%;
+    width: 50%;
     background-color: var(--main, #0858A4);
     color: white;
     margin-top: 10px;
     border-radius: 10px;
+    display: none;
 }
 
 

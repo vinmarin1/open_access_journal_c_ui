@@ -6,8 +6,11 @@ $submissionlist = get_journalsubmission();
 $comparisonlist = get_submissioncomparison();
 $usercount = get_usercount();
 $publishedcount = get_publishedcount();
+$archivedcount = get_archivedcount();
 $engagementcount = get_engagementcount();
 $ongoingcount = get_ongoingcount();
+$totalamountdonation = get_totaldonation();
+// print_r($totalamountdonation);exit;
 $userdemographicslist = get_userdemographics();
 $donationamount = get_donationamount();
 $top5contributorslist = get_top5contributors_list();
@@ -252,7 +255,7 @@ $donationDataJson = json_encode($donationData);
                                             <i class="bx bx-dots-vertical-rounded"></i>
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="cardOpt1">
-                                            <a class="dropdown-item" href="userreport.php">View More</a>
+                                            <a class="dropdown-item" href="userreport.php" target="_blank">View More</a>
                                         </div>
                                     </div>
                                 </div>
@@ -313,12 +316,12 @@ $donationDataJson = json_encode($donationData);
                                         <img src="../assets/img/icons/unicons/monitor-heart-rate.svg" alt="chart success" class="rounded" />
                                     </div>
                                     <div class="dropdown" style="margin-right: -10px;">
-                                        <button class="btn p-0" type="button" id="cardOpt1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <!-- <button class="btn p-0" type="button" id="cardOpt1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="bx bx-dots-vertical-rounded"></i>
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="cardOpt1">
                                             <a class="dropdown-item" href="javascript:void(0);">View More</a>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                             </div>
@@ -362,7 +365,7 @@ $donationDataJson = json_encode($donationData);
                                                 <i class="bx bx-dots-vertical-rounded"></i>
                                             </button>
                                             <div class="dropdown-menu" aria-labelledby="cardOpt1">
-                                                <a class="dropdown-item" href="userreport.php">View More</a>
+                                                <a class="dropdown-item" href="userreport.php" target="_blank">View More</a>
                                                 <a href="#" class="download-chart-btn dropdown-item" data-chart="myChart3">Download</a>
                                             </div>
                                         </div>
@@ -394,6 +397,54 @@ $donationDataJson = json_encode($donationData);
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="card mb-4">
+                                    <div class="card-body">
+                                        <div class="card-title d-flex align-items-start justify-content-between">
+                                            <div>
+                                                <span class="fw-semibold d-block mb-1">Archived Article</span>
+                                                <h3 class="card-title mb-2"><?php echo isset($archivedcount[0]->article_count) ? $archivedcount[0]->article_count : '0'; ?></h3>
+                                            </div>
+                                            <div class="avatar flex-shrink-0" style="width:25%; height:25%; margin-left:30px;">
+                                                <img src="../assets/img/icons/unicons/document-layout-left.svg" alt="chart success" class="rounded" />
+                                            </div>
+                                            <div class="dropdown" style="margin-right: -10px;">
+                                                <button class="btn p-0" type="button" id="cardOpt1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="bx bx-dots-vertical-rounded"></i>
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="cardOpt1">
+                                                    <a class="dropdown-item" href="totalarchive.php?m=<?php echo date('n'); ?>&y=<?php echo date('Y'); ?>" target="_blank">View More</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="card-title d-flex align-items-start justify-content-between">
+                                            <div>
+                                                <span class="fw-semibold d-block mb-1">Total Donation</span>
+                                                <h3 class="card-title mb-2">₱<?php echo isset($totalamountdonation[0]->totalamount) ? $totalamountdonation[0]->totalamount : '0'; ?></h3>
+                                            </div>
+                                            <div class="avatar flex-shrink-0" style="width:25%; height:25%;">
+                                                <img src="../assets/img/icons/unicons/document-layout-left.svg" alt="chart success" class="rounded" />
+                                            </div>
+                                            <div class="dropdown" style="margin-right: -10px;">
+                                                <button class="btn p-0" type="button" id="cardOpt1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="bx bx-dots-vertical-rounded"></i>
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="cardOpt1">
+                                                <a class="dropdown-item" href="donationreportmtd.php?m=<?php echo date('n'); ?>&y=<?php echo date('Y'); ?>" target="_blank">View More</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="card mb-4">
                             <div class="card-header d-flex align-items-center justify-content-between pb-0">
                                 <div class="card-title mb-0">
@@ -478,16 +529,20 @@ $donationDataJson = json_encode($donationData);
                                         <ul class="p-0 m-0">
                                             <li class="d-flex mb-3 pb-1">
                                                 <div class="avatar" style="margin-right: 10px;">
-                                                    <?php if (!empty($top5contributorslistval->profile_pic)): ?>
+                                                <?php if (!empty($top5contributorslistval->profile_pic)): ?>
+                                                    <a href="javascript:void(0);" onclick="openPageCentered('../../PHP/userdashboard.php?orcid=<?php echo $top5contributorslistval->orc_id; ?>')">
                                                         <img src="../<?php echo $top5contributorslistval->profile_pic; ?>" alt="" class="rounded-circle" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%;" />
-                                                    <?php else: ?>
+                                                    </a>
+                                                <?php else: ?>
+                                                    <a href="javascript:void(0);" onclick="openPageCentered('../../PHP/userdashboard.php?orcid=<?php echo $top5contributorslistval->orc_id; ?>')">
                                                         <img src="https://qcuj.online/Files/uploaded-profile/no_profile.jpg" alt="" class="rounded-circle" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%;" />
-                                                    <?php endif; ?>
+                                                    </a>
+                                                <?php endif; ?>
                                                 </div>
                                                 <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                                                     <div class="">
-                                                        <h6 class="mb-0"><?php echo $top5contributorslistval->lastname; ?>, <?php echo $top5contributorslistval->firstname; ?></h6>
-                                                    </div>
+                                                            <a href="javascript:void(0);" onclick="openPageCentered('../../PHP/userdashboard.php?orcid=<?php echo $top5contributorslistval->orc_id; ?>')"><?php echo $top5contributorslistval->lastname . ", " . $top5contributorslistval->firstname; ?></a></h6>
+                                                        </div>
                                                     <div class="user-progress">
                                                         <small class="fw-semibold"><?php echo $top5contributorslistval->email_count; ?></small>
                                                     </div>
@@ -533,18 +588,18 @@ $donationDataJson = json_encode($donationData);
                                                 <li class="d-flex mb-3 pb-1">
                                                     <div class="avatar" style="margin-right: 10px;">
                                                         <?php if (!empty($top5reviewerlistval->profile_pic)): ?>
-                                                            <a href="javascript:void(0);" onclick="openPageCentered('../../PHP/reviewerdashboard.php?orcid=<?php echo $top5reviewerlistval->author_id; ?>')">
+                                                            <a href="javascript:void(0);" onclick="openPageCentered('../../PHP/userdashboard.php?orcid=<?php echo $top5reviewerlistval->orc_id; ?>')">
                                                                 <img src="../<?php echo $top5reviewerlistval->profile_pic; ?>" alt="" class="rounded-circle" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%;" />
                                                             </a>
                                                         <?php else: ?>
-                                                            <a href="javascript:void(0);" onclick="openPageCentered('../../PHP/reviewerdashboard.php?orcid=<?php echo $top5reviewerlistval->author_id; ?>')">
+                                                            <a href="javascript:void(0);" onclick="openPageCentered('../../PHP/userdashboard.php?orcid=<?php echo $top5reviewerlistval->orc_id; ?>')">
                                                                 <img src="https://qcuj.online/Files/uploaded-profile/no_profile.jpg" alt="" class="rounded-circle" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%;" />
                                                             </a>
                                                         <?php endif; ?>
                                                     </div>
                                                     <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                                                         <div class="">
-                                                            <a href="javascript:void(0);" onclick="openPageCentered('../../PHP/reviewerdashboard.php?orcid=<?php echo $top5reviewerlistval->orc_id; ?>')"><?php echo $top5reviewerlistval->last_name . ", " . $top5reviewerlistval->first_name; ?></a></h6>
+                                                            <a href="javascript:void(0);" onclick="openPageCentered('../../PHP/userdashboard.php?orcid=<?php echo $top5reviewerlistval->orc_id; ?>')"><?php echo $top5reviewerlistval->last_name . ", " . $top5reviewerlistval->first_name; ?></a></h6>
                                                         </div>
                                                         <div class="user-progress">
                                                             <small class="fw-semibold"><?php echo $top5reviewerlistval->count_reviewed; ?></small>
