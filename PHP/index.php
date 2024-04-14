@@ -233,96 +233,79 @@
             <p class=" text-center text-muted "> These are some of the Pahina features you'll enjoy </p>
         </div>
         <div class="row gap-2 gy-8 gx-md-8 gy-lg-2 gx-xxl-5 justify-content-center justify-sm-content-between">
-          <div data-animate-in="up" style="width: 22em" class="mb-4 border bg-white rounded p-4 d-flex flex-column justify-content-between">
-            <div>
-              <div class="badge p-3 mb-4">
-              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
-              	<path fill="none" stroke="var(--main)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0-14 0m18 11l-6-6" />
-              </svg>
+          <div data-animate-in="up" style="cursor:default; width: 22em" >
+            <div class="hover-container">
+              <div>
+                <img src="../images/peer-reviewed-articles.png" alt="Peer-Reviewed Articles" style="max-width: 100%; height: auto;">
+              </div>
+              <div class="mb-4 border bg-white p-4 d-flex flex-column justify-content-between">
+                <h5 class="mb-3 ">Peer-Reviewed Articles</h5>
+                <p class="mb-3 text-secondary"> Explore lots of peer-reviewed articles in different subjects, all checked carefully to make sure they're trustworthy.</p>
+                <a href="./browse-articles.php" class="fw-bold text-decoration-none link-primary" style="width: fit-content;">
+                  View Articles <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 26 26" fill="currentColor"><path d="M10 6V8H5V19H16V14H18V20C18 20.5523 17.5523 21 17 21H4C3.44772 21 3 20.5523 3 20V7C3 6.44772 3.44772 6 4 6H10ZM21 3V12L17.206 8.207L11.2071 14.2071L9.79289 12.7929L15.792 6.793L12 3H21Z"></path></svg>
+                </a>
               </div>
             </div>
-            <h5 class="mb-3">Peer-Reviewed Articles</h5>
-            <p class="mb-3 text-secondary"> Explore lots of peer-reviewed articles in different subjects, all checked carefully to make sure they're trustworthy.</p>
-            <a href="./browse-articles.php" class="fw-bold text-decoration-none link-primary">
-              View Articles
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                class="bi bi-arrow-right-short" viewBox="0 0 16 16">
-                <path fill-rule="evenodd"
-                  d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z">
-                </path>
-              </svg>
-            </a>
           </div>
-          <div data-animate-in="up" style="width: 22em" class="mb-4 border bg-white rounded p-4 d-flex flex-column justify-content-between">
-            <div>
-              <div class="badge p-3 mb-4">
-              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 32 32">
-              	<path fill="var(--main)" d="M25 4.03c-.765 0-1.517.3-2.094.876L13 14.78l-.22.22l-.06.313l-.69 3.5l-.31 1.468l1.467-.31l3.5-.69l.313-.06l.22-.22l9.874-9.906A2.968 2.968 0 0 0 25 4.032zm0 1.94c.235 0 .464.12.688.343c.446.446.446.928 0 1.375L16 17.374l-1.72.344l.345-1.72l9.688-9.688c.223-.223.452-.343.687-.343zM4 8v20h20V14.812l-2 2V26H6V10h9.188l2-2z" />
-              </svg>
+          <div data-animate-in="up" style="cursor:default; width: 22em">
+            <div class="hover-container">
+              <div>
+                <img src="../images/contribute-articles.png" alt="Peer-Reviewed Articles" style="max-width: 100%; height: auto;">
+              </div>
+              <div class="mb-4 border bg-white p-4 d-flex flex-column justify-content-between">
+                <h5 class="mb-3">Easier Submissions</h5>
+                <p class="mb-3 text-secondary">If you're an author, our easy submission process and helpful tools like the AI-based journal classifier and duplicate checker make it simple to send in your work and get it reviewed quickly.</p>
+    
+                <?php
+                  if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+                    echo '
+                    <a href="./ex_submit.php" class="fw-bold text-decoration-none link-primary" style="width: fit-content;">
+                      Submit an Article <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 26 26" fill="currentColor"><path d="M10 6V8H5V19H16V14H18V20C18 20.5523 17.5523 21 17 21H4C3.44772 21 3 20.5523 3 20V7C3 6.44772 3.44772 6 4 6H10ZM21 3V12L17.206 8.207L11.2071 14.2071L9.79289 12.7929L15.792 6.793L12 3H21Z"></path></svg>
+                    </a>
+                    
+                      '; 
+                    } else{
+                      echo '
+                      <a href="./login.php" class="fw-bold text-decoration-none link-primary">
+                        Login to Submit
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                          class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+                          <path fill-rule="evenodd"
+                            d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z">
+                          </path>
+                        </svg>
+                      </a>
+                      
+                        '; 
+                    }
+                  ?>
               </div>
             </div>
-            <h5 class="mb-3">Easier Submissions</h5>
-            <p class="mb-3 text-secondary">If you're an author, our easy submission process and helpful tools like the AI-based journal classifier and duplicate checker make it simple to send in your work and get it reviewed quickly.</p>
- 
-            <?php
-              if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-                echo '
-                <a href="./ex_submit.php" class="fw-bold text-decoration-none link-primary">
-                  Submit an Article
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+          </div>
+          <div data-animate-in="up" style="cursor:default; width: 22em">
+            <div class="hover-container">
+              <div>
+                <img src="../images/popularity-based-recommendations.png" alt="Peer-Reviewed Articles" style="max-width: 100%; height: auto;">
+              </div>
+              <div class="mb-4 border bg-white p-4 d-flex flex-column justify-content-between">
+                <h5 class="mb-3">AI & Popularity based Recommendations</h5>
+                <p class="mb-3 text-secondary">Experience article discovery with our system's popularity and AI based (personalized and relevant articles) recommendations and suggestions, guiding users to relevant content. </p>
+                <a href="#!" class="fw-bold text-decoration-none link-primary" style="width: fit-content;">
+                  Check recommendations <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 26 26" fill="currentColor"><path d="M10 6V8H5V19H16V14H18V20C18 20.5523 17.5523 21 17 21H4C3.44772 21 3 20.5523 3 20V7C3 6.44772 3.44772 6 4 6H10ZM21 3V12L17.206 8.207L11.2071 14.2071L9.79289 12.7929L15.792 6.793L12 3H21Z"></path></svg>
+                  <!-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-arrow-right-short" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
                       d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z">
                     </path>
-                  </svg>
+                  </svg> -->
                 </a>
-                
-                  '; 
-                } else{
-                  echo '
-                  <a href="./login.php" class="fw-bold text-decoration-none link-primary">
-                    Login to Submit
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                      class="bi bi-arrow-right-short" viewBox="0 0 16 16">
-                      <path fill-rule="evenodd"
-                        d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z">
-                      </path>
-                    </svg>
-                  </a>
-                  
-                    '; 
-                }
-              ?>
-          </div>
-          <div data-animate-in="up" style="width: 22em" class="mb-4 border bg-white rounded p-4 d-flex flex-column justify-content-between">
-            <div>
-              <div class="badge p-3 mb-4">
-              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24">
-              	<g fill="none" stroke="var(--main)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-              		<rect width="14" height="20" x="5" y="2" rx="2" ry="2" />
-              		<path d="M12.667 8L10 12h4l-2.667 4" />
-              	</g>
-              </svg>
               </div>
             </div>
-            <h5 class="mb-3">AI & Popularity based Recommendations</h5>
-            <p class="mb-3 text-secondary">Experience article discovery with our system's popularity and AI based (personalized and relevant articles) recommendations and suggestions, guiding users to relevant content. </p>
-            <a href="#!" class="fw-bold text-decoration-none link-primary">
-              Check recommendations
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                class="bi bi-arrow-right-short" viewBox="0 0 16 16">
-                <path fill-rule="evenodd"
-                  d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z">
-                </path>
-              </svg>
-            </a>
           </div>
-
         </div>
-
       </section>
-
     </div>
+    
     <section  id="procedure-container">
       <header class="text-center">
         <h2>How to Publish an Article</h2>

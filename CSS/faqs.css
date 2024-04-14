@@ -571,8 +571,8 @@ table th, table td {
 }
 
 .action-button {
-    margin: 1em;
-    padding: 0.5em 1em;
+    margin: 2em;
+    /* padding: 0.5em 1em; */
     /* background-color: #007bff;
     color: #fff;
     text-decoration: none;

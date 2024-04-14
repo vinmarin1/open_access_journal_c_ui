@@ -2385,7 +2385,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
             } else if (actionEngage === 'Reviewed Article Published') {
                 Swal.fire({
-                    html: "<p style='font-weight: bold'>You got 3 Community heart because the article you reviewed was published</p>" + "<p>Title: " + title + "</p>" + "<br>" + "<button type='button' onclick='downloadCertificate()'>Download Cert</button>",
+                    html: "<p style='font-weight: bold'>You got 3 Community heart because the article you reviewed was published</p>" + "<p>Title: " + title + "</p>" + "<br>" + "<button type='button' onclick='downloadCertificate()' class='download-button'>Download Cert</button>",
                     imageUrl: "../images/qcu-bg.jpg",
                     imageWidth: 400,
                     imageHeight: 200,
@@ -2397,7 +2397,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
             } else if (actionEngage === 'Published an Article') {
                 Swal.fire({
-                    html: "<p style='font-weight: bold'>You got 3 Community heart because you've successfully published an article</p>" + "<p>Title: " +  title + "</p>" + "<br>" + "<button type='button' onclick='downloadCertificatePublished()'>Download Cert</button>",
+                    html: "<p style='font-weight: bold'>You got 3 Community heart because you've successfully published an article</p>" + "<p>Title: " +  title + "</p>" + "<br>" + "<button type='button' onclick='downloadCertificatePublished()' class='download-button'>Download Cert</button>",
                     imageUrl: "../images/qcu-bg.jpg",
                     imageWidth: 400,
                     imageHeight: 200,

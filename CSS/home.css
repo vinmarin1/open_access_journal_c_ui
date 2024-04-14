@@ -720,8 +720,20 @@ h4, h2 {
 }
 #features-container h5{
   color: #285581;
+  height: 50px;
+  /* padding-top: 25px; */
+}
+.text-secondary{
+  height: 150px;
+  text-align: justify;
+}
+.hover-container {
+  transition: transform 0.3s ease;
 }
 
+.hover-container:hover {
+  transform: translateY(-5px);
+}
 #quick-links-container h5{
   text-align: center;
   color: #285581;
