@@ -28,7 +28,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
 <!-- Banners -->
     <div class="banner" id="banner-main" >
         <div class="content">
-            <p>Home / Resources / Guidelines and Policies </p>
+            <p><a href="index.php">Home</a> / Guidelines and Policies  </p>
             <div class="body">
                 <h1 id="guideline-title">Guidelines and Policies</h1>
                 <span>Let us guide you in the best way to present, organize and describe your worket us guide you in the best way to present, organize and describe your work</span><br/>
@@ -38,7 +38,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
     </div>
     <div class="banner" id="author-guidelines-banner" style="display: none;">
         <div class="content">
-            <p>Home / Guidelines/ </p>
+            <p><a href="index.php">Home</a> / <a href="#">Guidelines and Policies</a> / Author Guidelines </p>
             <div class="body">
                 <h1 id="guideline-title">Author Guidelines</h1>
                 <span>Explore our author guidelines to ensure your submission meets all essential criteria for successful publication.</span><br/>
@@ -49,7 +49,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
     </div>
     <div class="banner" id="article-submission-banner"  style="display: none;">
             <div class="content">
-                <p>Home / Guidelines/ </p>
+                <p><a href="index.php">Home</a> / <a href="#">Guidelines and Policies</a> / Article Submission </p>
                 <div class="body">
                     <h1 id="guideline-title">Article Submission</h1>
                     <span>Enhance your submission's chances of acceptance by adhering to our guidelines and requirements</span><br/>
@@ -60,7 +60,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
     </div>
     <div class="banner" id="peer-review-process-banner" style="display: none;">
             <div class="content">
-                <p>Home / Guidelines/ </p>
+                <p><a href="index.php">Home</a> / <a href="#">Guidelines and Policies</a> / Peer Review Process </p>
                 <div class="body">
                     <h1 id="guideline-title">Peer Review Process</h1>
                     <span>Learn the peer-review process upholding the standards of scholarly integrity and academic excellence in our journal.</span><br/>
@@ -71,7 +71,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
     </div>
     <div class="banner" id="become-a-reviewer-banner" style="display: none;">
             <div class="content">
-                <p>Home / Guidelines/ </p>
+            <p><a href="index.php">Home</a> / <a href="#">Guidelines and Policies</a> / Become a Reviewer </p>
                 <div class="body">
                     <h1 id="guideline-title">Become a Reviewer</h1>
                     <span>Contribute your expertise by joining our esteemed community of reviewers and help shape the course of academic research.</span><br/>
@@ -82,7 +82,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
     </div>
     <div class="banner" id="templates-for-author-banner" style="display: none;">
             <div class="content">
-                <p>Home / Guidelines/ </p>
+                <p><a href="index.php">Home</a> / <a href="#">Guidelines and Policies</a> / Templates for Author</p>
                 <div class="body">
                     <h1 id="guideline-title">Templates for Author</h1>
                     <span> Streamline your writing process with our author templates, tailored for journal submissions.</span><br/>
@@ -93,7 +93,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
     </div>
     <div class="banner" id="publication-policy-banner" style="display: none;">
             <div class="content">
-                <p>Home / Guidelines/ Publication Policy </p>
+                <p><a href="index.php">Home</a> / <a href="#">Guidelines and Policies</a> / Publication Policy </p>
                 <div class="body">
                     <h1 id="guideline-title">Publication Policy</h1>
                     <span>Understand the principles guiding our publication decisions and ethical standards.</span><br/>
@@ -172,8 +172,8 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
         </aside>
         <div class="main  flex-column gap-4 my-5" id="guidelines-links">
             <h4>List of Pahina Resources</h4>
-            <div class="d-flex gap-3 flex-wrap">
-                <a href="#author-guidelines" data-target="author-guidelines" class="card-custom d-flex  gap-4 p-1 flex-row align-items-start">
+            <div data-animate-in="up" class="d-flex gap-3 flex-wrap">
+                <a  href="#author-guidelines" data-target="author-guidelines" class="card-custom d-flex flex-column flex-sm-row gap-4 p-1 flex-row align-items-start">
                     <div class="icon">
                        <img class="img-fluid " src="../images/resources/1.png"/>
                     </div>
@@ -189,7 +189,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     </div>
                     
                 </a>
-                <a href="#article-submission" data-target="article-submission" class="card-custom d-flex  gap-4 p-1 flex-row align-items-start">
+                <a  href="#article-submission" data-target="article-submission" class="card-custom d-flex flex-column flex-sm-row gap-4 p-1 flex-row align-items-start">
                     <div class="icon">
                         <img class="img-fluid " src="../images/resources/2.png"/>
                     </div>
@@ -203,7 +203,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                         </div>
                     </div>
                 </a>
-                <a href="#peer-review-process" data-target="peer-review-process" class="card-custom d-flex  gap-4 p-1 flex-row align-items-start">
+                <a  href="#peer-review-process" data-target="peer-review-process" class="card-custom d-flex flex-column flex-sm-row gap-4 p-1 flex-row align-items-start">
                     <div class="icon">
                         <img class="img-fluid " src="../images/resources/3.png"/>
                     </div>
@@ -217,7 +217,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                         </div>
                     </div>
                 </a>
-                <a href="#templates-for-author" data-target="templates-for-author" class="card-custom d-flex  gap-4 p-1 flex-row align-items-start">
+                <a  href="#templates-for-author" data-target="templates-for-author" class="card-custom d-flex flex-column flex-sm-row gap-4 p-1 flex-row align-items-start">
                     <div class="icon">
                         <img class="img-fluid " src="../images/resources/4.png"/> 
                     </div>
@@ -231,7 +231,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                         </div>
                     </div>
                 </a>
-                <a href="#publication-policy" data-target="publication-policy" class="card-custom d-flex  gap-4 p-1 flex-row align-items-start">
+                <a  href="#publication-policy" data-target="publication-policy" class="card-custom d-flex flex-column flex-sm-row gap-4 p-1 flex-row align-items-start">
                     <div class="icon">
                         <img class="img-fluid " src="../images/resources/5.png"/>
                     </div>
@@ -245,7 +245,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                         </div>
                     </div>
                 </a>
-                <a href="#become-a-reviewer" data-target="become-a-reviewer" class="card-custom d-flex  gap-4 p-1 flex-row align-items-start">
+                <a  href="#become-a-reviewer" data-target="become-a-reviewer" class="card-custom d-flex flex-column flex-sm-row gap-4 p-1 flex-row align-items-start">
                     <div class="icon">
                         <img class="img-fluid " src="../images/resources/6.png"/>
                     </div>
@@ -705,6 +705,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
 
     <script src="../JS/faqs.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="../JS/animate.js"></script>
 <script>
 function includeNavbar() {
   fetch('../PHP/navbar.php')
