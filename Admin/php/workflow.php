@@ -1940,10 +1940,14 @@ table {
                         $('#DataTableAnswer tbody').empty();
 
                         for (const answer of answerData) {
+                            let commentSection = ''; 
+                            if (answer.comments && answer.comments.trim() !== '') { 
+                                commentSection = '<div style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Comment: ' + answer.comments + '</div>'; // Append the comment section
+                            }
+                            
                             $('#DataTableAnswer tbody').append('<tr><td width="50%"><div style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">' + 
                             answer.reviewer_questionnaire + '</div><div style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Answer: ' + 
-                            answer.answer + '</div><div style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Comment: ' + 
-                            answer.comment + '</div></td></tr>');
+                            answer.answer + '</div>' + commentSection + '</td></tr>');
                         }   
                         $('#addReviewerAnswerModal').modal('show');
                     } else {
