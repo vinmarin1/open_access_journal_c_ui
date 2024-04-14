@@ -36,7 +36,7 @@
                 <p style="text-align: justify;" id="journal_details">
                 </p>
             </div>
-            <hr style="height: 1px; background-color: var(--main, #0858A4); width: 100%">
+            <!-- <hr style="height: 1px; background-color: var(--main, #0858A4); width: 100%"> -->
         </div>
         <div id="issues-per-year-container" class="container">
             <div id="skeleton-container" class="d-flex">

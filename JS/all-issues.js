@@ -69,16 +69,15 @@ async function generateArticlesBasedOnIssues(page) {
             </div>
             <!-- Article Stats -->
             <div class="article-stats">
-                <div class="download-buttons">`;
-    
+               `;
+        // <div class="download-buttons">
         // Check if the user is logged in
-        if (isLoggedIn) {
-            // If logged in, include the download button
-            html += `<button class="download-pdf-button" data-article-index="${article.article_id}" data-article-file="${article.file_name}">Download PDF</button>`;
-        }
+        // if (isLoggedIn) {
+        //     // If logged in, include the download button
+        //     html += `<button class="download-pdf-button" data-article-index="${article.article_id}" data-article-file="${article.file_name}">Download PDF</button>`;
+        // }</div> <hr/>
     
-        html += `</div>
-                <hr>
+        html += `
                 <div class="stats-container">
                     <div class="view-download">
                         <p class="stats-value" style="color: var(--main, #0858A4);">${article.total_reads}</p>
