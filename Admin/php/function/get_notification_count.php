@@ -16,7 +16,7 @@ if (!function_exists('get_notification_data')) {
                 $count = $countResult['count'];
 
                 // Data query
-                $dataQuery = "SELECT * FROM notification WHERE admin = 1 AND read = 1 ORDER BY id DESC";
+                $dataQuery = "SELECT * FROM notification WHERE admin = 1 ORDER BY id DESC";
                 $stmt = $pdo->prepare($dataQuery);
                 $stmt->execute();
                 $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
