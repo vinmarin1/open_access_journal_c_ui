@@ -27,7 +27,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
 
     <div class="content-over">
         <div class="cover-content">
-            <p>Home / Tutorials</p>
+            <p>Home / Resources / Tutorials</p>
             <!-- <h1 id="guideline-title">Tutorial on Publication</h1> -->
         </div>
     </div>
@@ -56,61 +56,56 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
             </div>           
         </aside>
         <section class="main" id="procedure-container" style="display:flex; flex-direction:column;gap:4em">
-          <header class="text-center">
+        <header class="text-center">
             <h2>How to's</h2>
             <span>This will show you step by step tutorial for the process</span>
-          </header>
-          <div class="mt-2 procedures flex-lg-row flex-column">
-          <div class="procedure " >
-              <div class="icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 16 16"><path fill="var(--secondary)" fill-rule="evenodd" d="M3 13.5a.5.5 0 0 1-.5-.5V3a.5.5 0 0 1 .5-.5h9.25a.75.75 0 0 0 0-1.5H3a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9.75a.75.75 0 0 0-1.5 0V13a.5.5 0 0 1-.5.5zm12.78-8.82a.75.75 0 0 0-1.06-1.06L9.162 9.177L7.289 7.241a.75.75 0 1 0-1.078 1.043l2.403 2.484a.75.75 0 0 0 1.07.01z" clip-rule="evenodd"/></svg>
-              </div>
-              <a class="faq-toggle" href="#tutorial-on-registration" data-target="tutorial-on-registration" >
-              
-              <h5 class="title">Be a Contributor</h5>
-              <div class="description">
-                <p class="text-muted"> Joining 'Pahina' as a contributor offers you a chance to showcase your expertise to a wider audience and engage with a vibrant community of readers. Your contributions will have a meaningful impact, fostering discussions and advancing knowledge in your field.</p>
-              </div>
-            </a>  
+        </header>
+        <div class="mt-2 procedures flex-lg-row flex-column">
+            <div class="procedure " >
+                <img src="../images/tutorial-contributor.png" alt="Procedure Image">
+                <div class="procedure-body">
+                    <h3 class="title">Be a Contributor</h3>
+                    <div class="description">
+                        <p class="text-muted"> Joining 'Pahina' as a contributor offers you a chance to showcase your expertise to a wider audience and engage with a vibrant community of readers. Your contributions will have a meaningful impact, fostering discussions and advancing knowledge in your field.</p>
+                    </div>
+                </div>
+                <a class="action-button" href="#tutorial-on-registration" data-target="tutorial-on-registration">Learn More <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 26 26" fill="currentColor"><path d="M10 6V8H5V19H16V14H18V20C18 20.5523 17.5523 21 17 21H4C3.44772 21 3 20.5523 3 20V7C3 6.44772 3.44772 6 4 6H10ZM21 3V12L17.206 8.207L11.2071 14.2071L9.79289 12.7929L15.792 6.793L12 3H21Z"></path></svg></a>
+            </div>
+            <div class="procedure">
+                <img src="../images/tutorial-on-publication.png" alt="Procedure Image">
+                <div class="procedure-body">
+                    <h3 class="title">Submit a Paper</h3>
+                    <div class="description">
+                        <p class="text-muted">Submitting an article to 'Pahina' provides a unique opportunity to share your insights and expertise with a diverse audience. Your contribution will not only enrich our platform but also establish you as a thought leader in your field. Join us in shaping meaningful discussions and advancing knowledge by sharing your ideas with Pahina.</p>
+                    </div>
+                </div>
+                <a class="action-button" href="#tutorial-on-publication" data-target="tutorial-on-publication">Learn More <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 26 26" fill="currentColor"><path d="M10 6V8H5V19H16V14H18V20C18 20.5523 17.5523 21 17 21H4C3.44772 21 3 20.5523 3 20V7C3 6.44772 3.44772 6 4 6H10ZM21 3V12L17.206 8.207L11.2071 14.2071L9.79289 12.7929L15.792 6.793L12 3H21Z"></path></svg></a>
             </div>
             <div class="procedure "  >
-              <div class="icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="var(--secondary)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="14" stroke-dashoffset="14" d="M6 19h12"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.5s" dur="0.4s" values="14;0"/></path><path stroke-dasharray="18" stroke-dashoffset="18" d="M12 15 h2 v-6 h2.5 L12 4.5M12 15 h-2 v-6 h-2.5 L12 4.5"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.4s" values="18;0"/></path></g></svg>
-              </div>
-              <a class="faq-toggle" href="#tutorial-on-publication" data-target="tutorial-on-publication">
-                  <h5 class="title">Submit a Paper</h5>
-                  <div class="description">
-                    <p class="text-muted">Submitting an article to 'Pahina' provides a unique opportunity to share your insights and expertise with a diverse audience. Your contribution will not only enrich our platform but also establish you as a thought leader in your field. Join us in shaping meaningful discussions and advancing knowledge by sharing your ideas with Pahina.</p>
-                  </div>
-              </a>
+                <img src="../images/tutorial-on-review.png" alt="Procedure Image">
+                <div class="procedure-body">
+                    <h3 class="title">Review a Paper</h3>
+                    <div class="description">
+                        <p class="text-muted">Your expertise is invaluable in ensuring the quality and integrity of articles on 'Pahina.' By reviewing submitted articles, you'll play a crucial role in shaping academic discourse and advancing knowledge within your field. Join us in upholding rigorous standards and contributing to the growth of our community by lending your expertise to the peer review process.</p>
+                    </div>
+                </div>
+                <a class="action-button" href="#tutorial-on-review" data-target="tutorial-on-review">Learn More <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 26 26" fill="currentColor"><path d="M10 6V8H5V19H16V14H18V20C18 20.5523 17.5523 21 17 21H4C3.44772 21 3 20.5523 3 20V7C3 6.44772 3.44772 6 4 6H10ZM21 3V12L17.206 8.207L11.2071 14.2071L9.79289 12.7929L15.792 6.793L12 3H21Z"></path></svg></a>
             </div>
-            <div class="procedure "  >
-            
-              <div class="icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="var(--secondary)" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="M6 15.8L7.143 17L10 14M6 8.8L7.143 10L10 7"/><path d="M13 9h5m-5 7h5m4-4c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12s0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464c.974.974 1.3 2.343 1.41 4.536"/></g></svg>
-              </div>
-              <a class="faq-toggle" href="#tutorial-on-review" data-target="tutorial-on-review">
-              <h5 class="title">Review a Paper</h5>
-              <div class="description">
-                <p class="text-muted">Your expertise is invaluable in ensuring the quality and integrity of articles on 'Pahina.' By reviewing submitted articles, you'll play a crucial role in shaping academic discourse and advancing knowledge within your field. Join us in upholding rigorous standards and contributing to the growth of our community by lending your expertise to the peer review process.</p>
-              </div>
-            </a>
-            </div>
-           
-          </div>
+        </div>
         </section>
         <div class="main" id="tutorial-on-publication-container" style="display:none">
             <div class="category w-100">
             <div class="mb-4">
+                <img src="../images/tutorial-on-publication.png" alt="Tutorial Image" class="tutorial-image">
                 <h2 style="font-size:32px !important">Submit a Paper</h2>
             </div>
-                <div class="s-1">
+                <div class="s-1 animated fadeInLeft">
                     <p>At Pahina, we value your contributions and are dedicated to facilitating a smooth and rewarding publication journey. To assist you every step of the way, we've curated a comprehensive tutorial to provide clear guidance, ensuring that authors feel confident and empowered throughout their submission experience. Join us in sharing knowledge and advancing scholarship – submit your manuscript today and let's embark on this enriching journey together.</p> 
                     <ul>
                         <li>Before you submit a paper you must register first.  <a href="tutorials.php#tutorial-on-registration">Learn How to register</a></li> 
                     </ul>
                 </div>
-                <div class="s-2">
+                <div class="s-2 animated fadeInRight">
                     <h3>Submit a Paper</h3>
                     <p>Begin your publication journey by click</p>
                     <ol type="1">
@@ -196,6 +191,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
         <div class="main" id="tutorial-on-review-container" style="display: none;">
                 <div class="category w-100">
                     <div class="mb-4">
+                        <img src="../images/tutorial-on-review.png" alt="Tutorial Image" class="tutorial-image">
                         <h2 style="font-size:32px !important">Become a Reviewer</h2>
                     </div>
                     <div class="s-1">
@@ -255,8 +251,9 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 </div>
         </div>
         <div class="main" id="tutorial-on-registration-container" style="display: none;">
-        <div class="category w-100">
+                <div class="category w-100">
                     <div class="mb-4">
+                        <img src="../images/tutorial-contributor.png" alt="Tutorial Image" class="tutorial-image">
                         <h2 style="font-size:32px !important">Be a Contributor</h2>
                     </div>
                     <div class="s-1">

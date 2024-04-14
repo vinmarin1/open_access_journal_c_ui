@@ -27,7 +27,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
 
     <div class="content-over">
         <div class="cover-content">
-            <p>Home / Guidelines / FAQs</p>
+            <p>Home / Resources / FAQs</p>
             <h1 id="guideline-title">Frequently Asked Questions</h1>
         </div>
     </div>

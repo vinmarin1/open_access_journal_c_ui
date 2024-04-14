@@ -26,7 +26,26 @@
 			$query = "INSERT INTO verify (code, expires, email) VALUES (:code, :expires, :email)";
 			database_run($query, $vars);
 
-			$message = "Your verification code is " . $vars['code'];
+			// Construct the HTML content for the email
+			$verification_code_html = '<div style="font-size: 28px; text-align: center; padding: 15px; background-color: #f0f0f0; border-radius: 8px;">' . $vars['code'] . '</div>';
+
+			$message = '
+            <div class="container" style="max-width: 600px; margin: 20px auto; background-color: #ffffff; box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);">
+                <div class="header" style="background-color: #0858A4; color: #ffffff; padding: 20px; text-align: center;">
+					<img class="img-logo" src="https://qcuj.online/images/pahina-final.png" alt="" style="width: 50px;">
+				<h1 style="color: #fff; text-align: center; margin-bottom: 10px;">Email Verification</h1>
+                </div>
+                <div class="container-body" style="padding: 20px; text-align: left;">
+                    <p>Welcome to <span style="color: #0858A4;">Pahina</span>! To ensure the security of your account, please verify your email address by using the code below:</p>
+                    ' . $verification_code_html . '
+                    <p style="font-style: italic; color: #777777; text-align: left; margin-bottom: 20px;">This code is valid for a limited time.</p>
+                    <p style="margin-bottom: 15px; color: #555555; text-align: left; line-height: 1.4;">Please enter the code on the login page to complete the verification process.</p>
+                </div>
+                <div class="footer" style="text-align: center; color: #888888; font-size: 14px; margin-top: 20px;">
+                    <p>Need help? <a href="mailto:qcujournal@gmail.com" style="color: #0858A4;">qcujournal@gmail.com</a> or visit our <a href="#" style="color: #0858A4;">Help Center</a>.</p>
+                </div>
+            </div>
+			';
 			$subject = "Email Verification";
 			$recipient = $vars['email'];
 			send_mail($recipient, $subject, $message);
@@ -134,6 +153,7 @@
     <?php include('./meta.php'); ?>
     <title>Pahina PUBLICATION | VERIFICATION CODE</title>
 	<link rel="stylesheet" href="../CSS/verify.css">
+	<link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 	

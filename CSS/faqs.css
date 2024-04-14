@@ -348,31 +348,58 @@ aside {
     /* padding:2em; */
 }
 
-.s-1, .s-2 {
-    margin-bottom: 2em;
-    padding:4em;
-    border: 0.8px solid var(--gray);
-    
+.tutorial-image {
+    width: 100%;
+    height: auto;
+    margin-bottom: 1.5em;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.s-1 h3, .s-2 h3 {
-    font-family: Raleway, sans-serif !important;
-    font-size:28px !important;
+.s-1,
+.s-2 {
+    margin-bottom: 30px;
+    padding: 2em;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.s-1 p, .s-2 p {
-    margin-bottom: 0.5rem;
-    
+.s-1 h3,
+.s-2 h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #285581;
+    margin-bottom: 1em;
 }
 
-.s-1 ul li , .s-2 ul li {
-    /* display:flex;
-    flex-direction: column;
-    gap:1em; */
-    padding:1em;
-    border-bottom: 1px solid var(--gray);
-    /* list-style: none; */
+.s-1 p,
+.s-2 p {
+    font-size: 16px;
+    color: #454545;
+    line-height: 1.6;
 }
+
+.s-1 ul li,
+.s-2 ul li {
+    margin-bottom: 0.5em;
+    color: #454545;
+    font-size: 16px;
+}
+
+.s-1 img,
+.s-2 img {
+    display: block;
+    margin-top: 1em;
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.s-2 img {
+    margin-bottom: 1em;
+}
+
 
 #author-guidelines-container h4,
 #templates-for-author-container h4 {
@@ -440,19 +467,13 @@ table th, table td {
 
 /* PUBLICATION PROCEDURE CSS START*/
 #procedure-container header {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  #procedure-container header {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  #procedure-container h5 {
-    text-align: center;
     color: #285581;
   }
+  
+  #procedure-container h2 {
+    margin-bottom: 0.5em;
+    font-size: 1.5rem;
+}
   #procedure-container header span {
     color: #454545;
   }
@@ -465,32 +486,75 @@ table th, table td {
     gap: 1.5em;
   }
   
-  .procedures .procedure {
+  .procedures {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5em;
+}
+
+.procedure {
+    position: relative;
     flex: 1;
     display: flex;
-    position: relative;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 13px; 
-    padding: 2em;
-    border-radius: 4px;
-    border: 1px solid #DFDFDF;
-    background: rgba(255, 255, 255, 0.86); 
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0);
-  
-  }
-  
-  .procedure .title {
-    margin-bottom: 10px; 
-  }
-  
-  
+    /* align-items: center; */
+    gap: 1em;
+    border-radius: 8px;
+    border: 2px solid #ddd;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease;
+    max-width: 400px;
+    height: auto;
+    cursor: default;
+}
+.procedure:hover {
+    border-color: #007bff;
+}
+.procedure-body {
+    padding: 1.5em;
+}
+.title {
+    margin-bottom: 0.5em;
+    font-size: 1.25rem;
+    color: #285581;
+    font-weight: bold;
+}
+
+.description {
+    text-align: center;
+    height: 170px;
+}
+
+.text-muted {
+    color: #666;
+}
+
+.action-button {
+    margin: 1em;
+    padding: 0.5em 1em;
+    /* background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px; */
+    transition: background-color 0.3s ease;
+}
+
+/* .action-button:hover {
+    background-color: #0056b3;
+} */
+
+.procedure img {
+    width: 100%; /* Set width to 100% */
+    height: auto; /* Automatically adjust height to maintain aspect ratio */
+}
   .procedure{
     /* width: 400px; */
-    height: 300px;
+    /* height: 400px; */
   
   }
+
   .procedure .icon {
     position: absolute;
     top: -1.5em;

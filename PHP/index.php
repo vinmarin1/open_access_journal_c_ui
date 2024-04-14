@@ -326,44 +326,24 @@
     <section  id="procedure-container">
       <header class="text-center">
         <h2>How to Publish an Article</h2>
-        <span>Follow this step and publish your research. For more tutorials visit our  <a href="./tutorials.php">Tutorials page.</a></span>
+        <span>Follow this step and publish your research. For more tutorials visit our  <a href="./tutorials.php">Tutorials page.</a> </span>
       </header>
       <div class="mt-2 procedures flex-lg-row flex-column">
-        <div data-animate-in="up"  class="procedure border ">
-          <div class="icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="#f8e4d6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="14" stroke-dashoffset="14" d="M6 19h12"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.5s" dur="0.4s" values="14;0"/></path><path stroke-dasharray="18" stroke-dashoffset="18" d="M12 15 h2 v-6 h2.5 L12 4.5M12 15 h-2 v-6 h-2.5 L12 4.5"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.4s" values="18;0"/></path></g></svg>
-          </div>
-          <h5 class="title">Submit Paper Online</h5>
-          <div class="description">
-            <p>Step 1: Create and update your account necessary detail. Here you can manage submissions, and track its progress. Make sure your manuscript adheres to the formatting and guidelines of your chosen journal.</p>
-          </div>
+        <div data-animate-in="up"  class="procedure">
+          <img src="../images/home-step1.png" alt="Step 1">
+          <h5 class="title">1. Submit Paper Online</h5>
         </div>
-        <div data-animate-in="up" class="procedure border">
-          <div class="icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="#f8e4d6" stroke-linecap="round" stroke-width="2"><path stroke-linejoin="round" d="M6 15.8L7.143 17L10 14M6 8.8L7.143 10L10 7"/><path d="M13 9h5m-5 7h5m4-4c0 4.714 0 7.071-1.465 8.535C19.072 22 16.714 22 12 22s-7.071 0-8.536-1.465C2 19.072 2 16.714 2 12s0-7.071 1.464-8.536C4.93 2 7.286 2 12 2c4.714 0 7.071 0 8.535 1.464c.974.974 1.3 2.343 1.41 4.536"/></g></svg>
-          </div>
-          <h5 class="title">Peer Review Process</h5>
-          <div class="description">
-            <p>Step 2: Your paper will be assigned to qualified experts in your field who will carefully assess your work based on criteria, providing valuable feedback and suggestions for improvement.</p>
-          </div>
+        <div data-animate-in="up" class="procedure">
+          <img src="../images/home-step2.png" alt="Step 2">
+          <h5 class="title">2. Peer Review Process</h5>
         </div>
-        <div data-animate-in="up" class="procedure border">
-          <div class="icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 16 16"><path fill="#f8e4d6" fill-rule="evenodd" d="M3 13.5a.5.5 0 0 1-.5-.5V3a.5.5 0 0 1 .5-.5h9.25a.75.75 0 0 0 0-1.5H3a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9.75a.75.75 0 0 0-1.5 0V13a.5.5 0 0 1-.5.5zm12.78-8.82a.75.75 0 0 0-1.06-1.06L9.162 9.177L7.289 7.241a.75.75 0 1 0-1.078 1.043l2.403 2.484a.75.75 0 0 0 1.07.01z" clip-rule="evenodd"/></svg>
-          </div>
-          <h5 class="title">Accepted Paper</h5>
-          <div class="description">
-            <p>Step 3: Before final publication, the journal's editorial team will strictly copyedit your accepted paper, ensuring and enhancing the overall clarity and conciseness of your writing.</p>
-          </div>
+        <div data-animate-in="up" class="procedure">
+          <img src="../images/home-step3.png" alt="Step 3">
+          <h5 class="title">3. Accepted Paper</h5>
         </div>
-        <div data-animate-in="up" class="procedure border">
-          <div class="icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 1024 1024"><path fill="#f8e4d6" d="M688 312v-48c0-4.4-3.6-8-8-8H296c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h384c4.4 0 8-3.6 8-8m-392 88c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h184c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8zm376 116c-119.3 0-216 96.7-216 216s96.7 216 216 216s216-96.7 216-216s-96.7-216-216-216m107.5 323.5C750.8 868.2 712.6 884 672 884s-78.8-15.8-107.5-44.5C535.8 810.8 520 772.6 520 732s15.8-78.8 44.5-107.5C593.2 595.8 631.4 580 672 580s78.8 15.8 107.5 44.5C808.2 653.2 824 691.4 824 732s-15.8 78.8-44.5 107.5M761 656h-44.3c-2.6 0-5 1.2-6.5 3.3l-63.5 87.8l-23.1-31.9a7.92 7.92 0 0 0-6.5-3.3H573c-6.5 0-10.3 7.4-6.5 12.7l73.8 102.1c3.2 4.4 9.7 4.4 12.9 0l114.2-158c3.9-5.3.1-12.7-6.4-12.7M440 852H208V148h560v344c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8V108c0-17.7-14.3-32-32-32H168c-17.7 0-32 14.3-32 32v784c0 17.7 14.3 32 32 32h272c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8"/></svg>
-          </div>
-          <h5 class="title">Paper Published</h5>
-          <div class="description">
-            <p>Step 4: After the copyediting stage, your paper undergoes a final review for formatting and compliance with journal guidelines. Upon final approval, your research will be published on the Pahina.</p>
-          </div>
+        <div data-animate-in="up" class="procedure">
+         <img src="../images/home-step4.png" alt="Step 4">
+         <h5 class="title">4. Paper Published</h5>
         </div>
       </div>
     </section>
