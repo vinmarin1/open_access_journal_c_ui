@@ -2309,46 +2309,42 @@ function openArticleInNewTab(articleId) {
 });
 
 
-document.getElementById('cancelBtn').addEventListener('click', function(event){
+document.getElementById('cancelBtn').addEventListener('click', function(event) {
     const editForm = document.getElementById('editForm');
     const firstNameInput = document.getElementById('firstName');
-	const middleName = document.getElementById('middleName');
-	const lastName = document.getElementById('lastName');
-	const affix = document.getElementById('affix');
-	const birthdate = document.getElementById('birthdate');
-	const gender = document.getElementById('gender');
-	const status = document.getElementById('status');
-	const country = document.getElementById('country');
-	// const email = document.getElementById('email');
-	const orcid = document.getElementById('orcid');
-	const affiliation = document.getElementById('affiliation');
-	const position = document.getElementById('position');
-	const bio = document.getElementById('bio');
-	
+    const middleName = document.getElementById('middleName');
+    const lastName = document.getElementById('lastName');
+    const affix = document.getElementById('affix');
+    const birthdate = document.getElementById('birthdate');
+    const gender = document.getElementById('gender');
+    const status = document.getElementById('status');
+    const country = document.getElementById('country');
+    const orcid = document.getElementById('orcid');
+    const affiliation = document.getElementById('affiliation');
+    const position = document.getElementById('position');
+    const bio = document.getElementById('bio');
+    const keywordContainer = document.getElementById('keywordContainer');
 
-  
-	editForm.style.display = 'none';
+    // Hide the edit form
+    editForm.style.display = 'none';
 
+    // Set values for other inputs
     firstNameInput.value = "<?php echo htmlspecialchars($firstName); ?>";
-	middleName.value = "<?php echo htmlspecialchars($middle_name); ?>";
-	lastName.value = "<?php echo htmlspecialchars($last_name); ?>";
-	affix.value = "<?php echo htmlspecialchars($affix); ?>";
-	birthdate.value = "<?php echo htmlspecialchars($birthday); ?>";
-	gender.value = "<?php echo htmlspecialchars($gender); ?>";
-	status.value = "<?php echo htmlspecialchars($marital_status); ?>";
-	country.value = "<?php echo htmlspecialchars($country); ?>";
-	orcid.value = "<?php echo htmlspecialchars($orc_id); ?>";
-	affiliation.value = "<?php echo htmlspecialchars($afiliations); ?>";
-	position.value = "<?php echo htmlspecialchars($position); ?>";
-	bio.value = "<?php echo htmlspecialchars($bio); ?>";
-	
-	
+    middleName.value = "<?php echo htmlspecialchars($middle_name); ?>";
+    lastName.value = "<?php echo htmlspecialchars($last_name); ?>";
+    affix.value = "<?php echo htmlspecialchars($affix); ?>";
+    birthdate.value = "<?php echo htmlspecialchars($birthday); ?>";
+    gender.value = "<?php echo htmlspecialchars($gender); ?>";
+    status.value = "<?php echo htmlspecialchars($marital_status); ?>";
+    country.value = "<?php echo htmlspecialchars($country); ?>";
+    orcid.value = "<?php echo htmlspecialchars($orc_id); ?>";
+    affiliation.value = "<?php echo htmlspecialchars($afiliations); ?>";
+    position.value = "<?php echo htmlspecialchars($position); ?>";
+    bio.value = "<?php echo htmlspecialchars($bio); ?>";
 
-
-
- 
+    // Set the expertise container content to the default expertise value
+    keywordContainer.innerHTML = '<?php echo '<div class="keyword" id="expertise" name="expertise"><span>' . htmlspecialchars($expertise) . '</span><span class="close-btn">x</span></div>'; ?>';
 });
-
 
 
 

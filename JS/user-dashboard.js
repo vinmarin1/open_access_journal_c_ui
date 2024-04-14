@@ -177,74 +177,74 @@ document.addEventListener('DOMContentLoaded', function () {
 
 document.getElementById('expertiseData').value = getExpertiseData();
 
-//add keyword
+// Add keyword
 document.getElementById('addExpertiseButton').addEventListener('click', function() {
-// Get the input value
-var inputValue = document.getElementById('fieldofexpertise').value.trim();
+    // Get the input value
+    var inputValue = document.getElementById('fieldofexpertise').value.trim();
 
     // Check if the input is empty or contains only spaces
     if (inputValue === "") {
-      return; // Exit function if empty or spaces
-  }
-  
-// Create a new keyword element
-var keywordElement = document.createElement('div');
-keywordElement.className = 'keyword';
+        return; // Exit function if empty or spaces
+    }
 
-// Create a span for the keyword text
-var keywordText = document.createElement('span');
-keywordText.textContent = inputValue;
+    // Create a new keyword element
+    var keywordElement = document.createElement('div');
+    keywordElement.className = 'keyword';
 
-// Create a close button
-var closeButton = document.createElement('span');
-closeButton.className = 'close-btn';
-closeButton.textContent = 'x';
+    // Create a span for the keyword text
+    var keywordText = document.createElement('span');
+    keywordText.textContent = inputValue;
 
-// Add an event listener to remove the keyword when the close button is clicked
-closeButton.addEventListener('click', function() {
-    keywordElement.remove();
+    // Create a close button
+    var closeButton = document.createElement('span');
+    closeButton.className = 'close-btn';
+    closeButton.textContent = 'x';
+
+    // Add an event listener to remove the keyword when the close button is clicked
+    closeButton.addEventListener('click', function() {
+        keywordElement.remove();
+        updateHiddenInput(); // Update hidden input after removal
+    });
+
+    // Append elements to the keyword container
+    keywordElement.appendChild(keywordText);
+    keywordElement.appendChild(closeButton);
+    document.getElementById('keywordContainer').appendChild(keywordElement);
+
+    updateHiddenInput(); // Update hidden input after addition
+
+    // Clear the input field
+    document.getElementById('fieldofexpertise').value = '';
 });
 
-// Append elements to the keyword container
-keywordElement.appendChild(keywordText);
-keywordElement.appendChild(closeButton);
-document.getElementById('keywordContainer').appendChild(keywordElement);
-
-updateHiddenInput();
-
-// Clear the input field
-document.getElementById('fieldofexpertise').value = '';
+// Update hidden input when changes are made
+document.getElementById('keywordContainer').addEventListener('click', function(event) {
+    if (event.target.classList.contains('close-btn')) {
+        // Remove the keyword from the UI
+        var keywordElement = event.target.closest('.keyword');
+        keywordElement.remove();
+        updateHiddenInput(); // Update hidden input after removal
+    }
 });
 
-
-document.getElementById('keywordContainer').addEventListener('input', function(event) {
-if (event.target.classList.contains('keyword')) {
-    // Update the hidden input with expertise data only if changes were made
-    updateHiddenInput();
-}
-});
-
-
+// Function to get expertise data
 function getExpertiseData() {
-var expertiseSpans = document.querySelectorAll('.keyword');
-var expertiseData = [];
+    var expertiseSpans = document.querySelectorAll('.keyword span:not(.close-btn)');
+    var expertiseData = [];
 
-expertiseSpans.forEach(function(span) {
-    var expertiseText = span.textContent.replace('x', '').trim();
-    expertiseData.push(expertiseText);
-});
+    expertiseSpans.forEach(function(span) {
+        expertiseData.push(span.textContent.trim());
+    });
 
-return expertiseData.join(', ');
+    return expertiseData.join(', ');
 }
 
+// Function to update hidden input
 function updateHiddenInput() {
-var currentExpertiseData = getExpertiseData();
-
-// Update the hidden input with expertise data only if changes were made
-if (currentExpertiseData !== document.getElementById('expertiseData').value) {
+    var currentExpertiseData = getExpertiseData();
     document.getElementById('expertiseData').value = currentExpertiseData;
 }
-}
+
 
 
 
