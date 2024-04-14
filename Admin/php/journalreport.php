@@ -279,6 +279,18 @@ foreach ($journal_list as $journal) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
 
     <script>
+        function viewWorkflow(articleId, workflow) {
+            $('#sloading').show(); 
+
+            setTimeout(function () {
+                window.location.href = "../php/workflow.php?aid=" + articleId + workflow;
+            }, 2000);
+            
+            window.onload = function () {
+                $('#sloading').hide();
+            };
+        }
+        
         function generatePDF(chartContent, fileName) {
             const opt = {
                 margin: 1,

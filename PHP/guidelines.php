@@ -13,6 +13,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
     <link rel="stylesheet" href="../CSS/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../images/pahina-full.png">
 </head>
 
 <body>
@@ -719,6 +720,8 @@ function includeNavbar() {
 
 function attachNotificationButtonListener() {
   $(document).on('click', '#notification-button', function () {
+    $("#notification-count").text("0");
+    $("#notification-count").hide();
     // Send AJAX request to mark notifications as read
     $.ajax({
       url: "../PHP/mark_notifications_read.php",
@@ -727,7 +730,9 @@ function attachNotificationButtonListener() {
       success: function (response) {
         console.log("Notifications marked as read:", response);
         // Update notification count on success
-        $("#notification-count").text("0");
+        // $("#notification-count").text("0");
+        // $("#notification-count").hide();
+
       },
       error: function (xhr, status, error) {
         console.error("Error marking notifications as read:", error);

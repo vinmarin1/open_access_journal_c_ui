@@ -12,6 +12,7 @@ $userdemographicslist = get_userdemographics();
 $donationamount = get_donationamount();
 $top5contributorslist = get_top5contributors_list();
 $top5reviewerlist = get_top5reviewer_list();
+// print_r($top5reviewerlist);exit;
 $top5downloadedlist = get_top5downloadedlist();
 
 if ($submissionlist) {
@@ -478,16 +479,20 @@ $donationDataJson = json_encode($donationData);
                                         <ul class="p-0 m-0">
                                             <li class="d-flex mb-3 pb-1">
                                                 <div class="avatar" style="margin-right: 10px;">
-                                                    <?php if (!empty($top5contributorslistval->profile_pic)): ?>
+                                                <?php if (!empty($top5contributorslistval->profile_pic)): ?>
+                                                    <a href="javascript:void(0);" onclick="openPageCentered('../../PHP/userdashboard.php?orcid=<?php echo $top5contributorslistval->orc_id; ?>')">
                                                         <img src="../<?php echo $top5contributorslistval->profile_pic; ?>" alt="" class="rounded-circle" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%;" />
-                                                    <?php else: ?>
+                                                    </a>
+                                                <?php else: ?>
+                                                    <a href="javascript:void(0);" onclick="openPageCentered('../../PHP/userdashboard.php?orcid=<?php echo $top5contributorslistval->orc_id; ?>')">
                                                         <img src="https://qcuj.online/Files/uploaded-profile/no_profile.jpg" alt="" class="rounded-circle" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%;" />
-                                                    <?php endif; ?>
+                                                    </a>
+                                                <?php endif; ?>
                                                 </div>
                                                 <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                                                     <div class="">
-                                                        <h6 class="mb-0"><?php echo $top5contributorslistval->lastname; ?>, <?php echo $top5contributorslistval->firstname; ?></h6>
-                                                    </div>
+                                                            <a href="javascript:void(0);" onclick="openPageCentered('../../PHP/userdashboard.php?orcid=<?php echo $top5contributorslistval->orc_id; ?>')"><?php echo $top5contributorslistval->lastname . ", " . $top5contributorslistval->firstname; ?></a></h6>
+                                                        </div>
                                                     <div class="user-progress">
                                                         <small class="fw-semibold"><?php echo $top5contributorslistval->email_count; ?></small>
                                                     </div>
@@ -533,14 +538,18 @@ $donationDataJson = json_encode($donationData);
                                                 <li class="d-flex mb-3 pb-1">
                                                     <div class="avatar" style="margin-right: 10px;">
                                                         <?php if (!empty($top5reviewerlistval->profile_pic)): ?>
-                                                            <img src="../<?php echo $top5reviewerlistval->profile_pic; ?>" alt="" class="rounded-circle" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%;";/>
+                                                            <a href="javascript:void(0);" onclick="openPageCentered('../../PHP/userdashboard.php?orcid=<?php echo $top5reviewerlistval->orc_id; ?>')">
+                                                                <img src="../<?php echo $top5reviewerlistval->profile_pic; ?>" alt="" class="rounded-circle" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%;" />
+                                                            </a>
                                                         <?php else: ?>
-                                                            <img src="https://qcuj.online/Files/uploaded-profile/no_profile.jpg" alt="" class="rounded-circle" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%;" />
+                                                            <a href="javascript:void(0);" onclick="openPageCentered('../../PHP/userdashboard.php?orcid=<?php echo $top5reviewerlistval->orc_id; ?>')">
+                                                                <img src="https://qcuj.online/Files/uploaded-profile/no_profile.jpg" alt="" class="rounded-circle" style="width: 40px; height: 40px; object-fit: cover; border-radius: 50%;" />
+                                                            </a>
                                                         <?php endif; ?>
                                                     </div>
                                                     <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
                                                         <div class="">
-                                                            <h6 class="mb-0"><?php echo $top5reviewerlistval->last_name; ?>, <?php echo $top5reviewerlistval->first_name; ?></h6>
+                                                            <a href="javascript:void(0);" onclick="openPageCentered('../../PHP/userdashboard.php?orcid=<?php echo $top5reviewerlistval->orc_id; ?>')"><?php echo $top5reviewerlistval->last_name . ", " . $top5reviewerlistval->first_name; ?></a></h6>
                                                         </div>
                                                         <div class="user-progress">
                                                             <small class="fw-semibold"><?php echo $top5reviewerlistval->count_reviewed; ?></small>
@@ -569,6 +578,19 @@ $donationDataJson = json_encode($donationData);
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
+function openPageCentered(url, width = 1200, height = 800) {
+    var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
+    var dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;
+
+    var screenWidth = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+    var screenHeight = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+
+    var left = (screenWidth / 2) - (width / 2) + dualScreenLeft;
+    var top = (screenHeight / 2) - (height / 2) + dualScreenTop;
+
+    window.open(url, '_blank', 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + width + ', height=' + height + ', top=' + top + ', left=' + left);
+}
+
 $(document).ready(function() {
     window.jsPDF = window.jspdf.jsPDF;
 

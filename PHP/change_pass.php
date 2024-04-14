@@ -164,7 +164,7 @@ document.getElementById('changePasswordBtn').addEventListener('click', function 
     }else if (!(hasUppercase && hasSpecialChar && hasNumber)) {
         Swal.fire({
             icon: 'warning',
-            text: 'Password must contain at least one uppercase letter, one special character, and one number'
+            text: 'Password must contain at least 1 uppercase letter, 1 special character, and 1 number'
         });
     } else {
         spinnerSpinner2.style.display = 'block';

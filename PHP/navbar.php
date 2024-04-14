@@ -120,10 +120,15 @@ require_once 'dbcon.php';
     $sqlCountNotif = "SELECT COUNT(*) AS notif_count FROM `notification` WHERE `author_id` = :author_id AND `read_user` = 0";
     $paramsCount = array(':author_id' => $author_id);
     $countResult = database_run($sqlCountNotif, $paramsCount);
-
+    
     if ($countResult !== false && isset($countResult[0]->notif_count)) {
         $notificationCount = $countResult[0]->notif_count;
-        echo '<span id="notification-count" style="width: 10px; height: 10px; font-size: 10px; text-align: center; display: inline-block; line-height: 5px;">' . $notificationCount . '</span>';
+        if ($notificationCount > 0) {
+            echo '<span id="notification-count" style="width: 10px; height: 10px; font-size: 10px; text-align: center; display: inline-block; line-height: 5px;">' . $notificationCount . '</span>';
+            
+        } else {
+            echo '<span id="notification-count" style="display: none"></span>';
+        }
     } else {
         echo '<span id="notification-count" style="display: none"></span>';
     }
@@ -217,6 +222,7 @@ require_once 'dbcon.php';
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
 <script src="../JS/navbar.js"></script>
+
 
 </body>
 </html>
