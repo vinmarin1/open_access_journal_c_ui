@@ -56,7 +56,11 @@ $notificationlist = get_notification_list();
                             <td style="display:none;"><?php echo $notification->id; ?><br> </td>
                             <td width="100%">
                                 <?php echo $notification->title; ?><br>
-                                <?php echo $notification->description; ?><br>
+                                <?php
+                                $description = $notification->description;
+                                $limitedTitle = strlen($description) > 170 ? substr($description, 0, 170) . '...' : $description;
+                                echo $limitedTitle;
+                            ?><br>
                                 <span class="time-ago-<?php echo $notification->id; ?>"></span>
                                 <script>
                                     var currentTime = new Date().getTime();
