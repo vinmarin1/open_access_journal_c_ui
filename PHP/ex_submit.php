@@ -183,7 +183,7 @@ if ($resultProfile) {
           <input class="form-control artcl" type="text" id="abstract" name="abstract"  style="display: none;">
           <div class="d-flex flex-column">
           <span id="total-words-abstract" class="text-end w-full"></span>
-          <button type="button" class="btn btn-primary btn-sm mt-2" id="check-duplication" onclick="checkDuplication()">
+          <button type="button" class="btn btn-primary btn-sm mt-2 mb-4" id="check-duplication" onclick="checkDuplication()">
               <span id="check-text">Check Originality</span>
               <div class="spinner-border spinner-border-sm" role="status" id="check-spinner" style="display: none;">
                   <span class="visually-hidden">Loading...</span>
@@ -291,44 +291,63 @@ if ($resultProfile) {
   <input type="file" class="form-control" name="file_name2" id="file_name2" accept=".docx" style="display: none">
   <input type="file" class="form-control" name="file_name3" id="file_name3" accept=".docx" style="display: none">
 
-<table class="table table-hover" id="table-file">
-  <thead>
+<table class="table" id="table-file">
+
+  <thead style="background-color:red;" >
     <tr>
-      <th scope="col">File Type</th>
-      <th scope="col" >File Name</th>
-      <th scope="col">Action</th>
+      <th scope="col" class="col-md-8 col-10">File with Author’s Name: </th>
     </tr>
   </thead>
+
   <tbody id="fileList">
     <tr>
-      <td id="fileType1" style="font-family: Arial, Helvetica, sans-serif; font-size: 18px;">File with author name
-      <button type="button" class="btn btn-primary btn-sm" style="margin-right: 5px; display: block;" id="addFileName" onclick="openFilename(1)">Add File</button>
+      <td id="fileType1" style="font-family: Arial, Helvetica, sans-serif; font-size: 18px; padding-right: 0px; ">
+      <button type="button" class="btn btn-sm mb-4" style="width: 100%; text-align:left; border:solid 1px #CCCCCC;" id="addFileName" onclick="openFilename(1)"> <i class="fa-solid fa-arrow-up-from-bracket" style="margin-right: 10px; color:#699BF7;"></i> Upload your file here </button>
       </td>
-      <td id="fileName1" style="font-family: Arial, Helvetica, sans-serif;"></td>
-      <td>
-        <button type="button" class="btn btn-danger btn-sm" id="deleteFileName" onclick="deleteFilename(1)">Delete</button>
-      </td>
-
-    </tr>
-    <tr>
-      
-      <td id="fileType2" style="font-family: Arial, Helvetica, sans-serif; font-size: 18px;">File with no author name
-      <button type="button" class="btn btn-primary btn-sm" style="margin-right: 5px; display: block;" id="addFileName2" onclick="openFilename(2)">Add File</button>
-      </td>
-      <td id="fileName2" style="font-family: Arial, Helvetica, sans-serif;"></td>
-      <td>
-        <button type="button" class="btn btn-danger btn-sm" id="deleteFileName2" onclick="deleteFilename(2)">Delete</button>
+      <!-- <td id="fileName1" style="font-family: Arial, Helvetica, sans-serif;"></td> -->
+      <td style="padding-left: 0px;" >
+        <button type="button" class="btn btn-sm" id="deleteFileName" style="border:solid 1px #CCCCCC;" onclick="deleteFilename(1)"><i class="fa-solid fa-x" style="color:#666666;"></i></button>
       </td>
 
     </tr>
+  </tbody>
+
+  <thead>
+    <tr>
+      <th scope="col">File with no Author’s Name: </th>
+    </tr>
+  </thead>
+
+  <tbody id="fileList">
     <tr>
       
-      <td id="fileType3" style="font-family: Arial, Helvetica, sans-serif; font-size: 18px;">Title Page
-      <button type="button" class="btn btn-primary btn-sm" style="margin-right: 5px; display: block;" id="addFileName3" onclick="openFilename(3)">Add File</button>
+      <td id="fileType2" style="font-family: Arial, Helvetica, sans-serif; font-size: 18px; padding-right:0px;">
+      <button type="button" class="btn btn-sm mb-4" style="width: 100%; text-align:left; border:solid 1px #CCCCCC;" id="addFileName2" onclick="openFilename(2)"> <i class="fa-solid fa-arrow-up-from-bracket" style="margin-right: 10px; color:#699BF7;" ></i> Upload your file here </button>
       </td>
-      <td id="fileName3" style="font-family: Arial, Helvetica, sans-serif;"></td>
-      <td>
-        <button type="button" class="btn btn-danger btn-sm" id="deleteFileName3" onclick="deleteFilename(3)">Delete</button>
+      <!-- <td id="fileName2" style="font-family: Arial, Helvetica, sans-serif;"></td> -->
+      <td style="padding-left: 0px;" >
+        <button type="button" class="btn btn-sm" id="deleteFileName2" style="border:solid 1px #CCCCCC;" onclick="deleteFilename(2)"><i class="fa-solid fa-x" style="color:#666666;"></i></button>
+      </td>
+
+    </tr>
+
+  </tbody>
+
+  <thead>
+    <tr>
+      <th scope="col">Title Page: </th>
+    </tr>
+  </thead>
+
+  <tbody id="fileList">
+    <tr>
+      
+      <td id="fileType3" style="font-family: Arial, Helvetica, sans-serif; font-size: 18px; padding-right:0px;">
+      <button type="button" class="btn btn-sm mb-4" style="width: 100%; text-align:left; border:solid 1px #CCCCCC;" id="addFileName3" onclick="openFilename(3)"> <i class="fa-solid fa-arrow-up-from-bracket" style="margin-right: 10px; color:#699BF7;" ></i> Upload your file here </button>
+      </td>
+      <!-- <td id="fileName3" style="font-family: Arial, Helvetica, sans-serif;"></td> -->
+      <td style="padding-left: 0px;">
+        <button type="button" class="btn btn-sm" id="deleteFileName3" style="border:solid 1px #CCCCCC;" onclick="deleteFilename(3)"><i class="fa-solid fa-x" style="color:#666666;" ></i></button>
       </td>
       
     </tr>
@@ -361,12 +380,12 @@ if ($resultProfile) {
             <thead>
                 <tr>
                     <th >Email</th>
-                    <th >First Name</th>
-                    <th >Last Name</th>
+                    <th style="width:23%;" >First Name</th>
+                    <th style="width:17%;" >Last Name</th>
                     <!-- <th >Public Name</th> -->
-                    <th >ORCID</th>
-                    <th id="cont-col">Contributor Type</th>
-                    <th>Action</th>
+                    <th style="width:23%;" >ORCID</th>
+                    <!-- <th id="cont-col"></th> -->
+                    <th></th>
                 </tr>
                <tr>
                 
@@ -381,11 +400,12 @@ if ($resultProfile) {
                           $public_name = $row->public_name;
                           $orc_id = $row->orc_id;
                           echo '
-                              <td><input type="text" style="width: 100%; padding:4px 8px" value="'.$email.'" disabled></td>
-                              <td><input type="text" style="width: 118px; padding:4px 8px" value="'.$first_name.'" disabled></td>
-                              <td><input type="text" style="width: 118px; padding:4px 8px" value="'.$last_name.'" disabled></td>
-                              <td><input type="text" style="width: 118px; padding:4px 8px" value="'.$orc_id.'" disabled></td>
-                              <td><input type="checkbox" id="authorPcontact" class="-input"><input type="hidden" id="authorPcontactValue" name="authorPcontactValue" value=""><label style="font-weight: normal; font-size: 11px; margin-left: 10px;">Primary Contact</label></td>
+                              <td><input type="text" style="width: 100%; padding:4px 8px" value="'.$email.'" disabled>
+                              <div><input type="checkbox" id="authorPcontact" class="-input" style="width:15px;" ><input type="hidden" id="authorPcontactValue" name="authorPcontactValue" value=""><label style="font-weight: normal; font-size: 11px; margin-left: 10px;">Primary Contact</label></div>
+                              </td>
+                              <td><input type="text" style="width: 100%; padding:4px 8px; margin-bottom:24px;" value="'.$first_name.'" disabled></td>
+                              <td><input type="text" style="width: 100%; padding:4px 8px; margin-bottom:24px;" value="'.$last_name.'" disabled></td>
+                              <td><input type="text" style="width: 100%; padding:4px 8px; margin-bottom:24px;" value="'.$orc_id.'" disabled></td>
                               <td></td>
                           ';
                       }

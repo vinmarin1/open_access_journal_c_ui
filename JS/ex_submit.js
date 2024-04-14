@@ -747,23 +747,22 @@ document.getElementById('update-cont-3').addEventListener('click', function(even
 function addRow() {
   var index = $('#contributorTable tbody tr').length; // Get the current row index
   var newRow = '<tr>' +
-      '<td><input class="form-control email-input" type="email" name="emailC[]" style="height: 30px;" ></td>' +
+      '<td><input class="form-control email-input" type="email" name="emailC[]" style="height: 30px;" > <div class="form-check cAuthor" style="margin-right: 10px"> <input class="form-check-input" type="checkbox" name="contributor_type_coauthor[' + index + ']" value="Co-Author" style="width:15px;"> <label class="form-check-label"> Co-Author</label> </div> <div class="form-check pContact"> <input class="form-check-input" type="checkbox" name="contributor_type_primarycontact[' + index + ']" value="Primary Contact" style="width:15px;"> <label class="form-check-label"> Primary Contact</label> </div> </td>' +
       '<td><input class="form-control" type="text" name="firstnameC[]" style="height: 30px;" ></td>' +
       '<td><input class="form-control" type="text" name="lastnameC[]" style="height: 30px;" ></td>' +
       // '<td><input class="form-control" type="text" name="publicnameC[]" style="height: 30px;"></td>' +
       '<td><input class="form-control" type="text" name="orcidC[]" style="height: 30px;"></td>' +
-      '<td class="align-middle">' +
-      '<div class="form-check cAuthor" style="display: inline-block; margin-right: 10px">' +
-      '<input class="form-check-input" type="checkbox" name="contributor_type_coauthor[' + index + ']" value="Co-Author">' +
-      '<label class="form-check-label"> Co-Author</label>' +
-      '</div>' +
-      '<div class="form-check pContact" style="display: inline-block">' +
-      '<input class="form-check-input" type="checkbox" name="contributor_type_primarycontact[' + index + ']" value="Primary Contact">' +
-      '<label class="form-check-label"> Primary Contact</label>' +
-      '</div>' +
-      '</td>'
-      +
-      '<td><button type="button" class="btn btn-danger btn-sm deleteCont" onclick="deleteRow(this)">-</button></td>' +
+      // '<td class="align-middle">' +
+      // '<div class="form-check cAuthor" style="display: inline-block; margin-right: 10px">' +
+      // '<input class="form-check-input" type="checkbox" name="contributor_type_coauthor[' + index + ']" value="Co-Author">' +
+      // '<label class="form-check-label"> Co-Author</label>' +
+      // '</div>' +
+      // '<div class="form-check pContact" style="display: inline-block">' +
+      // '<input class="form-check-input" type="checkbox" name="contributor_type_primarycontact[' + index + ']" value="Primary Contact">' +
+      // '<label class="form-check-label"> Primary Contact</label>' +
+      // '</div>' +
+      // '</td>'
+      '<td><button type="button" class="btn btn-danger btn-sm deleteCont" onclick="deleteRow(this)"><i class="fa-solid fa-minus"></i></button></td>' +
       // '<td class="align-middle"><input class="form-check-input" type="checkbox" name="selectToDelete"></td>' +
       '</tr>';
 
