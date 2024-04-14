@@ -363,7 +363,7 @@ if ($resultProfile) {
                     <th >Email</th>
                     <th >First Name</th>
                     <th >Last Name</th>
-                    <th >Public Name</th>
+                    <!-- <th >Public Name</th> -->
                     <th >ORCID</th>
                     <th id="cont-col">Contributor Type</th>
                     <th>Action</th>
@@ -384,9 +384,9 @@ if ($resultProfile) {
                               <td><input type="text" style="width: 100%; padding:4px 8px" value="'.$email.'" disabled></td>
                               <td><input type="text" style="width: 118px; padding:4px 8px" value="'.$first_name.'" disabled></td>
                               <td><input type="text" style="width: 118px; padding:4px 8px" value="'.$last_name.'" disabled></td>
-                              <td><input type="text" style="width: 118px; padding:4px 8px" value="'.$public_name.'" disabled></td>
                               <td><input type="text" style="width: 118px; padding:4px 8px" value="'.$orc_id.'" disabled></td>
                               <td><input type="checkbox" id="authorPcontact" class="-input"><input type="hidden" id="authorPcontactValue" name="authorPcontactValue" value=""><label style="font-weight: normal; font-size: 11px; margin-left: 10px;">Primary Contact</label></td>
+                              <td></td>
                           ';
                       }
                   }

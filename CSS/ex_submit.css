@@ -215,6 +215,7 @@ input.my-checkbox{
     color: white;
     margin-top: 10px;
     border-radius: 10px;
+    display: none;
 }
 
 

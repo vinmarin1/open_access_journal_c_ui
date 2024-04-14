@@ -6,7 +6,7 @@ require_once 'dbcon.php';
 $email = isset($_POST['email']) ? $_POST['email'] : '';
 
 
-$query = "SELECT first_name, last_name, public_name, orc_id FROM author WHERE email = :email";
+$query = "SELECT first_name, last_name, orc_id FROM author WHERE email = :email";
 $params = array(':email' => $email);
 
 
