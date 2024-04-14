@@ -22,41 +22,11 @@
 
 <nav class="navigation-menus-container" id="navigation-menus-container">
 </nav>
-
-<div class="main-content" id="home">
-    <div class="content-over">
-        <div class="cover-content">
-            <p>Home / About Us / General Information</p>
-            <h2>About Us</h2>
-        </div>
-    </div> 
-    
-    <div class="container-fluid second-container d-none">
-        <div class="row">
-            <div class="col-md-1"><!------ blank space -------></div>
-
-            <div class="col-md-11 head-text">
-                <div class="container-fluid row">
-                    <div class="col-md-5 col-12">
-                        <h2 class="mt-4" style="color:#F4900C" >We Think, We Research, We Write:</h2>
-                        <h4 style="color:#FFFFFF" >Building Knowledge, Uniting Minds!</h4>
-                        <hr style="height: 5px; background-color: #F4900C; width: 87%">
-                    </div>
-                        
-                    <p style="text-align: justify;" >Explore, collaborate, and build knowledge together at QCU's Open Access Journal. Join us in uniting minds through research and writing, shaping a vibrant academic community.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<section>
-<h3>OUR STORY</h3>
+<section class="d-flex flex-column gap-5">
+    <img src="../images/who.png"/>
+    <h3>OUR STORY</h3>
 </section>
-
 <div class="container-fluid">
-
     <div class="row mt-4">
         <div class="col-md-1"> <!------ blank space -------> </div>
 
@@ -86,7 +56,7 @@
         </div>
 
 
-        <div class="col-md-5">
+        <div data-animate-in="up" class="col-md-5">
             <div id="carouselId" class="carousel slide" data-bs-ride="carousel">
                 <ol class="carousel-indicators">
                     <li
@@ -158,7 +128,7 @@
        <h3  >EXECUTIVE OFFICIALS</h3>
     </section>
 
-    <section class="d-flex justify-content-center flex-wrap gap-3">
+    <section data-animate-in="up" class="d-flex justify-content-center flex-wrap gap-3">
 
             <div class="executives-content">
                 <img src="../images/principal.png" alt="" class="img-fluid">
@@ -187,7 +157,7 @@
             <h2 >PUBLICATION UNIT TEAM</h2>
     </section>
 
-    <section class="d-flex flex-wrap justify-content-center gap-3">
+    <section data-animate-in="up" class="d-flex flex-wrap justify-content-center gap-3">
             <div class="uniteam-content">
                 <img src="../images/Head-Publication.jpg" alt="" class="img-fluid">
                 <p class="mt-2">Candice Erika J. Rudi</p>
@@ -225,7 +195,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 <script src="../JS/reusable-header.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="../JS/animate.js"></script>
 <script>
+//  todo: make this code reusable
 function includeNavbar() {
   fetch('../PHP/navbar.php')
     .then(response => response.text())

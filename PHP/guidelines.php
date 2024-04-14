@@ -45,7 +45,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 <span class="last">Read more about our author guidelines</button>
             </div>
         </div>
-        <img width="40%" src="../images/resources/Web Design On Computer Royalty-Free Stock Photo.jpg">
+        <img width="40%" src="../images/resources/1.png">
     </div>
     <div class="banner" id="article-submission-banner"  style="display: none;">
             <div class="content">
@@ -56,7 +56,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     <span class="last">Read more about article submission</span>
                 </div>
             </div>
-            <img width="40%" src="../images/resources/submit.png">
+            <img width="40%" src="../images/resources/2.png">
     </div>
     <div class="banner" id="peer-review-process-banner" style="display: none;">
             <div class="content">
@@ -67,7 +67,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     <span class="last">Read more about our Peer Review Process</button>
                 </div>
             </div>
-            <img width="40%" src="https://images.ctfassets.net/o78em1y1w4i4/1vcXhQnayIcmJ3eohoVpY2/1cf9432e053c5af60f170280daedefc4/story-male-manager-taking-notes-in-home-office.jpg?fm=webp&w=1080&q=75">
+            <img width="40%" src="../images/resources/3.png">
     </div>
     <div class="banner" id="become-a-reviewer-banner" style="display: none;">
             <div class="content">
@@ -78,7 +78,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     <span class="last">Read more about becoming a reviewer</button>
                 </div>
             </div>
-            <img width="40%" src="https://images.ctfassets.net/o78em1y1w4i4/1vcXhQnayIcmJ3eohoVpY2/1cf9432e053c5af60f170280daedefc4/story-male-manager-taking-notes-in-home-office.jpg?fm=webp&w=1080&q=75">
+            <img width="40%" src="../images/resources/6.png">
     </div>
     <div class="banner" id="templates-for-author-banner" style="display: none;">
             <div class="content">
@@ -89,7 +89,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     <span class="last">View and download our templates</button>
                 </div>
             </div>
-            <img width="40%" src="../images/resources/435535444_1614341379393611_1210178581707210205_n.png">
+            <img width="40%" src="../images/resources/4.png">
     </div>
     <div class="banner" id="publication-policy-banner" style="display: none;">
             <div class="content">
@@ -100,7 +100,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     <span class="last">Read our Publication Policies</button>
                 </div>
             </div>
-            <img width="40%" src="../images/resources/pexels-pixabay-357514.jpg">
+            <img width="40%" src="../images/resources/5.png">
     </div>
 <!-- End of banners -->
     <main class="d-flex flex-column-reverse flex-md-row-reverse gap-2">
@@ -152,8 +152,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 </ul>
                 <hr/>
                 <ul id="for-contributors" >
-                    <li><b>Browse Pahina Resources</b></li>
-                    <li>Guidelines</li>
+                    <a href="guidelines.php"><li><b>Browse Pahina Resources</b></li></a>
                     <li class="faq-toggle" data-target="author-guidelines"><a href="guidelines.php#author-guidelines">Author Guidelines</a></li>
                     <li class="faq-toggle" data-target="templates-for-author"><a href="guidelines.php#templates-for-author">Templates for Author</a></li>
                     <li class="faq-toggle" data-target="publication-policy"><a href="guidelines.php#publication-policy">Publication Policy</a></li>
@@ -162,11 +161,12 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     <li class="faq-toggle" data-target="become-a-reviewer"><a href="guidelines.php#become-a-reviewer">Become A Reviewer</a></li>
                     <br/>
     
-                    <li>Tutorials</li>
+                    <a href="tutorials.php"><li><b>Browse Tutorials</b></li></a>
                     <li class="faq-toggle"><a href="tutorials.php#tutorial-on-publication">Tutorial on Publication</a></li>
                     <li class="faq-toggle"><a href="tutorials.php#tutorial-on-review">Tutorial on Review</a></li>
+                    <li class="faq-toggle"><a href="tutorials.php#tutorial-on-registration">How to be a Contributor</a></li>
                     <br/>
-                    <a href="faqs.php"><li class="faq-toggle" data-target="frequently-asked-questions">FAQs</li></a>
+                    <a href="faqs.php"><li class="faq-toggle" data-target="frequently-asked-questions"><b>Browse FAQs</b></li></a>
                 </ul>
             </div>           
         </aside>
