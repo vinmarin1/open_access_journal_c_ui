@@ -1942,7 +1942,8 @@ table {
                         for (const answer of answerData) {
                             $('#DataTableAnswer tbody').append('<tr><td width="50%"><div style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">' + 
                             answer.reviewer_questionnaire + '</div><div style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Answer: ' + 
-                            answer.answer + '</div></td></tr>');
+                            answer.answer + '</div><div style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">Comment: ' + 
+                            answer.comment + '</div></td></tr>');
                         }   
                         $('#addReviewerAnswerModal').modal('show');
                     } else {
