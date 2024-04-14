@@ -131,63 +131,60 @@ $expertise = $_SESSION['expertise'];
 					<div class="user-info">
 						<div class="info-header ">
 								<h1>
-									<?php
-										if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-											$sqlSelectName = "SELECT first_name, middle_name, last_name, affix, birth_date, gender, marital_status, country, orc_id, afiliations, position, bio, field_of_expertise FROM author WHERE author_id = :author_id";
+								<?php
+									if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+										$sqlSelectName = "SELECT first_name, middle_name, last_name, affix, birth_date, gender, marital_status, country, orc_id, afiliations, position, bio, field_of_expertise FROM author WHERE author_id = :author_id";
+										$result = database_run($sqlSelectName, array(':author_id' => $id));
 
-											$result = database_run($sqlSelectName, array(':author_id' => $id));
+										if ($result) {
+											if (count($result) > 0) {
+												$user = $result[0];
+												$firstName = $user->first_name;
+												$middleName = $user->middle_name;
+												$lastName = $user->last_name;
+												$affix = $user->affix;
+												$birthDate = $user->birth_date;
+												$gender = $user->gender;
+												$maritalStatus = $user->marital_status;
+												$country = $user->country;
+												$orcId = $user->orc_id;
+												$afiliations = $user->afiliations;
+												$position = $user->position;
+												$bio = $user->bio;
+												$field_of_expertise = $user->field_of_expertise;
 
-											if ($result) {
-												if (count($result) > 0) {
-													$user = $result[0];
-													$firstName = $user->first_name;
-													$middleName = $user->middle_name;
-													$lastName = $user->last_name;
-													$affix = $user->affix;
-													$birthDate = $user->birth_date;
-													$gender = $user->gender;
-													$maritalStatus = $user->marital_status;
-													$country = $user->country;
-													$orcId = $user->orc_id;
-													$afiliations = $user->afiliations;
-													$position = $user->position;
-													$bio = $user->bio;
-													$field_of_expertise = $user->field_of_expertise;
+												$profileFields = array($firstName, $middleName, $lastName, $affix, $birthDate, $gender, $maritalStatus, $country, $orcId, $afiliations, $position, $bio, $field_of_expertise);
+												$completedFields = count(array_filter($profileFields, function($field) { return !empty($field); }));
+												$totalFields = count($profileFields);
 
-													$profileFields = array($firstName, $middleName, $lastName, $affix, $birthDate, $gender, $maritalStatus, $country, $orcId, $afiliations, $position, $bio, $field_of_expertise);
-													$completedFields = count(array_filter($profileFields, function($field) { return !empty($field); }));
-													$totalFields = count($profileFields);
+												$fullName = "$firstName $middleName $lastName";
+												$percentageCompletion = ($completedFields / $totalFields) * 100;
 
-													$fullName = "$firstName $middleName $lastName";
-													$percentageCompletion = ($completedFields / $totalFields) * 100;
-													echo "$firstName $middleName $lastName";
+												// Calculate remaining percentage
+												$remainingPercentage = 100 - $percentageCompletion;
 
-
-
-													echo "
-													<p>PROFILE COMPLETENESS
-														<span style='color: #004e98'> ". round($percentageCompletion, 2) . "% </span>
-														<dfn class='d-none d-md-inline-flex' data-info='You must complete required fields in your profile to submit or review a paper'>
-															<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 32 32' color='red'>
-																<path fill='currentColor' d='M16 3C8.832 3 3 8.832 3 16s5.832 13 13 13s13-5.832 13-13S23.168 3 16 3m0 2c6.087 0 11 4.913 11 11s-4.913 11-11 11S5 22.087 5 16S9.913 5 16 5m-1 5v2h2v-2zm0 4v8h2v-8z'></path>
-															</svg>
-														</dfn>
-													</p>
-													<div class=''>
-													<div class='progress-bar progress-bar-striped bg-primary' role='progressbar'  style='width: ".round($percentageCompletion, 2)."%; height:3px;' aria-valuenow='".round($percentageCompletion, 2)."' aria-valuemin='0'></div>
-													</div>
-													<hr/>
-													
-													
-													";
-												} else {
-													echo "User not found.";
-												}
+												echo "
+												<p>PROFILE COMPLETENESS
+													<span style='color: #004e98'>" . round($percentageCompletion, 2) . "%</span>
+													<dfn class='d-none d-md-inline-flex' data-info='You must complete required fields in your profile to submit or review a paper'>
+														<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 32 32' color='red'>
+															<path fill='currentColor' d='M16 3C8.832 3 3 8.832 3 16s5.832 13 13 13s13-5.832 13-13S23.168 3 16 3m0 2c6.087 0 11 4.913 11 11s-4.913 11-11 11S5 22.087 5 16S9.913 5 16 5m-1 5v2h2v-2zm0 4v8h2v-8z'></path>
+														</svg>
+													</dfn>
+												</p>
+												<div class='progress' style='height: 3px; background-image: linear-gradient(to right, #004e98 " . round($percentageCompletion, 2) . "%, red " . round($percentageCompletion, 2) . "%, red 100%);'>
+												
+												</div>
+												<hr/>
+												";
 											} else {
-												echo "Unable to fetch user info.";
+												echo "User not found.";
 											}
+										} else {
+											echo "Unable to fetch user info.";
 										}
-									?>
+									}
+								?>
 								</h1>
 							<!-- <i class="ri-edit-box-line" id="editIcon" style="color: green solid"></i> -->
 							<div class="other-action">
