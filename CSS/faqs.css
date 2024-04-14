@@ -69,7 +69,7 @@
     color: var(--link);
 }
 .card-custom .icon {
-    width:50%;
+    width:60%;
 }
 .card-custom img {
     width: 100%;
@@ -557,6 +557,9 @@ table th, table td {
   @media only screen and (max-width: 480px) {
     .card-custom {
         min-width: 100% !important;
+    }
+    .card-custom .icon {
+        width:100%;
     }
     .banner {
         flex-direction: column;
