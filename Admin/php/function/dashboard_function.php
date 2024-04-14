@@ -209,6 +209,54 @@ require_once 'dbcon.php';
         }
     }
 
+    if (!function_exists('get_archivedcount')) {
+        function get_archivedcount() {
+            $pdo = connect_to_database();
+
+            if ($pdo) {
+                try {
+                    $query = "SELECT COUNT(*) AS article_count 
+                    FROM article 
+                    WHERE status = 0;";
+                    $stmt = $pdo->prepare($query);
+                    $stmt->execute();
+
+                    $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+                    return $result;
+                } catch (PDOException $e) {
+                    echo "Error: " . $e->getMessage();
+                    return false;
+                }
+            }
+
+            return false;
+        }
+    }
+
+    if (!function_exists('get_totaldonation')) {
+        function get_totaldonation() {
+            $pdo = connect_to_database();
+    
+            if ($pdo) {
+                try {
+                    $query = "SELECT SUM(amount) AS totalamount FROM donation";
+                    $stmt = $pdo->prepare($query);
+                    $stmt->execute();
+                    
+                    $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+    
+                    return $result;
+                } catch (PDOException $e) {
+                    echo "Error: " . $e->getMessage();
+                    return false;
+                }
+            }
+    
+            return false;
+        }
+    }    
+
     if (!function_exists('get_userdemographics')) {
         function get_userdemographics() {
             $pdo = connect_to_database();
