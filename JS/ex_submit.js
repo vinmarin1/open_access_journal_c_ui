@@ -708,8 +708,13 @@ function deleteFilename(index) {
   // Clear the value of the file input
   fileInput.value = '';
 
-  // Clear the displayed file name in the button associated with Button 1
-  document.getElementById('addFileName' + index).innerText = 'Upload your file here';
+  // Reset the upload icon and text for Button 1
+  if (index === 1) {
+    document.getElementById('addFileName' + index).innerHTML = '<i class="fa-solid fa-arrow-up-from-bracket" style="margin-right: 10px; color:#699BF7;"></i> Upload your file here';
+  } else {
+    // Clear the displayed file name in the button associated with the index
+    document.getElementById('addFileName' + index).innerHTML = '<i class="fa-solid fa-arrow-up-from-bracket" style="margin-right: 10px; color:#699BF7;"></i> Upload your file here';
+  }
 }
 
 
