@@ -6,6 +6,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
 <html lang="en">
 
 <head>
+    <?php include('./meta.php'); ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QCUJ | Guidelines</title>

@@ -11,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Welcome to QCUJ, where you can find the latest articles, and updates on various topics. Explore our diverse collection now!">
   <meta name="keywords" content="QCUJ, Open access Journal, QCUJ">
-  <link rel="icon" type="image/png" href="../images/pahina-full.png">
+  <link rel="icon" type="image/png" href="../images/qcu-icon-final.png">
   <title>QCUJ | HOME</title>
   <link rel="stylesheet" href="../CSS/home.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -177,14 +177,13 @@
               paywalls or restrictions.</p>
         </div>
         <div data-animate-in="up" class='ab-qoaj-right'>
-          <img src="../images/pahina-final-light.png" style=" height:14em" alt="" />
+          <img src="../images/qcuj-light.png" style=" height:14em" alt="" />
           <img class="d-none d-md-flex" src="../images/qcu-logo.webp" style="width:11em; height:11em" alt="" />
         </div>
       </div>
       <div class="vision-container" style="background-color:#ffff;">
           <h2 class="">Our Vision</h2>
-          <p class="text-center text-muted ">Say goodbye to research submission struggles! QCUJ  is
-            a smooth online portal <br/>where you can easily submit your research for expert review. </p>
+          <p class="text-center text-muted ">To establish an inclusive and accessible open access journal system that elevates the visibility of Quezon City University's scholarly work, advancing global knowledge and research impact. </p>
             <br>
             <br>
             <div data-animate-in="up"  class="d-flex flex-column flex-sm-row justify-content-center gap-4 flex-wrap py-3 my-3">
