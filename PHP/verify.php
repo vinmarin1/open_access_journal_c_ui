@@ -160,7 +160,10 @@
 </head>
 <body>
 
-		<?php require 'header.php' ?>	
+		
+		<header class="header-container" id="header-container">
+		</header>
+
 		<form method="post" id="form">
 		<p class="descript">An OTP code was sent to <span><b><?php echo $vars['email'];?></b></span></p>
 		<div>
@@ -195,6 +198,16 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+function showAlert() {
+	Swal.fire({
+	icon: 'info',
+	title: 'Profile Incomplete',
+	text: 'Please complete the required details in profile to submit article'
+	});
+}
+</script>
+<script src="../JS/reusable-header.js"></script>
 <script src="../JS/reusable-header_footer.js"></script>
 
 <script>
