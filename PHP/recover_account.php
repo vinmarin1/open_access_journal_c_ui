@@ -15,7 +15,8 @@ session_start();
 </head>
 <body>
 
-<?php require 'header.php' ?>
+    <header class="header-container" id="header-container">
+    </header>
 
     <div class="container-fluid">
         <div class="row justify-content-center">
@@ -82,10 +83,20 @@ session_start();
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+    function showAlert() {
+        Swal.fire({
+        icon: 'info',
+        title: 'Profile Incomplete',
+        text: 'Please complete the required details in profile to submit article'
+        });
+    }
+    </script>
 	<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <script src="../JS/recover_account.js"></script>
+    <script src="../JS/reusable-header.js"></script>
     <script>
 function checkQueryParameter() {
     const urlParams = new URLSearchParams(window.location.search);

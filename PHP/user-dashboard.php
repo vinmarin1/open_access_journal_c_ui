@@ -2079,7 +2079,7 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 margin-right: auto;">
     <div class="cert-container d-flex justify-content-center align-items-center">
 		<?php 
-			echo '<img class="imgCert" id="cert1" src="../images/12.png" alt="cert">'
+			echo '<img class="imgCert" id="cert1" src="../images/cert_review.jpg" alt="cert">'
 		?>
         
 		<div class="cert-category">
@@ -2106,7 +2106,7 @@ margin-right: auto;">
 <div class="container-fluid mt-5" id="certPublishedHead" style="display: none; align-items: center !important; width: 800px; margin-left: auto;
 margin-right: auto;">
     <div class="cert-container d-flex justify-content-center align-items-center">
-        <img class="imgCert" id="cert2" src="../images/11.png" alt="cert" style="width: 800px;
+        <img class="imgCert" id="cert2" src="../images/cert_publish.jpg" alt="cert" style="width: 800px;
 		height: 500px;
 		">
 		<div class="cert-category-published" style="position: absolute;">
@@ -2150,10 +2150,19 @@ margin-right: auto;">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script>
+	function showAlert() {
+		Swal.fire({
+		icon: 'info',
+		title: 'Profile Incomplete',
+		text: 'Please complete the required details in profile to submit article'
+		});
+	}
+	</script>
 	<script src="jquery-3.7.1.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <script src="../JS/reusable-header.js"></script>
     <script src="../JS/user-dashboard.js"></script>

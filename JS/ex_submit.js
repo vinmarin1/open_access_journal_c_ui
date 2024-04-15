@@ -576,6 +576,7 @@ document.addEventListener('DOMContentLoaded', function () {
           formFloating.style.width = '100%';
           formFloating2.style.display = 'none';
           formFloating3.style.width = '100%';
+          checkDuplicaton.style.display = 'none';
       }
   }
 
@@ -586,10 +587,12 @@ document.addEventListener('DOMContentLoaded', function () {
           titleValidation.innerHTML = "Title is too short. Please provide a comprehensive title."
           titleValidation.style.display = 'block';
           isValidationFailed = true;
+         
       } else if(wordCount >100){
           titleValidation.innerHTML = "Title is too long."
           titleValidation.style.display = 'block';
           isValidationFailed = true;
+        
       } else {
           titleValidation.style.display = 'none';
           isValidationFailed = false;
