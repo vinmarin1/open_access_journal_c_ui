@@ -101,7 +101,7 @@
         </div>
       <div class="fluid-container" id="footer-form">
  
-      <button type="button" class="btn btn-outline-primary btn-sm" id="privacyBtn"  data-bs-toggle="modal" data-bs-target="#exampleModal">Agree to Terms & Privacy</button>
+      <button type="button" class="btn btn-outline-light btn-sm mb-4" id="privacyBtn"  data-bs-toggle="modal" data-bs-target="#exampleModal" style="border:0; color:var(--link);" >Agree to Terms & Privacy</button>
       <input type="submit" value="Register" class="btn btn-primary btn-sm" id="signUpBtn">
       <button type="button" class="btn btn-link-primary btn-sm" style="width:100%" onclick="window.location.href= '../PHP/login.php';">Already have an account? Login</button>
 
