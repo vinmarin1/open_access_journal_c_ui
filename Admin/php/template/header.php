@@ -16,7 +16,7 @@ $journal = get_journal_list();
   <!-- <meta name="description" content="" /> -->
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="../../images/pahina-full.png">
+  <link rel="icon" type="image/png" href="../../images/qcu-icon-admin.png">
   
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -66,7 +66,7 @@ $journal = get_journal_list();
         <div class="app-brand demo">
           <a href="dashboard.php" class="app-brand-link">
             <span class="app-brand-logo demo">
-              <img src="../../images/pahina-final-light.png" alt="QCULogo" class="w-75" />
+              <img src="../../images/qcuj-light-admin.png" alt="QCULogo" class="w-75" />
             </span>
             <span class="app-brand-text demo menu-text fw-bold ms-2">QCU Journals</span>
           </a>
