@@ -2075,7 +2075,7 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 </div>
 
 
-<div class="container-fluid mt-5" id="certContainerHead" style="display: none; align-items: center !important; width: 800px; margin-left: auto;
+<div class="container-fluid mt-5" id="certContainerHead" style="display: none; align-items: center !important; width: 800px; height: 500px; margin-left: auto;
 margin-right: auto;">
     <div class="cert-container d-flex justify-content-center align-items-center">
 		<?php 
@@ -2103,16 +2103,13 @@ margin-right: auto;">
 
 
 
-<div class="container-fluid mt-5" id="certPublishedHead" style="display: none; align-items: center !important; width: 800px; margin-left: auto;
+<div class="container-fluid mt-5" id="certPublishedHead" style="display: none; align-items: center !important; width: 800px; height: 500px; margin-left: auto;
 margin-right: auto;">
     <div class="cert-container d-flex justify-content-center align-items-center">
-        <img class="imgCert" id="cert2" src="../images/cert_publish.jpg" alt="cert" style="width: 800px;
-		height: 500px;
-		">
-		<div class="cert-category-published" style="position: absolute;">
-			
+        <img class="imgCert" id="cert2" src="../images/cert_publish.jpg" alt="cert">
+
 			<div class="articlePubInfo">
-				<p class="h2" id="categoryPublished" style=""></p>
+				<p class="h2" id="categoryPublished"></p>
 				<p class="issn" id="iss2"></p>
 			</div>
 			
@@ -2134,8 +2131,6 @@ margin-right: auto;">
 				<p class="h3" id="engagementTitlePublished"></p>
 				<p class="publishdate" id="publishdate"></p>
 			</div>
-			
-		</div>
     </div>
 </div>
 <div id="loadingOverlay">
