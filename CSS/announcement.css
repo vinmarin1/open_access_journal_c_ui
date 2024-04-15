@@ -178,7 +178,7 @@ white-space: normal;
 
 .policy p {
     overflow: auto;
-    max-height: 100px;
+    /* max-height: 100px; */
 }
 .policy p::-webkit-scrollbar {
     width: 0; 
