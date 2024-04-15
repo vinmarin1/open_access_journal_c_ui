@@ -133,7 +133,7 @@ $expertise = $_SESSION['expertise'];
 								<h1>
 								<?php
 									if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-										$sqlSelectName = "SELECT first_name, middle_name, last_name, birth_date, gender, marital_status, country, orc_id, afiliations, position, field_of_expertise FROM author WHERE author_id = :author_id";
+										$sqlSelectName = "SELECT first_name, middle_name, last_name, affix, birth_date, gender, marital_status, country, orc_id, afiliations, position, bio, field_of_expertise FROM author WHERE author_id = :author_id";
 										$result = database_run($sqlSelectName, array(':author_id' => $id));
 
 										if ($result) {
@@ -142,7 +142,7 @@ $expertise = $_SESSION['expertise'];
 												$firstName = $user->first_name;
 												$middleName = $user->middle_name;
 												$lastName = $user->last_name;
-												// $affix = $user->affix;
+												$affix = $user->affix;
 												$birthDate = $user->birth_date;
 												$gender = $user->gender;
 												$maritalStatus = $user->marital_status;
@@ -150,7 +150,7 @@ $expertise = $_SESSION['expertise'];
 												$orcId = $user->orc_id;
 												$afiliations = $user->afiliations;
 												$position = $user->position;
-												// $bio = $user->bio;
+												$bio = $user->bio;
 												$field_of_expertise = $user->field_of_expertise;
 
 												$profileFields = array($firstName, $lastName, $birthDate, $gender, $maritalStatus, $country, $orcId, $afiliations, $position, $field_of_expertise);
@@ -163,7 +163,9 @@ $expertise = $_SESSION['expertise'];
 												// Calculate remaining percentage
 												$remainingPercentage = 100 - $percentageCompletion;
 
+
 												echo "
+												<p>" . $fullName . "</p>
 												<p>PROFILE COMPLETENESS
 													<span style='color: #004e98'>" . round($percentageCompletion, 2) . "%</span>
 													<dfn class='d-none d-md-inline-flex' data-info='You must complete required fields in your profile to submit or review a paper'>
@@ -2385,7 +2387,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
             } else if (actionEngage === 'Reviewed Article Published') {
                 Swal.fire({
-                    html: "<p style='font-weight: bold'>You got 3 Community heart because the article you reviewed was published</p>" + "<p>Title: " + title + "</p>" + "<br>" + "<button type='button' onclick='downloadCertificate()' class='download-button'>Download Cert</button>",
+                    html: "<p style='font-weight: bold'>You got 3 Community heart because the article you reviewed was published</p>" + "<p>Title: " + title + "</p>" + "<br>" + "<button type='button' onclick='downloadCertificate()'>Download Cert</button>",
                     imageUrl: "../images/qcu-bg.jpg",
                     imageWidth: 400,
                     imageHeight: 200,
@@ -2397,7 +2399,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
             } else if (actionEngage === 'Published an Article') {
                 Swal.fire({
-                    html: "<p style='font-weight: bold'>You got 3 Community heart because you've successfully published an article</p>" + "<p>Title: " +  title + "</p>" + "<br>" + "<button type='button' onclick='downloadCertificatePublished()' class='download-button'>Download Cert</button>",
+                    html: "<p style='font-weight: bold'>You got 3 Community heart because you've successfully published an article</p>" + "<p>Title: " +  title + "</p>" + "<br>" + "<button type='button' onclick='downloadCertificatePublished()'>Download Cert</button>",
                     imageUrl: "../images/qcu-bg.jpg",
                     imageWidth: 400,
                     imageHeight: 200,
