@@ -662,55 +662,56 @@ function openFilename(index) {
   });
 }
 
+// Setup event listeners for file inputs
+document.getElementById('file_name').addEventListener('change', function () {
+  handleFileInputChange(1);
+});
+
+document.getElementById('file_name2').addEventListener('change', function () {
+  handleFileInputChange(2);
+});
+
+document.getElementById('file_name3').addEventListener('change', function () {
+  handleFileInputChange(3);
+});
+
+function handleFileInputChange(index) {
+  var input = document.getElementById('file_name' + index);
+  checkFileSize(input, 5 * 1024 * 1024, index);
+}
+
 function checkFileSize(input, maxSizeInBytes, index) {
   var files = input.files;
 
   if (files.length > 0) {
-      var fileSize = files[0].size; // in bytes
-      var maxSize = maxSizeInBytes;
+    var fileSize = files[0].size; // in bytes
+    var maxSize = maxSizeInBytes;
 
-      if (fileSize > maxSize) {
-          Swal.fire({
-              icon: 'warning',
-              text: 'Please select a file 5mb or less'
-          });
-          var fileInput = document.getElementById('file_name' + (index === 1 ? '' : index));
-
-          // Clear the value of the file input
-          fileInput.value = '';
-      } else {
-          var fileName = input.files[0].name;
-          // Update the button's text with the selected file name
-          document.getElementById('addFileName' + index).innerText = fileName;
-      }
+    if (fileSize > maxSize) {
+      Swal.fire({
+        icon: 'warning',
+        text: 'Please select a file 5mb or less'
+      });
+      // Clear the value of the file input
+      input.value = '';
+    } else {
+      var fileName = input.files[0].name;
+      // Update the button's text with the selected file name
+      document.getElementById('addFileName' + index).innerText = fileName;
+    }
   }
 }
 
-
-// document.getElementById('file_name').addEventListener('change', function () {
-//   openFilename(1);
-// });
-
-// document.getElementById('file_name2').addEventListener('change', function () {
-//   openFilename(2);
-// });
-
-// document.getElementById('file_name3').addEventListener('change', function () {
-//   openFilename(3);
-// });
-
-
 function deleteFilename(index) {
-
-  var fileInput = document.getElementById('file_name' + (index === 1 ? '' : index));
+  var fileInput = document.getElementById('file_name' + index);
 
   // Clear the value of the file input
   fileInput.value = '';
 
-  // Optionally, you can clear the displayed file name in the table
-  document.getElementById('fileName' + index).innerText = '';
-  // document.getElementById('fileType' + index).innerText = '';
+  // Clear the displayed file name in the button associated with Button 1
+  document.getElementById('addFileName' + index).innerText = 'Upload your file here';
 }
+
 
 
 function setupFileInput(fileInputId, textInputId) {
