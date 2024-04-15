@@ -54,12 +54,12 @@
 
                 if (!$profileComplete) {
                     // Profile is incomplete
-                    echo '<a href="user-dashboard.php" onclick="showAlert();"  class="link text-muted">
+                    echo '<a href="#" onclick="showAlert();"  class="link text-muted">
                     <span class="d-none d-md-flex">SUBMIT ARTICLE</span>
                   </a>';
                 } else {
                     // Profile is complete
-                    echo '<a href="" class="link text-muted">
+                    echo '<a href="ex_submit.php" class="link text-muted">
                             <span class="d-none d-md-flex">SUBMIT ARTICLE</span>
                           </a>';
                 }

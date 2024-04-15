@@ -568,7 +568,16 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+  function showAlert() {
+    Swal.fire({
+      icon: 'info',
+      title: 'Profile Incomplete',
+      text: 'Please complete the required details in profile to submit article'
+    });
+  }
+</script>
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 <script src="../JS/reusable-header.js"></script>
 <script src="../JS/submitted-article.js"></script>
