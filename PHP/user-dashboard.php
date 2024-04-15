@@ -133,7 +133,7 @@ $expertise = $_SESSION['expertise'];
 								<h1>
 								<?php
 									if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-										$sqlSelectName = "SELECT first_name, middle_name, last_name, affix, birth_date, gender, marital_status, country, orc_id, afiliations, position, bio, field_of_expertise FROM author WHERE author_id = :author_id";
+										$sqlSelectName = "SELECT first_name, middle_name, last_name, birth_date, gender, marital_status, country, orc_id, afiliations, position, field_of_expertise FROM author WHERE author_id = :author_id";
 										$result = database_run($sqlSelectName, array(':author_id' => $id));
 
 										if ($result) {
@@ -142,7 +142,7 @@ $expertise = $_SESSION['expertise'];
 												$firstName = $user->first_name;
 												$middleName = $user->middle_name;
 												$lastName = $user->last_name;
-												$affix = $user->affix;
+												// $affix = $user->affix;
 												$birthDate = $user->birth_date;
 												$gender = $user->gender;
 												$maritalStatus = $user->marital_status;
@@ -150,10 +150,10 @@ $expertise = $_SESSION['expertise'];
 												$orcId = $user->orc_id;
 												$afiliations = $user->afiliations;
 												$position = $user->position;
-												$bio = $user->bio;
+												// $bio = $user->bio;
 												$field_of_expertise = $user->field_of_expertise;
 
-												$profileFields = array($firstName, $middleName, $lastName, $affix, $birthDate, $gender, $maritalStatus, $country, $orcId, $afiliations, $position, $bio, $field_of_expertise);
+												$profileFields = array($firstName, $lastName, $birthDate, $gender, $maritalStatus, $country, $orcId, $afiliations, $position, $field_of_expertise);
 												$completedFields = count(array_filter($profileFields, function($field) { return !empty($field); }));
 												$totalFields = count($profileFields);
 
