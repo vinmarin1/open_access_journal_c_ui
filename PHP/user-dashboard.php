@@ -165,7 +165,7 @@ $expertise = $_SESSION['expertise'];
 
 
 												echo "
-												<p>" . $fullName . "</p>
+												<p style='font-size: 20px'>" . $fullName . "</p>
 												<p>PROFILE COMPLETENESS
 													<span style='color: #004e98'>" . round($percentageCompletion, 2) . "%</span>
 													<dfn class='d-none d-md-inline-flex' data-info='You must complete required fields in your profile to submit or review a paper'>
