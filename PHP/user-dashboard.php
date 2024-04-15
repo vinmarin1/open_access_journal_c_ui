@@ -2079,7 +2079,7 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 margin-right: auto;">
     <div class="cert-container d-flex justify-content-center align-items-center">
 		<?php 
-			echo '<img class="imgCert" id="cert1" src="../images/12.png" alt="cert">'
+			echo '<img class="imgCert" id="cert1" src="../images/cert_review.jpg" alt="cert">'
 		?>
         
 		<div class="cert-category">
@@ -2106,7 +2106,7 @@ margin-right: auto;">
 <div class="container-fluid mt-5" id="certPublishedHead" style="display: none; align-items: center !important; width: 800px; margin-left: auto;
 margin-right: auto;">
     <div class="cert-container d-flex justify-content-center align-items-center">
-        <img class="imgCert" id="cert2" src="../images/11.png" alt="cert" style="width: 800px;
+        <img class="imgCert" id="cert2" src="../images/cert_publish.jpg" alt="cert" style="width: 800px;
 		height: 500px;
 		">
 		<div class="cert-category-published" style="position: absolute;">
