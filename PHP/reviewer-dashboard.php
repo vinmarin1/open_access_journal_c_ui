@@ -5,7 +5,7 @@ session_start();
 <html lang="en">
 <head>
     <?php include('./meta.php'); ?>
-    <title>Pahina | REVIEWER DASHBOARD</title>
+    <title>QCUJ | REVIEWER DASHBOARD</title>
     <link rel="stylesheet" href="../CSS/reviewer-dashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">

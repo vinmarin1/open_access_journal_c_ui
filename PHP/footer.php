@@ -10,7 +10,7 @@
         <div class="row">
           <div class="col-sm-12 col-md-5">
             <h6>About</h6>
-            <p class="text-justify">Pahina is an open access journal platform for Quezon City University, facilitating the submission and publication process. </p>
+            <p class="text-justify">QCUJ is an open access journal platform for Quezon City University, facilitating the submission and publication process. </p>
           </div>
 
           <div class="col-xs-6 col-md-2">
@@ -27,7 +27,7 @@
             <h6>Quick Links</h6>
             <ul class="footer-links">
               <li><a href="/">Home</a></li>
-              <li><a href="general-info.php">About Pahina</a></li>
+              <li><a href="general-info.php">About QCUJ</a></li>
               <li><a href="announcement.php">Announcements</a></li>
               <li><a href="browse-articles.php">Browse articles</a></li>
               <li><a href="contact-us.php">Contact us</a></li>
@@ -53,7 +53,7 @@
             <img src="../images/pahina-final-light.png" style="height:2.7em" alt="" class="d-none d-sm-flex" onclick="window.location.href = 'index.php';"/>
             <img style="width:2.7em; height:2.7em"  src="../images/qcu-logo.webp" alt="" class="d-none d-sm-flex" onclick="window.location.href = 'https://qcu.edu.ph';">
             <p class="copyright-text">Content on this site is licensed under a Creative Commons &copy; <?php echo date("Y"); ?> 
-            All Rights Reserved by <a href="#">Pahina</a>.
+            All Rights Reserved by <a href="#">QCUJ</a>.
             </p>
           </div>
 

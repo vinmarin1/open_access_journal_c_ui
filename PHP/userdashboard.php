@@ -17,7 +17,7 @@ $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
 <html lang="en">
 <head>
     <?php include('./meta.php'); ?>
-    <title>Pahina | AUTHOR PROFILE</title>
+    <title>QCUJ | AUTHOR PROFILE</title>
     <link rel="stylesheet" href="../CSS/user-dashboard.css">
     <link rel="stylesheet" href="../CSS/user-view.css">
     <link rel="stylesheet" href="../CSS/index.css">

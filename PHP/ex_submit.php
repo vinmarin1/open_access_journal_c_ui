@@ -243,7 +243,7 @@ if ($resultProfile) {
               <option value="2" id="lamp">The Lamp</option>
               <option value="3" id="star">The Star</option> -->
             </select>
-            <span id="journal-info" class="suggestion-title text-muted">Pahina can suggest journal based on your article</span>
+            <span id="journal-info" class="suggestion-title text-muted">QCUJ can suggest journal based on your article</span>
             <span class="text-danger" id="journal-error"></span>
           </div>
   

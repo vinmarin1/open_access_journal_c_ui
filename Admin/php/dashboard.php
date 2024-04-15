@@ -617,12 +617,7 @@ $donationDataJson = json_encode($donationData);
                         </div>
                     </div>
                 </div>
-
-                </div>
-            </div>
-        </div>
     </div>
-</div>
     <?php include 'template/footer.php'; ?>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
