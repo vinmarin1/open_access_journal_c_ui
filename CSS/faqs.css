@@ -150,7 +150,7 @@ aside {
 #frequently-asked-questions-container h3,
 #frequently-asked-questions-container h4 {
     color: #285581;
-    /* font-family: Inter !important; */
+    font-family: Raleway, sans-serif !important;
 }
 
 
@@ -363,7 +363,7 @@ aside {
 #publication-policy-container h3,
 #tutorial-on-registration-container h3 {
     /* text-transform: uppercase; */
-    font-size: 16px;
+    /* font-size: 24px !important; */
     font-weight: 700;
     margin-bottom: 1em;
 }
@@ -397,19 +397,21 @@ aside {
 
 .s-1,
 .s-2 {
-    margin-bottom: 30px;
-    padding: 2em;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 4em;
+    padding: 3em;
+    border: 2px solid var(--gray);
+    /* background-color: #f9f9f9; */
+    border-radius: 2px;
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
 }
 
 .s-1 h3,
 .s-2 h3 {
-    font-size: 20px;
+    font-size: 30px;
     margin-bottom: 10px;
     color: #285581;
     margin-bottom: 1em;
+    font-family: Raleway, sans-serif !important;
 }
 
 .s-1 p,
