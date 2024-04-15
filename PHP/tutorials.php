@@ -70,7 +70,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                         <p class="text-muted"> Joining 'Pahina' as a contributor offers you a chance to showcase your expertise to a wider audience and engage with a vibrant community of readers. Your contributions will have a meaningful impact, fostering discussions and advancing knowledge in your field.</p>
                     </div>
                 </div>
-                <a class="action-button" href="#tutorial-on-registration" data-target="tutorial-on-registration">Learn More <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 26 26" fill="currentColor"><path d="M10 6V8H5V19H16V14H18V20C18 20.5523 17.5523 21 17 21H4C3.44772 21 3 20.5523 3 20V7C3 6.44772 3.44772 6 4 6H10ZM21 3V12L17.206 8.207L11.2071 14.2071L9.79289 12.7929L15.792 6.793L12 3H21Z"></path></svg></a>
+                <a class="action-button" style="width: fit-content;" href="#tutorial-on-registration" data-target="tutorial-on-registration">Learn More <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 26 26" fill="currentColor"><path d="M10 6V8H5V19H16V14H18V20C18 20.5523 17.5523 21 17 21H4C3.44772 21 3 20.5523 3 20V7C3 6.44772 3.44772 6 4 6H10ZM21 3V12L17.206 8.207L11.2071 14.2071L9.79289 12.7929L15.792 6.793L12 3H21Z"></path></svg></a>
             </div>
             <div class="procedure">
                 <img src="../images/tutorial-on-publication.png" alt="Procedure Image">
@@ -80,7 +80,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                         <p class="text-muted">Submitting an article to 'Pahina' provides a unique opportunity to share your insights and expertise with a diverse audience. Your contribution will not only enrich our platform but also establish you as a thought leader in your field. Join us in shaping meaningful discussions and advancing knowledge by sharing your ideas with Pahina.</p>
                     </div>
                 </div>
-                <a class="action-button" href="#tutorial-on-publication" data-target="tutorial-on-publication">Learn More <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 26 26" fill="currentColor"><path d="M10 6V8H5V19H16V14H18V20C18 20.5523 17.5523 21 17 21H4C3.44772 21 3 20.5523 3 20V7C3 6.44772 3.44772 6 4 6H10ZM21 3V12L17.206 8.207L11.2071 14.2071L9.79289 12.7929L15.792 6.793L12 3H21Z"></path></svg></a>
+                <a class="action-button" style="width: fit-content;" href="#tutorial-on-publication" data-target="tutorial-on-publication">Learn More <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 26 26" fill="currentColor"><path d="M10 6V8H5V19H16V14H18V20C18 20.5523 17.5523 21 17 21H4C3.44772 21 3 20.5523 3 20V7C3 6.44772 3.44772 6 4 6H10ZM21 3V12L17.206 8.207L11.2071 14.2071L9.79289 12.7929L15.792 6.793L12 3H21Z"></path></svg></a>
             </div>
             <div class="procedure "  >
                 <img src="../images/tutorial-on-review.png" alt="Procedure Image">
@@ -90,7 +90,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                         <p class="text-muted">Your expertise is invaluable in ensuring the quality and integrity of articles on 'Pahina.' By reviewing submitted articles, you'll play a crucial role in shaping academic discourse and advancing knowledge within your field. Join us in upholding rigorous standards and contributing to the growth of our community by lending your expertise to the peer review process.</p>
                     </div>
                 </div>
-                <a class="action-button" href="#tutorial-on-review" data-target="tutorial-on-review">Learn More <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 26 26" fill="currentColor"><path d="M10 6V8H5V19H16V14H18V20C18 20.5523 17.5523 21 17 21H4C3.44772 21 3 20.5523 3 20V7C3 6.44772 3.44772 6 4 6H10ZM21 3V12L17.206 8.207L11.2071 14.2071L9.79289 12.7929L15.792 6.793L12 3H21Z"></path></svg></a>
+                <a class="action-button" style="width: fit-content;" href="#tutorial-on-review" data-target="tutorial-on-review">Learn More <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 26 26" fill="currentColor"><path d="M10 6V8H5V19H16V14H18V20C18 20.5523 17.5523 21 17 21H4C3.44772 21 3 20.5523 3 20V7C3 6.44772 3.44772 6 4 6H10ZM21 3V12L17.206 8.207L11.2071 14.2071L9.79289 12.7929L15.792 6.793L12 3H21Z"></path></svg></a>
             </div>
         </div>
         </section>

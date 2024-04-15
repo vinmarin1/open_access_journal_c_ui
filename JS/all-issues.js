@@ -64,7 +64,7 @@ async function generateArticlesBasedOnIssues(page) {
         <a class="article-container" href="../PHP/article-details.php?articleId=${article.article_id}">
             <!-- Article Content -->
             <div class="article-content">
-                <h6>${article.title}</h6>
+                <h6>${article.title.slice(0, 100)}...</h6>
                 <p>${article.abstract.slice(0, 150)}...</p>
             </div>
             <!-- Article Stats -->

@@ -248,7 +248,7 @@ $donationDataJson = json_encode($donationData);
                                         <h3 class="card-title mb-2"><?php echo isset($usercount[0]->user_count) ? $usercount[0]->user_count : '0'; ?></h3>
                                     </div>
                                     <div class="avatar flex-shrink-0" style="width:25%; height:25%; margin-left:30px;">
-                                        <img src="../assets/img/icons/unicons/users-alt.svg" alt="chart success" class="rounded" />
+                                        <img src="../assets/img/icons/unicons/1.svg" alt="chart success" class="rounded" />
                                     </div>
                                     <div class="dropdown" style="margin-right: -10px;">
                                         <button class="btn p-0" type="button" id="cardOpt1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -269,7 +269,7 @@ $donationDataJson = json_encode($donationData);
                                         <h3 class="card-title mb-2"><?php echo isset($publishedcount[0]->article_count) ? $publishedcount[0]->article_count : '0'; ?></h3>
                                     </div>
                                     <div class="avatar flex-shrink-0" style="width:25%; height:25%;">
-                                        <img src="../assets/img/icons/unicons/document-layout-left.svg" alt="chart success" class="rounded" />
+                                        <img src="../assets/img/icons/unicons/3.svg" alt="chart success" class="rounded" />
                                     </div>
                                     <div class="dropdown" style="margin-right: -10px;">
                                         <button class="btn p-0" type="button" id="cardOpt1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -292,7 +292,7 @@ $donationDataJson = json_encode($donationData);
                                         <h3 class="card-title mb-2"><?php echo isset($engagementcount[0]->engagement_count) ? $engagementcount[0]->engagement_count : '0'; ?></h3>
                                     </div>
                                     <div class="avatar flex-shrink-0" style="width:25%; height:25%;">
-                                        <img src="../assets/img/icons/unicons/book-reader.svg" alt="chart success" class="rounded" />
+                                        <img src="../assets/img/icons/unicons/userinteraction.svg" alt="chart success" class="rounded" />
                                     </div>
                                     <div class="dropdown" style="margin-right: -10px;">
                                         <button class="btn p-0" type="button" id="cardOpt1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -313,9 +313,9 @@ $donationDataJson = json_encode($donationData);
                                         <h3 class="card-title mb-2"><?php echo isset($ongoingcount[0]->article_count) ? $ongoingcount[0]->article_count : '0'; ?></h3>
                                     </div>
                                     <div class="avatar flex-shrink-0" style="width:25%; height:25%; margin-left:30px;">
-                                        <img src="../assets/img/icons/unicons/monitor-heart-rate.svg" alt="chart success" class="rounded" />
+                                        <img src="../assets/img/icons/unicons/4.svg" alt="chart success" class="rounded" />
                                     </div>
-                                    <div class="dropdown" style="margin-right: -10px;">
+                                    <div class="dropdown" style="margin-right: 20px;">
                                         <!-- <button class="btn p-0" type="button" id="cardOpt1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="bx bx-dots-vertical-rounded"></i>
                                         </button>
@@ -407,7 +407,7 @@ $donationDataJson = json_encode($donationData);
                                                 <h3 class="card-title mb-2"><?php echo isset($archivedcount[0]->article_count) ? $archivedcount[0]->article_count : '0'; ?></h3>
                                             </div>
                                             <div class="avatar flex-shrink-0" style="width:25%; height:25%; margin-left:30px;">
-                                                <img src="../assets/img/icons/unicons/document-layout-left.svg" alt="chart success" class="rounded" />
+                                                <img src="../assets/img/icons/unicons/5.svg" alt="chart success" class="rounded" />
                                             </div>
                                             <div class="dropdown" style="margin-right: -10px;">
                                                 <button class="btn p-0" type="button" id="cardOpt1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -429,8 +429,8 @@ $donationDataJson = json_encode($donationData);
                                                 <span class="fw-semibold d-block mb-1">Total Donation</span>
                                                 <h3 class="card-title mb-2">₱<?php echo isset($totalamountdonation[0]->totalamount) ? $totalamountdonation[0]->totalamount : '0'; ?></h3>
                                             </div>
-                                            <div class="avatar flex-shrink-0" style="width:25%; height:25%;">
-                                                <img src="../assets/img/icons/unicons/document-layout-left.svg" alt="chart success" class="rounded" />
+                                            <div class="avatar flex-shrink-0" style="width:25%; height:25%; margin-left:30px;">
+                                                <img src="../assets/img/icons/unicons/6.svg" alt="chart success" class="rounded" />
                                             </div>
                                             <div class="dropdown" style="margin-right: -10px;">
                                                 <button class="btn p-0" type="button" id="cardOpt1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

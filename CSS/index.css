@@ -177,8 +177,8 @@ a {
   color: black;
   font-size: 13px;
   height: 120px;
-  overflow-y: auto;
-  overflow-x: hidden;
+  /* overflow-y: auto;
+  overflow-x: hidden; */
 }
 
 
