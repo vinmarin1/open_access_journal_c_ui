@@ -68,7 +68,7 @@ $journal = get_journal_list();
             <span class="app-brand-logo demo">
               <img src="../../images/pahina-final-light.png" alt="QCULogo" class="w-75" />
             </span>
-            <span class="app-brand-text demo menu-text fw-bold ms-2">QCU Journals</span>
+            <span class="app-brand-text demo menu-text fw-bold ms-2">Quezon City University Journals</span>
           </a>
 
           <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">

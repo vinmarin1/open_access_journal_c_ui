@@ -8,7 +8,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pahina | Guidelines</title>
+    <title>QCUJ | Guidelines</title>
     <link rel="stylesheet" href="../CSS/faqs.css">
     <link rel="stylesheet" href="../CSS/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -152,7 +152,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 </ul>
                 <hr/>
                 <ul id="for-contributors" >
-                    <a href="guidelines.php"><li><b>Browse Pahina Resources</b></li></a>
+                    <a href="guidelines.php"><li><b>Browse QCUJ Resources</b></li></a>
                     <li class="faq-toggle" data-target="author-guidelines"><a href="guidelines.php#author-guidelines">Author Guidelines</a></li>
                     <li class="faq-toggle" data-target="templates-for-author"><a href="guidelines.php#templates-for-author">Templates for Author</a></li>
                     <li class="faq-toggle" data-target="publication-policy"><a href="guidelines.php#publication-policy">Publication Policy</a></li>
@@ -171,7 +171,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
             </div>           
         </aside>
         <div class="main  flex-column gap-4 my-5" id="guidelines-links">
-            <h4>List of Pahina Resources</h4>
+            <h4>List of QCUJ Resources</h4>
             <div data-animate-in="up" class="d-flex gap-3 flex-wrap">
                 <a  href="#author-guidelines" data-target="author-guidelines" class="card-custom d-flex flex-column flex-sm-row gap-4 p-1 flex-row align-items-start">
                     <div class="icon">
@@ -265,8 +265,8 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
             <div class="category w-100">
                 <div class="s-1" id="types-of-publication">
                 <h3>Types of Publication</h3>
-                    <p>Manuscript length is unrestricted in Pahina, as long as the material is concise and comprehensive. To ensure that the results can be replicated, all practical information must be provided.</p>
-                    <p>Manuscripts should not have been previously published or considered for publication in another journal when submitted to Pahina. The following are the main article types:</p>
+                    <p>Manuscript length is unrestricted in QCUJ, as long as the material is concise and comprehensive. To ensure that the results can be replicated, all practical information must be provided.</p>
+                    <p>Manuscripts should not have been previously published or considered for publication in another journal when submitted to QCUJ. The following are the main article types:</p>
                     <ul>
                         <li>
                             <span>Articles:</span>
@@ -284,7 +284,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                         it takes to finish copy-editing and publish accepted articles will be greatly reduced if
                         researchers use the template file designed and distributed by the Editorial Board of each
                         QCU Journal.</p>
-                    <p>For Pahina templates, browse our <a href="#templates-for-author" target="blank">templates</a> </p>
+                    <p>For QCUJ templates, browse our <a href="#templates-for-author" target="blank">templates</a> </p>
                 </div>
                 <div class="s-2" id="formatting-requirements">
                     <h3>Formatting Requirements</h3>
@@ -345,7 +345,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                                 participating. The research protocol was approved by the QCU Research Ethics Board
                                 (Project Identification Code), and the study followed the Declaration of Helsinki.”</li>
                     </ul>
-                        <p>Manuscripts submitted for consideration in Pahina must follow the “IMRaD” format is
+                        <p>Manuscripts submitted for consideration in QCUJ must follow the “IMRaD” format is
                             divided into four main sections: <b>I</b>ntroduction, <b>M</b>ethod, <b>R</b>esults, and <b>D</b>iscussion.</p>
                         <ul type="circle" style="margin-left:50px;">
                             <li><strong>Title: Short and to-the-point. Titles are often used in information
@@ -615,12 +615,12 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     <p>The editors of this journal use a rigorous peer-review system and adhere to strong ethical
                         values and standards to ensure that only high-quality research works are accepted.</p>
                     <p>Plagiarism, falsification, fabrication, unethical co-authorship practices, and other examples of
-                        research misconduct are taken extremely seriously by the editors of Pahina. They are
+                        research misconduct are taken extremely seriously by the editors of QCUJ. They are
                         instructed to deal with a zero-tolerance approach in such circumstances.</p>
                 </div>
                 <div class="s-2" id="publication-rules">
                     <h3>Publication Rules</h3>
-                    <p>Researchers who wish to publish their articles or reviews in Pahina should abide by
+                    <p>Researchers who wish to publish their articles or reviews in QCUJ should abide by
                         the following:</p>
                     <ul>
                         <li><span>Conflict of interest disclosure:</span> Authors must disclose any potential conflicts of interest.</li>
@@ -648,7 +648,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                             
                             <li>If any scientific misconduct is discovered after the manuscript has been published, the editorial board may issue a correction or retract the paper.</li>
                         </ul>    
-                        <li><span>Research misconduct:</span> Our editors promptly investigate research misconduct claims, taking corrective actions, including article retractions, when misconduct is confirmed. Authors publishing with Pahina must adhere to ethical publication standards.</li>
+                        <li><span>Research misconduct:</span> Our editors promptly investigate research misconduct claims, taking corrective actions, including article retractions, when misconduct is confirmed. Authors publishing with QCUJ must adhere to ethical publication standards.</li>
                     
                      
                     </ul>
@@ -666,7 +666,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 </div>
                 <div class="s-2" id="copyright-licensing">
                     <h3>Copyright and Licensing</h3>
-                    <p>The authors maintain copyright for all works published in the Pahina. The articles are
+                    <p>The authors maintain copyright for all works published in the QCUJ. The articles are
                         published under the <span>Creative Commons CC BY 4.0 license</span>, allowing anybody to download
                         and read them for free. The article may also be reused and quoted as long as the original
                         published version is referenced. These terms provide the most widespread use and visibility
@@ -674,12 +674,12 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 </div>
                 <div class="s-2" id="institutional-repository">
                     <h3>Institutional Repository</h3>
-                    <p>All articles published in the Pahina will be archived in the institutional repository
+                    <p>All articles published in the QCUJ will be archived in the institutional repository
                         system and database of the Quezon City University.</p>
                 </div>
                 <div class="s-2" id="data-privacy">
                     <h3>Data Privacy, Intellectual Property, and Anti-Piracy</h3>
-                    <p>All articles published in the Pahina should conform with the relevant rules, guidelines,
+                    <p>All articles published in the QCUJ should conform with the relevant rules, guidelines,
                         and policies indicated in the Philippines’ <span>Data Privacy Act of 2012, the Cybercrime
                         Prevention Act of 2012</span>, and the <span>Intellectual Property Code.</span></p>
                 </div>

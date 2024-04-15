@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <?php include('./meta.php'); ?>
-    <title>Pahina | Pahina</title>
+    <title>QCUJ | Issues</title>
     <link rel="stylesheet" href="../CSS/issues.css">
     <link rel="stylesheet" href="../CSS/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">

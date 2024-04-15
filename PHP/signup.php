@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <?php include('./meta.php'); ?>
-    <title>Pahina | SIGN-UP</title>
+    <title>QCUJ | SIGN-UP</title>
     <link rel="stylesheet" href="../CSS/signup.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -18,11 +18,11 @@
 <div class="form-container">
 <img src="../images/qcu-bg.jpg" class="image-cover">
     <!-- <div> -->
-    <!-- <h2>Welcome to Pahina</h2> -->
+    <!-- <h2>Welcome to QCUJ</h2> -->
     <!-- <img src="../images/qcu-bg.jpg"/>
     </div> -->
     <form method="POST" id="form">
-       <p class="h5 my-3" style="font-weight:bold">Create your Pahina Account</p>
+       <p class="h5 my-3" style="font-weight:bold">Create your QCUJ Account</p>
        <div class="input-field">
            <label for="email">Email:</label><span id="span1">*</span><span id="spanEmailValidation" style="display: none; color: red; font-size: 11px">Invalid email</span>
            <input type="email" class="input form-control" name="email"  id="email">
@@ -117,7 +117,7 @@
             <div class="modal-body mt-2">
               <div class="mt-1" id="firstP">
               PRIVACY POLICY
-              This privacy describe our policies and procedure on the collection, use and disclosure of your Information when you use the Pahina.
+              This privacy describe our policies and procedure on the collection, use and disclosure of your Information when you use the QCUJ.
               </div>
               <div class="mt-4" id="secondP">
               We use your personal data to provide and  improve the service. By using the service, you agree to the collection and use of information in accordance with this privacy.

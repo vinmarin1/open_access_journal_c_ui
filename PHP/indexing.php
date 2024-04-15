@@ -7,7 +7,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
 
 <head>
     <?php include('./meta.php'); ?>
-    <title>Pahina | Indexing</title>
+    <title>QCUJ | Indexing</title>
     <link rel="stylesheet" href="../CSS/indexing.css">
     <link rel="stylesheet" href="../CSS/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -29,7 +29,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
         <div class="cover-content">
             <p>Home / Indexing</p>
             <h1 class="d-flex flex-column gap-1">
-                Pahina Indexing
+                QCUJ Indexing
                 <span class="w-50">Advancing Science and Technology: A Commitment to Quality through Quezon City University's Pioneering Open Access Journal</span>
             </h1>
         </div>

@@ -8,7 +8,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pahina | Guidelines</title>
+    <title>QCUJ | Guidelines</title>
     <link rel="stylesheet" href="../CSS/faqs.css">
     <link rel="stylesheet" href="../CSS/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -67,7 +67,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 <div class="procedure-body">
                     <h3 class="title">Be a Contributor</h3>
                     <div class="description">
-                        <p class="text-muted"> Joining 'Pahina' as a contributor offers you a chance to showcase your expertise to a wider audience and engage with a vibrant community of readers. Your contributions will have a meaningful impact, fostering discussions and advancing knowledge in your field.</p>
+                        <p class="text-muted"> Joining 'QCUJ' as a contributor offers you a chance to showcase your expertise to a wider audience and engage with a vibrant community of readers. Your contributions will have a meaningful impact, fostering discussions and advancing knowledge in your field.</p>
                     </div>
                 </div>
                 <a class="action-button" style="width: fit-content;" href="#tutorial-on-registration" data-target="tutorial-on-registration">Learn More <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 26 26" fill="currentColor"><path d="M10 6V8H5V19H16V14H18V20C18 20.5523 17.5523 21 17 21H4C3.44772 21 3 20.5523 3 20V7C3 6.44772 3.44772 6 4 6H10ZM21 3V12L17.206 8.207L11.2071 14.2071L9.79289 12.7929L15.792 6.793L12 3H21Z"></path></svg></a>
@@ -77,7 +77,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 <div class="procedure-body">
                     <h3 class="title">Submit a Paper</h3>
                     <div class="description">
-                        <p class="text-muted">Submitting an article to 'Pahina' provides a unique opportunity to share your insights and expertise with a diverse audience. Your contribution will not only enrich our platform but also establish you as a thought leader in your field. Join us in shaping meaningful discussions and advancing knowledge by sharing your ideas with Pahina.</p>
+                        <p class="text-muted">Submitting an article to 'QCUJ' provides a unique opportunity to share your insights and expertise with a diverse audience. Your contribution will not only enrich our platform but also establish you as a thought leader in your field. Join us in shaping meaningful discussions and advancing knowledge by sharing your ideas with QCUJ.</p>
                     </div>
                 </div>
                 <a class="action-button" style="width: fit-content;" href="#tutorial-on-publication" data-target="tutorial-on-publication">Learn More <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 26 26" fill="currentColor"><path d="M10 6V8H5V19H16V14H18V20C18 20.5523 17.5523 21 17 21H4C3.44772 21 3 20.5523 3 20V7C3 6.44772 3.44772 6 4 6H10ZM21 3V12L17.206 8.207L11.2071 14.2071L9.79289 12.7929L15.792 6.793L12 3H21Z"></path></svg></a>
@@ -87,7 +87,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 <div class="procedure-body">
                     <h3 class="title">Review a Paper</h3>
                     <div class="description">
-                        <p class="text-muted">Your expertise is invaluable in ensuring the quality and integrity of articles on 'Pahina.' By reviewing submitted articles, you'll play a crucial role in shaping academic discourse and advancing knowledge within your field. Join us in upholding rigorous standards and contributing to the growth of our community by lending your expertise to the peer review process.</p>
+                        <p class="text-muted">Your expertise is invaluable in ensuring the quality and integrity of articles on 'QCUJ.' By reviewing submitted articles, you'll play a crucial role in shaping academic discourse and advancing knowledge within your field. Join us in upholding rigorous standards and contributing to the growth of our community by lending your expertise to the peer review process.</p>
                     </div>
                 </div>
                 <a class="action-button" style="width: fit-content;" href="#tutorial-on-review" data-target="tutorial-on-review">Learn More <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 26 26" fill="currentColor"><path d="M10 6V8H5V19H16V14H18V20C18 20.5523 17.5523 21 17 21H4C3.44772 21 3 20.5523 3 20V7C3 6.44772 3.44772 6 4 6H10ZM21 3V12L17.206 8.207L11.2071 14.2071L9.79289 12.7929L15.792 6.793L12 3H21Z"></path></svg></a>
@@ -101,7 +101,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 <h2 style="font-size:32px !important">Submit a Paper</h2>
             </div>
                 <div class="s-1 animated fadeInLeft">
-                    <p>At Pahina, we value your contributions and are dedicated to facilitating a smooth and rewarding publication journey. To assist you every step of the way, we've curated a comprehensive tutorial to provide clear guidance, ensuring that authors feel confident and empowered throughout their submission experience. Join us in sharing knowledge and advancing scholarship – submit your manuscript today and let's embark on this enriching journey together.</p> 
+                    <p>At QCUJ, we value your contributions and are dedicated to facilitating a smooth and rewarding publication journey. To assist you every step of the way, we've curated a comprehensive tutorial to provide clear guidance, ensuring that authors feel confident and empowered throughout their submission experience. Join us in sharing knowledge and advancing scholarship – submit your manuscript today and let's embark on this enriching journey together.</p> 
                     <ul>
                         <li>Before you submit a paper you must register first.  <a href="tutorials.php#tutorial-on-registration">Learn How to register</a></li> 
                     </ul>
@@ -196,7 +196,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                         <h2 style="font-size:32px !important">Become a Reviewer</h2>
                     </div>
                     <div class="s-1">
-                        <p>Welcome to our Publication Tutorial for Pahina. This guide simplifies the process, ensuring a smooth experience for all contributors. Let's make your publication journey 
+                        <p>Welcome to our Publication Tutorial for QCUJ. This guide simplifies the process, ensuring a smooth experience for all contributors. Let's make your publication journey 
                             hassle-free – get started now! Begin your submission and share your insights with our scholarly community!</p>
                         <ul>
                             <li>Before you can review, you must register first.  <a href="tutorials.php#tutorial-on-registration">Learn How to register</a></li> 
@@ -260,7 +260,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     <div class="s-1">
                   
                    
-                    <p>Become an integral part of Pahina's scholarly community by exploring various avenues for participation.Whether you're lending your expertise as a reviewer, sharing groundbreaking research as an author, supporting our mission through donations, or actively engaging in scholarly discourse, your efforts are recognized through our <b>contributions points system, badges, and certificates</b>.<br/> Join us in cultivating a culture of knowledge exchange and academic excellence, fostering inclusivity and collaboration across the global academic landscape. Together, let's elevate accessibility and impact within scholarly research through Pahina</p><br/>
+                    <p>Become an integral part of QCUJ's scholarly community by exploring various avenues for participation.Whether you're lending your expertise as a reviewer, sharing groundbreaking research as an author, supporting our mission through donations, or actively engaging in scholarly discourse, your efforts are recognized through our <b>contributions points system, badges, and certificates</b>.<br/> Join us in cultivating a culture of knowledge exchange and academic excellence, fostering inclusivity and collaboration across the global academic landscape. Together, let's elevate accessibility and impact within scholarly research through QCUJ</p><br/>
                     <div class="d-flex justify-content-center">
                         <div class="d-flex flex-column justify-content-between text-center">
                         <img width="200px" src="../images/thirdd_review_badges.png"/>
@@ -279,7 +279,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 </div>
                 <div class="s-2">
                     <h3>Registering with Open Access Journal</h3>
-                    <p>Begin your publication journey by registering with Pahina. Follow these simple steps
+                    <p>Begin your publication journey by registering with QCUJ. Follow these simple steps
                         to create your account:</p>
                     <ol type="1">
                         <li>Visit our journal website and click on the "Register" button.</li>
@@ -290,7 +290,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     <img src="../images/Registration.png" alt="" class="img-reg">
                 </div>
                 <div class="s-2">
-                    <h3>Logging in to  Pahina website.</h3>
+                    <h3>Logging in to  QCUJ website.</h3>
                     <p>After completing the registration, log in to your account.</p>
                     <ol type="1">
                         <li> Write your Email.</li>
