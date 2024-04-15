@@ -9,10 +9,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Welcome to Pahina, where you can find the latest articles, and updates on various topics. Explore our diverse collection now!">
-  <meta name="keywords" content="Pahina, Open access Journal, Pahina">
+  <meta name="description" content="Welcome to QCUJ, where you can find the latest articles, and updates on various topics. Explore our diverse collection now!">
+  <meta name="keywords" content="QCUJ, Open access Journal, QCUJ">
   <link rel="icon" type="image/png" href="../images/pahina-full.png">
-  <title>Pahina | HOME</title>
+  <title>QCUJ | HOME</title>
   <link rel="stylesheet" href="../CSS/home.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -27,10 +27,10 @@
     <div class="content-over">
       <div class="cover-content">
         <div class="mb-3">
-        <p>Pahina Journals</p>
+        <p>Quezon City University Journals</p>
         <h2  class="mt-2" style="font-size:2.8em !important;">Find or Submit <br/>Research Articles
         </h2>
-        <span style="max-width:700px" class="max-w-75 d-md-flex d-none">Welcome to Pahina! Explore the latest research articles, delve into diverse topics, and stay updated with our dynamic content.</span>
+        <span style="max-width:700px" class="max-w-75 d-md-flex d-none">Welcome to QCUJ! Explore the latest research articles, delve into diverse topics, and stay updated with our dynamic content.</span>
         </div>
           <button class="btn  btn-md" id="btn1" onclick="window.location.href='browse-articles.php'">Browse
             articles</button>
@@ -168,12 +168,12 @@
     <div  class="fluid-container mb-3 qoaj">
       <div class="About-container">
         <div class="ab-qoaj-left d-flex flex-column align-items-center align-items-sm-start gap-1">
-          <h2 class="mb-3 text-center w-100">About Pahina</h2>
-            <p class="description">Say goodbye to research submission struggles! Pahina  is
+          <h2 class="mb-3 text-center w-100">About QCUJ</h2>
+            <p class="description">Say goodbye to research submission struggles! QCUJ  is
               a smooth online portal where you can easily submit your research for expert review. </p>
-            <!-- <p class="description"><a href="https://qcu.edu.ph/" class="text-white">Quezon City University (QCU)</a>, recognized by the Commission on Higher Education (CHED), holds dear the values of cultivating a vibrant research culture and disseminating new knowledge for the betterment of society. Understanding that the impact of research accessibility, QCU has established the Pahina as a platform for its researchers to share their valuable findings and contributions.</p> -->
+            <!-- <p class="description"><a href="https://qcu.edu.ph/" class="text-white">Quezon City University (QCU)</a>, recognized by the Commission on Higher Education (CHED), holds dear the values of cultivating a vibrant research culture and disseminating new knowledge for the betterment of society. Understanding that the impact of research accessibility, QCU has established the QCUJ as a platform for its researchers to share their valuable findings and contributions.</p> -->
             <p class="description">This website is enhanced by an artificial intelligence and machine learning designed
-              for Pahinato improve the user experience. All articles are freely available to download and read, without any
+              for QCUJto improve the user experience. All articles are freely available to download and read, without any
               paywalls or restrictions.</p>
         </div>
         <div data-animate-in="up" class='ab-qoaj-right'>
@@ -183,7 +183,7 @@
       </div>
       <div class="vision-container" style="background-color:#ffff;">
           <h2 class="">Our Vision</h2>
-          <p class="text-center text-muted ">Say goodbye to research submission struggles! Pahina  is
+          <p class="text-center text-muted ">Say goodbye to research submission struggles! QCUJ  is
             a smooth online portal <br/>where you can easily submit your research for expert review. </p>
             <br>
             <br>
@@ -230,7 +230,7 @@
       <section id="features-container">
         <div class="text-center w-100">
             <h2 class="">What We Offer</h2>
-            <p class=" text-center text-muted "> These are some of the Pahina features you'll enjoy </p>
+            <p class=" text-center text-muted "> These are some of the QCUJ features you'll enjoy </p>
         </div>
         <div class="row gap-2 gy-8 gx-md-8 gy-lg-2 gx-xxl-5 justify-content-center justify-sm-content-between">
           <div data-animate-in="up" style="cursor:default; width: 22em" >

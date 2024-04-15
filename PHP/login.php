@@ -36,7 +36,7 @@ if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
     <html lang="en">
     <head>
         <?php include('./meta.php'); ?>
-        <title>Pahina | LOG-IN</title>
+        <title>QCUJ | LOG-IN</title>
         <link rel="stylesheet" href="../CSS/login.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -52,7 +52,7 @@ if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
         <div class="form-container d-none d-sm-flex" id="login-banner">
             <img src="../images/qcu-bg.jpg" class="image-cover">
             <div class="d-flex flex-column gap-4" style="width:75%">
-            <h2 class="font-weight-bold text-xl" style=" font-weight:600;"><span>Pahina <span >Journals</span></span> </h2>
+            <h2 class="font-weight-bold text-xl" style=" font-weight:600;"><span>Quezon City University <span >Journals</span></span> </h2>
             <span>Enjoy unrestricted access to all articles without logging in! For a tailored experience, exclusive features, and to stay updated with our latest content, log in now.</span>
             <div class="d-none d-md-flex gap-1 flex-wrap w-75">
                 <span class="features">Personalized recommendations</span> 
@@ -113,7 +113,7 @@ if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
                         <span class="visually-hidden"></span>
                     </div>
                 </a>
-                <button class="btn btn-link-primary btn-sm " type="button" value="Register" id="register-button" onclick="window.location.href= '../PHP/signup.php';">New to Pahina? Register</button>
+                <button class="btn btn-link-primary btn-sm " type="button" value="Register" id="register-button" onclick="window.location.href= '../PHP/signup.php';">New to QCUJ? Register</button>
                 
             </form>
             

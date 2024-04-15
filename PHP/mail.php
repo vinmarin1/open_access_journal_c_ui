@@ -21,7 +21,7 @@ function send_mail($recipient,$subject,$message)
 
   $mail->IsHTML(true);
   $mail->AddAddress($recipient, "esteemed customer");
-  $mail->SetFrom("qcujournal@gmail.com", "PAHINA");
+  $mail->SetFrom("qcujournal@gmail.com", "QCUJ");
   //$mail->AddReplyTo("reply-to-email", "reply-to-name");
   //$mail->AddCC("cc-recipient-email", "cc-recipient-name");
   $mail->Subject = $subject;

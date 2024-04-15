@@ -36,7 +36,7 @@
 				<h1 style="color: #fff; text-align: center; margin-bottom: 10px;">Email Verification</h1>
                 </div>
                 <div class="container-body" style="padding: 20px; text-align: left;">
-                    <p>Welcome to <span style="color: #0858A4;">Pahina</span>! To ensure the security of your account, please verify your email address by using the code below:</p>
+                    <p>Welcome to <span style="color: #0858A4;">QCUJ</span>! To ensure the security of your account, please verify your email address by using the code below:</p>
                     ' . $verification_code_html . '
                     <p style="font-style: italic; color: #777777; text-align: left; margin-bottom: 20px;">This code is valid for a limited time.</p>
                     <p style="margin-bottom: 15px; color: #555555; text-align: left; line-height: 1.4;">Please enter the code on the login page to complete the verification process.</p>
@@ -151,7 +151,7 @@
 <html lang="en">
 <head>
     <?php include('./meta.php'); ?>
-    <title>Pahina PUBLICATION | VERIFICATION CODE</title>
+    <title>QCUJ PUBLICATION | VERIFICATION CODE</title>
 	<link rel="stylesheet" href="../CSS/verify.css">
 	<link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">

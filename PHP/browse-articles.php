@@ -6,7 +6,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
 <html lang="en">
 <head>
     <?php include('./meta.php'); ?>
-    <title>Pahina | BROWSE ARTICLES</title>
+    <title>QCUJ | BROWSE ARTICLES</title>
     <link rel="stylesheet" href="../CSS/browse-articles.css">
     <link rel="stylesheet" href="../CSS/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">

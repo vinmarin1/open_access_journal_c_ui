@@ -8,7 +8,7 @@
 
 <head>
     <?php include('./meta.php'); ?>
-    <title>Pahina | ABOUT</title>
+    <title>QCUJ | ABOUT</title>
     <link rel="stylesheet" href="../CSS/developers.css">
     <link rel="stylesheet" href="../CSS/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -27,7 +27,7 @@
     <!-- <div class="content-over">
         <div class="cover-content">
             <p>Home / About Us / General Information</p>
-            <h1>Pahina Developers</h2>
+            <h1>QCUJ Developers</h2>
         </div>
     </div>  -->
     
@@ -54,7 +54,7 @@
 <div class="container-fluid mt-4 text-center">
     <section class="d-flex flex-column justify-content-center align-items-center">
         <h2>Meet The Developer Team</h2>
-        <p style="max-width: 700px;" class="text-muted">The Pahina Developer Team consists of fourth-year BSIT students from QCU who collaborate to develop and enhance the Pahina application, leveraging their skills and knowledge to create a user-friendly experience.</p>
+        <p style="max-width: 700px;" class="text-muted">QCUJ's Developer Team consists of fourth-year BSIT students from QCU who collaborate to develop and enhance the QCUJ application, leveraging their skills and knowledge to create a user-friendly experience.</p>
     </section>
   
     <h3>Team Leaders</h3>
