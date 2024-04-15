@@ -290,7 +290,7 @@ function renderArticleDetails(data) {
         authorsArray = authorsArray
           .map((author, index, array) => (index === 1 && array.length > 2 ? " et al." : index <= 1 ? author.trim().split(",")[0] : null))
           .filter(author => author !== null)
-          .join(", ");
+          .join(" ");
       }
           
       return authorsArray;
@@ -312,20 +312,20 @@ function renderArticleDetails(data) {
               ${
                 item.contributors != null ?
                   selectedCitation === "APA"
-                    ? `${contributors_initial} (${item.publication_date.split(" ")[3]}). ${item.title}. ${item.journal}, ${item.issue_volume}(${item.issues_id}). Retrieved from https://qcuj.online/PHP/article-details.php?articleId=${item.article_id}`
+                    ? `${contributors_initial} (${item.publication_date.split(" ")[3]}). ${item.title}. ${item.journal}, ${item.issue_volume}(${item.number}). Retrieved from https://qcuj.online/PHP/article-details.php?articleId=${item.article_id}`
                   : selectedCitation === "MLA"
-                    ? `${contributors_full}. "${item.title}." ${item.journal}, ${item.publication_date.split(" ")[3]}, ${item.issue_volume}(${item.issues_id}).`
+                    ? `${contributors_full}. "${item.title}." ${item.journal}, ${item.publication_date.split(" ")[3]}, ${item.issue_volume}(${item.number}).`
                   : selectedCitation === "Chicago"
-                    ? `${contributors_full}. "${item.title}." ${item.journal} ${item.issue_volume}, no. ${item.issues_id} (${item.publication_date.split(" ")[3]}).  https://qcuj.online/PHP/article-details.php?articleId=${item.article_id}`
+                    ? `${contributors_full}. "${item.title}." ${item.journal} ${item.issue_volume}, no. ${item.number} (${item.publication_date.split(" ")[3]}).  https://qcuj.online/PHP/article-details.php?articleId=${item.article_id}`
                   : `${item.contributors_A.split(";").join(", ")}. ${item.title}. ${item.journal}.`
                     + ` https://qcuj.online/PHP/article-details.php?articleId=${item.article_id}`
                 : 
                   selectedCitation === "APA"
-                      ? `${item.title}(${item.publication_date.split(" ")[3]}). ${item.journal}, ${item.issue_volume}(${item.issues_id}). Retrieved from https://qcuj.online/PHP/article-details.php?articleId=${item.article_id}`
+                      ? `${item.title}(${item.publication_date.split(" ")[3]}). ${item.journal}, ${item.issue_volume}(${item.number}). Retrieved from https://qcuj.online/PHP/article-details.php?articleId=${item.article_id}`
                   : selectedCitation === "MLA"
-                      ? `"${item.title}." ${item.journal}, ${item.publication_date.split(" ")[3]}, ${item.issue_volume}(${item.issues_id}).`
+                      ? `"${item.title}." ${item.journal}, ${item.publication_date.split(" ")[3]}, ${item.issue_volume}(${item.number}).`
                   : selectedCitation === "Chicago"
-                      ? `"${item.title}." ${item.journal} ${item.issue_volume}, no. ${item.issues_id} (${item.publication_date.split(" ")[3]}).  https://qcuj.online/PHP/article-details.php?articleId=${item.article_id}`
+                      ? `"${item.title}." ${item.journal} ${item.issue_volume}, no. ${item.number} (${item.publication_date.split(" ")[3]}).  https://qcuj.online/PHP/article-details.php?articleId=${item.article_id}`
                   : `${item.title}. ${item.journal}.`
                       + ` https://qcuj.online/PHP/article-details.php?articleId=${item.article_id}`
               }
@@ -351,9 +351,9 @@ function renderArticleDetails(data) {
           <p class="cited" id="cited" style="font-family:Arial,sans-serif;">
           ${ 
             item.contributors != null ? 
-            `${contributors_initial} (${item.publication_date.split(" ")[3]}). ${item.title}. ${item.journal}, ${item.issue_volume}(${item.issues_id}). https://qcuj.online/PHP/article-details.php?articleId=${item.article_id}`
+            `${contributors_initial} (${item.publication_date.split(" ")[3]}). ${item.title}. ${item.journal}, ${item.issue_volume}(${item.number}). https://qcuj.online/PHP/article-details.php?articleId=${item.article_id}`
             : 
-            `${item.title}(${item.publication_date.split(" ")[3]}).${item.journal}, ${item.issue_volume}(${item.issues_id}). Retrieved from https://qcuj.online/PHP/article-details.php?articleId=${item.article_id}`
+            `${item.title}(${item.publication_date.split(" ")[3]}).${item.journal}, ${item.issue_volume}(${item.number}). Retrieved from https://qcuj.online/PHP/article-details.php?articleId=${item.article_id}`
 
           }
           </p>
