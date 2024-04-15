@@ -342,7 +342,7 @@ document.addEventListener('DOMContentLoaded', function(){
   // });
 
   editor2.addEventListener('input', function() {
-    checkArticleClicked = false;
+    // checkArticleClicked = false;
     fileTab.disabled = true;
   });
   
@@ -552,6 +552,8 @@ document.addEventListener('DOMContentLoaded', function () {
   const formFloating2 = document.getElementById('form-floating-2');
   const formFloating3 = document.getElementById('form-floating-3')
 
+  let isValidationFailed = false;
+
   function checkValidations() {
       // Check if all validations have passed and all inputs have a value
       if (
@@ -559,6 +561,7 @@ document.addEventListener('DOMContentLoaded', function () {
           // abstractValidation.style.display === 'none' 
           // keywordsValidation.style.display === 'none' &&
           // referenceValidation.style.display === 'none' &&
+          !isValidationFailed && 
           titleInput.value.trim() !== '' &&
           editor.value.trim() !== '' 
           // // keywords.value.trim() !== '' &&
@@ -576,33 +579,41 @@ document.addEventListener('DOMContentLoaded', function () {
       }
   }
 
-  titleInput.addEventListener('blur', function () {
+  titleInput.addEventListener('input', function () {
       const wordCount = titleInput.value.trim().split(/\s+/).length;
 
       if (wordCount < 4) {
           titleValidation.innerHTML = "Title is too short. Please provide a comprehensive title."
           titleValidation.style.display = 'block';
+          isValidationFailed = true;
       } else if(wordCount >100){
           titleValidation.innerHTML = "Title is too long."
           titleValidation.style.display = 'block';
+          isValidationFailed = true;
       } else {
           titleValidation.style.display = 'none';
+          isValidationFailed = false;
+       
       }
 
       checkValidations();
   });
 
-  editor.addEventListener('blur', function () {
+  editor.addEventListener('input', function () {
     const text = editor.value.trim();
     const wordCount = text === "" ? 0 : text.match(/\b(?![\(\)\[\]\{\}]+)\S+\b/g).length;
     if (wordCount < 100) {
       abstractValidation.innerHTML = "Abstract too short";
       abstractValidation.style.display = "block";
+      isValidationFailed = true;
     } else if (wordCount > 300) {
       abstractValidation.innerHTML = "Please limit your abstract to a maximum of 300 words";
       abstractValidation.style.display = "block";
+      isValidationFailed = true;
     } else {
       abstractValidation.style.display = "none";
+      isValidationFailed = false;
+  
     }
     checkValidations();
   });
@@ -669,22 +680,24 @@ function checkFileSize(input, maxSizeInBytes, index) {
           fileInput.value = '';
       } else {
           var fileName = input.files[0].name;
-          document.getElementById('fileName' + index).innerText = fileName;
+          // Update the button's text with the selected file name
+          document.getElementById('addFileName' + index).innerText = fileName;
       }
   }
 }
 
-document.getElementById('file_name').addEventListener('change', function () {
-  openFilename(1);
-});
 
-document.getElementById('file_name2').addEventListener('change', function () {
-  openFilename(2);
-});
+// document.getElementById('file_name').addEventListener('change', function () {
+//   openFilename(1);
+// });
 
-document.getElementById('file_name3').addEventListener('change', function () {
-  openFilename(3);
-});
+// document.getElementById('file_name2').addEventListener('change', function () {
+//   openFilename(2);
+// });
+
+// document.getElementById('file_name3').addEventListener('change', function () {
+//   openFilename(3);
+// });
 
 
 function deleteFilename(index) {
