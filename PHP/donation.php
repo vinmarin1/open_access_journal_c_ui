@@ -125,7 +125,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                                         <div class="col-md-4 col-6">
                                             <button type="button" onclick="selectAmount(100)">
                                                 <h5>PHP 100 </h5>
-                                                <span style="color:red; font-size:25px">&hearts;</span>
+                                                <span style="color:red; font-size:25px"><i class="fa-solid fa-fire" style="color: orange"></i>&nbsp;</span>
                                                 <span style="margin-left:10px">2</span>
 
                                             </button>
@@ -134,7 +134,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                                         <div class="col-md-4 col-6">
                                             <button type="button" onclick="selectAmount(200)">
                                                 <h5>PHP 200</h5>
-                                                <span style="color:red; font-size:25px">&hearts;</span>
+                                                <span style="color:red; font-size:25px"><i class="fa-solid fa-fire" style="color: orange"></i>&nbsp;</span>
                                                 <span style="margin-left:10px">4</span>
                                             </button>
                                         </div>
@@ -142,7 +142,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                                         <div class="col-md-4 col-6  mt-md-0 mt-4">
                                             <button type="button" onclick="selectAmount(300)">
                                                 <h5>PHP 300</h5>
-                                                <span style="color:red; font-size:25px">&hearts;</span>
+                                                <span style="color:red; font-size:25px"><i class="fa-solid fa-fire" style="color: orange"></i>&nbsp;</span>
                                                 <span style="margin-left:10px">6</span>
                                             </button>
                                         </div>
@@ -150,7 +150,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                                         <div class="col-md-4 col-6 mt-4">
                                             <button type="button" onclick="selectAmount(500)">
                                                 <h5>PHP 500</h5>
-                                                <span style="color:red; font-size:25px">&hearts;</span>
+                                                <span style="color:red; font-size:25px"><i class="fa-solid fa-fire" style="color: orange"></i>&nbsp;</span>
                                                 <span style="margin-left:10px">10</span>
                                             </button>
                                         </div>
@@ -158,7 +158,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                                         <div class="col-md-4 col-6 mt-4">
                                             <button type="button" onclick="selectAmount(1000)">
                                                 <h5>PHP 1000</h5>
-                                                <span style="color:red; font-size:25px">&hearts;</span>
+                                                <span style="color:red; font-size:25px"><i class="fa-solid fa-fire" style="color: orange"></i>&nbsp;</span>
                                                 <span style="margin-left:10px">20</span>
                                             </button>
                                         </div>
@@ -166,7 +166,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                                         <div class="col-md-4 col-6 mt-4">
                                             <button type="button" onclick="selectAmount(2000)">
                                                 <h5>PHP 2000</h5>
-                                                <span style="color:red; font-size:25px">&hearts;</span>
+                                                <span style="color:red; font-size:25px"><i class="fa-solid fa-fire" style="color: orange"></i>&nbsp;</span>
                                                 <span style="margin-left:10px">40</span>
                                             </button>
                                         </div>
@@ -195,7 +195,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                                         <div class="col-md-12 mt-3">
                                             <span id="earnLabel" style="color:#A6A6A6">Earn: </span>
                                             <span id="heartPoints"></span>
-                                            <span style="color:red; font-size:25px">&hearts;</span>
+                                            <span style="color:red; font-size:25px"><i class="fa-solid fa-fire" style="color: orange"></i>&nbsp;</span>
                                         </div>
                                         <div class="col-md-12 mt-3">
                                             <p>Your donation, regardless of its size, contributes to a future where knowledge is a shared resource. Join us on this journey toward a more equitable and collaborative world.</p>
