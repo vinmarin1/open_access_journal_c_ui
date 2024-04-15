@@ -682,6 +682,7 @@ function handleFileInputChange(index) {
 
 function checkFileSize(input, maxSizeInBytes, index) {
   var files = input.files;
+  var file1 = document.getElementById('addFileName');
 
   if (files.length > 0) {
     var fileSize = files[0].size; // in bytes
@@ -694,8 +695,9 @@ function checkFileSize(input, maxSizeInBytes, index) {
       });
       // Clear the value of the file input
       input.value = '';
-    } else {
+    }else {
       var fileName = input.files[0].name;
+      file1.innerText = fileName;
       // Update the button's text with the selected file name
       document.getElementById('addFileName' + index).innerText = fileName;
     }
@@ -705,7 +707,7 @@ function checkFileSize(input, maxSizeInBytes, index) {
 function deleteFilename(index) {
   var fileInput = document.getElementById('file_name' + index);
 
-  // Clear the value of the file input
+
   fileInput.value = '';
 
   // Reset the upload icon and text for Button 1
@@ -717,6 +719,9 @@ function deleteFilename(index) {
   }
 }
 
+document.getElementById('deleteFileName').addEventListener('click', function(){
+  document.getElementById('addFileName').innerHTML = '<i class="fa-solid fa-arrow-up-from-bracket" style="margin-right: 10px; color:#699BF7;"></i> Upload your file here';
+});
 
 
 function setupFileInput(fileInputId, textInputId) {
