@@ -11,7 +11,7 @@ $journal = get_journal_list();
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-  <title>ADMIN | Pahina</title>
+  <title>ADMIN | QCUJ</title>
 
   <!-- <meta name="description" content="" /> -->
 
@@ -68,7 +68,7 @@ $journal = get_journal_list();
             <span class="app-brand-logo demo">
               <img src="../../images/pahina-final-light.png" alt="QCULogo" class="w-75" />
             </span>
-            <span class="app-brand-text demo menu-text fw-bold ms-2">Pahina Journal</span>
+            <span class="app-brand-text demo menu-text fw-bold ms-2">QCU Journals</span>
           </a>
 
           <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
