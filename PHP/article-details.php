@@ -126,22 +126,29 @@
   <script src="../JS/most-popular-api.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script>
-  function includeNavbar() {
-    fetch('../PHP/navbar.php')
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById('navigation-menus-container').innerHTML = data;
-        // Now that the content is loaded, you can attach event listeners or perform other operations as needed
-        // For example, you can attach the notification button click event listener here
-        attachNotificationButtonListener();
-      })
-      .catch(error => console.error('Error loading navbar.php:', error));
-  }
+function includeNavbar() {
+  fetch('../PHP/navbar.php')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('navigation-menus-container').innerHTML = data;
+      // Now that the content is loaded, you can attach event listeners or perform other operations as needed
+      // For example, you can attach the notification button click event listener here
+      attachNotificationButtonListener();
+      playAudio();
+    })
+    .catch(error => console.error('Error loading navbar.php:', error));
+}
+// function playAudio() {
+//   var x = document.getElementById("myAudio");
+//   x.play();
+// }
 
-  function attachNotificationButtonListener() {
+
+function attachNotificationButtonListener() {
   $(document).on('click', '#notification-button', function () {
     $("#notification-count").text("0");
     $("#notification-count").hide();
+     
     // Send AJAX request to mark notifications as read
     $.ajax({
       url: "../PHP/mark_notifications_read.php",
@@ -161,8 +168,8 @@
   });
 }
 
-  // Call includeNavbar function to load navbar.php content
-  includeNavbar();
+// Call includeNavbar function to load navbar.php content
+includeNavbar();
 
 
   </script>
