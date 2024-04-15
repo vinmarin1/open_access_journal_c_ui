@@ -7,7 +7,7 @@
 <body>
   <div class="d-none d-sm-flex header">
       <div class="logo" onclick="window.location.href = 'index.php';" style="cursor:pointer;">
-          <img class="img-logo" src="../images/pahina-final.png" alt="">
+          <img class="img-logo" src="../images/qcuj-final.png" alt="">
       </div>
       <div class="links">
         <form action="search-articles.php" method="GET" class="form-inline d-flex gap-1" id="searchForm">
