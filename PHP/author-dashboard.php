@@ -72,7 +72,7 @@ $id = $_SESSION['id'];
         </div>
           <?php
           if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-              $sqlSelectProfile = "SELECT first_name, middle_name, last_name, birth_date, gender, marital_status, orc_id, afiliations, position, field_of_expertise FROM author WHERE author_id = :author_id";
+              $sqlSelectProfile = "SELECT first_name, last_name, birth_date, gender, marital_status, orc_id, afiliations, position, field_of_expertise FROM author WHERE author_id = :author_id";
 
               $resultProfile = database_run($sqlSelectProfile, array(':author_id' => $id));
 
@@ -81,7 +81,7 @@ $id = $_SESSION['id'];
                       $userProfile = $resultProfile[0];
 
                       // Check for the presence of all required fields
-                      $requiredFields = ['first_name', 'middle_name', 'last_name', 'birth_date', 'gender', 'marital_status', 'orc_id', 'afiliations', 'position', 'field_of_expertise'];
+                      $requiredFields = ['first_name', 'last_name', 'birth_date', 'gender', 'marital_status', 'orc_id', 'afiliations', 'position', 'field_of_expertise'];
 
                       $profileComplete = true;
                       foreach ($requiredFields as $field) {

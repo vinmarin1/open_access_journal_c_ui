@@ -27,7 +27,18 @@ if ($resultProfile) {
     }
     if ($profileComplete === false) {
       // Add JavaScript alert before redirecting
-      echo "<script>alert('Please complete your profile to submit an article.');</script>";
+      echo '<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>';
+      echo '<script>
+        Swal.fire({
+          icon: "warning",
+          title: "Insufficient Profile Details",
+          text: "Please complete the required details in your profile",
+          onClose: function () {
+            window.location.href = "./user-dashboard.php";
+          }
+        });
+      </script>';
+      
       echo "<script>window.location.href = './user-dashboard.php';</script>";
       exit(); // Ensure script execution stops here
     }
