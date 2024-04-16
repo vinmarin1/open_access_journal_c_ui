@@ -747,33 +747,28 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 							<label for="orcid">ORCID:</label>
 								<!-- <label for="orcid">ORCID: <span class="requiredFilled" style="color: red">*</span></label> -->
 								<?php
-								if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-									$sqlSelectName = "SELECT orc_id FROM author WHERE author_id = :author_id";
-								
-									$result = database_run($sqlSelectName, array(':author_id' => $id));
+									if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+										$sqlSelectName = "SELECT orc_id FROM author WHERE author_id = :author_id";
+										$result = database_run($sqlSelectName, array(':author_id' => $id));
 
-									if ($result) {
-										
-										if (count($result) > 0) {
-											$user = $result[0];
-											$orc_id = $user->orc_id;
-										
-											echo '<input type="text"  id="orcid" name="orcid" class="other-text-box" pattern="\d{4}-\d{4}-\d{4}-\d{4}" placeholder="(e.g., xxxx-xxxx-xxxx-xxxx)"
-											value="' . $orc_id . '">';
-										
-										
-
+										if ($result) {
+											if (count($result) > 0) {
+												$user = $result[0];
+												$orc_id = $user->orc_id;
 											
-							
+												echo '<input type="text" id="orcid" name="orcid" class="other-text-box" pattern="\d{4}-\d{4}-\d{4}-\d{4}" placeholder="(e.g., xxxx-xxxx-xxxx-xxxx)" value="' . $orc_id . '" onchange="checkCredentials(' . $id . ', this.value);">';
+
+												echo '<input type="hidden" id="orcid_check_status" name="orcid_check_status" value="true">';
+
+												echo '<script>window.onload = function() { checkCredentials(' . $id . ', "' . $orc_id . '"); }</script>';
+											} else {
+												echo "User not found.";
+											}
 										} else {
-											echo "User not found.";
+											echo "Unable to fetch user info.";
 										}
-									} else {
-										echo "Unable to fetch user info.";
 									}
-								}
 								?>
-							
 							</div>
 							<div class="form-row">
 								<label for="affiliation">Affiliation:</label>
@@ -2169,22 +2164,18 @@ function saveProfile() {
   const profileImage = document.getElementById('profileImage');
   const imageModal = document.getElementById('imageModal');
   const selectedImagePreview = document.getElementById('selectedImagePreview');
-  const id = <?php echo $id; ?>; // Assuming $id is available in your PHP script
+  const id = <?php echo $id; ?>; 
 
-  // Check if a new image is selected
   if (fileInput.files.length > 0) {
-    // Prepare FormData to send file data
     const formData = new FormData();
     formData.append('file', fileInput.files[0]);
     formData.append('id', id);
 
-    // Use AJAX to send the file to user-profile.php for processing
     const xhr = new XMLHttpRequest();
     xhr.open('POST', '../PHP/user-profile.php', true);
 
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4 && xhr.status === 200) {
-        // Update profile picture on success
         profileImage.src = selectedImagePreview.src;
         imageModal.style.display = 'none';
 
@@ -2198,11 +2189,9 @@ function saveProfile() {
 
     xhr.send(formData);
   } else {
-    // No new image selected, just close the modal
     imageModal.style.display = 'none';
   }
 }
-
 
 function openArticleInNewTab(articleId) {
         window.open(`../PHP/article-details.php?articleId=${articleId}`, '_blank');
@@ -2592,8 +2581,6 @@ function includeNavbar() {
     .then(response => response.text())
     .then(data => {
       document.getElementById('navigation-menus-container').innerHTML = data;
-      // Now that the content is loaded, you can attach event listeners or perform other operations as needed
-      // For example, you can attach the notification button click event listener here
       attachNotificationButtonListener();
     })
     .catch(error => console.error('Error loading navbar.php:', error));
@@ -2603,7 +2590,6 @@ function attachNotificationButtonListener() {
   $(document).on('click', '#notification-button', function () {
     $("#notification-count").text("0");
     $("#notification-count").hide();
-    // Send AJAX request to mark notifications as read
     $.ajax({
       url: "../PHP/mark_notifications_read.php",
       type: "POST",
@@ -2624,9 +2610,49 @@ function attachNotificationButtonListener() {
 
 // Call includeNavbar function to load navbar.php content
 includeNavbar();
+</script>
 
+ <script>
+function checkCredentials(author_id, orc_id) {
+    if ($('#editForm').is(':visible')) {
+        $('#loadingOverlay').show();
+
+        var xhr = new XMLHttpRequest();
+
+        xhr.open('POST', 'check_orcid.php', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+        xhr.onload = function () {
+            $('#loadingOverlay').hide();
+
+            if (xhr.status >= 200 && xhr.status < 400) {
+                var response = JSON.parse(xhr.responseText);
+                if (response.success) {
+                    Swal.fire({
+                        icon: 'success',
+                        text: response.message,
+                        showConfirmButton: true
+                    });
+                    document.getElementById("orcid_check_status").value = "true";
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        text: response.message,
+                        showConfirmButton: true
+                    });
+                    document.getElementById("orcid").value = "";
+                    document.getElementById("orcid_check_status").value = "false";
+                }
+            } else {
+                console.error("Error fetching data: " + xhr.status);
+            }
+        };
+
+        xhr.send('orcid=' + orc_id + '&author_id=' + author_id);
+    }
+}
 
 </script>
-</body>
 
+</body>
 </html>
