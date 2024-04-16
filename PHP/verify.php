@@ -32,7 +32,7 @@
 			$message = '
             <div class="container" style="max-width: 600px; margin: 20px auto; background-color: #ffffff; box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);">
                 <div class="header" style="background-color: #0858A4; color: #ffffff; padding: 20px; text-align: center;">
-					<img class="img-logo" src="https://qcuj.online/images/pahina-final.png" alt="" style="width: 50px;">
+					<img class="img-logo" src="https://qcuj.online/images/qcuj-light.png" alt="" style="width: 50px;">
 				<h1 style="color: #fff; text-align: center; margin-bottom: 10px;">Email Verification</h1>
                 </div>
                 <div class="container-body" style="padding: 20px; text-align: left;">
@@ -42,7 +42,7 @@
                     <p style="margin-bottom: 15px; color: #555555; text-align: left; line-height: 1.4;">Please enter the code on the login page to complete the verification process.</p>
                 </div>
                 <div class="footer" style="text-align: center; color: #888888; font-size: 14px; margin-top: 20px;">
-                    <p>Need help? <a href="mailto:qcujournal@gmail.com" style="color: #0858A4;">qcujournal@gmail.com</a> or visit our <a href="#" style="color: #0858A4;">Help Center</a>.</p>
+                    <p>Need help? <a href="mailto:qcujournal@gmail.com" style="color: #0858A4;">qcujournal@gmail.com</a> or visit our <a href="https://www.qcuj.online/PHP/contact-us.php" style="color: #0858A4;">Help Center</a>.</p>
                 </div>
             </div>
 			';
