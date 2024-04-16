@@ -2066,8 +2066,8 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 </div>
 
 
-<div class="container-fluid mt-5" id="certContainerHead" style="display: none; align-items: center !important; width: 800px; height: 500px; margin-left: auto;
-margin-right: auto;">
+<div class="container-fluid mt-5" id="certContainerHead" style="display: none; align-items: center !important; width: 889px; height: 500px; margin-left: auto;
+margin-right: auto; padding: 0; background-color: red;">
     <div class="cert-container d-flex justify-content-center align-items-center">
 		<?php 
 			echo '<img class="imgCert" id="cert1" src="../images/qcuj_reviewer_cert.jpg" alt="cert">'
@@ -2094,8 +2094,8 @@ margin-right: auto;">
 
 
 
-<div class="container-fluid mt-5" id="certPublishedHead" style="display: none; align-items: center !important; width: 800px; height: 500px; margin-left: auto;
-margin-right: auto;">
+<div class="container-fluid mt-5" id="certPublishedHead" style="display: none; align-items: center !important; width: 889px; height: 500px; margin-left: auto;
+margin-right: auto; padding: 0;">
     <div class="cert-container d-flex justify-content-center align-items-center">
         <img class="imgCert" id="cert2" src="../images/qcuj_publication_cert.jpg" alt="cert">
 
