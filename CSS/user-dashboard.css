@@ -1735,7 +1735,7 @@ label {
 }
 .pubInfo{
     top: 50%;
-    transform: translateY(-36%);
+    transform: translateY(-32%);
     left: 2%;
     text-align: center;
 }
