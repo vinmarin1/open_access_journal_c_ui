@@ -36,9 +36,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['orcid']) && !empty($_
                     $db_first_name = $user->first_name;
                     $db_last_name = $user->last_name;
 
-                    if ($givenName !== $db_first_name || $familyName !== $db_last_name) {
-
-                        echo json_encode(['success' => false, 'message' => 'Credentials provided do not match the ORCID data.']);
+                    if (strtolower(trim($givenName)) !== strtolower(trim($db_first_name)) || 
+                    strtolower(trim($familyName)) !== strtolower(trim($db_last_name))) {
+                    echo json_encode(['success' => false, 'message' => 'Credentials provided do not match the ORCID data.']);
                     } else {
                         echo json_encode(['success' => true, 'message' => 'Credentials provided match the ORCID data.']);
                     }
