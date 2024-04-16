@@ -351,6 +351,10 @@
     color: white; */
 }
 
+.cited {
+  padding:1em;
+}
+
 .container-fluid {
   font-family: Arial, Helvetica, sans-serif;
 }

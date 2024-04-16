@@ -49,7 +49,7 @@
 
       </div>
       <div class="citeation-footer d-flex justify-content-end gap-2">
-        <button class="btn cite-btn" id="inline-btn">Inline Citation</button>
+        <button class="btn cite-btn" id="inline-btn">Copy in-text</button>
         <button class="btn cite-btn" id="copy-btn">Copy Reference</button>
       </div>
     </div>
