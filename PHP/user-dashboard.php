@@ -533,8 +533,7 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 											$user = $result[0];
 											$firstName = $user->first_name;
 										
-											echo '<input type="text" id="firstName" name="firstName" class="text-box" value="' . $firstName . '" required>';
-
+											echo '<input type="text" id="firstName" name="firstName" class="text-box" value="' . $firstName . '" required onchange="checkCredentialsagain();">';
 							
 										} else {
 											echo "User not found.";
@@ -590,11 +589,8 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 											$user = $result[0];
 											$last_name = $user->last_name;
 										
-											echo '<input type="text" id="lastName" name="lastName" class="text-box"
-											value="' . $last_name . '" required>';
-										
-											
-							
+											echo '<input type="text" id="lastName" name="lastName" class="text-box" value="' . $last_name . '" required onchange="checkCredentialsagain();">';
+
 										} else {
 											echo "User not found.";
 										}
@@ -2160,11 +2156,12 @@ margin-right: auto;">
 
 
 function saveProfile() {
+
   const fileInput = document.getElementById('fileInput');
   const profileImage = document.getElementById('profileImage');
   const imageModal = document.getElementById('imageModal');
   const selectedImagePreview = document.getElementById('selectedImagePreview');
-  const id = <?php echo $id; ?>; 
+  const id = <?php echo $id; ?>;
 
   if (fileInput.files.length > 0) {
     const formData = new FormData();
@@ -2612,46 +2609,100 @@ function attachNotificationButtonListener() {
 includeNavbar();
 </script>
 
- <script>
-function checkCredentials(author_id, orc_id) {
-    if ($('#editForm').is(':visible')) {
-        $('#loadingOverlay').show();
+<script>
+    var originalFirstNameValue = "<?php echo $firstName; ?>";
+    var originalLastNameValue = "<?php echo $last_name; ?>";
 
-        var xhr = new XMLHttpRequest();
+    function checkCredentialsagain() {
+        if ($('#editForm').is(':visible')) {
+            $('#loadingOverlay').show();
+            const xorc_id = document.getElementById('orcid').value;
+            const xauthor_id = <?php echo $id; ?>;
+            const firstNameInput = document.getElementById('firstName');
+            const lastNameInput = document.getElementById('lastName');
+            const firstName = firstNameInput.value;
+            const lastName = lastNameInput.value;
+            console.log(xauthor_id);
 
-        xhr.open('POST', 'check_orcid.php', true);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            var xhr = new XMLHttpRequest();
 
-        xhr.onload = function () {
-            $('#loadingOverlay').hide();
+            xhr.open('POST', 'check_orcid.php', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
-            if (xhr.status >= 200 && xhr.status < 400) {
-                var response = JSON.parse(xhr.responseText);
-                if (response.success) {
-                    Swal.fire({
-                        icon: 'success',
-                        text: response.message,
-                        showConfirmButton: true
-                    });
-                    document.getElementById("orcid_check_status").value = "true";
+            xhr.onload = function () {
+                $('#loadingOverlay').hide();
+
+                if (xhr.status >= 200 && xhr.status < 400) {
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.success) {
+                        Swal.fire({
+                            icon: 'success',
+                            text: response.message,
+                            showConfirmButton: true
+                        });
+                        document.getElementById("orcid_check_status").value = "true";
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            text: response.message,
+                            showConfirmButton: true
+                        });
+                        document.getElementById("orcid_check_status").value = "false";
+                        firstNameInput.value = originalFirstNameValue;
+                        lastNameInput.value = originalLastNameValue;
+                    }
                 } else {
-                    Swal.fire({
-                        icon: 'error',
-                        text: response.message,
-                        showConfirmButton: true
-                    });
-                    document.getElementById("orcid").value = "";
-                    document.getElementById("orcid_check_status").value = "false";
+                    console.error("Error fetching data: " + xhr.status);
                 }
-            } else {
-                console.error("Error fetching data: " + xhr.status);
-            }
-        };
+            };
 
-        xhr.send('orcid=' + orc_id + '&author_id=' + author_id);
+            xhr.send('orcid=' + xorc_id + '&author_id=' + xauthor_id + '&firstName=' + firstName + '&lastName=' + lastName);
+        }
     }
-}
+</script>
 
+<script>
+	function checkCredentials(author_id, orc_id) {
+		if ($('#editForm').is(':visible')) {
+			$('#loadingOverlay').show();
+
+			const firstName = document.getElementById('firstName').value;
+			const lastName = document.getElementById('lastName').value;
+
+			var xhr = new XMLHttpRequest();
+
+			xhr.open('POST', 'check_orcid.php', true);
+			xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+			xhr.onload = function () {
+				$('#loadingOverlay').hide();
+
+				if (xhr.status >= 200 && xhr.status < 400) {
+					var response = JSON.parse(xhr.responseText);
+					if (response.success) {
+						Swal.fire({
+							icon: 'success',
+							text: response.message,
+							showConfirmButton: true
+						});
+						document.getElementById("orcid_check_status").value = "true";
+					} else {
+						Swal.fire({
+							icon: 'error',
+							text: response.message,
+							showConfirmButton: true
+						});
+						document.getElementById("orcid").value = "";
+						document.getElementById("orcid_check_status").value = "false";
+					}
+				} else {
+					console.error("Error fetching data: " + xhr.status);
+				}
+			};
+
+			xhr.send('orcid=' + orc_id + '&author_id=' + author_id + '&firstName=' + firstName + '&lastName=' + lastName);
+		}
+	}
 </script>
 
 </body>
