@@ -355,17 +355,23 @@ document.addEventListener('DOMContentLoaded', function(){
   
       if (titleValue === '' || abstract.value === '' || keywordArray.length==0 || reference.value === '') {
           Swal.fire({
-              icon: 'warning',
+              icon: 'info',
               text: 'You have to give all the article details before proceeding'
           });
-      } else if (titleWordCount < 5 || abstractWordCount < 10 ||  keywordArray.length==0) {
+      } else if (titleWordCount < 5 || abstractWordCount < 10) {
           Swal.fire({
-              icon: 'warning',
+              icon: 'info',
               text: 'Kindly correct the article details by the said validation'
           });
-      } else if (!checkArticleClicked) {
+      }else if(keywordArray.length < 5){
+        Swal.fire({
+          icon: 'info',
+          text: 'Minimun of 5 keywords'
+      });
+      } 
+      else if (!checkArticleClicked) {
           Swal.fire({
-              icon: 'warning',
+              icon: 'info',
               text: 'Please check your article before proceeding'
           });
       } else {
@@ -379,7 +385,7 @@ document.addEventListener('DOMContentLoaded', function(){
   nextFile.addEventListener('click', function(event){
     if (file_name.value === '' || file_name2.value === '' || file_name3.value === ''){
       Swal.fire({
-        icon: 'warning',
+        icon: 'info',
         text: 'You have to provide the files requested'
        });
     }else{
@@ -456,7 +462,7 @@ document.addEventListener('DOMContentLoaded', function(){
         
      
          Swal.fire({
-          icon: 'warning',
+          icon: 'info',
           text: 'You have to accept the website submission guidlines'
          });
       } else {
@@ -630,16 +636,16 @@ document.addEventListener('DOMContentLoaded', function () {
     checkValidations();
   
   })
-  keywords.addEventListener('blur', function () {
-      // const wordCount = keywords.value.trim().split(",").length;
-      const wordCount = keywordArray.length;
-      if (wordCount > 5) {
-          keywordsValidation.style.display = 'block';
-      } else {
-          keywordsValidation.style.display = 'none';
-      }
-      checkValidations();
-    })
+  // keywords.addEventListener('blur', function () {
+  //     // const wordCount = keywords.value.trim().split(",").length;
+  //     const wordCount = keywordArray.length;
+  //     if (wordCount > 5) {
+  //         keywordsValidation.style.display = 'block';
+  //     } else {
+  //         keywordsValidation.style.display = 'none';
+  //     }
+  //     checkValidations();
+  //   })
 
 
   editor2.addEventListener('input', function () {
@@ -693,7 +699,7 @@ function checkFileSize(input, maxSizeInBytes, index) {
 
     if (fileSize > maxSize) {
       Swal.fire({
-        icon: 'warning',
+        icon: 'info',
         text: 'Please select a file 5mb or less'
       });
       // Clear the value of the file input
@@ -771,10 +777,11 @@ document.getElementById('update-cont-3').addEventListener('click', function(even
 
 
 
+
 function addRow() {
   var index = $('#contributorTable tbody tr').length; // Get the current row index
   var newRow = '<tr>' +
-      '<td><input class="form-control email-input" type="email" name="emailC[]" style="height: 30px;" > <div class="form-check cAuthor" style="margin-right: 10px"> <input class="form-check-input" type="checkbox" name="contributor_type_coauthor[' + index + ']" value="Co-Author" style="width:15px;"> <label class="form-check-label"> Co-Author</label> </div> <div class="form-check pContact"> <input class="form-check-input" type="checkbox" name="contributor_type_primarycontact[' + index + ']" value="Primary Contact" style="width:15px;"> <label class="form-check-label"> Primary Contact</label> </div> </td>' +
+      '<td><input class="form-control email-input" type="email" name="emailC[]" style="height: 30px;" > <div class="form-check cAuthor" style="margin-right: 10px"> <input class="form-check-input" type="checkbox" name="contributor_type_coauthor[' + index + ']" value="Co-Author" style="width:15px;"> <label class="form-check-label"> Co-Author</label> </div> <div class="form-check pContact"> <input class="form-check-input p-contact" type="checkbox" name="contributor_type_primarycontact[' + index + ']" value="Primary Contact" style="width:15px;"> <label class="form-check-label"> Primary Contact</label> </div> </td>' +
       '<td><input class="form-control" type="text" name="firstnameC[]" style="height: 30px;" ></td>' +
       '<td><input class="form-control" type="text" name="lastnameC[]" style="height: 30px;" ></td>' +
       // '<td><input class="form-control" type="text" name="publicnameC[]" style="height: 30px;"></td>' +
@@ -849,6 +856,7 @@ inputElement.addEventListener('input', function (event) {
 
 
 
+
 function saveData() {
 const title = document.getElementById('title');
 const abstract = document.getElementById('abstract');
@@ -876,7 +884,7 @@ if (title.value === '' ||abstract.value === '' || keywordArray.length == 0 || re
   submitBtn.type = 'button';
 
   Swal.fire({
-    icon: 'warning',
+    icon: 'info',
     text: 'Please complete the requested article information'
   });
 
@@ -920,4 +928,71 @@ if (title.value === '' ||abstract.value === '' || keywordArray.length == 0 || re
 
 function deleteRow(button) {
   $(button).closest('tr').remove(); // Remove the closest parent <tr> of the clicked button
+}
+
+// Event listener for changes in "Primary Contact" checkboxes in added rows
+$(document).on('change', '.p-contact', function(event) {
+  handlePrimaryContactChange(event.target);
+});
+
+// Event listener for main "authorPcontact" checkbox
+document.getElementById('authorPcontact').addEventListener('change', function(event) {
+  handleMainAuthorPcontactChange(event.target);
+});
+
+// Function to handle changes in "Primary Contact" checkboxes
+function handlePrimaryContactChange(checkbox) {
+  // Check if any "Primary Contact" checkbox is checked
+  var anyChecked = Array.from(document.querySelectorAll('.p-contact')).some(function(elem) {
+    return elem.checked;
+  });
+
+  // Enable all "Primary Contact" checkboxes
+  enableAllPrimaryContacts();
+
+  // Disable "Primary Contact" checkboxes if any checked except the main checkbox
+  if (anyChecked) {
+    disablePrimaryContacts();
+  }
+}
+
+// Function to handle changes in main "authorPcontact" checkbox
+function handleMainAuthorPcontactChange(checkbox) {
+  if (checkbox.checked) {
+    disableOtherPrimaryContacts();
+  } else {
+    enableAllPrimaryContacts();
+  }
+}
+
+// Function to disable "Primary Contact" checkboxes except the main "authorPcontact" checkbox
+function disablePrimaryContacts() {
+  var checkboxes = document.querySelectorAll('.p-contact');
+  checkboxes.forEach(function(checkbox) {
+    if (checkbox !== document.getElementById('authorPcontact') && !checkbox.checked) {
+      checkbox.disabled = true;
+    }
+  });
+
+  document.getElementById('authorPcontact').disabled = true;
+}
+
+// Function to disable other "Primary Contact" checkboxes when main "authorPcontact" is checked
+function disableOtherPrimaryContacts() {
+  var checkboxes = document.querySelectorAll('.p-contact');
+  checkboxes.forEach(function(checkbox) {
+    if (checkbox !== document.getElementById('authorPcontact')) {
+      checkbox.disabled = true;
+    }
+  });
+}
+
+// Function to enable all "Primary Contact" checkboxes and main "authorPcontact" checkbox
+function enableAllPrimaryContacts() {
+  var checkboxes = document.querySelectorAll('.p-contact');
+  checkboxes.forEach(function(checkbox) {
+    checkbox.disabled = false;
+  });
+
+  document.getElementById('authorPcontact').disabled = false;
 }

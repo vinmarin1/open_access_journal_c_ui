@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $password = $_POST['password'];
     $hashedPassword = hash('sha256', $password);
     $recipient = $email;
-    $subject = 'Update Password Success';
+    $subject = 'Change password success';
     $emailMessage = 'We have successfully change your password, to Log-in click <a href="https://www.qcuj.online/PHP/login.php">Click here</a>';
 
     
