@@ -18,7 +18,7 @@ function validateEmail() {
 
         $.ajax({
             type: "POST",
-            url: "../PHP/change_pass_functions.php",
+            url: "../PHP/recover_account_functions.php",
             data: { email: emailInput },
             success: function (response) {
                 alert('Please check your email');
