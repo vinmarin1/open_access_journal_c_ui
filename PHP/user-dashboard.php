@@ -2368,7 +2368,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (actionEngage === 'Submitted an Article') {
                 Swal.fire({
-                    html: "<p style='font-weight: bold'>You got 1 Community heart because you submitted an article</p>" + "<p>Title: " + title + "</p>",
+                    html: "<p style='font-weight: bold'>You've earned 1 Community Heart for submitting an article.</p>" + 
+						"<p>Title: " + title + "</p>",
                     imageUrl: "../images/qcu-bg.jpg",
                     imageWidth: 400,
                     imageHeight: 200,
@@ -2381,32 +2382,62 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                 });
             } else if (actionEngage === 'Reviewed Article Published') {
-                Swal.fire({
-                    html: "<p style='font-weight: bold'>You got 3 Community heart because the article you reviewed was published</p>" + "<p>Title: " + title + "</p>" + "<br>" + "<button type='button' onclick='downloadCertificate()'>Download Cert</button>",
-                    imageUrl: "../images/qcu-bg.jpg",
-                    imageWidth: 400,
-                    imageHeight: 200,
-                    imageAlt: "Custom image",
-                    didClose: function () {
-                        reviewerCert.style.display = 'none';
-						authorCert.style.display = 'none';
-                    }
-                });
+				const certContainer = document.getElementById('certContainerHead');
+
+				// Use html2canvas to capture the contents of certContainer as an image
+				html2canvas(certContainer).then(canvas => {
+					// Convert the canvas to a data URL representing the image
+					const imageUrl = canvas.toDataURL();
+
+					// Use the data URL as the imageUrl property in Swal.fire
+					Swal.fire({
+						html: "<p><strong>You've earned 3 Community Hearts because the article you reviewed was published.</strong></p>" + 
+							"<p>Title: " + title + "</p>" + 
+							"<br>" + 
+							"<button type='button' class='swal-button swal-button--confirm' onclick='downloadCertificate()'>Download Certificate</button>",
+						imageUrl: imageUrl,
+						imageWidth: 400,
+						imageHeight: 200,
+						imageAlt: "Reviewer Certificate",
+						showCancelButton: false,
+						showCloseButton: true,
+						showConfirmButton: false,
+						didClose: function () {
+							reviewerCert.style.display = 'none';
+							authorCert.style.display = 'none';
+						}
+					});
+				});
             } else if (actionEngage === 'Published an Article') {
-                Swal.fire({
-                    html: "<p style='font-weight: bold'>You got 3 Community heart because you've successfully published an article</p>" + "<p>Title: " +  title + "</p>" + "<br>" + "<button type='button' onclick='downloadCertificatePublished()'>Download Cert</button>",
-                    imageUrl: "../images/qcu-bg.jpg",
-                    imageWidth: 400,
-                    imageHeight: 200,
-                    imageAlt: "Custom image",
-                    didClose: function () {
-                        reviewerCert.style.display = 'none';
-						authorCert.style.display = 'none';
-                    }
-                });
+				const certContainer = document.getElementById('certPublishedHead');
+
+				// Use html2canvas to capture the contents of certContainer as an image
+				html2canvas(certContainer).then(canvas => {
+					// Convert the canvas to a data URL representing the image
+					const imageUrl = canvas.toDataURL();
+
+					Swal.fire({
+						html: "<p><strong>You've earned 3 Community Hearts because you've successfully published an article</strong></p>" + 
+							"<p>Title: " +  title + "</p>" + 
+							"<br>" + 
+							"<button type='button' class='swal-button swal-button--confirm' onclick='downloadCertificatePublished()'>Download Certificate</button>",
+						imageUrl: imageUrl,
+						imageWidth: 400,
+						imageHeight: 200,
+						imageAlt: "Published Article Certificate",
+						showCancelButton: false,
+						showCloseButton: true,
+						showConfirmButton: false,
+						didClose: function () {
+							reviewerCert.style.display = 'none';
+							authorCert.style.display = 'none';
+						}
+					});
+				});
             } else if (actionEngage === 'Reviewed an Article') {
                 Swal.fire({
-                    html: "<p style='font-weight: bold'>You got 1 Community heart because you help us published an article</p>" + "<p>Title: " + title + "</p>",
+                    html: "<p><strong>You've earned 1 Community Heart for helping us publish an article</strong></p>" + 
+						"<p>Title: " + title + "</p>",
                     imageUrl: "../images/qcu-bg.jpg",
                     imageWidth: 400,
                     imageHeight: 200,
@@ -2418,7 +2449,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
             }else if (actionEngage === 'Co-Author') {
                 Swal.fire({
-                    html: "<p style='font-weight: bold'>You got 1 Community heart because you contributed to the article</p>" + "<p>Title: " + title + "</p>",
+                    html: "<p><strong>You've earned 1 Community Heart for contributing to the article</strong></p>" + 
+						"<p>Title: " + title + "</p>",
                     imageUrl: "../images/qcu-bg.jpg",
                     imageWidth: 400,
                     imageHeight: 200,
@@ -2430,7 +2462,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
             }else if (actionEngage === 'Primary Contact') {
                 Swal.fire({
-                    html: "<p style='font-weight: bold'>You got 1 Community heart because you are the primary contact to the article</p>" + "<p>Title: " + title + "</p>",
+                    html: "<p><strong>You've earned 1 Community Heart for being the primary contact to the article</strong></p>" + 
+						"<p>Title: " + title + "</p>",
                     imageUrl: "../images/qcu-bg.jpg",
                     imageWidth: 400,
                     imageHeight: 200,
@@ -2512,7 +2545,7 @@ function downloadCertificatePublished() {
         var link = document.createElement('a');
 
         // Set the download attribute and the href with the data URL
-        link.download = 'certificatePublished.png';
+        link.download = 'Published-Certificate.png';
         link.href = dataUrl;
 
         // Trigger a click on the link to start the download
