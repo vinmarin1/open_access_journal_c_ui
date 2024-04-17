@@ -50,7 +50,7 @@ if ($result !== false && !empty($result)) {
     <div class="step active" id="step1">
         <div class="main-container">
             <div class="content-over">
-                <div class="cover-content" style=" position: relative; width: 100%; background-size: cover; background-repeat: no-repeat;background-image: url('../images/background-spot.svg'); padding: 2em 8%;">
+                <div class="cover-content" style=" position: relative; width: 100%; background-size: cover; background-repeat: no-repeat;background-image: url('../images/review-cover.png'); padding: 2em 8%;">
                    
                     <p> Dashboard / Reviewer / Submitted Articles </p>
                         <h3> 
