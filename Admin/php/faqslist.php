@@ -259,13 +259,15 @@ $faqslist = get_faqs_list();
                     <div class="row mb-2">
                         <div class="col-md-12 mb-2">
                             <label for="xquestion" class="form-label">Question</label>
-                            <input type="text" id="question" class="form-control" placeholder="Question" required/>
+                            <!-- <input type="text" id="question" class="form-control" placeholder="Question" required/> -->
+                            <textarea class="form-control" id="question" rows="5"></textarea>
                         </div>
                     </div>
                     <div class="row mb-2">
                         <div class="col-md-12 mb-2">
                             <label for="xanswer" class="form-label">Answer</label>
-                            <input type="text" id="answer" class="form-control" placeholder="Answer" />
+                            <!-- <input type="text" id="answer" class="form-control" placeholder="Answer" /> -->
+                            <textarea class="form-control" id="answer" rows="5"></textarea>
                         </div>
                     </div>
                     <div class="row mb-2">
@@ -313,13 +315,15 @@ $faqslist = get_faqs_list();
                         <div class="col-md-12 mb-2">
                             <input type="hidden" id="xid" class="form-control"/>
                             <label for="xquestion" class="form-label">Question</label>
-                            <input type="text" id="xquestion" class="form-control" placeholder="Question" />
+                            <!-- <input type="text" id="xquestion" class="form-control" placeholder="Question" /> -->
+                            <textarea class="form-control" id="xquestion" rows="5"></textarea>
                         </div>
                     </div>
                     <div class="row mb-2">
                         <div class="col-md-12 mb-2">
                             <label for="xanswer" class="form-label">Answer</label>
-                            <input type="text" id="xanswer" class="form-control" placeholder="Answer" />
+                            <!-- <input type="text" id="xanswer" class="form-control" placeholder="Answer" /> -->
+                            <textarea class="form-control" id="xanswer" rows="5"></textarea>
                         </div>
                     </div>
                     <div class="row mb-2">

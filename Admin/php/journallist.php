@@ -249,7 +249,8 @@ $journallist = get_journal_list($journal_id);
                     <div class="row mb-2">
                         <div class="col-md-12 mb-2">
                             <label for="xeditorial" class="form-label">Editorial</label>
-                            <input type="text" id="editorial" class="form-control" placeholder="Journal Editorial" />
+                            <!-- <input type="text" id="editorial" class="form-control" placeholder="Journal Editorial" /> -->
+                            <textarea class="form-control" id="editorial" rows="5"></textarea>
                         </div>
                     </div>
                     <div class="row mb-2">
@@ -306,7 +307,8 @@ $journallist = get_journal_list($journal_id);
                     <div class="row mb-2">
                         <div class="col-md-12 mb-2">
                             <label for="xeditorial" class="form-label">Editorial</label>
-                            <input type="text" id="xeditorial" class="form-control" placeholder="Journal Editorial" />
+                            <!-- <input type="text" id="xeditorial" class="form-control" placeholder="Journal Editorial" /> -->
+                            <textarea class="form-control" id="xeditorial" rows="5"></textarea>
                         </div>
                     </div>
                     <div class="row mb-2">

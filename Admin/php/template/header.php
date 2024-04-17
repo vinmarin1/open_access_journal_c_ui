@@ -204,7 +204,7 @@ $journal = get_journal_list();
               <li class="menu-item">
                 <a href="questionnaire.php" class="menu-link">
                   <i class="menu-icon tf-icons bx bx-list-minus"></i>
-                  <div data-i18n="Tables" id="text">Questionnaire</div>
+                  <div data-i18n="Tables" id="text">Peer-Review Questionnaire</div>
                 </a>
               </li>
 
