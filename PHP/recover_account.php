@@ -1,6 +1,6 @@
-<!-- <?php
-// session_start();
-?> -->
+<?php
+session_start();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -146,11 +146,10 @@ document.getElementById('changePasswordBtn').addEventListener('click', function 
     const emailInput = document.getElementById('email');
     const password = document.getElementById('password');
     const confirmPassword = document.getElementById('confirmPassword');
-    const thirdStepForm = document.getElementById('thirdStep');
-    const finalStepForm = document.getElementById('finalStep');
+    const thirdStepForm = document.getElementById('thirdStepForm');
+    const finalStepForm = document.getElementById('finalStepForm');
     const spinnerSpinner2 = document.getElementById('spinnerSpinner2');
     const changePasswordBtn = document.getElementById('changePasswordBtn');
-    
     
     event.preventDefault(); // Prevent the default click behavior
     
@@ -193,24 +192,19 @@ document.getElementById('changePasswordBtn').addEventListener('click', function 
             url: "../PHP/reset_pass.php",
             data: { email: storedEmail, password: password.value },
             success: function (response) {
-                // alert('Successfully changed your password');
-                // firstStepForm.style.display = 'none';
-                // secondStepForm.style.display = 'none';
-                // thirdStepForm.style.display = 'none';
-                // finalStepForm.style.display = 'block';
-                thirdStepForm.submit();
-  		        // window.location.href='../PHP/login.php';
-            },
-            error: function (xhr, status, error) {
-                console.error(xhr.responseText);
-            },
-            complete: function () {
                 alert('Successfully changed your password');
                 firstStepForm.style.display = 'none';
                 secondStepForm.style.display = 'none';
                 thirdStepForm.style.display = 'none';
                 finalStepForm.style.display = 'block';
-                window.location.href='../PHP/login.php';
+                thirdStepForm.submit();
+  		window.location.href='../PHP/login.php';
+            },
+            error: function (xhr, status, error) {
+                console.error(xhr.responseText);
+            },
+            complete: function () {
+                // Hide the spinner and restore button text
                 spinnerSpinner2.style.display = 'none';
                 changePasswordBtn.innerHTML = 'Change Password';
             }
@@ -222,4 +216,3 @@ document.getElementById('changePasswordBtn').addEventListener('click', function 
     </script>
 </body>
 </html>
-
