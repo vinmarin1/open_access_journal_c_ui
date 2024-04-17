@@ -18,7 +18,8 @@ if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
 </head>
 <body>
 
-<?php require 'header.php' ?>
+<header class="header-container" id="header-container">
+</header>
 
     <div class="container-fluid">
         <div class="row justify-content-center">
@@ -88,6 +89,7 @@ if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="../JS/reusable-header.js"></script>
     <script src="../JS/change_pass.js"></script>
     <script>
 function checkQueryParameter() {
@@ -142,9 +144,9 @@ document.getElementById('changePasswordBtn').addEventListener('click', function 
     const finalStepForm = document.getElementById('finalStepForm');
     const spinnerSpinner2 = document.getElementById('spinnerSpinner2');
     const changePasswordBtn = document.getElementById('changePasswordBtn');
-    
+
     event.preventDefault(); // Prevent the default click behavior
-    
+
     const storedEmail = '<?php echo isset($_SESSION['userEmail']) ? $_SESSION['userEmail'] : "" ?>';
 
     const hasUppercase = /[A-Z]/.test(password.value);
@@ -161,7 +163,7 @@ document.getElementById('changePasswordBtn').addEventListener('click', function 
             icon: 'warning',
             text: 'Password must be at least 4 characters long'
         });
-    }else if (!(hasUppercase && hasSpecialChar && hasNumber)) {
+    } else if (!(hasUppercase && hasSpecialChar && hasNumber)) {
         Swal.fire({
             icon: 'warning',
             text: 'Password must contain at least 1 uppercase letter, 1 special character, and 1 number'
@@ -171,19 +173,30 @@ document.getElementById('changePasswordBtn').addEventListener('click', function 
         changePasswordBtn.innerHTML = 'Changing your password...';
         $.ajax({
             type: "POST",
-            url: "../PHP/reset_pass.php",
+            url: "../PHP/change_pass_update.php",
             data: { email: storedEmail, password: password.value },
             success: function (response) {
-                alert('Successfully changed your password');
-                firstStepForm.style.display = 'none';
-                secondStepForm.style.display = 'none';
-                thirdStepForm.style.display = 'none';
-                finalStepForm.style.display = 'block';
-                thirdStepForm.submit();
-  		window.location.href='../PHP/login.php';
+                if (response.success) {
+                    alert('Successfully changed your password');
+                    firstStepForm.style.display = 'none';
+                    secondStepForm.style.display = 'none';
+                    thirdStepForm.style.display = 'none';
+                    finalStepForm.style.display = 'block';
+                    thirdStepForm.submit();
+                    window.location.href='../PHP/login.php';
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        text: response.message
+                    });
+                }
             },
             error: function (xhr, status, error) {
                 console.error(xhr.responseText);
+                Swal.fire({
+                    icon: 'error',
+                    text: 'Failed to change your password'
+                });
             },
             complete: function () {
                 // Hide the spinner and restore button text
