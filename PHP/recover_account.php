@@ -1,6 +1,6 @@
-<?php
-session_start();
-?>
+<!-- <?php
+// session_start();
+?> -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -216,3 +216,4 @@ document.getElementById('changePasswordBtn').addEventListener('click', function 
     </script>
 </body>
 </html>
+
