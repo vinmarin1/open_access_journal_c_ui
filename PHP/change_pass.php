@@ -14,19 +14,19 @@ if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400&display=swap">
-    <link href="../CSS/change_pass.css" rel="stylesheet">
+    <link href="../CSS/recover_account.css" rel="stylesheet">
 </head>
 <body>
 
-<header class="header-container" id="header-container">
-</header>
+    <header class="header-container" id="header-container">
+    </header>
 
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-lg-4 col-md-8 col-sm-10">
                 <div id="firstStep" class="firstStep">
                     <form id="firstStepForm">
-                        <p class="h2 pt-5">Change Password</p><br>
+                        <p class="h2 pt-5">Forgot password?</p><br>
                         <div class="emailContainer">
                             <label for="email">Email Address</label>
                             <input type="email" class="form-control mt-1" id="email" name="email">
@@ -86,11 +86,20 @@ if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+    function showAlert() {
+        Swal.fire({
+        icon: 'info',
+        title: 'Profile Incomplete',
+        text: 'Please complete the required details in profile to submit article'
+        });
+    }
+    </script>
 	<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="../JS/recover_account.js"></script>
     <script src="../JS/reusable-header.js"></script>
-    <script src="../JS/change_pass.js"></script>
     <script>
 function checkQueryParameter() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -140,13 +149,14 @@ document.getElementById('changePasswordBtn').addEventListener('click', function 
     const emailInput = document.getElementById('email');
     const password = document.getElementById('password');
     const confirmPassword = document.getElementById('confirmPassword');
-    const thirdStepForm = document.getElementById('thirdStepForm');
-    const finalStepForm = document.getElementById('finalStepForm');
+    const thirdStepForm = document.getElementById('thirdStep');
+    const finalStepForm = document.getElementById('finalStep');
     const spinnerSpinner2 = document.getElementById('spinnerSpinner2');
     const changePasswordBtn = document.getElementById('changePasswordBtn');
-
+    
+    
     event.preventDefault(); // Prevent the default click behavior
-
+    
     const storedEmail = '<?php echo isset($_SESSION['userEmail']) ? $_SESSION['userEmail'] : "" ?>';
 
     const hasUppercase = /[A-Z]/.test(password.value);
@@ -163,43 +173,47 @@ document.getElementById('changePasswordBtn').addEventListener('click', function 
             icon: 'warning',
             text: 'Password must be at least 4 characters long'
         });
+    } else if (confirmPassword.value === '') {
+        Swal.fire({
+            icon: 'warning',
+            text: 'Confirm your password'
+        });
+    } else if (password.value !== confirmPassword.value) {
+        Swal.fire({
+            icon: 'warning',
+            text: 'Passwords do not match'
+        });
     } else if (!(hasUppercase && hasSpecialChar && hasNumber)) {
         Swal.fire({
             icon: 'warning',
-            text: 'Password must contain at least 1 uppercase letter, 1 special character, and 1 number'
+            text: 'Password must contain at least one uppercase letter, one special character, and one number'
         });
     } else {
         spinnerSpinner2.style.display = 'block';
         changePasswordBtn.innerHTML = 'Changing your password...';
         $.ajax({
             type: "POST",
-            url: "../PHP/change_pass_update.php",
+            url: "../PHP/reset_pass.php",
             data: { email: storedEmail, password: password.value },
             success: function (response) {
-                if (response.success) {
-                    alert('Successfully changed your password');
-                    firstStepForm.style.display = 'none';
-                    secondStepForm.style.display = 'none';
-                    thirdStepForm.style.display = 'none';
-                    finalStepForm.style.display = 'block';
-                    thirdStepForm.submit();
-                    window.location.href='../PHP/login.php';
-                } else {
-                    Swal.fire({
-                        icon: 'error',
-                        text: response.message
-                    });
-                }
+                // alert('Successfully changed your password');
+                // firstStepForm.style.display = 'none';
+                // secondStepForm.style.display = 'none';
+                // thirdStepForm.style.display = 'none';
+                // finalStepForm.style.display = 'block';
+                thirdStepForm.submit();
+  		        // window.location.href='../PHP/login.php';
             },
             error: function (xhr, status, error) {
                 console.error(xhr.responseText);
-                Swal.fire({
-                    icon: 'error',
-                    text: 'Failed to change your password'
-                });
             },
             complete: function () {
-                // Hide the spinner and restore button text
+                alert('Successfully changed your password');
+                firstStepForm.style.display = 'none';
+                secondStepForm.style.display = 'none';
+                thirdStepForm.style.display = 'none';
+                finalStepForm.style.display = 'block';
+                window.location.href='../PHP/login.php';
                 spinnerSpinner2.style.display = 'none';
                 changePasswordBtn.innerHTML = 'Change Password';
             }
