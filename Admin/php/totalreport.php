@@ -7,7 +7,7 @@ $yearval = isset($_GET['y']) ? $_GET['y'] : date('Y');
 $counterlist = get_counter_list($yearval);
 $totalreport = get_totalreportforgraph($yearval);
 $seriesData = [
-    'read' => ['name' => 'read', 'data' => array_fill(0, 12, 0)],
+    'view' => ['name' => 'read', 'data' => array_fill(0, 12, 0)],
     'downloaded' => ['name' => 'downloaded', 'data' => array_fill(0, 12, 0)],
     'citation' => ['name' => 'citation', 'data' => array_fill(0, 12, 0)],
     'support' => ['name' => 'support', 'data' => array_fill(0, 12, 0)]
@@ -120,7 +120,7 @@ $seriesString = json_encode($seriesData);
                         <tr>
                             <th>Article ID</th>
                             <th>Title</th>
-                            <th>Read</th>
+                            <th>View</th>
                             <th>Download</th>
                             <th>Citation</th>
                             <th>Support</th>
