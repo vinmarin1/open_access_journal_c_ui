@@ -632,7 +632,6 @@ $issuelist = get_issues_list($journal_id);
                                 <label for="xcopyeditedfiletype" class="form-label">File Type</label>
                                 <select id="copyeditedfiletype" class="form-select" onchange="enableFileInput4()">
                                     <option value="">Select</option>
-                                    <option value="Final">Final</option>
                                     <option value="Title page">Title page</option>
                                     <option value="File with author">File with author</option>
                                     <option value="Others">Others</option>
@@ -844,9 +843,6 @@ $issuelist = get_issues_list($journal_id);
                                 <select id="productionfiletype" class="form-select" onchange="enableFileInput5()">
                                     <option value="">Select</option>
                                     <option value="Final">Final</option>
-                                    <option value="Title page">Title page</option>
-                                    <option value="File with author">File with author</option>
-                                    <option value="Others">Others</option>
                                 </select>
                             </div>
                         </div>
