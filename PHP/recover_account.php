@@ -193,24 +193,24 @@ document.getElementById('changePasswordBtn').addEventListener('click', function 
             url: "../PHP/reset_pass.php",
             data: { email: storedEmail, password: password.value },
             success: function (response) {
-                alert('Successfully changed your password');
-                firstStepForm.style.display = 'none';
-                secondStepForm.style.display = 'none';
-                thirdStepForm.style.display = 'none';
-                finalStepForm.style.display = 'block';
-                thirdStepForm.submit();
-  		        window.location.href='../PHP/login.php';
-            },
-            error: function (xhr, status, error) {
-                console.error(xhr.responseText);
-            },
-            complete: function () {
                 // alert('Successfully changed your password');
                 // firstStepForm.style.display = 'none';
                 // secondStepForm.style.display = 'none';
                 // thirdStepForm.style.display = 'none';
                 // finalStepForm.style.display = 'block';
-                // window.location.href='../PHP/login.php';
+                thirdStepForm.submit();
+  		        // window.location.href='../PHP/login.php';
+            },
+            error: function (xhr, status, error) {
+                console.error(xhr.responseText);
+            },
+            complete: function () {
+                alert('Successfully changed your password');
+                firstStepForm.style.display = 'none';
+                secondStepForm.style.display = 'none';
+                thirdStepForm.style.display = 'none';
+                finalStepForm.style.display = 'block';
+                window.location.href='../PHP/login.php';
                 spinnerSpinner2.style.display = 'none';
                 changePasswordBtn.innerHTML = 'Change Password';
             }
