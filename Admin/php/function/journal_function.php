@@ -133,27 +133,40 @@ if (!function_exists('get_journal_list')) {
             $subject_areas = $_POST['subject_areas'];
             $uploadPath = "../../../Files/journal-image/";
     
-            $files = $_FILES['journalimage'];
-            $imageName = basename($files['name']);
-
-            $imageFileType = strtolower(pathinfo($imageName, PATHINFO_EXTENSION));
-            $journalimage = $uploadPath . $imageName;
-            
-            $allowedFileTypes = array('jpg', 'jpeg', 'png', 'gif');
-       
-            if (!in_array($imageFileType, $allowedFileTypes)) {
-                throw new Exception("Invalid file type ({$imageFileType})");
+            $hashfilename = ""; // Default empty value
+    
+            if(isset($_FILES['journalimage']) && !empty($_FILES['journalimage']['name'])) {
+                $files = $_FILES['journalimage'];
+                $file_name = basename($files["name"]);
+    
+                $timestamp = time();
+                $hashedTimestamp = hash('sha256', (string)$timestamp);
+                $last12Hash = substr($hashedTimestamp, -12);
+    
+                $imageFileType = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
+                $hashfilename = $last12Hash . '-' . $journal_title . '.' . $imageFileType;
+    
+                $journalimage = $uploadPath . $hashfilename;
+    
+                if (!move_uploaded_file($files["tmp_name"], $journalimage)) {
+                    throw new Exception('Failed to move uploaded file.');
+                }
             }
     
-            if (!move_uploaded_file($files["tmp_name"], $journalimage)) {
-                throw new Exception('Failed to move uploaded file.');
-            }
-
             $query = "UPDATE journal 
-            SET journal = ?, journal_title = ?, editorial = ?, description = ?, subject_areas = ?, image = ?
-            WHERE journal_id = ?";
-
-            $result = execute_query($query, [$journal, $journal_title, $editorial, $description, $subject_areas, $imageName, $journalId], true);
+                        SET journal = ?, journal_title = ?, editorial = ?, description = ?, subject_areas = ?";
+            
+            // Only add image field to the query and parameters if hashfilename is not empty
+            $params = [$journal, $journal_title, $editorial, $description, $subject_areas];
+            if (!empty($hashfilename)) {
+                $query .= ", image = ?";
+                $params[] = $hashfilename;
+            }
+            
+            $query .= " WHERE journal_id = ?";
+            $params[] = $journalId;
+    
+            $result = execute_query($query, $params, true);
         
             if ($result !== true) {
                 echo json_encode(['status' => true, 'message' => 'Record updated successfully']);
@@ -164,8 +177,7 @@ if (!function_exists('get_journal_list')) {
             echo json_encode(['status' => false, 'message' => $e->getMessage()]);
             error_log($e->getMessage(), 0);
         }
-    
-    }
+    }    
 
     function archiveJournal()
     {
