@@ -104,7 +104,7 @@ if ($resultProfile) {
     <div class="" id="checkList-2">
       <label for="check-2" class="checkItem">
         <input type="checkbox" class="my-checkbox" id="check-2">
-        <p class="st-2">Note that your paper will be submitted to iThenticate.com (Plagiarism Detection Software) to check the similarity score.</p>
+        <p class="st-2">Note that your paper will be submitted to turnitin (Plagiarism Detection Software) to check the similarity score.</p>
       </label>
     </div>
     <div class="" id="checkList-3">
@@ -285,10 +285,6 @@ if ($resultProfile) {
   <h2>Step 3. Upload Files</h2>
   <span class="main-sub" id="sub-13">Provide any files our editorial team may need to evaluate your submission. In addition to the main work, you may wish to submit data sets, conflict of interest statements, or other supplementary files if these will be helpful for our editors.</span>
   <br>
-  <p class="mt-3" style="margin-top: 1rem !important; color: red;">Denotes:</p>
-  <p style="margin-top: -10px; color: red;">Maximum of of 5 mb files</p>
-  <p style="margin-top: -10px; color: red;">You can submit docx file only</p>
-
   <hr class="divider"/>
   <!-- <button type="button" class="btn btn-primary btn-sm mt-5" onclick="openFileModal()" id="upload-btn">Upload File</button> -->
 
@@ -307,7 +303,8 @@ if ($resultProfile) {
   <tbody id="fileList">
     <tr>
       <td id="fileType1" style="font-family: Arial, Helvetica, sans-serif; font-size: 18px; padding-right: 0px; ">
-      <button type="button" class="btn btn-sm mb-4" style="width: 100%; text-align:left; border:solid 1px #CCCCCC;" id="addFileName" onclick="openFilename(1)"> <i class="fa-solid fa-arrow-up-from-bracket" style="margin-right: 10px; color:#699BF7;"></i> Upload your file here </button>
+      <button type="button" class="btn btn-sm" style="width: 100%; text-align:left; border:solid 1px #CCCCCC;" id="addFileName" onclick="openFilename(1)"> <i class="fa-solid fa-arrow-up-from-bracket" style="margin-right: 10px; color:#699BF7;"></i> Upload your file here </button>
+      <p style="font-size: small; color: #6C757D;">You can only submit a docx file up to 5mb</p>  
       </td>
       <!-- <td id="fileName1" style="font-family: Arial, Helvetica, sans-serif;"></td> -->
       <td style="padding-left: 0px;" >
@@ -327,7 +324,8 @@ if ($resultProfile) {
     <tr>
       
       <td id="fileType2" style="font-family: Arial, Helvetica, sans-serif; font-size: 18px; padding-right:0px;">
-      <button type="button" class="btn btn-sm mb-4" style="width: 100%; text-align:left; border:solid 1px #CCCCCC;" id="addFileName2" onclick="openFilename(2)"> <i class="fa-solid fa-arrow-up-from-bracket" style="margin-right: 10px; color:#699BF7;" ></i> Upload your file here </button>
+      <button type="button" class="btn btn-sm" style="width: 100%; text-align:left; border:solid 1px #CCCCCC;" id="addFileName2" onclick="openFilename(2)"> <i class="fa-solid fa-arrow-up-from-bracket" style="margin-right: 10px; color:#699BF7;" ></i> Upload your file here </button>
+      <p style="font-size: small; color: #6C757D;">You can only submit a docx file up to 5mb</p>
       </td>
       <!-- <td id="fileName2" style="font-family: Arial, Helvetica, sans-serif;"></td> -->
       <td style="padding-left: 0px;" >
@@ -348,7 +346,8 @@ if ($resultProfile) {
     <tr>
       
       <td id="fileType3" style="font-family: Arial, Helvetica, sans-serif; font-size: 18px; padding-right:0px;">
-      <button type="button" class="btn btn-sm mb-4" style="width: 100%; text-align:left; border:solid 1px #CCCCCC;" id="addFileName3" onclick="openFilename(3)"> <i class="fa-solid fa-arrow-up-from-bracket" style="margin-right: 10px; color:#699BF7;" ></i> Upload your file here </button>
+      <button type="button" class="btn btn-sm" style="width: 100%; text-align:left; border:solid 1px #CCCCCC;" id="addFileName3" onclick="openFilename(3)"> <i class="fa-solid fa-arrow-up-from-bracket" style="margin-right: 10px; color:#699BF7;" ></i> Upload your file here </button>
+      <p style="font-size: small; color: #6C757D;">You can only submit a docx file up to 5mb</p>
       </td>
       <!-- <td id="fileName3" style="font-family: Arial, Helvetica, sans-serif;"></td> -->
       <td style="padding-left: 0px;">
