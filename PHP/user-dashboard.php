@@ -2618,55 +2618,63 @@ includeNavbar();
     var originalLastNameValue = "<?php echo $last_name; ?>";
 
     function checkCredentialsagain() {
-        if ($('#editForm').is(':visible')) {
-            $('#loadingOverlay').show();
-            const xorc_id = document.getElementById('orcid').value;
-            const xauthor_id = <?php echo $id; ?>;
-            const firstNameInput = document.getElementById('firstName');
-            const lastNameInput = document.getElementById('lastName');
-            const firstName = firstNameInput.value;
-            const lastName = lastNameInput.value;
-            console.log(xauthor_id);
-
-            var xhr = new XMLHttpRequest();
-
-            xhr.open('POST', 'check_orcid.php', true);
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-
-            xhr.onload = function () {
-                $('#loadingOverlay').hide();
-
-                if (xhr.status >= 200 && xhr.status < 400) {
-                    var response = JSON.parse(xhr.responseText);
-                    if (response.success) {
-                        Swal.fire({
-                            icon: 'success',
-                            text: response.message,
-                            showConfirmButton: true
-                        });
-                        document.getElementById("orcid_check_status").value = "true";
-                    } else {
-                        Swal.fire({
-                            icon: 'error',
-                            text: response.message,
-                            showConfirmButton: true
-                        });
-                        document.getElementById("orcid_check_status").value = "false";
-                        firstNameInput.value = originalFirstNameValue;
-                        lastNameInput.value = originalLastNameValue;
-                    }
-                } else {
-                    console.error("Error fetching data: " + xhr.status);
-                }
-            };
-
-            xhr.send('orcid=' + xorc_id + '&author_id=' + xauthor_id + '&firstName=' + firstName + '&lastName=' + lastName);
-        }
+    if ($('#orcid').val().trim() === '') {
+        return;
     }
+    
+    if ($('#editForm').is(':visible')) {
+        $('#loadingOverlay').show();
+        const xorc_id = document.getElementById('orcid').value;
+        const xauthor_id = <?php echo $id; ?>;
+        const firstNameInput = document.getElementById('firstName');
+        const lastNameInput = document.getElementById('lastName');
+        const firstName = firstNameInput.value;
+        const lastName = lastNameInput.value;
+        console.log(xauthor_id);
+
+        var xhr = new XMLHttpRequest();
+
+        xhr.open('POST', 'check_orcid.php', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+        xhr.onload = function () {
+            $('#loadingOverlay').hide();
+
+            if (xhr.status >= 200 && xhr.status < 400) {
+                var response = JSON.parse(xhr.responseText);
+                if (response.success) {
+                    Swal.fire({
+                        icon: 'success',
+                        text: response.message,
+                        showConfirmButton: true
+                    });
+                    document.getElementById("orcid_check_status").value = "true";
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        text: response.message,
+                        showConfirmButton: true
+                    });
+                    document.getElementById("orcid_check_status").value = "false";
+                    firstNameInput.value = originalFirstNameValue;
+                    lastNameInput.value = originalLastNameValue;
+                }
+            } else {
+                console.error("Error fetching data: " + xhr.status);
+            }
+        };
+
+        xhr.send('orcid=' + xorc_id + '&author_id=' + xauthor_id + '&firstName=' + firstName + '&lastName=' + lastName);
+    }
+}
 </script>
 
 <script>
 	function checkCredentials(author_id, orc_id) {
+		
+		if ($('#orcid').val().trim() === '') {
+			return;
+		}
 		if ($('#editForm').is(':visible')) {
 			$('#loadingOverlay').show();
 
