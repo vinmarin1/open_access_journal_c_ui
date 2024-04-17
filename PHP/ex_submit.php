@@ -284,6 +284,11 @@ if ($resultProfile) {
   <div class="table-input">
   <h2>Step 3. Upload Files</h2>
   <span class="main-sub" id="sub-13">Provide any files our editorial team may need to evaluate your submission. In addition to the main work, you may wish to submit data sets, conflict of interest statements, or other supplementary files if these will be helpful for our editors.</span>
+  <br>
+  <p class="mt-3" style="margin-top: 1rem !important; color: red;">Denotes:</p>
+  <p style="margin-top: -10px; color: red;">Maximum of of 5 mb files</p>
+  <p style="margin-top: -10px; color: red;">You can submit docx file only</p>
+
   <hr class="divider"/>
   <!-- <button type="button" class="btn btn-primary btn-sm mt-5" onclick="openFileModal()" id="upload-btn">Upload File</button> -->
 
