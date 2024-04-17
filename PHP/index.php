@@ -1,6 +1,18 @@
 <?php
   include 'functions.php';
   $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
+  $urli = isset($_GET['urli']) ? $_GET['urli'] : '';
+  if (!empty($urli)) {
+    header("Location: " . $urli);
+    if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+
+    }else{
+      header("Location: ../PHP/login.php?urli=" . $urli);
+    }  
+} 
+  else {
+    header("Location: ");
+  }
 ?>
 
 <!DOCTYPE html>
