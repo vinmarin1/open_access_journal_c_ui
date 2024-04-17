@@ -355,17 +355,23 @@ document.addEventListener('DOMContentLoaded', function(){
   
       if (titleValue === '' || abstract.value === '' || keywordArray.length==0 || reference.value === '') {
           Swal.fire({
-              icon: 'warning',
+              icon: 'info',
               text: 'You have to give all the article details before proceeding'
           });
-      } else if (titleWordCount < 5 || abstractWordCount < 10 ||  keywordArray.length==0) {
+      } else if (titleWordCount < 5 || abstractWordCount < 10) {
           Swal.fire({
-              icon: 'warning',
+              icon: 'info',
               text: 'Kindly correct the article details by the said validation'
           });
-      } else if (!checkArticleClicked) {
+      }else if(keywordArray.length < 5){
+        Swal.fire({
+          icon: 'info',
+          text: 'Minimun of 5 keywords'
+      });
+      } 
+      else if (!checkArticleClicked) {
           Swal.fire({
-              icon: 'warning',
+              icon: 'info',
               text: 'Please check your article before proceeding'
           });
       } else {
@@ -379,7 +385,7 @@ document.addEventListener('DOMContentLoaded', function(){
   nextFile.addEventListener('click', function(event){
     if (file_name.value === '' || file_name2.value === '' || file_name3.value === ''){
       Swal.fire({
-        icon: 'warning',
+        icon: 'info',
         text: 'You have to provide the files requested'
        });
     }else{
@@ -456,7 +462,7 @@ document.addEventListener('DOMContentLoaded', function(){
         
      
          Swal.fire({
-          icon: 'warning',
+          icon: 'info',
           text: 'You have to accept the website submission guidlines'
          });
       } else {
@@ -630,16 +636,16 @@ document.addEventListener('DOMContentLoaded', function () {
     checkValidations();
   
   })
-  keywords.addEventListener('blur', function () {
-      // const wordCount = keywords.value.trim().split(",").length;
-      const wordCount = keywordArray.length;
-      if (wordCount > 5) {
-          keywordsValidation.style.display = 'block';
-      } else {
-          keywordsValidation.style.display = 'none';
-      }
-      checkValidations();
-    })
+  // keywords.addEventListener('blur', function () {
+  //     // const wordCount = keywords.value.trim().split(",").length;
+  //     const wordCount = keywordArray.length;
+  //     if (wordCount > 5) {
+  //         keywordsValidation.style.display = 'block';
+  //     } else {
+  //         keywordsValidation.style.display = 'none';
+  //     }
+  //     checkValidations();
+  //   })
 
 
   editor2.addEventListener('input', function () {
@@ -693,7 +699,7 @@ function checkFileSize(input, maxSizeInBytes, index) {
 
     if (fileSize > maxSize) {
       Swal.fire({
-        icon: 'warning',
+        icon: 'info',
         text: 'Please select a file 5mb or less'
       });
       // Clear the value of the file input
@@ -876,7 +882,7 @@ if (title.value === '' ||abstract.value === '' || keywordArray.length == 0 || re
   submitBtn.type = 'button';
 
   Swal.fire({
-    icon: 'warning',
+    icon: 'info',
     text: 'Please complete the requested article information'
   });
 
