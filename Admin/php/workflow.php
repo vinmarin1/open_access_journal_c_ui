@@ -1734,7 +1734,7 @@ table {
             var title = <?php echo json_encode($article_data[0]->title); ?>;
             var abstract = <?php echo json_encode($article_data[0]->abstract); ?>;
             var articleid = <?php echo json_encode($article_data[0]->article_id); ?>;
-            var url = "https://qcuj.online/PHP/login.php?url=https://qcuj.online/PHP/review-process.php?id=" + articleid;
+            var url = "https://qcuj.online/PHP/index.php?urli=https://qcuj.online/PHP/review-process.php?id=" + articleid;
 
             quillThree.clipboard.dangerouslyPasteHTML(abstractContent + '\n\n' + referenceContent);
             quill.clipboard.dangerouslyPasteHTML(abstractContent);
