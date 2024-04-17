@@ -222,10 +222,20 @@ function handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $
           
         database_run($sqlPoint, $logsPoints);
 
-        $message = "<p>Thank you for submitting your paper to us. We are now processing it.</p><br> <label style='display: inline-block;'>Title: </label> <p style='display: inline-block;'>$title</p> <br><label style='display: inline-block;'>Abstract: </label><p style='display: inline-block;'>$abstract</p><br><p style='display: inline-block;'>To check your article status, <a href='https://www.qcuj.online/PHP/submitted-article.php?id=" . $lastInsertedArticleId . "'>click here</a></p>";
+        $message = "<p>Dear $lastName, </p>
+        <p>Thank you for submitting your paper to us. We are now processing it.</p>
+        <br>
+        <label style='display: inline-block;'>Title: </label>
+        <p style='display: inline-block;'>$title</p>
+        <br>
+        <label style='display: inline-block;'>Abstract: </label>
+        <p style='display: inline-block;'>$abstract</p>
+        <br>
+        <p style='display: inline-block;'>To check your article status, <a href='https://www.qcuj.online/PHP/submitted-article.php?id=$lastInsertedArticleId'>click here</a></p>";
+        
 
 
-        $subject = "Review Journal";
+        $subject = "Submitted Article";
         $recipient = $email;
         send_mail($recipient, $subject, $message);
     
@@ -233,9 +243,17 @@ function handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $
 
         $emailContributor = $emailsC[$key];
 
-        $messageForCont = "<p>You've been included as a contributor for the Journal</p><br> <label style='display: inline-block;'>Title: </label> <p style='display: inline-block;'>$title</p> <br><label style='display: inline-block;'>Abstract: </label><p style='display: inline-block;'>$abstract</p>";
+        $messageForCont = "<p>Dear $lastNameC[$key],</p>
+        <p>You've been included as a contributor for the Journal</p>
+        <br>
+        <label style='display: inline-block;'>Title: </label>
+        <p style='display: inline-block;'>$title</p>
+        <br>
+        <label style='display: inline-block;'>Abstract: </label>
+        <p style='display: inline-block;'>$abstract</p>";
+        
     
-        $subjectContributor = "Review Journal";
+        $subjectContributor = "Contributed Article";
         $recipientContributor = $emailContributor;
         send_mail($recipientContributor, $subjectContributor, $messageForCont);
     
