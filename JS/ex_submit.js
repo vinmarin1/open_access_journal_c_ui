@@ -777,10 +777,11 @@ document.getElementById('update-cont-3').addEventListener('click', function(even
 
 
 
+
 function addRow() {
   var index = $('#contributorTable tbody tr').length; // Get the current row index
   var newRow = '<tr>' +
-      '<td><input class="form-control email-input" type="email" name="emailC[]" style="height: 30px;" > <div class="form-check cAuthor" style="margin-right: 10px"> <input class="form-check-input" type="checkbox" name="contributor_type_coauthor[' + index + ']" value="Co-Author" style="width:15px;"> <label class="form-check-label"> Co-Author</label> </div> <div class="form-check pContact"> <input class="form-check-input" type="checkbox" name="contributor_type_primarycontact[' + index + ']" value="Primary Contact" style="width:15px;"> <label class="form-check-label"> Primary Contact</label> </div> </td>' +
+      '<td><input class="form-control email-input" type="email" name="emailC[]" style="height: 30px;" > <div class="form-check cAuthor" style="margin-right: 10px"> <input class="form-check-input" type="checkbox" name="contributor_type_coauthor[' + index + ']" value="Co-Author" style="width:15px;"> <label class="form-check-label"> Co-Author</label> </div> <div class="form-check pContact"> <input class="form-check-input p-contact" type="checkbox" name="contributor_type_primarycontact[' + index + ']" value="Primary Contact" style="width:15px;"> <label class="form-check-label"> Primary Contact</label> </div> </td>' +
       '<td><input class="form-control" type="text" name="firstnameC[]" style="height: 30px;" ></td>' +
       '<td><input class="form-control" type="text" name="lastnameC[]" style="height: 30px;" ></td>' +
       // '<td><input class="form-control" type="text" name="publicnameC[]" style="height: 30px;"></td>' +
@@ -851,6 +852,7 @@ inputElement.addEventListener('input', function (event) {
       });
   }
 });
+
 
 
 
@@ -926,4 +928,71 @@ if (title.value === '' ||abstract.value === '' || keywordArray.length == 0 || re
 
 function deleteRow(button) {
   $(button).closest('tr').remove(); // Remove the closest parent <tr> of the clicked button
+}
+
+// Event listener for changes in "Primary Contact" checkboxes in added rows
+$(document).on('change', '.p-contact', function(event) {
+  handlePrimaryContactChange(event.target);
+});
+
+// Event listener for main "authorPcontact" checkbox
+document.getElementById('authorPcontact').addEventListener('change', function(event) {
+  handleMainAuthorPcontactChange(event.target);
+});
+
+// Function to handle changes in "Primary Contact" checkboxes
+function handlePrimaryContactChange(checkbox) {
+  // Check if any "Primary Contact" checkbox is checked
+  var anyChecked = Array.from(document.querySelectorAll('.p-contact')).some(function(elem) {
+    return elem.checked;
+  });
+
+  // Enable all "Primary Contact" checkboxes
+  enableAllPrimaryContacts();
+
+  // Disable "Primary Contact" checkboxes if any checked except the main checkbox
+  if (anyChecked) {
+    disablePrimaryContacts();
+  }
+}
+
+// Function to handle changes in main "authorPcontact" checkbox
+function handleMainAuthorPcontactChange(checkbox) {
+  if (checkbox.checked) {
+    disableOtherPrimaryContacts();
+  } else {
+    enableAllPrimaryContacts();
+  }
+}
+
+// Function to disable "Primary Contact" checkboxes except the main "authorPcontact" checkbox
+function disablePrimaryContacts() {
+  var checkboxes = document.querySelectorAll('.p-contact');
+  checkboxes.forEach(function(checkbox) {
+    if (checkbox !== document.getElementById('authorPcontact') && !checkbox.checked) {
+      checkbox.disabled = true;
+    }
+  });
+
+  document.getElementById('authorPcontact').disabled = true;
+}
+
+// Function to disable other "Primary Contact" checkboxes when main "authorPcontact" is checked
+function disableOtherPrimaryContacts() {
+  var checkboxes = document.querySelectorAll('.p-contact');
+  checkboxes.forEach(function(checkbox) {
+    if (checkbox !== document.getElementById('authorPcontact')) {
+      checkbox.disabled = true;
+    }
+  });
+}
+
+// Function to enable all "Primary Contact" checkboxes and main "authorPcontact" checkbox
+function enableAllPrimaryContacts() {
+  var checkboxes = document.querySelectorAll('.p-contact');
+  checkboxes.forEach(function(checkbox) {
+    checkbox.disabled = false;
+  });
+
+  document.getElementById('authorPcontact').disabled = false;
 }

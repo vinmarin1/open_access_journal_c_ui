@@ -436,8 +436,8 @@ if ($resultProfile) {
           <button type="button" id="addCont" class="btn btn-primary btn-sm" onclick="addRow()">Add Contributor</button>
           <!-- <button type="button" id="deleteCont" class="btn btn-danger btn-sm" onclick="deleteData()">Delete Contributor</button> -->
           <!-- <button type="button" class="btn btn-primary btn-sm" onclick="saveData()">Save Data</button> -->
+          </div>
         </div>
-      </div>
       <div class="d-flex gap-1 w-100 justify-content-end mt-5">
         <button type="button" class="btn btn-secondary btn-sm" id="prev4">Prev</button>
         <button type="button" class="btn btn-primary btn-sm" id="next4" >Next</button>
