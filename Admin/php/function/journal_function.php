@@ -121,8 +121,7 @@ if (!function_exists('get_journal_list')) {
                 !isset($_POST['journal_title']) || 
                 !isset($_POST['editorial']) || 
                 !isset($_POST['description']) || 
-                !isset($_POST['subject_areas']) ||
-                !isset($_FILES['journalimage'])) {
+                !isset($_POST['subject_areas'])) {
                 throw new Exception("Missing required fields.");
             }
     
