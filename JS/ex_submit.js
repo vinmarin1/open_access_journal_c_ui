@@ -358,7 +358,7 @@ document.addEventListener('DOMContentLoaded', function(){
               icon: 'info',
               text: 'You have to give all the article details before proceeding'
           });
-      } else if (titleWordCount < 5 || abstractWordCount < 10) {
+      } else if (titleWordCount < 5 || abstractWordCount < 100 || abstractWordCount < 300) {
           Swal.fire({
               icon: 'info',
               text: 'Kindly correct the article details by the said validation'
