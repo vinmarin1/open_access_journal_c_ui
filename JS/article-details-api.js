@@ -297,20 +297,22 @@ function renderArticleDetails(data) {
       return authorsArray;
     }
     
+    const citationSelect = document.querySelector("select");
     let contributors_full = formatInlineContributors(item.contributors_A);
-    let contributors_lastname = formatInlineContributors(item.contributors_B);
+    // let contributors_lastname = formatInlineContributors(item.contributors_B);
+    
     let contributors_initial = formatContributors(item.contributors_B);
+    
     const apaCitation = item.contributors != null 
       ? `${contributors_initial} (${item.publication_date.split(" ")[3]}). ${item.title}. <i>${item.journal}, ${item.issue_volume}</i>(${item.number}). https://qcuj.online/PHP/article-details.php?articleId=${item.article_id}`
       : `${item.title}(${item.publication_date.split(" ")[3]}). <i>${item.journal}, ${item.issue_volume}</i>(${item.number}). https://qcuj.online/PHP/article-details.php?articleId=${item.article_id}`
     const mlaCitation = item.contributors != null 
-      ? `${contributors_full}. "${item.title}." <i>${item.journal} vol. ${item.issue_volume}</i>, no. ${item.number}, ${item.publication_date.split(" ")[2]}. ${item.publication_date.split(" ")[3]}. https://qcuj.online/PHP/article-details.php?articleId=${item.article_id}.`
-      : `"${item.title}." <i>${item.journal}, vol. ${item.issue_volume}</i>, no. ${item.number}, ${item.publication_date.split(" ")[2]}. ${item.publication_date.split(" ")[3]}. https://qcuj.online/PHP/article-details.php?articleId=${item.article_id}.`
+      ? `${contributors_full}. "${item.title}." <i>${item.journal}</i> vol. ${item.issue_volume}, no. ${item.number}, ${item.publication_date.split(" ")[2]}. ${item.publication_date.split(" ")[3]}. https://qcuj.online/PHP/article-details.php?articleId=${item.article_id}.`
+      : `"${item.title}." <i>${item.journal}</i>, vol. ${item.issue_volume}, no. ${item.number}, ${item.publication_date.split(" ")[2]}. ${item.publication_date.split(" ")[3]}. https://qcuj.online/PHP/article-details.php?articleId=${item.article_id}.`
 
-    const citationSelect = document.querySelector("select");
+    
     citationSelect.addEventListener("change", function () {
       const selectedCitation = citationSelect.value;
-    
       citationContent.innerHTML = `   
         <ul>
           <li> 
@@ -318,10 +320,8 @@ function renderArticleDetails(data) {
             <p>
               ${
                 item.contributors != null 
-                ? selectedCitation === "APA"
-                  ? apaCitation
-                  : selectedCitation === "MLA"
-                      ? mlaCitation
+                ? selectedCitation === "APA" ? apaCitation
+                  : selectedCitation === "MLA" ? mlaCitation
                   : selectedCitation === "Chicago"
                       ? `${contributors_full}. "${item.title}." ${item.journal} ${item.issue_volume}, no. ${item.number} (${item.publication_date.split(" ")[3]}).  https://qcuj.online/PHP/article-details.php?articleId=${item.article_id}`
                   : `${item.contributors_A.split(";").join(", ")}. ${item.title}. ${item.journal}.`
@@ -349,25 +349,8 @@ function renderArticleDetails(data) {
         <li> 
           <h4 class="small"><b>${initialSelectedCitation} Reference Citation</b></h4>
           <p class="cited" id="cited" >
-          ${ 
-            // item.contributors != null ? 
-            // `${contributors_initial} (${item.publication_date.split(" ")[3]}). ${item.title}. <i>${item.journal}, ${item.issue_volume}</i>(${item.number}). https://qcuj.online/PHP/article-details.php?articleId=${item.article_id}`
-            // : 
-            // `${item.title}(${item.publication_date.split(" ")[3]}).${item.journal}, ${item.issue_volume}(${item.number}). Retrieved from https://qcuj.online/PHP/article-details.php?articleId=${item.article_id}`
-            apaCitation
-          }
+          ${ apaCitation }
           </p>
-        </li>
-        <li class="d-none">
-          <h4 class="small"><b>In-text Citation</b></h4>
-          <span class="cited" id="cited">
-          ${
-            item.contributors != null ?
-            `(${contributors_lastname}, ${item.publication_date.split(" ")[3]})`:
-            `("${item.title}", ${item.publication_date.split(" ")[3]})`
-            
-          }
-          </span>
         </li>
       </ul>
     `;

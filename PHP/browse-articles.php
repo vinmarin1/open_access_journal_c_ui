@@ -23,12 +23,22 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
             <h4>Articles</h4>
         </div>
         <form action="" method="GET" class="search-form w-50" style="min-width: 20rem;" id="search-form">
-            <div class="search-container d-flex flex-sm-row flex-column align-sm-items-center align-items-start gap-1">
-                <input list="articlesList" id="result" type="text" class="form-control me-2 py-3" placeholder="Search Articles..."
-                    class="search-bar"
-                    style="height: 30px; font-style: italic; background-color: white;" />
-                    <!-- <datalist id="articlesList">
-                       
+            <div class="search-container d-flex flex-sm-row flex-column align-sm-items-center align-items-start gap-1" >
+                <div style="position:relative;" class="w-100 search-container d-flex flex-sm-row flex-column align-sm-items-center align-items-start gap-1">
+                    <input list="articlesList" id="result" type="text" class="form-control me-2 py-3" placeholder="Search Articles..."
+                        class="search-bar"
+                        style="height: 30px; font-style: italic; background-color: white;" />
+                    <span   style="z-index:99; position:absolute; right:20px;top:0px;cursor:pointer;" data-toggle="modal" data-target="#exampleModalCenter">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 32 32">
+                        	<path fill="currentColor" d="M2.909 26.182h1.939v4.848H2.909z" class="ouiIcon__fillSecondary" />
+                        	<path fill="currentColor" d="M4.848 16.62V0H2.91v16.62a3.879 3.879 0 1 0 1.94 0m-.97 5.683a1.94 1.94 0 1 1 0-3.879a1.94 1.94 0 0 1 0 3.879" />
+                        	<path fill="currentColor" d="M14.545 16.485h1.939V31.03h-1.939z" class="ouiIcon__fillSecondary" />
+                        	<path fill="currentColor" d="M16.485 6.924V0h-1.94v6.924a3.879 3.879 0 1 0 1.94 0m-.97 5.682a1.94 1.94 0 1 1 0-3.879a1.94 1.94 0 0 1 0 3.88" />
+                        	<path fill="currentColor" d="M26.182 26.182h1.939v4.848h-1.939z" class="ouiIcon__fillSecondary" />
+                        	<path fill="currentColor" d="M28.121 16.62V0h-1.94v16.62a3.879 3.879 0 1 0 1.94 0m-.97 5.683a1.94 1.94 0 1 1 0-3.879a1.94 1.94 0 0 1 0 3.879" />
+                        </svg>
+                    </span>
+                </div>  <!-- <datalist id="articlesList">
                     </datalist> -->
                 <div class="d-flex gap-1 flex-row-reverse">
                     <button class="btn tbn-primary btn-md" id="btn3">Search</button>
@@ -49,6 +59,65 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
             </div>
         </form>
     </div>
+    
+    <form action="" method="GET" class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Refine Search</h5>
+            <button type="button" class="btn close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3 d-flex flex-column">
+                <label for="" class="form-label">Any of these words</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    name=""
+                    id="any-words"
+                    aria-describedby="helpId"
+                    placeholder=""
+                />
+            </div>
+            <div class="mb-3 d-flex flex-column">
+                <label for="" class="form-label">None of these words</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    name=""
+                    id=""
+                    aria-describedby="helpId"
+                    placeholder=""
+                />
+            </div>
+            <div class="mb-3 d-flex flex-column">
+                <label for="" class="form-label">Exact words</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    name=""
+                    id="exact-words"
+                    aria-describedby="helpId"
+                    placeholder=""
+                />
+            </div>
+            <div class="mb-3 d-flex flex-column">
+                <label for="" class="form-label">Journals</label>
+                <div id="journals-refine-container" class="d-flex flex-row flex-wrap gap-2">
+                
+                </div>
+            </div>
+            
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button id="refine_search" type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </form>
     <div class="main-container container-fluid">
         <div class="row w-100">
             <div class="sidebar col-lg-3 col-md-12">
@@ -76,12 +145,13 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     </ul>
                 </div>
                 <hr style="border-top: 1px solid #ccc; margin: 10px 0;"> <!-- Add a horizontal line -->
-         
+                
                 <div class="filters">
                     <h4 class="btn collapsed p-0" style="color: var(--main, #0858A4);" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFilters" aria-expanded="false" aria-controls="collapseFilters">
                         Filter search results
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="7" viewBox="0 0 16 7"><path fill="currentColor" d="M8 6.5a.47.47 0 0 1-.35-.15l-4.5-4.5c-.2-.2-.2-.51 0-.71c.2-.2.51-.2.71 0l4.15 4.15l4.14-4.14c.2-.2.51-.2.71 0c.2.2.2.51 0 .71l-4.5 4.5c-.1.1-.23.15-.35.15Z"/></svg>
                     </h4>
+                   
                     <!-- Journals, Year Published, etc. -->
                     <div class="collapse show" id="collapseFilters">
                         <div class="checkbox-container">
