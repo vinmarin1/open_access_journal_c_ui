@@ -363,17 +363,17 @@ $copyedited_files = get_copyedited_files($aid);
         var title = <?php echo json_encode($article_data[0]->title); ?>;
         var articleid = <?php echo json_encode($article_data[0]->article_id); ?>;
         var url = "https://qcuj.online/PHP/index.php?urli=https://qcuj.online/PHP/submitted-article.php?id=" + articleid;
-        var decisionText = "We have reached a decision regarding your submission to";
+        var decisionText = <?php echo json_encode($email_content[0]->desicion); ?>;
         var urlText = "Submission URL:";
 
         if (emailContent.trim() !== '') {
             var delta = JSON.parse(emailContent);
-            var titleDelta = { insert: ' "' + title + '"\n' };
+            var titleDelta = { insert: ' "' + title + '"' };
             var urlDelta = { insert: ' ' + url + '\n' };
             var decisionIndex = delta.ops.findIndex(op => op.insert.includes(decisionText));
             var urlIndex = delta.ops.findIndex(op => op.insert.includes(urlText));
 
-            delta.ops.splice(decisionIndex + 1, 0, titleDelta);
+            delta.ops.splice(decisionIndex + 3, 0, titleDelta);
             delta.ops.splice(urlIndex + 2, 0, urlDelta);
 
             quill.setContents(delta); 

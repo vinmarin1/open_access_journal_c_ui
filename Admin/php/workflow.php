@@ -1749,7 +1749,7 @@ table {
             var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
             var formattedDate = months[oneWeekAdvance.getMonth()] + " " + oneWeekAdvance.getDate() + ", " + oneWeekAdvance.getFullYear();
 
-            var decisionText = "I believe that you would serve as an excellent reviewer of the manuscript,";
+            var decisionText = <?php echo json_encode($email_content[0]->desicion); ?>;
             var decisionText1 = "Title";
             var decisionText2 = "Abstract";
             var decisionText3 = "The review itself is due on" + formattedDate;
