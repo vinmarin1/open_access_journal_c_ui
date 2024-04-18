@@ -25,6 +25,11 @@ function updateSearchURL(searchInput){
   url.searchParams.set('search', searchInput); 
   history.replaceState(null, '', url.toString());
 }
+function updateExactURL(searchInput){
+  let url = new URL(window.location.href);
+  url.searchParams.set('exact', searchInput); 
+  history.replaceState(null, '', url.toString());
+}
 
 // Function to initialize checkboxes based on URL query parameter
 const initializeCheckboxes = () => {
@@ -33,14 +38,28 @@ const initializeCheckboxes = () => {
   if (selectedJournalsParam) {
     const selectedJournalsArray = selectedJournalsParam.split(",");
     selectedJournalsArray.forEach((journalId) => {
-      const checkbox = document.querySelector(`input[value='${journalId}']`);
-      if (checkbox) {
-        checkbox.checked = true;
-      }
+      const checkboxes = document.querySelectorAll("input[type='checkbox']");
+      checkboxes.forEach((checkbox) => {
+        const checkboxValues = checkbox.value.split(","); // Split multiple values
+        const isChecked = selectedJournalsArray.some((journalId) => checkboxValues.includes(journalId.trim()));
+        checkbox.checked = isChecked;
+      });
     });
   }
 };
 
+document.getElementById('refine_search').addEventListener('click', function(event) {
+  event.preventDefault();
+  let searchInputValue = document.getElementById("any-words").value;
+  let searchExactInputValue = document.getElementById("exact-words").value;
+  
+  initializeCheckboxes()
+  updateURL(selectedJournals)
+  updateSearchURL(searchInputValue)
+  updateExactURL(searchExactInputValue)
+  fetchData(searchInputValue, selectedYears, sortBySelected)
+  $('#exampleModalCenter').modal('hide'); 
+})
 // handle search element event submit with sorting change
 document.getElementById("search-form").addEventListener("submit", function (event) {
     event.preventDefault();

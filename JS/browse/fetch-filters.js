@@ -20,7 +20,7 @@ async function generateFilters() {
 
   const yearsContainer = document.getElementById("years-container");
   const journalsContainer = document.getElementById("journals-container")
-
+  const journalsRefineContainer = document.getElementById("journals-refine-container")
   for (let i = 0; i < years.length; i++) {
     const yearItem = document.createElement("label");
     yearItem.classList.add("checkbox-label");
@@ -65,11 +65,37 @@ async function generateFilters() {
       updateSelectedJournals(journalCheckbox, journalCheckbox.value,labelText.textContent)
       updateURL(selectedJournals)
       fetchData(searchInput.value, selectedYears, sortBySelected)
-      
+      initializeCheckboxes()
       }
     );
 
     journalsContainer.appendChild(journalItem);
+  }
+  
+  for (let i = 0; i < journals.length; i++) {
+    const journalItem = document.createElement("label");
+    journalItem.classList.add("checkbox-label");
+
+    const journalCheckbox = document.createElement("input");
+    journalCheckbox.type = "checkbox";
+    journalCheckbox.id = `journal${i + 1}`;
+    journalCheckbox.classList.add("checkbox");
+    journalCheckbox.value = journals[i].split(" ->")[0];
+    
+    const labelText = document.createTextNode(` ${journals[i].split("->")[1]}`);
+    
+    journalItem.appendChild(journalCheckbox);
+    journalItem.appendChild(labelText);
+
+    journalCheckbox.addEventListener("change", () => {
+      updateSelectedJournals(journalCheckbox, journalCheckbox.value,labelText.textContent)
+      updateURL(selectedJournals)
+      fetchData(searchInput.value, selectedYears, sortBySelected)
+      initializeCheckboxes()
+      }
+    );
+
+    journalsRefineContainer.appendChild(journalItem);
   }
   initializeCheckboxes()
   

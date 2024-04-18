@@ -7,6 +7,7 @@ async function fetchData(input, dates,sort) {
   
   const journalId = getQueryParam("journal");
   const searchInputParams = getQueryParam("search")
+  const exactInputParams = getQueryParam("exact")
   const journalPreview = document.querySelector(".journal-preview");
   journalPreview.classList.add("d-none")
   if (journalId && journalId.split(",").length ==1){
@@ -45,6 +46,7 @@ async function fetchData(input, dates,sort) {
           dates: dates,
           input: searchInputParams? searchInputParams: typeof input == "string" 
                  ?  input : "",
+          exact_input: exactInputParams? exactInputParams : ""
         }),
       }
     );
