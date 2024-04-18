@@ -94,7 +94,9 @@ require_once 'dbcon.php';
   if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
     $author_id = $_SESSION['id'];
 
-    // Define formatTimeElapsed function
+    date_default_timezone_set('Asia/Manila');
+
+    // Define a function to format the time elapsed
     function formatTimeElapsed($timeElapsed) {
         if ($timeElapsed < 60) {
             return $timeElapsed . ' seconds ago';
@@ -141,23 +143,26 @@ require_once 'dbcon.php';
     $sqlNotif = "SELECT * FROM `notification` WHERE `author_id` = :author_id AND title NOT IN ('Send Donation', 'Submit Article') ORDER BY `created` DESC";
     $paramsNotif = array(':author_id' => $author_id);
     $sqlNotifRun = database_run($sqlNotif, $paramsNotif);
-
-    // Notification items
+    
+    // Display notification items
     if ($sqlNotifRun !== false) {
         foreach ($sqlNotifRun as $notif) {
-            // Calculate time elapsed
+            // Convert created timestamp to the server's time zone
             $createdTimestamp = strtotime($notif->created);
+            // Calculate the time elapsed
             $currentTime = time();
             $timeElapsed = $currentTime - $createdTimestamp;
-            $elapsedText = formatTimeElapsed($timeElapsed); // Use the custom formatTimeElapsed function
-
+            // Format the time elapsed
+            $elapsedText = formatTimeElapsed($timeElapsed);
+    
             // Determine the article link based on conditions
             if ($notif->title === "Assign for review" && $notif->article_id !== $author_id) {
                 $articleLink = './review-process.php?id=' . $notif->article_id;
             } else {
                 $articleLink = './submitted-article.php?id=' . $notif->article_id;
             }
-
+    
+            // Output the notification HTML
             echo '
             <li id="notification-content">
               <div>
