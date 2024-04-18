@@ -70,7 +70,7 @@ function sendEmail()
             $mail->addAddress($recipient);
         }
 
-        $mail->Subject = $_POST['subject'];
+        $mail->Subject = $_POST['subject'] . ", " . $_POST['title'];
 
         $mail->isHTML(true);
 
