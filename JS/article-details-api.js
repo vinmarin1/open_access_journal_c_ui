@@ -275,6 +275,7 @@ function renderArticleDetails(data) {
       
       return authorsArray;
     }
+    
     function formatInlineContributors(authors) {
       let authorsArray = authors ? authors.split(";") : null;
           
@@ -284,11 +285,11 @@ function renderArticleDetails(data) {
           
       if (authorsArray.length != 0 && authorsArray.length <= 2) {
         authorsArray = authorsArray
-          .map((author, index, array) => (index === array.length - 1 && array.length > 1 ? `& ${author.trim().split(",")[0]}` : author.trim().split(",")[0]))
+          .map((author, index, array) => (index === array.length - 1 && array.length > 1 ? `& ${author.trim()}` : author.trim()))
           .join(", ");
       } else if (authorsArray.length > 2) {
         authorsArray = authorsArray
-          .map((author, index, array) => (index === 1 && array.length > 2 ? " et al." : index <= 1 ? author.trim().split(",")[0] : null))
+          .map((author, index, array) => (index === 1 && array.length > 2 ? " et al." : index <= 1 ? author.trim(): null))
           .filter(author => author !== null)
           .join(" ");
       }
@@ -296,48 +297,47 @@ function renderArticleDetails(data) {
       return authorsArray;
     }
     
-    let contributors_full = formatContributors(item.contributors_A);
+    let contributors_full = formatInlineContributors(item.contributors_A);
     let contributors_lastname = formatInlineContributors(item.contributors_B);
     let contributors_initial = formatContributors(item.contributors_B);
-    
+    const apaCitation = item.contributors != null 
+      ? `${contributors_initial} (${item.publication_date.split(" ")[3]}). ${item.title}. <i>${item.journal}, ${item.issue_volume}</i>(${item.number}). https://qcuj.online/PHP/article-details.php?articleId=${item.article_id}`
+      : `${item.title}(${item.publication_date.split(" ")[3]}). <i>${item.journal}, ${item.issue_volume}</i>(${item.number}). https://qcuj.online/PHP/article-details.php?articleId=${item.article_id}`
+    const mlaCitation = item.contributors != null 
+      ? `${contributors_full}. "${item.title}." <i>${item.journal} vol. ${item.issue_volume}</i>, no. ${item.number}, ${item.publication_date.split(" ")[2]}. ${item.publication_date.split(" ")[3]}. https://qcuj.online/PHP/article-details.php?articleId=${item.article_id}.`
+      : `"${item.title}." <i>${item.journal}, vol. ${item.issue_volume}</i>, no. ${item.number}, ${item.publication_date.split(" ")[2]}. ${item.publication_date.split(" ")[3]}. https://qcuj.online/PHP/article-details.php?articleId=${item.article_id}.`
+
     const citationSelect = document.querySelector("select");
     citationSelect.addEventListener("change", function () {
       const selectedCitation = citationSelect.value;
-     
+    
       citationContent.innerHTML = `   
         <ul>
           <li> 
             <h4 class="small"><b>${selectedCitation} Citation</b></h4>
-            <p style="font-family:Arial,sans-serif;">
+            <p>
               ${
-                item.contributors != null ?
-                  selectedCitation === "APA"
-                    ? `${contributors_initial} (${item.publication_date.split(" ")[3]}). ${item.title}. <i>${item.journal}, ${item.issue_volume}</i>(${item.number}). Retrieved from https://qcuj.online/PHP/article-details.php?articleId=${item.article_id}`
+                item.contributors != null 
+                ? selectedCitation === "APA"
+                  ? apaCitation
                   : selectedCitation === "MLA"
-                    ? `${contributors_full}. "${item.title}." ${item.journal}, ${item.publication_date.split(" ")[3]}, ${item.issue_volume}(${item.number}).`
+                      ? mlaCitation
                   : selectedCitation === "Chicago"
-                    ? `${contributors_full}. "${item.title}." ${item.journal} ${item.issue_volume}, no. ${item.number} (${item.publication_date.split(" ")[3]}).  https://qcuj.online/PHP/article-details.php?articleId=${item.article_id}`
+                      ? `${contributors_full}. "${item.title}." ${item.journal} ${item.issue_volume}, no. ${item.number} (${item.publication_date.split(" ")[3]}).  https://qcuj.online/PHP/article-details.php?articleId=${item.article_id}`
                   : `${item.contributors_A.split(";").join(", ")}. ${item.title}. ${item.journal}.`
                     + ` https://qcuj.online/PHP/article-details.php?articleId=${item.article_id}`
                 : 
                   selectedCitation === "APA"
-                      ? `${item.title}(${item.publication_date.split(" ")[3]}). ${item.journal}, ${item.issue_volume}(${item.number}). Retrieved from https://qcuj.online/PHP/article-details.php?articleId=${item.article_id}`
+                      ? apaCitation
                   : selectedCitation === "MLA"
-                      ? `"${item.title}." ${item.journal}, ${item.publication_date.split(" ")[3]}, ${item.issue_volume}(${item.number}).`
+                      ? mlaCitation
                   : selectedCitation === "Chicago"
                       ? `"${item.title}." ${item.journal} ${item.issue_volume}, no. ${item.number} (${item.publication_date.split(" ")[3]}).  https://qcuj.online/PHP/article-details.php?articleId=${item.article_id}`
                   : `${item.title}. ${item.journal}.`
                       + ` https://qcuj.online/PHP/article-details.php?articleId=${item.article_id}`
               }
             </p>
-            <span>
-            ${
-              item.contributors != null ?
-              `${contributors_lastname} (${item.publication_date.split(" ")[3]})`:
-              `"${item.title}" (${item.publication_date.split(" ")[3]})`
-              
-            }
-            </span>
+          
           </li>
         </ul>
       `;
@@ -350,15 +350,15 @@ function renderArticleDetails(data) {
           <h4 class="small"><b>${initialSelectedCitation} Reference Citation</b></h4>
           <p class="cited" id="cited" >
           ${ 
-            item.contributors != null ? 
-            `${contributors_initial} (${item.publication_date.split(" ")[3]}). ${item.title}. <i>${item.journal}, ${item.issue_volume}</i>(${item.number}). https://qcuj.online/PHP/article-details.php?articleId=${item.article_id}`
-            : 
-            `${item.title}(${item.publication_date.split(" ")[3]}).${item.journal}, ${item.issue_volume}(${item.number}). Retrieved from https://qcuj.online/PHP/article-details.php?articleId=${item.article_id}`
-
+            // item.contributors != null ? 
+            // `${contributors_initial} (${item.publication_date.split(" ")[3]}). ${item.title}. <i>${item.journal}, ${item.issue_volume}</i>(${item.number}). https://qcuj.online/PHP/article-details.php?articleId=${item.article_id}`
+            // : 
+            // `${item.title}(${item.publication_date.split(" ")[3]}).${item.journal}, ${item.issue_volume}(${item.number}). Retrieved from https://qcuj.online/PHP/article-details.php?articleId=${item.article_id}`
+            apaCitation
           }
           </p>
         </li>
-        <li>
+        <li class="d-none">
           <h4 class="small"><b>In-text Citation</b></h4>
           <span class="cited" id="cited">
           ${
@@ -374,7 +374,7 @@ function renderArticleDetails(data) {
 
 
     const copyBtn = document.getElementById("copy-btn")
-    const inlineBtn = document.getElementById("inline-btn")
+    // const inlineBtn = document.getElementById("inline-btn")
     
     copyBtn.addEventListener("click",()=> {
       navigator.clipboard.writeText(citationContent.querySelector("p").textContent.trim());
@@ -385,15 +385,15 @@ function renderArticleDetails(data) {
       })
     })
     
-    if (inlineBtn){
-    inlineBtn.addEventListener("click",()=> {
-      navigator.clipboard.writeText(citationContent.querySelector("span").innerHTML.trim());
-      handleDownloadLog(item.article_id,"citation");
-      Swal.fire({
-        html: '<h4 style="color: var(--main, #0858A4); font-family: font-family: Arial, Helvetica, sans-serif">Successfully copied reference in your clipboard.</4>',
-        icon: 'success',
-      })
-    })}
+    // if (inlineBtn){
+    // inlineBtn.addEventListener("click",()=> {
+    //   navigator.clipboard.writeText(citationContent.querySelector("span").innerHTML.trim());
+    //   handleDownloadLog(item.article_id,"citation");
+    //   Swal.fire({
+    //     html: '<h4 style="color: var(--main, #0858A4); font-family: font-family: Arial, Helvetica, sans-serif">Successfully copied reference in your clipboard.</4>',
+    //     icon: 'success',
+    //   })
+    // })}
  
     const readBtn = articleElement.querySelector(`#read-btn`);
 
