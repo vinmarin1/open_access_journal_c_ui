@@ -10,7 +10,7 @@ if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
 $userId = $_SESSION['id'];
 $articleId = isset($_GET['id']) ? $_GET['id'] : null;
 
-$sqlCheckArticle = "SELECT reviewer_assigned.article_id, reviewer_assigned.author_id FROM reviewer_assigned JOIN article ON reviewer_assigned.article_id = article.article_id WHERE reviewer_assigned.author_id = :author_id AND reviewer_assigned.article_id = :article_id AND reviewer_assigned.answer = 1";
+$sqlCheckArticle = "SELECT reviewer_assigned.article_id, reviewer_assigned.author_id FROM reviewer_assigned JOIN article ON reviewer_assigned.article_id = article.article_id WHERE reviewer_assigned.author_id = :author_id AND reviewer_assigned.article_id = :article_id AND reviewer_assigned.answer = 1 AND reviewer_assigned.accept = 1";
 
 $params = array('author_id' => $userId, 'article_id' => $articleId);
 
@@ -385,8 +385,37 @@ if ($result !== false && !empty($result)) {
                     <button type="button" class="btn btn-outline-primary btn-sm"  onclick="hideLogs()" id="hideLogsBtn" style="display: none;">Hide Logs</button>
                 </div>
                 <div class="btn" id="step1button">
-                            <button type="button" class="btn tbn-primary btn-md nextBtn" id="acceptBtn"  onclick="nextStep()" >Accept</button>
-                            <button type="button"  id="btnReject" class="btn tbn-primary btn-md" onclick="rejectInvitation('<?php echo $articleId; ?>')">Decline</button>
+                <?php 
+                            $sqlReviewraticle = "SELECT article.title, reviewer_assigned.accept
+                            FROM article 
+                            JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id 
+                            WHERE article.status = 4
+                            AND reviewer_assigned.author_id = :author_id 
+                            AND article.article_id = :article_id 
+                            ORDER BY reviewer_assigned.date_issued DESC
+                            LIMIT 1";
+
+                        $result = database_run($sqlReviewraticle, array(
+                            'author_id' => $userId,
+                            'article_id' => $articleId
+                        ));
+
+                        if ($result !== false) {
+                            $accept = $result[0]->accept;
+                            if ($accept === '0') {
+                                echo '<button type="button" class="btn tbn-primary btn-md nextBtn" id="acceptBtn" onclick="nextStep()">Accept</button>';
+                                echo '<button type="button" id="btnReject" class="btn tbn-primary btn-md" onclick="rejectInvitation(' . $articleId . ')">Decline</button>';
+                            } elseif ($accept === '1') {
+                                echo '<button type="button" class="btn tbn-primary btn-md nextBtn" id="acceptBtn" onclick="nextStep()">Review</button>';
+                            } else {
+                                echo 'You have rejected the invitation for this article';
+                            }
+                        } else {
+                            echo ""; // Not sure what you intend to echo here
+                        }
+                        
+                    ?>
+
                         </div>
                 </div>
                 <div class="col-md-4" style="padding:0;">

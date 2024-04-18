@@ -70,7 +70,7 @@ let currentStep = 1;
 
 document.getElementById('acceptBtn').addEventListener('click', function (event) {
     const rejectBtn = document.getElementById('btnReject');
-    
+    const articleId = document.getElementById('getId').value;
 
     function nextStep() {
         if (currentStep < 3) {
@@ -78,11 +78,10 @@ document.getElementById('acceptBtn').addEventListener('click', function (event) 
             currentStep++;
             document.getElementById(`step${currentStep}`).classList.add('active');
         }
-    
     }
 
     Swal.fire({
-        text: "Accept Invitation",
+        text: "Review this article now?",
         icon: "info",
         showCancelButton: true,
         confirmButtonColor: "primary",
@@ -92,15 +91,28 @@ document.getElementById('acceptBtn').addEventListener('click', function (event) 
         if (result.isConfirmed) {
             rejectBtn.style.display = 'none';
             Swal.fire({
-                text: "Accepted Invitation",
+                text: "Reviewing Process",
                 icon: "success",
                 showConfirmButton: true,
             }).then((result) => {
                 if (result.isConfirmed) {
-                    setTimeout(function () {
-                        Swal.close();
-                        nextStep();
-                    }, 1000);
+                    // Send AJAX request to accept_invi.php
+                    const xhr = new XMLHttpRequest();
+                    xhr.open('POST', '../PHP/accept_invi.php', true);
+                    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                    xhr.onload = function () {
+                        if (xhr.status === 200) {
+                            // Handle successful response
+                            setTimeout(function () {
+                                Swal.close();
+                                nextStep();
+                            }, 1000);
+                        } else {
+                            // Handle error response
+                            console.error('Error:', xhr.responseText);
+                        }
+                    };
+                    xhr.send('article_id=' + articleId);
                 }
             });
         }
