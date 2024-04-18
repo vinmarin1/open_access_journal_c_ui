@@ -24,6 +24,7 @@ function updateSearchURL(searchInput){
   let url = new URL(window.location.href);
   url.searchParams.set('search', searchInput); 
   history.replaceState(null, '', url.toString());
+  
 }
 function updateExactURL(searchInput){
   let url = new URL(window.location.href);
