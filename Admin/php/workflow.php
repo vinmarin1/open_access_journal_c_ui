@@ -1773,7 +1773,7 @@ table {
                 var decisionIndex3 = delta.ops.findIndex(op => op.insert.includes(decisionText3));
                 var urlIndex = delta.ops.findIndex(op => op.insert.includes(urlText));
 
-                delta.ops.splice(decisionIndex + 3, 0, reviewDelta);
+                delta.ops.splice(decisionIndex + 1, 0, reviewDelta);
                 delta.ops.splice(decisionIndex1 + 2, 0, titleDelta);
                 delta.ops.splice(decisionIndex2 + 3, 0, abstractDelta);
                 delta.ops.splice(decisionIndex3 + 6, 0, dueDelta);
