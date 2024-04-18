@@ -1,5 +1,8 @@
 <?php
+require 'dbcon.php';
 session_start();
+$id = $_SESSION['id'];
+
 if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
 	header('Location: ./login.php');
   }
@@ -14,7 +17,7 @@ if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400&display=swap">
-    <link href="../CSS/recover_account.css" rel="stylesheet">
+    <link href="../CSS/change_pass.css" rel="stylesheet">
 </head>
 <body>
 
@@ -29,7 +32,27 @@ if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
                         <p class="h2 pt-5">Forgot password?</p><br>
                         <div class="emailContainer">
                             <label for="email">Email Address</label>
-                            <input type="email" class="form-control mt-1" id="email" name="email">
+                            <?php
+                            	$sqlSelectName = "SELECT email FROM author WHERE author_id = :author_id";
+								
+                                $result = database_run($sqlSelectName, array(':author_id' => $id));
+
+                                if ($result) {
+                                    
+                                    if (count($result) > 0) {
+                                        $user = $result[0];
+                                        $email = $user->email;
+                                        echo '<input type="email" class="form-control mt-1" id="email" name="email" value="' . $email . '" disabled>';
+
+                                    } else {
+                                        echo "User not found.";
+                                    }
+                                } else {
+                                    echo "Unable to fetch user info.";
+                                }
+
+                            ?>
+                            <!-- <input type="email" class="form-control mt-1" id="email" name="email"> -->
                             <button type="button" id="btnRequestLink" class="btn btn-primary btn-sm mt-3" onclick="validateEmail()">Request a reset link
                                 <div class="spinner-border spinner-border-sm" id="spinnerSpinner" role="status" style="display: none">
                                     <span class="visually-hidden" id="spinner">Loading...</span>
@@ -51,7 +74,10 @@ if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
                         <p class="h2 pt-5">Change password</p>
                         <div class="inputContainer">
                             
-                        
+                                
+                            <label class="pt-4" for="oldPassword"> Password</label>
+                            <input type="password" class="form-control mt-1" id="oldPassword" name="oldPassword">
+
                             <label class="pt-4" for="password">New password</label>
                             <span class="validationPassword" id="PassValidation" style="font-size: 10px; color: red; display: block; margin-left: 40px"></span>
 
@@ -147,6 +173,7 @@ window.addEventListener('load', checkQueryParameter);
 
 document.getElementById('changePasswordBtn').addEventListener('click', function (event) {
     const emailInput = document.getElementById('email');
+    const oldPassword = document.getElementById('oldPassword'); // Add this line to get old password input
     const password = document.getElementById('password');
     const confirmPassword = document.getElementById('confirmPassword');
     const thirdStepForm = document.getElementById('thirdStep');
@@ -193,33 +220,54 @@ document.getElementById('changePasswordBtn').addEventListener('click', function 
         changePasswordBtn.innerHTML = 'Changing your password...';
         $.ajax({
             type: "POST",
-            url: "../PHP/reset_pass.php",
-            data: { email: storedEmail, password: password.value },
+            url: "../PHP/change_pass_update.php",
+            data: { email: storedEmail, oldPassword: oldPassword.value, password: password.value },
+            dataType: 'json', // Expect JSON response
             success: function (response) {
-                // alert('Successfully changed your password');
-                // firstStepForm.style.display = 'none';
-                // secondStepForm.style.display = 'none';
-                // thirdStepForm.style.display = 'none';
-                // finalStepForm.style.display = 'block';
-                thirdStepForm.submit();
-  		        // window.location.href='../PHP/login.php';
+                if (response.success) {
+                    alert('Successfully changed your password');
+                    firstStepForm.style.display = 'none';
+                    secondStepForm.style.display = 'none';
+                    thirdStepForm.style.display = 'none';
+                    finalStepForm.style.display = 'block';
+                    thirdStepForm.submit();
+                    window.location.href = '../PHP/login.php';
+                } else {
+                    // Handle error message
+                    if (response.message === 'You inputted wrong password') {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'You inputted wrong password'
+                        });
+                        thirdStepForm.style.display = 'none';
+                        firstStepForm.style.display = 'block';
+                        
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: response.message
+                        });
+                        thirdStepForm.style.display = 'none';
+                        firstStepForm.style.display = 'block';
+                    }
+                }
             },
             error: function (xhr, status, error) {
                 console.error(xhr.responseText);
             },
             complete: function () {
-                alert('Successfully changed your password');
-                firstStepForm.style.display = 'none';
-                secondStepForm.style.display = 'none';
-                thirdStepForm.style.display = 'none';
-                finalStepForm.style.display = 'block';
-                window.location.href='../PHP/login.php';
+                alert('Change Password Successfully');
+                window.location.href = '../PHP/logout.php';
                 spinnerSpinner2.style.display = 'none';
                 changePasswordBtn.innerHTML = 'Change Password';
             }
         });
+
     }
 });
+
 
 
     </script>
