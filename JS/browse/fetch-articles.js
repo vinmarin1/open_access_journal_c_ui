@@ -15,7 +15,7 @@ async function fetchData(input, dates,sort) {
     journalPreview.classList.remove("d-none")
     fetchJournal(journalId)
   }
-  
+
   const articlesContainer = document.querySelector("#articles");
   articlesContainer.innerHTML=""
   const total = document.querySelector("#total");
@@ -54,7 +54,10 @@ async function fetchData(input, dates,sort) {
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
-
+    let result = document.getElementById("result")
+    result.value= input ? input : ""
+    console.log(input)
+    console.log(result,"result")
     const data = await response.json();
 
    // display and render article items
