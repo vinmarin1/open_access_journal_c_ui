@@ -1749,7 +1749,7 @@ table {
             var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
             var formattedDate = months[oneWeekAdvance.getMonth()] + " " + oneWeekAdvance.getDate() + ", " + oneWeekAdvance.getFullYear();
 
-            var decisionText = <?php echo json_encode($email_content[0]->desicion); ?>;
+            var decisionText = <?php echo json_encode($reviewer_email[0]->decision); ?>;
             var decisionText1 = "Title";
             var decisionText2 = "Abstract";
             var decisionText3 = "The review itself is due on" + formattedDate;
@@ -1758,7 +1758,7 @@ table {
             if (emailContent.trim() !== '') {
                 var delta = JSON.parse(emailContent);
 
-                var reviewDelta = { insert: ' "' + title + '", ' };
+                var reviewDelta = { insert: ' "' + title + '.' + '" ' };
                 var titleDelta = { insert: '"' + title + '"\n' };
                 var abstractDelta = { insert: '' + abstract + '\n' };  
                 var dueDelta = { insert: ' ' + formattedDate + '\n' };  
@@ -1770,10 +1770,10 @@ table {
                 var decisionIndex3 = delta.ops.findIndex(op => op.insert.includes(decisionText3));
                 var urlIndex = delta.ops.findIndex(op => op.insert.includes(urlText));
 
-                delta.ops.splice(decisionIndex + 1, 0, reviewDelta);
+                delta.ops.splice(decisionIndex + 3, 0, reviewDelta);
                 delta.ops.splice(decisionIndex1 + 2, 0, titleDelta);
                 delta.ops.splice(decisionIndex2 + 3, 0, abstractDelta);
-                delta.ops.splice(decisionIndex3 + 5, 0, dueDelta);
+                delta.ops.splice(decisionIndex3 + 6, 0, dueDelta);
                 delta.ops.splice(urlIndex + 3, 0, urlDelta);
 
                 quillThree.setContents(delta);
@@ -2176,4 +2176,5 @@ table {
     });
     </script>
 </body>
-</html
+</html>
+

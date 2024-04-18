@@ -1718,33 +1718,95 @@ function updateProductionFiles() {
 
 }
 
-function uploadProductionFiles() {
+function fileToBase64(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result.split(',')[1]);
+        reader.onerror = error => reject(error);
+    });
+}
+
+async function uploadProductionFiles() {
+    $('#sloading').toggle();
+    try {
+        const file = $('#productionfile')[0].files[0];
+        
+        const base64Data = await fileToBase64(file);
+
+        const url = 'https://v2.convertapi.com/convert/pdf/to/flatten?Secret=TRRfto1YdGDUeJH7';
+
+        const requestBody = {
+            "Parameters": [
+                {
+                    "Name": "File",
+                    "FileValue": {
+                        "Name": file.name,
+                        "Data": base64Data
+                    }
+                },
+                {
+                    "Name": "StoreFile",
+                    "Value": true
+                },
+                {
+                    "Name": "FileName",
+                    "Value": "flatten"
+                }
+            ]
+        };
+
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestBody)
+        });
+
+        if (response.ok) {
+            const responseData = await response.json();
+            const downloadUrl = responseData.Files[0].Url;
+
+            const convertedResponse = await fetch(downloadUrl);
+            const convertedBlob = await convertedResponse.blob();
+
+            const convertedFile = new File([convertedBlob], 'converted_file.pdf', { type: 'application/pdf' });
+
+            await uploadFile(convertedFile);
+        } else {
+            console.error('Conversion failed:', response.statusText);
+
+            console.error(await response.text());
+        }
+    } catch (error) {
+        console.error('Conversion failed:', error);
+    }
+}
+
+async function uploadFile(file) {
     var productionfileFiletype = $('#productionfiletype').val();
-    var productionfileFile = $('#productionfile')[0].files[0];
 
     var formData = new FormData();
     formData.append('article_id', articleId);
     formData.append('fromuser', fromuser);
     formData.append('productionfiletype', productionfileFiletype);
-    formData.append('productionfile', productionfileFile)
+    formData.append('productionfile', file);
     formData.append('action', 'uploadproductionfile');
 
-    $.ajax({
-        url: "../php/function/wf_modal_function.php",
-        type: "POST",
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function (response) {
-            console.log('Upload file successfully.');
-            console.log(response);
-            location.reload();
-            $('#sloading').toggle();
-        },
-        error: function (xhr, status, error) {
-            console.error(xhr, status, error);
-        }
+    const uploadResponse = await fetch("../php/function/wf_modal_function.php", {
+        method: 'POST',
+        body: formData
     });
+
+    if (uploadResponse.ok) {
+        console.log('Upload successful.');
+        console.log(await uploadResponse.text());
+        location.reload();
+        $('#sloading').toggle();
+    } else {
+        console.error('Upload failed:', uploadResponse.statusText);
+    }
 }
 
 function updateProductionCheckedFiles() {
