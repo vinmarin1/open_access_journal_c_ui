@@ -178,11 +178,7 @@ nav .navbar-nav .nav-item:hover {
   background-color: #b8b7b7;
   border-radius: 8px; 
 }
-#notification-content {
-  padding: 12px 16px;
-  border-bottom: 1px solid #eee; 
-  transition: background-color 0.3s ease; 
-}
+
 
 #notification-content:last-child {
   border-bottom: none; 
@@ -287,6 +283,13 @@ nav .navbar-nav .nav-item:hover {
     margin-left: -50px;
   }
 }
+
+
+.unread-notification {
+  background-color: blue; /* Gray background color */
+}
+
+
 /* #navbar-container{
     background-color: #004e98;
     
