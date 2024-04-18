@@ -117,7 +117,7 @@ require_once 'dbcon.php';
             <i class="fas fa-bell"></i>';
 
     // SQL to count new notifications
-    $sqlCountNotif = "SELECT COUNT(*) AS notif_count FROM `notification` WHERE `author_id` = :author_id AND `read_user` = 0";
+    $sqlCountNotif = "SELECT COUNT(*) AS notif_count FROM `notification` WHERE `author_id` = :author_id AND `read_user` = 0 NOT IN ('Send Donation', 'Submit Article')";
     $paramsCount = array(':author_id' => $author_id);
     $countResult = database_run($sqlCountNotif, $paramsCount);
     
