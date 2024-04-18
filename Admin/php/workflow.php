@@ -1073,7 +1073,10 @@ table {
                                                                             <?php foreach ($article_contributors as $article_contributorsval): ?>
                                                                                 <tr>
                                                                                     <td width="5%"><?php echo $article_contributorsval->contributors_id; ?></td>
-                                                                                    <td width="40%"><span class="badge rounded-pill bg-label-primary"><?php echo $article_contributorsval->contributor_type; ?></span></td>
+                                                                                    <td width="40%">
+                                                                                        <span class="badge rounded-pill bg-label-primary"><?php echo $article_contributorsval->contributor_type; ?></span>
+                                                                                        <?php echo $article_contributorsval->lastname; ?>, <?php echo $article_contributorsval->firstname; ?>
+                                                                                    </td>
                                                                                     <td width="40%"><?php echo $article_contributorsval->email; ?></td>
                                                                                     <td width="10%"><?php echo $article_contributorsval->orcid; ?></td>
                                                                                     <td width="5%">
