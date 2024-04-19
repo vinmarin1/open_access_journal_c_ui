@@ -93,6 +93,32 @@ require_once 'dbcon.php';
 <?php
   if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
     $author_id = $_SESSION['id'];
+    $email = $_SESSION['email'];
+
+    $query = "SELECT verify.expires, author.email_verified FROM verify JOIN author ON verify.email = author.email WHERE author.email = :email ORDER BY verify.id DESC LIMIT 1";
+    $vars = array(':email' => $email);
+    $latest_verification = database_run($query, $vars);
+
+    if ($latest_verification && count($latest_verification) > 0) {
+        $latest_verification = $latest_verification[0];
+        $expiration_timestamp = $latest_verification->expires;
+        $current_timestamp = time();
+
+        
+        $expiration_date = date('Y-m-d H:i:s', $expiration_timestamp);
+        $current_date = date('Y-m-d H:i:s', $current_timestamp);
+        // echo $expiration_date;
+        // echo '<br>';
+        // echo $current_date;
+     
+        if ($expiration_timestamp < $current_timestamp && !empty($latest_verification->email_verified)) {
+            $update_query = "UPDATE author SET email_verified = '' WHERE email = :email";
+            $update_vars = array(':email' => $email);
+            database_run($update_query, $update_vars);
+            session_destroy();
+            exit;
+        }
+    }
 
     date_default_timezone_set('Asia/Manila');
 
