@@ -166,7 +166,9 @@ require_once 'dbcon.php';
         <ul class="dropdown-menu" id="notification-dropdown">';
 
     // SQL to fetch notification list
-    $sqlNotif = "SELECT * FROM `notification` WHERE `author_id` = :author_id AND title NOT IN ('Send Donation', 'Submit Article') ORDER BY `created` DESC";
+    // $sqlNotif = "SELECT * FROM `notification` WHERE `author_id` = :author_id AND title NOT IN ('Send Donation', 'Submit Article') ORDER BY `created` DESC";
+    $sqlNotif = "SELECT n.*, a.status as article_status FROM `notification` n JOIN `article` a ON n.article_id = a.article_id WHERE n.`author_id` = :author_id 
+    AND n.title NOT IN ('Send Donation', 'Submit Article') AND a.status <> 0 ORDER BY n.`created` DESC";
     $paramsNotif = array(':author_id' => $author_id);
     $sqlNotifRun = database_run($sqlNotif, $paramsNotif);
     
