@@ -456,7 +456,7 @@ $id = $_SESSION['id'];
                   $sqlArchive = "SELECT reviewer_assigned.*, article.*
                                     FROM reviewer_assigned 
                                     JOIN article ON article.article_id = reviewer_assigned.article_id 
-                                    WHERE article.status < 5  AND  reviewer_assigned.author_id = :author_id ORDER BY reviewer_assigned.date_issued DESC
+                                    WHERE article.status < 5  AND  reviewer_assigned.author_id = :author_id AND article.status <> 0 ORDER BY reviewer_assigned.date_issued DESC
                                     LIMIT " . ($currentPage - 1) * $itemsPerPageArchive . ", $itemsPerPageArchive";
                   
                   $varsAchive = array(':author_id' => $id);
