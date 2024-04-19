@@ -227,6 +227,7 @@ $id = $_SESSION['id'];
                       $itemsPerPage = 10;
                       $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
               
+                      // $query = "SELECT * FROM article WHERE `author_id` = :author_id LIMIT " . ($currentPage - 1) * $itemsPerPage . ", $itemsPerPage";
                       $query = "SELECT * FROM article WHERE `author_id` = :author_id AND status <> 0 LIMIT " . ($currentPage - 1) * $itemsPerPage . ", $itemsPerPage";
                       $vars = array(':author_id' => $id);
               
