@@ -145,9 +145,17 @@ a {
 
 
 .article .h6 {
+  font-size: 18px;
+  line-height: 24px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; 
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
   font-family: Arial, Helvetica, sans-serif;
   color: var(--main, #0858A4);
   width: auto;
+  min-height: 70px;
 
 }
 
@@ -175,8 +183,8 @@ a {
 
 .article-content {
   color: black;
-  font-size: 13px;
-  height: 120px;
+  font-size: 13.5px;
+  height: 125px;
   /* overflow-y: auto;
   overflow-x: hidden; */
 }
@@ -226,7 +234,7 @@ a {
 #most-popular-container span {
   color: var(--main, #0858A4);
   font-family: Arial, Helvetica, sans-serif;
-
+  font-weight: bold;
 }
 
 #most-popular-container ul li {

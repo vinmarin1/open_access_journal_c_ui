@@ -1073,7 +1073,10 @@ table {
                                                                             <?php foreach ($article_contributors as $article_contributorsval): ?>
                                                                                 <tr>
                                                                                     <td width="5%"><?php echo $article_contributorsval->contributors_id; ?></td>
-                                                                                    <td width="40%"><span class="badge rounded-pill bg-label-primary"><?php echo $article_contributorsval->contributor_type; ?></span></td>
+                                                                                    <td width="40%">
+                                                                                        <span class="badge rounded-pill bg-label-primary"><?php echo $article_contributorsval->contributor_type; ?></span>
+                                                                                        <?php echo $article_contributorsval->lastname; ?>, <?php echo $article_contributorsval->firstname; ?>
+                                                                                    </td>
                                                                                     <td width="40%"><?php echo $article_contributorsval->email; ?></td>
                                                                                     <td width="10%"><?php echo $article_contributorsval->orcid; ?></td>
                                                                                     <td width="5%">
@@ -1770,7 +1773,7 @@ table {
                 var decisionIndex3 = delta.ops.findIndex(op => op.insert.includes(decisionText3));
                 var urlIndex = delta.ops.findIndex(op => op.insert.includes(urlText));
 
-                delta.ops.splice(decisionIndex + 3, 0, reviewDelta);
+                delta.ops.splice(decisionIndex + 1, 0, reviewDelta);
                 delta.ops.splice(decisionIndex1 + 2, 0, titleDelta);
                 delta.ops.splice(decisionIndex2 + 3, 0, abstractDelta);
                 delta.ops.splice(decisionIndex3 + 6, 0, dueDelta);

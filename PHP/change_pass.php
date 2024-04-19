@@ -29,7 +29,7 @@ if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
             <div class="col-lg-4 col-md-8 col-sm-10">
                 <div id="firstStep" class="firstStep">
                     <form id="firstStepForm">
-                        <p class="h2 pt-5">Forgot password?</p><br>
+                        <p class="h2 pt-5">Update Password</p><br>
                         <div class="emailContainer">
                             <label for="email">Email Address</label>
                             <?php
