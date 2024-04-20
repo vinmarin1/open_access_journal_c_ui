@@ -174,36 +174,40 @@ require_once 'dbcon.php';
     $paramsNotif = array(':author_id' => $author_id);
     $sqlNotifRun = database_run($sqlNotif, $paramsNotif);
     
-    // Display notification items
+   
     if ($sqlNotifRun !== false) {
-        foreach ($sqlNotifRun as $notif) {
-            // Convert created timestamp to the server's time zone
-            $createdTimestamp = strtotime($notif->created);
-            // Calculate the time elapsed
-            $currentTime = time();
-            $timeElapsed = $currentTime - $createdTimestamp;
-            // Format the time elapsed
-            $elapsedText = formatTimeElapsed($timeElapsed);
+      foreach ($sqlNotifRun as $notif) {
+       
+        $bgColor = ($notif->read_notif_list == 0) ? 'background-color: #E5E7E9;' : '';
     
-            // Determine the article link based on conditions
-            if ($notif->title === "Assign for review" && $notif->article_id !== $author_id) {
-                $articleLink = './review-process.php?id=' . $notif->article_id;
-            } else {
-                $articleLink = './submitted-article.php?id=' . $notif->article_id;
-            }
+        // Convert created timestamp to the server's time zone
+        $createdTimestamp = strtotime($notif->created);
+        // Calculate the time elapsed
+        $currentTime = time();
+        $timeElapsed = $currentTime - $createdTimestamp;
+        // Format the time elapsed
+        $elapsedText = formatTimeElapsed($timeElapsed);
     
-            // Output the notification HTML
-            echo '
-            <li id="notification-content">
-              <div>
-                <p class="d-flex flex-column " style="font-weight: bold; margin-bottom: 5px;"> '  . $notif->title . '
-              <div>
-              <div>
-                <a id="inviteMessage" style="text-decoration: none; color: gray; display: block; padding-bottom: 5px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;" href="' . $articleLink . '">' . $notif->description . '</a>
-                <span style="font-weight: bold; color: #004e98;">' . $elapsedText . '</span>
-              </div>
-            </li>';
+        // Determine the article link based on conditions
+        if ($notif->title === "Assign for review" && $notif->article_id !== $author_id) {
+            $articleLink = './review-process.php?id=' . $notif->article_id;
+        } else {
+            $articleLink = './submitted-article.php?id=' . $notif->article_id;
         }
+    
+        // Output the notification HTML with background color
+        echo '
+        <li class="notification-item" data-notification-id="' . $notif->id . '" style="' . $bgColor . '">
+          <div>
+            <p class="d-flex flex-column " style="font-weight: bold; margin-bottom: 5px;"> '  . $notif->title . '
+          <div>
+          <div>
+            <a id="inviteMessage" style="text-decoration: none; color: gray; display: block; padding-bottom: 5px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 3;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;" href="' . $articleLink . '">' . $notif->description . '</a>
+            <span style="font-weight: bold; color: #004e98;">' . $elapsedText . '</span>
+          </div>
+        </li>';
+    }
+    
     } else {
         echo '<p class="h6" style="color: gray; font-weight: normal; margin-left: 10px" >0 Notification</p>';
     }

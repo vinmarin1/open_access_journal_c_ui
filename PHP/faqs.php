@@ -685,22 +685,30 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
     <script src="../JS/reusable-header.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
-    function includeNavbar() {
-    fetch('../PHP/navbar.php')
-        .then(response => response.text())
-        .then(data => {
-        document.getElementById('navigation-menus-container').innerHTML = data;
-        // Now that the content is loaded, you can attach event listeners or perform other operations as needed
-        // For example, you can attach the notification button click event listener here
-        attachNotificationButtonListener();
-        })
-        .catch(error => console.error('Error loading navbar.php:', error));
-    }
+function includeNavbar() {
+  fetch('../PHP/navbar.php')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('navigation-menus-container').innerHTML = data;
+      // Now that the content is loaded, you can attach event listeners or perform other operations as needed
+      // For example, you can attach the notification button click event listener here
+      attachNotificationButtonListener();
+      attachNotificationItemClickListener();
+      playAudio();
+    })
+    .catch(error => console.error('Error loading navbar.php:', error));
+}
+// function playAudio() {
+//   var x = document.getElementById("myAudio");
+//   x.play();
+// }
 
-    function attachNotificationButtonListener() {
+
+function attachNotificationButtonListener() {
   $(document).on('click', '#notification-button', function () {
     $("#notification-count").text("0");
     $("#notification-count").hide();
+     
     // Send AJAX request to mark notifications as read
     $.ajax({
       url: "../PHP/mark_notifications_read.php",
@@ -719,10 +727,37 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
     });
   });
 }
-    // Call includeNavbar function to load navbar.php content
-    includeNavbar();
+
+function attachNotificationItemClickListener() {
+  const notificationItems = document.querySelectorAll('.notification-item');
+
+  notificationItems.forEach(item => {
+    item.addEventListener('click', function () {
+      const notificationId = this.dataset.notificationId;
+      markNotificationAsRead(notificationId);
+    });
+  });
+
+  function markNotificationAsRead(notificationId) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', '../PHP/mark_as_read.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+        // Handle success or display any feedback to the user
+        console.log('Notification marked as read');
+      }
+    };
+    xhr.send('notification_id=' + encodeURIComponent(notificationId));
+  }
+}
+
+// Call this function in your code wherever appropriate, such as after loading notifications
+// attachNotificationItemClickListener();
 
 
+// Call includeNavbar function to load navbar.php content
+includeNavbar();
     </script>
 
     <script src="../JS/faqs.js"></script>
