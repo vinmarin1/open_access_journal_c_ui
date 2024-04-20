@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	const resendBtn = document.getElementById('resendBtn');
     // const emailValue = document.getElementById('emailHidden').value;
 
-    let timerSeconds = 10; 
+    let timerSeconds = 60; 
     let timerInterval;
 	resendBtn.disabled = true;
 
