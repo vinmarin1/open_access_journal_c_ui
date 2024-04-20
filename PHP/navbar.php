@@ -41,9 +41,14 @@ require_once 'dbcon.php';
           </ul>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link" role="button" href="publication.php">
-            Journals
+          <a class="nav-link dropdown-toggle" href="about.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Browse
           </a>
+          <ul class="dropdown-menu">
+          <li><a class="dropdown-item" style="color: black" href="browse-articles.php">By Article</a></li>
+          <li><a class="dropdown-item" style="color: black" href="publication.php">By Journal</a></li>
+          <!-- <li><a class="dropdown-item" style="color: black" href="contact-us.php">Contact us</a></li> -->
+          </ul>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="announcement.php">Announcements</a>
@@ -60,9 +65,6 @@ require_once 'dbcon.php';
           </ul>
           <li class="d-flex d-sm-none nav-item">
             <a class="nav-link" href="donation.php">Donation</a>
-          </li>
-          <li class="d-flex d-sm-none nav-item">
-            <a class="nav-link" href="browse-articles.php">Browse Articles</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="contact-us.php">Contact Us</a>
