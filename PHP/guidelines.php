@@ -144,6 +144,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 </ul>
                 <ul class="overview" id="publication-policy-links" style="display: none;">
                     <li><b>Overview</b></li>
+                    <li><a href="#open-access-policy">Open Access Policy</a></li>
                     <li><a href="#publication-ethics">Publication Ethics</a></li>
                     <li><a href="#publication-rules">Publication Rules</a></li>
                     <li><a href="#citation-policy">Citation Policy</a></li>
@@ -611,6 +612,12 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
         </div>
         <div class="main" id="publication-policy-container" style="display: none;">
             <div class="category w-100">
+                <div class="s-1" id="open-access-policy">
+                    <h3>Open Access Policy</h3>
+                    <p>Quezon City University Journal is committed to open-access publishing, aiming to make high-quality scholarly research freely accessible to the global community.</p>
+                    <p>This work is licensed under <b> Creative Commons Non-Commercial and Non-Derivative License (CC-BY-NC-ND)</b>.
+                    <br>For more details about the license visit here <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">https://creativecommons.org/licenses/by-nc-nd/4.0/</a></p>
+                </div>
                 <div class="s-1" id="publication-ethics">
                     <h3>Publication Ethics</h3>
                     <p>The editors of this journal use a rigorous peer-review system and adhere to strong ethical
