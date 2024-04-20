@@ -169,13 +169,14 @@
 			<header class="header-container" id="header-container"></header>
 			<div class="verification-content">
 				<h1 class="verification-title">Email Verification</h1>
-				<p class="verification-description">An OTP code was sent to <span class="email-address"><?php echo $vars['email'];?></span></p>
+				<p class="verification-description">An OTP code was sent to <span class="email-address" id="email-address"><?php echo $vars['email'];?></span></p>
 				<p id="timerDisplay" style="text-align: center; color: red; margin-top: -19px;">Time remaining: 1:00</p>
 				<input type="hidden" id="sentOTP" value="<?php echo $vars['code']; ?>">
 				<form method="post" id="form" class="verification-form">
 					<input type="text" id="code" name="code" placeholder="Enter the 5-digit code" class="form-control">
 					<p class="validation" id="validation"></p>
 					<button type="button" id="verifyBtn" class="btn btn-primary">Verify</button>
+					<button type="button" id="resendBtn" style=" border: none; background-color: white; margin-top: 5px; width: 99%;">Resend Code</button>
 				</form>
 			</div>
 		</div>
@@ -196,107 +197,113 @@ function showAlert() {
 </script>
 <script src="../JS/reusable-header.js"></script>
 <script src="../JS/reusable-header_footer.js"></script>
-
+<script src="../JS/verify.js"></script>
 <script>
 
 	
-document.addEventListener('DOMContentLoaded', function () {
-    const codeInput = document.getElementById('code');
-    const verifyBtn = document.getElementById('verifyBtn');
-    const form = document.getElementById('form');
-    const sentOTP = document.getElementById('sentOTP').value;
-    const timerDisplay = document.getElementById('timerDisplay');
+// document.addEventListener('DOMContentLoaded', function () {
+//     const codeInput = document.getElementById('code');
+//     const verifyBtn = document.getElementById('verifyBtn');
+//     const form = document.getElementById('form');
+//     const sentOTP = document.getElementById('sentOTP').value;
+//     const timerDisplay = document.getElementById('timerDisplay');
+// 	const resendBtn = document.getElementById('resendBtn');
 
-    let timerSeconds = 60; 
-    let timerInterval;
+//     let timerSeconds = 60; 
+//     let timerInterval;
+// 	resendBtn.disabled = true;
+	
 
-	function updateTimerDisplay() {
-        const minutes = Math.floor(timerSeconds / 60);
-        const seconds = timerSeconds % 60;
-        timerDisplay.textContent = `Time remaining: ${minutes}:${seconds.toString().padStart(2, '0')}`;
+// 	function updateTimerDisplay() {
+//         const minutes = Math.floor(timerSeconds / 60);
+//         const seconds = timerSeconds % 60;
+//         timerDisplay.textContent = `Time remaining: ${minutes}:${seconds.toString().padStart(2, '0')}`;
 
-        if (timerSeconds === 0) {
-            clearInterval(timerInterval);
-            codeInput.disabled = true;
-            verifyBtn.disabled = true;
-            Swal.fire({
-                icon: 'info',
-                text: 'OTP expired, Please request a new one'
-            });
-        }
-    }
+//         if (timerSeconds === 0) {
+//             clearInterval(timerInterval);
+//             codeInput.disabled = true;
+//             verifyBtn.disabled = true;
+// 			resendBtn.disabled = false;
+//             Swal.fire({
+//                 icon: 'info',
+//                 text: 'OTP expired, Please request a new one'
+//             });
+//         }
+//     }
 
-	document.getElementById('code').addEventListener('input', function(event) {
-    let input = event.target.value;
+// 	document.getElementById('code').addEventListener('input', function(event) {
+//     let input = event.target.value;
     
    
-    input = input.replace(/\D/g, '');
+//     input = input.replace(/\D/g, '');
 
   
-    if (input.length > 5) {
-        input = input.slice(0, 5);
-    }
+//     if (input.length > 5) {
+//         input = input.slice(0, 5);
+//     }
 
  
-    event.target.value = input;
-});
-    // Start the timer countdown
-    function startTimer() {
-        timerInterval = setInterval(function () {
-            if (timerSeconds > 0) {
-                timerSeconds--;
-                updateTimerDisplay();
-            } else {
-                clearInterval(timerInterval);
-                // Disable OTP input after 1 minute
-                codeInput.disabled = true;
-                Swal.fire({
-                    icon: 'info',
-                    text: 'OTP expired, Please request a new one'
-                });
-            }
-        }, 1000); // Update every second
-    }
+//     event.target.value = input;
+// });
+//     // Start the timer countdown
+//     function startTimer() {
+//         timerInterval = setInterval(function () {
+//             if (timerSeconds > 0) {
+//                 timerSeconds--;
+//                 updateTimerDisplay();
+//             } else {
+//                 clearInterval(timerInterval);
+//                 // Disable OTP input after 1 minute
+//                 codeInput.disabled = true;
+//                 Swal.fire({
+//                     icon: 'info',
+//                     text: 'OTP expired, Please request a new one'
+//                 });
+//             }
+//         }, 1000); // Update every second
+//     }
 
-    // Call startTimer when the page loads
-    startTimer();
+//     // Call startTimer when the page loads
+//     startTimer();
 
-    // Event listener for OTP verification
-    verifyBtn.addEventListener('click', function () {
-        const codeValue = codeInput.value;
+//     // Event listener for OTP verification
+//     verifyBtn.addEventListener('click', function () {
+//         const codeValue = codeInput.value;
 
-        if (codeValue === '') {
-            Swal.fire({
-                icon: 'warning',
-                text: 'Please enter the OTP CODE'
-            });
-        } else if (codeValue !== sentOTP) {
-            Swal.fire({
-                icon: 'warning',
-                text: 'Wrong OTP Code, Please try again'
-            });
-        } else {
+//         if (codeValue === '') {
+//             Swal.fire({
+//                 icon: 'warning',
+//                 text: 'Please enter the OTP CODE'
+//             });
+//         } else if (codeValue !== sentOTP) {
+//             Swal.fire({
+//                 icon: 'warning',
+//                 text: 'Wrong OTP Code, Please try again'
+//             });
+//         } else {
            
-            form.submit();
-        }
-    });
+//             form.submit();
+//         }
+//     });
+
+
 
   
-    codeInput.addEventListener('focus', function () {
-        if (!timerInterval) { 
-            timerSeconds = 60; 
-            updateTimerDisplay();
+//     codeInput.addEventListener('focus', function () {
+//         if (!timerInterval) { 
+//             timerSeconds = 60; 
+//             updateTimerDisplay();
 			
-        }
-    });
+//         }
+//     });
 
   
-    form.addEventListener('keypress', function (e) {
-        if (e.key === 'Enter') {
-            e.preventDefault(); 
-        }
-    });
-});
+//     form.addEventListener('keypress', function (e) {
+//         if (e.key === 'Enter') {
+//             e.preventDefault(); 
+//         }
+//     });
+// });
 
 </script>
 </body>
