@@ -26,8 +26,8 @@
         </div>
     </div>
 
-    <section id="journals" class="d-flex flex-column flex-md-row gap-5">
-        <div class="pub-container mb-3 w-50" id="journal" >
+    <section id="journals" class="d-flex flex-column flex-md-row gap-5" >
+        <div class="pub-container mb-3 w-50" id="journal" style="min-width:300px">
             <div class="journal-title">
                 <h3 id="journal_title">
                 </h3>
@@ -35,7 +35,7 @@
             <div class="journal-details">
                 <p style="text-align: justify;" class="d-none" id="journal_details">
                 </p>
-                <div style="text-align: justify;" id="journal_subject">
+                <div style="text-align: justify;"  id="journal_subject">
                 </div>
                 <h5>Other links</h5>
                 <a href="issues.php?journal_id=1">Gavel</a> |

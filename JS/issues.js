@@ -39,7 +39,7 @@ async function fetchAndGenerateJournal() {
     journalTitle.innerHTML = journalDetails.journal_title
     journalDescription.innerHTML = journalDetails.description.slice(0,300) +"..."
               
-    journalSubject.innerHTML =  `<a href="./browse-articles.php?journal=${journalDetails.journal_id}">View Published Articles</a><br/><br/> <h5>Subject Areas</h5><ul>` + subjectAreasHtml+"</ul>"
+    journalSubject.innerHTML =  `<a href="./browse-articles.php?journal=${journalDetails.journal_id}">View Published Articles</a><br/><br/> <h5 class="d-none d-sm-flex">Subject Areas</h5><ul class="d-none d-sm-block">` + subjectAreasHtml+"</ul>"
     
 }
 
