@@ -170,6 +170,8 @@
 			<div class="verification-content">
 				<h1 class="verification-title">Email Verification</h1>
 				<p class="verification-description">An OTP code was sent to <span class="email-address"><?php echo $vars['email'];?></span></p>
+				<p id="timerDisplay" style="text-align: center; color: red; margin-top: -19px;">Time remaining: 1:00</p>
+				<input type="hidden" id="sentOTP" value="<?php echo $vars['code']; ?>">
 				<form method="post" id="form" class="verification-form">
 					<input type="text" id="code" name="code" placeholder="Enter the 5-digit code" class="form-control">
 					<p class="validation" id="validation"></p>
@@ -196,35 +198,107 @@ function showAlert() {
 <script src="../JS/reusable-header_footer.js"></script>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-        const codeInput = document.getElementById('code');
-        const verifyBtn = document.getElementById('verifyBtn');
-		const form = document.getElementById('form');
 
-        verifyBtn.addEventListener('click', function () {
-            const codeValue = codeInput.value;
+	
+document.addEventListener('DOMContentLoaded', function () {
+    const codeInput = document.getElementById('code');
+    const verifyBtn = document.getElementById('verifyBtn');
+    const form = document.getElementById('form');
+    const sentOTP = document.getElementById('sentOTP').value;
+    const timerDisplay = document.getElementById('timerDisplay');
 
-            if (codeValue === '') {
-               Swal.fire({
-				icon: 'warning',
-				text: 'Please enter the OTP CODE'
-			   });
-            } else if (codeValue.length <= 4) {
-                Swal.fire({
-				icon: 'warning',
-				text: 'Invalid OTP Code, Please Try again'
-			   });
+    let timerSeconds = 60; 
+    let timerInterval;
+
+	function updateTimerDisplay() {
+        const minutes = Math.floor(timerSeconds / 60);
+        const seconds = timerSeconds % 60;
+        timerDisplay.textContent = `Time remaining: ${minutes}:${seconds.toString().padStart(2, '0')}`;
+
+        if (timerSeconds === 0) {
+            clearInterval(timerInterval);
+            codeInput.disabled = true;
+            verifyBtn.disabled = true;
+            Swal.fire({
+                icon: 'info',
+                text: 'OTP expired, Please request a new one'
+            });
+        }
+    }
+
+	document.getElementById('code').addEventListener('input', function(event) {
+    let input = event.target.value;
+    
+   
+    input = input.replace(/\D/g, '');
+
+  
+    if (input.length > 5) {
+        input = input.slice(0, 5);
+    }
+
+ 
+    event.target.value = input;
+});
+    // Start the timer countdown
+    function startTimer() {
+        timerInterval = setInterval(function () {
+            if (timerSeconds > 0) {
+                timerSeconds--;
+                updateTimerDisplay();
             } else {
-                form.submit();
+                clearInterval(timerInterval);
+                // Disable OTP input after 1 minute
+                codeInput.disabled = true;
+                Swal.fire({
+                    icon: 'info',
+                    text: 'OTP expired, Please request a new one'
+                });
             }
-        });
+        }, 1000); // Update every second
+    }
 
-        codeInput.addEventListener('input', function () {
-            let sanitizedValue = this.value.replace(/\D/g, '');
-            sanitizedValue = sanitizedValue.slice(0, 5);
-            this.value = sanitizedValue;
-        });
+    // Call startTimer when the page loads
+    startTimer();
+
+    // Event listener for OTP verification
+    verifyBtn.addEventListener('click', function () {
+        const codeValue = codeInput.value;
+
+        if (codeValue === '') {
+            Swal.fire({
+                icon: 'warning',
+                text: 'Please enter the OTP CODE'
+            });
+        } else if (codeValue !== sentOTP) {
+            Swal.fire({
+                icon: 'warning',
+                text: 'Wrong OTP Code, Please try again'
+            });
+        } else {
+           
+            form.submit();
+        }
     });
+
+  
+    codeInput.addEventListener('focus', function () {
+        if (!timerInterval) { 
+            timerSeconds = 60; 
+            updateTimerDisplay();
+			
+        }
+    });
+
+  
+    form.addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            e.preventDefault(); 
+        }
+    });
+});
+
 </script>
 </body>
 </html>
+
