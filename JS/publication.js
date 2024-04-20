@@ -1,4 +1,6 @@
-document.addEventListener( "DOMCrontentLoaded",fetchJournal());
+document.addEventListener("DOMContentLoaded", () => {
+    fetchJournal();
+});
 function generateJournals(data) {
     const journalsContainer = document.querySelector("#journals");
 
@@ -45,10 +47,28 @@ function generateJournals(data) {
     }).join('');
     console.log(journalsContainer, "d");
 }
+function updateURL(selectedJournals) {
+    let url = new URL(window.location.href);
+    url.searchParams.set('search', selectedJournals); 
+    history.replaceState(null, '', url.toString());
+}
 
-async function fetchJournal() {
+document.getElementById("search-form").addEventListener("submit", function (event) {
+    event.preventDefault();
+    let searchInputValue = document.getElementById("result").value;
+    updateURL(searchInputValue);
+    fetchJournal(searchInputValue);
+});
+
+function getQueryParam(name) {
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    return urlSearchParams.get(name);
+}
+
+async function fetchJournal(searchInputValue) {
+    const searchInput = getQueryParam("search");
     const response = await fetch(
-      `https://web-production-cecc.up.railway.app/api/journal/`,
+      `https://web-production-cecc.up.railway.app/api/journal/?search=${searchInput ? searchInput : ""}`,
       {
         method: "GET",
         headers: {
@@ -62,6 +82,5 @@ async function fetchJournal() {
     }
   
     const data = await response.json();
-    console.log(data.journal)
-    generateJournals(data.journal)
+    generateJournals(data.journal);
 }

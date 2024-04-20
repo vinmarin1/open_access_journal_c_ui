@@ -11,7 +11,7 @@
       </div>
       <div class="links">
         <form action="search-articles.php" method="GET" class="form-inline d-flex gap-1" id="searchForm">
-          <input id="searchInput" name="search" class="form-control mr-sm-2" type="search" placeholder="Search articles..." aria-label="Search">
+          <input id="searchInput" name="search" class="form-control mr-sm-2 border-2" type="search" placeholder="Search by title, keyword, author..." aria-label="Search" style="width:300px">
           <!-- <button type="submit" class="btn btn-outline-secondary my-2 my-sm-0">Search</button> -->
         </form>
         <a href="donation.php" class="link text-muted">

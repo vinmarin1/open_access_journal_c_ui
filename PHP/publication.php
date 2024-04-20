@@ -18,9 +18,23 @@
 <div class="main-container">
     <div class="content-over">
         <div class="cover-content">
-            <p>Home / Journals</p>
-            <h2 class="text-center">All Journals</h2>
+            <p>Home / Browse / Journals</p>
+            <h2 class="">Journals</h2>
         </div>
+        <form action="" method="GET" class="search-form w-50" style="min-width: 20rem;" id="search-form">
+            <div class="search-container d-flex flex-sm-row flex-column align-sm-items-center align-items-start gap-1" >
+                <div style="position:relative;" class="w-100 search-container d-flex flex-sm-row flex-column align-sm-items-center align-items-start gap-1">
+                    <input list="articlesList" id="result" type="text" class="form-control me-2 py-3" placeholder="Search by title, subject areas..."
+                        class="search-bar"
+                        style="height: 30px; font-style: italic; background-color: white;" />
+                </div>  
+                <div class="d-flex gap-1 flex-row-reverse">
+                    <button class="btn tbn-primary btn-md" id="btn3">Search</button>
+                </div>
+            </div>
+            <!-- <div id="result"></div> -->
+
+        </form>
     </div>
     
     <section id="journals" class="d-flex flex-column gap-3">
