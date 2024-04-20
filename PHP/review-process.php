@@ -402,10 +402,10 @@ if ($result !== false && !empty($result)) {
 
                         if ($result !== false) {
                             $accept = $result[0]->accept;
-                            if ($accept === '0') {
+                            if ($accept == '0') {
                                 echo '<button type="button" class="btn tbn-primary btn-md nextBtn" id="acceptBtn" onclick="nextStep()">Accept</button>';
                                 echo '<button type="button" id="btnReject" class="btn tbn-primary btn-md" onclick="rejectInvitation(' . $articleId . ')">Decline</button>';
-                            } elseif ($accept === '1') {
+                            } elseif ($accept == '1') {
                                 echo '<button type="button" class="btn tbn-primary btn-md nextBtn" id="acceptBtn" onclick="nextStep()">Review</button>';
                             } else {
                                 echo 'You have rejected the invitation for this article';
