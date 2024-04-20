@@ -33,9 +33,11 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     
     $coAuthors = isset($_POST['contributor_type_coauthor']) ? $_POST['contributor_type_coauthor'] : array();
     $primaryContacts = isset($_POST['contributor_type_primarycontact']) ? $_POST['contributor_type_primarycontact'] : array();
+    $editor = isset($_POST['contributor_type_editor']) ? $_POST['contributor_type_editor'] : array();
+    $translator = isset($_POST['contributor_type_translator']) ? $_POST['contributor_type_translator'] : array();
     $firstNameC = isset($_POST['firstnameC']) ? $_POST['firstnameC'] : array();
     $lastNameC = isset($_POST['lastnameC']) ? $_POST['lastnameC'] : array();
-    $publicNameC = isset($_POST['publicnameC']) ? $_POST['publicnameC'] : array();
+    // $publicNameC = isset($_POST['publicnameC']) ? $_POST['publicnameC'] : array();
     $orcidsC = isset($_POST['orcidC']) ? $_POST['orcidC'] : array();
     $emailsC = isset($_POST['emailC']) ? $_POST['emailC'] : array();
 
@@ -63,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         'file_name3' => $_FILES['file_name3']['name']
     );
 
-    handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $formattedDate, $title, $category, $abstract, $keywords, $reference, $comment, $coAuthors, $primaryContacts, $firstNameC, $lastNameC, $publicNameC, $orcidsC, $emailsC, $firstName, $lastName, $orc_idAuthor, $email, $authorAdditionalRole);
+    handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $formattedDate, $title, $category, $abstract, $keywords, $reference, $comment, $coAuthors, $primaryContacts, $firstNameC, $lastNameC, $publicNameC, $orcidsC, $emailsC, $firstName, $lastName, $orc_idAuthor, $email, $authorAdditionalRole, $editor, $translator);
 
     Header("Location: author-dashboard.php");
     exit();
@@ -72,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     exit();
 }
 
-function handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $formattedDate, $title, $category, $abstract, $keywords, $reference, $comment, $coAuthors, $primaryContacts, $firstNameC, $lastNameC, $publicNameC, $orcidsC, $emailsC, $firstName, $lastName, $orc_idAuthor, $email, $authorAdditionalRole)
+function handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $formattedDate, $title, $category, $abstract, $keywords, $reference, $comment, $coAuthors, $primaryContacts, $firstNameC, $lastNameC, $publicNameC, $orcidsC, $emailsC, $firstName, $lastName, $orc_idAuthor, $email, $authorAdditionalRole, $editor, $translator)
 {
     global $lastInsertedArticleId;
 
@@ -194,17 +196,25 @@ function handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $
         if (isset($primaryContacts[$key]) && $primaryContacts[$key] == 'Primary Contact') {
             $contributorType[] = 'Primary Contact';
         }
+
+        if (isset($editor[$key]) && $editor[$key] == 'Editor') {
+            $contributorType[] = 'Editor';
+        }
+
+        if (isset($translator[$key]) && $translator[$key] == 'Translator') {
+            $contributorType[] = 'Translator';
+        }
     
         // Combine roles into a comma-separated string
         $contributorTypeString = implode(' , ', $contributorType);
 
-        $sqlCont = "INSERT INTO contributors (article_id, contributor_type, firstname, lastname, publicname, orcid, email) VALUES (:article_id, :contributor_type, :firstname, :lastname, :publicname, :orcid, :email)";    
+        $sqlCont = "INSERT INTO contributors (article_id, contributor_type, firstname, lastname, orcid, email) VALUES (:article_id, :contributor_type, :firstname, :lastname, :orcid, :email)";    
         $paramsCont = array(
             'article_id' => $lastInsertedArticleId,  // You may replace this with the appropriate article_id
             'contributor_type' => $contributorTypeString,
             'firstname' => $firstName,
             'lastname' => $lastNameC[$key],
-            'publicname' => $publicNameC[$key],
+            // 'publicname' => $publicNameC,
             'orcid' => $orcidsC[$key],
             'email' => $emailsC[$key],
         );

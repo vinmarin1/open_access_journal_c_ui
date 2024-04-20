@@ -1073,7 +1073,10 @@ table {
                                                                             <?php foreach ($article_contributors as $article_contributorsval): ?>
                                                                                 <tr>
                                                                                     <td width="5%"><?php echo $article_contributorsval->contributors_id; ?></td>
-                                                                                    <td width="40%"><span class="badge rounded-pill bg-label-primary"><?php echo $article_contributorsval->contributor_type; ?></span></td>
+                                                                                    <td width="40%">
+                                                                                        <span class="badge rounded-pill bg-label-primary"><?php echo $article_contributorsval->contributor_type; ?></span>
+                                                                                        <?php echo $article_contributorsval->lastname; ?>, <?php echo $article_contributorsval->firstname; ?>
+                                                                                    </td>
                                                                                     <td width="40%"><?php echo $article_contributorsval->email; ?></td>
                                                                                     <td width="10%"><?php echo $article_contributorsval->orcid; ?></td>
                                                                                     <td width="5%">
@@ -1749,7 +1752,7 @@ table {
             var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
             var formattedDate = months[oneWeekAdvance.getMonth()] + " " + oneWeekAdvance.getDate() + ", " + oneWeekAdvance.getFullYear();
 
-            var decisionText = <?php echo json_encode($email_content[0]->desicion); ?>;
+            var decisionText = <?php echo json_encode($reviewer_email[0]->decision); ?>;
             var decisionText1 = "Title";
             var decisionText2 = "Abstract";
             var decisionText3 = "The review itself is due on" + formattedDate;
@@ -1758,7 +1761,7 @@ table {
             if (emailContent.trim() !== '') {
                 var delta = JSON.parse(emailContent);
 
-                var reviewDelta = { insert: ' "' + title + '", ' };
+                var reviewDelta = { insert: ' "' + title + '.' + '" ' };
                 var titleDelta = { insert: '"' + title + '"\n' };
                 var abstractDelta = { insert: '' + abstract + '\n' };  
                 var dueDelta = { insert: ' ' + formattedDate + '\n' };  
@@ -1773,7 +1776,7 @@ table {
                 delta.ops.splice(decisionIndex + 1, 0, reviewDelta);
                 delta.ops.splice(decisionIndex1 + 2, 0, titleDelta);
                 delta.ops.splice(decisionIndex2 + 3, 0, abstractDelta);
-                delta.ops.splice(decisionIndex3 + 5, 0, dueDelta);
+                delta.ops.splice(decisionIndex3 + 6, 0, dueDelta);
                 delta.ops.splice(urlIndex + 3, 0, urlDelta);
 
                 quillThree.setContents(delta);
@@ -2176,4 +2179,5 @@ table {
     });
     </script>
 </body>
-</html
+</html>
+

@@ -30,10 +30,10 @@
 			$verification_code_html = '<div style="font-size: 28px; text-align: center; padding: 15px; background-color: #f0f0f0; border-radius: 8px;">' . $vars['code'] . '</div>';
 
 			$message = '
-            <div class="container" style="max-width: 600px; margin: 20px auto; background-color: #ffffff; box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);">
+            <div class="container" style="max-width: 600px; margin: 20px auto; font-family: Arial, sans-serif; border: 1px solid #ccc; border-radius: 8px; overflow: hidden;">
                 <div class="header" style="background-color: #0858A4; color: #ffffff; padding: 20px; text-align: center;">
-					<img class="img-logo" src="https://qcuj.online/images/qcuj-light.png" alt="" style="width: 50px;">
-				<h1 style="color: #fff; text-align: center; margin-bottom: 10px;">Email Verification</h1>
+					<img class="img-logo" src="https://qcuj.online/images/qcu-icon-final.png" alt="" style="width: 60px;">
+					<h1 style="color: #fff; text-align: center; margin-bottom: 10px;">Email Verification</h1>
                 </div>
                 <div class="container-body" style="padding: 20px; text-align: left;">
                     <p>Welcome to <span style="color: #0858A4;">QCUJ</span>! To ensure the security of your account, please verify your email address by using the code below:</p>
@@ -41,8 +41,8 @@
                     <p style="font-style: italic; color: #777777; text-align: left; margin-bottom: 20px;">This code is valid for a limited time.</p>
                     <p style="margin-bottom: 15px; color: #555555; text-align: left; line-height: 1.4;">Please enter the code on the login page to complete the verification process.</p>
                 </div>
-                <div class="footer" style="text-align: center; color: #888888; font-size: 14px; margin-top: 20px;">
-                    <p>Need help? <a href="mailto:qcujournal@gmail.com" style="color: #0858A4;">qcujournal@gmail.com</a> or visit our <a href="https://www.qcuj.online/PHP/contact-us.php" style="color: #0858A4;">Help Center</a>.</p>
+                <div class="footer" style="background-color: #f0f0f0; padding: 10px; text-align: center;">
+                    <p style="font-size: 14px; color: #666; margin-bottom: 10px;">Need help? <a href="mailto:qcujournal@gmail.com" style="color: #0858A4;">qcujournal@gmail.com</a> or visit our <a href="https://www.qcuj.online/PHP/contact-us.php" style="color: #0858A4;">Help Center</a>.</p>
                 </div>
             </div>
 			';
@@ -161,39 +161,27 @@
 <body>
 
 		
-		<header class="header-container" id="header-container">
-		</header>
-
-		<form method="post" id="form">
-		<p class="descript">An OTP code was sent to <span><b><?php echo $vars['email'];?></b></span></p>
-		<div>
-		
+	<header class="header-container" id="header-container">
+	</header>
+	<div class="form-container">
+		<img src="../images/qcu-bg.jpg" class="image-cover">
+		<div class="verification-container">
+			<header class="header-container" id="header-container"></header>
+			<div class="verification-content">
+				<h1 class="verification-title">Email Verification</h1>
+				<p class="verification-description">An OTP code was sent to <span class="email-address" id="email-address"><?php echo $vars['email'];?></span></p>
+				<p id="timerDisplay" style="text-align: center; color: red; margin-top: -19px;">Time remaining: 1:00</p>
+				<input type="hidden" id="sentOTP" value="<?php echo $vars['code']; ?>">
+				<form method="post" id="form" class="verification-form">
+					<input type="text" id="code" name="code" placeholder="Enter the 5-digit code" class="form-control">
+					<p class="validation" id="validation"></p>
+					<button type="button" id="verifyBtn" class="btn btn-primary">Verify</button>
+					<button type="button" id="resendBtn" style=" border: none; background-color: white; margin-top: 5px; width: 99%;">Resend Code</button>
+				</form>
+			</div>
 		</div>
-			<input type="text" id="code" name="code" placeholder="Enter the 5 digit code ">
- 			<br>
-			 <p class="validation" id="validation">
-			<?php
-			if ($_SERVER['REQUEST_METHOD'] == "POST") {
-				if (!check_verified()) {
-					if (empty($_POST['code'])) {
-						echo "*Please enter the 5-digit code sent to your email";
-					} else {
-						echo "";
-					}
-				}
-			}
-			?>
-			</p>
-
-			<br>
-			<input type="button" id="verifyBtn" class="btn btn-primary btn-sm" value="Verify">
-		</form>
+	</div>
 	
-
-
-	
-
-
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" ></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
@@ -209,37 +197,115 @@ function showAlert() {
 </script>
 <script src="../JS/reusable-header.js"></script>
 <script src="../JS/reusable-header_footer.js"></script>
-
+<script src="../JS/verify.js"></script>
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-        const codeInput = document.getElementById('code');
-        const verifyBtn = document.getElementById('verifyBtn');
-		const form = document.getElementById('form');
 
-        verifyBtn.addEventListener('click', function () {
-            const codeValue = codeInput.value;
+	
+// document.addEventListener('DOMContentLoaded', function () {
+//     const codeInput = document.getElementById('code');
+//     const verifyBtn = document.getElementById('verifyBtn');
+//     const form = document.getElementById('form');
+//     const sentOTP = document.getElementById('sentOTP').value;
+//     const timerDisplay = document.getElementById('timerDisplay');
+// 	const resendBtn = document.getElementById('resendBtn');
 
-            if (codeValue === '') {
-               Swal.fire({
-				icon: 'warning',
-				text: 'Please enter the OTP CODE'
-			   });
-            } else if (codeValue.length <= 4) {
-                Swal.fire({
-				icon: 'warning',
-				text: 'Invalid OTP Code, Please Try again'
-			   });
-            } else {
-                form.submit();
-            }
-        });
+//     let timerSeconds = 60; 
+//     let timerInterval;
+// 	resendBtn.disabled = true;
+	
 
-        codeInput.addEventListener('input', function () {
-            let sanitizedValue = this.value.replace(/\D/g, '');
-            sanitizedValue = sanitizedValue.slice(0, 5);
-            this.value = sanitizedValue;
-        });
-    });
+// 	function updateTimerDisplay() {
+//         const minutes = Math.floor(timerSeconds / 60);
+//         const seconds = timerSeconds % 60;
+//         timerDisplay.textContent = `Time remaining: ${minutes}:${seconds.toString().padStart(2, '0')}`;
+
+//         if (timerSeconds === 0) {
+//             clearInterval(timerInterval);
+//             codeInput.disabled = true;
+//             verifyBtn.disabled = true;
+// 			resendBtn.disabled = false;
+//             Swal.fire({
+//                 icon: 'info',
+//                 text: 'OTP expired, Please request a new one'
+//             });
+//         }
+//     }
+
+// 	document.getElementById('code').addEventListener('input', function(event) {
+//     let input = event.target.value;
+    
+   
+//     input = input.replace(/\D/g, '');
+
+  
+//     if (input.length > 5) {
+//         input = input.slice(0, 5);
+//     }
+
+ 
+//     event.target.value = input;
+// });
+//     // Start the timer countdown
+//     function startTimer() {
+//         timerInterval = setInterval(function () {
+//             if (timerSeconds > 0) {
+//                 timerSeconds--;
+//                 updateTimerDisplay();
+//             } else {
+//                 clearInterval(timerInterval);
+//                 // Disable OTP input after 1 minute
+//                 codeInput.disabled = true;
+//                 Swal.fire({
+//                     icon: 'info',
+//                     text: 'OTP expired, Please request a new one'
+//                 });
+//             }
+//         }, 1000); // Update every second
+//     }
+
+//     // Call startTimer when the page loads
+//     startTimer();
+
+//     // Event listener for OTP verification
+//     verifyBtn.addEventListener('click', function () {
+//         const codeValue = codeInput.value;
+
+//         if (codeValue === '') {
+//             Swal.fire({
+//                 icon: 'warning',
+//                 text: 'Please enter the OTP CODE'
+//             });
+//         } else if (codeValue !== sentOTP) {
+//             Swal.fire({
+//                 icon: 'warning',
+//                 text: 'Wrong OTP Code, Please try again'
+//             });
+//         } else {
+           
+//             form.submit();
+//         }
+//     });
+
+
+
+  
+//     codeInput.addEventListener('focus', function () {
+//         if (!timerInterval) { 
+//             timerSeconds = 60; 
+//             updateTimerDisplay();
+			
+//         }
+//     });
+
+  
+//     form.addEventListener('keypress', function (e) {
+//         if (e.key === 'Enter') {
+//             e.preventDefault(); 
+//         }
+//     });
+// });
+
 </script>
 </body>
 </html>
+

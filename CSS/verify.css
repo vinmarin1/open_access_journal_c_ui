@@ -1,67 +1,79 @@
-#form{
-    width: 350px;
-    border: none;
-    height: auto;
-    box-shadow:  0 20px 20px rgba(0, 0, 0, 0.1);
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 80px;
-    padding-top: 5px;
- }
- 
- 
- 
- .descript{
-     text-align: center;
-     margin-bottom: 40px;
- }
- 
- .descript, input[type="text"], input[type="button"]{
-     margin-left: auto;
-     margin-right: auto;
-     width: 90%;
-     height: 35px;
-     padding-left: 10px;
-     outline: none;
-     margin-left: 20px;
-   
- 
- }
+/* verify.css */
 
- input[type="button"]{
+body {
+    background-color: #f8f9fa; /* optional: change to your preferred background color */
+}
+.image-cover {
+    height: 100%;
+    position: absolute;
+    top:0;
+    left: 0;
+    z-index:-1;
+    opacity: 88%;
+    /* max-width: 50rem; */
+    width:100%;
+    filter: brightness(20%);
+    object-fit: cover;
+}
+.form-container{
+    width: 100%;
+    height: 84vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2%;
+    /* background-image: url("../images/qcu-bg.jpg"); */
+    position: relative;
+}
+.verification-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.verification-title {
+    font-size: 24px;
+    text-align: center;
     margin-bottom: 20px;
- }
- 
- .descript{
-     font-size: 20px;
-     margin-top: 40px;
-     
- }
- 
- .descript span{
-     font-size: 15px;
-     
-     
- }
- input[type="text"]{
-     margin-top: 20px;
-     text-align: center;
- }
- 
- 
- input[type="text"]:focus{
-     outline: 1px solid;
-     
- }
- 
- .validation{
-     color: red;
-     text-align: center;
-     margin-top: 10px;
-     margin-bottom: -5px;
- }
- 
- 
- input[type="submit"]{
-     margin-bottom: 40px;
- }
+}
+
+.verification-description {
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.email-address {
+    font-weight: bold;
+}
+
+.form-control {
+    width: 100%;
+    height: 40px;
+    padding: 0 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    margin-bottom: 20px;
+}
+input[type="text"]{
+    margin-top: 20px;
+    text-align: center;
+}
+.validation {
+    color: red;
+    font-size: 14px;
+    text-align: center;
+    margin-top: -10px;
+    margin-bottom: 20px;
+}
+
+.btn-primary {
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+}

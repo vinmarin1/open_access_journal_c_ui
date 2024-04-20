@@ -647,7 +647,7 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 												$birth_date = $user->birth_date;
 
 												// Output the selected option based on the user's gender
-												echo '<input type="date" id="birthdate" name="birthdate" class="date-box" value="' . $birth_date . '" required>';
+												echo '<input type="date" id="birthdate" name="birthdate" class="date-box" value="' . $birth_date . '" max="2010-12-31" required>';
 
 											} else {
 												echo "User not found.";

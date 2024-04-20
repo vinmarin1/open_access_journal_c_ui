@@ -227,7 +227,8 @@ $id = $_SESSION['id'];
                       $itemsPerPage = 10;
                       $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
               
-                      $query = "SELECT * FROM article WHERE `author_id` = :author_id LIMIT " . ($currentPage - 1) * $itemsPerPage . ", $itemsPerPage";
+                      // $query = "SELECT * FROM article WHERE `author_id` = :author_id LIMIT " . ($currentPage - 1) * $itemsPerPage . ", $itemsPerPage";
+                      $query = "SELECT * FROM article WHERE `author_id` = :author_id AND status <> 0 LIMIT " . ($currentPage - 1) * $itemsPerPage . ", $itemsPerPage";
                       $vars = array(':author_id' => $id);
               
                       $result = database_run($query, $vars);
@@ -334,11 +335,10 @@ $id = $_SESSION['id'];
                   $itemsPerPageReviewer = 10;
                   $currentPage = isset($_GET['page']) ? $_GET['page'] : 1;
                   
-                  $queryReviewer = "SELECT reviewer_assigned.*, article.*
-                                    FROM reviewer_assigned 
-                                    JOIN article ON article.article_id = reviewer_assigned.article_id 
-                                    WHERE article.status < 5 AND reviewer_assigned.accept = 1 AND reviewer_assigned.answer = 1 AND  reviewer_assigned.author_id = :author_id 
-                                    LIMIT " . ($currentPage - 1) * $itemsPerPageReviewer . ", $itemsPerPageReviewer";
+                  // $queryReviewer = "SELECT reviewer_assigned.*, article.* FROM reviewer_assigned JOIN article ON article.article_id = reviewer_assigned.article_id WHERE article.status < 5 AND reviewer_assigned.accept = 1 AND reviewer_assigned.answer = 1 AND  reviewer_assigned.author_id = :author_id LIMIT " . ($currentPage - 1) * $itemsPerPageReviewer . ", $itemsPerPageReviewer";
+
+                  $queryReviewer = "SELECT reviewer_assigned.*, article.* FROM reviewer_assigned JOIN article ON article.article_id = reviewer_assigned.article_id WHERE article.status < 5 AND reviewer_assigned.accept = 1 AND reviewer_assigned.answer = 1 AND  reviewer_assigned.author_id = :author_id AND article.status <> 0 LIMIT " . ($currentPage - 1) * $itemsPerPageReviewer . ", $itemsPerPageReviewer";
+                    
                   
                   $varsReviewer = array(':author_id' => $id);
                   
@@ -456,7 +456,7 @@ $id = $_SESSION['id'];
                   $sqlArchive = "SELECT reviewer_assigned.*, article.*
                                     FROM reviewer_assigned 
                                     JOIN article ON article.article_id = reviewer_assigned.article_id 
-                                    WHERE article.status < 5  AND  reviewer_assigned.author_id = :author_id ORDER BY reviewer_assigned.date_issued DESC
+                                    WHERE article.status < 5  AND  reviewer_assigned.author_id = :author_id AND article.status <> 0 ORDER BY reviewer_assigned.date_issued DESC
                                     LIMIT " . ($currentPage - 1) * $itemsPerPageArchive . ", $itemsPerPageArchive";
                   
                   $varsAchive = array(':author_id' => $id);
