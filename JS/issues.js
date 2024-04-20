@@ -28,15 +28,19 @@ async function fetchAndGenerateJournal() {
     
     const data = await response.json();
     const journalDetails = data.journalDetails
-
+    const subjectAreasHtml = journalDetails.subject_areas.split(",").map((item) => `<li>${item}</li>`).join('');
     // const journalName = document.querySelector("#journal_name")
     const journalTitle = document.querySelector("#journal_title")
     const journalDescription = document.querySelector("#journal_details")
+    const journalSubject = document.querySelector("#journal_subject")
     journalDescription.innerHTML=""
 
     // journalName.innerHTML = journalDetails.journal
     journalTitle.innerHTML = journalDetails.journal_title
-    journalDescription.innerHTML = journalDetails.description
+    journalDescription.innerHTML = journalDetails.description.slice(0,300) +"..."
+              
+    journalSubject.innerHTML =  `<a href="./browse-articles.php?journal=${journalDetails.journal_id}">View Published Articles</a><br/><br/> <h5 class="d-none d-sm-flex">Subject Areas</h5><ul class="d-none d-sm-block">` + subjectAreasHtml+"</ul>"
+    
 }
 
 
@@ -70,7 +74,7 @@ function renderIssuesContent(issues) {
     return issues.map(issue => `
     <div class="issue" onclick="window.location.href='all-issues.php?issue=${issue.issues_id}'" >
         <img src='../Files/cover-image/${issue.cover_image}' alt="Journal">
-        <p style="color: #285581;">${issue.title}<br><span style="color: black">${issue.year}</span></p>
+        <p style="color: #285581;" class="my-2 small">${issue.title}<br><button class="btn btn-outline-primary">View Issue</button></p>
     </div>
 `).join('');
    
