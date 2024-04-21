@@ -232,7 +232,7 @@ $(document).ready(function () {
             $("#login-spinner").hide();
             $("#login-text").show();
             startCountdown(advancedAttempt.remainingSeconds);
-            countdownActive = true; // Set countdown as active
+            countdownActive = true;
 
             function startCountdown(remainingSeconds) {
               var countdownInterval = setInterval(function () {
@@ -249,9 +249,6 @@ $(document).ready(function () {
                   $("#password").val("");
                   $("#login-button").prop("disabled", false);
                   countdownActive = false;
-                  setTimeout(function () {
-                    location.reload();
-                  }, 1000);
                 }
               }, 1000);
             }
@@ -325,7 +322,7 @@ $(document).ready(function () {
                             $("#countDown").text("");
                             $("#email").prop("disabled", false);
                             $("#password").prop("disabled", false);
-                            $("#login-button").prop("disabled", true);
+                            $("#login-button").prop("disabled", false);
                             failedAttempts = 0;
                           }
                           remainingSeconds--;
