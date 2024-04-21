@@ -336,7 +336,7 @@ $donationDataJson = json_encode($donationData);
                             <div class="card-body" id="cardBody2"> 
                                 <div class="row align-items-center">
                                     <div class="col">
-                                        <h5 class="card-title mb-2">Journal Comparison</h5>
+                                        <h5 class="card-title mb-2">Article Status Comparison</h5>
                                     </div>
                                     <div class="col-auto">
                                         <div class="dropdown" style="margin-right: -10px;">
