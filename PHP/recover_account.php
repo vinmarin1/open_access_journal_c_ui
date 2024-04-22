@@ -1,6 +1,6 @@
-<!-- <?php
-// session_start();
-?> -->
+<?php
+session_start();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -193,10 +193,10 @@ document.getElementById('changePasswordBtn').addEventListener('click', function 
             data: { email: storedEmail, password: password.value },
             success: function (response) {
                 alert('Successfully changed your password');
-                firstStepForm.style.display = 'none';
-                secondStepForm.style.display = 'none';
-                thirdStepForm.style.display = 'none';
-                finalStepForm.style.display = 'block';
+                // firstStepForm.style.display = 'none';
+                // secondStepForm.style.display = 'none';
+                // thirdStepForm.style.display = 'none';
+                // finalStepForm.style.display = 'block';
                 thirdStepForm.submit();
   		window.location.href='../PHP/login.php';
             },
@@ -205,6 +205,10 @@ document.getElementById('changePasswordBtn').addEventListener('click', function 
             },
             complete: function () {
                 // Hide the spinner and restore button text
+                firstStepForm.style.display = 'none';
+                secondStepForm.style.display = 'none';
+                thirdStepForm.style.display = 'none';
+                finalStepForm.style.display = 'block';
                 spinnerSpinner2.style.display = 'none';
                 changePasswordBtn.innerHTML = 'Change Password';
             }
