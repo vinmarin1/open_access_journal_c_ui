@@ -71,7 +71,7 @@ if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
 
                 <div id="thirdStep">
                     <form id="thirdStepForm">
-                        <p class="h2 pt-5">Change password</p>
+                        <p class="h2 pt-5">Update Password</p>
                         <div class="inputContainer">
                             
                                 
