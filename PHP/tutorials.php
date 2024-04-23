@@ -97,10 +97,10 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
         </section>
         <div class="main" id="tutorial-on-publication-container" style="display:none">
             <div class="category w-100">
-            <div class="mb-4">
-                <img src="../images/tutorial-on-publication.png" alt="Tutorial Image" class="tutorial-image">
-                <h2 style="font-size:32px !important">Submit a Paper</h2>
-            </div>
+                <div class="mb-4">
+                    <img src="../images/tutorial-on-publication.png" alt="Tutorial Image" class="tutorial-image">
+                    <h2 style="font-size:32px !important">Submit a Paper</h2>
+                </div>
                 <div class="s-1 animated fadeInLeft">
                     <p>At QCUJ, we value your contributions and are dedicated to facilitating a smooth and rewarding publication journey. To assist you every step of the way, we've curated a comprehensive tutorial to provide clear guidance, ensuring that authors feel confident and empowered throughout their submission experience. Join us in sharing knowledge and advancing scholarship – submit your manuscript today and let's embark on this enriching journey together.</p> 
                     <ul>
@@ -188,95 +188,126 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     </ol>
                     <img src="../images/authorsview.png" alt="" class="img-reg">
                 </div>
+                <div class="feedback-form">
+                    <h2>Feedback Form</h2>
+                    <form action="#" method="post">
+                        <p>We value your feedback! Please take a moment to share your thoughts about the tutorial:</p>
+                        <label for="rating">Rate the tutorial:</label>
+                        <div class="rating">
+                            <input type="radio" id="star5" name="rating" value="5"><label for="star5">☆</label>
+                            <input type="radio" id="star4" name="rating" value="4"><label for="star4">☆</label>
+                            <input type="radio" id="star3" name="rating" value="3"><label for="star3">☆</label>
+                            <input type="radio" id="star2" name="rating" value="2"><label for="star2">☆</label>
+                            <input type="radio" id="star1" name="rating" value="1"><label for="star1">☆</label>
+                        </div>
+                        <label for="feedback">Your feedback:</label>
+                        <textarea id="feedback" name="feedback" placeholder="Let us know what you liked or how we can improve..."></textarea>
+                        <input type="submit" value="Submit">
+                    </form>
+                </div>
             </div>
     	</div>
         <div class="main" id="tutorial-on-review-container" style="display: none;">
-                <div class="category w-100">
-                    <div class="mb-4">
-                        <img src="../images/tutorial-on-review.png" alt="Tutorial Image" class="tutorial-image">
-                        <h2 style="font-size:32px !important">Become a Reviewer</h2>
-                    </div>
-                    <div class="s-1">
-                        <p>Welcome to our Publication Tutorial for QCUJ. This guide simplifies the process, ensuring a smooth experience for all contributors. Let's make your publication journey 
-                            hassle-free – get started now! Begin your submission and share your insights with our scholarly community!</p>
-                        <ul>
-                            <li>Before you can review, you must register first.  <a href="tutorials.php#tutorial-on-registration">Learn How to register</a></li> 
-                        </ul>
-                    </div>
-                    <div class="s-2">
-                        <h3>Select Article</h3>
-                        <p>In this page, You will see all your Submissions and All your reviews. You may proceed as a Reviewer.</p>
-                        <ol type="1">
-                            <li>Click the menu at the top right where you can read your name and then click My Contributions.</li>
-                            <li>Click the ‘All Invitation’ to see the list of Articles and their status.</li>
-                            <li>Select one Article that you want to review.</li>
-                        </ol>
-                        <img src="../images/select-article.png" alt="" class="img-reg">
-                    </div>
-                    <div class="s-2">
-                        <h3>Review the Article</h3>
-                        <ol type="1">
-                            <li>Decide if you're going to accept or decline the article. </li>
-                            <li>A message box will show up to ask if you will accept the invitation.</li>
-                        </ol>
-                        <img src="../images/review-article.png" alt="" class="img-reg">
-                    </div>
-                    <div class="s-2">
-                        <h3>Review Steps and Guidelines</h3>
-                        <p>After the reviewer decide on accepting this Article, They can answer the Review Guidelines.</p>
-                        <ol type="1">
-                            <li>Read the following Rules and Guidelines by reviewing this Article.</li>
-                            <li>After they read the Rules and Guidelines, The Reviewer may proceed on the checkbox below before they click the “next” button.</li>
-                        </ol>
-                        <img src="../images/step3a.png" alt="" class="img-reg">
-                    </div>
-                    <div class="s-2">
-                        <h3>Review Form</h3>
-                        <p>The Reviewer are done to read the steps and Guidelines, They will now see the Review Form. The Reviewer should answer all the Questions.</p>
-                        <ol type="1">
-                            <li>There is also a textbox below of each questions where the Reviewer can leave a comment.</li>
-                            <li>Below of these Questionnaire, The Reviewer can click the ‘Submit’ Button if they are done.</li>
-                            <li>A message box will show up and ask you ‘Submit it now?’. </li>
-                            
-                        </ol>
-                        <img src="../images/step3z.jpg" alt="" class="img-reg">
-                    </div>
-                    <div class="s-2">
-                        <h3>Reviewed Article</h3>
-                        <p>This is the round 1 in reviewing an Article.</p>
-                        <ol type="1">
-                            <li>The Reviewer can view the status and Updates of their reviewed article.</li>
-    
-                        </ol>
-                        <img src="../images/reviewed-article.png" alt="" class="img-reg">
-                    </div>
+            <div class="category w-100">
+                <div class="mb-4">
+                    <img src="../images/tutorial-on-review.png" alt="Tutorial Image" class="tutorial-image">
+                    <h2 style="font-size:32px !important">Become a Reviewer</h2>
                 </div>
+                <div class="s-1">
+                    <p>Welcome to our Publication Tutorial for QCUJ. This guide simplifies the process, ensuring a smooth experience for all contributors. Let's make your publication journey 
+                        hassle-free – get started now! Begin your submission and share your insights with our scholarly community!</p>
+                    <ul>
+                        <li>Before you can review, you must register first.  <a href="tutorials.php#tutorial-on-registration">Learn How to register</a></li> 
+                    </ul>
+                </div>
+                <div class="s-2">
+                    <h3>Select Article</h3>
+                    <p>In this page, You will see all your Submissions and All your reviews. You may proceed as a Reviewer.</p>
+                    <ol type="1">
+                        <li>Click the menu at the top right where you can read your name and then click My Contributions.</li>
+                        <li>Click the ‘All Invitation’ to see the list of Articles and their status.</li>
+                        <li>Select one Article that you want to review.</li>
+                    </ol>
+                    <img src="../images/select-article.png" alt="" class="img-reg">
+                </div>
+                <div class="s-2">
+                    <h3>Review the Article</h3>
+                    <ol type="1">
+                        <li>Decide if you're going to accept or decline the article. </li>
+                        <li>A message box will show up to ask if you will accept the invitation.</li>
+                    </ol>
+                    <img src="../images/review-article.png" alt="" class="img-reg">
+                </div>
+                <div class="s-2">
+                    <h3>Review Steps and Guidelines</h3>
+                    <p>After the reviewer decide on accepting this Article, They can answer the Review Guidelines.</p>
+                    <ol type="1">
+                        <li>Read the following Rules and Guidelines by reviewing this Article.</li>
+                        <li>After they read the Rules and Guidelines, The Reviewer may proceed on the checkbox below before they click the “next” button.</li>
+                    </ol>
+                    <img src="../images/step3a.png" alt="" class="img-reg">
+                </div>
+                <div class="s-2">
+                    <h3>Review Form</h3>
+                    <p>The Reviewer are done to read the steps and Guidelines, They will now see the Review Form. The Reviewer should answer all the Questions.</p>
+                    <ol type="1">
+                        <li>There is also a textbox below of each questions where the Reviewer can leave a comment.</li>
+                        <li>Below of these Questionnaire, The Reviewer can click the ‘Submit’ Button if they are done.</li>
+                        <li>A message box will show up and ask you ‘Submit it now?’. </li>
+                        
+                    </ol>
+                    <img src="../images/step3z.jpg" alt="" class="img-reg">
+                </div>
+                <div class="s-2">
+                    <h3>Reviewed Article</h3>
+                    <p>This is the round 1 in reviewing an Article.</p>
+                    <ol type="1">
+                        <li>The Reviewer can view the status and Updates of their reviewed article.</li>
+
+                    </ol>
+                    <img src="../images/reviewed-article.png" alt="" class="img-reg">
+                </div>
+                <div class="feedback-form">
+                    <h2>Feedback Form</h2>
+                    <form action="#" method="post">
+                        <p>We value your feedback! Please take a moment to share your thoughts about the tutorial:</p>
+                        <label for="rating">Rate the tutorial:</label>
+                        <div class="rating">
+                            <input type="radio" id="star5" name="rating" value="5"><label for="star5">☆</label>
+                            <input type="radio" id="star4" name="rating" value="4"><label for="star4">☆</label>
+                            <input type="radio" id="star3" name="rating" value="3"><label for="star3">☆</label>
+                            <input type="radio" id="star2" name="rating" value="2"><label for="star2">☆</label>
+                            <input type="radio" id="star1" name="rating" value="1"><label for="star1">☆</label>
+                        </div>
+                        <label for="feedback">Your feedback:</label>
+                        <textarea id="feedback" name="feedback" placeholder="Let us know what you liked or how we can improve..."></textarea>
+                        <input type="submit" value="Submit">
+                    </form>
+                </div>
+            </div>
         </div>
         <div class="main" id="tutorial-on-registration-container" style="display: none;">
-                <div class="category w-100">
-                    <div class="mb-4">
-                        <img src="../images/tutorial-contributor.png" alt="Tutorial Image" class="tutorial-image">
-                        <h2 style="font-size:32px !important">Be a Contributor</h2>
-                    </div>
-                    <div class="s-1">
-                  
-                   
+            <div class="category w-100">
+                <div class="mb-4">
+                    <img src="../images/tutorial-contributor.png" alt="Tutorial Image" class="tutorial-image">
+                    <h2 style="font-size:32px !important">Be a Contributor</h2>
+                </div>
+                <div class="s-1">                
                     <p>Become an integral part of QCUJ's scholarly community by exploring various avenues for participation.Whether you're lending your expertise as a reviewer, sharing groundbreaking research as an author, supporting our mission through donations, or actively engaging in scholarly discourse, your efforts are recognized through our <b>contributions points system, badges, and certificates</b>.<br/> Join us in cultivating a culture of knowledge exchange and academic excellence, fostering inclusivity and collaboration across the global academic landscape. Together, let's elevate accessibility and impact within scholarly research through QCUJ</p><br/>
-                    <div class="d-flex justify-content-center">
-                        <div class="d-flex flex-column justify-content-between text-center">
+                <div class="d-flex justify-content-center">
+                    <div class="d-flex flex-column justify-content-between text-center">
                         <img width="200px" src="../images/thirdd_review_badges.png"/>
                         <span>Review Badge</span>
-                        </div>
-                        <div class="d-flex flex-column justify-content-between text-center">
+                    </div>
+                    <div class="d-flex flex-column justify-content-between text-center">
                         <img width="200px" src="../images/third_publication_badges.png"/>
                         <span>Publication Badge</span>
-                        </div>
-                        <div class="d-flex flex-column justify-content-between text-center">
+                    </div>
+                    <div class="d-flex flex-column justify-content-between text-center">
                         <img width="166px" src="../images/third_donation_badges.png"/>
                         <span>Donation Badge</span>
-                        </div>
                     </div>
-                    
+                </div>
                 </div>
                 <div class="s-2">
                     <h3>Registering with Open Access Journal</h3>
@@ -311,8 +342,25 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                         <li>Click save if you are done.</li>
                     </ol>
                     <img src="../images/Profile.png" alt="" class="img-reg">
-                     </div>
                 </div>
+                <div class="feedback-form">
+                    <h2>Feedback Form</h2>
+                    <form action="#" method="post">
+                        <p>We value your feedback! Please take a moment to share your thoughts about the tutorial:</p>
+                        <label for="rating">Rate the tutorial:</label>
+                        <div class="rating">
+                            <input type="radio" id="star5" name="rating" value="5"><label for="star5">☆</label>
+                            <input type="radio" id="star4" name="rating" value="4"><label for="star4">☆</label>
+                            <input type="radio" id="star3" name="rating" value="3"><label for="star3">☆</label>
+                            <input type="radio" id="star2" name="rating" value="2"><label for="star2">☆</label>
+                            <input type="radio" id="star1" name="rating" value="1"><label for="star1">☆</label>
+                        </div>
+                        <label for="feedback">Your feedback:</label>
+                        <textarea id="feedback" name="feedback" placeholder="Let us know what you liked or how we can improve..."></textarea>
+                        <input type="submit" value="Submit">
+                    </form>
+                </div>
+            </div>
         </div>
     </main>
 
