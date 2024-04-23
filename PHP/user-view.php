@@ -75,7 +75,7 @@ $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
                     if ($result !== false && !empty($result[0]->profile_pic)) {
                         $profilePicPath = $result[0]->profile_pic;
                     
-                        echo '<img src="' . $profilePicPath . '" alt="Profile Picture" style="width: 150px; height: 150px">';
+                        echo '<img src="' . $profilePicPath . '" alt="Profile Picture" class="profile-pic">';
                     } else {
                         echo '<div class="profile-pic-container">';
                         echo '<img src="../images/profile.jpg" alt="Profile Picture" class="profile-pic" id="profileImage">';

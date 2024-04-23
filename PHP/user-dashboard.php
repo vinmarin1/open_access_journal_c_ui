@@ -304,7 +304,7 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 					</div>
 				</div>
 
-				<?php
+				<!-- <?php
 					if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 					$sqlMode = "SELECT public_private_profile FROM author WHERE author_id = :author_id";
 					
@@ -330,7 +330,7 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 						echo "Something went wrong";
 					}
 					}
-				?>
+				?> -->
 		
 
 				<!-- <div class="profile-badge">
