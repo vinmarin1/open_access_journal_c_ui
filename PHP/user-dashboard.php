@@ -1055,8 +1055,7 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 						
 							</tr>
 						</thead>
-						<tbody>
-							<tr>	
+						<tbody>	<tr>	
 								<?php 
 									$sqlSelect = "SELECT a.article_id, a.title, a.date, COUNT(CASE WHEN l.type = 'read' THEN 1 END) AS read_count, 
 									COUNT(CASE WHEN l.type = 'support' THEN 1 END) AS support_count FROM article a
@@ -1068,7 +1067,9 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 									$sqlRun = database_run($sqlSelect, $params);
 
 									if ($sqlRun) {
+									
 										foreach ($sqlRun as $row) {
+											echo '<tr>';
 											$title = $row->title;
 											$date = $row->date;
 											$read = $row->read_count; 
@@ -1077,6 +1078,7 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 											echo '<td>' . $date . '</td>';
 											echo '<td>' . $read . '</td>';
 											echo '<td>' . $support . '</td>';
+											echo '</tr>';
 										}
 									} else {
 										echo '';
