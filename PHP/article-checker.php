@@ -89,27 +89,30 @@
     <div class="recommendation-article" style="padding:2% 8%">
       <div class="d-flex flex-column gap-2 pb-2 w-100">
         <h4 class="mb-3">Journal Results: <small> <span class="text-muted" id="rank"></span></small></h4>
-        <div class="card d-flex flex-row p-4 mt-2 mb-4 gap-4" id="journal-results">
-          <div class="article" id="gavelCont" style="border-bottom:4px solid var(--form-heading)">
+        <div class="card d-flex flex-row p-4 mt-2 mb-4 gap-4" style="flex-wrap:wrap" id="journal-results">
+          <div class="article" id="gavelCont" style="border-bottom:4px solid var(--form-heading);text-align:center">
             <h4 style="text-align:center" id="gavelRound"></h4>
             <h6 id="gavel" style="text-align:center"></h6>
             
-            <p style="text-align:center">The Gavel</p>
+            <p style="text-align:center">The Gavel: Journal of Social Sciences</p>
+            <a href="publication.php?search=gavel" target="blank">View Journal</a>
             
           </div>
-          <div class="article" id="lampCont" style="border-bottom:4px solid var(--form-heading)">
+          <div class="article" id="lampCont" style="border-bottom:4px solid var(--form-heading);text-align:center">
             <h4 style="text-align:center" id="lampRound"></h4>
           
             <h6 id="lamp" style="text-align:center"></h6>
-            <p style="text-align:center">The Lamp</p>
+            <p style="text-align:center">The Lamp: Journal of <br/>Education</p>
+            <a href="publication.php?search=lamp" target="blank">View Journal</a>
             
             
           </div>
-          <div class="article" id="starCont" style="border-bottom:4px solid var(--form-heading)">
+          <div class="article" id="starCont" style="border-bottom:4px solid var(--form-heading);text-align:center">
             <h4 style="text-align:center" id="starRound"></h4>
           
             <h6 style="text-align:center" id="star"></h6>
-            <p style="text-align:center">The Star</p>
+            <p style="text-align:center">The Star: Journal of Science and Technology</p>
+            <a href="publication.php?search=star" target="blank">View Journal</a>
           </div>
         </div>
         <h4 class="mt-4">Similar Articles:</h4>

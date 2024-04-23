@@ -81,7 +81,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     placeholder=""
                 />
             </div>
-            <div class="mb-3 d-flex flex-column">
+            <div class="mb-3 d-flex flex-column d-none">
                 <label for="" class="form-label">None of these words</label>
                 <input
                     type="text"
