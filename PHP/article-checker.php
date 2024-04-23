@@ -90,14 +90,14 @@
       <div class="d-flex flex-column gap-2 pb-2 w-100">
         <h4 class="mb-3">Journal Results: <small> <span class="text-muted" id="rank"></span></small></h4>
         <div class="card d-flex flex-row p-4 mt-2 mb-4 gap-4" id="journal-results">
-          <div class="article" id="gavelCont">
+          <div class="article" id="gavelCont" style="border-bottom:4px solid var(--form-heading)">
             <h4 style="text-align:center" id="gavelRound"></h4>
             <h6 id="gavel" style="text-align:center"></h6>
             
             <p style="text-align:center">The Gavel</p>
             
           </div>
-          <div class="article" id="lampCont">
+          <div class="article" id="lampCont" style="border-bottom:4px solid var(--form-heading)">
             <h4 style="text-align:center" id="lampRound"></h4>
           
             <h6 id="lamp" style="text-align:center"></h6>
@@ -105,7 +105,7 @@
             
             
           </div>
-          <div class="article" id="starCont">
+          <div class="article" id="starCont" style="border-bottom:4px solid var(--form-heading)">
             <h4 style="text-align:center" id="starRound"></h4>
           
             <h6 style="text-align:center" id="star"></h6>
