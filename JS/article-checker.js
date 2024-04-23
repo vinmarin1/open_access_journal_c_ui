@@ -65,9 +65,10 @@ async function renderRecommended(data) {
   articleContainer.innerHTML=""
   
   if (data.length < 1){
-    articleContainer.classList.add("d-none")
+    // articleContainer.classList.add("d-none")
     console.log("hello")
   }
+  articleContainer.classList.add("d-flex")
   await data.splice(0,10).forEach((article) => {
     const articleElement = document.createElement("div");
     articleElement.classList.add("article","d-block");

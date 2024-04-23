@@ -833,7 +833,7 @@ $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
 											echo '<td>' . $read . '</td>';
 											echo '<td>' . $support . '</td>';
 										}
-                                        echo '</tr>;'
+                                        echo '</tr>;';
 									} else {
 										echo '';
 									}

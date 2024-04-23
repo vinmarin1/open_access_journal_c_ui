@@ -34,7 +34,7 @@
   <div class="content-over" style="height:10em !important">
         <div class="cover-content">
             <!-- <p>Home / Journal and RRL Finder</p> -->
-            <h2 class="">Journal Classifier for your research</h2>
+            <h2 class="">Find a Journal for your Article</h2>
             <span>Enter your title, abstract, and let our AI-driven engine do the rest. </span>
             
         </div>
@@ -91,14 +91,14 @@
         <h4 class="mb-3">Journal Results: <small> <span class="text-muted" id="rank"></span></small></h4>
         <div class="card d-flex flex-row p-4 mt-2 mb-4 gap-4" id="journal-results">
           <div class="article" id="gavelCont">
-            <h5 style="text-align:center" id="gavelRound"></h5>
+            <h4 style="text-align:center" id="gavelRound"></h4>
             <h6 id="gavel" style="text-align:center"></h6>
             
             <p style="text-align:center">The Gavel</p>
             
           </div>
           <div class="article" id="lampCont">
-            <h5 style="text-align:center" id="lampRound"></h5>
+            <h4 style="text-align:center" id="lampRound"></h4>
           
             <h6 id="lamp" style="text-align:center"></h6>
             <p style="text-align:center">The Lamp</p>
@@ -106,7 +106,7 @@
             
           </div>
           <div class="article" id="starCont">
-            <h5 style="text-align:center" id="starRound"></h5>
+            <h4 style="text-align:center" id="starRound"></h4>
           
             <h6 style="text-align:center" id="star"></h6>
             <p style="text-align:center">The Star</p>
