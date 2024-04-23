@@ -1108,7 +1108,7 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 							</tr>
 						</thead>
 						<tbody>
-							<tr>	
+							
 								<?php
 									$sql = "SELECT user_points.email, user_points.action_engage, article.article_id, article.title, article.date, article.author, article.abstract, journal.journal, COUNT(CASE WHEN logs.type = 'read' THEN 1 END) AS read_count, COUNT(CASE WHEN logs.type = 'support' THEN 1 END) AS support_count FROM user_points JOIN article ON user_points.article_id = article.article_id JOIN journal ON journal.journal_id = article.journal_id LEFT JOIN logs ON article.article_id = logs.article_id WHERE user_points.email = :email
 									AND (user_points.action_engage = 'Co-Author' OR user_points.action_engage = 'Primary Contact') AND article.status = 1 GROUP BY article.article_id";
@@ -1116,6 +1116,7 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 
 									if($result) {
 										foreach($result as $row) {
+											echo '<tr>';
 											$title = $row->title;
 											$date = $row->date;
 											$read = $row->read_count; 
@@ -1125,11 +1126,12 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 											echo '<td>' . $date . '</td>';
 											echo '<td>' . $read . '</td>';
 											echo '<td>' . $support . '</td>';
+											echo '</tr>';
 										}
 									}
 								?>
 
-							</tr>
+							
 						</tbody>
 					</table>
 				</div>

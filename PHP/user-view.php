@@ -809,7 +809,7 @@ $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                            
                                     
                                 <?php 
 									$sqlSelect = "SELECT a.article_id, a.title, a.date, COUNT(CASE WHEN l.type = 'read' THEN 1 END) AS read_count, 
@@ -823,6 +823,7 @@ $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
 
 									if ($sqlRun) {
 										foreach ($sqlRun as $row) {
+                                            echo '<tr>';
 											$title = $row->title;
 											$date = $row->date;
 											$read = $row->read_count; 
@@ -832,13 +833,14 @@ $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
 											echo '<td>' . $read . '</td>';
 											echo '<td>' . $support . '</td>';
 										}
+                                        echo '</tr>;'
 									} else {
 										echo '';
 									}
 
 								
 								?>
-                                </tr>
+                               
                             </tbody>
                         </table>
                     </div>
@@ -859,7 +861,7 @@ $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                             
                                     <?php
                                     $sql = "SELECT article.article_id, article.title, article.date, user_points.email, user_points.action_engage, 
                                             COUNT(CASE WHEN logs.type = 'read' THEN 1 END) AS read_count, 
@@ -877,6 +879,7 @@ $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
 
                                     if($result) {
                                         foreach($result as $row) {
+                                            echo '<tr>';
                                             $article_id = $row->article_id;
                                             $title = $row->title;
                                             $date = $row->date;
@@ -893,9 +896,10 @@ $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
                                             echo '<td>' . $support_count . '</td>';
                                             echo '</tr>';
                                         }
+                                        echo '</tr>';
                                     }
                                     ?>
-                                </tr>
+                               
 
                             </tbody>
                         </table>
