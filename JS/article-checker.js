@@ -9,27 +9,33 @@ const articleId = getQueryParam("articleId");
 async function fetchArticleDetails() {
   const title = document.getElementById("title").value;
   const abstract = document.getElementById("abstract").value;
-  const any = document.getElementById("any").value;
-  try {
-    const response = await fetch(
-      "https://web-production-cecc.up.railway.app/api/check/article",
-      {
-        method: "POST",
-        body: JSON.stringify({
-          title: title,
-          abstract: abstract + any,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    const data = await response.json();
-    // renderArticleDetails([data.selected_article]);
-    renderRecommended(data.recommendations);
-    renderJournal(data.journal)
-  } catch (error) {
-   
+  if ((title != "" && title.length >= 5 ) || (abstract != ""  && abstract.match(/\b(?![\(\)\[\]\{\}]+)\S+\b/g).length >= 100)){
+    try {
+      const response = await fetch(
+        "https://web-production-cecc.up.railway.app/api/check/article",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            title: title,
+            abstract: abstract,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const data = await response.json();
+      // renderArticleDetails([data.selected_article]);
+      renderRecommended(data.recommendations);
+      renderJournal(data.journal)
+    } catch (error) {
+     
+    }
+  } else {
+    Swal.fire({
+      html: '<h4 style="color: var(--main, #0858A4); font-family: font-family: Arial, Helvetica, sans-serif">Fill at least one field correctly</h4>',
+      icon: 'warning',
+    })
   }
 }
 // function renderNoArticleFound() {
@@ -75,10 +81,10 @@ async function renderRecommended(data) {
 
     articleElement.innerHTML = `
       <p class="h6 h-50">${article.title}</p>
- 
       <p class="article-content">${article.abstract.slice(0,180)}...</p>
       <button class="btn btn-primary btn-md btn-article" style="border: 2px var(--main, #0858A4) solid; background-color: transparent; border-radius: 20px; color: var(--main, #0858A4); width: 100%;">Read Article</button>
     `;
+    
     articleElement.addEventListener("click", () =>
       navigateToArticle(article.article_id)
     );
