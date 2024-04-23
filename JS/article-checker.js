@@ -102,12 +102,25 @@ async function renderJournal(data) {
   } else {
     rank = "Tie"; 
   }
-  document.getElementById("gavel").innerHTML = gavelScore
-  document.getElementById("lamp").innerHTML = lampScore
-  document.getElementById("star").innerHTML = starScore
-  document.getElementById("starRound").innerHTML = `${Math.floor(starScore)} `
-  document.getElementById("lampRound").innerHTML = `${Math.floor(lampScore)} `
-  document.getElementById("gavelRound").innerHTML = `${Math.floor(gavelScore)} `
+  if (gavelScore <= 0) {
+    document.getElementById("gavelCont").style.display = "none";
+  } else {
+    document.getElementById("gavelCont").style.display = "block";
+  }
+  if (lampScore <= 0) {
+    document.getElementById("lampCont").style.display = "none";
+  } else {
+    document.getElementById("lampCont").style.display = "block";
+  }
+  if (starScore <= 0) {
+    document.getElementById("starCont").style.display = "none";
+  } else {
+    document.getElementById("starCont").style.display = "block";
+  }
+  document.getElementById("gavel").innerHTML = `${gavelScore + "%" }`
+  document.getElementById("lamp").innerHTML = `${lampScore + "%" }`
+  document.getElementById("star").innerHTML = `${starScore + "%" }`
+
   document.getElementById("rank").innerHTML = rank
   
 }

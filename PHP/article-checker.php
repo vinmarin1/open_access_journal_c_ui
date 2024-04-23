@@ -42,7 +42,7 @@
   <main class="main-container" id="article_details" style="padding:2% 8%">
     <div class="card p-4" >
     <div class="mb-3">
-      <label for="" class="form-label">Title</label>
+      <label for="" class="form-label"><b>Title</b></label>
       <input
         type="text"
         class="form-control form-control-sm"
@@ -54,7 +54,7 @@
    
     </div>
     <div class="mb-3">
-      <label for="" class="form-label">Abstract or Summary of the Paper</label>
+      <label for="" class="form-label"><b>Abstract or Summary of the Paper</b></label>
       <textarea
         type="text"
         class="form-control form-control-sm"
@@ -66,7 +66,7 @@
    
     </div>
     <div class="d-none mb-3">
-      <label for="" class="form-label">Abstract</label>
+      <label for="" class="form-label"><b>Abstract</b></label>
       <input
         type="text"
         class="form-control form-control-sm"
@@ -90,14 +90,14 @@
       <div class="d-flex flex-column gap-2 pb-2 w-100">
         <h4 class="mb-3">Journal Results: <small> <span class="text-muted" id="rank"></span></small></h4>
         <div class="card d-flex flex-row p-4 mt-2 mb-4 gap-4" id="journal-results">
-          <div class="article">
+          <div class="article" id="gavelCont">
             <h5 style="text-align:center" id="gavelRound"></h5>
             <h6 id="gavel" style="text-align:center"></h6>
             
             <p style="text-align:center">The Gavel</p>
             
           </div>
-          <div class="article">
+          <div class="article" id="lampCont">
             <h5 style="text-align:center" id="lampRound"></h5>
           
             <h6 id="lamp" style="text-align:center"></h6>
@@ -105,7 +105,7 @@
             
             
           </div>
-          <div class="article">
+          <div class="article" id="starCont">
             <h5 style="text-align:center" id="starRound"></h5>
           
             <h6 style="text-align:center" id="star"></h6>
@@ -114,7 +114,7 @@
         </div>
         <h4 class="mt-4">Similar Articles:</h4>
         
-        <div id="similar-articles" class="articles-container mt-2" style="width:85vw !important;">
+        <div id="similar-articles" class="articles-container " style="width:85vw !important;">
 
         </div>
 
