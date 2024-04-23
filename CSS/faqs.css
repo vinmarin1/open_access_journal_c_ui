@@ -657,6 +657,8 @@ table th, table td {
             padding: 20px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            background-color: var(--main);
+            color: white;
         }
 
         .feedback-form textarea {
