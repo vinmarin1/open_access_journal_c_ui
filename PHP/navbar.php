@@ -45,8 +45,8 @@ require_once 'dbcon.php';
             Browse
           </a>
           <ul class="dropdown-menu">
-          <li><a class="dropdown-item" style="color: black" href="browse-articles.php">By Article</a></li>
-          <li><a class="dropdown-item" style="color: black" href="publication.php">By Journal</a></li>
+          <li><a class="dropdown-item" style="color: black" href="browse-articles.php">Articles</a></li>
+          <li><a class="dropdown-item" style="color: black" href="publication.php">Journals</a></li>
           <!-- <li><a class="dropdown-item" style="color: black" href="contact-us.php">Contact us</a></li> -->
           </ul>
         </li>
