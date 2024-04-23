@@ -70,7 +70,7 @@ require_once 'dbcon.php';
             <a class="nav-link" href="contact-us.php">Contact Us</a>
           </li>
       </ul>
-   
+      <a class="nav-item dropdown rounded mr-3" style="padding:0.5em 1em;margin-right:1em" href="article-checker.php" >Find a Journal</a>
     <?php
     if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
         echo '
@@ -79,6 +79,7 @@ require_once 'dbcon.php';
                 <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Log-in
                 </a>
+                
                 <ul class="dropdown-menu dropdown-menu-end" id="login-register">
                     <li><a class="dropdown-item" style="color: black" href="login.php" >Log-in</a></li>
                     <li><a class="dropdown-item" style="color: black" href="signup.php">Register</a></li>
