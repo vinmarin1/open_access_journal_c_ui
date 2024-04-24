@@ -189,7 +189,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     <img src="../images/authorsview.png" alt="" class="img-reg">
                 </div>
                 <div class="feedback-form">
-                    <h2 style="color: white;" >Feedback Form</h2>
+                    <h2>Feedback Form</h2>
                     <form action="#" method="post">
                         <p>We value your feedback! Please take a moment to share your thoughts about the tutorial:</p>
                         <label for="rating">Rate the tutorial:</label>
@@ -268,7 +268,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     <img src="../images/reviewed-article.png" alt="" class="img-reg">
                 </div>
                 <div class="feedback-form">
-                    <h2 style="color:white;" >Feedback Form</h2>
+                    <h2>Feedback Form</h2>
                     <form action="#" method="post">
                         <p>We value your feedback! Please take a moment to share your thoughts about the tutorial:</p>
                         <label for="rating">Rate the tutorial:</label>
@@ -344,7 +344,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     <img src="../images/Profile.png" alt="" class="img-reg">
                 </div>
                 <div class="feedback-form">
-                    <h2 style="color:white;">Feedback Form</h2>
+                    <h2>Feedback Form</h2>
                     <form action="#" method="post">
                         <p>We value your feedback! Please take a moment to share your thoughts about the tutorial:</p>
                         <label for="rating">Rate the tutorial:</label>

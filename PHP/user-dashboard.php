@@ -1261,7 +1261,7 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 								</div>
 								<?php
 								if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-									$sqlSelectName = "SELECT title FROM article WHERE author_id = :author_id";
+									$sqlSelectName = "SELECT title FROM article WHERE author_id = :author_id AND status = 1";
 
 									$result = database_run($sqlSelectName, array(':author_id' => $id));
 
@@ -1274,7 +1274,16 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 									$resultDonation = database_run($sqlDonation, array(':user_id' => $id));
 
 
-									if($result && $resultReviewed && $resultDonation){
+									if($result){
+										if(count($result) === 1){
+											echo '<div class="badge-box" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
+										}elseif(count($result) === 2){
+											echo '<div class="badge-box" style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
+										}elseif(count($result) >= 3){
+											echo '<div class="badge-box" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
+											exit();
+										}
+									}elseif($result && $resultReviewed && $resultDonation){
 										if(count($result) === 1 && count($resultReviewed) === 1 && $resultDonation === 1){
 											echo '<div class="badge-box" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
 											echo '<div class="badge-box" style="background-image: url(\'../images/first_review_badges.png\');"></div>';
