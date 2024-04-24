@@ -188,7 +188,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     </ol>
                     <img src="../images/authorsview.png" alt="" class="img-reg">
                 </div>
-                <div class="feedback-form">
+                <!-- <div class="feedback-form">
                     <h2>Feedback Form</h2>
                     <form action="#" method="post">
                         <p>We value your feedback! Please take a moment to share your thoughts about the tutorial:</p>
@@ -204,7 +204,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                         <textarea id="feedback" name="feedback" placeholder="Let us know what you liked or how we can improve..."></textarea>
                         <input type="submit" value="Submit">
                     </form>
-                </div>
+                </div> -->
             </div>
     	</div>
         <div class="main" id="tutorial-on-review-container" style="display: none;">
@@ -267,7 +267,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     </ol>
                     <img src="../images/reviewed-article.png" alt="" class="img-reg">
                 </div>
-                <div class="feedback-form">
+                <!-- <div class="feedback-form">
                     <h2>Feedback Form</h2>
                     <form action="#" method="post">
                         <p>We value your feedback! Please take a moment to share your thoughts about the tutorial:</p>
@@ -283,7 +283,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                         <textarea id="feedback" name="feedback" placeholder="Let us know what you liked or how we can improve..."></textarea>
                         <input type="submit" value="Submit">
                     </form>
-                </div>
+                </div> -->
             </div>
         </div>
         <div class="main" id="tutorial-on-registration-container" style="display: none;">
@@ -343,7 +343,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     </ol>
                     <img src="../images/Profile.png" alt="" class="img-reg">
                 </div>
-                <div class="feedback-form">
+                <!-- <div class="feedback-form">
                     <h2>Feedback Form</h2>
                     <form action="#" method="post">
                         <p>We value your feedback! Please take a moment to share your thoughts about the tutorial:</p>
@@ -359,7 +359,7 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                         <textarea id="feedback" name="feedback" placeholder="Let us know what you liked or how we can improve..."></textarea>
                         <input type="submit" value="Submit">
                     </form>
-                </div>
+                </div> -->
             </div>
         </div>
     </main>
