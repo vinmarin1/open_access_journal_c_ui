@@ -104,7 +104,6 @@ table {
                                 } else if ($status == 11){
                                     echo '<a href="javascript:void(0);" onclick="openPagePreviewCentered(\'../../PHP/article-details-preview.php?articleId=' . $article_data[0]->article_id . '\')" class="btn btn-primary btn-lg btn-block" style="width: 100px; height: 40px; margin-right: 5px;">Preview</a>';
                                     echo '<a href="javascript:void(0);" onclick="sendForPublished()" class="btn btn-success btn-lg btn-block" style="width: 100px; height: 40px; margin-right: 5px;">Publish</a>';
-                                    echo '<a href="javascript:void(0);" onclick="sendForDecline()" class="btn btn-danger btn-lg btn-block" style="width: 100px; height: 40px;">Decline</a>';
                                 }else if ($status == 0){
                                     echo '<a class="duplicateButton btn btn-warning btn-lg btn-block d-none" href="javascript:void(0);" onclick="fetchDuplicate()" style="width: 120px; height: 40px; margin-right: 5px;">Duplicate<span id="badgeContainer" class="badge"></span></a>';
                                     echo '<a href="javascript:void(0);" onclick="sendForPublished()" class="btn btn-success btn-lg btn-block" style="width: 100px; height: 40px; margin-right: 5px;">Publish</a>';
