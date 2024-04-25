@@ -232,7 +232,7 @@ require_once 'dbcon.php';
                 <ul class="dropdown-menu" id="account-dropdown">';
 
             // User dashboard links based on role
-            if ($_SESSION['role'] === 'Admin') {
+            if ($_SESSION['role'] === 'Admin' || $_SESSION['role'] === 'Assistant Admin') {
                 if (!isset($_SESSION['journal_id']) || $_SESSION['journal_id'] === null || $_SESSION['journal_id'] == 0) {
                     echo '<li><a href="../Admin/php/dashboard.php" class="dropdown-item" style="color: black;">Admin Dashboard</a></li>';
                 } else {

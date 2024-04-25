@@ -167,7 +167,9 @@ if (!function_exists('get_journal_list')) {
 
         $pdo = connect_to_database();
 
-        $journal_id = !empty($updatedData['role']) && $updatedData['role'] === 'Author' ? null : (!empty($updatedData['journal_id']) ? $updatedData['journal_id'] : 0);
+        $journal_id = in_array($updatedData['role'], ['Assistant Admin', 'Author']) ? 0 : (
+            !empty($updatedData['journal_id']) ? $updatedData['journal_id'] : 0
+        );        
 
         $stm = $pdo->prepare($query);
         $check = $stm->execute([
