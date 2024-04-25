@@ -1281,7 +1281,22 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 											echo '<div class="badge-box" style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
 										}elseif(count($result) >= 3){
 											echo '<div class="badge-box" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
-											exit();
+										}
+									}elseif($resultReviewed){
+										if(count($resultReviewed) === 1){
+											echo '<div class="badge-box" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
+										}elseif(count($resultReviewed) === 2){
+											echo '<div class="badge-box" style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
+										}elseif(count($resultReviewed) >= 3){
+											echo '<div class="badge-box" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
+										}
+									}elseif($resultDonation){
+										if(count($resultDonation) === 1){
+											echo '<div class="badge-box" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
+										}elseif(count($resultDonation) === 2){
+											echo '<div class="badge-box" style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
+										}elseif(count($resultDonation) >= 3){
+											echo '<div class="badge-box" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
 										}
 									}elseif($result && $resultReviewed && $resultDonation){
 										if(count($result) === 1 && count($resultReviewed) === 1 && $resultDonation === 1){
