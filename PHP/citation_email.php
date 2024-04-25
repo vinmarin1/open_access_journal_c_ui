@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     $description = 'Your article has been cited, ' . $title;
     date_default_timezone_set('Asia/Manila');
     $created = date('Y-m-d H:i:s');
-    $admin = 1;
+    $admin = 0;
 
     $sqlNotification = "INSERT INTO notification (`author_id`, `article_id`, `title`, `description`, admin, created) 
     VALUES (:author_id, :article_id, :title, :description, :admin, :created)";
