@@ -355,28 +355,44 @@ function renderArticleDetails(data) {
       </ul>
     `;
 
+    const copyBtn = document.getElementById("copy-btn");
 
-    const copyBtn = document.getElementById("copy-btn")
-    // const inlineBtn = document.getElementById("inline-btn")
-    
-    copyBtn.addEventListener("click",()=> {
+    copyBtn.addEventListener("click", () => {
+      const citationText = citationContent.querySelector("p").textContent.trim();
+      const recepient = "kimberly.pangilinan022@gmail.com"; // Replace with actual recipient
       navigator.clipboard.writeText(citationContent.querySelector("p").textContent.trim());
       handleDownloadLog(item.article_id,"citation");
-      Swal.fire({
-        html: '<h4 style="color: var(--main, #0858A4); font-family: font-family: Arial, Helvetica, sans-serif">Successfully copied reference in your clipboard.</h4>',
-        icon: 'success',
+      fetch("../PHP/citation_email.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: `author_id=${item.author_id}&title=${encodeURIComponent(item.title)}&id=${encodeURIComponent(item.article_id)}`,
       })
-    })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error("Failed to send email.");
+          }
+          return response.text();
+        })
+        .then(data => {
+          // Handle success
+          Swal.fire({
+            html: '<h4 style="color: var(--main, #0858A4); font-family: Arial, Helvetica, sans-serif">Successfully copied reference in your clipboard.</h4>',
+            icon: 'success',
+          });
+        })
+        .catch(error => {
+          // Handle error
+          Swal.fire({
+            html: '<h4 style="color: red; font-family: Arial, Helvetica, sans-serif">Failed to send email. Please try again later.</h4>',
+            icon: 'error',
+          });
+          console.error("Error:", error);
+        });
+    });
     
-    // if (inlineBtn){
-    // inlineBtn.addEventListener("click",()=> {
-    //   navigator.clipboard.writeText(citationContent.querySelector("span").innerHTML.trim());
-    //   handleDownloadLog(item.article_id,"citation");
-    //   Swal.fire({
-    //     html: '<h4 style="color: var(--main, #0858A4); font-family: font-family: Arial, Helvetica, sans-serif">Successfully copied reference in your clipboard.</4>',
-    //     icon: 'success',
-    //   })
-    // })}
+    
  
     const readBtn = articleElement.querySelector(`#read-btn`);
 
