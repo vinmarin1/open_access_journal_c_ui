@@ -358,7 +358,6 @@ function renderArticleDetails(data) {
     const copyBtn = document.getElementById("copy-btn");
 
     copyBtn.addEventListener("click", () => {
-      // Assuming citationContent is defined somewhere in your code
       const citationText = citationContent.querySelector("p").textContent.trim();
       const recepient = "kimberly.pangilinan022@gmail.com"; // Replace with actual recipient
       navigator.clipboard.writeText(citationContent.querySelector("p").textContent.trim());
