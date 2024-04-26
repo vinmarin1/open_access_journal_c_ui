@@ -26,50 +26,43 @@
 
 
           if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
-              echo '<a href="login.php" class="link text-muted">
-              <span class="d-none d-md-flex">SUBMIT ARTICLE</span>
-              </a>';
-      
-          } else {
-            $id = $_SESSION['id'];
-
-            $sqlSelectProfile = "SELECT first_name, last_name, birth_date, gender, marital_status, orc_id, afiliations, position, field_of_expertise, country FROM author WHERE author_id = :author_id";
-
-            $resultProfile = database_run($sqlSelectProfile, [':author_id' => $id]);
-
-            if ($resultProfile && count($resultProfile) > 0) {
-                $userProfile = $resultProfile[0];
-
-                $requiredFields = ['first_name', 'last_name', 'birth_date', 'gender', 'marital_status', 'orc_id', 'afiliations', 'position', 'field_of_expertise', 'country'];
-
-                $profileComplete = true;
-
-                // Check if any required field is empty
-                foreach ($requiredFields as $field) {
-                    if (empty($userProfile->$field)) {
-                        $profileComplete = false;
-                        break;
-                    }
-                }
-
-                if (!$profileComplete) {
-                    // Profile is incomplete
-                    echo '<a href="#" onclick="showAlert();"  class="link text-muted">
+            echo '<a href="login.php" class="link text-muted">
                     <span class="d-none d-md-flex">SUBMIT ARTICLE</span>
                   </a>';
-                } else {
-                    // Profile is complete
-                    echo '<a href="ex_submit.php" class="link text-muted">
-                            <span class="d-none d-md-flex">SUBMIT ARTICLE</span>
-                          </a>';
-                }
+        } else {
+            if ($_SESSION['role'] === 'Admin') {
             } else {
-                // No profile found for the user
-                echo 'ERROR: Please provide us your profile details';
-                // You may redirect or display an error message as needed
+                $id = $_SESSION['id'];
+                $sqlSelectProfile = "SELECT first_name, last_name, birth_date, gender, marital_status, orc_id, afiliations, position, field_of_expertise, country FROM author WHERE author_id = :author_id";
+                $resultProfile = database_run($sqlSelectProfile, [':author_id' => $id]);
+        
+                if ($resultProfile && count($resultProfile) > 0) {
+                    $userProfile = $resultProfile[0];
+        
+                    $requiredFields = ['first_name', 'last_name', 'birth_date', 'gender', 'marital_status', 'orc_id', 'afiliations', 'position', 'field_of_expertise', 'country'];
+        
+                    $profileComplete = true;
+                    foreach ($requiredFields as $field) {
+                        if (empty($userProfile->$field)) {
+                            $profileComplete = false;
+                            break;
+                        }
+                    }
+        
+                    if (!$profileComplete) {
+                        echo '<a href="#" onclick="showAlert();"  class="link text-muted">
+                                <span class="d-none d-md-flex">SUBMIT ARTICLE</span>
+                              </a>';
+                    } else {
+                        echo '<a href="ex_submit.php" class="link text-muted">
+                                <span class="d-none d-md-flex">SUBMIT ARTICLE</span>
+                              </a>';
+                    }
+                } else {
+                    echo 'ERROR: Please provide us your profile details';
+                }
             }
-          
-          }
+        }        
         ?>
 
 
