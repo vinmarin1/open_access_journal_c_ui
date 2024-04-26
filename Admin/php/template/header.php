@@ -369,7 +369,7 @@ $journal = get_journal_list();
                     <div class="dropdown-divider"></div>
                   </li>
                   <li>
-                    <a class="dropdown-item" href="../../PHP/author-dashboard.php">
+                    <a class="dropdown-item" href="../../PHP/index.php">
                       <i class="bx bx-user me-2"></i>
                       <span class="align-middle">User Dashboard</span>
                     </a>
