@@ -602,9 +602,9 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     fast processing and publication of your manuscript. Any script that does not meet the requirements under the guidelines 
                     for the author will not be processed or continued.</p>
                     <ul>
-                        <li><a href='download.php?file=template-star.docx' onclick="downloadFile(event)">QCU Star - Journal of Science and Technology Article Template</a></li>
-                        <li><a href='download.php?file=template-lamp.docx' onclick="downloadFile(event)">QCU Lamp - Journal of Education Article Template</a></li>
-                        <li><a href='download.php?file=template-gavel.docx' onclick="downloadFile(event)">QCU Gavel - Journal of Social Sciences Article Template</a></li>
+                        <li><a href='download.php?file=../Files/templates/QCU-Star-Template.docx' onclick="downloadFile(event)">QCU Star - Journal of Science and Technology Article Template</a></li>
+                        <li><a href='download.php?file=../Files/templates/QCU-Lamp-Template.docx' onclick="downloadFile(event)">QCU Lamp - Journal of Education Article Template</a></li>
+                        <li><a href='download.php?file=../Files/templates/QCU-Gavel-Template.docx' onclick="downloadFile(event)">QCU Gavel - Journal of Social Sciences Article Template</a></li>
                     </ul>
                 </div>
                 
