@@ -740,7 +740,7 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 								<input type="email" id="email" name="email" class="other-text-box" value="<?php echo $email ?>" >
 							</div> -->
 							<div class="form-row">
-							<label for="orcid">ORCID:</label>
+								<label for="orcid">ORCID:</label>
 								<!-- <label for="orcid">ORCID: <span class="requiredFilled" style="color: red">*</span></label> -->
 								<?php
 									if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
@@ -765,7 +765,7 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 										}
 									}
 								?>
-								<p>Don't have ORCID yet? <a href="https://orcid.org/">Register Here</a> </p>
+								<p>Don't have ORCID yet? <a href="https://orcid.org/register">Register Here</a></p>
 							</div>
 							<div class="form-row">
 								<label for="affiliation">Affiliation:</label>
