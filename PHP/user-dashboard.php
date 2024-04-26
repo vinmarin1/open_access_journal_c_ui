@@ -1312,8 +1312,8 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 											z-index: 999;
 											top: 60px;
 											margin-left: 80px;
-										">Publication Gold Badge: Congratulations, you have reach the last badge for publication.
-										</span>';
+											">Publication Gold Badge: Congratulations, you have reach the last badge for publication.
+											</span>';
 										}
 									}elseif($resultReviewed && $result === false && $resultDonation === false){
 										if(count($resultReviewed) === 1){
@@ -1397,7 +1397,7 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 											">Donor Gold Badge: Congratulations, you have reach the last badge for donor
 											</span>';
 										}
-									}elseif(!$result === false && !$resultReviewed === false){
+									}elseif(!$result === false && !$resultReviewed === false && $resultDonation === false){
 										if(count($result) === 1 && count($resultReviewed) === 1){
 											echo '<div class="badge-box pubBrozeBadge" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
 											echo '<span class="pubBrozeHover" style="
@@ -1634,7 +1634,7 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 											</span>';
 										}
 										
-									}elseif(!$resultReviewed === false && !$resultDonation === false){
+									}elseif(!$resultReviewed === false && !$resultDonation === false && $result === false){
 										if(count($resultReviewed) === 1 && count($resultDonation) === 1){
 											echo '<div class="badge-box revBronzeBadge" style="background-image: url(\'../images/		first_review_badges.png\');"></div>';
 											echo '<span class="revBrozeHover" style="
@@ -1872,7 +1872,7 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 											">Donor Gold Badge: Congratulations, you have reach the last badge for donor
 											</span>';
 										}
-									}elseif(!$result === false && !$resultDonation === false){
+									}elseif(!$result === false && !$resultDonation === false && $resultReviewed === false){
 										if(count($result) === 1 && count($resultDonation) === 1){
 											echo '<div class="badge-box pubBrozeBadge" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
 											echo '<span class="pubBrozeHover" style="
@@ -2112,6 +2112,686 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 											z-index: 999;
 											top: 60px;
 											margin-left: 160px;
+											">Donor Gold Badge: Congratulations, you have reach the last badge for donor
+											</span>';
+										}
+									}elseif(!$result === false && !$resultReviewed === false && !$resultDonation === false){
+										if(count($result) === 1 && count($resultReviewed) === 1 && count($resultDonation) === 1){
+											echo '<div class="badge-box pubBrozeBadge" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
+											echo '<span class="pubBrozeHover" style="
+											width: auto;
+											background: #333;
+											color: white;
+											position: absolute;
+											padding-left: 5px;
+											z-index: 999;
+											top: 60px;
+											margin-left: 80px;
+											">Publication Bronze Badge: publish one more article to upgrade your badge to Silver
+											</span>';
+
+											echo '<div class="badge-box revBronzeBadge" style="background-image: url(\'../images/first_review_badges.png\');"></div>';
+											echo '<span class="revBrozeHover" style="
+											width: auto;
+											background: #333;
+											color: white;
+											position: absolute;
+											padding-left: 5px;
+											z-index: 999;
+											top: 60px;
+											margin-left: 160px;
+											">Reviewer Bronze Badge: Help us publish one more article by reviewing to upgrade your badge to Silver
+											</span>';
+
+											echo '<div class="badge-box donateBronzeBadge" style="background-image: url(\'../images/first_donation_badges.png\');"></div>';
+											echo '<span class="donateBronzeHover" style="
+											width: 200px;
+											background: #333;
+											color: white;
+											position: absolute;
+											padding-left: 5px;
+											z-index: 999;
+											top: 60px;
+											margin-left: -40px;
+											">Donor Bronze Badge: Donate once more to upgrade your badge to silver
+											</span>';
+											
+										}elseif(count($result) === 2 && count($resultReviewed) === 1 && count($resultDonation) === 1){
+											echo '<div class="badge-box pubSilverBadge" style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
+											echo '<span class="pubSilverHover" style="
+											width: auto;
+											background: #333;
+											color: white;
+											position: absolute;
+											padding-left: 5px;
+											z-index: 999;
+											top: 60px;
+											margin-left: 80px;
+											">Publication Silver Badge: publish one more article to upgrade your badge to Gold
+											</span>';
+
+											echo '<div class="badge-box revBronzeBadge" style="background-image: url(\'../images/first_review_badges.png\');"></div>';
+											echo '<span class="revBrozeHover" style="
+											width: auto;
+											background: #333;
+											color: white;
+											position: absolute;
+											padding-left: 5px;
+											z-index: 999;
+											top: 60px;
+											margin-left: 160px;
+											">Reviewer Bronze Badge: Help us publish one more article by reviewing to upgrade your badge to Silver
+											</span>';
+
+											echo '<div class="badge-box donateBronzeBadge" style="background-image: url(\'../images/first_donation_badges.png\');"></div>';
+											echo '<span class="donateBronzeHover" style="
+											width: 200px;
+											background: #333;
+											color: white;
+											position: absolute;
+											padding-left: 5px;
+											z-index: 999;
+											top: 60px;
+											margin-left: -40px;
+											">Donor Bronze Badge: Donate once more to upgrade your badge to silver
+											</span>';
+
+										}elseif(count($result) === 1 && count($resultReviewed) === 2 && count($resultDonation) === 1){
+											echo '<div class="badge-box pubBrozeBadge" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
+											echo '<span class="pubBrozeHover" style="
+											width: auto;
+											background: #333;
+											color: white;
+											position: absolute;
+											padding-left: 5px;
+											z-index: 999;
+											top: 60px;
+											margin-left: 80px;
+											">Publication Bronze Badge: publish one more article to upgrade your badge to Silver
+											</span>';
+
+											echo '<div class="badge-box revBronzeBadge" style="background-image: url(\'../images/second_review_badges.png\');"></div>';
+											echo '<span class="revBrozeHover" style="
+											width: auto;
+											background: #333;
+											color: white;
+											position: absolute;
+											padding-left: 5px;
+											z-index: 999;
+											top: 60px;
+											margin-left: 160px;
+											">Reviewer Silver Badge: Help us publish one more article by reviewing to upgrade your badge to Gold
+											</span>';
+
+											echo '<div class="badge-box donateBronzeBadge" style="background-image: url(\'../images/first_donation_badges.png\');"></div>';
+											echo '<span class="donateBronzeHover" style="
+											width: 200px;
+											background: #333;
+											color: white;
+											position: absolute;
+											padding-left: 5px;
+											z-index: 999;
+											top: 60px;
+											margin-left: -40px;
+											">Donor Bronze Badge: Donate once more to upgrade your badge to silver
+											</span>';
+
+										}elseif(count($result) === 1 && count($resultReviewed) === 1 && count($resultDonation) === 2){
+											echo '<div class="badge-box pubBrozeBadge" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
+											echo '<span class="pubBrozeHover" style="
+											width: auto;
+											background: #333;
+											color: white;
+											position: absolute;
+											padding-left: 5px;
+											z-index: 999;
+											top: 60px;
+											margin-left: 80px;
+											">Publication Bronze Badge: publish one more article to upgrade your badge to Silver
+											</span>';
+
+											echo '<div class="badge-box revBronzeBadge" style="background-image: url(\'../images/first_review_badges.png\');"></div>';
+											echo '<span class="revBrozeHover" style="
+											width: auto;
+											background: #333;
+											color: white;
+											position: absolute;
+											padding-left: 5px;
+											z-index: 999;
+											top: 60px;
+											margin-left: 160px;
+											">Reviewer Bronze Badge: Help us publish one more article by reviewing to upgrade your badge to Silver
+											</span>';
+
+											echo '<div class="badge-box donateSilverBadge" style="background-image: url(\'../images/second_donation_badges.png\');"></div>';
+											echo '<span class="donateSilverHover" style="
+											width: 200px;
+											background: #333;
+											color: white;
+											position: absolute;
+											padding-left: 5px;
+											z-index: 999;
+											top: 60px;
+											margin-left: -40px;
+											">Donor Silver Badge: Donate once more to upgrade your badge to Gold
+											</span>';
+
+
+
+										}elseif(count($result) === 2 && count($resultReviewed) === 2 && count($resultDonation) === 1){
+											echo '<div class="badge-box pubSilverBadge" style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
+											echo '<span class="pubSilverHover" style="
+											width: auto;
+											background: #333;
+											color: white;
+											position: absolute;
+											padding-left: 5px;
+											z-index: 999;
+											top: 60px;
+											margin-left: 80px;
+											">Publication Silver Badge: publish one more article to upgrade your badge to Gold
+											</span>';
+
+											echo '<div class="badge-box revBronzeBadge" style="background-image: url(\'../images/second_review_badges.png\');"></div>';
+											echo '<span class="revBrozeHover" style="
+											width: auto;
+											background: #333;
+											color: white;
+											position: absolute;
+											padding-left: 5px;
+											z-index: 999;
+											top: 60px;
+											margin-left: 160px;
+											">Reviewer Silver Badge: Help us publish one more article by reviewing to upgrade your badge to Gold
+											</span>';
+
+											echo '<div class="badge-box donateBronzeBadge" style="background-image: url(\'../images/first_donation_badges.png\');"></div>';
+											echo '<span class="donateBronzeHover" style="
+											width: 200px;
+											background: #333;
+											color: white;
+											position: absolute;
+											padding-left: 5px;
+											z-index: 999;
+											top: 60px;
+											margin-left: -40px;
+											">Donor Bronze Badge: Donate once more to upgrade your badge to silver
+											</span>';
+										}elseif(count($result) === 1 && count($resultReviewed) === 2 && count($resultDonation) === 2){
+											echo '<div class="badge-box pubBrozeBadge" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
+											echo '<span class="pubBrozeHover" style="
+											width: auto;
+											background: #333;
+											color: white;
+											position: absolute;
+											padding-left: 5px;
+											z-index: 999;
+											top: 60px;
+											margin-left: 80px;
+											">Publication Bronze Badge: publish one more article to upgrade your badge to Silver
+											</span>';
+
+											echo '<div class="badge-box revBronzeBadge" style="background-image: url(\'../images/second_review_badges.png\');"></div>';
+											echo '<span class="revBrozeHover" style="
+											width: auto;
+											background: #333;
+											color: white;
+											position: absolute;
+											padding-left: 5px;
+											z-index: 999;
+											top: 60px;
+											margin-left: 160px;
+											">Reviewer Silver Badge: Help us publish one more article by reviewing to upgrade your badge to Gold
+											</span>';
+
+											echo '<div class="badge-box donateSilverBadge" style="background-image: url(\'../images/second_donation_badges.png\');"></div>';
+											echo '<span class="donateSilverHover" style="
+											width: 200px;
+											background: #333;
+											color: white;
+											position: absolute;
+											padding-left: 5px;
+											z-index: 999;
+											top: 60px;
+											margin-left: -40px;
+											">Donor Silver Badge: Donate once more to upgrade your badge to Gold
+											</span>';
+ 
+										}elseif(count($result) === 2 && count($resultReviewed) === 2 && count($resultDonation) === 2){
+											echo '<div class="badge-box pubSilverBadge" style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
+											echo '<span class="pubSilverHover" style="
+											width: auto;
+											background: #333;
+											color: white;
+											position: absolute;
+											padding-left: 5px;
+											z-index: 999;
+											top: 60px;
+											margin-left: 80px;
+											">Publication Silver Badge: publish one more article to upgrade your badge to Gold
+											</span>';
+											
+											echo '<div class="badge-box revBronzeBadge" style="background-image: url(\'../images/second_review_badges.png\');"></div>';
+											echo '<span class="revBrozeHover" style="
+											width: auto;
+											background: #333;
+											color: white;
+											position: absolute;
+											padding-left: 5px;
+											z-index: 999;
+											top: 60px;
+											margin-left: 160px;
+											">Reviewer Silver Badge: Help us publish one more article by reviewing to upgrade your badge to Gold
+											</span>';
+
+											echo '<div class="badge-box donateSilverBadge" style="background-image: url(\'../images/second_donation_badges.png\');"></div>';
+											echo '<span class="donateSilverHover" style="
+											width: 200px;
+											background: #333;
+											color: white;
+											position: absolute;
+											padding-left: 5px;
+											z-index: 999;
+											top: 60px;
+											margin-left: -40px;
+											">Donor Silver Badge: Donate once more to upgrade your badge to Gold
+											</span>';
+										}elseif(count($result) >= 3 && count($resultReviewed) === 1 && count($resultDonation) === 1){
+											echo '<div class="badge-box pubGoldBadge" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
+											echo '<span class="pubGoldHover" style="
+											width: auto;
+											background: #333;
+											color: white;
+											position: absolute;
+											padding-left: 5px;
+											z-index: 999;
+											top: 60px;
+											margin-left: 80px;
+											">Publication Gold Badge: Congratulations, you have reach the last badge for publication.
+											</span>';
+
+											echo '<div class="badge-box revBronzeBadge" style="background-image: url(\'../images/first_review_badges.png\');"></div>';
+											echo '<span class="revBrozeHover" style="
+											width: auto;
+											background: #333;
+											color: white;
+											position: absolute;
+											padding-left: 5px;
+											z-index: 999;
+											top: 60px;
+											margin-left: 160px;
+											">Reviewer Bronze Badge: Help us publish one more article by reviewing to upgrade your badge to Silver
+											</span>';
+
+											echo '<div class="badge-box donateBronzeBadge" style="background-image: url(\'../images/first_donation_badges.png\');"></div>';
+											echo '<span class="donateBronzeHover" style="
+											width: 200px;
+											background: #333;
+											color: white;
+											position: absolute;
+											padding-left: 5px;
+											z-index: 999;
+											top: 60px;
+											margin-left: -40px;
+											">Donor Bronze Badge: Donate once more to upgrade your badge to silver
+											</span>';
+										}elseif(count($result) === 1 && count($resultReviewed) >= 3 && count($resultDonation) === 1){
+											echo '<div class="badge-box pubBrozeBadge" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
+											echo '<span class="pubBrozeHover" style="
+											width: auto;
+											background: #333;
+											color: white;
+											position: absolute;
+											padding-left: 5px;
+											z-index: 999;
+											top: 60px;
+											margin-left: 80px;
+											">Publication Bronze Badge: publish one more article to upgrade your badge to Silver
+											</span>';
+
+											echo '<div class="badge-box revGoldBadge" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
+											echo '<span class="revGoldHover" style="
+											width: auto;
+											background: #333;
+											color: white;
+											position: absolute;
+											padding-left: 5px;
+											z-index: 999;
+											top: 60px;
+											margin-left: 160px;
+											">Reviewer Gold Badge: Congratulations, you have reach the last badge for reviewer badge
+											</span>';
+											
+											echo '<div class="badge-box donateBronzeBadge" style="background-image: url(\'../images/first_donation_badges.png\');"></div>';
+											echo '<span class="donateBronzeHover" style="
+											width: 200px;
+											background: #333;
+											color: white;
+											position: absolute;
+											padding-left: 5px;
+											z-index: 999;
+											top: 60px;
+											margin-left: -40px;
+											">Donor Bronze Badge: Donate once more to upgrade your badge to silver
+											</span>';
+										}elseif(count($result) === 1 && count($resultReviewed) === 1 && count($resultDonation) >= 3){
+											echo '<div class="badge-box pubBrozeBadge" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
+											echo '<span class="pubBrozeHover" style="
+											width: auto;
+											background: #333;
+											color: white;
+											position: absolute;
+											padding-left: 5px;
+											z-index: 999;
+											top: 60px;
+											margin-left: 80px;
+											">Publication Bronze Badge: publish one more article to upgrade your badge to Silver
+											</span>';
+
+											echo '<div class="badge-box revBronzeBadge" style="background-image: url(\'../images/first_review_badges.png\');"></div>';
+											echo '<span class="revBrozeHover" style="
+											width: auto;
+											background: #333;
+											color: white;
+											position: absolute;
+											padding-left: 5px;
+											z-index: 999;
+											top: 60px;
+											margin-left: 160px;
+											">Reviewer Bronze Badge: Help us publish one more article by reviewing to upgrade your badge to Silver
+											</span>';
+
+											echo '<div class="badge-box donateGoldBadge" style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
+											echo '<span class="donateGoldHover" style="
+											width: 200px;
+											background: #333;
+											color: white;
+											position: absolute;
+											padding-left: 5px;
+											z-index: 999;
+											top: 60px;
+											margin-left: -40px;
+											">Donor Gold Badge: Congratulations, you have reach the last badge for donor
+											</span>';
+
+
+										}elseif(count($result) >= 3 && count($resultReviewed) === 2 && count($resultDonation) === 1){
+											echo '<div class="badge-box pubGoldBadge" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
+											echo '<span class="pubGoldHover" style="
+											width: auto;
+											background: #333;
+											color: white;
+											position: absolute;
+											padding-left: 5px;
+											z-index: 999;
+											top: 60px;
+											margin-left: 80px;
+											">Publication Gold Badge: Congratulations, you have reach the last badge for publication.
+											</span>';
+
+											echo '<div class="badge-box revBronzeBadge" style="background-image: url(\'../images/second_review_badges.png\');"></div>';
+											echo '<span class="revBrozeHover" style="
+											width: auto;
+											background: #333;
+											color: white;
+											position: absolute;
+											padding-left: 5px;
+											z-index: 999;
+											top: 60px;
+											margin-left: 160px;
+											">Reviewer Silver Badge: Help us publish one more article by reviewing to upgrade your badge to Gold
+											</span>';
+
+
+											echo '<div class="badge-box donateGoldBadge" style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
+											echo '<span class="donateGoldHover" style="
+											width: 200px;
+											background: #333;
+											color: white;
+											position: absolute;
+											padding-left: 5px;
+											z-index: 999;
+											top: 60px;
+											margin-left: -40px;
+											">Donor Gold Badge: Congratulations, you have reach the last badge for donor
+											</span>';
+										}elseif(count($result) === 1 && count($resultReviewed) >= 3 && count($resultDonation) === 2){
+											echo '<div class="badge-box pubBrozeBadge" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
+											echo '<span class="pubBrozeHover" style="
+											width: auto;
+											background: #333;
+											color: white;
+											position: absolute;
+											padding-left: 5px;
+											z-index: 999;
+											top: 60px;
+											margin-left: 80px;
+											">Publication Bronze Badge: publish one more article to upgrade your badge to Silver
+											</span>';
+
+											echo '<div class="badge-box revGoldBadge" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
+											echo '<span class="revGoldHover" style="
+											width: auto;
+											background: #333;
+											color: white;
+											position: absolute;
+											padding-left: 5px;
+											z-index: 999;
+											top: 60px;
+											margin-left: 160px;
+											">Reviewer Gold Badge: Congratulations, you have reach the last badge for reviewer badge
+											</span>';
+
+											echo '<div class="badge-box donateSilverBadge" style="background-image: url(\'../images/second_donation_badges.png\');"></div>';
+											echo '<span class="donateSilverHover" style="
+											width: 200px;
+											background: #333;
+											color: white;
+											position: absolute;
+											padding-left: 5px;
+											z-index: 999;
+											top: 60px;
+											margin-left: -40px;
+											">Donor Silver Badge: Donate once more to upgrade your badge to Gold
+											</span>';
+
+
+										}elseif(count($result) === 2 && count($resultReviewed) === 2 && count($resultDonation) >= 3){
+											echo '<div class="badge-box pubSilverBadge" style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
+											echo '<span class="pubSilverHover" style="
+											width: auto;
+											background: #333;
+											color: white;
+											position: absolute;
+											padding-left: 5px;
+											z-index: 999;
+											top: 60px;
+											margin-left: 80px;
+											">Publication Silver Badge: publish one more article to upgrade your badge to Gold
+											</span>';
+											
+											echo '<div class="badge-box revBronzeBadge" style="background-image: url(\'../images/second_review_badges.png\');"></div>';
+											echo '<span class="revBrozeHover" style="
+											width: auto;
+											background: #333;
+											color: white;
+											position: absolute;
+											padding-left: 5px;
+											z-index: 999;
+											top: 60px;
+											margin-left: 160px;
+											">Reviewer Silver Badge: Help us publish one more article by reviewing to upgrade your badge to Gold
+											</span>';
+
+											echo '<div class="badge-box donateGoldBadge" style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
+											echo '<span class="donateGoldHover" style="
+											width: 200px;
+											background: #333;
+											color: white;
+											position: absolute;
+											padding-left: 5px;
+											z-index: 999;
+											top: 60px;
+											margin-left: -40px;
+											">Donor Gold Badge: Congratulations, you have reach the last badge for donor
+											</span>';
+
+										}elseif(count($result) >=3 && count($resultReviewed) >= 3 && count($resultDonation) === 1){
+											echo '<div class="badge-box pubGoldBadge" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
+											echo '<span class="pubGoldHover" style="
+											width: auto;
+											background: #333;
+											color: white;
+											position: absolute;
+											padding-left: 5px;
+											z-index: 999;
+											top: 60px;
+											margin-left: 80px;
+											">Publication Gold Badge: Congratulations, you have reach the last badge for publication.
+											</span>';
+
+											echo '<div class="badge-box revGoldBadge" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
+											echo '<span class="revGoldHover" style="
+											width: auto;
+											background: #333;
+											color: white;
+											position: absolute;
+											padding-left: 5px;
+											z-index: 999;
+											top: 60px;
+											margin-left: 160px;
+											">Reviewer Gold Badge: Congratulations, you have reach the last badge for reviewer badge
+											</span>';
+											
+											echo '<div class="badge-box donateGoldBadge" style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
+											echo '<span class="donateGoldHover" style="
+											width: 200px;
+											background: #333;
+											color: white;
+											position: absolute;
+											padding-left: 5px;
+											z-index: 999;
+											top: 60px;
+											margin-left: -40px;
+											">Donor Gold Badge: Congratulations, you have reach the last badge for donor
+											</span>';
+										}elseif(count($result) ===1 && count($resultReviewed) >= 3 && count($resultDonation) >= 3){
+											echo '<div class="badge-box pubBrozeBadge" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
+											echo '<span class="pubBrozeHover" style="
+											width: auto;
+											background: #333;
+											color: white;
+											position: absolute;
+											padding-left: 5px;
+											z-index: 999;
+											top: 60px;
+											margin-left: 80px;
+											">Publication Bronze Badge: publish one more article to upgrade your badge to Silver
+											</span>';
+
+											echo '<div class="badge-box revGoldBadge" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
+											echo '<span class="revGoldHover" style="
+											width: auto;
+											background: #333;
+											color: white;
+											position: absolute;
+											padding-left: 5px;
+											z-index: 999;
+											top: 60px;
+											margin-left: 160px;
+											">Reviewer Gold Badge: Congratulations, you have reach the last badge for reviewer badge
+											</span>';
+
+											echo '<div class="badge-box donateGoldBadge" style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
+											echo '<span class="donateGoldHover" style="
+											width: 200px;
+											background: #333;
+											color: white;
+											position: absolute;
+											padding-left: 5px;
+											z-index: 999;
+											top: 60px;
+											margin-left: -40px;
+											">Donor Gold Badge: Congratulations, you have reach the last badge for donor
+											</span>';
+
+										}elseif(count($result) >= 3 && count($resultReviewed) === 1 && count($resultDonation) >= 3){
+											echo '<div class="badge-box pubGoldBadge" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
+											echo '<span class="pubGoldHover" style="
+											width: auto;
+											background: #333;
+											color: white;
+											position: absolute;
+											padding-left: 5px;
+											z-index: 999;
+											top: 60px;
+											margin-left: 80px;
+											">Publication Gold Badge: Congratulations, you have reach the last badge for publication.
+											</span>';
+
+
+											echo '<div class="badge-box revBronzeBadge" style="background-image: url(\'../images/first_review_badges.png\');"></div>';
+											echo '<span class="revBrozeHover" style="
+											width: auto;
+											background: #333;
+											color: white;
+											position: absolute;
+											padding-left: 5px;
+											z-index: 999;
+											top: 60px;
+											margin-left: 160px;
+											">Reviewer Bronze Badge: Help us publish one more article by reviewing to upgrade your badge to Silver
+											</span>';
+
+											echo '<div class="badge-box donateGoldBadge" style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
+											echo '<span class="donateGoldHover" style="
+											width: 200px;
+											background: #333;
+											color: white;
+											position: absolute;
+											padding-left: 5px;
+											z-index: 999;
+											top: 60px;
+											margin-left: -40px;
+											">Donor Gold Badge: Congratulations, you have reach the last badge for donor
+											</span>';
+										}elseif(count($result) >= 3 && count($resultReviewed) >= 3 && count($resultDonation) >= 3){
+											echo '<div class="badge-box pubGoldBadge" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
+											echo '<span class="pubGoldHover" style="
+											width: auto;
+											background: #333;
+											color: white;
+											position: absolute;
+											padding-left: 5px;
+											z-index: 999;
+											top: 60px;
+											margin-left: 80px;
+											">Publication Gold Badge: Congratulations, you have reach the last badge for publication.
+											</span>';
+
+											echo '<div class="badge-box revGoldBadge" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
+											echo '<span class="revGoldHover" style="
+											width: auto;
+											background: #333;
+											color: white;
+											position: absolute;
+											padding-left: 5px;
+											z-index: 999;
+											top: 60px;
+											margin-left: 160px;
+											">Reviewer Gold Badge: Congratulations, you have reach the last badge for reviewer badge
+											</span>';
+
+											echo '<div class="badge-box donateGoldBadge" style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
+											echo '<span class="donateGoldHover" style="
+											width: 200px;
+											background: #333;
+											color: white;
+											position: absolute;
+											padding-left: 5px;
+											z-index: 999;
+											top: 60px;
+											margin-left: -40px;
 											">Donor Gold Badge: Congratulations, you have reach the last badge for donor
 											</span>';
 										}
