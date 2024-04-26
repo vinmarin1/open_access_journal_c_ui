@@ -31,7 +31,9 @@
     <!-- navigation menus will be display here by fetching reusable files -->
   </nav>
   <main class="main-container" id="article_details">
+  
   </main>
+  <div class="text-muted small" style="padding:4em 8% 2em ;text-align: center;">This work is licensed under Creative Commons Non-Commercial and Non-Derivative License (CC-BY-NC-ND).  For more details about the license visit <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" >here</a> </div>
   <div id="citation-container" class="d-none">
     <div id="citations" class="d-flex flex-column justify-content-between w-50">
       <div class="citation-header d-flex justify-content-between">
