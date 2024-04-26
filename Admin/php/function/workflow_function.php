@@ -437,7 +437,7 @@ if (!function_exists('get_issues_list')) {
 
         if ($pdo) {
             try {
-                $query = "SELECT * FROM issues WHERE journal_id = :journal_id AND status = 1";
+                $query = "SELECT * FROM issues WHERE journal_id = :journal_id AND status = 1 AND year = YEAR(CURDATE())";
                 $stmt = $pdo->prepare($query);
                 $stmt->bindParam(':journal_id', $journal_id, PDO::PARAM_INT);
                 $stmt->execute();
