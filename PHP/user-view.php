@@ -339,7 +339,7 @@ $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
                             }else{
                                 echo 'Something went wrong';
                             }
-                        }elseif($result){
+                        }elseif($result && $resultReviewed === false && $resultDonation === false){
                             if(count($result) === 1){
                                 echo '<div class="profile-badge">';
                                 echo '<p class="recent-badges">Badges</p>';
@@ -356,7 +356,7 @@ $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
                                 echo '<div class="badge-box"  style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
                                 echo '</div>';
                             }
-                        }elseif($resultReviewed){
+                        }elseif($resultReviewed && $result === false && $resultDonation === false){
                             if(count($resultReviewed) === 1){
                                 echo '<div class="profile-badge">';
                                 echo '<p class="recent-badges">Badges</p>';
@@ -373,7 +373,7 @@ $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
                                 echo '<div class="badge-box"  style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
                                 echo '</div>';
                             }
-                        }elseif($resultDonation){
+                        }elseif($resultDonation && $result === false && $resultReviewed === false){
                             if(count($resultDonation) === 1){
                                 echo '<div class="profile-badge">';
                                 echo '<p class="recent-badges">Badges</p>';
@@ -390,7 +390,7 @@ $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
                                 echo '<div class="badge-box"  style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
                                 echo '</div>';
                             }
-                        }elseif($result && $resultReviewed){
+                        }elseif($result && $resultReviewed && $resultDonation === false){
                             if(count($result) === 1 && count($resultReviewed) === 1){
                                 echo '<div class="profile-badge">';
                                 echo '<p class="recent-badges">Badges</p>';
@@ -446,7 +446,7 @@ $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
                                 echo '<div class="badge-box"  style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
                                 echo '</div>';
                             }
-                        }elseif($resultReviewed && $resultDonation){
+                        }elseif($resultReviewed && $resultDonation && $result === false){
                             if(count($resultReviewed) === 1 && count($resultDonation) === 1){
                                 echo '<div class="profile-badge">';
                                 echo '<p class="recent-badges">Badges</p>';
@@ -502,7 +502,7 @@ $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
                                 echo '<div class="badge-box"  style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
                                 echo '</div>';
                             }
-                        }elseif($result && $resultDonation){
+                        }elseif($result && $resultDonation && $resultReviewed === false){
                             if(count($result) === 1 && count($resultDonation) === 1){
                                 echo '<div class="profile-badge">';
                                 echo '<p class="recent-badges">Badges</p>';
@@ -559,7 +559,7 @@ $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
                                 echo '</div>';
                             }
                         }else{
-                            echo '';
+                            echo 'This author has no badges yet';
                         }
 
 
