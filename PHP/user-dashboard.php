@@ -765,7 +765,7 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 										}
 									}
 								?>
-								<p>Don't have ORCID yet? <a href="https://orcid.org/">Register Here</a> </p>
+								
 							</div>
 							<div class="form-row">
 								<label for="affiliation">Affiliation:</label>
