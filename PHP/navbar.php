@@ -215,14 +215,14 @@ require_once 'dbcon.php';
         echo '<p class="h6" style="color: gray; font-weight: normal; margin-left: 10px" >0 Notification</p>';
     }
 
-        // User profile dropdown
-        $sqlUserName = "SELECT first_name FROM author WHERE author_id = :author_id";
-        $sqlRunName = database_run($sqlUserName, array(':author_id' => $author_id));
+    // User profile dropdown
+    $sqlUserName = "SELECT first_name FROM author WHERE author_id = :author_id";
+    $sqlRunName = database_run($sqlUserName, array(':author_id' => $author_id));
 
-        if ($sqlRunName !== false && isset($sqlRunName[0]->first_name)) {
-            $userName = ucfirst($sqlRunName[0]->first_name);
-            echo '
-            </ul>
+    if ($sqlRunName !== false && isset($sqlRunName[0]->first_name)) {
+        $userName = ucfirst($sqlRunName[0]->first_name);
+        echo '
+        </ul>
         </div>
         <div class="profile px-4">
             <a id="user-profile" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -231,27 +231,34 @@ require_once 'dbcon.php';
             <li class="dropdown" style="list-style-type: none;">
                 <ul class="dropdown-menu" id="account-dropdown">';
 
-            // User dashboard links based on role
-            if ($_SESSION['role'] === 'Admin' || $_SESSION['role'] === 'Assistant Admin') {
-                if (!isset($_SESSION['journal_id']) || $_SESSION['journal_id'] === null || $_SESSION['journal_id'] == 0) {
-                    echo '<li><a href="../Admin/php/dashboard.php" class="dropdown-item" style="color: black;">Admin Dashboard</a></li>';
+                // User dashboard links based on role
+                if ($_SESSION['role'] === 'Admin') {
+                    if (!isset($_SESSION['journal_id']) || $_SESSION['journal_id'] === null || $_SESSION['journal_id'] == 0) {
+                        echo '<li><a href="../Admin/php/dashboard.php" class="dropdown-item" style="color: black;">Admin Dashboard</a></li>';
+                    }
+                    echo '<li><a class="dropdown-item" href="../PHP/logout.php" style="color: black;">Log-out</a></li>';
+                } elseif ($_SESSION['role'] === 'Assistant Admin') {
+                    echo '
+                    <li><a href="../Admin/php/dashboard.php" class="dropdown-item" style="color: black;">Admin Dashboard</a></li>
+                    <li><a href="user-dashboard.php" class="dropdown-item" style="color: black;">My Profile</a></li>
+                    <li><a href="author-dashboard.php" class="dropdown-item" style="color: black;">My Contributions</a></li>
+                    <li><a href="change_pass.php" class="dropdown-item" style="color: black;">Manage Password</a></li>';
+                    echo '<li><a class="dropdown-item" href="../PHP/logout.php" style="color: black;">Log-out</a></li>';
                 } else {
-                    echo '<li><a href="../Admin/php/editordashboard.php" class="dropdown-item" style="color: black;">Editor in Chief Dashboard</a></li>';
+                    echo '
+                    <li><a href="user-dashboard.php" class="dropdown-item" style="color: black;">My Profile</a></li>
+                    <li><a href="author-dashboard.php" class="dropdown-item" style="color: black;">My Contributions</a></li>
+                    <li><a href="change_pass.php" class="dropdown-item" style="color: black;">Manage Password</a></li>';
+                    echo '<li><a class="dropdown-item" href="../PHP/logout.php" style="color: black;">Log-out</a></li>';
                 }
-            }
 
             echo '
-                <li><a href="user-dashboard.php" class="dropdown-item" style="color: black;">My Profile</a></li>
-                <li><a href="author-dashboard.php" class="dropdown-item" style="color: black;">My Contributions</a></li>
-                <li><a href="change_pass.php" class="dropdown-item" style="color: black;">Manage Password</a></li>
-                <li><a class="dropdown-item" href="../PHP/logout.php" style="color: black;">Log-out</a></li> 
-                </ul>
-            </li>
-        </div>';
-        }
+              </ul>
+          </li>
+      </div>';
     }
+  }
 ?>
-
 </nav>
 
 
