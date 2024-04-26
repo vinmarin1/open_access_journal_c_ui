@@ -105,7 +105,7 @@
 								header("Location: " . $urli);
 								die;
 							} else {
-								header("Location: ../PHP/index.php");
+								header("Location: ../Admin/php/dashboard.php");
 								die;
 							}
 					} else {
