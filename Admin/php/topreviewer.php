@@ -225,6 +225,14 @@ $seriesString = json_encode($series);
 
             var ws = XLSX.utils.aoa_to_sheet([["Authors ID", "Name", "Email", "Reviewed"]].concat(wsData));
 
+            var columnSizes = [{ wch: 15 },{ wch: 50 }, { wch: 50 }, { wch: 25 }]; 
+            columnSizes.forEach((size, columnIndex) => {
+                ws['!cols'] = ws['!cols'] || [];
+                ws['!cols'][columnIndex] = size;
+            });
+
+            ws['!protect'] = true;
+
             var wb = XLSX.utils.book_new();
             XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
 

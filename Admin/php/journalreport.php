@@ -203,24 +203,6 @@ foreach ($journal_list as $journal) {
                                 ?>
                                 <td><?php echo ($matchingJournal !== null) ? $matchingJournal->journal : 'Unknown'; ?></td>
                                 <td width="70%">
-                                    <b>
-                                    <?php
-                                        $author_names = [];
-                                        foreach ($contributor as $contributorval) {
-                                            if ($contributorval->article_id == $all_articlesval->article_id) {
-                                                $author_names[] = $contributorval->lastname . ', ' . $contributorval->firstname;
-                                            }
-                                        }
-
-                                        if (!empty($author_names)) {
-                                            $author_name = implode(', ', $author_names);
-                                        } else {
-                                            $author_name = $all_articlesval->author;
-                                        }
-
-                                        echo $author_name;
-                                        ?>
-                                    </b><br>
                                     <?php echo $all_articlesval->title; ?>
                                 </td>
                                 <?php
@@ -374,15 +356,44 @@ foreach ($journal_list as $journal) {
             var dataTable = $('#DataTable').DataTable();
             var data = dataTable.rows().data();
 
-            var wsData = data.toArray().map(row => [row[0], row[1], row[2], row[3]]);
+            var wsData = data.toArray().map(row => [row[0], row[1], row[2],  getStatusText(row[3]), row[4]]);
 
-            var ws = XLSX.utils.aoa_to_sheet([["Article ID", "Title", "Read", "Download"]].concat(wsData));
+            var ws = XLSX.utils.aoa_to_sheet([["Article ID", "Journal", "Title", "Status", "Added"]].concat(wsData));
+
+            var columnSizes = [{ wch: 15 },{ wch: 25 }, { wch: 150 }, { wch: 25 }, { wch: 25 }]; 
+            columnSizes.forEach((size, columnIndex) => {
+                ws['!cols'] = ws['!cols'] || [];
+                ws['!cols'][columnIndex] = size;
+            });
+
+            ws['!protect'] = true;
 
             var wb = XLSX.utils.book_new();
             XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
 
             var filename = 'JournalReport.xlsx';
             XLSX.writeFile(wb, filename);
+        }
+
+        function getStatusText(htmlString) {
+            var doc = new DOMParser().parseFromString(htmlString, 'text/html');
+            var textContent = doc.body.textContent || "";
+            return textContent.trim();
+        }
+
+        function getStatusLabel(statusValue) {
+            var statusInfo = {
+                '10': 'AllArticle',
+                '0': 'Archive',
+                '1': 'Published',
+                '2': 'Production',
+                '3': 'Copyediting',
+                '4': 'Review',
+                '5': 'Pending',
+                '6': 'Reject'
+            };
+
+            return statusInfo[statusValue] || 'Unknown';
         }
 
         (function() {

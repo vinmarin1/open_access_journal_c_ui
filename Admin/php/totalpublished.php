@@ -154,6 +154,14 @@ $articlepublishedtotal = get_published_article_total($monthval, $yearval);
 
             var ws = XLSX.utils.aoa_to_sheet([["Article ID", "Title", "Archive Date"]].concat(wsData));
 
+            var columnSizes = [{ wch: 15 }, { wch: 150 }, { wch: 25 }]; 
+            columnSizes.forEach((size, columnIndex) => {
+                ws['!cols'] = ws['!cols'] || [];
+                ws['!cols'][columnIndex] = size;
+            });
+
+            ws['!protect'] = true;
+
             var wb = XLSX.utils.book_new();
             XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
 

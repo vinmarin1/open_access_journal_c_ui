@@ -210,6 +210,14 @@ $articlelist = get_allmtd_article_list($monthval, $yearval, $statusval);
 
             var ws = XLSX.utils.aoa_to_sheet([["Article ID", "Title", "Status", "Date Submitted"]].concat(wsData));
 
+            var columnSizes = [{ wch: 15 }, { wch: 150 }, { wch: 10 }, { wch: 10 }]; 
+            columnSizes.forEach((size, columnIndex) => {
+                ws['!cols'] = ws['!cols'] || [];
+                ws['!cols'][columnIndex] = size;
+            });
+
+            ws['!protect'] = true;
+
             var wb = XLSX.utils.book_new();
             XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
 
