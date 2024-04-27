@@ -50,7 +50,6 @@ $journal = get_journal_list();
   <script src="../assets/vendor/js/helpers.js"></script>
   <script src="../assets/js/config.js"></script>
   <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
 </head>
 <style>
 #text{

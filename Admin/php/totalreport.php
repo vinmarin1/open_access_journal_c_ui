@@ -45,6 +45,8 @@ $seriesString = json_encode($seriesData);
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.13/jspdf.plugin.autotable.min.js"></script>
 </head>
 <style>
     #nopadding {
@@ -63,8 +65,11 @@ $seriesString = json_encode($seriesData);
         Others / <a href="../php/reportlist.php"> <span class="text-muted fw-light">&nbsp;Report /</span></a>&nbsp; Article Report
             <span id="totalPublished" class="text-muted" style="margin-left: auto">
                 <button type="button" class="btn btn-success" onclick="exportToExcel()">
-                    Export &nbsp<i class="bx bx-download"></i>
+                    Export&nbsp<i class="bx bx-download"></i>
                 </button>
+                <!-- <button type="button" class="btn btn-success" onclick="exportToPDF()">
+                    Export PDF&nbsp<i class="bx bx-download"></i>
+                </button> -->
             </span>
         </h4>
 
@@ -157,7 +162,6 @@ $seriesString = json_encode($seriesData);
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
-
      <script>
         function generatePDF(chartDiv) {
             const opt = {
@@ -208,18 +212,41 @@ $seriesString = json_encode($seriesData);
             var dataTable = $('#DataTable').DataTable();
             var data = dataTable.rows().data();
 
-            var wsData = data.toArray().map(row => [row[0], row[1], row[2], row[3]]);
+            var wsData = data.toArray().map(row => [row[0], row[1], row[2], row[3], row[4], row[5]]);
 
-            var ws = XLSX.utils.aoa_to_sheet([["Article ID", "Title", "Read", "Download"]].concat(wsData));
+            var ws = XLSX.utils.aoa_to_sheet([["Article ID", "Title", "View", "Download", "Citation", "Support"]].concat(wsData));
+
+            var columnSizes = [{ wch: 15 }, { wch: 150 }, { wch: 10 }, { wch: 10 }, { wch: 10 }, { wch: 10 }]; 
+            columnSizes.forEach((size, columnIndex) => {
+                ws['!cols'] = ws['!cols'] || [];
+                ws['!cols'][columnIndex] = size;
+            });
+
+            ws['!protect'] = true;
 
             var wb = XLSX.utils.book_new();
             XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
- 
-            var yearval = <?php echo json_encode($yearval); ?>;
 
+            var yearval = <?php echo json_encode($yearval); ?>;
             var filename = 'ArticleCounter' + yearval + '.xlsx';
             XLSX.writeFile(wb, filename);
         }
+
+        // function exportToPDF() {
+        //     var dataTable = $('#DataTable').DataTable();
+        //     var data = dataTable.rows().data();
+
+        //     var wsData = data.toArray().map(row => [row[0], row[1], row[2], row[3]]);
+
+        //     var doc = new jsPDF();
+        //     doc.autoTable({ 
+        //         head: [["Article ID", "Title", "Read", "Download"]],
+        //         body: wsData
+        //     });
+        //     var yearval = <?php echo json_encode($yearval); ?>;
+        //     var pdfFilename = 'ArticleCounter' + yearval + '.pdf';
+        //     doc.save(pdfFilename);
+        // }
 
         (function() {
             let cardColor, headingColor, axisColor, shadeColor, borderColor;
