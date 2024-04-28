@@ -242,7 +242,7 @@ $messagelist = get_message_list();
                 <div class="row mb-2">
                     <div class="col-md-12 mb-2">
                         <label class="form-label">Submitted Image</label>
-                        <img id="xupload_file"  src="../../../Files/message-image/<?php echo $messagelistval->upload_file; ?>" alt="Uploaded Image" class="img-fluid"/>
+                        <img id="xupload_file"  src="../../Files/message-image/<?php echo $messagelistval->upload_file; ?>" alt="Uploaded Image" class="img-fluid"/>
                     </div>
                 </div>
             </div>
