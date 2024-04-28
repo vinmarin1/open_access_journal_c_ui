@@ -667,7 +667,7 @@ function openFilename(index) {
   input.click();
 
   input.addEventListener('change', function () {
-      checkFileSize(input, 5 * 1024 * 1024, index);
+      checkFileSize(input, 1.5 * 1024 * 1024, index);
   });
 }
 
@@ -686,7 +686,7 @@ document.getElementById('file_name3').addEventListener('change', function () {
 
 function handleFileInputChange(index) {
   var input = document.getElementById('file_name' + index);
-  checkFileSize(input, 5 * 1024 * 1024, index);
+  checkFileSize(input, 1.5 * 1024 * 1024, index);
 }
 
 function checkFileSize(input, maxSizeInBytes, index) {
@@ -700,7 +700,7 @@ function checkFileSize(input, maxSizeInBytes, index) {
     if (fileSize > maxSize) {
       Swal.fire({
         icon: 'info',
-        text: 'Please select a file 5mb or less'
+        text: 'Please select a file 1.5mb or less'
       });
       // Clear the value of the file input
       input.value = '';
