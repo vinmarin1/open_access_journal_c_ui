@@ -145,19 +145,20 @@ $messagelist = get_message_list();
             dataType: 'json',
             success: function (response) {
                 console.log('Response from server:', response);
-
+    
                 if (response.status === true && response.data.length > 0) {
                     const messageData = response.data[0];
                     console.log('Message Data:', messageData);
-
+    
                     $('#xmessage_id').val(messageData.message_id);
                     $('#xname').val(messageData.name);
                     $('#xemail').val(messageData.email);
                     $('#xreason').val(messageData.reason);
                     $('#xmessage').val(messageData.message);
-                    $('#xupload_file').val(messageData.upload_file);
-                   
-
+    
+                    // Set the src attribute of the img tag dynamically
+                    $('#xupload_file').attr('src', '../../../Files/message-image/' + messageData.upload_file);
+    
                     $('#updateModal').modal('show');
                 }
             },
@@ -167,7 +168,6 @@ $messagelist = get_message_list();
             }
         });
     }
-    
     function archiveMessage(message_id, email, message) {
         $('#archiveModal').modal('show');
         $('#archiveModalTitle').text('Delete Message');
@@ -242,7 +242,7 @@ $messagelist = get_message_list();
                 <div class="row mb-2">
                     <div class="col-md-12 mb-2">
                         <label class="form-label">Submitted Image</label>
-                        <img id="xupload_file"  src="../../Files/message-image/<?php echo $messagelistval->upload_file; ?>" alt="Uploaded Image" class="img-fluid"/>
+                        <img id="xupload_file" src="" alt="Uploaded Image" class="img-fluid"/>
                     </div>
                 </div>
             </div>
