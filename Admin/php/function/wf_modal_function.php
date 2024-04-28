@@ -596,6 +596,7 @@ require 'vendor/autoload.php';
 
     function replyDiscussion() {
         $uploadPath = "../../../Files/discussion-file/";
+        $article_id = $_POST['article_id'];
         $fromuser = $_POST['fromuser'];
         $discussion_id = $_POST['discussion_id'];
         $author_id = $_POST['author_id'];
@@ -636,7 +637,7 @@ require 'vendor/autoload.php';
                 $errorMessage .= 'File failed to upload. ';
             }
         }
-    
+        
         try {
             $pdo = connect_to_database();
             $pdo->beginTransaction();
@@ -644,7 +645,7 @@ require 'vendor/autoload.php';
                 $query = "INSERT INTO discussion_message (discussion_id, fromuser, message, file, file_type) VALUES (?, ?, ?, ?, ?)";
                 $result = execute_query($query, [$discussion_id, $fromuser, $submissionmessage, $fileName, $submissionfiletype], true);
                 discussionEmail($article_id, $fromuser, $author_id, $submissionsubject, $submissionmessage, $fileName);
-                addNotificationDiscussion($article_id, $fromuser, $submissionsubject, $submissionmessage);
+                addNotificationDiscussion($article_id, $author_id, $submissionsubject, $submissionmessage);
                 
             if ($result !== false) {
                 $pdo->commit();
@@ -1322,7 +1323,7 @@ require 'vendor/autoload.php';
 
         $query = "INSERT INTO notification (article_id, author_id, title, description, admin, created) VALUES (?, ?, ?, ?, ?, ?)";
 
-        $result = execute_query($query, [$article_id, $author_id, $message, $description, $admin, $created], true);
+        $result = execute_query($query, [$article_id, $author_id, $title, $description, $admin, $created], true);
 
         if ($result !== false) {
             echo json_encode(['status' => true, 'message' => 'Record added successfully']);
