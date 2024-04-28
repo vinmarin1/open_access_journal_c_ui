@@ -151,7 +151,7 @@ $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
                                 z-index: 999;
                                 top: 90px;
                                 margin-left: 80px;
-                                ">Publication Bronze Badge: publish one more article to upgrade your badge to Silver
+                                ">Publication Bronze Badge: This author successfully publish one article
                                 </span>';
                             }elseif(count($result) === 2){
                                 echo '<div class="badge-box pubSilverBadge" style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
@@ -164,7 +164,7 @@ $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
                                 z-index: 999;
                                 top: 90px;
                                 margin-left: 80px;
-                                ">Publication Silver Badge: publish one more article to upgrade your badge to Gold
+                                ">Publication Silver Badge: This author successfully publish two article
                                 </span>';
                             }elseif(count($result) >= 3){
                                 echo '<div class="badge-box pubGoldBadge" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
@@ -177,7 +177,7 @@ $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
                                 z-index: 999;
                                 top: 90px;
                                 margin-left: 80px;
-                                ">Publication Gold Badge: Congratulations, you have reach the last badge for publication.
+                                ">Publication Gold Badge: This author successfully publish three or more article
                                 </span>';
                             }
                         }elseif(!$resultReviewed && $result === false){
@@ -192,7 +192,7 @@ $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
                                 z-index: 999;
                                 top: 90px;
                                 margin-left: 80px;
-                                ">Reviewer Bronze Badge: Help us publish one more article by reviewing to upgrade your badge to Silver
+                                ">Reviewer Bronze Badge: This author help to publish an article by reviewing once.
                                 </span>';
                             }elseif(count($resultReviewed) === 2){
                                 echo '<div class="badge-box revBronzeBadge" style="background-image: url(\'../images/second_review_badges.png\');"></div>';
@@ -205,7 +205,7 @@ $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
                                 z-index: 999;
                                 top: 90px;
                                 margin-left: 80px;
-                                ">Reviewer Silver Badge: Help us publish one more article by reviewing to upgrade your badge to Gold
+                                ">Reviewer Silver Badge: This author help to publish an article by reviewing twice.
                                 </span>';
                             }elseif(count($resultReviewed) >= 3){
                                 echo '<div class="badge-box revGoldBadge" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
@@ -218,7 +218,7 @@ $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
                                 z-index: 999;
                                 top: 90px;
                                 margin-left: 80px;
-                                ">Reviewer Gold Badge: Congratulations, you have reach the last badge for reviewer badge
+                                ">Reviewer Gold Badge: This author help to publish an article by reviewing three or more.
                                 </span>';
                             }
                         }elseif(!$result === false && !$resultReviewed === false){
@@ -233,7 +233,7 @@ $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
                                 z-index: 999;
                                 top: 90px;
                                 margin-left: 80px;
-                                ">Publication Bronze Badge: publish one more article to upgrade your badge to Silver
+                                ">Publication Bronze Badge: This author successfully publish one article
                                 </span>';
 
                                 echo '<div class="badge-box revBronzeBadge" style="background-image: url(\'../images/first_review_badges.png\');"></div>';
@@ -246,7 +246,7 @@ $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
                                 z-index: 999;
                                 top: 90px;
                                 margin-left: 160px;
-                                ">Reviewer Bronze Badge: Help us publish one more article by reviewing to upgrade your badge to Silver
+                                ">Reviewer Bronze Badge: This author help to publish an article by reviewing once.
                                 </span>';
 
                             }elseif(count($result) === 2 && count($resultReviewed) === 1){
@@ -260,7 +260,7 @@ $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
                                 z-index: 999;
                                 top: 90px;
                                 margin-left: 80px;
-                                ">Publication Silver Badge: publish one more article to upgrade your badge to Gold
+                                ">Publication Silver Badge: This author successfully publish two article
                                 </span>';
 
                                 echo '<div class="badge-box revBronzeBadge" style="background-image: url(\'../images/first_review_badges.png\');"></div>';
@@ -273,7 +273,7 @@ $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
                                 z-index: 999;
                                 top: 90px;
                                 margin-left: 160px;
-                                ">Reviewer Bronze Badge: Help us publish one more article by reviewing to upgrade your badge to Silver
+                                ">Reviewer Bronze Badge: This author help to publish an article by reviewing once.
                                 </span>';
                             }elseif(count($result) === 1 && count($resultReviewed) === 2){
                                 echo '<div class="badge-box pubBrozeBadge" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
@@ -286,7 +286,7 @@ $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
                                 z-index: 999;
                                 top: 90px;
                                 margin-left: 80px;
-                                ">Publication Bronze Badge: publish one more article to upgrade your badge to Silver
+                                ">Publication Bronze Badge: This author successfully publish one article
                                 </span>';
 
                                 echo '<div class="badge-box revBronzeBadge" style="background-image: url(\'../images/second_review_badges.png\');"></div>';
@@ -299,7 +299,7 @@ $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
                                 z-index: 999;
                                 top: 90px;
                                 margin-left: 160px;
-                                ">Reviewer Silver Badge: Help us publish one more article by reviewing to upgrade your badge to Gold
+                                ">Reviewer Silver Badge: This author help to publish an article by reviewing twice.
                                 </span>';
                             }elseif(count($result) === 2 && count($resultReviewed) === 2){
                                 echo '<div class="badge-box pubSilverBadge" style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
@@ -312,7 +312,7 @@ $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
                                 z-index: 999;
                                 top: 90px;
                                 margin-left: 80px;
-                                ">Publication Silver Badge: publish one more article to upgrade your badge to Gold
+                                ">Publication Silver Badge: This author successfully publish two article
                                 </span>';
 
                                 echo '<div class="badge-box revBronzeBadge" style="background-image: url(\'../images/second_review_badges.png\');"></div>';
@@ -325,7 +325,7 @@ $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
                                 z-index: 999;
                                 top: 90px;
                                 margin-left: 160px;
-                                ">Reviewer Silver Badge: Help us publish one more article by reviewing to upgrade your badge to Gold
+                                ">Reviewer Silver Badge: This author help to publish an article by reviewing twice.
                                 </span>';
                             }elseif(count($result) >= 3 && count($resultReviewed) === 1){
                                 echo '<div class="badge-box pubGoldBadge" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
@@ -338,7 +338,7 @@ $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
                                 z-index: 999;
                                 top: 90px;
                                 margin-left: 80px;
-                                ">Publication Gold Badge: Congratulations, you have reach the last badge for publication.
+                                ">Publication Gold Badge: This author successfully publish three or more article
                                 </span>';
 
                                 echo '<div class="badge-box revBronzeBadge" style="background-image: url(\'../images/first_review_badges.png\');"></div>';
@@ -351,7 +351,7 @@ $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
                                 z-index: 999;
                                 top: 90px;
                                 margin-left: 160px;
-                                ">Reviewer Bronze Badge: Help us publish one more article by reviewing to upgrade your badge to Silver
+                                ">Reviewer Bronze Badge: This author help to publish an article by reviewing once.
                                 </span>';
                             }elseif(count($result) === 1 && count($resultReviewed) >= 3){
                                 echo '<div class="badge-box pubBrozeBadge" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
@@ -364,7 +364,7 @@ $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
                                 z-index: 999;
                                 top: 90px;
                                 margin-left: 80px;
-                                ">Publication Bronze Badge: publish one more article to upgrade your badge to Silver
+                                ">Publication Bronze Badge: This author successfully publish one article
                                 </span>';
 
                                 echo '<div class="badge-box revGoldBadge" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
@@ -377,7 +377,7 @@ $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
                                 z-index: 999;
                                 top: 90px;
                                 margin-left: 160px;
-                                ">Reviewer Gold Badge: Congratulations, you have reach the last badge for reviewer badge
+                                ">Reviewer Gold Badge: This author help to publish an article by reviewing three or more.
                                 </span>';
                             }elseif(count($result) >= 3 && count($resultReviewed) === 2){
                                 echo '<div class="badge-box pubGoldBadge" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
@@ -390,7 +390,7 @@ $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
                                 z-index: 999;
                                 top: 90px;
                                 margin-left: 80px;
-                                ">Publication Gold Badge: Congratulations, you have reach the last badge for publication.
+                                ">Publication Gold Badge: This author successfully publish three or more article
                                 </span>';
 
                                 echo '<div class="badge-box revBronzeBadge" style="background-image: url(\'../images/second_review_badges.png\');"></div>';
@@ -403,7 +403,7 @@ $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
                                 z-index: 999;
                                 top: 90px;
                                 margin-left: 160px;
-                                ">Reviewer Silver Badge: Help us publish one more article by reviewing to upgrade your badge to Gold
+                                ">Reviewer Silver Badge: This author help to publish an article by reviewing twice
                                 </span>';
                             }elseif(count($result) === 2 && count($resultReviewed) >= 3){
                                 echo '<div class="badge-box pubSilverBadge" style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
@@ -416,7 +416,7 @@ $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
                                 z-index: 999;
                                 top: 90px;
                                 margin-left: 80px;
-                                ">Publication Silver Badge: publish one more article to upgrade your badge to Gold
+                                ">Publication Silver Badge: This author successfully publish two article
                                 </span>';
 
                                 echo '<div class="badge-box revGoldBadge" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
@@ -429,7 +429,7 @@ $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
                                 z-index: 999;
                                 top: 90px;
                                 margin-left: 160px;
-                                ">Reviewer Gold Badge: Congratulations, you have reach the last badge for reviewer badge
+                                ">Reviewer Gold Badge: This author help to publish an article by reviewing three or more.
                                 </span>';
                             }elseif(count($result) >= 3 && count($resultReviewed) >= 3){
                                 echo '<div class="badge-box pubGoldBadge" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
@@ -442,7 +442,7 @@ $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
                                 z-index: 999;
                                 top: 90px;
                                 margin-left: 80px;
-                                ">Publication Gold Badge: Congratulations, you have reach the last badge for publication.
+                                ">Publication Gold Badge: This author successfully publish three or more article
                                 </span>';
 
                                 echo '<div class="badge-box revGoldBadge" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
@@ -455,7 +455,7 @@ $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
                                 z-index: 999;
                                 top: 90px;
                                 margin-left: 160px;
-                                ">Reviewer Gold Badge: Congratulations, you have reach the last badge for reviewer badge
+                                ">Reviewer Gold Badge: This author help to publish an article by reviewing three or more.
                                 </span>';
                             }
                         }else{
