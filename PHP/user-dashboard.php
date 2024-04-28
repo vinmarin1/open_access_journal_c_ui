@@ -2153,7 +2153,7 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 margin-right: auto; padding: 0; background-color: red;">
     <div class="cert-container d-flex justify-content-center align-items-center">
 		<?php 
-			echo '<img class="imgCert" id="cert1" src="../images/qcuj_reviewer_cert.jpg" alt="cert">'
+			echo '<img class="imgCert" id="cert1" src="../images/qcuj-reviewer-certificate.png" alt="cert">'
 		?>
         
 		<div class="cert-category">
@@ -2180,7 +2180,7 @@ margin-right: auto; padding: 0; background-color: red;">
 <div class="container-fluid mt-5" id="certPublishedHead" style="display: none; align-items: center !important; width: 889px; height: 500px; margin-left: auto;
 margin-right: auto; padding: 0;">
     <div class="cert-container d-flex justify-content-center align-items-center">
-        <img class="imgCert" id="cert2" src="../images/qcuj_publication_cert.jpg" alt="cert">
+        <img class="imgCert" id="cert2" src="../images/qcuj-publication-certificate.png" alt="cert">
 
 			<div class="articlePubInfo">
 				<p class="h2" id="categoryPublished"></p>
@@ -2605,7 +2605,7 @@ function downloadCertificate() {
         var link = document.createElement('a');
 
         // Set the download attribute and the href with the data URL
-        link.download = 'certificate.png';
+        link.download = 'Reviewer-Certificate.png';
         link.href = dataUrl;
 
         // Trigger a click on the link to start the download

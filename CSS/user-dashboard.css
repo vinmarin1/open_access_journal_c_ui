@@ -1652,14 +1652,15 @@ label {
     position: absolute;
 }
 .cert-category {
+    margin-left: -120px;
     top: 50%;
     transform: translateY(-50%);
     text-align: left;
     padding: 20px;
 }
 .cert-rev-details {
-    top: 50%;
-    transform: translateY(-30%);
+    top: 43%;
+    /* transform: translateY(-20%); */
     left: 2%;
     text-align: center;
     /* padding: 20px; */
@@ -1723,14 +1724,15 @@ label {
     position: absolute;
 }
 .articlePubInfo {
+    margin-left: -120px;
     top: 50%;
     transform: translateY(-50%);
     text-align: left;
     padding: 20px;
 }
 .pubInfo{
-    top: 50%;
-    transform: translateY(-33%);
+    top: 41%;
+    /* transform: translateY(-33%); */
     left: 6%;
     text-align: center;
 }
@@ -1752,7 +1754,13 @@ label {
     font-weight: bold;
     margin-left: 80px;
 }
+#engagementTitle{
+    padding-top: 35px;
+}
+#engagementTitlePublished{
+    padding-top: 15px;
 
+}
 #engagementTitle,
 #engagementTitlePublished {
     font-weight: normal;
@@ -1762,7 +1770,6 @@ label {
     width: 550px;
     line-height: 25px;
     font-size: 20px;
-    padding-top: 35px;
     color: #00123D;
     /* margin-left: -100px; */
     text-align: center;
