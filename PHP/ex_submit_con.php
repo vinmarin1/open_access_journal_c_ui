@@ -92,7 +92,7 @@ function handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $
         'journal_id' => $category,
         'author_id' => $author_id,
         'abstract' => $abstract,
-        'subject_areas' => $subject_areas
+        'subject_areas' => $subject_areas,
         'keyword' => $keywords,
         'references' => $reference,
         'content' => "-",

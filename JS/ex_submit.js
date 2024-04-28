@@ -158,327 +158,327 @@ function checkDuplication() {
   
 // });
 
-// document.addEventListener('DOMContentLoaded', function(){
+document.addEventListener('DOMContentLoaded', function(){
 
-//   const nextBtnArticle = document.getElementById('next');
-//   const nextBGuide = document.getElementById('next1');
-//   const prevBtnArticle = document.getElementById('prev');
-//   const nextFile = document.getElementById('next3');
-//   const prevBFile = document.getElementById('prev3');
-//   const nextCont = document.getElementById('next4');
-//   const prevBCont = document.getElementById('prev4');
-//   const authorPcontact = document.getElementById('authorPcontact');
-//   const authorPcontactValue = document.getElementById('authorPcontactValue');
-//   const nextNote = document.getElementById('next5');
-//   const prevNote = document.getElementById('prev5');
-//   const prevReview = document.getElementById('prevReview');
-//   const submitBtn = document.getElementById('submit');
-//   const privacyTab = document.getElementById('privacy-tab');
-//   const articleTab = document.getElementById('article-tab');
-//   const fileTab = document.getElementById('file-tab');
-//   const contTab = document.getElementById('contributors-tab');
-//   const commentTab = document.getElementById('comment-tab');
-//   const reviewTab = document.getElementById('review-tab');
-//   const file_name = document.getElementById('file_name');
-//   const file_name2 = document.getElementById('file_name2');
-//   const file_name3 = document.getElementById('file_name3');
+  const nextBtnArticle = document.getElementById('next');
+  const nextBGuide = document.getElementById('next1');
+  const prevBtnArticle = document.getElementById('prev');
+  const nextFile = document.getElementById('next3');
+  const prevBFile = document.getElementById('prev3');
+  const nextCont = document.getElementById('next4');
+  const prevBCont = document.getElementById('prev4');
+  const authorPcontact = document.getElementById('authorPcontact');
+  const authorPcontactValue = document.getElementById('authorPcontactValue');
+  const nextNote = document.getElementById('next5');
+  const prevNote = document.getElementById('prev5');
+  const prevReview = document.getElementById('prevReview');
+  const submitBtn = document.getElementById('submit');
+  const privacyTab = document.getElementById('privacy-tab');
+  const articleTab = document.getElementById('article-tab');
+  const fileTab = document.getElementById('file-tab');
+  const contTab = document.getElementById('contributors-tab');
+  const commentTab = document.getElementById('comment-tab');
+  const reviewTab = document.getElementById('review-tab');
+  const file_name = document.getElementById('file_name');
+  const file_name2 = document.getElementById('file_name2');
+  const file_name3 = document.getElementById('file_name3');
 
-//   const checkbox1 = document.getElementById('check-1');
-//   const checkbox2 = document.getElementById('check-2');
-//   const checkbox3 = document.getElementById('check-3');
-//   const checkbox4 = document.getElementById('check-4');
-//   const checkbox5 = document.getElementById('check-6');
-//   const checkbox6 = document.getElementById('check-7');
-//   const checkbox7 = document.getElementById('check-8');
-//   const check = document.getElementById('check');
+  const checkbox1 = document.getElementById('check-1');
+  const checkbox2 = document.getElementById('check-2');
+  const checkbox3 = document.getElementById('check-3');
+  const checkbox4 = document.getElementById('check-4');
+  const checkbox5 = document.getElementById('check-6');
+  const checkbox6 = document.getElementById('check-7');
+  const checkbox7 = document.getElementById('check-8');
+  const check = document.getElementById('check');
   
   
 
-//   const title = document.getElementById('title');
-//   const abstract = document.getElementById('abstract');
-//   const keywords = document.getElementById('keywords');
-//   const reference = document.getElementById('reference');
+  const title = document.getElementById('title');
+  const abstract = document.getElementById('abstract');
+  const keywords = document.getElementById('keywords');
+  const reference = document.getElementById('reference');
   
 
-//   articleTab.disabled = true;
-//   fileTab.disabled = true;
-//   contTab.disabled = true;
-//   commentTab.disabled = true;
-//   reviewTab.disabled = true;
+  articleTab.disabled = true;
+  fileTab.disabled = true;
+  contTab.disabled = true;
+  commentTab.disabled = true;
+  reviewTab.disabled = true;
 
 
 
  
   
-//   privacyTab.style.backgroundColor ='var(--main, #0858A4)';
-//   privacyTab.style.color ='white';
+  privacyTab.style.backgroundColor ='var(--main, #0858A4)';
+  privacyTab.style.color ='white';
 
-//   privacyTab.addEventListener('click', function(event){
-//     privacyTab.style.backgroundColor = 'var(--main, #0858A4)';
-//     privacyTab.style.color = 'white';
+  privacyTab.addEventListener('click', function(event){
+    privacyTab.style.backgroundColor = 'var(--main, #0858A4)';
+    privacyTab.style.color = 'white';
 
-//     articleTab.style.backgroundColor = 'white';
-//     articleTab.style.color = 'var(--main, #0858A4)';
-//     fileTab.style.backgroundColor = 'white';
-//     fileTab.style.color = 'var(--main, #0858A4)';
-//     contTab.style.backgroundColor = 'white';
-//     contTab.style.color = 'var(--main, #0858A4)';
-//     commentTab.style.backgroundColor = 'white';
-//     commentTab.style.color = 'var(--main, #0858A4)';
-//     reviewTab.style.backgroundColor = 'white';
-//     reviewTab.style.color = 'var(--main, #0858A4)';
+    articleTab.style.backgroundColor = 'white';
+    articleTab.style.color = 'var(--main, #0858A4)';
+    fileTab.style.backgroundColor = 'white';
+    fileTab.style.color = 'var(--main, #0858A4)';
+    contTab.style.backgroundColor = 'white';
+    contTab.style.color = 'var(--main, #0858A4)';
+    commentTab.style.backgroundColor = 'white';
+    commentTab.style.color = 'var(--main, #0858A4)';
+    reviewTab.style.backgroundColor = 'white';
+    reviewTab.style.color = 'var(--main, #0858A4)';
 
-//   });
+  });
 
-//   articleTab.addEventListener('click', function(event){
-//     privacyTab.style.backgroundColor = 'white';
-//     privacyTab.style.color = 'var(--main, #0858A4)';
-//     articleTab.style.backgroundColor = 'var(--main, #0858A4)';
-//     articleTab.style.color = 'white';
-//     fileTab.style.backgroundColor = 'white';
-//     fileTab.style.color = 'var(--main, #0858A4)';
-//     contTab.style.backgroundColor = 'white';
-//     contTab.style.color = 'var(--main, #0858A4)';
-//     commentTab.style.backgroundColor = 'white';
-//     commentTab.style.color = 'var(--main, #0858A4)';
-//     reviewTab.style.backgroundColor = 'white';
-//     reviewTab.style.color = 'var(--main, #0858A4)';
+  articleTab.addEventListener('click', function(event){
+    privacyTab.style.backgroundColor = 'white';
+    privacyTab.style.color = 'var(--main, #0858A4)';
+    articleTab.style.backgroundColor = 'var(--main, #0858A4)';
+    articleTab.style.color = 'white';
+    fileTab.style.backgroundColor = 'white';
+    fileTab.style.color = 'var(--main, #0858A4)';
+    contTab.style.backgroundColor = 'white';
+    contTab.style.color = 'var(--main, #0858A4)';
+    commentTab.style.backgroundColor = 'white';
+    commentTab.style.color = 'var(--main, #0858A4)';
+    reviewTab.style.backgroundColor = 'white';
+    reviewTab.style.color = 'var(--main, #0858A4)';
 
-//   });
+  });
 
-//   fileTab.addEventListener('click', function(event){
-//     privacyTab.style.backgroundColor = 'white';
-//     privacyTab.style.color = 'var(--main, #0858A4)';
-//     articleTab.style.backgroundColor = 'white';
-//     articleTab.style.color = 'var(--main, #0858A4)';
-//     fileTab.style.backgroundColor = 'var(--main, #0858A4)';
-//     fileTab.style.color = 'white';
-//     contTab.style.backgroundColor = 'white';
-//     contTab.style.color = 'var(--main, #0858A4)';
-//     commentTab.style.backgroundColor = 'white';
-//     commentTab.style.color = 'var(--main, #0858A4)';
-//     reviewTab.style.backgroundColor = 'white';
-//     reviewTab.style.color = 'var(--main, #0858A4)';
+  fileTab.addEventListener('click', function(event){
+    privacyTab.style.backgroundColor = 'white';
+    privacyTab.style.color = 'var(--main, #0858A4)';
+    articleTab.style.backgroundColor = 'white';
+    articleTab.style.color = 'var(--main, #0858A4)';
+    fileTab.style.backgroundColor = 'var(--main, #0858A4)';
+    fileTab.style.color = 'white';
+    contTab.style.backgroundColor = 'white';
+    contTab.style.color = 'var(--main, #0858A4)';
+    commentTab.style.backgroundColor = 'white';
+    commentTab.style.color = 'var(--main, #0858A4)';
+    reviewTab.style.backgroundColor = 'white';
+    reviewTab.style.color = 'var(--main, #0858A4)';
 
-//   });
+  });
 
-//   contTab.addEventListener('click', function(event){
-//     privacyTab.style.backgroundColor = 'white';
-//     privacyTab.style.color = 'var(--main, #0858A4)';
-//     articleTab.style.backgroundColor = 'white';
-//     articleTab.style.color = 'var(--main, #0858A4)';
-//     fileTab.style.backgroundColor = 'white';
-//     fileTab.style.color = 'var(--main, #0858A4)';
-//     contTab.style.backgroundColor = 'var(--main, #0858A4)';
-//     contTab.style.color = 'white';
-//     commentTab.style.backgroundColor = 'white';
-//     commentTab.style.color = 'var(--main, #0858A4)';
-//     reviewTab.style.backgroundColor = 'white';
-//     reviewTab.style.color = 'var(--main, #0858A4)';
+  contTab.addEventListener('click', function(event){
+    privacyTab.style.backgroundColor = 'white';
+    privacyTab.style.color = 'var(--main, #0858A4)';
+    articleTab.style.backgroundColor = 'white';
+    articleTab.style.color = 'var(--main, #0858A4)';
+    fileTab.style.backgroundColor = 'white';
+    fileTab.style.color = 'var(--main, #0858A4)';
+    contTab.style.backgroundColor = 'var(--main, #0858A4)';
+    contTab.style.color = 'white';
+    commentTab.style.backgroundColor = 'white';
+    commentTab.style.color = 'var(--main, #0858A4)';
+    reviewTab.style.backgroundColor = 'white';
+    reviewTab.style.color = 'var(--main, #0858A4)';
 
-//   });
+  });
 
-//   commentTab.addEventListener('click', function(event){
-//     privacyTab.style.backgroundColor = 'white';
-//     privacyTab.style.color = 'var(--main, #0858A4)';
-//     articleTab.style.backgroundColor = 'white';
-//     articleTab.style.color = 'var(--main, #0858A4)';
-//     fileTab.style.backgroundColor = 'white';
-//     fileTab.style.color = 'var(--main, #0858A4)';
-//     contTab.style.backgroundColor = 'white';
-//     contTab.style.color = 'var(--main, #0858A4)';
-//     commentTab.style.backgroundColor = 'var(--main, #0858A4)';
-//     commentTab.style.color = 'white';
-//     reviewTab.style.backgroundColor = 'white';
-//     reviewTab.style.color = 'var(--main, #0858A4)';
+  commentTab.addEventListener('click', function(event){
+    privacyTab.style.backgroundColor = 'white';
+    privacyTab.style.color = 'var(--main, #0858A4)';
+    articleTab.style.backgroundColor = 'white';
+    articleTab.style.color = 'var(--main, #0858A4)';
+    fileTab.style.backgroundColor = 'white';
+    fileTab.style.color = 'var(--main, #0858A4)';
+    contTab.style.backgroundColor = 'white';
+    contTab.style.color = 'var(--main, #0858A4)';
+    commentTab.style.backgroundColor = 'var(--main, #0858A4)';
+    commentTab.style.color = 'white';
+    reviewTab.style.backgroundColor = 'white';
+    reviewTab.style.color = 'var(--main, #0858A4)';
 
-//   });
+  });
 
 
-//   reviewTab.addEventListener('click', function(event){
-//     privacyTab.style.backgroundColor = 'white';
-//     privacyTab.style.color = 'var(--main, #0858A4)';
-//     articleTab.style.backgroundColor = 'white';
-//     articleTab.style.color = 'var(--main, #0858A4)';
-//     fileTab.style.backgroundColor = 'white';
-//     fileTab.style.color = 'var(--main, #0858A4)';
-//     contTab.style.backgroundColor = 'white';
-//     contTab.style.color = 'var(--main, #0858A4)';
-//     commentTab.style.backgroundColor = 'white';
-//     commentTab.style.color = 'var(--main, #0858A4)';
-//     reviewTab.style.backgroundColor = 'var(--main, #0858A4)';
-//     reviewTab.style.color = 'white';
+  reviewTab.addEventListener('click', function(event){
+    privacyTab.style.backgroundColor = 'white';
+    privacyTab.style.color = 'var(--main, #0858A4)';
+    articleTab.style.backgroundColor = 'white';
+    articleTab.style.color = 'var(--main, #0858A4)';
+    fileTab.style.backgroundColor = 'white';
+    fileTab.style.color = 'var(--main, #0858A4)';
+    contTab.style.backgroundColor = 'white';
+    contTab.style.color = 'var(--main, #0858A4)';
+    commentTab.style.backgroundColor = 'white';
+    commentTab.style.color = 'var(--main, #0858A4)';
+    reviewTab.style.backgroundColor = 'var(--main, #0858A4)';
+    reviewTab.style.color = 'white';
 
-//   });
+  });
 
-//   authorPcontact.addEventListener('change', function(event) {
-//     if (authorPcontact.checked) {
-//         authorPcontactValue.value = ' , Primary Contact';
-//     } else {
-//         authorPcontactValue.value = '';
-//     }
-// });
+  authorPcontact.addEventListener('change', function(event) {
+    if (authorPcontact.checked) {
+        authorPcontactValue.value = ' , Primary Contact';
+    } else {
+        authorPcontactValue.value = '';
+    }
+});
 
-//   const checkArticle = document.getElementById('check-duplication');
-//   let checkArticleClicked = false;
+  const checkArticle = document.getElementById('check-duplication');
+  let checkArticleClicked = false;
   
-//   checkArticle.addEventListener('click', function() {
-//       checkArticleClicked = true;
-//   });
-  
-
-//   title.addEventListener('input', function() {
-//       checkArticleClicked = false;
-//       fileTab.disabled = true;
-//   });
-  
-//   editor.addEventListener('input', function() {
-//       checkArticleClicked = false;
-//       fileTab.disabled = true;
-//   });
-  
-//   // keywords.addEventListener('input', function() {
-//   //     checkArticleClicked = false;
-//   //     fileTab.disabled = true;
-//   // });
-
-//   editor2.addEventListener('input', function() {
-//     // checkArticleClicked = false;
-//     fileTab.disabled = true;
-//   });
-  
-//   nextBtnArticle.addEventListener('click', function(event) {
-//       const titleValue = title.value.trim(); 
-//       const titleWordCount = titleValue.split(/\s+/).length; 
-//       const abstractValue = abstract.value.trim(); 
-//       const abstractWordCount = abstractValue.split(/\s+/).length; 
-//       const keywordsValue = keywords.value.trim(); 
-  
-//       if (titleValue === '' || abstract.value === '' || keywordArray.length==0 || reference.value === '') {
-//           Swal.fire({
-//               icon: 'info',
-//               text: 'You have to give all the article details before proceeding'
-//           });
-//       } else if (titleWordCount < 5 || abstractWordCount < 10) {
-//           Swal.fire({
-//               icon: 'info',
-//               text: 'Kindly correct the article details by the said validation'
-//           });
-//       }else if(keywordArray.length < 5){
-//         Swal.fire({
-//           icon: 'info',
-//           text: 'Minimun of 5 keywords'
-//       });
-//       } 
-//       else if (!checkArticleClicked) {
-//           Swal.fire({
-//               icon: 'info',
-//               text: 'Please check your article before proceeding'
-//           });
-//       } else {
-//           fileTab.disabled = false;
-//           fileTab.click();
-//       }
-//   });
+  checkArticle.addEventListener('click', function() {
+      checkArticleClicked = true;
+  });
   
 
-
-//   nextFile.addEventListener('click', function(event){
-//     if (file_name.value === '' || file_name2.value === '' || file_name3.value === ''){
-//       Swal.fire({
-//         icon: 'info',
-//         text: 'You have to provide the files requested'
-//        });
-//     }else{
-//       contTab.disabled = false;
-//       contTab.click();
-//     }
-//   });
-
-//   nextCont.addEventListener('click', function(event){
-//     commentTab.disabled = false;
-//     commentTab.click();
-//   });
-
-//   nextNote.addEventListener('click', function(event){
-//     reviewTab.disabled = false;
-//     reviewTab.click();
-//   });
-
-
-
-//   prevBtnArticle.addEventListener('click', function(event){
-//     privacyTab.click();
-//   });
-
-//   prevBFile.addEventListener('click', function(event){
-//     articleTab.click();
-//   });
-
-
-//   prevBCont.addEventListener('click', function(event){
-//     fileTab.click();
-//   });
+  title.addEventListener('input', function() {
+      checkArticleClicked = false;
+      fileTab.disabled = true;
+  });
   
-//   prevBCont.addEventListener('click', function(event){
-//     fileTab.click();
-//   });
+  editor.addEventListener('input', function() {
+      checkArticleClicked = false;
+      fileTab.disabled = true;
+  });
   
-//   prevNote.addEventListener('click', function(event){
-//     contTab.click();
-//   });
-  
-//   prevReview.addEventListener('click', function(event){
-//     commentTab.click();
-//   });
-  
+  // keywords.addEventListener('input', function() {
+  //     checkArticleClicked = false;
+  //     fileTab.disabled = true;
+  // });
 
-//   const checkboxes = document.querySelectorAll('.my-checkbox');
-//   const saveBtn = document.getElementById('submit');
+  editor2.addEventListener('input', function() {
+    // checkArticleClicked = false;
+    fileTab.disabled = true;
+  });
+  
+  nextBtnArticle.addEventListener('click', function(event) {
+      const titleValue = title.value.trim(); 
+      const titleWordCount = titleValue.split(/\s+/).length; 
+      const abstractValue = abstract.value.trim(); 
+      const abstractWordCount = abstractValue.split(/\s+/).length; 
+      const keywordsValue = keywords.value.trim(); 
+  
+      if (titleValue === '' || abstract.value === '' || keywordArray.length==0 || reference.value === '') {
+          Swal.fire({
+              icon: 'info',
+              text: 'You have to give all the article details before proceeding'
+          });
+      } else if (titleWordCount < 5 || abstractWordCount < 10) {
+          Swal.fire({
+              icon: 'info',
+              text: 'Kindly correct the article details by the said validation'
+          });
+      }else if(keywordArray.length < 5){
+        Swal.fire({
+          icon: 'info',
+          text: 'Minimun of 5 keywords'
+      });
+      } 
+      else if (!checkArticleClicked) {
+          Swal.fire({
+              icon: 'info',
+              text: 'Please check your article before proceeding'
+          });
+      } else {
+          fileTab.disabled = false;
+          fileTab.click();
+      }
+  });
   
 
 
-//   checkboxes.forEach(function(checkbox) {
-//       checkbox.addEventListener('change', function() {
-//           const anyUnchecked = Array.from(checkboxes).some(function(cb) {
-//               return !cb.checked;
-//           });
+  nextFile.addEventListener('click', function(event){
+    if (file_name.value === '' || file_name2.value === '' || file_name3.value === ''){
+      Swal.fire({
+        icon: 'info',
+        text: 'You have to provide the files requested'
+       });
+    }else{
+      contTab.disabled = false;
+      contTab.click();
+    }
+  });
 
-//           saveBtn.disabled = anyUnchecked;
-//       });
-//   });
+  nextCont.addEventListener('click', function(event){
+    commentTab.disabled = false;
+    commentTab.click();
+  });
+
+  nextNote.addEventListener('click', function(event){
+    reviewTab.disabled = false;
+    reviewTab.click();
+  });
+
+
+
+  prevBtnArticle.addEventListener('click', function(event){
+    privacyTab.click();
+  });
+
+  prevBFile.addEventListener('click', function(event){
+    articleTab.click();
+  });
+
+
+  prevBCont.addEventListener('click', function(event){
+    fileTab.click();
+  });
+  
+  prevBCont.addEventListener('click', function(event){
+    fileTab.click();
+  });
+  
+  prevNote.addEventListener('click', function(event){
+    contTab.click();
+  });
+  
+  prevReview.addEventListener('click', function(event){
+    commentTab.click();
+  });
+  
+
+  const checkboxes = document.querySelectorAll('.my-checkbox');
+  const saveBtn = document.getElementById('submit');
+  
+
+
+  checkboxes.forEach(function(checkbox) {
+      checkbox.addEventListener('change', function() {
+          const anyUnchecked = Array.from(checkboxes).some(function(cb) {
+              return !cb.checked;
+          });
+
+          saveBtn.disabled = anyUnchecked;
+      });
+  });
 
 
 
 
 
-//   nextBGuide.addEventListener('click', function() {
-//       const allChecked = Array.from(checkboxes).every(function(cb) {
-//           return cb.checked;
-//       });
+  nextBGuide.addEventListener('click', function() {
+      const allChecked = Array.from(checkboxes).every(function(cb) {
+          return cb.checked;
+      });
 
       
 
-//       if (!allChecked) {
+      if (!allChecked) {
         
      
-//          Swal.fire({
-//           icon: 'info',
-//           text: 'You have to accept the website submission guidlines'
-//          });
-//       } else {
+         Swal.fire({
+          icon: 'info',
+          text: 'You have to accept the website submission guidlines'
+         });
+      } else {
           
-//           articleTab.disabled = false;
-//           articleTab.click();
+          articleTab.disabled = false;
+          articleTab.click();
         
         
-//       }
-//   });
+      }
+  });
 
 
  
 
-// });
+});
 
 
 
@@ -903,18 +903,18 @@ const file_name = document.getElementById('file_name');
 const file_name2 = document.getElementById('file_name2');
 const file_name3 = document.getElementById('file_name3');
 
-const titlePreview = document.getElementById('input5f1');
-const abstractPreview = document.getElementById('input7');
-const keywordsPreview = document.getElementById('input6');
-const referencePreview = document.getElementById('input8');
+// const titlePreview = document.getElementById('input5f1');
+// const abstractPreview = document.getElementById('input7');
+// const keywordsPreview = document.getElementById('input6');
+// const referencePreview = document.getElementById('input8');
 
-const filePreview = document.getElementById('input9');
-const filePreview2 = document.getElementById('input9f');
-const filePreview3 = document.getElementById('input9g');
+// const filePreview = document.getElementById('input9');
+// const filePreview2 = document.getElementById('input9f');
+// const filePreview3 = document.getElementById('input9g');
 
 const submitBtn = document.getElementById('submit');
 
-if (title.value === '' ||abstract.value === '' || keywordArray.length == 0 || reference.value === '' || file_name.value === '' || file_name2.value === '' || file_name3.value === '' || titlePreview.value === '' || abstractPreview.value === '' || keywordsPreview.value === '' || referencePreview.value === ''|| filePreview.value === '' || filePreview2.value === '' || filePreview3.value === ''  ) {
+if (title.value === '' || abstract.value === '' || keywordArray.length == 0 || reference.value === '' || file_name.value === '' || file_name2.value === '' || file_name3.value === '') {
  
   submitBtn.type = 'button';
 
