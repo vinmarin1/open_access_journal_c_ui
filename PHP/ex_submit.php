@@ -317,7 +317,7 @@ if ($resultProfile) {
     <tr>
       <td id="fileType1" style="font-family: Arial, Helvetica, sans-serif; font-size: 18px; padding-right: 0px; ">
       <button type="button" class="btn btn-sm" style="width: 100%; text-align:left; border:solid 1px #CCCCCC;" id="addFileName" onclick="openFilename(1)"> <i class="fa-solid fa-arrow-up-from-bracket" style="margin-right: 10px; color:#699BF7;"></i> Upload your file here </button>
-      <p style="font-size: small; color: #6C757D;">You can only submit a docx file up to 1.5mb</p>  
+      <p style="font-size: small; color: #6C757D;">You can only submit a docx file up to 1.5mb: </p>  
       </td>
       <!-- <td id="fileName1" style="font-family: Arial, Helvetica, sans-serif;"></td> -->
       <td style="padding-left: 0px;" >
