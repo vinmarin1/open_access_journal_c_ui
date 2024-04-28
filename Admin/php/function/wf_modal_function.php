@@ -523,6 +523,7 @@ require 'vendor/autoload.php';
         $article_id = $_POST['article_id'];
         $fromuser = $_POST['fromuser'];
         $author_id = $_POST['author_id'];
+        $title = $_POST['title'];
         $discussion_type = $_POST['discussiontype'];
         $submissionsubject = $_POST['submissionsubject'];
         $submissionmessage = $_POST['submissionmessage'];
@@ -573,7 +574,7 @@ require 'vendor/autoload.php';
 
                     $query = "INSERT INTO discussion_message (discussion_id, fromuser, message, file, file_type) VALUES (?, ?, ?, ?, ?)";
                     $result = execute_query($query, [$newinsert, $fromuser, $submissionmessage, $fileName, $submissionfiletype], true);
-                    discussionEmail($article_id, $fromuser, $author_id, $submissionsubject, $submissionmessage, $fileName);
+                    discussionEmail($article_id, $fromuser, $title, $author_id, $submissionsubject, $submissionmessage, $fileName);
                     addNotificationDiscussion($article_id, $fromuser, $submissionsubject, $submissionmessage);
 
                 if ($result !== false) {
@@ -600,6 +601,7 @@ require 'vendor/autoload.php';
         $fromuser = $_POST['fromuser'];
         $discussion_id = $_POST['discussion_id'];
         $author_id = $_POST['author_id'];
+        $title = $_POST['title'];
         $submissionsubject = $_POST['submissionsubject'];
         $submissionmessage = $_POST['submissionmessage'];
         $submissionfiletype = isset($_POST['submissionfiletype']) ? $_POST['submissionfiletype'] : '';
@@ -644,7 +646,7 @@ require 'vendor/autoload.php';
 
                 $query = "INSERT INTO discussion_message (discussion_id, fromuser, message, file, file_type) VALUES (?, ?, ?, ?, ?)";
                 $result = execute_query($query, [$discussion_id, $fromuser, $submissionmessage, $fileName, $submissionfiletype], true);
-                discussionEmail($article_id, $fromuser, $author_id, $submissionsubject, $submissionmessage, $fileName);
+                discussionEmail($article_id, $fromuser, $title, $author_id, $submissionsubject, $submissionmessage, $fileName);
                 addNotificationDiscussion($article_id, $author_id, $submissionsubject, $submissionmessage);
                 
             if ($result !== false) {
@@ -1246,7 +1248,7 @@ require 'vendor/autoload.php';
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\Exception;
 
-    function discussionEmail($articleId, $fromUser, $author_id, $submissionSubject, $submissionMessage, $fileName)
+    function discussionEmail($articleId, $fromUser, $title, $author_id, $submissionSubject, $submissionMessage, $fileName)
     {
 
         require 'PHPMailer-master/src/Exception.php';
@@ -1278,14 +1280,18 @@ require 'vendor/autoload.php';
             $mail->isHTML(true);
     
             $body = "Dear Author,";
-    
-            $body .= "<br><br><strong>Subject:</strong><br>" . $submissionSubject;
+
+            $body .= "<br><br>I am writing to inform you that" . $fromUser . "has sent a discussion message regarding your manuscript titled" . $title ."The message is now available for your viewing. Feel free to respond.";
+            $body .= "<br><br>The discussion is vital to keep the communication between the Quezon City University Journal and the author clear and easy. Your prompt response and active engagement are highly appreciated in publishing your manuscript.";
+            $body .= "<br><br>Should you have any questions or require clarification on any of the discussion, please do not hesitate to reach out to us. We are here to assist you and ensure that the revisions align with the standards and objectives of the Quezon City University Journal.";
+            $body .= "<br><br>Thank you for your continued dedication to improving your manuscript. Your efforts are instrumental in advancing scholarly discourse within our academic community.";
             $body .= "<br><br><strong>Message:</strong><br>" . $submissionMessage;
+            
             if (!empty($fileName)) {
                 $body .= "<br><br>You can view the file by clicking on the following link: <a href='https://qcuj.online/Files/discussion-file/" . $fileName . "' download>Discussion File</a>";
             }
     
-            $body .= "<br><br>Thank you for your cooperation.<br><br>Best regards,<br>QCU Journal";
+            $body .= "<br><br>Thank you for your cooperation.<br><br>Warm regards,<br>Quezon City University Journal";
     
             $mail->Body = $body;
     

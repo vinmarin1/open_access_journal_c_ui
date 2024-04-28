@@ -55,11 +55,15 @@ function sendEmailToReviewersWithDeadline()
 
             $mail->addAddress($reviewerEmail);
             $mail->setFrom('qcujournal@gmail.com', 'QCU Journal');
-            $mail->Subject = 'Review Reminder: ' . $articleTitle . ' - Deadline: ' . $deadline;
+            $mail->Subject = 'Reminder: Review Deadline Approaching' . $articleTitle . ' - Deadline: ' . $deadline;
             $mail->isHTML(true);
 
             $body = "Dear Reviewer,<br><br>"
-            . "This is a reminder that the deadline for reviewing the article titled '{$articleTitle}' is approaching. "
+            . "I hope this email finds you well. I am writing to remind you of your commitment to review the manuscript titled '{$articleTitle}' for the Quezon City University Journal."
+            . "<br><br>As you may recall, you kindly agreed to provide your expertise and insights on this manuscript within the stipulated review period. However, the deadline for your review is approaching, and we have not yet received your feedback."
+            . "<br><br>Your thorough evaluation and constructive feedback are crucial in maintaining the quality and integrity of our peer-review process. Your timely response will greatly assist us in making informed decisions regarding the publication of this manuscript."
+            . "<br><br>If you have already begun your review, we sincerely appreciate your efforts and kindly request that you submit your feedback by the agreed-upon deadline. If you require additional time or encounter any difficulties, please do not hesitate to contact us, and we will do our best to accommodate your needs."
+            . "<br><br>Your contribution to our journal is invaluable, and we are grateful for your dedication to scholarly peer review. Thank you for your attention to this matter, and we look forward to receiving your feedback soon.."
             . "<br><br>Please complete your review by {$deadline}.";
 
             $body .= "<br><br>You can review the article by clicking on the following link: <a href='" . $reviewerURL . "'>Review Article</a>";

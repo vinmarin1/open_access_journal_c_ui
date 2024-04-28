@@ -24,6 +24,7 @@ $articledata = get_article_data($aid);
 
 $journal_id = $articledata[0]->journal_id;
 $author_id = $articledata[0]->author_id;
+$title = $articledata[0]->title;
 
 $issuelist = get_issues_list($journal_id);
 
@@ -1454,6 +1455,7 @@ function addDiscussion() {
     var submissionMessage = $('#submissionmessage').val();
     var submissionFiletype = $('#submissionfiletype').val();
     var author_id = <?php echo json_encode($author_id); ?>;
+    var title = <?php echo json_encode($title); ?>;
     var submissionFile = $('#submissionfilexx')[0].files[0];
 
     if (submissionFile) {
@@ -1473,6 +1475,7 @@ function addDiscussion() {
     formData.append('submissionfiletype', submissionFiletype);
     formData.append('submissionfile', submissionFile);
     formData.append('author_id', author_id);
+    formData.append('title', title);
     formData.append('action', 'adddiscussion');
 
     $.ajax({
@@ -1499,6 +1502,7 @@ function replyDiscussion() {
     var submissionMessage = $('#submissionmessagex').val();
     var submissionFiletype = $('#submissionfiletypex').val();
     var author_id = <?php echo json_encode($author_id); ?>;
+    var title = <?php echo json_encode($title); ?>;
     var submissionFile = $('#submissionfilexxx')[0].files[0];
     
     if (submissionFile) {
@@ -1518,6 +1522,7 @@ function replyDiscussion() {
     formData.append('submissionfiletype', submissionFiletype);
     formData.append('submissionfile', submissionFile);
     formData.append('author_id', author_id);
+    formData.append('title', title);
     formData.append('action', 'replydiscussion');
 
     $.ajax({
