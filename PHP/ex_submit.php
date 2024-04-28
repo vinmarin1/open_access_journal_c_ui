@@ -253,6 +253,13 @@ if ($resultProfile) {
       </div>
       <div class="input-details-2 mt-2 w-100 w-sm-50 d-flex flex-column gap-4" id="form-floating-3">
         <div>
+
+          <span style="display: block; color: var(--form-heading, #285581) !important; font-weight: 600;
+          margin-top: 20px;">Subject Area:</span>
+          <select class="form-select" id="subject_areas" name="subject_areas" aria-label="Default select example" style="margin-bottom: 20px">
+         
+          </select>
+
           <span class="form-label">Keywords <p id="keywords-validation" style="color: red; display: none; font-size: 14px">Maximum of 5 keywords*</p></span>
           <div class="d-flex flex-column flex-sm-row gap-2 mb-4" style="min-height: 30px">
               <div id="display-keywords" class="d-flex flex-wrap gap-2">
@@ -288,9 +295,9 @@ if ($resultProfile) {
   <hr class="divider"/>
   <!-- <button type="button" class="btn btn-primary btn-sm mt-5" onclick="openFileModal()" id="upload-btn">Upload File</button> -->
 
-  <input type="file" class="form-control" name="file_name" id="file_name" accept=".docx" style="display: none">
-  <input type="file" class="form-control" name="file_name2" id="file_name2" accept=".pdf" style="display: none">
-  <input type="file" class="form-control" name="file_name3" id="file_name3" accept=".docx" style="display: none">
+<input type="file" class="form-control" name="file_name" id="file_name" accept=".docx" style="display: none">
+<input type="file" class="form-control" name="file_name2" id="file_name2" accept=".pdf" style="display: none">
+<input type="file" class="form-control" name="file_name3" id="file_name3" accept=".docx" style="display: none">
 
 <table class="table" id="table-file">
 
