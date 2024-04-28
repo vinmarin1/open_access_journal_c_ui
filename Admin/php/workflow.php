@@ -1775,7 +1775,7 @@ table {
                 delta.ops.splice(decisionIndex + 1, 0, reviewDelta);
                 delta.ops.splice(decisionIndex1 + 2, 0, titleDelta);
                 delta.ops.splice(decisionIndex2 + 3, 0, abstractDelta);
-                delta.ops.splice(decisionIndex3 + 6, 0, dueDelta);
+                delta.ops.splice(decisionIndex3 + 8, 0, dueDelta);
                 delta.ops.splice(urlIndex + 3, 0, urlDelta);
 
                 quillThree.setContents(delta);
