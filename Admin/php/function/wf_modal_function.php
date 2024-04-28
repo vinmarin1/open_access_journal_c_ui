@@ -521,6 +521,7 @@ require_once 'dbcon.php';
         $uploadPath = "../../../Files/discussion-file/";
         $article_id = $_POST['article_id'];
         $fromuser = $_POST['fromuser'];
+        $author_id = $_POST['author_id'];
         $discussion_type = $_POST['discussiontype'];
         $submissionsubject = $_POST['submissionsubject'];
         $submissionmessage = $_POST['submissionmessage'];
@@ -535,7 +536,6 @@ require_once 'dbcon.php';
         $errorMessage = '';
     
         if (!empty($files['name'])) {
-            // File is provided
             $fileName = basename($files["name"]);
             $imageFileType = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
     
@@ -556,7 +556,6 @@ require_once 'dbcon.php';
             $newFilePath = $uploadPath . $fileName;
     
             if ($success && move_uploaded_file($files["tmp_name"], $newFilePath)) {
-                // File is successfully moved to the desired location
             } else {
                 $errorMessage .= 'File failed to upload. ';
             }
@@ -573,7 +572,9 @@ require_once 'dbcon.php';
 
                     $query = "INSERT INTO discussion_message (discussion_id, fromuser, message, file, file_type) VALUES (?, ?, ?, ?, ?)";
                     $result = execute_query($query, [$newinsert, $fromuser, $submissionmessage, $fileName, $submissionfiletype], true);
-                    
+                    discussionEmail($article_id, $fromuser, $author_id, $submissionsubject, $submissionmessage, $fileName);
+                    addNotificationDiscussion($article_id, $fromuser, $submissionsubject, $submissionmessage);
+
                 if ($result !== false) {
                     $pdo->commit();
                     echo json_encode(['status' => true, 'message' => 'Record added successfully', 'discussion_id' => $newinsert]);
@@ -596,6 +597,8 @@ require_once 'dbcon.php';
         $uploadPath = "../../../Files/discussion-file/";
         $fromuser = $_POST['fromuser'];
         $discussion_id = $_POST['discussion_id'];
+        $author_id = $_POST['author_id'];
+        $submissionsubject = $_POST['submissionsubject'];
         $submissionmessage = $_POST['submissionmessage'];
         $submissionfiletype = isset($_POST['submissionfiletype']) ? $_POST['submissionfiletype'] : '';
     
@@ -608,7 +611,6 @@ require_once 'dbcon.php';
         $errorMessage = '';
     
         if (!empty($files['name'])) {
-            // File is provided
             $fileName = basename($files["name"]);
             $imageFileType = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
     
@@ -629,7 +631,6 @@ require_once 'dbcon.php';
             $newFilePath = $uploadPath . $fileName;
     
             if ($success && move_uploaded_file($files["tmp_name"], $newFilePath)) {
-                // File is successfully moved to the desired location
             } else {
                 $errorMessage .= 'File failed to upload. ';
             }
@@ -641,6 +642,8 @@ require_once 'dbcon.php';
 
                 $query = "INSERT INTO discussion_message (discussion_id, fromuser, message, file, file_type) VALUES (?, ?, ?, ?, ?)";
                 $result = execute_query($query, [$discussion_id, $fromuser, $submissionmessage, $fileName, $submissionfiletype], true);
+                discussionEmail($article_id, $fromuser, $author_id, $submissionsubject, $submissionmessage, $fileName);
+                addNotificationDiscussion($article_id, $fromuser, $submissionsubject, $submissionmessage);
                 
             if ($result !== false) {
                 $pdo->commit();
@@ -674,7 +677,7 @@ require_once 'dbcon.php';
     function addRevisionFile() {
         $uploadPath = "../../../Files/revision-article/";
         $article_id = $_POST['article_id'];
-        $author_id = NULL;  // Change 'Null' to NULL
+        $author_id = NULL; 
         $fromuser = $_POST['fromuser'];
         $revisionfiletype = isset($_POST['revisionfiletype']) ? $_POST['revisionfiletype'] : '';
     
@@ -1235,6 +1238,95 @@ require_once 'dbcon.php';
             echo "Failed to update production unchecked files data";
             print_r($stm->errorInfo());
             $pdo->rollBack();
+        }
+    }
+
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\Exception;
+
+    function discussionEmail($articleId, $fromUser, $author_id, $submissionSubject, $submissionMessage, $fileName)
+    {
+
+        require 'PHPMailer-master/src/Exception.php';
+        require 'PHPMailer-master/src/PHPMailer.php';
+        require 'PHPMailer-master/src/SMTP.php';
+
+        $mail = new PHPMailer(true);
+    
+        try {
+            $pdo = connect_to_database();
+
+            $stmt = $pdo->prepare("SELECT email FROM author WHERE author_id = ?");
+            $stmt->execute([$author_id]);
+    
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            $authorEmail = $row['email'];
+    
+            $mail->isSMTP();
+            $mail->Host = 'smtp.gmail.com';
+            $mail->SMTPAuth = true;
+            $mail->Username = 'qcujournal@gmail.com';
+            $mail->Password = 'txtprxrytyqmloth';
+            $mail->SMTPSecure = 'ssl';
+            $mail->Port = 465;
+    
+            $mail->addAddress($authorEmail);
+            $mail->setFrom('qcujournal@gmail.com', 'QCU Journal');
+            $mail->Subject = 'Discussion from ' . $fromUser . ': ' . $submissionSubject;
+            $mail->isHTML(true);
+    
+            $body = "Dear Author,";
+    
+            $body .= "<br><br><strong>Subject:</strong><br>" . $submissionSubject;
+            $body .= "<br><br><strong>Message:</strong><br>" . $submissionMessage;
+            if (!empty($fileName)) {
+                $body .= "<br><br>You can view the file by clicking on the following link: <a href='https://qcuj.online/Files/discussion-file/" . $fileName . "' download>Discussion File</a>";
+            }
+    
+            $body .= "<br><br>Thank you for your cooperation.<br><br>Best regards,<br>QCU Journal";
+    
+            $mail->Body = $body;
+    
+            if ($mail->send()) {
+                echo "Email sent to author with email: $authorEmail successfully.<br>";
+            } else {
+                echo 'Error sending email to author with email: ' . $authorEmail . ': ' . $mail->ErrorInfo . '<br>';
+            }
+            $pdo = null;
+        } catch (Exception $e) {
+            echo 'Error: ' . $e->getMessage() . '<br>';
+        }
+    }
+
+    function addNotificationDiscussion($article_id, $author_id, $title, $message)
+    {
+        $options = array(
+            'cluster' => 'ap1',
+            'useTLS' => true
+        );
+        $pusher = new Pusher\Pusher(
+            'cabcad916f55a998eaf5',
+            '0aef8b4d2da6760f5726',
+            '1764683',
+            $options
+        );
+
+        date_default_timezone_set('Asia/Manila');
+        $created = date('Y-m-d H:i:s');
+        $admin = 0;
+        $data['message'] = 'hello world';
+        $pusher->trigger('my-channel', 'my-event', $data);
+
+        $description = $article_id . ' - ' . $title . ', ' . $message;
+
+        $query = "INSERT INTO notification (article_id, author_id, title, description, admin, created) VALUES (?, ?, ?, ?, ?, ?)";
+
+        $result = execute_query($query, [$article_id, $author_id, $message, $description, $admin, $created], true);
+
+        if ($result !== false) {
+            echo json_encode(['status' => true, 'message' => 'Record added successfully']);
+        } else {
+            echo json_encode(['status' => false, 'message' => 'Failed to add record']);
         }
     }
     
