@@ -2457,7 +2457,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     imageWidth: 400,
                     imageHeight: 200,
                     imageAlt: "Custom image",
-                    didClose: function () {
+                    didOpen: function () {
                         // This will be executed when the Swal modal is closed
                         reviewerCert.style.display = 'none';
 						authorCert.style.display = 'none';
@@ -2485,7 +2485,7 @@ document.addEventListener('DOMContentLoaded', function () {
 						showCancelButton: false,
 						showCloseButton: true,
 						showConfirmButton: false,
-						didClose: function () {
+						didOpen: function () {
 							reviewerCert.style.display = 'none';
 							authorCert.style.display = 'none';
 						}
@@ -2511,7 +2511,7 @@ document.addEventListener('DOMContentLoaded', function () {
 						showCancelButton: false,
 						showCloseButton: true,
 						showConfirmButton: false,
-						didClose: function () {
+						didOpen: function () {
 							reviewerCert.style.display = 'none';
 							authorCert.style.display = 'none';
 						}
@@ -2525,7 +2525,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     imageWidth: 400,
                     imageHeight: 200,
                     imageAlt: "Custom image",
-                    didClose: function () {
+                    didOpen: function () {
                         reviewerCert.style.display = 'none';
 						authorCert.style.display = 'none';
                     }
@@ -2538,7 +2538,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     imageWidth: 400,
                     imageHeight: 200,
                     imageAlt: "Custom image",
-                    didClose: function () {
+                    didOpen: function () {
                         reviewerCert.style.display = 'none';
 						authorCert.style.display = 'none';
                     }
@@ -2551,7 +2551,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     imageWidth: 400,
                     imageHeight: 200,
                     imageAlt: "Custom image",
-                    didClose: function () {
+                    didOpen: function () {
                         reviewerCert.style.display = 'none';
 						authorCert.style.display = 'none';
                     }
