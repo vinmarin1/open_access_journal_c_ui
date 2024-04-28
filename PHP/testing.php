@@ -1,75 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <?php include('./meta.php'); ?>
-    <title>QCUJ | TESTING</title>
-    <link rel="stylesheet" href="../CSS/testing.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
+  <html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  </head>
+  <body>
 
+                                       
+    <div class="dropdown">
+      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Download Option
+      <span class="caret"></span></button>
+      <ul class="dropdown-menu">
+      <button class="btn tbn-primary btn-md" id="download-btn"> 
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                  <path fill="currentColor" d="m12 16l-5-5l1.4-1.45l2.6 2.6V4h2v8.15l2.6-2.6L17 11zm-6 4q-.825 0-1.412-.587T4 18v-3h2v3h12v-3h2v3q0 .825-.587 1.413T18 20z" />
+                </svg>
+                PDF
+              </button>
 
-
-<div class="header-container" id="header-container">
-</div>
-
-<nav class="navigation-menus-container"  id="navigation-menus-container">
-</nav>
-
-<div class="main-content">
-    <div class="content-over">
-        <div class="cover-content">
-        <p>Quezon City University’s Directory of Journals</p>
-        <h2>Find or Submit Open Access Articles</h2>
-        </div>
-        <button class="btn tbn-primary btn-md" id="btn2">As Reviewer</button>
-        <button class="btn tbn-primary btn-md" id="btn2">As Reviewer</button>
+              <button class="btn tbn-primary btn-md" id="epub-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
+                  <path fill="currentColor" d="m12 16l-5-5l1.4-1.45l2.6 2.6V4h2v8.15l2.6-2.6L17 11zm-6 4q-.825 0-1.412-.587T4 18v-3h2v3h12v-3h2v3q0 .825-.587 1.413T18 20z" />
+                </svg>
+                EPUB 
+              </button>
+      </ul>
     </div>
-</div> 
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Outline on Side Only</title>
-<style>
-    .outline-side {
-        width: 200px;
-        height: 100px;
-        background-color: #f0f0f0;
-        border-right: 2px solid blue; /* Example of applying outline only to the right side */
-        /* You can change 'border-right' to 'border-left', 'border-top', or 'border-bottom' for different sides */
-    }
-</style>
-</head>
-<body>
-
-<div class="outline-side">
-    This is a box with outline only on the right side.
-</div>
-
-</body>
-</html>
-
-
-
-
-<div class="footer" id="footer">
   
-</div>
 
-
-      <script>
-          const sessionId = "<?php echo isset($_SESSION['id']) ? $_SESSION['id'] : 0; ?>";
-       </script>  
-      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" ></script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-      <script src="../JS/reusable-header.js"></script>
-      <script src="../JS/home-recommended-api.js"></script>
-      <script src="../JS/home-monthly-api.js"></script>
-</body>
-</html>
+  </body>
+  </html>

@@ -283,7 +283,8 @@
 #epub-btn,
 #cite-btn,
 #inline-btn,
-#copy-btn {
+#copy-btn,
+#dropdownMenuButton {
   background-color: white;
   color: var(--main, #0858A4);
   border-color: var(--main, #0858A4);
@@ -292,6 +293,7 @@
   background-color: white;
   color: var(--main, #0858A4);
 }
+
 .share-btn {
   background-color: white;
   color: var(--main, #0858A4);
@@ -342,6 +344,13 @@
   border-radius: 4px;
   min-width: 22em;
 }
+
+.dropdown-menu{
+  width: 100%;
+}
+
+
+
 
 .cite-btn {
   /* outline: none;
