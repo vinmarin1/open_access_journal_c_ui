@@ -8,6 +8,7 @@ if (!isset($_SESSION['LOGGED_IN']) || $_SESSION['LOGGED_IN'] !== true) {
 
 $userId = $_SESSION['id'];
 $articleId = isset($_GET['id']) ? $_GET['id'] : null;
+$id = $_SESSION['id'];
 ?>
 
 
@@ -244,6 +245,88 @@ $articleId = isset($_GET['id']) ? $_GET['id'] : null;
                         ?>
 
 
+                </div>
+                <div class="replyDiscussion">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" id="displayReply" data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin-bottom: 10px; font-size: 14px; background-color: #285581; color: white; border-radius: 20px; width: 100%;">
+                        View discussion message
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content" style="height: 90vh;">
+                            <div class="modal-header">
+                                <p class="h4">Message from editor</p>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body" style="max-height: 300px; overflow-y: auto;">
+                            <?php
+                                    $sqlSelectMessage = "SELECT discussion_message.userId, discussion_message.fromuser, discussion.subject, discussion_message.message FROM discussion JOIN discussion_message ON discussion.discussion_id = discussion_message.discussion_id WHERE discussion.article_id =:article_id";
+                                    $sqlRun = database_run($sqlSelectMessage, array('article_id' => $articleId));
+
+                                    if ($sqlRun !== false) {
+                                        foreach ($sqlRun as $row) {
+                                            $messageFrom = $row->fromuser;
+                                            $messageSubject = $row->subject;
+                                            $messageContent = $row->message;
+                                            $user_id = $row->userId;
+
+                                            if($user_id !== $id){
+                                                echo '<p style="width: 40%;
+                                                background-color: #F2F3F4;
+                                                border-radius: 10px; padding-left: 5px">' . $messageFrom . '</p>';
+                                                echo '<p style="background-color: #F2F3F4;
+                                                width: 20%;
+                                                border-radius: 10px;
+                                                padding-left: 5px;">' . $messageSubject . '</p>';
+                                                echo '<p style="background-color: #F2F3F4;
+                                                width: 60%;
+                                                border-radius: 10px;
+                                                padding-left: 5px;">' . $messageContent . '</p>';
+                                            }else{
+                                                echo '<p style="background-color: #F2F3F4;
+                                                width: 60%;
+                                                border-radius: 10px;
+                                                padding-left: 5px;
+                                                float: right;">' . $messageContent . '</p>';
+                                            }
+
+                                        
+                                        
+                                        }
+                                    } else {
+                                        echo 'No message from editor';
+                                    }
+                                    
+                            ?>
+                            </div>
+                            <div class="modal-footer">
+                                <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                                <div class="textarea-container">
+                                    <?php 
+                                       $sqlSelectMessageButton = "SELECT discussion_message.userId, discussion_message.fromuser, discussion.subject, discussion_message.message FROM discussion JOIN discussion_message ON discussion.discussion_id = discussion_message.discussion_id WHERE discussion.article_id =:article_id";
+                                       $sqlRunbutton = database_run($sqlSelectMessageButton, array('article_id' => $articleId));
+
+                                       if($sqlRunbutton !==false){
+                                            if(count($sqlRunbutton) > 1){
+                                                echo ' <textarea class="form-control" id="messageTextarea" name="messageTextarea" placeholder="Type your message here..."></textarea>
+                                                <button type="button" id="sendMessageBtn" class="btn btn-primary">Send Message</button>';
+                                            }else{
+                                                echo 'You can only reply when there are discussion for this article';
+                                            }
+                                       }else{
+                                        echo 'You can only reply when there are discussion for this article';
+                                       }
+                                    
+                                    ?>
+                                  
+                                </div>
+
+                            </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div id="reviewerModal" class="modal">
@@ -646,6 +729,29 @@ for (var i = 0; i < reviewerAliases.length; i++) {
     fetchReviewerDetails(reviewerId, <?php echo $articleId; ?>);
   });
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Get references to the textarea and button
+    const messageTextarea = document.getElementById('messageTextarea');
+    const sendMessageBtn = document.getElementById('sendMessageBtn');
+    const submitButton = document.getElementById('submit-submission');
+    // Add click event listener to the Send Message button
+    sendMessageBtn.addEventListener('click', function() {
+        // Check if the textarea is empty
+        if (messageTextarea.value.trim() === '') {
+            // Show SweetAlert message
+            Swal.fire({
+                icon: 'warning',
+                title: 'Oops...',
+                text: 'Please provide a message!',
+                confirmButtonText: 'OK',
+            });
+        }else{
+            submitButton.click();
+            $('#exampleModal').modal('hide');
+        }
+    });
+});
 
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>

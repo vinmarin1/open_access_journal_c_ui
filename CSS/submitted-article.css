@@ -622,3 +622,24 @@ ul li span {
   max-height: 100%; /* Ensure questionnaires and comments inherit the max height */
   overflow-y: auto; /* Enable vertical scrolling if content exceeds the height */
 }
+
+.textarea-container {
+  position: relative;
+  width: 100%;
+}
+
+.textarea-container textarea {
+  width: 100%;
+  height: 150px; /* Adjust the height as needed */
+  resize: vertical; /* Allow vertical resizing */
+  padding-right: 40px; /* Space for the button */
+  resize: none;
+
+}
+
+.textarea-container button {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  border-radius: 20px;
+}

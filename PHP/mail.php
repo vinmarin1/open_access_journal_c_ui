@@ -19,6 +19,8 @@ function send_mail($recipient,$subject,$message)
   $mail->Username   = "qcujournal@gmail.com";
   $mail->Password   = "txtprxrytyqmloth";
 
+  $mail->SetFrom($senderEmail, $senderName);
+
   $mail->IsHTML(true);
   $mail->AddAddress($recipient, "esteemed customer");
   $mail->SetFrom("qcujournal@gmail.com", "QCUJ");
