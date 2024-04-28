@@ -309,7 +309,7 @@ $id = $_SESSION['id'];
                                        $sqlRunbutton = database_run($sqlSelectMessageButton, array('article_id' => $articleId));
 
                                        if($sqlRunbutton !==false){
-                                            if(count($sqlRunbutton) > 1){
+                                            if(count($sqlRunbutton) >= 1){
                                                 echo ' <textarea class="form-control" id="messageTextarea" name="messageTextarea" placeholder="Type your message here..."></textarea>
                                                 <button type="button" id="sendMessageBtn" class="btn btn-primary">Send Message</button>';
                                             }else{
@@ -693,6 +693,17 @@ window.onclick = function(event) {
   }
 }
 
+function showLoader() {
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    loadingOverlay.style.display = 'block';
+}
+
+function hideLoader() {
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    loadingOverlay.style.display = 'none';
+}
+
+
 // Function to fetch reviewer details and populate modal
 function fetchReviewerDetails(reviewerId, articleId) {
   var xhr = new XMLHttpRequest();
@@ -731,27 +742,54 @@ for (var i = 0; i < reviewerAliases.length; i++) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Get references to the textarea and button
-    const messageTextarea = document.getElementById('messageTextarea');
     const sendMessageBtn = document.getElementById('sendMessageBtn');
-    const submitButton = document.getElementById('submit-submission');
-    // Add click event listener to the Send Message button
-    sendMessageBtn.addEventListener('click', function() {
-        // Check if the textarea is empty
-        if (messageTextarea.value.trim() === '') {
-            // Show SweetAlert message
-            Swal.fire({
-                icon: 'warning',
-                title: 'Oops...',
-                text: 'Please provide a message!',
-                confirmButtonText: 'OK',
-            });
-        }else{
-            submitButton.click();
-            $('#exampleModal').modal('hide');
-        }
-    });
+
+    if (sendMessageBtn) {
+        sendMessageBtn.addEventListener('click', function() {
+            const messageTextarea = document.getElementById('messageTextarea');
+            const articleId = <?php echo isset($_GET['id']) ? $_GET['id'] : null; ?>;
+            const message = messageTextarea.value.trim();
+            const titleInput = document.getElementById('titleInput').value.trim();
+
+            if (!message) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Oops...',
+                    text: 'Please provide a message!',
+                    confirmButtonText: 'OK',
+                });
+            } else {
+                const xhr = new XMLHttpRequest();
+                const url = '../PHP/author_reply.php';
+                $('#exampleModal').modal('hide');
+                showLoader();
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                        if (xhr.status === 200) {
+                            console.log(xhr.responseText);
+                            setTimeout(function () {
+                                window.location.href = `../PHP/submitted-article.php?id=${articleId}`;
+                                hideLoader();
+                            }, 2000);
+                        } else {
+                            console.error('XHR request failed:', xhr.status);
+                        }
+                    }
+                };
+
+                xhr.open('POST', url, true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+                const params = `article_id=${encodeURIComponent(articleId)}&message=${encodeURIComponent(message)}&title=${encodeURIComponent(titleInput)}`;
+                xhr.send(params);
+            }
+        });
+    } else {
+        console.error('sendMessageBtn not found.');
+    }
 });
+
+
 
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
