@@ -189,6 +189,7 @@ document.addEventListener('DOMContentLoaded', function(){
   const checkbox4 = document.getElementById('check-4');
   const checkbox5 = document.getElementById('check-6');
   const checkbox6 = document.getElementById('check-7');
+  const checkbox7 = document.getElementById('check-8');
   const check = document.getElementById('check');
   
   

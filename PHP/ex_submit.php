@@ -135,6 +135,12 @@ if ($resultProfile) {
         <p class="st-6">The text adheres to the stylistic and bibliographic requirements outlined in the Author Guidelines, which is found in About the Journal.</p>
       </label>
     </div>
+    <div class="" id="checkList-8">
+      <label for="check-8" class="checkItem">
+        <input type="checkbox" class="my-checkbox" id="check-8">
+        <p class="st-7">The manuscript consists of Introduction, Methodology, Results, and Discussion sections with a word count between 5,000 and 9,000 words.</p>
+      </label>
+    </div>
   </div>
   
   <hr class="divider">
@@ -273,7 +279,7 @@ if ($resultProfile) {
           <datalist id="keywordList">
           </datalist>
           
-          <span class="form-label mt-4" >Reference <p id="reference-validation" style="color: red; display: none; font-size: 14px;">Reference is required*</p></span>
+          <span class="form-label mt-4" >Reference <p style="font-style: italic; color: gray;">* References must follow the correct APA format citation.</p><p id="reference-validation" style="color: red; display: none; font-size: 14px;">Reference is required*</p></span>
           <textarea class="form-control" name="editor2" id="editor2" cols="30" rows="10"></textarea>
           <input class="form-control" type="text" id="reference"  name="reference" style="display: none;">
         </div>
