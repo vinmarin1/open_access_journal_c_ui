@@ -51,17 +51,17 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     
     database_run($sqlSendNotif, $sqlLogsParamsNotif);
 
-    $message = "<p>Author, $userName have replied to the discussion regarding to the article:</p></br>
-    Title: $title";
+    // $message = "<p>Author, $userName have replied to the discussion regarding to the article:</p></br>
+    // Title: $title";
     
 
 
-    $subject = "Replied to the discussion";
-    $recipient = 'qcujournal@gmail.com';
-    $senderEmail = $email;
-    $senderName = $userName;
+    // $subject = "Replied to the discussion";
+    // $recipient = 'qcujournal@gmail.com';
+    // $senderEmail = $email;
+    // $senderName = $userName;
     
-    send_mail($recipient, $subject, $message, $senderEmail, $senderName);
+    // send_mail($recipient, $subject, $message, $senderEmail, $senderName);
 
     // Redirect to the appropriate page
     // header("Location: ../PHP/submitted-article.php?id=$articleId");
