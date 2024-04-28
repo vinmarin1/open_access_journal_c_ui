@@ -1,5 +1,6 @@
 <?php
 require_once 'dbcon.php';
+require 'vendor/autoload.php';
 
     $action = isset($_POST['action']) ? $_POST['action'] : '';
 
