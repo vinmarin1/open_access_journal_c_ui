@@ -1266,9 +1266,9 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 
 									$result = database_run($sqlSelectName, array(':author_id' => $id));
 
-									$sqlReviewed = "SELECT article_id FROM reviewer_assigned WHERE author_id = :author_id AND answer = 1";
+									$sqlReviewed = "SELECT user_id FROM user_points WHERE user_id = :user_id AND action_engage = 'Reviewed Article Published'";
 
-									$resultReviewed = database_run($sqlReviewed, array(':author_id' => $id));
+									$resultReviewed = database_run($sqlReviewed, array(':user_id' => $id));
 
 									// $sqlDonation = "SELECT user_id FROM user_points WHERE user_id = :user_id AND action_engage = 'Donation'";
 
