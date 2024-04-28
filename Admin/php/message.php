@@ -58,6 +58,7 @@ $messagelist = get_message_list();
                             <th>Name</th>
                             <th>Email</th>
                             <th>Reason</th>
+                            <th>Upload File</th>
                             <th>Date Added</th>
                             <th>Actions</th>
                         </tr>   
@@ -69,6 +70,7 @@ $messagelist = get_message_list();
                                 <td width="5%"><?php echo  $messagelistval->name; ?></td>
                                 <td width="50%"><?php echo  $messagelistval->email; ?></td>
                                 <td width="10%"><?php echo  $messagelistval->reason; ?></td>
+                                <td width="10%"><?php echo  $messagelistval->upload_file; ?></td>
                                 <td width="10%"><?php echo  $messagelistval->date_added; ?></td>
                                 <td width="5%">
                                     <button type="button" class="btn btn-primary" title="View" onclick="updateModal(<?php echo $messagelistval->message_id; ?>)"><i class="bx bx-window-open"></i></button>
@@ -100,6 +102,18 @@ $messagelist = get_message_list();
             "order": [[0, "desc"]] 
         });
 
+    //        // Wait for the DOM to be fully loaded
+    // document.addEventListener("DOMContentLoaded", function() {
+    //     // Assuming you have some way to get the file name or identifier associated with the submitted message
+    //     var submittedImageFileName = "example_image.jpg";
+
+    //     // Concatenate the base path with the file name to form the complete URL
+    //     var imagePath = "../../../Files/message-image/" + submittedImageFileName;
+
+    //     // Set the src attribute of the image element to the formed URL
+    //     document.getElementById("upload_file").src = imagePath;
+    // });
+
             $('#statusTabs a').on('click', function (e) {
                 e.preventDefault();
 
@@ -111,6 +125,16 @@ $messagelist = get_message_list();
                 dataTable.column(3).search(statusValue).draw();
             });
         });
+
+    //     function previewImage(event) {
+    //     var reader = new FileReader();
+    //     reader.onload = function(){
+    //         var img = document.getElementById('upload_file_preview');
+    //         img.src = reader.result;
+    //     }
+    //     reader.readAsDataURL(event.target.files[0]);
+    // }
+
 
         
     function updateModal(message_id) {
@@ -131,6 +155,7 @@ $messagelist = get_message_list();
                     $('#xemail').val(messageData.email);
                     $('#xreason').val(messageData.reason);
                     $('#xmessage').val(messageData.message);
+                    $('#xupload_file').val(messageData.upload_file);
                    
 
                     $('#updateModal').modal('show');
@@ -178,48 +203,56 @@ $messagelist = get_message_list();
 </script>
 
 
-         <!-- Update Modal -->
-         <div class="modal fade" id="updateModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel3">Message</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
+
+       <!-- Update Modal -->
+<div class="modal fade" id="updateModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel3">Message</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
                 <div class="row mb-2">
-                        <div class="col-md-12 mb-2">
-                            <input type="hidden" id="xmessage_id" class="form-control"/>
-                            <label for="xname" class="form-label">Name</label>
-                            <input type="text" id="xname" class="form-control" placeholder="Name" />
-                        </div>
-                    </div>
-                    <div class="row mb-2">
-                        <div class="col-md-12 mb-2">
-                            <input type="hidden" id="xmessage_id" class="form-control"/>
-                            <label for="xemail" class="form-label">Email</label>
-                            <input type="text" id="xemail" class="form-control" placeholder="Email" />
-                        </div>
-                    </div>
-                    <div class="row mb-2">
-                        <div class="col-md-12 mb-2">
-                            <label for="xreason" class="form-label">Reason</label>
-                            <input type="text" id="xreason" class="form-control" placeholder="Reason" />
-                        </div>
-                    </div>
-                    <div class="row mb-2">
-                        <div class="col-md-12 mb-2">
-                            <label for="xmessage" class="form-label">Message</label>
-                            <textarea class="form-control" id="xmessage" rows="9"></textarea>
-                        </div>
+                    <div class="col-md-12 mb-2">
+                        <input type="hidden" id="xmessage_id" class="form-control"/>
+                        <label for="xname" class="form-label">Name</label>
+                        <input type="text" id="xname" class="form-control" placeholder="Name" />
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                <div class="row mb-2">
+                    <div class="col-md-12 mb-2">
+                        <input type="hidden" id="xmessage_id" class="form-control"/>
+                        <label for="xemail" class="form-label">Email</label>
+                        <input type="text" id="xemail" class="form-control" placeholder="Email" />
+                    </div>
                 </div>
+                <div class="row mb-2">
+                    <div class="col-md-12 mb-2">
+                        <label for="xreason" class="form-label">Reason</label>
+                        <input type="text" id="xreason" class="form-control" placeholder="Reason" />
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-md-12 mb-2">
+                        <label for="xmessage" class="form-label">Message</label>
+                        <textarea class="form-control" id="xmessage" rows="9"></textarea>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-md-12 mb-2">
+                        <label class="form-label">Submitted Image</label>
+                        <img id="xupload_file"  src="../../../Files/message-image/<?php echo $messagelistval->upload_file; ?>" alt="Uploaded Image" class="img-fluid"/>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
+</div>
+
 <!-- Archive Modal -->
 <div class="modal fade" id="archiveModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog" role="document">
