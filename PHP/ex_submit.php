@@ -288,9 +288,9 @@ if ($resultProfile) {
   <hr class="divider"/>
   <!-- <button type="button" class="btn btn-primary btn-sm mt-5" onclick="openFileModal()" id="upload-btn">Upload File</button> -->
 
-  <input type="file" class="form-control" name="file_name" id="file_name" accept=".pdf" style="display: none">
+  <input type="file" class="form-control" name="file_name" id="file_name" accept=".docx" style="display: none">
   <input type="file" class="form-control" name="file_name2" id="file_name2" accept=".pdf" style="display: none">
-  <input type="file" class="form-control" name="file_name3" id="file_name3" accept=".pdf" style="display: none">
+  <input type="file" class="form-control" name="file_name3" id="file_name3" accept=".docx" style="display: none">
 
 <table class="table" id="table-file">
 
@@ -304,7 +304,7 @@ if ($resultProfile) {
     <tr>
       <td id="fileType1" style="font-family: Arial, Helvetica, sans-serif; font-size: 18px; padding-right: 0px; ">
       <button type="button" class="btn btn-sm" style="width: 100%; text-align:left; border:solid 1px #CCCCCC;" id="addFileName" onclick="openFilename(1)"> <i class="fa-solid fa-arrow-up-from-bracket" style="margin-right: 10px; color:#699BF7;"></i> Upload your file here </button>
-      <p style="font-size: small; color: #6C757D;">You can only submit a docx file up to 5mb</p>  
+      <p style="font-size: small; color: #6C757D;">You can only submit a docx file up to 1.5mb</p>  
       </td>
       <!-- <td id="fileName1" style="font-family: Arial, Helvetica, sans-serif;"></td> -->
       <td style="padding-left: 0px;" >
@@ -325,7 +325,7 @@ if ($resultProfile) {
       
       <td id="fileType2" style="font-family: Arial, Helvetica, sans-serif; font-size: 18px; padding-right:0px;">
       <button type="button" class="btn btn-sm" style="width: 100%; text-align:left; border:solid 1px #CCCCCC;" id="addFileName2" onclick="openFilename(2)"> <i class="fa-solid fa-arrow-up-from-bracket" style="margin-right: 10px; color:#699BF7;" ></i> Upload your file here </button>
-      <p style="font-size: small; color: #6C757D;">You can only submit a docx file up to 5mb</p>
+      <p style="font-size: small; color: #6C757D;">You can only submit a pdf file up to 1.5mb for File with no Atuhor's Name</p>
       </td>
       <!-- <td id="fileName2" style="font-family: Arial, Helvetica, sans-serif;"></td> -->
       <td style="padding-left: 0px;" >
@@ -347,7 +347,7 @@ if ($resultProfile) {
       
       <td id="fileType3" style="font-family: Arial, Helvetica, sans-serif; font-size: 18px; padding-right:0px;">
       <button type="button" class="btn btn-sm" style="width: 100%; text-align:left; border:solid 1px #CCCCCC;" id="addFileName3" onclick="openFilename(3)"> <i class="fa-solid fa-arrow-up-from-bracket" style="margin-right: 10px; color:#699BF7;" ></i> Upload your file here </button>
-      <p style="font-size: small; color: #6C757D;">You can only submit a docx file up to 5mb</p>
+      <p style="font-size: small; color: #6C757D;">You can only submit a docx file up to 1.5mb</p>
       </td>
       <!-- <td id="fileName3" style="font-family: Arial, Helvetica, sans-serif;"></td> -->
       <td style="padding-left: 0px;">
