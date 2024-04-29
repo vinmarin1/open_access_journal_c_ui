@@ -479,10 +479,11 @@ function updateNotifications(data) {
 
             var donationHref = "donationreportmtd.php?m=" + currentMonth + "&y=" + currentYear;
             var articleHref = "workflow.php?aid=" + article_id;
+            var messageHref = "message.php";
 
             listItem.innerHTML = `
                 <li style="background-color: ${notification.read == 1 ? '#d9dee3 !important' : 'white !important'};">
-                    <a href="${notification.title === 'Send Donation' ? donationHref : articleHref}" class="dropdown-item notification-link">
+                  <a href="${notification.title === 'Send Donation' ? donationHref : (notification.contact_us === 1 ? messageHref : articleHref)}" class="dropdown-item notification-link">
                         <div class="d-flex">
                             <div class="flex-grow-1">
                                 <span class="align-middle"><b>${notification.title}</b></span>
