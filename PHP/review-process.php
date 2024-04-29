@@ -321,7 +321,7 @@ if ($result !== false && !empty($result)) {
                                 echo '<button type="button" class="btn tbn-primary btn-md nextBtn" id="acceptBtn" onclick="nextStep()">Accept</button>';
                                 echo '<button type="button" id="btnReject" class="btn tbn-primary btn-md" onclick="rejectInvitation(' . $articleId . ')">Decline</button>';
                             } elseif ($accept == '1') {
-                                echo '<button type="button" class="btn tbn-primary btn-md nextBtn" id="acceptBtn" onclick="nextStep()">Review</button>';
+                                echo '<button type="button" class="btn tbn-primary btn-md nextBtn" id="reviewNow" onclick="nextStep()">Review</button>';
                             } else {
                                 echo 'You have rejected the invitation for this article';
                             }
@@ -840,6 +840,21 @@ if ($result !== false && !empty($result)) {
     <script src="../JS/reusable-header.js"></script>
     <script src="../JS/review-process.js"></script>
     <script>
+        document.getElementById('reviewNow').addEventListener('click', function(event){
+           const step1 = document.getElementById('step1');
+           const step2 = document.getElementById('step2');
+           step1.style.display = 'none';
+           step2.style.display = 'block';
+        });
+
+        document.getElementById('reviewBtn').addEventListener('click', function(event){
+           const step2 = document.getElementById('step2');
+           const step3 = document.getElementById('step3');
+           step2.style.display = 'none';
+           step3.style.display = 'block';
+        });
+ 
+
         document.getElementById('btnReject').addEventListener('click', function(event){
     Swal.fire({
         title: "Decline Invitation",

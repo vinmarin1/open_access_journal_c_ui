@@ -122,8 +122,6 @@ document.getElementById('acceptBtn').addEventListener('click', function (event) 
 
 
 
- 
-
 
 
 function prevStep() {
