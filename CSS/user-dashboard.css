@@ -1652,14 +1652,15 @@ label {
     position: absolute;
 }
 .cert-category {
+    margin-left: -120px;
     top: 50%;
     transform: translateY(-50%);
     text-align: left;
     padding: 20px;
 }
 .cert-rev-details {
-    top: 50%;
-    transform: translateY(-30%);
+    top: 43%;
+    /* transform: translateY(-20%); */
     left: 2%;
     text-align: center;
     /* padding: 20px; */
@@ -1723,14 +1724,15 @@ label {
     position: absolute;
 }
 .articlePubInfo {
+    margin-left: -120px;
     top: 50%;
     transform: translateY(-50%);
     text-align: left;
     padding: 20px;
 }
 .pubInfo{
-    top: 50%;
-    transform: translateY(-33%);
+    top: 41%;
+    /* transform: translateY(-33%); */
     left: 6%;
     text-align: center;
 }
@@ -1752,7 +1754,13 @@ label {
     font-weight: bold;
     margin-left: 80px;
 }
+#engagementTitle{
+    padding-top: 35px;
+}
+#engagementTitlePublished{
+    padding-top: 15px;
 
+}
 #engagementTitle,
 #engagementTitlePublished {
     font-weight: normal;
@@ -1762,7 +1770,6 @@ label {
     width: 550px;
     line-height: 25px;
     font-size: 20px;
-    padding-top: 35px;
     color: #00123D;
     /* margin-left: -100px; */
     text-align: center;
@@ -1976,186 +1983,81 @@ dfn:hover::before {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
-/* bronze badge publication */
 
-span.pubBrozeHover {
-display: none;
+/* Define the animation */
+@keyframes popup {
+    0% {
+      transform: scale(0);
+    }
+    50% {
+      transform: scale(1.3);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  /* Define the heart icon with animation */
+  .heart-icon {
+    display: inline-block;
+    font-size: 40px;
+    color: red;
+    animation: popup 0.5s ease-in-out;
+  }
+  
+
+  /* bronze progress hover */
+
+    
+.pubBrozeBadge:hover + .progresshover {
+    display: block;
 }
 
 
-.pubBrozeBadge:hover + span.pubBrozeHover {
-display: block;
+.progresshover {
+    width: auto;
+    background-color: #1F89BB;
+    color: white;
+    position: absolute;
+    padding-left: 5px;
+    display: none;
+    z-index: 999;
 }
 
 
-span.pubBrozeHover {
-width: auto;
-background: #333;
-color: white;
-position: absolute;
-padding-left: 5px;
+
+  /* silver progress hover */
+
+.pubSilverBadge:hover + .progresshover {
+    display: block;
 }
 
 
-/* publication badge hover silver */
-
-
-span.pubSilverHover {
-    display: none;
-  }
-  
-
-  .pubSilverBadge:hover + span.pubSilverHover {
-    display: block;
-  }
-  
-
-  span.pubSilverHover {
+.progresshover {
     width: auto;
-    background: #333;
+    background-color: #1F89BB;
     color: white;
     position: absolute;
     padding-left: 5px;
-  }
-
-/* publication badge hover gold */
-
-
-span.pubGoldHover {
     display: none;
-  }
-  
+    z-index: 999;
+}
 
-  .pubGoldBadge:hover + span.pubGoldHover {
+
+
+  /* gold progress hover */
+
+  .pubGoldBadge:hover + .progresshover {
     display: block;
-  }
-  
+}
 
-  span.pubGoldHover {
+
+.progresshover {
     width: auto;
-    background: #333;
+    background-color: #1F89BB;
     color: white;
     position: absolute;
     padding-left: 5px;
-  }
-
-/* reviewer badge hover bronze */
-
-span.revBrozeHover {
     display: none;
-  }
-  
-
-  .revBronzeBadge:hover + span.revBrozeHover {
-    display: block;
-  }
-  
-
-  span.revBrozeHover {
-    width: auto;
-    background: #333;
-    color: white;
-    position: absolute;
-    padding-left: 5px;
-  }
-
-  /* reviewer badge hover silver */
-
-  span.revSilverHover {
-    display: none;
-  }
-  
-
-  .revBronzeBadge:hover + span.revSilverHover {
-    display: block;
-  }
-  
-
-  span.revSilverHover {
-    width: auto;
-    background: #333;
-    color: white;
-    position: absolute;
-    padding-left: 5px;
-  }
-
-  /* reviewer badge hover gold */
-
-  span.revGoldHover {
-    display: none;
-  }
-  
-
-  .revGoldBadge:hover + span.revGoldHover {
-    display: block;
-  }
-  
-
-  span.revGoldHover {
-    width: auto;
-    background: #333;
-    color: white;
-    position: absolute;
-    padding-left: 5px;
-  }
-
-
-/* donation badge hover bronze */
-
-  span.donateBronzeHover {
-    display: none;
-  }
-  
-
-  .donateBronzeBadge:hover + span.donateBronzeHover {
-    display: block;
-  }
-  
-
-  span.donateBronzeHover {
-    width: auto;
-    background: #333;
-    color: white;
-    position: absolute;
-    padding-left: 5px;
-  }
-
-/* donation badge hover silver */
-
-span.donateSilverHover {
-    display: none;
-  }
-  
-
-  .donateSilverBadge:hover + span.donateSilverHover {
-    display: block;
-  }
-  
-
-  span.donateSilverHover {
-    width: auto;
-    background: #333;
-    color: white;
-    position: absolute;
-    padding-left: 5px;
-  }
-
-  /* donation badge hover gold */
-
-  span.donateGoldHover {
-    display: none;
-  }
-  
-
-  .donateGoldBadge:hover + span.donateGoldHover {
-    display: block;
-  }
-  
-
-  span.donateGoldHover {
-    width: auto;
-    background: #333;
-    color: white;
-    position: absolute;
-    padding-left: 5px;
-  }
+    z-index: 999;
+}
