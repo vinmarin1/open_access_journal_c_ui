@@ -5,7 +5,6 @@ document.getElementById('check-duplication').addEventListener('click', async fun
     document.getElementById("check-text").style.display = "none";
     document.getElementById("check-spinner").style.display = "inline-block";
     document.getElementById("checking-text").style.display = "inline";
-     
 
     const abstract = document.getElementById('abstract').value;
     const title = document.getElementById('title').value;
@@ -21,13 +20,13 @@ document.getElementById('check-duplication').addEventListener('click', async fun
             title: title
         }),
     });
-    
+
     const data = await response.json();
-    
+
     if (response.ok) {
         const journalType = data.journal_classification;
         const dropdown = document.getElementById('journal-type');
-        const subjectAreasDropdown = document.getElementById('subject_areas'); // Get subject areas dropdown
+        const subjectAreasDropdown = document.getElementById('subject_areas');
 
         document.getElementById("check-duplication").disabled = false;
         document.getElementById("check-text").style.display = "inline";
@@ -51,21 +50,30 @@ document.getElementById('check-duplication').addEventListener('click', async fun
         console.error('Error:', data.message);
         journalInfo.innerHTML = "";
         document.getElementById('journal-error').innerHTML = data.message;
+
+        // Initialize subject areas with first journal type if no suggested journal type
+        const firstJournalId = document.querySelector('#journal-type option:first-child').value;
+        fetchSubjectAreas(firstJournalId);
     }
 });
 
 // Add event listener to journal type dropdown for dynamically updating subject areas
 document.getElementById('journal-type').addEventListener('change', async function() {
     const selectedJournalId = this.value;
+    fetchSubjectAreas(selectedJournalId);
+});
+
+// Function to fetch and update subject areas based on the selected journal ID
+async function fetchSubjectAreas(journalId) {
     const subjectAreasDropdown = document.getElementById('subject_areas');
 
-    // Fetch and update subject areas based on the selected journal ID
+    // Fetch subject areas based on the selected journal ID
     const response = await fetch('../PHP/subject_areas.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: 'journal_id=' + encodeURIComponent(selectedJournalId),
+        body: 'journal_id=' + encodeURIComponent(journalId),
     });
 
     const data = await response.json();
@@ -81,4 +89,4 @@ document.getElementById('journal-type').addEventListener('change', async functio
     } else {
         alert('Error fetching subject areas.');
     }
-});
+}
