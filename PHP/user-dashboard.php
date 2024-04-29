@@ -2486,10 +2486,14 @@ document.addEventListener('DOMContentLoaded', function () {
 						showCloseButton: true,
 						showConfirmButton: false,
 						didOpen: function () {
-							reviewerCert.style.display = 'none';
+							reviewerCert.style.display = 'block';
 							authorCert.style.display = 'none';
+						},
+						willClose: function () {
+							reviewerCert.style.display = 'none';
 						}
 					});
+
 				});
             } else if (actionEngage === 'Published an Article') {
 				const certContainer = document.getElementById('certPublishedHead');
@@ -2513,9 +2517,13 @@ document.addEventListener('DOMContentLoaded', function () {
 						showConfirmButton: false,
 						didOpen: function () {
 							reviewerCert.style.display = 'none';
+							authorCert.style.display = 'block';
+						},
+						willClose: function () {
 							authorCert.style.display = 'none';
 						}
 					});
+
 				});
             } else if (actionEngage === 'Reviewed an Article') {
                 Swal.fire({
