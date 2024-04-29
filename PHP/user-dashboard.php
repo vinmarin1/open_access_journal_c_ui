@@ -2451,33 +2451,37 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (actionEngage === 'Submitted an Article') {
                 Swal.fire({
+					title: "<span class='heart-icon'>&#x2764;</span>",
                     html: "<p style='font-weight: bold'>You've earned 1 Community Heart for submitting an article.</p>" + 
 						"<p>Title: " + title + "</p>",
-                    imageUrl: "../images/qcu-bg.jpg",
-                    imageWidth: 400,
-                    imageHeight: 200,
-                    imageAlt: "Custom image",
+                    // imageUrl: "../images/qcu-bg.jpg",
+                    // imageWidth: 400,
+                    // imageHeight: 200,
+                    // imageAlt: "Custom image",
                     didOpen: function () {
                         // This will be executed when the Swal modal is closed
                         reviewerCert.style.display = 'none';
 						authorCert.style.display = 'none';
-
                     }
                 });
             } else if (actionEngage === 'Reviewed Article Published') {
 				const certContainer = document.getElementById('certContainerHead');
 
-				// Use html2canvas to capture the contents of certContainer as an image
 				html2canvas(certContainer).then(canvas => {
-					// Convert the canvas to a data URL representing the image
 					const imageUrl = canvas.toDataURL();
 
-					// Use the data URL as the imageUrl property in Swal.fire
+					function handleDownload() {
+                        var link = document.createElement('a');
+                        link.download = 'Reviewer-Certificate.png';
+                        link.href = imageUrl;
+                        link.click();
+                    }
+
 					Swal.fire({
 						html: "<p><strong>You've earned 3 Community Hearts because the article you reviewed was published.</strong></p>" + 
 							"<p>Title: " + title + "</p>" + 
 							"<br>" + 
-							"<button type='button' class='swal-button swal-button--confirm' onclick='downloadCertificate()'>Download Certificate</button>",
+							"<button type='button' class='swal-button swal-button--confirm' id='downloadButton'>Download Certificate</button>",
 						imageUrl: imageUrl,
 						imageWidth: 400,
 						imageHeight: 200,
@@ -2486,28 +2490,31 @@ document.addEventListener('DOMContentLoaded', function () {
 						showCloseButton: true,
 						showConfirmButton: false,
 						didOpen: function () {
-							reviewerCert.style.display = 'block';
-							authorCert.style.display = 'none';
-						},
-						willClose: function () {
+							document.getElementById('downloadButton').addEventListener('click', handleDownload);
+
 							reviewerCert.style.display = 'none';
+							authorCert.style.display = 'none';
 						}
 					});
-
 				});
             } else if (actionEngage === 'Published an Article') {
 				const certContainer = document.getElementById('certPublishedHead');
 
-				// Use html2canvas to capture the contents of certContainer as an image
 				html2canvas(certContainer).then(canvas => {
-					// Convert the canvas to a data URL representing the image
 					const imageUrl = canvas.toDataURL();
+
+					function handleDownloadPublished() {
+                        var link = document.createElement('a');
+                        link.download = 'Published-Certificate.png';
+                        link.href = imageUrl;
+                        link.click();
+                    }
 
 					Swal.fire({
 						html: "<p><strong>You've earned 3 Community Hearts because you've successfully published an article</strong></p>" + 
 							"<p>Title: " +  title + "</p>" + 
 							"<br>" + 
-							"<button type='button' class='swal-button swal-button--confirm' onclick='downloadCertificatePublished()'>Download Certificate</button>",
+							"<button type='button' class='swal-button swal-button--confirm' id='downloadButtonPublished'>Download Certificate</button>",
 						imageUrl: imageUrl,
 						imageWidth: 400,
 						imageHeight: 200,
@@ -2516,23 +2523,22 @@ document.addEventListener('DOMContentLoaded', function () {
 						showCloseButton: true,
 						showConfirmButton: false,
 						didOpen: function () {
+							document.getElementById('downloadButtonPublished').addEventListener('click', handleDownloadPublished);
+
 							reviewerCert.style.display = 'none';
-							authorCert.style.display = 'block';
-						},
-						willClose: function () {
 							authorCert.style.display = 'none';
 						}
 					});
-
 				});
             } else if (actionEngage === 'Reviewed an Article') {
                 Swal.fire({
+					title: "<span class='heart-icon'>&#x2764;</span>",
                     html: "<p><strong>You've earned 1 Community Heart for helping us publish an article</strong></p>" + 
 						"<p>Title: " + title + "</p>",
-                    imageUrl: "../images/qcu-bg.jpg",
-                    imageWidth: 400,
-                    imageHeight: 200,
-                    imageAlt: "Custom image",
+                    // imageUrl: "../images/qcu-bg.jpg",
+                    // imageWidth: 400,
+                    // imageHeight: 200,
+                    // imageAlt: "Custom image",
                     didOpen: function () {
                         reviewerCert.style.display = 'none';
 						authorCert.style.display = 'none';
@@ -2540,12 +2546,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
             }else if (actionEngage === 'Co-Author') {
                 Swal.fire({
+					title: "<span class='heart-icon'>&#x2764;</span>",
                     html: "<p><strong>You've earned 1 Community Heart for contributing to the article</strong></p>" + 
 						"<p>Title: " + title + "</p>",
-                    imageUrl: "../images/qcu-bg.jpg",
-                    imageWidth: 400,
-                    imageHeight: 200,
-                    imageAlt: "Custom image",
+                    // imageUrl: "../images/qcu-bg.jpg",
+                    // imageWidth: 400,
+                    // imageHeight: 200,
+                    // imageAlt: "Custom image",
                     didOpen: function () {
                         reviewerCert.style.display = 'none';
 						authorCert.style.display = 'none';
@@ -2553,12 +2560,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
             }else if (actionEngage === 'Primary Contact') {
                 Swal.fire({
+					title: "<span class='heart-icon'>&#x2764;</span>",
                     html: "<p><strong>You've earned 1 Community Heart for being the primary contact to the article</strong></p>" + 
 						"<p>Title: " + title + "</p>",
-                    imageUrl: "../images/qcu-bg.jpg",
-                    imageWidth: 400,
-                    imageHeight: 200,
-                    imageAlt: "Custom image",
+                    // imageUrl: "../images/qcu-bg.jpg",
+                    // imageWidth: 400,
+                    // imageHeight: 200,
+                    // imageAlt: "Custom image",
                     didOpen: function () {
                         reviewerCert.style.display = 'none';
 						authorCert.style.display = 'none';
