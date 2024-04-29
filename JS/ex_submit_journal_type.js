@@ -1,3 +1,4 @@
+
 document.getElementById('check-duplication').addEventListener('click', async function(event) {
     document.getElementById("check-duplication").disabled = true;
 
@@ -59,6 +60,12 @@ document.getElementById('journal-type').addEventListener('change', async functio
     const selectedJournalId = this.value;
     const subjectAreasDropdown = document.getElementById('subject_areas');
 
+    if (selectedJournalId === '') {
+        // Clear subject areas dropdown if no journal type is selected
+        subjectAreasDropdown.innerHTML = '';
+        return; // Exit the function early
+    }
+
     // Fetch and update subject areas based on the selected journal ID
     const response = await fetch('../PHP/subject_areas.php', {
         method: 'POST',
@@ -79,7 +86,10 @@ document.getElementById('journal-type').addEventListener('change', async functio
             subjectAreasDropdown.appendChild(option);
         });
     } else {
-        alert('Error fetching subject areas.');
+        // Clear subject areas dropdown and show an error message
+        subjectAreasDropdown.innerHTML = '';
+        const option = document.createElement('option');
+        option.textContent = 'Error fetching subject areas';
+        subjectAreasDropdown.appendChild(option);
     }
 });
-
