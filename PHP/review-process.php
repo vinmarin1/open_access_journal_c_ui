@@ -150,93 +150,8 @@ if ($result !== false && !empty($result)) {
                 </div>
 
                 <div class="col-md-12">
-                    <div class="table-container">
-                        <!-- <h5>Files Submitted</h5> -->
-                        <h4>Files Submitted</h4>
-                        <table class="table table-hover" id="table-file" style="border-collapse: separate; border-spacing: 10px 10px 10px 10px;">
-                            <thead>
-                                <tr>
-                                <th scope="col" style="background-color: #F5F5F9; color: black;   font-family: 'Judson', serif; font-weight: bold; font-style: normal; font-size: large; ">File</th>
-                                <th scope="col" style="background-color: #F5F5F9; color: black;   font-family: 'Judson', serif; font-weight: bold; font-style: normal; font-size: large; ">Date</th>
-                                </tr>
-                            </thead>
-                            <tbody id="fileList">
-                                <tr>
-                                    <td id="fileName1">
-                                    <?php
-                                        $sqlFileName = "SELECT article_files.file_name, article.title 
-                                                        FROM article_files 
-                                                        JOIN article ON article_files.article_id = article.article_id 
-                                                        JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id 
-                                                        WHERE article_files.file_type = 'File with no author name' 
-                                                        AND article.status = 4 
-                                                        AND reviewer_assigned.author_id = :author_id 
-                                                        AND article.article_id = :article_id
-                                                        ORDER BY reviewer_assigned.date_issued DESC
-                                                        LIMIT 1";
-
-                                        $result = database_run($sqlFileName, array('author_id' => $userId, 'article_id' => $articleId));
-
-                                        if ($result !== false) {
-                                            foreach ($result as $row) {
-                                                $fileName = $row->file_name;
-                                                $filePath = '../Files/submitted-article/' . $fileName;
-
-                                                echo "<a href='download.php?file=$filePath' download>$fileName</a><br>";
-                                            }
-                                        } else {
-                                            echo "Can't find the file or it has been put in the archive";
-                                        }
-                                    ?>
-
-
-                                    </td>
-                                    <td id="fileType1">
-                                    <?php
-                                        $sqlFileDate = "SELECT article_files.date_added, article.title FROM article_files JOIN article ON article_files.article_id = article.article_id JOIN reviewer_assigned ON article.article_id = reviewer_assigned.article_id WHERE article_files.file_type = 'File with no author name' AND article.status = 4
-                                        AND reviewer_assigned.author_id = :author_id AND article.article_id = :article_id";
-            
-                                        $result = database_run($sqlFileDate, array('author_id' => $userId,
-                                        'article_id' => $articleId));
-            
-                                        if ($result !== false) {
-                                        foreach ($result as $row) {
-                                        echo $row->date_added;
-                                        }
-                                        } else {
-                                        echo "Can't determine date added or the file has been put on the archive"; 
-                                        }
-                                        
-                                    ?>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <!-- <div class="table-container">
-                            <h5>Files Submitted</h5>
-                            <table class="table table-hover" id="table-file" style="border-collapse: separate; border-spacing: 10px 10px 10px 10px;">
-                                <thead>
-                                    <tr>
-                                    <th scope="col" style="background-color: var(--main, #0858A4); color: white; font-weight: normal;">File</th>
-                                    <th scope="col" style="background-color: var(--main, #0858A4); color: white; font-weight: normal;">ORCID</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="fileList">
-                                    <tr>
-                                        <td id="fileName1">File Name</td>
-                                        <td id="fileType1">04923045324</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div> -->
-                    </div>
-                </div>
-
-                <div class="col-md-12">
-
                 <div class="keywords">
-                    <h4 style="margin-top: 20px; margin-bottom: 10px;">Keywords</h4>
+                    <h4 style="margin-bottom: 10px;">Keywords</h4>
                     <div class="keyword1">
                     <ul style="display: flex;padding-left:0;">
                         <?php
@@ -502,8 +417,46 @@ if ($result !== false && !empty($result)) {
                                 foreach ($result as $row) {
                                     $fileName = $row->file_name;
                                     $filePath = '../Files/submitted-article/' . $fileName;
-
-                                    echo "<a href='download.php?file=$filePath' download>$fileName</a><br>";
+                            
+                                    if (pathinfo($filePath, PATHINFO_EXTENSION) === 'docx') {
+                                        $url = 'https://v2.convertapi.com/convert/docx/to/pdf?Secret=w96RLvfwIworUItk';
+                                        $requestData = array(
+                                            'Parameters' => array(
+                                                array(
+                                                    'Name' => 'File',
+                                                    'FileValue' => array(
+                                                        'Name' => $fileName,
+                                                        'Data' => base64_encode(file_get_contents($filePath))
+                                                    )
+                                                ),
+                                                array(
+                                                    'Name' => 'StoreFile',
+                                                    'Value' => true
+                                                )
+                                            )
+                                        );
+                            
+                                        $ch = curl_init($url);
+                                        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                                        curl_setopt($ch, CURLOPT_POST, true);
+                                        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($requestData));
+                                        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+                                        $result = curl_exec($ch);
+                            
+                                        if ($result !== false) {
+                                            $responseData = json_decode($result, true);
+                                            if (isset($responseData['Files'][0]['Url'])) {
+                                                $pdfUrl = $responseData['Files'][0]['Url'];
+                                                echo "<a href='$pdfUrl' download='$fileName.pdf'>$fileName (PDF)</a><br>";
+                                            } else {
+                                                echo "Conversion failed for $fileName";
+                                            }
+                                        } else {
+                                            echo "Failed to convert $fileName to PDF";
+                                        }
+                            
+                                        curl_close($ch);
+                                    }
                                 }
                             } else {
                                 echo "Can't find the file or it has been put in the archive";
