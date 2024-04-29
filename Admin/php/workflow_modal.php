@@ -1454,6 +1454,7 @@ function addDiscussion() {
     var submissionSubject = $('#submissionsubject').val();
     var submissionMessage = $('#submissionmessage').val();
     var submissionFiletype = $('#submissionfiletype').val();
+    var article_id = <?php echo json_encode($aid); ?>;
     var author_id = <?php echo json_encode($author_id); ?>;
     var title = <?php echo json_encode($title); ?>;
     var submissionFile = $('#submissionfilexx')[0].files[0];
@@ -1467,7 +1468,7 @@ function addDiscussion() {
     }
 
     var formData = new FormData();
-    formData.append('article_id', articleId);
+    formData.append('article_id', article_id);
     formData.append('fromuser', fromuser);
     formData.append('discussiontype', discussionTypeInput);
     formData.append('submissionsubject', submissionSubject);
