@@ -1132,8 +1132,12 @@ table {
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel3">Assign Reviewer</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
+            </div>  
             <div class="modal-body">
+                    <select class="form-select" id="sortDropdown">
+                    <option value="score" selected>Sort By Score (default)</option>
+                        <option value="success">Sort By Total Success</option>
+                    </select> 
                 <div class="row mb-2">
                     <div class="col-md-12">
                         <div class="table-responsive text-nowrap">
@@ -2076,8 +2080,9 @@ table {
     $(document).ready(function () {
         const uploadButton = $('#addReviewer');
         const articleID = <?php echo $article_data[0]->article_id; ?>;
+        let isFirstModalOpen = true; 
 
-        uploadButton.on('click', async function () {
+        async function fetchAndRenderData(sortValue) {
             $('#sloading').toggle();
             try {
                 const response = await fetch('https://web-production-cecc.up.railway.app//api/check/reviewers', {
@@ -2139,42 +2144,63 @@ table {
                         </td>
                     `);
 
-                    if (item.score === 0) {
-                        tbodyOther.append(row); 
-                    } else {
-                        tbodySuggested.append(row);
+                    if (sortValue === 'score') {
+                        if (item.score === 0) {
+                            tbodyOther.append(row); 
+                        } else {
+                            tbodySuggested.append(row);
+                        }
+                    } else if (sortValue === 'success') {
+                        if (item.total_success === 0) {
+                            tbodyOther.append(row); 
+                        } else {
+                            tbodySuggested.append(row);
+                        }
                     }
                 });
 
-                if ($.fn.DataTable.isDataTable('#DataTableSuggeted')) {
-                    $('#DataTableSuggeted').DataTable().destroy();
-                }
-                if ($.fn.DataTable.isDataTable('#DataTableOther')) {
-                    $('#DataTableOther').DataTable().destroy();
-                }
-
-                $('#DataTableSuggeted').DataTable({
-                    "paging": false,
-                    "ordering": false,
-                    "searching": true,
-                    "info": false
-                });
-
-                $('#DataTableOther').DataTable({
-                    "paging": false,
-                    "ordering": false,
-                    "searching": true,
-                    "info": false
-                });
-
-                var myModal = new bootstrap.Modal($('#addReviewerModal'));
                 $('#sloading').toggle();
-                myModal.show();
 
             } catch (error) {
                 console.error('Error:', error);
             }
+        }
+
+        function openAddReviewerModal() {
+            var backdropOption = isFirstModalOpen ? true : false; 
+            var myModal = new bootstrap.Modal($('#addReviewerModal'), {
+                backdrop: backdropOption
+            });
+            myModal.show();
+            isFirstModalOpen = false;
+        }
+
+        uploadButton.click(openAddReviewerModal);
+
+        fetchAndRenderData('score');
+
+        $('#sortDropdown').change(function() {
+            const sortValue = $(this).val();
+            fetchAndRenderData(sortValue);
         });
+
+        if (!$.fn.DataTable.isDataTable('#DataTableSuggested')) {
+            $('#DataTableSuggested').DataTable({
+                "paging": false,
+                "ordering": false,
+                "searching": true,
+                "info": false
+            });
+        }
+
+        if (!$.fn.DataTable.isDataTable('#DataTableOther')) {
+            $('#DataTableOther').DataTable({
+                "paging": false,
+                "ordering": false,
+                "searching": true,
+                "info": false
+            });
+        }
     });
     </script>
 </body>
