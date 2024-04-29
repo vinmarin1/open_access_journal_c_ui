@@ -132,65 +132,65 @@ $expertise = $_SESSION['expertise'];
 						<div class="info-header ">
 								<h1>
 								<?php
-if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
-    $sqlSelectName = "SELECT first_name, middle_name, last_name, affix, birth_date, gender, marital_status, country, orc_id, afiliations, position, bio, field_of_expertise FROM author WHERE author_id = :author_id";
-    $result = database_run($sqlSelectName, array(':author_id' => $id));
+									if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
+										$sqlSelectName = "SELECT first_name, middle_name, last_name, affix, birth_date, gender, marital_status, country, orc_id, afiliations, position, bio, field_of_expertise FROM author WHERE author_id = :author_id";
+										$result = database_run($sqlSelectName, array(':author_id' => $id));
 
-    if ($result) {
-        if (count($result) > 0) {
-            $user = $result[0];
-            $firstName = $user->first_name;
-            $middleName = $user->middle_name;
-            $lastName = $user->last_name;
-            $affix = $user->affix;
-            $birthDate = $user->birth_date;
-            $gender = $user->gender;
-            $maritalStatus = $user->marital_status;
-            $country = $user->country;
-            $orcId = $user->orc_id;
-            $afiliations = $user->afiliations;
-            $position = $user->position;
-            $bio = $user->bio;
-            $field_of_expertise = $user->field_of_expertise;
+										if ($result) {
+											if (count($result) > 0) {
+												$user = $result[0];
+												$firstName = $user->first_name;
+												$middleName = $user->middle_name;
+												$lastName = $user->last_name;
+												$affix = $user->affix;
+												$birthDate = $user->birth_date;
+												$gender = $user->gender;
+												$maritalStatus = $user->marital_status;
+												$country = $user->country;
+												$orcId = $user->orc_id;
+												$afiliations = $user->afiliations;
+												$position = $user->position;
+												$bio = $user->bio;
+												$field_of_expertise = $user->field_of_expertise;
 
-            $profileFields = array($firstName, $lastName, $birthDate, $gender, $maritalStatus, $country, $orcId, $afiliations, $position, $field_of_expertise);
-            $completedFields = count(array_filter($profileFields, function($field) { return !empty($field); }));
-            $totalFields = count($profileFields);
+												$profileFields = array($firstName, $lastName, $birthDate, $gender, $maritalStatus, $country, $orcId, $afiliations, $position, $field_of_expertise);
+												$completedFields = count(array_filter($profileFields, function($field) { return !empty($field); }));
+												$totalFields = count($profileFields);
 
-            $fullName = "$firstName $middleName $lastName";
-            $percentageCompletion = ($completedFields / $totalFields) * 100;
+												$fullName = "$firstName $middleName $lastName";
+												$percentageCompletion = ($completedFields / $totalFields) * 100;
 
-            // Calculate remaining percentage
-            $remainingPercentage = 100 - $percentageCompletion;
+												// Calculate remaining percentage
+												$remainingPercentage = 100 - $percentageCompletion;
 
-            // Display profile information
-            echo "<p style='font-size: 20px'>" . $fullName . "</p>";
-            echo "<p>PROFILE COMPLETENESS
-                    <span style='color: #004e98'>" . round($percentageCompletion, 2) . "%</span>";
+												// Display profile information
+												echo "<p style='font-size: 20px'>" . $fullName . "</p>";
+												echo "<p>PROFILE COMPLETENESS
+														<span style='color: #004e98'>" . round($percentageCompletion, 2) . "%</span>";
 
-            if ($percentageCompletion >= 100) {
-				echo "<dfn class='d-none d-md-inline-flex' data-info='Complete profile, you can now submit a paper'>
-				<i class='fa-regular fa-circle-check' style='color: green'></i>
-				</dfn>";
-            } else {
-                echo "<dfn class='d-none d-md-inline-flex' data-info='You must complete required fields in your profile to submit or review a paper'>
-                        <svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 32 32' color='red'>
-                            <path fill='currentColor' d='M16 3C8.832 3 3 8.832 3 16s5.832 13 13 13s13-5.832 13-13S23.168 3 16 3m0 2c6.087 0 11 4.913 11 11s-4.913 11-11 11S5 22.087 5 16S9.913 5 16 5m-1 5v2h2v-2zm0 4v8h2v-8z'></path>
-                        </svg>
-                    </dfn>";
-            }
+												if ($percentageCompletion >= 100) {
+													echo "<dfn class='d-none d-md-inline-flex' data-info='Complete profile, you can now submit a paper'>
+													<i class='fa-regular fa-circle-check' style='color: green'></i>
+													</dfn>";
+												} else {
+													echo "<dfn class='d-none d-md-inline-flex' data-info='You must complete required fields in your profile to submit or review a paper'>
+															<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 32 32' color='red'>
+																<path fill='currentColor' d='M16 3C8.832 3 3 8.832 3 16s5.832 13 13 13s13-5.832 13-13S23.168 3 16 3m0 2c6.087 0 11 4.913 11 11s-4.913 11-11 11S5 22.087 5 16S9.913 5 16 5m-1 5v2h2v-2zm0 4v8h2v-8z'></path>
+															</svg>
+														</dfn>";
+												}
 
-            echo "</p>
-                <div class='progress' style='height: 3px; background-image: linear-gradient(to right, #004e98 " . round($percentageCompletion, 2) . "%, red " . round($percentageCompletion, 2) . "%, red 100%);'></div>
-                <hr/>";
-        } else {
-            echo "User not found.";
-        }
-    } else {
-        echo "Unable to fetch user info.";
-    }
-}
-?>
+												echo "</p>
+													<div class='progress' style='height: 3px; background-image: linear-gradient(to right, #004e98 " . round($percentageCompletion, 2) . "%, red " . round($percentageCompletion, 2) . "%, red 100%);'></div>
+													<hr/>";
+											} else {
+												echo "User not found.";
+											}
+										} else {
+											echo "Unable to fetch user info.";
+										}
+									}
+								?>
 
 								</h1>
 							<!-- <i class="ri-edit-box-line" id="editIcon" style="color: green solid"></i> -->
@@ -1263,342 +1263,40 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 								<?php
 								if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 									$sqlSelectName = "SELECT title FROM article WHERE author_id = :author_id AND status = 1";
-
 									$result = database_run($sqlSelectName, array(':author_id' => $id));
 
-									$sqlReviewed = "SELECT user_id FROM user_points WHERE user_id = :user_id AND action_engage = 'Reviewed Article Published'";
+									if ($result !== false) {
+										$publicationCount = count($result);
 
-									$resultReviewed = database_run($sqlReviewed, array(':user_id' => $id));
+										// Determine badge level and progress percentage
+										$badgeLevel = 'None';
+										$badgeProgress = 0;
 
-									// $sqlDonation = "SELECT user_id FROM user_points WHERE user_id = :user_id AND action_engage = 'Donation'";
-
-									// $resultDonation = database_run($sqlDonation, array(':user_id' => $id));
-
-
-									if(!$result === false && $resultReviewed === false){
-										if(count($result) === 1){
-											echo '<div class="badge-box pubBrozeBadge" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
-											echo '<span class="pubBrozeHover" style="
-											width: auto;
-											background: #333;
-											color: white;
-											position: absolute;
-											padding-left: 5px;
-											z-index: 999;
-											top: 60px;
-											margin-left: 80px;
-											">Publication Bronze Badge: publish one more article to upgrade your badge to Silver
-											</span>';
-										}elseif(count($result) === 2){
-											echo '<div class="badge-box pubSilverBadge" style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
-											echo '<span class="pubSilverHover" style="
-											width: auto;
-											background: #333;
-											color: white;
-											position: absolute;
-											padding-left: 5px;
-											z-index: 999;
-											top: 60px;
-											margin-left: 80px;
-											">Publication Silver Badge: publish one more article to upgrade your badge to Gold
-											</span>';
-										}elseif(count($result) >= 3){
-											echo '<div class="badge-box pubGoldBadge" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
-											echo '<span class="pubGoldHover" style="
-											width: auto;
-											background: #333;
-											color: white;
-											position: absolute;
-											padding-left: 5px;
-											z-index: 999;
-											top: 60px;
-											margin-left: 80px;
-											">Publication Gold Badge: Congratulations, you have reach the last badge for publication.
-											</span>';
+										if ($publicationCount >= 1 && $publicationCount < 5) {
+											$badge = '<div class="badge-box pubBrozeBadge" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
+											$badgeLevel = 'Bronze';
+											$badgeProgress = ($publicationCount / 5) * 100;
+										} elseif ($publicationCount >= 5 && $publicationCount < 10) {
+											$badge = '<div class="badge-box pubSilverBadge" style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
+											$badgeLevel = 'Silver';
+											$badgeProgress = (($publicationCount - 5) / 5) * 100; 
+										} elseif ($publicationCount >= 10) {
+											$badge = '<div class="badge-box pubGoldBadge" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
+											$badgeLevel = 'Gold';
+											$badgeProgress = 100;
 										}
-									}elseif(!$resultReviewed === false && $result === false){
-										if(count($resultReviewed) === 1){
-											echo '<div class="badge-box revBronzeBadge" style="background-image: url(\'../images/first_review_badges.png\');"></div>';
-											echo '<span class="revBrozeHover" style="
-											width: auto;
-											background: #333;
-											color: white;
-											position: absolute;
-											padding-left: 5px;
-											z-index: 999;
-											top: 60px;
-											margin-left: 80px;
-											">Reviewer Bronze Badge: Help us publish one more article by reviewing to upgrade your badge to Silver
-											</span>';
-										}elseif(count($resultReviewed) === 2){
-											echo '<div class="badge-box revBronzeBadge" style="background-image: url(\'../images/second_review_badges.png\');"></div>';
-											echo '<span class="revSilverHover" style="
-											width: auto;
-											background: #333;
-											color: white;
-											position: absolute;
-											padding-left: 5px;
-											z-index: 999;
-											top: 60px;
-											margin-left: 80px;
-											">Reviewer Silver Badge: Help us publish one more article by reviewing to upgrade your badge to Gold
-											</span>';
-										}elseif(count($resultReviewed) >= 3){
-											echo '<div class="badge-box revGoldBadge" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
-											echo '<span class="revGoldHover" style="
-											width: auto;
-											background: #333;
-											color: white;
-											position: absolute;
-											padding-left: 5px;
-											z-index: 999;
-											top: 60px;
-											margin-left: 80px;
-											">Reviewer Gold Badge: Congratulations, you have reach the last badge for reviewer badge
-											</span>';
-										}
-									}elseif(!$result === false && !$resultReviewed === false){
-										if(count($result) === 1 && count($resultReviewed) === 1){
-											echo '<div class="badge-box pubBrozeBadge" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
-											echo '<span class="pubBrozeHover" style="
-											width: auto;
-											background: #333;
-											color: white;
-											position: absolute;
-											padding-left: 5px;
-											z-index: 999;
-											top: 60px;
-											margin-left: 80px;
-											">Publication Bronze Badge: publish one more article to upgrade your badge to Silver
-											</span>';
-
-											echo '<div class="badge-box revBronzeBadge" style="background-image: url(\'../images/first_review_badges.png\');"></div>';
-											echo '<span class="revBrozeHover" style="
-											width: auto;
-											background: #333;
-											color: white;
-											position: absolute;
-											padding-left: 5px;
-											z-index: 999;
-											top: 60px;
-											margin-left: 160px;
-											">Reviewer Bronze Badge: Help us publish one more article by reviewing to upgrade your badge to Silver
-											</span>';
-
-										}elseif(count($result) === 2 && count($resultReviewed) === 1){
-											echo '<div class="badge-box pubSilverBadge" style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
-											echo '<span class="pubSilverHover" style="
-											width: auto;
-											background: #333;
-											color: white;
-											position: absolute;
-											padding-left: 5px;
-											z-index: 999;
-											top: 60px;
-											margin-left: 80px;
-											">Publication Silver Badge: publish one more article to upgrade your badge to Gold
-											</span>';
-
-											echo '<div class="badge-box revBronzeBadge" style="background-image: url(\'../images/first_review_badges.png\');"></div>';
-											echo '<span class="revBrozeHover" style="
-											width: auto;
-											background: #333;
-											color: white;
-											position: absolute;
-											padding-left: 5px;
-											z-index: 999;
-											top: 60px;
-											margin-left: 160px;
-											">Reviewer Bronze Badge: Help us publish one more article by reviewing to upgrade your badge to Silver
-											</span>';
-										}elseif(count($result) === 1 && count($resultReviewed) === 2){
-											echo '<div class="badge-box pubBrozeBadge" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
-											echo '<span class="pubBrozeHover" style="
-											width: auto;
-											background: #333;
-											color: white;
-											position: absolute;
-											padding-left: 5px;
-											z-index: 999;
-											top: 60px;
-											margin-left: 80px;
-											">Publication Bronze Badge: publish one more article to upgrade your badge to Silver
-											</span>';
-
-											echo '<div class="badge-box revBronzeBadge" style="background-image: url(\'../images/second_review_badges.png\');"></div>';
-											echo '<span class="revSilverHover" style="
-											width: auto;
-											background: #333;
-											color: white;
-											position: absolute;
-											padding-left: 5px;
-											z-index: 999;
-											top: 60px;
-											margin-left: 160px;
-											">Reviewer Silver Badge: Help us publish one more article by reviewing to upgrade your badge to Gold
-											</span>';
-										}elseif(count($result) === 2 && count($resultReviewed) === 2){
-											echo '<div class="badge-box pubSilverBadge" style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
-											echo '<span class="pubSilverHover" style="
-											width: auto;
-											background: #333;
-											color: white;
-											position: absolute;
-											padding-left: 5px;
-											z-index: 999;
-											top: 60px;
-											margin-left: 80px;
-											">Publication Silver Badge: publish one more article to upgrade your badge to Gold
-											</span>';
-
-											echo '<div class="badge-box revBronzeBadge" style="background-image: url(\'../images/second_review_badges.png\');"></div>';
-											echo '<span class="revSilverHover" style="
-											width: auto;
-											background: #333;
-											color: white;
-											position: absolute;
-											padding-left: 5px;
-											z-index: 999;
-											top: 60px;
-											margin-left: 160px;
-											">Reviewer Silver Badge: Help us publish one more article by reviewing to upgrade your badge to Gold
-											</span>';
-										}elseif(count($result) >= 3 && count($resultReviewed) === 1){
-											echo '<div class="badge-box pubGoldBadge" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
-											echo '<span class="pubGoldHover" style="
-											width: auto;
-											background: #333;
-											color: white;
-											position: absolute;
-											padding-left: 5px;
-											z-index: 999;
-											top: 60px;
-											margin-left: 80px;
-											">Publication Gold Badge: Congratulations, you have reach the last badge for publication.
-											</span>';
-
-											echo '<div class="badge-box revBronzeBadge" style="background-image: url(\'../images/first_review_badges.png\');"></div>';
-											echo '<span class="revBrozeHover" style="
-											width: auto;
-											background: #333;
-											color: white;
-											position: absolute;
-											padding-left: 5px;
-											z-index: 999;
-											top: 60px;
-											margin-left: 160px;
-											">Reviewer Bronze Badge: Help us publish one more article by reviewing to upgrade your badge to Silver
-											</span>';
-										}elseif(count($result) === 1 && count($resultReviewed) >= 3){
-											echo '<div class="badge-box pubBrozeBadge" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
-											echo '<span class="pubBrozeHover" style="
-											width: auto;
-											background: #333;
-											color: white;
-											position: absolute;
-											padding-left: 5px;
-											z-index: 999;
-											top: 60px;
-											margin-left: 80px;
-											">Publication Bronze Badge: publish one more article to upgrade your badge to Silver
-											</span>';
-
-											echo '<div class="badge-box revGoldBadge" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
-											echo '<span class="revGoldHover" style="
-											width: auto;
-											background: #333;
-											color: white;
-											position: absolute;
-											padding-left: 5px;
-											z-index: 999;
-											top: 60px;
-											margin-left: 160px;
-											">Reviewer Gold Badge: Congratulations, you have reach the last badge for reviewer badge
-											</span>';
-										}elseif(count($result) >= 3 && count($resultReviewed) === 2){
-											echo '<div class="badge-box pubGoldBadge" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
-											echo '<span class="pubGoldHover" style="
-											width: auto;
-											background: #333;
-											color: white;
-											position: absolute;
-											padding-left: 5px;
-											z-index: 999;
-											top: 60px;
-											margin-left: 80px;
-											">Publication Gold Badge: Congratulations, you have reach the last badge for publication.
-											</span>';
-
-											echo '<div class="badge-box revBronzeBadge" style="background-image: url(\'../images/second_review_badges.png\');"></div>';
-											echo '<span class="revSilverHover" style="
-											width: auto;
-											background: #333;
-											color: white;
-											position: absolute;
-											padding-left: 5px;
-											z-index: 999;
-											top: 60px;
-											margin-left: 160px;
-											">Reviewer Silver Badge: Help us publish one more article by reviewing to upgrade your badge to Gold
-											</span>';
-										}elseif(count($result) === 2 && count($resultReviewed) >= 3){
-											echo '<div class="badge-box pubSilverBadge" style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
-											echo '<span class="pubSilverHover" style="
-											width: auto;
-											background: #333;
-											color: white;
-											position: absolute;
-											padding-left: 5px;
-											z-index: 999;
-											top: 60px;
-											margin-left: 80px;
-											">Publication Silver Badge: publish one more article to upgrade your badge to Gold
-											</span>';
-
-											echo '<div class="badge-box revGoldBadge" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
-											echo '<span class="revGoldHover" style="
-											width: auto;
-											background: #333;
-											color: white;
-											position: absolute;
-											padding-left: 5px;
-											z-index: 999;
-											top: 60px;
-											margin-left: 160px;
-											">Reviewer Gold Badge: Congratulations, you have reach the last badge for reviewer badge
-											</span>';
-										}elseif(count($result) >= 3 && count($resultReviewed) >= 3){
-											echo '<div class="badge-box pubGoldBadge" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
-											echo '<span class="pubGoldHover" style="
-											width: auto;
-											background: #333;
-											color: white;
-											position: absolute;
-											padding-left: 5px;
-											z-index: 999;
-											top: 60px;
-											margin-left: 80px;
-											">Publication Gold Badge: Congratulations, you have reach the last badge for publication.
-											</span>';
-
-											echo '<div class="badge-box revGoldBadge" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
-											echo '<span class="revGoldHover" style="
-											width: auto;
-											background: #333;
-											color: white;
-											position: absolute;
-											padding-left: 5px;
-											z-index: 999;
-											top: 60px;
-											margin-left: 160px;
-											">Reviewer Gold Badge: Congratulations, you have reach the last badge for reviewer badge
-											</span>';
-										}
-									}else{
-										echo '<center><strong>You have no badge yet</strong></center>';
+										echo $badge;
+										echo '<div class="progresshover">';
+										echo "<p style='color: white'>PUBLICATION BADGE (Level: $badgeLevel)</p>";
+										echo "<div class='progress' style='height: 3px; background-image: linear-gradient(to right, #ffd700 " . round($badgeProgress, 2) . "%, red " . round($badgeProgress, 2) . "%, red 100%);'></div>";
+										echo "<p style='color: white'>Progress: " . round($badgeProgress, 2) . "%</p>";
+										echo '<div>';
+									} else {
+										echo "Unable to fetch publication info.";
 									}
 								}
 								?>
+
 
 
 											
