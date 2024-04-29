@@ -25,138 +25,6 @@ function checkDuplication() {
 
 
 
-// document.addEventListener('DOMContentLoaded', function () {
-//   var tabButtons = document.querySelectorAll('.nav-link');
-//   var tabContent = document.querySelectorAll('.tab-pane input');
-//   var selectedTabIndex = 0;
-//   var prevBtn = document.getElementById("prev");
-//   var nextBtn = document.getElementById("next");
-//   var submitBtn = document.getElementById("submit");
-//   var form = document.getElementById("form");
-//   var inputFields = form.querySelectorAll("input");
-
-
-//   for (var i = 1; i < tabButtons.length; i++) {
-//     tabButtons[i].disabled = true;
-//   }
-
-
-
-//   function updateButtonVisibility(index) {
-//     // Display buttons based on the current tab index
-//     if (index === 0) {
-//       prevBtn.style.display = "none";
-//       nextBtn.style.display = "inline-block";
-//       submitBtn.style.display = "none";
-  
-//     }else if(index === 1){
-//       prevBtn.style.display = "inline-block";
-//       nextBtn.disabled = true;
-//       submitBtn.style.display = "none";
-
- 
-//     } 
-//     else if (index > 0 && index < tabButtons.length - 1) {
-//       prevBtn.style.display = "inline-block";
-//       nextBtn.style.display = "inline-block";
-//       submitBtn.style.display = "none";
-  
-//     } else if (index === tabButtons.length - 1) {
-//       prevBtn.style.display = "inline-block";
-//       nextBtn.style.display = "none";
-//       submitBtn.style.display = "inline-block";
-  
-//     }
-//   }
-
-//   function updateStyles() {
-//     tabButtons.forEach(function (btn, i) {
-//       if (i === selectedTabIndex) {
-//         btn.style.backgroundColor = "var(--main, #0858A4)";
-//         btn.style.color = "white";
-//         btn.style.border = "none";
-//       } else {
-//         btn.style.backgroundColor = "white";
-//         btn.style.border = "none";
-//         btn.style.color = "var(--main, #0858A4)";
-//       }
-//     });
-//   }
-
-//   function updateButtonStates(index) {
-//     for (var i = index + 1; i < tabButtons.length; i++) {
-//       tabButtons[i].disabled = tabContent[i - 1].value === '';
-//     }
-//   }
-
-//   function switchToNextTab() {
-//     if (selectedTabIndex < tabButtons.length - 1) {
-//       inputFields = tabContent[selectedTabIndex];
-//       if (inputFields.value === '' || tabButtons[selectedTabIndex + 1].disabled) {
-     
-//         Swal.fire({
-//           html: '<h4 style="color: var(--main, #0858A4); font-family: font-family: Arial, Helvetica, sans-serif">Please read and check the guidelines to proceed</4>',
-//           icon: 'warning',
-//         })
-//       }
-
-//       tabButtons[selectedTabIndex + 1].click(); // Simulate a click on the next tab button
-      
-//     }
-//   }
-
-//   function switchToPrevTab() {
-//     if (selectedTabIndex > 0) {
-//       tabButtons[selectedTabIndex - 1].click(); // Simulate a click on the previous tab button
-//       nextBtn.disabled = false;
-//     }
-//   }
-
-//   tabContent.forEach(function (input, index) {
-//     input.addEventListener('input', function () {
-//       updateButtonStates(index);
-//       updateStyles();
-//     });
-
-//     input.addEventListener('focus', function () {
-//       updateStyles();
-//     });
-
-//     input.addEventListener('blur', function () {
-//       // Don't change styles on blur
-//     });
-//   });
-
-//   tabButtons.forEach(function (button, index) {
-//     button.addEventListener('click', function () {
-//       selectedTabIndex = index;
-//       updateButtonVisibility(index);
-//       updateButtonStates(index);
-//       updateStyles();
-//     });
-
-//     // Set initial styles and button visibility for the first button
-//     if (index === 0) {
-//       button.style.backgroundColor = "var(--main, #0858A4)";
-//       button.style.color = "white";
-//       updateButtonVisibility(index);
-//     }
-
-  
-    
-//   });
-
-
-
-
-//   nextBtn.addEventListener('click', switchToNextTab);
-//   prevBtn.addEventListener('click', switchToPrevTab);
-
-  
-
-  
-  
-// });
 
 document.addEventListener('DOMContentLoaded', function(){
 
@@ -662,9 +530,13 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
+const filePreview = document.getElementById('input9');
+const filePreview2 = document.getElementById('input9f');
+const filePreview3 = document.getElementById('input9g');
 
 // Function to open file input based on index
 function openFilename(index) {
+
   var input = document.getElementById('file_name' + index);
   input.click();
 
@@ -683,6 +555,7 @@ document.getElementById('addFileName').addEventListener('click', function () {
   fileInput.addEventListener('change', function () {
     const maxSize = 1.5 * 1024 * 1024; // 1.5MB
     const fileButton = document.getElementById('addFileName');
+    
 
     if (fileInput.files.length > 0) {
       const fileSize = fileInput.files[0].size; // in bytes
@@ -694,10 +567,12 @@ document.getElementById('addFileName').addEventListener('click', function () {
           text: 'Please select a file 1.5mb or less'
         });
         // Clear the value of the file input
+       
         fileInput.value = '';
         fileButton.innerHTML = '<i class="fa-solid fa-arrow-up-from-bracket" style="margin-right: 10px; color:#699BF7;"></i> Upload your file here';
       } else {
         fileButton.innerHTML = fileName;
+        filePreview.value = fileName;
       }
     }
   });
@@ -723,7 +598,6 @@ function handleFileInputChange(index) {
 function checkFileSize(input, maxSizeInBytes, index) {
   var files = input.files;
   var fileButton = document.getElementById('addFileName' + index);
- 
 
   if (files.length > 0) {
     var fileSize = files[0].size; // in bytes
@@ -736,14 +610,19 @@ function checkFileSize(input, maxSizeInBytes, index) {
       });
       // Clear the value of the file input
       input.value = '';
-      
     } else {
       var fileName = input.files[0].name;
       fileButton.innerText = fileName;
+
+      // Assign value to filePreview2 or filePreview3 based on index
+      if (index === 2) {
+        filePreview2.value = fileName;
+      } else if (index === 3) {
+        filePreview3.value = fileName;
+      }
     }
   }
 }
-
 // Function to clear file input and reset button text
 function deleteFilename(index) {
   var fileInput = document.getElementById('file_name' + index);
@@ -758,6 +637,8 @@ document.getElementById('deleteFileName').addEventListener('click', function() {
   // Clear the file input and reset button text
   const fileInput = document.getElementById('file_name');
   const fileButton = document.getElementById('addFileName');
+
+  filePreview.value = '';
   fileInput.value = '';
   fileButton.innerHTML = '<i class="fa-solid fa-arrow-up-from-bracket" style="margin-right: 10px; color:#699BF7;"></i> Upload your file here';
 });
@@ -765,10 +646,12 @@ document.getElementById('deleteFileName').addEventListener('click', function() {
 
 document.getElementById('deleteFileName2').addEventListener('click', function() {
   deleteFilename(2);
+  filePreview2.value = '';
 });
 
 document.getElementById('deleteFileName3').addEventListener('click', function() {
   deleteFilename(3);
+  filePreview3.value = '';
 });
 
 
@@ -861,7 +744,7 @@ inputElement.addEventListener('input', function (event) {
     
       $.ajax({
           type: 'POST',
-          url: 'fetch_author_data.php', 
+          url: '../PHP/fetch_author_data.php', 
           data: { email: email },
           dataType: 'json',
           success: function(response) {
@@ -911,6 +794,8 @@ const file_name3 = document.getElementById('file_name3');
 // const filePreview = document.getElementById('input9');
 // const filePreview2 = document.getElementById('input9f');
 // const filePreview3 = document.getElementById('input9g');
+
+
 
 const submitBtn = document.getElementById('submit');
 
