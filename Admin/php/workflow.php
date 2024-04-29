@@ -2078,9 +2078,11 @@ table {
     </script>
     <script>
     $(document).ready(function () {
+        $('#sloading').toggle();
         const uploadButton = $('#addReviewer');
         const articleID = <?php echo $article_data[0]->article_id; ?>;
         let isFirstModalOpen = true; 
+        $('#sloading').toggle();
 
         async function fetchAndRenderData(sortValue) {
             $('#sloading').toggle();
