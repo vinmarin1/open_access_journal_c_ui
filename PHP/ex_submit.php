@@ -135,6 +135,12 @@ if ($resultProfile) {
         <p class="st-6">The text adheres to the stylistic and bibliographic requirements outlined in the Author Guidelines, which is found in About the Journal.</p>
       </label>
     </div>
+    <div class="" id="checkList-8">
+      <label for="check-8" class="checkItem">
+        <input type="checkbox" class="my-checkbox" id="check-8">
+        <p class="st-7">The manuscript consists of Introduction, Methodology, Results, and Discussion sections with a word count between 5,000 and 9,000 words.</p>
+      </label>
+    </div>
   </div>
   
   <hr class="divider">
@@ -253,6 +259,13 @@ if ($resultProfile) {
       </div>
       <div class="input-details-2 mt-2 w-100 w-sm-50 d-flex flex-column gap-4" id="form-floating-3">
         <div>
+
+          <span style="display: block; color: var(--form-heading, #285581) !important; font-weight: 600;
+          margin-top: 20px;">Subject Area:</span>
+          <select class="form-select" id="subject_areas" name="subject_areas" aria-label="Default select example" style="margin-bottom: 20px">
+         
+          </select>
+
           <span class="form-label">Keywords <p id="keywords-validation" style="color: red; display: none; font-size: 14px">Maximum of 5 keywords*</p></span>
           <div class="d-flex flex-column flex-sm-row gap-2 mb-4" style="min-height: 30px">
               <div id="display-keywords" class="d-flex flex-wrap gap-2">
@@ -266,7 +279,7 @@ if ($resultProfile) {
           <datalist id="keywordList">
           </datalist>
           
-          <span class="form-label mt-4" >Reference <p id="reference-validation" style="color: red; display: none; font-size: 14px;">Reference is required*</p></span>
+          <span class="form-label mt-4" >Reference <p style="font-style: italic; color: gray;">* References must follow the correct APA format citation.</p><p id="reference-validation" style="color: red; display: none; font-size: 14px;">Reference is required*</p></span>
           <textarea class="form-control" name="editor2" id="editor2" cols="30" rows="10"></textarea>
           <input class="form-control" type="text" id="reference"  name="reference" style="display: none;">
         </div>
@@ -288,9 +301,9 @@ if ($resultProfile) {
   <hr class="divider"/>
   <!-- <button type="button" class="btn btn-primary btn-sm mt-5" onclick="openFileModal()" id="upload-btn">Upload File</button> -->
 
-  <input type="file" class="form-control" name="file_name" id="file_name" accept=".docx" style="display: none">
-  <input type="file" class="form-control" name="file_name2" id="file_name2" accept=".docx" style="display: none">
-  <input type="file" class="form-control" name="file_name3" id="file_name3" accept=".docx" style="display: none">
+<input type="file" class="form-control" name="file_name" id="file_name" accept=".docx" style="display: none">
+<input type="file" class="form-control" name="file_name2" id="file_name2" accept=".pdf" style="display: none">
+<input type="file" class="form-control" name="file_name3" id="file_name3" accept=".docx" style="display: none">
 
 <table class="table" id="table-file">
 
@@ -304,7 +317,7 @@ if ($resultProfile) {
     <tr>
       <td id="fileType1" style="font-family: Arial, Helvetica, sans-serif; font-size: 18px; padding-right: 0px; ">
       <button type="button" class="btn btn-sm" style="width: 100%; text-align:left; border:solid 1px #CCCCCC;" id="addFileName" onclick="openFilename(1)"> <i class="fa-solid fa-arrow-up-from-bracket" style="margin-right: 10px; color:#699BF7;"></i> Upload your file here </button>
-      <p style="font-size: small; color: #6C757D;">You can only submit a docx file up to 5mb</p>  
+      <p style="font-size: small; color: #6C757D;">You can only submit a docx file up to 1.5mb: </p>  
       </td>
       <!-- <td id="fileName1" style="font-family: Arial, Helvetica, sans-serif;"></td> -->
       <td style="padding-left: 0px;" >
@@ -325,7 +338,7 @@ if ($resultProfile) {
       
       <td id="fileType2" style="font-family: Arial, Helvetica, sans-serif; font-size: 18px; padding-right:0px;">
       <button type="button" class="btn btn-sm" style="width: 100%; text-align:left; border:solid 1px #CCCCCC;" id="addFileName2" onclick="openFilename(2)"> <i class="fa-solid fa-arrow-up-from-bracket" style="margin-right: 10px; color:#699BF7;" ></i> Upload your file here </button>
-      <p style="font-size: small; color: #6C757D;">You can only submit a docx file up to 5mb</p>
+      <p style="font-size: small; color: #6C757D;">You can only submit a pdf file up to 1.5mb for File with no Atuhor's Name</p>
       </td>
       <!-- <td id="fileName2" style="font-family: Arial, Helvetica, sans-serif;"></td> -->
       <td style="padding-left: 0px;" >
@@ -347,7 +360,7 @@ if ($resultProfile) {
       
       <td id="fileType3" style="font-family: Arial, Helvetica, sans-serif; font-size: 18px; padding-right:0px;">
       <button type="button" class="btn btn-sm" style="width: 100%; text-align:left; border:solid 1px #CCCCCC;" id="addFileName3" onclick="openFilename(3)"> <i class="fa-solid fa-arrow-up-from-bracket" style="margin-right: 10px; color:#699BF7;" ></i> Upload your file here </button>
-      <p style="font-size: small; color: #6C757D;">You can only submit a docx file up to 5mb</p>
+      <p style="font-size: small; color: #6C757D;">You can only submit a docx file up to 1.5mb</p>
       </td>
       <!-- <td id="fileName3" style="font-family: Arial, Helvetica, sans-serif;"></td> -->
       <td style="padding-left: 0px;">
@@ -801,6 +814,101 @@ includeNavbar();
 //       $(this).closest('tr').remove();
 //   });
 // }
+
+const goPrevarticle = document.getElementById('update-cont-2');
+const goPrevFile = document.getElementById('update-cont-3');
+
+goPrevarticle.addEventListener('click', function(event){
+  const articleTab = document.getElementById('article-tab');
+  articleTab.click();
+});
+
+goPrevFile.addEventListener('click', function(event){
+  const fileTab = document.getElementById('file-tab');
+  fileTab.click();
+});
+
+
+function addRow() {
+  var index = $('#contributorTable tbody tr').length; // Get the current row index
+  var newRow = '<tr>' +
+      '<td><input class="form-control email-input" type="email" name="emailC[]" style="height: 30px;">' +
+      '<div class="form-check cAuthor" style="margin-right: 10px">' +
+      '<input class="form-check-input" type="checkbox" name="contributor_type_coauthor[' + index + ']" value="Co-Author" style="width:15px;">' +
+      '<label class="form-check-label"> Co-Author</label>' +
+      '</div>' +
+      '<div class="form-check pContact">' +
+      '<input class="form-check-input p-contact" type="checkbox" name="contributor_type_primarycontact[' + index + ']" value="Primary Contact" style="width:15px;">' +
+      '<label class="form-check-label"> Primary Contact</label>' +
+      '</div>' +
+      '<div class="form-check editor">' +
+      '<input class="form-check-input" type="checkbox" name="contributor_type_editor[' + index + ']" value="Editor" style="width:15px;">' +
+      '<label class="form-check-label"> Editor</label>' +
+      '</div>' +
+      '<div class="form-check translator">' +
+      '<input class="form-check-input" type="checkbox" name="contributor_type_translator[' + index + ']" value="Translator" style="width:15px;">' +
+      '<label class="form-check-label"> Translator</label>' +
+      '</div>' +
+      '</td>' +
+      '<td><input class="form-control" type="text" name="firstnameC[]" style="height: 30px;"></td>' +
+      '<td><input class="form-control" type="text" name="lastnameC[]" style="height: 30px;"></td>' +
+      '<td><input class="form-control" type="text" name="orcidC[]" style="height: 30px;"></td>' +
+      '<td><button type="button" class="btn btn-danger btn-sm deleteCont" onclick="deleteRow(this)"><i class="fa-solid fa-minus"></i></button></td>' +
+      '</tr>';
+
+  $('#contributorTable tbody').append(newRow);
+}
+
+
+// Attach event listener to the email input field for fetching data on blur
+$('#contributorTable tbody').on('blur', 'input.email-input', function() {
+  var email = $(this).val();
+  var currentRow = $(this).closest('tr');
+
+  const inputElement = document.querySelector('input[name="orcidC[]"]');
+
+// Add an event listener to the input element
+inputElement.addEventListener('input', function (event) {
+  // Get the input value
+  let inputValue = event.target.value;
+
+  // Remove non-numeric characters using a regular expression
+  inputValue = inputValue.replace(/\D/g, '');
+
+  // Update the input field with the cleaned value
+  event.target.value = inputValue;
+});
+
+  if (email !== '') {
+    
+      $.ajax({
+          type: 'POST',
+          url: '../PHP/fetch_author_data.php', 
+          data: { email: email },
+          dataType: 'json',
+          success: function(response) {
+              if (response.success) {
+                  // Update the current row with fetched data
+                  currentRow.find('input[name="firstnameC[]"]').val(response.data.first_name);
+                  currentRow.find('input[name="lastnameC[]"]').val(response.data.last_name);
+                  // currentRow.find('input[name="publicnameC[]"]').val(response.data.public_name);
+                  currentRow.find('input[name="orcidC[]"]').val(response.data.orc_id);
+              } else {
+                  // Handle the case where the email does not exist in the database
+                  Swal.fire({
+                  icon: "question",
+                  title: "This email is new to us",
+                  text: "Please try to input the contributors info manually."
+                
+                });
+              }
+          },
+          error: function(xhr, status, error) {
+              console.error('Error fetching data:', error);
+          }
+      });
+  }
+});
 
 </script>
 

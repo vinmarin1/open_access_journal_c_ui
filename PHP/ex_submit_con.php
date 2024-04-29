@@ -15,6 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     $privacy = $_POST['check'];
     $title = $_POST['title'];
     $abstract = $_POST['abstract'];
+    $subject_areas = $_POST['subject_areas'];
     $keywords = $_POST['input6'];
     $reference = $_POST['reference'];
     $category = $_POST['journal-type'];
@@ -65,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         'file_name3' => $_FILES['file_name3']['name']
     );
 
-    handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $formattedDate, $title, $category, $abstract, $keywords, $reference, $comment, $coAuthors, $primaryContacts, $firstNameC, $lastNameC, $publicNameC, $orcidsC, $emailsC, $firstName, $lastName, $orc_idAuthor, $email, $authorAdditionalRole, $editor, $translator);
+    handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $formattedDate, $title, $category, $abstract, $subject_areas, $keywords, $reference, $comment, $coAuthors, $primaryContacts, $firstNameC, $lastNameC, $orcidsC, $emailsC, $firstName, $lastName, $orc_idAuthor, $email, $authorAdditionalRole, $editor, $translator);
 
     Header("Location: author-dashboard.php");
     exit();
@@ -74,13 +75,13 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     exit();
 }
 
-function handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $formattedDate, $title, $category, $abstract, $keywords, $reference, $comment, $coAuthors, $primaryContacts, $firstNameC, $lastNameC, $publicNameC, $orcidsC, $emailsC, $firstName, $lastName, $orc_idAuthor, $email, $authorAdditionalRole, $editor, $translator)
+function handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $formattedDate, $title, $category, $abstract, $subject_areas, $keywords, $reference, $comment, $coAuthors, $primaryContacts, $firstNameC, $lastNameC, $orcidsC, $emailsC, $firstName, $lastName, $orc_idAuthor, $email, $authorAdditionalRole, $editor, $translator)
 {
     global $lastInsertedArticleId;
 
     // Insert into article table
-    $sql = "INSERT INTO article (`author`, `volume`, `privacy`, `date`, `title`, `journal_id`, `author_id`, `abstract`, `keyword`, `references`, `content`, `status`, `round`, `comment`)
-            VALUES (:author, :volume, :privacy, :date, :title, :journal_id, :author_id, :abstract, :keyword, :references, :content, :status, :round, :comment)";
+    $sql = "INSERT INTO article (`author`, `volume`, `privacy`, `date`, `title`, `journal_id`, `author_id`, `abstract`, `subject_areas`, `keyword`, `references`, `content`, `status`, `round`, `comment`)
+            VALUES (:author, :volume, :privacy, :date, :title, :journal_id, :author_id, :abstract, :subject_areas, :keyword, :references, :content, :status, :round, :comment)";
 
     $params = array(
         'author' => $contributor,
@@ -91,6 +92,7 @@ function handleFileUpload($files, $contributor, $author_id, $volume, $privacy, $
         'journal_id' => $category,
         'author_id' => $author_id,
         'abstract' => $abstract,
+        'subject_areas' => $subject_areas,
         'keyword' => $keywords,
         'references' => $reference,
         'content' => "-",

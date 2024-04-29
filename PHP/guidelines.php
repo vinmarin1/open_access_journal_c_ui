@@ -395,6 +395,14 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                           
                     
                 </div>
+                <div class="s-2">
+                <h3>References</h3>
+                    <ul type="disc">
+                        <li>Quezon City University (2023). [Call For Papers] QCU Journals Vol. 1. <a href="https://qcu.edu.ph/call-for-papers-qcu-journals-vol-1/ ">https://qcu.edu.ph/call-for-papers-qcu-journals-vol-1/ </a></li>
+                        <li>This work is licensed under <b> Creative Commons Non-Commercial and Non-Derivative License (CC-BY-NC-ND)</b>. 
+                        <br>For more details about the license visit here <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">https://creativecommons.org/licenses/by-nc-nd/4.0/</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     	<div class="main" id="article-submission-container" style="display: none;">
@@ -522,6 +530,15 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                             preparation. <b>Santos:</b> Visualization, Investigation. <b>Cruz:</b> Supervision. <b>Reyes:</b> Software,
                             Validation. <b>Jose:</b> Writing-Reviewing and Editing.</p>
                 </div>
+
+                <div class="s-2">
+                <h3>References</h3>
+                    <ul type="disc">
+                        <li>Quezon City University (2023). [Call For Papers] QCU Journals Vol. 1. <a href="https://qcu.edu.ph/call-for-papers-qcu-journals-vol-1/ ">https://qcu.edu.ph/call-for-papers-qcu-journals-vol-1/ </a></li>
+                        <li>This work is licensed under <b> Creative Commons Non-Commercial and Non-Derivative License (CC-BY-NC-ND)</b>. 
+                        <br>For more details about the license visit here <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">https://creativecommons.org/licenses/by-nc-nd/4.0/</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
         <div class="main" id="peer-review-process-container" style="display: none;">
@@ -571,26 +588,46 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                 concisely.</p>
             </div>
             <div class="s-2" id="publication">
-            <h3>PUBLICATION</h3>
-            <p>Following approval, the paper will go through copy-editing and author proofing, final edits,
-                pagination checking, and publication in the journal.</p>
+                <h3>PUBLICATION</h3>
+                <p>Following approval, the paper will go through copy-editing and author proofing, final edits,
+                    pagination checking, and publication in the journal.</p>
             </div>
+
+            <div class="s-2">
+                <h3>References</h3>
+                <ul type="disc">
+                    <li>Quezon City University (2023). [Call For Papers] QCU Journals Vol. 1. <a href="https://qcu.edu.ph/call-for-papers-qcu-journals-vol-1/ ">https://qcu.edu.ph/call-for-papers-qcu-journals-vol-1/ </a></li>
+                    <li>This work is licensed under <b> Creative Commons Non-Commercial and Non-Derivative License (CC-BY-NC-ND)</b>. 
+                    <br>For more details about the license visit here <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">https://creativecommons.org/licenses/by-nc-nd/4.0/</a></li>
+                </ul>
+            </div>
+
             </div>
         </div>
         <div class="main" id="become-a-reviewer-container" style="display: none;">
             <div class="category w-100">
-            <div class="s-1">
-            <p>Becoming a reviewer for our open access journal is a rewarding opportunity. By joining us, you'll
-                stay updated with the latest research, boost your career, and establish yourself as an expert in
-                your field. Reviewers play a crucial role in maintaining the quality and integrity of scholarly articles.</p>
-            <p>To get started, familiarize yourself with the peer review process, our guidelines, and terms and 
-                conditions for reviewers. While reviewing may seem like a challenging task, it's essential for
-                ensuring the reliability of research. We offer various incentives to appreciate and acknowledge
-                the valuable contributions of our reviewers.</p>
-            <p>Once registered on the submission system (sign up <a href="#">here</a>), your information will be
-            added to our reviewer database automatically. Make sure to choose relevant keywords to help our editors
-            match you with suitable articles for review. Join us in advancing knowledge and supporting scholarly research.</p>
-            </div>
+                <div class="s-1">
+                <p>Becoming a reviewer for our open access journal is a rewarding opportunity. By joining us, you'll
+                    stay updated with the latest research, boost your career, and establish yourself as an expert in
+                    your field. Reviewers play a crucial role in maintaining the quality and integrity of scholarly articles.</p>
+                <p>To get started, familiarize yourself with the peer review process, our guidelines, and terms and 
+                    conditions for reviewers. While reviewing may seem like a challenging task, it's essential for
+                    ensuring the reliability of research. We offer various incentives to appreciate and acknowledge
+                    the valuable contributions of our reviewers.</p>
+                <p>Once registered on the submission system (sign up <a href="#">here</a>), your information will be
+                added to our reviewer database automatically. Make sure to choose relevant keywords to help our editors
+                match you with suitable articles for review. Join us in advancing knowledge and supporting scholarly research.</p>
+                </div>
+
+                <div class="s-2">
+                <h3>References</h3>
+                    <ul type="disc">
+                        <li>Quezon City University (2023). [Call For Papers] QCU Journals Vol. 1. <a href="https://qcu.edu.ph/call-for-papers-qcu-journals-vol-1/ ">https://qcu.edu.ph/call-for-papers-qcu-journals-vol-1/ </a></li>
+                        <li>This work is licensed under <b> Creative Commons Non-Commercial and Non-Derivative License (CC-BY-NC-ND)</b>. 
+                        <br>For more details about the license visit here <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">https://creativecommons.org/licenses/by-nc-nd/4.0/</a></li>
+                    </ul>
+                </div>
+                
             </div>
     	</div>
         <div class="main" id="templates-for-author-container" style="display: none;">
@@ -605,6 +642,15 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                         <li><a href='download.php?file=../Files/templates/QCU-Star-Template.docx' onclick="downloadFile(event)">QCU Star - Journal of Science and Technology Article Template</a></li>
                         <li><a href='download.php?file=../Files/templates/QCU-Lamp-Template.docx' onclick="downloadFile(event)">QCU Lamp - Journal of Education Article Template</a></li>
                         <li><a href='download.php?file=../Files/templates/QCU-Gavel-Template.docx' onclick="downloadFile(event)">QCU Gavel - Journal of Social Sciences Article Template</a></li>
+                    </ul>
+                </div>
+
+                <div class="s-2">
+                <h3>References</h3>
+                    <ul type="disc">
+                        <li>Quezon City University (2023). [Call For Papers] QCU Journals Vol. 1. <a href="https://qcu.edu.ph/call-for-papers-qcu-journals-vol-1/ ">https://qcu.edu.ph/call-for-papers-qcu-journals-vol-1/ </a></li>
+                        <li>This work is licensed under <b> Creative Commons Non-Commercial and Non-Derivative License (CC-BY-NC-ND)</b>. 
+                        <br>For more details about the license visit here <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">https://creativecommons.org/licenses/by-nc-nd/4.0/</a></li>
                     </ul>
                 </div>
                 
@@ -690,6 +736,15 @@ $author_id = isset($_SESSION['id']) ? $_SESSION['id'] : 0;
                     <p>All articles published in the QCUJ should conform with the relevant rules, guidelines,
                         and policies indicated in the Philippines’ <span>Data Privacy Act of 2012, the Cybercrime
                         Prevention Act of 2012</span>, and the <span>Intellectual Property Code.</span></p>
+                </div>
+
+                <div class="s-2">
+                <h3>References</h3>
+                    <ul type="disc">
+                        <li>Quezon City University (2023). [Call For Papers] QCU Journals Vol. 1. <a href="https://qcu.edu.ph/call-for-papers-qcu-journals-vol-1/ ">https://qcu.edu.ph/call-for-papers-qcu-journals-vol-1/ </a></li>
+                        <li>This work is licensed under <b> Creative Commons Non-Commercial and Non-Derivative License (CC-BY-NC-ND)</b>. 
+                        <br>For more details about the license visit here <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">https://creativecommons.org/licenses/by-nc-nd/4.0/</a></li>
+                    </ul>
                 </div>
         </div>
         </div>

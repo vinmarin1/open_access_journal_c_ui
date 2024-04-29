@@ -21,8 +21,13 @@ $allproduction_files = get_production_files($aid);
 $revision_files = get_revision_files($aid);
 $articlelogs = get_article_logs($aid);
 $articledata = get_article_data($aid);
+
 $journal_id = $articledata[0]->journal_id;
+$author_id = $articledata[0]->author_id;
+$title = $articledata[0]->title;
+
 $issuelist = get_issues_list($journal_id);
+
 ?>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.4/mammoth.browser.min.js"></script>
@@ -1449,6 +1454,8 @@ function addDiscussion() {
     var submissionSubject = $('#submissionsubject').val();
     var submissionMessage = $('#submissionmessage').val();
     var submissionFiletype = $('#submissionfiletype').val();
+    var author_id = <?php echo json_encode($author_id); ?>;
+    var title = <?php echo json_encode($title); ?>;
     var submissionFile = $('#submissionfilexx')[0].files[0];
 
     if (submissionFile) {
@@ -1467,6 +1474,8 @@ function addDiscussion() {
     formData.append('submissionmessage', submissionMessage);
     formData.append('submissionfiletype', submissionFiletype);
     formData.append('submissionfile', submissionFile);
+    formData.append('author_id', author_id);
+    formData.append('title', title);
     formData.append('action', 'adddiscussion');
 
     $.ajax({
@@ -1489,8 +1498,11 @@ function addDiscussion() {
 function replyDiscussion() {
     $('#sloading').toggle();
     var discussionId = $('#discussion_id').val();
+    var discussionSubject = $('#discussionSubject').text();
     var submissionMessage = $('#submissionmessagex').val();
     var submissionFiletype = $('#submissionfiletypex').val();
+    var author_id = <?php echo json_encode($author_id); ?>;
+    var title = <?php echo json_encode($title); ?>;
     var submissionFile = $('#submissionfilexxx')[0].files[0];
     
     if (submissionFile) {
@@ -1502,11 +1514,15 @@ function replyDiscussion() {
     }
 
     var formData = new FormData();
+    formData.append('article_id', articleId);
     formData.append('fromuser', fromuser);
     formData.append('discussion_id', discussionId);
+    formData.append('submissionsubject', discussionSubject);
     formData.append('submissionmessage', submissionMessage);
     formData.append('submissionfiletype', submissionFiletype);
     formData.append('submissionfile', submissionFile);
+    formData.append('author_id', author_id);
+    formData.append('title', title);
     formData.append('action', 'replydiscussion');
 
     $.ajax({

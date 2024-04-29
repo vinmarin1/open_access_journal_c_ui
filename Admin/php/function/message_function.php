@@ -54,7 +54,7 @@ $action = isset($_POST['action']) ? $_POST['action'] : '';
             $message_id = $_POST['message_id'];
             $updatedData = $_POST['updated_data'];
         
-            $query = "UPDATE message SET name = ?, email = ?, reason = ?, message = ? WHERE message_id = ?";
+            $query = "UPDATE message SET name = ?, email = ?, reason = ?, message = ? , upload_file = ? WHERE message_id = ?";
         
             $pdo = connect_to_database();
         
@@ -64,6 +64,7 @@ $action = isset($_POST['action']) ? $_POST['action'] : '';
                 $updatedData['email'],
                 $updatedData['reason'],
                 $updatedData['message'],
+                $updatedData['upload_file'],
                 $message_id
             ]);
         

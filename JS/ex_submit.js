@@ -25,138 +25,6 @@ function checkDuplication() {
 
 
 
-// document.addEventListener('DOMContentLoaded', function () {
-//   var tabButtons = document.querySelectorAll('.nav-link');
-//   var tabContent = document.querySelectorAll('.tab-pane input');
-//   var selectedTabIndex = 0;
-//   var prevBtn = document.getElementById("prev");
-//   var nextBtn = document.getElementById("next");
-//   var submitBtn = document.getElementById("submit");
-//   var form = document.getElementById("form");
-//   var inputFields = form.querySelectorAll("input");
-
-
-//   for (var i = 1; i < tabButtons.length; i++) {
-//     tabButtons[i].disabled = true;
-//   }
-
-
-
-//   function updateButtonVisibility(index) {
-//     // Display buttons based on the current tab index
-//     if (index === 0) {
-//       prevBtn.style.display = "none";
-//       nextBtn.style.display = "inline-block";
-//       submitBtn.style.display = "none";
-  
-//     }else if(index === 1){
-//       prevBtn.style.display = "inline-block";
-//       nextBtn.disabled = true;
-//       submitBtn.style.display = "none";
-
- 
-//     } 
-//     else if (index > 0 && index < tabButtons.length - 1) {
-//       prevBtn.style.display = "inline-block";
-//       nextBtn.style.display = "inline-block";
-//       submitBtn.style.display = "none";
-  
-//     } else if (index === tabButtons.length - 1) {
-//       prevBtn.style.display = "inline-block";
-//       nextBtn.style.display = "none";
-//       submitBtn.style.display = "inline-block";
-  
-//     }
-//   }
-
-//   function updateStyles() {
-//     tabButtons.forEach(function (btn, i) {
-//       if (i === selectedTabIndex) {
-//         btn.style.backgroundColor = "var(--main, #0858A4)";
-//         btn.style.color = "white";
-//         btn.style.border = "none";
-//       } else {
-//         btn.style.backgroundColor = "white";
-//         btn.style.border = "none";
-//         btn.style.color = "var(--main, #0858A4)";
-//       }
-//     });
-//   }
-
-//   function updateButtonStates(index) {
-//     for (var i = index + 1; i < tabButtons.length; i++) {
-//       tabButtons[i].disabled = tabContent[i - 1].value === '';
-//     }
-//   }
-
-//   function switchToNextTab() {
-//     if (selectedTabIndex < tabButtons.length - 1) {
-//       inputFields = tabContent[selectedTabIndex];
-//       if (inputFields.value === '' || tabButtons[selectedTabIndex + 1].disabled) {
-     
-//         Swal.fire({
-//           html: '<h4 style="color: var(--main, #0858A4); font-family: font-family: Arial, Helvetica, sans-serif">Please read and check the guidelines to proceed</4>',
-//           icon: 'warning',
-//         })
-//       }
-
-//       tabButtons[selectedTabIndex + 1].click(); // Simulate a click on the next tab button
-      
-//     }
-//   }
-
-//   function switchToPrevTab() {
-//     if (selectedTabIndex > 0) {
-//       tabButtons[selectedTabIndex - 1].click(); // Simulate a click on the previous tab button
-//       nextBtn.disabled = false;
-//     }
-//   }
-
-//   tabContent.forEach(function (input, index) {
-//     input.addEventListener('input', function () {
-//       updateButtonStates(index);
-//       updateStyles();
-//     });
-
-//     input.addEventListener('focus', function () {
-//       updateStyles();
-//     });
-
-//     input.addEventListener('blur', function () {
-//       // Don't change styles on blur
-//     });
-//   });
-
-//   tabButtons.forEach(function (button, index) {
-//     button.addEventListener('click', function () {
-//       selectedTabIndex = index;
-//       updateButtonVisibility(index);
-//       updateButtonStates(index);
-//       updateStyles();
-//     });
-
-//     // Set initial styles and button visibility for the first button
-//     if (index === 0) {
-//       button.style.backgroundColor = "var(--main, #0858A4)";
-//       button.style.color = "white";
-//       updateButtonVisibility(index);
-//     }
-
-  
-    
-//   });
-
-
-
-
-//   nextBtn.addEventListener('click', switchToNextTab);
-//   prevBtn.addEventListener('click', switchToPrevTab);
-
-  
-
-  
-  
-// });
 
 document.addEventListener('DOMContentLoaded', function(){
 
@@ -189,6 +57,7 @@ document.addEventListener('DOMContentLoaded', function(){
   const checkbox4 = document.getElementById('check-4');
   const checkbox5 = document.getElementById('check-6');
   const checkbox6 = document.getElementById('check-7');
+  const checkbox7 = document.getElementById('check-8');
   const check = document.getElementById('check');
   
   
@@ -661,20 +530,55 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
+const filePreview = document.getElementById('input9');
+const filePreview2 = document.getElementById('input9f');
+const filePreview3 = document.getElementById('input9g');
 
+// Function to open file input based on index
 function openFilename(index) {
-  var input = document.getElementById('file_name' + (index === 1 ? '' : index));
+
+  var input = document.getElementById('file_name' + index);
   input.click();
 
   input.addEventListener('change', function () {
-      checkFileSize(input, 5 * 1024 * 1024, index);
+    checkFileSize(input, 1.5 * 1024 * 1024, index);
   });
 }
 
 // Setup event listeners for file inputs
-document.getElementById('file_name').addEventListener('change', function () {
-  handleFileInputChange(1);
+document.getElementById('addFileName').addEventListener('click', function () {
+  // Trigger the hidden file input click
+  const fileInput = document.getElementById('file_name');
+  fileInput.click();
+
+  // Listen for changes in the file input
+  fileInput.addEventListener('change', function () {
+    const maxSize = 1.5 * 1024 * 1024; // 1.5MB
+    const fileButton = document.getElementById('addFileName');
+    
+
+    if (fileInput.files.length > 0) {
+      const fileSize = fileInput.files[0].size; // in bytes
+      const fileName = fileInput.files[0].name;
+
+      if (fileSize > maxSize) {
+        Swal.fire({
+          icon: 'info',
+          text: 'Please select a file 1.5mb or less'
+        });
+        // Clear the value of the file input
+       
+        fileInput.value = '';
+        fileButton.innerHTML = '<i class="fa-solid fa-arrow-up-from-bracket" style="margin-right: 10px; color:#699BF7;"></i> Upload your file here';
+      } else {
+        fileButton.innerHTML = fileName;
+        filePreview.value = fileName;
+      }
+    }
+  });
 });
+
+
 
 document.getElementById('file_name2').addEventListener('change', function () {
   handleFileInputChange(2);
@@ -684,14 +588,16 @@ document.getElementById('file_name3').addEventListener('change', function () {
   handleFileInputChange(3);
 });
 
+// Handle file input change and display selected file name
 function handleFileInputChange(index) {
   var input = document.getElementById('file_name' + index);
-  checkFileSize(input, 5 * 1024 * 1024, index);
+  checkFileSize(input, 1.5 * 1024 * 1024, index);
 }
 
+// Function to check file size and display file name
 function checkFileSize(input, maxSizeInBytes, index) {
   var files = input.files;
-  var file1 = document.getElementById('addFileName');
+  var fileButton = document.getElementById('addFileName' + index);
 
   if (files.length > 0) {
     var fileSize = files[0].size; // in bytes
@@ -700,48 +606,54 @@ function checkFileSize(input, maxSizeInBytes, index) {
     if (fileSize > maxSize) {
       Swal.fire({
         icon: 'info',
-        text: 'Please select a file 5mb or less'
+        text: 'Please select a file 1.5mb or less'
       });
       // Clear the value of the file input
       input.value = '';
-    }else {
+    } else {
       var fileName = input.files[0].name;
-      file1.innerText = fileName;
-      // Update the button's text with the selected file name
-      document.getElementById('addFileName' + index).innerText = fileName;
+      fileButton.innerText = fileName;
+
+      // Assign value to filePreview2 or filePreview3 based on index
+      if (index === 2) {
+        filePreview2.value = fileName;
+      } else if (index === 3) {
+        filePreview3.value = fileName;
+      }
     }
   }
 }
-
+// Function to clear file input and reset button text
 function deleteFilename(index) {
   var fileInput = document.getElementById('file_name' + index);
-
+  var fileButton = document.getElementById('addFileName' + index);
 
   fileInput.value = '';
-
-  // Reset the upload icon and text for Button 1
-  if (index === 1) {
-    document.getElementById('addFileName' + index).innerHTML = '<i class="fa-solid fa-arrow-up-from-bracket" style="margin-right: 10px; color:#699BF7;"></i> Upload your file here';
-  } else {
-    // Clear the displayed file name in the button associated with the index
-    document.getElementById('addFileName' + index).innerHTML = '<i class="fa-solid fa-arrow-up-from-bracket" style="margin-right: 10px; color:#699BF7;"></i> Upload your file here';
-  }
+  fileButton.innerHTML = '<i class="fa-solid fa-arrow-up-from-bracket" style="margin-right: 10px; color:#699BF7;"></i> Upload your file here';
 }
 
-document.getElementById('deleteFileName').addEventListener('click', function(){
-  document.getElementById('addFileName').innerHTML = '<i class="fa-solid fa-arrow-up-from-bracket" style="margin-right: 10px; color:#699BF7;"></i> Upload your file here';
+// Setup delete file input for each button
+document.getElementById('deleteFileName').addEventListener('click', function() {
+  // Clear the file input and reset button text
+  const fileInput = document.getElementById('file_name');
+  const fileButton = document.getElementById('addFileName');
+
+  filePreview.value = '';
+  fileInput.value = '';
+  fileButton.innerHTML = '<i class="fa-solid fa-arrow-up-from-bracket" style="margin-right: 10px; color:#699BF7;"></i> Upload your file here';
 });
 
 
-function setupFileInput(fileInputId, textInputId) {
-  document.getElementById(fileInputId).addEventListener('change', function(event) {
-    const fileInput = event.target;
-    const fileName = fileInput.files[0].name;
+document.getElementById('deleteFileName2').addEventListener('click', function() {
+  deleteFilename(2);
+  filePreview2.value = '';
+});
 
-    // Update the value of the corresponding text input with the selected file name
-    document.getElementById(textInputId).value = fileName;
-  });
-}
+document.getElementById('deleteFileName3').addEventListener('click', function() {
+  deleteFilename(3);
+  filePreview3.value = '';
+});
+
 
 // Set up listeners for each file input and corresponding text input
 setupFileInput('file_name', 'input9');
@@ -758,106 +670,88 @@ setupFileInput('file_name3', 'file3UpdatePreview');
 
 
 
-document.getElementById('update-cont-2').addEventListener('click', function(event) {
-
-  const articleButton = document.getElementById('article-tab');
-  articleButton.click();
-
-});
 
 
-document.getElementById('update-cont-3').addEventListener('click', function(event){
+// function addRow() {
+//   var index = $('#contributorTable tbody tr').length; // Get the current row index
+//   var newRow = '<tr>' +
+//       '<td><input class="form-control email-input" type="email" name="emailC[]" style="height: 30px;">' +
+//       '<div class="form-check cAuthor" style="margin-right: 10px">' +
+//       '<input class="form-check-input" type="checkbox" name="contributor_type_coauthor[' + index + ']" value="Co-Author" style="width:15px;">' +
+//       '<label class="form-check-label"> Co-Author</label>' +
+//       '</div>' +
+//       '<div class="form-check pContact">' +
+//       '<input class="form-check-input p-contact" type="checkbox" name="contributor_type_primarycontact[' + index + ']" value="Primary Contact" style="width:15px;">' +
+//       '<label class="form-check-label"> Primary Contact</label>' +
+//       '</div>' +
+//       '<div class="form-check editor">' +
+//       '<input class="form-check-input" type="checkbox" name="contributor_type_editor[' + index + ']" value="Editor" style="width:15px;">' +
+//       '<label class="form-check-label"> Editor</label>' +
+//       '</div>' +
+//       '<div class="form-check translator">' +
+//       '<input class="form-check-input" type="checkbox" name="contributor_type_translator[' + index + ']" value="Translator" style="width:15px;">' +
+//       '<label class="form-check-label"> Translator</label>' +
+//       '</div>' +
+//       '</td>' +
+//       '<td><input class="form-control" type="text" name="firstnameC[]" style="height: 30px;"></td>' +
+//       '<td><input class="form-control" type="text" name="lastnameC[]" style="height: 30px;"></td>' +
+//       '<td><input class="form-control" type="text" name="orcidC[]" style="height: 30px;"></td>' +
+//       '<td><button type="button" class="btn btn-danger btn-sm deleteCont" onclick="deleteRow(this)"><i class="fa-solid fa-minus"></i></button></td>' +
+//       '</tr>';
 
- 
-  const fileTab = document.getElementById('file-tab');
-  fileTab.click();
-
-
-});
-
-
-
-
-function addRow() {
-  var index = $('#contributorTable tbody tr').length; // Get the current row index
-  var newRow = '<tr>' +
-      '<td><input class="form-control email-input" type="email" name="emailC[]" style="height: 30px;">' +
-      '<div class="form-check cAuthor" style="margin-right: 10px">' +
-      '<input class="form-check-input" type="checkbox" name="contributor_type_coauthor[' + index + ']" value="Co-Author" style="width:15px;">' +
-      '<label class="form-check-label"> Co-Author</label>' +
-      '</div>' +
-      '<div class="form-check pContact">' +
-      '<input class="form-check-input p-contact" type="checkbox" name="contributor_type_primarycontact[' + index + ']" value="Primary Contact" style="width:15px;">' +
-      '<label class="form-check-label"> Primary Contact</label>' +
-      '</div>' +
-      '<div class="form-check editor">' +
-      '<input class="form-check-input" type="checkbox" name="contributor_type_editor[' + index + ']" value="Editor" style="width:15px;">' +
-      '<label class="form-check-label"> Editor</label>' +
-      '</div>' +
-      '<div class="form-check translator">' +
-      '<input class="form-check-input" type="checkbox" name="contributor_type_translator[' + index + ']" value="Translator" style="width:15px;">' +
-      '<label class="form-check-label"> Translator</label>' +
-      '</div>' +
-      '</td>' +
-      '<td><input class="form-control" type="text" name="firstnameC[]" style="height: 30px;"></td>' +
-      '<td><input class="form-control" type="text" name="lastnameC[]" style="height: 30px;"></td>' +
-      '<td><input class="form-control" type="text" name="orcidC[]" style="height: 30px;"></td>' +
-      '<td><button type="button" class="btn btn-danger btn-sm deleteCont" onclick="deleteRow(this)"><i class="fa-solid fa-minus"></i></button></td>' +
-      '</tr>';
-
-  $('#contributorTable tbody').append(newRow);
-}
+//   $('#contributorTable tbody').append(newRow);
+// }
 
 
-// Attach event listener to the email input field for fetching data on blur
-$('#contributorTable tbody').on('blur', 'input.email-input', function() {
-  var email = $(this).val();
-  var currentRow = $(this).closest('tr');
+// // Attach event listener to the email input field for fetching data on blur
+// $('#contributorTable tbody').on('blur', 'input.email-input', function() {
+//   var email = $(this).val();
+//   var currentRow = $(this).closest('tr');
 
-  const inputElement = document.querySelector('input[name="orcidC[]"]');
+//   const inputElement = document.querySelector('input[name="orcidC[]"]');
 
-// Add an event listener to the input element
-inputElement.addEventListener('input', function (event) {
-  // Get the input value
-  let inputValue = event.target.value;
+// // Add an event listener to the input element
+// inputElement.addEventListener('input', function (event) {
+//   // Get the input value
+//   let inputValue = event.target.value;
 
-  // Remove non-numeric characters using a regular expression
-  inputValue = inputValue.replace(/\D/g, '');
+//   // Remove non-numeric characters using a regular expression
+//   inputValue = inputValue.replace(/\D/g, '');
 
-  // Update the input field with the cleaned value
-  event.target.value = inputValue;
-});
+//   // Update the input field with the cleaned value
+//   event.target.value = inputValue;
+// });
 
-  if (email !== '') {
+//   if (email !== '') {
     
-      $.ajax({
-          type: 'POST',
-          url: 'fetch_author_data.php', 
-          data: { email: email },
-          dataType: 'json',
-          success: function(response) {
-              if (response.success) {
-                  // Update the current row with fetched data
-                  currentRow.find('input[name="firstnameC[]"]').val(response.data.first_name);
-                  currentRow.find('input[name="lastnameC[]"]').val(response.data.last_name);
-                  // currentRow.find('input[name="publicnameC[]"]').val(response.data.public_name);
-                  currentRow.find('input[name="orcidC[]"]').val(response.data.orc_id);
-              } else {
-                  // Handle the case where the email does not exist in the database
-                  Swal.fire({
-                  icon: "question",
-                  title: "This email is new to us",
-                  text: "Please try to input the contributors info manually."
+//       $.ajax({
+//           type: 'POST',
+//           url: '../PHP/fetch_author_data.php', 
+//           data: { email: email },
+//           dataType: 'json',
+//           success: function(response) {
+//               if (response.success) {
+//                   // Update the current row with fetched data
+//                   currentRow.find('input[name="firstnameC[]"]').val(response.data.first_name);
+//                   currentRow.find('input[name="lastnameC[]"]').val(response.data.last_name);
+//                   // currentRow.find('input[name="publicnameC[]"]').val(response.data.public_name);
+//                   currentRow.find('input[name="orcidC[]"]').val(response.data.orc_id);
+//               } else {
+//                   // Handle the case where the email does not exist in the database
+//                   Swal.fire({
+//                   icon: "question",
+//                   title: "This email is new to us",
+//                   text: "Please try to input the contributors info manually."
                 
-                });
-              }
-          },
-          error: function(xhr, status, error) {
-              console.error('Error fetching data:', error);
-          }
-      });
-  }
-});
+//                 });
+//               }
+//           },
+//           error: function(xhr, status, error) {
+//               console.error('Error fetching data:', error);
+//           }
+//       });
+//   }
+// });
 
 
 
@@ -874,18 +768,20 @@ const file_name = document.getElementById('file_name');
 const file_name2 = document.getElementById('file_name2');
 const file_name3 = document.getElementById('file_name3');
 
-const titlePreview = document.getElementById('input5f1');
-const abstractPreview = document.getElementById('input7');
-const keywordsPreview = document.getElementById('input6');
-const referencePreview = document.getElementById('input8');
+// const titlePreview = document.getElementById('input5f1');
+// const abstractPreview = document.getElementById('input7');
+// const keywordsPreview = document.getElementById('input6');
+// const referencePreview = document.getElementById('input8');
 
-const filePreview = document.getElementById('input9');
-const filePreview2 = document.getElementById('input9f');
-const filePreview3 = document.getElementById('input9g');
+// const filePreview = document.getElementById('input9');
+// const filePreview2 = document.getElementById('input9f');
+// const filePreview3 = document.getElementById('input9g');
+
+
 
 const submitBtn = document.getElementById('submit');
 
-if (title.value === '' ||abstract.value === '' || keywordArray.length == 0 || reference.value === '' || file_name.value === '' || file_name2.value === '' || file_name3.value === '' || titlePreview.value === '' || abstractPreview.value === '' || keywordsPreview.value === '' || referencePreview.value === ''|| filePreview.value === '' || filePreview2.value === '' || filePreview3.value === ''  ) {
+if (title.value === '' || abstract.value === '' || keywordArray.length == 0 || reference.value === '' || file_name.value === '' || file_name2.value === '' || file_name3.value === '') {
  
   submitBtn.type = 'button';
 

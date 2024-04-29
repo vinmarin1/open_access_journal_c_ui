@@ -136,430 +136,330 @@ $orcid = isset($_GET['orcid']) ? $_GET['orcid'] : '';
                         $resultReviewed = database_run($sqlReviewed, array(':orc_id' => $orcid));
                           
                         
-                        $sqlDonation = "SELECT user_points.action_engage FROM user_points JOIN author ON user_points.user_id = author.author_id WHERE author.orc_id = :orc_id AND user_points.action_engage = 'Donation'";
-                        $resultDonation = database_run($sqlDonation, array(':orc_id' => $orcid));
+                        // $sqlDonation = "SELECT user_points.action_engage FROM user_points JOIN author ON user_points.user_id = author.author_id WHERE author.orc_id = :orc_id AND user_points.action_engage = 'Donation'";
+                        // $resultDonation = database_run($sqlDonation, array(':orc_id' => $orcid));
 
-                        if($result && $resultReviewed && $resultDonation){
-                            if(count($result) === 1 && count($resultReviewed) === 1 && count($resultDonation) === 1){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/first_review_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/first_donation_badges.png\');"></div>';
-                                echo '</div>';
-                            }elseif(count($result) === 2 && count($resultReviewed) === 1 && count($resultDonation) === 1){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/first_review_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/first_donation_badges.png\');"></div>';
-                                echo '</div>';
-                            }elseif(count($result) >= 3 && count($resultReviewed) === 1 && count($resultDonation) === 1){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/first_review_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/first_donation_badges.png\');"></div>';
-                                echo '</div>';
-                            }elseif(count($result) >= 3 && count($resultReviewed) === 2 && count($resultDonation) === 1){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/second_review_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/first_donation_badges.png\');"></div>';
-                                echo '</div>';
-                            }elseif(count($result) >= 3 && count($resultReviewed) >= 3 && count($resultDonation) === 1){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/first_donation_badges.png\');"></div>';
-                                echo '</div>';
-                            }elseif(count($result) >= 3 && count($resultReviewed) === 1 && count($resultDonation) === 2){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/first_review_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/second_donation_badges.png\');"></div>';
-                                echo '</div>';
-                            }elseif(count($result) >= 3 && count($resultReviewed) === 1 && count($resultDonation) >= 3){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/first_review_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
-                                echo '</div>';
-                            }elseif(count($result) >= 3 && count($resultReviewed) === 2 && count($resultDonation) === 3){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/second_review_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
-                                echo '</div>';
-                            }elseif(count($result) >= 3 && count($resultReviewed) === 2 && count($resultDonation) === 2){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/second_review_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/second_donation_badges.png\');"></div>';
-                                echo '</div>';
-                            }elseif(count($result) >= 3 && count($resultReviewed) === 2 && count($resultDonation) >= 3){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/second_review_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
-                                echo '</div>';
-                            }elseif(count($result) === 1 && count($resultReviewed) === 2 && count($resultDonation) === 1){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/second_review_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/first_donation_badges.png\');"></div>';
-                                echo '</div>';
-                            }elseif(count($result) === 2 && count($resultReviewed) === 2 && count($resultDonation) === 1){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/second_review_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/first_donation_badges.png\');"></div>';
-                                echo '</div>';
-                            }elseif(count($result) === 1 && count($resultReviewed) >= 3 && count($resultDonation) === 1){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/first_donation_badges.png\');"></div>';
-                                echo '</div>';
-                            }elseif(count($result) === 2 && count($resultReviewed) >= 3 && count($resultDonation) === 1){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/first_donation_badges.png\');"></div>';
-                                echo '</div>';
-                            }elseif(count($result) >= 3 && count($resultReviewed) >= 3 && count($resultDonation) === 1){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/first_donation_badges.png\');"></div>';
-                                echo '</div>';
-                            }elseif(count($result) === 1 && count($resultReviewed) >= 3 && count($resultDonation) === 2){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
-                                echo '</div>';
-                            }elseif(count($result) === 1 && count($resultReviewed) >= 3 && count($resultDonation) >= 3){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
-                                echo '</div>';
-                            }elseif(count($result) === 2 && count($resultReviewed) >= 3 && count($resultDonation) === 2){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/second_donation_badges.png\');"></div>';
-                                echo '</div>';
-                            }elseif(count($result) === 2 && count($resultReviewed) >= 3 && count($resultDonation) >= 3){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
-                                echo '</div>';
-                            }elseif(count($result) === 1 && count($resultReviewed) === 1 && count($resultDonation) === 2){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/first_review_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/second_donation_badges.png\');"></div>';
-                                echo '</div>';
-                            }elseif(count($result) === 1 && count($resultReviewed) === 1 && count($resultDonation) >= 3){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/first_review_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
-                                echo '</div>';
-                            }elseif(count($result) === 2 && count($resultReviewed) === 1 && count($resultDonation) >= 3){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/first_review_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
-                                echo '</div>';
-                            }elseif(count($result) >= 3 && count($resultReviewed) === 1 && count($resultDonation) >= 3){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/first_review_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
-                                echo '</div>';
-                            }elseif(count($result) === 1 && count($resultReviewed) === 2 && count($resultDonation) >= 3){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/second_review_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
-                                echo '</div>';
-                            }elseif(count($result) === 1 && count($resultReviewed) >= 3 && count($resultDonation) >= 3){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
-                                echo '</div>';
-                            }elseif(count($result) === 2 && count($resultReviewed) === 2 && count($resultDonation) >= 3){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/second_review_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
-                                echo '</div>';
-                            }elseif(count($result) === 2 && count($resultReviewed) >= 3 && count($resultDonation) >= 3){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/second_review_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
-                                echo '</div>';
-                            }elseif(count($result) >= 3 && count($resultReviewed) >= 3 && count($resultDonation) >= 3){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
-                                echo '</div>';
-                            }else{
-                                echo 'Something went wrong';
-                            }
-                        }elseif($result && $resultReviewed === false && $resultDonation === false){
+                        if(!$result === false && $resultReviewed === false){
                             if(count($result) === 1){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
-                                echo '</div>';
+                                echo '<div class="badge-box pubBrozeBadge" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
+                                echo '<span class="pubBrozeHover" style="
+                                width: 200px;
+                                background: #333;
+                                color: white;
+                                position: absolute;
+                                padding-left: 5px;
+                                z-index: 999;
+                                top: 90px;
+                                margin-left: 80px;
+                                ">Publication Bronze Badge: This author successfully publish one article
+                                </span>';
                             }elseif(count($result) === 2){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
-                                echo '</div>';
+                                echo '<div class="badge-box pubSilverBadge" style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
+                                echo '<span class="pubSilverHover" style="
+                                width: 200px;
+                                background: #333;
+                                color: white;
+                                position: absolute;
+                                padding-left: 5px;
+                                z-index: 999;
+                                top: 90px;
+                                margin-left: 80px;
+                                ">Publication Silver Badge: This author successfully publish two article
+                                </span>';
                             }elseif(count($result) >= 3){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
-                                echo '</div>';
+                                echo '<div class="badge-box pubGoldBadge" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
+                                echo '<span class="pubGoldHover" style="
+                                width: 200px;
+                                background: #333;
+                                color: white;
+                                position: absolute;
+                                padding-left: 5px;
+                                z-index: 999;
+                                top: 90px;
+                                margin-left: 80px;
+                                ">Publication Gold Badge: This author successfully publish three or more article
+                                </span>';
                             }
-                        }elseif($resultReviewed && $result === false && $resultDonation === false){
+                        }elseif(!$resultReviewed && $result === false){
                             if(count($resultReviewed) === 1){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/first_review_badges.png\');"></div>';
-                                echo '</div>';
+                                echo '<div class="badge-box revBronzeBadge" style="background-image: url(\'../images/first_review_badges.png\');"></div>';
+                                echo '<span class="revBrozeHover" style="
+                                width: 200px;
+                                background: #333;
+                                color: white;
+                                position: absolute;
+                                padding-left: 5px;
+                                z-index: 999;
+                                top: 90px;
+                                margin-left: 80px;
+                                ">Reviewer Bronze Badge: This author help to publish an article by reviewing once.
+                                </span>';
                             }elseif(count($resultReviewed) === 2){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/second_review_badges.png\');"></div>';
-                                echo '</div>';
+                                echo '<div class="badge-box revBronzeBadge" style="background-image: url(\'../images/second_review_badges.png\');"></div>';
+                                echo '<span class="revSilverHover" style="
+                                width: 200px;
+                                background: #333;
+                                color: white;
+                                position: absolute;
+                                padding-left: 5px;
+                                z-index: 999;
+                                top: 90px;
+                                margin-left: 80px;
+                                ">Reviewer Silver Badge: This author help to publish an article by reviewing twice.
+                                </span>';
                             }elseif(count($resultReviewed) >= 3){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
-                                echo '</div>';
+                                echo '<div class="badge-box revGoldBadge" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
+                                echo '<span class="revGoldHover" style="
+                                width: 200px;
+                                background: #333;
+                                color: white;
+                                position: absolute;
+                                padding-left: 5px;
+                                z-index: 999;
+                                top: 90px;
+                                margin-left: 80px;
+                                ">Reviewer Gold Badge: This author help to publish an article by reviewing three or more.
+                                </span>';
                             }
-                        }elseif($resultDonation && $result === false && $resultReviewed === false){
-                            if(count($resultDonation) === 1){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/first_donation_badges.png\');"></div>';
-                                echo '</div>';
-                            }elseif(count($resultDonation) === 2){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/second_donation_badges.png\');"></div>';
-                                echo '</div>';
-                            }elseif(count($resultDonation) >= 3){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
-                                echo '</div>';
-                            }
-                        }elseif($result && $resultReviewed && $resultDonation === false){
+                        }elseif(!$result === false && !$resultReviewed === false){
                             if(count($result) === 1 && count($resultReviewed) === 1){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/first_review_badges.png\');"></div>';
-                                echo '</div>';
+                                echo '<div class="badge-box pubBrozeBadge" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
+                                echo '<span class="pubBrozeHover" style="
+                                width: 200px;
+                                background: #333;
+                                color: white;
+                                position: absolute;
+                                padding-left: 5px;
+                                z-index: 999;
+                                top: 90px;
+                                margin-left: 80px;
+                                ">Publication Bronze Badge: This author successfully publish one article
+                                </span>';
+
+                                echo '<div class="badge-box revBronzeBadge" style="background-image: url(\'../images/first_review_badges.png\');"></div>';
+                                echo '<span class="revBrozeHover" style="
+                                width: 200px;
+                                background: #333;
+                                color: white;
+                                position: absolute;
+                                padding-left: 5px;
+                                z-index: 999;
+                                top: 90px;
+                                margin-left: 160px;
+                                ">Reviewer Bronze Badge: This author help to publish an article by reviewing once.
+                                </span>';
+
                             }elseif(count($result) === 2 && count($resultReviewed) === 1){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/first_review_badges.png\');"></div>';
-                                echo '</div>';
+                                echo '<div class="badge-box pubSilverBadge" style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
+                                echo '<span class="pubSilverHover" style="
+                                width: 200px;
+                                background: #333;
+                                color: white;
+                                position: absolute;
+                                padding-left: 5px;
+                                z-index: 999;
+                                top: 90px;
+                                margin-left: 80px;
+                                ">Publication Silver Badge: This author successfully publish two article
+                                </span>';
+
+                                echo '<div class="badge-box revBronzeBadge" style="background-image: url(\'../images/first_review_badges.png\');"></div>';
+                                echo '<span class="revBrozeHover" style="
+                                width: 200px;
+                                background: #333;
+                                color: white;
+                                position: absolute;
+                                padding-left: 5px;
+                                z-index: 999;
+                                top: 90px;
+                                margin-left: 160px;
+                                ">Reviewer Bronze Badge: This author help to publish an article by reviewing once.
+                                </span>';
                             }elseif(count($result) === 1 && count($resultReviewed) === 2){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/second_review_badges.png\');"></div>';
-                                echo '</div>';
+                                echo '<div class="badge-box pubBrozeBadge" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
+                                echo '<span class="pubBrozeHover" style="
+                                width: 200px;
+                                background: #333;
+                                color: white;
+                                position: absolute;
+                                padding-left: 5px;
+                                z-index: 999;
+                                top: 90px;
+                                margin-left: 80px;
+                                ">Publication Bronze Badge: This author successfully publish one article
+                                </span>';
+
+                                echo '<div class="badge-box revBronzeBadge" style="background-image: url(\'../images/second_review_badges.png\');"></div>';
+                                echo '<span class="revSilverHover" style="
+                                width: 200px;
+                                background: #333;
+                                color: white;
+                                position: absolute;
+                                padding-left: 5px;
+                                z-index: 999;
+                                top: 90px;
+                                margin-left: 160px;
+                                ">Reviewer Silver Badge: This author help to publish an article by reviewing twice.
+                                </span>';
                             }elseif(count($result) === 2 && count($resultReviewed) === 2){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/second_review_badges.png\');"></div>';
-                                echo '</div>';
+                                echo '<div class="badge-box pubSilverBadge" style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
+                                echo '<span class="pubSilverHover" style="
+                                width: 200px;
+                                background: #333;
+                                color: white;
+                                position: absolute;
+                                padding-left: 5px;
+                                z-index: 999;
+                                top: 90px;
+                                margin-left: 80px;
+                                ">Publication Silver Badge: This author successfully publish two article
+                                </span>';
+
+                                echo '<div class="badge-box revBronzeBadge" style="background-image: url(\'../images/second_review_badges.png\');"></div>';
+                                echo '<span class="revSilverHover" style="
+                                width: 200px;
+                                background: #333;
+                                color: white;
+                                position: absolute;
+                                padding-left: 5px;
+                                z-index: 999;
+                                top: 90px;
+                                margin-left: 160px;
+                                ">Reviewer Silver Badge: This author help to publish an article by reviewing twice.
+                                </span>';
                             }elseif(count($result) >= 3 && count($resultReviewed) === 1){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/first_review_badges.png\');"></div>';
-                                echo '</div>';
+                                echo '<div class="badge-box pubGoldBadge" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
+                                echo '<span class="pubGoldHover" style="
+                                width: 200px;
+                                background: #333;
+                                color: white;
+                                position: absolute;
+                                padding-left: 5px;
+                                z-index: 999;
+                                top: 90px;
+                                margin-left: 80px;
+                                ">Publication Gold Badge: This author successfully publish three or more article
+                                </span>';
+
+                                echo '<div class="badge-box revBronzeBadge" style="background-image: url(\'../images/first_review_badges.png\');"></div>';
+                                echo '<span class="revBrozeHover" style="
+                                width: 200px;
+                                background: #333;
+                                color: white;
+                                position: absolute;
+                                padding-left: 5px;
+                                z-index: 999;
+                                top: 90px;
+                                margin-left: 160px;
+                                ">Reviewer Bronze Badge: This author help to publish an article by reviewing once.
+                                </span>';
                             }elseif(count($result) === 1 && count($resultReviewed) >= 3){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
-                                echo '</div>';
+                                echo '<div class="badge-box pubBrozeBadge" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
+                                echo '<span class="pubBrozeHover" style="
+                                width: 200px;
+                                background: #333;
+                                color: white;
+                                position: absolute;
+                                padding-left: 5px;
+                                z-index: 999;
+                                top: 90px;
+                                margin-left: 80px;
+                                ">Publication Bronze Badge: This author successfully publish one article
+                                </span>';
+
+                                echo '<div class="badge-box revGoldBadge" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
+                                echo '<span class="revGoldHover" style="
+                                width: 200px;
+                                background: #333;
+                                color: white;
+                                position: absolute;
+                                padding-left: 5px;
+                                z-index: 999;
+                                top: 90px;
+                                margin-left: 160px;
+                                ">Reviewer Gold Badge: This author help to publish an article by reviewing three or more.
+                                </span>';
                             }elseif(count($result) >= 3 && count($resultReviewed) === 2){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/second_review_badges.png\');"></div>';
-                                echo '</div>';
+                                echo '<div class="badge-box pubGoldBadge" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
+                                echo '<span class="pubGoldHover" style="
+                                width: 200px;
+                                background: #333;
+                                color: white;
+                                position: absolute;
+                                padding-left: 5px;
+                                z-index: 999;
+                                top: 90px;
+                                margin-left: 80px;
+                                ">Publication Gold Badge: This author successfully publish three or more article
+                                </span>';
+
+                                echo '<div class="badge-box revBronzeBadge" style="background-image: url(\'../images/second_review_badges.png\');"></div>';
+                                echo '<span class="revSilverHover" style="
+                                width: 200px;
+                                background: #333;
+                                color: white;
+                                position: absolute;
+                                padding-left: 5px;
+                                z-index: 999;
+                                top: 90px;
+                                margin-left: 160px;
+                                ">Reviewer Silver Badge: This author help to publish an article by reviewing twice
+                                </span>';
                             }elseif(count($result) === 2 && count($resultReviewed) >= 3){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
-                                echo '</div>';
+                                echo '<div class="badge-box pubSilverBadge" style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
+                                echo '<span class="pubSilverHover" style="
+                                width: 200px;
+                                background: #333;
+                                color: white;
+                                position: absolute;
+                                padding-left: 5px;
+                                z-index: 999;
+                                top: 90px;
+                                margin-left: 80px;
+                                ">Publication Silver Badge: This author successfully publish two article
+                                </span>';
+
+                                echo '<div class="badge-box revGoldBadge" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
+                                echo '<span class="revGoldHover" style="
+                                width: 200px;
+                                background: #333;
+                                color: white;
+                                position: absolute;
+                                padding-left: 5px;
+                                z-index: 999;
+                                top: 90px;
+                                margin-left: 160px;
+                                ">Reviewer Gold Badge: This author help to publish an article by reviewing three or more.
+                                </span>';
                             }elseif(count($result) >= 3 && count($resultReviewed) >= 3){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
-                                echo '</div>';
-                            }
-                        }elseif($resultReviewed && $resultDonation && $result === false){
-                            if(count($resultReviewed) === 1 && count($resultDonation) === 1){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/first_review_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/first_donation_badges.png\');"></div>';
-                                echo '</div>';
-                            }elseif(count($resultReviewed) === 2 && count($resultDonation) === 1){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/second_review_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/first_donation_badges.png\');"></div>';
-                                echo '</div>';
-                            }elseif(count($resultReviewed) === 1 && count($resultDonation) === 2){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/first_review_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/second_donation_badges.png\');"></div>';
-                                echo '</div>';
-                            }elseif(count($resultReviewed) === 2 && count($resultDonation) === 2){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/second_review_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/second_donation_badges.png\');"></div>';
-                                echo '</div>';
-                            }elseif(count($resultReviewed) >= 3 && count($resultDonation) === 1){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/first_donation_badges.png\');"></div>';
-                                echo '</div>';
-                            }elseif(count($resultReviewed) === 1 && count($resultDonation) >= 3){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/first_review_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
-                                echo '</div>';
-                            }elseif(count($resultReviewed) >= 3 && count($resultDonation) === 2){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/second_donation_badges.png\');"></div>';
-                                echo '</div>';
-                            }elseif(count($resultReviewed) === 2 && count($resultDonation) >= 3){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/second_review_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
-                                echo '</div>';
-                            }elseif(count($resultReviewed) >= 3 && count($resultDonation) >= 3){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
-                                echo '</div>';
-                            }
-                        }elseif($result && $resultDonation && $resultReviewed === false){
-                            if(count($result) === 1 && count($resultDonation) === 1){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/first_donation_badges.png\');"></div>';
-                                echo '</div>';
-                            }elseif(count($result) === 2 && count($resultDonation) === 1){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/first_donation_badges.png\');"></div>';
-                                echo '</div>';
-                            }elseif(count($result) === 1 && count($resultDonation) === 2){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/second_donation_badges.png\');"></div>';
-                                echo '</div>';
-                            }elseif(count($result) === 2 && count($resultDonation) === 2){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/second_donation_badges.png\');"></div>';
-                                echo '</div>';
-                            }elseif(count($result) >= 3 && count($resultDonation) === 1){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/first_donation_badges.png\');"></div>';
-                                echo '</div>';
-                            }elseif(count($result) === 1 && count($resultDonation) >= 3){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
-                                echo '</div>';
-                            }elseif(count($result) >= 3 && count($resultDonation) === 2){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/second_donation_badges.png\');"></div>';
-                                echo '</div>';
-                            }elseif(count($result) === 2 && count($resultDonation) >= 3){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
-                                echo '</div>';
-                            }elseif(count($result) >= 3 && count($resultDonation) >= 3){
-                                echo '<div class="profile-badge">';
-                                echo '<p class="recent-badges">Badges</p>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
-                                echo '<div class="badge-box"  style="background-image: url(\'../images/third_donation_badges.png\');"></div>';
-                                echo '</div>';
+                                echo '<div class="badge-box pubGoldBadge" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
+                                echo '<span class="pubGoldHover" style="
+                                width: 200px;
+                                background: #333;
+                                color: white;
+                                position: absolute;
+                                padding-left: 5px;
+                                z-index: 999;
+                                top: 90px;
+                                margin-left: 80px;
+                                ">Publication Gold Badge: This author successfully publish three or more article
+                                </span>';
+
+                                echo '<div class="badge-box revGoldBadge" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
+                                echo '<span class="revGoldHover" style="
+                                width: 200px;
+                                background: #333;
+                                color: white;
+                                position: absolute;
+                                padding-left: 5px;
+                                z-index: 999;
+                                top: 90px;
+                                margin-left: 160px;
+                                ">Reviewer Gold Badge: This author help to publish an article by reviewing three or more.
+                                </span>';
                             }
                         }else{
-                            echo 'This author has no badges yet';
+                            echo '<center><strong>You have no badge yet</strong></center>';
                         }
 
 

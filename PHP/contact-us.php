@@ -28,7 +28,7 @@
     <div class="row mt-4">
         <div class="col-md-2"><!-------BLANK SPACE-------></div>
         <div class="col-md-3 ">
-            <form id="contactForm" method="POST" action="../PHP/contact-backend.php">
+            <form id="contactForm" method="POST" action="../PHP/contact-backend.php" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-md-12">
                         <h2 >Contact Us</h2>
@@ -101,6 +101,8 @@
 
                         <label for="message">Message:</label>
                         <textarea class="input form-control" id="message" name="message" rows="4" required></textarea>
+
+                        <input class="input form-control mt-3" id="upload_file" name="upload_file" type="file" accept="image/*" >
                     </div>
                     
                     <div class="col-md-12 mt-3 mb-2 btn-info text-center">

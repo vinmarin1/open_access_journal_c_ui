@@ -7,7 +7,7 @@ require_once 'dbcon.php';
 
             if ($pdo) {
                 try {
-                    $query = "SELECT * FROM reports";
+                    $query = "SELECT * FROM reports WHERE status = 1";
                     $stmt = $pdo->prepare($query);
                     $stmt->execute();
 
