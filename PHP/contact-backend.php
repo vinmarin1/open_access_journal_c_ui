@@ -42,17 +42,22 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
                 database_run($sql_contact, $sql_messages);
                 header('location: contact-us.php');
+                
+                $data['message'] = 'hello world';
+                $pusher->trigger('my-channel', 'my-event', $data);
 
                 // Notification insertion code
-                $sqlNotif = "INSERT INTO notification(`author_id`, `admin`, `title`, `description`, `read` , `read_user`, `read_notif_list`, `contact_us`, `created`) VALUES (:author_id, :admin, :title, :description, :read, :read_user, :read_notif_list)";
-               
+                $sqlNotif = "INSERT INTO notification(`author_id`, `admin`, `title`, `description`, `read`, `read_user`, `read_notif_list`, `contact_us`, `created`) VALUES (:author_id, :admin, :title, :description, :read, :read_user, :read_notif_list, :contact_us, :created)";
+                
                 date_default_timezone_set('Asia/Manila');
                 $created = date('Y-m-d H:i:s');
+                
+                $title = $reason . ' - ' . $email;
                 
                 $sqlparams = array(
                     'author_id' => $id,
                     'admin' => 1,
-                    'title' => $reason . ' - ' . $email,
+                    'title' => $title,
                     'description' => $message,
                     'read' => 0,
                     'read_user' => 1,
@@ -82,15 +87,23 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         $data['message'] = 'hello world';
         $pusher->trigger('my-channel', 'my-event', $data);
 
-        $sqlNotif = "INSERT INTO notification(`author_id`, `admin`, `title`, `description`, `read` , `read_user`, `read_notif_list`) VALUES (:author_id, :admin, :title, :description, :read, :read_user, :read_notif_list)";
+        $sqlNotif = "INSERT INTO notification(`author_id`, `admin`, `title`, `description`, `read`, `read_user`, `read_notif_list`, `contact_us`, `created`) VALUES (:author_id, :admin, :title, :description, :read, :read_user, :read_notif_list, :contact_us, :created)";
+
+        date_default_timezone_set('Asia/Manila');
+        $created = date('Y-m-d H:i:s');
+        
+        $title = $reason . ' - ' . $email;
+        
         $sqlparams = array(
             'author_id' => $id,
             'admin' => 1,
-            'title' => $reason,
+            'title' => $title,
             'description' => $message,
             'read' => 0,
             'read_user' => 1,
-            'read_notif_list' => 1
+            'read_notif_list' => 1,
+            'contact_us' => 1,
+            'created' => $created
         );
         database_run($sqlNotif, $sqlparams);
 
