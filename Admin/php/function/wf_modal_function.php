@@ -1281,7 +1281,7 @@ require 'vendor/autoload.php';
     
             $body = "Dear Author,";
 
-            $body .= "<br><br>I am writing to inform you that" . $fromUser . "has sent a discussion message regarding your manuscript titled" . $title ."The message is now available for your viewing. Feel free to respond.";
+            $body .= "<br><br>I am writing to inform you that " . $fromUser . " has sent a discussion message regarding your manuscript titled \"" . $title . "\". The message is now available for your viewing. Feel free to respond.";
             $body .= "<br><br>The discussion is vital to keep the communication between the Quezon City University Journal and the author clear and easy. Your prompt response and active engagement are highly appreciated in publishing your manuscript.";
             $body .= "<br><br>Should you have any questions or require clarification on any of the discussion, please do not hesitate to reach out to us. We are here to assist you and ensure that the revisions align with the standards and objectives of the Quezon City University Journal.";
             $body .= "<br><br>Thank you for your continued dedication to improving your manuscript. Your efforts are instrumental in advancing scholarly discourse within our academic community.";
