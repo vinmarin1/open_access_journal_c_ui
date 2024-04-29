@@ -40,11 +40,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $sqlLogsParamsNotif = array(
         'article_id' => $articleId,
         'author_id' => $authorId,
-        'title' => $userName .' '. 'Have replied to the discussion regarding the article' .' '. $articleId ,
-        'description' => $title,
+        'title' => $userName .' '. 'Have replied to the discussion regarding the article' .' '. $articleId,
+        'description' => $message,
         'status' => 4,
-        'admin' => 0,
-        'read' => 0,
+        'admin' => 1,
+        'read' => 1,
         'read_user' => 1,
         'read_notif_list' => 1,
     );
