@@ -2024,6 +2024,22 @@ dfn:hover::before {
     z-index: 999;
 }
 
+.revBrozeBadge:hover + .progressRevHover {
+    display: block;
+}
+
+
+.progressRevHover {
+    width: auto;
+    background-color: #1F89BB;
+    color: white;
+    position: absolute;
+    padding-left: 5px;
+    display: none;
+    z-index: 999;
+}
+
+
 
 
   /* silver progress hover */
@@ -2044,6 +2060,23 @@ dfn:hover::before {
 }
 
 
+.revSilverBadge:hover + .progressRevHover {
+    display: block;
+}
+
+
+.progressRevHover {
+    width: auto;
+    background-color: #1F89BB;
+    color: white;
+    position: absolute;
+    padding-left: 5px;
+    display: none;
+    z-index: 999;
+}
+
+
+
 
   /* gold progress hover */
 
@@ -2053,6 +2086,21 @@ dfn:hover::before {
 
 
 .progresshover {
+    width: auto;
+    background-color: #1F89BB;
+    color: white;
+    position: absolute;
+    padding-left: 5px;
+    display: none;
+    z-index: 999;
+}
+
+.revGoldBadge:hover + .progressRevHover {
+    display: block;
+}
+
+
+.progressRevHover {
     width: auto;
     background-color: #1F89BB;
     color: white;

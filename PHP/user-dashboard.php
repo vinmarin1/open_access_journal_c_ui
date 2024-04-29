@@ -1265,24 +1265,30 @@ $expertise = $_SESSION['expertise'];
 									$sqlSelectName = "SELECT title FROM article WHERE author_id = :author_id AND status = 1";
 									$result = database_run($sqlSelectName, array(':author_id' => $id));
 
-									if ($result !== false) {
+									$sqlSelectReviewed = "SELECT action_engage FROM user_points WHERE user_id = :user_id AND action_engage = 'Reviewed Article Published'";
+									$resultReviewd = database_run($sqlSelectReviewed, array(':user_id' => $id));
+
+									if ($result !== false && $resultReviewd === false){
 										$publicationCount = count($result);
 
 										// Determine badge level and progress percentage
 										$badgeLevel = 'None';
 										$badgeProgress = 0;
 
-										if ($publicationCount >= 1 && $publicationCount < 5) {
+										if ($publicationCount >= 1 && $publicationCount <= 5) {
 											$badge = '<div class="badge-box pubBrozeBadge" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
 											$badgeLevel = 'Bronze';
+											$remainingArticles = 5 - $publicationCount;
 											$badgeProgress = ($publicationCount / 5) * 100;
-										} elseif ($publicationCount >= 5 && $publicationCount < 10) {
+										} elseif ($publicationCount >= 6 && $publicationCount <= 9) {
 											$badge = '<div class="badge-box pubSilverBadge" style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
 											$badgeLevel = 'Silver';
-											$badgeProgress = (($publicationCount - 5) / 5) * 100; 
+											$remainingArticles = 10 - $publicationCount;
+											$badgeProgress = (($publicationCount - 5) / 5) * 100;
 										} elseif ($publicationCount >= 10) {
 											$badge = '<div class="badge-box pubGoldBadge" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
 											$badgeLevel = 'Gold';
+											$remainingArticles = 0; // No remaining articles needed for Gold level
 											$badgeProgress = 100;
 										}
 										echo $badge;
@@ -1290,9 +1296,139 @@ $expertise = $_SESSION['expertise'];
 										echo "<p style='color: white'>PUBLICATION BADGE (Level: $badgeLevel)</p>";
 										echo "<div class='progress' style='height: 3px; background-image: linear-gradient(to right, #ffd700 " . round($badgeProgress, 2) . "%, red " . round($badgeProgress, 2) . "%, red 100%);'></div>";
 										echo "<p style='color: white'>Progress: " . round($badgeProgress, 2) . "%</p>";
-										echo '<div>';
-									} else {
-										echo "Unable to fetch publication info.";
+
+										// Display remaining articles message
+										if ($remainingArticles > 0) {
+											echo "<p style='color: white; margin-top: -20px; font-size: 11px;'>$remainingArticles more article";
+											echo ($remainingArticles !== 1) ? 's' : ''; // Add plural "s" if needed
+											echo " to level up to ";
+											echo ($badgeLevel === 'Bronze') ? 'Silver' : 'Gold';
+											echo " badge</p>";
+										}
+
+										echo '</div>';
+									}elseif($resultReviewd !== false && $result === false){
+										$reviewedPublishCount = count($resultReviewd);
+
+										// Determine badge level and progress percentage
+										$badgeLevelReviewed = 'None';
+										$badgeProgressReviewed = 0;
+
+										if ($reviewedPublishCount >= 1 && $reviewedPublishCount <= 5) {
+											$badgeReviewed = '<div class="badge-box revBrozeBadge" style="background-image: url(\'../images/first_review_badges.png\');"></div>';
+											$badgeLevelReviewed = 'Bronze';
+											$remainingArticlesReviewed = 5 - $reviewedPublishCount;
+											$badgeProgressReviewed = ($reviewedPublishCount / 5) * 100;
+										} elseif ($reviewedPublishCount >= 6 && $reviewedPublishCount <= 9) {
+											$badgeReviewed = '<div class="badge-box revSilverBadge" style="background-image: url(\'../images/second_review_badges.png\');"></div>';
+											$badgeLevelReviewed = 'Silver';
+											$remainingArticlesReviewed = 10 - $reviewedPublishCount;
+											$badgeProgressReviewed = (($reviewedPublishCount - 5) / 5) * 100;
+										} elseif ($reviewedPublishCount >= 10) {
+											$badgeReviewed = '<div class="badge-box revGoldBadge" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
+											$badgeLevelReviewed = 'Gold';
+											$remainingArticlesReviewed = 0; // No remaining articles needed for Gold level
+											$badgeProgressReviewed = 100;
+										}
+										echo $badgeReviewed;
+										echo '<div class="progressRevHover">';
+										echo "<p style='color: white'>REVIEWER BADGE (Level: $badgeLevelReviewed)</p>";
+										echo "<div class='progress' style='height: 3px; background-image: linear-gradient(to right, #ffd700 " . round($badgeProgressReviewed, 2) . "%, red " . round($badgeProgressReviewed, 2) . "%, red 100%);'></div>";
+										echo "<p style='color: white'>Progress: " . round($badgeProgressReviewed, 2) . "%</p>";
+
+										// Display remaining articles message
+										if ($remainingArticlesReviewed > 0) {
+											echo "<p style='color: white; margin-top: -20px; font-size: 11px;'>$remainingArticlesReviewed more article";
+											echo ($remainingArticlesReviewed !== 1) ? 's' : ''; // Add plural "s" if needed
+											echo " to level up to ";
+											echo ($badgeLevelReviewed === 'Bronze') ? 'Silver' : 'Gold';
+											echo " badge</p>";
+										}
+
+										echo '</div>';
+									}elseif($result !== false && $resultReviewd !== false){
+										
+										$publicationCount = count($result);
+
+										// Determine badge level and progress percentage
+										$badgeLevel = 'None';
+										$badgeProgress = 0;
+
+										if ($publicationCount >= 1 && $publicationCount <= 5) {
+											$badge = '<div class="badge-box pubBrozeBadge" style="background-image: url(\'../images/first_publication_badges.png\');"></div>';
+											$badgeLevel = 'Bronze';
+											$remainingArticles = 5 - $publicationCount;
+											$badgeProgress = ($publicationCount / 5) * 100;
+										} elseif ($publicationCount >= 6 && $publicationCount <= 9) {
+											$badge = '<div class="badge-box pubSilverBadge" style="background-image: url(\'../images/second_publication_badges.png\');"></div>';
+											$badgeLevel = 'Silver';
+											$remainingArticles = 10 - $publicationCount;
+											$badgeProgress = (($publicationCount - 5) / 5) * 100;
+										} elseif ($publicationCount >= 10) {
+											$badge = '<div class="badge-box pubGoldBadge" style="background-image: url(\'../images/third_publication_badges.png\');"></div>';
+											$badgeLevel = 'Gold';
+											$remainingArticles = 0; // No remaining articles needed for Gold level
+											$badgeProgress = 100;
+										}
+										echo $badge;
+										echo '<div class="progresshover">';
+										echo "<p style='color: white'>PUBLICATION BADGE (Level: $badgeLevel)</p>";
+										echo "<div class='progress' style='height: 3px; background-image: linear-gradient(to right, #ffd700 " . round($badgeProgress, 2) . "%, red " . round($badgeProgress, 2) . "%, red 100%);'></div>";
+										echo "<p style='color: white'>Progress: " . round($badgeProgress, 2) . "%</p>";
+
+										// Display remaining articles message
+										if ($remainingArticles > 0) {
+											echo "<p style='color: white; margin-top: -20px; font-size: 11px;'>$remainingArticles more article";
+											echo ($remainingArticles !== 1) ? 's' : ''; // Add plural "s" if needed
+											echo " to level up to ";
+											echo ($badgeLevel === 'Bronze') ? 'Silver' : 'Gold';
+											echo " badge</p>";
+										}
+
+										echo '</div>';
+										
+
+										$reviewedPublishCount = count($resultReviewd);
+
+										// Determine badge level and progress percentage
+										$badgeLevelReviewed = 'None';
+										$badgeProgressReviewed = 0;
+
+										if ($reviewedPublishCount >= 1 && $reviewedPublishCount <= 5) {
+											$badgeReviewed = '<div class="badge-box revBrozeBadge" style="background-image: url(\'../images/first_review_badges.png\');"></div>';
+											$badgeLevelReviewed = 'Bronze';
+											$remainingArticlesReviewed = 5 - $reviewedPublishCount;
+											$badgeProgressReviewed = ($reviewedPublishCount / 5) * 100;
+										} elseif ($reviewedPublishCount >= 6 && $reviewedPublishCount <= 9) {
+											$badgeReviewed = '<div class="badge-box revSilverBadge" style="background-image: url(\'../images/second_review_badges.png\');"></div>';
+											$badgeLevelReviewed = 'Silver';
+											$remainingArticlesReviewed = 10 - $reviewedPublishCount;
+											$badgeProgressReviewed = (($reviewedPublishCount - 5) / 5) * 100;
+										} elseif ($reviewedPublishCount >= 10) {
+											$badgeReviewed = '<div class="badge-box revGoldBadge" style="background-image: url(\'../images/thirdd_review_badges.png\');"></div>';
+											$badgeLevelReviewed = 'Gold';
+											$remainingArticlesReviewed = 0; // No remaining articles needed for Gold level
+											$badgeProgressReviewed = 100;
+										}
+										echo $badgeReviewed;
+										echo '<div class="progressRevHover">';
+										echo "<p style='color: white'>REVIEWER BADGE (Level: $badgeLevelReviewed)</p>";
+										echo "<div class='progress' style='height: 3px; background-image: linear-gradient(to right, #ffd700 " . round($badgeProgressReviewed, 2) . "%, red " . round($badgeProgressReviewed, 2) . "%, red 100%);'></div>";
+										echo "<p style='color: white'>Progress: " . round($badgeProgressReviewed, 2) . "%</p>";
+
+										// Display remaining articles message
+										if ($remainingArticlesReviewed > 0) {
+											echo "<p style='color: white; margin-top: -20px; font-size: 11px;'>$remainingArticlesReviewed more article";
+											echo ($remainingArticlesReviewed !== 1) ? 's' : ''; // Add plural "s" if needed
+											echo " to level up to ";
+											echo ($badgeLevelReviewed === 'Bronze') ? 'Silver' : 'Gold';
+											echo " badge</p>";
+										}
+
+										echo '</div>';
+
+									}else {
+										echo "You have no badges yet";
 									}
 								}
 								?>
