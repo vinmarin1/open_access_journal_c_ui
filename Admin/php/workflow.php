@@ -1995,8 +1995,8 @@ table {
                             $('#DataTableSubmissionDiscussion tbody').append('<tr><th style="width: 80%;">MESSAGE ' + counter + '</th><th style="width: 20%;">FROM</th></tr>');
                             $('#DataTableSubmissionDiscussion tbody').append('<tr><td style="width: 80%; white-space: pre-wrap; text-align: justify;"><div style="max-height: 200px; overflow-y: auto;">' + submissiondiscussion.message + '</div></td><td style="width: 20%;">' + submissiondiscussion.fromuser + '</td></tr>');
 
-                            if (submissiondiscussion.file_type !== '') {
-                                $('#DataTableSubmissionDiscussion tbody').append('<tr><th style="width: 80%;">FILE</th><th style="width: 20%;">FILE TYPE</th></tr></tr>');
+                            if (submissiondiscussion.file_type !== null && submissiondiscussion.file_type !== '') {
+                                $('#DataTableSubmissionDiscussion tbody').append('<tr><th style="width: 80%;">FILE</th><th style="width: 20%;">FILE TYPE</th></tr>');
                                 $('#DataTableSubmissionDiscussion tbody').append('<tr><td style="width: 80%;"><a href="/Files/discussion-file/' + submissiondiscussion.file + '" download>' + submissiondiscussion.file + '</a></td><td style="width: 20%;">' + submissiondiscussion.file_type + '</td></tr>');
                             }
                             counter++;
