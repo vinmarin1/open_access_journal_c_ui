@@ -2015,31 +2015,36 @@ dfn:hover::before {
 
 
 .progresshover {
-    width: auto;
-    background-color: #1F89BB;
-    color: white;
-    position: absolute;
-    padding-left: 5px;
     display: none;
-    z-index: 999;
+    /* width: 15%; */
+    border: 1px solid;
+    height: auto;
+    align-content: center;
+    padding: 5px;
+    position: absolute;
+    margin-top: -2%;
+    /* margin-left: 7%; */
+    /* border-radius: 10px; */
+    background-color: rgb(0 0 0 / 79%);
 }
 
 .revBrozeBadge:hover + .progressRevHover {
     display: block;
 }
 
-
-.progressRevHover {
-    width: auto;
-    background-color: #1F89BB;
-    color: white;
-    position: absolute;
-    padding-left: 5px;
+.progressRevHover{
     display: none;
-    z-index: 999;
+    /* width: 15%; */
+    border: 1px solid;
+    height: auto;
+    align-content: center;
+    padding: 5px;
+    position: absolute;
+    margin-top: -2%;
+    /* margin-left: 7%; */
+    /* border-radius: 10px; */
+    background-color: rgb(0 0 0 / 79%);
 }
-
-
 
 
   /* silver progress hover */
@@ -2049,16 +2054,6 @@ dfn:hover::before {
 }
 
 
-.progresshover {
-    width: auto;
-    background-color: #1F89BB;
-    color: white;
-    position: absolute;
-    padding-left: 5px;
-    display: none;
-    z-index: 999;
-}
-
 
 .revSilverBadge:hover + .progressRevHover {
     display: block;
@@ -2067,7 +2062,7 @@ dfn:hover::before {
 
 .progressRevHover {
     width: auto;
-    background-color: #1F89BB;
+    /* background-color: #1F89BB; */
     color: white;
     position: absolute;
     padding-left: 5px;
@@ -2087,7 +2082,7 @@ dfn:hover::before {
 
 .progresshover {
     width: auto;
-    background-color: #1F89BB;
+    /* background-color: #1F89BB; */
     color: white;
     position: absolute;
     padding-left: 5px;
@@ -2102,7 +2097,7 @@ dfn:hover::before {
 
 .progressRevHover {
     width: auto;
-    background-color: #1F89BB;
+    /* background-color: #1F89BB; */
     color: white;
     position: absolute;
     padding-left: 5px;
