@@ -40,14 +40,15 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
                     'upload_file' => $upload_file,
                 );
 
-                date_default_timezone_set('Asia/Manila');
-                $created = date('Y-m-d H:i:s');
-
                 database_run($sql_contact, $sql_messages);
                 header('location: contact-us.php');
 
                 // Notification insertion code
                 $sqlNotif = "INSERT INTO notification(`author_id`, `admin`, `title`, `description`, `read` , `read_user`, `read_notif_list`, `contact_us`, `created`) VALUES (:author_id, :admin, :title, :description, :read, :read_user, :read_notif_list)";
+               
+                date_default_timezone_set('Asia/Manila');
+                $created = date('Y-m-d H:i:s');
+                
                 $sqlparams = array(
                     'author_id' => $id,
                     'admin' => 1,
