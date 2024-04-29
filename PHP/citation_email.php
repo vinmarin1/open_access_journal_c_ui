@@ -5,7 +5,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     $author_id = $_POST['author_id'];
     $title = $_POST['title'];
     $id = $_POST['id'];
-    $title1 = 'Article Cited';
+    $title1 = 'Intent to Cite Your Article';
    
     
     $description = 'Your article has been cited, ' . $title;
