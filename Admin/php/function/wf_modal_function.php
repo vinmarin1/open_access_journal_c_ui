@@ -575,7 +575,7 @@ require 'vendor/autoload.php';
                     $query = "INSERT INTO discussion_message (discussion_id, fromuser, message, file, file_type) VALUES (?, ?, ?, ?, ?)";
                     $result = execute_query($query, [$newinsert, $fromuser, $submissionmessage, $fileName, $submissionfiletype], true);
                     discussionEmail($article_id, $fromuser, $title, $author_id, $submissionsubject, $submissionmessage, $fileName);
-                    addNotificationDiscussion($article_id, $fromuser, $submissionsubject, $submissionmessage);
+                    addNotificationDiscussion($article_id, $author_id, $submissionsubject, $submissionmessage);
 
                 if ($result !== false) {
                     $pdo->commit();
