@@ -1,5 +1,6 @@
 <?php
 require_once 'dbcon.php';
+require '../vendor/autoload.php';
 session_start();
 
 $options = array(
@@ -44,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
                 database_run($sql_contact, $sql_messages);
                 header('location: contact-us.php');
-                
+
                 // Notification insertion code
                 $sqlNotif = "INSERT INTO notification(`author_id`, `admin`, `title`, `description`, `read` , `read_user`, `read_notif_list`, `contact_us`, `created`) VALUES (:author_id, :admin, :title, :description, :read, :read_user, :read_notif_list)";
                 $sqlparams = array(
