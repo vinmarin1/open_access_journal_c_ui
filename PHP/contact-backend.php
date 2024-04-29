@@ -2,6 +2,17 @@
 require_once 'dbcon.php';
 session_start();
 
+$options = array(
+    'cluster' => 'ap1',
+    'useTLS' => true
+);
+$pusher = new Pusher\Pusher(
+    'cabcad916f55a998eaf5',
+    '0aef8b4d2da6760f5726',
+    '1764683',
+    $options
+);
+
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
     $email = $_POST['email'];
     $name = $_POST['name'];
@@ -28,19 +39,24 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
                     'upload_file' => $upload_file,
                 );
 
+                date_default_timezone_set('Asia/Manila');
+                $created = date('Y-m-d H:i:s');
+
                 database_run($sql_contact, $sql_messages);
                 header('location: contact-us.php');
-
+                
                 // Notification insertion code
-                $sqlNotif = "INSERT INTO notification(`author_id`, `admin`, `title`, `description`, `read` , `read_user`, `read_notif_list`) VALUES (:author_id, :admin, :title, :description, :read, :read_user, :read_notif_list)";
+                $sqlNotif = "INSERT INTO notification(`author_id`, `admin`, `title`, `description`, `read` , `read_user`, `read_notif_list`, `contact_us`, `created`) VALUES (:author_id, :admin, :title, :description, :read, :read_user, :read_notif_list)";
                 $sqlparams = array(
                     'author_id' => $id,
                     'admin' => 1,
-                    'title' => $reason,
+                    'title' => $reason . ' - ' . $email,
                     'description' => $message,
                     'read' => 0,
                     'read_user' => 1,
-                    'read_notif_list' => 1
+                    'read_notif_list' => 1,
+                    'contact_us' => 1,
+                    'created' => $created
                 );
                 database_run($sqlNotif, $sqlparams);
             } else {
@@ -60,6 +76,9 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         );
 
         database_run($sql_contact, $sql_messages);
+
+        $data['message'] = 'hello world';
+        $pusher->trigger('my-channel', 'my-event', $data);
 
         $sqlNotif = "INSERT INTO notification(`author_id`, `admin`, `title`, `description`, `read` , `read_user`, `read_notif_list`) VALUES (:author_id, :admin, :title, :description, :read, :read_user, :read_notif_list)";
         $sqlparams = array(

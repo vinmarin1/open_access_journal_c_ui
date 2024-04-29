@@ -50,6 +50,7 @@ $notificationlist = get_notification_list();
                             $currentYear = date('Y');
                             $hrefworkflow = "workflow.php?aid=" . $notification->article_id;
                             $hrefdonation = "donationreportmtd.php?m=" . $currentMonth . "&y=" . $currentYear;
+                            $messageHref = "message.php";
                         ?>
 
                         <tr class="<?php echo $readClass; ?>" data-toggle="modal" data-target="" data-id="<?php echo $notification->id; ?>">
@@ -92,8 +93,13 @@ $notificationlist = get_notification_list();
                             document.querySelector('.time-ago-<?php echo $notification->id; ?>').closest('tr').addEventListener('click', function() {
                                 var id = <?php echo $notification->id; ?>;
                                 var title = '<?php echo $notification->title; ?>';
-                                var href = (title === 'Send Donation') ? '<?php echo $hrefdonation; ?>' : '<?php echo $hrefworkflow; ?>';
-                                window.location.href = href;
+                                var contact_us = '<?php echo $notification->contact_us; ?>';
+                                var href;
+                                if (title === 'Send Donation') {
+                                    href = '<?php echo $hrefdonation; ?>';
+                                } else {
+                                    href = (contact_us === '1') ? '<?php echo $messageHref; ?>' : '<?php echo $hrefworkflow; ?>';
+                                }
                                 
                                 $.ajax({
                                     type: 'POST',

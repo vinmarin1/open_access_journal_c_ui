@@ -447,7 +447,8 @@ if ($result !== false && !empty($result)) {
                                             $responseData = json_decode($result, true);
                                             if (isset($responseData['Files'][0]['Url'])) {
                                                 $pdfUrl = $responseData['Files'][0]['Url'];
-                                                echo "<a href='$pdfUrl' download='$fileName.pdf'>$fileName (PDF)</a><br>";
+                                                $pdfFileName = pathinfo($fileName, PATHINFO_FILENAME) . ".pdf";
+                                                echo "<a href='$pdfUrl' download='$pdfFileName'>$pdfFileName</a><br>";
                                             } else {
                                                 echo "Conversion failed for $fileName";
                                             }
