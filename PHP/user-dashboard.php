@@ -1316,7 +1316,7 @@ if (isset($_SESSION['LOGGED_IN']) && $_SESSION['LOGGED_IN'] === true) {
 											">Publication Gold Badge: Congratulations, you have reach the last badge for publication.
 											</span>';
 										}
-									}elseif(!$resultReviewed && $result === false){
+									}elseif(!$resultReviewed === false && $result === false){
 										if(count($resultReviewed) === 1){
 											echo '<div class="badge-box revBronzeBadge" style="background-image: url(\'../images/first_review_badges.png\');"></div>';
 											echo '<span class="revBrozeHover" style="
