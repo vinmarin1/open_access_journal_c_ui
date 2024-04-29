@@ -828,6 +828,88 @@ goPrevFile.addEventListener('click', function(event){
   fileTab.click();
 });
 
+
+function addRow() {
+  var index = $('#contributorTable tbody tr').length; // Get the current row index
+  var newRow = '<tr>' +
+      '<td><input class="form-control email-input" type="email" name="emailC[]" style="height: 30px;">' +
+      '<div class="form-check cAuthor" style="margin-right: 10px">' +
+      '<input class="form-check-input" type="checkbox" name="contributor_type_coauthor[' + index + ']" value="Co-Author" style="width:15px;">' +
+      '<label class="form-check-label"> Co-Author</label>' +
+      '</div>' +
+      '<div class="form-check pContact">' +
+      '<input class="form-check-input p-contact" type="checkbox" name="contributor_type_primarycontact[' + index + ']" value="Primary Contact" style="width:15px;">' +
+      '<label class="form-check-label"> Primary Contact</label>' +
+      '</div>' +
+      '<div class="form-check editor">' +
+      '<input class="form-check-input" type="checkbox" name="contributor_type_editor[' + index + ']" value="Editor" style="width:15px;">' +
+      '<label class="form-check-label"> Editor</label>' +
+      '</div>' +
+      '<div class="form-check translator">' +
+      '<input class="form-check-input" type="checkbox" name="contributor_type_translator[' + index + ']" value="Translator" style="width:15px;">' +
+      '<label class="form-check-label"> Translator</label>' +
+      '</div>' +
+      '</td>' +
+      '<td><input class="form-control" type="text" name="firstnameC[]" style="height: 30px;"></td>' +
+      '<td><input class="form-control" type="text" name="lastnameC[]" style="height: 30px;"></td>' +
+      '<td><input class="form-control" type="text" name="orcidC[]" style="height: 30px;"></td>' +
+      '<td><button type="button" class="btn btn-danger btn-sm deleteCont" onclick="deleteRow(this)"><i class="fa-solid fa-minus"></i></button></td>' +
+      '</tr>';
+
+  $('#contributorTable tbody').append(newRow);
+}
+
+
+// Attach event listener to the email input field for fetching data on blur
+$('#contributorTable tbody').on('blur', 'input.email-input', function() {
+  var email = $(this).val();
+  var currentRow = $(this).closest('tr');
+
+  const inputElement = document.querySelector('input[name="orcidC[]"]');
+
+// Add an event listener to the input element
+inputElement.addEventListener('input', function (event) {
+  // Get the input value
+  let inputValue = event.target.value;
+
+  // Remove non-numeric characters using a regular expression
+  inputValue = inputValue.replace(/\D/g, '');
+
+  // Update the input field with the cleaned value
+  event.target.value = inputValue;
+});
+
+  if (email !== '') {
+    
+      $.ajax({
+          type: 'POST',
+          url: '../PHP/fetch_author_data.php', 
+          data: { email: email },
+          dataType: 'json',
+          success: function(response) {
+              if (response.success) {
+                  // Update the current row with fetched data
+                  currentRow.find('input[name="firstnameC[]"]').val(response.data.first_name);
+                  currentRow.find('input[name="lastnameC[]"]').val(response.data.last_name);
+                  // currentRow.find('input[name="publicnameC[]"]').val(response.data.public_name);
+                  currentRow.find('input[name="orcidC[]"]').val(response.data.orc_id);
+              } else {
+                  // Handle the case where the email does not exist in the database
+                  Swal.fire({
+                  icon: "question",
+                  title: "This email is new to us",
+                  text: "Please try to input the contributors info manually."
+                
+                });
+              }
+          },
+          error: function(xhr, status, error) {
+              console.error('Error fetching data:', error);
+          }
+      });
+  }
+});
+
 </script>
 
 </body>
