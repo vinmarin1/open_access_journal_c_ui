@@ -670,24 +670,6 @@ setupFileInput('file_name3', 'file3UpdatePreview');
 
 
 
-document.getElementById('update-cont-2').addEventListener('click', function(event) {
-
-  const articleButton = document.getElementById('article-tab');
-  articleButton.click();
-
-});
-
-
-document.getElementById('update-cont-3').addEventListener('click', function(event){
-
- 
-  const fileTab = document.getElementById('file-tab');
-  fileTab.click();
-
-
-});
-
-
 
 
 function addRow() {

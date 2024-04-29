@@ -815,6 +815,19 @@ includeNavbar();
 //   });
 // }
 
+const goPrevarticle = document.getElementById('update-cont-2');
+const goPrevFile = document.getElementById('update-cont-3');
+
+goPrevarticle.addEventListener('click', function(event){
+  const articleTab = document.getElementById('article-tab');
+  articleTab.click();
+});
+
+goPrevFile.addEventListener('click', function(event){
+  const fileTab = document.getElementById('file-tab');
+  fileTab.click();
+});
+
 </script>
 
 </body>
