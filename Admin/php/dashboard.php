@@ -777,31 +777,3 @@ const barChart1 = new Chart(barCtx1, {
     options: barChartOptions1
 });
 </script>
-<script>
-    const donationData = <?php echo $donationDataJson; ?>;
-
-    const dates = donationData.map(donation => donation.date);
-    const amounts = donationData.map(donation => donation.amount);
-
-    const ctx = document.getElementById('donationChart').getContext('2d');
-    const donationChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: dates,
-            datasets: [{
-                label: 'Donation Amount',
-                data: amounts,
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                borderColor: 'rgba(75, 192, 192, 1)',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-</script>
