@@ -1,7 +1,19 @@
 <?php
 require_once 'dbcon.php';
+require '../vendor/autoload.php';
 session_start();
 require 'mail.php';
+
+$options = array(
+    'cluster' => 'ap1',
+    'useTLS' => true
+);
+$pusher = new Pusher\Pusher(
+    'cabcad916f55a998eaf5',
+    '0aef8b4d2da6760f5726',
+    '1764683',
+    $options
+);
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $authorId = $_SESSION['id'];
@@ -48,6 +60,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         'read_user' => 1,
         'read_notif_list' => 1,
     );
+
+    $data['message'] = 'hello world';
+    $pusher->trigger('my-channel', 'my-event', $data);
     
     database_run($sqlSendNotif, $sqlLogsParamsNotif);
 
