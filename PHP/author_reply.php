@@ -47,7 +47,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     
     database_run($sqlLogs, $sqlLogsParams);
 
-    $sqlSendNotif = "INSERT INTO notification(`article_id`, `author_id`, `title`, `description`, `status`, `admin`, `read`, `read_user`, `read_notif_list`) VALUES (:article_id, :author_id, :title, :description, :status, :admin, :read, :read_user, :read_notif_list)";
+    $sqlSendNotif = "INSERT INTO notification(`article_id`, `author_id`, `title`, `description`, `status`, `admin`, `read`, `read_user`, `read_notif_list`, `created`) VALUES (:article_id, :author_id, :title, :description, :status, :admin, :read, :read_user, :read_notif_list, :created)";
+
+    date_default_timezone_set('Asia/Manila');
+    $created = date('Y-m-d H:i:s');
 
     $sqlLogsParamsNotif = array(
         'article_id' => $articleId,
@@ -59,6 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         'read' => 1,
         'read_user' => 1,
         'read_notif_list' => 1,
+        'created' => $created
     );
 
     $data['message'] = 'hello world';
