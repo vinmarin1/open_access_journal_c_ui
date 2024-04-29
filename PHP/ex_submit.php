@@ -302,7 +302,7 @@ if ($resultProfile) {
   <!-- <button type="button" class="btn btn-primary btn-sm mt-5" onclick="openFileModal()" id="upload-btn">Upload File</button> -->
 
 <input type="file" class="form-control" name="file_name" id="file_name" accept=".docx" style="display: none">
-<input type="file" class="form-control" name="file_name2" id="file_name2" accept=".pdf" style="display: none">
+<input type="file" class="form-control" name="file_name2" id="file_name2" accept=".docx" style="display: none">
 <input type="file" class="form-control" name="file_name3" id="file_name3" accept=".docx" style="display: none">
 
 <table class="table" id="table-file">
