@@ -26,7 +26,7 @@ $journallist = get_journal_list($journal_id);
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="d-flex justify-content-between align-items-center py-3">
             <h4><span class="text-muted fw-light">Main /</span> Submission</h4>
-            <!-- <button type="button" onclick="window.location.href='newarticleapi.php'" class="btn btn-primary">New Submission</button> -->
+            <button type="button" onclick="newSubmissionModal()" class="btn btn-primary">New Submission</button>
         </div>
 
         <div class="row mb-5 mt-4">
@@ -138,6 +138,59 @@ $journallist = get_journal_list($journal_id);
         window.onload = function () {
             $('#sloading').hide();
         };
+    }
+
+    function newSubmissionModal() {
+        $('#sloading').show();
+        $('#newSubmissionModal').modal('show');
+        $('#sloading').hide();
+    }
+    </script>
+
+    <div class="modal fade" id="newSubmissionModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">New Submission</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row mb-4">
+                    <button type="button" class="btn btn-primary" onclick="viewNewSubmission()" id="archiveModalSave" style="height: 50px; font-size: 20px;">New Article Submission</button>
+                    </div>
+                    <div class="row mb">
+                    <button type="button" class="btn btn-primary" onclick="viewOldSubmission()" id="archiveModalSave" style="height: 50px; font-size: 20px;">Old Article Submission</button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    function viewNewSubmission() {
+        $('#sloading').show();
+
+        setTimeout(function () {
+            window.location.href = "../../PHP/ex_submitadmin1.php"
+        }, 1000);
+
+        window.onload = function () {
+            $('#sloading').hide();
+        };  
+    }
+    function viewOldSubmission() {
+        $('#sloading').show();
+
+        setTimeout(function () {
+            window.location.href = "../../PHP/ex_submitadmin0.php"
+        }, 1000);
+
+        window.onload = function () {
+            $('#sloading').hide();
+        };  
     }
     </script>
 </body>

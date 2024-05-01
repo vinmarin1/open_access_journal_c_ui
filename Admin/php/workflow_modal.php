@@ -13,9 +13,6 @@ $submission_files = get_submission_files($aid);
 $review_files = get_review_files($aid);
 $copyediting_files = get_copyediting_files($aid);
 $copyeditingrevision_files = get_copyeditingrevision_files($aid);
-// $copyeditedsubmission_files = get_copyeditedsubmission_files($aid);
-// $copyeditedrevision_files = get_copyeditedrevision_files($aid);
-// $copyedited_files = get_copyedited_files($aid);
 $allcopyedited_files = get_allcopyedited_files($aid);
 $allproduction_files = get_production_files($aid);
 $revision_files = get_revision_files($aid);
@@ -25,8 +22,9 @@ $articledata = get_article_data($aid);
 $journal_id = $articledata[0]->journal_id;
 $author_id = $articledata[0]->author_id;
 $title = $articledata[0]->title;
+$submission_type = $articledata[0]->submission_type;
 
-$issuelist = get_issues_list($journal_id);
+$issuelist = get_issues_list($journal_id, $submission_type);
 
 ?>
 
