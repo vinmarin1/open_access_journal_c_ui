@@ -24,7 +24,7 @@ $author_id = $articledata[0]->author_id;
 $title = $articledata[0]->title;
 $submission_type = $articledata[0]->submission_type;
 
-$issuelist = get_issues_list($journal_id, $submission_type);
+$issuelist = get_issuesarticle_list($journal_id, $submission_type);
 
 ?>
 

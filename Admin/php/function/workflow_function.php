@@ -430,32 +430,32 @@ if (!function_exists('get_allcopyedited_files')) {
     }
 }
 
+if (!function_exists('get_issuesarticle_list')) {
+    function get_issuesarticle_list($journal_id, $submission_type) {
+        $pdo = connect_to_database();
 
-function get_issues_list($journal_id, $submission_type) {
-    $pdo = connect_to_database();
+        if ($pdo) {
+            try {
+                if ($submission_type == 1) {
+                    $query = "SELECT * FROM issues WHERE journal_id = :journal_id AND status = 1 AND year = YEAR(CURDATE())";
+                } else {
+                    $query = "SELECT * FROM issues WHERE journal_id = :journal_id AND status = 1";
+                }
 
-    if ($pdo) {
-        try {
-            if ($submission_type == 1) {
-                $query = "SELECT * FROM issues WHERE journal_id = :journal_id AND status = 1 AND year = YEAR(CURDATE())";
-            } else {
-                $query = "SELECT * FROM issues WHERE journal_id = :journal_id AND status = 1";
+                $stmt = $pdo->prepare($query);
+                $stmt->bindParam(':journal_id', $journal_id, PDO::PARAM_INT);
+                $stmt->execute();
+
+                $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+                return $result;
+            } catch (PDOException $e) {
+                echo "Error: " . $e->getMessage();
+                return false;
             }
-
-            $stmt = $pdo->prepare($query);
-            $stmt->bindParam(':journal_id', $journal_id, PDO::PARAM_INT);
-            $stmt->execute();
-
-            $result = $stmt->fetchAll(PDO::FETCH_OBJ);
-
-            return $result;
-        } catch (PDOException $e) {
-            echo "Error: " . $e->getMessage();
-            return false;
         }
+        return false;
     }
-
-    return false;
 }
 
 if (!function_exists('get_article_logs')) {

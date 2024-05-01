@@ -2077,133 +2077,130 @@ table {
 
     </script>
     <script>
-    $(document).ready(function () {
+   const uploadButton = $('#addReviewer');
+    const articleID = <?php echo $article_data[0]->article_id; ?>;
+    let isFirstModalOpen = true; 
+
+    const openAddReviewerModal = () => {
+        var backdropOption = isFirstModalOpen ? true : false; 
+        var myModal = new bootstrap.Modal($('#addReviewerModal'), {
+            backdrop: backdropOption
+        });
+        myModal.show();
+        isFirstModalOpen = false;
+    };
+
+    uploadButton.click(openAddReviewerModal);
+
+    async function fetchAndRenderData(sortValue) {
         $('#sloading').toggle();
-        const uploadButton = $('#addReviewer');
-        const articleID = <?php echo $article_data[0]->article_id; ?>;
-        let isFirstModalOpen = true; 
-        $('#sloading').toggle();
+        try {
+            const response = await fetch('https://web-production-cecc.up.railway.app//api/check/reviewers', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    id: articleID
+                })
+            });
 
-        async function fetchAndRenderData(sortValue) {
-            $('#sloading').toggle();
-            try {
-                const response = await fetch('https://web-production-cecc.up.railway.app//api/check/reviewers', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        id: articleID
-                    })
-                });
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
 
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
+            const data = await response.json();
+            console.log('API Response:', data);
 
-                const data = await response.json();
-                console.log('API Response:', data);
+            if (!Array.isArray(data.sorted_reviewers)) {
+                console.error('Sorted reviewers is not an array:', data.sorted_reviewers);
+                return;
+            }
 
-                if (!Array.isArray(data.sorted_reviewers)) {
-                    console.error('Sorted reviewers is not an array:', data.sorted_reviewers);
+            const articleReviewerIds = <?php echo json_encode(array_column($article_reviewer_check, 'author_id')); ?>;
+
+            const tbodySuggested = $('#reviewersTableBody');
+            const tbodyOther = $('#reviewersTableBody1');
+            tbodySuggested.empty();
+            tbodyOther.empty();
+
+            data.sorted_reviewers.forEach(item => {
+                if (!articleReviewerIds.includes(item.author_id)) {
                     return;
                 }
 
-                const articleReviewerIds = <?php echo json_encode(array_column($article_reviewer_check, 'author_id')); ?>;
+                const row = $('<tr>');
+                const affiliation = item.afiliations && item.afiliations.length > 30 ? item.afiliations.substring(0, 30) + '...' : item.afiliations;
+                const expertise = item.field_of_expertise && item.field_of_expertise.length > 30 ? item.field_of_expertise.substring(0, 30) + '...' : item.field_of_expertise;
 
-                const tbodySuggested = $('#reviewersTableBody');
-                const tbodyOther = $('#reviewersTableBody1');
-                tbodySuggested.empty();
-                tbodyOther.empty();
+                row.html(`
+                    <td width="5%">${item.author_id}</td>
+                    <td width="80%">
+                        <a href="javascript:void(0);" onclick="openPageCentered('../../PHP/userdashboard.php?orcid=${item.orc_id}')">${item.last_name}, ${item.first_name}</a><br>
+                        Afiliations: ${affiliation}<br>
+                        Expertise: ${expertise}
+                        <div id="details_${item.author_id}" style="display: none;">
+                            <br>
+                            Reviews completed: ${item.total_success}<br>
+                            Reviews ongoing: ${item.ongoing}<br>
+                            Reviews not completed: ${item.decline}<br>
+                        </div>
+                    </td>
+                    <td width="15%">
+                        <button type="button" class="btn btn-outline-dark" style="width: 160px;" onclick="selectReviewer(${item.author_id}, '${item.first_name}', '${item.last_name}', '${item.email_verified}')" data-bs-toggle="modal">Select Reviewer</button>
+                        <button type="button" class="btn btn-outline-dark" style="width: 20px;" onclick="toggleDetails('details_${item.author_id}', this)">
+                            <span class="arrow-icon">&#x25BC;</span>
+                        </button>
+                    </td>
+                `);
 
-                data.sorted_reviewers.forEach(item => {
-                    if (!articleReviewerIds.includes(item.author_id)) {
-                        return;
+                if (sortValue === 'score') {
+                    if (item.score === 0) {
+                        tbodyOther.append(row); 
+                    } else {
+                        tbodySuggested.append(row);
                     }
-
-                    const row = $('<tr>');
-                    const affiliation = item.afiliations && item.afiliations.length > 30 ? item.afiliations.substring(0, 30) + '...' : item.afiliations;
-                    const expertise = item.field_of_expertise && item.field_of_expertise.length > 30 ? item.field_of_expertise.substring(0, 30) + '...' : item.field_of_expertise;
-
-                    row.html(`
-                        <td width="5%">${item.author_id}</td>
-                        <td width="80%">
-                            <a href="javascript:void(0);" onclick="openPageCentered('../../PHP/userdashboard.php?orcid=${item.orc_id}')">${item.last_name}, ${item.first_name}</a><br>
-                            Afiliations: ${affiliation}<br>
-                            Expertise: ${expertise}
-                            <div id="details_${item.author_id}" style="display: none;">
-                                <br>
-                                Reviews completed: ${item.total_success}<br>
-                                Reviews ongoing: ${item.ongoing}<br>
-                                Reviews not completed: ${item.decline}<br>
-                            </div>
-                        </td>
-                        <td width="15%">
-                            <button type="button" class="btn btn-outline-dark" style="width: 160px;" onclick="selectReviewer(${item.author_id}, '${item.first_name}', '${item.last_name}', '${item.email_verified}')" data-bs-toggle="modal">Select Reviewer</button>
-                            <button type="button" class="btn btn-outline-dark" style="width: 20px;" onclick="toggleDetails('details_${item.author_id}', this)">
-                                <span class="arrow-icon">&#x25BC;</span>
-                            </button>
-                        </td>
-                    `);
-
-                    if (sortValue === 'score') {
-                        if (item.score === 0) {
-                            tbodyOther.append(row); 
-                        } else {
-                            tbodySuggested.append(row);
-                        }
-                    } else if (sortValue === 'success') {
-                        if (item.total_success === 0) {
-                            tbodyOther.append(row); 
-                        } else {
-                            tbodySuggested.append(row);
-                        }
+                } else if (sortValue === 'success') {
+                    if (item.total_success === 0) {
+                        tbodyOther.append(row); 
+                    } else {
+                        tbodySuggested.append(row);
                     }
-                });
-
-                $('#sloading').toggle();
-
-            } catch (error) {
-                console.error('Error:', error);
-            }
-        }
-
-        function openAddReviewerModal() {
-            var backdropOption = isFirstModalOpen ? true : false; 
-            var myModal = new bootstrap.Modal($('#addReviewerModal'), {
-                backdrop: backdropOption
+                }
             });
-            myModal.show();
-            isFirstModalOpen = false;
+
+            $('#sloading').toggle();
+
+        } catch (error) {
+            console.error('Error:', error);
         }
+    }
 
-        uploadButton.click(openAddReviewerModal);
-
-        fetchAndRenderData('score');
-
-        $('#sortDropdown').change(function() {
-            const sortValue = $(this).val();
-            fetchAndRenderData(sortValue);
-        });
-
-        if (!$.fn.DataTable.isDataTable('#DataTableSuggested')) {
-            $('#DataTableSuggested').DataTable({
-                "paging": false,
-                "ordering": false,
-                "searching": true,
-                "info": false
-            });
-        }
-
-        if (!$.fn.DataTable.isDataTable('#DataTableOther')) {
-            $('#DataTableOther').DataTable({
-                "paging": false,
-                "ordering": false,
-                "searching": true,
-                "info": false
-            });
-        }
+    $('#sortDropdown').change(function() {
+        const sortValue = $(this).val();
+        fetchAndRenderData(sortValue);
     });
+
+    // Run fetchAndRenderData when the page initially loads
+    fetchAndRenderData('score');
+
+    if (!$.fn.DataTable.isDataTable('#DataTableSuggested')) {
+        $('#DataTableSuggested').DataTable({
+            "paging": false,
+            "ordering": false,
+            "searching": true,
+            "info": false
+        });
+    }
+
+    if (!$.fn.DataTable.isDataTable('#DataTableOther')) {
+        $('#DataTableOther').DataTable({
+            "paging": false,
+            "ordering": false,
+            "searching": true,
+            "info": false
+        });
+    }
     </script>
 </body>
 </html>
