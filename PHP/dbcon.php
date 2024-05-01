@@ -2,8 +2,8 @@
 
 function database_run($query, $vars = array(), $isInsert = false)
 {
-    // $string = "mysql:host=localhost;dbname=u277379385_qcuj2024";
-    $string = "mysql:host=srv1152.hstgr.io;dbname=u277379385_qcuj2024";
+    $string = "mysql:host=localhost;dbname=u277379385_qcuj2024";
+    // $string = "mysql:host=srv1152.hstgr.io;dbname=u277379385_qcuj2024";
     $con = new PDO($string, 'u277379385_qcuj2024', 'Qcujournal1234.');
 
     // $string = "mysql:host=localhost;dbname=journal";
